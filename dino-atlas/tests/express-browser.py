@@ -54,6 +54,8 @@ try:
    if page.locator('dialog[open]').count():press(1)
    press(8);wait('document.getElementById("map-dialog").open');check('GOAL:' in page.locator('#map-destination').inner_text(),'Map names the current objective and distance')
    check(page.evaluate('g.state.guidance.distance')>=0,'Guide targets the actual current task')
+   check(page.evaluate('''()=>{const a=document.querySelector('#goal-compass>span'),m=new DOMMatrix(getComputedStyle(a).transform),p=g.state.position,t=g.state.guidance.target,expected=Math.atan2(t.x-p.x,p.z-t.z)+g.state.yaw;return getComputedStyle(a).clipPath.startsWith('polygon(')&&Math.abs(Math.atan2(Math.sin(Math.atan2(m.b,m.a)-expected),Math.cos(Math.atan2(m.b,m.a)-expected)))<.002;}'''),'Stemmed compass arrow matches the live player-to-goal bearing')
+   if SCENE=='classic':check('either grip interacts' in page.locator('#travel-guide-help').inner_text() and 'Legacy Quest preset.' in page.locator('#controls-dialog').inner_text(),'Classic controller guide distinguishes Active controls from Legacy reference')
    page.screenshot(path=str(OUT/(SCENE+'-map.png')));press(1)
    press(9);choose('travel-xbox-layout');check(page.evaluate('g.state.travel.xboxLayout')=='active','Xbox can select the optional stick-drive profile')
    choose('travel-multiplier');check(page.evaluate('g.state.travel.multiplier')==8,'Xbox can adjust express speed without mouse');choose('travel-multiplier');choose('travel-multiplier');check(page.evaluate('g.state.travel.multiplier')==4,'Speed returns to intended 4x setting');press(1)

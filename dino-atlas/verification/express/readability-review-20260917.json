@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "date": "2026-09-17",
+  "previousCandidate": "6b365e877149d0ac5c4a07fa85833fea44845f82",
+  "previousRun": 35281125642,
+  "previousExpressBrowserChecks": {
+    "classic": 22,
+    "tidegate": 21
+  },
+  "previousErrors": [],
+  "findings": [
+    "Visual review of the map showed that a near-equilateral rotating triangle can be ambiguous about its tip. The bearing calculation was unchanged; the shape is now a stemmed arrow.",
+    "The Classic controller guide still described the former Quest mapping without identifying it as Legacy, although Settings already showed the new Active profile. The guide now labels the old reference and includes the current profiles."
+  ],
+  "changes": [
+    "Add a stem to the compass indicator and retain an explicit textual bearing/distance.",
+    "Make the Classic controller guide distinguish current Active profiles, Familiar Xbox and Legacy Quest; correct the Express toggle hint.",
+    "Add native DOM direction and guide-copy checks without changing player input or gameplay state."
+  ],
+  "hardwareVerified": false,
+  "finalAcceptance": "The amended source requires its own native/public run. Prior 198 model tests and prior browser results are not retroactively results for this amendment."
+}

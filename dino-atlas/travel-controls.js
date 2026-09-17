@@ -13,9 +13,12 @@ export class TravelControls{
   this.button=document.createElement('button');this.button.id='express-button';this.button.onclick=()=>this.toggle();
   const actions=document.querySelector('#hud .actions'),telemetry=document.querySelector('#hud .telemetry');
   (actions||telemetry||document.getElementById('hud')).append(this.button);if(!actions)this.button.style.cssText='position:absolute;bottom:53px;right:0;padding:5px 8px;font-size:10px;white-space:nowrap';
+  // Keep the original Classic controller guide explicit about legacy bindings.
+  const guide=document.querySelector('#controls-dialog .control-copy');
+  if(guide){const current=document.createElement('p');current.id='travel-guide-help';guide.prepend(current);for(const p of guide.querySelectorAll('p')){const b=p.querySelector('b');if(b?.textContent==='Quest VR.')b.textContent='Legacy Quest preset.';if(b?.textContent==='Move and look.')p.innerHTML=p.innerHTML.replace('Click the left stick to sprint or boost.','On foot, hold left-stick click to sprint. In a vehicle, click it once to toggle Express speed.');}}
   this.help();this.update();
  }
- help(){document.getElementById('travel-help').textContent=ACTIVE_HELP+' Xbox Active: left stick drives/steers, D-pad up/down raises/lowers the helicopter; A interacts, X reloads, Y boards, B brakes, View opens map. Familiar bindings remain selectable.';}
+ help(){document.getElementById('travel-help').textContent=ACTIVE_HELP+' Xbox Active: left stick drives/steers, D-pad up/down raises/lowers the helicopter; A interacts, X reloads, Y boards, B brakes, View opens map. Familiar bindings remain selectable.';const guide=document.getElementById('travel-guide-help');if(guide)guide.textContent='Current travel profiles. '+document.getElementById('travel-help').textContent+' Choose either profile in Settings. The following trigger-piloting instructions describe the Familiar Xbox and Legacy Quest presets.';}
  get activeLayout(){return this.settings.xrLayout==='active';}
  reset(){this.cruise.reset();}
  toggle(){const mode=this.ctx.fleet.mode;if(this.ctx.modal()||mode==='foot'){this.ctx.notify(mode==='foot'?'Board a vehicle for express travel. On foot, hold left stick click or Shift to run.':'Close the menu before engaging express travel.');return;}const active=this.cruise.toggle(mode);this.ctx.notify(active?`Express ${this.settings.multiplier}x engaged. Unlimited duration; brake cancels.`:'Normal vehicle speed.');this.update();}
