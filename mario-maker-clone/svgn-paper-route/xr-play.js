@@ -48,8 +48,17 @@ function pointerEvent(type,hit,source=screenPointer?.source){
   const target=screenPointer?.target||screenSource;if(!target||!hit)return;
   const box=target.getBoundingClientRect(),clientX=box.left+hit.x*box.width,clientY=box.top+hit.y*box.height;
   const init={bubbles:true,cancelable:true,clientX,clientY,button:0,buttons:type==='pointerup'||type==='pointercancel'?0:screenPointer?1:0,pointerId:701,pointerType:'pen',isPrimary:true};
-  target.dispatchEvent(new PointerEvent(type,init));
-  if(target.id!=='maker-canvas')target.dispatchEvent(new MouseEvent(type.replace('pointer','mouse'),init));
+  const pointerAccepted=target.dispatchEvent(new PointerEvent(type,init));
+  // Pointer-aware curve tools can claim the gesture. Do not also start the
+  // older mouse-paint path when its pointer handler prevented the default.
+  if(type==='pointerdown'&&screenPointer)screenPointer.mouseCompat=target.id!=='maker-canvas'&&pointerAccepted;
+  if(screenPointer?.mouseCompat){
+    const terminal=type==='pointerup'||type==='pointercancel';
+    if(terminal||pointerAccepted)target.dispatchEvent(new MouseEvent(terminal?'mouseup':type.replace('pointer','mouse'),{...init,buttons:terminal?0:init.buttons}));
+    // Legacy mouse editing ends through its native mouseup/undo path on loss;
+    // modern pointer editors retain their own pointercancel semantics.
+    if(terminal)screenPointer.mouseCompat=false;
+  }
 }
 function release(){
   if(screenPointer){pointerEvent('pointercancel',screenPointer.hit);screenPointer=null;}
