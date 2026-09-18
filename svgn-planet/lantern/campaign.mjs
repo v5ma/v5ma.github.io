@@ -3,8 +3,8 @@ import {watchState} from './watch.mjs';
 export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260});
 const point=(id,label,x,y,z,kind='interact')=>({id,label,x,y,z,kind});
 export const CAMPAIGN_CASES=Object.freeze([
- {id:'flight',title:'Case 02: Rooftop Run',reward:150,summary:'Recover the cape rig, learn the service perches, then glide between familiar roofs.',steps:[
-  point('flight-brief','Meet Sal in the loading loft',12,4.4,0),point('flight-rig','Recover the folded cape rig on the print terrace',-14.5,4.4,-4.4),point('flight-launch','Reach the loading-loft launch rail',12,4.4,-2.2,'launch'),point('flight-land','Glide back to the drying terrace',-11.5,4.4,-4.5,'land'),point('flight-report','Report the route to Sal',12,4.4,0)]},
+ {id:'flight',title:'Case 02: Rooftop Run',reward:150,summary:'Recover the cape rig, learn the service perches, then glide to a safe lower landing and reuse the familiar stair route.',steps:[
+  point('flight-brief','Meet Sal in the loading loft',12,4.4,0),point('flight-rig','Recover the folded cape rig on the print terrace',-14.5,4.4,-4.4),point('flight-launch','Reach the loading-loft launch rail',12,4.4,-2.2,'launch'),point('flight-land','Land by the print shop, then return through its familiar stairs',-11.5,0,-4.5,'land'),point('flight-report','Report the route to Sal',12,4.4,0)]},
  {id:'predator',title:'Case 03: Quiet Circuit',reward:180,summary:'Read patrols, use overhead space and service vents, and shut down the hijacked security net without a brawl.',steps:[
   point('predator-brief','Meet Mara at the watch desk',-10,0,14),point('predator-vantage','Observe the north storehouse from the roof approach',-10,4.4,-4.2,'observe'),point('predator-clear','Silently disable the storehouse patrols',-10,0,-17.5,'clear'),point('predator-vent','Use the market service vent to cross unseen',-20.5,0,-2.7,'vent'),point('predator-relay','Disable the greenhouse security relay',18,0,-17,'relay'),point('predator-report','Return to Mara',-10,0,14)]},
  {id:'interiors',title:'Case 04: Rooms of the Ward',reward:160,summary:'Trace the blackout through the working interiors. Learn what each building actually does.',steps:[
@@ -37,8 +37,8 @@ const sessions=new WeakMap();
 const patrols={
  predator:[
   {id:'quiet-1',role:'Watcher',home:[-12,-17.2],route:[[-14,-17.2],[-8,-17.2],[-8,-15.8],[-14,-15.8]]},
-  {id:'quiet-2',role:'Watcher',home:[-6,-13.5],route:[[-6,-13.5],[-2,-13.5],[-2,-16],[-6,-16]]},
-  {id:'quiet-3',role:'Watcher',home:[-20.5,-5],route:[[-22,-5],[-19,-5],[-19,-1],[-22,-1]]}
+  {id:'quiet-2',role:'Watcher',home:[-6,-13.5],route:[[-6,-14],[-4,-14],[-4,-13.4],[-6,-13.4]]},
+  {id:'quiet-3',role:'Watcher',home:[-23,-5],route:[[-23,-5],[-22.8,-5],[-22.8,-1],[-23,-1]]}
  ],
  freeflow:[
   {id:'flow-1',role:'Scout',home:[5,7],route:[[5,7],[7,7]]},{id:'flow-2',role:'Shield',home:[7,9],route:[[7,9],[5,9]]},{id:'flow-3',role:'Brute',home:[5,10],route:[[5,10],[8,10]]},{id:'flow-4',role:'Scout',home:[8,7],route:[[8,7],[8,10]]}
@@ -57,9 +57,9 @@ function behind(s,e){const to=Math.atan2(s.x-e.x,s.z-e.z),d=Math.atan2(Math.sin(
 function close(s,t,api,r=1.9){return distance(s,t)<r&&api.lineClear(s,eye(s),{x:t.x,y:t.y+1,z:t.z});}
 function completeCase(s,m){const c=campaignState(s);if(!c.completed.includes(m.id)){c.completed.push(m.id);c.credits+=m.reward;}c.progress[m.id]=m.steps.length;c.active=null;return m.title+' complete. +'+m.reward+' Watch campaign credits.';}
 function next(s,text){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active);c.progress[m.id]=(c.progress[m.id]||0)+1;return c.progress[m.id]>=m.steps.length?completeCase(s,m):text+' Next: '+campaignTarget(s).label+'.';}
-export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),t=campaignTarget(s);if(!m||!t)return null;const r=campaignRuntime(s);
+export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),t=campaignTarget(s);if(!m||!t)return null;const r=campaignRuntime(s);t.kind=m.steps[c.progress[m.id]||0].kind;
  if(t.kind==='combat'||t.kind==='clear')return r.enemies.every(e=>e.hp<=0)?next(s,'Area secure.'):'Threats remain. Keep moving, counter blue cues, or break sight.';
- if(t.kind==='land')return r.glideLanded&&close(s,t,api,4)?next(s,'Glide route proven.'):'Deploy the cape from the loft and land on the drying terrace.';
+ if(t.kind==='land')return r.glideLanded&&close(s,t,api,4)?next(s,'Glide route proven.'):'Deploy the cape from the loft; the print-shop floor is a safe lower landing. Return using the stairs.';
  if(t.kind==='choice')return c.route==='stealth'&&r.enemies.every(e=>e.hp<=0)||c.route==='combat'&&r.enemies.every(e=>e.hp<=0)?next(s,'Final approach clear.'):'Choose stealth or combat from Field tools, then clear the signal approach.';
  if(!close(s,t,api,t.kind==='observe'?3:2.1))return null;
  if(t.kind==='observe')return next(s,'Patrol timing mapped from above.');
@@ -68,7 +68,7 @@ export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASE
  if(t.kind==='launch')return next(s,'Cape rig armed. Step off and spread the cape to glide.');
  return next(s,'Done.');
 }
-function strikeEnemy(s,e,r,api){if(e.role==='Shield'&&!e.stun){r.combo=0;api.say(s,'Shield held. Counter, pulse, or attack from behind.');return;}e.hp--;e.stun=.7;e.phase=e.hp?'stunned':'disabled';r.combo++;r.bestCombo=Math.max(r.bestCombo,r.combo);api.say(s,e.hp?'Strike landed. Keep the flow moving.':'Sentry disabled.');}
+function strikeEnemy(s,e,r,api){if(e.role==='Shield'&&!e.stun&&!behind(s,e)){r.combo=0;api.say(s,'Shield held. Counter, pulse, or attack from behind.');return;}e.hp--;e.stun=.7;e.phase=e.hp?'stunned':'disabled';r.combo++;r.bestCombo=Math.max(r.bestCombo,r.combo);api.say(s,e.hp?'Strike landed. Keep the flow moving.':'Sentry disabled.');}
 function aimScore(s,e,ray){const o=ray?.origin||eye(s),d=ray?.direction||{x:-Math.sin(s.yaw||0),y:0,z:-Math.cos(s.yaw||0)},v={x:e.x-o.x,y:e.y+1-o.y,z:e.z-o.z},n=Math.hypot(v.x,v.y,v.z)*Math.hypot(d.x,d.y,d.z);return n?(v.x*d.x+v.y*d.y+v.z*d.z)/n:-1;}
 export function campaignAction(s,name,api,ray){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),kitUnlocked=watchState(s).stage===4||c.completed.length>0;const r=campaignRuntime(s);
  if(name.startsWith('holster-')&&kitUnlocked){const tool=name.slice(8);if(!['grapple','pulse','smoke','cape'].includes(tool))return false;r.selected=tool;r.holsterDraws++;api.say(s,tool==='cape'?'Cape rig ready.':'Drew '+tool+' from the body holster.');return true;}
@@ -88,7 +88,7 @@ export function advanceCampaign(s,input,dt,api){const c=campaignState(s),m=CAMPA
  if(m.id==='flight'&&(c.progress.flight||0)===3&&r.glideSeconds>.25&&Math.hypot(s.x+11.5,s.z+4.5)<4){const sf=api.support(s,s.x,s.z,s.y),ground=sf?api.floorHeight(sf,s.z):-99;if(Math.abs(s.y-ground)<.36&&s.vy<=0)r.glideLanded=true;}
  if(!r.enemies.length)return false;
  let attacker=r.enemies.find(e=>e.phase==='windup'&&e.hp>0);for(const e of r.enemies){if(e.hp<=0)continue;e.stun=Math.max(0,e.stun-dt);e.timer+=dt;if(e.stun){e.phase='stunned';continue;}const dx=s.x-e.x,dz=s.z-e.z,d=Math.hypot(dx,dz),toPlayer=Math.atan2(dx,dz),facing=Math.cos(toPlayer-e.yaw),seen=d<8&&Math.abs(s.y-e.y)<1.3&&!r.smoke&&facing>.25&&visible(s,e,api);e.awareness=Math.max(0,Math.min(1.2,e.awareness+(seen?dt*1.2:-dt*.55)));r.alertPeak=Math.max(r.alertPeak,e.awareness);
-  if(m.id==='predator'&&e.awareness<1){const p=e.route[e.routeIndex%e.route.length],px=p[0]-e.x,pz=p[1]-e.z,L=Math.hypot(px,pz);if(L<.18)e.routeIndex++;else{const step=Math.min(L,dt*.7);e.x+=px/L*step;e.z+=pz/L*step;e.yaw=Math.atan2(px,pz);}e.phase=e.awareness>.35?'suspicious':'patrol';continue;}
+  if(m.id==='predator'&&e.awareness<1){const p=e.route[e.routeIndex%e.route.length],px=p[0]-e.x,pz=p[1]-e.z,L=Math.hypot(px,pz);if(L<.18)e.routeIndex++;else{const step=Math.min(L,dt*.7);const x=e.x+px/L*step,z=e.z+pz/L*step;if(!api.blocked(s,x,e.y,z)){e.x=x;e.z=z;}else e.routeIndex++;e.yaw=Math.atan2(px,pz);}e.phase=e.awareness>.35?'suspicious':'patrol';continue;}
   if(e.phase==='windup'){if(input.guard&&r.guardWindow>0&&e.timer>.22&&e.timer<1.05){e.phase='stunned';e.stun=1.45;e.timer=0;r.guardWindow=0;r.counters++;r.combo++;r.bestCombo=Math.max(r.bestCombo,r.combo);api.say(s,'Counter opening. Lunge or strike the next target.');continue;}if(e.timer>=1.05){e.phase='recover';e.timer=0;if(d<2.1&&!input.guard){r.combo=0;api.say(s,'Hit absorbed by the suit. Break the line or counter the blue cue.');}continue;}}
   if(e.phase==='recover'&&e.timer<.75)continue;if(d>1.7){const step=Math.min(dt*(e.role==='Brute'?.85:1.25),d-1.5),nx=e.x+dx/d*step,nz=e.z+dz/d*step;if(!api.blocked(s,nx,e.y,nz)){e.x=nx;e.z=nz;e.yaw=toPlayer;}e.phase='pursue';}else if(!attacker){e.phase='windup';e.timer=0;attacker=e;}
  }

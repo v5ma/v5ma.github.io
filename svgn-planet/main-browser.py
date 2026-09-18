@@ -58,7 +58,7 @@ async def main():
    assert not report['errors'],report['errors'];assert not report['consoleErrors'],report['consoleErrors'];report['success']=True;report['final']=await state()
   except Exception as e:
    report.update(success=False,failure=str(e),traceback=traceback.format_exc());print(report['traceback'],flush=True)
-   try:report['final']=await state();await page.screenshot(path=str(OUT/'failure.png'))
+   try:report['final']=await state();report['city']=await page.evaluate('SVGNPlanet.inspect()');await page.screenshot(path=str(OUT/'failure.png'))
    except Exception:pass
   finally:(OUT/'report.json').write_text(json.dumps(report,indent=2));await browser.close()
  if not report.get('success'):raise SystemExit(1)

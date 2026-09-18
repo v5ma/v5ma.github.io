@@ -14,7 +14,7 @@ export function createUnifiedXR(hooks){
  let prefs=loadXRPrefs(hooks.storage).prefs,preferencesBlocked=loadXRPrefs(hooks.storage).blocked;
  const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false;
  const $=id=>document.getElementById(id),visible=e=>!!e&&!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length>0;
- const root=()=>visible($('failure'))?$('failure'):[...document.querySelectorAll('dialog[open]')].at(-1)||(visible($('welcome'))?$('welcome'):null);
+ const root=()=>visible($('failure'))?$('failure'):['ward-confirm','confirm-reset','save-confirm'].map($).find(visible)||[...document.querySelectorAll('dialog[open]')].at(-1)||(visible($('welcome'))?$('welcome'):null);
  function clear(){clearXRInput();hooks.clear();for(const s of slots){s.ready=false;s.previous=[];s.relative=s.hand=s.head=null;s.menuTime=0;s.menuUsed=false;s.armed=true;}lastSnap=false;}
  function resetRoot(){rootBefore=null;lastPaint=0;page=0;clear();}
  function pause(){hooks.pause();resetRoot();}
@@ -38,7 +38,7 @@ export function createUnifiedXR(hooks){
  }
  function paint(r){
   rows=[];ctx.fillStyle='#142e39';ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#fff0ca';ctx.font='bold 32px sans-serif';ctx.fillText((r?.querySelector('h1,h2')?.textContent||'Neighborhood Missions').slice(0,53),36,52);
-  ctx.font='23px sans-serif';const copy=(error||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
+  ctx.font='23px sans-serif';const description=r?.querySelector('p')?.textContent||'';const copy=(error||description||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
   if(r){const all=[...r.querySelectorAll('button,select,input,a[href],textarea')].filter(visible),pages=Math.max(1,Math.ceil(all.length/6));page=Math.max(0,Math.min(page,pages-1));
    all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
    rows.push({label:'Previous page',x:36,y:854,w:300,h:70,act:()=>{page=(page+pages-1)%pages;}},{label:'Next '+(page+1)+'/'+pages,x:361,y:854,w:300,h:70,act:()=>{page=(page+1)%pages;}},{label:'Back / resume',x:686,y:854,w:300,h:70,act:()=>back(r)});
