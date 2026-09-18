@@ -76,8 +76,10 @@ export function createXR(view,hooks){
 
   if(hooks.paused()&&missionPage)return [...hooks.missions().map(m=>[m.title,()=>{hooks.track(m.id);missionPage=false;hooks.pause(false);}]),['Display settings',()=>{missionPage=false;page=0;lastPaint=0;}]];
   if(hooks.paused())return [
-   ['Resume',()=>hooks.pause(false)],['Missions / map',()=>{missionPage=true;page=0;lastPaint=0;}],['Field tools',()=>{section='tools';page=0;lastPaint=0;}],['Controls',()=>{section='controls';page=0;lastPaint=0;}],['Save / recovery',()=>{section='saves';page=0;lastPaint=0;}],['Exit XR',()=>session?.end()],[kind.endsWith('-ar')?'First-person AR':'First-person VR',()=>setMode('first')],[kind.endsWith('-ar')?'Diorama AR':'Diorama VR',()=>setMode('diorama')],
-   ['Top open',()=>view.setOpening('top')],['Front open',()=>view.setOpening('front')],['Both open',()=>view.setOpening('both')],
+   // Immediate presentation controls remain on page one. The richer settings pages
+   // stay paginated, but view/opening changes never require menu hunting in-headset.
+   ['Resume',()=>hooks.pause(false)],['Top open',()=>view.setOpening('top')],['Front open',()=>view.setOpening('front')],['Both open',()=>view.setOpening('both')],[kind.endsWith('-ar')?'First-person AR':'First-person VR',()=>setMode('first')],[kind.endsWith('-ar')?'Diorama AR':'Diorama VR',()=>setMode('diorama')],
+   ['Missions / map',()=>{missionPage=true;page=0;lastPaint=0;}],['Field tools',()=>{section='tools';page=0;lastPaint=0;}],['Controls',()=>{section='controls';page=0;lastPaint=0;}],['Save / recovery',()=>{section='saves';page=0;lastPaint=0;}],['Exit XR',()=>session?.end()],
    ['Smaller model',()=>{settings.scale=clamp(settings.scale-.008,.024,.075);pause();}],['Larger model',()=>{settings.scale=clamp(settings.scale+.008,.024,.075);pause();}],
    ['Lower stand',()=>{settings.height=clamp(settings.height-.12,-1.2,-.1);pause();}],['Raise stand',()=>{settings.height=clamp(settings.height+.12,-1.2,-.1);pause();}],
    ['Bring nearer',()=>{settings.distance=clamp(settings.distance-.2,1.2,2.8);pause();}],['Move farther',()=>{settings.distance=clamp(settings.distance+.2,1.2,2.8);pause();}],
