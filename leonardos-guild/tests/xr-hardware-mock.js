@@ -10,7 +10,7 @@
   const {x,y,z,w}=orientation,x2=x+x,y2=y+y,z2=z+z,xx=x*x2,xy=x*y2,xz=x*z2,yy=y*y2,yz=y*z2,zz=z*z2,wx=w*x2,wy=w*y2,wz=w*z2;
   return new Float32Array([1-(yy+zz),xy+wz,xz-wy,0,xy-wz,1-(xx+zz),yz+wx,0,xz+wy,yz-wx,1-(xx+yy),0,position.x,position.y,position.z,1]);
  }
- function transform(p,q=identity){return {position:p,orientation:q,matrix:matrix(p,q)};}
+ function transform(p,q=identity){return {position:new DOMPointReadOnly(p.x,p.y,p.z,1),orientation:new DOMPointReadOnly(q.x,q.y,q.z,q.w),matrix:matrix(p,q)};}
  function source(handedness,hand=false){
   const s={handedness,targetRayMode:'tracked-pointer',profiles:hand?['generic-hand-select']:['oculus-touch-v3'],tracked:true,jointsTracked:true,down:false,position:{x:handedness==='left'?-.25:.25,y:1.3,z:-.1},orientation:{...identity},pinch:.06};
   s.targetRaySpace={source:s,kind:'ray'};s.gripSpace={source:s,kind:'grip'};

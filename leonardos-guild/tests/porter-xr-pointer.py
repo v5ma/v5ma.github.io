@@ -9,7 +9,8 @@ def hand_ui(page):
  def pinch(down):page.evaluate('(d)=>__xr.sources[1].pinch=d?.014:.06',down)
  def point(u,v):
   page.evaluate('''async ({u,v})=>{const T=await import('/leonardos-guild/vendor/three.module.js'),s=__xr.sources[1],o=LeonardoGuild.inspect().xr.theatreOrigin;
-   const p=new T.Vector3((u-.5)*1.10,(v-.5)*1.65,0).applyAxisAngle(new T.Vector3(0,1,0),-.42).add(new T.Vector3(1.61,1.60,-2.37)).applyAxisAngle(new T.Vector3(0,1,0),o.yaw).add(new T.Vector3(o.x,o.y,o.z));
+   const info=LeonardoGuild.inspect().xr.hud.panel;
+   const p=new T.Vector3((u-.5)*1.10,(v-.5)*1.65,0).applyMatrix4(new T.Matrix4().fromArray(info.matrix));
    const q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),p.sub(new T.Vector3().copy(s.position)).normalize());s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',{'u':u,'v':v});frames(3)
 
  def ensure_hud():

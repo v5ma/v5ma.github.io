@@ -1,4 +1,5 @@
 import {createSpatialXR} from './spatial-xr.mjs';
+import {XR_REPAIR_BUILD,createMenuAnchor,createDialogBridge,guardFrame} from './xr-recovery.mjs';
 import {XR_ENTRY_BUILD,XR_MODES,xrEnvironmentProblem,xrFailureText,probeXRMode,bindXREntry,immersiveVisible} from './xr-entry.mjs';
 /* Optional seated WebXR theatre for the EXISTING game. The game scene, save,
  * reducers and camera remain authoritative. Both tracked controllers and hands
@@ -18,8 +19,12 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const rawRender=renderer.render;renderer.render=function(s,c){if(suppressGameRender&&s===view.scene)return;return rawRender.call(this,s,c);};
  let lastContext=null,frameContext=null,frameBlocked=false,wheelOwner=null;
  let entry=null,entryPhase='idle',entryError='',entrySelection=null,entryAutoStart=false,entryReady=false,entryFrames=0,viewerReady=false,startupTimer=null,probeId=0;
+ // Keep a UI exception from stopping Three's next-frame scheduling. Desktop
+ // behavior is untouched; immersive failure exits to an explicit saved-game error.
+ if(renderer.setAnimationLoop){const setLoop=renderer.setAnimationLoop.bind(renderer);renderer.setAnimationLoop=fn=>{if(!fn)return setLoop(fn);const guarded=guardFrame(fn,error=>{console.error(error);fail(error);});return setLoop((...args)=>session?guarded(...args):fn(...args));};}
  const environmentProblem=()=>xrEnvironmentProblem();
  const inputContext=()=>ui.root()||actions.wheelActive()||(active()?'play':'inactive');
+ const dialogs=createDialogBridge(()=>!!session&&entryReady&&!ending);let menuPose=null;
  const scene=new T.Scene();scene.background=new T.Color('#101b27');
  const camera=new T.PerspectiveCamera(55,1,.05,1800),stage=new T.Group();scene.add(stage);
  const sources=new Map(),visuals=[];
@@ -34,7 +39,8 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const toolbar=new T.Mesh(new T.PlaneGeometry(2.85,.7125),new T.MeshBasicMaterial({map:bar.texture,side:T.DoubleSide,toneMapped:false}));toolbar.position.set(-.44,.43,-2.38);toolbar.rotation.x=-.16;stage.add(toolbar);
  const hudToggle=new T.Mesh(new T.SphereGeometry(.045,12,8),new T.MeshBasicMaterial({color:'#d8bd86'}));hudToggle.name='Show or hide controls';hudToggle.position.set(1.25,1.45,-1.0);stage.add(hudToggle);
  function toggleHUD(){hudRequested=!hudRequested;resetInput();updateHUD();}
- function updateHUD(){const real=!!session&&!!spatial&&spatial.effective()!=='theatre',modal=!!ui.root()||!!actions.wheelActive();panelMesh.visible=!real||modal||hudRequested;toolbar.visible=!real||hudRequested&&!modal;hudToggle.visible=real&&!modal;}
+ const menuAnchor=createMenuAnchor(panelMesh,stage);
+ function updateHUD(){const real=!!session&&!!spatial&&spatial.effective()!=='theatre',root=ui.root()||actions.wheelActive(),modal=!!root;panelMesh.visible=!real||modal||hudRequested;toolbar.visible=!real||hudRequested&&!modal;hudToggle.visible=real&&!modal;menuAnchor.update(real,root,panelMesh.visible,menuPose);}
  const notice=document.createElement('p');notice.id='guild-xr-status';notice.setAttribute('role','status');notice.textContent=status;
  const titleButton=document.createElement('button');titleButton.id='guild-xr-enter';titleButton.textContent='Enter seated XR (Quest)';titleButton.disabled=true;titleButton.setAttribute('aria-describedby',notice.id);
  const pauseButton=titleButton.cloneNode(true);pauseButton.id='guild-xr-pause';
@@ -134,7 +140,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  }
  function onEnd(endedSession){
   if(endedSession&&session!==endedSession)return;
-  clearTimeout(startupTimer);entryAutoStart=entryReady=false;
+  clearTimeout(startupTimer);entryAutoStart=entryReady=false;menuPose=null;menuAnchor.reset();dialogs.restore();
   spatial?.end();view.spatial?.setSkipRender(false);renderer.setClearAlpha?.(1);session=null;ending=false;hudRequested=false;suppressGameRender=false;resetInput();for(const src of sources.keys())release(src);
   renderer.xr.enabled=false;renderer.setRenderTarget(null);savedRenderer=null;view.setQuality(view.inspect().quality);
   if(playing())actions.pause();if(!entryError)entryPhase='idle';message(entryError||'XR ended. Progress is preserved. Choose any mode or resume on screen.');
@@ -166,7 +172,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   const reference=renderer.xr.getReferenceSpace();
   const viewer=frame.getViewerPose(reference);
   if(!validPose(viewer)){frameBlocked=true;resetInput();reticle.visible=false;for(const v of visuals)v.root.visible=false;if(hadTracking&&active())actions.pause();hadTracking=false;return;}
-  viewerReady=true;
+  viewerReady=true;menuPose=viewer;
   // Anchor once in front of this viewer, not at an assumed room origin. Keep
   // the theatre stationary afterwards; head movement never moves the player.
   if(!theatrePlaced){const p=viewer.transform.position;orientation.copy(viewer.transform.orientation);stage.position.set(p.x,p.y-1.6,p.z);stage.rotation.y=new T.Euler().setFromQuaternion(orientation,'YXZ').y;theatrePlaced=true;}
@@ -261,6 +267,12 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   renderer.xr.enabled=false;if(renderer.getPixelRatio()!==1)renderer.setPixelRatio(1);renderer.setRenderTarget(gameTarget);renderer.setScissorTest(false);renderer.setViewport(0,0,1024,576);
   view.camera.aspect=16/9;view.camera.updateProjectionMatrix();
  }
+ function fail(error){
+  entryError=xrFailureText(error);entryPhase='failed';entryAutoStart=false;
+  if(savedRenderer){const old=savedRenderer;savedRenderer=null;renderer.setRenderTarget(old.target);renderer.setViewport(old.viewport);renderer.setScissor(old.scissor);renderer.setScissorTest(old.scissorTest);}
+  suppressGameRender=false;view.spatial?.setSkipRender(false);renderer.xr.enabled=true;message(entryError);
+  void exit().catch(endError=>{console.error(endError);onEnd(session);});
+ }
  function afterGame(){
   if(!savedRenderer||!session)return;
   const old=savedRenderer;savedRenderer=null;renderer.setRenderTarget(old.target);renderer.setViewport(old.viewport);renderer.setScissor(old.scissor);renderer.setScissorTest(old.scissorTest);
@@ -274,9 +286,9 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
      if(entryAutoStart){entryAutoStart=false;if(!playing())actions.start();else if(document.getElementById('pause-dialog')?.open)document.getElementById('resume').click();}
     }
    }
-  }catch(error){entryError=xrFailureText(error);entryPhase='failed';entryAutoStart=false;message(entryError);void exit();}
+  }catch(error){fail(error);}
   finally{view.spatial?.setSkipRender(false);}
 
  }
- return {visible:()=>immersiveVisible(!!session&&renderer.xr.isPresenting,session?.visibilityState,entryReady,ending),poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?(sessionMode==='immersive-ar'?'first-person-ar':'first-person-vr'):spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,entry:{build:XR_ENTRY_BUILD,phase:entryPhase,selection:entrySelection,frames:entryFrames,error:entryError,vr:vrSupported,ar:arSupported},referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,hud:{panelVisible:panelMesh.visible,toolbarVisible:toolbar.visible,requested:hudRequested,toggle:hudToggle.position.toArray()},panel:panel.inspect(),physicalQuestVerified:false})};
+ return {fail,visible:()=>immersiveVisible(!!session&&renderer.xr.isPresenting,session?.visibilityState,entryReady,ending),poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?(sessionMode==='immersive-ar'?'first-person-ar':'first-person-vr'):spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,entry:{build:XR_ENTRY_BUILD,phase:entryPhase,selection:entrySelection,frames:entryFrames,error:entryError,vr:vrSupported,ar:arSupported},referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,repair:XR_REPAIR_BUILD,dialogs:dialogs.inspect(),hud:{panel:menuAnchor.inspect(),panelVisible:panelMesh.visible,toolbarVisible:toolbar.visible,requested:hudRequested,toggle:hudToggle.position.toArray()},panel:panel.inspect(),physicalQuestVerified:false})};
 }

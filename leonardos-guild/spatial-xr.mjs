@@ -1,6 +1,7 @@
 /* The live third-person game through a fixed exhibit, plus full-scale VR/AR.
  * Render transforms never enter simulation, collision, interaction or saves. */
 import * as T from './vendor/three.module.js';
+import {xrPosition,checkedEyeMatrix} from './xr-recovery.mjs';
 import {inQuarter,quarterBlocked} from './quarter-core.mjs';
 import {PortalMaterials,centeredWorldMatrix,shellMaterial} from './world-portal.mjs';
 import {createWorldView} from './world-view.mjs';
@@ -11,10 +12,10 @@ export function apertureFaces(v){v=aperture(v);return {topOpen:v!=='front',front
 export function changeFace(v,face,open){const f=apertureFaces(v);if(face==='top')f.topOpen=!!open;else if(face==='front')f.frontOpen=!!open;else return aperture(v);if(!f.topOpen&&!f.frontOpen){if(face==='top')f.frontOpen=true;else f.topOpen=true;}return f.topOpen?(f.frontOpen?'corner':'overhead'):'front';}
 export function spatialPreferences(raw={}){const number=(v,a,b,d)=>Number.isFinite(v)?Math.max(a,Math.min(b,v)):d;return {aperture:aperture(raw?.aperture),scale:number(raw?.scale,.028,.06,.04),yaw:Number.isFinite(raw?.yaw)?angle(raw.yaw):0,height:number(raw?.height,-.45,.55,0),distance:number(raw?.distance,1.1,2.6,1.8)};}
 export function createHeadingLatch(){let heading=null;return {reset(){heading=null;},read(amount,current){if(amount<.08){heading=null;return current;}if(heading===null)heading=current;return heading;}};}
-export function firstPersonMatrix(actor,origin,phi){const r=new T.Matrix4().makeRotationY(phi),eye=new T.Vector3(actor.x,actor.ground+1.65,actor.z).applyMatrix4(r);r.setPosition(origin.x-eye.x,origin.y-eye.y,origin.z-eye.z);return r;}
+export function firstPersonMatrix(actor,origin,phi){const r=new T.Matrix4().makeRotationY(phi),eye=new T.Vector3(actor.x,actor.ground+1.65,actor.z).applyMatrix4(r);r.setPosition(origin.x-eye.x,origin.y-eye.y,origin.z-eye.z);return checkedEyeMatrix(r);}
 export function createSpatialXR({scene,stage,view,getState,release,openOptions}){
  const geometry=view.scene?createWorldView(view,getState):view.spatial,mini=new T.Group(),worldDraw=new T.Group(),headWorld=new T.Group();scene.add(headWorld);stage.add(mini);mini.add(worldDraw);
- const mask=new PortalMaterials();let prefs=spatialPreferences(),desired='theatre',session=null,sessionMode='immersive-vr',viewer=null,fpOrigin=null,phi=0,snapArmed=true,hitSource=null,hitPose=null,placement='manual',renderedEyes=0,draws=0,headBlocked=false,zoom=2;
+ const mask=new PortalMaterials();let prefs=spatialPreferences(),desired='theatre',session=null,sessionMode='immersive-vr',viewer=null,fpOrigin=null,phi=0,snapArmed=true,hitSource=null,hitPose=null,placement='manual',renderedEyes=0,draws=0,headBlocked=false,zoom=2,viewFinite=true;
  try{prefs=spatialPreferences(JSON.parse(localStorage.getItem('svgn.leonardos-guild.spatial.v1')));}catch{}
  // The accepted box dimensions/placement are unchanged. Zoom changes only the
  // amount of game seen through it, not the room-space frame or saved actor.
@@ -52,7 +53,7 @@ export function createSpatialXR({scene,stage,view,getState,release,openOptions})
  function poll(p,frame,reference){
   viewer=p;if(!p)return;
   if(hitSource){try{const h=frame.getHitTestResults(hitSource)[0]?.getPose(reference);hitPose=h?.transform?h:null;hitMarker.visible=!!hitPose&&desired==='diorama'&&placement==='manual'&&!!globalThis.document?.getElementById('guild-spatial-options')?.open;if(hitPose)hitMarker.position.copy(hitPose.transform.position);}catch{hitPose=null;hitMarker.visible=false;}}
-  if(effective()==='first-person'&&!fpOrigin){fpOrigin={...p.transform.position};phi=poseYaw(p)+Math.PI-getState().yaw;}
+  if(effective()==='first-person'&&!fpOrigin){fpOrigin=xrPosition(p.transform.position);phi=poseYaw(p)+Math.PI-getState().yaw;}
  }
  function controls(mx,my,turn){
   // Diorama uses the ORIGINAL third-person camera/right stick. A head glance
@@ -103,11 +104,11 @@ export function createSpatialXR({scene,stage,view,getState,release,openOptions})
     if(headBlocked&&sessionMode==='immersive-ar')g.visible=false;
     aim.visible=!!s.resonance.aim&&!headBlocked;if(aim.visible){const yaw=poseYaw(viewer);aim.position.copy(viewer.transform.position).add(new T.Vector3(-Math.sin(yaw)*.7,0,-Math.cos(yaw)*.7));aim.quaternion.setFromAxisAngle(new T.Vector3(0,1,0),yaw);}
    }
-   g.updateWorldMatrix(true,true);renderer.render(scene,camera);draws++;renderedEyes=renderer.xr.getCamera?.()?.cameras?.length||0;return true;
+   g.updateWorldMatrix(true,true);viewFinite=g.matrixWorld.elements.every(Number.isFinite);checkedEyeMatrix(g.matrixWorld);renderer.render(scene,camera);draws++;renderedEyes=renderer.xr.getCamera?.()?.cameras?.length||0;return true;
   }finally{mask.active=false;sky.visible=false;g.visible=previousVisible;scene.background=previousBackground;if(parent)parent.add(g);else g.removeFromParent();g.position.copy(position);g.quaternion.copy(rotation);g.scale.copy(scale);if(acquired)geometry.release?.();g.updateWorldMatrix(true,true);geometry.setPresentation('desktop');}
  }
  applyMini();mini.visible=headWorld.visible=false;
- return {begin,end,poll,controls,modify,hit,draw,effective,inspect:()=>({mode:effective(),requested:desired,aperture:prefs.aperture,faces:apertureFaces(prefs.aperture),scale:prefs.scale,zoom,yaw:prefs.yaw,height:prefs.height,distance:prefs.distance,placement,hitAvailable:!!hitPose,geometryDraws:draws,renderedEyes,firstPersonHeading:viewer?angle(poseYaw(viewer)+Math.PI-phi):null,headBlocked,aimVisible:aim.visible,worldIsTexture:false,viewScope:geometry.scope?.()||'test fixture',playerCentered:true,playerDisplay:center.toArray(),boxPosition:mini.getWorldPosition(new T.Vector3()).toArray(),boxSize:[width*prefs.scale,height*prefs.scale,depth*prefs.scale],portalMaterials:mask.entries.size,cameraPitch:view.portalPitch?.()||0,occluders:geometry.occluders?.()||[],maskedBeyondWalls:true,automaticNearWallTransparency:true,hardwareVerified:false})};
+ return {begin,end,poll,controls,modify,hit,draw,effective,inspect:()=>({mode:effective(),requested:desired,aperture:prefs.aperture,faces:apertureFaces(prefs.aperture),scale:prefs.scale,zoom,yaw:prefs.yaw,height:prefs.height,distance:prefs.distance,placement,hitAvailable:!!hitPose,geometryDraws:draws,renderedEyes,viewFinite,firstPersonHeading:viewer?angle(poseYaw(viewer)+Math.PI-phi):null,headBlocked,aimVisible:aim.visible,worldIsTexture:false,viewScope:geometry.scope?.()||'test fixture',playerCentered:true,playerDisplay:center.toArray(),boxPosition:mini.getWorldPosition(new T.Vector3()).toArray(),boxSize:[width*prefs.scale,height*prefs.scale,depth*prefs.scale],portalMaterials:mask.entries.size,cameraPitch:view.portalPitch?.()||0,occluders:geometry.occluders?.()||[],maskedBeyondWalls:true,automaticNearWallTransparency:true,hardwareVerified:false})};
 }
 export function createSpatialOptions({getXR,setPause,getState}){
  const d=document.createElement('dialog');d.id='guild-spatial-options';d.setAttribute('aria-label','XR views and diorama openings');document.body.append(d);d.addEventListener('close',()=>setPause(false));
