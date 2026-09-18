@@ -71,9 +71,10 @@ with sync_playwright() as p:
  def route(points):
   for point in points:walk(point)
  def aim(target):
-  page.evaluate("""async target=>{const start=performance.now();await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,p=g.game.head,dx=target[0]-p[0],dz=target[2]-p[2],dy=target[1]-p[1],h=Math.hypot(dx,dz),v=36,disc=v**4-9.8*(9.8*h*h+2*dy*v*v),pitch=Math.atan((v*v-Math.sqrt(Math.max(0,disc)))/(9.8*h)),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw)),q=pitch-g.pitch;
-   TestPad.pad.axes=[0,0,Math.abs(a)>.012?Math.max(-1,Math.min(1,-a*7)):0,Math.abs(q)>.012?Math.max(-1,Math.min(1,-q*7)):0];
-   if(Math.abs(a)<.03&&Math.abs(q)<.025||performance.now()-start>45000){TestPad.pad.axes=[0,0,0,0];clearInterval(timer);if(Math.abs(a)<.03&&Math.abs(q)<.025)resolve();else reject(Error('Aim did not converge'));}},3);});}""",target)
+  result=page.evaluate("""async target=>{const start=performance.now();return await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,p=g.game.head,dx=target[0]-p[0],dz=target[2]-p[2],dy=target[1]-p[1],h=Math.hypot(dx,dz),v=36,disc=v**4-9.8*(9.8*h*h+2*dy*v*v),pitch=Math.atan((v*v-Math.sqrt(Math.max(0,disc)))/(9.8*h)),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw)),q=pitch-g.pitch;
+   const stick=e=>Math.abs(e)<=.012?0:-Math.sign(e)*(.18+.82*Math.min(1,Math.abs(e)*7));TestPad.pad.axes=[0,0,stick(a),stick(q)];
+   if(Math.abs(a)<.03&&Math.abs(q)<.025||performance.now()-start>45000){TestPad.pad.axes=[0,0,0,0];clearInterval(timer);if(Math.abs(a)<.03&&Math.abs(q)<.025)resolve({target,yawError:a,pitchError:q,wallMilliseconds:performance.now()-start,health:g.game.health});else reject(Error('Aim did not converge '+JSON.stringify({target,yawError:a,pitchError:q,phase:g.game.phase})));}},3);});}""",target)
+  observations.append({'aim':result});(OUT/'input-observations.json').write_text(json.dumps(observations,indent=2))
  def shoot(target):
   aim(target);before=page.evaluate('Vesperfall.state.shots');page.evaluate('TestPad.button(7,true)');wait('Vesperfall.component.charge>.99');page.evaluate('TestPad.button(7,false)');wait('n=>Vesperfall.state.shots===n+1',before);wait('Vesperfall.state.arrows.length===0||Vesperfall.state.phase!=="playing"')
  def checkpoint():
