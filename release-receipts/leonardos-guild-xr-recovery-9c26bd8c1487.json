@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "project": "leonardos-guild",
+  "task": "XR-RECOVERY-04",
+  "build": "guild-xr-recovery-20260918",
+  "release_commit": "9c26bd8c1487df75d54a290f1043131c3a8da805",
+  "feature_head": "b0254ad969ff3953dc5f2d73974328ab025a233f",
+  "pull_request": 188,
+  "game_tree": "70bf6d7ea8dd9c2e30d9744313f91ed3993825d3",
+  "status": "deployed-files-verified-public-playthroughs-pending",
+  "checkpoint_date": "2026-09-18",
+  "pages": {"run": 35402114570, "status": "success"},
+  "publication": {"run": 35402115112, "attempt": 2, "artifact": 10572625270, "files": 283, "all_hashes_match": true, "audio_files": 50, "registered_models": 32, "homepage_game_link": true},
+  "public_native": {"run": 35402115137, "attempt": 2, "status": "in-progress-not-credited", "runtime_artifact": 10572262825},
+  "recovered_native": {"run": 35401527855, "artifact": 10571253305, "checks": 121, "errors": 0, "tested_merge_preview": "4bc61a228a1950b34e0f7e5916f21e94dac3a4fa", "manifest_hashes_matched": 541, "game_hashes_matched": 365, "source_diff_empty": true},
+  "local_recheck": {"model_input_tests": 379, "design_contracts": 14, "native_dom_point_reproduced": true, "browser": "Chromium 144.0.7559.96", "runtime_changes_during_recovery": 0},
+  "diagnosis": "Object spread of native DOMPointReadOnly drops inherited coordinates and yields invalid first-person transforms. Explicit coordinate copying and finite checks repair the confirmed defect. Menus use gaze-placed, depth-independent panels and nonmodal immersive dialog bridging; frame errors trigger explicit recovery instead of halting the XR callback.",
+  "preservation": "Original version-2 save namespace, missions, rewards, remaps, single renderer/simulation, accepted portal size, quiet audio and sibling projects remain unchanged.",
+  "failure_retained": {"artifact": 10571705054, "run": 35402115112, "attempt": 1, "mismatched_files": 5, "reason": "Checked old or missing files before queued Pages deployment completed; rerun after deployment without changing source or assertions."},
+  "next_action": "Finish all eight public journeys in 35402115137 attempt 2, download and inspect current recovery captures/report, verify source hashes, and update this receipt and PR188. Do not rebuild the already merged hotfix or replay PR178.",
+  "physical_hardware_verified": false,
+  "limits": "Native Chromium uses real DOM geometry and rendering with emulated XR hardware. Physical Quest, actual passthrough/compositor, comfort, sustained performance and user confirmation remain open. This is a targeted bug repair, not complete interface polish."
+}
