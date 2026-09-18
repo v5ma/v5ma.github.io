@@ -8,78 +8,32 @@ permissions:
 jobs:
   records:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/unified-docs-20260918'
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 12
           sparse-checkout: |
             svgn-planet
             little-planet
+            .github/workflows
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Update only documentation and retain all roadmap identities
+      - name: Execute reviewed documentation generator with valid Python indentation
         run: |
-          python - <<'PY'
-          import json,pathlib,hashlib,subprocess
-          root=pathlib.Path('svgn-planet');archive=root/'production/handoffs/before-unified-0.16';archive.mkdir(parents=True,exist_ok=True)
-          for name in ['release.json','DEVELOPMENT-HANDOFF.md','README.md']:(archive/name).write_bytes((root/name).read_bytes())
-          baseline={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file() and p.suffix in ('.mjs','.js','.html','.css','.gltf','.bin','.png','.jpg','.webp')}
-          old=json.loads((root/'release.json').read_text())
-          receipt='../release-receipts/neighborhood-missions-unified-0.16.0.json'
-          release={'version':'0.16.0','name':'Neighborhood Missions','edition':'Unified Neighborhoods and Night Watch','date':'2026-09-18','entry':'index.html','lanternRecoveryEntry':'lantern-ward.html','lanternComponentVersion':'0.15.0','legacyEntry':'legacy.html','legacyRelease':'legacy-release.json','legacyLayout':'legacy-layout.json','publicationEvidence':receipt,'status':'Unified release manifest. Actual publication and verification are recorded in the separate receipt; this manifest alone is not a deployment claim.','runtimeCheckpoint':'f18340b64b628679544caeaff1f5c09bbce942da','sourceAcceptanceRuns':[35406083163,35406668272],'changes':['Original city is the main entry; Lantern Ward is a district in the same document, renderer and active XR session.','Eight actual-geometry views in both districts: first/third-person AR/VR and first/third-person diorama AR/VR. No comfort-theater screen.','Room-fixed full-depth portal follows the player, with front/top/both apertures and shader ownership preventing duplicate GLSL.','Native maps, missions, control settings and cancel-first save menus; gameplay boards and residual flat HUDs hidden.','Hold-to-speed release braking and Menu access even before held gameplay controls return to neutral.','Resident stories, Signal Hijack and five sequential optional campaign cases with cape, holsters, stealth, counters, lunges and functional interiors.','Real arcade glide landing, supported upper-floor enemies and repaired floor/stair seams. All original save and reward identities retained.'],'saveContracts':{'original':'svgn.paper-delivery-3d.v1','lantern':'svgn.lantern-ward.v1 / lantern-ward-01 / layout 1','ledgerSeparation':'Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation.'},'validation':{'localModelTestsPassed':311,'localModelTestsFailed':0,'sourceAndPublicEvidence':'Consult the exact run artifacts and publicationEvidence. Queued or failed runs are not accepted.','physicalQuest3Tested':False,'physicalXboxTested':False,'hardwarePerformanceCertified':False,'humanLevelApproval':False},'quality':'Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.','campaignCases':5,'campaignRewardTotal':950}
-          (root/'release.json').write_text(json.dumps(release,indent=2)+'\n')
-          roadmap=json.loads((root/'production/roadmap.json').read_text());ids=[i['id'] for i in roadmap['items']]
-          roadmap.update(version='0.16.0',edition=release['edition'],reviewed='2026-09-18',releaseEvidence='../../'+receipt)
-          changes={
-           'LEVEL-01':('needs-playtest','Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.','Test unfamiliar and returning players for orientation, meaningful route choice and useful mastery. Improve the existing authored places before adding more map area.'),
-           'XR-02':('needs-playtest','Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.','Retain exact main-URL and native menu tests. Obtain physical Quest 3/3S, Touch Plus and hand-tracking approval for menu reach, head tilt, cape/holster gestures, comfort and sustained frame time.'),
-           'ACTION-01':('needs-playtest','Signal Hijack and five sequential original Night Watch cases use the existing district. Cape traversal, patrol awareness, takedowns, counters, shield/pulse rules and lunges have separate state and reward contracts.','Finish exact rendered/public campaign verification and physical playtests. Review stealth readability, combat consequence and replay agency; do not equate automated traversal with fun.'),
-           'ACCESS-01':('partial','Native XR menus include original-city and district maps, mission selection, field tools, settings and explicit cancel-first recovery. Menu remains available while held gameplay controls block rearm.','Test every original-city puzzle and longer dialogue on hardware; preserve direct frequently used actions and inspect readability without relying on desktop overlays.'),
-           'BUILD-01':('implemented','The release must merge normally, preserve concurrent sibling work, match public main-game bytes and pass live main-entry, district, campaign and XR journeys.','Use the separate release receipt for actual publication status. Never call an unmerged branch or successful local test a published game.'),
-           'BUILD-02':('partial','Exact-source checks archive code before testing. Public verification checks the game-file closure even when a newer sibling-inclusive Pages snapshot deploys.','Retain all nineteen source journeys and all required public journeys. Complete a scoped rollback drill; never reset shared master.'),
-           'SAVE-02':('verified','Recoverable original-city transactions and separate validated district/campaign ledgers retain historical save identities. Destructive replacement requires explicit confirmation.','Keep corruption, quota and interrupted-write tests. A missing backup is not a restore option. Multi-tab conflicts and rollback to older parsers need further review.')}
-          for item in roadmap['items']:
-              if item['id'] in changes:
-                  status,acceptance,nxt=changes[item['id']];item.update(status=status,acceptance=acceptance,next=nxt,lastReviewed='2026-09-18')
-                  for ref in ['../UNIFIED-NEIGHBORHOODS.md','../../'+receipt]:
-                      if ref not in item['evidence']:item['evidence'].append(ref)
-          assert ids==[i['id'] for i in roadmap['items']]
-          (root/'production/roadmap.json').write_text(json.dumps(roadmap,indent=2)+'\n')
-          subprocess.run(['python','svgn-planet/production/render-roadmap.py'],check=True)
-          notes='''# Neighborhood Missions v0.16.0 / Unified Neighborhoods
-
-Open index.html for the original city. The welcome screen, city pause menu and city map provide Lantern Ward / resident missions and Night Watch destinations. Travel keeps the document, renderer and active XR session, and returns to the original stopped city position. The districts retain distinct coordinate systems and save ledgers; this is not a claim of a physically seamless single terrain.
-
-The main AR / VR control exposes First-person VR, Third-person VR, First-person AR, Third-person AR, Diorama First-person VR, Diorama Third-person VR, Diorama First-person AR and Diorama Third-person AR. The same views apply in both districts. Diorama Third-person keeps the miniature player centered in a room-fixed perspective aperture while the full world moves around the player. Diorama First-person is a character-eye-scale perspective through that aperture, not a flat image on a screen. Open front, open top or both; never both closed. Placement is manual, not room-scanned anchoring or physical-world occlusion.
-
-Routine gameplay hides menu boards and long selection rays. Native maps, missions, settings and save recovery are accessed on demand. The original water map and wallet overlays are not composited over the unified XR view. Important puzzle text and backup feedback are copied into native menu text, not left exclusively on the desktop page.
-
-Xbox retains left-stick movement, right-stick camera, A hop, X interact, Y mount/dock, RT speed, LT/B brake, Menu pause and D-pad down missions. In the optional on-foot encounter, RT strikes, LT guards or aims, LT+RT uses the tool, and the movement-stick click sprints. The earned cape uses both bumpers without also firing a tool or switching the camera. Release speed to stop; hitting a building or dismounting is not required.
-
-The default right-handed XR Action profile uses left-stick movement and held stick click for speed, right grip for interaction, right trigger for strike/use, left trigger to aim and left grip to guard/brake. A hops, B mounts/docks, X scans and Y opens Menu. Turning-stick click cycles tools. Handedness, stick swapping and motion-strike alternatives are adjustable. Low pinch holds walking; release stops. An ordinary pinch interacts. A deliberate raised pinch opens Menu. Motion strikes, body holsters and cape gestures have synthetic tests, not physical comfort approval.
-
-Lantern Ward includes eight resident stories plus Signal Hijack and its five sequential cases. Finish Signal Hijack and report to Mara to unlock Rooftop Run. Subsequent cases unlock sequentially: Quiet Circuit, Rooms of the Ward, Courtyard Surge and Last Light. Existing city contracts, Homecoming and Tidewater remain in the original city. The chapter, residents, Watch and campaign each keep their own exactly-once reward ledger; selecting a mission grants no completion or credits.
-
-Rooftop Run now teaches a real hop/glide from the print terrace to a marked lower arcade landing. The return reuses the print-shop stairs. Shared floor geometry closes the arcade landing and stair-support seams. Enemies on the loft require supported destinations rather than pursuing through empty air. These are graybox fixes to useful routes, not a map-size expansion.
-
-Failures retained during recovery include the duplicate portal GLSL wrapper, an unreachable enclosed glide destination, floor support cracks, off-axis grapple input, missing-backup assumptions, held-input Menu lockout and obsolete desktop HUD rectangles. A model pass alone never certifies their rendered fix. Source and public evidence are separate and recorded beside the release receipt.
-
-The legacy recovery entry remains at legacy.html. It is not the unified main entry. Its 102 pinned runtime/layout files and original save key remain unchanged. The standalone lantern-ward.html is a district recovery entry with component version 0.15.0; the unified main shell is 0.16.0. Do not downgrade a save parser that understands city/Watch/campaign fields without preserving those fields.
-
-Physical Quest, Xbox, hand tracking, room safety, motion comfort, sustained performance, finished art and human level-comprehension approval remain open. This release does not claim a commercial Arkham-scale campaign, cape fabric simulation, a fully authored interior for every city building, persistent spatial anchors or automatic room occlusion.
-'''
-          (root/'UNIFIED-NEIGHBORHOODS.md').write_text(notes)
-          (root/'README.md').write_text('# Neighborhood Missions / Unified Neighborhoods v0.16.0\n\nPlay index.html for the original city and enter Lantern Ward from its welcome screen, city map or pause menu. Both districts share the renderer and native XR session, with all eight spatial first/third-person and diorama AR/VR views. There is no comfort-theater substitution in the main entry.\n\nRead UNIFIED-NEIGHBORHOODS.md for modes, controls, mission access and save contracts. DEVELOPMENT-HANDOFF.md records recovery and release obligations. Actual publication is recorded in '+receipt+', not inferred from this manifest. Older README and handoff files are archived under production/handoffs/before-unified-0.16/.\n')
-          (root/'DEVELOPMENT-HANDOFF.md').write_text('# Unified Neighborhood Missions v0.16.0 handoff\n\nStart with release.json, UNIFIED-NEIGHBORHOODS.md, RECOVERY-CHECKPOINT.md and the external publication receipt '+receipt+'. The original main city and Lantern Ward share one document/renderer/session. All eight native modes are required in both districts. The old flat theater is only a historical legacy entry, not the requested main experience.\n\nRuntime checkpoint f18340b64b628679544caeaff1f5c09bbce942da adds only unified native HUD/menu/alpha checks over 98fb2dc1fe43a4f201897ab06bae5ff61be0481a. Source runs 35406083163 and 35406668272 record their actual outcomes. Preserve failed artifacts; do not call queued jobs accepted. The metadata update does not claim completed publication.\n\nPortal duplicate wrapping, wrong glide destination, stair support cracks and Menu rearm are documented in the recovery checkpoint. All 311 local model/input tests passed before this record. The sequential fresh-save model uses normal inputs and completes Watch plus five campaign cases; it is not rendered or human approval. The complete source workflow retains nineteen rendered journeys. The public workflow separately verifies all game files and includes main, native menus, campaign, district and XR journeys.\n\nKeep original and district save keys, every stable mission/reward ID, all 102 frozen legacy file hashes, and sibling-game changes. Do not clear real storage or manufacture test progress. Merge normally, verify public bytes, and archive receipts outside svgn-planet to avoid a recursive evidence deployment. Physical Quest/Xbox, comfort, frame time, human art and unfamiliar-player/replay approval remain open.\n\nNext design work: improve mission access and objective comprehension from the actual main city, then review route knowledge, stealth recovery and combat consequences. Do not add another unstructured area. The canonical roadmap retains LEVEL-01, XR-02, ACTION-01 and all historical IDs.\n')
-          assert all(hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==h for p,h in baseline.items())
-          legacy=json.loads((root/'legacy-layout.json').read_text())
-          assert all(hashlib.sha256((root/r['path']).read_bytes()).hexdigest()==r['sha256'] for r in legacy['files'])
-          allowed={'svgn-planet/release.json','svgn-planet/production/roadmap.json','svgn-planet/AAA_ROADMAP.md','svgn-planet/UNIFIED-NEIGHBORHOODS.md','svgn-planet/README.md','svgn-planet/DEVELOPMENT-HANDOFF.md'}
-          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines()
-          assert all(p in allowed or p.startswith('svgn-planet/production/handoffs/before-unified-0.16/') for p in changed)
-          PY
+          python3 - <<'RUN'
+          import subprocess
+          source=subprocess.check_output(['git','show','804e1f72a6f19489087fca15f076a7af07149abf:.github/workflows/neighborhood-unified-docs.yml'],text=True)
+          start="python - <<'PY'\n";end='\n          PY\n'
+          assert source.count(start)==1 and source.count(end)==1
+          code=source.split(start,1)[1].split(end,1)[0]
+          code='\n'.join(line[10:] if line.startswith(' '*10) else line for line in code.splitlines())
+          # Only the prior reviewed Python block runs. Its path and runtime-byte
+          # assertions guard the write; no workflow text or credentials are emitted.
+          exec(compile(code,'reviewed-unified-records.py','exec'))
+          RUN
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs > record-model.txt
       - name: Commit only scoped records to the preparation branch
         run: |
