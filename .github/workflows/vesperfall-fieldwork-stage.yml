@@ -15,22 +15,42 @@ jobs:
       source: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - id: source
         run: |
           set -euo pipefail
+          mkdir -p test-output
+          python .github/fieldwork-apply.py
           python .github/fieldwork-prepare.py
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add vesperfall
           if ! git diff --cached --quiet; then
-            git commit -m 'Require the current campaign checkpoint before an end-to-end reload'
+            git commit -m 'Implement grip-first supplies, AR expeditions, mission access and safe procedural saves'
             git push origin HEAD:vesperfall-fieldwork-20260918
           fi
+          git rev-parse HEAD > test-output/source-revision.txt
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-model
+          path: test-output/
+          retention-days: 14
   native:
     needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [fieldwork, pilgrimage, goldwind, returning-bell]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,7 +62,9 @@ jobs:
           set -euo pipefail
           mkdir -p test-output
           python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
-          timeout 1500 python -u vesperfall/tests/pilgrimage-browser.py | tee test-output/pilgrimage.log
+          timeout 1800 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+          test -s test-output/${{ matrix.suite }}/report.json
+          test ! -e test-output/${{ matrix.suite }}/failure.json
       - if: always()
         run: |
           mkdir -p test-output
@@ -52,6 +74,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: fieldwork-campaign-diagnostic
+          name: fieldwork-native-${{ matrix.suite }}
           path: test-output/
           retention-days: 14
