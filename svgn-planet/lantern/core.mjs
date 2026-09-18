@@ -94,6 +94,7 @@ export function parse(raw){
  if(s.watch.tracking&&s.city.active)throw Error('Only one mission may be tracked. Original progress retained.');
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
  if(s.ride==='boat'&&s.water==='low')s.ride='foot';
+ // A saved mid-hop/hoist position falls to a valid support; no stale transition survives.
  s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;resetMarket(s);return s;
 }
 export function save(s,store){
@@ -148,6 +149,8 @@ export function action(s,name,ray){
  const response=cityInteract(s,lineClear);if(response){say(s,response);return;}
  const f=nearby(s);
  if(!f){const a=actors(s).find(a=>Math.hypot(s.x-a.x,s.y-a.y,s.z-a.z)<2.8);if(a)say(s,a.tip);else say(s,name==='throw'?'The workshop parcel needs a handoff at its bench, not a thrown paper.':'Move close to a person, bench or mechanism.');return;}
+ // A reached signal post relays the request even when the cart is behind the bay corner.
+ // nearby() has already enforced reach and visibility to this fixed control.
  if(f.id.startsWith('quay-')){say(s,requestPass(s)?'Ivo: Quay signal received. Pulling into the bay; cross when the sign clears.':'Move closer to the quay signal.');return;}
  if(f.id==='parcel'){
   if(complete(s)&&!s.claimed){s.claimed=true;s.credits=600;say(s,'Delivery loop restored. 600 chapter credits recorded once. The shortcuts remain yours.');}
@@ -177,6 +180,7 @@ export function tick(s,input,dt){
  if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
  if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
  if(s.lift){const l=s.lift;if(l.summon){const q=l.summon;q.t=Math.min(1,q.t+dt/1.5);s.hoistY=q.from+(q.to-q.from)*q.t;if(q.t>=1){l.summon=null;s.x=6.8;s.z=.5;s.y=l.from;}return;}l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));s.hoistY=s.y;if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
+ // Boost is hold-to-run, not cruise control. A falling edge actively brakes.
  if(s.boostHeld&&!input.boost)s.releaseBrake=.35;s.boostHeld=!!input.boost;
  if(s.releaseBrake>0){s.releaseBrake=Math.max(0,s.releaseBrake-dt);input={...input,brake:true};}
  const max=s.ride==='boat'?5:s.ride==='bicycle'?input.boost?9:5.6:input.boost?6.2:3.7;
@@ -193,6 +197,7 @@ export function tick(s,input,dt){
   const f=support(s,s.x,s.z,s.y),ground=f?floorHeight(f,s.z):-20;
   if(s.vy<=0&&s.y-ground<.32&&s.y-ground>-.32){s.y=ground;s.vy=0;}
   else{s.vy-=11*dt;s.y+=s.vy*dt;if(s.y<ground&&old[1]>=ground-.31){s.y=ground;s.vy=0;}}
+  // Low clearance under platforms stops a hop; visual cutaways never remove it.
   for(const roof of surfaces(s,s.x,s.z)){const h=floorHeight(roof,s.z);if(!roof.stairs&&h>old[1]+1.7&&s.y+1.8>h&&s.vy>0){s.y=h-1.81;s.vy=0;}}
  }
  const distance=Math.hypot(s.x-old[0],s.z-old[2]);s.distance+=distance;s.speed=distance/dt;

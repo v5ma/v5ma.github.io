@@ -24,6 +24,7 @@ export function createView(canvas){
   const c=document.createElement('canvas');c.width=768;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle=background;ctx.fillRect(0,0,768,128);ctx.strokeStyle=color;ctx.lineWidth=4;ctx.strokeRect(8,8,752,112);ctx.fillStyle=color;ctx.textAlign='center';ctx.font='bold 38px sans-serif';ctx.fillText(text,384,79,726);const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;
   const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:tex,side:T.DoubleSide,toneMapped:false}));m.position.set(x,y,z);parent.add(m);return m;
  }
+ // Bounded terrain, a physical canal bed, and a layered plinth instead of an infinite flat map.
  box(decor,0x415b60,0,-3.3,0,49,1.5,43);box(decor,0x254047,0,-4.15,0,49.5,.22,43.5);
  const lowGroup=new T.Group();world.add(lowGroup);const decks=[];
  for(const f of floors){
@@ -34,12 +35,14 @@ export function createView(canvas){
  }
  box(decor,0x657d78,canal.x,-2.35,canal.z,canal.w,.7,canal.d);
  for(const x of[-3.25,2.25]){box(decor,0x6d8280,x,-1.2,1,.5,2.4,28);for(let z=-12;z<15;z+=1.25)box(decor,0x93a39a,x,-.11,z,.65,.25,1.18);}
+ // Walkway cobbles and functional route marking are instanced below.
  for(let z=-13;z<=19;z+=1.2)for(const x of[-22.4,-21.2,-20,-18.8,-6.2,-5,5.2,6.4,7.6])box(decor,0xa8afa3,x,.018,z,1.07,.025,1.05);
  for(let x=-22;x<10;x+=1.2)for(const z of[-14.6,-13.4,-12.2])box(decor,0xa3aca2,x,.02,z,1.04,.03,1.05);
  const cutWalls=[],wallMeshes=[];let gate;
  for(const w of walls){const m=box(world,w.color,w.x,w.y+w.h/2,w.z,w.w,w.h,w.d);wallMeshes.push({w,m});if(w.gate)gate=m;else if(w.cut)cutWalls.push(m);
   if(!w.gate)box(decor,0x536d70,w.x,w.y+w.h+.06,w.z,w.w+.14,.12,w.d+.12);
  }
+ // A visible doorway, latch and lintel anchor the return revelation.
  box(decor,0xf4ddb3,3,3.35,18,.7,.35,3.4);const latch=box(world,0xe8b558,3.28,1.15,18,.12,.15,.46);
  const gateSign=label('BLUE SERVICE DOOR',3.35,2.55,18,2.4,.45);gateSign.rotation.y=Math.PI/2;
  label('MARA / POSTAL DEPOT',-12,3.3,17,7,.9,'#803e35');
@@ -48,21 +51,26 @@ export function createView(canvas){
  const parcel=box(world,0xe3b465,-12,1.08,15,.52,.34,.43);box(decor,0x735744,-15,.6,16,.7,1.2,.8);
  label('PRINT SHOP  /  STAIRS',-12.4,3,7.24,5,.65,'#526a73');
  label('TO DRYING TERRACES',-12.5,2.65,4.3,2.5,.45);
+ // Roof-route boundaries, drying lines and a return stair visible from the arcade.
  for(const z of[-5,-2])for(let x=-6;x<=9;x+=1.5){cyl(decor,0x53686a,x,4.95,z,.045,1.1);box(decor,0x53686a,x,5.45,z,1.5,.07,.07);}
  for(const x of[-15.8,-7])cyl(decor,0x685842,x,5.65,-4,.06,2.5);
  box(decor,0x706953,-11.4,6.4,-4,8.8,.03,.035);
  for(let i=0;i<7;i++)box(decor,[0xf0deb5,0x9fbbb4,0xcc977d][i%3],-15+i*1.1,5.96,-4,.65,.82,.04);
+ // Arcade: columns and arches frame a real circulation route and a passing bay.
  for(const z of[-10,-6,0,5]){for(const x of[-23,-18])cyl(decor,0xe2c9a3,x,1.5,z,.15,3);box(decor,0x4f7479,-20.5,3.2,z,5.6,.25,.65);}
  label('MARKET ARCADE',-20.5,3.75,6,5,.66,'#486861');
  label('NORTH QUAY / KEEP RIDING',-22.3,1.5,-8,2.6,.42);
+ // Produce rests on low bins by the kitchen wall, leaving the central room clear.
  for(const z of[-3.5,-2.3]){box(decor,0x8f724f,-21.7,.3,z,.65,.6,.75);for(let i=0;i<3;i++)cyl(decor,0xdfb76e,-21.9+i*.2,.7,z,.085,.2);}
  for(const x of[-16,-13.4,-6.8,-4.1]){box(decor,0x41616c,x,2.5,-15.45,1.6,2,.1);box(decor,0xefdfb6,x,2.5,-15.34,.06,2,.06);}
+ // Workshop has actual ground-floor circulation, an upper loft, and south stairs.
  label('LANTERN WORKSHOP',15.4,3.2,12.25,6,.78,'#855447');
  box(decor,0x765a44,14,.82,6,3,.25,1.1);label('RECEIVING BENCH',14,1.5,5.4,3,.4);
  for(const x of[11,13,15,17]){cyl(decor,0x695541,x,4.1,1,.04,2);cyl(decor,0xffc36f,x,3,1,.25,.45);}
  const bellTower=new T.Group();world.add(bellTower);box(bellTower,0xb7b2a0,20,7,-3,2.5,5,2.7);
  for(const x of[19,21])for(const z of[-4,-2])box(bellTower,0x5a6361,x,10.3,z,.16,2,.16);
  box(bellTower,0x447078,20,11.4,-3,3,.24,3);cyl(bellTower,0xca9b48,20,10.1,-3,.6,.6);cyl(bellTower,0x536461,20,12.1,-3,.05,1.2);
+ // Three small overlooked rest areas give observation a purpose.
  for(const [x,z]of[[-9,11],[-21,11],[12,-11]]){box(decor,0x7d644d,x,.6,z,2.1,.18,.65);box(decor,0x7d644d,x,1.05,z+.35,2.1,.72,.12);for(const a of[-.8,.8])box(decor,0x3d5859,x+a,.3,z,.09,.6,.6);}
  for(const [x,z]of[[-21,17],[-5,9],[6,16],[14,-18],[22,15],[-22,-18]]){
   cyl(decor,0x765f4b,x,1.6,z,.2,3.2);const crown=new T.Mesh(new T.IcosahedronGeometry(1,1),mat(0x648a73));crown.position.set(x,3.7,z);crown.scale.set(1.7,2,1.6);decor.add(crown);box(decor,0x748977,x,.2,z,2.3,.4,2.3);
@@ -70,6 +78,7 @@ export function createView(canvas){
  const lanterns=[];for(const [x,z]of[[-6,17],[-18,10],[-21,-12],[4,-12],[7,11],[22,8],[-6,-8]]){
   cyl(decor,0x425861,x,2,z,.05,4);box(decor,0x536266,x,4,z,.55,.14,.55);const bulb=box(decor,0xffd38b,x,3.66,z,.3,.48,.3);bulb.material=new T.MeshStandardMaterial({color:0xffd38b,emissive:0xffa04c,emissiveIntensity:.4});lanterns.push(bulb);
  }
+ // Pump and local repair mechanism overlook the actual waterline.
  label('PUMP GALLERY / SLUICE',5.8,2.8,-12.8,5,.65,'#456777');
  box(decor,0x42656a,5.8,.7,-13,.8,1.4,.6);const wheel=cyl(world,0xd8b45e,5.8,1.45,-12.7,.38,.12);wheel.rotation.x=Math.PI/2;
  box(decor,0x637e7d,2.4,-.6,-11,.2,3,.8);const gauge=box(world,0xead68f,2.24,-.8,-11,.15,.16,.65);
@@ -77,6 +86,7 @@ export function createView(canvas){
  const liftPlatform=box(world,0xb99764,6.8,-.09,.5,2,.18,2);
  for(const x of[5.7,7.9]){box(decor,0x536568,x,2.8,-.6,.15,5.6,.15);box(decor,0x9c875f,x,2.8,-.45,.025,5.6,.025);}
  label('GOODS HOIST',6.8,5.8,-.6,2.7,.4);
+ // Boats are pooled at public piers. No navigation pointer can hand off a parcel remotely.
  function boat(){const b=new T.Group();box(b,0x92704d,0,.08,0,1.2,.22,2.15);for(const x of[-.62,.62])box(b,0x6a9690,x,.3,0,.12,.45,2.25);for(const z of[-1.06,1.06])box(b,0x6a9690,0,.3,z,1.24,.4,.12);box(b,0xcbb382,0,.35,.25,1.15,.12,.5);world.add(b);return b;}
  const boats=[boat(),boat(),boat()];boats[0].position.set(-.5,-.72,12);boats[1].position.set(-.5,-.72,-11.5);
  label('CANAL PIER / Y',-4.5,1.8,13.8,2.8,.45);label('PUBLIC PIER / Y',3,1.8,-13.4,2.8,.45);
@@ -85,6 +95,7 @@ export function createView(canvas){
  const hero=createCourier(world);hero.unicycle.visible=false;hero.bicycle.visible=false;
  const flyingPaper=box(world,0xf5e7c5,0,0,0,.25,.025,.16);flyingPaper.visible=false;
  const people=[0x9e6651,0x709378,0xc6a25c].map(c=>{const a=createCourier(world,c);a.unicycle.visible=a.bicycle.visible=false;return a;});
+ // Independent metre-space contact locks: never call the planet-ground projector here.
  const locks=[null,null],feet=[0,0];let phase=0,lastDistance=0,lastRide='',lastPosition=new T.Vector3(),maxError=0;
  function pose(a,s,dt,main=false){
   a.g.position.set(s.x,s.y+.08,s.z);a.g.rotation.set(0,s.yaw||0,0);a.bicycle.visible=s.ride==='bicycle';
@@ -106,6 +117,7 @@ export function createView(canvas){
   }
   a.wheels.forEach(w=>w.rotation.x=-(s.distance||0)/.34);
  }
+ // Instanced static pieces keep the authored district bounded on mobile/XR.
  function batch(group){const bins=new Map();group.updateMatrixWorld(true);for(const m of [...group.children])if(m.isMesh&&(m.geometry===boxGeo||m.geometry===cylGeo)){const key=m.geometry.uuid+m.material.uuid;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(m);}
   for(const meshes of bins.values()){if(meshes.length<3)continue;const m=new T.InstancedMesh(meshes[0].geometry,meshes[0].material,meshes.length);meshes.forEach((o,i)=>{o.updateMatrix();m.setMatrixAt(i,o.matrix);group.remove(o);});m.castShadow=m.receiveShadow=true;group.add(m);}}
  batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
