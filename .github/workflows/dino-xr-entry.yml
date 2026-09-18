@@ -1,0 +1,138 @@
+name: Dino Atlas Classic XR entry
+on:
+  push:
+    branches: [master, 'dino-atlas/classic-xr-entry-20260918']
+    paths: ['dino-atlas/**', '.github/workflows/dino-xr-entry.yml']
+permissions:
+  contents: read
+concurrency:
+  group: dino-classic-entry-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            dino-atlas
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Models, source identity and syntax
+        run: |
+          mkdir -p xr-entry-evidence
+          git rev-parse HEAD > xr-entry-evidence/source-commit.txt
+          tar -czf xr-entry-source.tgz dino-atlas .github/workflows/dino-xr-entry.yml
+          find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+          set -o pipefail
+          node --test dino-atlas/tests/*.test.mjs | tee xr-entry-evidence/unit-tests.tap
+          python - <<'PY'
+          import pathlib,hashlib,json,subprocess
+          paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
+          files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/')) and pathlib.Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
+          pathlib.Path('xr-entry-evidence/manifest.json').write_text(json.dumps({'build':'classic-xr-entry-20260918.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in files}},indent=2))
+          PY
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Real entry controls and responsive visibility with explicitly mocked XR
+        run: python dino-atlas/tests/classic-xr-entry-browser.py
+      - name: Preserve Classic tracked and hand UI, portal and vehicle controls
+        run: |
+          python dino-atlas/tests/grounded-xr-browser.py
+          PORTAL_SCENE=classic python dino-atlas/tests/portal-game-browser.py
+          EXPRESS_SCENE=classic python dino-atlas/tests/express-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-xr-entry-candidate-${{ github.run_id }}
+          path: |
+            xr-entry-evidence/
+            xr-entry-source.tgz
+            dino-atlas/verification/grounded-xr/
+            portal-evidence/
+            express-evidence/
+          retention-days: 30
+  published:
+    needs: verify
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - uses: actions/download-artifact@v4
+        with:
+          name: dino-xr-entry-candidate-${{ github.run_id }}
+          path: candidate
+      - name: Confirm served bytes independently of the source checkout
+        run: |
+          python - <<'PY'
+          import pathlib,json,hashlib,urllib.request,concurrent.futures,time
+          manifest=json.loads(pathlib.Path('candidate/xr-entry-evidence/manifest.json').read_text());pending=dict(manifest['files']);matched={}
+          def fetch(item):
+              path,wanted=item
+              try:
+                  req=urllib.request.Request('https://v5ma.github.io/'+path+'?xr-entry='+manifest['commit']+'&try='+str(attempt),headers={'Cache-Control':'no-cache'})
+                  actual=hashlib.sha256(urllib.request.urlopen(req,timeout=30).read()).hexdigest()
+                  return path,actual if actual==wanted else None
+              except Exception:return path,None
+          for attempt in range(24):
+              with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                  for path,digest in pool.map(fetch,list(pending.items())):
+                      if digest:matched[path]=digest;pending.pop(path,None)
+              print('Public matches',len(matched),'remaining',len(pending),flush=True)
+              if not pending:break
+              time.sleep(15)
+          assert not pending,'Public files mismatch: '+str(list(pending))
+          out=pathlib.Path('xr-entry-evidence');out.mkdir(exist_ok=True)
+          (out/'public-verification.json').write_text(json.dumps({'commit':manifest['commit'],'build':manifest['build'],'allMatched':True,'files':matched,'physicalHardwareVerified':False},indent=2))
+          PY
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the public regular-game launcher and existing world portal
+        env:
+          DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
+        run: |
+          python dino-atlas/tests/classic-xr-entry-browser.py
+          PORTAL_SCENE=classic python dino-atlas/tests/portal-game-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-xr-entry-published-${{ github.run_id }}
+          path: |
+            xr-entry-evidence/
+            portal-evidence/
+          retention-days: 30
+  release:
+    needs: published
+    if: github.ref == 'refs/heads/master' && needs.published.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dino-xr-entry-*-${{ github.run_id }}
+          path: evidence
+      - name: Archive verified UI fix without replacing historical releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view dino-xr-entry-20260918.1 >/dev/null 2>&1; then
+            tar -czf dino-xr-entry-evidence.tgz -C evidence .
+            gh release create dino-xr-entry-20260918.1 --target '${{ github.sha }}' --title 'Dino Atlas: visible Classic Reserve VR and AR entry' --prerelease --notes-file dino-atlas/XR-ENTRY-HANDOFF.md dino-xr-entry-evidence.tgz
+          fi
