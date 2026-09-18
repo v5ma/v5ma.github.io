@@ -23,6 +23,7 @@ with sync_playwright() as pw:
  def status():return p.evaluate('Prism.component.art.spectral.status')
  try:
   p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready&&Prism.component.art.spectral.status.enabled');p.bring_to_front();p.keyboard.press('Shift')
+  p.locator('[data-track="first-light"]').click();p.locator('#difficulty').select_option('flow')
   check(status()['theme']=='opal','Opal Aurora is the new default without starting gameplay')
   check(p.locator('#spectral-theme option').count()==4,'Three new looks and the original Jewelbox option are available')
   p.locator('#settings').locator('summary').click();focus('spectral-theme');press(15);p.wait_for_function("Prism.component.art.spectral.status.theme==='solar'")
@@ -31,6 +32,7 @@ with sync_playwright() as pw:
   focus('spectral-reactive');press(0);p.wait_for_function('!Prism.component.art.spectral.status.reactions');check(not status()['reactions'],'Controller disables hit reactions without leaving ambient art')
   press(0);p.reload(wait_until='domcontentloaded');p.wait_for_function("window.Prism?.snapshot().ready&&Prism.component.art.spectral.status.theme==='abyss'")
   check(p.locator('#spectral-theme').input_value()=='abyss','The chosen atmosphere survives reload')
+  p.locator('[data-track="first-light"]').click();p.locator('#difficulty').select_option('flow')
   p.locator('#settings').locator('summary').click();p.locator('#spectral-theme').select_option('classic');p.wait_for_function('!Prism.component.art.spectral.status.enabled')
   check(p.evaluate('!Prism.component.art.spectral.group.visible'),'Classic disables the new planes rather than making them invisible but drawn')
   p.locator('#spectral-theme').select_option('opal');p.locator('#graphics-quality').select_option('light');p.wait_for_function('!Prism.component.art.spectral.status.enabled');check(not status()['enabled'],'Light graphics disables every new shader effect')
@@ -54,7 +56,7 @@ with sync_playwright() as pw:
   check(p.evaluate('AFRAME.scenes[0].renderer.info.programs.every(p=>!p.diagnostics||p.diagnostics.runnable!==false)'),'All compiled shader programs are runnable')
   # Separate matched full-resolution captures; no score or scene-state injection.
   vc=b.new_context(viewport={'width':1440,'height':1050},device_scale_factor=1,service_workers='block');v=vc.new_page();v.set_default_timeout(60000);v.on('pageerror',lambda e:errors.append(str(e)));v.on('console',lambda m:errors.append(m.text) if m.type=='error' and 'Shader Error' in m.text else None)
-  v.goto(URL,wait_until='domcontentloaded');v.wait_for_function('window.Prism?.snapshot().ready&&Prism.component.art.graphics.materialsReady');v.locator('#settings').locator('summary').click()
+  v.goto(URL,wait_until='domcontentloaded');v.wait_for_function('window.Prism?.snapshot().ready&&Prism.component.art.graphics.materialsReady');v.locator('[data-track="first-light"]').click();v.locator('#settings').locator('summary').click()
   for theme in ['classic','opal','solar','abyss']:
    v.locator('#spectral-theme').select_option(theme);v.wait_for_function('(t)=>Prism.component.art.spectral.status.theme===t',arg=theme);v.evaluate('window.scrollTo(0,0)');v.wait_for_timeout(400);v.screenshot(path=str(OUT/(theme+'-1440.png')))
   v.set_viewport_size({'width':390,'height':844});check(not v.evaluate('document.documentElement.scrollWidth>innerWidth'),'New graphics controls fit a phone-width viewport');vc.close()

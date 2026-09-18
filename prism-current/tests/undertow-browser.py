@@ -5,7 +5,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-undertow';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.getenv('PRISM_URL','http://127.0.0.1:4173/prism-current/')
-PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text();checks=[];errors=[]
+PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text();checks=[];errors=[];main_snapshot=None
 LEGACY={'first-light/flow/keys':{'score':1234,'accuracy':74,'best':11},'tidal-bloom/flow/ar':{'score':2100,'accuracy':82,'best':14}}
 def check(value,text):
  assert value,text
@@ -25,6 +25,7 @@ with sync_playwright() as pw:
   check(p.evaluate('Prism.component.art.poolStage.status.waterVisible'),'Water venue is inside the rhythm game, not only the expedition')
   p.wait_for_function('Prism.component.art.notes.some(n=>n.g.visible)');check(p.evaluate('Prism.component.art.notes.filter(n=>n.g.visible).every(n=>n.dir!==6)'),'Idle preview shows the selected directional chart, not legacy dots')
   check(p.evaluate('Prism.component.art.poolStage.status.boxBatches')==5,'The static venue uses five instanced batches instead of a draw per tile wall or fixture')
+  check(p.evaluate('Prism.component.art.poolStage.status.hiltBatches.every(b=>b.after<b.before&&b.triangles>0&&b.maxError<1e-6)'), 'Hilt batching preserves transformed geometry bounds and reduces fixed-part draws')
   check(p.locator('#tracks button').count()==5,'All four old songs remain beside the new one')
   p.evaluate('PrismTestPad.press(9)');p.wait_for_function("Prism.snapshot().phase==='playing'")
   check(p.evaluate('Prism.snapshot().track')=='undertow','An ordinary Menu press starts Undertow')
@@ -42,6 +43,8 @@ with sync_playwright() as pw:
   check(p.evaluate('Prism.snapshot().scoreRecords["first-light/flow/keys"]')==LEGACY['first-light/flow/keys'],'Old score survives new-song completion')
   check(p.evaluate('Prism.snapshot().scoreRecords["undertow/pulse/gamepad"].score')==result['score'],'New song saves under a separate normal record key')
   p.reload(wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready');check(p.evaluate('Prism.snapshot().scoreRecords["undertow/pulse/gamepad"].score')==result['score'],'New score survives reload')
+  # Close completed renderers: one user enters VR in one game, not beside a second running game.
+  main_snapshot=p.evaluate('Prism.snapshot()');c.close()
   vc=b.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1);v=vc.new_page();v.set_default_timeout(60000);v.on('pageerror',lambda e:errors.append(str(e)))
   v.goto(URL,wait_until='domcontentloaded');v.wait_for_function('window.Prism?.snapshot().ready&&Prism.component.art.poolStage.status.waterVisible');v.wait_for_timeout(600);v.screenshot(path=str(OUT/'undertow-menu-1440.png'));vc.close()
   xc=b.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.125,service_workers='block');xc.add_init_script(path=str(ROOT/'prism-current/tests/fake-xr.js'));x=xc.new_page();x.set_default_timeout(45000);x.on('pageerror',lambda e:errors.append(str(e)))
@@ -65,5 +68,7 @@ with sync_playwright() as pw:
  except Exception as e:
   try:xr_failure=x.evaluate('({snapshot:Prism.snapshot(),trace:window.undertowXRTrace||[],pool:Prism.component.art.poolStage.status,calls:AFRAME.scenes[0].renderer.info.render.calls})')
   except Exception:xr_failure=None
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'xr':xr_failure,'snapshot':p.evaluate('window.Prism?.snapshot()'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'xr':xr_failure,'snapshot':main_snapshot if p.is_closed() else p.evaluate('window.Prism?.snapshot()'),'stall':None if p.is_closed() else p.evaluate('window.Prism?.component.lastStall||null')},indent=2));
+  if not p.is_closed():p.screenshot(path=str(OUT/'failure.png'))
+  raise
  finally:b.close()

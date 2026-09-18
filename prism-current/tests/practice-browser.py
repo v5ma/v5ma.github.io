@@ -24,8 +24,10 @@ with sync_playwright() as pw:
   raise AssertionError('Controller could not reach '+id)
  try:
   p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready&&Prism.snapshot().controller');p.bring_to_front();p.keyboard.press('Shift')
-  p.locator('#scene-wrap').focus()
-  for _ in range(4):press(13)
+  p.locator('#difficulty').select_option('flow');p.locator('#scene-wrap').focus()
+  for _ in range(35):
+   if p.locator('[data-track="tidal-bloom"]').evaluate('(e)=>e===document.activeElement'):break
+   press(13)
   press(0);check(p.evaluate('Prism.snapshot().track')=='tidal-bloom','Controller selects Tidal Bloom')
   focus('session-mode');press(15);check(p.locator('#practice-options').is_visible(),'Controller opens section rehearsal without a mouse')
   check(p.locator('#practice-section option').count()==8,'All eight playable Tidal sections are selectable')

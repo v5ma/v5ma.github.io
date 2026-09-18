@@ -2,9 +2,35 @@
  * No postprocessing/camera feed; transparent AR never receives an opaque pool.
  * Environment follows the same recentered coordinate frame as the note runway. */
 (function(root){'use strict';
+ // Join only fixed opaque hilt parts with identical material objects. Blade GLSL,
+ // live ribbon geometry, grip origins and all collision endpoints remain untouched.
+ function mergeFixedParts(T,parent){
+  const byMaterial=new Map(),joined=[],hidden=[];let before=0,after=0,triangles=0,maxError=0;
+  for(const m of parent.children){
+   if(!m.isMesh||!m.visible||Array.isArray(m.material)||m.material.isShaderMaterial||m.material.transparent)continue;
+   if(!m.geometry.attributes.position||!m.geometry.attributes.normal)continue;
+   if(!byMaterial.has(m.material))byMaterial.set(m.material,[]);byMaterial.get(m.material).push(m);
+  }
+  for(const [material,meshes] of byMaterial){
+   if(meshes.length<2)continue;
+   const positions=[],normals=[],uvs=[],sourceBox=new T.Box3();
+   for(const m of meshes){
+    m.updateMatrix();const g=m.geometry.index?m.geometry.toNonIndexed():m.geometry.clone();g.applyMatrix4(m.matrix);g.computeBoundingBox();sourceBox.union(g.boundingBox);
+    const a=g.attributes.position,n=g.attributes.normal,u=g.attributes.uv;
+    for(let i=0;i<a.count;i++){positions.push(a.getX(i),a.getY(i),a.getZ(i));normals.push(n.getX(i),n.getY(i),n.getZ(i));uvs.push(u?u.getX(i):0,u?u.getY(i):0);}
+    g.dispose();hidden.push({mesh:m,visible:m.visible});m.visible=false;
+   }
+   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(normals,3));g.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));g.computeBoundingBox();g.computeBoundingSphere();
+   maxError=Math.max(maxError,g.boundingBox.min.distanceTo(sourceBox.min),g.boundingBox.max.distanceTo(sourceBox.max));
+   const m=new T.Mesh(g,material);m.name='Merged static hilt / unchanged triangles';parent.add(m);joined.push(m);before+=meshes.length;after++;triangles+=positions.length/9;
+  }
+  let disposed=false;
+  return {stats:{before,after,triangles,maxError},dispose(){if(disposed)return;disposed=true;for(const m of joined){m.removeFromParent();m.geometry.dispose();}for(const h of hidden)h.mesh.visible=h.visible;}};
+ }
  function install(art,scene){
   const T=art.T,baseUpdate=art.update,baseBurst=art.burst,baseDispose=art.dispose,group=new T.Group();group.name='Undertow / rhythm pool';group.visible=false;scene.object3D.add(group);
   const geometries=[],materials=[],textures=[],instances=[];
+  const hiltBatches=art.hands.map(h=>mergeFixedParts(T,h.g));
   const ownG=g=>(geometries.push(g),g),ownM=m=>(materials.push(m),m),boxGeo=ownG(new T.BoxGeometry(1,1,1));
   const uniforms={uTime:{value:0},uWater:{value:-.08},uEnergy:{value:.3},uMotion:{value:1},uStageInverse:{value:new T.Matrix4()},uEye:{value:new T.Vector3()},uRipples:{value:Array.from({length:6},()=>new T.Vector4(0,0,-100,0))}};
   const caustic=`float caustic(vec2 p,float t){p+=vec2(sin(p.y*1.3+t),cos(p.x*1.2-t))*.26;float a=sin(p.x*3.5+t*.7)+sin(p.y*3.2-t*.8)+cos(p.x*2.8-p.y*2.1+t*.3);return pow(max(0.,1.-abs(a)*.43),9.);}`;
@@ -62,7 +88,7 @@
   const waterGeo=ownG(new T.PlaneGeometry(4.75,23.8,12,40));waterGeo.rotateX(-Math.PI/2);
   for(const side of[-1,1]){const m=new T.Mesh(waterGeo,water);m.position.set(side*3.67,-.08,-10);m.renderOrder=1;group.add(m);}
   for(const [m,matrices]of batches){const mesh=new T.InstancedMesh(boxGeo,m,matrices.length);for(let i=0;i<matrices.length;i++)mesh.setMatrixAt(i,matrices[i]);mesh.instanceMatrix.needsUpdate=true;mesh.computeBoundingSphere();group.add(mesh);instances.push(mesh);}
-  const status={active:false,ar:false,waterVisible:false,hitsObserved:0,renderTargets:0,boxBatches:batches.size,boxCount,disposed:false};let was=false,clock=0,next=0,lastState=null,lastHit=-10;
+  const status={active:false,ar:false,waterVisible:false,hitsObserved:0,renderTargets:0,boxBatches:batches.size,boxCount,hiltBatches:hiltBatches.map(b=>b.stats),disposed:false};let was=false,clock=0,next=0,lastState=null,lastHit=-10;
   art.update=function(s,time,dt,menu){
    baseUpdate.call(art,s,time,dt,menu);if(status.disposed)return;
    const g=scene.components?.['prism-game'],selected=(s?.song.id||g?.track)==='undertow',ar=scene.is('ar-mode');
@@ -78,8 +104,8 @@
    if(camera)camera.getWorldPosition(uniforms.uEye.value).applyMatrix4(uniforms.uStageInverse.value);
   };
   art.burst=function(n,p){baseBurst.call(art,n,p);if(status.waterVisible&&!art.fx.state.reduced&&art.fx.state.intensity>0&&document.getElementById('spectral-reactive')?.checked!==false&&clock-lastHit>.06){uniforms.uRipples.value[next].set(n.hand?2.4:-2.4,p[2],clock,n.hand);next=(next+1)%6;lastHit=clock;status.hitsObserved++;}};
-  function dispose(){if(status.disposed)return;status.disposed=true;group.removeFromParent();for(const m of instances)m.dispose();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
+  function dispose(){if(status.disposed)return;status.disposed=true;for(const b of hiltBatches)b.dispose();group.removeFromParent();for(const m of instances)m.dispose();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
   art.dispose=function(){dispose();baseDispose.call(art);};return {status,group,uniforms,dispose};
  }
- root.PrismPoolStage=Object.freeze({install});
+ root.PrismPoolStage=Object.freeze({install,mergeFixedParts});
 })(globalThis);

@@ -24,9 +24,11 @@ with sync_playwright() as pw:
  try:
   p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready&&Prism.snapshot().controller')
   p.bring_to_front();p.keyboard.press('Shift')
-  check(p.locator('#tracks button').count()==4,'The existing catalog now contains four original tracks')
-  p.locator('#scene-wrap').focus()
-  for _ in range(4):press(13)
+  check(p.locator('#tracks button').count()==5,'The existing catalog now contains five original tracks')
+  p.locator('#difficulty').select_option('flow');p.locator('#scene-wrap').focus()
+  for _ in range(35):
+   if p.locator('[data-track="tidal-bloom"]').evaluate('(e)=>e===document.activeElement'):break
+   press(13)
   check(p.locator('[data-track="tidal-bloom"]').evaluate('(e)=>e===document.activeElement'),'Controller focus reaches the fourth track')
   press(0)
   check(p.evaluate('Prism.snapshot().track')=='tidal-bloom','Controller selection loads the new track')

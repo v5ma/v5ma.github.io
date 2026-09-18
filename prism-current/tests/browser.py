@@ -27,9 +27,10 @@ with sync_playwright() as pw:
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0');page.evaluate(DRIVER)
   check(snapshot(page)['version']==RELEASE,'The actual A-Frame renderer loads the declared isolated rhythm release')
   page.screenshot(path=str(OUT/'title.png'))
+  page.locator('[data-track="first-light"]').click();page.locator('#difficulty').select_option('flow')
   if MODE=='desktop':
    check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
-   check(page.locator('#tracks button').count()==4,'Four original tracks are selectable')
+   check(page.locator('#tracks button').count()==5,'All five tracks are selectable')
    check(page.locator('#enter-ar').is_disabled(),'Unsupported AR is not presented as a working mode')
    page.locator('#input').select_option('keys');check(snapshot(page)['input']=='keys','Selecting an input mode preserves the chosen value');page.locator('#start').click();page.wait_for_function('Prism.snapshot().phase==="playing"')
    check(snapshot(page)['audio']=='running','The worker-rendered score plays through a real AudioContext')
