@@ -1,13 +1,14 @@
 /* Authored city and coastal environments, with playable geometry from the same
  * level definitions used for navigation. The distant skyline is decorative. */
 import * as T from './vendor/three.module.js';
+import {dressMeridian} from './meridian-relief-art.mjs';
 import {CURRENT,OBSTACLES,GRASS,heightAt,inside} from './world.mjs';
 import {rnd} from './artkit.mjs';
 import {streetVehicle,streetTree,bakeStreet} from './prop-kit.mjs';
 export function buildReclaimed(scene,A){
  const {add,mesh,label,mat}=A,c=CURRENT,coast=c.id==='breakwater',snow=c.id==='whiteout',b=c.bounds,width=b.x1-b.x0+12,length=b.z1-b.z0+12,mid=(b.z0+b.z1)/2;
  const gates=[],wheels=[],lights=[],ground=[];
- function surface(x,z,w,d,tint,type,y=.005){const g=new T.PlaneGeometry(w,d,Math.ceil(w/3),Math.ceil(d/3));g.rotateX(-Math.PI/2);g.translate(x,0,z);const p=g.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,heightAt(p.getX(i),p.getZ(i))+y);g.computeVertexNormals();const m=new T.Mesh(g,mat(tint,type));m.receiveShadow=true;scene.add(m);ground.push(m);return m;}
+ function surface(x,z,w,d,tint,type,y=.005){const g=new T.PlaneGeometry(w,d,Math.ceil(w/(c.id==='meridian'?.8:3)),Math.ceil(d/(c.id==='meridian'?.8:3)));g.rotateX(-Math.PI/2);g.translate(x,0,z);const p=g.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,heightAt(p.getX(i),p.getZ(i))+y);g.computeVertexNormals();const m=new T.Mesh(g,mat(tint,type));m.receiveShadow=true;scene.add(m);ground.push(m);return m;}
  surface(0,mid,width,length,snow?0xc8cbc2:coast?0x797d6f:0x858577,'ground');surface(0,mid,14,length,snow?0x8f9692:0x66706b,'road',.016);
  for(const z of[45,3,-42])surface(0,z,width-4,12,snow?0xa2a8a4:0x737c73,'road',.018);
  for(const x of[-53,53])surface(x,mid,5,length-4,0x92998a,'paving',.024);
@@ -24,18 +25,18 @@ export function buildReclaimed(scene,A){
   const boundary=o.id.includes('edge'),tint=snow&&o.kind==='planter'?0xc7c8bd:o.kind==='fence'?0x6a756e:o.kind==='planter'?0x969c82:o.kind==='counter'||o.kind==='shelf'?0x777665:boundary?0x727b71:coast?0x97958a:0x9f9583;
   add('box',o.x,o.bottom+o.h/2,o.z,o.w,o.h,o.d,tint,o.kind==='brick'?'brick':o.kind==='counter'?'wood':'stone');
   if(o.h>3&&!boundary){add('box',o.x,o.bottom+o.h-.08,o.z,o.w+.18,.21,o.d+.18,0xb6b39e,'stone');if(o.w>4){for(let x=o.x-o.w/2+.8;x<o.x+o.w/2-.4;x+=2.4)for(let y=2.9;y<o.h-1;y+=2.7){add('box',x,o.bottom+y,o.z+o.d/2+.021,1.32,1.65,.025,0x344746,'window');add('box',x,o.bottom+y-.82,o.z+o.d/2+.13,1.49,.13,.28,0xa9ab98,'stone');add('box',x,o.bottom+y,o.z+o.d/2+.046,.055,1.65,.04,0x889380,'metal');}}}
-  if(o.kind==='shelf')for(let y=.45;y<o.h;y+=.48){add('box',o.x,y,o.z,o.w+.08,.045,o.d+.05,0xaaa487,'wood');for(let j=0;j<8;j++)add('box',o.x+.03,y+.14,o.z-o.d*.4+j*o.d*.10,.38,.24,.19,0x53665e,'cloth');}
-  if(o.kind==='counter')add('box',o.x,o.h+.018,o.z,o.w+.1,.046,o.d+.1,0xb8b5a1,'wood');
+  if(o.kind==='shelf')for(let y=.45;y<o.h;y+=.48){add('box',o.x,o.bottom+y,o.z,o.w+.08,.045,o.d+.05,0xaaa487,'wood');for(let j=0;j<8;j++)add('box',o.x+.03,o.bottom+y+.14,o.z-o.d*.4+j*o.d*.10,.38,.24,.19,0x53665e,'cloth');}
+  if(o.kind==='counter')add('box',o.x,o.bottom+o.h+.018,o.z,o.w+.1,.046,o.d+.1,0xb8b5a1,'wood');
   if(o.kind==='planter'){add('box',o.x,o.bottom+o.h+.03,o.z,o.w-.22,.05,o.d-.22,0x414f3c,'ground');streetTree(A,o.x,o.bottom+o.h,o.z,7.8+rnd(o.x+o.z)*3,Math.abs(o.x*9+o.z));}
  }
  for(const [i,building]of c.buildings.entries()){
-  const {x,z,w,d,h}=building;
+  if(c.id==='meridian'){dressMeridian(scene,A,building);continue;}const {x,z,w,d,h}=building;
   // Broken ceilings preserve interiors, light shafts and alternate side doors.
   surface(x,z,w-.9,d-.9,0xa5a494,'paving',.05);
   for(const side of[-1,1]){add('box',x+side*(w/2-1.8),h-.3,z,2.6,.3,d-.8,0x696f66,'wood');for(let k=-d/2+2;k<d/2;k+=3)add('box',x,h-.35,z+k,w-1,.18,.12,0x626b5e,'wood');}
   add('box',x,h-.25,z-d/2+3,w-1,.25,5,0x737970,'stone');
   label(building.label,x,3.45,z+d/2+.57,Math.min(13,w-3),1.25,i%2?'#354e4e':'#475449','#e7d4a4');
-  for(const side of[-1,1]){label('SIDE PASSAGE',x+side*(w/2+.55),2.6,z,4,.65,'#414f47','#d4d0b3',side*Math.PI/2);add('box',x+side*(w/2+1.1),4.0,z,.6,.14,5,0x6f7861,'metal');}
+  for(const side of[-1,1]){/* Architecture identifies entrances, not a generic side-passage sign. */add('box',x+side*(w/2+1.1),4.0,z,.6,.14,5,0x6f7861,'metal');}
   const lamp=new T.PointLight(0xffd596,12,12,2);lamp.position.set(x,3,z+d/2-2.7);scene.add(lamp);lights.push(lamp);add('box',x,3.4,z+d/2-.63,.22,.13,.15,0xffce82,'glow');
   // Thin ivy sheets and drainpipes sit on existing walls, never across entrances.
   for(const side of[-1,1]){A.ivy(x+side*(w*.32),.8,z+d/2+.55,3.2,h*.78,i*311+side);add('cyl',x+side*(w/2-1),h*.48,z+d/2+.70,.062,h*.94,.062,0x5d7065,'metal');}

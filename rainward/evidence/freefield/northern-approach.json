@@ -1,0 +1,12 @@
+{
+  "record_kind": "Retained native failure and terrain consistency correction; not a release receipt",
+  "tested_checkout": "0febf4cd2e647dd9d785e52033c52e3c693543d6",
+  "workflow_run": 35285554508,
+  "artifact": 10523464936,
+  "archive_sha256": "78b75a777a2de66f920d9b436c4074ca5feb7b78777803caabd0d702c53986fd",
+  "passed_before_failure": ["Original arrival supplies and live enemies", "Raised clinic filter and required clean-water task", "Sunken drain traversal", "Reading ridge key", "Original three-control gate mechanism"],
+  "failure": "The player died at x=17.94,z=-61.00 during the northern approach with both components and the pressure mechanism complete. No script or console errors occurred. The corrected clinic valve was reached and left at 100 health.",
+  "corrections": ["Meridian's continuous ground now blocks sight and shots using its actual height function; previously relief placed feet but only box obstacles blocked rays.", "The synthetic controller driver no longer decelerates at every collinear one-metre grid node, while retaining collision-safe corner approach.", "Collect the original librarian supply satchel and craft with its finite materials before using the learned drainage route north. No items, health, actor positions, clock or objectives are assigned."],
+  "local_model_source_checks": 386,
+  "evidence_boundary": "Model and synthetic-input diagnostics are not native acceptance, physical Xbox/Quest, human pacing or universal safety evidence. Final native runs, visual review, scope-safe merge and served-byte verification remain required."
+}

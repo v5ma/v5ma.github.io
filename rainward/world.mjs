@@ -1,4 +1,6 @@
 /* Original fictional level and game collision geometry. */
+import {intersectHeightfield} from './terrain-ray.mjs';
+import {applyMeridianRelief,meridianHeight} from './meridian-relief.mjs';
 import {applyFreightCut} from './freight-cut.mjs';
 import {applyFloodgateRecut,recutHeight} from './floodgate-recut.mjs';
 import {NATATORIUM} from './natatorium.mjs';
@@ -6,7 +8,7 @@ import {FLOODGATE_COVER} from './floodgate-content.mjs';
 import {MERIDIAN,BREAKWATER,WHITEOUT,LEGACY_TASKS} from './expeditions.mjs';
 import {TERMINUS} from './terminus.mjs';
 import {CONSERVATORY} from './conservatory.mjs';
-export const VERSION='0.15.0';
+export const VERSION='0.16.0';
 export const BOUNDS={x0:-35,x1:35,z0:-49,z1:34};
 export const START={x:0,z:27};
 const box=(id,x,z,w,d,h,kind='wall',bottom=0)=>({id,x,z,w,d,h,kind,bottom});
@@ -51,7 +53,7 @@ export const PATROLS=[
  {id:'drifter',name:'Echo drifter',type:'drifter',points:[[-4,-23],[-4,-27],[6,-26],[6,-22]],yaw:0},
 ];
 const DISTRICT={id:'district',tasks:LEGACY_TASKS.district,title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
-applyFloodgateRecut(DISTRICT);applyFreightCut(DISTRICT);
+applyFloodgateRecut(DISTRICT);applyFreightCut(DISTRICT);applyMeridianRelief(MERIDIAN);
 export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT,natatorium:NATATORIUM});
 // Each expedition has a small, one-time survivor cache in the open start area.
 for(const d of Object.values(LEVELS)){d.items.push({id:d.id+'-survival-cache',x:d.start.x+3,z:d.start.z-4,type:'supplies',label:'Survivor cache / rifle cartridges and '+(d.id==='whiteout'?'blade':'club'),rifleRounds:8,meleeWeapon:d.id==='whiteout'?'blade':'club'});}
@@ -63,7 +65,7 @@ export function useLevel(id='district'){
  for(const [a,b]of [[OBSTACLES,data.obstacles],[GRASS,data.grass],[ITEMS,data.items],[SHELTERS,data.shelters],[PATROLS,data.patrols]])a.splice(0,a.length,...b.map(o=>({...o})));
  rebuildNav();return data;
 }
-export function levelHeight(id,x,z){if(id==='district')return recutHeight(x,z);if(id==='breakwater')return z< -65?Math.min(5.4,(-z-65)*.15):0;if(id!=='conservatory')return 0;return z>26?Math.min(8,(z-26)*8/14):z< -44?Math.min(5,(-z-44)*5/18):0;}
+export function levelHeight(id,x,z){if(id==='meridian')return meridianHeight(x,z);if(id==='district')return recutHeight(x,z);if(id==='breakwater')return z< -65?Math.min(5.4,(-z-65)*.15):0;if(id!=='conservatory')return 0;return z>26?Math.min(8,(z-26)*8/14):z< -44?Math.min(5,(-z-44)*5/18):0;}
 export const heightAt=(x,z)=>levelHeight(CURRENT.id,x,z);
 export function waterAt(p){return CURRENT.water?.find(r=>inside(p,r))||null;}
 export function syncGates(puzzle){let changed=false;for(const b of OBSTACLES)if(b.openWhen){const disabled=!!puzzle?.solved;if(b.disabled!==disabled){b.disabled=disabled;changed=true;}}if(changed)rebuildNav();}
@@ -85,8 +87,9 @@ export function rayBox(origin,dir,box,max=100){
   let a=(lo-origin[axis])/dir[axis],b=(hi-origin[axis])/dir[axis];if(a>b)[a,b]=[b,a];enter=Math.max(enter,a);leave=Math.min(leave,b);if(enter>leave)return null;
  }return enter;
 }
+export function rayTerrain(origin,dir,max=60){if(CURRENT.id!=='meridian')return null;const endY=origin.y+dir.y*max;if(Math.min(origin.y,endY)>6.02)return null;return intersectHeightfield(origin,dir,max,meridianHeight);}
 export function obstruction(a,b){const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len=Math.hypot(dx,dy,dz);if(len<.001)return null;
- const dir={x:dx/len,y:dy/len,z:dz/len};let result=null;
+ const dir={x:dx/len,y:dy/len,z:dz/len},ground=rayTerrain(a,dir,len);let result=ground!==null&&ground<len-.05?{t:ground,o:{id:'meridian-terrain',kind:'terrain'}}:null;
  for(const o of OBSTACLES){const t=rayBox(a,dir,o,len);if(t!==null&&t<len-.05&&(!result||t<result.t))result={t,o};}return result;
 }
 export const coverAt=p=>GRASS.some(g=>inside(p,g));

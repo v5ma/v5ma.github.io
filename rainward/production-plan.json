@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.15.0",
-  "edition": "Freight Cut",
+  "release": "0.16.0",
+  "edition": "Freefield",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
-  "updated": "2026-09-15",
+  "updated": "2026-09-17",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
@@ -66,6 +66,10 @@
   ],
   "references": [
     {
+      "title": "Freefield changes, evidence and limitations",
+      "url": "FREEFIELD.md"
+    },
+    {
       "title": "Freight Cut experience, hypothesis and evidence boundaries",
       "url": "FREIGHT-CUT.md"
     },
@@ -111,11 +115,11 @@
     }
   ],
   "nextRelease": [
-    "RW-009",
-    "RW-012",
     "RW-028",
     "RW-035",
     "RW-036",
+    "RW-044",
+    "RW-049",
     "RW-063"
   ],
   "items": [
@@ -538,15 +542,15 @@
       "status": "Planned",
       "owner": "Level design",
       "acceptance": "Review all seven chapters for landmarks, shortcuts, sightlines, supply spacing, backtracking and encounter rhythm.",
-      "evidence": "LEVEL-DESIGN.md",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-016",
         "RW-025"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Freight Cut links the established clinic/market seam to Freight Hall: the original optional receiver repair now opens a real, flankable loading passage. See FREIGHT-CUT.md; the complete flagship and human review remain unapproved.",
-      "nextAction": "Observe unfamiliar-player recovery and route-choice reasoning, then refine the quay observation/commitment beat. Preserve powered/unpowered completion and current legacy saves."
+      "resumeNote": "Meridian relief, footprints, beacon orientation and valve recovery are implemented. Other chapter redesigns and unfamiliar-player review remain open.",
+      "nextAction": "Review learned transfers versus direct exposure, then continue the next chapter rather than adding acreage."
     },
     {
       "id": "RW-029",
@@ -653,14 +657,14 @@
       "status": "Planned",
       "owner": "Animation",
       "acceptance": "Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.",
-      "evidence": "",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-034"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The original procedural animation still drives the imported detail. The free animation library was inspected but its clips were not integrated; swimming currently reuses the horizontal crawl pose.",
-      "nextAction": "Prototype authored swim/tread/dive/surface and land-action transitions with before/after motion capture and preserved gameplay timing."
+      "resumeNote": "Authored body surfaces and high-speed gait adjustments do not constitute a complete authored action-clip set.",
+      "nextAction": "Author and review land/water transitions with before/after captures."
     },
     {
       "id": "RW-036",
@@ -670,14 +674,14 @@
       "status": "Planned",
       "owner": "Technical animation",
       "acceptance": "Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.",
-      "evidence": "",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-035"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Hand/foot contact IK is not implemented or approved. The collar/wrist seam fixes are geometry compatibility, not contact animation.",
-      "nextAction": "After action blending, validate slopes/stairs, weapon grips and authored traversal contacts without changing collision authority."
+      "resumeNote": "Bounded visual two-bone foot placement and planting are implemented. Hand contacts and full action coverage remain unfinished.",
+      "nextAction": "Review slopes, stops and turns on actual models, then add weapon grips without changing collision."
     },
     {
       "id": "RW-037",
@@ -798,14 +802,14 @@
       "status": "Planned",
       "owner": "Sound design",
       "acceptance": "Review loudness, texture, timing, repetition and material realism for every cue on headphones and speakers; replace weak placeholders.",
-      "evidence": "",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-043"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "The owner explicitly prioritizes in-game sound effects and music. Rendered samples and live analyser checks establish output, not a good mix.",
-      "nextAction": "Review Foley timing, material variation and water/combat cues on headphones and speakers, then record what was improved."
+      "resumeNote": "Quiet player footsteps/water and sparse music are implemented; legacy mix remains. This is not a completed Foley-library replacement.",
+      "nextAction": "Listen on actual speakers/headphones for repetition, peaks and threat clarity."
     },
     {
       "id": "RW-045",
@@ -880,12 +884,14 @@
       "status": "Planned",
       "owner": "Accessibility engineering",
       "acceptance": "Offer remapping, conflict resolution, hold/toggle alternatives and readable per-device prompts; test every resulting action path.",
-      "evidence": "",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-017"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "Saved gameplay remaps and reserved menu recovery controls are implemented. Exhaustive combinations and accessibility hold alternatives remain open.",
+      "nextAction": "Test non-default remaps in native journeys and refine per-action prompts."
     },
     {
       "id": "RW-050",
@@ -1097,14 +1103,14 @@
       "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.",
-      "evidence": "DIORAMA.md",
+      "evidence": "FREEFIELD.md",
       "depends": [
         "RW-057"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "First-person VR, third-person VR Diorama and third-person AR Diorama share the existing game and controller/hand adapters. Physical Quest 3 review is still absent. Wayfinder adds route readability and per-source spatial hold safety; see WAYFINDER.md. Human/device approval is unchanged.",
-      "nextAction": "Test all three views with real Quest controllers and hands, including placement, body-scale clarity, targeting, saves, tracking loss, comfort and measured device performance."
+      "resumeNote": "Four XR views share one game. Portals center the survivor, first-person AR cuts environment at the waist, and panels are on demand.",
+      "nextAction": "Run physical Quest controllers/hands, permissions, sight, low air, saves, comfort and performance."
     },
     {
       "id": "RW-064",
@@ -1274,6 +1280,13 @@
       "hypothesis": "An optional receiver repair that changes collision, sightlines and pursuit routes makes learned geography useful for recovery.",
       "physicalDevices": "Not tested",
       "unfamiliarPlayers": "Not reviewed"
+    },
+    "freefield": {
+      "status": "Implemented",
+      "evidence": "FREEFIELD.md",
+      "publicStatus": "Use the PR and served-file receipt; candidate tests alone are not delivery",
+      "physicalQuest3": "Not tested",
+      "scope": "Four XR views, centered portals, on-demand UI, direct/saved controls, Free Stride, blink, quiet audio, Meridian relief and partial foot contacts. Not all seven redesigned chapters or complete authored animation."
     }
   }
 }

@@ -1,3 +1,4 @@
+import {accessibleMeridianDrops} from './meridian-relief.mjs';
 import {validFieldNotes} from './floodgate-content.mjs';
 import {arsenal} from './armory.mjs';
 import {validTaskSave} from './field-tasks.mjs';
@@ -35,7 +36,7 @@ export function restore(raw,activate=true){
   if(d.version===4){s.player.arsenal=JSON.parse(JSON.stringify(d.arsenal));s.player.gun=d.gun;s.player.equipped=d.equipped;s.player.meleeWeapon=d.meleeWeapon;s.player.meleeDurability=d.meleeDurability;}
   s.objectives={cell:def.items.some(i=>i.objective==='cell'&&s.taken.has(i.id)),crank:def.items.some(i=>i.objective==='crank'&&s.taken.has(i.id))};
   if(def.puzzle){s.puzzle={wheels:[...d.puzzle.wheels],solved:puzzleSolved(def.puzzle,d.puzzle.wheels),clueRead:!!d.puzzle.clueRead};if(activate)syncGates(s.puzzle);}
-  for(const a of defeated){const e=s.enemies.find(e=>e.id===a.id);Object.assign(e,{hp:0,state:'down',dropMade:true,x:a.x,z:a.z});}s.drops=drops.map(a=>({id:a.id,x:a.x,z:a.z,items:{...a.items}}));
+  for(const a of defeated){const e=s.enemies.find(e=>e.id===a.id);Object.assign(e,{hp:0,state:'down',dropMade:true,x:a.x,z:a.z});}s.drops=drops.map(a=>({id:a.id,x:a.x,z:a.z,items:{...a.items}}));if(level==='meridian')s.drops=accessibleMeridianDrops(def,s.drops,s.puzzle);
   for(const k of Object.keys(s.stats))if(numeric(d.stats?.[k],0,1e8))s.stats[k]=d.stats[k];s.t=s.stats.seconds;return s;
  }catch{return null;}
 }

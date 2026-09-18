@@ -1,13 +1,15 @@
 {
-  "version": "0.15.0",
-  "build": "rainward-freight-cut-20260915",
+  "version": "0.16.0",
+  "build": "rainward-freefield-20260917",
   "stage": "expanded survival-stealth prototype",
-  "xr": "experimental-first-person-and-stereo-vr-ar-diorama",
+  "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
   "changes": [
-    "Give the existing optional freight receiver repair a real west loading passage into the market",
-    "Add a sorting baffle for a readable, flankable recovery landing; retain both original entrances",
-    "Connect clinic observation, receiver repair, spindle recovery, market retreat and original extraction",
-    "Preserve all seven chapters, existing task rewards, saves, Xbox presets and first-person/AR/VR views"
+    "Replace cropped miniatures with character-centered perspective portals and add first-person AR waist cutaway",
+    "Hide the full XR field menu in ordinary play; offer direct Quest actions and separately saved Quest/Xbox remaps",
+    "Add optional clear-ground blink, faster continuous running, quieter player Foley and a sparse original score",
+    "Reshape Meridian around a sunken drain, raised clinic courtyard, reading ridge and distinct footprints",
+    "Retain authored body surfaces and face treatment; add bounded visual foot contacts and local licensed weapons",
+    "Preserve seven chapter identities, stable objectives, rewards, shelters, old checkpoints and optional legacy settings"
   ]
 }

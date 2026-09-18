@@ -3,3 +3,5 @@
 #xr-entry-status{font-size:.9rem;line-height:1.4;max-width:100%}
 
 #xr-view-title,#xr-view-pause{max-width:100%;box-sizing:border-box}
+
+.immersive-rainward header{visibility:hidden!important}

@@ -14,7 +14,7 @@ with sync_playwright() as pw:
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  b=pw.chromium.launch(**opts);ctx=b.new_context(viewport={'width':960,'height':640},service_workers='block')
  ctx.add_init_script(Path('rainward/tests/quest-device-mock.js').read_text())
- ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,cinematic:false,scanned:false,detailedHumans:false}));")
+ ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.freefield',JSON.stringify({freeStride:false,xrLayout:'legacy',pinnedXR:true,footsteps:100,waterVolume:100,score:'legacy'}));localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,cinematic:false,scanned:false,detailedHumans:false}));")
  p=ctx.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  def wait(q):p.wait_for_function(q)
  def frames(n=4):
@@ -39,7 +39,7 @@ with sync_playwright() as pw:
  def away():p.evaluate("()=>{for(const s of questDevice.sources)s.orientation={x:0,y:0,z:0,w:1};}")
  try:
   p.goto(BASE+'/rainward/?chapter='+CHAPTER,wait_until='domcontentloaded');wait('window.Rainward')
-  check(p.evaluate('Rainward.mode')=='title','The native title initializes without a fatal UI construction error');check(p.locator('#xr-view-title option').count()==3,'First-person VR, third-person VR and third-person AR are explicit native choices')
+  check(p.evaluate('Rainward.mode')=='title','The native title initializes without a fatal UI construction error');check(p.locator('#xr-view-title option').count()==4,'First-person VR/AR and third-person VR/AR are explicit native choices')
   p.locator('#xr-view-title').select_option(VIEW);p.evaluate('(kind)=>questDevice.use(kind)',KIND)
   p.locator('#xr-title-hands' if KIND=='hands' else '#xr-title').click();wait('Rainward.snapshot().xr.active');frames(8)
   check(p.evaluate('questDevice.requests[0].mode')==('immersive-ar' if VIEW=='diorama-ar' else 'immersive-vr'),'The selected diorama requests the correct immersive session type')
@@ -55,7 +55,7 @@ with sync_playwright() as pw:
   for row,shell,top,front in [('shell-top','top-open',True,False),('shell-front','front-open',False,True),('shell-both','both-open',True,True)]:
    select(row);frames(5);d=p.evaluate('Rainward.snapshot().xr.diorama');check(d['shell']==shell and d['topOpen']==top and d['frontOpen']==front,'Spatial selection applies '+shell+' with at least one visible opening')
    check(not ('front' in d['closedFaces'] and 'top' in d['closedFaces']),'The rendered shell never closes both its front and top')
-   check(d['cutaway']['top']==top and d['cutaway']['front']==front,'World presentation cutaways match the selected shell openings')
+   check(d['portal'] and d['automaticEyeFacingTransparency'] and d['beyondBackVisible'],'The whole-world portal keeps eye-facing panels transparent and retains distant scenery')
    p.screenshot(path=str(OUT/(shell+'-neutral.png')))
    head=p.evaluate('({...questDevice.head})');pitch=p.evaluate('questDevice.headPitch')
    if shell=='top-open':p.evaluate('questDevice.head.y+=.35;questDevice.head.z-=.65;questDevice.headPitch=-.65')
@@ -66,7 +66,7 @@ with sync_playwright() as pw:
   scale=p.evaluate('Rainward.snapshot().xr.diorama.scale');select('display-larger');frames(5)
   d=p.evaluate('Rainward.snapshot().xr.diorama');check(abs(d['scale']-scale-.01)<1e-9 and d['physicalDimensions']=={'width':1.6,'depth':1.2,'height':.72},'Zoom enlarges game content without enlarging the physical display')
   select('display-smaller');frames(5);check(p.evaluate('Rainward.snapshot().xr.diorama.extraRenderTargets')==0,'The diorama adds no offscreen theatre or full-screen render target')
-  select('display-follow');check(p.evaluate('Rainward.snapshot().xr.diorama.follow')==False,'Content follow can be disabled using a spatial control')
+  select('display-follow');check(p.evaluate('Rainward.snapshot().xr.diorama.follow')==True,'The requested portal always follows the centered survivor, including old stored preferences')
   select('display-follow');select('recenter');frames(5)
   away();frames(6);wait('Rainward.snapshot().xr.armed');start=p.evaluate('Rainward.state.player.z')
   if KIND=='controllers':p.evaluate("questDevice.sources[0].gamepad.axes[3]=-1")
@@ -93,7 +93,7 @@ with sync_playwright() as pw:
   select('resume');wait('Rainward.mode==="play"');select('selectPistol')
   if KIND=='hands':select('hand-fire')
   away();frames(6);wait('Rainward.snapshot().xr.armed')
-  p.evaluate('''async ()=>{const T=await import('./vendor/three.module.js'),x=Rainward.snapshot().xr,p=Rainward.state.player,scale=1/x.diorama.scale,matrix=new T.Matrix4().compose(new T.Vector3(x.rig.x,x.rig.y,x.rig.z),new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),x.rig.yaw),new T.Vector3(scale,scale,scale)),target=new T.Vector3(p.x+2,1.2,p.z-6).applyMatrix4(matrix.invert()),source=questDevice.sources.find(s=>s.handedness==='right'),direction=target.sub(new T.Vector3(source.position.x,source.position.y,source.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),direction);source.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''')
+  p.evaluate('''async ()=>{const T=await import('./vendor/three.module.js'),x=Rainward.snapshot().xr,p=Rainward.state.player,matrix=new T.Matrix4().fromArray(x.diorama.worldMatrix),target=new T.Vector3(p.x+2,1.2,p.z-6).applyMatrix4(matrix),source=questDevice.sources.find(s=>s.handedness==='right'),direction=target.sub(new T.Vector3(source.position.x,source.position.y,source.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),direction);source.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''')
   frames(4);before=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,x:Rainward.state.player.x,z:Rainward.state.player.z,shots:Rainward.state.stats.shots})')
   trigger(True);p.wait_for_function('(mag)=>Rainward.state.player.mag<mag',arg=before['mag']);trigger(False);frames(4)
   after=p.evaluate('({mag:Rainward.state.player.mag,reserve:Rainward.state.player.reserve,shots:Rainward.state.stats.shots,last:Rainward.state.events.filter(e=>e.type==="shot").at(-1)})')
