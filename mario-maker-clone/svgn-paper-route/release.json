@@ -1,13 +1,12 @@
 {
-  "version": "0.26.0",
-  "build": "sky-cycle-spatial-workspace-2026.09.17",
-  "date": "2026-09-17",
+  "version": "0.26.1",
+  "build": "sky-cycle-xr-recovery-2026.09.18",
+  "date": "2026-09-18",
   "changes": [
-    "Explicit VR and AR entry using the existing stereo game and renderer; browser-owned passthrough without camera-pixel access",
-    "AR exhibit clipping, manual seated placement, scale, height, distance and orientation controls",
-    "Shared in-headset menus, checkbox state, text keyboard, confirmations and explicit browser handoffs",
-    "Live 2D and Workshop canvases in XR, with ray-based editor selection and drag/cancel",
-    "Compact riding action bar, controller/hand input continuity and physical-Xbox bridge; physical device qualification remains open",
-    "Original eight-route campaign, Waterwheel preview, saves and remaps retained; Canal Choice candidate is kept separately"
+    "XR session visibility owns headset input and simulation even when the HTML document is hidden.",
+    "B/Back remains available with held grips; either tracked-controller stick navigates menus.",
+    "Controller riding hides the persistent menu panel; pause restores full headset controls.",
+    "World-space AR aperture replaces view-space clipping; no camera-following mask planes.",
+    "Original campaign, editor drafts, saved progress and desktop controller mappings are preserved."
   ]
 }

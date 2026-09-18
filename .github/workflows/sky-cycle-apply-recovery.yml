@@ -1,0 +1,27 @@
+name: Apply scoped Sky Cycle XR recovery
+on:
+  push:
+    branches: ['sky-cycle/xr-menu-recovery-0.26.1']
+    paths: ['.github/workflows/sky-cycle-apply-recovery.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact reviewed source transformation
+        run: |
+          python .github/apply-sky-xr-recovery.py
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          node --test tests/adventure_score.test.cjs
+          git add mario-maker-clone/svgn-paper-route
+          git rm .github/apply-sky-xr-recovery.py .github/workflows/sky-cycle-apply-recovery.yml
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(sky-cycle): recover headset menus and world-space AR aperture'
+          git push origin HEAD:refs/heads/sky-cycle/xr-menu-recovery-0.26.1
