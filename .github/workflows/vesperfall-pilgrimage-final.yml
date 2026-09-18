@@ -5,6 +5,9 @@ on:
     paths: ['.github/workflows/vesperfall-pilgrimage-final.yml']
 permissions:
   contents: read
+concurrency:
+  group: pilgrimage-final-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   prepare:
     permissions:
@@ -15,6 +18,8 @@ jobs:
       source: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: vesperfall-pilgrimage-20260917
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -43,7 +48,7 @@ jobs:
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
           git diff --stat > test-output/uncommitted-diff.txt
-          tar -czf test-output/candidate-diagnostics.tgz .github/pilgrimage-candidate-*.txt .github/pilgrimage-meta-v2-*.txt .github/pilgrimage-finalize.py vesperfall scripts index.html
+          tar -czf test-output/candidate-diagnostics.tgz .github/pilgrimage-candidate-*.txt .github/pilgrimage-meta-v2-*.txt .github/pilgrimage-retained-gates-*.txt .github/pilgrimage-finalize.py vesperfall scripts index.html
       - uses: actions/upload-artifact@v4
         if: always()
         with:
