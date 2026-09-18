@@ -2,7 +2,7 @@ name: Verify published Lantern Ward
 on:
   push:
     branches: [master]
-    paths: ['svgn-planet/**', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md', '.github/workflows/neighborhood-lantern-published.yml']
+    paths: ['svgn-planet/**', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-NIGHT-WATCH-CAMPAIGN.md', '.github/workflows/neighborhood-lantern-published.yml']
 permissions:
   contents: read
 concurrency:
@@ -28,7 +28,7 @@ jobs:
           import concurrent.futures,hashlib,json,os,pathlib,time,urllib.request
           root=pathlib.Path('svgn-planet');base='https://v5ma.github.io/';commit=os.environ['COMMIT']
           paths=sorted(p for p in root.rglob('*') if p.is_file() and not any(x.startswith('.') or x in ('tests','tools','node_modules','__pycache__') for x in p.relative_to(root).parts) and p.suffix not in ('.py','.pyc'))
-          paths.extend(pathlib.Path('level-design-library/applied')/name for name in ['NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md','NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md'])
+          paths.extend(pathlib.Path('level-design-library/applied')/name for name in ['NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md','NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH-CAMPAIGN.md'])
           expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};rows={}
           def check(path):
               row={'path':path,'expected':expected[path],'matches':False}
@@ -40,9 +40,6 @@ jobs:
                   row.update(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data));row['matches']=row['sha256']==row['expected']
               except Exception as e:row['error']=str(e)
               return row
-          # Pages can publish a later sibling-only commit instead of this exact
-          # repository SHA. Acceptance is still every exact game-file hash, not
-          # an assumed successful deployment or a relaxed version check.
           deadline=time.monotonic()+1500
           while time.monotonic()<deadline:
               pending=[p for p in expected if not rows.get(p,{}).get('matches')]
@@ -53,7 +50,7 @@ jobs:
               if count==len(paths):break
               time.sleep(10)
           version=json.loads((root/'release.json').read_text())['version']
-          receipt={'commit':commit,'version':version,'scope':'Exact game-file closure and its applied design note; unrelated repository files may advance.','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
+          receipt={'commit':commit,'version':version,'scope':'Exact game-file closure and applied design notes; unrelated sibling files may advance.','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
           pathlib.Path('published-results/bytes.json').write_text(json.dumps(receipt,indent=2))
           assert receipt['success'],'Public files did not match this exact game snapshot within the verification window'
           PY
@@ -66,11 +63,11 @@ jobs:
   live:
     needs: bytes
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: 35
     strategy:
       fail-fast: false
       matrix:
-        route: [street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
+        route: [campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -84,7 +81,7 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Verify live default entry, saved routes and native synthetic XR
+      - name: Verify live default entry, campaign, saved routes and native synthetic XR
         env:
           WARD_BASE: https://v5ma.github.io/svgn-planet/
           WARD_ROUTE: ${{ matrix.route }}
@@ -95,8 +92,10 @@ jobs:
           PORTAL_OUT: published-results/portal-render
           WARD_OUT: published-results
           MARKET_OUT: published-results/market
+          CAMPAIGN_OUT: published-results/campaign
         run: |
           case "$WARD_ROUTE" in
+            campaign) python svgn-planet/lantern/campaign-browser.py ;;
             watch-roof|watch-combat|xr-ui) python svgn-planet/lantern/watch-browser.py ;;
             city|portal) python svgn-planet/lantern/city-browser.py ;;
             portal-render) python svgn-planet/lantern/portal-render-browser.py ;;
