@@ -2,13 +2,14 @@ import {emptyXR,deadAxis} from './xr-input.mjs';
 import {normalizeRemaps} from './freefield-remap.mjs';
 const fields={0:'trigger',1:'grip',3:'stick',4:'primary',5:'secondary'};
 export function createDirectXRInput(){
- let old={},armed=false,neutral=0,signature='',snap=false,flick=false,held={};
- const reset=()=>{old={};armed=false;neutral=0;snap=false;flick=false;held={};};
+ let old={},armed=false,neutral=0,signature='',snap=false,flick=false,held={},menuHold=0,menuSent=false;
+ const reset=()=>{old={};armed=false;neutral=0;snap=false;flick=false;held={};menuHold=0;menuSent=false;};
  function sample(list,dt,{mode='play',key=mode,handFire=false,handBlink=false,water=false,mapping}={}){
   const out=emptyXR(),stamp=list.map(s=>s.id).sort().join('|')+':'+key+':'+JSON.stringify(mapping||{});if(stamp!==signature){signature=stamp;reset();}
   const left=list.find(s=>s.side==='left'),right=list.find(s=>s.side==='right'),data={};
   for(const s of list)for(const [index,name]of Object.entries(fields))data[s.side+name]=name==='trigger'&&s.hand?!!s.pinch:!!(s.buttons?.[index]?.pressed||s.buttons?.[index]?.value>.65);
   const axes=s=>s?.hand?(s.move||[0,0]):[deadAxis(s?.axes?.[2]),deadAxis(s?.axes?.[3])],lm=axes(left),rm=axes(right);
+  if(mode==='play'){menuHold=data.rightsecondary?menuHold+Math.max(0,Math.min(.1,dt)):0;if((data.rightstick&&!old.rightstick)||(menuHold>=.55&&!menuSent)){menuSent=true;old={...data};out.actions=['pause'];return out;}}
   if(!armed){neutral=Object.values(data).some(Boolean)||Math.hypot(...lm,...rm)>.1?0:neutral+1;if(neutral>=2&&list.length)armed=true;old={...data};return out;}
   const edge=k=>data[k]&&!old[k],release=k=>!data[k]&&old[k];out.select={left:edge('lefttrigger'),right:edge('righttrigger')};out.confirmHeld=!!data.rightprimary;
   out.nav=lm[1];out.navX=lm[0];out.scroll=rm[1];
@@ -16,6 +17,7 @@ export function createDirectXRInput(){
   out.move=lm;
   for(const [button,action]of Object.entries(normalizeRemaps({xr:mapping}).xr)){
    const side=button.startsWith('left')?left:right;if(side?.hand)continue;
+   if(button==='rightsecondary'){if(release(button)&&!menuSent&&action!=='none')out.actions.push(action);continue;}
    if(['aim','fire','listen','sprint'].includes(action)){out[action]||=!!data[button];if(action==='sprint'&&edge(button))out.sprintToggle=true;}
    else if(action==='blink'){out.blinkHeld||=!!data[button];if(release(button))out.actions.push('blink');}
    else if(action==='traverse'&&water){out.swimBoost||=!!data[button];}
@@ -30,7 +32,7 @@ export function createDirectXRInput(){
   if(Math.abs(rm[0])<.3)snap=false;if(Math.abs(rm[0])>.65&&!snap){snap=true;out.turn=-Math.sign(rm[0])*Math.PI/6;out.fire=false;}
   if(Math.abs(rm[1])<.3)flick=false;if(Math.abs(rm[1])>.75&&Math.abs(rm[0])<.3&&!flick){flick=true;out.actions.push(rm[1]<0?'swapGun':'selectTool');}
   if(out.blinkHeld){out.fire=false;out.move=[0,0];}
-  out.actions=[...new Set(out.actions)];old={...data};return out;
+  out.actions=[...new Set(out.actions)];if(!data.rightsecondary)menuSent=false;old={...data};return out;
  }
  return {sample,reset,isArmed:()=>armed};
 }

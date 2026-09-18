@@ -62,8 +62,8 @@ with sync_playwright() as pw:
   select('start');wait('Rainward.mode==="play"');frames(5)
   check(not page.evaluate('Rainward.snapshot().xr.menuVisible'),'The full floating menu is hidden during ordinary gameplay')
   check(page.evaluate('Rainward.state.enemies.length===5&&Rainward.state.enemies.every(e=>e.hp>0)'),'The regular game starts with all five living enemies')
-  wait('Rainward.snapshot().xr.weapon.loaded.includes("pistol")')
-  check(page.evaluate('Rainward.snapshot().xr.weapon.visible'),'The equipped firearm is a visible loaded local GLB, not a controller cylinder')
+  wait('Rainward.snapshot().xr.weapon.ready.includes("pistol")')
+  check(page.evaluate('Rainward.snapshot().xr.weapon.visible'),'The equipped firearm is a visible original mechanical firearm, not a controller cylinder')
   if VIEW.startswith('diorama'):
    p=page.evaluate('({x:Rainward.state.player.x,z:Rainward.state.player.z})');anchor=page.evaluate('Rainward.snapshot().xr.diorama.anchor')
    page.evaluate('questDevice.head.x+=.3;questDevice.head.y-=.1');frames(5)

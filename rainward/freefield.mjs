@@ -1,11 +1,11 @@
 /* Preferences, never save-state or inventory. New defaults express the owner's
  * September 17 brief; the historical movement and XR layouts remain selectable. */
 export const FREEFIELD_KEY='svgn.rainward.v1.freefield';
-export const FREEFIELD_DEFAULTS=Object.freeze({freeStride:true,runSpeed:9,blink:true,footsteps:0,waterVolume:15,score:'quiet',xrLayout:'direct',pinnedXR:false,scope:true});
+export const FREEFIELD_DEFAULTS=Object.freeze({freeStride:true,autoRun:true,runSpeed:9,blink:true,footsteps:0,waterVolume:15,score:'quiet',xrLayout:'direct',pinnedXR:false,scope:true});
 export function freefieldOptions(value={}){
  const v=value&&typeof value==='object'?value:{};
  const bounded=(key,min,max)=>Number.isFinite(v[key])?Math.max(min,Math.min(max,v[key])):FREEFIELD_DEFAULTS[key];
- return {freeStride:v.freeStride!==false,runSpeed:bounded('runSpeed',6,14),blink:v.blink!==false,footsteps:bounded('footsteps',0,100),waterVolume:bounded('waterVolume',0,100),score:['quiet','legacy','off'].includes(v.score)?v.score:'quiet',xrLayout:v.xrLayout==='legacy'?'legacy':'direct',pinnedXR:v.pinnedXR===true,scope:v.scope!==false};
+ return {freeStride:v.freeStride!==false,autoRun:v.freeStride!==false&&v.autoRun!==false,runSpeed:bounded('runSpeed',6,14),blink:v.blink!==false,footsteps:bounded('footsteps',0,100),waterVolume:bounded('waterVolume',0,100),score:['quiet','legacy','off'].includes(v.score)?v.score:'quiet',xrLayout:v.xrLayout==='legacy'?'legacy':'direct',pinnedXR:v.pinnedXR===true,scope:v.scope!==false};
 }
 export function readFreefield(storage){try{return freefieldOptions(JSON.parse(storage?.getItem(FREEFIELD_KEY)||'{}'));}catch{return freefieldOptions();}}
 export function saveFreefield(storage,value){try{storage.setItem(FREEFIELD_KEY,JSON.stringify(freefieldOptions(value)));return true;}catch{return false;}}
