@@ -55,6 +55,9 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/vesperfall/',wait_until='domcontentloaded');wait('window.Vesperfall?.component.firstBell&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
   check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'First Bell loads inside the maintained A-Frame renderer')
+  # Explicit retained-mode fixture; new Goldwind/grip defaults have separate tests.
+  page.locator('#xr-bow-controls').select_option('classic')
+  page.locator('#pickup-mode').select_option('pull')
   page.locator('#jewel-settings summary').click();page.locator('#jewel-quality').select_option('classic');page.locator('#cathedral-shadows').uncheck();page.locator('#audio').uncheck()
   if MODE=='lessons':
    page.locator('#start').click();wait('Vesperfall.component.checkpoint.eligible');pause();page.locator('#suspend-expedition').click();wait('!Vesperfall.component.running');saved=save_raw();profile=page.evaluate('JSON.stringify(Vesperfall.component.profile)')
@@ -79,8 +82,8 @@ with sync_playwright() as pw:
    page.keyboard.press('KeyM');lesson(10);check(page.evaluate('Vesperfall.component.firstBell.state.coach.done.length===10'),'All ten lessons finish through real UI and gameplay outcomes, not skips')
    check(save_raw()==saved and page.evaluate('JSON.stringify(Vesperfall.component.profile)')==profile,'The whole tutorial preserves the scored checkpoint and permanent profile')
    page.screenshot(path=str(OUT/'lessons-complete.png'));pause();page.locator('#oath-start').click();wait('!document.getElementById("dominion-dialog").hidden');check(True,'Beginning the Oath asks before replacing an existing suspended run');page.locator('#dominion-dialog-close').click();check(save_raw()==saved,'Cancel leaves the prior expedition untouched')
-   page.locator('#menu-vr').click();wait('Vesperfall.component.xr&&Vesperfall.component.hands.left');xract('Expedition / practice');xract('More / page');xract('First Bell');xract('Begin guided');lesson(0);check(True,'Quest spatial menus can start the lessons without leaving the headset')
-   xrpress('left',5);wait('Vesperfall.component.paused');xract('Expedition / practice');xract('More / page');xract('First Bell');xract('Coach: ready');lesson(1);wait('Vesperfall.component.firstBell.state.coach.index===1');page.screenshot(path=str(OUT/'world-space-coach.png'));check(page.evaluate('AFRAME.scenes[0].object3D.children.some(m=>m.name==="First Bell world-space coach"&&m.visible)'),'The Quest coach is a visible world-space panel, not a DOM-only overlay')
+   page.locator('#menu-vr').click();wait('Vesperfall.component.xr&&Vesperfall.component.hands.left');xract('Missions');xract('More / page');xract('Expedition options');xract('More / page');xract('First Bell');xract('Begin guided');lesson(0);check(True,'Quest spatial menus can start the lessons without leaving the headset')
+   xrpress('left',5);wait('Vesperfall.component.paused');xract('Missions');xract('More / page');xract('Expedition options');xract('More / page');xract('First Bell');xract('Coach: ready');lesson(1);wait('Vesperfall.component.firstBell.state.coach.index===1');page.screenshot(path=str(OUT/'world-space-coach.png'));check(page.evaluate('AFRAME.scenes[0].object3D.children.some(m=>m.name==="First Bell world-space coach"&&m.visible)'),'The Quest coach is a visible world-space panel, not a DOM-only overlay')
    xrpress('left',5);wait('Vesperfall.component.paused');xract('Exit VR');wait('!Vesperfall.component.xr');page.set_viewport_size({'width':390,'height':844});check(not page.evaluate('document.documentElement.scrollWidth>innerWidth'),'New coach and route controls fit a narrow screen');page.screenshot(path=str(OUT/'first-bell-menu-phone.png'))
   else:
    page.locator('#oath-start').click();wait('Vesperfall.state.oath&&!Vesperfall.component.paused');check(page.evaluate('Vesperfall.component.checkpoint.eligible&&!Vesperfall.state.unscored'),'The Oath begins as a real scored, checkpointed expedition')

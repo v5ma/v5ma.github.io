@@ -41,6 +41,9 @@ with sync_playwright() as pw:
  def ready():wait('window.Vesperfall?.component.checkpoint&&Vesperfall.component.rendererReady&&AFRAME.scenes[0].renderer.info.render.calls>0')
  try:
   page.goto(BASE+'/vesperfall/?acceptance=pilgrim',wait_until='domcontentloaded');ready();page.locator('#expedition-mode').select_option('endless')
+  # Explicit retained-mode fixture; new Goldwind/grip defaults have separate tests.
+  page.locator('#xr-bow-controls').select_option('classic')
+  page.locator('#pickup-mode').select_option('pull')
   check(page.evaluate('VesperCore.VERSION')==json.loads((ROOT/'vesperfall/release.json').read_text())['version'],'The actual renderer loads the current Pilgrim release')
   check(not page.evaluate('Vesperfall.component.checkpoint.available'),'A fresh browser has no invented suspended run')
   page.locator('#jewel-settings summary').click();page.locator('#jewel-quality').select_option('classic');page.locator('#cathedral-shadows').uncheck();page.locator('#audio').uncheck();page.locator('#seed').fill('REST-ACCEPT')
@@ -66,7 +69,7 @@ with sync_playwright() as pw:
   nav_to('continue-expedition');press(0);wait('Vesperfall.component.checkpoint.eligible&&Vesperfall.component.paused');nav_to('suspend-expedition');press(0);wait('!Vesperfall.component.running');slot=saved()['checkpoint']
   page.evaluate('TestPad.enabled=false');page.locator('#menu-vr').click();wait('Vesperfall.component.xr&&Vesperfall.component.hands.left&&Vesperfall.component.hands.right');xraction('Continue saved');wait('Vesperfall.component.checkpoint.eligible&&Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.state.world.seed')==slot['seed'] and page.evaluate('Vesperfall.state.shots')==slot['state']['shots'],'Quest spatial Continue restores the same expedition without a mouse')
-  xraction('Expedition / practice');xraction('More / page');xraction('Saved expedition');xraction('Save and return');wait('!Vesperfall.component.running')
+  xraction('Missions');xraction('More / page');xraction('Expedition options');xraction('More / page');xraction('Saved expedition');xraction('Save and return');wait('!Vesperfall.component.running')
   check(page.evaluate('Vesperfall.component.xr&&Vesperfall.component.checkpoint.available'),'Quest saves and returns to an in-headset title, without ending the XR session')
   page.screenshot(path=str(OUT/'saved-expedition-stereo.png'))
   # Return to main using the actual controller upper face button, then exit.
