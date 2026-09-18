@@ -1,4 +1,4 @@
-name: Rainward XR repair candidate
+name: Rainward XR repair release candidate
 on:
   push:
     branches: [fix/rainward-xr-recovery-20260918]
@@ -7,7 +7,7 @@ permissions:
   contents: write
 concurrency:
   group: rainward-xr-repair-candidate
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   integrate:
     runs-on: ubuntu-latest
@@ -21,10 +21,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate bounded patch and retain all models
+      - name: Final scoped source assembly
         run: |
           mkdir -p test-output
-          python rainward/tools/integrate-xr-repair.py
+          python rainward/tools/finalize-xr-repair.py
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
       - name: Commit exact source before rendered acceptance
@@ -32,9 +32,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/combat.mjs rainward/direct-xr-input.mjs rainward/freefield.mjs rainward/freefield-ui.mjs rainward/portal-view.mjs rainward/quest-xr.mjs rainward/scene.mjs rainward/xr-panel.mjs rainward/tests/freefield-portal.test.mjs rainward/tests/freefield-browser.py
+          git add rainward/app.mjs rainward/direct-xr-input.mjs rainward/quest-xr.mjs rainward/xr-reading.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/FREEFIELD-HANDOFF.md rainward/tests/xr-repair.test.mjs rainward/tests/xr-repair-browser.py rainward/tests/xr-repair-device.js rainward/tests/handoff.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/aquatic.test.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate XR reading, face-button menu, aligned muzzle, one-pass compositor and default run'
+            git commit -m 'Finalize XR repair with complete acquired text, discoverable recovery controls and scoped release metadata'
             git push origin HEAD:fix/rainward-xr-recovery-20260918
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
