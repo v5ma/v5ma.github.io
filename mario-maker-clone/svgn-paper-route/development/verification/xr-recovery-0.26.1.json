@@ -1,0 +1,18 @@
+{
+  "version": "0.26.1",
+  "build": "sky-cycle-xr-recovery-2026.09.18",
+  "status": "hosted-qualification-pending",
+  "baseline_master": "686a0fd803ea5b0c20b5663fff3d792264428943",
+  "previous_runtime": "b8d4176e5123d6bc15c3fa552e0e7b818ff5d590",
+  "candidate_source": "72fa1c6da154881781cff5393f697bd5aba79a4d",
+  "branch": "sky-cycle/xr-menu-recovery-0.26.1",
+  "physical_report": "AR menu stuck, controller navigation/back unusable, and a plane intersecting the level differently with head movement.",
+  "local_rules": {"game_passed":293,"soundtrack_passed":12,"old_input_failures_reproduced":8,"baseline_record":"xr-recovery-preimage.json"},
+  "hosted": {"run_id":35402867061,"status":"queued at this checkpoint; inspect actual results","accepted":false,"physical_hardware":false},
+  "publication": null,
+  "acceptance": null,
+  "preservation": {"campaign_routes":8,"physics_changed":false,"saves_cleared":false,"save_migration":false,"new_framework":false,"original_material_identities":true,"classic_material_fields_restored":true,"canal_choice_branch_preserved":true},
+  "runtime_hashes": {"xr-play.js":"fd10f1997bf834e5bc90bede5456d7668807253b4557879d315d40c2468ee72a","xr-world-aperture.mjs":"29d7cdf0072da1358ffe11d060d780acd289ccb73b917519cd6f65767d690201"},
+  "open_gates": ["Exact-source hosted rules and browser results","Actual moving-head stereo capture review","Normal expected-head merge","33-file public match","Public AR and VR recovery replays","Physical Quest 3 user retest","Passthrough and controller/hand ergonomics","Headset readability and comfort","Long-session resource and performance measurement"],
+  "notes": ["Old stationary-head emulation did not qualify this physical playtest.","World-space fragment masking and removal of the persistent controller UI slab address separate candidate causes; the exact device-specific visual cause is not proven from text alone.","The rendered mask fixture is isolated and must not be relabeled native-game evidence."]
+}
