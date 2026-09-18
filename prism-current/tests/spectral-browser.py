@@ -6,7 +6,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-spectral';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.getenv('PRISM_URL','http://127.0.0.1:4173/prism-current/')
-checks=[];errors=[]
+checks=[];errors=[];before=None;after=None
 def check(ok,text):
  assert ok,text
  checks.append(text);print('PASS:',text,flush=True)
@@ -39,11 +39,16 @@ with sync_playwright() as pw:
   p.locator('#graphics-quality').select_option('cinematic');p.locator('#quiet-effects').check();p.wait_for_function('Prism.component.art.spectral.status.enabled&&!Prism.component.art.spectral.status.motion');check(p.evaluate('Prism.component.art.spectral.uniforms.uTime.value')==0,'Quiet mode freezes spectral animation and disables impact ripples')
   p.locator('#quiet-effects').uncheck();p.locator('#effect-strength').evaluate('(e)=>{e.value=0;e.dispatchEvent(new Event("input",{bubbles:true}));e.dispatchEvent(new Event("change",{bubbles:true}));}');p.wait_for_function('!Prism.component.art.spectral.status.enabled');check(not status()['enabled'],'Zero effect strength returns to the original art')
   p.locator('#effect-strength').evaluate('(e)=>{e.value=72;e.dispatchEvent(new Event("input",{bubbles:true}));e.dispatchEvent(new Event("change",{bubbles:true}));}');p.wait_for_function('Prism.component.art.spectral.status.enabled')
+  # The menu cycles preview notes every 14 seconds. Let each existing glyph
+  # texture upload once before comparing GPU counts; first use is not a leak.
+  p.wait_for_timeout(14500)
+  geometry_ids=p.evaluate('(()=>{const ids=new Set();AFRAME.scenes[0].object3D.traverse(o=>{if(o.geometry)ids.add(o.geometry.uuid)});return [...ids].sort()})()')
   before=p.evaluate('({g:AFRAME.scenes[0].renderer.info.memory.geometries,t:AFRAME.scenes[0].renderer.info.memory.textures})')
   for theme in ['solar','abyss','classic','opal','solar','opal']:
    p.locator('#spectral-theme').select_option(theme);p.wait_for_function('(s)=>Prism.component.art.spectral.status.theme===s',arg=theme)
   after=p.evaluate('({g:AFRAME.scenes[0].renderer.info.memory.geometries,t:AFRAME.scenes[0].renderer.info.memory.textures})')
-  check(before==after,'Theme switching reuses geometry and textures instead of growing GPU resources')
+  check(p.evaluate('(()=>{const ids=new Set();AFRAME.scenes[0].object3D.traverse(o=>{if(o.geometry)ids.add(o.geometry.uuid)});return [...ids].sort()})()')==geometry_ids,'Theme changes retain every scene geometry identity')
+  check(before==after,'After preview texture warm-up, theme switching retains exact GPU geometry and texture counts')
   p.locator('#settings').locator('summary').click();p.locator('#input').select_option('keys');p.locator('#start').click();p.wait_for_function("Prism.snapshot().phase==='playing'")
   p.evaluate((ROOT/'prism-current/tests/input-driver.js').read_text());p.evaluate('PrismTestInput.keys()')
   p.wait_for_function('Prism.snapshot().state.hits>=1&&Prism.component.art.spectral.status.activeRipples>0',timeout=20000)
@@ -68,7 +73,7 @@ with sync_playwright() as pw:
   x.evaluate('TestXR.state.session.end()');x.wait_for_function('!Prism.snapshot().immersive&&Prism.component.art.spectral.status.enabled');check(True,'Leaving XR restores the selected desktop shader theme');xc.close()
   p.evaluate('window.released=0;for(const m of Prism.component.art.spectral.materials)m.addEventListener("dispose",()=>released++);Prism.component.art.spectral.dispose();Prism.component.art.spectral.dispose();');check(p.evaluate('released')==5,'Repeated cleanup releases each of the five materials once')
   check(not errors,'No uncaught JavaScript or shader errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'resource_counts':after,'scope':'Production A-Frame/WebGL with original songs and real input handlers. Emulated controller/AR and one-eighth gameplay pixel ratio; four 1440x1050 actual-menu theme captures. No synthetic hits or clock writes. Not consumer GPU frame-rate, comfort or physical headset acceptance.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'resource_counts_before':before,'resource_counts':after,'scope':'Production A-Frame/WebGL with original songs and real input handlers. Emulated controller/AR and one-eighth gameplay pixel ratio; four 1440x1050 actual-menu theme captures. No synthetic hits or clock writes. Not consumer GPU frame-rate, comfort or physical headset acceptance.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()'),'spectral':p.evaluate('window.Prism?.component.art.spectral.status'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
+  (OUT/'failure.json').write_text(json.dumps({'resource_counts_before':before,'resource_counts_after':after,'error':str(e),'checks':checks,'errors':errors,'state':p.evaluate('window.Prism?.snapshot()'),'spectral':p.evaluate('window.Prism?.component.art.spectral.status'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:b.close()

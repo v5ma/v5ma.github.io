@@ -5,7 +5,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-undertow';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.getenv('PRISM_URL','http://127.0.0.1:4173/prism-current/')
-PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text();checks=[];errors=[];main_snapshot=None
+PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text();checks=[];errors=[];main_snapshot=None;xr_startup_stall=None
 LEGACY={'first-light/flow/keys':{'score':1234,'accuracy':74,'best':11},'tidal-bloom/flow/ar':{'score':2100,'accuracy':82,'best':14}}
 def check(value,text):
  assert value,text
@@ -56,6 +56,15 @@ with sync_playwright() as pw:
   xr_button('left',4);check(x.evaluate('Prism.snapshot().difficulty')=='flow','X/A changes the chart from inside the headset')
   xr_button('left',4);check(x.evaluate('Prism.snapshot().difficulty')=='pulse','The chart shortcut cycles back without leaving VR')
   x.evaluate('TestXR.pose("left",[-.36,1.385,-.4])');xr_button('left',0);x.wait_for_function("Prism.snapshot().phase==='playing'")
+  # A startup software-renderer interruption is a recovery check, never hidden as
+  # uninterrupted performance. Allow one explicit B resume before any judgments.
+  x.wait_for_function("Prism.snapshot().time>.55||Prism.snapshot().phase==='paused'")
+  if x.evaluate('Prism.snapshot().phase')=='paused':
+   xr_startup_stall=x.evaluate('Prism.component.lastStall||null')
+   check(xr_startup_stall is not None and 'Rendering stalled' in x.evaluate('Prism.snapshot().message'),'A startup XR pause records its actual render gap')
+   check(x.evaluate('Object.keys(Prism.snapshot().judged).length')==0,'Startup recovery occurs before any note judgments')
+   x.wait_for_timeout(250);check(x.evaluate('Prism.snapshot().phase')=='paused','The interrupted song requires an explicit resume')
+   xr_button('right',5);x.wait_for_function("Prism.snapshot().phase==='playing'")
   x.evaluate('''async()=>{window.undertowXRTrace=[];const n=Prism.snapshot().notes[0],v=PrismCore.dirs[n.dir],p=PrismCore.position(n,n.time);await new Promise((resolve,reject)=>{const begun=performance.now(),timer=setInterval(()=>{const g=Prism.component,t=g.audio.time()+g.runOffset;undertowXRTrace.push({audio:t,time:g.state.time,previous:g.previous[0]||null,judged:g.state.judged[n.id]||null});if(undertowXRTrace.length>64)undertowXRTrace.shift();if(g.state.judged[n.id]){clearInterval(timer);g.state.judged[n.id]==='hit'?resolve():reject(Error('XR directional strike missed: '+JSON.stringify({detail:g.state.judgmentDetails[n.id],trace:undertowXRTrace})));return;}if(g.phase!=='playing'||performance.now()-begun>18000){clearInterval(timer);reject(Error('XR strike interrupted'));return;}const f=Math.max(0,Math.min(1,(t-n.time+.14)/.28)),d=-.28+f*.56;TestXR.pose('left',[p[0]+v[0]*d,p[1]+v[1]*d,-.41]);},4);});}''')
   check(x.evaluate('Prism.snapshot().state.hits')>0,'Tracked blade input scores a directional note in the new VR song')
   x.screenshot(path=str(OUT/'undertow-emulated-vr.png'));x.evaluate('TestXR.state.session.end()');x.wait_for_function('!Prism.snapshot().immersive')
@@ -64,7 +73,7 @@ with sync_playwright() as pw:
   check(x.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==0,'AR clear alpha stays transparent')
   x.evaluate('TestXR.state.session.end()');xc.close()
   check(not errors,'No captured uncaught JavaScript or shader errors')
-  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'result':result,'scope':'Actual HTTP renderer, original newly generated audio, emulated standard gamepad and WebXR. Full song at normal audio speed; no score, clock or actor-position injection. Reduced software-renderer gameplay buffer and separate 1440x1000 menu image. Not physical Quest/Xbox or a judgment of musical enjoyment.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'result':result,'xr_startup_software_frame_stall':xr_startup_stall,'scope':'Actual HTTP renderer, original newly generated audio, emulated standard gamepad and WebXR. Full song at normal audio speed; no score, clock or actor-position injection. Reduced software-renderer gameplay buffer and separate 1440x1000 menu image. Any startup CPU-frame pause is recorded and resumed once using B before judgments; this is not uninterrupted headset performance, physical Quest/Xbox testing or a judgment of musical enjoyment.'},indent=2))
  except Exception as e:
   try:xr_failure=x.evaluate('({snapshot:Prism.snapshot(),trace:window.undertowXRTrace||[],pool:Prism.component.art.poolStage.status,calls:AFRAME.scenes[0].renderer.info.render.calls})')
   except Exception:xr_failure=None
