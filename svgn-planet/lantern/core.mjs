@@ -16,6 +16,8 @@ export const floors=[
  {id:'depot-quay',x:0,z:18,w:8,d:6,y:0},
  {id:'print-stair',x:-12.5,z:1,w:3,d:8,y:4.4,slope:-.55,stairs:true},
  {id:'drying-terrace',x:-11.5,z:-4.5,w:11,d:3,y:4.4},
+ // Real shared landing closes the collision gap between the arcade stair and terrace.
+ {id:'arcade-upper-landing',x:-17.7,z:-4.25,w:3.0,d:1.35,y:4.4},
  {id:'roof-bridge',x:2,z:-3.5,w:17,d:3,y:4.4},
  {id:'loading-loft',x:15,z:-1,w:12,d:8,y:4.4},
  {id:'hoist-landing',x:8.4,z:.5,w:1.8,d:2,y:4.4},
@@ -113,7 +115,7 @@ export function actors(s){
  marketActor(s),
  {id:'caretaker',name:'Neri / workshop caretaker',x:16,z:5+walk*4,y:0,tip:'Leave the parcel at the receiving bench. Restore the blue door OR repair the goods hoist, then return to Mara.'}];
 }
-export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
+export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f));}
 export function support(s,x,z,y){const fs=surfaces(s,x,z).filter(f=>floorHeight(f,z)<=y+.31);return fs.sort((a,b)=>floorHeight(b,z)-floorHeight(a,z))[0];}
 export function blocked(s,x,y,z,r=.3){
  if(Math.abs(x)>23.6||Math.abs(z)>20.6)return true;
