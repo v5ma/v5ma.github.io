@@ -2,7 +2,7 @@
   "id": "leonardos-guild",
   "title": "Leo's Guild - World Portal / Direct XR Entry",
   "version": "0.14.0",
-  "build": "guild-xr-entry-20260917",
+  "build": "guild-xr-recovery-20260918",
   "status": "single-player-rpg-expansion",
   "multiplayer": false,
   "newSideMissions": 9,
@@ -216,7 +216,7 @@
     "observationsRequiredForCompletion": false,
     "activeRoadTestEntryRejected": true
   },
-  "verificationRecord": "PR178 and its final external release receipt. Direct-entry source must pass fresh native and public checks.",
+  "verificationRecord": "XR-RECOVERY.md and current repair PR/external receipt. Prior entry tests used incomplete plain-object pose mocks.",
   "workingDeliveries": {
     "task": "WQ-PORTER",
     "roadmapItems": [
@@ -257,5 +257,14 @@
     "physicalDeviceVerified": false,
     "handoff": "XR-ENTRY.md",
     "separateImmersiveVisibility": true
+  },
+  "xrRecovery": {
+    "task": "XR-RECOVERY-04",
+    "handoff": "XR-RECOVERY.md",
+    "nativePoseCopy": true,
+    "gazePlacedMenus": true,
+    "nonmodalImmersiveDialogs": true,
+    "guardedImmersiveFrames": true,
+    "physicalHardwareVerified": false
   }
 }
