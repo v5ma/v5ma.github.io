@@ -81,13 +81,21 @@ with sync_playwright() as p:
   page.evaluate("TestXR.pose('left',[-.23,1.35,-.4]);TestXR.orientation('left',[0,0,Math.SQRT1_2,Math.SQRT1_2])");wait('Vesperfall.component.ritual.panel.mesh.visible');check(page.locator('#handedness').input_value()=='right','Left free-palm status works with right-handed weapon preference')
   page.evaluate("TestXR.orientation('left',[0,0,0,1])");wait('Vesperfall.component.arsenal.state.xrArmed');xrpress('right',0);wait('!Vesperfall.state.crossbow.loaded');page.evaluate("TestXR.pose('left',[.23,1.39,-.34])");wait('Vesperfall.component.ritual.reload.armed');xr_set('left',0,True);wait('Vesperfall.component.ritual.reload.grabbed');page.evaluate("TestXR.pose('left',[.23,1.39,-.09])");wait('Vesperfall.component.ritual.state.reloadProgress>.95');xr_set('left',0,False);wait('Vesperfall.state.crossbow.loaded');check(True,'The physical crossbow reload also works with reversed handedness')
   xrpress('right',5);wait('Vesperfall.component.paused');xraction('Settings')
-  for _ in range(3):xraction('More / page')
-  rows=page.evaluate('Vesperfall.component.xrMenuRows.map(r=>r[0])');check(any('Master volume' in r for r in rows) and any('Music:' in r for r in rows),'Audio settings are present inside the controller-only XR menu')
+  # Find the real audio page through controller actions, not a stale page number.
+  diagnostics['audioMenuPages']=[]
+  for _ in range(16):
+   rows=page.evaluate('Vesperfall.component.xrMenuRows.map(r=>r[0])')
+   diagnostics['audioMenuPages'].append(rows)
+   if any('Master volume' in r for r in rows) and any('Music:' in r for r in rows):break
+   if len(diagnostics['audioMenuPages'])>1 and rows==diagnostics['audioMenuPages'][0]:break
+   xraction('More / page')
+  check(any('Master volume' in r for r in rows) and any('Music:' in r for r in rows),'Audio settings are present inside the controller-only XR menu')
   before=page.locator('#sound-music').input_value();xraction('Music:');check(before!=page.locator('#sound-music').input_value(),'Quest controls change the actual music bus level');xraction('Back');xraction('Exit VR');wait('!Vesperfall.component.xr')
   check(not errors,'No uncaught JavaScript errors during audio, quiver, physical reload and pickup acceptance')
+  check(not console_errors,'No captured console or shader errors during the legacy audio journey')
   diagnostics['liveAudio']=page.evaluate('({...Vesperfall.component.soundscape.engine.metrics,liveVoices:Vesperfall.component.soundscape.engine.voices.size,limit:Vesperfall.component.soundscape.engine.limit})')
   check(diagnostics['liveAudio']['peakVoices']<=34,'Audio polyphony stays inside its hard voice budget')
-  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':page.evaluate('VesperCore.VERSION'),'passed':len(checks),'checks':checks,'errors':errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
+  (OUT/'report.json').write_text(json.dumps({'base':BASE,'version':page.evaluate('VesperCore.VERSION'),'passed':len(checks),'checks':checks,'errors':errors,'consoleErrors':console_errors,'diagnostics':diagnostics,'scope':'Actual Chromium WebGL and Web Audio PCM, real UI actions and emulated controller poses/buttons. Not physical Quest hardware, subjective audio quality, passthrough safety, comfort or performance certification.'},indent=2))
  except Exception as e:
   info=page.evaluate("({state:window.Vesperfall?.snapshot?.(),ritual:window.Vesperfall?.component?.ritual?.state,errors:[]})")
   (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'consoleErrors':console_errors,'info':info},indent=2))
