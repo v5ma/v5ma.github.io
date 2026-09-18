@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "version": "0.17.0",
+  "name": "Pilgrimage",
+  "status": "The two procedural chapters are published and covered by the combined Pilgrimage and Fieldwork acceptance receipt.",
+  "authoritativeReceipt": "../fieldwork-0.17.0/publication.json",
+  "releaseCommit": "686a0fd803ea5b0c20b5663fff3d792264428943",
+  "manifestDigest": "eeb1fec91c1ee1bb6d12fdc979eaf37512b08761ff415fa8e2700a3451815689",
+  "publicRun": 35398352833,
+  "publicCampaignArtifact": 10570154524,
+  "publicCampaignChecksPassed": 50,
+  "physicalDeviceAndHumanAcceptance": "Open. Automated production WebGL and simulated input are not physical Quest/Xbox, comfort, performance or human pacing approval."
+}
