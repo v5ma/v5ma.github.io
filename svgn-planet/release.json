@@ -1,1 +1,46 @@
-ewogICJ2ZXJzaW9uIjogIjAuMTUuMCIsCiAgIm5hbWUiOiAiTmVpZ2hib3Job29kIE1pc3Npb25zIiwKICAiZWRpdGlvbiI6ICJMYW50ZXJuIFdhcmQ6IE5pZ2h0IFdhdGNoIENhbXBhaWduIiwKICAiZGF0ZSI6ICIyMDI2LTA5LTE3IiwKICAiZW50cnkiOiAibGFudGVybi13YXJkLmh0bWwiLAogICJsZWdhY3lFbnRyeSI6ICJsZWdhY3kuaHRtbCIsCiAgImxlZ2FjeVJlbGVhc2UiOiAibGVnYWN5LXJlbGVhc2UuanNvbiIsCiAgImxlZ2FjeUxheW91dCI6ICJsZWdhY3ktbGF5b3V0Lmpzb24iLAogICJxdWFsaXR5IjogIkZpdmUtY2FzZSBhdXRob3JlZCBjYW1wYWlnbiBjYW5kaWRhdGUgb3ZlciBMaXZpbmcgUG9ydGFsOyByZW5kZXJlZCwgcGh5c2ljYWwtZGV2aWNlIGFuZCBodW1hbiBjYW1wYWlnbiBhcHByb3ZhbCByZW1haW4gb3Blbi4iLAogICJjaGFuZ2VzIjogWwogICAgIlJldGFpbiBMaXZpbmcgUG9ydGFsIGNlbnRlcmVkIGZ1bGwtZGVwdGggZGlvcmFtYSwgZmlyc3QtcGVyc29uIFZSL0FSLCByZXNpZGVudCBzdG9yaWVzLCBtaXNzaW9uIG1hcCBhbmQgb3JpZ2luYWwgY291cmllciBnYW1lcGxheS4iLAogICAgIkZpdmUgc2VxdWVudGlhbCBOaWdodCBXYXRjaCBjYW1wYWlnbiBjYXNlcyB1c2luZyBleGlzdGluZyByb29mdG9wcywgY291cnR5YXJkcywgaW50ZXJpb3JzLCBzZXJ2aWNlIHNwYWNlcyBhbmQgbGVhcm5lZCBzaG9ydGN1dHMuIiwKICAgICJQZXJzaXN0ZW50IGNhcGUgZ2xpZGluZywgc2VydmljZSBncmFwcGxlcywgZGlyZWN0IFhSIGJvZHkgaG9sc3RlcnMgZm9yIGdyYXBwbGUvcHVsc2Uvc21va2UgYW5kIGhpZGRlbi1ieS1kZWZhdWx0IHNwYXRpYWwgVUkuIiwKICAgICJQcmVkYXRvciBwYXRyb2wvc2VhcmNoL3B1cnN1aXQsIGJlaGluZCBhbmQgZHJvcCB0YWtlZG93bnMsIHNlcnZpY2UtdmVudCBzdGVhbHRoIGFuZCBzbW9rZSBzaWdodC1icmVha2luZy4iLAogICAgIkZyZWVmbG93LXN0eWxlIGNsZWFyLWxhbmUgbHVuZ2VzLCB0aW1lZCBjb3VudGVyIHdpbmRvd3MsIHNoaWVsZC9wdWxzZSByZWxhdGlvbnNoaXBzIGFuZCB0d28tbGV2ZWwgZW5jb3VudGVyIGZsb3cuIiwKICAgICJGdW5jdGlvbmFsIGludGVyaW9yIGludmVzdGlnYXRpb24gYWNyb3NzIHByZXNzLCBraXRjaGVuLCBzdG9yZWhvdXNlLCBncmVlbmhvdXNlLCB3b3Jrc2hvcCBhbmQgY2FuYWwtc2VydmljZSByb29tcy4iLAogICAgIkZpbmFsIHN0ZWFsdGgvY29tYmF0IHJvdXRlIGNob2ljZSB3aXRoIHNlcGFyYXRlIGV4YWN0bHktb25jZSBjYW1wYWlnbiBjcmVkaXRzOyBhbGwgcHJpb3IgbGVkZ2VycyBhbmQgc2F2ZSBJRHMgcmVtYWluLiIKICBdLAogICJhY2NlcHRhbmNlIjogIjI4MSBsb2NhbCBtb2RlbC9pbnB1dC9hZGFwdGVyIHRlc3RzIHBhc3MgYWZ0ZXIgY2FtcGFpZ24gZXhwYW5zaW9uOyByZW5kZXJlZCBjYW1wYWlnbiBhbmQgaW5oZXJpdGVkIGJyb3dzZXIgYWNjZXB0YW5jZSBhcmUgcGVuZGluZy4iLAogICJldmlkZW5jZSI6ICJwcm9kdWN0aW9uL2V2aWRlbmNlL25pZ2h0LXdhdGNoLWNhbXBhaWduLTAuMTUuMC9jYW5kaWRhdGUuanNvbiIsCiAgImNhbmRpZGF0ZUV2aWRlbmNlIjogInByb2R1Y3Rpb24vZXZpZGVuY2UvbmlnaHQtd2F0Y2gtMC4xNC4wL3JlY292ZXJ5Lmpzb24iLAogICJmb3VuZGF0aW9uRXZpZGVuY2UiOiAiLi4vcmVsZWFzZS1yZWNlaXB0cy9uZWlnaGJvcmhvb2QtbWlzc2lvbnMtd29ya2luZy1xdWF5LTAuMTIuMS5qc29uIiwKICAidmFsaWRhdGlvbiI6IHsKICAgICJsb2NhbE1vZGVsVGVzdHNQYXNzZWQiOiAyODEsCiAgICAibG9jYWxNb2RlbFRlc3RzRmFpbGVkIjogMCwKICAgICJyZWFsWFJBZGFwdGVyTW9ja1Rlc3RzIjogMTIsCiAgICAibmV3QnJvd3NlckFjY2VwdGFuY2UiOiBmYWxzZSwKICAgICJjb21wbGV0ZUFjY2VwdGFuY2UiOiBmYWxzZSwKICAgICJyZW1vdGVDb21taXR0ZWQiOiB0cnVlLAogICAgInB1YmxpY1Jlc3VsdFZlcmlmaWVkIjogZmFsc2UsCiAgICAicGh5c2ljYWxRdWVzdDNUZXN0ZWQiOiBmYWxzZSwKICAgICJwaHlzaWNhbFhib3hUZXN0ZWQiOiBmYWxzZSwKICAgICJodW1hbkxldmVsQXBwcm92YWwiOiBmYWxzZQogIH0sCiAgInN0YXR1cyI6ICJjYW1wYWlnbiBjYW5kaWRhdGU7IGZ1bGwgYnJvd3NlciBhbmQgcHVibGljIHZlcmlmaWNhdGlvbiBwZW5kaW5nIiwKICAiYmFzZVJ1bnRpbWVDb21taXQiOiAiY2IwY2I5OWExY2EyNGM4MzlhMjdjYmRkZWRkNmNkMmIyMmY1MTA1NiIsCiAgImJhc2VSZWxlYXNlQnJhbmNoQ29tbWl0IjogImY0MTk5ZjI5Mjk2M2RjMTI1NTliOGI4ZjM0YzViNjY5YWFkN2IxYjgiLAogICJyZWNvdmVyeUJyYW5jaCI6ICJuZWlnaGJvcmhvb2QtbWlzc2lvbnMvbmlnaHQtd2F0Y2gtcmVjb3ZlcnktMjAyNjA5MTciLAogICJsb2NhbENhbmRpZGF0ZUNvbW1pdCI6ICI4YzJkNTJhZGZjMjFiMjhiZmQyZWE1NmEwZjk3OTg5NzU0MjQzNGM4IiwKICAicmVjb3ZlcnlNYXN0ZXIiOiAiMTBhNmYxNGE0YTkxZDUzMDY1NmZkZDZlOTM2MzA4MTVkODc5NGEyNSIsCiAgInB1Ymxpc2hlZCI6IGZhbHNlLAogICJjYW1wYWlnbkNhc2VzIjogNSwKICAiY2FtcGFpZ25SZXdhcmRUb3RhbCI6IDk1MCwKICAiYmFzZU5pZ2h0V2F0Y2hCcmFuY2hDb21taXQiOiAiMDU1MWIyMTNiNWRjMWNmNjk4NDY0YjE4NDc5NzMxMjA0YTVkZmFkMiIKfQo=
+{
+  "version": "0.15.0",
+  "name": "Neighborhood Missions",
+  "edition": "Lantern Ward: Night Watch Campaign",
+  "date": "2026-09-17",
+  "entry": "lantern-ward.html",
+  "legacyEntry": "legacy.html",
+  "legacyRelease": "legacy-release.json",
+  "legacyLayout": "legacy-layout.json",
+  "quality": "Five-case authored campaign candidate over Living Portal; rendered, physical-device and human campaign approval remain open.",
+  "changes": [
+    "Retain Living Portal centered full-depth diorama, first-person VR/AR, resident stories, mission map and original courier gameplay.",
+    "Five sequential Night Watch campaign cases using existing rooftops, courtyards, interiors, service spaces and learned shortcuts.",
+    "Persistent cape gliding, service grapples, direct XR body holsters for grapple/pulse/smoke and hidden-by-default spatial UI.",
+    "Predator patrol/search/pursuit, behind and drop takedowns, service-vent stealth and smoke sight-breaking.",
+    "Freeflow-style clear-lane lunges, timed counter windows, shield/pulse relationships and two-level encounter flow.",
+    "Functional interior investigation across press, kitchen, storehouse, greenhouse, workshop and canal-service rooms.",
+    "Final stealth/combat route choice with separate exactly-once campaign credits; all prior ledgers and save IDs remain."
+  ],
+  "acceptance": "281 local model/input/adapter tests pass after campaign expansion; rendered campaign and inherited browser acceptance are pending.",
+  "evidence": "production/evidence/night-watch-campaign-0.15.0/candidate.json",
+  "candidateEvidence": "production/evidence/night-watch-0.14.0/recovery.json",
+  "foundationEvidence": "../release-receipts/neighborhood-missions-working-quay-0.12.1.json",
+  "validation": {
+    "localModelTestsPassed": 281,
+    "localModelTestsFailed": 0,
+    "realXRAdapterMockTests": 12,
+    "newBrowserAcceptance": false,
+    "completeAcceptance": false,
+    "remoteCommitted": true,
+    "publicResultVerified": false,
+    "physicalQuest3Tested": false,
+    "physicalXboxTested": false,
+    "humanLevelApproval": false
+  },
+  "status": "campaign candidate; full browser and public verification pending",
+  "baseRuntimeCommit": "cb0cb99a1ca24c839a27cbddedd6cd2b22f51056",
+  "baseReleaseBranchCommit": "f4199f292963dc12559b8b8f34c5b669aad7b1b8",
+  "recoveryBranch": "neighborhood-missions/night-watch-recovery-20260917",
+  "localCandidateCommit": "8c2d52adfc21b28bfd2ea56a0f979897542434c8",
+  "recoveryMaster": "10a6f14a4a91d530656fdd6e93630815d8794a25",
+  "published": false,
+  "campaignCases": 5,
+  "campaignRewardTotal": 950,
+  "baseNightWatchBranchCommit": "0551b213b5dc1cf698464b18479731204a5dfad2"
+}

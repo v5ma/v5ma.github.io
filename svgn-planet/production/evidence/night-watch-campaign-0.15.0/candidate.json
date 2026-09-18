@@ -1,1 +1,86 @@
-ewogICJ2ZXJzaW9uIjogIjAuMTUuMCIsCiAgImVkaXRpb24iOiAiTGFudGVybiBXYXJkOiBOaWdodCBXYXRjaCBDYW1wYWlnbiIsCiAgInN0YXR1cyI6ICJsb2NhbCBjYW5kaWRhdGUgYmVmb3JlIHJlbmRlcmVkIGFjY2VwdGFuY2UiLAogICJkYXRlIjogIjIwMjYtMDktMTciLAogICJiYXNlQnJhbmNoQ29tbWl0IjogIjA1NTFiMjEzYjVkYzFjZjY5ODQ2NGIxODQ3OTczMTIwNGE1ZGZhZDIiLAogICJtb2RlbFRlc3RzUGFzc2VkIjogMjgxLAogICJtb2RlbFRlc3RzRmFpbGVkIjogMCwKICAiY2FtcGFpZ25DYXNlcyI6IDUsCiAgImNhbXBhaWduUmV3YXJkVG90YWwiOiA5NTAsCiAgIm5ld1JlbmRlcmVkQ2FtcGFpZ25BY2NlcHRhbmNlIjogZmFsc2UsCiAgInBoeXNpY2FsUXVlc3QzVGVzdGVkIjogZmFsc2UsCiAgInBoeXNpY2FsWGJveFRlc3RlZCI6IGZhbHNlLAogICJodW1hbkNhbXBhaWduQXBwcm92YWwiOiBmYWxzZSwKICAicHJlc2VydmVkIjogewogICAgInNhdmVLZXkiOiAic3Znbi5sYW50ZXJuLXdhcmQudjEiLAogICAgImNoYXB0ZXIiOiAibGFudGVybi13YXJkLTAxIiwKICAgICJsYXlvdXQiOiAxLAogICAgImxlZ2FjeUhhc2hlcyI6IDEwMiwKICAgICJjaGFwdGVyUmV3YXJkIjogNjAwLAogICAgIndhdGNoUmV3YXJkIjogMTgwCiAgfSwKICAic2NvcGUiOiBbCiAgICAicGVyc2lzdGVudCBjYXBlIGdsaWRpbmciLAogICAgImJvZHktem9uZSBncmFwcGxlL3B1bHNlL3Ntb2tlIGhvbHN0ZXJzIiwKICAgICJwcmVkYXRvciBwYXRyb2wvc2VhcmNoL3B1cnN1aXQgYW5kIHNpbGVudC9kcm9wIHRha2Vkb3ducyIsCiAgICAiZnJlZWZsb3cgY2xlYXItbGFuZSBsdW5nZXMgYW5kIGZyZXNoLWd1YXJkIGNvdW50ZXIgd2luZG93cyIsCiAgICAiZnVuY3Rpb25hbC1pbnRlcmlvciBzeXN0ZW1zIGludmVzdGlnYXRpb24iLAogICAgInN0ZWFsdGgvY29tYmF0IHJvdXRlLWNob2ljZSBmaW5hbGUiCiAgXSwKICAiZmlsZXMiOiBbCiAgICB7CiAgICAgICJwYXRoIjogImxhbnRlcm4vY2FtcGFpZ24ubWpzIiwKICAgICAgInNoYTI1NiI6ICIxZDNiY2M3NWRkYTQzNWEzZWU1OTM2M2RhZDUzYWM4ZTdlMjNkMjk1NDE2ZTc5ZGZkNmI3MGJjZTYxNGU0ZGRiIgogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAibGFudGVybi9jYW1wYWlnbi12aWV3Lm1qcyIsCiAgICAgICJzaGEyNTYiOiAiMjQxODdlYTRlNGE5MzFmZWVlOGIxZjNiZDgxNWQxMjg5NThhZjY0ZmQ4NjM2ODQxZTQ3ZGU4Nzc5NjRlZGUyNSIKICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogImxhbnRlcm4vY2FtcGFpZ24udGVzdC5tanMiLAogICAgICAic2hhMjU2IjogImIzZWJmNjg2MTFmMTcyMjM3MGQxNWZkZjk1ZTc4NDg0MzE0NTgwNDVhM2RhNmI4NTZiMGUxYTU1OGI1OTllNTAiCiAgICB9LAogICAgewogICAgICAicGF0aCI6ICJsYW50ZXJuL2NhbXBhaWduLWJyb3dzZXIucHkiLAogICAgICAic2hhMjU2IjogImIxZjJjZWNiYzY0OTIwZjNiZWI0Mzk2M2NlZjllNTFiYjk2YzMxNDZiODE1YTk0NTQzMzM1Y2Q1NTE3ZDYzYjYiCiAgICB9LAogICAgewogICAgICAicGF0aCI6ICJsYW50ZXJuL3hyLWVtYm9kaW1lbnQubWpzIiwKICAgICAgInNoYTI1NiI6ICI2Y2Q3MzRlOGFiOWNjN2JjOWQ5YzVhN2Q0ZDkwOTMzZGIzNjMxMzA0NTZhOTJjZjE1Zjc4ZDM4ZmQwMmFjNTA0IgogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAibGFudGVybi94ci1lbWJvZGltZW50LnRlc3QubWpzIiwKICAgICAgInNoYTI1NiI6ICIwMTFkZGEyMDMzMjU1YTZlNzRmNmZkMmFlZTc5ZWY1YTRhZDcyZjQxNGJhOTdjNWI1ZTEyZmYzZDMzYTA1Y2I2IgogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAibGFudGVybi9jb3JlLm1qcyIsCiAgICAgICJzaGEyNTYiOiAiN2Y3Y2VlMTg1Njg3MTQ1YTE3MWUyM2JhNWMwM2Y2ZWVhMDA3ZTFiZGQzNDk5NzUxNjkwY2NhMDJhYTQxZWRhOCIKICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogImxhbnRlcm4vY2l0eS5tanMiLAogICAgICAic2hhMjU2IjogIjE4ZGQyMzg1YjllYjFkMzZiNzJhMmY0YWJiZjViMGU4Mzk0OWE2NmM4MWMwOTExMTE0ZDE4NWU2NTBhZDNiNjciCiAgICB9LAogICAgewogICAgICAicGF0aCI6ICJsYW50ZXJuL25hdmlnYXRpb24ubWpzIiwKICAgICAgInNoYTI1NiI6ICJkZDdlMmQ0YjI2MjAzYjdmYWMxODllZDQ0YWM5ZTdjNjJlMWIxN2ExN2Y1NWJkNTkxMmFkZTM0YjI0ZDM1ZTEzIgogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAibGFudGVybi92aWV3Lm1qcyIsCiAgICAgICJzaGEyNTYiOiAiNTEwZWVmYzBjYjMwYzBhNDE0YWM3MTI1ZDhhODFiMDM2NWI3YjYzZTI5ZjM4M2M2MWY5MjU3M2M3NTExNjFhMyIKICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogImxhbnRlcm4vYXBwLm1qcyIsCiAgICAgICJzaGEyNTYiOiAiOTE0YTgyNWNiOGI3ZDMwMmJlZjQyMGY0NzFlNzIzMTMxY2I3ZmQ4YzM0NzRmMzkwZGFiN2MzMzI4ZmMxYzlhYyIKICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogImxhbnRlcm4veHIubWpzIiwKICAgICAgInNoYTI1NiI6ICJhMTUxODZmYmU1ZWE3OTA0ODZiYjQyODYyYWMxOTYxNTA0ZTA0N2UyYTY2NTYzYjFjYTEwNzhiYzY0Mzk0N2M4IgogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAibGFudGVybi13YXJkLmh0bWwiLAogICAgICAic2hhMjU2IjogImFmODVmYTNmM2M0ZjdiNzI3ZDU0MGNhNjk0MmQ4ZTc1YjE0YTc1MzZiZTVkZTI4NDYwMzZjMWNhOGMxMDVkODMiCiAgICB9CiAgXSwKICAiYWNjZXB0YW5jZUJvdW5kYXJ5IjogIk1vZGVsL2lucHV0IGNoZWNrcyBhcmUgbm90IHJlbmRlcmVkLCBwaHlzaWNhbC1kZXZpY2UsIGNvbWZvcnQsIHBlcmZvcm1hbmNlIG9yIGh1bWFuLWNvbXByZWhlbnNpb24gYXBwcm92YWwuIFRoZSBjYW1wYWlnbiBicm93c2VyIGFuZCBldmVyeSBpbmhlcml0ZWQgc3VpdGUgbXVzdCBwYXNzIGJlZm9yZSBtZXJnZTsgcHVibGljIGJ5dGVzIGFuZCBsaXZlIGpvdXJuZXlzIG11c3QgcGFzcyBhZnRlciBQYWdlcyBwdWJsaWNhdGlvbi4iCn0K
+{
+  "version": "0.15.0",
+  "edition": "Lantern Ward: Night Watch Campaign",
+  "status": "local candidate before rendered acceptance",
+  "date": "2026-09-17",
+  "baseBranchCommit": "0551b213b5dc1cf698464b18479731204a5dfad2",
+  "modelTestsPassed": 281,
+  "modelTestsFailed": 0,
+  "campaignCases": 5,
+  "campaignRewardTotal": 950,
+  "newRenderedCampaignAcceptance": false,
+  "physicalQuest3Tested": false,
+  "physicalXboxTested": false,
+  "humanCampaignApproval": false,
+  "preserved": {
+    "saveKey": "svgn.lantern-ward.v1",
+    "chapter": "lantern-ward-01",
+    "layout": 1,
+    "legacyHashes": 102,
+    "chapterReward": 600,
+    "watchReward": 180
+  },
+  "scope": [
+    "persistent cape gliding",
+    "body-zone grapple/pulse/smoke holsters",
+    "predator patrol/search/pursuit and silent/drop takedowns",
+    "freeflow clear-lane lunges and fresh-guard counter windows",
+    "functional-interior systems investigation",
+    "stealth/combat route-choice finale"
+  ],
+  "files": [
+    {
+      "path": "lantern/campaign.mjs",
+      "sha256": "1d3bcc75dda435a3ee59363dad53ac8e7e23d295416e79dfd6b70bce614e4ddb"
+    },
+    {
+      "path": "lantern/campaign-view.mjs",
+      "sha256": "24187ea4e4a931feee8b1f3bd815d128958af64fd8636841e47de877964ede25"
+    },
+    {
+      "path": "lantern/campaign.test.mjs",
+      "sha256": "b3ebf68611f1722370d15fdf95e7848431458045a3da6b856b0e1a558b599e50"
+    },
+    {
+      "path": "lantern/campaign-browser.py",
+      "sha256": "b1f2cecbc64920f3beb43963cef9e51bb96c3146b815a94543335cd5517d63b6"
+    },
+    {
+      "path": "lantern/xr-embodiment.mjs",
+      "sha256": "6cd734e8ab9cc7bc9d9c5a7d4d90933db363130456a92cf15f78d38fd02ac504"
+    },
+    {
+      "path": "lantern/xr-embodiment.test.mjs",
+      "sha256": "011dda2033255a6e74f6fd2aee79ef5a4ad72f414ba97c5b5e12ff3d33a05cb6"
+    },
+    {
+      "path": "lantern/core.mjs",
+      "sha256": "7f7cee185687145a171e23ba5c03f6eea007e1bdd3499751690cca02aa41eda8"
+    },
+    {
+      "path": "lantern/city.mjs",
+      "sha256": "18dd2385b9eb1d36b72a2f4abbf5b0e83949a66c81c0911114d185e650ad3b67"
+    },
+    {
+      "path": "lantern/navigation.mjs",
+      "sha256": "dd7e2d4b26203b7fac189ed44ac9e7c62e1b17a17f55bd5912ade34b24d35e13"
+    },
+    {
+      "path": "lantern/view.mjs",
+      "sha256": "510eefc0cb30c0a414ac7125d8a81b0365b7b63e29f383c61f92573c751161a3"
+    },
+    {
+      "path": "lantern/app.mjs",
+      "sha256": "914a825cb8b7d302bef420f471e723131cb7fd8c3474f390dab7c3328fc1c9ac"
+    },
+    {
+      "path": "lantern/xr.mjs",
+      "sha256": "a15186fbe5ea790486bb42862ac1961504e047e2a66563b1ca1078bc643947c8"
+    },
+    {
+      "path": "lantern-ward.html",
+      "sha256": "af85fa3f3c4f7b727d540ca6942d8e75b14a7536be5de2846036c1ca8c105d83"
+    }
+  ],
+  "acceptanceBoundary": "Model/input checks are not rendered, physical-device, comfort, performance or human-comprehension approval. The campaign browser and every inherited suite must pass before merge; public bytes and live journeys must pass after Pages publication."
+}

@@ -1,1 +1,11 @@
-ZXhwb3J0IGZ1bmN0aW9uIGhvbHN0ZXJab25lKHJlbGF0aXZlKXsKIGlmKCFBcnJheS5pc0FycmF5KHJlbGF0aXZlKXx8cmVsYXRpdmUubGVuZ3RoIT09M3x8cmVsYXRpdmUuc29tZSh2PT4hTnVtYmVyLmlzRmluaXRlKHYpKSlyZXR1cm4gbnVsbDtjb25zdCBbeCx5LHpdPXJlbGF0aXZlOwogaWYoeT4tLjM4JiZ5PC4wOCYmejwtLjA0JiZ6Pi0uMzgmJk1hdGguYWJzKHgpPC4zNClyZXR1cm4gJ2dyYXBwbGUnOwogaWYoeT4tLjU1JiZ5PC0uMTImJno8LjA1JiZ6Pi0uNDImJk1hdGguYWJzKHgpPi41JiZNYXRoLmFicyh4KTwuODUpcmV0dXJuICdzbW9rZSc7CiBpZih5Pi0uMyYmeTwuMTgmJno8LS4wMiYmej4tLjQ4JiZNYXRoLmFicyh4KT4uMjgmJk1hdGguYWJzKHgpPC42MilyZXR1cm4gJ3B1bHNlJzsKIHJldHVybiBudWxsOwp9CmV4cG9ydCBmdW5jdGlvbiBjYXBlR2VzdHVyZShoYW5kcyxncmlwcyl7CiBpZighQXJyYXkuaXNBcnJheShoYW5kcyl8fGhhbmRzLmxlbmd0aDwyfHwhZ3JpcHM/LmV2ZXJ5KEJvb2xlYW4pKXJldHVybiBmYWxzZTtjb25zdCBbYSxiXT1oYW5kcztpZighYXx8IWJ8fGEuc29tZSh2PT4hTnVtYmVyLmlzRmluaXRlKHYpKXx8Yi5zb21lKHY9PiFOdW1iZXIuaXNGaW5pdGUodikpKXJldHVybiBmYWxzZTsKIGNvbnN0IHNwcmVhZD1NYXRoLmFicyhhWzBdLWJbMF0pLGxvdz1hWzFdPC0uMjgmJmJbMV08LS4yOCxmb3J3YXJkPWFbMl08LjA4JiZiWzJdPC4wODtyZXR1cm4gc3ByZWFkPi42MiYmbG93JiZmb3J3YXJkOwp9Cg==
+export function holsterZone(relative){
+ if(!Array.isArray(relative)||relative.length!==3||relative.some(v=>!Number.isFinite(v)))return null;const [x,y,z]=relative;
+ if(y>-.38&&y<.08&&z<-.04&&z>-.38&&Math.abs(x)<.34)return 'grapple';
+ if(y>-.55&&y<-.12&&z<.05&&z>-.42&&Math.abs(x)>.5&&Math.abs(x)<.85)return 'smoke';
+ if(y>-.3&&y<.18&&z<-.02&&z>-.48&&Math.abs(x)>.28&&Math.abs(x)<.62)return 'pulse';
+ return null;
+}
+export function capeGesture(hands,grips){
+ if(!Array.isArray(hands)||hands.length<2||!grips?.every(Boolean))return false;const [a,b]=hands;if(!a||!b||a.some(v=>!Number.isFinite(v))||b.some(v=>!Number.isFinite(v)))return false;
+ const spread=Math.abs(a[0]-b[0]),low=a[1]<-.28&&b[1]<-.28,forward=a[2]<.08&&b[2]<.08;return spread>.62&&low&&forward;
+}
