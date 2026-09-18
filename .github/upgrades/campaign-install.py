@@ -4,8 +4,9 @@ B64_SHA='8252282c2395b31b90b6e604b3cb521fac57b56721025d7fc38be09939b50744'
 RAW_SHA='04aa25c49b47b78e3d8c0725930ca0f1d6f6077d40457a704263a84612e3ffac'
 root=pathlib.Path('.')
 subprocess.run(['git','diff','--exit-code',BASE,'--','svgn-planet','level-design-library/applied/NEIGHBORHOOD-MISSIONS-NIGHT-WATCH-CAMPAIGN.md'],check=True)
-parts=sorted(pathlib.Path('.github/upgrades').glob('campaign-*.b64'))
-assert [p.name for p in parts]==['campaign-01.b64','campaign-02.b64','campaign-03.b64','campaign-04.b64'],[p.name for p in parts]
+expected=['campaign-01.b64','campaign-02a.b64','campaign-02b.b64','campaign-03a.b64','campaign-03b.b64','campaign-04.b64']
+parts=[pathlib.Path('.github/upgrades')/name for name in expected]
+assert all(p.exists() for p in parts),[p.name for p in parts if not p.exists()]
 encoded=''.join(p.read_text().strip() for p in parts)
 assert hashlib.sha256(encoded.encode()).hexdigest()==B64_SHA,'Campaign transfer base64 checksum mismatch'
 raw=lzma.decompress(base64.b64decode(encoded,validate=True))
