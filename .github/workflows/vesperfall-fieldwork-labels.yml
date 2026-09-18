@@ -1,0 +1,53 @@
+name: Vesperfall Fieldwork label consistency
+on:
+  push:
+    branches: [vesperfall-fieldwork-20260918]
+    paths: ['.github/workflows/vesperfall-fieldwork-labels.yml']
+permissions:
+  contents: write
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python - <<'PY'
+          from pathlib import Path
+          edits=[('vesperfall/returning-bell.js',"action?'Bow-hand lower button: interact. Menus: upper button.':", "action?(g.goldwind?.enabled()?'Configured bow-hand interaction / draw-stick click: menu.':'Bow-hand lower button: interact. Menus: upper button.'):")]
+          edits.append(('vesperfall/dominion-controls.js','Artificial locomotion is disabled. Exit AR restores your paused expedition.','Only Sanctuary disables artificial locomotion and restores a suspended expedition. AR expedition retains its normal exploration progress on exit.'))
+          edits.append(('vesperfall/index.html','./returning-bell.js?v=0.17.0\"','./returning-bell.js?v=0.17.0-fieldwork\"'))
+          for path,old,new in edits:
+            p=Path(path);s=p.read_text()
+            if new in s:continue
+            assert s.count(old)==1,(path,s.count(old))
+            p.write_text(s.replace(old,new))
+          PY
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/returning-bell.js vesperfall/dominion-controls.js vesperfall/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Use current Goldwind interaction hints and distinguish AR expedition from Sanctuary'
+            git push origin HEAD:vesperfall-fieldwork-20260918
+          fi
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-final-source
+          path: test-output/
+          retention-days: 14
