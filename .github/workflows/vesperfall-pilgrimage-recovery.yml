@@ -1,0 +1,83 @@
+name: Vesperfall Pilgrimage recovery
+on:
+  push:
+    branches: [vesperfall-pilgrimage-20260917]
+    paths: ['.github/workflows/vesperfall-pilgrimage-recovery.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Restore view ownership before paused capture and retain its regression
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python .github/pilgrimage-ar-repair.py
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/dominion-ar.js vesperfall/tests/pilgrimage-browser.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Restore suspended AR view before saving Pilgrimage and preserve complete boundary diagnostics'
+            git push origin HEAD:vesperfall-pilgrimage-20260917
+          fi
+          git rev-parse HEAD > test-output/source-revision.txt
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilgrimage-recovery-model
+          path: test-output/
+          retention-days: 14
+  native:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [pilgrimage, goldwind]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install production browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Complete the actual chapter and hand/controller lifecycle without state assignments
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 2100 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+          test -s test-output/${{ matrix.suite }}/report.json
+          test ! -e test-output/${{ matrix.suite }}/failure.json
+      - name: Retain exact source and failed traces
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts index.html level-design-library/applied/VESPERFALL-PILGRIMAGE.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilgrimage-recovery-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
