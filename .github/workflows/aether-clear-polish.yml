@@ -1,0 +1,77 @@
+name: Stage Clear Window pointer clarity
+on:
+  push:
+    branches: [aether/clear-polish-20260918]
+    paths: ['.github/workflows/aether-clear-polish.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/clear-polish-20260918'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 5e30958edde705652bdeaebd723cc66f54e3f5a8
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply reviewed bounded changes
+        run: |
+          mkdir -p /tmp/aether-polish
+          cat >/tmp/aether-polish/edits.json <<'JSON'
+          {"aether-reach/xr-session.mjs":{"before":"a7e129dc2c9838668b449c829c52b643bdb132b8d856b0f29207c636e2f51603","after":"9e5f389b1aca175e6374e2fe8a9c81220288de6af7a7cf117f0efcb06c3859de","replacements":[["name=kind==='immersive-ar'?'AR':'VR'","name=({'first-person-ar':'First-person AR window','diorama-ar':'Third-person AR window','diorama-vr':'Third-person VR window','first-person-vr':'First-person VR'})[presentation.config.mode]"],["camera.updateWorldMatrix(true,true);panel.visible=!!menu;hud.visible=!menu;const items=spatialPage(menu);","camera.updateWorldMatrix(true,true);panel.visible=!!menu;hud.visible=!menu;\n  // Window combat is stick-aimed. A visible controller laser or gun would lie\n  // about shot direction; expose those only for actual pointing/VR actions.\n  for(const item of controllers){const windowPlay=diorama.active&&!menu;item.line.visible=!windowPlay;item.shell.visible=!windowPlay&&!!item.source&&!item.source.hand;item.barrel.visible=!diorama.active&&!!item.source&&!item.source.hand&&item.source.handedness==='right';}\n  const items=spatialPage(menu);"],["stats:()=>({trackedHands,trackedControllers,handMode,aimSource","stats:()=>({trackedHands,trackedControllers,handMode,windowPointerVisible:controllers.filter(i=>i.source&&i.line.visible).length,controllerBarrelsVisible:controllers.filter(i=>i.source&&i.barrel.visible).length,aimSource"]]},"aether-reach/diorama-view.mjs":{"before":"f98b738e63cc6f48d330a9ad471b86a51b7c030f7c2cf64710c0ee41fb326e99","after":"0189dc2585e69c3350bc60197882d3912e084a1a64b41cd2ad043a49192bf156","replacements":[["function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;lastScan=0;}","function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;if(cameraWindow()&&firstWindow.ready)firstWindow.center(firstWindow.reference,anchor,config.scale);lastScan=0;}"]]},"aether-reach/presentation-ui.mjs":{"before":"134478d13ca7297cba6be4132378eb1a8f848f2562ec3eab2161b7d36e7118a2","after":"35798a57fe1999983358f8ae7c5e6683526708235956fbe92f51732296ef4d36","replacements":[["const xr=active();$('xr-presentation').disabled=xr;","const xr=active();for(const id of ['diorama-left','diorama-right']){$(id).disabled=config.mode==='first-person-ar';$(id).title=config.mode==='first-person-ar'?'Use the right stick to turn and aim the first-person view.':'';}$('xr-presentation').disabled=xr;"]]},"aether-reach/tests/window-browser.py":{"before":"0c84a4b74b425b121d0f4ab8433ad7c6e84c7ffb77eac97baf00d24b019c5458","after":"bdfce5a3da8abb60b6eb9ccf8f5ad101eae9dc0bfbdc0c8406be1d6c8619657e","replacements":[["check(start['devices']['xrTracking']['aimSource']=='twin-stick',mode+': physical pointing cannot take over combat aim')","check(start['devices']['xrTracking']['aimSource']=='twin-stick',mode+': physical pointing cannot take over combat aim')\n   check(start['devices']['xrTracking']['windowPointerVisible']==0 and start['devices']['xrTracking']['controllerBarrelsVisible']==0,mode+': no misleading controller laser or gun obscures the stick-aimed game')"]]},"aether-reach/tests/window-controls.test.mjs":{"before":"6cecd9d8cbc8da8c620956ccabde64487d1b6cfb8137af3f809ec3b3afb3e845","after":"c79a694b5909ca2ce9c23a432f06feeb43897c5b88e9585cfaabbd64267b4611","replacements":[["assert(xr.includes(\"sessionMode==='first-person-ar'\"));","assert(xr.includes(\"sessionMode==='first-person-ar'\"));\n assert(xr.includes('item.line.visible=!windowPlay'));assert(xr.includes('item.barrel.visible=!diorama.active'));\n assert(view.includes('firstWindow.center(firstWindow.reference,anchor,config.scale)'));"]]},"aether-reach/CLEAR-WINDOW.md":{"before":"867220b3339bb40ad7ba639498b486276ce725593336638920883ec152f8bd9e","after":"61cc1baf4a50ab226df1f61c8878b53ddcef36fc75e94976feae47e89992dd7f","replacements":[["A controller's pointing pose operates menus only.","A controller's pointing pose operates menus only. Its laser and gun proxy are hidden during window gameplay so they cannot suggest a false shot direction. First-person window size/height adjustments realign the aperture; table-orbit buttons are disabled there because the right stick controls its view."]]}}
+          JSON
+          python - <<'PY'
+          import hashlib,json,subprocess
+          from pathlib import Path
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()=='5e30958edde705652bdeaebd723cc66f54e3f5a8'
+          for name,item in json.loads(Path('/tmp/aether-polish/edits.json').read_text()).items():
+            p=Path(name);assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            text=p.read_text();assert hashlib.sha256(text.encode()).hexdigest()==item['before'],name
+            for old,new in item['replacements']:
+              assert text.count(old)==1,(name,old)
+              text=text.replace(old,new)
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.write_text(text)
+          PY
+          git diff --check
+      - name: Validate unchanged acceptance plus pointer clarity guards
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs > /tmp/aether-polish/tests.log
+          python aether-reach/tests/backup_test.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create reviewed content commit without moving a ref
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          changes=json.loads(Path('/tmp/aether-polish/edits.json').read_text())
+          def post(endpoint,data):
+            p=Path('/tmp/aether-polish/request.json');p.write_text(json.dumps(data))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in changes]})
+          c=post('git/commits',{'message':'fix(aether): hide misleading window pointers and keep first-person controls legible','tree':tree['sha'],'parents':['5e30958edde705652bdeaebd723cc66f54e3f5a8']})
+          Path('/tmp/aether-polish/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':tree['sha'],'parent':'5e30958edde705652bdeaebd723cc66f54e3f5a8','files':list(changes)},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-clear-polished
+          path: |
+            /tmp/aether-polish/candidate.json
+            /tmp/aether-polish/tests.log
+          retention-days: 30
