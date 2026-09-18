@@ -53,4 +53,6 @@ test('Window draw path has no shell planes, hides only marked atmospheric sheets
  const view=readFileSync(new URL('../diorama-view.mjs',import.meta.url),'utf8'),xr=readFileSync(new URL('../xr-session.mjs',import.meta.url),'utf8');
  assert(!view.includes('new T.PlaneGeometry'));assert(!view.includes('shellMaterial'));assert(view.includes('if(o.userData.portalBackdrop)hide(o,true)'));
  assert(xr.includes("if(!diorama.active){hi.fillStyle='#123540e8'"));assert(xr.includes('diorama.active&&!menu?windowControls'));assert(xr.includes("sessionMode==='first-person-ar'"));
+ assert(xr.includes('item.line.visible=!windowPlay'));assert(xr.includes('item.barrel.visible=!diorama.active'));
+ assert(view.includes('firstWindow.center(firstWindow.reference,anchor,config.scale)'));
 });

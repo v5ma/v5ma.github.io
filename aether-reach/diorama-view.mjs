@@ -38,7 +38,7 @@ export function createDiorama(view){
   if(!on&&active){restore();active=false;preview=false;scene.fog=saved.fog;scene.background=saved.background;renderer.setClearColor(saved.clear,saved.alpha);renderer.localClippingEnabled=saved.clipping;if(rig){rig.scale.setScalar(1);rig=null;}lastPosition=null;actor?.grounding.reset();firstWindow.reset();root.scale.setScalar(1);}
   document.body.classList.toggle('diorama-preview',preview);root.visible=active;hero.visible=active&&!cameraWindow();reticle.visible=false;
  }
- function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;lastScan=0;}
+ function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;if(cameraWindow()&&firstWindow.ready)firstWindow.center(firstWindow.reference,anchor,config.scale);lastScan=0;}
  function hide(o,yes){if(!hiddenObjects.has(o))hiddenObjects.set(o,o.visible);o.visible=yes?false:hiddenObjects.get(o);}
  function scan(){
   const open=openingState(config.opening);scene.traverse(o=>{if(o.userData.roomShell)hide(o,!!open[o.userData.roomShell+'Open']);if(o.userData.portalBackdrop)hide(o,true);});

@@ -30,6 +30,7 @@ with sync_playwright() as pw:
    check(d['active'] and d['shellFaces']==0 and d['backdropSpritesHidden']>0,mode+': no filled enclosure faces or camera-facing cloud sheets')
    check(d['hudBackgroundAlpha']==0 and not d['menuVisible'],mode+': gameplay HUD background is fully transparent')
    check(start['devices']['xrTracking']['aimSource']=='twin-stick',mode+': physical pointing cannot take over combat aim')
+   check(start['devices']['xrTracking']['windowPointerVisible']==0 and start['devices']['xrTracking']['controllerBarrelsVisible']==0,mode+': no misleading controller laser or gun obscures the stick-aimed game')
    p.evaluate('TestXR.axes("left",[0,0,.35,0]);TestXR.axes("right",[0,0,.3,-.3]);TestXR.button("left",0,true);TestXR.button("right",0,true)');frames(10)
    moving=snap();check(abs(moving['position']['x']-start['position']['x'])+abs(moving['position']['z']-start['position']['z'])>.05,mode+': left stick moves while aiming and firing')
    check(moving['position']['yaw']>start['position']['yaw'] and moving['position']['pitch']>start['position']['pitch'],mode+': right stick aims both horizontally and vertically')
