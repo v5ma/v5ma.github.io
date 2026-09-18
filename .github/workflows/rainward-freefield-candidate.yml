@@ -1,0 +1,16 @@
+name: Retire superseded Rainward Freefield candidate
+on:
+  push:
+    branches: [feat/rainward-freefield-20260917]
+    paths: ['.github/workflows/rainward-freefield-candidate.yml']
+permissions:
+  contents: read
+concurrency:
+  group: rainward-freefield-final-candidate
+  cancel-in-progress: true
+jobs:
+  retire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - run: echo "Freefield is merged; this run only retires the superseded pre-merge candidate queue."
