@@ -31,7 +31,7 @@ try:
    assert len(captures)==3
    page.evaluate('__tidegate.xr.session.end()');assert page.evaluate('!__tidegate.xr.active&&!__tidegate.xr.stage.visible')
    assert not errors,errors
-   (OUT/'render-review.json').write_text(json.dumps({'build':'tidegate-20260917.1','base':BASE,'captures':captures,'errors':errors,'physicalHardwareVerified':False,'limitations':'Actual production miniature renderer in software WebGL, with explicitly mocked XR session and chosen monocular eye poses. No DOM overlay in canvas images. Not real headset stereo, room anchoring, passthrough capture or human acceptance.'},indent=2))
+   (OUT/'render-review.json').write_text(json.dumps({'build':'tidegate-20260917.2','base':BASE,'captures':captures,'errors':errors,'physicalHardwareVerified':False,'limitations':'Actual production miniature renderer in software WebGL, with explicitly mocked XR session and chosen monocular eye poses. No DOM overlay in canvas images. Not real headset stereo, room anchoring, passthrough capture or human acceptance.'},indent=2))
    print('PASS: three actual miniature enclosure renders; simulation scale restored; no captured runtime/shader errors.',flush=True)
   finally:browser.close()
 finally:

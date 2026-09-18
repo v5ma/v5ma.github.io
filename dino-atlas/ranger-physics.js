@@ -1,3 +1,4 @@
+import {cruiseFactor,normalizedStick} from './active-controls.js';
 import RAPIER from './vendor/rapier.mjs';
 import {HOME,clamp} from './ranger-data.js';
 export async function initPhysics(){await RAPIER.init();return RAPIER;}
@@ -46,10 +47,10 @@ export class RangerJeep{
   drive(input,dt=1/60){
     const vc=this.controller,vel=this.body.linvel(),forward=rotateVector({x:0,y:0,z:1},this.body.rotation());
     this.speed=vel.x*forward.x+vel.z*forward.z;this.jumpCooldown=Math.max(0,this.jumpCooldown-dt);this.impactTime=Math.max(0,this.impactTime-dt);
-    const throttle=clamp(input.throttle||0,-1,1),boost=!!input.boost,limit=boost?22:15;
+    const throttle=clamp(input.throttle||0,-1,1),boost=!!input.boost,factor=cruiseFactor(input),limit=(boost?22:15)*factor;
     this.steer+=((input.steer||0)*(.52/(1+Math.abs(this.speed)*.045))-this.steer)*Math.min(1,dt*8);
     const reversing=throttle<0&&this.speed>1.1,stopping=throttle>0&&this.speed< -1.1;
-    let force=throttle*480;if(reversing||stopping||this.speed>limit&&throttle>0||this.speed< -7&&throttle<0)force=0;
+    let force=throttle*480*factor;if(reversing||stopping||this.speed>limit&&throttle>0||this.speed< -7*factor&&throttle<0)force=0;
     if(boost&&force>0)force*=1.55;
     const brake=input.brake?42:reversing||stopping?24:Math.abs(throttle)<.05?1.3:0;
     for(let i=0;i<4;i++){

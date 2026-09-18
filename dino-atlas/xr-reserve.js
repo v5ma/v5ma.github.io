@@ -1,14 +1,16 @@
+import {TravelControls} from './travel-controls.js';
+import {activeTrackedMotion} from './active-controls.js';
 import * as T from './vendor/three.module.js';
 import {GROUNDED_BUILD} from './grounded-motion.js?v=grounded1';
-import {EdgeGate,emptyMotion,trackedMotion,mergeMotion,readControls,saveControls} from './xr-actions.js?v=grounded1';
-const labels={interact:'Interact',board:'Board / exit',reload:'Reload',water:'Water',zapper:'Zapper',nextTool:'Next tool',horn:'Horn',menu:'Menu / pause',map:'Map'};
+import {EdgeGate,emptyMotion,trackedMotion,mergeMotion,readControls,saveControls} from './xr-actions.js?v=express1';
+const labels={scanner:'Scan',rescue:'Recovery',fieldContracts:'Assignments',interact:'Interact',board:'Board / exit',reload:'Reload',water:'Water',zapper:'Zapper',nextTool:'Next tool',horn:'Horn',menu:'Menu / pause',map:'Map'};
 const holdControls={Forward:{z:1,throttle:1},Reverse:{z:-1,throttle:-1},Left:{x:-1,steer:1},Right:{x:1,steer:-1},Fire:{fire:true,aim:true},Rise:{climb:1},Descend:{climb:-1},Jump:{jump:true},Brake:{brake:true}};
 const $=id=>document.getElementById(id);
 const visible=e=>!e.closest('[hidden]')&&e.getClientRects().length>0&&getComputedStyle(e).visibility!=='hidden';
 function wrap(text,width=68){const words=String(text).replace(/\s+/g,' ').trim().split(' '),lines=[];let line='';for(const w of words){if(line.length+w.length>width){lines.push(line);line='';}line+=(line?' ':'')+w;}if(line)lines.push(line);return lines;}
 export class ReserveXR{
  constructor(ctx){
-  this.ctx=ctx;this.active=false;this.pending=false;this.session=null;this.gate=new EdgeGate();this.sources=new Map();this.holds=new Map();this.consumed=new Set();this.page=0;this.rows=[];this.tiles=[];this.context=null;this.paintClock=0;this.snapHeld=false;this.invisible=false;this.aimRay=null;
+  this.ctx=ctx;ctx.xr=this;this.travel=new TravelControls(ctx);this.active=false;this.pending=false;this.session=null;this.gate=new EdgeGate();this.sources=new Map();this.holds=new Map();this.consumed=new Set();this.page=0;this.rows=[];this.tiles=[];this.context=null;this.paintClock=0;this.snapHeld=false;this.invisible=false;this.aimRay=null;
   this.preferences=readControls(ctx.storage);ctx.input.quickTools=this.preferences.quickTools;
   this.originOffset=new T.Vector3();this.rig=new T.Group();ctx.scene.add(this.rig);this.rig.add(ctx.camera);
   ctx.renderer.xr.enabled=true;ctx.renderer.xr.setReferenceSpaceType('local-floor');
@@ -33,7 +35,7 @@ export class ReserveXR{
   this.button=document.createElement('button');this.button.id='xr-enter';this.button.textContent='Enter VR / Quest controllers and hands';this.button.onclick=()=>this.enter();$('menu-dialog').querySelector('.menu-grid').append(this.button);
   const introButton=this.button.cloneNode(true);introButton.id='xr-intro';introButton.onclick=()=>this.enter();$('intro').querySelector('.intro-copy').append(introButton);
   this.status=document.createElement('p');this.status.id='xr-status';this.status.textContent='VR uses tracked controllers or hand-ray pinches. Physical Quest testing is pending.';$('menu-dialog').append(this.status);
-  window.addEventListener('blur',()=>this.clear());document.addEventListener('visibilitychange',()=>{this.clear();if(this.active&&document.hidden&&!ctx.modal())ctx.action('menu');});
+  window.addEventListener('blur',()=>this.clear());document.addEventListener('visibilitychange',()=>{this.clear();if(this.active&&document.hidden&&!ctx.modal())this.ctx.action('menu');});
   this.checkSupport();
  }
  async checkSupport(){let supported=false;try{supported=!!navigator.xr&&await navigator.xr.isSessionSupported('immersive-vr');}catch{}this.supported=supported;this.status.textContent=supported?'VR available. Select Enter VR in a headset. Smooth locomotion; 30-degree snap turns.':'Immersive VR is unavailable here. Desktop, touch and Xbox play remain available.';for(const id of ['xr-enter','xr-intro'])$(id).disabled=!supported;}
@@ -54,7 +56,7 @@ export class ReserveXR{
   finally{this.pending=false;}
  }
  end(){this.active=false;this.session=null;this.invisible=false;this.clear();this.panel.visible=false;this.originOffset.set(0,0,0);this.rig.position.set(0,0,0);this.rig.rotation.set(0,0,0);if(this.saved){this.ctx.camera.position.copy(this.saved.position);this.ctx.camera.quaternion.copy(this.saved.quaternion);this.saved=null;}this.button.textContent='Enter VR / Quest controllers and hands';this.ctx.restoreSize();}
- clear(){this.holds.clear();this.consumed.clear();this.gate.reset(this.session?.inputSources||[]);this.aimRay=null;this.ctx.input.clear();}
+ clear(){this.travel?.reset();this.holds.clear();this.consumed.clear();this.gate.reset(this.session?.inputSources||[]);this.aimRay=null;this.ctx.input.clear();}
  position(){const p=this.ctx.fleet.position;this.rig.position.set(p.x,p.y+(this.ctx.fleet.mode==='foot'?-.9:.5),p.z).add(this.originOffset);this.rig.updateMatrixWorld(true);}
  headCamera(){if(this.ctx.renderer.xr.isPresenting)this.ctx.renderer.xr.updateCamera(this.ctx.camera);return this.ctx.camera;}
  snap(amount){const camera=this.headCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.originOffset.add(before.sub(after));this.position();this.paintClock=1;}
@@ -92,13 +94,13 @@ export class ReserveXR{
    for(const row of slice){if(row.spacer)continue;if(row.image){try{c.drawImage(row.image,212,y,600,600);}catch{}y+=603;}else if(row.element){const e=row.element;if(e.tagName==='SELECT'||e.type==='range'){tile('-',32,y,62,60,()=>this.changeElement(e,-1));tile(row.label,104,y,786,60,()=>this.changeElement(e,1));tile('+',900,y,92,60,()=>this.changeElement(e,1));}else tile(row.label,32,y,960,60,()=>this.changeElement(e));y+=67;}else{c.font='22px sans-serif';c.fillStyle='#d8e8da';c.fillText(row.text,32,y+27);y+=40;}}
    tile('Previous',32,914,220,65,()=>{this.page--;this.paintClock=1;});tile('Page '+(this.page+1)+' / '+pages,268,914,224,65,()=>{this.page=(this.page+1)%pages;this.paintClock=1;});tile('Next',508,914,220,65,()=>{this.page++;this.paintClock=1;});tile('Back / B',744,914,248,65,()=>this.ctx.action('back'));
   }else{
-   const objective=$('mission-title')?.textContent||'Patrol the reserve',detail=$('interact-label')?.textContent||'';
+   const objective=$('goal-compass')?.textContent||$('mission-title')?.textContent||'Patrol the reserve',detail=$('interact-label')?.textContent||'';
    c.font='22px sans-serif';c.fillText(objective.slice(0,75),32,80);c.fillText(detail.slice(0,75),32,110);c.fillText(this.ctx.fleet.mode.toUpperCase()+' / '+$('tool-name').textContent+' / '+$('ammo').textContent,32,140);
    const actions=Object.keys(labels).map(key=>({label:labels[key],run:()=>this.ctx.action(key)}));
    for(const [label,hold] of Object.entries(holdControls))actions.push({label:'Hold '+label,hold});
-   actions.push({label:'Turn left',run:()=>this.snap(Math.PI/6)},{label:'Turn right',run:()=>this.snap(-Math.PI/6)},{label:'Leave VR',run:()=>this.enter()});
-   actions.forEach((a,i)=>tile(a.label,32+(i%3)*326,170+Math.floor(i/3)*112,308,94,a.run,a.hold));
-   c.font='19px sans-serif';c.fillStyle='#d8e8da';c.fillText('Point + pinch / trigger. Release or leave a tile to stop a held action.',32,995);
+   actions.push({label:this.travel.cruise.active?'Express OFF':'Express '+this.travel.settings.multiplier+'x',run:()=>this.travel.toggle()},{label:'Turn left',run:()=>this.snap(Math.PI/6)},{label:'Turn right',run:()=>this.snap(-Math.PI/6)},{label:'Leave VR',run:()=>this.enter()});
+   actions.forEach((a,i)=>tile(a.label,32+(i%3)*326,170+Math.floor(i/3)*85,308,74,a.run,a.hold));
+   c.font='19px sans-serif';c.fillStyle='#d8e8da';c.fillText(this.travel.activeLayout?'Grip: interact / LT: aim / RT: fire / A: jump or brake / X: reload / Y: board':'Point + pinch / trigger. Release or leave a tile to stop a held action.',32,995);
   }
   this.texture.needsUpdate=true;
  }
@@ -110,19 +112,28 @@ export class ReserveXR{
   // An upright, head-relative panel remains reachable without a DOM overlay.
   const localYaw=this.viewYaw-this.rig.rotation.y;this.panel.rotation.set(0,localYaw,0);this.panel.position.copy(localHead).add(new T.Vector3(-Math.sin(localYaw)*1.65,root?-.10:-.80,-Math.cos(localYaw)*1.65));this.panel.visible=true;this.panel.updateWorldMatrix(true,false);
   this.paintClock+=dt;if(this.paintClock>.18){this.paintClock=0;this.draw(root);}
-  const sources=Array.from(this.session?.inputSources||[]);this.aimRay=null;let turn=0;
+  const sources=Array.from(this.session?.inputSources||[]);this.aimRay=null;let turn=0,interacted=false;
   for(const e of this.controllers){const s=e.source;if(!s)continue;e.hit=this.hit(e);e.line.scale.z=e.hit?1.7:3;e.line.visible=e.ray.visible;
+   // A source can remain connected while its pose is temporarily unavailable.
+   // Do not resume armed speed or held buttons when tracking returns.
+   if(!e.ray.visible){this.travel.reset();this.gate.neutral.add(s);this.holds.delete(s);this.consumed.delete(s);e.joints.visible=false;continue;}
    e.joints.visible=!!s.hand&&e.hand.visible;if(s.hand&&e.hand.joints){let i=0;for(const joint of Object.values(e.hand.joints)){if(i>=25)break;const matrix=joint.visible?new T.Matrix4().makeTranslation(joint.position.x,joint.position.y,joint.position.z):new T.Matrix4().makeScale(0,0,0);e.joints.setMatrixAt(i++,matrix);}e.joints.count=i;e.joints.instanceMatrix.needsUpdate=true;}
    if(!s.hand&&s.handedness==='right'&&!e.hit)this.aimRay=this.rayFor(e);
-   const edges=this.gate.read(s);if(!s.hand){if(edges[5])this.ctx.action(s.handedness==='right'?(root?'back':'menu'):'board');if(edges[4]){if(s.handedness==='right'){if(root)this.ctx.input.activate();else this.ctx.action('interact');}else if(!root)this.ctx.action('reload');}
+   const edges=this.gate.read(s);if(!s.hand&&this.travel.activeLayout){
+    if(edges[1]&&!root&&e.ray.visible&&!interacted){interacted=true;this.ctx.action('interact');}
+    if(edges[5]){if(s.handedness==='right')this.ctx.action(root?'back':'menu');else if(!root)this.ctx.action('board');}
+    if(edges[4]){if(root&&s.handedness==='right')this.ctx.input.activate();else if(!root&&s.handedness==='left')this.ctx.action('reload');}
+    if(edges[3]){if(root){this.page++;this.paintClock=1;}else if(s.handedness==='left'){if(this.ctx.fleet.mode!=='foot')this.travel.toggle();}else this.ctx.action('map');}
+    const x=s.handedness==='right'?(s.gamepad?.axes?.[2]||0):0;if(Math.abs(x)>.65)turn=x;
+   }else if(!s.hand){if(!root&&s.handedness==='left'&&edges[3])this.travel.toggle();if(edges[5])this.ctx.action(s.handedness==='right'?(root?'back':'menu'):'board');if(edges[4]){if(s.handedness==='right'){if(root)this.ctx.input.activate();else this.ctx.action('interact');}else if(!root)this.ctx.action('reload');}
     const x=s.handedness==='right'?(s.gamepad?.axes?.[2]||0):0;if(Math.abs(x)>.65)turn=x;if(root&&edges[3]){this.page++;this.paintClock=1;}else if(!root&&s.handedness==='right'&&edges[3])this.ctx.action('nextTool');}
   }
   if(!root&&Math.abs(turn)>.65&&!this.snapHeld){this.snap(-Math.sign(turn)*Math.PI/6);this.snapHeld=true;}if(Math.abs(turn)<.25)this.snapHeld=false;
   const blocked=new Set([...this.consumed,...this.gate.neutral]);for(const e of this.controllers)if(e.source&&(e.hit||!e.ray.visible))blocked.add(e.source);
-  if(root||this.invisible||document.hidden){this.holds.clear();this.aimRay=null;return emptyMotion();}
-  let motion=trackedMotion(sources,this.ctx.fleet.mode,blocked);
+  if(root||this.ctx.modal()||this.invisible||document.hidden){this.holds.clear();this.aimRay=null;return emptyMotion();}
+  let motion=(this.travel.activeLayout?activeTrackedMotion:trackedMotion)(sources,this.ctx.fleet.mode,blocked);
   for(const [source,h] of this.holds){const e=this.sources.get(source);if(!e?.ray.visible||h.context!==root||!e.hit||e.hit.hold!==h.tile.hold){this.holds.delete(source);continue;}motion=mergeMotion(motion,h.tile.hold);if(h.tile.hold.fire)this.aimRay={origin:camera.getWorldPosition(new T.Vector3()),direction:facing.clone().normalize()};}
   return motion;
  }
- snapshot(){return {build:GROUNDED_BUILD,available:!!this.supported,active:this.active,quickTools:this.preferences.quickTools,controllers:[...this.sources.keys()].filter(s=>!s.hand).length,hands:[...this.sources.keys()].filter(s=>s.hand).length,held:this.holds.size,page:this.page,rows:this.rows.length,renderLoop:'renderer.setAnimationLoop',hardwareVerified:false};}
+ snapshot(){return {travel:this.travel.snapshot(),build:GROUNDED_BUILD,available:!!this.supported,active:this.active,quickTools:this.preferences.quickTools,controllers:[...this.sources.keys()].filter(s=>!s.hand).length,hands:[...this.sources.keys()].filter(s=>s.hand).length,held:this.holds.size,page:this.page,rows:this.rows.length,renderLoop:'renderer.setAnimationLoop',hardwareVerified:false};}
 }

@@ -1,0 +1,8 @@
+{
+  "kind": "production XR update with mocked pose visibility and button values",
+  "issue": "Express state was armed across a temporarily invisible source that had not disconnected.",
+  "baselineXrSha256": "660cbd32634bb4adc2d0b447dc8c41bf14d90289dde4dff982c6c99553464279",
+  "fixedXrSha256": "56138ba8d6bec5a99839709e3aca68095cffb86b58c7fb779824401445391727",
+  "change": "Discard stale input, disarm Express and require a neutral release before resumed button edges.",
+  "hardwareVerified": false
+}

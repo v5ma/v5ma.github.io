@@ -48,7 +48,7 @@ try:
   def xr_ready(source='__right'):wait('__tidegate.xr.context===__tidegate.xr.ctx.modal()&&!__tidegate.xr.gate.neutral.has('+source+')',30000)
   try:
    page.goto(BASE+'tidegate.html?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.__tidegate?.state.ready',120000)
-   check(page.evaluate('__tidegate.state.build')=='tidegate-20260917.1','Authored Tidegate scene boots with real HTTP and WebGL');snap('01-arrival.png')
+   check(page.evaluate('__tidegate.state.build')=='tidegate-20260917.2','Authored Tidegate scene boots with real HTTP and WebGL');snap('01-arrival.png')
    check(page.evaluate('__tidegate.animals.length')==4,'Four purposeful herd actors, not scattered anonymous spawns')
    press(0);wait('__tidegate.state.started');press(15);check(page.evaluate('__tidegate.progress.tool')==1,'Xbox direct zapper');press(14);check(page.evaluate('__tidegate.progress.tool')==0,'Xbox direct water')
    press(9);choose('quality');press(1);wait('!__tidegate.state.paused')
@@ -89,7 +89,7 @@ try:
    page.evaluate('''async()=>{const x=__tidegate.xr;x.presentation.view='first-person-vr';await x.enter();__tidegate.camera.position.set(0,1.65,0);__tidegate.camera.quaternion.identity();}''');check(page.evaluate('__requested')=='immersive-vr' and not page.evaluate('__tidegate.xr.diorama'),'First-person option is retained in a separate immersive VR session')
    before=page.evaluate('__tidegate.state.position');page.evaluate('__tidegate.xr.toggleView()');page.wait_for_timeout(200);check(page.evaluate('__tidegate.xr.diorama'),'VR switches to third-person diorama without restarting game');check(page.evaluate('__tidegate.state.position')==before,'View switching does not move or rescale the physical ranger');page.evaluate('__session.end()');wait('!__tidegate.xr.active');press(1);wait('!__tidegate.state.paused')
    check(not errors,'No uncaught JavaScript errors in tour or explicit XR mock checks');check(not shader_errors,'No captured WebGL or shader compilation errors');check(not [r for r in requests if 'favicon' not in r['url']],'Game modules load without HTTP errors')
-   report={'build':'tidegate-20260917.1','base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader_errors,'httpErrors':requests,'physicalHardwareVerified':False,'limitations':'Native software WebGL and synthetic Xbox. Walking tour uses real controls and collisions, no teleport/objective fixtures. XR uses explicit fake sessions, target-ray pose matrices and hand select events, not real headset eye projections, passthrough capture or physical hardware. No human fun/wayfinding/art/comfort/performance certification.'};(OUT/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report),flush=True)
+   report={'build':'tidegate-20260917.2','base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader_errors,'httpErrors':requests,'physicalHardwareVerified':False,'limitations':'Native software WebGL and synthetic Xbox. Walking tour uses real controls and collisions, no teleport/objective fixtures. XR uses explicit fake sessions, target-ray pose matrices and hand select events, not real headset eye projections, passthrough capture or physical hardware. No human fun/wayfinding/art/comfort/performance certification.'};(OUT/'report.json').write_text(json.dumps(report,indent=2));print(json.dumps(report),flush=True)
   except Exception as e:
    diagnostic={}
    try:diagnostic=page.evaluate('({game:window.__tidegate?.state,focus:document.activeElement?.id})');snap('failure.png')

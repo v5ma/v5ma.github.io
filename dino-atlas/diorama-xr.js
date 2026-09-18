@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {ReserveXR} from './xr-reserve.js?v=grounded1';
+import {ReserveXR} from './xr-reserve.js?v=fieldops1';
 import {readPresentation,savePresentation,settings,openings,stageMatrix,gameRay} from './diorama-core.js';
 import {PORTAL_BUILD,PORTAL_SPAN,dimensions,boxInverse,enterPortal,PortalMaterials,shellMaterial} from './diorama-portal.js';
 // The physical simulation stays at its original scale. The miniature transform is

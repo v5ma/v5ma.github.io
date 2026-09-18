@@ -1,6 +1,7 @@
+import {cruiseFactor,normalizedStick} from './active-controls.js';
 import R from './vendor/rapier.mjs';
 import {HARBORS,surfaceAt} from './ranch-data.js';
-import {RangerJeep,rotateVector} from './ranger-physics.js?v=storm2';
+import {RangerJeep,rotateVector} from './ranger-physics.js?v=express1';
 import {FLEET_START,OUTPOSTS,WORLD_RADIUS,DOCK,isWater} from './frontier-data.js?v=storm2';
 import {clamp,distance} from './ranger-data.js';
 const upright=h=>({x:0,y:Math.sin(h/2),z:0,w:Math.cos(h/2)});
@@ -17,11 +18,12 @@ export class FlightBoat{
   this.speed=Math.hypot(vel.x,vel.z);this.grounded=p.y<surfaceAt(p)+1.5?4:0;
   let tx=0,tz=0;
   if(this.type==='helicopter'){
-   this.targetY=clamp(this.targetY+(v.climb||0)*dt*14,surfaceAt(p)+.88,80);
-   const flying=this.targetY>1.5||p.y>2;if(flying&&!v.aim&&!v.brake){const speed=v.boost?28:19,angle=v.cameraYaw??Math.PI;tx=((v.x||0)*Math.cos(angle)-(v.z||0)*Math.sin(angle))*speed;tz=(-(v.x||0)*Math.sin(angle)-(v.z||0)*Math.cos(angle))*speed;}
+   if(v.brake)this.targetY=clamp(p.y,surfaceAt(p)+.88,80);
+   this.targetY=clamp(this.targetY+(v.brake?0:v.climb||0)*dt*14*cruiseFactor(v),surfaceAt(p)+.88,80);
+   const flying=this.targetY>1.5||p.y>2;if(flying&&(!v.aim||v.independentTools)&&!v.brake){const speed=(v.boost?28:19)*cruiseFactor(v),stick=normalizedStick(v.x,v.z),angle=v.cameraYaw??Math.PI;tx=(stick.x*Math.cos(angle)-stick.z*Math.sin(angle))*speed;tz=(-stick.x*Math.sin(angle)-stick.z*Math.cos(angle))*speed;}
    if(this.impactTime===0){let desiredYaw=(Math.abs(tx)+Math.abs(tz)>.2)?Math.atan2(tx,tz):h;let dy=Math.atan2(Math.sin(desiredYaw-h),Math.cos(desiredYaw-h));const av=b.angvel();b.setAngvel({x:av.x,y:dy*2,z:av.z},true);}
   }else{
-   const throttle=v.aim?0:(v.throttle||0),speed=throttle*(v.boost?19:13);tx=Math.sin(h)*speed;tz=Math.cos(h)*speed;
+   const throttle=v.aim&&!v.independentTools?0:(v.throttle||0),speed=throttle*(v.boost?19:13)*cruiseFactor(v);tx=Math.sin(h)*speed;tz=Math.cos(h)*speed;
    if(!isWater(p.x+tx*dt*5,p.z+tz*dt*5,-3)){tx=0;tz=0;}
    this.targetY=.78+Math.sin(time*1.8+p.x*.08)*.045;
    if(this.impactTime===0){const av=b.angvel();b.setAngvel({x:av.x,y:(v.steer||0)*(Math.abs(this.speed)>1?1:0)*Math.sign(throttle||1)*.85,z:av.z},true);}
@@ -54,7 +56,7 @@ export class Fleet{
  nearest(){return [...this.vehicles].filter(v=>Math.abs(v.drive.position.y-this.position.y)<3&&(distance(v.drive.position,this.position)<6.7||(v.type==='boat'&&[...HARBORS,...(this.extraHarbors||[])].some(d=>distance(this.position,d.land)<12&&distance(v.drive.position,d)<35)))).sort((a,b)=>distance(a.drive.position,this.position)-distance(b.drive.position,this.position))[0]||null;}
  canStand(p){if(Math.hypot(p.x,p.z)>WORLD_RADIUS-4||isWater(p.x,p.z,1))return false;const shape=new R.Capsule(.48,.32);const hit=this.physics.world.intersectionWithShape({x:p.x,y:p.y??1.05,z:p.z},{x:0,y:0,z:0,w:1},shape,undefined,undefined,this.person.collider);return !hit;}
  board(){
-  if(this.current){const v=this.current,p=v.drive.position;if(Math.abs(v.drive.speed)>2.6){this.onNotice('Stop before leaving the vehicle.');return false;}if(v.type==='helicopter'&&p.y>surfaceAt(p)+2.3){this.onNotice('Land before exiting. Use LT to descend.');return false;}
+  if(this.current){const v=this.current,p=v.drive.position;if(Math.abs(v.drive.speed)>2.6){this.onNotice('Stop before leaving the vehicle.');return false;}if(v.type==='helicopter'&&p.y>surfaceAt(p)+2.3){this.onNotice('Land before exiting. Use the descent control for your selected layout.');return false;}
    let exit;
    if(v.type==='boat'){const dock=[...HARBORS,...(this.extraHarbors||[])].find(d=>distance(p,d)<35);if(!dock){this.onNotice('Return to any marked harbor to disembark.');return false;}exit={...dock.land,y:1.6};}
    else{const h=v.drive.heading;for(const a of [Math.PI/2,-Math.PI/2,Math.PI,0]){const q={x:p.x+Math.sin(h+a)*4.4,y:surfaceAt(p)+1.1,z:p.z+Math.cos(h+a)*4.4};if(this.canStand(q)){exit=q;break;}}}
@@ -62,7 +64,7 @@ export class Fleet{
    this.active='foot';this.person.setActive(true,exit);this.person.heading=v.drive.heading;this.onNotice('On foot. RT fires; X reloads; Y boards a nearby vehicle.');return true;
   }
   const v=this.nearest();if(!v){this.onNotice('Approach a parked vehicle to board it.');return false;}if(v.type==='helicopter'&&v.drive.position.y>surfaceAt(v.drive.position)+2.6){this.onNotice('The helicopter must be on the ground.');return false;}
-  this.person.setActive(false);this.active=v.id;if(!this.state.rides.includes(v.type))this.state.rides.push(v.type);this.onNotice(v.name+' ready. Hold LB and RT to use your tool.');return true;
+  this.person.setActive(false);this.active=v.id;if(!this.state.rides.includes(v.type))this.state.rides.push(v.type);this.onNotice(v.name+' ready. '+(this.controlHint?.()||'Hold LB and RT to use your tool.'));return true;
  }
  drive(v,dt,time,yaw){for(const item of this.vehicles){const selected=item.id===this.active;item.drive.drive(selected?{...v,cameraYaw:yaw}:{brake:true},dt,time);}if(this.active==='foot')this.person.move(v,dt,yaw);}
  recover(item=this.current){if(!item)return;const d=item.drive,p=d.position,h=d.heading;d.reset({x:p.x,y:Math.max(.9,p.y)+.8,z:p.z},h);if(item.type==='helicopter')d.targetY=clamp(p.y+.8,1,80);item.recovery=0;item.recoveries++;this.onRecover(item);}
