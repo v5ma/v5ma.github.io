@@ -1,4 +1,4 @@
-"""Unified main app: real WebGL and actual inputs. Synthetic devices, not hardware."""
+"""Unified main app: real WebGL and actual input paths. Synthetic devices, not hardware."""
 import asyncio,json,os,traceback
 from pathlib import Path
 from playwright.async_api import async_playwright
@@ -16,11 +16,9 @@ async def main():
   async def frames(n=4):
    q=await state();start=q['xr']['frames'] if q['xr']['active'] else await page.evaluate('NeighborhoodController.inspect().polls');expression='NeighborhoodMissions.inspect().xr.frames' if q['xr']['active'] else 'NeighborhoodController.inspect().polls';await wait(expression+'>='+str(start+n))
   async def press(i):
-   await page.evaluate('(i)=>__pad.buttons[i]={pressed:true,value:1}',i);await frames(3);await page.evaluate('(i)=>__pad.buttons[i]={pressed:false,value:0}',i);await frames(4)
-  async def click(row):
-   await page.evaluate("""async r=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w/2)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",row)
-   await frames(4);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand');await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
+   await page.evaluate('(i)=>{window.__poll=NeighborhoodController.inspect().polls;__pad.buttons[i]={pressed:true,value:1}}',i);await wait('NeighborhoodController.inspect().polls>__poll+2');await frames(3);await page.evaluate('(i)=>{window.__poll=NeighborhoodController.inspect().polls;__pad.buttons[i]={pressed:false,value:0}}',i);await wait('NeighborhoodController.inspect().polls>__poll+2');await frames(4)
   async def select(label):
+   await wait('NeighborhoodMissions.inspect().xr.actionPanelVisible');await frames(4)
    for _ in range(30):
     rows=await page.evaluate('NeighborhoodMissions.panel().rows');row=next((r for r in rows if r['label']==label or r.get('id')==label),None)
     if row:break
@@ -29,13 +27,13 @@ async def main():
     await click(nxt)
    else:raise AssertionError('Cannot find '+label)
    await click(row)
+  async def click(row):
+   await page.evaluate("""async r=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w/2)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",row)
+   await frames(4);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand');await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
   def ok(name):report['checks'].append(name);print('PASS',name,flush=True)
   try:
    await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']=='0.16.0';assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
-   await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0')
-   # Capture a stopped departure, not a still-decelerating sample below .04 m/s.
-   # No pose/speed assignment or enlarged position tolerance: exact equality stays.
-   await wait('SVGNPlanet.inspect().speed===0');await frames(6);city=await page.evaluate('SVGNPlanet.inspect()');report['departureCity']=city;ok('Original main-world movement and stopping work through the retained Xbox path')
+   await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0');await wait('SVGNPlanet.inspect().speed===0');await frames(6);city=await page.evaluate('SVGNPlanet.inspect()');report['departureCity']=city;ok('Original main-world movement and stopping work through the retained Xbox path')
    await press(9);await page.click('#visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert not (await state())['paused'];await page.screenshot(path=str(OUT/'main-lantern-district.png'));ok('Main-game district travel opens the recovered mission neighborhood in the same document')
    await press(13);await wait('document.querySelector("#ward-menu").open');assert await page.locator('#ward-missions [data-mission]').count()>=10;await page.click('[data-mission="watch"]');await frames();q=await state();assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Main-game mission board exposes resident stories and Night Watch; tracking grants no progress')
    for _ in range(180):
@@ -61,7 +59,7 @@ async def main():
    assert not report['errors'],report['errors'];assert not report['consoleErrors'],report['consoleErrors'];report['success']=True;report['final']=await state()
   except Exception as e:
    report.update(success=False,failure=str(e),traceback=traceback.format_exc());print(report['traceback'],flush=True)
-   try:report['final']=await state();report['city']=await page.evaluate('SVGNPlanet.inspect()');await page.screenshot(path=str(OUT/'failure.png'))
+   try:report['final']=await state();report['city']=await page.evaluate('SVGNPlanet.inspect()');report['controller']=await page.evaluate('NeighborhoodController.inspect()');await page.screenshot(path=str(OUT/'failure.png'))
    except Exception:pass
   finally:(OUT/'report.json').write_text(json.dumps(report,indent=2));await browser.close()
  if not report.get('success'):raise SystemExit(1)

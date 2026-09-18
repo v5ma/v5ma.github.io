@@ -52,6 +52,14 @@ async def main():
     await beginCase()
     if SUITE=='watch-roof':
      await route([[-12.5,8.2],[-12.5,6],[-9.6,6],[-9.6,2.3]]);await press(14);assert (await state())['state']['watch']['stage']==2;await shot('scan-print-receiver');ok('Scanner discovers the relay relationship at a physically reached clue')
+     # Aim with the actual look stick before using the selected grapple. The
+     # campaign's tool action is camera-aimed; a safe but off-axis ring is rejected.
+     for _ in range(160):
+      angle=await page.evaluate("""()=>{const q=LanternWard.inspect(),s=q.state,target=Math.atan2(-(-14.5-s.x),-(-4.5-s.z)),e=Math.atan2(Math.sin(target-q.yaw),Math.cos(target-q.yaw));__pad.axes[2]=Math.abs(e)>.025?-Math.sign(e)*Math.max(.2,Math.min(.7,Math.abs(e)*2)):0;return e;}""")
+      if abs(angle)<=.025:break
+      await frames(2)
+     else:raise AssertionError('Could not aim at the actual print terrace ring')
+     await neutral()
      await press(4);await wait('LanternWard.inspect().watch.travel!==null');await wait('LanternWard.inspect().watch.travel===null');q=await state();assert q['state']['y']>4.3 and q['watch']['grapples']==1;await shot('grapple-perch');ok('Grapple follows a collision-checked arc to a real terrace landing')
      await route([[-6,-3.5],[6,-3.5],[12,-3.5],[12,-2.2]]);await press(2);assert (await state())['state']['watch']['stage']==3;assert (await state())['watch']['strikes']==0;ok('Rooftop override resolves the same mission without combat')
      await route([[19.5,1.5],[19.5,10.5],[16,10.5],[14,8],[6,8]])

@@ -1,0 +1,47 @@
+name: Unified Neighborhood focused recovery
+on:
+  push:
+    branches: [neighborhood-missions/unified-release-20260918]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-unified-focus.yml']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [main, main-nav, watch-roof]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual main menus, eight views and aimed grapple
+        env:
+          TEST_SUITE: ${{ matrix.suite }}
+          WATCH_SUITE: watch-roof
+        run: |
+          python -m http.server 8765 > server.log 2>&1 &
+          case "$TEST_SUITE" in
+            main) python svgn-planet/main-browser.py ;;
+            main-nav) python svgn-planet/main-navigation-browser.py ;;
+            watch-roof) python svgn-planet/lantern/watch-browser.py ;;
+          esac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: focused-${{ matrix.suite }}
+          path: |
+            *-results/
+            server.log
+          retention-days: 30
