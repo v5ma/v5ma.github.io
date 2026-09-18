@@ -6,7 +6,9 @@ Continue the existing game in mario-maker-clone/svgn-paper-route. Read verificat
 
 The September 18 headset playtest reported unusable AR menus, no controller exit, and a flat plane intersecting the level as the head moved. Fix and publish this regression before adding chapter content. Do not claim that the old stationary-head emulator established physical Quest usability.
 
-The repair starts from master 686a0fd803ea5b0c20b5663fff3d792264428943 on sky-cycle/xr-menu-recovery-0.26.1. The hosted qualification target is 72fa1c6da154881781cff5393f697bd5aba79a4d in run 35402867061. At this documentation checkpoint the hosted suite is queued; this is not accepted or published evidence. Read the versioned receipt for subsequent actual results and publication, not this checkpoint sentence. Later documentation-only commits do not alter that tested runtime.
+The repair starts from master 686a0fd803ea5b0c20b5663fff3d792264428943 on sky-cycle/xr-menu-recovery-0.26.1. PR 190 contains the scoped repair. Final accepted source 355aea4ade530d8e5e71adb70d2347200531ebc7 passed all eight applicable jobs in run 35405532420: 296 game tests, 12 original soundtrack tests, 207 native-game browser checks and 13 separate graphics-fixture checkpoints. All seven browser/fixture report source identities and ZIP digests were verified. All 47 native PNGs and one isolated fixture PNG were reviewed. No complete video or physical-device review is claimed.
+
+Read the versioned receipt for the current merge and public result. At this acceptance checkpoint, merge and publication remain to be done: normal expected-head merge, 33-file public hash match, and both AR/VR public recovery journeys. Later documentation-only commits do not alter the tested runtime. Do not reconstruct this repair or call source acceptance a public pass.
 
 ## Repair boundaries
 
@@ -16,13 +18,15 @@ Controller riding has no persistent UI plane. Paused menus, hand-only controls a
 
 AR uses a fixed exhibit/world-space fragment mask, not view-space ClippingGroup planes or invisible occluder meshes. Classic and node materials retain their identities, appearance and previous masks; XR exit restores their original fields. The original game scene is still detached before temporary XR resources are disposed. Do not change simulation coordinates, collision or rewards to alter the presentation.
 
-## Qualification and release
+## Qualification and retained failures
 
-The local old-code reproduction fails eight of nine targeted input tests; the non-visible-XR blocking test remains correct. The repaired local suite passes 293 game tests and 12 soundtrack tests. The separate pixel fixture exercises both classic and node materials from ten camera/eye poses after an ordinary unmasked render, then disables/restores masking. That fixture is not the real game.
+The old-code reproduction fails eight of nine targeted input tests; the non-visible-XR blocking test remains correct. The final repaired suite has 296 game and 12 soundtrack tests. The separate pixel fixture exercises both classic and node materials from ten camera/eye poses after an ordinary unmasked render, then disables/restores masking. That fixture is not the real game.
 
-Hosted real-game journeys must cover AR and VR with no assisting Xbox, a hidden/unfocused HTML page, both grips held, B held across menu transitions, both sticks, trigger states plus select events, nested sound menus, direct resume, ordinary riding, changing head poses, blurred-session recovery, hand input and XR exit. Retain the existing Workshop, Portal Network and twelve-delivery suites. No rider-position, delivery, score, win or progression assignments may manufacture acceptance.
+The real-game recovery journeys cover AR and VR with no assisting Xbox, a hidden/unfocused HTML page, both grips held, B held across menu transitions, both sticks, trigger states plus select events, nested sound menus, direct resume, ordinary riding, changing head poses, blurred-session recovery, hand input and XR exit. Existing Workspace, Portal Network and twelve-delivery regressions also passed. No rider-position, delivery, score, win or progression assignments manufacture acceptance.
 
-Inspect exact report source IDs, errors and actual stereo images before merging. Match 33 public runtime files with the accepted source, then replay both public XR recovery journeys. A queued runner, passing unit suite, merge or version label is not a public-device qualification. A newer combined-master Pages deployment may publish unchanged Sky Cycle bytes; never reset master to force an older deployment. Read GITHUB-RELEASE-PROCESS.md and preserve sibling work.
+Retain initial run 35402867061 at 72fa1c6da154881781cff5393f697bd5aba79a4d. Its targeted AR/VR and mask checks passed but Workspace tests tried to click a riding panel that is intentionally no longer present. The corrected test verifies that absence, presses real B, and verifies pause/menu access before returning to the editor. The delivery failure served ten targets but sampled the eleventh throw too late after remote-call latency. The same throttle-release/coast/B recipe now runs coherently in browser animation frames, retaining the original throw window and all real packet, finish and save assertions. These are test-only changes; the runtime remains the recovered repair. Three isolated scheduling tests are explicitly not gameplay acceptance.
+
+Match 33 public runtime files with the accepted source, then replay both public XR recovery journeys. A queued runner, passing unit suite, merge or version label is not public-device qualification. A newer combined-master Pages deployment may publish unchanged Sky Cycle bytes; never reset master to force an older deployment. Read GITHUB-RELEASE-PROCESS.md and preserve sibling work.
 
 Physical Quest 3 controller/hand ergonomics, passthrough, headset readability, long sessions and comfort remain open until the user retests. The exact physical origin of every reported plane cannot be proven from a text report; both the persistent controller slab and camera-dependent clipping path are addressed and tested separately.
 
