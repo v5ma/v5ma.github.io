@@ -80,6 +80,10 @@ with sync_playwright() as p:
  def checkpoint():
   pad(9);wait('Vesperfall.component.paused');nav('save-expedition');pad(0)
   saved=page.evaluate('JSON.parse(JSON.parse(localStorage.getItem(PilgrimSave.KEY)).payload).checkpoint')
+  current=page.evaluate('PilgrimSave.capture(Vesperfall.state,{id:"comparison",banked:0,receipt:{},yaw:0,pitch:0,focus:1}).state')
+  issue=page.evaluate('Vesperfall.component.checkpoint.state.issue')
+  (OUT/('checkpoint-before-reload-'+str(len(observations))+'.json')).write_text(json.dumps({'saved':saved,'current':current,'issue':issue},indent=2))
+  check(saved['state']==current,'The save contains the CURRENT expedition before reload, not a stale earlier checkpoint: '+issue)
   page.reload(wait_until='domcontentloaded');wait('window.Vesperfall?.component.pilgrimageView');page.evaluate('TestPad.enabled=true');nav('continue-expedition');pad(0);wait('Vesperfall.component.running&&Vesperfall.component.paused')
   restored=page.evaluate('PilgrimSave.capture(Vesperfall.state,{id:"comparison",banked:0,receipt:{},yaw:0,pitch:0,focus:1}).state')
   for key in ['p','health','ammo','pilgrimage','enemies','pickups','score','shots','targets','time']:check(saved['state'][key]==restored[key],'Actual reload preserves '+key)
