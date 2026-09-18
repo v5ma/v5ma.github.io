@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.14.0 World Portal. Updated 2026-09-17.
+Current plan: 0.14.1 Clear Window. Updated 2026-09-18.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -420,7 +420,13 @@ Next: Observe unfamiliar and returning players choosing cover/angles, recognizin
 State: Implemented. Priority: P0. Dependencies: X08.
 Acceptance: Room-fixed aperture preserves rear/side depth, exactly centers the courier, and masks every rendered shader. Head tilt does not move gameplay or UI planes. First-person AR explicitly requests transparent immersive-ar. Existing input/remaps and save-v1 remain.
 Evidence: portal.test.mjs, portal-render.html, portal-browser.py; see release receipt for actual native/public acceptance.
-Next: Physical Quest and Xbox validation; compare first and repeat visits with clearer tracked-goal map.
+Next: Physical owner test reports obstructing sheet and unusable combined combat. Address X11; previous software tests do not establish hardware approval.
+
+### X11 - Clear Window physical-feedback repair and simultaneous combat
+State: Implemented. Priority: P0. Dependencies: X10.
+Acceptance: No filled shell/cloud sheets in window modes; real two-axis aim and movement while firing/reloading; explicit first-person AR window; save/remap and original VR continuity; separate physical approval.
+Evidence: CLEAR-WINDOW.md; window-controls.test.mjs, window-browser.py and portal GPU fixtures. Actual release evidence belongs in the 0.14.1 receipt, not inferred from code presence.
+Next: Physical Quest repeat of the reported sheet, simultaneous movement/aim/fire/reload and first-person window readability.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.

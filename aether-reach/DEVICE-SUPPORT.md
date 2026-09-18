@@ -1,3 +1,11 @@
+# Clear Window 0.14.1 device correction
+
+The owner reported that 0.14.0 AR diorama was not physically usable despite its software checks. No physical approval is claimed. Read CLEAR-WINDOW.md for current window controls and evidence requirements.
+
+Window modes use left-stick movement, right-stick horizontal/vertical aim, right-trigger fire, left-trigger fine aim, B reload, right-grip use, A traverse, X weapon swap, left-grip power and Y pause. A pointing ray is not required to shoot. First-person AR is now the first-person diorama window, not life-size room-filling scenery. Xbox remaps and original first-person VR controls remain. Both hands operate menus only.
+
+Earlier release notes below are historical where they conflict with this correction.
+
 # World Portal 0.14.0
 
 XR / diorama views now also offers First-person AR / life-size passthrough. Session selection requires leaving XR first. The portal uses the same third-person expedition with exact courier centering, full side/rear depth and automatic near-face transparency. Its size/height controls keep their existing bounds and stored values. Explicit pause menus and the small status dock no longer follow the head in diorama. The map shows a larger next-goal marker, direction (not a pathfinding route), distance and elevation.

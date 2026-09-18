@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updated": "2026-09-17",
+  "updated": "2026-09-18",
   "project": "Aether Reach",
-  "release": "0.14.0 World Portal",
+  "release": "0.14.1 Clear Window",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -871,7 +871,20 @@
       ],
       "acceptance": "Room-fixed aperture preserves rear/side depth, exactly centers the courier, and masks every rendered shader. Head tilt does not move gameplay or UI planes. First-person AR explicitly requests transparent immersive-ar. Existing input/remaps and save-v1 remain.",
       "evidence": "portal.test.mjs, portal-render.html, portal-browser.py; see release receipt for actual native/public acceptance.",
-      "next": "Physical Quest and Xbox validation; compare first and repeat visits with clearer tracked-goal map."
+      "next": "Physical owner test reports obstructing sheet and unusable combined combat. Address X11; previous software tests do not establish hardware approval."
+    },
+    {
+      "id": "X11",
+      "phase": "XR",
+      "title": "Clear Window physical-feedback repair and simultaneous combat",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "X10"
+      ],
+      "acceptance": "No filled shell/cloud sheets in window modes; real two-axis aim and movement while firing/reloading; explicit first-person AR window; save/remap and original VR continuity; separate physical approval.",
+      "evidence": "CLEAR-WINDOW.md; window-controls.test.mjs, window-browser.py and portal GPU fixtures. Actual release evidence belongs in the 0.14.1 receipt, not inferred from code presence.",
+      "next": "Physical Quest repeat of the reported sheet, simultaneous movement/aim/fire/reload and first-person window readability."
     }
   ],
   "milestones": [

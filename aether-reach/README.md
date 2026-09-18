@@ -1,3 +1,7 @@
+# Clear Window 0.14.1
+
+AR diorama usability repair: frame-only aperture, transparent-background status, independent twin-stick movement/aim/fire/reload, and first-person AR inside the same fixed window. Read CLEAR-WINDOW.md for controls, physical-test limits and the final release receipt. Existing saves and missions remain.
+
 # World Portal 0.14.0
 
 The corrected third-person diorama displays the full world through a room-fixed aperture, with the courier centered. First-person AR is separately selectable; goal guidance is clearer on the existing atlas. See WORLD-PORTAL.md and the latest release receipt for verified status. Existing saves and input remaps remain.

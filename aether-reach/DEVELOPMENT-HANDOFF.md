@@ -1,3 +1,11 @@
+# Current continuation: Clear Window 0.14.1
+
+Physical user feedback supersedes the prior 0.14.0 synthetic usability result: the AR diorama remained obstructed and simultaneous combat controls were unusable. Read CLEAR-WINDOW.md and the new release receipt before continuing. X11 is a repair of X10, not a new level. Keep physical acceptance open.
+
+The current patch removes filled shell membranes and camera-facing cloud backdrops from window modes, keeps status text background transparent, separates twin-stick window combat from menu pointing, gives B dedicated reload, and replaces life-size first-person AR with a first-person camera inside the same fixed aperture. Test movement, two-axis aim, fire and reload together with six-button Touch inputs. Never use a successful menu toggle as evidence that combat works.
+
+Reviewed master: 633e283fc9a6a4b12061ee49d3d89f11c572086d. Aether runtime at that base matches released 0.14.0. Version-1 saves, stable IDs, rewards, remaps and sibling files remain unchanged. Read ../release-receipts/aether-v0.14.1-20260918.json for actual native/public/backup status. Historical notes follow, not instructions to repeat old transfers.
+
 # Aether Reach 0.14.0 World Portal
 
 Start from the latest master and the final release receipt. Reviewed baseline master dd4a9d2a35ea667fd33f3ed2b597aeda15cb27e5 retains the published 0.13.0 runtime. The prior Crosswind release gates are complete at ../release-receipts/aether-v0.13.0-20260915.json; do not rerun historic transfer branches.

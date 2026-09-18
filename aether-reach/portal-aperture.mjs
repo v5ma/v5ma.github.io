@@ -2,7 +2,7 @@
  * Full depth beyond the aperture; no six-plane crop, render texture or second
  * simulation. Fragment coordinates cover sprites/particles and scaled XR rigs. */
 import * as T from './vendor/three.module.js';
-export const PORTAL_BUILD='aether-portal-20260917.1';
+export const PORTAL_BUILD='aether-window-20260918.1';
 export const PORTAL_SIZE=Object.freeze({width:60,height:35,depth:48});
 export function boxInterval(o,d,size=PORTAL_SIZE){
  let enter=-Infinity,exit=Infinity;
@@ -24,6 +24,7 @@ export function enterPortal(origin,direction,inverse,size=PORTAL_SIZE){
 export function faceVisible(eye,normal,point){return normal.dot(eye.clone().sub(point))<-.005;}
 const declarations=`
 uniform float aetherPortalEnabled;
+uniform float aetherPortalNearGate;
 uniform mat4 aetherPortalWorldFromClip;
 uniform mat4 aetherPortalBoxFromWorld;
 uniform vec4 aetherPortalViewport;
@@ -42,7 +43,7 @@ bool aetherVisible(){
  if(!aetherSlab(eye.x,d.x,-aetherPortalHalf.x,aetherPortalHalf.x,en,ex))return false;
  if(!aetherSlab(eye.y,d.y,0.0,2.0*aetherPortalHalf.y,en,ex))return false;
  if(!aetherSlab(eye.z,d.z,-aetherPortalHalf.z,aetherPortalHalf.z,en,ex))return false;
- return ex>=max(en,0.0)&&en<=1.00001;
+ return ex>=max(en,0.0)&&(aetherPortalNearGate<.5||en<=1.00001);
 }
 `;
 export function patchPortalShader(shader,shared){
@@ -52,14 +53,14 @@ export function patchPortalShader(shader,shared){
  shader.fragmentShader=declarations+shader.fragmentShader.replace(main,'void aetherOriginalFragment(){')+'\nvoid main(){if(aetherPortalEnabled>0.5&&!aetherVisible())discard;aetherOriginalFragment();}\n';
 }
 export class PortalMaterials{
- constructor(){this.entries=new Map();this.uniforms={aetherPortalEnabled:{value:0},aetherPortalWorldFromClip:{value:new T.Matrix4()},aetherPortalBoxFromWorld:{value:new T.Matrix4()},aetherPortalViewport:{value:new T.Vector4(0,0,1,1)},aetherPortalEye:{value:new T.Vector3()},aetherPortalHalf:{value:new T.Vector3(30,17.5,24)}};}
+ constructor(){this.entries=new Map();this.uniforms={aetherPortalEnabled:{value:0},aetherPortalNearGate:{value:1},aetherPortalWorldFromClip:{value:new T.Matrix4()},aetherPortalBoxFromWorld:{value:new T.Matrix4()},aetherPortalViewport:{value:new T.Vector4(0,0,1,1)},aetherPortalEye:{value:new T.Vector3()},aetherPortalHalf:{value:new T.Vector3(30,17.5,24)}};}
  attach(m){
   if(!m||this.entries.has(m))return;
   if(m.isRawShaderMaterial)throw new Error('Raw material requires a portal adapter');
   const shared=this.uniforms,compile=m.onBeforeCompile,render=m.onBeforeRender,key=m.customProgramCacheKey,base=key.call(m);
   m.onBeforeCompile=function(s,r){compile.call(this,s,r);patchPortalShader(s,shared);};
   m.customProgramCacheKey=()=>base+'|'+PORTAL_BUILD;
-  m.onBeforeRender=function(r,s,c,...args){render.call(this,r,s,c,...args);shared.aetherPortalWorldFromClip.value.multiplyMatrices(c.matrixWorld,c.projectionMatrixInverse);shared.aetherPortalEye.value.setFromMatrixPosition(c.matrixWorld);r.getCurrentViewport(shared.aetherPortalViewport.value);};
+  m.onBeforeRender=function(r,s,c,...args){render.call(this,r,s,c,...args);shared.aetherPortalWorldFromClip.value.multiplyMatrices(c.matrixWorld,c.projectionMatrixInverse);shared.aetherPortalEye.value.setFromMatrixPosition(c.matrixWorld);r.getCurrentViewport(shared.aetherPortalViewport.value);if(this.isShaderMaterial)this.uniformsNeedUpdate=true;};
   const dispose=()=>{this.entries.delete(m);m.removeEventListener('dispose',dispose);};
   this.entries.set(m,{compile,render,key,dispose});m.addEventListener('dispose',dispose);m.needsUpdate=true;
  }

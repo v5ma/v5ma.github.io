@@ -1,3 +1,4 @@
+import {WINDOW_CONTROLS,windowControls,stepWindowLook,windowAim} from './window-controls.mjs';
 import {createDiorama} from './diorama-view.mjs';
 import {createARView} from './ar-view.mjs';
 import {goalGuide} from './goal-guide.mjs';
@@ -40,8 +41,8 @@ export function createXR(view,api){
  function wrapped(ctx,text,x,y,max,line=36){let row='';for(const word of String(text).split(/\s+/)){if(ctx.measureText(row+word).width>max){ctx.fillText(row,x,y);row='';y+=line;}row+=word+' ';}ctx.fillText(row,x,y);return y+line;}
  function paint(menu,items){
   const s=api.state();hud.visible=!!session&&!menu;panel.visible=!!session&&!!menu;
-  hi.clearRect(0,0,1024,256);hi.fillStyle='#123540e8';hi.fillRect(0,0,1024,256);hi.fillStyle='#e7d4a2';hi.font='bold 31px sans-serif';hi.fillText(sessionMode==='first-person-ar'?'AETHER REACH / FIRST-PERSON AR':sessionMode==='first-person-vr'?'AETHER REACH / VR PREVIEW':'AETHER REACH / WORLD PORTAL',28,44);hi.fillStyle='#d2efe5';hi.font='29px sans-serif';hi.fillText(`Health ${Math.ceil(s.p.health)}   Shield ${Math.ceil(s.p.shield)}   Ammo ${s.p.ammo}`,28,88);
-  const goal=goalGuide(s);hi.font='23px sans-serif';wrapped(hi,(goal?'NEXT: '+goal.name+' / '+goal.distance+' m / '+goal.level+' / ':'')+(api.hint()||'Left stick: move / right stick: snap turn / Y: pause'),28,125,965,29);hi.fillStyle='#376273';hi.fillRect(20,199,984,48);hi.fillStyle='#fff0c6';hi.fillText('PAUSE MENU - point and pinch, or left Y',40,232);ht.needsUpdate=true;
+  hi.clearRect(0,0,1024,256);if(!diorama.active){hi.fillStyle='#123540e8';hi.fillRect(0,0,1024,256);}hi.fillStyle='#e7d4a2';hi.font='bold 31px sans-serif';hi.fillText(sessionMode==='first-person-ar'?'AETHER REACH / FIRST-PERSON WINDOW':sessionMode==='first-person-vr'?'AETHER REACH / VR PREVIEW':'AETHER REACH / WORLD PORTAL',28,44);hi.fillStyle='#d2efe5';hi.font='29px sans-serif';hi.fillText(`Health ${Math.ceil(s.p.health)}   Shield ${Math.ceil(s.p.shield)}   Ammo ${s.p.ammo}`,28,88);
+  const goal=goalGuide(s);hi.font='23px sans-serif';wrapped(hi,(goal?'NEXT: '+goal.name+' / '+goal.distance+' m / '+goal.level+' / ':'')+(diorama.active?'L stick move / R stick aim / R trigger fire / B reload':api.hint()||'Left stick: move / right stick: snap turn / Y: pause'),28,125,965,29);if(!diorama.active){hi.fillStyle='#376273';hi.fillRect(20,199,984,48);}hi.fillStyle='#fff0c6';hi.fillText('PAUSE MENU - point and pinch, or left Y',40,232);ht.needsUpdate=true;
   if(!menu)return;ink.clearRect(0,0,1024,768);ink.fillStyle='#133846f8';ink.fillRect(0,0,1024,768);ink.strokeStyle='#c6b785';ink.lineWidth=4;ink.strokeRect(3,3,1018,762);ink.fillStyle='#ffe6b5';ink.font='bold 36px sans-serif';ink.fillText(menu.title.slice(0,45),34,55);ink.font='24px sans-serif';ink.fillStyle='#c8e1d6';wrapped(ink,menu.description.slice(0,330),34,98,952,31);
   if(menu.root?.id==='map-dialog')ink.drawImage(document.getElementById('map'),30,80,964,200);
   if(menu.root?.id==='field-dialog'&&document.getElementById('field-circuit')){ink.fillStyle='#12303d';ink.fillRect(24,70,976,210);ink.strokeStyle='#dfc382';ink.lineWidth=5;s.tactics.circuit.forEach((mask,i)=>{const x=380+(i%3)*64,y=76+Math.floor(i/3)*64;ink.fillStyle='#244e60';ink.fillRect(x,y,58,58);ink.beginPath();for(const [bit,dx,dy]of [[1,29,0],[2,58,29],[4,29,58],[8,0,29]])if(mask&bit){ink.moveTo(x+29,y+29);ink.lineTo(x+dx,y+dy);}ink.stroke();ink.fillStyle='#fff';ink.font='16px sans-serif';ink.fillText(String(i+1),x+3,y+54);});}
@@ -54,7 +55,7 @@ export function createXR(view,api){
   preview(on){if(session||entering)return;api.clear();api.start();diorama.set(on,{...presentation.config,mode:'diorama-vr'},api.state(),{desktop:true});},
   recenter(){diorama.center(api.state(),head);api.clear();},active:()=>!!session
  });
- async function checkSupport(){if(session||entering)return;const epoch=++supportEpoch,kind=sessionKind(presentation.config.mode),name=kind==='immersive-ar'?'AR':'VR';button.disabled=true;
+ async function checkSupport(){if(session||entering)return;const epoch=++supportEpoch,kind=sessionKind(presentation.config.mode),name=({'first-person-ar':'First-person AR window','diorama-ar':'Third-person AR window','diorama-vr':'Third-person VR window','first-person-vr':'First-person VR'})[presentation.config.mode];button.disabled=true;
   try{const supported=isSecureContext&&await navigator.xr?.isSessionSupported?.(kind);if(epoch!==supportEpoch)return;button.disabled=!supported;button.textContent=supported?'Enter '+name+' (preview)':name+' headset not available';}
   catch{if(epoch===supportEpoch)button.textContent='WebXR unavailable';}
  }
@@ -66,7 +67,7 @@ export function createXR(view,api){
    const next=await navigator.xr.requestSession(sessionKind(sessionMode),{requiredFeatures:['local-floor'],optionalFeatures:['hand-tracking']});session=next;if(sessionKind(sessionMode)==='immersive-ar'&&next.environmentBlendMode==='opaque')throw new Error('This session cannot provide passthrough AR');
    next.addEventListener('end',finish,{once:true});await renderer.xr.setSession(next);renderer.shadowMap.enabled=false;
    api.start();offsetYaw=api.state().p.yaw;rig.add(camera);camera.position.set(0,0,0);camera.quaternion.identity();camera.scale.setScalar(1);head=null;handMode=false;menuRoot=null;clearTracking();document.body.classList.add('in-xr');exit.hidden=false;
-   diorama.set(sessionMode.startsWith('diorama-'),presentation.config,api.state());ar.set(sessionMode==='first-person-ar');
+   diorama.set(sessionMode.startsWith('diorama-')||sessionMode==='first-person-ar',presentation.config,api.state());ar.set(false);
    renderer.xr.getReferenceSpace()?.addEventListener?.('reset',()=>{placed=false;clearTracking();api.clear();api.pause();});
    next.addEventListener('visibilitychange',()=>{suspended=next.visibilityState!=='visible';if(suspended){api.pause();api.clear();clearTracking();}lastHead=null;});
    presentation.refresh();status.textContent='XR preview: tracked controllers play; hands point and pinch through menus. Open your hand before selecting. Physical Quest 3 QA pending.';
@@ -84,7 +85,7 @@ export function createXR(view,api){
   const space=renderer.xr.getReferenceSpace(),pose=frame.getViewerPose(space);if(!validPose(pose)){api.pause();api.clear();clearTracking();return null;}
   const sourceList=Array.from(session.inputSources),controllerPoses=[];for(const source of sourceList){if(source.hand)continue;let pose;try{pose=frame.getPose(source.targetRaySpace,space);}catch{}if(validPose(pose))controllerPoses.push({source,pose});}
   trackedControllers=controllerPoses.length;const handSources=sourceList.filter(s=>s.hand).slice(0,2);pinches.prune(handSources);
-  const controls=xrControls(inputs,controllerPoses.map(v=>v.source));let menu=api.menu();
+  let menu=api.menu();const controls=diorama.active&&!menu?windowControls(inputs,controllerPoses.map(v=>v.source)):xrControls(inputs,controllerPoses.map(v=>v.source));
   let standardPresent=false;try{standardPresent=Array.from(navigator.getGamepads?.()||[]).some(p=>p?.connected&&p.mapping==='standard');}catch{}
   const nextHandMode=handSources.length>0&&!trackedControllers&&!standardPresent;if(nextHandMode&&!handMode&&!menu){api.pause();api.clear();menu=api.menu();}handMode=nextHandMode;
   const newMenu=menu?.root!==menuRoot;if(newMenu){pinches.reset();menuRoot=menu?.root;lastPaint=0;}
@@ -93,18 +94,22 @@ export function createXR(view,api){
   if(!diorama.active){
    if(!menu){offsetYaw+=turn.update(controls.turn);if(lastHead)roomMove(api.state(),(raw.x-lastHead.x)*Math.cos(offsetYaw)-(raw.z-lastHead.z)*Math.sin(offsetYaw),(raw.x-lastHead.x)*Math.sin(offsetYaw)+(raw.z-lastHead.z)*Math.cos(offsetYaw));}else turn.reset();
    p.yaw=offsetYaw+Math.atan2(vector.x,-vector.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,vector.y)));
-  }else if(!menu&&!api.standardInput?.()){const delta=controls.turn*dt*1.8;diorama.orbit(delta);p.yaw+=delta;} // Right stick aims the courier, never the user's head.
+  }else if(!menu&&!api.standardInput?.()){stepWindowLook(p,controls.look,dt,{fine:controls.held.aim,...api.lookSettings?.()});} // Both stick axes aim; head and pointing rays cannot overwrite them.
   head={x:raw.x,y:raw.y,z:raw.z,forward:{x:vector.x,z:vector.z}};
   if(diorama.active&&!placed){diorama.center(api.state(),head);placed=true;}
-  lastHead={...head};syncRig();
+  lastHead={...head};if(diorama.active)diorama.follow(p);syncRig();
   if(diorama.active){
    if(panel.parent!==rig)rig.add(panel,hud);const a=diorama.stats().anchor;hud.position.set(a.x,a.y-.25,a.z+.85);hud.quaternion.identity();
    if(newMenu&&menu){const yaw=Math.atan2(head.forward.x,-head.forward.z);panel.position.set(head.x+Math.sin(yaw)*1.4,head.y,head.z-Math.cos(yaw)*1.4);panel.rotation.set(0,-yaw,0);}
   }
-  camera.updateWorldMatrix(true,true);panel.visible=!!menu;hud.visible=!menu;const items=spatialPage(menu);hover=null;aim=powerAim=null;
+  camera.updateWorldMatrix(true,true);panel.visible=!!menu;hud.visible=!menu;
+  // Window combat is stick-aimed. A visible controller laser or gun would lie
+  // about shot direction; expose those only for actual pointing/VR actions.
+  for(const item of controllers){const windowPlay=diorama.active&&!menu;item.line.visible=!windowPlay;item.shell.visible=!windowPlay&&!!item.source&&!item.source.hand;item.barrel.visible=!diorama.active&&!!item.source&&!item.source.hand&&item.source.handedness==='right';}
+  const items=spatialPage(menu);hover=null;aim=powerAim=null;
   for(const {source,pose}of controllerPoses){worldRay(pose);const output={origin:{x:originVector.x,y:originVector.y,z:originVector.z},direction:{x:vector.x,y:vector.y,z:vector.z}};
-   if(source.handedness==='right'){aim=diorama.active&&!menu?diorama.aim(api.state(),output.origin,output.direction):output;if(diorama.active&&aim&&!menu&&!api.standardInput?.()){p.yaw=Math.atan2(aim.direction.x,-aim.direction.z);p.pitch=Math.asin(Math.max(-1,Math.min(1,aim.direction.y)));}if(menu){const hit=hitPanel(panel);hover=hit?.uv?spatialHit(items,hit.uv.x,hit.uv.y):null;if(hover?.element)api.spatial('focus',hover.element);if(controls.edges.confirm){activate(hover);controls.edges.confirm=false;controls.edges.fire=false;}}}
-   else if(source.handedness==='left')powerAim=diorama.active&&!menu?diorama.aim(api.state(),output.origin,output.direction):output;
+   if(source.handedness==='right'){aim=diorama.active&&!menu?windowAim(api.state()):output;if(menu){const hit=hitPanel(panel);hover=hit?.uv?spatialHit(items,hit.uv.x,hit.uv.y):null;if(hover?.element)api.spatial('focus',hover.element);if(controls.edges.confirm){activate(hover);controls.edges.confirm=false;controls.edges.fire=false;}}}
+   else if(source.handedness==='left')powerAim=diorama.active&&!menu?windowAim(api.state()):output;
   }
   trackedHands=0;jointMesh.count=0;for(const h of handRays)h.line.visible=false;let pinchUsed=false;
   for(const source of handSources){const hand=pinches.sample(source,frame,space);if(!hand?.tracked)continue;trackedHands++;const beam=handRays.find(h=>h.side===source.handedness)?.line;if(beam){const p=hand.ray.transform.position,q=hand.ray.transform.orientation;beam.position.set(p.x,p.y,p.z);beam.quaternion.set(q.x,q.y,q.z,q.w);beam.visible=true;}
@@ -114,8 +119,8 @@ export function createXR(view,api){
   }
   jointMesh.visible=jointMesh.count>0;if(jointMesh.count)jointMesh.instanceMatrix.needsUpdate=true;
   if(performance.now()-lastPaint>90){paint(menu,items);lastPaint=performance.now();}
-  if(diorama.active&&!menu&&!p.rail&&!p.climb)controls.move=dioramaMove(controls.move,p.yaw,diorama.viewYaw);
+  if(diorama.active&&!diorama.cameraWindow&&!menu&&!p.rail&&!p.climb)controls.move=dioramaMove(controls.move,p.yaw,diorama.viewYaw);
   return controls;
  }
- return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt,{followAim:diorama.preview||!!api.standardInput?.()});ar.update();},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.viewYaw},padTurn(axis){if(!diorama.active){offsetYaw+=padTurner.update(axis);syncRig();}},presentationStats:()=>({...diorama.stats(),firstPersonAR:ar.stats(),uiHeadLocked:!diorama.active,menuVisible:panel.visible,hudDocked:diorama.active&&hud.parent===rig,hudStage:hud.position.toArray(),menuStage:panel.position.toArray()}),reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();},stats:()=>({trackedHands,trackedControllers,handMode,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
+ return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt,{followAim:true});ar.update();},get cameraWindow(){return diorama.cameraWindow&&diorama.active},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.viewYaw},padTurn(axis){if(!diorama.active){offsetYaw+=padTurner.update(axis);syncRig();}},presentationStats:()=>({...diorama.stats(),firstPersonAR:{...ar.stats(),active:!!session&&diorama.cameraWindow,lifeSize:false,windowed:!!session&&diorama.cameraWindow,alpha:renderer.getClearAlpha()},windowControls:diorama.active?WINDOW_CONTROLS:null,hudOpaqueBackground:!diorama.active,hudBackgroundAlpha:hi.getImageData(0,0,1,1).data[3],uiHeadLocked:!diorama.active,menuVisible:panel.visible,hudDocked:diorama.active&&hud.parent===rig,hudStage:hud.position.toArray(),menuStage:panel.position.toArray()}),reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();},stats:()=>({trackedHands,trackedControllers,handMode,windowPointerVisible:controllers.filter(i=>i.source&&i.line.visible).length,controllerBarrelsVisible:controllers.filter(i=>i.source&&i.barrel.visible).length,aimSource:diorama.active?'twin-stick':'tracked-ray',weaponAim:aim,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
 }
