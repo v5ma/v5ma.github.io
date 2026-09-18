@@ -1,0 +1,88 @@
+name: Stage Aether Clear Window
+on:
+  push:
+    branches: [aether/clear-window-20260918]
+    paths: ['.github/workflows/aether-clear-stage.yml']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/clear-window-20260918'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply independently reviewed exact-source edits
+        run: |
+          mkdir -p /tmp/aether-clear
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          hashes=['a9830162c0e14b8ce0e9f457d61cb750d8ad5799c4c6579d033d8594f16bcd17','4e396dc9983898a4038a59a399a74afdc22e422ef33ac03b32a40aebab35ef1a','7a06f21aa8d3df31bc7ae51acee371104c4d9b91c1f92cb481bc137158c58fbc','9d8a6cd6b001b1a172a2a3d397756cf085456651efc0b2066ea5e8c863737da4']
+          changes={}
+          for i,digest in enumerate(hashes):
+            raw=Path(f'aether-reach/tools/clear-window-part-{i}.json').read_bytes()
+            assert hashlib.sha256(raw).hexdigest()==digest,('transfer',i)
+            part=json.loads(raw);assert not (set(part)&set(changes));changes.update(part)
+          assert len(changes)==25
+          for name,item in changes.items():
+            p=Path(name)
+            assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            raw=p.read_bytes() if p.exists() else b''
+            assert (hashlib.sha256(raw).hexdigest() if raw else None)==item['before'],name
+            text=raw.decode('utf8')
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text),name
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          Path('/tmp/aether-clear/changes.json').write_text(json.dumps(changes))
+          PY
+          git diff --check
+      - name: Validate model, input, saves and release identities
+        run: |
+          set -euo pipefail
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node --test aether-reach/tests/*.test.mjs | tee /tmp/aether-clear/node-tests.log
+          python aether-reach/tests/backup_test.py
+          python aether-reach/tools/render-production-plan.py
+          node aether-reach/tests/release-manifest.mjs
+      - name: Create content-only commit without changing any branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,hashlib
+          from pathlib import Path
+          data=json.loads(Path('/tmp/aether-clear/changes.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/aether-clear/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          for name,item in data.items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==item['after'],name
+          tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data]
+          tree += [{'path':f'aether-reach/tools/clear-window-part-{i}.json','mode':'100644','type':'blob','sha':None} for i in range(4)]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'fix(aether): remove window sheets and support simultaneous twin-stick combat with first-person AR window','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
+          Path('/tmp/aether-clear/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'parent':os.environ['GITHUB_SHA'],'files':list(data),'scope':'Model, syntax, save and manifest validation only; native browser, publication and physical-device validation are separate.'},indent=2))
+          print('Staged commit',c['sha'],'without changing a branch')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-clear-candidate
+          path: |
+            /tmp/aether-clear/candidate.json
+            /tmp/aether-clear/node-tests.log
+          retention-days: 30
