@@ -1,7 +1,7 @@
 name: Stage exact Prism main-rhythm repair
 on:
   pull_request:
-    paths: ['.github/prism-undertow-apply.py', '.github/prism-undertow-polish.py', '.github/workflows/prism-undertow-stage.yml', 'prism-current/undertow.js', 'prism-current/graphics/pool-stage.js', 'prism-current/tests/undertow-browser.py']
+    paths: ['.github/prism-undertow-apply.py', '.github/prism-undertow-polish.py', '.github/prism-undertow-hilts.py', '.github/workflows/prism-undertow-stage.yml', 'prism-current/undertow.js', 'prism-current/graphics/pool-stage.js', 'prism-current/tests/undertow-browser.py']
 permissions:
   contents: write
 concurrency:
@@ -28,6 +28,7 @@ jobs:
           git rev-parse HEAD > /tmp/prism-start-sha
           python .github/prism-undertow-apply.py
           python .github/prism-undertow-polish.py
+          python .github/prism-undertow-hilts.py
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
         shell: bash -e -o pipefail {0}
@@ -51,7 +52,7 @@ jobs:
           python - <<'PY'
           import json,subprocess
           paths=json.load(open('/tmp/prism-undertow-paths.json'))
-          assert len(paths)==18 and all(p.startswith('prism-current/') and '..' not in p.split('/') for p in paths)
+          assert len(paths)==20 and all(p.startswith('prism-current/') and '..' not in p.split('/') for p in paths)
           changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
           assert set(changed)==set(paths), changed
           subprocess.run(['git','add','--',*paths],check=True)
