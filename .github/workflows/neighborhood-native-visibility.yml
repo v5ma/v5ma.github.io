@@ -1,0 +1,73 @@
+name: Neighborhood native visibility acceptance
+on:
+  push:
+    branches: [neighborhood-missions/native-visibility-20260918]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-native-visibility.yml']
+permissions:
+  contents: read
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 12
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record exact source and changed paths
+        run: |
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          git diff --name-only 98fb2dc1fe43a4f201897ab06bae5ff61be0481a HEAD > changed-paths.txt
+          tar -czf native-source.tar.gz svgn-planet little-planet level-design-library index.html .github/workflows SOURCE-COMMIT.txt changed-paths.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-source
+          path: native-source.tar.gz
+          retention-days: 30
+      - name: All model and input tests
+        run: |
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee native-model.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-model
+          path: native-model.txt
+          retention-days: 30
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [main, main-nav]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Render all eight views and native recovery menus
+        env:
+          SUITE: ${{ matrix.suite }}
+        run: |
+          python -m http.server 8765 > server.log 2>&1 &
+          if [ "$SUITE" = main ]; then python svgn-planet/main-browser.py; else python svgn-planet/main-navigation-browser.py; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-${{ matrix.suite }}
+          path: |
+            *-results/
+            server.log
+          retention-days: 30

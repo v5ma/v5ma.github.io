@@ -1,3 +1,4 @@
+import {mountNativeChrome,nativeMenuDescription} from './native-ui.mjs';
 /* One native WebXR session for every district. No canvas/video world screen. */
 import * as T from './vendor/three.module.js';
 import {MODES,modeInfo,modeLabel} from './spatial-modes.mjs';
@@ -5,6 +6,7 @@ import {xrInput,clearXRInput} from './xr-input.mjs';
 import {loadXRPrefs,saveXRPrefs,sourceRoles,motionStrike,guardPose,xrNeutral} from './lantern/xr-input.mjs';
 import {holsterZone,capeGesture} from './lantern/xr-embodiment.mjs';
 export function createUnifiedXR(hooks){
+ mountNativeChrome();
  const renderer=hooks.renderer,ui=new T.Group();ui.name='Native XR menu and tracked input';
  const c=document.createElement('canvas');c.width=1024;c.height=1024;const ctx=c.getContext('2d'),tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;
  const panel=new T.Mesh(new T.PlaneGeometry(1.4,1.4),new T.MeshBasicMaterial({map:tex,toneMapped:false,side:T.DoubleSide,depthTest:false,depthWrite:false}));panel.renderOrder=10000;ui.add(panel);panel.visible=false;
@@ -38,7 +40,7 @@ export function createUnifiedXR(hooks){
  }
  function paint(r){
   rows=[];ctx.fillStyle='#142e39';ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#fff0ca';ctx.font='bold 32px sans-serif';ctx.fillText((r?.querySelector('h1,h2')?.textContent||'Neighborhood Missions').slice(0,53),36,52);
-  ctx.font='23px sans-serif';const description=r?.querySelector('p')?.textContent||'';const copy=(error||description||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
+  ctx.font='23px sans-serif';const description=nativeMenuDescription(r,hooks.goal());const copy=(error||description||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
   if(r){const all=[...r.querySelectorAll('button,select,input,a[href],textarea')].filter(visible),pages=Math.max(1,Math.ceil(all.length/6));page=Math.max(0,Math.min(page,pages-1));
    all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
    rows.push({label:'Previous page',x:36,y:854,w:300,h:70,act:()=>{page=(page+pages-1)%pages;}},{label:'Next '+(page+1)+'/'+pages,x:361,y:854,w:300,h:70,act:()=>{page=(page+1)%pages;}},{label:'Back / resume',x:686,y:854,w:300,h:70,act:()=>back(r)});

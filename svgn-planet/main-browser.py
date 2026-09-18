@@ -41,15 +41,19 @@ async def main():
     if r['d']<.3 and r['speed']<.05:break
     await frames(6)
    else:raise AssertionError('Mara could not be reached through integrated movement')
-   await press(2);assert (await state())['ward']['watch']['stage']==1;ok('Mara actually briefs the Watch mission through the integrated main-game interaction')
+   await page.evaluate('__pad.axes=[0,0,0,0]');await frames(5);await press(2);assert (await state())['ward']['watch']['stage']==1;ok('Mara actually briefs the Watch mission through the integrated main-game interaction')
    for ar in ['vr','ar']:
     for prefix in ['first-person','third-person','diorama-first','diorama-third']:
      mode=prefix+'-'+ar
      if not (await state())['paused']:await press(9)
      await page.click('#ward-xr');await page.click('#xr-'+mode);await wait('NeighborhoodMissions.inspect().xr.active');await frames(6);q=await state();assert q['xr']['kind']==mode and q['xr']['eyes']==2 and not q['xr']['renderTargetScreen']
+     await page.evaluate("""()=>{const s=__xrFixture.session,old=s.requestAnimationFrame.bind(s);s.requestAnimationFrame=cb=>old((time,frame)=>{cb(time,frame);const gl=document.querySelector('#world').getContext('webgl2'),b=new Uint8Array(4);gl.readPixels(12,gl.drawingBufferHeight-12,1,1,gl.RGBA,gl.UNSIGNED_BYTE,b);window.__renderedAlpha=b[3];});}""")
      await select('ward-resume');await wait('!NeighborhoodMissions.inspect().paused');await frames();q=await state();assert not q['xr']['actionPanelVisible'] and q['xr']['visibleRays']==0;assert q['spatial']['centerError']<1e-5
      await page.evaluate('__xrFixture.viewerPitch=-.25;__xrFixture.viewerRoll=.28');await frames(5);assert not (await state())['xr']['actionPanelVisible'];await page.screenshot(path=str(OUT/(mode+'.png')));await page.evaluate('__xrFixture.viewerPitch=0;__xrFixture.viewerRoll=0');ok(mode+' renders actual per-eye district geometry without gameplay menu boards')
      await press(9);await select('ward-city');await wait('NeighborhoodMissions.inspect().district==="city"');await frames();q=await state();assert q['xr']['active'] and q['xr']['kind']==mode;assert await page.evaluate('__xrFixture.session.ended') is False;ok(mode+' retains the same immersive session when travelling into the original world')
+     if ar=='ar':
+      await page.evaluate('__xrFixture.viewerPitch=.8');await frames(5);alpha=await page.evaluate('__renderedAlpha');report.setdefault('arAlphaSamples',[]).append({'mode':mode,'district':'city','alpha':alpha});assert alpha==0,{'mode':mode,'opaqueSkyAlpha':alpha};await page.evaluate('__xrFixture.viewerPitch=0');await frames(3)
+     assert await page.evaluate("['water-minimap','pulse-summary','toast','context'].every(id=>getComputedStyle(document.getElementById(id)).visibility==='hidden')")
      after=await page.evaluate('SVGNPlanet.inspect()');assert after['deliveries']==city['deliveries'];assert after['n']==city['n'],json.dumps({'departure':city['n'],'returned':after['n'],'speed':after['speed'],'mode':mode});await page.screenshot(path=str(OUT/(mode+'-main-city.png')))
      await press(9);await select('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert (await state())['ward']['watch']['stage']==1
      await page.evaluate('__xrFixture.session.end()');await wait('!NeighborhoodMissions.inspect().xr.active');await frames()
