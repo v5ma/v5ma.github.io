@@ -5,7 +5,7 @@
 (()=>{
  const raf=window.requestAnimationFrame.bind(window),caf=window.cancelAnimationFrame.bind(window);
  const identity={x:0,y:0,z:0,w:1};
- const data=window.__xr={supported:true,reject:false,floor:true,headTracked:true,head:{x:0,y:1.6,z:0},yaw:0,pitch:0,hitSupported:true,hitAvailable:true,sources:[],session:null};
+ const data=window.__xr={supported:true,reject:false,floor:true,headTracked:true,head:{x:0,y:1.6,z:0},yaw:0,pitch:0,roll:0,hitSupported:true,hitAvailable:true,sources:[],session:null};
  function matrix(position,orientation=identity){
   const {x,y,z,w}=orientation,x2=x+x,y2=y+y,z2=z+z,xx=x*x2,xy=x*y2,xz=x*z2,yy=y*y2,yz=y*z2,zz=z*z2,wx=w*x2,wy=w*y2,wz=w*z2;
   return new Float32Array([1-(yy+zz),xy+wz,xz-wy,0,xy-wz,1-(xx+zz),yz+wx,0,xz+wy,yz-wx,1-(xx+yy),0,position.x,position.y,position.z,1]);
@@ -24,9 +24,9 @@
   constructor(session){this.session=session;}
   getViewerPose(){
    if(!data.headTracked)return null;
-   const f=1/Math.tan(70*Math.PI/360),near=.05,far=30,projection=new Float32Array([f/.8,0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]);
-   const cy=Math.cos(data.yaw/2),sy=Math.sin(data.yaw/2),cx=Math.cos(data.pitch/2),sx=Math.sin(data.pitch/2);const q={x:cy*sx,y:sy*cx,z:-sy*sx,w:cy*cx};
-   const views=['left','right'].map((eye,i)=>({eye,projectionMatrix:projection,transform:transform({...data.head,x:data.head.x+(i?.032:-.032)},q)}));
+   const f=1/Math.tan(70*Math.PI/360),near=this.session.renderState.depthNear||.05,far=this.session.renderState.depthFar||1800,projection=new Float32Array([f/.8,0,0,0,0,f,0,0,0,0,(far+near)/(near-far),-1,0,0,2*far*near/(near-far),0]);
+   const cy=Math.cos(data.yaw/2),sy=Math.sin(data.yaw/2),cx=Math.cos(data.pitch/2),sx=Math.sin(data.pitch/2),cz=Math.cos(data.roll/2),sz=Math.sin(data.roll/2);const q={x:sx*cy*cz+cx*sy*sz,y:cx*sy*cz-sx*cy*sz,z:cx*cy*sz-sx*sy*cz,w:cx*cy*cz+sx*sy*sz};
+   const views=['left','right'].map((eye,i)=>{const d=i?.032:-.032,p={x:data.head.x+d*(1-2*(q.y*q.y+q.z*q.z)),y:data.head.y+d*2*(q.x*q.y+q.w*q.z),z:data.head.z+d*2*(q.x*q.z-q.w*q.y)};return {eye,projectionMatrix:projection,transform:transform(p,q)};});
    return {views,transform:transform(data.head,q),emulatedPosition:false};
   }
   getHitTestResults(){return data.hitAvailable?[{getPose:()=>({transform:transform({x:0,y:.7,z:-1.7})})}]:[];}

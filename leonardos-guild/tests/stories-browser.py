@@ -46,7 +46,10 @@ def act(site,action='use'):
 with sync_playwright() as p:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.environ.get('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
- browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block')
+ # Bound software-rasterization cost in this long quest/input journey. The
+ # production renderer, low-quality materials, 150s path budget, .85m reach
+ # and .5m/s settling tests remain unchanged; large-view art tests are separate.
+ browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':800,'height':600},service_workers='block')
  ctx.add_init_script("window.__testPad={id:'Xbox 360 Controller (STANDARD GAMEPAD)',index:0,connected:true,mapping:'standard',timestamp:0,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,touched:false,value:0}))};Object.defineProperty(navigator,'getGamepads',{value:()=>[window.__testPad]});")
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('dialog',lambda d:(_ for _ in ()).throw(AssertionError('Blocking browser dialog: '+d.message)))
@@ -89,4 +92,4 @@ with sync_playwright() as p:
   check(read()['audio']['musicVoices']<=1 and read()['audio']['preferences']['density']=='quiet','Quiet single-track audio survives the story journey and reload')
   check(not errors,'No runtime JavaScript errors during the two-case Console journey')
  finally:
-  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'state':page.evaluate('window.LeonardoGuild?.inspect()'),'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':'Fresh save. Only a virtual standard Xbox Gamepad API input object is injected. Default Console profile for all movement and UI. No mouse, keyboard, programmatic focus, actor/quest/clock/currency writes. Roof lamp and cellar ledger paths are native; other routes/endings are explicitly model fixtures.'},indent=2));page.screenshot(path=str(OUT/'last-state.png'));browser.close()
+  (OUT/'report.json').write_text(json.dumps({'checks':checks,'errors':errors,'state':page.evaluate('window.LeonardoGuild?.inspect()'),'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'viewport':{'width':800,'height':600},'input':'Fresh save. Only a virtual standard Xbox Gamepad API input object is injected. Default Console profile for all movement and UI. No mouse, keyboard, programmatic focus, actor/quest/clock/currency writes. Roof lamp and cellar ledger paths are native; other routes/endings are explicitly model fixtures.'},indent=2));page.screenshot(path=str(OUT/'last-state.png'));browser.close()

@@ -1,3 +1,9 @@
+World Portal owner correction / September 17, 2026.
+
+Read WORLD-PORTAL.md and release.json before the historical notes below. XR-PORTAL-02 advances F03 and NEXT02 without closing broad production/human/device gates. The regular complete game now moves around the centered player inside the unchanged exhibit; mask depth continues beyond the side/rear faces. Near display panels become transparent, and large XR controls appear only on demand or for a dialog. First-person AR is a separately requested AR session. Quarter map goals remain visible across floors with an explicit next-action card.
+
+The Working Deliveries baseline PR167 is published and verified; do not repeat its release or recreate its features. This new source requires its own exact-source native and public evidence. At the current implementation checkpoint 362 CPU/model/input checks and 14 design contracts pass; physical Quest/Xbox and user visual approval remain open. Keep original saves, controls and siblings. Never rerun historical source-transfer recipes. All previous roadmap IDs and criteria below remain in force except superseded fixed-map/Quarter-only XR descriptions.
+
 Leonardo's Guild: Waterwheel Quarter continuation, September 15, 2026.
 
 Read current release.json, CONTINUATION-STATE.json, NEXT-SESSION.md, WATERWHEEL-QUARTER.md and WATERWHEEL-KNOWLEDGE.md first. PR157 and the independent publication receipts determine release status. A version number, a local test count or an implementation document does not prove deployment. Earlier continuation text is preserved verbatim in history/before-knowledge-20260915/; do not treat its old design-only or theatre-only descriptions as current runtime facts.

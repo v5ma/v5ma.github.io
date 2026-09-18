@@ -1,3 +1,9 @@
+World Portal owner correction / September 17, 2026.
+
+Read WORLD-PORTAL.md and release.json before the historical notes below. XR-PORTAL-02 advances F03 and NEXT02 without closing broad production/human/device gates. The regular complete game now moves around the centered player inside the unchanged exhibit; mask depth continues beyond the side/rear faces. Near display panels become transparent, and large XR controls appear only on demand or for a dialog. First-person AR is a separately requested AR session. Quarter map goals remain visible across floors with an explicit next-action card.
+
+The Working Deliveries baseline PR167 is published and verified; do not repeat its release or recreate its features. This new source requires its own exact-source native and public evidence. At the current implementation checkpoint 362 CPU/model/input checks and 14 design contracts pass; physical Quest/Xbox and user visual approval remain open. Keep original saves, controls and siblings. Never rerun historical source-transfer recipes. All previous roadmap IDs and criteria below remain in force except superseded fixed-map/Quarter-only XR descriptions.
+
 Working Deliveries / WQ-PORTER continuation, September 15, 2026.
 
 The published PR157 baseline is complete. Read WORKING-DELIVERIES.md and the newest release receipt for this named additive build. WQ-PORTER advances W04, W05 and S02 within NEXT06: an optional in-person bell request turns the repaired goods stairs and permanent arch into a visible household delivery round. Manual pickup and personal loft delivery remain; cancellations return goods physically and no autonomous arrival pays a reward.

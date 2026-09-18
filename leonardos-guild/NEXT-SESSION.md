@@ -1,3 +1,13 @@
+Direct XR Entry / September 17, 2026.
+
+Read XR-ENTRY.md, release.json and current PR178 before the earlier checkpoints below. The four named AR/VR first-person/diorama buttons are visible in the first screen and on pause. Direct entry starts/resumes the existing game only after a tracked frame, with explicit per-mode support and startup errors. This continues, rather than discards, the World Portal candidate. Its prior source passed native tests but was never merged; do not describe it as already available publicly. Complete the current seven native journeys and retained regressions, merge normally, then verify Pages and the exact public files/journeys. Physical headset approval remains open.
+
+World Portal owner correction / September 17, 2026.
+
+Read WORLD-PORTAL.md and release.json before the historical notes below. XR-PORTAL-02 advances F03 and NEXT02 without closing broad production/human/device gates. The regular complete game now moves around the centered player inside the unchanged exhibit; mask depth continues beyond the side/rear faces. Near display panels become transparent, and large XR controls appear only on demand or for a dialog. First-person AR is a separately requested AR session. Quarter map goals remain visible across floors with an explicit next-action card.
+
+The Working Deliveries baseline PR167 is published and verified; do not repeat its release or recreate its features. This new source requires its own exact-source native and public evidence. At the current implementation checkpoint 362 CPU/model/input checks and 14 design contracts pass; physical Quest/Xbox and user visual approval remain open. Keep original saves, controls and siblings. Never rerun historical source-transfer recipes. All previous roadmap IDs and criteria below remain in force except superseded fixed-map/Quarter-only XR descriptions.
+
 Working Deliveries continuation.
 
 Read WORKING-DELIVERIES.md, selected_level_design_task in CONTINUATION-STATE.json, current master and the newest Working Deliveries PR/receipt first. The PR157 baseline is already published and verified; do not repeat its closure. This named additive build remains v0.14.0 with build guild-working-quarter-20260915. The local 351-check model result alone is not publication evidence.

@@ -60,6 +60,7 @@ export function createCisternArt(root){
  function render(s,scene,camera,renderer,quality){
   update(s);const near=Math.hypot(s.x-POOL.x,s.z-POOL.z)<65;
   last={active:near,passes:0,size:allocated,phase:s.frontier.cistern.phase,surface:s.frontier.cistern.surface,depth:waterDepth(s),actorGround:waterGround(s.x,s.z,0),refraction:'scene colour',reflection:'procedural Fresnel environment',caustics:true};
+  if(renderer.xr.isPresenting){mat.uniforms.hasSource.value=0;return;}
   if(!near)return;
   const width=quality==='low'?256:quality==='balanced'?512:768,height=Math.max(128,Math.round(width/camera.aspect));
   if(target.width!==width||target.height!==height){target.setSize(width,height);allocated=width;mat.uniforms.sourceSize.value.set(width,height);}

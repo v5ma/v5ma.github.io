@@ -30,6 +30,7 @@ jobs:
           root=Path('leonardos-guild')
           paths=[p for p in root.iterdir() if p.is_file() and p.suffix in {'.html','.mjs','.js','.css','.json','.svg'}]
           paths+=list((root/'vendor').rglob('*.js'))
+          paths+=[root/'tests'/'portal-graphics.html']
           expected={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
           found={}
           def inspect(item):
@@ -65,7 +66,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        journey: [social, upper, hydraulic, spatial, relay]
+        journey: [social, upper, hydraulic, spatial, relay, portal, entry]
     env:
       TEST_BASE_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
     steps:
@@ -94,7 +95,11 @@ jobs:
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/waterwheel-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
-          if test "$QUARTER_ROUTE" = spatial; then
+          if test "$QUARTER_ROUTE" = entry; then
+            python -u leonardos-guild/tests/xr-entry-browser.py
+          elif test "$QUARTER_ROUTE" = portal; then
+            python -u leonardos-guild/tests/portal-browser.py
+          elif test "$QUARTER_ROUTE" = spatial; then
             python -u leonardos-guild/tests/spatial-browser.py
           elif test "$QUARTER_ROUTE" = relay; then
             QUARTER_ROUTE=social QUARTER_RELAY=1 python -u leonardos-guild/tests/quarter-browser.py
