@@ -1,5 +1,6 @@
-"""Real game/renderer/music in Chromium at quarter pixel ratio.
-The standard pad is emulated; this is not physical-device or frame-rate QA.
+"""Legacy mixer/controller regression in Chromium at quarter pixel ratio.
+First Light/Flow is selected explicitly. The separate Undertow suite tests the
+untouched new default and its full song. Neither is physical-device/frame-rate QA.
 """
 import json, os, pathlib
 from playwright.sync_api import sync_playwright
@@ -15,6 +16,10 @@ with sync_playwright() as pw:
     def press(button):
         page.evaluate('(b)=>PrismTestPad.press(b)',button)
     try:
+        # Keep this regression on its original chart; untouched launch is covered
+        # independently, rather than confusing old-controller and new-song scope.
+        page.locator('[data-track="first-light"]').click()
+        page.locator('#difficulty').select_option('flow')
         press(8);assert page.locator('#mixer-panel').is_visible()
         assert page.locator('#mix-music').evaluate('(e)=>document.activeElement===e')
         press(14);assert page.locator('#mix-music').input_value()=='50'
@@ -31,8 +36,7 @@ with sync_playwright() as pw:
         assert page.evaluate("Prism.component.runMode")=='gamepad'
         assert page.evaluate("Prism.component.state.mode")=='keys'
         assert page.locator('#pad-lanes').is_visible()
-        # Schedule an ordinary pad edge inside the browser; Python round trips
-        # must not consume the 170 ms game timing window. No direct scoring call.
+        # Ordinary pad edge at observed real audio time, not a direct score call.
         timing=page.evaluate("""async()=>{
             const g=Prism.component,n=g.state.song.notes.find(n=>n.time>g.audio.time()+g.runOffset+.25);
             if(!n)throw Error('No upcoming note for controller acceptance');
@@ -74,10 +78,10 @@ with sync_playwright() as pw:
         assert page.evaluate('Prism.snapshot().mixer.effects')==0
         assert page.evaluate('Prism.snapshot().mixer.rate')=='off'
         assert not errors,errors
-        result={'passed':True,'scope':'Production renderer/music in Chromium at quarter pixel ratio; emulated standard controller','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','background input isolation','disconnect/reconnect','score isolation','preference reload'],'errors':errors,'timed_pad_input':timing}
+        result={'passed':True,'scope':'Production legacy First Light/Flow renderer/music in Chromium at quarter pixel ratio; emulated standard controller. New default acceptance is the separate Undertow suite.','checks':['mixer navigation','independent volumes','music-only preset','pause transport','gamepad lane hit','focus trap','background input isolation','disconnect/reconnect','score isolation','preference reload'],'errors':errors,'timed_pad_input':timing}
         (OUT/'control-room-browser.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
     except Exception as e:
-        (OUT/'control-room-failure.json').write_text(json.dumps({'error':str(e),'errors':errors,'state':page.evaluate('window.Prism?.snapshot()')},indent=2))
+        (OUT/'control-room-failure.json').write_text(json.dumps({'error':str(e),'errors':errors,'state':page.evaluate('window.Prism?.snapshot()'),'stall':page.evaluate('window.Prism?.component.lastStall||null')},indent=2))
         page.screenshot(path=str(OUT/'control-room-failure.png'),full_page=True)
         print('SNAPSHOT',page.evaluate('window.Prism?.snapshot()'))
         print('ERRORS',errors)
