@@ -1,4 +1,4 @@
-"""Unified main app: real WebGL and actual input paths. Synthetic devices, not hardware."""
+"""Unified main app: real WebGL and actual inputs. Synthetic devices, not hardware."""
 import asyncio,json,os,traceback
 from pathlib import Path
 from playwright.async_api import async_playwright
@@ -17,6 +17,9 @@ async def main():
    q=await state();start=q['xr']['frames'] if q['xr']['active'] else await page.evaluate('NeighborhoodController.inspect().polls');expression='NeighborhoodMissions.inspect().xr.frames' if q['xr']['active'] else 'NeighborhoodController.inspect().polls';await wait(expression+'>='+str(start+n))
   async def press(i):
    await page.evaluate('(i)=>__pad.buttons[i]={pressed:true,value:1}',i);await frames(3);await page.evaluate('(i)=>__pad.buttons[i]={pressed:false,value:0}',i);await frames(4)
+  async def click(row):
+   await page.evaluate("""async r=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w/2)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",row)
+   await frames(4);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand');await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
   async def select(label):
    for _ in range(30):
     rows=await page.evaluate('NeighborhoodMissions.panel().rows');row=next((r for r in rows if r['label']==label or r.get('id')==label),None)
@@ -26,16 +29,15 @@ async def main():
     await click(nxt)
    else:raise AssertionError('Cannot find '+label)
    await click(row)
-  async def click(row):
-   await page.evaluate("""async r=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w/2)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",row)
-   await frames(4);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand');await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
   def ok(name):report['checks'].append(name);print('PASS',name,flush=True)
   try:
    await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']=='0.16.0';assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
-   await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0');await wait('SVGNPlanet.inspect().speed<.04');city=await page.evaluate('SVGNPlanet.inspect()');ok('Original main-world movement and stopping work through the retained Xbox path')
+   await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0')
+   # Capture a stopped departure, not a still-decelerating sample below .04 m/s.
+   # No pose/speed assignment or enlarged position tolerance: exact equality stays.
+   await wait('SVGNPlanet.inspect().speed===0');await frames(6);city=await page.evaluate('SVGNPlanet.inspect()');report['departureCity']=city;ok('Original main-world movement and stopping work through the retained Xbox path')
    await press(9);await page.click('#visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert not (await state())['paused'];await page.screenshot(path=str(OUT/'main-lantern-district.png'));ok('Main-game district travel opens the recovered mission neighborhood in the same document')
    await press(13);await wait('document.querySelector("#ward-menu").open');assert await page.locator('#ward-missions [data-mission]').count()>=10;await page.click('[data-mission="watch"]');await frames();q=await state();assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Main-game mission board exposes resident stories and Night Watch; tracking grants no progress')
-   # Reach Mara from the actual default start with normal stick motion.
    for _ in range(180):
     r=await page.evaluate("""()=>{const s=NeighborhoodMissions.inspect().ward,dx=-10-s.x,dz=14-s.z,d=Math.hypot(dx,dz);__pad.axes=[d>.22?dx/d:0,d>.22?dz/d:0,0,0];return {d,speed:s.speed}}""")
     if r['d']<.3 and r['speed']<.05:break
@@ -46,11 +48,12 @@ async def main():
     for prefix in ['first-person','third-person','diorama-first','diorama-third']:
      mode=prefix+'-'+ar
      if not (await state())['paused']:await press(9)
-     await page.click('#ward-xr');await page.click('#xr-'+mode);await wait('NeighborhoodMissions.inspect().xr.active');await frames(6);q=await state();assert q['xr']['kind']==mode and q['xr']['eyes']==2 and not q['xr']['renderTargetScreen'];
+     await page.click('#ward-xr');await page.click('#xr-'+mode);await wait('NeighborhoodMissions.inspect().xr.active');await frames(6);q=await state();assert q['xr']['kind']==mode and q['xr']['eyes']==2 and not q['xr']['renderTargetScreen']
      await select('ward-resume');await wait('!NeighborhoodMissions.inspect().paused');await frames();q=await state();assert not q['xr']['actionPanelVisible'] and q['xr']['visibleRays']==0;assert q['spatial']['centerError']<1e-5
      await page.evaluate('__xrFixture.viewerPitch=-.25;__xrFixture.viewerRoll=.28');await frames(5);assert not (await state())['xr']['actionPanelVisible'];await page.screenshot(path=str(OUT/(mode+'.png')));await page.evaluate('__xrFixture.viewerPitch=0;__xrFixture.viewerRoll=0');ok(mode+' renders actual per-eye district geometry without gameplay menu boards')
      await press(9);await select('ward-city');await wait('NeighborhoodMissions.inspect().district==="city"');await frames();q=await state();assert q['xr']['active'] and q['xr']['kind']==mode;assert await page.evaluate('__xrFixture.session.ended') is False;ok(mode+' retains the same immersive session when travelling into the original world')
-     after=await page.evaluate('SVGNPlanet.inspect()');assert after['deliveries']==city['deliveries'];assert after['n']==city['n'];await press(9);await select('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert (await state())['ward']['watch']['stage']==1
+     after=await page.evaluate('SVGNPlanet.inspect()');assert after['deliveries']==city['deliveries'];assert after['n']==city['n'],json.dumps({'departure':city['n'],'returned':after['n'],'speed':after['speed'],'mode':mode});await page.screenshot(path=str(OUT/(mode+'-main-city.png')))
+     await press(9);await select('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert (await state())['ward']['watch']['stage']==1
      await page.evaluate('__xrFixture.session.end()');await wait('!NeighborhoodMissions.inspect().xr.active');await frames()
    ok('All eight modes preserve original city position and Watch progress during two-way travel')
    await page.click('#ward-xr');await page.click('#xr-diorama-third-ar');await wait('NeighborhoodMissions.inspect().xr.active');await frames();await select('ward-resume');await page.evaluate('__xrFixture.useHands()');await wait('NeighborhoodMissions.inspect().paused');await frames();await select('ward-map-button');await frames();assert await page.locator('#ward-map-dialog').evaluate('(d)=>d.open');await page.screenshot(path=str(OUT/'hand-mission-map.png'));await select('Back / resume');ok('Joint-pinch opens and returns from the native mission map')
