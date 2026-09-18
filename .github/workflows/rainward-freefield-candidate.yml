@@ -1,16 +1,74 @@
-name: Retire superseded Rainward Freefield candidate
+name: Retire superseded Rainward pull-request queues
 on:
   push:
     branches: [feat/rainward-freefield-20260917]
     paths: ['.github/workflows/rainward-freefield-candidate.yml']
 permissions:
   contents: read
-concurrency:
-  group: rainward-freefield-final-candidate
-  cancel-in-progress: true
 jobs:
-  retire:
+  quest:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-      - run: echo "Freefield is merged; this run only retires the superseded pre-merge candidate queue."
+    concurrency:
+      group: rainward-quest-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire quest PR queue'}]
+  wayfinder:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-wayfinder-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire wayfinder PR queue'}]
+  freight:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-freight-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire freight PR queue'}]
+  spatial:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-spatial-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire spatial PR queue'}]
+  clear_water:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-clear-water-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire clear-water PR queue'}]
+  survival:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-survival-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire survival PR queue'}]
+  field_ready:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-field-ready-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire field-ready PR queue'}]
+  first_light:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-first-light-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire first-light PR queue'}]
+  native:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire native PR queue'}]
+  freefield:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-freefield-refs/pull/183/merge
+      cancel-in-progress: true
+    steps: [{run: 'echo retire freefield PR queue'}]
+  old_candidate:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: rainward-freefield-final-candidate
+      cancel-in-progress: true
+    steps: [{run: 'echo retire old candidate queue'}]
