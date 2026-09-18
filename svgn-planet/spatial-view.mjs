@@ -6,7 +6,7 @@ export function spatialView(view,kind){
  const scene=view.scene,camera=view.camera,world=new T.Group();world.name='Unified '+kind+' scene geometry';
  // All world lights, geometry, sky and active actors get the same coordinate transform.
  // UI and the XR camera remain outside this group in physical reference space.
- for(const child of [...scene.children])if(child!==camera&&child!==view.rig)world.add(child);
+ for(const child of [...scene.children]){if(child.userData.portalPresentation){child.removeFromParent();continue;}if(child!==camera&&child!==view.rig)world.add(child);}
  if(view.rig){view.rig.remove(camera);view.rig.removeFromParent();}
  scene.add(world,camera);camera.up.set(0,1,0);
  const materials=new PortalMaterials(),frame=createPortalFrame(scene,materials);

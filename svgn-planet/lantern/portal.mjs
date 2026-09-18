@@ -30,24 +30,34 @@ bool wardVisible(){
  return leave>=max(entry,0.)&&entry<=1.00001;
 }
 `;
+// One wrapper per material, even when the chapter joins the shared renderer.
+const portalOwners=new WeakMap();
 function rename(source,name){const p=/void\s+main\s*\(\s*(?:void\s*)?\)\s*\{/;if(!p.test(source))throw Error('Unsupported portal shader');return source.replace(p,'void '+name+'(){');}
 export class PortalMaterials{
  constructor(){this.uniforms={wardPortalEnabled:{value:0},wardPortalInverse:{value:new T.Matrix4()},wardPortalSize:{value:new T.Vector3(1.96,.68,1.72)}};this.entries=new Map();}
  collect(root){root.traverse(o=>{for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[])this.attach(m);});}
  attach(m){
   if(this.entries.has(m))return;if(m.isRawShaderMaterial)throw Error('Portal raw shader adapter required');
-  const compile=m.onBeforeCompile,key=m.customProgramCacheKey,base=key.call(m),uniforms=this.uniforms;
-  m.onBeforeCompile=function(s,r){compile.call(this,s,r);Object.assign(s.uniforms,uniforms);
+  const existing=portalOwners.get(m);
+  if(existing){
+   // The integrated scene takes ownership from its standalone presentation.
+   // Rebind uniforms without nesting another copy of the GLSL functions.
+   existing.owner.entries.delete(m);existing.owner=this;existing.uniforms=this.uniforms;
+   this.entries.set(m,existing);m.needsUpdate=true;return;
+  }
+  const compile=m.onBeforeCompile,key=m.customProgramCacheKey,base=key.call(m);
+  const entry={compile,key,owner:this,uniforms:this.uniforms};portalOwners.set(m,entry);
+  m.onBeforeCompile=function(s,r){compile.call(this,s,r);Object.assign(s.uniforms,entry.uniforms);
    s.vertexShader=declarations+rename(s.vertexShader,'wardVertex')+'\nvoid main(){wardVertex();vec4 p=inverse(projectionMatrix)*gl_Position;wardPortalView=p.xyz/p.w;}';
    s.fragmentShader=declarations+aperture+rename(s.fragmentShader,'wardFragment')+'\nvoid main(){if(wardPortalEnabled>.5&&!wardVisible())discard;wardFragment();}';};
-  m.customProgramCacheKey=()=>base+'|'+PORTAL_BUILD;m.needsUpdate=true;this.entries.set(m,{compile,key});
+  m.customProgramCacheKey=()=>base+'|'+PORTAL_BUILD;m.needsUpdate=true;this.entries.set(m,entry);
  }
  configure(anchor,yaw,size){this.uniforms.wardPortalInverse.value.compose(anchor,new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),yaw),new T.Vector3(1,1,1)).invert();this.uniforms.wardPortalSize.value.copy(size);}
  set active(v){this.uniforms.wardPortalEnabled.value=v?1:0;}
  get active(){return this.uniforms.wardPortalEnabled.value===1;}
 }
 export function createPortalFrame(scene,materials){
- const group=new T.Group();group.name='Fixed room-space portal';scene.add(group);group.visible=false;
+ const group=new T.Group();group.name='Fixed room-space portal';group.userData.portalPresentation=true;scene.add(group);group.visible=false;
  const geo=new T.BoxGeometry(1,1,1),frame=new T.LineSegments(new T.EdgesGeometry(geo),new T.LineBasicMaterial({color:0x87b9b5,transparent:true,opacity:.55,depthTest:false}));frame.renderOrder=100;group.add(frame);
  const faces=[];
  for(const [normal,point,rotation]of [[[-1,0,0],[-.5,.5,0],[0,Math.PI/2,0]],[[1,0,0],[.5,.5,0],[0,Math.PI/2,0]],[[0,0,-1],[0,.5,-.5],[0,0,0]],[[0,0,1],[0,.5,.5],[0,0,0]],[[0,1,0],[0,1,0],[-Math.PI/2,0,0]]]){
