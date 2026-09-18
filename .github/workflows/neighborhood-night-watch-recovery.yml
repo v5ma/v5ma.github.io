@@ -13,7 +13,7 @@ jobs:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/night-watch-recovery-20260917'
     permissions:
       contents: write
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
           node-version: '22'
       - name: Verify payload and preimages, apply scoped source, test and commit
         id: source
-        run: python3 .github/upgrades/night-watch-install.py
+        run: python .github/upgrades/night-watch-install.py
       - name: Retain exact source and model evidence
         run: tar -czf night-watch-source.tar.gz svgn-planet little-planet index.html level-design-library/applied .github/workflows SOURCE-COMMIT.txt night-watch-model.txt
       - uses: actions/upload-artifact@v4
