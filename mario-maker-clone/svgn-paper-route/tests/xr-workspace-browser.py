@@ -33,6 +33,8 @@ with sync_playwright() as pw:
  def point(label):
   page.evaluate('(s)=>xrEmulator.point(s)',label);frames(2)
  def choose(label):
+  if label=='Pause' and not page.evaluate('SkyCycleXR.diagnostics.uiVisible'):
+   press(5);return
   for _ in range(45):
    if page.evaluate('(s)=>SkyCycleXR.diagnostics.buttons.some(b=>b.label.toLowerCase().includes(s.toLowerCase()))',label):break
    point(' - Next');page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames(2)
