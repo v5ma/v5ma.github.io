@@ -2,7 +2,7 @@ name: Verify published Lantern Ward
 on:
   push:
     branches: [master]
-    paths: ['svgn-planet/**', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md', '.github/workflows/neighborhood-lantern-published.yml']
+    paths: ['svgn-planet/**', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md', 'level-design-library/applied/NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md', '.github/workflows/neighborhood-lantern-published.yml']
 permissions:
   contents: read
 concurrency:
@@ -28,7 +28,7 @@ jobs:
           import concurrent.futures,hashlib,json,os,pathlib,time,urllib.request
           root=pathlib.Path('svgn-planet');base='https://v5ma.github.io/';commit=os.environ['COMMIT']
           paths=sorted(p for p in root.rglob('*') if p.is_file() and not any(x.startswith('.') or x in ('tests','tools','node_modules','__pycache__') for x in p.relative_to(root).parts) and p.suffix not in ('.py','.pyc'))
-          paths.append(pathlib.Path('level-design-library/applied/NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md'))
+          paths.extend(pathlib.Path('level-design-library/applied')/name for name in ['NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md','NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md'])
           expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};rows={}
           def check(path):
               row={'path':path,'expected':expected[path],'matches':False}
@@ -70,7 +70,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        route: [street, xr, market]
+        route: [street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -88,14 +88,21 @@ jobs:
         env:
           WARD_BASE: https://v5ma.github.io/svgn-planet/
           WARD_ROUTE: ${{ matrix.route }}
+          CITY_SUITE: ${{ matrix.route }}
+          WATCH_SUITE: ${{ matrix.route }}
+          WATCH_OUT: published-results/night-watch
+          CITY_OUT: published-results/city
+          PORTAL_OUT: published-results/portal-render
           WARD_OUT: published-results
           MARKET_OUT: published-results/market
         run: |
-          if [ "$WARD_ROUTE" = market ]; then
-            python svgn-planet/lantern/market-browser.py
-          else
-            python svgn-planet/lantern/browser.py
-          fi
+          case "$WARD_ROUTE" in
+            watch-roof|watch-combat|xr-ui) python svgn-planet/lantern/watch-browser.py ;;
+            city|portal) python svgn-planet/lantern/city-browser.py ;;
+            portal-render) python svgn-planet/lantern/portal-render-browser.py ;;
+            market) python svgn-planet/lantern/market-browser.py ;;
+            *) python svgn-planet/lantern/browser.py ;;
+          esac
       - uses: actions/upload-artifact@v4
         if: always()
         with:

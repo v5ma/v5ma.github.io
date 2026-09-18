@@ -1,7 +1,7 @@
 name: Lantern Ward acceptance
 on:
   push:
-    branches: [master, neighborhood-missions/lantern-ward-playable-20260915]
+    branches: [master, neighborhood-missions/lantern-ward-playable-20260915, neighborhood-missions/night-watch-20260917, neighborhood-missions/night-watch-recovery-20260917]
     paths: ['svgn-planet/lantern/**', 'svgn-planet/tests/**', 'svgn-planet/design/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', 'svgn-planet/legacy-layout.json', '.github/workflows/neighborhood-lantern.yml']
   pull_request:
     paths: ['svgn-planet/lantern/**', 'svgn-planet/tests/**', 'svgn-planet/design/**', 'svgn-planet/lantern-ward.html', 'svgn-planet/index.html', 'svgn-planet/legacy.html', '.github/workflows/neighborhood-lantern.yml']
@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
+        suite: [watch-roof, watch-combat, xr-ui, city, portal, portal-render, street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -68,9 +68,14 @@ jobs:
       - name: Exercise real renderer and simulation through emulated inputs
         env:
           WARD_ROUTE: ${{ matrix.suite }}
+          CITY_SUITE: ${{ matrix.suite }}
+          WATCH_SUITE: ${{ matrix.suite }}
         run: |
           python -m http.server 8765 > server.log 2>&1 &
           case "$WARD_ROUTE" in
+            watch-roof|watch-combat|xr-ui) python svgn-planet/lantern/watch-browser.py ;;
+            city|portal) python svgn-planet/lantern/city-browser.py ;;
+            portal-render) python svgn-planet/lantern/portal-render-browser.py ;;
             street|roof|canal|xr) python svgn-planet/lantern/browser.py ;;
             market) python svgn-planet/lantern/market-browser.py ;;
             *) python "svgn-planet/tests/$WARD_ROUTE.py" ;;
@@ -87,4 +92,4 @@ jobs:
     needs: [model, browser]
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Exact source ${{ github.sha }} passed model, all three delivery approaches, native synthetic XR, Working Quay route comparison and all five legacy browser suites.' >> "$GITHUB_STEP_SUMMARY"
+      - run: echo 'Exact source ${{ github.sha }} passed Night Watch models, two real-input case solutions and native XR menu coverage plus retained models, resident stories, boost release, player-centered portal and stereo pixel checks, native synthetic VR/AR, all delivery approaches, Working Quay and all five legacy browser suites.' >> "$GITHUB_STEP_SUMMARY"

@@ -112,7 +112,6 @@ try{
     if(state.time-saveAt>5){persist();saveAt=state.time;}
    }
    view.update(state,dt,{mode:xr.active?xr.mode:viewMode,yaw,started});
-   // update() sets the actor pose; XR transforms are reapplied without advancing simulation.
    if(xr.active){xr.present(state);const a=xr.inspect();if(a.kind.endsWith('-ar'))view.scene.background=null;}
    view.renderer.render(view.scene,view.camera);
    if(frameCount%6===0){$('goal').textContent=missionGoal(state);const nav=navigation(state,yaw);$('nav-distance').textContent=nav.target?Math.ceil(nav.distance)+' m / '+nav.level:'Choose a resident story';$('nav-arrow').style.transform='rotate('+nav.angle+'rad)';drawMap($('mini-map'),state,true);const f=nearby(state),t=storyTarget(state),r=residents.find(r=>Math.hypot(state.x-r.x,state.z-r.z,state.y-r.y)<1.9);$('context').textContent=t&&Math.hypot(state.x-t.x,state.y-t.y,state.z-t.z)<1.9?'X / '+t.label:r?'X / Meet '+r.name:f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter + '+cityState(state).credits+' resident + '+watchState(state).credits+' Watch credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}

@@ -27,7 +27,6 @@ export function createXR(view,hooks){
  function present(state){if(!session||!lastViewer)return;const first=kind.startsWith('first-person');
   if(first){view.stopPortal();rig.rotation.set(0,hooks.yaw()-heading,0);const offset=origin.clone().applyAxisAngle(new T.Vector3(0,1,0),rig.rotation.y);const f=support(state,state.x,state.z,state.y),y=state.lift||watchRuntime(state).travel?state.y:f?floorHeight(f,state.z):state.safe[1];rig.position.set(state.x-offset.x,y+1.65-offset.y,state.z-offset.z);}
   else{rig.position.set(0,0,0);rig.rotation.set(0,0,0);view.presentPortal(state,settings,origin,heading,hooks.yaw());}
-  // In AR, a virtual head-boundary reveals passthrough instead of a black VR curtain.
   const ar=kind.endsWith('-ar');world.visible=!(first&&ar&&view.curtain.visible);view.curtain.material.transparent=ar;view.curtain.material.opacity=ar?0:1;view.curtain.material.depthWrite=false;
   rig.updateMatrixWorld(true);world.updateMatrixWorld(true);
   if(!first){const eye=world.worldToLocal(rig.localToWorld(new T.Vector3().copy(lastViewer.transform.position)));view.cutaway(state,eye);}
@@ -59,7 +58,6 @@ export function createXR(view,hooks){
    ['Courier preset: main trigger interacts, main grip throws; other trigger holds speed.'],
    ['First-person grapples hide virtual motion briefly; AR reveals your room.']
   ];
-
   if(hooks.paused()&&hooks.confirmation?.())return [['Keep current progress',()=>{hooks.cancelConfirmation();clear();lastPaint=0;}],['Confirm replacement',()=>{hooks.menuAction('replace');clear();lastPaint=0;}]];
   if(hooks.paused()&&section==='controls')return [
    ['Profile: '+prefs.profile,()=>preference('profile',prefs.profile==='action'?'courier':'action')],
@@ -73,7 +71,6 @@ export function createXR(view,hooks){
   ];
   if(hooks.paused()&&section==='tools')return [['Scanner',()=>field('scan')],['Grapple',()=>field('grapple')],['Pulse',()=>field('pulse')],['Smoke',()=>field('smoke')],['Change approach',()=>field('watch-route')],['Recover at watch desk',()=>field('watch-recover')],['Back to Menu',()=>{section='';page=0;lastPaint=0;}]];
   if(hooks.paused()&&section==='saves')return [['Save progress',()=>hooks.menuAction('save')],['Export current progress',()=>hooks.menuAction('export')],['Export original data',()=>hooks.menuAction('export-original')],['Restore backup',()=>{hooks.menuAction('restore');focused=0;page=0;lastPaint=0;clear();}],['Restart chapter',()=>{hooks.menuAction('restart');focused=0;page=0;lastPaint=0;clear();}],['Back to Menu',()=>{section='';page=0;lastPaint=0;}]];
-
   if(hooks.paused()&&missionPage)return [...hooks.missions().map(m=>[m.title,()=>{hooks.track(m.id);missionPage=false;hooks.pause(false);}]),['Display settings',()=>{missionPage=false;page=0;lastPaint=0;}]];
   if(hooks.paused())return [
    ['Resume',()=>hooks.pause(false)],['Missions / map',()=>{missionPage=true;page=0;lastPaint=0;}],['Field tools',()=>{section='tools';page=0;lastPaint=0;}],['Controls',()=>{section='controls';page=0;lastPaint=0;}],['Save / recovery',()=>{section='saves';page=0;lastPaint=0;}],['Exit XR',()=>session?.end()],[kind.endsWith('-ar')?'First-person AR':'First-person VR',()=>setMode('first')],[kind.endsWith('-ar')?'Diorama AR':'Diorama VR',()=>setMode('diorama')],
@@ -100,13 +97,10 @@ export function createXR(view,hooks){
   const ref=renderer.xr.getReferenceSpace(),viewer=ref&&frame.getViewerPose(ref);if(!viewer||session.visibilityState!=='visible'){pause();return input;}
   if(align)place(viewer);
   lastViewer=viewer;const first=kind.startsWith('first-person');present(state);
-  // Virtual camera yaw, not head tilt or head yaw, determines locomotion.
   movementYaw=hooks.yaw();
   const paused=hooks.paused();if(paused!==wasPaused){wasPaused=paused;page=0;focused=0;clear();lastPaint=0;panelOrigin.copy(viewer.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));panelHeading=Math.atan2(-f.x,-f.z);}
-  // Yaw-only world/body dock. Never copy the current head quaternion or roll.
   panelGroup.position.copy(paused?panelOrigin:origin);panelGroup.rotation.set(0,paused?panelHeading:heading,0);panel.visible=paused||(handActions&&Array.from(session.inputSources).some(s=>s.hand));panel.position.set(paused?0:-1.25,paused?-.1:-.3,paused?-1.6:-1.15);panel.scale.setScalar(paused?1:.32);panelGroup.updateMatrixWorld(true);
   if(now-lastPaint>120||!lastPaint)paint(now);
-  // Fade the world if the physically tracked head crosses a metre-space wall.
   if(!first)view.curtain.visible=false;
   if(first){const p=rig.localToWorld(new T.Vector3().copy(viewer.transform.position));view.curtain.visible=!lineClear(state,{x:state.x,y:state.y+1.65,z:state.z},p);if(view.curtain.visible){input.brake=true;hooks.message('Head near a wall. Lean back or recenter from Menu.');}if(watchRuntime(state).travel)view.curtain.visible=true;}
   const activeSources=Array.from(session.inputSources),offSource=activeSources.find(s=>s.handedness!==prefs.dominant&&!s.hand);aiming=!paused&&prefs.profile==='action'&&!!(offSource?.gamepad?.buttons[0]?.pressed||(offSource?.gamepad?.buttons[0]?.value||0)>.2);
@@ -136,8 +130,6 @@ export function createXR(view,hooks){
     if(slot.menuHeld>.55&&!slot.gestureUsed){slot.gestureUsed=true;menuGestures++;if(paused)back();else pause();consumed=true;}
    }else {slot.menuHeld=0;if(!b[0])slot.gestureUsed=false;}
    if(!paused&&slot.ready&&src.hand&&!row&&!consumed&&!nearHead){
-    // A low pinch is a deliberate hold-to-walk. Ordinary pinch is a direct
-    // interaction, not an always-present action board.
     if(b[0]&&relative[1]<-.5){input.y=1;}
     else if(edge(0)){hooks.action('interact');consumed=true;}
    }
@@ -154,8 +146,6 @@ export function createXR(view,hooks){
       if(edge(0)){hooks.action(aiming?'tool':watchState(state).tracking?'strike':'interact',ray);slot.motionArmed=false;}
       if(edge(4))hooks.action('hop');if(edge(5))hooks.action('ride');
       if(!role.movement&&edge(3))hooks.action('tool-cycle');
-      // Reject head-only motion and tracking discontinuities. Motion is an
-      // optional modest gesture; trigger strikes offer the seated alternative.
       const handDelta=slot.lastHand?handPos.distanceTo(new T.Vector3().fromArray(slot.lastHand)):0;
       const headDelta=slot.lastHead?headPos.distanceTo(new T.Vector3().fromArray(slot.lastHead)):0;
       if(!b[1]||relative[2]>-.28)slot.motionArmed=true;
@@ -179,6 +169,5 @@ export function createXR(view,hooks){
  slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});
  addEventListener('pagehide',()=>session?.end());
  return {enter,update,present,clear,setMode,settings,openMissions:()=>{missionPage=true;page=0;pause();lastPaint=0;},navigate:(direction,accept,back)=>{if(!session||!hooks.paused())return;if(back){if(hooks.confirmation?.())hooks.cancelConfirmation();else if(section==='help'){section='controls';page=0;}else if(section||missionPage){section='';missionPage=false;page=0;}else hooks.pause(false);clear();lastPaint=0;return;}if(direction){const step=missionPage?Math.sign(direction):direction;focused=(Math.max(0,focused)+step+rows.length)%rows.length;}if(accept){const row=rows[Math.max(0,focused)];row?.fn?.();selections++;}lastPaint=0;},exit:()=>session?.end(),get movementYaw(){return movementYaw;},get active(){return !!session;},get mode(){return kind.startsWith('first-person')?'first':'diorama';},inspect:()=>({active:!!session,kind,stereoGameWorld:!!session,pending,frames,selections,trackedSources:tracked,jointPool:50,environmentBlendMode:session?.environmentBlendMode||null,scale:world.scale.x,settings:{...settings},controls:{...prefs},preferencesBlocked:prefsBlocked,handActionsOptIn:handActions,motionStrikes,menuGestures,section,aiming,visibleRays:slots.filter(s=>s.ray.visible).length,error,input:{...input},actionPanelVisible:panel.visible,headBoundary:view.curtain.visible,headLockedPanels:false,solidControllerProxies:slots.filter(s=>s.grip.isMesh).length,controllerProxyDepthTest:slots.every(s=>s.grip.material.depthTest),arBoundaryTransparent:kind.endsWith('-ar')&&view.curtain.visible&&!world.visible,panelMatrix:panelGroup.matrix.toArray(),missionPage}),
-  // Read-only panel transform allows a synthetic tracking fixture to aim real rays.
   panelPose:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:rig.matrixWorld.clone().invert().multiply(panel.matrixWorld).toArray(),width:1.4,height:1.05,rows:rows.map(({label,x,y,w,h})=>({label,x,y,w,h}))};}};
 }
