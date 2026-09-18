@@ -1,0 +1,66 @@
+name: Vesperfall Fieldwork legacy acceptance
+on:
+  push:
+    branches: [vesperfall-fieldwork-20260918]
+    paths: ['.github/workflows/vesperfall-fieldwork-legacy.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: source
+        run: |
+          set -euo pipefail
+          python .github/fieldwork-legacy-review.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall/tests/dominions-browser.py vesperfall/tests/pilgrim-browser.py vesperfall/tests/resonant-browser.py vesperfall/tests/first-bell-browser.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Select preserved Classic/manual settings and use the real Missions path in legacy tests'
+            git push origin HEAD:vesperfall-fieldwork-20260918
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  legacy:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [dominions, pilgrim, resonant, first-bell]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Require the unchanged 99-file public runtime before exercising legacy controls
+        run: |
+          mkdir -p test-output
+          python -u vesperfall/tests/verify-live.py
+      - run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise preserved behavior through explicit shipped UI choices
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: |
+          set -euo pipefail
+          timeout 1800 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-legacy-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
