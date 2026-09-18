@@ -24,7 +24,9 @@ jobs:
         with:
           node-version: '22'
       - name: Existing invariants and complete water route
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p test-output
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap

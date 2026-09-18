@@ -1,3 +1,7 @@
+# Owner-rejected core experience: main rhythm takes priority
+
+Current repair: Undertow 0.9.0. See [UNDERTOW.md](UNDERTOW.md). New default music, zero-dot eight-direction charts, immediate Play, and a rhythm pool venue in browser/VR address the actual complaint. User enjoyment, physical comfort and ordinary-resolution performance remain unaccepted. Do not substitute old test counts for those judgments or prioritize another side mode over the main song. The historical board below is retained, not evidence of creative approval.
+
 # Prism Current: AAA-quality production checklist
 
 Active release: Floodgate Recovery v0.8.0. The user requested playable water missions, not another generated image. The complete previous task specifications, priorities, ownership, effort, dependencies and acceptance criteria are retained in [AAA_CHECKLIST-v060.md](AAA_CHECKLIST-v060.md). Earlier archives and ROADMAP.md retain the full development history. Stable task IDs below refer to those specifications.

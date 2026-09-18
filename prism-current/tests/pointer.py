@@ -17,7 +17,7 @@ with sync_playwright() as pw:
  c.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==host or r.request.url.startswith(('data:','blob:')) else r.abort())
  p=c.new_page();p.set_default_timeout(45000);p.on('pageerror',lambda e:errors.append(str(e)))
  try:
-  p.goto(BASE+'/prism-current/',wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready');p.evaluate((ROOT/'prism-current/tests/input-driver.js').read_text());p.locator('#start').click();p.wait_for_function('Prism.snapshot().phase==="playing"&&Prism.snapshot().time>1')
+  p.goto(BASE+'/prism-current/',wait_until='domcontentloaded');p.wait_for_function('window.Prism?.snapshot().ready');p.evaluate((ROOT/'prism-current/tests/input-driver.js').read_text());p.locator('[data-track="first-light"]').click();p.locator('#difficulty').select_option('flow');p.locator('#start').click();p.wait_for_function('Prism.snapshot().phase==="playing"&&Prism.snapshot().time>1')
   check(p.evaluate('Prism.snapshot().input')=='slice','The normal browser button starts physical pointer slicing')
   point=p.evaluate('(()=>{const n=Prism.snapshot().notes[0],v=PrismCore.position(n,n.time),p=new AFRAME.THREE.Vector3(v[0],v[1]+.28,v[2]).project(AFRAME.scenes[0].camera),r=document.getElementById("scene-wrap").getBoundingClientRect();return [r.x+(p.x*.5+.5)*r.width,r.y+(-p.y*.5+.5)*r.height]})()')
   p.mouse.move(*point);p.mouse.down();p.evaluate('PrismTestInput.pointer()');p.mouse.up();p.wait_for_function('Prism.snapshot().state.hits>=1')

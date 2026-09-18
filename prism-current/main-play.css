@@ -1,0 +1,8 @@
+/* Immediate play first. The existing control IDs and save contracts remain. */
+#menu{width:min(450px,calc(100% - 40px));padding:20px 24px;background:#102b33ed;box-shadow:0 8px 60px #041d2644}
+#menu h1{font-size:64px;margin:17px 0 16px}#menu .lead{margin:0 0 14px;line-height:1.65}
+#menu .play-buttons{margin-top:12px;margin-bottom:10px}#start{font-size:17px;padding:15px}
+#main-release{font:9px/1.6 system-ui;letter-spacing:1.4px;color:#a6ead4;margin:10px 0 18px}
+#tracks{gap:6px}.track{padding:10px 12px}.track[data-track=undertow]{border-color:#b4f7d3}
+#water-expedition{margin-top:30px!important}#art-caption h2{font-size:26px}#art-caption{opacity:.65}
+@media(max-width:800px){#menu{padding:18px;margin:10px 20px 60px}#menu h1{font-size:52px}.choices label{min-width:120px}}

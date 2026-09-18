@@ -1,7 +1,7 @@
 /* Three original instrumental scores composed for Prism Current. Synthesized
  * locally, not copied or streamed songs. Shared beat grid with the note charts. */
 (function(root){'use strict';const TAU=Math.PI*2,hz=n=>440*2**((n-69)/12);
- function events(song){if(song.id==='tidal-bloom')return (root.PrismTidal||(typeof require==='function'?require('./tidal-bloom.js'):null)).events();const notes=[],add=(part,pitch,beat,duration,velocity=.4,pan=0)=>notes.push({part,pitch,beat,duration,velocity,pan});
+ function events(song){if(song.id==='undertow')return (root.PrismUndertow||(typeof require==='function'?require('./undertow.js'):null)).events();if(song.id==='tidal-bloom')return (root.PrismTidal||(typeof require==='function'?require('./tidal-bloom.js'):null)).events();const notes=[],add=(part,pitch,beat,duration,velocity=.4,pan=0)=>notes.push({part,pitch,beat,duration,velocity,pan});
   const chords=[[0,4,7,11],[9,12,16,19],[5,9,12,16],[7,11,14,17]],melodies=[[7,9,11,14,11,9,7,4],[12,11,9,7,4,7,9,11],[14,16,14,11,9,7,4,2]];
   for(let bar=0;bar<song.bars;bar++){
    const b=bar*4,ch=chords[Math.floor(bar/2)%4],breakdown=bar>=12&&bar<16,thin=bar<2||breakdown;
@@ -29,7 +29,7 @@
    const release=t<duration?1:Math.exp(-(t-duration)*12);a[i]=v*Math.min(1,t/.003)*release*Math.min(1,(a.length-1-i)/(rate*.01));
   }return a;
  }
- function render(song,rate=24000){if(!Number.isInteger(rate)||rate<8000||rate>48000)throw Error('Bad sample rate');const length=Math.ceil(song.duration*rate),left=new Float32Array(length),right=new Float32Array(length),cache=new Map(),beat=60/song.bpm;
+ function render(song,rate=24000){if(song.id==='undertow')return (root.PrismUndertow||(typeof require==='function'?require('./undertow.js'):null)).render(song,rate);if(!Number.isInteger(rate)||rate<8000||rate>48000)throw Error('Bad sample rate');const length=Math.ceil(song.duration*rate),left=new Float32Array(length),right=new Float32Array(length),cache=new Map(),beat=60/song.bpm;
   for(const e of events(song)){const dur=Math.round(e.duration*beat*1000)/1000,k=[e.part,e.pitch,dur].join('/');let a=cache.get(k);if(!a){a=sample(e.part,e.pitch,dur,rate);cache.set(k,a);}const at=Math.round(e.beat*beat*rate),l=e.velocity*Math.cos((e.pan+1)*Math.PI/4)*.46,r=e.velocity*Math.sin((e.pan+1)*Math.PI/4)*.46;for(let j=0;j<a.length&&at+j<length;j++){left[at+j]+=a[j]*l;right[at+j]+=a[j]*r;}}
   for(const [d,g]of(song.id==='tidal-bloom'?[[beat*.75,.075],[beat,.05]]:[[.087,.09],[.167,.06]])){const delay=Math.round(d*rate);for(let i=length-1;i>=delay;i--){left[i]+=right[i-delay]*g;right[i]+=left[i-delay]*g;}}
   if(song.id==='tidal-bloom')for(let i=Math.max(0,length-Math.ceil(rate*1.3));i<length;i++){const f=(length-1-i)/(rate*1.3);left[i]*=f;right[i]*=f;}
