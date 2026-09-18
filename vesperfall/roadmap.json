@@ -1,7 +1,7 @@
 {
-  "version": "0.16.0",
+  "version": "0.17.0",
   "project": "Vesperfall: Arrows Unchained",
-  "scope": "Goldwind adds an explicit physical bow preset to the existing Open Line cathedral: temporary golden teleport draws, tracked short-range disk throws, bow-hand directional shield and direct reach quiver. Classic, crossbow and Xbox controls and all saved layouts remain. No new campaign region or procedural generator is claimed.",
+  "scope": "Pilgrimage makes Goldwind the fresh-settings default and adds two seeded chapter families: The Lantern Causeway and The Ashen Archive. Authored modules carry ordinary routes, conditional crossings, firing lanes, supported Blink landings, service shortcuts and role-based encounters. Geometry, encounter, loot and decoration randomness are independent. Existing explicit Classic preferences, three legacy layouts, old runs and rewards remain.",
   "tasks": [
     {
       "id": "V01",
@@ -40,11 +40,17 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Source implemented; software regression coverage. Physical acceptance is separate. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
+      "verification": "Pilgrimage 0.17.0: Goldwind now defaults for fresh settings; explicitly stored Classic remains available. Both presets are tested intentionally rather than mislabeling old-control tests as new-default tests. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "The shot must follow the real draw, including cancellation under tracking loss.",
-      "release": "0.16.0 Goldwind"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V03",
@@ -79,11 +85,17 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Source implemented; software regression coverage. Physical acceptance is separate. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
+      "verification": "Pilgrimage 0.17.0: The new catalogue records supported upper landing surfaces and separate projectile connections. Low and arcing Blink trajectories use actual launch curves and collision; Archive roofs legitimately reject obstructed high arcs. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": "0.16.0 Goldwind"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V05",
@@ -97,11 +109,17 @@
       "owner": "Level design",
       "evidence": [
         "dominions-world.js",
-        "tests/dominions.test.cjs"
+        "tests/dominions.test.cjs",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "verification": "Pilgrimage 0.17.0: Pilgrimage adds a bounded catalogue assembler with mirrored module sides, distinct tile families, tested ground sockets, separate random streams and immutable chapter identifiers. This is not arbitrary WFC or recovered In Death source. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": "0.7.0"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V06",
@@ -279,11 +297,17 @@
         "pilgrim-save.js",
         "pilgrim-rest.js",
         "tests/pilgrim.test.cjs",
-        "tests/pilgrim-browser.py"
+        "tests/pilgrim-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Model and native browser/controller release gates; physical lifecycle QA remains open.",
+      "verification": "Pilgrimage 0.17.0: Both new chapter identities, tier snapshot, geometry signature, relay targets, shutters and persistent service gates restore before supported player positions are accepted. Interrupted arrows and a checkpoint inside an opened gate are tested. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "Long exploration needs interruption-safe continuity, not just permanent unlocks.",
-      "release": "0.9.0"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V16",
@@ -443,11 +467,17 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Physical disk acquisition, recent-motion release recognition, swept flight and supported-ground relocation are implemented for the Goldwind bow preset. A drop, pose jump, missing tracking or blocked impact cannot teleport. Richer generated route families and physical-device approval remain open.",
+      "verification": "Pilgrimage 0.17.0: The default physical bow and thrown disk now operate in generated court/gallery/service encounter families. Physical-device throw feel, tracking and comfort remain open. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": "0.16.0 Goldwind"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V25",
@@ -605,10 +635,17 @@
       "milestone": "M0",
       "depends": [],
       "owner": "UX / level design",
-      "evidence": [],
-      "verification": "Source implemented; software regression coverage. Physical acceptance is separate.",
+      "evidence": [
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
+      ],
+      "verification": "Pilgrimage 0.17.0: The atlas and in-headset known-places list reflect the actual generated chapter and discovered regions. AR inspection reconstructs its seed, stage, tier and mechanism state, without disclosing undiscovered geometry. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "Preserve the established game while closing the stated acceptance gate.",
-      "release": "Baseline through 0.6.0"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V35",
@@ -625,11 +662,17 @@
         "HOLLOW-DOMINIONS.md",
         "TIDELIGHT.md",
         "tidelight.js",
-        "CONTINUATION-AUDIT.md"
+        "CONTINUATION-AUDIT.md",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Partial. Tidelight 0.12.0 water exists in current source. The earlier seven-surface/four-named-district draft, recessed fonts, refracting tile basins and architecture reflections are not established by the shipped implementation.",
+      "verification": "Pilgrimage 0.17.0: The Lantern Causeway uses exposed crossing and wind-gallery relationships; The Ashen Archive uses roofs, columns and alternating stacks to interrupt shot geometry. Both include ordinary service routes and a lasting local return gate. No new water gameplay or swimming is introduced. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
       "why": "More areas should create memorable choices and reasons to explore, not repeat one room or flood every courtyard.",
-      "release": "0.12.0 Tidelight presentation baseline; authored expansion open"
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V36",
@@ -753,10 +796,16 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Surestep implements the missing paginated Quest water settings and adds optional tracked-hand ray/pinch menu input. Xbox down selects Blink and left cycles stocked, unlocked damage arrows outside menus/quiver. Tracking loss, held-pinch acquisition and controller handover are explicit software gates in tests/surestep-browser.py. Full accessibility/remapping and physical-device approval remain open. Returning Bell interactions retain direct Xbox controls; the AR Architect's Table shares controller-ray/stick and joint-pinch menus. Game-owned confirmations still use the existing save guard. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
-      "release": "0.16.0 Goldwind"
+      "verification": "Pilgrimage 0.17.0: Pilgrimage start, mechanism interactions, chapter rewards, save/continue, journal and known-place menus share existing Xbox and Quest paths. Synthetic acceptance remains distinct from real-device approval. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V42",
@@ -911,10 +960,16 @@
         "tests/production.test.cjs",
         "tests/production-browser.py",
         "DEVELOPMENT-HANDOFF.md",
-        "CONTINUATION-AUDIT.md"
+        "CONTINUATION-AUDIT.md",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "September 13 repairs both the stale plan/workbook and the core diagnostic version label, without changing mechanics or save formats. Historical acceptance had 148 model passes and one plan-version failure; fresh checks are recorded separately. Physical/human gates remain open.",
-      "release": "0.9.0 foundation; 0.12.0 planning synchronization"
+      "verification": "Pilgrimage 0.17.0: The 76 stable task IDs and six-sheet workbook remain canonical. Pilgrimage metadata is synchronized; exact accepted source and public results belong in its separate publication receipt. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V49",
@@ -939,10 +994,16 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Ten playable lessons now verify actual outcomes, with device-specific hints and a spatial Quest coach. Skips are recorded separately. Software-only: first-user confusion, reversed-hand ergonomics and fatigue remain to be measured. Returning Bell replaces the default fresh opening; all guided First Bell lessons remain explicitly available. Physical onboarding and newcomer study remain open. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
-      "release": "0.16.0 Goldwind"
+      "verification": "Pilgrimage 0.17.0: New expeditions enter Pilgrimage by default with an explicit two-signal objective, direct Goldwind controls and a protected arrival. First Bell lessons and the authored Returning Bell remain selectable; human first-session understanding is not established. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V50",
@@ -962,10 +1023,16 @@
       "evidence": [
         "oath-model.js",
         "tests/oath.test.cjs",
-        "tests/first-bell-browser.py"
+        "tests/first-bell-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "The optional Oath coordinates three staged encounters with front-hemisphere initiation, bolt/windup budgets and recovery supplies. The original Endless mode is unchanged. Broad seed/human difficulty evaluation remains open. Returning Bell deliberately places five retained defenders along different approaches; it does not claim a new global director or patrol system.",
-      "release": "0.10.0 First Bell"
+      "verification": "Pilgrimage 0.17.0: Six purposeful role slots per chapter place a court volley, gallery angle and ground pressure in each module. Roster selection is deterministic and independent of geometry. Navigation limits are retained honestly; no new adaptive director or enemy climbing is claimed. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V51",
@@ -1019,10 +1086,16 @@
         "OPEN-LINE.md",
         "returning-bell-lanes.js",
         "tests/open-line.test.cjs",
-        "tests/open-line-browser.py"
+        "tests/open-line-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Open Line refines the existing seven-place chapter instead of expanding it. A new versioned central stair shares the screen's cover/shot tradeoff with a repositioned existing watcher. Ordinary arrows can lift the brass release; the gallery still reverses it. A learned signal shot can complete without entering the tower. Model and controller-driven route comparisons record actual distance, simulation time, health and shots; human comprehension, enjoyment and the original finished-slice gate remain open.",
-      "release": "0.15.0 Open Line"
+      "verification": "Pilgrimage 0.17.0: Two chapter families assemble authored encounter modules with distinct direct, gallery and service routes. The reversible shutter couples movement to exposure; an ordinary shot can lift its release, and relay shots from below permit legitimate alternate completion. Body-clearance samples, actual movement, projectile and recovery tests are retained. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V53",
@@ -1097,9 +1170,16 @@
       "owner": "Level design",
       "gate": "Complete coherent crypt, storm roof and luminous sanctuary kits with different navigation, encounter opportunities, materials and sonic palettes. Validate seed combinations and repeated transitions.",
       "why": "Different sectors should feel like places, not palette swaps.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
+      ],
+      "verification": "Pilgrimage 0.17.0: Two initial graybox-first spatial identities exist, not three completed production biome kits. Causeway exposure contrasts with Archive ceilings and interrupted sightlines; polished bespoke assets, audio and a third biome remain open. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V57",
@@ -1122,10 +1202,16 @@
         "OPEN-LINE.md",
         "returning-bell-lanes.js",
         "tests/open-line.test.cjs",
-        "tests/open-line-browser.py"
+        "tests/open-line-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Open Line links a visible brass release and cable to the actual moving screens, labels the exposed short stair, and preserves the recognizable refuge gate. Functional cues express speed/exposure versus observation/control. Recognition and environmental-story understanding require unfamiliar-player observation; no human narrative rating is claimed.",
-      "release": "0.15.0 Open Line"
+      "verification": "Pilgrimage 0.17.0: Functional signal-road and reading/service circulation explain relays, shutters and return latches. Familiar refuge markers are seen through the closed gate before its service-side opening. Narrative content is original and public-only; human recognition is not inferred from screenshots. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V58",
@@ -1287,10 +1373,16 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Legacy hollow-dominions-1 and returning-bell-1 fixtures remain. Open Line adds returning-bell-2 and captures/restores the actual layout identity; mechanism geometry is rebuilt before supported-position checks, including a player saved inside the raised-screen crossing. This compatibility work does not complete export, backup, storage eviction or general migration tooling. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
-      "release": "0.16.0 Goldwind"
+      "verification": "Pilgrimage 0.17.0: New layouts use lantern-causeway-1 and ashen-archive-1 without changing hollow-dominions-1 or either Returning Bell ID. Stage, tier and signature are validated; mechanism geometry is rebuilt before checkpoint collision checks. General export/backup and physical storage-failure acceptance remain open. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V66",
@@ -1308,10 +1400,16 @@
       "gate": "Run at least 1000 proposed seed/depth fixtures and 50 lifecycle transitions, tracking unreachable rewards, spawning collisions, NaNs, leaks and progress duplication. Publish failures and seed repros. Add dedicated Tidelight tests for pool placement across depth/seed, standing on high walks above water, actual arrow-water crossings, paused/reduced-effects motion, sector clock resets, AR return and old-save continuation.",
       "why": "Finite smoke tests are not a complete campaign quality gate.",
       "evidence": [
-        "CONTINUATION-AUDIT.md"
+        "CONTINUATION-AUDIT.md",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "verification": "Pilgrimage 0.17.0: The added model suite samples 96 chapter/seed combinations across three tier snapshots, both handed module orientations and all four tile families. It also exercises real movement, signal shots, upper Blink landings and saved open gates. Sampling is not a proof of every possible play experience or a complete long-session soak. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V67",
@@ -1360,10 +1458,16 @@
         "goldwind-model.js",
         "goldwind-xr.js",
         "tests/goldwind.test.cjs",
-        "tests/goldwind-browser.py"
+        "tests/goldwind-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "Open Line retains exact-source model/workbook checks, four controller-driven route comparisons, full first-person VR/AR/hand/save regression and separate public-byte/launch verification. Preserve unsuccessful receipts and separate model, rendered software, physical-device and human evidence. Public success is recorded only in the matching publication receipt. Goldwind adds an opt-in physical bow preset; exact model, native input and publication outcomes belong in its versioned evidence receipt. Classic/crossbow and Xbox remain. Real-device ergonomics and human acceptance are not closed.",
-      "release": "0.16.0 Goldwind"
+      "verification": "Pilgrimage 0.17.0: Candidate and public acceptance distinguish exact production hashes, model checks, input-driven rendered journeys and hardware/human gates. Failed graybox and transport/test traces are recorded, not counted as successful release evidence. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V69",
@@ -1388,7 +1492,7 @@
       "id": "V70",
       "area": "World",
       "title": "Content-complete campaign and replay challenge tuning",
-      "status": "Planned",
+      "status": "Partial",
       "priority": "P1",
       "milestone": "M5",
       "depends": [
@@ -1399,9 +1503,16 @@
       "owner": "Level design",
       "gate": "Complete the agreed campaign scope, enemy/loot combinations and endgame variations with no placeholder gates. Measure real play length and review progression fatigue before promising duration.",
       "why": "Finish and balance the agreed experience before expanding scope again.",
-      "evidence": [],
-      "verification": "Not closed; no completion credit without gate evidence.",
-      "release": ""
+      "evidence": [
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
+      ],
+      "verification": "Pilgrimage 0.17.0: The new default campaign route comprises Lantern Causeway then Ashen Archive, with an ordinary blessing between them and explicit continuation to retained Endless after the second. This is an initial two-chapter pipeline, not a content-complete final campaign or new boss suite. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     },
     {
       "id": "V71",
@@ -1524,10 +1635,16 @@
         "OPEN-LINE.md",
         "returning-bell-lanes.js",
         "tests/open-line.test.cjs",
-        "tests/open-line-browser.py"
+        "tests/open-line-browser.py",
+        "PILGRIMAGE.md",
+        "pilgrimage-model.js",
+        "pilgrimage-view.js",
+        "tests/pilgrimage.test.cjs",
+        "tests/pilgrimage-driver.cjs",
+        "tests/pilgrimage-browser.py"
       ],
-      "verification": "The authored opening retains the ordinary sector reward once and explicitly continues into Endless after its blessing. Open Line strengthens route purpose and a knowledge-based signal approach without adding a new boss or second authored chapter. Existing First Bell/Oath remain. External first/replay play and physical-device acceptance remain open.",
-      "release": "0.15.0 Open Line"
+      "verification": "Pilgrimage 0.17.0: First Bell and Bellkeeper Oath remain separate. Pilgrimage adds two objective-driven chapter endings, not a new boss. One-time sector rewards and progression into retained Endless are tested without requiring every defender to die. Earlier implementation evidence remains in the referenced release notes. Exact accepted revisions belong in publication receipts; hardware and human gates remain separate.",
+      "release": "0.17.0 Pilgrimage"
     }
   ],
   "updated": "2026-09-17",
@@ -1939,33 +2056,31 @@
     ]
   ],
   "nextRelease": {
-    "theme": "Validate Goldwind physical comfort and shot/travel/recovery decisions in Open Line before reusable encounter generation.",
+    "theme": "Tune seeded chapter legibility, meaningful route use and physical archery before adding more modules or bosses.",
     "focus": [
-      "V24",
-      "V49",
       "V52",
-      "V57",
-      "V61",
-      "V62",
-      "V65",
-      "V68",
-      "V75",
-      "V76",
       "V50",
       "V64",
-      "V41",
+      "V24",
+      "V56",
+      "V57",
+      "V59",
+      "V62",
+      "V65",
+      "V66",
+      "V68",
+      "V70",
       "V58",
-      "V74",
-      "V59"
+      "V41"
     ],
-    "note": "Next technical extension: authored encounter modules with separate walking, shot and Blink relationships and deterministic independent streams. Begin only from the existing tested physical loop; retain all three layout IDs and real old-save fixtures. Real hardware, new-player understanding, final art/audio and second chapter remain open."
+    "note": "Observe fresh and repeat players in both chapters: can they predict the shutter exposure, recognize service returns and use a different signal angle? Extend the finite module catalogue only after those observations. Keep all five immutable layout readers and explicit Classic preferences."
   },
   "continuation": {
     "updated": "2026-09-17",
     "entrypoint": "DEVELOPMENT-HANDOFF.md",
     "audit": "CONTINUATION-AUDIT.md",
-    "gameVersion": "0.16.0",
-    "auditedBase": "acf522b290b051479c8d7868bee560635b0a9c8c",
+    "gameVersion": "0.17.0",
+    "auditedBase": "b74cc4d1849aded501b9f28576596efac5f5a407",
     "publicationRule": "Finish, test, commit, merge and verify the public game; do not stop at a local candidate or unmerged branch.",
     "scopeRule": "Only Vesperfall; preserve siblings, saves, existing modes and public-only narrative.",
     "requirements": [
@@ -1979,49 +2094,41 @@
     "firstActions": [
       {
         "tasks": [
+          "V52",
+          "V50",
+          "V64",
+          "V70"
+        ],
+        "action": "Read PILGRIMAGE.md, inspect its exact public receipt, and review the generated Causeway/Archive route observations. Validate learned choices rather than adding room count. No human playtest is claimed."
+      },
+      {
+        "tasks": [
           "V02",
           "V04",
-          "V18",
           "V24",
-          "V45",
-          "V49",
-          "V75"
-        ],
-        "action": "Read GOLDWIND.md and exact publication evidence; validate the opt-in bow preset on physical Quest 3. Observe errors while moving between combat arrows, golden draws, shield, physical quiver and escape disk in the existing chapter. Retain Classic/crossbow and Xbox shortcuts; do not infer ergonomics from synthetic poses."
-      },
-      {
-        "tasks": [
-          "V52",
-          "V57",
-          "V64",
-          "V76"
-        ],
-        "action": "Read OPEN-LINE.md, the shared level-design library and the exact source/publication receipt. Compare actual ground, gallery and central approaches with unfamiliar and returning players. Ask what raising the screens changes and whether the learned signal shot creates useful agency; do not call synthetic route completion a player study."
-      },
-      {
-        "tasks": [
-          "V41",
-          "V59",
+          "V61",
           "V62",
           "V75"
         ],
-        "action": "Test physical first-person Quest archery, both handedness settings, AR table placement and hand/controller transitions. Preserve full save restoration and the separate unscored Sanctuary."
+        "action": "Goldwind is now the fresh-settings default, with explicit Classic retained. Test physical Quest posture, reach selection, deliberate throws and both handedness roles in the new modules. Preserve independent camera tracking."
       },
       {
         "tasks": [
+          "V15",
+          "V65",
+          "V66",
+          "V68"
+        ],
+        "action": "Keep all five layout IDs, actual old-save fixtures, deterministic per-layer streams and mechanism-first restore. Capture failures and exact published hashes before calling any new catalogue revision accepted."
+      },
+      {
+        "tasks": [
+          "V56",
+          "V57",
           "V58",
-          "V74"
+          "V59"
         ],
-        "action": "Tune chapter-specific spatial sound, visibility, water/effect lifecycle and sustained rendering budgets in support of place mastery, not as unrelated feature accumulation."
-      },
-      {
-        "tasks": [
-          "V49",
-          "V50",
-          "V52",
-          "V76"
-        ],
-        "action": "Tune this complete chapter before expansion. Retain hollow-dominions-1, returning-bell-1 and returning-bell-2, all checkpoint fixtures, direct arrow controls and explicit Endless continuation. Roll back by a scoped save-safe commit, never by removing support for saved layouts."
+        "action": "Improve causeway/archive visual and audio communication after actual route review, then measure physical rendering and thermal budgets. Initial graybox identity is not finished production art."
       }
     ],
     "historicalEvidence": {
@@ -2043,7 +2150,7 @@
       "A 165-test passing suite for the published minimal Tidelight"
     ],
     "designGaps": [
-      "Goldwind bow now implements a physically thrown supported-ground disk; Classic/Xbox retain the earlier step. Richer procedural encounter families and real throw ergonomics remain open (V24).",
+      "Pilgrimage now provides initial generated vertical encounter families; physical thrown-disk ergonomics and broader long-session variability remain open (V24,V66).",
       "Requested discrete hit points are not the current numerical-health model; any conversion needs design and migration (V63,V65)."
     ],
     "evidenceRule": "Separate source inspection, model tests, native browser fixtures, public deployment, physical hardware and human review.",
@@ -2085,6 +2192,16 @@
         "Transient held/in-flight disk cancels on pause, loss or mode change before charge spend.",
         "Real Quest/Xbox, comfort, performance and unfamiliar-player gates remain open."
       ]
+    },
+    "pilgrimage": {
+      "basis": "User request to make Goldwind default and introduce procedural generation and chapters; supplied archery and place-mastery references; shared public studio library.",
+      "hypothesis": "A small deterministic catalogue of complete combat/traversal relationships can create new route choices while keeping ordinary recovery and learned rules dependable.",
+      "primaryObservation": "Actual walking, relay shots, upper Blink, open-gate reload and two chapter rewards, with live enemies and ordinary resources. Sampled catalogue clearance is a separate model observation.",
+      "layoutIDs": [
+        "lantern-causeway-1",
+        "ashen-archive-1"
+      ],
+      "scope": "Two modules per chapter, four module families, independent geometry/encounter/loot/decor streams. No arbitrary geometry assembler, new enemy AI, new boss or physical-device certification."
     }
   }
 }

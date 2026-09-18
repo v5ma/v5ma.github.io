@@ -56,7 +56,7 @@ with sync_playwright() as p:
   button(hand,index,False)
  try:
   page.goto(BASE+'/vesperfall/?journey=goldwind',wait_until='domcontentloaded');wait('window.Vesperfall?.component.goldwind&&Vesperfall.component.stats.drawCalls>0')
-  check(page.locator('#xr-bow-controls').input_value()=='classic','Classic bindings remain the default until explicitly switched')
+  check(page.locator('#xr-bow-controls').input_value()=='goldwind','Goldwind is the default for a fresh player')
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed')
   def pad(i):
    for on in [True,False]:
@@ -65,7 +65,9 @@ with sync_playwright() as p:
    if page.evaluate("document.activeElement.id==='xr-bow-controls'"):break
    pad(13)
   check(page.evaluate("document.activeElement.id==='xr-bow-controls'"),'Xbox reaches the new bow control preset without a mouse')
-  pad(15);check(page.locator('#xr-bow-controls').input_value()=='goldwind','Xbox enables the physical Goldwind preset')
+  pad(15);check(page.locator('#xr-bow-controls').input_value()=='classic','Xbox can explicitly retain Classic as an option')
+  pad(15);check(page.locator('#xr-bow-controls').input_value()=='goldwind','Xbox returns to the physical Goldwind preset')
+  page.locator('#expedition-mode').select_option('returning-bell')
   page.evaluate('TestPad.enabled=false');wait('!Vesperfall.component.dominionControls.state.pad');page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   page.locator('[data-arrow="frost"]').click();page.keyboard.press('KeyP');page.locator('#menu-vr').click();wait('Vesperfall.component.xr');xrmenu('Resume');neutral()
   ammo=page.evaluate('Vesperfall.state.ammo.frost');shots=page.evaluate('Vesperfall.state.shots')

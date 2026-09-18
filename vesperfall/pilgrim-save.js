@@ -23,7 +23,7 @@
  const sets=['discovered','orders','sideRewards','targets'];
  const counters=['score','kills','shots','hits','shardCharges','maxShards','headshots','blocks','blinks','shardsUsed','sectors'];
  const enemyFields=['id','room','kind','p','hp','maxHp','speed','cd','wind','slow','frozen','recovery','dead','aware','required','bodyRadius','headRadius','facing','aim','windTotal','phase','charge','combo','comboTime','oathWave','oathBoss','bossPhase','bossTransition','bossPattern','bossMove','aimFloor'];
- const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups','oath','chapter'];
+ const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups','oath','chapter','pilgrimage'];
  function enemy(raw,base){keys(raw,enemyFields);const out={...base};
   for(const k of['id','room','kind','maxHp','speed','required','bodyRadius','headRadius','oathWave','oathBoss'])if(raw[k]!==base[k])fail('Enemy identity or stats do not match this world.');
   out.p=vector(raw.p);out.hp=num(raw.hp,-100000,base.maxHp);out.dead=bool(raw.dead);out.aware=bool(raw.aware);if(out.dead!==(out.hp<=0))fail('Enemy life state is inconsistent.');
@@ -46,20 +46,26 @@
  }
  function capture(s,meta){if(s.unscored||s.world.ar||!['playing','reward'].includes(s.phase)||s.health<=0)fail('Only a living scored expedition can be suspended.');
   const state={};for(const k of[...Object.keys(numberFields),...flags,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards'])state[k]=copy(s[k]??(k==='playerSlow'?0:undefined));
-  if(s.oath)state.oath=copy(s.oath);if(s.chapter)state.chapter=copy(s.chapter);
+  // Near-miss audio bookkeeping is transient, not expedition physics.
+  state.bolts=state.bolts.map(({soundPassed,...bolt})=>bolt);
+  if(s.oath)state.oath=copy(s.oath);if(s.chapter)state.chapter=copy(s.chapter);if(s.pilgrimage)state.pilgrimage=copy(s.pilgrimage);
   for(const k of sets)state[k]=[...(s[k]||[])];
   state.enemies=s.world.enemies.map(e=>{const o={};for(const k of enemyFields)if(own(e,k))o[k]=copy(e[k]);return o;});
   state.pickups=s.world.pickups.map(p=>({id:p.id,taken:p.taken}));
-  return {generator:s.world.returningBell?s.world.generator:GENERATOR,seed:s.world.seed,depth:s.world.depth,meta:copy(meta),state};
+  return {generator:s.world.returningBell||s.world.pilgrimage?s.world.generator:GENERATOR,seed:s.world.seed,depth:s.world.depth,meta:copy(meta),state};
  }
  function restore(checkpoint){keys(checkpoint,['generator','seed','depth','meta','state']);
-  const chapter=[ReturningBellModel.ID,ReturningBellLanes.ID].includes(checkpoint.generator);
-  if(checkpoint.generator!==GENERATOR&&!chapter)fail('This expedition needs its original world-generator version.');
+  const chapter=[ReturningBellModel.ID,ReturningBellLanes.ID].includes(checkpoint.generator),proc=PilgrimageModel.known(checkpoint.generator);
+  if(checkpoint.generator!==GENERATOR&&!chapter&&!proc)fail('This expedition needs its original world-generator version.');
   if(typeof checkpoint.seed!=='string'||!/^[-\w]{1,24}$/.test(checkpoint.seed))fail('Saved seed is invalid.');
   const depth=num(checkpoint.depth,1,99,true),d=keys(checkpoint.state,stateFields);
   if(chapter!==own(d,'chapter')||chapter&&own(d,'oath'))fail('Chapter layout and saved state disagree.');
-  const s=C.create(checkpoint.seed,depth,{returningBell:chapter?checkpoint.generator:false,challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked),oath:own(d,'oath')});
+  if(proc!==own(d,'pilgrimage')||proc&&(own(d,'oath')||chapter))fail('Pilgrimage layout and state disagree.');
+  const pr=proc?keys(d.pilgrimage,['version','stage','tier','signature','shutters','gates']):null;
+  if(proc&&(num(pr.stage,0,1,true)!==PilgrimageModel.IDS.indexOf(checkpoint.generator)||depth!==pr.stage+1))fail('Pilgrimage stage does not match its layout.');
+  const s=C.create(checkpoint.seed,depth,{pilgrimage:proc?{stage:pr.stage,tier:num(pr.tier,0,2,true)}:null,returningBell:chapter?checkpoint.generator:false,challenge:bool(d.challenge)?'nightfall':'normal',ricochet:bool(d.ricochetUnlocked),oath:own(d,'oath')});
   if(chapter){ReturningBellModel.restore(s,d.chapter);ReturningBellLanes.apply(s);}
+  if(proc)PilgrimageModel.restore(s,pr);
   if(own(d,'oath')){const o=keys(d.oath,['version','stage','active','rest','gap','grants','cleared']);if(o.version!==1)fail('Unsupported Oath route version.');s.oath={version:1,stage:num(o.stage,0,3,true),active:bool(o.active),rest:num(o.rest,0,5),gap:num(o.gap,0,2),grants:num(o.grants,0,1000000,true),cleared:num(o.cleared,0,3,true)};if(o.cleared!==o.stage||o.stage===3&&o.active)fail('Inconsistent Oath route progress.');}
   for(const[k,[min,max]]of Object.entries(numberFields))s[k]=num(d[k],min,max,counters.includes(k));
   for(const k of flags)s[k]=bool(d[k]);
@@ -79,7 +85,8 @@
   s.arrows=array(d.arrows,48).map(a=>projectile(a,'arrow'));s.bolts=array(d.bolts,24).map(b=>projectile(b,'bolt'));
   s.hazards=array(d.hazards,12).map(h=>{keys(h,['p','radius','life','kind','owner']);return {p:vector(h.p),radius:num(h.radius,0,6),life:num(h.life,0,2),kind:choice(h.kind,['alchemist','colossus']),owner:num(h.owner,0,20,true)};});
   if(chapter&&(depth!==1||s.sideRewards.size||s.portalReady!==s.chapter.bellRung||s.chapter.bellRung!==s.targets.has(0)||[...s.targets].some(i=>i!==0)||s.chapter.returned!==(s.phase==='reward')||s.discovered.size>7||[...s.discovered].some(i=>i>6)))fail('Inconsistent chapter discovery or completion.');
-  const ready=chapter?s.chapter.bellRung:s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead);if(s.portalReady&&!ready||s.phase==='reward'&&(!s.portalReady||!s.finished))fail('Beacon state is inconsistent.');
+  if(proc&&(s.sideRewards.size||[...s.discovered].some(i=>i>=s.world.rooms.length)||[...s.targets].some(i=>i>=2)||s.portalReady!==(s.targets.size===2)||s.finished!==(s.phase==='reward')))fail('Inconsistent pilgrimage objective or discovery.');
+  const ready=proc?s.targets.size===2:chapter?s.chapter.bellRung:s.world.enemies.filter(e=>e.required!==false).every(e=>e.dead);if(s.portalReady&&!ready||s.phase==='reward'&&(!s.portalReady||!s.finished))fail('Beacon state is inconsistent.');
   const m=keys(checkpoint.meta,['id','banked','receipt','yaw','pitch','focus']);if(typeof m.id!=='string'||!/^[-a-zA-Z0-9]{8,64}$/.test(m.id))fail('Saved expedition identity is invalid.');
   const meta={id:m.id,banked:num(m.banked,0,s.kills,true),yaw:num(m.yaw,-Math.PI,Math.PI),pitch:num(m.pitch,-1.5,1.5),focus:num(m.focus,0,3),receipt:{}};
   keys(m.receipt,P.FIELDS);for(const k of P.FIELDS)if(own(m.receipt,k))meta.receipt[k]=num(m.receipt[k],0,s[k],true);

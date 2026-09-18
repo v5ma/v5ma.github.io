@@ -1,0 +1,17 @@
+# Vesperfall: Pilgrimage and Fieldwork
+
+The September 18 player report approved Goldwind's golden A-button arrow but rejected grip pickups, inconsistent contact collection, the short first mission and poor access to earlier missions in XR. This is direct player feedback, not overridden by prior automated pass counts.
+
+The source audit found that the public release was 0.16.0 and two generated chapters remained unmerged on vesperfall-pilgrimage-20260917. The recovery begins at 93baf2c28937861ad54018c1d7e6572ad37a5f58. It preserves that authored-module pipeline rather than replacing it with another prototype. Read ../../vesperfall/PILGRIMAGE.md and FIELDWORK.md for the exact implementation and constraints.
+
+The hypothesis is that reliable supply acquisition and direct mission access let the player actually use the campaign's alternate firing positions, recovery routes and repeated mechanisms. The Lantern Causeway introduces exposed crossings and overlooking control; the Ashen Archive varies visibility with columns, stacks and roofs. Ordinary paths, direct release shots and supported Blink alternatives are separate, tested contracts. Two module families per chapter form a bounded deterministic catalogue, not an arbitrary universal generator or a completed AAA campaign.
+
+Grip acquisition is explicit and consumes the grip until release so it cannot become a late disk throw. Nearby items do not demand precise ray alignment. Distant pulls still require aim, reach and line of sight; releasing, pausing or losing tracking cancels without granting a reward. A label reports the actual gain. Contact collection checks the same body band and line of sight after walking and teleportation. Full vitality stays in the world; saved Manual preferences remain respected.
+
+First-person VR and the new AR expedition use the selected mission's real simulation and normal save progress. Original Hollow Dominions, Returning Bell, Oath and lessons remain reachable through the headset mission browser. AR Sanctuary and the Architect's Table retain their separate stationary/inspection behavior. Passthrough is not furniture scanning, room anchoring or physical support. No real-world head pose is animated for a reveal.
+
+The strict recovery test found that a transient near-miss audio flag on a projectile caused a save rejection and left the previous valid checkpoint in place. The repaired capture removes only that audio flag. Unknown gameplay fields remain rejected. The browser must prove that the current full checkpoint is saved before reload, not merely that an older checkpoint can be reopened.
+
+Work maps to the existing V41/V42/V52/V57/V65/V68 work, alongside the recovered Pilgrimage task mappings. No original task ID, reward namespace, legacy layout identity or human/hardware gate is removed. The canonical 76-task workbook is the retained synchronized Pilgrimage snapshot; Fieldwork does not fabricate a new workbook completion score.
+
+Use tests/evidence/fieldwork-0.17.0/publication.json under vesperfall as the closure receipt once it exists. Until its public-source and gameplay results pass, code presence or this note is not verified publication. Physical Quest/Xbox, comfort, performance and first/repeat-player comprehension remain separate. The next observation is whether a player can acquire a supply, select an old or new mission, predict a shutter's exposure and deliberately use a different route on return.

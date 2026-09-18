@@ -96,6 +96,7 @@ with sync_playwright() as p:
         }""")
         page.screenshot(path=str(OUT/'rig-proportions.png'))
         page.evaluate("document.getElementById('surestep-art-review').remove();SurestepReviewRenderer.dispose();delete window.SurestepReviewRenderer")
+        page.locator('#xr-bow-controls').select_option('classic')
         page.evaluate('TestPad.enabled=true')
         nav_to('practice'); press(0); wait('Vesperfall.component.running&&!Vesperfall.component.paused')
         press(13); check(page.evaluate("Vesperfall.state.type==='blink'"), 'Xbox D-pad down equips Blink in one press')

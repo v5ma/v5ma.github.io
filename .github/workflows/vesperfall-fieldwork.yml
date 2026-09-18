@@ -1,0 +1,95 @@
+name: Vesperfall Fieldwork public acceptance
+on:
+  push:
+    branches: [master]
+    paths: ['vesperfall/**', '.github/workflows/vesperfall-fieldwork.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vesperfall-fieldwork-public
+  cancel-in-progress: true
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      verify: ${{ steps.manifest.outputs.verify }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: manifest
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          app=Path('vesperfall');out=Path('test-output');out.mkdir(exist_ok=True)
+          paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html','.json','.xlsx','.md')]
+          paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
+          files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
+          digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          receipt=app/'tests/evidence/fieldwork-0.17.0/publication.json'
+          previous=json.loads(receipt.read_text()) if receipt.exists() else {}
+          verify=previous.get('manifestDigest')!=digest
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          (out/'source-manifest.json').write_text(json.dumps({'commit':sha,'manifestDigest':digest,'files':files},indent=2))
+          (out/'source-revision.txt').write_text(sha+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('verify='+str(verify).lower()+'\n')
+          PY
+      - if: steps.manifest.outputs.verify == 'true'
+        run: |
+          set -euo pipefail
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          python -u vesperfall/tests/verify-live.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-public-source
+          path: test-output/
+          retention-days: 14
+  play:
+    needs: source
+    if: needs.source.outputs.verify == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [fieldwork, pilgrimage, goldwind, interface]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - env:
+          TEST_BASE_URL: https://v5ma.github.io
+          SUITE: ${{ matrix.suite }}
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          if [ "$SUITE" = interface ]; then
+            timeout 300 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
+          else
+            timeout 1800 python -u vesperfall/tests/${SUITE}-browser.py | tee test-output/${SUITE}.log
+            test -s test-output/${SUITE}/report.json
+            test ! -e test-output/${SUITE}/failure.json
+          fi
+          python -u vesperfall/tests/verify-live.py
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-public-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
