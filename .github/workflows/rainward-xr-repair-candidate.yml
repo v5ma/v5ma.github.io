@@ -1,0 +1,98 @@
+name: Rainward XR repair candidate
+on:
+  push:
+    branches: [fix/rainward-xr-recovery-20260918]
+    paths: ['rainward/**','.github/workflows/rainward-xr-repair-candidate.yml']
+permissions:
+  contents: write
+concurrency:
+  group: rainward-xr-repair-candidate
+  cancel-in-progress: true
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/rainward-xr-recovery-20260918
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrate bounded patch and retain all models
+        run: |
+          mkdir -p test-output
+          python rainward/tools/integrate-xr-repair.py
+          node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
+          python -m compileall -q rainward/tests
+      - name: Commit exact source before rendered acceptance
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rainward/app.mjs rainward/combat.mjs rainward/direct-xr-input.mjs rainward/freefield.mjs rainward/freefield-ui.mjs rainward/portal-view.mjs rainward/quest-xr.mjs rainward/scene.mjs rainward/xr-panel.mjs rainward/tests/freefield-portal.test.mjs rainward/tests/freefield-browser.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Integrate XR reading, face-button menu, aligned muzzle, one-pass compositor and default run'
+            git push origin HEAD:fix/rainward-xr-recovery-20260918
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Keep failure evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-xr-repair-models
+          path: test-output/
+          retention-days: 14
+  render:
+    needs: integrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        view: [first-person,first-person-ar,diorama-vr,diorama-ar]
+        layer: [projection,base]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.integrate.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native WebGL browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Actual compositor layers and gameplay
+        env:
+          XR_VIEW: ${{ matrix.view }}
+          XR_LAYER: ${{ matrix.layer }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 780 python -u rainward/tests/xr-repair-browser.py
+      - name: Keep exact source and captures, including failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-xr-repair-${{ matrix.view }}-${{ matrix.layer }}
+          path: test-output/
+          retention-days: 14
