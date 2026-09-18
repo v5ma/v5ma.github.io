@@ -1,7 +1,7 @@
 {
-  "version": "0.14.0",
-  "focus": "World Portal: centered third-person full-depth diorama, room-fixed XR UI, goal guidance and first-person AR",
+  "version": "0.14.1",
+  "focus": "Clear Window: unobstructed AR windows, independent twin-stick combat and first-person diorama AR",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
-  "scope": "Rendering and read-only navigation upgrade. Existing expedition, save-v1, input/remaps and Bellwether rules remain. Physical Quest/Xbox approval stays open."
+  "scope": "Physical-playtest repair of 0.14.0. Save-v1 and mission rules unchanged. Software evidence is separate from physical Quest/Xbox approval."
 }
