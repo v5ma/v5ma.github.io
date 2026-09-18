@@ -5,7 +5,7 @@
  function install(g){
   const T=g.T,C=VesperCore,M=ReturningBellModel,L=ReturningBellLanes,ui=g.dominionControls,$=id=>document.getElementById(id);
   const objective=s=>L.isWorld(s.world)?L.objective(s):M.objective(s);
-  const snapshot=s=>({...M.survey(s),layout:s?.world.returningBell?s.world.generator:L.ID});
+  const snapshot=s=>s?.pilgrimage?{layout:s.world.generator,seed:s.world.seed,depth:s.world.depth,pilgrimage:JSON.parse(JSON.stringify(s.pilgrimage)),discovered:[...s.discovered],count:s.world.rooms.length}:({...M.survey(s),count:7,layout:s?.world.returningBell?s.world.generator:L.ID});
   const state={table:false,pending:false,layer:0,survey:null,tableBuilds:0,seen:null,event:0,mechanism:''};let table=null;
   const button=document.createElement('button');button.id='architect-table';button.textContent="AR Architect's Table / discovered places";button.disabled=true;$('menu-ar').after(button);
   const note=document.createElement('p');note.id='returning-intro';note.textContent='The Returning Bell is the authored opening. Restore the tower signal, learn its interlocking routes, and find your way back. Older expeditions still continue in their original world.';$('first-bell-menu').before(note);
@@ -13,8 +13,8 @@
   if(navigator.xr&&isSecureContext)navigator.xr.isSessionSupported('immersive-ar').then(ok=>button.disabled=!ok).catch(()=>{});
   function clearTable(){if(!table)return;table.traverse(o=>{o.geometry?.dispose();if(o.material)for(const m of(Array.isArray(o.material)?o.material:[o.material])){m.map?.dispose();m.dispose();}});table.removeFromParent();table=null;}
   function positionTable(){if(!table)return;const p=g.head.object3D.getWorldPosition(new T.Vector3()),q=g.head.object3D.getWorldQuaternion(new T.Quaternion()),f=new T.Vector3(0,0,-1).applyQuaternion(q);f.y=0;if(f.length()<.01)f.set(0,0,-1);f.normalize();const right=new T.Vector3(-f.z,0,f.x);table.position.copy(p).addScaledVector(f,1.8).addScaledVector(right,0);table.position.y=Math.max(.35,p.y-.48);table.rotation.y=Math.atan2(-f.x,-f.z);}
-  function buildTable(){clearTable();const survey=state.survey||snapshot(null),known=new Set(survey.discovered),s=C.create('TABLE',1,{returningBell:survey.layout});M.restore(s,survey.chapter);L.apply(s);table=new T.Group();table.name='Architects Table / discovered geometry';table.userData.discovered=[...known];table.userData.layer=state.layer;state.tableBuilds++;
-   const model=new T.Group();model.scale.setScalar(.028);model.position.set(0,.035,.08);model.userData.layout=s.world.generator;table.userData.layout=s.world.generator;table.add(model);
+  function buildTable(){clearTable();const survey=state.survey||snapshot(null),known=new Set(survey.discovered),s=survey.pilgrimage?C.create(survey.seed,survey.depth,{pilgrimage:{stage:survey.pilgrimage.stage,tier:survey.pilgrimage.tier}}):C.create('TABLE',1,{returningBell:survey.layout});if(survey.pilgrimage)PilgrimageModel.restore(s,survey.pilgrimage);else{M.restore(s,survey.chapter);L.apply(s);}table=new T.Group();table.name='Architects Table / discovered geometry';table.userData.discovered=[...known];table.userData.layer=state.layer;state.tableBuilds++;
+   const model=new T.Group();const span=survey.pilgrimage?Math.max(52,...s.world.floors.map(f=>Math.abs(f.z)+f.d/2))+26:49;model.scale.setScalar(survey.pilgrimage?1.2/span:.028);model.position.set(0,.035,survey.pilgrimage?.22:.08);model.userData.layout=s.world.generator;table.userData.layout=s.world.generator;table.add(model);
    const mats={floor:new T.MeshStandardMaterial({color:'#bfaf8c',roughness:.85}),upper:new T.MeshStandardMaterial({color:'#a5d3d0',roughness:.65}),wall:new T.MeshStandardMaterial({color:'#7b8c90',roughness:.85}),signal:new T.MeshBasicMaterial({color:'#efd69c'}),base:new T.MeshStandardMaterial({color:'#253740',roughness:.8})};
    function cube(parent,mat,x,y,z,w,h,d){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat.clone());m.position.set(x,y,z);parent.add(m);return m;}
    for(const f of s.world.floors){if(!known.has(f.region))continue;const upper=f.y>1||f.type==='stair';if(state.layer===1&&upper||state.layer===2&&!upper)continue;
@@ -23,7 +23,7 @@
    }
    if(state.layer!==2)for(const b of s.world.solids){if(!known.has(b.region)||['stair-base','gallery-deck','roof'].includes(b.type))continue;const p=b.min.map((v,i)=>(v+b.max[i])/2),d=b.max.map((v,i)=>v-b.min[i]);cube(model,b.type==='screen'||b.type==='return-gate'?mats.signal:mats.wall,...p,...d);}
    cube(table,mats.base,.07,0,-.24,1.26,.045,1.38);
-   const label=g.art.label(table,'DISCOVERED PLACES / '+known.size+' OF 7',.07,.026,.46,1.05,.12,'#253740','#f1dfb2');label.rotation.x=-Math.PI/2;
+   const label=g.art.label(table,'DISCOVERED PLACES / '+known.size+' OF '+survey.count,.07,.026,.46,1.05,.12,'#253740','#f1dfb2');label.rotation.x=-Math.PI/2;
    for(const m of Object.values(mats))m.dispose();g.scene.object3D.add(table);positionTable();
   }
   function openTable(){if(!g.arMode)return false;state.table=true;state.layer=0;g.setPaused(true);buildTable();ui.setScreen('architect');g.placePanel();return true;}
@@ -40,7 +40,7 @@
    if(g.arMode&&(screen==='architect'||state.table&&screen==='main'))return [
     ['Layers: '+['all known structure','ground circulation','upper walks'][state.layer],()=>{state.layer=(state.layer+1)%3;buildTable();}],
     ['Recenter the virtual table',()=>{positionTable();g.placePanel();}],
-    ['Known places: '+(state.survey?.discovered.length||1)+' / 7',()=>{ui.state.notice='Only regions already visited in your expedition are shown. The table is unscored and cannot change your progress, doors or enemies. It is not attached to a detected physical surface. Stay in your clear play space.';ui.setScreen('notice');}],
+    ['Known places: '+(state.survey?.discovered.length||1)+' / '+(state.survey?.count||7),()=>{ui.state.notice='Only regions already visited in your expedition are shown. The table is unscored and cannot change your progress, doors or enemies. It is not attached to a detected physical surface. Stay in your clear play space.';ui.setScreen('notice');}],
     ['Settings / handedness / comfort',()=>ui.setScreen('settings')],
     ['Back to AR Sanctuary',()=>{closeTable();g.setPaused(true);ui.setScreen('main');}],
     ['Exit AR and restore expedition',()=>g.scene.exitVR()]

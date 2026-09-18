@@ -56,8 +56,10 @@ with sync_playwright() as pw:
   check(True,'A joint-pinch ray activates '+text)
  try:
   page.goto(BASE+'/vesperfall/?journey=returning-bell',wait_until='domcontentloaded');wait('window.Vesperfall?.component.returningBell&&Vesperfall.component.stats.drawCalls>0')
-  check(page.evaluate('Vesperfall.state.world.generator===ReturningBellLanes.ID&&Vesperfall.state.world.rooms.length===7'),'Fresh arrival previews the authored opening, not the old generator')
-  check(page.locator('#expedition-mode').input_value()=='returning-bell','The new chapter is the default new-player content')
+  check(page.evaluate('Vesperfall.state.world.generator===PilgrimageModel.IDS[0]'),'Fresh arrival previews the new Pilgrimage default')
+  page.locator('#expedition-mode').select_option('returning-bell')
+  page.locator('#xr-bow-controls').select_option('classic')
+  check(page.locator('#expedition-mode').input_value()=='returning-bell','The original authored chapter remains explicitly selectable')
   page.evaluate('TestPad.enabled=true');nav('start');press(0);wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.component.checkpoint.eligible&&!Vesperfall.state.unscored'),'Xbox starts the chapter as a real scored saved expedition')
   press(13);check(page.evaluate("Vesperfall.state.type==='blink'"),'D-pad down still selects Blink directly')

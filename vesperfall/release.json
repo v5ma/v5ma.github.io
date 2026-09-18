@@ -1,8 +1,8 @@
 {
-  "version": "0.16.0",
-  "name": "goldwind",
+  "version": "0.17.0",
+  "name": "pilgrimage",
   "date": "2026-09-17",
-  "scope": "Goldwind opt-in physical bow controls: temporary golden travel draw, tracked thrown disk, bow-hand directional shield and reach quiver inside existing Open Line. No campaign or generator replacement.",
-  "saveCompatibility": "All three existing layout identities, profile/envelope keys, rewards and Xbox shortcuts remain. Classic is default; crossbow retains Classic roles. Explicit physical preferences persist independently. Pause cancels uncommitted disk flight without spending a shard.",
-  "hardwareStatus": "Development slice. Software checks use actual WebGL with emulated Xbox and WebXR devices. Physical Quest 3/Xbox, comfort, sustained performance, finished art and unfamiliar-player/replay acceptance remain open."
+  "scope": "Pilgrimage makes Goldwind the fresh-settings default and adds two seeded chapter families: The Lantern Causeway and The Ashen Archive. Authored modules carry ordinary routes, conditional crossings, firing lanes, supported Blink landings, service shortcuts and role-based encounters. Geometry, encounter, loot and decoration randomness are independent. Existing explicit Classic preferences, three legacy layouts, old runs and rewards remain.",
+  "saveCompatibility": "Goldwind is the fresh-settings default; an explicitly saved Classic choice is respected. New chapter saves freeze generator identity, seed, tier and mechanism state. All three older layout readers, profile/envelope keys, one-time reward receipts and old-run continuation are retained. The new route ends in retained Endless after two chapters.",
+  "hardwareStatus": "Development release. Model samples and input-driven native/public WebGL verification are separate from physical Quest 3/Xbox, comfort, sustained performance and human comprehension. New chapters use representative original graybox-first architecture, not finished biome art."
 }
