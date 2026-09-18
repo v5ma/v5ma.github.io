@@ -2,22 +2,131 @@
   "schema_version": 1,
   "project": "leonardos-guild",
   "task": "XR-RECOVERY-04",
+  "version": "0.14.0",
   "build": "guild-xr-recovery-20260918",
   "release_commit": "9c26bd8c1487df75d54a290f1043131c3a8da805",
   "feature_head": "b0254ad969ff3953dc5f2d73974328ab025a233f",
   "pull_request": 188,
   "game_tree": "70bf6d7ea8dd9c2e30d9744313f91ed3993825d3",
-  "status": "deployed-files-verified-public-playthroughs-pending",
-  "checkpoint_date": "2026-09-18",
-  "pages": {"run": 35402114570, "status": "success"},
-  "publication": {"run": 35402115112, "attempt": 2, "artifact": 10572625270, "files": 283, "all_hashes_match": true, "audio_files": 50, "registered_models": 32, "homepage_game_link": true},
-  "public_native": {"run": 35402115137, "attempt": 2, "status": "in-progress-not-credited", "runtime_artifact": 10572262825},
-  "recovered_native": {"run": 35401527855, "artifact": 10571253305, "checks": 121, "errors": 0, "tested_merge_preview": "4bc61a228a1950b34e0f7e5916f21e94dac3a4fa", "manifest_hashes_matched": 541, "game_hashes_matched": 365, "source_diff_empty": true},
-  "local_recheck": {"model_input_tests": 379, "design_contracts": 14, "native_dom_point_reproduced": true, "browser": "Chromium 144.0.7559.96", "runtime_changes_during_recovery": 0},
-  "diagnosis": "Object spread of native DOMPointReadOnly drops inherited coordinates and yields invalid first-person transforms. Explicit coordinate copying and finite checks repair the confirmed defect. Menus use gaze-placed, depth-independent panels and nonmodal immersive dialog bridging; frame errors trigger explicit recovery instead of halting the XR callback.",
-  "preservation": "Original version-2 save namespace, missions, rewards, remaps, single renderer/simulation, accepted portal size, quiet audio and sibling projects remain unchanged.",
-  "failure_retained": {"artifact": 10571705054, "run": 35402115112, "attempt": 1, "mismatched_files": 5, "reason": "Checked old or missing files before queued Pages deployment completed; rerun after deployment without changing source or assertions."},
-  "next_action": "Finish all eight public journeys in 35402115137 attempt 2, download and inspect current recovery captures/report, verify source hashes, and update this receipt and PR188. Do not rebuild the already merged hotfix or replay PR178.",
+  "status": "published-and-software-verified",
+  "verified_date": "2026-09-18",
+  "game_url": "https://v5ma.github.io/leonardos-guild/",
+  "pages": {
+    "run": 35402114570,
+    "status": "success"
+  },
+  "publication": {
+    "run": 35402115112,
+    "attempt": 2,
+    "artifact": 10572625270,
+    "files": 283,
+    "all_hashes_match": true,
+    "audio_files": 50,
+    "registered_models": 32,
+    "homepage_game_link": true
+  },
+  "public_native": {
+    "run": 35402115137,
+    "attempt": 2,
+    "status": "success",
+    "runtime_artifact": 10572262825,
+    "runtime_files": 91,
+    "served_base": "https://v5ma.github.io",
+    "checks": 358,
+    "errors": 0,
+    "source_manifest_hashes_per_journey": 541,
+    "game_hashes_per_journey": 365,
+    "all_external_and_internal_archive_hashes_match": true,
+    "all_source_diffs_empty": true,
+    "journeys": {
+      "entry": {
+        "artifact": 10571938335,
+        "checks": 50
+      },
+      "hydraulic": {
+        "artifact": 10572720601,
+        "checks": 28
+      },
+      "portal": {
+        "artifact": 10571908955,
+        "checks": 15
+      },
+      "recovery": {
+        "artifact": 10572088775,
+        "checks": 121
+      },
+      "relay": {
+        "artifact": 10572134047,
+        "checks": 44
+      },
+      "social": {
+        "artifact": 10572203500,
+        "checks": 29
+      },
+      "spatial": {
+        "artifact": 10572760631,
+        "checks": 43
+      },
+      "upper": {
+        "artifact": 10571858640,
+        "checks": 28
+      }
+    }
+  },
+  "targeted_recovery": {
+    "artifact": 10572088775,
+    "checks": 121,
+    "modes": [
+      "first-person-vr",
+      "first-person-ar",
+      "diorama-vr",
+      "diorama-ar"
+    ],
+    "tests": "Native DOMPointReadOnly poses, finite eye transforms, varied rendered pixels in both eye centers, three B open/close cycles per mode after looking aside, visible gaze-placed menus, stationary reading panels, continued paused XR rendering, resumed movement, hand map access, nested settings and restored desktop modality.",
+    "physical_headset_test": false
+  },
+  "premerge": {
+    "workflow_groups_passed": 14,
+    "native_run": 35401527855,
+    "recovery_artifact": 10571253305,
+    "tested_merge_preview": "4bc61a228a1950b34e0f7e5916f21e94dac3a4fa"
+  },
+  "local_recheck": {
+    "model_input_tests": 379,
+    "design_contracts": 14,
+    "native_dom_point_reproduced": true,
+    "isolated_native_nested_dialog_cycles": 100,
+    "browser": "Chromium 144.0.7559.96",
+    "runtime_changes_during_recovery": 0,
+    "full_game_local_navigation": "ERR_BLOCKED_BY_ADMINISTRATOR; not counted as native game acceptance"
+  },
+  "diagnosis": {
+    "first_person": "Spreading native DOMPointReadOnly loses inherited coordinates and yields invalid first-person transforms. Explicit x/y/z copying and finite checks repair the reproduced defect. Earlier plain-object hardware mocks concealed it.",
+    "menus": "Menus are placed once in the current gaze, rendered independently of scene depth, and use the original handlers through nonmodal immersive dialogs. B return and nested menu access are retained. Frame exceptions trigger explicit recovery instead of permanently halting XR callbacks.",
+    "scope": "These reproduced software defects are repaired. Physical reproduction of every reported Quest symptom is not claimed."
+  },
+  "preservation": {
+    "save_key": "svgn.leonardos-guild.v1",
+    "save_version": 2,
+    "save_reset": false,
+    "same_renderer_and_simulation": true,
+    "levels_rewards_stable_ids_remaps_and_quiet_audio_retained": true,
+    "accepted_portal_size_and_player_centering_retained": true
+  },
+  "failure_retained": {
+    "artifact": 10571705054,
+    "run": 35402115112,
+    "attempt": 1,
+    "mismatched_files": 5,
+    "reason": "Public checks ran before queued Pages deployment completed; rerun after deployment with unchanged source and assertions.",
+    "cloudflare": "Separate preview failures remain documented and unresolved; GitHub Pages succeeded."
+  },
+  "saved_recovery": {
+    "checkpoint_commit": "c0ab122136d775b7b1d18e7a8d4ddf4fee6c2124",
+    "latest_master_checked": "bd2ba916f96e09e97a69d5aae7fd9a3b8e38a544",
+    "concurrent_changes": "Aether Reach, Dino Atlas and Vesperfall work preserved. No Leonardo game files changed since the release; this receipt stays outside the game tree."
+  },
+  "next_action": "Release closure is complete for the recorded game commit. Retest all four modes on physical Quest, especially first-person visibility, repeated B/menu return and hand UI. Improve remaining interaction ergonomics and readability before adding content. PR188 and this receipt supersede older pending-publication handoff text. Do not rebuild this fix or repeat PR178 publication.",
   "physical_hardware_verified": false,
-  "limits": "Native Chromium uses real DOM geometry and rendering with emulated XR hardware. Physical Quest, actual passthrough/compositor, comfort, sustained performance and user confirmation remain open. This is a targeted bug repair, not complete interface polish."
+  "limits": "Hosted Chromium uses real DOM geometry and WebGL rendering with emulated XR/controller hardware. Actual Quest passthrough/compositor, comfort, sustained performance and user confirmation remain open. This is a targeted repair, not a claim of complete interface polish or absence of other bugs."
 }
