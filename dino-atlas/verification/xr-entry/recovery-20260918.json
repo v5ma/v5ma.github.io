@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-18",
+  "status": "published-launcher-and-release-verified",
+  "scope": "Regular Classic Reserve AR/VR entry recovery, not another Tidegate or field-operations implementation.",
+  "build": "classic-xr-entry-20260918.1",
+  "runtimeCommit": "5349808186e039b7da0de8eb00c56a094b5e4a3c",
+  "masterAtRecoveryStart": "9c26bd8c1487df75d54a290f1043131c3a8da805",
+  "run": 35401288351,
+  "jobs": {
+    "verify": {"id":105788175600,"result":"success"},
+    "published": {"id":105788140025,"result":"success","completedAt":"2026-09-18T23:01:24Z"},
+    "release": {"id":105789878596,"result":"success"}
+  },
+  "release": {
+    "id": 391832268,
+    "tag": "dino-xr-entry-20260918.1",
+    "targetCommitish": "5349808186e039b7da0de8eb00c56a094b5e4a3c",
+    "publishedAt": "2026-09-18T23:01:37Z",
+    "prerelease": true,
+    "assetId": 573628385,
+    "assetName": "dino-xr-entry-evidence.tgz",
+    "githubReportedAssetSha256": "c7b773d1893fe31807670beb9c983d83544c04f7c799281c604d9857582f6535",
+    "aggregateReleaseAssetDownloadedInRecovery": false
+  },
+  "downloadedArtifacts": [
+    {"id":10571258670,"kind":"published","sha256":"f337230ea1d1a3c250a8dde2055aa5a56d3a8241303a2088f597e41222530f9c","hashMatched":true},
+    {"id":10571006863,"kind":"source-and-candidate","sha256":"c4852b697c99ea883a7a2ee07f5f3bb9a5f915752b5ca9ffe75f78b2107b4417","hashMatched":true}
+  ],
+  "verifiedResults": {
+    "nodeTestsPassed": 237,
+    "nodeTestsFailed": 0,
+    "nodeTestsSkipped": 0,
+    "candidateLauncherChecks": 23,
+    "publishedLauncherChecks": 23,
+    "candidateClassicHandAndTrackedUiChecks": 22,
+    "candidateClassicPortalChecks": 15,
+    "candidateClassicExpressChecks": 24,
+    "publishedClassicPortalChecks": 15,
+    "publicManifestFilesMatched": 71,
+    "archivedSourceManifestFilesMatchedIndependently": 71,
+    "launcherAndPortalReportedErrors": [],
+    "viewportSizes": ["1100x720","900x600","390x844"]
+  },
+  "independentRecovery": {
+    "nodeVersion": "v22.16.0",
+    "nodeTestsPassed": 237,
+    "nodeTestsFailed": 0,
+    "nodeTestsSkipped": 0,
+    "topLevelJavaScriptSyntaxFilesPassed": 57,
+    "unitTranscriptSha256": "d55b84909463a45f027697c6dd2d03ad5387b3818ca5a9abc1ec116936aeb709",
+    "publishedIntroScreenshotsReviewed": ["900x600","390x844"],
+    "freshLocalLiveBrowserRun": false,
+    "directAccessLimit": "The web reader could not access the live route. Container HTTP requests failed DNS resolution. Live verification is the completed hosted public-browser run and its downloaded evidence, not an invented local browser result."
+  },
+  "reportSha256": {
+    "manifest.json": "b164d3d3d8fcc279265e3bf82bdab3bff2bee0cddcb0354e97a2ddcb65cf793e",
+    "publishedLauncherReport.json": "9e1a33e86f3ec9f4894d02c069a3deffba0e495172c4d4fa0cd9451d1042b283",
+    "publicVerification.json": "f83f6a40a3dde2c0df7b9a93fad3adb32311cf24f7f8c2ed7a97fe9a52b34814",
+    "publishedClassicPortalReport.json": "0ee539b794b13e661c45868063199b4ac4a3656e2133c201b3dbb32582f040d8"
+  },
+  "userFacingResult": {
+    "route": "https://v5ma.github.io/dino-atlas/",
+    "introGroup": "Play Classic Reserve in VR or AR",
+    "choices": ["First-person VR","VR diorama","AR diorama"],
+    "additionalEntry": "Top-bar AR / VR and the same direct choices near the top of the pause menu.",
+    "unsupportedBehavior": "Modes remain visible, disabled with a reason and Check headset again. No AR-to-VR substitution.",
+    "firstPersonArAdded": false
+  },
+  "preserved": ["same regular world and 64 residents","missions and mounted utilities","Express travel and controller profiles","historical saves and rewards","character-centered world portal and accepted box placement/size","shared tracked-controller and hand-ray UI","Tidegate runtime","sibling games"],
+  "limitations": [
+    "Native software WebGL with real button handlers and synthetic Xbox input; XR capability/session/render-session attachment mocked.",
+    "No actor, mission, inventory or progress assignments manufacture acceptance.",
+    "Physical Xbox and Quest 3 controllers/hands, headset compositor, actual passthrough/stereo, comfort and hardware performance remain unverified.",
+    "This receipt establishes the scoped launcher workflow, not a claim that every historical repository workflow is green. Separate historical ranger/Storm workflows showed failures; the broader Tidegate published workflow was still running when first inspected."
+  ],
+  "recoveryChange": "Documentation only. No runtime, vendor, save key, release tag or sibling-game change.",
+  "next": "Test these now-visible regular-game controls on the user's headset. Address actual entry, menu or camera findings without rebuilding the existing portal or resetting saves."
+}
