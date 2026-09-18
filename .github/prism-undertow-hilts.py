@@ -1,7 +1,7 @@
 # Temporary source transport; removed before merge. No gameplay acceptance criteria change.
 from pathlib import Path
 import hashlib,json
-EXPECTED={'graphics/pool-stage.js': ('429c01cbc235e705291da2f0eeb609ec3bf683d598ee0cb36b9a3738873aa617', '0309c31a51c3aefc84b8718688559ddadd8d6ff7764fca180f1ec2b92491ffb1'), 'tests/undertow-browser.py': ('a15576b04505a9c27549e3f44f652084a4a1dad5ce3a1e47ad7b3f4bf6756a44', 'd18396cd625da598786732f40a57c0271621231486d9d68bf6a3bc14d814ff31')}
+EXPECTED={'graphics/pool-stage.js': ('429c01cbc235e705291da2f0eeb609ec3bf683d598ee0cb36b9a3738873aa617', '0309c31a51c3aefc84b8718688559ddadd8d6ff7764fca180f1ec2b92491ffb1'), 'tests/undertow-browser.py': ('a15576b04505a9c27549e3f44f652084a4a1dad5ce3a1e47ad7b3f4bf6756a44', '847696f62a72c506a2065c86bcaa44bda9669ba742e037efe7f47ff015fafd37')}
 for n,h in EXPECTED.items():assert hashlib.sha256((Path('prism-current')/n).read_bytes()).hexdigest()==h[0],n
 p=Path('prism-current/graphics/pool-stage.js')
 s=p.read_text()
@@ -38,6 +38,10 @@ s=s.replace("Object.freeze({install})", "Object.freeze({install,mergeFixedParts}
 p.write_text(s)
 p=Path('prism-current/tests/undertow-browser.py');s=p.read_text()
 s=s.replace("check(p.locator('#tracks button').count()==5", "check(p.evaluate('Prism.component.art.poolStage.status.hiltBatches.every(b=>b.after<b.before&&b.triangles>0&&b.maxError<1e-6)'), 'Hilt batching preserves transformed geometry bounds and reduces fixed-part draws')\n  check(p.locator('#tracks button').count()==5")
+s=s.replace('checks=[];errors=[]','checks=[];errors=[];main_snapshot=None')
+s=s.replace("  vc=b.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1);", "  # Close completed renderers: one user enters VR in one game, not beside a second running game.\n  main_snapshot=p.evaluate('Prism.snapshot()');c.close()\n  vc=b.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1);")
+s=s.replace("'snapshot':p.evaluate('window.Prism?.snapshot()'),'stall':p.evaluate('window.Prism?.component.lastStall||null')", "'snapshot':main_snapshot if p.is_closed() else p.evaluate('window.Prism?.snapshot()'),'stall':None if p.is_closed() else p.evaluate('window.Prism?.component.lastStall||null')")
+s=s.replace("));p.screenshot(path=str(OUT/'failure.png'));raise", "));\n  if not p.is_closed():p.screenshot(path=str(OUT/'failure.png'))\n  raise")
 p.write_text(s)
 for n,h in EXPECTED.items():assert hashlib.sha256((Path('prism-current')/n).read_bytes()).hexdigest()==h[1],n
 f=Path('/tmp/prism-undertow-paths.json');f.write_text(json.dumps(json.loads(f.read_text())+['prism-current/'+n for n in EXPECTED]))
