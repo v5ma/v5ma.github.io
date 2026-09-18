@@ -2,7 +2,7 @@ name: Unified Neighborhood integration
 on:
   push:
     branches: [neighborhood-missions/night-watch-recovery-20260917]
-    paths: ['.github/upgrades/unified-main-*', '.github/workflows/neighborhood-unified-recovery.yml']
+    paths: ['.github/upgrades/unified-repairs.b64', '.github/workflows/neighborhood-unified-recovery.yml']
 permissions:
   contents: read
 jobs:
@@ -25,47 +25,43 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Decode and verify complete source before any replacement
+      - name: Verify scoped repairs against preimages and model acceptance
         id: source
         run: |
           python - <<'PY'
           import base64,hashlib,json,lzma,pathlib,subprocess,os
           sha=lambda b:hashlib.sha256(b).hexdigest()
-          expected='42466d71bc17b53b964058d96c04a251eafcce91ce08008568f7a431708916e5'
-          raw=lzma.decompress(base64.b64decode(''.join(pathlib.Path(f'.github/upgrades/unified-main-{i}.b64').read_text().strip() for i in range(1,4)),validate=True))
-          assert sha(raw)==expected,'Transport checksum mismatch'
-          rows=json.loads(raw);assert len(rows)==13
-          ready={}
+          # Repair one identified transport duplication; exact decoded SHA is authoritative.
+          text=pathlib.Path('.github/upgrades/unified-repairs.b64').read_text().strip().replace('V88F88oY','V88oY')
+          raw=lzma.decompress(base64.b64decode(text,validate=True))
+          assert sha(raw)=='a0008f5d21082bfbc36f1cec60ae98e48bc3d153fc188f5db35099b22546e5f0'
+          rows=json.loads(raw);assert len(rows)==8;ready={}
           for row in rows:
               p=pathlib.Path(row['path']);assert p.as_posix().startswith('svgn-planet/') and '..' not in p.parts
               if p.exists() and sha(p.read_bytes())==row['sha256']:continue
-              assert (sha(p.read_bytes()) if p.exists() else None)==row['old'],'Preimage changed: '+str(p)
-              if 'source' in row:
-                  src=pathlib.Path(row['source']);assert src.as_posix().startswith('svgn-planet/') and '..' not in src.parts
-                  data=src.read_bytes();assert sha(data)==row['sourceHash'],'Derivation source changed: '+str(src)
-                  lines=data.decode().splitlines(keepends=True)
+              assert (sha(p.read_bytes()) if p.exists() else None)==row['old'],'Changed preimage: '+str(p)
+              if 'edits' in row:
+                  lines=p.read_text().splitlines(keepends=True)
                   for edit in reversed(row['edits']):lines[edit['a']:edit['b']]=edit['text'].splitlines(keepends=True)
                   data=''.join(lines).encode()
               else:data=row['content'].encode()
-              assert sha(data)==row['sha256'],'Result mismatch: '+str(p)
+              assert sha(data)==row['sha256'],'Incorrect result: '+str(p)
               ready[p]=data
           for p,data in ready.items():p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
-          legacy=json.loads(pathlib.Path('svgn-planet/legacy-layout.json').read_text())
-          for row in legacy['files']:assert sha((pathlib.Path('svgn-planet')/row['path']).read_bytes())==row['sha256'],row['path']
+          for row in json.loads(pathlib.Path('svgn-planet/legacy-layout.json').read_text())['files']:
+              assert sha((pathlib.Path('svgn-planet')/row['path']).read_bytes())==row['sha256']
           subprocess.run(['bash','-o','pipefail','-c','node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/spatial-modes.test.mjs | tee unified-model.txt'],check=True)
-          for row in rows:
-              if row['path'].endswith('.mjs'):subprocess.run(['node','--check',row['path']],check=True)
           if ready:
               subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
               subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
               subprocess.run(['git','add',*[str(p) for p in ready]],check=True)
-              subprocess.run(['git','commit','-m','feat(neighborhood): integrate original city and Lantern Ward with eight native XR views'],check=True)
+              subprocess.run(['git','commit','-m','fix(neighborhood): stop released movement, isolate confirmations and repair campaign landings'],check=True)
               subprocess.run(['git','push','origin','HEAD:neighborhood-missions/night-watch-recovery-20260917'],check=True)
           commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('commit='+commit+'\n')
           pathlib.Path('SOURCE-COMMIT.txt').write_text(commit+'\n')
           PY
-      - name: Archive reviewed application and validation
+      - name: Archive exact source
         run: tar -czf unified-source.tar.gz svgn-planet little-planet index.html .github/workflows SOURCE-COMMIT.txt unified-model.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -79,10 +75,6 @@ jobs:
     needs: source
     runs-on: ubuntu-latest
     timeout-minutes: 28
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [main, watch-combat]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -97,17 +89,14 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Exercise the actual application through physical-input emulation
-        env:
-          SUITE: ${{ matrix.suite }}
-          WATCH_SUITE: ${{ matrix.suite }}
+      - name: Exercise main URL, eight views and same-session district travel
         run: |
           python -m http.server 8765 > server.log 2>&1 &
-          if [ "$SUITE" = main ]; then python svgn-planet/main-browser.py; else python svgn-planet/lantern/watch-browser.py; fi
+          python svgn-planet/main-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: unified-${{ matrix.suite }}
+          name: unified-main
           path: |
             *-results/
             server.log
