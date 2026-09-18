@@ -1,0 +1,111 @@
+name: Vesperfall Pilgrimage candidate
+on:
+  push:
+    branches: [vesperfall-pilgrimage-20260917]
+    paths: ['.github/workflows/vesperfall-pilgrimage-stage.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        name: Check all transport and source hashes before writing
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python - <<'PY'
+          from pathlib import Path
+          import json,base64,zlib,hashlib
+          parts=[Path(f'.github/pilgrimage-candidate-{i}.txt') for i in range(4)]
+          encoded=''.join(p.read_text().strip() for p in parts)
+          # Correct four diagnosed transcription errors in transport only. The
+          # original JSON SHA and every old/new Git blob must still match.
+          repairs=[('nrdVVmswDfp','nrdVmswDfp'),('TPucRucR3Rsm','TPucR3Rsm'),('LkzfHMMGdvLT','LkzfHMMmGdvLT'),('QSbuevbBJ/ZZP4K5vEX9kk/som8Vc2ib+ySfyVTeKvbBJ/ZZP4K5vEX9kk/som8Vc2ib+ySfyVTeKvbBJ/ZZP4K5vE/0+ySV','QSbuevbBJ/ZZP4K5vEX9kk/som8Vc2ib+ySfyVTeKvbBJ/ZZP4K5vE/0+ySV')]
+          for old,new in repairs:
+            assert encoded.count(old)<=1
+            encoded=encoded.replace(old,new)
+          raw=zlib.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='294038e2a802ee636a45f1754b9c4924b64a09a5251839f1849c5fec0c12b4d2'
+          def blob(b):return hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+          pending=[]
+          for r in json.loads(raw):
+            p=Path(r['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
+            old=p.read_bytes() if p.exists() else None
+            if old is not None and blob(old)==r['new']:continue
+            assert (blob(old) if old is not None else None)==r['old'],str(p)
+            if 'text' in r:s=r['text']
+            else:
+              s=old.decode()
+              for start,n,replacement in reversed(r['edits']):s=s[:start]+replacement+s[start+n:]
+            new=s.encode();assert blob(new)==r['new'],str(p)
+            pending.append((p,new))
+          for p,b in pending:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);print('Verified:',p)
+          PY
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          if ! git diff --cached --quiet; then
+            git commit -m 'Implement Pilgrimage modular chapters, immutable saves and default Goldwind controls'
+            git push origin HEAD:vesperfall-pilgrimage-20260917
+          fi
+          git rev-parse HEAD > test-output/source-revision.txt
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilgrimage-candidate-model
+          path: test-output/
+          retention-days: 14
+  native:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [pilgrimage, goldwind, returning-bell]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual production movement, objectives, resources and XR input
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 2100 python -u vesperfall/tests/${{ matrix.suite }}-browser.py | tee test-output/${{ matrix.suite }}.log
+          test -s test-output/${{ matrix.suite }}/report.json
+          test ! -e test-output/${{ matrix.suite }}/failure.json
+      - name: Retain exact source and failed traces
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts index.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pilgrimage-candidate-${{ matrix.suite }}
+          path: test-output/
+          retention-days: 14
