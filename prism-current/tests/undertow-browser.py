@@ -23,6 +23,8 @@ with sync_playwright() as pw:
   check('Undertow' in p.locator('#start').inner_text(),'The primary Play button identifies the changed experience')
   check(p.locator('#start').bounding_box()['y']<700,'Primary Play is above the catalog and visible on the opening screen')
   check(p.evaluate('Prism.component.art.poolStage.status.waterVisible'),'Water venue is inside the rhythm game, not only the expedition')
+  p.wait_for_function('Prism.component.art.notes.some(n=>n.g.visible)');check(p.evaluate('Prism.component.art.notes.filter(n=>n.g.visible).every(n=>n.dir!==6)'),'Idle preview shows the selected directional chart, not legacy dots')
+  check(p.evaluate('Prism.component.art.poolStage.status.boxBatches')==5,'The static venue uses five instanced batches instead of a draw per tile wall or fixture')
   check(p.locator('#tracks button').count()==5,'All four old songs remain beside the new one')
   p.evaluate('PrismTestPad.press(9)');p.wait_for_function("Prism.snapshot().phase==='playing'")
   check(p.evaluate('Prism.snapshot().track')=='undertow','An ordinary Menu press starts Undertow')
@@ -51,7 +53,7 @@ with sync_playwright() as pw:
   xr_button('left',4);check(x.evaluate('Prism.snapshot().difficulty')=='flow','X/A changes the chart from inside the headset')
   xr_button('left',4);check(x.evaluate('Prism.snapshot().difficulty')=='pulse','The chart shortcut cycles back without leaving VR')
   x.evaluate('TestXR.pose("left",[-.36,1.385,-.4])');xr_button('left',0);x.wait_for_function("Prism.snapshot().phase==='playing'")
-  x.evaluate('''async()=>{const n=Prism.snapshot().notes[0],v=PrismCore.dirs[n.dir],p=PrismCore.position(n,n.time);await new Promise((resolve,reject)=>{const begun=performance.now(),timer=setInterval(()=>{const g=Prism.component,t=g.audio.time()+g.runOffset;if(g.state.judged[n.id]){clearInterval(timer);g.state.judged[n.id]==='hit'?resolve():reject(Error('XR directional strike missed'));return;}if(g.phase!=='playing'||performance.now()-begun>18000){clearInterval(timer);reject(Error('XR strike interrupted'));return;}const f=Math.max(0,Math.min(1,(t-n.time+.14)/.28)),d=-.28+f*.56;TestXR.pose('left',[p[0]+v[0]*d,p[1]+v[1]*d,-.41]);},4);});}''')
+  x.evaluate('''async()=>{window.undertowXRTrace=[];const n=Prism.snapshot().notes[0],v=PrismCore.dirs[n.dir],p=PrismCore.position(n,n.time);await new Promise((resolve,reject)=>{const begun=performance.now(),timer=setInterval(()=>{const g=Prism.component,t=g.audio.time()+g.runOffset;undertowXRTrace.push({audio:t,time:g.state.time,previous:g.previous[0]||null,judged:g.state.judged[n.id]||null});if(undertowXRTrace.length>64)undertowXRTrace.shift();if(g.state.judged[n.id]){clearInterval(timer);g.state.judged[n.id]==='hit'?resolve():reject(Error('XR directional strike missed: '+JSON.stringify({detail:g.state.judgmentDetails[n.id],trace:undertowXRTrace})));return;}if(g.phase!=='playing'||performance.now()-begun>18000){clearInterval(timer);reject(Error('XR strike interrupted'));return;}const f=Math.max(0,Math.min(1,(t-n.time+.14)/.28)),d=-.28+f*.56;TestXR.pose('left',[p[0]+v[0]*d,p[1]+v[1]*d,-.41]);},4);});}''')
   check(x.evaluate('Prism.snapshot().state.hits')>0,'Tracked blade input scores a directional note in the new VR song')
   x.screenshot(path=str(OUT/'undertow-emulated-vr.png'));x.evaluate('TestXR.state.session.end()');x.wait_for_function('!Prism.snapshot().immersive')
   x.locator('#enter-ar').click();x.wait_for_function('Prism.snapshot().immersive&&Prism.snapshot().calibrated')
@@ -61,5 +63,7 @@ with sync_playwright() as pw:
   check(not errors,'No captured uncaught JavaScript or shader errors')
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'result':result,'scope':'Actual HTTP renderer, original newly generated audio, emulated standard gamepad and WebXR. Full song at normal audio speed; no score, clock or actor-position injection. Reduced software-renderer gameplay buffer and separate 1440x1000 menu image. Not physical Quest/Xbox or a judgment of musical enjoyment.'},indent=2))
  except Exception as e:
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'snapshot':p.evaluate('window.Prism?.snapshot()'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
+  try:xr_failure=x.evaluate('({snapshot:Prism.snapshot(),trace:window.undertowXRTrace||[],pool:Prism.component.art.poolStage.status,calls:AFRAME.scenes[0].renderer.info.render.calls})')
+  except Exception:xr_failure=None
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'xr':xr_failure,'snapshot':p.evaluate('window.Prism?.snapshot()'),'stall':p.evaluate('window.Prism?.component.lastStall||null')},indent=2));p.screenshot(path=str(OUT/'failure.png'));raise
  finally:b.close()

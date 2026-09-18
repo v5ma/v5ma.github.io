@@ -1,7 +1,7 @@
 name: Stage exact Prism main-rhythm repair
 on:
   pull_request:
-    paths: ['.github/prism-undertow-apply.py', '.github/workflows/prism-undertow-stage.yml', 'prism-current/undertow.js', 'prism-current/graphics/pool-stage.js', 'prism-current/tests/undertow-browser.py']
+    paths: ['.github/prism-undertow-apply.py', '.github/prism-undertow-polish.py', '.github/workflows/prism-undertow-stage.yml', 'prism-current/undertow.js', 'prism-current/graphics/pool-stage.js', 'prism-current/tests/undertow-browser.py']
 permissions:
   contents: write
 concurrency:
@@ -27,6 +27,7 @@ jobs:
           mkdir -p test-output
           git rev-parse HEAD > /tmp/prism-start-sha
           python .github/prism-undertow-apply.py
+          python .github/prism-undertow-polish.py
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
         shell: bash -e -o pipefail {0}
