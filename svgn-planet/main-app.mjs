@@ -102,7 +102,7 @@ function frame(now,xrFrame){
  if(!view||failed||graphicsLost||document.hidden){audio.setPlaying(false);last=0;return;}
  renderDirty=view.consumeArtRedraw()||renderDirty;const dt=last?Math.min(.12,(now-last)/1000):0;last=now;
  try{
-  xr?.update(now,xrFrame);if(xr?.active)pulseUI.updateTiming(now);
+  xr?.update(now,xrFrame);if(hub?.wardActive){acc=0;previousPose=null;last=0;return;}if(xr?.active)pulseUI.updateTiming(now);
   if(started&&!paused){
    if(padState.lookX||padState.lookY||xrInput.lookX||xrInput.lookY){view.lookBy((padState.lookX+xrInput.lookX)*dt*2*preferences.sensitivity*(preferences.invertX?-1:1),(padState.lookY+xrInput.lookY)*dt*1.2*preferences.sensitivity*(preferences.invertY?-1:1));renderDirty=true;}
    acc=Math.min(.20,acc+dt);while(acc>=1/60){previousPose=capturePose(s);step(s,input(),1/60);jump=false;acc-=1/60;}
