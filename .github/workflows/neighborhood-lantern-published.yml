@@ -1,4 +1,4 @@
-name: Verify published Lantern Ward
+name: Verify published unified Neighborhood Missions
 on:
   push:
     branches: [master]
@@ -19,7 +19,7 @@ jobs:
           sparse-checkout: |
             svgn-planet
             level-design-library/applied
-      - name: Verify exact public game, legacy layout and evidence bytes
+      - name: Verify exact public main game, districts, legacy layout and evidence bytes
         env:
           COMMIT: ${{ github.sha }}
         run: |
@@ -50,7 +50,7 @@ jobs:
               if count==len(paths):break
               time.sleep(10)
           version=json.loads((root/'release.json').read_text())['version']
-          receipt={'commit':commit,'version':version,'scope':'Exact game-file closure and applied design notes; unrelated sibling files may advance.','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
+          receipt={'commit':commit,'version':version,'scope':'Exact main game, district, legacy and applied design file closure; unrelated sibling files may advance.','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
           pathlib.Path('published-results/bytes.json').write_text(json.dumps(receipt,indent=2))
           assert receipt['success'],'Public files did not match this exact game snapshot within the verification window'
           PY
@@ -63,11 +63,11 @@ jobs:
   live:
     needs: bytes
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 50
     strategy:
       fail-fast: false
       matrix:
-        route: [campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
+        route: [main, main-nav, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -81,12 +81,15 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0 pillow
           python -m playwright install --with-deps chromium
-      - name: Verify live default entry, campaign, saved routes and native synthetic XR
+      - name: Verify live main entry, native district travel, campaign and spatial XR
         env:
-          WARD_BASE: https://v5ma.github.io/svgn-planet/
+          MAIN_BASE: https://v5ma.github.io/svgn-planet/
+          WARD_BASE: https://v5ma.github.io/svgn-planet/lantern-ward.html
           WARD_ROUTE: ${{ matrix.route }}
           CITY_SUITE: ${{ matrix.route }}
           WATCH_SUITE: ${{ matrix.route }}
+          MAIN_OUT: published-results/main
+          MAIN_NAV_OUT: published-results/main-nav
           WATCH_OUT: published-results/night-watch
           CITY_OUT: published-results/city
           PORTAL_OUT: published-results/portal-render
@@ -95,6 +98,8 @@ jobs:
           CAMPAIGN_OUT: published-results/campaign
         run: |
           case "$WARD_ROUTE" in
+            main) python svgn-planet/main-browser.py ;;
+            main-nav) python svgn-planet/main-navigation-browser.py ;;
             campaign) python svgn-planet/lantern/campaign-browser.py ;;
             watch-roof|watch-combat|xr-ui) python svgn-planet/lantern/watch-browser.py ;;
             city|portal) python svgn-planet/lantern/city-browser.py ;;
