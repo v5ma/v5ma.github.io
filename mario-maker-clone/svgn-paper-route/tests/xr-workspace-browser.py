@@ -116,6 +116,11 @@ with sync_playwright() as pw:
   check(page.evaluate('!RouteWorkshop.state.drag && !keys.ArrowLeft && !keys.ArrowRight'),'Tracking-source loss cancels an editor drag and releases movement')
   page.evaluate('xrEmulator.controllers()');frames();choose('All menus');choose('Playtest in 3D');page.wait_for_function('RouteWorkshop.testing && SkyCycleXR.diagnostics.presentation==="diorama"')
   check(page.evaluate('SkyCycleXR.presenting'),'Workshop playtesting returns to the same stereo game without leaving XR')
+  # Controller riding intentionally has no floating panel. Open the menu with
+  # its actual mapped B button instead of trying to click a removed riding slab.
+  check(page.evaluate('!SkyCycleXR.diagnostics.uiVisible'),'Controller playtest hides the riding panel without losing the menu shortcut')
+  press(5);page.wait_for_function('__delivery.paused && SkyCycleFlightDeck.topPanel()')
+  check(True,'Tracked B reopens the menu from the unobstructed Workshop playtest')
   choose('All menus');choose('Return to Workshop');page.wait_for_function('RouteWorkshop.active && !RouteWorkshop.testing');frames()
   check(page.evaluate('WorkshopCore.encode(RouteWorkshop.state.doc)')==before,'Returning from XR playtest restores the same Workshop document')
   choose('Spatial setup');choose('Change AR / VR mode');page.wait_for_function('!SkyCycleXR.presenting && document.getElementById("sky-xr-guide").open')
