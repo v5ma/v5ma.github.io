@@ -1,0 +1,64 @@
+name: Vesperfall Fieldwork audio recovery
+on:
+  push:
+    branches: [vesperfall-fieldwork-20260918]
+    paths: ['.github/workflows/vesperfall-fieldwork-resonant-recovery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Freeze source and preserve every production file
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          app=Path('vesperfall');out=Path('test-output')
+          paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html','.json','.xlsx','.md')]
+          paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
+          files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
+          digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          assert digest=='eeb1fec91c1ee1bb6d12fdc979eaf37512b08761ff415fa8e2700a3451815689',digest
+          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          (out/'source-manifest.json').write_text(json.dumps({'commit':sha,'manifestDigest':digest,'files':files},indent=2))
+          PY
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+          python -u vesperfall/tests/verify-live.py
+          cp test-output/dominions-publication.json test-output/public-bytes-before.json
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Follow real controller settings pages and exercise original audio and reload
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+        run: |
+          set -euo pipefail
+          timeout 780 python -u vesperfall/tests/resonant-browser.py | tee test-output/resonant.log
+          test -s test-output/resonant/report.json
+          test ! -e test-output/resonant/failure.json
+          python -u vesperfall/tests/verify-live.py
+      - name: Retain exact source and unsuccessful traces
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fieldwork-audio-recovery-public
+          path: test-output/
+          retention-days: 14
