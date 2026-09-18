@@ -1,3 +1,9 @@
+Fieldwork repair / September 18, 2026.
+
+Read FIELDWORK.md alongside PILGRIMAGE.md. This iteration recovers the previously unpublished two-chapter generator and fixes grip pickup priority, clear gain/full-vitality feedback, contact collection height, first-screen mission access and a separate full-world AR expedition path. Goldwind A/B draws are retained. The original Returning Bell, Endless, Oath and training are directly selectable in the headset; Archive also supports direct entry. AR expedition uses the same scored model and saves progress, unlike stationary unscored Sanctuary and paused architectural inspection. It does not scan furniture or establish physical supports.
+
+This maps to existing V41 input/menu access, V42 AR alternatives, V52/V57 route relationships, V65 save preservation and V68 verification. Original canonical task statuses and the synchronized six-sheet workbook are retained; no human, device or final-campaign gate is promoted. Exact candidate/public outcomes belong in tests/evidence/fieldwork-0.17.0/publication.json. Preserve all five immutable layout readers, reward receipts, explicit preferences and concurrent sibling work. Historical publication claims below apply only to their identified source revisions.
+
 Vesperfall 0.17.0 / Pilgrimage / September 17, 2026.
 
 Goldwind is now the default for fresh settings; an explicit saved Classic preference remains. Fresh expeditions enter the two-chapter Pilgrimage: The Lantern Causeway, then The Ashen Archive. Each uses seeded authored modules with distinct direct, gallery and sheltered approaches, coupled cover/firing shutters, ordinary-arrow relay activation and persistent service returns. Completing each chapter awards the existing blessing once; completing the second continues into retained Endless. The authored Returning Bell and First Bell/Oath remain selectable. Existing saved runs keep their original geography and continuation.

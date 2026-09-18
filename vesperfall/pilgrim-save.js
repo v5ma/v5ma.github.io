@@ -46,6 +46,8 @@
  }
  function capture(s,meta){if(s.unscored||s.world.ar||!['playing','reward'].includes(s.phase)||s.health<=0)fail('Only a living scored expedition can be suspended.');
   const state={};for(const k of[...Object.keys(numberFields),...flags,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards'])state[k]=copy(s[k]??(k==='playerSlow'?0:undefined));
+  // Near-miss audio bookkeeping is transient, not expedition physics.
+  state.bolts=state.bolts.map(({soundPassed,...bolt})=>bolt);
   if(s.oath)state.oath=copy(s.oath);if(s.chapter)state.chapter=copy(s.chapter);if(s.pilgrimage)state.pilgrimage=copy(s.pilgrimage);
   for(const k of sets)state[k]=[...(s[k]||[])];
   state.enemies=s.world.enemies.map(e=>{const o={};for(const k of enemyFields)if(own(e,k))o[k]=copy(e[k]);return o;});
