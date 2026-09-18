@@ -1,6 +1,6 @@
 /* Fixed exhibit-space fragment mask. No view-space ClippingGroup cache, invisible
  * occluder meshes, camera-following cap planes, or changes to collision geometry.
- * Node materials retain their own alpha, lighting, textures and previous masks.
+ * Materials retain their own alpha, lighting, textures and previous masks.
  */
 export function apertureBounds(config={}) {
   const finite=(v,f)=>Number.isFinite(Number(v))?Number(v):f;
@@ -27,15 +27,16 @@ export function createWorldAperture(T) {
       if(!active)return;
       scene?.traverse(o=>{
         for(const m of Array.isArray(o.material)?o.material:[o.material]){
-          if(!m?.isNodeMaterial||originals.has(m))continue;
+          if(!m?.isMaterial||originals.has(m))continue;
+          // r177 NodeLibrary copies enumerable fields from classic materials too.
           const prior=m.maskNode,combined=prior?mask.and(prior):mask;
-          originals.set(m,{prior,combined});m.maskNode=combined;m.needsUpdate=true;
+          originals.set(m,{prior,combined,owned:Object.hasOwn(m,'maskNode')});m.maskNode=combined;m.needsUpdate=true;
         }
       });
     },
     dispose(){
       enabled.value=0;
-      for(const [m,{prior,combined}]of originals)if(m.maskNode===combined){m.maskNode=prior;m.needsUpdate=true;}
+      for(const [m,{prior,combined,owned}]of originals)if(m.maskNode===combined){if(owned)m.maskNode=prior;else delete m.maskNode;m.needsUpdate=true;}
       originals.clear();active=false;
     },
     get diagnostics(){return {active,space:'exhibit-world',materials:originals.size,min:bounds.min.slice(),max:bounds.max.slice(),inverse:inverse.value.elements.slice()};}
