@@ -16,13 +16,14 @@ def load(pattern,count,expected,fix=False):
  return json.loads(raw)
 candidate=load('.github/pilgrimage-candidate-{}.txt',4,'294038e2a802ee636a45f1754b9c4924b64a09a5251839f1849c5fec0c12b4d2',True)
 metadata=load('.github/pilgrimage-meta-v2-{}.txt',10,'dd21da9f40c12a42450e3951cce9121813ebaa755e1098ae0ce6d73632814082')
-final={r['path']:r['new'] for r in candidate+metadata}
-def apply(records,allow_final=False):
+gates=load('.github/pilgrimage-retained-gates-{}.txt',2,'d1df0fc04513b7261173b8a46e24ff3305439801baa6632a79a540f866e060db')
+final={r['path']:r['new'] for r in candidate+metadata+gates}
+def apply(records):
  pending=[]
  for r in records:
   p=Path(r['path']);assert p.parts[0]=='vesperfall' and '..' not in p.parts
   old=p.read_bytes() if p.exists() else None
-  if old is not None and (blob(old)==r['new'] or (allow_final and blob(old)==final[r['path']])):continue
+  if old is not None and blob(old) in (r['new'],final[r['path']]):continue
   assert (blob(old) if old is not None else None)==r['old'],str(p)
   if 'zipTransport' in r:
    source=zipfile.ZipFile(io.BytesIO(old));parts=[]
@@ -51,7 +52,8 @@ def apply(records,allow_final=False):
   assert blob(new)==r['new'],str(p)
   pending.append((p,new))
  for p,b in pending:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);print('Verified bytes:',p)
-apply(candidate,True)
+apply(candidate)
 apply(metadata)
+apply(gates)
 for name,expected in final.items():assert blob(Path(name).read_bytes())==expected,name
-print('All implementation and final release bytes verified.')
+print('All implementation and final release bytes verified, with original roadmap obligations retained.')
