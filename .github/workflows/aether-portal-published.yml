@@ -10,7 +10,7 @@ jobs:
   play:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,10 +43,12 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Exercise actual public HTTPS application
-        timeout-minutes: 25
+        timeout-minutes: 40
         env:
           TEST_BASE_URL: https://v5ma.github.io
-        run: python -u aether-reach/tests/portal-browser.py
+        run: |
+          python -u aether-reach/tests/window-browser.py
+          python -u aether-reach/tests/portal-browser.py
       - name: Evidence identity
         if: always()
         run: |

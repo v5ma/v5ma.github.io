@@ -1,7 +1,7 @@
 name: Aether Rewired chapter and diorama
 on:
   push:
-    branches: [aether/bellwether-diorama-20260915, aether/receiver-crosswind-20260915, aether/crosswind-release-check-20260915, aether/world-portal-20260917]
+    branches: [aether/bellwether-diorama-20260915, aether/receiver-crosswind-20260915, aether/crosswind-release-check-20260915, aether/world-portal-20260917, aether/clear-window-20260918]
     paths: ['aether-reach/**', '.github/workflows/aether-rewired.yml']
   workflow_dispatch:
 permissions:
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 55 || 30 }}
+    timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 55 || (matrix.suite == 'portal-game' && 45 || 30) }}
     strategy:
       fail-fast: false
       matrix:
@@ -48,7 +48,7 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Exercise the actual HTTP WebGL game
-        timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 50 || 25 }}
+        timeout-minutes: ${{ (matrix.suite == 'rewired' || matrix.suite == 'windbreak') && 50 || (matrix.suite == 'portal-game' && 40 || 25) }}
         env:
           SUITE: ${{ matrix.suite }}
         run: |
@@ -65,7 +65,7 @@ jobs:
             expedition) AETHER_SUITE=expedition python -u aether-reach/tests/browser.py ;;
             glide) python -u aether-reach/tests/glide_browser.py ;;
             portal-render) python -u aether-reach/tests/portal-render-browser.py ;;
-            portal-game) python -u aether-reach/tests/portal-browser.py ;;
+            portal-game) python -u aether-reach/tests/window-browser.py && python -u aether-reach/tests/portal-browser.py ;;
             *) exit 1 ;;
           esac
       - name: Preserve exact source and evidence
