@@ -38,6 +38,8 @@ function frame(now){
   if(edge(0))accept(root);else if(edge(1))back(root);else if(edge(9)){if(root.id==='welcome')$('start')?.click();else back(root);}else if(edge(8)&&root.id==='map-dialog')back(root);
   const scroll=dead(pad.axes[3]||0);if(Math.abs(scroll)<.1)menuScrollReady=true;if(menuScrollReady&&Math.abs(scroll)>.1)root.scrollTop+=scroll*15;
  }else{
+  // Opening Menu must remain available even while a held gameplay input blocks rearm.
+  if(edge(9)){clear();emit('pause');previous=buttons;return;}
   if(!gameplayReady){clear();if(!gameplayInputIsNeutral(pad)){status('Release sticks and buttons to resume control.');previous=buttons;return;}gameplayReady=true;}
   padState.x=dead(pad.axes[0]||0);padState.y=-dead(pad.axes[1]||0);const len=Math.max(1,Math.hypot(padState.x,padState.y));padState.x/=len;padState.y/=len;
   padState.lookX=dead(pad.axes[2]||0);padState.lookY=dead(pad.axes[3]||0);padState.boost=(pad.buttons[7]?.value||0)>.2;padState.brake=(pad.buttons[6]?.value||0)>.2||buttons[1];
@@ -50,4 +52,4 @@ function frame(now){
  status(root?'Xbox: D-pad navigates | Left/right adjusts | A selects | B returns':'Xbox: RT accelerate | LT/B brake | L3 bell | D-pad down jobs');previous=buttons;
 }
 window.addEventListener('blur',clear);document.addEventListener('visibilitychange',clear);
-Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,polls,gameplayReady,menuNavigationReady,menuScrollReady,scope:scope()?.id||null,focus:document.activeElement?.id||null})})});requestAnimationFrame(frame);
+Object.defineProperty(window,'NeighborhoodController',{value:Object.freeze({inspect:()=>({...padState,polls,gameplayReady,menuNavigationReady,menuScrollReady,scope:scope()?.id||null,focus:document.activeElement?.id||null,documentFocused:document.hasFocus()})})});requestAnimationFrame(frame);

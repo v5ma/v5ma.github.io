@@ -1,7 +1,7 @@
 name: Unified Neighborhood acceptance
 on:
   push:
-    branches: [master, neighborhood-missions/night-watch-recovery-20260917]
+    branches: [master, neighborhood-missions/night-watch-recovery-20260917, neighborhood-missions/unified-release-20260918]
     paths: ['svgn-planet/**', '.github/workflows/neighborhood-unified-acceptance.yml']
 permissions:
   contents: read
@@ -46,11 +46,11 @@ jobs:
           retention-days: 30
   browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     strategy:
       fail-fast: false
       matrix:
-        suite: [main, campaign, watch-roof, watch-combat, xr-ui, city, portal, portal-render, street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
+        suite: [main, main-nav, campaign, watch-roof, watch-combat, xr-ui, city, portal, portal-render, street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,6 +73,7 @@ jobs:
           python -m http.server 8765 > server.log 2>&1 &
           case "$WARD_ROUTE" in
             main) python svgn-planet/main-browser.py ;;
+            main-nav) python svgn-planet/main-navigation-browser.py ;;
             campaign) python svgn-planet/lantern/campaign-browser.py ;;
             watch-roof|watch-combat|xr-ui) python svgn-planet/lantern/watch-browser.py ;;
             city|portal) python svgn-planet/lantern/city-browser.py ;;

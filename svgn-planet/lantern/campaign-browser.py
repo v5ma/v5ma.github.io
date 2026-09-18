@@ -44,7 +44,7 @@ async def main():
     if level is not None and all(abs(e['y']-level)>1.5 for e in alive):await neutral();return
     e=await aim_enemy();assert e
     if e['d']>1.8:
-     await page.evaluate("""()=>{const q=LanternWard.inspect(),s=q.state,e=q.campaign.enemies.filter(e=>e.hp>0).sort((a,b)=>Math.hypot(a.x-s.x,a.z-s.z)-Math.hypot(b.x-s.x,b.z-s.z))[0],dx=e.x-s.x,dz=e.z-s.z,d=Math.hypot(dx,dz);__pad.axes[0]=(dx*q.basis.right[0]+dz*q.basis.right[1])/(d||1);__pad.axes[1]=-(dx*q.basis.forward[0]+dz*q.basis.forward[1])/(d||1);}""");await frames(5)
+     await page.evaluate("""()=>{const q=LanternWard.inspect(),s=q.state,e=q.campaign.enemies.filter(e=>e.hp>0).sort((a,b)=>Math.hypot(a.x-s.x,a.z-s.z)-Math.hypot(b.x-s.x,b.z-s.z))[0],dx=e.x-s.x,dz=e.z-s.z,d=Math.hypot(dx,dz);__pad.axes[0]=(dx*q.basis.right[0]+dz*q.basis.right[1])/(d||1);__pad.axes[1]=-(dx*q.basis.forward[0]+dz*q.basis.forward[1])/(d||1);} """);await frames(5)
     else:
      await page.evaluate('__pad.axes[0]=__pad.axes[1]=0')
      if e['phase']=='windup' and e['timer']>.28:
@@ -57,14 +57,19 @@ async def main():
      await frames(6)
    raise AssertionError('Freeflow encounter did not finish '+str((await state())['campaign']))
   async def silent_all():
-   # Approach each current patrol from behind using its read-only heading, then X.
-   for _ in range(12):
-    q=await state();alive=[e for e in q['campaign']['enemies'] if e['hp']>0]
-    if not alive:return
-    e=alive[0];import math
-    bx=e['x']-math.sin(e['yaw'])*1.05;bz=e['z']-math.cos(e['yaw'])*1.05
-    await pilot(bx,bz,1800);await press(2);await frames(5)
-   raise AssertionError('Predator patrols did not clear '+str((await state())['campaign']))
+   # Observe current patrol headings and move behind them using ordinary controls.
+   # Smoke provides recovery when observed; no target HP or position is assigned.
+   for index in range(3):
+    if index==1:await route([[-10,-16],[-10,-14.5],[-8,-13.5]])
+    if index==2:await route([[-6,-13.5],[-21,-13.5],[-23,-9]])
+    for _ in range(800):
+     q=await state();e=q['campaign']['enemies'][index] if len(q['campaign']['enemies'])>index else None
+     if e is None or e['hp']<=0:break
+     await page.keyboard.press('KeyH')
+     await page.evaluate("""(index)=>{const q=LanternWard.inspect(),s=q.state,e=q.campaign.enemies[index],x=e.x-Math.sin(e.yaw)*1.15,z=e.z-Math.cos(e.yaw)*1.15,dx=x-s.x,dz=z-s.z,d=Math.hypot(dx,dz);__pad.axes[0]=d>.25?(dx*q.basis.right[0]+dz*q.basis.right[1])/(d||1):0;__pad.axes[1]=d>.25?-(dx*q.basis.forward[0]+dz*q.basis.forward[1])/(d||1):0;}""",index)
+     await frames(2);await press(2)
+    else:raise AssertionError('Patrol rear approach not reached '+str(e))
+   await neutral();await frames(3)
   def ok(name):print('PASS',name,flush=True);report['checks'].append(name)
   async def shot(name):await page.screenshot(path=str(OUT/(name+'.png')))
   async def complete_watch():
@@ -80,29 +85,32 @@ async def main():
    # Case 02 / cape traversal.
    await mission('campaign:flight');await route([[0,18],[4.5,18],[6,8],[14,8],[19.5,10.5],[19.5,1.5],[15,0],[12,0]]);await press(2)
    await route([[12,-3.5],[6,-3.5],[-6,-3.5],[-12,-4.4],[-14.5,-4.4]]);await press(2);assert (await state())['campaign']['progress']['progress']['flight']==2
-   await route([[-6,-3.5],[6,-3.5],[12,-2.2]]);await press(2);mode=(await state())['mode'];await pilot(9,-2.2);await press(0);before=(await state())['state']['distance'];await page.evaluate('__pad.buttons[4]={pressed:true,value:1};__pad.buttons[5]={pressed:true,value:1}')
-   await wait('LanternWard.inspect().state.x<-9');await page.evaluate('__pad.buttons[4]={pressed:false,value:0};__pad.buttons[5]={pressed:false,value:0}');await wait('LanternWard.inspect().state.speed<.2');q=await state();assert q['state']['distance']>before+8 and q['mode']==mode;ok('Both-bumper cape glide moves through the real level without toggling camera or firing a tool')
-   await pilot(-11.5,-4.5);await press(2);await route([[-6,-3.5],[6,-3.5],[12,0]]);await press(2);q=await state();assert 'flight' in q['state']['campaign']['completed'] and q['state']['campaign']['credits']==150;await shot('cape-route');ok('Rooftop Run persists a separate campaign reward and permanent cape traversal')
+   await pilot(-16,-4.4);await press(2);mode=(await state())['mode']
+   # Point the character toward the real landing with movement, not a pose setter.
+   await page.evaluate("""()=>{const q=LanternWard.inspect(),s=q.state,t=q.navigation.target,dx=t.x-s.x,dz=t.z-s.z,d=Math.hypot(dx,dz);__pad.axes[0]=(dx*q.basis.right[0]+dz*q.basis.right[1])/d;__pad.axes[1]=-(dx*q.basis.forward[0]+dz*q.basis.forward[1])/d;}""")
+   await frames(2);await neutral();await hold([6],5);await press(0);before=(await state())['state']['distance'];await page.evaluate('__pad.buttons[4]={pressed:true,value:1};__pad.buttons[5]={pressed:true,value:1}')
+   await wait('Math.hypot(LanternWard.inspect().state.x+20.5,LanternWard.inspect().state.z+10.5)<.9');await page.evaluate('__pad.buttons[4]={pressed:false,value:0};__pad.buttons[5]={pressed:false,value:0}');await wait('LanternWard.inspect().state.y===0&&LanternWard.inspect().state.speed<.2');q=await state();assert q['state']['distance']>before+6 and q['mode']==mode and q['campaign']['glideLanded'];ok('Both-bumper cape reaches a real lower arcade landing without toggling camera or firing a tool')
+   await press(2);await route([[-23,-10.5],[-23,8.2],[-12.5,8.2],[-12.5,5.2],[-12.5,-3.7],[-6,-3.5],[6,-3.5],[12,0]]);await press(2);q=await state();assert 'flight' in q['state']['campaign']['completed'] and q['state']['campaign']['credits']==150;await shot('cape-route');ok('Rooftop Run persists its reward and reuses the familiar print-shop stairs')
 
    # Case 03 / predator space.
    await mission('campaign:predator');await route([[19.5,1.5],[19.5,10.5],[14,8],[6,8],[4.5,18],[0,18],[-10,14]]);await press(2)
    await route([[-12.5,8],[-12.5,5],[-12.5,-3.7],[-10,-4.2]]);await press(2);assert (await state())['state']['campaign']['progress']['predator']==2;await shot('predator-vantage');ok('Predator case first teaches patrol timing from an existing elevated observation route')
-   await route([[-18.5,-4],[-18.5,-10],[-14,-15.5]]);await silent_all();await pilot(-10,-17.5);await press(2);assert (await state())['state']['campaign']['progress']['predator']>=3;ok('Patrols can be disabled through close behind takedowns instead of compulsory combat')
-   await pilot(-20.5,-2.7);await press(2);await route([[-21,-13.5],[-5,-13.5],[5,-13.5],[18,-17]]);await press(2);await route([[6,-13.5],[4.5,18],[0,18],[-10,14]]);await press(2);assert 'predator' in (await state())['state']['campaign']['completed'];ok('Service vent and greenhouse relay create a complete stealth route with return')
+   await route([[-18.5,-4],[-18.5,-12],[-10,-14.5],[-10,-16.1]]);await silent_all();assert (await state())['state']['campaign']['progress']['predator']>=3;ok('Patrols can be disabled through close behind takedowns instead of compulsory combat')
+   await route([[-23,5],[-20.5,5],[-20.5,-2.7]]);await press(2);await route([[-20.5,5],[-23,5],[-23,-12],[-5,-13.5],[5,-13.5],[18,-13.5],[18,-17]]);await press(2);await route([[18,-13.5],[6,-13.5],[4.5,18],[0,18],[-10,14]]);await press(2);assert 'predator' in (await state())['state']['campaign']['completed'];ok('Service vent and greenhouse relay create a complete stealth route with return')
 
    # Case 04 / functional interiors.
    await mission('campaign:interiors');
-   for points in [[[-9.6,1.1]],[[-20.5,-2.7]],[[-10,-17.5]],[[18,-16.5]],[[15,6]]]:
+   for points in [[[-12.5,8.2],[-12.5,6],[-9.6,6],[-9.6,1.1]],[[-9.6,6],[-12.5,6],[-12.5,8.2],[-20.5,5],[-20.5,-2.7]],[[-20.5,5],[-23,5],[-23,-13.5],[-10,-14.5],[-10,-17.5]],[[-10,-14.5],[-5,-13.5],[5,-13.5],[18,-13.5],[18,-16.5]],[[18,-13.5],[6,-13.5],[6,8],[15,8],[15,6]]]:
     await route(points);await press(2)
-   await pilot(5.8,-13);await press(2);await wait('LanternWard.inspect().state.transition===null&&LanternWard.inspect().state.water==="low"');await route([[-.5,-11],[-.5,-7]]);await press(2);await route([[-.5,-11],[5,-13],[ -9.5,4.5]]);await press(2);assert 'interiors' in (await state())['state']['campaign']['completed'];await shot('interior-systems');ok('Rooms of the Ward links print, kitchen, storehouse, greenhouse, workshop and canal service interiors')
+   await route([[6,8],[5.8,-13]]);await press(2);await wait('LanternWard.inspect().state.transition===null&&LanternWard.inspect().state.water==="low"');await route([[-.5,-11],[-.5,-7]]);await press(2);await route([[-.5,-11],[-.5,-13.5],[-5,-13.5],[-6,8],[-12.5,8.2],[-12.5,6],[-9.5,4.5]]);await press(2);assert 'interiors' in (await state())['state']['campaign']['completed'];await shot('interior-systems');ok('Six functional interiors complete through real doorways, stairs and drained canal access')
 
    # Case 05 / freeflow multi-wave combat.
-   await mission('campaign:freeflow');await route([[-10,14]]);await press(2);await route([[0,18],[4.5,18],[6,8]]);await fight_all(0);q=await state();assert q['state']['campaign']['progress']['freeflow']>=2;ok('Freeflow court wave uses real lunges, shield tools and timed counters')
-   await route([[14,8],[19.5,10.5],[19.5,1.5],[15,0]]);await fight_all(4.4);await route([[19.5,1.5],[19.5,10.5],[14,8],[4.5,18],[0,18],[-10,14]]);await press(2);q=await state();assert 'freeflow' in q['state']['campaign']['completed'] and q['campaign']['bestCombo']>=1;await shot('freeflow-return');ok('Second upper-floor combat wave reconnects to the familiar depot return')
+   await mission('campaign:freeflow');await route([[-9.5,6],[-12.5,6],[-12.5,8.2],[-10,14]]);await press(2);await route([[0,18],[4.5,18]]);await fight_all(0);q=await state();assert q['state']['campaign']['progress']['freeflow']>=2;ok('Freeflow court wave uses real lunges, shield tools and timed counters')
+   await route([[14,8],[19.5,10.5],[19.5,1.5]]);await fight_all(4.4);flow=(await state())['campaign'];await route([[19.5,1.5],[19.5,10.5],[14,8],[6,8],[4.5,18],[0,18],[-10,14]]);await press(2);q=await state();assert 'freeflow' in q['state']['campaign']['completed'] and flow['bestCombo']>=1;await shot('freeflow-return');ok('Second upper-floor combat wave reconnects to the familiar depot return')
 
    # Case 06 / finale lets player intentionally change approach.
    await mission('campaign:finale');await route([[0,18],[4.5,18],[6,8],[14,8],[19.5,10.5],[19.5,1.5],[12,0]]);await press(2);await page.keyboard.press('KeyU');await frames(5);assert (await state())['state']['campaign']['route']=='combat';ok('Finale approach can be changed without erasing prior evidence')
-   await route([[19.5,1.5],[19.5,10.5],[14,8],[6,8]]);await fight_all();await press(2);await route([[14,8],[19.5,10.5],[19.5,1.5],[20,-3]]);await press(2);await route([[19.5,1.5],[19.5,10.5],[14,8],[4.5,18],[0,18],[-10,14]]);await press(2);q=await state();assert 'finale' in q['state']['campaign']['completed'];assert q['state']['campaign']['credits']==950;ok('Five-case campaign completes through the learned neighborhood with an exactly-once campaign ledger')
+   await route([[19.5,1.5],[19.5,10.5],[14,8]]);await fight_all();await route([[14,8],[19.5,10.5],[19.5,1.5],[20,-3]]);await press(2);await route([[19.5,1.5],[19.5,10.5],[14,8],[6,8],[4.5,18],[0,18],[-10,14]]);await press(2);q=await state();assert 'finale' in q['state']['campaign']['completed'];assert q['state']['campaign']['credits']==950;ok('Five-case campaign completes through the learned neighborhood with an exactly-once campaign ledger')
    await page.reload(wait_until='domcontentloaded');await wait('window.LanternWard&&!document.querySelector("#start").disabled');q=await state();assert q['state']['campaign']['credits']==950 and len(q['state']['campaign']['completed'])==5;assert q['state']['credits'] in (0,600);assert q['state']['watch']['credits']==180;ok('Reload preserves campaign, Watch and courier ledgers independently')
 
    assert not report['errors'],report['errors'];assert not report['consoleErrors'],report['consoleErrors'];report['success']=True;report['final']=await state()
