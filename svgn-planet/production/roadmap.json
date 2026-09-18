@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "version": "0.14.0",
+  "version": "0.16.0",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-17",
+  "reviewed": "2026-09-18",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -174,8 +174,8 @@
       "priority": "P0",
       "status": "verified",
       "title": "Recoverable save transactions",
-      "acceptance": "Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.",
-      "next": "Historical recovery criterion remains verified narrowly. New local watch.v1 and XR preference validation pass models; graphical save/restore and multi-tab conflict checks remain. Rollback must preserve city and Watch serializers or explicitly archive new progress.",
+      "acceptance": "Recoverable original-city transactions and separate validated district/campaign ledgers retain historical save identities. Destructive replacement requires explicit confirmation.",
+      "next": "Keep corruption, quota and interrupted-write tests. A missing backup is not a restore option. Multi-tab conflicts and rollback to older parsers need further review.",
       "dependencies": [
         "SAVE-01"
       ],
@@ -188,10 +188,12 @@
         "../lantern/LIVING-PORTAL.md",
         "evidence/living-portal-0.13.0/candidate.json",
         "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/night-watch-0.14.0/local-acceptance.json",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "SLICE-01",
@@ -620,8 +622,8 @@
       "priority": "P0",
       "status": "partial",
       "title": "Controller-complete gameplay and menus",
-      "acceptance": "Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.",
-      "next": "Night Watch local candidate provides native main/mission/tool/control/help/save/confirmation paths and hidden-by-default controller/hand UI. Run the actual sixteen-suite browser matrix and physical controllers/hands; local fake-renderer adapter tests are not graphical approval.",
+      "acceptance": "Native XR menus include original-city and district maps, mission selection, field tools, settings and explicit cancel-first recovery. Menu remains available while held gameplay controls block rearm.",
+      "next": "Test every original-city puzzle and longer dialogue on hardware; preserve direct frequently used actions and inspect readability without relying on desktop overlays.",
       "dependencies": [
         "INPUT-01"
       ],
@@ -635,10 +637,12 @@
         "../lantern/LIVING-PORTAL.md",
         "evidence/living-portal-0.13.0/candidate.json",
         "../lantern/NIGHT-WATCH.md",
-        "evidence/night-watch-0.14.0/local-acceptance.json"
+        "evidence/night-watch-0.14.0/local-acceptance.json",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "ACCESS-02",
@@ -746,10 +750,10 @@
       "id": "BUILD-01",
       "milestone": "M5",
       "priority": "P0",
-      "status": "partial",
+      "status": "implemented",
       "title": "Publish real source, not an unmerged candidate",
-      "acceptance": "Lantern Ward is normally merged and deployed. All 186 source/asset/evidence bytes match and the live street/hoist and native synthetic XR tours pass. Legacy layout hashes remain pinned. This is not physical or AAA approval.",
-      "next": "Integrate the campaign only after full browser acceptance, then merge normally against newest master and independently verify exact served game bytes plus live Watch/campaign/XR journeys.",
+      "acceptance": "The release must merge normally, preserve concurrent sibling work, match public main-game bytes and pass live main-entry, district, campaign and XR journeys.",
+      "next": "Use the separate release receipt for actual publication status. Never call an unmerged branch or successful local test a published game.",
       "dependencies": [],
       "evidence": [
         "https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978",
@@ -759,10 +763,12 @@
         "evidence/lantern-0.12.0/published.json",
         "../lantern/CAMPAIGN.md",
         "../lantern/campaign.test.mjs",
-        "../lantern/xr-embodiment.test.mjs"
+        "../lantern/xr-embodiment.test.mjs",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "BUILD-02",
@@ -770,8 +776,8 @@
       "priority": "P0",
       "status": "partial",
       "title": "A repeatable release gate",
-      "acceptance": "Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.",
-      "next": "Public checks wait for successful exact-commit Pages deployment before testing file propagation. A scoped rollback drill and real-device approval remain open.",
+      "acceptance": "Exact-source checks archive code before testing. Public verification checks the game-file closure even when a newer sibling-inclusive Pages snapshot deploys.",
+      "next": "Retain all nineteen source journeys and all required public journeys. Complete a scoped rollback drill; never reset shared master.",
       "dependencies": [
         "QA-01",
         "QA-03"
@@ -780,10 +786,12 @@
         "evidence/v0.11.0.json",
         "https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468",
         "evidence/v0.11.0-published.json",
-        "evidence/lantern-0.12.0/published.json"
+        "evidence/lantern-0.12.0/published.json",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-15"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "LEGAL-01",
@@ -926,8 +934,8 @@
       "priority": "P0",
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
-      "acceptance": "Living Portal place-mastery routes and interiors remain. The campaign now reuses those learned relationships for rooftop glide, predator observation, interior systems investigation, two-level combat and a finale with stealth/combat choice.",
-      "next": "Run the sequential real-browser campaign journey and inherited suites, then test unfamiliar and returning players. Measure whether learned routes and room functions change intentional replay before adding geography.",
+      "acceptance": "Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.",
+      "next": "Test unfamiliar and returning players for orientation, meaningful route choice and useful mastery. Improve the existing authored places before adding more map area.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -942,10 +950,12 @@
         "evidence/night-watch-0.14.0/local-acceptance.json",
         "../lantern/CAMPAIGN.md",
         "../lantern/campaign.test.mjs",
-        "../lantern/xr-embodiment.test.mjs"
+        "../lantern/xr-embodiment.test.mjs",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "XR-02",
@@ -953,8 +963,8 @@
       "priority": "P0",
       "status": "needs-playtest",
       "title": "Player-centered perspective portal and native first-person VR/AR",
-      "acceptance": "Native first-person VR/AR and centered full-depth diorama VR/AR remain. Campaign adds hidden normal-play UI, urgent presentation controls on page one, direct body holsters and two-hand cape input without changing simulation/collision.",
-      "next": "Complete rendered XR campaign/menu acceptance, then physical Quest 3/3S Touch Plus and hand-tracking tests for holster reach, cape false positives, head-roll obstruction, comfort and frame time. No A-Frame rewrite is required by current evidence.",
+      "acceptance": "Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.",
+      "next": "Retain exact main-URL and native menu tests. Obtain physical Quest 3/3S, Touch Plus and hand-tracking approval for menu reach, head tilt, cape/holster gestures, comfort and sustained frame time.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -967,10 +977,12 @@
         "evidence/night-watch-0.14.0/local-acceptance.json",
         "../lantern/CAMPAIGN.md",
         "../lantern/campaign.test.mjs",
-        "../lantern/xr-embodiment.test.mjs"
+        "../lantern/xr-embodiment.test.mjs",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     },
     {
       "id": "LEGACY-01",
@@ -995,8 +1007,8 @@
       "priority": "P1",
       "status": "needs-playtest",
       "title": "Optional embodied Night Watch investigation and action case",
-      "acceptance": "Signal Hijack foundation is extended into five sequential campaign cases: cape traversal, predator stealth, functional-interior investigation, freeflow-style multi-wave combat, and route-choice finale. Timed counters, shield/pulse rules, smoke, lunges and takedowns have explicit state machines and separate rewards.",
-      "next": "Run campaign browser acceptance without state assignment. Review actual counter readability, lunge target choice, stealth recovery, tool holsters and finale route agency. Physical and human quality gates remain open.",
+      "acceptance": "Signal Hijack and five sequential original Night Watch cases use the existing district. Cape traversal, patrol awareness, takedowns, counters, shield/pulse rules and lunges have separate state and reward contracts.",
+      "next": "Finish exact rendered/public campaign verification and physical playtests. Review stealth readability, combat consequence and replay agency; do not equate automated traversal with fun.",
       "dependencies": [
         "LEVEL-01",
         "XR-02",
@@ -1009,10 +1021,12 @@
         "evidence/night-watch-0.14.0/local-acceptance.json",
         "../lantern/CAMPAIGN.md",
         "../lantern/campaign.test.mjs",
-        "../lantern/xr-embodiment.test.mjs"
+        "../lantern/xr-embodiment.test.mjs",
+        "../UNIFIED-NEIGHBORHOODS.md",
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
       ],
       "owner": "Level design / XR engineering / QA",
-      "lastReviewed": "2026-09-17"
+      "lastReviewed": "2026-09-18"
     }
   ],
   "sources": [
@@ -1032,6 +1046,6 @@
       "use": "Remapping, input alternatives and perceptual/cognitive accessibility."
     }
   ],
-  "releaseEvidence": "evidence/night-watch-0.14.0/local-acceptance.json",
-  "edition": "Lantern Ward: Night Watch Campaign (candidate)"
+  "releaseEvidence": "../../../release-receipts/neighborhood-missions-unified-0.16.0.json",
+  "edition": "Unified Neighborhoods and Night Watch"
 }

@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Lantern Ward: Night Watch Campaign (candidate) v0.14.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-17.
+Current release: Unified Neighborhoods and Night Watch v0.16.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-18.
 
 ## How to use this workbook
 
@@ -73,10 +73,10 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
   Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
 
 - [x] SAVE-02 / P0 / verified / Recoverable save transactions
-  Acceptance: Maintain a last-known-good backup with schema migrations and clear recovery. Corrupt storage, quota failures and interrupted writes must not silently erase progress.
-  Next: Historical recovery criterion remains verified narrowly. New local watch.v1 and XR preference validation pass models; graphical save/restore and multi-tab conflict checks remain. Rollback must preserve city and Watch serializers or explicitly archive new progress.
+  Acceptance: Recoverable original-city transactions and separate validated district/campaign ledgers retain historical save identities. Destructive replacement requires explicit confirmation.
+  Next: Keep corruption, quota and interrupted-write tests. A missing backup is not a restore option. Multi-tab conflicts and rollback to older parsers need further review.
   Owner role: Engineering / QA. Dependencies: SAVE-01.
-  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 ## M1 / One exceptional neighborhood
 
@@ -133,16 +133,16 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
   Evidence: Not recorded.
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
-  Acceptance: Living Portal place-mastery routes and interiors remain. The campaign now reuses those learned relationships for rooftop glide, predator observation, interior systems investigation, two-level combat and a finale with stealth/combat choice.
-  Next: Run the sequential real-browser campaign journey and inherited suites, then test unfamiliar and returning players. Measure whether learned routes and room functions change intentional replay before adding geography.
+  Acceptance: Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.
+  Next: Test unfamiliar and returning players for orientation, meaningful route choice and useful mastery. Improve the existing authored places before adding more map area.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 - [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
-  Acceptance: Native first-person VR/AR and centered full-depth diorama VR/AR remain. Campaign adds hidden normal-play UI, urgent presentation controls on page one, direct body holsters and two-hand cape input without changing simulation/collision.
-  Next: Complete rendered XR campaign/menu acceptance, then physical Quest 3/3S Touch Plus and hand-tracking tests for holster reach, cape false positives, head-roll obstruction, comfort and frame time. No A-Frame rewrite is required by current evidence.
+  Acceptance: Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.
+  Next: Retain exact main-URL and native menu tests. Obtain physical Quest 3/3S, Touch Plus and hand-tracking approval for menu reach, head tilt, cape/holster gestures, comfort and sustained frame time.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 - [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
@@ -151,10 +151,10 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
   Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json
 
 - [ ] ACTION-01 / P1 / needs-playtest / Optional embodied Night Watch investigation and action case
-  Acceptance: Signal Hijack foundation is extended into five sequential campaign cases: cape traversal, predator stealth, functional-interior investigation, freeflow-style multi-wave combat, and route-choice finale. Timed counters, shield/pulse rules, smoke, lunges and takedowns have explicit state machines and separate rewards.
-  Next: Run campaign browser acceptance without state assignment. Review actual counter readability, lunge target choice, stealth recovery, tool holsters and finale route agency. Physical and human quality gates remain open.
+  Acceptance: Signal Hijack and five sequential original Night Watch cases use the existing district. Cape traversal, patrol awareness, takedowns, counters, shield/pulse rules and lunges have separate state and reward contracts.
+  Next: Finish exact rendered/public campaign verification and physical playtests. Review stealth readability, combat consequence and replay agency; do not equate automated traversal with fun.
   Owner role: Level design / XR engineering / QA. Dependencies: LEVEL-01, XR-02, ACCESS-01.
-  Evidence: ../lantern/NIGHT-WATCH.md ; ../lantern/watch.test.mjs ; ../lantern/xr-adapter.test.mjs ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs
+  Evidence: ../lantern/NIGHT-WATCH.md ; ../lantern/watch.test.mjs ; ../lantern/xr-adapter.test.mjs ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 ## M2 / A city with a reason to exist
 
@@ -301,10 +301,10 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
   Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
-  Acceptance: Every feature including errors, confirmations, story, checklist and settings must be reachable and dismissible without a mouse after browser audio unlock. No gameplay input behind dialogs.
-  Next: Night Watch local candidate provides native main/mission/tool/control/help/save/confirmation paths and hidden-by-default controller/hand UI. Run the actual sixteen-suite browser matrix and physical controllers/hands; local fake-renderer adapter tests are not graphical approval.
+  Acceptance: Native XR menus include original-city and district maps, mission selection, field tools, settings and explicit cancel-first recovery. Menu remains available while held gameplay controls block rearm.
+  Next: Test every original-city puzzle and longer dialogue on hardware; preserve direct frequently used actions and inspect readability without relying on desktop overlays.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json
+  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 - [ ] ACCESS-02 / P1 / partial / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
@@ -360,17 +360,17 @@ Human exit gate: Pass the named device matrix, license audit, soak test and roll
   Owner role: Engineering / QA. Dependencies: PERF-03, AUDIO-01.
   Evidence: Not recorded.
 
-- [ ] BUILD-01 / P0 / partial / Publish real source, not an unmerged candidate
-  Acceptance: Lantern Ward is normally merged and deployed. All 186 source/asset/evidence bytes match and the live street/hoist and native synthetic XR tours pass. Legacy layout hashes remain pinned. This is not physical or AAA approval.
-  Next: Integrate the campaign only after full browser acceptance, then merge normally against newest master and independently verify exact served game bytes plus live Watch/campaign/XR journeys.
+- [ ] BUILD-01 / P0 / implemented / Publish real source, not an unmerged candidate
+  Acceptance: The release must merge normally, preserve concurrent sibling work, match public main-game bytes and pass live main-entry, district, campaign and XR journeys.
+  Next: Use the separate release receipt for actual publication status. Never call an unmerged branch or successful local test a published game.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978 ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs
+  Evidence: https://github.com/v5ma/v5ma.github.io/actions/runs/34668030978 ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 - [ ] BUILD-02 / P0 / partial / A repeatable release gate
-  Acceptance: Run model, browser, asset, visual and live checks before completion. Archive evidence, support reversible rollback and never force-push over sibling games.
-  Next: Public checks wait for successful exact-commit Pages deployment before testing file propagation. A scoped rollback drill and real-device approval remain open.
+  Acceptance: Exact-source checks archive code before testing. Public verification checks the game-file closure even when a newer sibling-inclusive Pages snapshot deploys.
+  Next: Retain all nineteen source journeys and all required public journeys. Complete a scoped rollback drill; never reset shared master.
   Owner role: Engineering / QA. Dependencies: QA-01, QA-03.
-  Evidence: evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json
+  Evidence: evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; evidence/lantern-0.12.0/published.json ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
 
 - [ ] LEGAL-01 / P0 / partial / Licensed and reproducible assets
   Acceptance: The existing CC0 register retains sources and hashes. Every new model, texture, sound and voice needs provenance and redistribution rights.
