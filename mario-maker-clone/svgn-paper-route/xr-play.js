@@ -8,13 +8,14 @@ import {addOverlay,POINTER_ORDER} from './xr-overlay.mjs';
 import {protectOpaqueXRFramebuffer} from './xr-webgl-compat.mjs';
 import {mappedPad,sourcesNeutral,pointInRects} from './xr-input-core.mjs';
 import {controls,menuEntries,controlLabel,wrapText,paginate,editValue,visible,focusEntry} from './xr-ui-core.mjs';
+import {createWorldAperture} from './xr-world-aperture.mjs';
 import {stageSettings,sessionOptions,presentation,clipPlanes} from './xr-spatial-core.mjs';
 const $=id=>document.getElementById(id),fd=()=>window.SkyCycleFlightDeck;
 const panel=()=>fd()?.topPanel();
 let session=null,starting=false,presenting=false,finishing=false,neutral=true,renderer=null,originalRender=null,originalScene=null,oldView=null;
 let restoreFramebuffer=()=>{},oldClear=null,oldAlpha=1,xrScene=null,anchor=null,world=null,clip=null,camera=null,ui=null,texture=null,context=null,canvas=null;
 let reference=null,rects=[],page=0,lastPanel=null,lastUI=0,lastFrame=null,recenter=true;
-let keyboardDialog=null;
+let keyboardDialog=null,aperture=null,rayFocus=null;
 let sessionMode='immersive-vr',selectedMode='immersive-vr',spatial=stageSettings(),virtualRoot=null,typing=null,typingShift=false,typingSymbols=false;
 let screen=null,screenTexture=null,screenCanvas=null,screenContext=null,screenSource=null,screenPointer=null,screenMode='diorama';
 let held=new Set(),suppressed=new Set(),presses=new Map(),pulses=new Map(),visuals=new Map(),ctxDown=false,frameCount=0,eyeCount=0,errorText='',entryPanel=null;
@@ -22,7 +23,7 @@ let lastMenuKey='',uiMessage='',uiMessageUntil=0,focusLabel='',supportState={vr:
 const ctl=new T.Matrix4(),rotation=new T.Quaternion(),raycaster=new T.Raycaster(),vector=new T.Vector3(),forward=new T.Vector3(0,0,-1);
 const lastHit=new T.Vector3(),poseForward=new T.Vector3();
 const guide=document.createElement('dialog');guide.id='sky-xr-guide';guide.setAttribute('aria-labelledby','sky-xr-title');
-guide.innerHTML='<h2 id="sky-xr-title">Sky Cycle / AR and VR</h2><p>Play the same cycling adventure as a stereoscopic miniature in VR or against your room in AR. The browser supplies passthrough; this game does not read camera pixels.</p><p>Left stick rides and brakes. Right A jumps, right trigger throws, right grip whips, left trigger boosts. Right B pauses or goes back; left Y opens Flight Deck. Point and trigger or hand-pinch to use menus. The hand action bar stays below the riding view.</p><p>Routes, results, settings, text fields and Workshop tools share in-headset controls. The 2D game and editor use a floating live canvas. AR has a seated placement fallback: Recenter, scale, height, distance and rotation are always available. No room scan is required.</p><p>WebGL is required. A WebGPU browser handoff reloads the current route and must protect unsaved drafts. Switching AR/VR sessions returns here for another deliberate entry. Stay seated with clear space.</p><p id="sky-xr-status" role="status">Checking immersive support...</p><div class="xr-actions"><button id="sky-xr-enter" class="delivery-btn" disabled>Enter VR</button><button id="sky-xr-enter-ar" class="delivery-btn" disabled>Enter AR</button><button id="sky-xr-cancel" class="delivery-btn">Back</button></div>';
+guide.innerHTML='<h2 id="sky-xr-title">Sky Cycle / AR and VR</h2><p>Play the same cycling adventure as a stereoscopic miniature in VR or against your room in AR. The browser supplies passthrough; this game does not read camera pixels.</p><p>Left stick rides and brakes. Right A jumps, right trigger throws, right grip whips, left trigger boosts. Right B pauses or goes back; left Y opens Flight Deck. Point and trigger or hand-pinch to use menus. Either stick navigates menus. Gripping a controller never blocks Back. The action bar appears for hands only; controller play has no floating menu slab.</p><p>Routes, results, settings, text fields and Workshop tools share in-headset controls. The 2D game and editor use a floating live canvas. AR has a seated placement fallback: Recenter, scale, height, distance and rotation are always available. No room scan is required.</p><p>WebGL is required. A WebGPU browser handoff reloads the current route and must protect unsaved drafts. Switching AR/VR sessions returns here for another deliberate entry. Stay seated with clear space.</p><p id="sky-xr-status" role="status">Checking immersive support...</p><div class="xr-actions"><button id="sky-xr-enter" class="delivery-btn" disabled>Enter VR</button><button id="sky-xr-enter-ar" class="delivery-btn" disabled>Enter AR</button><button id="sky-xr-cancel" class="delivery-btn">Back</button></div>';
 document.body.append(guide);
 const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./xr-workspace.css',import.meta.url);document.head.append(style);
 const settingsDialog=document.createElement('dialog');settingsDialog.id='sky-xr-settings';
@@ -62,14 +63,14 @@ function pointerEvent(type,hit,source=screenPointer?.source){
 }
 function release(){
   if(screenPointer){pointerEvent('pointercancel',screenPointer.hit);screenPointer=null;}
-  held.clear();presses.clear();pulses.clear();suppressed.clear();ctxDown=false;neutral=true;fd()?.resetInput();
+  rayFocus=null;held.clear();presses.clear();pulses.clear();suppressed.clear();ctxDown=false;neutral=true;fd()?.resetInput();
 }
 function pause(){if(window.__delivery?.state&&!__delivery.state.menu&&!__delivery.paused)__delivery.act('pause');release();}
 function endSession(){pause();session?.end().catch(e=>status(e.message));}
 function disposeObject(root){const geometries=new Set(),materials=new Set();root?.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(m)materials.add(m);});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());}
 function makeStage(){
   xrScene=new T.Scene();xrScene.background=sessionMode==='immersive-ar'?null:new T.Color('#112239');
-  anchor=new T.Group();xrScene.add(anchor);clip=new T.ClippingGroup();clip.enabled=sessionMode==='immersive-ar';anchor.add(clip);
+  anchor=new T.Group();xrScene.add(anchor);clip=new T.Group();clip.enabled=sessionMode==='immersive-ar';aperture=createWorldAperture(T);anchor.add(clip);
   world=new T.Group();clip.add(world);world.add(originalScene);camera=new T.PerspectiveCamera(55,1,.05,40);xrScene.add(camera);
   canvas=document.createElement('canvas');canvas.width=1200;canvas.height=900;context=canvas.getContext('2d');texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
   ui=new T.Mesh(new T.PlaneGeometry(1.5,1.125),new T.MeshBasicNodeMaterial({map:texture}));addOverlay(T,anchor,ui);ui.position.set(0,-.15,-1.45);
@@ -88,6 +89,13 @@ function openWorkspace(){
   for(const d of document.querySelectorAll('dialog[open]'))d.close();
   for(const id of ['ctrlov','hangov','machov','shopov','commov','lvlov','acctov','winov']){const p=$(id);if(p?.classList.contains('show'))fd()?.back(p);}
   pause();virtualRoot=window.RouteWorkshop?.active?$('route-workshop'):screenMode==='editor'?$('topbar'):document.querySelector('#delivery-header');page=0;lastPanel=null;lastUI=0;
+}
+function resumeWorkspace(){
+  fd()?.releaseForTravel();if(typing)back();
+  for(const d of document.querySelectorAll('dialog[open]'))d.close();
+  for(const id of ['ctrlov','hangov','machov','shopov','commov','lvlov','acctov']){const p=$(id);if(p?.classList.contains('show'))fd()?.back(p);}
+  virtualRoot=null;release();lastUI=0;
+  if(!window.RouteWorkshop?.active&&typeof mode!=='undefined'&&mode==='play'&&!won)__delivery.act('resume');
 }
 function back(current=panel()){
   if(typing){typing=null;keyboardDialog?.close();release();lastUI=0;return true;}
@@ -154,13 +162,18 @@ function activate(el){
   const entry=menuEntries(panel(),{invoke,edit,external}).find(e=>e.el===el && !e.label.endsWith('minus')&&!e.label.endsWith('plus'));
   if(entry)entry.action();else invoke(el);return true;
 }
+function activateRay(){
+  if(!presenting||session?.visibilityState!=='visible'||!panel())return false;
+  const r=rects.find(r=>r.label===rayFocus&&!r.hover&&typeof r.action==='function');
+  if(!r)return false;r.action();lastUI=0;return true;
+}
 function focusControl(el){
   if(!presenting)return;
   if(typing){focusLabel=el.dataset.xrKey||'';lastUI=0;return;}
   const entries=menuEntries(panel(),{invoke,edit,external});const focused=focusEntry(entries,el,page);
   if(focused){page=focused.page;focusLabel=focused.label;lastUI=0;}
 }
-document.addEventListener('focusin',e=>{if(presenting)focusControl(e.target);});
+document.addEventListener('focusin',e=>{if(presenting){rayFocus=null;focusControl(e.target);}});
 function external(el){
   promptDialog('This browser-owned action needs the normal browser view. Leave XR, then choose Continue in the browser? Your current game or draft is kept paused.','confirm',null,()=>{
     pendingHandoff=()=>{
@@ -192,11 +205,14 @@ function makeMenu(now,force=false){
 
   const current=panel();const key=(current?.id||current?.className||'play')+'|'+screenMode+'|'+!!typing;
   if(current!==lastPanel||key!==lastMenuKey){lastPanel=current;lastMenuKey=key;page=0;release();lastUI=0;}
-  if(!force&&now-lastUI<150)return;lastUI=now;rects=[];context.clearRect(0,0,1200,900);context.fillStyle='#f4fbff';
+  if(!force&&now-lastUI<150)return;lastUI=now;rects=[];
+  ui.visible=!!current||!!typing||[...(session?.inputSources||[])].some(s=>s.hand)||screenMode==='workshop'||screenMode==='editor';
+  if(!ui.visible)return;
+  context.clearRect(0,0,1200,900);context.fillStyle='#f4fbff';
   if(typing){ui.position.set(0,-.08,-1.8);ui.scale.setScalar(.95);drawKeyboard();}
   else if(current){
     ui.position.set(0,-.08,-1.8);ui.scale.setScalar(.95);context.fillStyle='#132b40';context.fillRect(0,0,1200,900);context.fillStyle='#f4fbff';
-    const title=current.querySelector('h1,h2,h3')?.textContent||current.getAttribute('aria-label')||(current.id==='delivery-header'?'All game menus':'Sky Cycle menu');text(title,35,44,1,1130,29);
+    const title=current.querySelector('h1,h2,h3')?.textContent||current.getAttribute('aria-label')||(current.id==='delivery-header'?'All game menus':'Sky Cycle menu');text(title,35,44,1,820,29);
     const entries=menuEntries(current,{invoke,edit,external,valid:()=>panel()===current&&!typing});
     const paragraphs=wrapText(context,reading(current),1120,'22px sans-serif'),count=Math.max(1,Math.ceil(entries.length/6),Math.ceil(paragraphs.length/5));page=Math.min(page,count-1);
     paragraphs.slice(page*5,page*5+5).forEach((line,i)=>text(line,35,90+i*29,1,1120,22));
@@ -212,6 +228,7 @@ function makeMenu(now,force=false){
     text(editing?'WORKSHOP / point at the live canvas to select or drag':`SKY CYCLE / ${sessionMode==='immersive-ar'?'AR':'VR'} / ${typeof deliveries!=='undefined'?deliveries:0} deliveries`,35,538,1,1110,23);
     items.forEach(([label,action],i)=>button(label,35+(i%3)*382,556+Math.floor(i/3)*80,365,70,action));
   }
+  if(current)button(window.RouteWorkshop?.active?'Resume editing now':'Resume play',895,10,270,62,resumeWorkspace);
   button('Recenter',35,822,255,62,()=>{recenter=true;});button('All menus',305,822,275,62,openWorkspace);button('Spatial setup',595,822,285,62,show);button('Exit XR',895,822,270,62,endSession);
   if(uiMessageUntil>now){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text(uiMessage,35,810,1,1110,16);}
   texture.needsUpdate=true;
@@ -224,7 +241,7 @@ function tracked(source){let entry=visuals.get(source);if(entry)return entry;
 }
 function poseObject(object,pose){object.visible=!!pose;if(pose){object.matrix.fromArray(pose.transform.matrix);object.matrix.decompose(object.position,object.quaternion,object.scale);}}
 function updateTracking(frame){for(const [source,v] of visuals)if(![...session.inputSources].includes(source)){xrScene.remove(v.root,v.grip,v.dot.parent,...v.joints);disposeObject(v.dot);disposeObject(v.root);disposeObject(v.grip);for(const j of v.joints)disposeObject(j);visuals.delete(source);}
- for(const source of session.inputSources){const v=tracked(source);poseObject(v.root,frame.getPose(source.targetRaySpace,reference));poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label){v.hover=r.label;focusLabel=r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
+ for(const source of session.inputSources){const v=tracked(source);poseObject(v.root,frame.getPose(source.targetRaySpace,reference));poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label||v.menuKey!==lastMenuKey){v.hover=r.label;v.menuKey=lastMenuKey;focusLabel=r.label;rayFocus=r.hover?null:r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
 }
 
 function sourceRay(source,frame){
@@ -232,7 +249,7 @@ function sourceRay(source,frame){
   ctl.fromArray(pose.transform.matrix);ctl.decompose(raycaster.ray.origin,rotation,vector);raycaster.ray.direction.copy(forward).applyQuaternion(rotation);xrScene.updateMatrixWorld(true);return true;
 }
 function hit(source,frame){
-  if(!ui||!sourceRay(source,frame))return null;const h=raycaster.intersectObject(ui,false)[0];
+  if(!ui?.visible||!sourceRay(source,frame))return null;const h=raycaster.intersectObject(ui,false)[0];
   if(h){const r=pointInRects(h.uv.x*1200,(1-h.uv.y)*900,rects);if(r){lastHit.copy(h.point);return r;}}
   return null;
 }
@@ -260,7 +277,8 @@ function selectEnd(e){
 function updateStage(viewer){
   if(recenter){const tr=viewer.transform;anchor.position.set(tr.position.x,tr.position.y,tr.position.z);const q=tr.orientation;rotation.set(q.x,q.y,q.z,q.w);poseForward.copy(forward).applyQuaternion(rotation);anchor.userData.yaw=Math.atan2(-poseForward.x,-poseForward.z);recenter=false;}
   anchor.rotation.set(0,(anchor.userData.yaw||0)+spatial.yaw*Math.PI/180,0);anchor.updateMatrixWorld(true);
-  clip.clippingPlanes=clipPlanes(T,anchor.matrixWorld,spatial);
+  aperture.update(anchor.matrixWorld,spatial,sessionMode==='immersive-ar');
+  aperture.sync(originalScene);
   screenMode=presentation({workshop:!!window.RouteWorkshop?.active,legacyEditor:typeof mode!=='undefined'&&mode==='edit',view:window.__delivery?.state.view});
   const liveWorld=screenMode==='diorama';world.visible=liveWorld;screen.visible=!liveWorld;
   const scale=.0025*spatial.scale;world.scale.setScalar(scale);
@@ -284,7 +302,7 @@ function frame(now,f){
     lastFrame=f;reference=renderer.xr.getReferenceSpace();const viewer=f.getViewerPose(reference);if(!viewer){pause();return;}
     const sources=[...session.inputSources];if(session.visibilityState!=='visible')pause();
     const physical=[...(navigator.getGamepads?.()||[])].filter(p=>p?.connected&&p.mapping==='standard').map(gamepad=>({gamepad}));
-    if(neutral&&sourcesNeutral([...sources,...physical]))neutral=false;
+    if(neutral&&sourcesNeutral([...sources,...physical],{panel:!!panel()||!!typing}))neutral=false;
     if(screenPointer){const h=canvasHit(screenPointer.source,f);if(h){screenPointer.hit=h;pointerEvent('pointermove',h);}else {pointerEvent('pointercancel',screenPointer.hit);screenPointer=null;}}
     for(const source of sources)if(!f.getPose(source.targetRaySpace,reference)&&(presses.has(source)||source.gamepad?.axes?.some(v=>Math.abs(v)>.3))){pause();break;}
     const left=sources.find(s=>!s.hand&&s.handedness==='left'&&s.gamepad?.mapping==='xr-standard');const down=!!left?.gamepad?.buttons[4]?.pressed;
@@ -302,6 +320,7 @@ async function finish(){
     await Promise.resolve(); // Let Three's synchronous session-end listener restore its owner first.
     if(renderer){await renderer.setAnimationLoop(null);renderer.xr.enabled=false;if(originalRender)renderer.render=originalRender;restoreFramebuffer();restoreFramebuffer=()=>{};if(oldClear)renderer.setClearColor(oldClear,oldAlpha);}
     if(originalScene){world?.remove(originalScene);originalScene.updateMatrixWorld(true);} // never dispose game-owned assets
+    aperture?.dispose();aperture=null;
     if(xrScene)disposeObject(xrScene);texture?.dispose();screenTexture?.dispose();visuals.clear();
     session=null;reference=null;lastFrame=null;world=null;xrScene=null;ui=null;screen=null;screenSource=null;rects=[];
     pause();window.RouteWorkshop?.draw?.();status('XR ended. The game and draft are preserved; resume when ready.');
@@ -335,14 +354,14 @@ async function enter(kind='immersive-vr'){
 }
 $('sky-xr-enter').onclick=()=>enter('immersive-vr');$('sky-xr-enter-ar').onclick=()=>enter('immersive-ar');
 window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});
-window.SkyCycleXR=Object.freeze({version:'0.26.0',get presenting(){return presenting;},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,
+window.SkyCycleXR=Object.freeze({version:'0.26.1',get presenting(){return presenting;},get inputVisible(){return presenting&&session?.visibilityState==='visible';},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,activateRay,openMenu:openWorkspace,
  getGamepad(){
   if(!presenting||!session)return null;
   const activeHeld=new Set(held);for(const [key,until]of pulses)if(performance.now()<until)activeHeld.add(key);else pulses.delete(key);
-  const out=mappedPad([...session.inputSources],{panel:!!panel()||!!typing,suppressed,held:activeHeld,enabled:!neutral&&session.visibilityState==='visible'});
+  const out=mappedPad([...session.inputSources],{panel:!!panel()||!!typing,suppressed,held:activeHeld,enabled:!neutral&&session.visibilityState==='visible',allowRecovery:session.visibilityState==='visible'});
   // A connected physical Xbox remains usable inside the headset, including saved remaps.
   const pad=[...(navigator.getGamepads?.()||[])].find(p=>p?.connected&&p.mapping==='standard');
   if(pad&&!neutral&&session.visibilityState==='visible'){for(let i=0;i<out.buttons.length;i++)if(pad.buttons[i]?.pressed)out.buttons[i]={pressed:true,value:pad.buttons[i].value||1};for(let i=0;i<out.axes.length;i++)if(Math.abs(pad.axes[i]||0)>.25)out.axes[i]=pad.axes[i];}
   return out;
- },get diagnostics(){return {presenting,starting,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!clip?.enabled,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
+ },get diagnostics(){return {presenting,starting,uiVisible:!!ui?.visible,aperture:aperture?.diagnostics||null,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!aperture?.diagnostics.active,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
 support();

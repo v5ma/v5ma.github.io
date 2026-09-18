@@ -8,7 +8,7 @@ const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = n
 let ledger = Object.create(null), saveOK = true, run = null, latest = null;
 try { ledger = sanitizeLedger(JSON.parse(localStorage.getItem(STORE) || '{}')); } catch { saveOK = false; }
 const current = () => window.DeliveryCampaign?.routes[window.__delivery?.state.route];
-const active = () => typeof mode !== 'undefined' && mode === 'play' && !won && !document.hidden && !__delivery.paused && !__delivery.state.menu;
+const active = () => typeof mode !== 'undefined' && mode === 'play' && !won && (window.SkyCycleXR?.presenting ? window.SkyCycleXR.inputVisible : !document.hidden) && !__delivery.paused && !__delivery.state.menu;
 function authored() { try { return !!current() && __delivery.state.code === levelCode(); } catch { return false; } }
 function startRun() {
   const route = current(); latest = null;
@@ -107,8 +107,8 @@ function releasePad() { for (const code of padOwned) if (!physical.has(code)) ke
 function resetInput() { releasePad(); waitNeutral = true; repeat = {direction:0,next:0}; }
 window.addEventListener('keydown', e => { for (const c of keyActions(e.code)) physical.add(c); },true);
 window.addEventListener('keyup', e => { for (const c of keyActions(e.code)) physical.delete(c); },true);
-window.addEventListener('blur', () => { physical.clear(); resetInput(); if (active()) __delivery.act('pause'); });
-document.addEventListener('visibilitychange', () => { if (document.hidden) { physical.clear(); resetInput(); } });
+window.addEventListener('blur', () => { if(window.SkyCycleXR?.inputVisible)return; physical.clear(); resetInput(); if (active()) __delivery.act('pause'); });
+document.addEventListener('visibilitychange', () => { if (document.hidden&&!window.SkyCycleXR?.inputVisible) { physical.clear(); resetInput(); } });
 function focusStep(panel, direction) {
   const list = controls(panel); if (!list.length) return;
   const i = list.indexOf(document.activeElement), next = i < 0 ? 0 : (i + direction + list.length) % list.length;
@@ -155,14 +155,16 @@ function poll() {
   if (pad.index !== lastPad) { lastPad = pad.index; resetInput(); }
   const state = samplePad(pad), b = state.buttons, pressed = i => b[i] && !previous[i], panel = topPanel();
   if (panel !== lastPanel) { lastPanel = panel; resetInput(); }
-  if (document.hidden || (!document.hasFocus()&&!window.SkyCycleXR?.presenting)) { resetInput(); previous = b; return; }
+  if (window.SkyCycleXR?.presenting ? !window.SkyCycleXR.inputVisible : document.hidden || !document.hasFocus()) { resetInput(); previous = b; return; }
+  // B/Start must recover the top menu even when an unrelated grip is held.
+  if (window.SkyCycleXR?.presenting && ((panel&&pressed(1))||pressed(9))) { if(panel)back(panel);else if(mode==='play'&&!won){__delivery.act('pause');resetInput();}else window.SkyCycleXR.openMenu?.(); previous=b; return; }
   if (waitNeutral) { previous = b; if (state.neutral) waitNeutral = false; return; }
   if (pressed(8) && !(panel instanceof HTMLDialogElement)) { showDeck(); previous = b; return; }
   if (panel) {
     if (active()) __delivery.act('pause');
     releasePad();
     if (pressed(1) || pressed(9)) back(panel);
-    else if (pressed(0)) { const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range') && !window.SkyCycleXR?.activate?.(el)) el.click(); } }
+    else if (pressed(0)) { if(window.SkyCycleXR?.activateRay?.()){previous=b;return;} const list = controls(panel), el = list.includes(document.activeElement) ? document.activeElement : list[0]; if (el) { el.focus(); if (!(el instanceof HTMLSelectElement) && !(el instanceof HTMLInputElement && el.type === 'range') && !window.SkyCycleXR?.activate?.(el)) el.click(); } }
     else {
       const horizontal = b[14] || state.x < -.5 ? -1 : b[15] || state.x > .5 ? 1 : 0;
       const vertical = b[12] || state.y < -.5 ? -1 : b[13] || state.y > .5 ? 1 : 0;

@@ -62,11 +62,29 @@ with sync_playwright() as pw:
    # The engine uses a physical paper with fixed throw speed plus inherited rider momentum.
    # Keep riding until the mailbox is readable, then release throttle for four frames and
    # throw from a natural 35-145px forward window. This is ordinary coasting, not state setup.
-   page.wait_for_function('(target)=>{const d=target-(player.x+player.w/2);return player.onGround&&d<=145&&d>=35;}',arg=target,timeout=15000)
-   page.keyboard.up('KeyD');frames(4)
-   approach=page.evaluate('(target)=>({distance:target-(player.x+player.w/2),vx:player.vx,x:player.x,y:player.y,onGround:player.onGround})',target)
+   # Keep input timing on browser animation frames, not Python/RPC latency.
+   # These are ordinary keyboard events and a sampled pad press; the rider,
+   # packet physics and delivery counters are only observed, never assigned.
+   approach=page.evaluate('''(target)=>new Promise((resolve,reject)=>{
+     const started=performance.now();
+     const after=(n,fn)=>requestAnimationFrame(()=>n>1?after(n-1,fn):fn());
+     function watch(){
+       const distance=target-(player.x+player.w/2);
+       if(player.onGround&&distance<=145&&distance>=35){
+         window.dispatchEvent(new KeyboardEvent('keyup',{code:'KeyD',key:'d',bubbles:true}));
+         after(4,()=>{
+           const sample={distance:target-(player.x+player.w/2),vx:player.vx,x:player.x,y:player.y,onGround:player.onGround};
+           if(!sample.onGround||sample.distance < -10||sample.distance>145){reject(Error('Coasting approach outside unchanged acceptance window: '+JSON.stringify(sample)));return;}
+           testPad.buttons[1]={pressed:true,value:1};
+           after(2,()=>{testPad.buttons[1]={pressed:false,value:0};after(3,()=>resolve(sample));});
+         });
+       }else if(performance.now()-started>15000)reject(Error('No ordinary forward throw window'));
+       else requestAnimationFrame(watch);
+     }
+     watch();
+   })''',target)
+   page.keyboard.up('KeyD') # also release Playwright's physical-key bookkeeping
    check(approach['onGround'] and -10<=approach['distance']<=145,f"{item['id']} has a readable coasting throw window before the Xbox input")
-   tap(1) # standard Xbox B: direct THROW / FIRE action
    page.wait_for_function('(n)=>deliveries===n',arg=before+1,timeout=10000)
    delivered=page.evaluate('(tx)=>[...__delivery.state.delivered].some(s=>Number(s.split(",")[0])===tx)',tx)
    check(delivered,f"Xbox B delivers {item['id']} through the real packet simulation")
@@ -96,4 +114,4 @@ with sync_playwright() as pw:
   except Exception:pass
   raise
  finally:
-  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding, deliberate throttle release/coasting and sampled standard Xbox B throws through real packet/mailbox physics. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
+  (OUT/'report.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'origin':origin,'passed':passed,'checks':checks,'failure':failure,'errors':errors,'console':logs,'samples':samples,'result':result,'coverage':'Real preview UI, ordinary rightward riding, browser-frame-coherent keyboard throttle release/coasting and sampled standard Xbox B throws through real packet/mailbox physics. No player-position, velocity, delivery, score, win, record or document assignments. Real 3D inspection then supported 2D complete CPU route. Not physical-controller or human-enjoyment qualification.'},indent=2));ctx.close();browser.close();server.shutdown()
