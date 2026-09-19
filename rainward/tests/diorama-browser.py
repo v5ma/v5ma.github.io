@@ -21,15 +21,21 @@ with sync_playwright() as pw:
   old=p.evaluate('questDevice.frames');p.wait_for_function('([old,n])=>questDevice.frames>=old+n',arg=[old,n])
  def trigger(on):p.evaluate("on=>{if(questDevice.kind==='hands')questDevice.pinch('right',on);else questDevice.button('right',0,on);}",on)
  def select(row_id):
-  for _ in range(9):
-   if p.evaluate('Rainward.snapshot().xr.panelPage')==0:break
-   click_visible('prev')
-  for _ in range(12):
+  # Inspect actual reachable pages rather than assuming the old 9/12-page cap.
+  # All transitions still use real tracked trigger/pinch clicks.
+  seen=set()
+  while True:
+   page=p.evaluate('Rainward.snapshot().xr.panelPage')
+   if page==0:break
+   if page in seen:raise AssertionError('XR previous-page navigation stalled at '+str(page))
+   seen.add(page);click_visible('prev')
+  seen=set()
+  while True:
+   page=p.evaluate('Rainward.snapshot().xr.panelPage')
    ids=p.evaluate('Rainward.snapshot().xr.panelRows.map(r=>r.id)')
-   if row_id in ids:break
-   click_visible('next')
-  else:raise AssertionError('XR row not found: '+row_id+' '+str(ids))
-  click_visible(row_id)
+   if row_id in ids:click_visible(row_id);return
+   if page in seen:raise AssertionError('XR row not found after all reachable pages: '+row_id+' '+str(ids))
+   seen.add(page);click_visible('next')
  def click_visible(row_id):
   frames(4)
   p.evaluate('''async id=>{const T=await import('./vendor/three.module.js'),xr=Rainward.snapshot().xr,row=xr.panelRows.find(r=>r.id===id);if(!row)throw Error('No row '+id);const uv={x:(row.x+row.w/2)/1024,y:1-(row.y+row.h/2)/1024},point=new T.Vector3((uv.x-.5)*1.45,(uv.y-.5)*1.45,0).applyMatrix4(new T.Matrix4().fromArray(xr.panelMatrix)),s=questDevice.sources.find(s=>s.handedness==='right'),d=point.sub(new T.Vector3(s.position.x,s.position.y,s.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),d);s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',row_id)
