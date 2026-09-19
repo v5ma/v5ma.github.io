@@ -1,0 +1,49 @@
+name: Apply Sky Cycle trigger routing correction
+on:
+  push:
+    branches: ['sky-cycle/xr-buttons-0.26.2']
+    paths: ['.github/workflows/sky-cycle-trigger-routing.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Repair only the reviewed select-event routing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          G=Path('mario-maker-clone/svgn-paper-route');p=G/'xr-play.js'
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='d670a05fb4106665162fcbcb67135d6464264b01cca0ce167ccdcd300753c7e1'
+          s=p.read_text();a='const r=hit(e.inputSource,e.frame||lastFrame);suppressed.add(e.inputSource);';b='const r=hit(e.inputSource,e.frame||lastFrame);if(r)suppressed.add(e.inputSource);';assert s.count(a)==1;s=s.replace(a,b)
+          a='&&!screenPointer){screenPointer={source:e.inputSource';b='&&!screenPointer){suppressed.add(e.inputSource);screenPointer={source:e.inputSource';assert s.count(a)==1;s=s.replace(a,b)
+          assert hashlib.sha256(s.encode()).hexdigest()=='00a3f8293369b77cb3d97102cc148517f782a90a701839079dc45d8a7b3d177d';p.write_text(s)
+          p=G/'tests/xr-trigger-routing.test.mjs';assert not p.exists()
+          p.write_text('''// Isolated execution of actual selectStart; not a native route or hardware test.
+          import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import vm from 'node:vm';
+          import {readFileSync} from 'node:fs';
+          const text=readFileSync(new URL('../xr-play.js',import.meta.url),'utf8');
+          const fn=text.slice(text.indexOf('function selectStart(e){'),text.indexOf('function selectEnd(e)'));
+          function fixture({ui=false,editor=false,visible=true}={}){
+           const source={handedness:'right',gamepad:{mapping:'xr-standard'}},suppressed=new Set(),calls=[];
+           const c=vm.createContext({presenting:true,session:{visibilityState:visible?'visible':'visible-blurred'},trackedController:()=>true,panel:()=>null,typing:null,neutral:false,suppressed,hit:()=>ui?{action:()=>calls.push('ui')}:null,canvasHit:()=>editor?{x:.3,y:.4}:null,lastFrame:{},screenMode:editor?'workshop':'diorama',screenPointer:null,screenSource:{id:'maker-canvas'},pointerEvent:t=>calls.push(t),lastUI:0});
+           vm.runInContext(fn,c);c.selectStart({inputSource:source,frame:{}});return {calls,suppressed:suppressed.has(source),c};
+          }
+          test('A trigger with no UI hit remains available to the existing gameplay input',()=>{const f=fixture();assert.equal(f.suppressed,false);assert.deepEqual(f.calls,[]);});
+          test('A captured UI action suppresses that press from gameplay',()=>{const f=fixture({ui:true});assert(f.suppressed);assert.deepEqual(f.calls,['ui']);});
+          test('Editor canvas capture still owns its trigger gesture',()=>{const f=fixture({editor:true});assert(f.suppressed);assert.deepEqual(f.calls,['pointerdown']);assert.equal(f.c.screenPointer.target.id,'maker-canvas');});
+          test('System-blurred input cannot invoke controls or start an editor capture',()=>{const f=fixture({ui:true,editor:true,visible:false});assert.deepEqual(f.calls,[]);assert.equal(f.c.screenPointer,null);});
+          ''')
+          PY
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          git add mario-maker-clone/svgn-paper-route
+          git rm .github/workflows/sky-cycle-trigger-routing.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(sky-cycle): release uncaptured trigger events to gameplay'
+          git push origin HEAD:refs/heads/sky-cycle/xr-buttons-0.26.2
