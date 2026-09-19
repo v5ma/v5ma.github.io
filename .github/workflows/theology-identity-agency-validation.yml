@@ -21,7 +21,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,6 +50,12 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Exercise actual notebook and three main reader routes
         run: python theology-wiki/research-expansion-20260918/browser_checks.py --report theology-test-output/identity-agency/browser.json --screenshot theology-test-output/identity-agency/mobile.png
+      - name: Verify production bytes after publication
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/research-expansion-20260918/hosted_checks.py --report theology-test-output/identity-agency/hosted-content.json
+      - name: Exercise the actual public notebook and three main articles
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/research-expansion-20260918/browser_checks.py --url https://v5ma.github.io/theology-wiki/research-expansion-20260918/index.html --report theology-test-output/identity-agency/hosted-browser.json --screenshot theology-test-output/identity-agency/hosted-mobile.png
       - uses: actions/upload-artifact@v4
         if: always()
         with:
