@@ -1,1 +1,336 @@
-{"schema_version":1,"edition_date":"2026-09-18","author_framework":"Micah Blumberg proposes a recurring pattern linking authority, its legitimating representations, allegiance and material access, within his existing contemporary reading of Revelation. The records distinguish that proposal from documented actions; no named actor is assigned a prophetic identity or political score.","timeline":[{"id":"t-lieu","start_date":"2026-07-23","end_date":"2026-07-23","kind":"Proposal announcement","title":"Lieu and Moran announce the AI Kill Switch Act","record":"The sponsor release describes a bipartisan introduced bill involving graduated interruption and shutdown of covered AI systems and lists supporting organizations.","limit":"The linked full bill did not load; no enactment or verified implementation is claimed.","source_ids":["lieu"]},{"id":"t-sanders","start_date":"2026-09-03","end_date":"2026-09-03","kind":"Proposal announcement","title":"Sanders and Casar announce forthcoming prohibition and pause legislation","record":"The official release describes a proposed superintelligence ban and a temporary advanced-development pause.","limit":"This announcement precedes the public Coxon episode. Forthcoming legislation is not an enacted rule.","source_ids":["sanders"]},{"id":"t-publicity","start_date":"2026-09-08","end_date":"2026-09-09","kind":"Publication window","title":"Coxon resignation publicity and the WSJ article","record":"The article and following interview establish a public resignation-and-warning episode in this window.","limit":"The exact first-publication minute and the supplied X timestamp remain unrecovered. A two-day window is not an authenticated ordering of article and post.","source_ids":["wsj","cnn-coxon","coxon-x"]},{"id":"t-coxon","start_date":"2026-09-09","end_date":"2026-09-09","kind":"Interview statement","title":"Coxon describes preparation and requested amplification","record":"CNN's transcript records collaborative preparation of his thread and requests to friends for retweets.","limit":"Self-reported promotion is not evidence that all later political events had the same organizer. The interview also presents his stated sincerity and a company response.","source_ids":["cnn-coxon"]},{"id":"t-trump","start_date":"2026-09-13","end_date":"2026-09-13","kind":"Reported public position","title":"Trump emphasizes continued US AI leadership","record":"Reuters reports his concern about losing the lead and his allowance for possible guardrails.","limit":"The record neither endorses the position nor adopts his accusations concerning opponents.","source_ids":["trump-ai"]},{"id":"t-royal","start_date":"2026-09-17","end_date":"2026-09-17","kind":"Published speech and event","title":"Dumfries House AI summit","record":"The Royal Household records the gathering and a speech calling for control, safety and cooperation, with a reference to a 2023 message.","limit":"The event is not a law; attendance does not establish a shared undisclosed directive.","source_ids":["royal-event","royal-speech"]},{"id":"t-california","start_date":"2026-09-18","end_date":"2026-09-18","kind":"Signed executive order","title":"California issues Executive Order N-9-26","record":"The order sets agency implementation dates and requests recommendations on several possible changes, including a verified kill switch.","limit":"The requested recommendation is not an already enacted universal shutdown requirement.","source_ids":["california-order","california-release"]},{"id":"d-recommendations","start_date":"2026-11-16","end_date":"2026-11-16","kind":"Future administrative deadline","title":"Recommendations due under order paragraph 3","record":"The signed order specifies this deadline for recommendations developed in consultation with experts.","limit":"Future completion has not been assessed. This is not a date predicted by Revelation.","source_ids":["california-order"]},{"id":"d-criteria","start_date":"2027-05-01","end_date":"2027-05-01","kind":"Future administrative deadline","title":"Independent-verifier criteria and procedures deadline","record":"Paragraph 1 sets this date for the specified Government Code 8898.1 actions.","limit":"The underlying statutory section was not separately audited here, and performance has not been assessed.","source_ids":["california-order"]},{"id":"d-actions","start_date":"2027-12-01","end_date":"2027-12-01","kind":"Future administrative deadline","title":"Specified Government Code 11549.82 actions","record":"Paragraph 2 sets this date for completing subsection (a) requirements and beginning subsection (b) actions.","limit":"This records the order's schedule, not a prediction that a particular later regime will exist.","source_ids":["california-order"]}],"comparisons":[{"id":"a-recurrence","title":"Person, kingdom and recurring pattern","relation":"Textual and interpretive distinction","finding":"Daniel's kings-and-kingdom language provides a textual basis for considering more than one level of representation.","question":"Which actions belong to an individual and which to the institution in the proposed comparison?","limit":"The word fractal is the author's analogy, not a measured pattern or a definitive account of John's exclusive purpose.","source_ids":["dan7"]},{"id":"a-apollo","title":"Apollo is not named in Daniel 11:38","relation":"Text and artwork distinction","finding":"The god-of-fortresses passage does not identify Apollo; the reported residence artwork is a separate visual-source question.","question":"What object, catalogue or first-person explanation supports the claimed contemporary iconography?","limit":"Apollo, gold, Mammon and the first beast are not automatically interchangeable names.","source_ids":["dan11","penthouse","apollo-report","versailles"]},{"id":"a-gold","title":"Gold appears in more than one moral setting","relation":"Textual control","finding":"Gold occurs both in problematic luxury/image passages and in the renewed city's description.","question":"What act or relation, beyond material choice, is being interpreted?","limit":"Gold display alone does not demonstrate self-deification or cult worship.","source_ids":["dan3","rev18","rev21","oval"]},{"id":"a-force","title":"The second beast is not solely noncoercive speech","relation":"Textual actor correction","finding":"The image episode includes lethal consequences and the following verses restrict transactions.","question":"How are promotion, authorized speech and enforcement distinguished in each case?","limit":"Modern media are not assigned this identity merely because they influence audiences.","source_ids":["rev13","rev19"]},{"id":"a-mark","title":"A sign of belonging and an access condition","relation":"Proposed scriptural intertext","finding":"Deuteronomy's bodily sign and Revelation's forehead names support a comparison of rival allegiances.","question":"What actual rule connects a modern credential to an act of allegiance or a refused purchase?","limit":"An intertext is not an authenticated contemporary identification or the only possible background of the mark.","source_ids":["deut6","rev14","rev13"]},{"id":"a-rome","title":"A testing procedure is not a universal market permit","relation":"Historical scope distinction","finding":"Pliny documents religious testing; Paul distinguishes market purchasing from ritual participation.","question":"Which city, date, institution and transaction imposed the claimed condition?","limit":"These sources do not establish one empire-wide worship certificate for every purchase.","source_ids":["pliny96","pliny97","corinthians10"]},{"id":"a-way","title":"The Way of Death describes conduct","relation":"Primary ethical-text comparison","finding":"The Didache's catalogue includes deceit, greed and disregard for distressed people alongside other moral instructions.","question":"What sourced conduct, rather than a population label, is being compared?","limit":"No party, nationality or denomination is automatically assigned to a textual moral category.","source_ids":["didache"]},{"id":"a-rt","title":"An alleged covert funding arrangement has specific records","relation":"Historical allegation","finding":"DOJ's 2024 release describes charged conduct and expressly preserves the presumption of innocence.","question":"Which funding and editorial evidence supports the alleged connection, and what later disposition is documented?","limit":"The case is not proof of a separate AI-policy operation, and no current outcome is supplied here.","source_ids":["rt-indictment"]},{"id":"a-timing","title":"Earlier policy announcements constrain the proposed sequence","relation":"Documented chronology","finding":"The July 23 and September 3 announcements predate the September 8-9 publicity window.","question":"Is a claimed relationship prior planning, response, amplification or independent convergence?","limit":"Dates alone neither prove nor disprove every possible earlier contact.","source_ids":["lieu","sanders","wsj","cnn-coxon"]},{"id":"a-minute","title":"The WSJ-versus-X minute claim remains unverified","relation":"Unresolved source recovery","finding":"The retrieved article excerpt and inaccessible original post do not establish exact first-publication order.","question":"Can original timestamps, time zones and update histories be recovered from both publishers?","limit":"An advance article could have several explanations; none is selected as fact without further evidence.","source_ids":["wsj","coxon-x"]},{"id":"a-amplification","title":"Preparation and requested retweets are publicly described","relation":"Attributed first-person statement","finding":"Coxon described collaborating on the thread and seeking retweets, while explaining his concerns as sincere.","question":"What additional documentary connection, if any, links this effort to a particular institution or later announcement?","limit":"Prepared advocacy is not by itself evidence of covert state control or knowingly false content.","source_ids":["cnn-coxon"]},{"id":"a-instruments","title":"A ban, an emergency mechanism, a speech and a recommendations order differ","relation":"Policy-status distinction","finding":"The cited documents have different actors, dates and operative forms.","question":"What exact enacted provision, coverage and observed implementation supports a claimed effect?","limit":"Neither universal centralization nor an exclusion outcome is established from the shared word safety. No policy recommendation or ranking is made.","source_ids":["lieu","sanders","royal-speech","california-order"]}]}
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "author_framework": "Micah Blumberg proposes a recurring pattern linking authority, its legitimating representations, allegiance and material access, within his existing contemporary reading of Revelation. The records distinguish that proposal from documented actions; no named actor is assigned a prophetic identity or political score.",
+  "timeline": [
+    {
+      "id": "t-lieu",
+      "start_date": "2026-07-23",
+      "end_date": "2026-07-23",
+      "kind": "Proposal announcement",
+      "title": "Lieu and Moran announce the AI Kill Switch Act",
+      "record": "The sponsor release describes a bipartisan introduced bill involving graduated interruption and shutdown of covered AI systems and lists supporting organizations.",
+      "limit": "The linked full bill did not load; no enactment or verified implementation is claimed.",
+      "source_ids": [
+        "lieu"
+      ]
+    },
+    {
+      "id": "t-sanders",
+      "start_date": "2026-09-03",
+      "end_date": "2026-09-03",
+      "kind": "Proposal announcement",
+      "title": "Sanders and Casar announce forthcoming prohibition and pause legislation",
+      "record": "The official release describes a proposed superintelligence ban and a temporary advanced-development pause.",
+      "limit": "This announcement precedes the public Coxon episode. Forthcoming legislation is not an enacted rule.",
+      "source_ids": [
+        "sanders"
+      ]
+    },
+    {
+      "id": "t-publicity",
+      "start_date": "2026-09-08",
+      "end_date": "2026-09-09",
+      "kind": "Publication window",
+      "title": "Coxon resignation publicity and the WSJ article",
+      "record": "The article and following interview establish a public resignation-and-warning episode in this window.",
+      "limit": "The exact first-publication minute and the supplied X timestamp remain unrecovered. A two-day window is not an authenticated ordering of article and post.",
+      "source_ids": [
+        "wsj",
+        "cnn-coxon",
+        "coxon-x"
+      ]
+    },
+    {
+      "id": "t-coxon",
+      "start_date": "2026-09-09",
+      "end_date": "2026-09-09",
+      "kind": "Interview statement",
+      "title": "Coxon describes preparation and requested amplification",
+      "record": "CNN's transcript records collaborative preparation of his thread and requests to friends for retweets.",
+      "limit": "Self-reported promotion is not evidence that all later political events had the same organizer. The interview also presents his stated sincerity and a company response.",
+      "source_ids": [
+        "cnn-coxon"
+      ]
+    },
+    {
+      "id": "t-trump",
+      "start_date": "2026-09-13",
+      "end_date": "2026-09-13",
+      "kind": "Reported public position",
+      "title": "Trump emphasizes continued US AI leadership",
+      "record": "Reuters reports his concern about losing the lead and his allowance for possible guardrails.",
+      "limit": "The record neither endorses the position nor adopts his accusations concerning opponents.",
+      "source_ids": [
+        "trump-ai"
+      ]
+    },
+    {
+      "id": "t-royal",
+      "start_date": "2026-09-17",
+      "end_date": "2026-09-17",
+      "kind": "Published speech and event",
+      "title": "Dumfries House AI summit",
+      "record": "The Royal Household records the gathering and a speech calling for control, safety and cooperation, with a reference to a 2023 message.",
+      "limit": "The event is not a law; attendance does not establish a shared undisclosed directive.",
+      "source_ids": [
+        "royal-event",
+        "royal-speech"
+      ]
+    },
+    {
+      "id": "t-california",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-18",
+      "kind": "Signed executive order",
+      "title": "California issues Executive Order N-9-26",
+      "record": "The order sets agency implementation dates and requests recommendations on several possible changes, including a verified kill switch.",
+      "limit": "The requested recommendation is not an already enacted universal shutdown requirement.",
+      "source_ids": [
+        "california-order",
+        "california-release"
+      ]
+    },
+    {
+      "id": "d-recommendations",
+      "start_date": "2026-11-16",
+      "end_date": "2026-11-16",
+      "kind": "Future administrative deadline",
+      "title": "Recommendations due under order paragraph 3",
+      "record": "The signed order specifies this deadline for recommendations developed in consultation with experts.",
+      "limit": "Future completion has not been assessed. This is not a date predicted by Revelation.",
+      "source_ids": [
+        "california-order"
+      ]
+    },
+    {
+      "id": "d-criteria",
+      "start_date": "2027-05-01",
+      "end_date": "2027-05-01",
+      "kind": "Future administrative deadline",
+      "title": "Independent-verifier criteria and procedures deadline",
+      "record": "Paragraph 1 sets this date for the specified Government Code 8898.1 actions.",
+      "limit": "The underlying statutory section was not separately audited here, and performance has not been assessed.",
+      "source_ids": [
+        "california-order"
+      ]
+    },
+    {
+      "id": "d-actions",
+      "start_date": "2027-12-01",
+      "end_date": "2027-12-01",
+      "kind": "Future administrative deadline",
+      "title": "Specified Government Code 11549.82 actions",
+      "record": "Paragraph 2 sets this date for completing subsection (a) requirements and beginning subsection (b) actions.",
+      "limit": "This records the order's schedule, not a prediction that a particular later regime will exist.",
+      "source_ids": [
+        "california-order"
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "a-recurrence",
+      "title": "Person, kingdom and recurring pattern",
+      "relation": "Textual and interpretive distinction",
+      "finding": "Daniel's kings-and-kingdom language provides a textual basis for considering more than one level of representation.",
+      "question": "Which actions belong to an individual and which to the institution in the proposed comparison?",
+      "limit": "The word fractal is the author's analogy, not a measured pattern or a definitive account of John's exclusive purpose.",
+      "source_ids": [
+        "dan7"
+      ]
+    },
+    {
+      "id": "a-apollo",
+      "title": "Apollo is not named in Daniel 11:38",
+      "relation": "Text and artwork distinction",
+      "finding": "The god-of-fortresses passage does not identify Apollo; the reported residence artwork is a separate visual-source question.",
+      "question": "What object, catalogue or first-person explanation supports the claimed contemporary iconography?",
+      "limit": "Apollo, gold, Mammon and the first beast are not automatically interchangeable names.",
+      "source_ids": [
+        "dan11",
+        "penthouse",
+        "apollo-report",
+        "versailles"
+      ]
+    },
+    {
+      "id": "a-gold",
+      "title": "Gold appears in more than one moral setting",
+      "relation": "Textual control",
+      "finding": "Gold occurs both in problematic luxury/image passages and in the renewed city's description.",
+      "question": "What act or relation, beyond material choice, is being interpreted?",
+      "limit": "Gold display alone does not demonstrate self-deification or cult worship.",
+      "source_ids": [
+        "dan3",
+        "rev18",
+        "rev21",
+        "oval"
+      ]
+    },
+    {
+      "id": "a-force",
+      "title": "The second beast is not solely noncoercive speech",
+      "relation": "Textual actor correction",
+      "finding": "The image episode includes lethal consequences and the following verses restrict transactions.",
+      "question": "How are promotion, authorized speech and enforcement distinguished in each case?",
+      "limit": "Modern media are not assigned this identity merely because they influence audiences.",
+      "source_ids": [
+        "rev13",
+        "rev19"
+      ]
+    },
+    {
+      "id": "a-mark",
+      "title": "A sign of belonging and an access condition",
+      "relation": "Proposed scriptural intertext",
+      "finding": "Deuteronomy's bodily sign and Revelation's forehead names support a comparison of rival allegiances.",
+      "question": "What actual rule connects a modern credential to an act of allegiance or a refused purchase?",
+      "limit": "An intertext is not an authenticated contemporary identification or the only possible background of the mark.",
+      "source_ids": [
+        "deut6",
+        "rev14",
+        "rev13"
+      ]
+    },
+    {
+      "id": "a-rome",
+      "title": "A testing procedure is not a universal market permit",
+      "relation": "Historical scope distinction",
+      "finding": "Pliny documents religious testing; Paul distinguishes market purchasing from ritual participation.",
+      "question": "Which city, date, institution and transaction imposed the claimed condition?",
+      "limit": "These sources do not establish one empire-wide worship certificate for every purchase.",
+      "source_ids": [
+        "pliny96",
+        "pliny97",
+        "corinthians10"
+      ]
+    },
+    {
+      "id": "a-way",
+      "title": "The Way of Death describes conduct",
+      "relation": "Primary ethical-text comparison",
+      "finding": "The Didache's catalogue includes deceit, greed and disregard for distressed people alongside other moral instructions.",
+      "question": "What sourced conduct, rather than a population label, is being compared?",
+      "limit": "No party, nationality or denomination is automatically assigned to a textual moral category.",
+      "source_ids": [
+        "didache"
+      ]
+    },
+    {
+      "id": "a-rt",
+      "title": "An alleged covert funding arrangement has specific records",
+      "relation": "Historical allegation",
+      "finding": "DOJ's 2024 release describes charged conduct and expressly preserves the presumption of innocence.",
+      "question": "Which funding and editorial evidence supports the alleged connection, and what later disposition is documented?",
+      "limit": "The case is not proof of a separate AI-policy operation, and no current outcome is supplied here.",
+      "source_ids": [
+        "rt-indictment"
+      ]
+    },
+    {
+      "id": "a-timing",
+      "title": "Earlier policy announcements constrain the proposed sequence",
+      "relation": "Documented chronology",
+      "finding": "The July 23 and September 3 announcements predate the September 8-9 publicity window.",
+      "question": "Is a claimed relationship prior planning, response, amplification or independent convergence?",
+      "limit": "Dates alone neither prove nor disprove every possible earlier contact.",
+      "source_ids": [
+        "lieu",
+        "sanders",
+        "wsj",
+        "cnn-coxon"
+      ]
+    },
+    {
+      "id": "a-minute",
+      "title": "The WSJ-versus-X minute claim remains unverified",
+      "relation": "Unresolved source recovery",
+      "finding": "The retrieved article excerpt and inaccessible original post do not establish exact first-publication order.",
+      "question": "Can original timestamps, time zones and update histories be recovered from both publishers?",
+      "limit": "An advance article could have several explanations; none is selected as fact without further evidence.",
+      "source_ids": [
+        "wsj",
+        "coxon-x"
+      ]
+    },
+    {
+      "id": "a-amplification",
+      "title": "Preparation and requested retweets are publicly described",
+      "relation": "Attributed first-person statement",
+      "finding": "Coxon described collaborating on the thread and seeking retweets, while explaining his concerns as sincere.",
+      "question": "What additional documentary connection, if any, links this effort to a particular institution or later announcement?",
+      "limit": "Prepared advocacy is not by itself evidence of covert state control or knowingly false content.",
+      "source_ids": [
+        "cnn-coxon"
+      ]
+    },
+    {
+      "id": "a-instruments",
+      "title": "A ban, an emergency mechanism, a speech and a recommendations order differ",
+      "relation": "Policy-status distinction",
+      "finding": "The cited documents have different actors, dates and operative forms.",
+      "question": "What exact enacted provision, coverage and observed implementation supports a claimed effect?",
+      "limit": "Neither universal centralization nor an exclusion outcome is established from the shared word safety. No policy recommendation or ranking is made.",
+      "source_ids": [
+        "lieu",
+        "sanders",
+        "royal-speech",
+        "california-order"
+      ]
+    },
+    {
+      "id": "a-ancient-apollo-wordplay",
+      "title": "The Apollo-destruction association predates modern eschatology",
+      "relation": "Ancient literary wordplay",
+      "finding": "Aeschylus and Plato attest destruction-related play on Apollo's name. Revelation uses the distinct Greek form Apollyon.",
+      "question": "Does the literary context support a deliberate echo, rather than treating similar names as automatically identical?",
+      "limit": "The ancient association is documented; an exact etymological identity and a modern public official's supernatural role are not established by it.",
+      "source_ids": [
+        "apollo-agamemnon",
+        "apollo-cratylus",
+        "apollo-greek",
+        "apollo-lexicon"
+      ]
+    },
+    {
+      "id": "a-artwork-and-reception",
+      "title": "An art caption and an eschatological interpretation are different witnesses",
+      "relation": "Source-role distinction",
+      "finding": "Mullins identifies a painting of Apollo; the Patreon author and Reddit commenters apply the imagery to a contemporary prophetic theory.",
+      "question": "Which source documents the object, which documents an interpretation, and which independently establishes the owner's intent?",
+      "limit": "None of the consulted sources is an authenticated first-person declaration by Trump of worship of Apollo or Abaddon.",
+      "source_ids": [
+        "apollo-mullins",
+        "apollo-patreon",
+        "apollo-reddit"
+      ]
+    },
+    {
+      "id": "a-dawn-figures",
+      "title": "Aurora, Apollo and Phosphorus are distinguishable in Reni's composition",
+      "relation": "Iconographic and textual distinction",
+      "finding": "The Rome fresco includes separate figures of Dawn, the chariot driver and the Morning Star; Isaiah's Hebrew poem does not name Eos.",
+      "question": "What establishes a connection between a particular penthouse object and a particular biblical identification?",
+      "limit": "Visual resemblance, the identity of figures within a reference painting and a theological equation are separate propositions.",
+      "source_ids": [
+        "apollo-reni-rome",
+        "apollo-reni-analysis",
+        "apollo-isaiah14"
+      ]
+    },
+    {
+      "id": "a-fifth-sixth-trumpets",
+      "title": "The locust king and the later cavalry are not explicitly the same command",
+      "relation": "Narrative-unit distinction",
+      "finding": "Revelation 9:1-12 restricts the locusts from killing; 9:13-19 introduces the sixth trumpet and the cavalry that kills a third.",
+      "question": "Where does the text state the relationship a commentator proposes between these separate episodes?",
+      "limit": "Apollyon is named over the locusts, not expressly over the two-hundred-million cavalry. Linking the units remains an interpretive step.",
+      "source_ids": [
+        "apollo-rev9",
+        "apollo-patreon"
+      ]
+    }
+  ],
+  "latest_addition_date": "2026-09-19"
+}

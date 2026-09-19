@@ -1,1 +1,8 @@
-{"schema_version":1,"edition_date":"2026-09-18","base_commit":"02815566e2588d8ccb05194f2968acea9de07611","title":"Gold, allegiance and the AI-policy record","scope":"Three sourced studies, ten dated records and twelve comparison questions. The author's interpretation remains distinct from political findings. Only the existing event-register navigation and README change outside this folder, plus two dedicated workflows. Original source and forecast records are preserved; new full-text search is local, not principal global-search integration."}
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-19",
+  "base_commit": "02815566e2588d8ccb05194f2968acea9de07611",
+  "title": "Gold, allegiance and the AI-policy record",
+  "scope": "Three sourced studies, ten preserved dated AI records and sixteen comparison questions. The September 19 addition develops Apollo/Apollyon wordplay within the existing study. Thirteen added sources bring the register to forty-three. Earlier dates, principal articles and original conversations remain unchanged; search is local.",
+  "latest_update_base": "967ba69021ca644fa1d8186b05a09e34eb403a8b"
+}

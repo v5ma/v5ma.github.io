@@ -1,5 +1,5 @@
-name: Theology authority imagery integration (completed)
-# Run 35428448290 generated and tested output committed as 607ec90850ae07a13cc4ed850e3453ba1b4b1925.
+name: Theology authority imagery integrations (completed)
+# Initial integration: 35428448290. Apollo addendum: 35450173109.
 on:
   workflow_dispatch:
 permissions:
@@ -9,4 +9,4 @@ jobs:
     if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'The reviewed authority-imagery integration is complete. Later source changes require a new reviewed change.'
+      - run: echo 'The authority-imagery edition and Apollo addendum are complete. Further source changes require a new reviewed edit.'

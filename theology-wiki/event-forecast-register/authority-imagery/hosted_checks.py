@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import argparse,hashlib,json,os,time,urllib.request
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2];PREFIX='theology-wiki/event-forecast-register/authority-imagery/'
 p=argparse.ArgumentParser();p.add_argument('--report',default='/tmp/authority-imagery-hosted.json');p.add_argument('--wait-seconds',type=int,default=480);args=p.parse_args()
-files=[PREFIX+x['path'] for x in json.loads((HERE/'build-report.json').read_text())['files']];files += [PREFIX+x for x in ['build-report.json','studies.json','records.json','sources.json','manifest.json','reader.js','README.md']];files += ['theology-wiki/event-forecast-register/index.html','theology-wiki/event-forecast-register/README.md','theology-wiki/comparative-religion/series.css','theology-wiki/san-reader.html'];files=sorted(set(files));expected={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files};results={};deadline=time.monotonic()+args.wait_seconds;attempt=0
+files=[PREFIX+x['path'] for x in json.loads((HERE/'build-report.json').read_text())['files']];files += [PREFIX+x for x in ['build-report.json','studies.json','records.json','sources.json','manifest.json','reader.js','README.md','apollo-update.json','apollo-revision-receipt.json']];files += ['theology-wiki/event-forecast-register/index.html','theology-wiki/event-forecast-register/README.md','theology-wiki/comparative-religion/series.css','theology-wiki/san-reader.html'];files=sorted(set(files));expected={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files};results={};deadline=time.monotonic()+args.wait_seconds;attempt=0
 
 def get(f):
  url='https://v5ma.github.io/'+f+'?verification='+os.environ.get('GITHUB_SHA','current')

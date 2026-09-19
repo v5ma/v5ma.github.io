@@ -1,50 +1,50 @@
 {
   "schema_version": 1,
-  "edition_date": "2026-09-18",
+  "edition_date": "2026-09-19",
   "counts": {
     "studies": 3,
     "timeline": 10,
-    "comparisons": 12,
-    "sources": 30,
-    "study_words": 2010,
+    "comparisons": 16,
+    "sources": 43,
+    "study_words": 2840,
     "html_pages": 7
   },
   "files": [
     {
       "path": "gold-apollo-and-fortresses.html",
-      "sha256": "d15c288e19be4d5e61deac793cb0922ce81fcf4261362f303fde17659ce83066"
+      "sha256": "a5ff36d9e145a0e05cf8bcf2724ed9e9747340d26ea8fde8ab14efec99c73a80"
     },
     {
       "path": "images-allegiance-and-commerce.html",
-      "sha256": "e60eec5d60f7981f750ede540cabe09403f52065a727ccd349dd7965c1dab7b0"
+      "sha256": "5d725a5351ac3db9e63875ac70fa7033daa747e75a18e06a46e59d3792360c74"
     },
     {
       "path": "ai-policy-chronology.html",
-      "sha256": "ac7750efb88d872eb07e01e61de232a0885f359d7249ac494f6a8636e79a70d1"
+      "sha256": "ff362815ebd9b037a581699a3c3c4f1f4dc5a339aedb638f0cedf0bfe5ebc1ad"
     },
     {
       "path": "index.html",
-      "sha256": "86936debb5489f1998e67ce2d9bf0235ef8bf278e436fe2ca504f150c69c2818"
+      "sha256": "bbef719e810c7ad87764c5f4febdbc5b33b0009c7fba3b9574567204d529eee7"
     },
     {
       "path": "timeline.html",
-      "sha256": "66f68da74644b16fe7ce507705f61dce12746bcf4cb45157cbf29e7c58112179"
+      "sha256": "9d6d20b635dcd37f475e9e6ec07f109e56712f7d82f65facb8148998c89bb3ba"
     },
     {
       "path": "comparisons.html",
-      "sha256": "7b65b613c336fc12d2cd4e7cc7aa154f32a7da1fd01418b542c4e5a65cbb3705"
+      "sha256": "08207ed04cbd7e00dc3eb85bdb134f01ee9ae11495c4d4333601e6fd0851c858"
     },
     {
       "path": "sources.html",
-      "sha256": "17fe1d4b937867b0dee5d95508776a27150e15a3b14d62b3872f9b4fe5991133"
+      "sha256": "9e42441c8b8ee0ee44c8494aacd6a28a12b413ed07a2b308a5310f6e1a5656b9"
     },
     {
       "path": "index.json",
-      "sha256": "9d8d171770bc098543130b070959a03c654fe1133c604792aae9caa6692cc1dc"
+      "sha256": "ca76a7c62946136b85b51cbddd0234db408afa8d319f3f8a282ed1974320976a"
     },
     {
       "path": "READING.md",
-      "sha256": "ff53d55e0b97185136f9787e53da16264897d1c0e7d36f97d741522fe44156f6"
+      "sha256": "1d0e379818c63baf0318ecee255da21d04580d81ec505f051a08ff0bb28389b1"
     }
   ]
 }
