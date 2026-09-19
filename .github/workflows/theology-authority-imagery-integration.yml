@@ -1,56 +1,12 @@
-name: Theology one-shot authority imagery integration
+name: Theology authority imagery integration (completed)
+# Run 35428448290 generated and tested output committed as 607ec90850ae07a13cc4ed850e3453ba1b4b1925.
 on:
-  push:
-    branches: ['theology/authority-imagery-20260918']
-    paths:
-      - 'theology-wiki/event-forecast-register/authority-imagery/**'
-      - '.github/workflows/theology-authority-imagery-integration.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  integrate:
-    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/authority-imagery-20260918'
+  completed:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
-    env:
-      PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: theology/authority-imagery-20260918
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Read preserved publication baseline
-        run: git fetch --no-tags --depth=1 origin 02815566e2588d8ccb05194f2968acea9de07611
-      - name: Generate and test source audit and additive navigation
-        run: |
-          set -o pipefail
-          mkdir -p theology-test-output/authority-imagery
-          node theology-wiki/event-forecast-register/authority-imagery/build.cjs
-          node theology-wiki/event-forecast-register/authority-imagery/integrate.cjs
-          git add theology-wiki/event-forecast-register/authority-imagery/ theology-wiki/event-forecast-register/index.html theology-wiki/event-forecast-register/README.md
-          python theology-wiki/event-forecast-register/authority-imagery/check_pages.py | tee theology-test-output/authority-imagery/structure.json
-          node --test theology-wiki/event-forecast-register/register.test.cjs theology-wiki/event-forecast-register/truth-social/archive.test.cjs theology-wiki/event-forecast-register/corpus-review/review.test.cjs theology-wiki/event-forecast-register/authority-imagery/research.test.cjs | tee theology-test-output/authority-imagery/contracts.log
-      - name: Commit only tested source-audit output to the dedicated branch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add theology-wiki/event-forecast-register/authority-imagery/ theology-wiki/event-forecast-register/index.html theology-wiki/event-forecast-register/README.md
-          if git diff --cached --name-only | grep -Ev '^theology-wiki/event-forecast-register/(authority-imagery/|index.html$|README.md$)'; then exit 1; fi
-          git diff --cached --quiet && exit 0
-          git commit -m 'Generate tested authority-imagery studies and exact register navigation'
-          git push origin HEAD:refs/heads/theology/authority-imagery-20260918
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: theology-authority-imagery-integration
-          path: |
-            theology-test-output/authority-imagery/
-            theology-wiki/event-forecast-register/authority-imagery/
-          if-no-files-found: error
+      - run: echo 'The reviewed authority-imagery integration is complete. Later source changes require a new reviewed change.'
