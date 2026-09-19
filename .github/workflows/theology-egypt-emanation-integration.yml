@@ -1,59 +1,12 @@
-name: Theology one-shot Egyptian Seed integration
+name: Theology Egyptian Seed integration (completed)
+# Successful integration run 35425493673; generated output saved as 0463cdcd050bfd99abe2280589a1a39c36916dfa.
 on:
-  push:
-    branches: ['theology/egypt-emanation-genealogy-20260918']
-    paths:
-      - 'theology-wiki/comparative-religion/egypt-emanation/**'
-      - '.github/workflows/theology-egypt-emanation-integration.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  integrate:
-    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/egypt-emanation-genealogy-20260918'
+  completed:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
-    env:
-      PYTHONDONTWRITEBYTECODE: '1'
-      INTEGRATED: '1'
-      REQUIRE_CORPUS: '1'
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: theology/egypt-emanation-genealogy-20260918
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Read the exact publication baseline
-        run: git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
-      - name: Repair period context, integrate and verify the entire preserved edition
-        run: |
-          set -o pipefail
-          mkdir -p theology-test-output/egypt-emanation
-          node theology-wiki/comparative-religion/egypt-emanation/repair-period-context.cjs
-          node theology-wiki/comparative-religion/egypt-emanation/integrate.cjs
-          node theology-wiki/comparative-religion/build.cjs | tee theology-test-output/egypt-emanation/build.log
-          node theology-wiki/tools/build.cjs > theology-test-output/egypt-emanation/main-build.log
-          python theology-wiki/comparative-religion/check_pages.py > theology-test-output/egypt-emanation/parent-structure.json
-          python theology-wiki/comparative-religion/egypt-emanation/check_pages.py > theology-test-output/egypt-emanation/structure.json
-          python theology-wiki/comparative-religion/egypt-emanation/check_scope.py > theology-test-output/egypt-emanation/scope.json
-          node --test theology-wiki/tests/research.test.cjs theology-wiki/scripture-concordance/concordance.test.cjs theology-wiki/research-expansion-20260918/expansion.test.cjs theology-wiki/comparative-religion/comparative.test.cjs theology-wiki/comparative-religion/egypt-emanation/research.test.cjs | tee theology-test-output/egypt-emanation/contracts.log
-      - name: Save only validated comparative output to the review branch
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add theology-wiki/comparative-religion/
-          python theology-wiki/comparative-religion/egypt-emanation/check_scope.py
-          if git diff --cached --name-only | grep -Ev '^theology-wiki/comparative-religion/'; then exit 1; fi
-          git diff --cached --quiet && exit 0
-          git commit -m 'Generate Egyptian Seed research and integrate reciprocal navigation after preservation tests'
-          git push origin HEAD:refs/heads/theology/egypt-emanation-genealogy-20260918
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: theology-egypt-integration
-          path: |
-            theology-test-output/egypt-emanation/
-            theology-wiki/comparative-religion/
-          if-no-files-found: error
+      - run: echo 'The Egyptian Seed integration is complete. Further edits require a new reviewed change.'
