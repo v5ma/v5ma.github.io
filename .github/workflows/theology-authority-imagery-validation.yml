@@ -1,0 +1,65 @@
+name: Validate Theology authority imagery and policy sources
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/event-forecast-register/authority-imagery/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-authority-imagery-validation.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/event-forecast-register/authority-imagery/**'
+      - 'theology-wiki/event-forecast-register/index.html'
+      - 'theology-wiki/event-forecast-register/README.md'
+      - '.github/workflows/theology-authority-imagery-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read exact preservation baseline
+        run: git fetch --no-tags --depth=1 origin 02815566e2588d8ccb05194f2968acea9de07611
+      - name: Rebuild and check actual source and delivery contracts
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/authority-imagery
+          node theology-wiki/event-forecast-register/authority-imagery/build.cjs
+          node theology-wiki/event-forecast-register/authority-imagery/integrate.cjs
+          git diff --exit-code -- theology-wiki/
+          python theology-wiki/event-forecast-register/authority-imagery/check_pages.py | tee theology-test-output/authority-imagery/structure.json
+          node --test theology-wiki/event-forecast-register/authority-imagery/research.test.cjs | tee theology-test-output/authority-imagery/contracts.log
+      - name: Install real browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise all new pages and real register and principal routes
+        run: python theology-wiki/event-forecast-register/authority-imagery/browser_checks.py --report theology-test-output/authority-imagery/browser.json --screenshots theology-test-output/authority-imagery/native
+      - name: Check actual production bytes after deployment
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/event-forecast-register/authority-imagery/hosted_checks.py --report theology-test-output/authority-imagery/hosted-content.json
+      - name: Repeat behavior on the actual public site
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/event-forecast-register/authority-imagery/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/authority-imagery/hosted-browser.json --screenshots theology-test-output/authority-imagery/hosted
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-authority-imagery-validation
+          path: |
+            theology-test-output/authority-imagery/
+            theology-wiki/event-forecast-register/authority-imagery/
+          if-no-files-found: error
