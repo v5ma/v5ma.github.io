@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "base_commit": "46d2d5f93723922630147c367a10ea7af98e459b",
+  "articles": [
+    {
+      "slug": "jesus-teacher-of-righteousness-hypothesis",
+      "position": "prepend",
+      "original_git_blob": "d801512a0a4a964c6f694ff06e0259b334c85b85",
+      "original_bytes": 8379,
+      "supplement": "teacher-identity.md",
+      "supplement_bytes": 11590,
+      "integrated_git_blob": "8250a4017dae7fb5e79228831e7d5b73f55b347f"
+    },
+    {
+      "slug": "divine-will-and-self-authorizing-power",
+      "position": "append",
+      "original_git_blob": "efa4b3564e5469132c893688865d9ba78accdd58",
+      "original_bytes": 9038,
+      "supplement": "divine-agency.md",
+      "supplement_bytes": 9744,
+      "integrated_git_blob": "3a8addfe0a4ca70ace47bafaff1ac18576bc6015"
+    },
+    {
+      "slug": "ukraine-russia-forecast-record",
+      "position": "append",
+      "original_git_blob": "085b5aeda4e543c065d6791beac8032440502c5e",
+      "original_bytes": 5058,
+      "supplement": "ai-scarcity.md",
+      "supplement_bytes": 16085,
+      "integrated_git_blob": "2893505f8f17051db5d4ed75fef4224dd0608125"
+    }
+  ]
+}

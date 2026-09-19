@@ -17,7 +17,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
 
 ## Read, listen and explore
 
@@ -33,11 +33,11 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
-[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.
 
 [[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
 
 [[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
 
@@ -63,7 +63,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]: A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.
 
-[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.
 
 [[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
 

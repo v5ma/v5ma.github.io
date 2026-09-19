@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "baseline": "eebe9c097f1ac6795a63ccb258a87067f91460c9",
+  "scope": "Exactly three requested article bodies and their narration JSON and text transcripts. The previous six derivative revisions remain unchanged; every other pinned file retains its original bytes.",
+  "files": {
+    "content/developed/divine-will-and-self-authorizing-power.md": {
+      "before": "1da4858029ebe6347647d06bc8566574b90bc6b5e233032e2a41f24353469fa9",
+      "after": "96674889c0076ba20250bfbae4be773a9f83ac878733f965be20241161484ab0"
+    },
+    "content/developed/jesus-teacher-of-righteousness-hypothesis.md": {
+      "before": "5a4ac0ff1213b95f68adbac46e4319ac7392085764d02afa6ee60ae186cc52d3",
+      "after": "807bd09d76d3b5af105772d4641573e30b36e635ec047f87b02d4a660128fe0d"
+    },
+    "content/developed/ukraine-russia-forecast-record.md": {
+      "before": "4c78ce17405c080401f8122d68428c705a8641352bc14819cb7ea8cc9fa98e8f",
+      "after": "50a2072d521db43b70244d0ff8f56d9fdabe2503e6c6fe48b308662394a28b5a"
+    },
+    "data/listening/divine-will-and-self-authorizing-power.json": {
+      "before": "730165d518fb0a3379a2529d7b8c9f5b95874c6828153a58b9590575705f51cb",
+      "after": "89004899439eae8a8c25f4a04e9dc23e0ff7076daf26e0299ce30b7f38787a7b"
+    },
+    "data/listening/jesus-teacher-of-righteousness-hypothesis.json": {
+      "before": "c36bb8ffba546db3c92110484cf6a53ba611c2c8cf82b0de9dafe1c64b825143",
+      "after": "0d60c63436305225515e5ca63de992ad5c6efca0e807a1079cb46d3162ee4584"
+    },
+    "data/listening/ukraine-russia-forecast-record.json": {
+      "before": "1018913378cc000bd27497b72df07bdf26ce9978abd808b57007d9b639d7bbef",
+      "after": "7274477345b23e8be2d6dc5e8087b7764a47d784d29922ec73bef22060581774"
+    },
+    "products/transcripts/divine-will-and-self-authorizing-power.txt": {
+      "before": "9c9b1bdd4008701a68dc7d441c786f332ad460d88df408bf1a4367d75c1d6f9c",
+      "after": "3a4c26790e357ba5b3c219abe95e4df3fd6c757f5d81429e2ce36b72951112a6"
+    },
+    "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt": {
+      "before": "ff43b787635d28b2dd52da66a036f18ee7bdffa360e3894decad5eb3971ee77a",
+      "after": "e48ad3829611c633576fcb5307f7328d57d022294a826e6eb882587073e7e126"
+    },
+    "products/transcripts/ukraine-russia-forecast-record.txt": {
+      "before": "8f480587a29063dd6d1a5c43255c7a2d891949244c67c6b4878c60f531b67040",
+      "after": "88c2e51cc3863e846166224f12329c0d5ad702235e677d8f2f2ea4f73bc03b5e"
+    }
+  }
+}
