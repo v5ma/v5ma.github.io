@@ -71,6 +71,7 @@ export function createScene(canvas,{sharedRenderer=null}={}){
  }
  function aimDirection(state){
   const p=state.player,origin=new T.Vector3(p.x,heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,p.z),miniature=xr.isActive()&&xr.isDiorama?.();
+  if(xr.isActive()&&!miniature){const d=xr.ray().direction;return {x:d.x,y:d.y,z:d.z};}
   const center=new T.Vector3(0,0,.5).unproject(camera),xrRay=xr.isActive()?xr.ray():null,rayOrigin=xrRay?.origin||camera.position,dir=xrRay?.direction||center.sub(camera.position).normalize();
   raycaster.set(rayOrigin,dir);raycaster.far=miniature?200:60;
   const targets=state.enemies.filter(e=>e.hp>0).map(e=>enemies.get(e.id)?.root).filter(Boolean);

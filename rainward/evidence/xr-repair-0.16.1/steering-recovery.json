@@ -1,0 +1,13 @@
+{
+  "source": "7e221a49c364cf108a345fff006222821ca02ae4",
+  "failed_run": 35408099286,
+  "artifact": 10573690191,
+  "sha256": "8fcac7db605c452e6e87b1cfbdb05d7daaab2fc3067fd47d059bb93b9b47e8f3",
+  "failures": {
+    "projection": "Died on an unprotected approach before reading the clue.",
+    "base": "Acquired and displayed the full clue, then synthetic defense aimed at y=1.1 above the prowler hitbox (height 1.0), spending nine shots without a hit and timing out."
+  },
+  "correction": "Read-only driver uses the actual type-specific torso height and defensive pointing inputs during traversal, not only after a waypoint. It steers once per device frame and brakes near turns. Production geometry, damage, ammunition and AI are unchanged. Wheel and scope-transition assertions remain.",
+  "scope": "Synthetic assisted normal-start software test, not human aiming, physical Quest or pacing approval.",
+  "publication": "pending"
+}

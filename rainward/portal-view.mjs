@@ -34,18 +34,23 @@ export function createWorldPortal(){
   const openings=shellOpenings(config.shell);faces.top.visible=!openings.topOpen;faces.front.visible=!openings.frontOpen;
  }
  function render(renderer,scene,camera,rig,environmentRoots){
+  // A scene can be rebound within the current controller frame. Until a valid
+  // pose establishes the aperture, clear safely instead of dereferencing a
+  // missing anchor or exposing an unmasked full-size world.
+  if(!enabled||!anchor){const color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();try{renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);renderer.clear?.();}finally{renderer.setClearColor(color,alpha);}return false;}
+
   const lamps=[];scene.traverse(o=>{if(o.isPointLight||o.isSpotLight)lamps.push({light:o,distance:o.distance,intensity:o.intensity});});
   const children=[...scene.children].filter(o=>o!==rig),bg=scene.background,fog=scene.fog,auto=renderer.autoClear,planes=renderer.clippingPlanes,color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();
   try{
    for(const item of lamps){if(item.distance>0)item.light.distance=item.distance*config.scale;item.light.intensity=item.intensity*Math.pow(config.scale,item.light.decay||2);}
    scene.add(world);for(const child of children)world.add(child);world.matrixAutoUpdate=false;world.matrix.copy(display);world.matrixWorldNeedsUpdate=true;
    occlusion.collect(environmentRoots);occlusion.configure(anchor.clone().add(new T.Vector3(0,STAGE_METRES.height/2,0)),anchor.y+STAGE_METRES.height/2-.9*config.scale,config.scale);materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
-   overlay.add(rig);scene.background=null;scene.fog=null;renderer.clippingPlanes=[];renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);
+   scene.add(shell);scene.background=null;scene.fog=null;renderer.clippingPlanes=[];renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);
    occlusion.active=true;materials.active=true;world.updateMatrixWorld(true);renderer.autoClear=true;renderer.render(scene,camera);
-   occlusion.active=false;materials.active=false;renderer.autoClear=false;renderer.render(overlay,camera);
+   occlusion.active=false;materials.active=false;
   }finally{
    for(const item of lamps){item.light.distance=item.distance;item.light.intensity=item.intensity;}
-   occlusion.active=false;materials.active=false;world.remove(sky);for(const child of children)scene.add(child);scene.remove(world);scene.add(rig);
+   occlusion.active=false;materials.active=false;world.remove(sky);for(const child of children)scene.add(child);scene.remove(world);overlay.add(shell);
    world.matrix.identity();renderer.autoClear=auto;renderer.clippingPlanes=planes;renderer.setClearColor(color,alpha);scene.background=bg;scene.fog=fog;scene.updateMatrixWorld(true);
   }
  }

@@ -13,7 +13,7 @@ export function createFreefieldUI({options,remaps,storage,changed}){
  const info=document.createElement('p');info.id='freefield-status';info.setAttribute('role','status');field.append(info);
  function persist(){const ok=saveFreefield(storage,options)&&saveRemaps(storage,remaps);info.textContent=ok?'Preferences saved. Checkpoints are unchanged.':'Preferences active for this session; browser storage is unavailable.';changed();}
  for(const [key,title,type,choices]of [
-  ['freeStride','Free Stride / no running fatigue','checkbox'],['runSpeed','Running speed (metres/second)','range'],['blink','Allow fast blink travel','checkbox'],
+  ['freeStride','Free Stride / no running fatigue','checkbox'],['autoRun','Run by default / partial stick for precise movement','checkbox'],['runSpeed','Running speed (metres/second)','range'],['blink','Allow fast blink travel','checkbox'],
   ['footsteps','Player footstep volume','range'],['waterVolume','Player water-movement volume','range'],['score','Music arrangement','select',[['quiet','Sparse / After the Rain'],['legacy','Legacy adaptive score'],['off','No music']]],
   ['xrLayout','Quest button preset','select',[['direct','Direct / A interact, B reload, X crouch, Y jump'],['legacy','Legacy Quest Fieldwork']]],['pinnedXR','Pinned field controls (legacy)','checkbox'],['scope','Magnified weapon sight','checkbox']]){
   const el=add(title,key,type,options[key],choices);el.addEventListener('input',()=>{options[key]=type==='checkbox'?el.checked:type==='range'?Number(el.value):el.value;Object.assign(options,freefieldOptions(options));persist();});
@@ -23,6 +23,6 @@ export function createFreefieldUI({options,remaps,storage,changed}){
  const xboxNames={0:'A',1:'B',2:'X',3:'Y',4:'LB',5:'RB',6:'LT',7:'RT',10:'L3',11:'R3',12:'D-pad up',13:'D-pad down',14:'D-pad left',15:'D-pad right'};
  for(const id of XBOX_SLOTS){const el=add('Xbox '+xboxNames[id]+' acts as','remap-xbox-'+id,'select',String(remaps.xbox[id]),XBOX_SLOTS.map(i=>[String(i),xboxNames[i]+' in selected preset']));el.oninput=()=>{remaps.xbox[id]=Number(el.value);persist();};}
  const reset=document.createElement('button');reset.id='reset-button-remaps';reset.textContent='RESET BUTTON REMAPS';reset.onclick=()=>{Object.assign(remaps.xr,XR_DEFAULT);for(const i of XBOX_SLOTS)remaps.xbox[i]=i;for(const k of Object.keys(XR_DEFAULT))document.getElementById('remap-xr-'+k).value=remaps.xr[k];for(const i of XBOX_SLOTS)document.getElementById('remap-xbox-'+i).value=i;persist();};field.append(reset);
- const note=document.createElement('p');note.textContent='Menu A/B, headset system buttons, Quest R3 pause and the open-left-palm gesture stay reserved. Changes affect gameplay only. Left grip previews blink; release commits. Keyboard T blinks. Saved remaps do not alter shelter progress.';field.append(note);
+ const note=document.createElement('p');note.textContent='Menu A/B, headset system buttons, Quest hold-B / R3 pause and the open-left-palm gesture stay reserved. Changes affect gameplay only. Left grip previews blink; release commits. Keyboard T blinks. Saved remaps do not alter shelter progress.';field.append(note);
  document.getElementById('pause').append(root);return {root};
 }

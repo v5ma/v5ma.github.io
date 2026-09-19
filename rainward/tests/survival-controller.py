@@ -25,10 +25,12 @@ with sync_playwright() as pw:
   # Real held-input tests still use down/up and the unchanged production clock.
   frames();p.evaluate('(i)=>padPulse.push(i)',i);frames()
  def nav(id):
-  for _ in range(60):
-   if p.evaluate('document.activeElement?.id')==id:return
-   tap(13)
-  raise AssertionError('Unreachable controller control '+id)
+  seen=set()
+  while True:
+   current=p.evaluate('document.activeElement?.id')
+   if current==id:return
+   if current in seen:raise AssertionError('Unreachable controller control '+id+'; focus repeated at '+str(current))
+   seen.add(current);tap(13)
  def move(x,z):
   deadline=time.monotonic()+30
   while time.monotonic()<deadline:
@@ -54,6 +56,10 @@ with sync_playwright() as pw:
   nav('craft-med');down(0);wait('!!Rainward.state.player.craft');time0=p.evaluate('Rainward.state.t');wait('Rainward.state.player.medkit===1&&!Rainward.state.player.craft');up(0);check(p.evaluate('Rainward.state.t')>time0+1,'Holding A crafts a single item while simulation time continues')
   tap(1);wait('Rainward.mode===\"play\"');tap(8);wait('Rainward.mode===\"map\"');tap(1);wait('Rainward.mode===\"play\"');tap(9);wait('Rainward.mode===\"pause\"');check(True,'View, B and Menu still navigate without a mouse')
   nav('musicVolume');tap(14);check(p.locator('#musicVolume').input_value()=='35','D-pad adjusts the music mix in the game interface')
+  nav('freefield-settings-toggle');tap(0);wait('document.getElementById("freefield-settings").open');nav('runSpeed')
+  check(p.evaluate('document.activeElement.id')=='runSpeed','Expanded settings expose their real controls to Xbox focus')
+  nav('freefield-settings-toggle');tap(0);wait('!document.getElementById("freefield-settings").open');tap(13)
+  check(p.evaluate('!document.getElementById("freefield-settings").contains(document.activeElement)'),'Collapsed settings do not trap the next controller focus on hidden descendants')
   nav('controlPreset');tap(15);check(p.evaluate('Rainward.snapshot().controlPreset')=='classic','The previous v0.8.1 controller layout remains selectable')
   tap(1);wait('Rainward.mode===\"play\"');tap(1);wait('Rainward.state.player.stance===\"stand\"');check(True,'Switching presets applies the previous immediate B posture behavior')
   tap(9);wait('Rainward.mode===\"pause\"');nav('controlPreset');tap(14);check(p.evaluate('Rainward.snapshot().controlPreset')=='survival','The Survival layout can be restored without losing progress')
