@@ -290,8 +290,8 @@ function selectStart(e){
     dispatchMenuInput(menuInput.selectStart(e.inputSource,{menu:true,visible:true}),e.frame||lastFrame);return;
   }
   if(neutral||suppressed.has(e.inputSource))return;
-  const r=hit(e.inputSource,e.frame||lastFrame);suppressed.add(e.inputSource);
-  if(!r){const h=canvasHit(e.inputSource,e.frame||lastFrame);if(h&&(screenMode==='workshop'||screenMode==='editor')&&!screenPointer){screenPointer={source:e.inputSource,target:screenSource,hit:h};pointerEvent('pointerdown',h,e.inputSource);}return;}
+  const r=hit(e.inputSource,e.frame||lastFrame);if(r)suppressed.add(e.inputSource);
+  if(!r){const h=canvasHit(e.inputSource,e.frame||lastFrame);if(h&&(screenMode==='workshop'||screenMode==='editor')&&!screenPointer){suppressed.add(e.inputSource);screenPointer={source:e.inputSource,target:screenSource,hit:h};pointerEvent('pointerdown',h,e.inputSource);}return;}
   if(typeof r.action==='string'){
     if(panel())return;
     if(r.action==='use')window.SkyCycleBathhouse?.interact();
