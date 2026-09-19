@@ -8,6 +8,7 @@ if args.origin!='https://v5ma.github.io':raise ValueError('This publication chec
 paths=['theology-wiki/san-reader.html','theology-wiki/data/build-report.json','theology-wiki/research-expansion-20260918/index.html','theology-wiki/research-expansion-20260918/notebook.json','theology-wiki/research-expansion-20260918/reader.js']
 manifest=json.loads((HERE/'manifest.json').read_text())
 paths += ['theology-wiki/content/developed/'+r['slug']+'.md' for r in manifest['articles']]
+paths += ['theology-wiki/research-expansion-20260918/board-peace-followup/'+f for f in ['index.html','reader.js','register.json']]
 expected={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
 observed={};deadline=time.monotonic()+args.wait_seconds;attempt=0
 while True:
@@ -23,6 +24,6 @@ while True:
  if all(r.get('matches_checkout') for r in observed.values()):break
  if time.monotonic()>=deadline:break
  time.sleep(5)
-report={'status':'passed' if all(r.get('matches_checkout') for r in observed.values()) else 'failed','checkout':os.environ.get('GITHUB_SHA'),'attempts':attempt,'files':observed,'scope':'Eight actual served files compared to checkout hashes. Browser behavior is checked in a separate step.'}
+report={'status':'passed' if all(r.get('matches_checkout') for r in observed.values()) else 'failed','checkout':os.environ.get('GITHUB_SHA'),'attempts':attempt,'files':observed,'scope':'Actual served files compared to checkout hashes, including the three follow-up assets. Browser behavior is checked in a separate step.'}
 Path(args.report).parent.mkdir(parents=True,exist_ok=True);Path(args.report).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 if report['status']!='passed':raise SystemExit(1)
