@@ -1,12 +1,59 @@
-name: Theology authority imagery integration (completed)
-# Run 35428448290 generated and tested output committed as 607ec90850ae07a13cc4ed850e3453ba1b4b1925.
+name: Theology one-shot Apollo source integration
 on:
-  workflow_dispatch:
+  push:
+    branches: ['theology/apollo-apollyon-20260919']
+    paths:
+      - 'theology-wiki/event-forecast-register/authority-imagery/**'
+      - '.github/workflows/theology-authority-imagery-integration.yml'
 permissions:
   contents: read
 jobs:
-  completed:
-    if: ${{ false }}
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/apollo-apollyon-20260919'
     runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - run: echo 'The reviewed authority-imagery integration is complete. Later source changes require a new reviewed change.'
+      - uses: actions/checkout@v4
+        with:
+          ref: theology/apollo-apollyon-20260919
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read the exact preservation baselines
+        run: |
+          git fetch --no-tags --depth=1 origin 02815566e2588d8ccb05194f2968acea9de07611
+          git fetch --no-tags --depth=1 origin 967ba69021ca644fa1d8186b05a09e34eb403a8b
+      - name: Integrate the Apollo addendum and verify actual preservation
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/authority-imagery
+          node theology-wiki/event-forecast-register/authority-imagery/apply-apollo.cjs
+          node theology-wiki/event-forecast-register/authority-imagery/build.cjs
+          node theology-wiki/event-forecast-register/authority-imagery/integrate.cjs
+          git add theology-wiki/event-forecast-register/authority-imagery/
+          python theology-wiki/event-forecast-register/authority-imagery/check_pages.py | tee theology-test-output/authority-imagery/structure.json
+          node --test theology-wiki/event-forecast-register/register.test.cjs theology-wiki/event-forecast-register/truth-social/archive.test.cjs theology-wiki/event-forecast-register/corpus-review/review.test.cjs theology-wiki/event-forecast-register/authority-imagery/research.test.cjs theology-wiki/event-forecast-register/authority-imagery/apollo.test.cjs | tee theology-test-output/authority-imagery/contracts.log
+      - name: Commit only tested module output to the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theology-wiki/event-forecast-register/authority-imagery/
+          if git diff --cached --name-only | grep -Ev '^theology-wiki/event-forecast-register/authority-imagery/'; then exit 1; fi
+          git diff --cached --quiet && exit 0
+          git commit -m 'Integrate Apollo Apollyon sources and regenerate the existing study and reader'
+          git push origin HEAD:refs/heads/theology/apollo-apollyon-20260919
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-apollo-integration
+          path: |
+            theology-test-output/authority-imagery/
+            theology-wiki/event-forecast-register/authority-imagery/
+          if-no-files-found: error
