@@ -1,0 +1,62 @@
+name: Validate Theology Egyptian Seed and genealogy
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/comparative-religion/**'
+      - '.github/workflows/theology-egypt-emanation-validation.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/comparative-religion/**'
+      - '.github/workflows/theology-egypt-emanation-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read the exact prior edition for preservation checks
+        run: git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
+      - name: Verify deterministic research pages, bounded scope and preserved source
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/egypt-emanation
+          node theology-wiki/comparative-religion/egypt-emanation/integrate.cjs
+          node theology-wiki/comparative-religion/build.cjs
+          git diff --exit-code -- theology-wiki/
+          python theology-wiki/comparative-religion/egypt-emanation/check_pages.py | tee theology-test-output/egypt-emanation/structure.json
+          python theology-wiki/comparative-religion/egypt-emanation/check_scope.py | tee theology-test-output/egypt-emanation/scope.json
+          node --test theology-wiki/comparative-religion/egypt-emanation/research.test.cjs | tee theology-test-output/egypt-emanation/contracts.log
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual new pages and reciprocal main-reader navigation
+        run: python theology-wiki/comparative-religion/egypt-emanation/browser_checks.py --report theology-test-output/egypt-emanation/browser.json --screenshots theology-test-output/egypt-emanation/native
+      - name: Compare actual public bytes after deployment
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/egypt-emanation/hosted_checks.py --report theology-test-output/egypt-emanation/hosted-content.json
+      - name: Repeat the browser checks at the actual public origin
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/egypt-emanation/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/egypt-emanation/hosted-browser.json --screenshots theology-test-output/egypt-emanation/hosted
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-egypt-validation
+          path: |
+            theology-test-output/egypt-emanation/
+            theology-wiki/comparative-religion/
+          if-no-files-found: error
