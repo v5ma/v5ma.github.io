@@ -1,6 +1,9 @@
+import {freshWatch,parseWatch,watchRuntime,watchAction,advanceWatch,watchBlocks} from './watch.mjs';
+import {freshCampaign,parseCampaign,campaignState,campaignRuntime,campaignAction,campaignInteract,advanceCampaign,campaignBlocks,campaignCanGlide} from './campaign.mjs';
+import {freshCity,parseCity,cityInteract,missionGoal} from './city.mjs';
 /* Lantern Ward: one metre-space simulation for desktop and native spatial XR. */
 import {advanceMarket,marketActor,marketBlocks,marketState,requestPass,resetMarket} from './market.mjs';
-export const VERSION='0.12.1', CHAPTER='lantern-ward-01', LAYOUT=1;
+export const VERSION='0.15.0', CHAPTER='lantern-ward-01', LAYOUT=1;
 export const SAVE_KEY='svgn.lantern-ward.v1';
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const inside=(x,z,r,p=0)=>x>=r.x-r.w/2-p&&x<=r.x+r.w/2+p&&z>=r.z-r.d/2-p&&z<=r.z+r.d/2+p;
@@ -13,6 +16,8 @@ export const floors=[
  {id:'depot-quay',x:0,z:18,w:8,d:6,y:0},
  {id:'print-stair',x:-12.5,z:1,w:3,d:8,y:4.4,slope:-.55,stairs:true},
  {id:'drying-terrace',x:-11.5,z:-4.5,w:11,d:3,y:4.4},
+ // Real shared landing closes the collision gap between the arcade stair and terrace.
+ {id:'arcade-upper-landing',x:-17.7,z:-4.25,w:3.0,d:1.35,y:4.4},
  {id:'roof-bridge',x:2,z:-3.5,w:17,d:3,y:4.4},
  {id:'loading-loft',x:15,z:-1,w:12,d:8,y:4.4},
  {id:'hoist-landing',x:8.4,z:.5,w:1.8,d:2,y:4.4},
@@ -43,6 +48,19 @@ export const walls=[
  {id:'market-north',x:-10,z:-17.5,w:15,d:4,y:0,h:4.7,color:0x99b4ae},
  {id:'quiet-garden',x:18,z:-16.5,w:9,d:5,y:0,h:2.7,color:0x8da59d}
 ];
+// Previously solid prototype blocks are now enterable rooms inside the same footprint.
+export const interiorBuildings=[];
+for(const id of ['market-stall','market-north','quiet-garden']){
+ const at=walls.findIndex(w=>w.id===id),b=walls[at],t=.18,door=id==='market-stall'?1.5:2.6,side=(b.w-door)/2;
+ interiorBuildings.push({...b,name:id==='market-stall'?'Market kitchen':id==='market-north'?'North storehouse':'Community greenhouse'});
+ walls.splice(at,1,
+  {...b,id,x:b.x-(door+side)/2,z:b.z+b.d/2-t/2,w:side,d:t,cut:true},
+  {...b,id:id+'-door-right',x:b.x+(door+side)/2,z:b.z+b.d/2-t/2,w:side,d:t,cut:true},
+  {...b,id:id+'-back',z:b.z-b.d/2+t/2,d:t},
+  {...b,id:id+'-left',x:b.x-b.w/2+t/2,w:t},
+  {...b,id:id+'-right',x:b.x+b.w/2-t/2,w:t});
+ floors.push({id:id+'-roof',x:b.x,z:b.z,w:b.w,d:b.d,y:b.h});
+}
 export const places=[
  {id:'depot',name:'DEPOT',x:-12,z:15,y:0},
  {id:'arcade',name:'MARKET ARCADE',x:-20,z:-9,y:0},
@@ -66,23 +84,24 @@ export const fixtures=[
  {id:'dock-north',x:3,z:-14,y:0,label:'Y: Board canal skiff'}
 ];
 export const docks=[{x:-.5,z:12,landX:-4.4,landZ:13},{x:-.5,z:-11.5,landX:3,landZ:-14}];
-export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,hoistY:0,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
+export function fresh(){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:-12,y:0,z:17,yaw:0,vx:0,vz:0,vy:0,speed:0,distance:0,time:0,steps:0,ride:'foot',city:freshCity(),watch:freshWatch(),campaign:freshCampaign(),parcel:false,delivered:false,gate:false,hoist:false,claimed:false,credits:0,water:'high',transition:null,lift:null,hoistY:0,visited:['depot'],safe:[-12,0,17],porterYield:0,message:'Find your parcel at the depot bench. X interacts; A hops; Y mounts.',messageTime:9};}
 const flags=['parcel','delivered','gate','hoist','claimed'];
 export function complete(s){return s.delivered&&(s.gate||s.hoist);}
 export function say(s,text){s.message=text;s.messageTime=7;}
-export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,hoistY:s.hoistY,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe};}
+export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s.y,z:s.z,yaw:s.yaw,ride:s.ride,water:s.water,hoistY:s.hoistY,...Object.fromEntries(flags.map(k=>[k,s[k]])),credits:s.credits,visited:s.visited,safe:s.safe,city:parseCity(s.city),watch:parseWatch(s.watch),campaign:parseCampaign(s.campaign)};}
 export function parse(raw){
  const p=typeof raw==='string'?JSON.parse(raw):raw;
  if(!p||p.v!==1||p.chapter!==CHAPTER||p.layout!==LAYOUT)throw Error('Unsupported chapter/layout. Original save retained; export it before replacing.');
  if(flags.some(k=>typeof p[k]!=='boolean')||!['high','low'].includes(p.water)||!['foot','bicycle','boat'].includes(p.ride)||['x','y','z','yaw'].some(k=>!Number.isFinite(p[k]))||Math.abs(p.x)>24||Math.abs(p.z)>21||p.y< -3||p.y>8||!Number.isSafeInteger(p.credits)||p.credits<0||p.credits>600||p.delivered&&!p.parcel||p.claimed&&!complete(p)||p.credits!==(p.claimed?600:0))throw Error('Invalid chapter save. Original data retained.');
- const s={...fresh(),...p,visited:Array.isArray(p.visited)?p.visited.filter(v=>places.some(q=>q.id===v)):['depot']};
+ const s={...fresh(),...p,city:parseCity(p.city),watch:parseWatch(p.watch),campaign:parseCampaign(p.campaign),visited:Array.isArray(p.visited)?p.visited.filter(v=>places.some(q=>q.id===v)):['depot']};
+ if([!!s.watch.tracking,!!s.city.active,!!s.campaign.active].filter(Boolean).length>1)throw Error('Only one mission may be tracked. Original progress retained.');
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
  if(s.ride==='boat'&&s.water==='low')s.ride='foot';
  // A saved mid-hop/hoist position falls to a valid support; no stale transition survives.
  s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;resetMarket(s);return s;
 }
 export function save(s,store){
- let text;try{const payload=serialize(s);if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
+ let text;try{const payload=serialize(s);const trip=watchRuntime(s).travel;if(trip){Object.assign(payload,trip.from);payload.ride='foot';}const lunge=campaignRuntime(s).lunge;if(lunge){Object.assign(payload,lunge.from);payload.ride='foot';}if(campaignCanGlide(s)&&s.y>1.2&&Math.abs(s.vy)>.1){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
  store.setItem(SAVE_KEY+'.pending',text);if(store.getItem(SAVE_KEY+'.pending')!==text)throw Error('Staging verification failed');store.setItem(SAVE_KEY,text);if(store.getItem(SAVE_KEY)!==text)throw Error('Save verification failed');store.removeItem(SAVE_KEY+'.pending');return {ok:true};}catch(e){return {ok:false,error:String(e.message||e)};}
 }
 export function load(store){
@@ -96,7 +115,7 @@ export function actors(s){
  marketActor(s),
  {id:'caretaker',name:'Neri / workshop caretaker',x:16,z:5+walk*4,y:0,tip:'Leave the parcel at the receiving bench. Restore the blue door OR repair the goods hoist, then return to Mara.'}];
 }
-export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f,-.06));}
+export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f));}
 export function support(s,x,z,y){const fs=surfaces(s,x,z).filter(f=>floorHeight(f,z)<=y+.31);return fs.sort((a,b)=>floorHeight(b,z)-floorHeight(a,z))[0];}
 export function blocked(s,x,y,z,r=.3){
  if(Math.abs(x)>23.6||Math.abs(z)>20.6)return true;
@@ -105,6 +124,7 @@ export function blocked(s,x,y,z,r=.3){
  if(s.ride!=='boat'&&s.water==='high'&&y<.5&&inside(x,z,canal,-.08))return true;
  if(s.ride==='boat'&&!inside(x,z,canal,-.5))return true;
  if(marketBlocks(s,x,y,z,r))return true;
+ if(campaignBlocks(s,x,y,z))return true;
  return false;
 }
 export function lineClear(s,a,b){const d=Math.hypot(b.x-a.x,b.z-a.z,b.y-a.y),n=Math.max(1,Math.ceil(d/.12));for(let i=1;i<n;i++){const u=i/n,x=a.x+(b.x-a.x)*u,z=a.z+(b.z-a.z)*u,y=a.y+(b.y-a.y)*u;for(const w of walls)if(!(w.gate&&s.gate)&&y>w.y&&y<w.y+w.h&&inside(x,z,w))return false;}return true;}
@@ -113,7 +133,12 @@ export function nearby(s){
  const found=fs.filter(f=>Math.hypot(s.x-f.x,s.y-f.y,s.z-f.z)<2.15&&(f.id==='gate'||lineClear(s,{x:s.x,y:s.y+1,z:s.z},{x:f.x,y:f.y+1,z:f.z})));
  return found.sort((a,b)=>Math.hypot(s.x-a.x,s.z-a.z)-Math.hypot(s.x-b.x,s.z-b.z))[0]||null;
 }
-export function action(s,name){
+const watchAPI={say,lineClear,blocked,support,floorHeight,surfaces};
+const campaignAPI=watchAPI;
+export function action(s,name,ray){
+ if(watchRuntime(s).travel||campaignRuntime(s).lunge)return;
+ if(campaignAction(s,name,campaignAPI,ray))return;
+ if(watchAction(s,name,watchAPI,ray))return;
  if(name==='bell'){const m=marketState(s),visible=lineClear(s,{x:s.x,y:s.y+1,z:s.z},{x:0,y:1,z:m.z});say(s,requestPass(s,visible)?'Ivo: I heard you. Pulling north into the bay; cross when the sign clears.':'Bell rang. Signal within sight of Ivo at the north quay to request a pass.');return;}
  if(name==='hop'){if(s.ride==='foot'&&Math.abs(s.vy)<.01&&support(s,s.x,s.z,s.y))s.vy=4.3;return;}
  if(name==='ride'){
@@ -127,6 +152,8 @@ export function action(s,name){
  }
  if(name==='throw'){s.paper={x:s.x,y:s.y+1.1,z:s.z,dx:-Math.sin(s.yaw),dz:-Math.cos(s.yaw),t:0};say(s,'Practice paper thrown. Workshop parcels need a handoff at the receiving bench.');return;}
  if(name!=='interact')return;
+ const campaignResponse=campaignInteract(s,campaignAPI);if(campaignResponse){say(s,campaignResponse);return;}
+ const response=cityInteract(s,lineClear);if(response){say(s,response);return;}
  const f=nearby(s);
  if(!f){const a=actors(s).find(a=>Math.hypot(s.x-a.x,s.y-a.y,s.z-a.z)<2.8);if(a)say(s,a.tip);else say(s,name==='throw'?'The workshop parcel needs a handoff at its bench, not a thrown paper.':'Move close to a person, bench or mechanism.');return;}
  // A reached signal post relays the request even when the cart is behind the bay corner.
@@ -156,23 +183,29 @@ export function action(s,name){
 }
 export function tick(s,input,dt){
  dt=clamp(Number.isFinite(dt)?dt:0,0,.05);if(!dt)return;s.time+=dt;s.steps++;s.messageTime=Math.max(0,s.messageTime-dt);s.porterYield=Math.max(0,s.porterYield-dt);advanceMarket(s,dt);
+ if(advanceCampaign(s,input,dt,campaignAPI))return;
+ if(advanceWatch(s,input,dt,watchAPI))return;
  if(s.paper){s.paper.t+=dt;if(s.paper.t>1.1)s.paper=null;}
  if(s.transition){s.transition.t+=dt/2;if(s.transition.t>=1){if(inside(s.x,s.z,canal)||s.ride==='boat'){s.transition=null;say(s,'Sluice paused: clear the channel first. The safe water level is unchanged.');return;}s.water=s.transition.to;s.transition=null;say(s,s.water==='low'?'Channel drained. The maintenance steps and walking route are exposed.':'Channel filled. Public boats are available again.');}}
  if(s.lift){const l=s.lift;if(l.summon){const q=l.summon;q.t=Math.min(1,q.t+dt/1.5);s.hoistY=q.from+(q.to-q.from)*q.t;if(q.t>=1){l.summon=null;s.x=6.8;s.z=.5;s.y=l.from;}return;}l.t=Math.min(1,l.t+dt/2);s.y=l.from+(l.to-l.from)*(l.t*l.t*(3-2*l.t));s.hoistY=s.y;if(l.t>=1){s.lift=null;s.safe=[s.x,s.y,s.z];}return;}
- const max=s.ride==='boat'?5:s.ride==='bicycle'?input.boost?9:5.6:input.boost?6.2:3.7;
- let dx=input.x||0,dz=input.z||0,L=Math.max(1,Math.hypot(dx,dz));dx/=L;dz/=L;
- if(input.brake)dx=dz=0;const a=1-Math.exp(-dt*(input.brake?18:9));s.vx+=(dx*max-s.vx)*a;s.vz+=(dz*max-s.vz)*a;
+ // Boost is hold-to-run, not cruise control. A falling edge actively brakes.
+ if(s.boostHeld&&!input.boost)s.releaseBrake=.35;s.boostHeld=!!input.boost;
+ if(s.releaseBrake>0){s.releaseBrake=Math.max(0,s.releaseBrake-dt);input={...input,brake:true};}
+ let max=s.ride==='boat'?5:s.ride==='bicycle'?input.boost?9:5.6:input.boost?6.2:3.7;
+ let dx=input.x||0,dz=input.z||0;const gliding=!!input.glide&&campaignCanGlide(s)&&s.ride==='foot'&&s.y>1;
+ if(gliding){dx=-Math.sin(s.yaw);dz=-Math.cos(s.yaw);max=5.8;}let L=Math.max(1,Math.hypot(dx,dz));dx/=L;dz/=L;
+ if(input.brake&&!gliding)dx=dz=0;const a=1-Math.exp(-dt*((input.brake&&!gliding)?18:9));s.vx+=(dx*max-s.vx)*a;s.vz+=(dz*max-s.vz)*a;if(!dx&&!dz&&Math.hypot(s.vx,s.vz)<.035)s.vx=s.vz=0;
  const old=[s.x,s.y,s.z],parts=Math.max(1,Math.ceil(Math.hypot(s.vx,s.vz)*dt/.15));
  for(let i=0;i<parts;i++){
   const x=s.x+s.vx*dt/parts,z=s.z+s.vz*dt/parts;
-  if(!blocked(s,x,s.y,s.z))s.x=x;else s.vx=0;
-  if(!blocked(s,s.x,s.y,z))s.z=z;else s.vz=0;
+  if(!blocked(s,x,s.y,s.z)&&!watchBlocks(s,x,s.y,s.z))s.x=x;else s.vx=0;
+  if(!blocked(s,s.x,s.y,z)&&!watchBlocks(s,s.x,s.y,z))s.z=z;else s.vz=0;
  }
  if(s.ride==='boat'){s.y=-.72;s.vy=0;}
  else{
   const f=support(s,s.x,s.z,s.y),ground=f?floorHeight(f,s.z):-20;
   if(s.vy<=0&&s.y-ground<.32&&s.y-ground>-.32){s.y=ground;s.vy=0;}
-  else{s.vy-=11*dt;s.y+=s.vy*dt;if(s.y<ground&&old[1]>=ground-.31){s.y=ground;s.vy=0;}}
+  else{if(gliding)s.vy=Math.max(s.vy,-1.15);else s.vy-=11*dt;s.y+=s.vy*dt;if(s.y<ground&&old[1]>=ground-.31){s.y=ground;s.vy=0;}}
   // Low clearance under platforms stops a hop; visual cutaways never remove it.
   for(const roof of surfaces(s,s.x,s.z)){const h=floorHeight(roof,s.z);if(!roof.stairs&&h>old[1]+1.7&&s.y+1.8>h&&s.vy>0){s.y=h-1.81;s.vy=0;}}
  }

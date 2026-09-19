@@ -1,3 +1,7 @@
+import {watchState,watchRuntime,watchInspect} from './watch.mjs';
+import {campaignState,campaignInspect,campaignCanGlide} from './campaign.mjs';
+import {missionGoal,storyTarget,trackStory,residents,cityState} from './city.mjs';
+import {drawMap,missionOptions,navigation} from './navigation.mjs';
 import {VERSION,SAVE_KEY,fresh,parse,save,load,serialize,action,tick,nearby,goal,say,complete,actors,clamp} from './core.mjs';
 import {marketCue,marketStatus} from './market.mjs';
 import {createView} from './view.mjs';
@@ -10,11 +14,11 @@ let view,xr,confirmation=null,pendingAction=null;const uiTouches={x:0,y:0,boost:
 function clear(){keys.clear();held.clear();uiTouches.x=uiTouches.y=0;uiTouches.boost=uiTouches.brake=false;controllerReady=false;}
 function tell(text){say(state,text);$('notice').textContent=text;}
 function persist(){if(!started||blocked)return false;const r=save(state,storage);if(!r.ok){blocked=true;tell('Save blocked: '+r.error+'. Existing progress is retained; export this run from Menu.');}return r.ok;}
-function pause(value=true){paused=value;clear();if(value&&started){if(!$('menu').open)$('menu').showModal();$('resume').focus();}else if($('menu').open)$('menu').close();}
-function command(name){if(!started||paused||failed)return;if(name==='pause'||name==='map'||name==='jobs'){pause(true);if(name!=='pause')$('route-map').hidden=false;return;}if(name==='camera'){if(xr?.active){xr.setMode(xr.mode==='first'?'diorama':'first');return;}viewMode=viewMode==='third'?'first':'third';$('view-mode').value=viewMode;clear();return;}if(name==='recenter'){yaw=0;return;}action(state,name);persist();}
+function pause(value=true){paused=value;clear();if(!value&&pendingAction){$('keep').click();}if(value)missionBoard();if(value&&started){if(!$('menu').open)$('menu').showModal();$('resume').focus();}else if($('menu').open)$('menu').close();}
+function command(name,ray){if(!started||paused||failed)return;if(name==='pause'||name==='map'||name==='jobs'){pause(true);if(name!=='pause'){$('route-map').hidden=false;missionBoard();if(xr?.active)xr.openMissions();else $('mission-list').querySelector('.active:not(:disabled),button:not(:disabled)')?.focus();}return;}if(name==='camera'){if(xr?.active){xr.setMode(xr.mode==='first'?'diorama':'first');return;}viewMode=viewMode==='third'?'first':'third';$('view-mode').value=viewMode;clear();return;}if(name==='recenter'){yaw=0;return;}if(!ray&&['strike','pulse','tool'].includes(name))ray={origin:{x:state.x,y:state.y+1.3,z:state.z},direction:{x:-Math.sin(yaw),y:0,z:-Math.cos(yaw)}};action(state,name,ray);persist();}
 function start(){started=true;document.body.classList.add('playing');$('welcome').hidden=true;pause(false);persist();tell(blocked?'Storage needs attention. Your original save is untouched; use Menu to export or restore.':'The workshop is beyond the blue door. Pick up your parcel, then choose your route.');}
 function confirm(text,fn){pendingAction=fn;$('confirm-text').textContent=text;$('confirm').hidden=false;$('keep').focus();controllerReady=false;}
-$('start').onclick=start;$('resume').onclick=()=>pause(false);$('menu-button').onclick=()=>pause(true);$('map-button').onclick=()=>{pause(true);$('route-map').hidden=false;};
+$('start').onclick=start;$('resume').onclick=()=>pause(false);$('menu-button').onclick=()=>pause(true);$('map-button').onclick=()=>command('jobs');
 $('keep').onclick=()=>{pendingAction=null;$('confirm').hidden=true;$('resume').focus();};$('replace').onclick=()=>{const fn=pendingAction;pendingAction=null;$('confirm').hidden=true;fn?.();};
 $('menu').addEventListener('cancel',e=>{e.preventDefault();if(pendingAction)$('keep').click();else pause(false);});
 $('view-mode').onchange=e=>{viewMode=e.target.value;clear();};$('opening').onchange=e=>view.setOpening(e.target.value);
@@ -28,7 +32,7 @@ $('restore').onclick=()=>confirm('Restore the chapter backup? Your current chapt
 $('restart').onclick=()=>confirm('Start Lantern Ward again? Its current data will be archived. Original delivery routes, credits and saves remain separate and unchanged.',()=>{
  try{const raw=storage.getItem(SAVE_KEY);if(raw)storage.setItem(SAVE_KEY+'.before-reset',raw);storage.removeItem(SAVE_KEY);state=fresh();blocked=false;persist();tell('A fresh chapter is ready. The earlier chapter is retained in its before-reset copy.');}catch(e){tell(e.message);}
 });
-$('map-toggle').onclick=()=>{$('route-map').hidden=!$('route-map').hidden;};
+$('map-toggle').onclick=()=>{$('route-map').hidden=!$('route-map').hidden;missionBoard();};
 function root(){return $('menu').open?$('menu'):!$('welcome').hidden?$('welcome'):null;}
 function elements(el){return [...el.querySelectorAll('button,select,input,a[href]')].filter(e=>!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length);}
 function adjust(e,dir){if(e.tagName==='SELECT'){e.selectedIndex=(e.selectedIndex+dir+e.options.length)%e.options.length;e.dispatchEvent(new Event('change'));return true;}if(e.type==='range'){e.value=clamp(Number(e.value)+Number(e.step||1)*dir,Number(e.min),Number(e.max));e.dispatchEvent(new Event('input'));return true;}return false;}
@@ -52,9 +56,15 @@ function poll(now,dt){
  if(r){menuInput(pad,b,edge,now);previous=b;return {x:0,y:0};}
  if(!controllerReady){if(!gameplayInputIsNeutral(pad)){previous=b;return {x:0,y:0};}controllerReady=true;}
  if(xr.active){const snap=Math.abs(pad.axes[2]||0)>.65;if(snap&&!poll.snap)yaw-=Math.sign(pad.axes[2])*Math.PI/6;poll.snap=snap;}else if(Math.abs(pad.axes[2]||0)>.16)yaw-=(pad.axes[2]||0)*dt*2.1;
- for(const [i,name]of Object.entries({0:'hop',2:'interact',3:'ride',4:'throw',5:'camera',8:'map',9:'pause',10:'bell',11:'recenter',12:'map',13:'jobs'}))if(edge(i))command(name);
+ const fieldCase=((watchState(state).tracking&&watchState(state).stage>0&&watchState(state).stage<3)||!!campaignState(state).active)&&state.ride==='foot';
+ const capeHold=campaignCanGlide(state)&&b[4]&&b[5]&&state.ride==='foot';
+ if(fieldCase&&edge(7))command((pad.buttons[6]?.value||0)>.2?'tool':'strike');
+ // Once cape traversal is unlocked, holding both bumpers is an embodied glide
+ // chord. Suppress their one-shot throw/tool/camera edges for that frame so a
+ // glide can never accidentally change the camera or fire a field tool.
+ for(const [i,name]of Object.entries({0:'hop',2:'interact',3:'ride',4:capeHold?null:fieldCase?'tool':'throw',5:capeHold?null:'camera',8:'map',9:'pause',10:fieldCase?null:'bell',11:fieldCase?'tool-cycle':'recenter',12:'map',13:'jobs',14:'scan',15:'strike'}))if(name&&edge(i))command(name==='throw'&&(pad.buttons[6]?.value||0)>.2?'grapple':name);
  previous=b;const dead=v=>Math.abs(v||0)<=.16?0:v;
- return {x:dead(pad.axes[0]),y:-dead(pad.axes[1]),boost:(pad.buttons[7]?.value||0)>.2,brake:(pad.buttons[6]?.value||0)>.2||b[1]};
+ return {x:dead(pad.axes[0]),y:-dead(pad.axes[1]),boost:fieldCase?b[10]:(pad.buttons[7]?.value||0)>.2,brake:(pad.buttons[6]?.value||0)>.2||b[1],guard:(pad.buttons[6]?.value||0)>.2,glide:capeHold};
 }
 addEventListener('keydown',e=>{
  if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName)&&root())return;
@@ -62,7 +72,7 @@ addEventListener('keydown',e=>{
  if(e.code==='Escape'){if(pendingAction)$('keep').click();else if(started)pause(!paused);return;}
  if(e.repeat)return;keys.add(e.code);
  if(e.code==='Enter'&&!started){start();return;}
- const names={Space:'hop',KeyE:'interact',KeyF:'ride',KeyQ:'throw',KeyC:'camera',KeyM:'map',KeyJ:'jobs',KeyL:'bell',KeyR:'recenter'};if(names[e.code])command(names[e.code]);
+ const names={Space:'hop',KeyE:'interact',KeyF:'ride',KeyQ:'throw',KeyC:'camera',KeyM:'map',KeyJ:'jobs',KeyL:'bell',KeyR:'recenter',KeyV:'scan',KeyG:'grapple',KeyZ:'strike',KeyT:'tool-cycle',KeyH:'smoke',KeyP:'pulse',KeyU:'campaign-route'};if(names[e.code])command(names[e.code]);
 });
 addEventListener('keyup',e=>keys.delete(e.code));addEventListener('blur',()=>{if(started&&!xr?.active)pause(true);else clear();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){persist();pause(true);}});addEventListener('pagehide',persist);
@@ -72,21 +82,24 @@ $('world').addEventListener('pointermove',e=>{if(dragging&&!paused&&!xr?.active)
 for(const b of document.querySelectorAll('[data-hold]')){
  const release=()=>held.delete(b.dataset.hold);b.onpointerdown=e=>{e.preventDefault();b.setPointerCapture(e.pointerId);held.add(b.dataset.hold);};b.onpointerup=b.onpointercancel=b.onlostpointercapture=release;
 }
-for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>command(b.dataset.action);
-function map(){const c=$('map-canvas'),ctx=c.getContext('2d'),X=x=>(x+25)*8,Z=z=>(z+22)*8;ctx.fillStyle='#263e47';ctx.fillRect(0,0,400,350);
- ctx.strokeStyle='#deca9e';ctx.lineWidth=5;ctx.beginPath();[[-12,17],[-21,12],[-21,-13],[6,-13],[6,8],[14,8]].forEach(([x,z],i)=>i?ctx.lineTo(X(x),Z(z)):ctx.moveTo(X(x),Z(z)));ctx.stroke();
- ctx.strokeStyle='#9cc0b1';ctx.beginPath();[[-12.5,5],[-12.5,-4],[15,-3.5],[19.5,3],[19.5,11]].forEach(([x,z],i)=>i?ctx.lineTo(X(x),Z(z)):ctx.moveTo(X(x),Z(z)));ctx.stroke();
- ctx.fillStyle=state.water==='high'?'#438899':'#768c83';ctx.fillRect(X(-3),Z(-13),40,224);ctx.strokeStyle=state.gate?'#abdabc':'#b96251';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(3),Z(-9));ctx.lineTo(X(3),Z(21));ctx.stroke();ctx.fillStyle='#f8e9c9';ctx.font='12px sans-serif';for(const [text,x,z]of[['Depot',-17,18],['Print shop',-17,3],['Arcade',-23,-16],['Pump',3,-16],['Workshop',10,5],['Blue door',4,19]])ctx.fillText(text,X(x),Z(z));ctx.fillStyle='#fff1bb';ctx.beginPath();ctx.arc(X(state.x),Z(state.z),5,0,7);ctx.fill();}
+for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>{if(b.closest('#menu'))pause(false);command(b.dataset.action);};
+let boardSignature='';
+function track(id){tell(trackStory(state,id));persist();boardSignature='';missionBoard();}
+function missionBoard(){const board=$('mission-list');if(!board)return;const options=missionOptions(state),signature=JSON.stringify(options);if(signature===boardSignature)return;boardSignature=signature;board.replaceChildren();
+ for(const m of options){const button=document.createElement('button');button.className='mission-card'+(m.active?' active':'');button.disabled=!!m.disabled;button.dataset.mission=m.id;const title=document.createElement('strong');title.textContent=(m.active?'TRACKING: ':'')+m.title;const detail=document.createElement('small');detail.textContent=m.detail;button.append(title,detail);button.onclick=()=>{track(m.id);pause(false);};board.append(button);}
+}
+function map(){drawMap($('map-canvas'),state);}
+
 try{
- view=createView($('world'));xr=createXR(view,{clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:marketCue(state)||goal(state),message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
- for(const [id,mode]of[['vr-first','first-person-vr'],['vr-diorama','diorama-vr'],['ar-diorama','diorama-ar']])$(id).onclick=()=>{if(!started)start();xr.enter(mode);};
- for(const id of ['vr-first','vr-diorama','ar-diorama'])$(id).disabled=true;
- if(navigator.xr&&isSecureContext)for(const [kind,ids]of[['immersive-vr',['vr-first','vr-diorama']],['immersive-ar',['ar-diorama']]])navigator.xr.isSessionSupported(kind).then(ok=>ids.forEach(id=>$(id).disabled=!ok)).catch(()=>{});
+ view=createView($('world'));xr=createXR(view,{storage,state:()=>state,confirmation:()=>pendingAction?$('confirm-text').textContent:null,menuAction:id=>{$(id)?.click();},cancelConfirmation:()=>{if(pendingAction)$('keep').click();},clear,pause,paused:()=>paused,action:command,save:persist,goal:()=>state.messageTime>0?state.message:missionGoal(state),missions:()=>missionOptions(state).filter(m=>!m.disabled),map:canvas=>drawMap(canvas,state),track,message:tell,yaw:()=>yaw,turn:a=>{yaw+=a;clear();}});
+ for(const [id,mode]of[['vr-first','first-person-vr'],['vr-diorama','diorama-vr'],['ar-diorama','diorama-ar'],['ar-first','first-person-ar']])$(id).onclick=()=>{if(!started)start();xr.enter(mode);};
+ for(const id of ['vr-first','vr-diorama','ar-diorama','ar-first'])$(id).disabled=true;
+ if(navigator.xr&&isSecureContext)for(const [kind,ids]of[['immersive-vr',['vr-first','vr-diorama']],['immersive-ar',['ar-diorama','ar-first']]])navigator.xr.isSessionSupported(kind).then(ok=>ids.forEach(id=>$(id).disabled=!ok)).catch(()=>{});
  $('xr-help').textContent=navigator.xr?'Choose a supported session explicitly. Physical Quest 3 comfort and performance still need testing.':'XR requires a compatible headset browser over HTTPS. Desktop and Xbox play are available here.';
  $('stand-scale').oninput=e=>{xr.settings.scale=Number(e.target.value);clear();};$('stand-height').oninput=e=>{xr.settings.height=Number(e.target.value);clear();};$('stand-distance').oninput=e=>{xr.settings.distance=Number(e.target.value);clear();};
  if(blocked)tell(restored.error);try{if(storage.getItem('svgn.paper-delivery-3d.v1')){$('legacy-status').textContent='Your original neighborhood save is available unchanged.';}}catch{}
  $('start').disabled=false;$('loading').hidden=true;
- const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),quay:marketStatus(state),basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:goal(state)});
+ const snapshot=()=>({version:VERSION,state:JSON.parse(JSON.stringify(state)),started,paused,failed,blockedSave:blocked,controllerReady,gamepadConnected:!!padWas,yaw,mode:xr.active?xr.mode:viewMode,frames:frameCount,view:view.inspect(),xr:xr.inspect(),quay:marketStatus(state),watch:watchInspect(state),campaign:campaignInspect(state),confirmation:!!pendingAction,basis:{right:[Math.cos(yaw),-Math.sin(yaw)],forward:[-Math.sin(yaw),-Math.cos(yaw)]},nearby:nearby(state)?.id||null,goal:missionGoal(state),navigation:navigation(state,yaw),missions:missionOptions(state)});
  Object.defineProperty(window,'LanternWard',{value:Object.freeze({inspect:snapshot,panel:()=>xr.panelPose()})});
  rendererStart();
  function rendererStart(){view.renderer.setAnimationLoop((now,frame)=>{
@@ -95,18 +108,19 @@ try{
    let p=poll(now,dt),xi=xr.update(now,frame,state);
    if(xr.active&&(!padWas||(Math.hypot(p.x||0,p.y||0)<.01&&!p.boost&&!p.brake)))p=xi;
    if(started&&!paused){
-    const x=clamp((p.x||0)+(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0)+(held.has('right')?1:0)-(held.has('left')?1:0),-1,1),y=clamp((p.y||0)+(keys.has('KeyW')?1:0)-(keys.has('KeyS')?1:0)+(held.has('forward')?1:0)-(held.has('back')?1:0),-1,1);
+    let x=clamp((p.x||0)+(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0)+(held.has('right')?1:0)-(held.has('left')?1:0),-1,1),y=clamp((p.y||0)+(keys.has('KeyW')?1:0)-(keys.has('KeyS')?1:0)+(held.has('forward')?1:0)-(held.has('back')?1:0),-1,1);
     if(keys.has('ArrowLeft'))yaw+=dt*1.6;if(keys.has('ArrowRight'))yaw-=dt*1.6;
-    const movementYaw=xr.active?xr.movementYaw:yaw,input={x:x*Math.cos(movementYaw)-y*Math.sin(movementYaw),z:-x*Math.sin(movementYaw)-y*Math.cos(movementYaw),boost:p.boost||keys.has('ShiftLeft'),brake:p.brake||held.has('brake')};
+    const boosting=p.boost||keys.has('ShiftLeft')||keys.has('ShiftRight')||held.has('boost');if(boosting&&Math.hypot(x,y)<.01)y=1;
+    const movementYaw=xr.active?xr.movementYaw:yaw,input={x:x*Math.cos(movementYaw)-y*Math.sin(movementYaw),z:-x*Math.sin(movementYaw)-y*Math.cos(movementYaw),boost:boosting,brake:p.brake||held.has('brake'),guard:p.guard||keys.has('KeyX'),glide:p.glide||keys.has('KeyK')||held.has('glide')};
     if(xr.active&&view.curtain.visible){input.x=input.z=0;input.brake=true;}
     for(let remaining=dt;remaining>1e-6;remaining-=1/60)tick(state,input,Math.min(remaining,1/60));
     if(state.time-saveAt>5){persist();saveAt=state.time;}
    }
    view.update(state,dt,{mode:xr.active?xr.mode:viewMode,yaw,started});
    // update() sets the actor pose; XR transforms are reapplied without advancing simulation.
-   if(xr.active){const a=xr.inspect();if(a.kind==='diorama-ar')view.scene.background=null;}
+   if(xr.active){xr.present(state);const a=xr.inspect();if(a.kind.endsWith('-ar'))view.scene.background=null;}
    view.renderer.render(view.scene,view.camera);
-   if(frameCount%6===0){$('goal').textContent=goal(state);const f=nearby(state);$('context').textContent=f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
+   if(frameCount%6===0){$('goal').textContent=missionGoal(state);const nav=navigation(state,yaw);$('nav-distance').textContent=nav.target?Math.ceil(nav.distance)+' m / '+nav.level:'Choose a resident story';$('nav-arrow').style.transform='rotate('+nav.angle+'rad)';drawMap($('mini-map'),state,true);const f=nearby(state),t=storyTarget(state),r=residents.find(r=>Math.hypot(state.x-r.x,state.z-r.z,state.y-r.y)<1.9);$('context').textContent=t&&Math.hypot(state.x-t.x,state.y-t.y,state.z-t.z)<1.9?'X / '+t.label:r?'X / Meet '+r.name:f?f.id.startsWith('dock')?'Y / '+f.label:'X / '+f.label:marketCue(state)||'X interact   A hop   Y mount   LB throw';$('place').textContent=state.y>2?'UPPER DELIVERY ROUTE':state.y<-.3?'LANTERN CANAL':state.x>3?'WORKSHOP QUARTER':'DEPOT & MARKET';$('credits').textContent=state.credits+' chapter + '+cityState(state).credits+' resident + '+watchState(state).credits+' Watch + '+campaignState(state).credits+' campaign credits';$('notice').textContent=state.messageTime>0?state.message:'';if(!$('route-map').hidden)map();}
   }catch(e){failed=true;pause(true);$('error').hidden=false;$('error').textContent='Chapter paused after an error. Your saved progress has not been cleared. '+e.message;console.error(e);}
  });}
  $('world').addEventListener('webglcontextlost',e=>{e.preventDefault();persist();pause(true);tell('Graphics interrupted. Progress retained. Reload to resume the chapter.');});

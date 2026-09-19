@@ -1,0 +1,86 @@
+{
+  "version": "0.15.0",
+  "edition": "Lantern Ward: Night Watch Campaign",
+  "status": "local candidate before rendered acceptance",
+  "date": "2026-09-17",
+  "baseBranchCommit": "0551b213b5dc1cf698464b18479731204a5dfad2",
+  "modelTestsPassed": 281,
+  "modelTestsFailed": 0,
+  "campaignCases": 5,
+  "campaignRewardTotal": 950,
+  "newRenderedCampaignAcceptance": false,
+  "physicalQuest3Tested": false,
+  "physicalXboxTested": false,
+  "humanCampaignApproval": false,
+  "preserved": {
+    "saveKey": "svgn.lantern-ward.v1",
+    "chapter": "lantern-ward-01",
+    "layout": 1,
+    "legacyHashes": 102,
+    "chapterReward": 600,
+    "watchReward": 180
+  },
+  "scope": [
+    "persistent cape gliding",
+    "body-zone grapple/pulse/smoke holsters",
+    "predator patrol/search/pursuit and silent/drop takedowns",
+    "freeflow clear-lane lunges and fresh-guard counter windows",
+    "functional-interior systems investigation",
+    "stealth/combat route-choice finale"
+  ],
+  "files": [
+    {
+      "path": "lantern/campaign.mjs",
+      "sha256": "1d3bcc75dda435a3ee59363dad53ac8e7e23d295416e79dfd6b70bce614e4ddb"
+    },
+    {
+      "path": "lantern/campaign-view.mjs",
+      "sha256": "24187ea4e4a931feee8b1f3bd815d128958af64fd8636841e47de877964ede25"
+    },
+    {
+      "path": "lantern/campaign.test.mjs",
+      "sha256": "b3ebf68611f1722370d15fdf95e7848431458045a3da6b856b0e1a558b599e50"
+    },
+    {
+      "path": "lantern/campaign-browser.py",
+      "sha256": "b1f2cecbc64920f3beb43963cef9e51bb96c3146b815a94543335cd5517d63b6"
+    },
+    {
+      "path": "lantern/xr-embodiment.mjs",
+      "sha256": "6cd734e8ab9cc7bc9d9c5a7d4d90933db363130456a92cf15f78d38fd02ac504"
+    },
+    {
+      "path": "lantern/xr-embodiment.test.mjs",
+      "sha256": "011dda2033255a6e74f6fd2aee79ef5a4ad72f414ba97c5b5e12ff3d33a05cb6"
+    },
+    {
+      "path": "lantern/core.mjs",
+      "sha256": "7f7cee185687145a171e23ba5c03f6eea007e1bdd3499751690cca02aa41eda8"
+    },
+    {
+      "path": "lantern/city.mjs",
+      "sha256": "18dd2385b9eb1d36b72a2f4abbf5b0e83949a66c81c0911114d185e650ad3b67"
+    },
+    {
+      "path": "lantern/navigation.mjs",
+      "sha256": "dd7e2d4b26203b7fac189ed44ac9e7c62e1b17a17f55bd5912ade34b24d35e13"
+    },
+    {
+      "path": "lantern/view.mjs",
+      "sha256": "510eefc0cb30c0a414ac7125d8a81b0365b7b63e29f383c61f92573c751161a3"
+    },
+    {
+      "path": "lantern/app.mjs",
+      "sha256": "914a825cb8b7d302bef420f471e723131cb7fd8c3474f390dab7c3328fc1c9ac"
+    },
+    {
+      "path": "lantern/xr.mjs",
+      "sha256": "a15186fbe5ea790486bb42862ac1961504e047e2a66563b1ca1078bc643947c8"
+    },
+    {
+      "path": "lantern-ward.html",
+      "sha256": "af85fa3f3c4f7b727d540ca6942d8e75b14a7536be5de2846036c1ca8c105d83"
+    }
+  ],
+  "acceptanceBoundary": "Model/input checks are not rendered, physical-device, comfort, performance or human-comprehension approval. The campaign browser and every inherited suite must pass before merge; public bytes and live journeys must pass after Pages publication."
+}

@@ -1,0 +1,13 @@
+# Neighborhood Missions: Living Portal application
+
+This iteration follows the user's correction, not the earlier finite-map diorama prescription. The room-fixed display is a per-eye perspective aperture onto normal third-person gameplay; the player stays centered and game coordinates, collision and saved progress do not change. Side and rear view depth continues beyond the box. The shared portal principle was adapted from Dino Atlas without coupling the games at runtime.
+
+Existing LEVEL-01 gains eight three-stage resident stories and six named inhabitants across the print room, kitchen, storehouse, greenhouse, workshop, loft and waterworks. Three formerly solid footprints acquire physical doors and rooms. Geography is not enlarged. Delivery, gardening, shared meals, local printing, repair, water and radio work connect ordinary room purposes to usable traversal and changing details. Original delivery and Working Quay routes remain intact.
+
+The minimap, large mission map, scene beacon and floor cue share one active target. A tracked but unstarted job points to its giver. Water inspection directs the courier to the sluice until the channel becomes accessible. Switching tracked jobs preserves progress. Common interaction and movement actions keep direct Xbox, keyboard, touch and tracked/hand XR paths; releasing speed brakes instead of latching cruise.
+
+Numerical acceptance did not settle visual acceptance. Initial real stereo captures exposed two solid cyan controller placeholders even though portal lifecycle and pixel tests passed. Their filled faces were removed, alongside the opaque enclosure and continuously head-following panels. Existing depth testing was not the missing setting. Preserve this failure, and inspect actual device presentation rather than mistaking a synthetic pass for user approval.
+
+Read ../../svgn-planet/lantern/LIVING-PORTAL.md and the versioned source/public receipts. Source verification is run 35280131714 against explicit runtime cb0cb99a1ca24c839a27cbddedd6cd2b22f51056, not merely its workflow trigger. All eight stories are exercised by movement-based models; browser journeys cover selected full stories plus retained routes and stereo rendering. Physical Quest/Xbox, comfort, crowd quality and unfamiliar-player comprehension remain open.
+
+The next improvement is depth within these households: readable work, richer conversations and consequences that reward returning with knowledge. Do not claim a GTA-scale metropolis, automatic asset streaming or a retrofit of every legacy building. Preserve every prior stable ID, save/reward identity and sibling game's distinct design.

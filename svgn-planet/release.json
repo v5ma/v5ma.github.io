@@ -1,35 +1,45 @@
 {
-  "version": "0.12.1",
+  "version": "0.16.0",
   "name": "Neighborhood Missions",
-  "edition": "Lantern Ward: Working Quay",
-  "date": "2026-09-16",
-  "entry": "lantern-ward.html",
+  "edition": "Unified Neighborhoods and Night Watch",
+  "date": "2026-09-18",
+  "entry": "index.html",
+  "lanternRecoveryEntry": "lantern-ward.html",
+  "lanternComponentVersion": "0.15.0",
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "quality": "Playable authored graybox; physical-device and unfamiliar-player approval remain open.",
-  "changes": [
-    "Continuous visible loading cart and purposeful porter routine on the existing quay",
-    "Wait, request a local pass while riding, or use the marked timing-independent north loop",
-    "Fixed signal posts remain usable through every loading phase; the free bell stays local and sight-dependent",
-    "Occupied-lane recovery and saved-courier-safe cart initialization without changing layout or reward identities"
+  "publicationEvidence": "../release-receipts/neighborhood-missions-unified-0.16.0.json",
+  "status": "Unified release manifest. Actual publication and verification are recorded in the separate receipt; this manifest alone is not a deployment claim.",
+  "runtimeCheckpoint": "f18340b64b628679544caeaff1f5c09bbce942da",
+  "sourceAcceptanceRuns": [
+    35406083163,
+    35406668272
   ],
-  "acceptance": "All 222 model tests and 146 checks across ten browser suites passed on the stated runtime. Public acceptance is recorded separately in the merge PR and publicationEvidence after deployment.",
-  "evidence": "production/evidence/working-quay-0.12.1/accepted.json",
-  "candidateEvidence": "production/evidence/working-quay-0.12.1/candidate.json",
-  "foundationEvidence": "production/evidence/lantern-0.12.0/published.json",
-  "publicationEvidence": "../release-receipts/neighborhood-missions-working-quay-0.12.1.json",
-  "runtimeCommit": "241a2676d3c117da5bbb25293a6ff0555f3f7d05",
-  "acceptanceRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/35056702530",
+  "changes": [
+    "Original city is the main entry; Lantern Ward is a district in the same document, renderer and active XR session.",
+    "Eight actual-geometry views in both districts: first/third-person AR/VR and first/third-person diorama AR/VR. No comfort-theater screen.",
+    "Room-fixed full-depth portal follows the player, with front/top/both apertures and shader ownership preventing duplicate GLSL.",
+    "Native maps, missions, control settings and cancel-first save menus; gameplay boards and residual flat HUDs hidden.",
+    "Hold-to-speed release braking and Menu access even before held gameplay controls return to neutral.",
+    "Resident stories, Signal Hijack and five sequential optional campaign cases with cape, holsters, stealth, counters, lunges and functional interiors.",
+    "Real arcade glide landing, supported upper-floor enemies and repaired floor/stair seams. All original save and reward identities retained."
+  ],
+  "saveContracts": {
+    "original": "svgn.paper-delivery-3d.v1",
+    "lantern": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
+    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation."
+  },
   "validation": {
-    "modelTestsPassed": 222,
-    "modelTestsFailed": 0,
-    "browserSuitesPassed": 10,
-    "browserChecksPassed": 146,
-    "browserSuitesRequired": 10,
-    "completeAutomatedSourceAcceptance": true,
+    "localModelTestsPassed": 311,
+    "localModelTestsFailed": 0,
+    "sourceAndPublicEvidence": "Consult the exact run artifacts and publicationEvidence. Queued or failed runs are not accepted.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
+    "hardwarePerformanceCertified": false,
     "humanLevelApproval": false
-  }
+  },
+  "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
+  "campaignCases": 5,
+  "campaignRewardTotal": 950
 }
