@@ -27,10 +27,11 @@ jobs:
           node-version: '22'
       - name: Read the exact publication baseline
         run: git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
-      - name: Integrate reciprocal navigation and verify the entire preserved edition
+      - name: Repair period context, integrate and verify the entire preserved edition
         run: |
           set -o pipefail
           mkdir -p theology-test-output/egypt-emanation
+          node theology-wiki/comparative-religion/egypt-emanation/repair-period-context.cjs
           node theology-wiki/comparative-religion/egypt-emanation/integrate.cjs
           node theology-wiki/comparative-religion/build.cjs | tee theology-test-output/egypt-emanation/build.log
           node theology-wiki/tools/build.cjs > theology-test-output/egypt-emanation/main-build.log
