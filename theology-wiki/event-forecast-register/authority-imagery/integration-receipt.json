@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "base_commit": "02815566e2588d8ccb05194f2968acea9de07611",
+  "original_index_blob": "33af5f2ba22849e3d94dfcb0cbfc0c922ac4bf3a",
+  "original_readme_blob": "3539bfc25a12b82ee3cc057705c678eac4d8b829",
+  "scope": "One appended navigation link and one README paragraph. Removing them reproduces the exact original bytes."
+}

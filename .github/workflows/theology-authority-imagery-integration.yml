@@ -1,0 +1,12 @@
+name: Theology authority imagery integration (completed)
+# Run 35428448290 generated and tested output committed as 607ec90850ae07a13cc4ed850e3453ba1b4b1925.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The reviewed authority-imagery integration is complete. Later source changes require a new reviewed change.'
