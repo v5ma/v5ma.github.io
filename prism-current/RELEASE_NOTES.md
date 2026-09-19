@@ -1,15 +1,13 @@
-# Prism Current 0.9.0 / Undertow
+# Prism Current 0.10.0 / River Prism
 
-The main Play button now starts Undertow: a new 132 BPM electronic arrangement and 286-note Pulse chart. Flow has 164 notes; neither new chart contains dots. Both use eight directions, including newly implemented upward diagonals. The default no longer launches First Light/Flow.
+The main Play button now enters Duck Armada. Low water carries catapult ducks and fruit; rising tide brings armed toy boats, bombs and aircraft. Admiral Quack appears as a health-bar flagship. Mothership Channel is the second selectable battle, with fighter escorts and a giant shielded ship whose core opens during the finale.
 
-The rhythm runway now sits inside a tiled pool hall in browser and VR. Water reacts to successful cuts. AR retains transparent passthrough. A/X changes the chart while idle in the headset. Play and XR entry appear before the song catalog.
+Swing to cut marked fruit. Triggers fire saber lasers. Grips raise that hand's shield; release it to cut or fire again. A correctly oriented shield blocks incoming red projectiles. Raise it just before impact for a stronger reflected counterattack. Lean, crouch or sidestep inside the play position to evade fire. Bombs are hazards, not fruit.
 
-The older songs, practice, lessons, expedition, controls and saved records remain. This is a main-game correction, not another optional mode. See UNDERTOW.md for diagnosis, exact scope, test boundaries and unresolved owner listening/play acceptance.
+Both chapters use the existing original 132 BPM Undertow score. The gameplay is new; this release does not claim two new songs. Bosses must be defeated to clear the battle. Cruise prevents hull failure but still requires the boss kill and uses separate records.
 
-# Prism Current v0.8.0 / Floodgate Recovery
+Quest uses actual controller swings, trigger lasers and grip shields. B/Y pauses; the spatial menu has chapter, resume, recenter, sound and comfort controls. Hand pinches can operate that menu; combat needs tracked controllers. Xbox uses right-stick aim, A/X cuts, D-pad cut direction, LT/RT lasers, LB/RB shields, left-stick sidesteps and B crouch. Mouse/keyboard and touch action controls are also available.
 
-Play the water mission from the existing rhythm menu. Explore an indoor intake facility, restore auxiliary power, drain its pool, swim and dive through a submerged passage, retrieve a prism and carry it back to the arrival console. Checkpoints, air recovery, a torch, controller navigation and a completed-mission state are implemented.
+Classic rhythm, all previous tracks, lessons and practice remain at rhythm.html, with unchanged original scripts and score formats. Floodgate Recovery remains available. River writes completed battle records to a separate namespace.
 
-The level is procedural 3D, not a static generated image. Its water adds planar reflections, gentle waves, movement ripples, depth tint and analytic floor refraction. Tiled geometry receives stylized caustic patterns. Light quality removes the reflection pass; still-water mode reduces decoration. The mission is a browser exploration mode, not a replacement of rhythm play or an immersive locomotion expansion.
-
-Existing songs, scoring, lessons, Practice Lab and spectral themes remain. The mission has separate local checkpoints. See WATER_MISSION.md for controls and limits, AAA_CHECKLIST.md for production status and PR #141 for actual verification/publication receipts. Prior releases remain in the Git history and the existing archived notes.
+Read RIVER_PRISM.md for design and exact control scope, RIVER_QA.md for evidence boundaries, and AAA_CHECKLIST.md for remaining work. Prior release notes are preserved at RELEASE_NOTES-v090.md. Physical headset/controller/touch testing, ordinary-resolution performance and owner enjoyment remain open. PR #193 holds the actual source and live-publication receipts.

@@ -1,7 +1,7 @@
 name: Stage and verify River Prism
 on:
   pull_request:
-    paths: ['prism-current/**', '.github/prism-river-retained.py', '.github/workflows/prism-river-stage.yml']
+    paths: ['prism-current/**', '.github/prism-river-retained.py', '.github/prism-river-runtime.py', '.github/workflows/prism-river-stage.yml']
 permissions:
   contents: write
 concurrency:
@@ -22,13 +22,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Hash-guarded retained-entry tests and complete model suite
+      - name: Hash-guarded retained-entry/runtime fixes and complete model suite
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p test-output
           git rev-parse HEAD >/tmp/river-start-sha
           python .github/prism-river-retained.py
+          python .github/prism-river-runtime.py
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
       - name: Install production Chromium
@@ -41,7 +42,7 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           timeout 600 python -u prism-current/tests/river-browser.py
-      - name: Commit only the verified retained-test paths to this feature branch
+      - name: Commit only the verified paths to this feature branch
         env:
           TARGET_BRANCH: ${{ github.head_ref }}
         run: |
@@ -51,7 +52,7 @@ jobs:
           python - <<'PY'
           import json,subprocess
           paths=json.load(open('/tmp/river-patched-paths.json'))
-          assert all(p.startswith('prism-current/tests/') and '..' not in p.split('/') for p in paths)
+          assert len(paths)<=15 and all((p.startswith('prism-current/tests/') or p in ['prism-current/river/app.js','prism-current/river/art.js','prism-current/river/xr.js']) and '..' not in p.split('/') for p in paths)
           changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
           assert set(changed)==set(paths), changed
           if paths:subprocess.run(['git','add','--',*paths],check=True)
@@ -59,7 +60,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Keep legacy acceptance on retained rhythm entry after River native acceptance'
+            git commit -m 'Apply hash-verified River input repair and retained-entry tests after native acceptance'
             git push origin "HEAD:refs/heads/$TARGET_BRANCH"
           fi
           git rev-parse HEAD > test-output/runtime-commit.txt
