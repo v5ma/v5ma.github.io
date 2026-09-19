@@ -105,6 +105,8 @@ This distinction also provides the bridge to [[religion-for-conscious-robots|the
 
 The contrast with self-authorizing political power is therefore precise: service allows a higher standard to judge the ruler; domination makes the ruler the final interpreter of that standard and treats refusal as disloyalty. This is the philosophical connection between the Jesus-will study and the [[trump-first-beast-of-revelation|First Beast interpretation]]. It is an account of a relationship between authority and accountability, not a claim to read an opponent's mind.
 
+The [evidence and scenario notebook](https://v5ma.github.io/theology-wiki/research-expansion-20260918/index.html) places the attributed sayings beside the historical constraints and the AI-and-scarcity scenarios. Its separate record types keep a philosophical account of inward formation distinct from a historical identity claim or a measured forecast.
+
 ## Sources for the divine-agency extension
 
 Mark 14:32-36, 61-62 and Mark 13:32, World English Bible. The narrative and attributed sayings were consulted, not an independently authenticated transcript of the historical events. https://ebible.org/engwebp/MRK14.htm ; https://ebible.org/engwebp/MRK13.htm
