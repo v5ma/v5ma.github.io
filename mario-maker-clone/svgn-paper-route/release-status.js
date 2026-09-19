@@ -1,7 +1,7 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.26.1',BUILD='sky-cycle-xr-recovery-2026.09.18';
+ const VERSION='0.26.2',BUILD='sky-cycle-xr-buttons-2026.09.19';
  // Register before the legacy DOMContentLoaded pause listener. Native dialogs
  // consume their own keyboard events without unpausing the route underneath.
  window.addEventListener('keydown',event=>window.SkyCycleFlightDeck?.handleKey(event),true);

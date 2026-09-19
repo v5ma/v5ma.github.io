@@ -6,10 +6,12 @@
 import * as T from './vendor/three.webgpu.js';
 import {addOverlay,POINTER_ORDER} from './xr-overlay.mjs';
 import {protectOpaqueXRFramebuffer} from './xr-webgl-compat.mjs';
+import {createMenuInput,trackedController} from './xr-menu-input.mjs';
 import {mappedPad,sourcesNeutral,pointInRects} from './xr-input-core.mjs';
 import {controls,menuEntries,controlLabel,wrapText,paginate,editValue,visible,focusEntry} from './xr-ui-core.mjs';
 import {createWorldAperture} from './xr-world-aperture.mjs';
 import {stageSettings,sessionOptions,presentation,clipPlanes} from './xr-spatial-core.mjs';
+const menuInput=createMenuInput();let menuCursor=0,menuNavigating=false;
 const $=id=>document.getElementById(id),fd=()=>window.SkyCycleFlightDeck;
 const panel=()=>fd()?.topPanel();
 let session=null,starting=false,presenting=false,finishing=false,neutral=true,renderer=null,originalRender=null,originalScene=null,oldView=null;
@@ -80,7 +82,7 @@ function makeStage(){
   lastPanel=null;lastMenuKey='';lastUI=0;recenter=true;
 }
 function text(s,x,y,max,width=1060,font=23){context.font=`${font}px sans-serif`;const lines=wrapText(context,s,width,context.font);for(let i=0;i<Math.min(lines.length,max);i++)context.fillText(lines[i],x,y+i*(font+7));return Math.min(lines.length,max)*(font+7);}
-function button(label,x,y,w,h,action,hover=null){context.fillStyle=focusLabel===label?'#365e70':'#18384c';context.fillRect(x,y,w,h);context.strokeStyle='#97dfd2';context.lineWidth=2;context.strokeRect(x,y,w,h);context.fillStyle='#f4fbff';text(label,x+14,y+29,2,w-24,22);rects.push({x,y,w,h,label,action,hover});}
+function button(label,x,y,w,h,action,hover=null,control=null){context.fillStyle=focusLabel===label?'#365e70':'#18384c';context.fillRect(x,y,w,h);context.strokeStyle='#97dfd2';context.lineWidth=2;context.strokeRect(x,y,w,h);context.fillStyle='#f4fbff';text(label,x+14,y+29,2,w-24,22);rects.push({x,y,w,h,label,action,hover,control});}
 function openWorkspace(){
   if(!presenting)return;
   if(typing)back();
@@ -204,7 +206,7 @@ function makeMenu(now,force=false){
   for(const e of document.querySelectorAll('#ctrlrows .cbind'))if(!e.hasAttribute('tabindex')){e.tabIndex=0;e.setAttribute('role','button');e.setAttribute('aria-label',(e.parentElement.firstElementChild?.textContent||'Binding')+' '+e.textContent+' / browser hardware binding');}
 
   const current=panel();const key=(current?.id||current?.className||'play')+'|'+screenMode+'|'+!!typing;
-  if(current!==lastPanel||key!==lastMenuKey){lastPanel=current;lastMenuKey=key;page=0;release();lastUI=0;}
+  if(current!==lastPanel||key!==lastMenuKey){lastPanel=current;lastMenuKey=key;page=0;menuCursor=0;menuNavigating=false;release();lastUI=0;}
   if(!force&&now-lastUI<150)return;lastUI=now;rects=[];
   ui.visible=!!current||!!typing||[...(session?.inputSources||[])].some(s=>s.hand)||screenMode==='workshop'||screenMode==='editor';
   if(!ui.visible)return;
@@ -216,7 +218,7 @@ function makeMenu(now,force=false){
     const entries=menuEntries(current,{invoke,edit,external,valid:()=>panel()===current&&!typing});
     const paragraphs=wrapText(context,reading(current),1120,'22px sans-serif'),count=Math.max(1,Math.ceil(entries.length/6),Math.ceil(paragraphs.length/5));page=Math.min(page,count-1);
     paragraphs.slice(page*5,page*5+5).forEach((line,i)=>text(line,35,90+i*29,1,1120,22));
-    entries.slice(page*6,page*6+6).forEach((e,i)=>button(e.label,35,252+i*77,1130,67,()=>{e.action();lastUI=0;},()=>e.el.focus({preventScroll:true})));
+    entries.slice(page*6,page*6+6).forEach((e,i)=>button(e.label,35,252+i*77,1130,67,()=>{e.action();lastUI=0;},()=>e.el.focus({preventScroll:true}),e.el));
     button('Previous',35,724,330,62,()=>{page=(page-1+count)%count;release();});button(`Page ${page+1} / ${count} - Next`,380,724,435,62,()=>{page=(page+1)%count;release();});
     button(current===virtualRoot&&screenMode==='workshop'?'Resume editing':'Back',830,724,335,62,()=>{if(!back(current))fd()?.back(current);});
   } else {
@@ -231,6 +233,7 @@ function makeMenu(now,force=false){
   if(current)button(window.RouteWorkshop?.active?'Resume editing now':'Resume play',895,10,270,62,resumeWorkspace);
   button('Recenter',35,822,255,62,()=>{recenter=true;});button('All menus',305,822,275,62,openWorkspace);button('Spatial setup',595,822,285,62,show);button('Exit XR',895,822,270,62,endSession);
   if(uiMessageUntil>now){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text(uiMessage,35,810,1,1110,16);}
+  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v0.26.2 | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
   texture.needsUpdate=true;
 }
 function tracked(source){let entry=visuals.get(source);if(entry)return entry;
@@ -241,7 +244,7 @@ function tracked(source){let entry=visuals.get(source);if(entry)return entry;
 }
 function poseObject(object,pose){object.visible=!!pose;if(pose){object.matrix.fromArray(pose.transform.matrix);object.matrix.decompose(object.position,object.quaternion,object.scale);}}
 function updateTracking(frame){for(const [source,v] of visuals)if(![...session.inputSources].includes(source)){xrScene.remove(v.root,v.grip,v.dot.parent,...v.joints);disposeObject(v.dot);disposeObject(v.root);disposeObject(v.grip);for(const j of v.joints)disposeObject(j);visuals.delete(source);}
- for(const source of session.inputSources){const v=tracked(source);poseObject(v.root,frame.getPose(source.targetRaySpace,reference));poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label||v.menuKey!==lastMenuKey){v.hover=r.label;v.menuKey=lastMenuKey;focusLabel=r.label;rayFocus=r.hover?null:r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
+ for(const source of session.inputSources){const v=tracked(source);poseObject(v.root,frame.getPose(source.targetRaySpace,reference));poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label||v.menuKey!==lastMenuKey){v.hover=r.label;v.menuKey=lastMenuKey;menuNavigating=false;focusLabel=r.label;rayFocus=r.hover?null:r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
 }
 
 function sourceRay(source,frame){
@@ -258,8 +261,35 @@ function canvasHit(source,frame){
   const h=raycaster.intersectObject(screen,false)[0];if(!h)return null;lastHit.copy(h.point);
   return {x:h.uv.x,y:1-h.uv.y};
 }
+function dispatchMenuInput(event,frame=lastFrame){
+  if(!event||!presenting||session?.visibilityState!=='visible')return;
+  const current=panel();const {command,source}=event;
+  if(command==='back'||command==='pause'){
+    if(current)fd()?.back(current);else if(typeof mode!=='undefined'&&mode==='play'&&!won)pause();else openWorkspace();
+    lastUI=0;return;
+  }
+  if(!current)return;
+  makeMenu(performance.now(),true);
+  if(!rects.length)return;
+  const at=rects.findIndex(r=>r.label===focusLabel);if(at>=0)menuCursor=at;
+  menuCursor=Math.min(menuCursor,rects.length-1);
+  if(['previous','next','increase','decrease'].includes(command)){
+    if((command==='increase'||command==='decrease')&&rects[menuCursor]?.control?.matches('input[type="range"],input[type="number"],select')){
+      const el=rects[menuCursor].control;const suffix=command==='increase'?'plus':'minus';
+      menuEntries(current,{invoke,edit,external}).find(e=>e.el===el&&e.label.endsWith(suffix))?.action();
+    }else menuCursor=(menuCursor+(['previous','decrease'].includes(command)?-1:1)+rects.length)%rects.length;
+    const r=rects[menuCursor];r.hover?.();focusLabel=r.label;menuNavigating=true;lastUI=0;return;
+  }
+  const pointed=(!menuNavigating||command==='select')?hit(source,frame):null;
+  const r=pointed||rects[menuCursor];
+  if(r&&typeof r.action==='function'){r.action();lastUI=0;}
+}
 function selectStart(e){
-  if(!presenting||neutral||suppressed.has(e.inputSource)||session.visibilityState!=='visible')return;
+  if(!presenting||session.visibilityState!=='visible')return;
+  if(trackedController(e.inputSource)&&(panel()||typing)){
+    dispatchMenuInput(menuInput.selectStart(e.inputSource,{menu:true,visible:true}),e.frame||lastFrame);return;
+  }
+  if(neutral||suppressed.has(e.inputSource))return;
   const r=hit(e.inputSource,e.frame||lastFrame);suppressed.add(e.inputSource);
   if(!r){const h=canvasHit(e.inputSource,e.frame||lastFrame);if(h&&(screenMode==='workshop'||screenMode==='editor')&&!screenPointer){screenPointer={source:e.inputSource,target:screenSource,hit:h};pointerEvent('pointerdown',h,e.inputSource);}return;}
   if(typeof r.action==='string'){
@@ -271,6 +301,7 @@ function selectStart(e){
   }else r.action();lastUI=0;
 }
 function selectEnd(e){
+  menuInput.selectEnd(e.inputSource);
   suppressed.delete(e.inputSource);presses.delete(e.inputSource);held=new Set([...presses.values()].map(p=>p.action));
   if(screenPointer?.source===e.inputSource){pointerEvent('pointerup',screenPointer.hit,e.inputSource);screenPointer=null;}
 }
@@ -308,6 +339,9 @@ function frame(now,f){
     const left=sources.find(s=>!s.hand&&s.handedness==='left'&&s.gamepad?.mapping==='xr-standard');const down=!!left?.gamepad?.buttons[4]?.pressed;
     if(!panel()&&!neutral&&down&&!ctxDown)window.SkyCycleBathhouse?.interact();ctxDown=down;
     if(virtualRoot&&!__delivery.paused&&!__delivery.state.menu)__delivery.act('pause');
+    const commands=menuInput.sample(sources,{menu:!!panel()||!!typing,visible:session.visibilityState==='visible',now});
+    if(commands.length)dispatchMenuInput(commands[0],f);
+    if(!presenting)return;
     window.pollGamepad?.();window.tick();updateStage(viewer);makeMenu(now);updateTracking(f);
     renderer.setClearColor(sessionMode==='immersive-ar'?0x000000:0x112239,sessionMode==='immersive-ar'?0:1);
     originalRender.call(renderer,xrScene,camera);frameCount++;eyeCount=viewer.views.length;
@@ -340,7 +374,7 @@ async function enter(kind='immersive-vr'){
   try{
     acquired=await navigator.xr.requestSession(kind,sessionOptions(kind));session=acquired;sessionMode=kind;
     originalScene=__merged.scene;originalRender=renderer.render;oldClear=renderer.getClearColor(new T.Color());oldAlpha=renderer.getClearAlpha();oldView=__delivery.state.view;
-    restoreFramebuffer=protectOpaqueXRFramebuffer(renderer);guide.close();makeStage();release();
+    restoreFramebuffer=protectOpaqueXRFramebuffer(renderer);guide.close();makeStage();release();menuInput.seed([...session.inputSources]);
     session.addEventListener('selectstart',selectStart);session.addEventListener('selectend',selectEnd);
     session.addEventListener('inputsourceschange',e=>{release();if(e.removed?.length)pause();});
     session.addEventListener('visibilitychange',()=>{if(session?.visibilityState!=='visible')pause();});session.addEventListener('end',finish,{once:true});
@@ -354,14 +388,14 @@ async function enter(kind='immersive-vr'){
 }
 $('sky-xr-enter').onclick=()=>enter('immersive-vr');$('sky-xr-enter-ar').onclick=()=>enter('immersive-ar');
 window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});
-window.SkyCycleXR=Object.freeze({version:'0.26.1',get presenting(){return presenting;},get inputVisible(){return presenting&&session?.visibilityState==='visible';},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,activateRay,openMenu:openWorkspace,
+window.SkyCycleXR=Object.freeze({version:'0.26.2',get presenting(){return presenting;},get inputVisible(){return presenting&&session?.visibilityState==='visible';},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,activateRay,openMenu:openWorkspace,
  getGamepad(){
   if(!presenting||!session)return null;
   const activeHeld=new Set(held);for(const [key,until]of pulses)if(performance.now()<until)activeHeld.add(key);else pulses.delete(key);
-  const out=mappedPad([...session.inputSources],{panel:!!panel()||!!typing,suppressed,held:activeHeld,enabled:!neutral&&session.visibilityState==='visible',allowRecovery:session.visibilityState==='visible'});
+  const out=mappedPad([...session.inputSources],{panel:!!panel()||!!typing,directMenu:true,suppressed,held:activeHeld,enabled:!neutral&&session.visibilityState==='visible',allowRecovery:session.visibilityState==='visible'});
   // A connected physical Xbox remains usable inside the headset, including saved remaps.
   const pad=[...(navigator.getGamepads?.()||[])].find(p=>p?.connected&&p.mapping==='standard');
   if(pad&&!neutral&&session.visibilityState==='visible'){for(let i=0;i<out.buttons.length;i++)if(pad.buttons[i]?.pressed)out.buttons[i]={pressed:true,value:pad.buttons[i].value||1};for(let i=0;i<out.axes.length;i++)if(Math.abs(pad.axes[i]||0)>.25)out.axes[i]=pad.axes[i];}
   return out;
- },get diagnostics(){return {presenting,starting,uiVisible:!!ui?.visible,aperture:aperture?.diagnostics||null,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!aperture?.diagnostics.active,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
+ },get diagnostics(){return {presenting,starting,menuInput:menuInput.diagnostics,focusedButton:focusLabel,controllerInputs:[...(session?.inputSources||[])].filter(trackedController).map(s=>({hand:s.handedness,mapping:s.gamepad.mapping,profiles:[...s.profiles||[]],buttons:[...s.gamepad.buttons].map(b=>({pressed:b.pressed,touched:b.touched,value:b.value}))})),uiVisible:!!ui?.visible,aperture:aperture?.diagnostics||null,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!aperture?.diagnostics.active,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
 support();

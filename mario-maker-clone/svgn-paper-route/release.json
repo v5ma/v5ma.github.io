@@ -1,12 +1,12 @@
 {
-  "version": "0.26.1",
-  "build": "sky-cycle-xr-recovery-2026.09.18",
-  "date": "2026-09-18",
+  "version": "0.26.2",
+  "build": "sky-cycle-xr-buttons-2026.09.19",
+  "date": "2026-09-19",
   "changes": [
-    "XR session visibility owns headset input and simulation even when the HTML document is hidden.",
-    "B/Back remains available with held grips; either tracked-controller stick navigates menus.",
-    "Controller riding hides the persistent menu panel; pause restores full headset controls.",
-    "World-space AR aperture replaces view-space clipping; no camera-following mask planes.",
-    "Original campaign, editor drafts, saved progress and desktop controller mappings are preserved."
+    "Session-owned menu button edges for A/X confirm, B/Y back, triggers select, grips/sticks navigation",
+    "Trigger event and raw button polling share one latch; no repeated activation from a held press",
+    "Unused contact/proximity sensor values no longer block control readiness",
+    "Retain no-panel controller riding, fixed AR aperture, all original physics, saves and editor documents",
+    "Menu shows current build and last received command; physical Quest retest remains open"
   ]
 }
