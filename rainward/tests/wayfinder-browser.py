@@ -48,14 +48,14 @@ with sync_playwright() as pw:
   before=p.evaluate('Rainward.snapshot().xr.panelRows.filter(r=>r.id.startsWith("craft-")).map(({id,x,y})=>({id,x,y}))')
   press('right',True);wait('Rainward.state.player.craft&&Rainward.snapshot().xr.panelHoldOwner');
   wait('Rainward.snapshot().xr.craftReadout&&Rainward.snapshot().xr.craftReadout.percent>0')
-  p.screenshot(path=str(OUT/'01-craft-feedback.png'))
-  check(p.evaluate('Rainward.snapshot().xr.craftReadout.label.includes("RELEASE TO CANCEL")'),'Spatial crafting exposes percentage progress and explicit cancel guidance')
-  check(p.evaluate('Rainward.snapshot().xr.panelRows.filter(r=>r.id.startsWith("craft-")).map(({id,x,y})=>({id,x,y}))')==before,'Unavailable recipes retain their positions instead of shifting under the ray')
-  # Change both device inputs in one poll: release owner; hold a different source.
-  p.evaluate("()=>{if(questDevice.kind==='hands'){questDevice.pinch('right',false);questDevice.pinch('left',true);}else{questDevice.button('right',0,false);questDevice.button('left',0,true);}}")
+  # Capture the readout and release its owner in ONE browser task, before
+  # screenshot encoding can outlast the actual finite recipe duration.
+  feedback=p.evaluate("()=>{const xr=Rainward.snapshot().xr,result={readout:xr.craftReadout,rows:xr.panelRows.filter(r=>r.id.startsWith('craft-')).map(({id,x,y})=>({id,x,y}))};if(questDevice.kind==='hands'){questDevice.pinch('right',false);questDevice.pinch('left',true);}else{questDevice.button('right',0,false);questDevice.button('left',0,true);}return result;}")
+  check(feedback['readout'] and 'RELEASE TO CANCEL' in feedback['readout']['label'],'Spatial crafting exposes percentage progress and explicit cancel guidance')
+  check(feedback['rows']==before,'Unavailable recipes retain their positions instead of shifting under the ray')
   wait('!Rainward.state.player.craft');check(p.evaluate('Rainward.state.player.cloth===3&&Rainward.state.player.canister===3&&Rainward.state.player.medkit===0'),'Releasing the initiating hand cancels and refunds once even while the other input stays held')
   check(p.evaluate('!Rainward.snapshot().xr.panelHoldOwner'),'Cancelled spatial holds do not leave a stale owner')
-  press('left',False);frames(5);aim('craft-smoke');press('right',True);wait('Rainward.state.player.smoke===1&&!Rainward.state.player.craft');frames(3)
+  press('left',False);frames(5);aim('craft-smoke');press('right',True);wait('!!Rainward.state.player.craft');p.screenshot(path=str(OUT/'01-craft-feedback.png'));wait('Rainward.state.player.smoke===1&&!Rainward.state.player.craft');frames(3)
   check(p.evaluate('Rainward.state.player.smoke===1&&Rainward.state.player.cloth===2&&Rainward.state.player.canister===2'),'A deliberate sustained hold crafts exactly one item and cannot repeat while held')
   press('right',False);frames(5)
   aim('craft-med');press('right',True);wait('!!Rainward.state.player.craft');p.evaluate("questDevice.sources.find(s=>s.handedness==='right').tracked=false");wait('Rainward.mode==="pause"&&!Rainward.state.player.craft')
