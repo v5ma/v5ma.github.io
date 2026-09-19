@@ -31,10 +31,11 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
           git fetch --no-tags --depth=1 origin fc195b79f293c1bd7b983c8788c970df98d8e1fc
-      - name: Generate navigation and check exact source preservation
+      - name: Repair source locators and verify exact integration
         run: |
           set -o pipefail
           mkdir -p theology-test-output/egypt-emanation/moses-mammon
+          node theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/repair-source-locators.cjs
           node theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/integrate.cjs
           node theology-wiki/comparative-religion/build.cjs
           git add theology-wiki/comparative-religion/egypt-emanation/
@@ -49,7 +50,7 @@ jobs:
           git add theology-wiki/comparative-religion/egypt-emanation/
           if git diff --cached --name-only | grep -Ev '^theology-wiki/comparative-religion/egypt-emanation/'; then exit 1; fi
           git diff --cached --quiet && exit 0
-          git commit -m 'Generate Moses Jesus Mammon studies and reciprocal navigation after preservation tests'
+          git commit -m 'Generate Moses Jesus Mammon studies after source-locator repair and preservation tests'
           git push origin HEAD:refs/heads/theology/moses-jesus-mammon-20260918
       - uses: actions/upload-artifact@v4
         if: always()
