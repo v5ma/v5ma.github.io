@@ -1,0 +1,77 @@
+name: Stage and verify River Prism
+on:
+  pull_request:
+    paths: ['prism-current/**', '.github/prism-river-retained.py', '.github/workflows/prism-river-stage.yml']
+permissions:
+  contents: write
+concurrency:
+  group: river-stage-${{ github.head_ref }}
+  cancel-in-progress: true
+jobs:
+  river:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/prism-river-toybox-v0100'
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          sparse-checkout: |
+            prism-current
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Hash-guarded retained-entry tests and complete model suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          git rev-parse HEAD >/tmp/river-start-sha
+          python .github/prism-river-retained.py
+          python prism-current/tests/verify.py
+          node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
+      - name: Install production Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Both full River chapters and tracked controls
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/river-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 600 python -u prism-current/tests/river-browser.py
+      - name: Commit only the verified retained-test paths to this feature branch
+        env:
+          TARGET_BRANCH: ${{ github.head_ref }}
+        run: |
+          test "$TARGET_BRANCH" = 'feat/prism-river-toybox-v0100'
+          git fetch origin "$TARGET_BRANCH"
+          test "$(git rev-parse FETCH_HEAD)" = "$(cat /tmp/river-start-sha)"
+          python - <<'PY'
+          import json,subprocess
+          paths=json.load(open('/tmp/river-patched-paths.json'))
+          assert all(p.startswith('prism-current/tests/') and '..' not in p.split('/') for p in paths)
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert set(changed)==set(paths), changed
+          if paths:subprocess.run(['git','add','--',*paths],check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Keep legacy acceptance on retained rhythm entry after River native acceptance'
+            git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          fi
+          git rev-parse HEAD > test-output/runtime-commit.txt
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --stat > test-output/uncommitted.txt
+          tar czf test-output/source.tgz prism-current
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-river-staging
+          path: test-output/
+          retention-days: 14
