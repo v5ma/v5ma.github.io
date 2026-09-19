@@ -1,0 +1,12 @@
+name: Theology identity agency integration (completed)
+# Runs 35414894175 and 35415318397 completed integration and the exact navigation repair.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The September 18 integration and notebook-link repair are complete. Later edits require a new reviewed change.'

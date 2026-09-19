@@ -1,5 +1,6 @@
 /* Reconcile the explicit September 17 content revision with existing release contracts. */
 'use strict';
+if(require('node:fs').existsSync(require('node:path').join(__dirname,'../research-expansion-20260918/manifest.json'))){require('../research-expansion-20260918/reconcile.cjs');return;}
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 if(process.argv.includes('--metadata')){

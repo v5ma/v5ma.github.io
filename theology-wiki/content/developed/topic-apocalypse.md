@@ -15,7 +15,7 @@ Theology of domination, prophetic warning and collective restoration.
 
 [[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
-[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.
 
 [[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
 

@@ -11,7 +11,7 @@ for(const[slug,supplement,expected]of rows){const file=path.join(root,'editorial
  receipt.push({slug,originalGitBlob:expected,originalBytes:original.length,supplement,integratedGitBlob:blob(output)});
 }
 const metaPath=path.join(root,'editorial/authorial.json'),meta=JSON.parse(fs.readFileSync(metaPath));
-meta.version='2026.09.17-scripture-concordance-1';meta.updated='2026-09-17';
+if(meta.updated<='2026-09-17'){meta.version='2026.09.17-scripture-concordance-1';meta.updated='2026-09-17';}
 for(const p of meta.articles){if(!rows.some(r=>r[0]===p.slug))continue;p.updated='2026-09-17';p.summary=p.slug==='trump-first-beast-of-revelation'?'The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.':'Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.';}
 fs.writeFileSync(metaPath,JSON.stringify(meta,null,2)+'\n');
 const sentence='\nThe September 17 scripture-concordance edition integrates the Butler reception and shared-imagery records into the existing First Beast article, and develops typology and historical comparisons in the Antichrist-as-conduct article. The [148-passage concordance](scripture-concordance/index.html) supplies 128 biblical verses and 20 wider-corpus sections with explicit actors, translated sources and documentary questions; it assigns no leader scores or match totals. Canonical source additions are in scripture-concordance/*-supplement.md and the two integrated authorial article bodies. Main reader, search and listening derivatives are regenerated without changing original conversations or forecast dates.\n';

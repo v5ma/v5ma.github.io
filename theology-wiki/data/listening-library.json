@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.17-scripture-concordance-1",
+  "version": "2026.09.18-identity-agency-scarcity-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -158,7 +158,7 @@
     {
       "slug": "jesus-teacher-of-righteousness-hypothesis",
       "title": "Jesus as the Teacher of Righteousness",
-      "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
+      "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
       "category": "jesus",
       "kind": "Developed article",
       "chapters": [
@@ -169,12 +169,12 @@
         }
       ],
       "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sourceSha256": "5a4ac0ff1213b95f68adbac46e4319ac7392085764d02afa6ee60ae186cc52d3",
+      "sourceSha256": "807bd09d76d3b5af105772d4641573e30b36e635ec047f87b02d4a660128fe0d",
       "narration": "data/listening/jesus-teacher-of-righteousness-hypothesis.json",
-      "narrationSha256": "c36bb8ffba546db3c92110484cf6a53ba611c2c8cf82b0de9dafe1c64b825143",
+      "narrationSha256": "0d60c63436305225515e5ca63de992ad5c6efca0e807a1079cb46d3162ee4584",
       "transcript": "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt",
-      "segments": 49,
-      "words": 1261
+      "segments": 85,
+      "words": 2830
     },
     {
       "slug": "daniel-jubilee-and-the-teachers-time",
@@ -492,7 +492,7 @@
     {
       "slug": "divine-will-and-self-authorizing-power",
       "title": "Divine will and self-authorizing power",
-      "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+      "summary": "Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.",
       "category": "jesus",
       "kind": "Developed article",
       "chapters": [
@@ -508,12 +508,12 @@
         }
       ],
       "source": "content/developed/divine-will-and-self-authorizing-power.md",
-      "sourceSha256": "1da4858029ebe6347647d06bc8566574b90bc6b5e233032e2a41f24353469fa9",
+      "sourceSha256": "1902fa07e4487e8846b9b4b5a9032cbfe909dee0e5ea8065f6d8b24f6855f297",
       "narration": "data/listening/divine-will-and-self-authorizing-power.json",
-      "narrationSha256": "730165d518fb0a3379a2529d7b8c9f5b95874c6828153a58b9590575705f51cb",
+      "narrationSha256": "c5ba5c12b66949795273c87cafe0448bc760b4acd25d2f66cb646026bcdcd9ee",
       "transcript": "products/transcripts/divine-will-and-self-authorizing-power.txt",
-      "segments": 50,
-      "words": 1347
+      "segments": 81,
+      "words": 2782
     },
     {
       "slug": "inner-formation-texts-and-material-witnesses",
@@ -628,7 +628,7 @@
     {
       "slug": "ukraine-russia-forecast-record",
       "title": "Ukraine, Russia and the forecast record",
-      "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+      "summary": "Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.",
       "category": "apocalypse",
       "kind": "Developed article",
       "chapters": [
@@ -639,12 +639,12 @@
         }
       ],
       "source": "content/developed/ukraine-russia-forecast-record.md",
-      "sourceSha256": "4c78ce17405c080401f8122d68428c705a8641352bc14819cb7ea8cc9fa98e8f",
+      "sourceSha256": "50a2072d521db43b70244d0ff8f56d9fdabe2503e6c6fe48b308662394a28b5a",
       "narration": "data/listening/ukraine-russia-forecast-record.json",
-      "narrationSha256": "1018913378cc000bd27497b72df07bdf26ce9978abd808b57007d9b639d7bbef",
+      "narrationSha256": "7274477345b23e8be2d6dc5e8087b7764a47d784d29922ec73bef22060581774",
       "transcript": "products/transcripts/ukraine-russia-forecast-record.txt",
-      "segments": 28,
-      "words": 715
+      "segments": 78,
+      "words": 2814
     },
     {
       "slug": "religion-for-conscious-robots",

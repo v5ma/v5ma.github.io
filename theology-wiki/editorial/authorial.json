@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.17-scripture-concordance-1",
-  "updated": "2026-09-17",
+  "version": "2026.09.18-identity-agency-scarcity-1",
+  "updated": "2026-09-18",
   "theoryNameStatus": "Christic Self-Formation Theory is the proposed working name, not a claim of established nomenclature or worldwide priority.",
   "articles": [
     {
@@ -32,7 +32,7 @@
       "slug": "ukraine-russia-forecast-record",
       "title": "Ukraine, Russia and the forecast record",
       "category": "apocalypse",
-      "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+      "summary": "Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.",
       "sourceIds": [
         "1094",
         "3051"
@@ -44,7 +44,7 @@
       ],
       "art": "",
       "kind": "Developed article",
-      "updated": "2026-09-06",
+      "updated": "2026-09-18",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "featured": true
     },
@@ -72,7 +72,7 @@
       "slug": "jesus-teacher-of-righteousness-hypothesis",
       "title": "Jesus as the Teacher of Righteousness",
       "category": "jesus",
-      "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
+      "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
       "sourceIds": [
         "1688",
         "2333",
@@ -90,9 +90,12 @@
       ],
       "art": "",
       "kind": "Developed article",
-      "updated": "2026-09-06",
+      "updated": "2026-09-18",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
-      "featured": true
+      "featured": true,
+      "aliases": [
+        "Earlier-Founder Jesus-Teacher Identity Hypothesis"
+      ]
     },
     {
       "slug": "moses-volcano-and-exodus-chronology",
@@ -350,7 +353,7 @@
       "slug": "divine-will-and-self-authorizing-power",
       "title": "Divine will and self-authorizing power",
       "category": "jesus",
-      "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+      "summary": "Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.",
       "sourceIds": [
         "1642",
         "880",
@@ -366,7 +369,7 @@
         "ai-procurement-2025"
       ],
       "kind": "Developed article",
-      "updated": "2026-09-06",
+      "updated": "2026-09-18",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "claimType": "Theological interpretation and moral argument"
     },

@@ -12713,7 +12713,7 @@
     "slug": "ukraine-russia-forecast-record",
     "title": "Ukraine, Russia and the forecast record",
     "category": "apocalypse",
-    "summary": "A source-linked account of false-peace warnings, deterrence arguments and the proposed fuel-to-food cascade, with original dates kept separate from later evaluation.",
+    "summary": "Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.",
     "claimType": "Conditional forecasts",
     "externalSources": [
       "svgn-sword",
@@ -12721,7 +12721,7 @@
     ],
     "art": "",
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-18",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "featured": true,
     "aliases": [
@@ -12756,12 +12756,13 @@
         "sha256": "af431f5f3019577b92311c103ec7bae76b1f5fb79b32a504808c9c1b06f43140"
       }
     ],
-    "readMinutes": 5,
+    "readMinutes": 15,
     "related": [
       "false-peace-prophecy",
       "forecast-ledger",
       "trump-first-beast-of-revelation",
       "apocalyptic-repair-theology",
+      "divine-will-and-self-authorizing-power",
       "revelation-interpretation-and-america",
       "contested-memories-of-catastrophe",
       "apocalypse-and-repair"
@@ -12858,7 +12859,7 @@
     "slug": "jesus-teacher-of-righteousness-hypothesis",
     "title": "Jesus as the Teacher of Righteousness",
     "category": "jesus",
-    "summary": "The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.",
+    "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
     "claimType": "Author hypothesis",
     "externalSources": [
       "habakkuk",
@@ -12870,10 +12871,11 @@
     ],
     "art": "",
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-18",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "featured": true,
     "aliases": [
+      "Earlier-Founder Jesus-Teacher Identity Hypothesis",
       "Jesus TOR",
       "Jesus ToR",
       "Teacher of Righteousness hypothesis"
@@ -12920,10 +12922,11 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 8,
+    "readMinutes": 16,
     "related": [
-      "ai-re-dates-dead-sea-scrolls",
+      "kenite-hypothesis-and-yahweh-origins",
       "christ-as-an-inner-model",
+      "ai-re-dates-dead-sea-scrolls",
       "gnosticism-and-temple-trauma",
       "cognitive-gnosticism",
       "teacher-of-righteousness-vs-gnostic-jesus",
@@ -12932,13 +12935,14 @@
       "samaritan-texts-and-sacred-authority",
       "daniel-jubilee-and-the-teachers-time"
     ],
-    "backlinkCount": 20,
+    "backlinkCount": 21,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
       "tor-thomas-and-gnostic-transmission",
+      "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
       "exodus-to-temple-competing-chronologies",
       "inner-formation-texts-and-material-witnesses",
@@ -13088,10 +13092,11 @@
       "samaritan-texts-and-sacred-authority",
       "what-is-midian"
     ],
-    "backlinkCount": 11,
+    "backlinkCount": 12,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
+      "jesus-teacher-of-righteousness-hypothesis",
       "moses-volcano-and-exodus-chronology",
       "samaritan-texts-and-sacred-authority",
       "sacred-inheritance-and-rival-continuations",
@@ -13997,7 +14002,7 @@
     "slug": "divine-will-and-self-authorizing-power",
     "title": "Divine will and self-authorizing power",
     "category": "jesus",
-    "summary": "Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.",
+    "summary": "Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.",
     "externalSources": [
       "will-luke22",
       "will-john5",
@@ -14008,7 +14013,7 @@
       "ai-procurement-2025"
     ],
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-18",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "claimType": "Theological interpretation and moral argument",
     "aliases": [],
@@ -14047,7 +14052,7 @@
         "sha256": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
       }
     ],
-    "readMinutes": 9,
+    "readMinutes": 16,
     "related": [
       "sacred-inheritance-and-rival-continuations",
       "scripture-power-and-repair",
@@ -14056,12 +14061,14 @@
       "trump-first-beast-of-revelation",
       "resurrection-debate-in-christianity",
       "religion-for-conscious-robots",
+      "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
       "agi-religious-framework"
     ],
-    "backlinkCount": 16,
+    "backlinkCount": 17,
     "backlinks": [
       "home",
+      "ukraine-russia-forecast-record",
       "christ-as-an-inner-model",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
@@ -16976,7 +16983,7 @@
     "summary": "Ten explicit connections among physics, neural rendering, God, historical inheritance and constructive theology.",
     "category": "context",
     "kind": "Navigator",
-    "updated": "2026-09-17",
+    "updated": "2026-09-18",
     "aliases": [],
     "path": "developed/computational-argument-map.md",
     "topic": "Wider conversations",

@@ -13,11 +13,11 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 ## Start with a developed argument
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The earlier-Teacher reconstruction, with its proposed dates, a corrected elapsed-time calculation, and worked comparisons with Paul and the Habakkuk commentary.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
 
 [[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 
-[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Jesus's distinction between his will and God's will becomes a test of moral authority, inward models and self-justifying political power.
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.
 
 [[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
 

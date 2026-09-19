@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.17-scripture-concordance-1",
+  "version": "2026.09.18-identity-agency-scarcity-1",
   "connectedEdition": "2026.09.07-restoration-listening-2",
   "bridgeStudies": 5,
   "restorationComparisons": 6,
@@ -38,7 +38,7 @@
   "explainedRelationships": 213,
   "anchoredSourceTurns": 38,
   "indexedTurns": 4980,
-  "links": 1740,
-  "searchTerms": 47968,
+  "links": 1743,
+  "searchTerms": 48020,
   "sourceBytes": 17769481
 }
