@@ -43,7 +43,7 @@ jobs:
           path: native-model.txt
           retention-days: 30
   browser:
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     timeout-minutes: 40
     strategy:
       fail-fast: false
@@ -75,6 +75,7 @@ jobs:
               try:
                   with urllib.request.urlopen('http://127.0.0.1:8765/svgn-planet/',timeout=2) as r:
                       assert r.status==200
+                  print('IPv4 local server is ready',flush=True)
                   break
               except Exception:
                   if attempt==29:raise
