@@ -23,7 +23,7 @@ export function createQuestXR(E){
  const isDiorama=()=>viewMode.startsWith('diorama');
  const rig=new T.Group(),camera=new T.PerspectiveCamera(65,1,.06,220);rig.name='Rainward XR locomotion rig';rig.visible=false;rig.add(camera);
  let renderContext=null,scene=null,renderer=null,session=null,pending=false,disposed=false,active=false,preference='controllers',lastMode='',layout=0,calibration=null,previousHead=null,headPose=null,eye=null,turn=0,slow=E.freefield?.freeStride===false,handBlink=false,handFire=false,handSprint=false,handListen=false,tracking='Awaiting tracking',safe=false,lastSources='',missing=false,palmTime=0,palmLatch=false;
- let lastReading=null;const notice=createXRNotice();rig.add(notice.mesh);
+ let lastReading=null,entryHelp=true,observedHint='';const notice=createXRNotice();rig.add(notice.mesh);
  let currentRay={origin:V(),direction:new T.Vector3(0,0,-1)},sourceSeq=0,cycle=0,stamp=0;const identities=new WeakMap(),pinches=new WeakMap(),anchors=new WeakMap();
  const oldInput=createXRInput(),directInput=createDirectXRInput(),currentInput=()=>E.freefield?.xrLayout==='legacy'?oldInput:directInput;const input={reset(){oldInput.reset();directInput.reset();},sample:(...args)=>currentInput().sample(...args),isArmed:()=>currentInput().isArmed()},rays={};let sample=emptyXR();
  const status=()=>{const p=E.state().player;return (isDiorama()?(viewMode==='diorama-ar'?'AR DIORAMA':'VR DIORAMA')+' | ':'FIRST PERSON | ')+(safe?'':'RELEASE INPUTS / ')+tracking+' | HP '+Math.ceil(p.hp)+' | '+(p.waterMode==='swim'?'AIR '+Math.ceil(p.oxygen):p.equipped+' '+p.mag+'/'+p.reserve)+(handFire?' | HAND FIRE ARMED':'');};
@@ -83,7 +83,7 @@ export function createQuestXR(E){
   const jointLines=new T.LineSegments(new T.BufferGeometry().setAttribute('position',new T.BufferAttribute(new Float32Array(48*3),3)),new T.LineBasicMaterial({color:0xd8ece5}));jointLines.frustumCulled=false;rig.add(jointLines);
   group.visible=grip.visible=joints.visible=jointLines.visible=false;visuals[side]={group,laser,cursor,grip,joints,jointLines};
  }
- function bind(next){sight.reset();notice.clear();lastReading=null;panel.clearDocument();headPose=null;renderContext=next;scene=next.scene;renderer=next.renderer;scene.add(rig,blinkMarker);next.bindXR(api);diorama.reset();calibration=null;previousHead=null;eye=null;reset();}
+ function bind(next){sight.reset();notice.clear();entryHelp=true;observedHint=E.state().hint;lastReading=null;panel.clearDocument();if(!active)headPose=null;renderContext=next;scene=next.scene;renderer=next.renderer;scene.add(rig,blinkMarker);next.bindXR(api);diorama.reset();calibration=null;previousHead=null;eye=null;reset();}
  function detach(){rig.removeFromParent();blinkMarker.removeFromParent();scene=null;}
  function snap(angle){turn+=angle;previousHead=null;reset();recenter(false);}
  function recenter(replaceTable=true){if(replaceTable)diorama.reset();if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
@@ -117,8 +117,8 @@ export function createQuestXR(E){
   const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?(isDiorama()?-1.22:-.85):0,playing?(isDiorama()?-.25:-.56):-.06,playing?-1.55:-1.55);put(badge,0,playing?(isDiorama()?.10:-.62):.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
  }
  function updatePresentation(state){
-  const playing=E.mode()==='play',pinned=!!E.freefield?.pinnedXR;notice.update(playing);
-  panel.mesh.visible=!playing||pinned;badge.visible=!playing||pinned;
+  const playing=E.mode()==='play',pinned=!!E.freefield?.pinnedXR;notice.update(playing);if(playing&&headPose&&state.hintTime>0&&state.hint&&state.hint!==observedHint){observedHint=state.hint;lastReading={title:'Field message',text:state.hint};notice.show(state.hint,headPose);}
+  panel.mesh.visible=!playing||pinned;badge.visible=!panel.document()&&(!playing||pinned);
   if(playing&&!pinned&&headPose){const left=visuals.left.grip.visible?visuals.left.grip:visuals.left.group;
    badge.scale.setScalar(.20);badge.position.copy(left.position).add(new T.Vector3(0,.09,0));
    const toHead=new T.Vector3().copy(headPose.position).sub(badge.position);badge.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),toHead.clone().normalize());
@@ -170,7 +170,7 @@ export function createQuestXR(E){
   const signature=list.map(s=>s.id).sort().join('|');if(lastSources&&signature!==lastSources){E.pause();reset();handFire=false;handBlink=false;handListen=false;handSprint=false;}lastSources=signature;
   if(!list.length){tracking='No tracked controllers or hands';E.pause();reset();return sample;}
   tracking=list.map(s=>s.side+' '+(s.hand?'hand':'controller')).join(' + ');
-  sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire,handBlink,water:state.player.waterMode==='swim',mapping:E.buttonRemaps?.xr});safe=input.isArmed();
+  sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire,handBlink,water:state.player.waterMode==='swim',mapping:E.buttonRemaps?.xr});safe=input.isArmed();if(safe&&entryHelp&&E.mode()==='play'){entryHelp=false;notice.show('Hold B or press R3 for the menu. Tap B reloads. A / right grip interacts. Raise your open left palm for hand menus.',headPose);}if(panel.document()&&(sample.confirm||sample.back)){panel.clearDocument();E.back();reset();return emptyXR();}
   panel.setHover(hoverTarget(list));
   if(panel.held()){
    // Only the initiating ray may sustain this hold. The other trigger cannot
@@ -193,8 +193,8 @@ export function createQuestXR(E){
   const p=E.state().player;const localHeadY=h.y-calibration.y;veil.material.opacity=!isDiorama()&&(Math.abs(localHeadY)>.65||solidAt(p.x,p.z,Math.max(.2,eye-heightAt(p.x,p.z))))?.92:0;
   updatePresentation(state);if(cycle%8===0)drawBadge();return sample;
  }
- function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}updatePresentation(state);if(panel.mesh.visible)panel.collect();}}
- const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;lastReading=item;if(item.persistent){E.pause();panel.showDocument(item);recenter(false);}else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
+ function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}updatePresentation(state);if(panel.mesh.visible)panel.collect();if(!isDiorama())currentRay=weapons.ray();}}
+ const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;observedHint=E.state().hint;lastReading=item;if(item.persistent){E.pause();panel.showDocument(item);recenter(false);}else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
   preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
   supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
   render(){const p=E.state().player,automatic=renderer.xr.cameraAutoUpdate;
@@ -204,7 +204,7 @@ export function createQuestXR(E){
     if(isDiorama())diorama.render(renderer,scene,camera,rig,renderContext.portalEnvironment);else if(viewMode==='first-person-ar')renderContext.renderAR(camera,E.state());else renderer.render(scene,camera);
    }finally{renderer.xr.cameraAutoUpdate=automatic;}
   },
-  ray:()=>currentRay,aimYaw:()=>{const d=isDiorama()&&E.aimDirection?E.aimDirection():currentRay.direction;return Math.atan2(-d.x,-d.z);},
+  ray:()=>{if(active&&!isDiorama()&&headPose){align(E.state(),0);currentRay=weapons.ray();}return currentRay;},aimYaw:()=>{const d=isDiorama()&&E.aimDirection?E.aimDirection():currentRay.direction;return Math.atan2(-d.x,-d.z);},
   stats:()=>({active,pending,mode:isDiorama()||viewMode==='first-person-ar'?viewMode:'immersive-first-person',menuVisible:panel.mesh.visible,wristVisible:badge.visible,weapon:weapons.stats(),reading:panel.document(),notice:notice.stats(),sight:sight.stats(),handBlink,sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelHover:panel.hover(),panelHoldOwner:panel.held()?.sourceId||null,craftReadout:craftReadout(E.state().player),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
   dispose(){disposed=true;void exit();panel.dispose();notice.dispose();sight.dispose();weapons.dispose();blinkMarker.removeFromParent();blinkMarker.geometry.dispose();blinkMarker.material.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
  };

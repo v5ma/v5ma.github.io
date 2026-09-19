@@ -30,7 +30,7 @@ test('Mechanical gun muzzle and -Z aim agree under yaw, pitch, reload and arbitr
 test('Tracked shooting spends normal ammo, starts at the actual safe muzzle and does not converge through the desktop camera',()=>{
  const s=M.createGame(),p=s.player,muzzle={x:p.x+.25,y:1.4,z:p.z-.5},before=p.mag;assert.deepEqual(authorizedMuzzle(s,muzzle),muzzle);assert.ok(M.fire(s,{x:0,y:0,z:-1},muzzle));const shot=s.events.find(e=>e.type==='shot');assert.deepEqual(shot.from,muzzle);assert.equal(shot.to.y,shot.from.y);assert.equal(p.mag,before-1);
  p.shotCD=0;assert.equal(M.fire(s,{x:0,y:0,z:-1},{x:p.x+10,y:1.4,z:p.z}),false);assert.equal(p.mag,before-1);
- Object.assign(p,{x:12,z:-24});assert.equal(authorizedMuzzle(s,{x:14.7,y:1.4,z:-24}),null);
+ Object.assign(p,{x:13.35,z:-24});assert.equal(authorizedMuzzle(s,{x:14.65,y:1.4,z:-24}),null);
 });
 test('Scope immediately draws after a chapter clock reset and restores render state',()=>{
  const sight=createXRSight(),rig=new T.Group(),hero=new T.Group();let draws=0,rt=null;
@@ -39,3 +39,11 @@ test('Scope immediately draws after a chapter clock reset and restores render st
  sight.render(renderer,a,rig,hero,o,d,100,true);sight.render(renderer,b,rig,hero,o,d,0,true);assert.equal(draws,2);assert.equal(sight.stats().sceneDraws,1);assert.equal(renderer.xr.enabled,true);assert.equal(renderer.autoClear,false);assert.equal(rt,null);assert.ok(rig.visible&&hero.visible);assert.ok(new T.Vector3(...sight.stats().direction).distanceTo(d)<1e-10);sight.dispose();
 });
 test('Fast movement is now the free-stride default, with saved precise/legacy alternatives',()=>{assert.ok(freefieldOptions().autoRun);assert.equal(freefieldOptions({autoRun:false}).autoRun,false);assert.equal(freefieldOptions({freeStride:false}).autoRun,false);assert.equal(freefieldOptions().runSpeed,9);});
+
+test('Saved continuous-action remaps on B still work without removing reserved menu recovery',()=>{const r=source(),input=createDirectXRInput(),options={mapping:{rightsecondary:'fire'}},step=()=>input.sample([r],.1,options);step();step();r.buttons[5].pressed=true;assert.ok(step().fire);let paused=false;for(let i=0;i<8;i++)paused||=step().actions.includes('pause');assert.ok(paused);});
+
+import {FLOODGATE_NOTES} from '../floodgate-content.mjs';
+test('Recorded field notes show their actual author and complete body, never an unread note',()=>{const s=M.createGame(),note=FLOODGATE_NOTES[0],target={kind:'field-note',id:note.id};s.hint='Recorded: '+note.title;assert.equal(interactionReading(s,target,true).text,s.hint);s.fieldNotes=[note.id];const reading=interactionReading(s,target,true);assert.equal(reading.text,note.author+'\n\n'+note.text);assert.equal(reading.title,note.title);assert.ok(reading.persistent);});
+
+import {createWorldPortal} from '../portal-view.mjs';
+test('A reset portal waits safely for its pose before any world mutation or draw',()=>{const portal=createWorldPortal(),scene=new T.Scene(),rig=new T.Group(),camera=new T.PerspectiveCamera();scene.add(rig);let cleared=0,alpha=.4,color=new T.Color(0x123456);const renderer={getClearColor:c=>c.copy(color),getClearAlpha:()=>alpha,setClearColor(c,a){color.set(c);alpha=a;},clear(){cleared++;},render(){throw Error('Uninitialized portal must not draw');}};assert.equal(portal.render(renderer,scene,camera,rig),false);assert.equal(cleared,1);assert.equal(rig.parent,scene);assert.equal(alpha,.4);assert.equal(color.getHex(),0x123456);portal.update(rig,{position:new T.Vector3(0,1.65,0),orientation:new T.Quaternion()},{x:0,z:0,swimDepth:0},0,0,.016,{view:'diorama-ar'});portal.reset();assert.equal(portal.render(renderer,scene,camera,rig),false);assert.equal(cleared,2);portal.dispose();});

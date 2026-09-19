@@ -1,6 +1,7 @@
 /* Presentation of actual game output only; never reveals an unread clue. */
 import {LEVELS} from './world.mjs';
-export function readingPages(text,width=58,linesPerPage=16){
+import {FLOODGATE_NOTES} from './floodgate-content.mjs';
+export function readingPages(text,width=46,linesPerPage=13){
  const lines=[];
  for(const paragraph of String(text||'').replace(/\r/g,'').split('\n')){
   if(!paragraph.trim()){lines.push('');continue;}let line='';
@@ -15,6 +16,7 @@ export function readingPages(text,width=58,linesPerPage=16){
 export function interactionReading(state,target,accepted){
  const text=String(state.hint||'').trim();if(!text)return null;
  const clue=accepted&&target?.kind==='clue'&&state.puzzle?.clueRead;
- return {title:target?.label||'Field message',text:clue?LEVELS[state.level].puzzle.clue.text:text,
-  persistent:!!clue||accepted&&['field-note','note'].includes(target?.kind),chapter:state.level};
+ const note=accepted&&target?.kind==='field-note'&&state.fieldNotes?.includes(target.id)?FLOODGATE_NOTES.find(n=>n.id===target.id):null;
+ return {title:note?.title||target?.label||'Field message',text:clue?LEVELS[state.level].puzzle.clue.text:note?note.author+'\n\n'+note.text:text,
+  persistent:!!clue||!!note,chapter:state.level};
 }

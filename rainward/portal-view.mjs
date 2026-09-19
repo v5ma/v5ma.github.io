@@ -34,6 +34,11 @@ export function createWorldPortal(){
   const openings=shellOpenings(config.shell);faces.top.visible=!openings.topOpen;faces.front.visible=!openings.frontOpen;
  }
  function render(renderer,scene,camera,rig,environmentRoots){
+  // A scene can be rebound within the current controller frame. Until a valid
+  // pose establishes the aperture, clear safely instead of dereferencing a
+  // missing anchor or exposing an unmasked full-size world.
+  if(!enabled||!anchor){const color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();try{renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);renderer.clear?.();}finally{renderer.setClearColor(color,alpha);}return false;}
+
   const lamps=[];scene.traverse(o=>{if(o.isPointLight||o.isSpotLight)lamps.push({light:o,distance:o.distance,intensity:o.intensity});});
   const children=[...scene.children].filter(o=>o!==rig),bg=scene.background,fog=scene.fog,auto=renderer.autoClear,planes=renderer.clippingPlanes,color=renderer.getClearColor(new T.Color()),alpha=renderer.getClearAlpha();
   try{

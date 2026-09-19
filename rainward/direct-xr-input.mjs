@@ -17,7 +17,12 @@ export function createDirectXRInput(){
   out.move=lm;
   for(const [button,action]of Object.entries(normalizeRemaps({xr:mapping}).xr)){
    const side=button.startsWith('left')?left:right;if(side?.hand)continue;
-   if(button==='rightsecondary'){if(release(button)&&!menuSent&&action!=='none')out.actions.push(action);continue;}
+   if(button==='rightsecondary'){
+    if(['aim','fire','listen','sprint'].includes(action)&&!menuSent){out[action]||=!!data[button];if(action==='sprint'&&edge(button))out.sprintToggle=true;}
+    else if(action==='blink'&&!menuSent){out.blinkHeld||=!!data[button];if(release(button))out.actions.push('blink');}
+    else if(release(button)&&!menuSent&&action!=='none')out.actions.push(action);
+    continue;
+   }
    if(['aim','fire','listen','sprint'].includes(action)){out[action]||=!!data[button];if(action==='sprint'&&edge(button))out.sprintToggle=true;}
    else if(action==='blink'){out.blinkHeld||=!!data[button];if(release(button))out.actions.push('blink');}
    else if(action==='traverse'&&water){out.swimBoost||=!!data[button];}
