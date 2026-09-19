@@ -1,4 +1,4 @@
-name: Rainward XR repair release candidate
+name: Rainward XR repair reviewed candidate
 on:
   push:
     branches: [fix/rainward-xr-recovery-20260918]
@@ -21,24 +21,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Final scoped source assembly
+      - name: Apply scoped source and image-review corrections
         run: |
           mkdir -p test-output
           python rainward/tools/finalize-xr-repair.py
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           python -m compileall -q rainward/tests
-      - name: Commit exact source before rendered acceptance
+      - name: Save exact source before native acceptance
         id: commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/direct-xr-input.mjs rainward/quest-xr.mjs rainward/xr-reading.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/FREEFIELD-HANDOFF.md rainward/tests/xr-repair.test.mjs rainward/tests/xr-repair-browser.py rainward/tests/xr-repair-device.js rainward/tests/handoff.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/aquatic.test.mjs
+          git add rainward/app.mjs rainward/direct-xr-input.mjs rainward/quest-xr.mjs rainward/xr-reading.mjs rainward/xr-panel.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/FREEFIELD-HANDOFF.md rainward/tests/xr-repair.test.mjs rainward/tests/xr-repair-browser.py rainward/tests/xr-repair-device.js rainward/tests/handoff.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/aquatic.test.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Finalize XR repair with complete acquired text, discoverable recovery controls and scoped release metadata'
+            git commit -m 'Integrate image-reviewed readable XR documents and current repair release'
             git push origin HEAD:fix/rainward-xr-recovery-20260918
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - name: Keep failure evidence
+      - name: Retain source and failures
         if: always()
         run: |
           mkdir -p test-output
@@ -53,14 +53,13 @@ jobs:
   render:
     needs: integrate
     runs-on: ubuntu-latest
-    timeout-minutes: 16
+    timeout-minutes: 28
     permissions:
       contents: read
     strategy:
       fail-fast: false
       matrix:
         view: [first-person,first-person-ar,diorama-vr,diorama-ar]
-        layer: [projection,base]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,16 +72,19 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Actual compositor layers and gameplay
+      - name: Both actual layer paths and gameplay
         env:
           XR_VIEW: ${{ matrix.view }}
-          XR_LAYER: ${{ matrix.layer }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
           PID=$!
           trap 'kill $PID' EXIT
-          timeout 780 python -u rainward/tests/xr-repair-browser.py
-      - name: Keep exact source and captures, including failures
+          RESULT=0
+          for LAYER in projection base; do
+            XR_LAYER="$LAYER" timeout 720 python -u rainward/tests/xr-repair-browser.py || RESULT=1
+          done
+          exit "$RESULT"
+      - name: Retain exact source and both-layer captures
         if: always()
         run: |
           mkdir -p test-output
@@ -93,6 +95,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: rainward-xr-repair-${{ matrix.view }}-${{ matrix.layer }}
+          name: rainward-xr-repair-${{ matrix.view }}
           path: test-output/
           retention-days: 14
