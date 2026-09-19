@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "counts": {
+    "studies": 8,
+    "profiles": 27,
+    "relationships": 20,
+    "sources": 63,
+    "new_source_records": 40,
+    "study_words": 6729,
+    "profile_words": 1810,
+    "relationship_words": 764
+  },
+  "files": [
+    {
+      "path": "abstraction-and-genealogy.html",
+      "sha256": "9323fe4bfb67bcedb5a98666ee651bef4e0ee0783e809aeb1546df56c12cf12a"
+    },
+    {
+      "path": "egyptian-seed.html",
+      "sha256": "e513d5076317fa0f14e050c3dd4faef3f9e5828b9e29566f81600fdbceb7ca38"
+    },
+    {
+      "path": "egypt-plato-hermetic.html",
+      "sha256": "a73804a580f82b3c4abc70782989d32099ff03d2428d02765e3b7fd5fcf52b37"
+    },
+    {
+      "path": "plotinus-and-return.html",
+      "sha256": "898c394ae159fd854b2ca24b0ce5e6b31c2ea018c6eef27b811b35c71e09a6ec"
+    },
+    {
+      "path": "wider-esoteric-family.html",
+      "sha256": "54b07fff5af06780aa073dfa009cd88c4bf3b3a6d11de3d33131f4099550dd60"
+    },
+    {
+      "path": "egypt-iran-contact.html",
+      "sha256": "1f8ea370b9868a96c63cca22670c36153020bedbbea11fd96dce6c57cd2ccfc6"
+    },
+    {
+      "path": "afterlives-and-ancestors.html",
+      "sha256": "53661c3ace5c99af650bfea6b6419e8b7d705f5fcdbc219209cff978782c1a29"
+    },
+    {
+      "path": "moral-horizons-beyond-life.html",
+      "sha256": "482d9294ceff0cc36911921bcad9251702ca5ed80556ae76e04877303dee84b9"
+    },
+    {
+      "path": "index.html",
+      "sha256": "dc352037ef4b6c3587eae8057eba6ac990c0db914e0caa61b8565d2bdda8b795"
+    },
+    {
+      "path": "profiles.html",
+      "sha256": "4380341db70f607e55585992f7c7278de4e9f174af731b5b548666a4af30aa24"
+    },
+    {
+      "path": "relationships.html",
+      "sha256": "4f2bdcd6e914f628f83541441e5feda07ee4d7a75f41c14a9742e81c10d24d92"
+    },
+    {
+      "path": "sources.html",
+      "sha256": "a0364d5df28dbd47c488cc7a32ac5586a3e4af226f2196517c3c36c1c0109611"
+    },
+    {
+      "path": "index.json",
+      "sha256": "e9e00d2f6456c54b2e0d034c6cc42fde4db4a5af4cfb97a76ba88e485fa41ad6"
+    },
+    {
+      "path": "READING.md",
+      "sha256": "ebbf1d72f1a20e714ea0015530e840b896c251d407229998b6f4f99b7decf7aa"
+    }
+  ]
+}
