@@ -6,6 +6,7 @@ import json, os, pathlib
 from playwright.sync_api import sync_playwright
 OUT=pathlib.Path('test-output'); OUT.mkdir(exist_ok=True)
 URL=os.environ.get('PRISM_URL','http://127.0.0.1:4173/prism-current/')
+URL=URL.rstrip('/').removesuffix('/index.html').removesuffix('/rhythm.html')+'/rhythm.html'  # Preserve legacy entry; River has its own main-entry suite.
 PAD=(pathlib.Path(__file__).resolve().parent/'standard-pad.js').read_text()
 with sync_playwright() as pw:
     browser=pw.chromium.launch(executable_path=os.environ.get('PRISM_CHROMIUM') or None,headless=True,args=['--no-sandbox','--enable-webgl','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])

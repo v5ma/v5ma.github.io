@@ -1,0 +1,23 @@
+# River Prism release gate
+
+Exact-source results and publication receipts belong in PR #193. Local Node model and legacy tests are recorded separately from native WebGL acceptance. The River browser suite must exercise both real-time chapter clears, directional pointer cuts, aimed shots, shield intersections, retained score isolation, reload, gamepad actions, and simulated XR controls and pinch-menu input. It may not assign scores, actors, health, clocks, or completion to pass.
+
+Original rhythm entry is preserved at rhythm.html. Legacy browser tests are redirected only to that preserved entry and its preserved rhythm-release.json; their gameplay criteria remain. The new main entry and both River chapters have a separate test. Recorded failures must remain visible. A hosted build or asset hash match is not proof of enjoyment.
+
+First native run 35409512833 confirmed the new entry and an actual fruit slice, then exposed a genuine UI bug: a held canvas pointer capture survived keyboard pause, so the modal Resume click did not reach its button. The repair releases all recorded canvas/touch captures on input reset, is covered by lifecycle fixtures, and adds an explicit native capture-release assertion. No scoring, clock or gameplay state is assigned to bypass the failure. The original trace remains in artifact 10574500145.
+
+Second native run 35409910268 passed that pause/resume correction and reached High Tide with 24 slices, 56 aimed laser hits, four blocks and full health. Its test then checked the raised water threshold at the exact start of the designed four-beat transition. The phase label had advanced while the water was correctly still interpolating from the prior level. The test now waits for the actual water height within that bounded transition; it retains the same height assertion and does not modify the clock or water. Failure artifact 10574262028 preserves the original trace and snapshot.
+
+Further source review aligns XR lasers and rendered blade tips with the same collision endpoints, immediately removes destroyed actors from snapshots/rendering, and keys completed records by the immutable battle chapter/difficulty rather than current menu preferences. Changing XR difficulty requires a fresh run; a paused standard-controller chapter shortcut cannot relabel a live battle. Dedicated lifecycle fixtures cover these changes.
+
+## Successful native source gate
+
+Run 35410883500 passed 203 Node tests and 36 native browser checks. The guarded worktree was committed after success as 944aad94d2264a8b17a4f1d1edbde44264eb0130. The source manifest identifies its pre-edit checkout 7e7317f2bb4e90538e785df790d53ef3a5d35d78; runtime-commit.txt and the archived source identify the exact resulting tested content. These are not interchangeable commit identities.
+
+Both complete chapters were cleared at real audio speed through ordinary pointer/keyboard inputs, with slicing, aimed laser hits and actual shield interceptions. The same native suite exercised standard-pad mapping/disconnection, tracked-controller fruit contact, grip shields, trigger exclusion/release, B/Y pause, hand-pinch chapter selection and transparent AR. No uncaught script or shader errors were captured. The full-resolution entry and pause captures were visually inspected; they do not establish sustained full-resolution play performance.
+
+Artifact 10574202689 has SHA-256 addc6515ae0cf4c26364de6b46d588ed46c312360b6bc1620a17236168ee86da. Ten selected runtime/test files matched the locally checked bytes, and the downloaded source passed a fresh local run of all 203 Node tests. All 31 baseline production JavaScript/CSS files were independently byte-compared and unchanged. The retained rhythm HTML and release manifest match their original bytes. A persistent summary is in qa/river-source-v0100.json.
+
+The final release removes both temporary hash-guard scripts and the write-enabled staging workflow. The new prism-river.yml verifier is read-only and repeats exact-source tests, both battles, input paths and served-byte checks. Later clean-commit and public outcomes belong in PR #193; this source receipt alone is not a public-deployment claim.
+
+Local limitations: Chromium HTTP navigation returned ERR_BLOCKED_BY_ADMINISTRATOR and a blank-page WebGL2 probe returned false. Native production rendering therefore runs on GitHub Actions. The acceptance suite uses small software rendering buffers for input correctness, then captures a separate 1440x1000 view. Physical Quest, standard controller, touchscreen, human musical/level review, and ordinary-resolution performance remain open.
