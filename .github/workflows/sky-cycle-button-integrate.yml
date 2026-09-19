@@ -1,0 +1,19 @@
+name: Integrate Sky Cycle menu buttons
+on:
+  push:
+    branches: ['sky-cycle/xr-buttons-0.26.2']
+    paths: ['.github/workflows/sky-cycle-button-integrate.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply reviewed runtime patch only inside Sky Cycle
+        env:
+          PATCH: 'eNrtPGlz20ay3/UrICcrAOEQ4qGTDKTYjrPx2/h4knK8Uqm8IDEkYYEAgoMSl+R/f909M8CApGLJld2XquekyiLm7Onpe3rGD0Yjo9kcB7nh7U+9NIibU++Wp81hGEd8P5uNo2biJVCQxkXO91Meci/jzSz38iJzPmbG4LO67QSRz++N1pAf8nbXcYaHR/5ht2O0W62jg4OdZrP5mfDsNBqNz4Xpu++MZpsdGw3857vvdoz9b4xX90kYDAE9gyIIfcOLfGPoTRMvGEdGyj0/iHiWOca7JA/iyAsNr8gncRpEYyOP4zAzpkWWG1GcGz4fBj7fMYxvjLtJMJxUwwSZEcaez31Gw3uRUUSjIAqyCfcNP76LsLYaKEu8u8iIARjfyz3H+GZ/x7BGRTRECCx7YRYZN7I8DYa52d9pGsM4gp6/vLq4fP3urWu2nM6R0zbZi59f//S9a2a38+ZwPgx58x4Qw4fxjKfzZqcFjVqnTvsEhmhsHaKzfYhBkefQuhrhFEYwjP1944KPgyznqTHgozjlRj7hRsjH3nBufP/uzcs4ynmU/0SIMBIPFxFi+4injvHWy4MZN/zAC+NxJsZDoIopjROkBqDJuOXzQeylvsFnMFRm3AWwF0UO6MTxaE9gTtp9KPN5GnEvnzgw3B2QY3zneL7/Crv+JCe2TBgSd8BkNKR7Jhte3s5f4Iop/CIPxJP+eD2/PnQlsXsj/wecWtbVZnhbc7u/4n8diQJBx9CRKph6SsY6GLW/QajnOyZCfdg9PP5exxJhP5SnRS7BTu4P8BP8iQy2AHo1nQGIZ0OqznvFMUOMzRuXEYlj6KaKU7YH+OTbHimbrtEkVjS0TdGT59g9bi2JyAfn?'
+        run: |
+          python - <<'PY'
+          raise SystemExit('Staging placeholder: no runtime mutation. Complete checksum-bound patch before execution.')
+          PY
