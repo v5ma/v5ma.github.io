@@ -1,0 +1,63 @@
+{
+  "version": "0.26.1",
+  "build": "sky-cycle-xr-recovery-2026.09.18",
+  "status": "software-accepted-awaiting-merge-and-publication",
+  "baseline_master": "686a0fd803ea5b0c20b5663fff3d792264428943",
+  "previous_runtime": "b8d4176e5123d6bc15c3fa552e0e7b818ff5d590",
+  "accepted_source": "355aea4ade530d8e5e71adb70d2347200531ebc7",
+  "runtime_source": "72fa1c6da154881781cff5393f697bd5aba79a4d",
+  "branch": "sky-cycle/xr-menu-recovery-0.26.1",
+  "pull_request": 190,
+  "physical_report": "AR menu stuck, controller navigation/back unusable, and a plane intersecting the level differently with head movement.",
+  "repair": {
+    "input": "A visible immersive session owns input and simulation independently of the HTML page's hidden/focus state. Hidden and system-blurred XR remain blocked. Stable edge-triggered B recovery runs before the neutral gate; unused squeeze buttons cannot block menu neutrality. Both sticks navigate; A can activate the pointed virtual action.",
+    "menus": "Direct Resume play and Resume editing cancel uncommitted menus without approval. Controller riding hides the persistent UI plane, while hand input and editor tools retain their controls. B opens pause again from unobstructed riding.",
+    "aperture": "Fixed exhibit/world-space fragment mask instead of camera-dependent ClippingGroup planes. No cap/occluder meshes are introduced. Original node/classic material identities and prior fields are restored on exit.",
+    "diagnostic_boundary": "The report alone cannot establish the exact physical origin of every visual artifact. The persistent controller slab and camera-dependent clipping path are addressed separately. Hardware retest remains required."
+  },
+  "acceptance": {
+    "passed": true,
+    "run_id": 35405532420,
+    "source_sha": "355aea4ade530d8e5e71adb70d2347200531ebc7",
+    "applicable_jobs_passed": 8,
+    "applicable_jobs_failed": 0,
+    "game_tests": 296,
+    "original_soundtrack_tests": 12,
+    "rules_job": 105794409889,
+    "rules_artifact_id": 10572098464,
+    "rules_artifact_sha256": "d67964f82835edb9e8fa26ec276e430fb2fa3aab7cfed678eaf366ce8d22e70c",
+    "native_game_checks": 207,
+    "isolated_render_fixture_checkpoints": 13,
+    "native_pngs_reviewed": 47,
+    "isolated_fixture_pngs_reviewed": 1,
+    "all_report_source_ids_and_zip_digests_verified": true,
+    "page_errors": 0,
+    "console_errors": 0,
+    "complete_video_review": false,
+    "jobs": [
+      {"name":"AR recovery","job_id":105794410150,"checks":27,"artifact_id":10572013776,"sha256":"4fc8b91bb81a7e6429dbab3f6752f23828995a2cb3289dd04c0d341765799768","pngs_reviewed":6},
+      {"name":"VR recovery","job_id":105794410020,"checks":26,"artifact_id":10572585941,"sha256":"818213cf2b0be6052486b94c3eaffc3d9d65cb6ec2fd74414a99b2c843235dcb","pngs_reviewed":6},
+      {"name":"AR Workspace","job_id":105794410087,"checks":41,"artifact_id":10572173872,"sha256":"998952a700deb83acc94dc8763e48308b55723fa522aee8402081d64f330e42a","pngs_reviewed":10},
+      {"name":"VR Workspace","job_id":105794410001,"checks":40,"artifact_id":10572580982,"sha256":"57a5e582e91e0193c0a5156f292fd1b6ac722f1d67a6f23045ffc6bfa8b7322a","pngs_reviewed":10},
+      {"name":"Portal Network","job_id":105794410110,"checks":20,"artifact_id":10572223755,"sha256":"012eaf26166291e22518ef0717e027246983c5efd6e0e5d77b1c95385e2ca85c","pngs_reviewed":9},
+      {"name":"Waterwheel deliveries","job_id":105794410098,"checks":53,"artifact_id":10572173712,"sha256":"609d96d1f21ddbb93592ac297b75c2626e181ba96adf45639778f35586f98d7a","pngs_reviewed":6},
+      {"name":"Isolated aperture graphics","job_id":105794410058,"checkpoints":13,"artifact_id":10571743581,"sha256":"4f13768a0f3a405b3079db1c66d4f6466d61875939ed68974bc338320994fcad","pngs_reviewed":1}
+    ],
+    "targeted_coverage": "Real game and stereo renderer with no assisting Xbox, a hidden/unfocused HTML page, both grips held, B held over menu transitions, both sticks, depressed trigger plus select events, nested sound menus, direct resume, ordinary riding, four head poses, system-blurred-session blocking/recovery, hand input and controller-A XR exit.",
+    "regression_coverage": "Actual modern Workshop text/pan/undo/playtest-return and session switching, Portal Network input/travel, and twelve real deliveries plus a first-attempt finish. The existing authored campaign builders and protected persistent fixtures remain unchanged. Editor playtest reopens menus using the actual B shortcut rather than a removed riding panel.",
+    "delivery_result": {"won":true,"tries":1,"deliveries":12,"score":11460,"temporary_finish_credits":1072,"restored_credits":777},
+    "fixture_coverage": "Separate real Three WebGL fixture preserves inside node/classic objects and removes outside objects at ten perspective/eye poses. Mask-disabled rendering and original material restoration pass. This fixture is not a native game journey.",
+    "evidence_limits": "Gamepad, tracking, page visibility and head poses are emulated. Native browser/rendering checks are not physical Quest or Xbox approval. Full delivery traversal uses supported 2D after actual 3D inspection. Complete XR chapters and end-to-end video review are not claimed."
+  },
+  "retained_failures": [
+    {"scope":"Original reported regression","baseline_record":"xr-recovery-preimage.json","old_input_tests_failed":8,"old_input_tests_total":9,"note":"The blocked non-visible-session case already passed. Older stationary-head acceptance did not establish physical usability."},
+    {"scope":"Workspace test addressed removed persistent controller panel","source_sha":"72fa1c6da154881781cff5393f697bd5aba79a4d","run_id":35402867061,"ar_job":105786343437,"ar_artifact_id":10571433510,"ar_artifact_sha256":"99de07dfecbab3e1ee2b18603cb35a9d04a3805818a5673b9e64d5a9f8b26a9d","vr_job":105786343562,"vr_artifact_id":10571204751,"vr_artifact_sha256":"9f27868fd4352eaa66b48c8956c50df9743ea9de7071c94734b481f85e0897a9","correction":"After 3D playtest, require the panel absent, press the actual tracked B, require pause/topPanel, then access All menus. No menu, editor or save assertion was suppressed."},
+    {"scope":"Remote test timing overshot eleventh delivery sample","source_sha":"72fa1c6da154881781cff5393f697bd5aba79a4d","run_id":35402867061,"job_id":105786343560,"artifact_id":10571720050,"sha256":"567fe7a609afd830e30c13e339c295409a110c842c77907b093c7bd315ea27b2","observation":"Ten genuine deliveries, one attempt, no page errors; the waterwheel-overlook approach sample was beyond the declared coasting window.","correction":"Schedule the same ordinary throttle-release, four-frame coast and two-frame sampled B hold coherently in browser animation frames. Preserve the original forward-window, packet collision, twelve-delivery, finish and save requirements; no runtime physics or player state changes. Three isolated harness tests separately protect input timing and timeout behavior."}
+  ],
+  "publication": null,
+  "preservation": {"campaign_routes":8,"physics_changed":false,"saves_cleared":false,"save_migration":false,"new_framework":false,"original_material_identities":true,"classic_material_fields_restored":true,"canal_choice_branch_preserved":true},
+  "runtime_hashes": {"xr-play.js":"fd10f1997bf834e5bc90bede5456d7668807253b4557879d315d40c2468ee72a","xr-world-aperture.mjs":"29d7cdf0072da1358ffe11d060d780acd289ccb73b917519cd6f65767d690201"},
+  "open_gates": ["Normal expected-head merge","33-file public match","Public AR and VR recovery replays","Physical Quest 3 user retest","Passthrough and controller/hand ergonomics","Headset readability and comfort","Long-session resource and performance measurement"],
+  "handoff": "../RESUME-HERE.md",
+  "next_content": "Only after the repair is published, reconcile the preserved Canal Choice movement-first branch; this repair does not promote the chapter or close physical-device gates."
+}

@@ -1,0 +1,61 @@
+name: Sky Cycle XR public recovery
+on:
+  push:
+    branches: ['sky-cycle/xr-menu-recovery-0.26.1']
+    paths: ['.github/workflows/sky-cycle-xr-public-retry.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: f815aee0c39e715a9e65e5403238728c4a882a30
+          persist-credentials: false
+      - name: Compare the unchanged accepted runtime against the latest combined public deployment
+        env:
+          ARTIFACT_DIR: /tmp/recovery-public
+        run: |
+          git rev-parse HEAD
+          python mario-maker-clone/svgn-paper-route/tests/xr-workspace-published.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: xr-public-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/recovery-public/
+          retention-days: 30
+          if-no-files-found: error
+  live:
+    needs: published
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [ar, vr]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: f815aee0c39e715a9e65e5403238728c4a882a30
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Real public game with emulated headset visibility, buttons and head poses
+        env:
+          XR_MODE: ${{ matrix.mode }}
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/recovery-live
+        run: |
+          git rev-parse HEAD
+          python mario-maker-clone/svgn-paper-route/tests/xr-recovery-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: xr-live-${{ matrix.mode }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: /tmp/recovery-live/
+          retention-days: 30
+          if-no-files-found: error
