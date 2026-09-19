@@ -1,10 +1,11 @@
 {
-  "version": "0.9.0",
+  "version": "0.10.0",
   "name": "Prism Current",
   "date": "2026-09-18",
   "engine": "A-Frame 1.8.0",
-  "edition": "Undertow",
-  "scope": "Main rhythm rework: new default 132 BPM track, 286-note Pulse and 164-note Flow, eight directions without dots, playable pool rhythm venue in browser and VR, chart shortcut in headset, immediate Play above the catalog. Original songs and all saves retained.",
+  "edition": "River Prism",
+  "scope": "Main playable Duck Armada and Mothership Channel: approaching/rising water, catapult fruit, boats, bombs, toy aircraft, trigger lasers, grip shields, oriented blocks/reflections, boss health and dodge movement. Original rhythm entry and all previous saves retained at rhythm.html.",
   "checklist": "AAA_CHECKLIST.md",
-  "mission": "water-mission/index.html"
+  "mission": "water-mission/index.html",
+  "classic": "rhythm.html"
 }
