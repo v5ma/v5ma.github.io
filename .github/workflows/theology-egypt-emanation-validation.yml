@@ -15,7 +15,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -28,30 +28,42 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Read the exact prior edition for preservation checks
-        run: git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
-      - name: Verify deterministic research pages, bounded scope and preserved source
+      - name: Read the exact prior editions for preservation checks
+        run: |
+          git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
+          git fetch --no-tags --depth=1 origin fc195b79f293c1bd7b983c8788c970df98d8e1fc
+      - name: Verify deterministic research pages and both preservation scopes
         run: |
           set -o pipefail
-          mkdir -p theology-test-output/egypt-emanation
+          mkdir -p theology-test-output/egypt-emanation/moses-mammon
           node theology-wiki/comparative-religion/egypt-emanation/integrate.cjs
+          node theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/integrate.cjs
           node theology-wiki/comparative-religion/build.cjs
           git diff --exit-code -- theology-wiki/
           python theology-wiki/comparative-religion/egypt-emanation/check_pages.py | tee theology-test-output/egypt-emanation/structure.json
           python theology-wiki/comparative-religion/egypt-emanation/check_scope.py | tee theology-test-output/egypt-emanation/scope.json
-          node --test theology-wiki/comparative-religion/egypt-emanation/research.test.cjs | tee theology-test-output/egypt-emanation/contracts.log
+          python theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/check_scope.py | tee theology-test-output/egypt-emanation/moses-mammon/scope.json
+          node --test theology-wiki/comparative-religion/egypt-emanation/research.test.cjs theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/research.test.cjs | tee theology-test-output/egypt-emanation/contracts.log
       - name: Install browser
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Exercise actual new pages and reciprocal main-reader navigation
+      - name: Exercise actual parent pages and preserved main-reader navigation
         run: python theology-wiki/comparative-religion/egypt-emanation/browser_checks.py --report theology-test-output/egypt-emanation/browser.json --screenshots theology-test-output/egypt-emanation/native
-      - name: Compare actual public bytes after deployment
+      - name: Exercise all six new pages and both main-article return routes
+        run: python theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/browser_checks.py --report theology-test-output/egypt-emanation/moses-mammon/browser.json --screenshots theology-test-output/egypt-emanation/moses-mammon/native
+      - name: Compare actual public parent bytes after deployment
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: python theology-wiki/comparative-religion/egypt-emanation/hosted_checks.py --report theology-test-output/egypt-emanation/hosted-content.json
-      - name: Repeat the browser checks at the actual public origin
+      - name: Compare actual public child content and return routes
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/hosted_checks.py --report theology-test-output/egypt-emanation/moses-mammon/hosted-content.json
+      - name: Repeat parent browser checks at the actual public origin
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: python theology-wiki/comparative-religion/egypt-emanation/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/egypt-emanation/hosted-browser.json --screenshots theology-test-output/egypt-emanation/hosted
+      - name: Repeat all new reader checks at the actual public origin
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/egypt-emanation/moses-mammon/hosted-browser.json --screenshots theology-test-output/egypt-emanation/moses-mammon/hosted
       - uses: actions/upload-artifact@v4
         if: always()
         with:

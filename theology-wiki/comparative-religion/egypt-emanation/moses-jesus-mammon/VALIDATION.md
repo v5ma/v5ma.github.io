@@ -1,0 +1,5 @@
+The first integration run, 35426974881, passed 199 of 201 combined tests and failed two new content checks. It did not commit the generated output. Fourteen source locators named only verse numbers without repeating their already-recorded book/chapter, and the new body-text check expected the phrase shared responsibility that appeared only in surrounding labels. The assertions were not removed.
+
+The downloaded failed-run artifact 10579226801 has SHA-256 13db800fc6714c599c822eef3cc3237d608d867fb837056e0accd63bf86abfb6, verified locally. Its actual contract log and generated source files were inspected. The parent and child structural checks passed separately; a failed combined run is not relabeled as a complete pass.
+
+repair-source-locators.cjs verifies the exact initial JSON hashes, expands the fourteen locators using their existing book/chapter titles, and makes shared responsibility explicit in the relevant argument sentence. It adds no new historical claim and changes no assertion. A subsequent complete run must establish whether integration succeeds. Later native-browser, merge and hosted verification are separate stages, recorded in the pull request.

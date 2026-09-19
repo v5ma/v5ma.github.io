@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "base_commit": "fc195b79f293c1bd7b983c8788c970df98d8e1fc",
+  "parent_generator_original_sha256": "3ed31d7dfc0e8bb0d7e4904f45d77b1f91278aa49b7b74ca884bdbbf7b78489a",
+  "parent_generator_integrated_sha256": "0b13981e2966aa2d093ab309f3da252a0452e3cfb60e7ad5f8bcb9416ddbb1d1",
+  "scope": "Only parent generator navigation, three contextual links, generated HTML/hash report and README; all prior study source prose remains unchanged."
+}
