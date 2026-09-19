@@ -1,17 +1,26 @@
-# River Prism 0.10.0: active production checklist
+# River Prism 0.10.1: active production checklist
 
 The owner's latest direction is the main-game rhythmic action toybox: a rising river, duck catapults, airborne fruit, bombboats, aircraft, saber lasers, grip shields and mothership combat. This is not a separate exploration detour. The complete earlier board is preserved at AAA_CHECKLIST-v090.md, with its previous archives and open reliability/accessibility tasks. No historical testing count constitutes owner approval of music or fun.
 
 Implementation owner: Development. Creative acceptance: Micah. Physical-device acceptance: an actual Quest/Xbox/touch tester, not browser emulation. P0 means a blocker for the announced release scope; P1 means next product refinement; P2 means later expansion.
+
+## XR menu recovery after the owner's blocked-start report
+
+RV-04 was reopened by the owner's actual AR playtest: the 0.10.0 menu did not start through controller rays or buttons. Its earlier emulator used an ordinary inputSources array, hiding a real WebXR collection incompatibility. XR_MENU_HOTFIX.md is the scoped diagnosis and regression contract.
+
+- [x] RV-04-R / P0 implementation. Convert the live controller collection, pick the rendered menu's UV, share drawing/picking rectangles, show hover/cursor feedback, and provide thumbstick/A-X selection plus direct B/Y start/resume. Keep the menu usable without grip poses; retain the two-controller requirement for combat.
+- [ ] RV-04-DEVICE / P0 owner retest. Confirm actual Quest AR start, VR start, pause/resume, recenter, exit, and both ray and thumbstick/button paths. An emulated pass does not close this box.
+
+The unchanged main-game rules and prior saved data remain protected. Source CI, deployed bytes and the owner's device report must be recorded separately. The repair's PR/publication receipt is authoritative for its test results; PR #193 documents the initial 0.10.0 delivery, not this repair.
 
 ## Current playable slice
 
 - [x] RV-01 / P1. Two approximately 89-second beat-authored chapters: Duck Armada and Mothership Channel. River tide and enemy families change across four phases; the final boss must actually be defeated before a clear is recorded.
 - [x] RV-02 / P0. Eight-direction swept fruit cuts, aimed lasers, oriented projectile-blocking shields, timed stronger reflections, damage, dodging and explicit escape/failure results use one gameplay state.
 - [x] RV-03 / P1. Original merged toy models, approaching analytic water, foam, caustic-like patterns and capped effects. Camera is not moved by rising water. These effects are not ray-traced fluid optics.
-- [x] RV-04 / P0. Desktop and standard-controller combat; tracked XR saber/laser/shield input; accessible spatial pause/menu controls; hand pinch menu input. Full hand-tracked combat is not included.
+- [x] RV-04 / P0 implementation, device approval reopened above. Desktop and standard-controller combat; tracked XR saber/laser/shield input; spatial pause/menu controls; hand pinch menu input. Full hand-tracked combat is not included.
 - [x] RV-05 / P0. Separate River record namespace; original rhythm entry and release copied to rhythm.html and rhythm-release.json; all older scripts/music and save readers retained.
-- [ ] RV-06 / P0 per release. Exact-source native acceptance must complete both chapters, exercise gamepad and tracked controls, preserve old saves and verify deployed hashes. Results belong in PR #193, not inferred from these implementation boxes.
+- [ ] RV-06 / P0 per release. Exact-source native acceptance must complete both chapters, exercise gamepad and tracked controls, preserve old saves and verify deployed hashes. Results belong in the release's PR and receipt, not inferred from these implementation boxes.
 - [ ] RV-HUMAN / P1. Owner play/listening feedback, unfamiliar-player readability and physical Quest/Xbox/touch comfort/performance. Neither automated success nor a screenshot closes this gate.
 
 ## Acceptance and limits
@@ -26,6 +35,6 @@ Maintain no forced XR camera motion, readable projectile telegraphs, bounded rea
 
 The previous A-03 save export/recovery, authored accessible charts, remapping, audio calibration, human onboarding review, music approval, hardware thermal/latency measurements and full platform matrix remain open under AAA_CHECKLIST-v090.md and its linked detailed archives. Retain old formats; do not clear storage or reset sibling projects.
 
-After this first River playtest, prioritize the owner's observed problems in cut readability, enemy variety, sound and controller feel before adding another side mode. Additional chapter-specific compositions, deeper enemy patterns and measured performance improvements depend on that feedback.
+Prioritize the owner's observed problems in cut readability, enemy variety, sound and controller feel before adding another side mode. Additional chapter-specific compositions, deeper enemy patterns and measured performance improvements depend on that feedback.
 
-F-02 source tests, F-03 normal merge/deployment with exact served-file hashes, and F-04 live gameplay plus scoped rollback are recurring obligations for every release. PR #193 records their actual state. Revert only this release on current master to roll back; do not reset unrelated game work.
+F-02 source tests, F-03 normal merge/deployment with exact served-file hashes, and F-04 live gameplay plus scoped rollback are recurring obligations for every release. Revert only the scoped release on current master to roll back; do not reset unrelated game work.

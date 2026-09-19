@@ -3,7 +3,7 @@ on:
   pull_request:
     paths: ['prism-current/**', '.github/workflows/prism-river.yml']
   push:
-    branches: [master]
+    branches: [master, fix/prism-xr-menu-v0101]
     paths: ['prism-current/**', '.github/workflows/prism-river.yml']
   workflow_dispatch:
 permissions:
@@ -14,7 +14,7 @@ concurrency:
 jobs:
   river:
     runs-on: ubuntu-latest
-    timeout-minutes: 16
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,7 +31,7 @@ jobs:
           python prism-current/tests/verify.py
           node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
       - name: Match the actual published game
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           python - <<'PY'
           import json,urllib.request,hashlib,time
@@ -51,9 +51,20 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Reproduce old device-list failure and verify AR and VR menu input
+        env:
+          PRISM_URL: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && 'https://v5ma.github.io/prism-current/' || 'http://127.0.0.1:4173/prism-current/' }}
+          RIVER_XR_BEFORE: /tmp/river-xr-before.js
+        run: |
+          git fetch --depth=1 origin 8b709a023660f8c8df6f1485eb487a8dea75ea85
+          git show FETCH_HEAD:prism-current/river/xr.js > /tmp/river-xr-before.js
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/river-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 360 python -u prism-current/tests/river-xr-menu.py
       - name: Two full battles and tracked input paths
         env:
-          PRISM_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io/prism-current/' || 'http://127.0.0.1:4173/prism-current/' }}
+          PRISM_URL: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && 'https://v5ma.github.io/prism-current/' || 'http://127.0.0.1:4173/prism-current/' }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/river-http.log 2>&1 &
           SERVER=$!
@@ -63,6 +74,7 @@ jobs:
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/tested-commit.txt
+          git diff --exit-code
           tar czf test-output/source.tgz prism-current
       - uses: actions/upload-artifact@v4
         if: always()

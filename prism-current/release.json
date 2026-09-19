@@ -1,10 +1,10 @@
 {
-  "version": "0.10.0",
+  "version": "0.10.1",
   "name": "Prism Current",
-  "date": "2026-09-18",
+  "date": "2026-09-19",
   "engine": "A-Frame 1.8.0",
   "edition": "River Prism",
-  "scope": "Main playable Duck Armada and Mothership Channel: approaching/rising water, catapult fruit, boats, bombs, toy aircraft, trigger lasers, grip shields, oriented blocks/reflections, boss health and dodge movement. Original rhythm entry and all previous saves retained at rhythm.html.",
+  "scope": "XR menu hotfix: native-shaped input source lists, rendered-panel UV picking and hover cursors, thumbstick/A-X selection, B-Y start/resume, native select events, and translated/yawed stage tests. Gameplay and save formats are unchanged.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html"
