@@ -10,13 +10,13 @@ OUT=Path('test-output/freefield-'+VIEW+'-'+KIND);OUT.mkdir(parents=True,exist_ok
 checks=[];errors=[];console=[]
 def check(value,message):
  assert value,message
- checks.append(message);print('PASS',message,flush=True)
+ checks.append(message);print('PASS',message,flush=True);(OUT/'progress.json').write_text(json.dumps({'checks':checks,'view':VIEW,'kind':KIND,'complete':False},indent=2))
 with sync_playwright() as pw:
  opts={'headless':True,'args':['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}
  if os.getenv('CHROMIUM_PATH'):opts['executable_path']=os.environ['CHROMIUM_PATH']
  browser=pw.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':960,'height':640},service_workers='block')
  ctx.add_init_script(Path('rainward/tests/quest-device-mock.js').read_text())
- ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,cinematic:false,scanned:false,detailedHumans:false}));")
+ ctx.add_init_script("localStorage.setItem('svgn.rainward.v1.settings',JSON.stringify({mute:true,low:true,scanned:false,cinematic:false,detailedHumans:false}));")
  page=ctx.new_page();page.set_default_timeout(60000)
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:console.append(m.text) if m.type=='error' else None)
  def wait(q):page.wait_for_function(q)
@@ -42,14 +42,17 @@ with sync_playwright() as pw:
   if KIND=='controllers':pulse('right',0)
   else:pinch(True);frames(2);pinch(False);frames(3)
  def select(id):
-  for _ in range(16):
-   if page.evaluate('Rainward.snapshot().xr.panelPage')==0:break
-   click_row('prev')
-  for _ in range(30):
-   rows=page.evaluate('Rainward.snapshot().xr.panelRows.map(r=>r.id)')
-   if id in rows:click_row(id);return
-   click_row('next')
-  raise AssertionError('Unreachable native XR row '+id+' '+str(rows))
+  # Use a control already visible on this page (especially the Exit toolbar).
+  # Otherwise discover reachable pages with real ray clicks. Rewinding to page
+  # zero before EVERY selection needlessly exceeded the external test timeout.
+  for direction in ('next','prev'):
+   seen=set()
+   while True:
+    visible=page.evaluate('({page:Rainward.snapshot().xr.panelPage,rows:Rainward.snapshot().xr.panelRows.map(r=>r.id)})')
+    if id in visible['rows']:click_row(id);return
+    if visible['page'] in seen:break
+    seen.add(visible['page']);click_row(direction)
+  raise AssertionError('Unreachable native XR row '+id+' '+str(visible['rows']))
  try:
   page.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward')
   initial=page.evaluate('Rainward.snapshot()');check(initial['freefield']['freeStride'] and initial['freefield']['footsteps']==0,'New defaults enable Free Stride and silence repetitive player footsteps')
@@ -86,7 +89,10 @@ with sync_playwright() as pw:
    pause();select('resume');wait('Rainward.mode==="play"');away();frames()
    if VIEW.startswith('diorama'):
     page.evaluate('''async()=>{const T=await import('./vendor/three.module.js'),x=Rainward.snapshot().xr.diorama,a=x.anchor,s=questDevice.sources[1],d=new T.Vector3(a.x,a.y+.36,a.z-.2).sub(new T.Vector3(s.position.x,s.position.y,s.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),d);s.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''')
-   old=page.evaluate('Rainward.state.player.mag');pulse('right',0);wait('Rainward.state.player.mag<'+str(old));pulse('right',5);wait('Rainward.state.player.mag===6&&!Rainward.state.player.reload')
+   old=page.evaluate('Rainward.state.player.mag');page.evaluate("questDevice.button('right',0,true)")
+   try:page.wait_for_function('(mag)=>Rainward.state.player.mag<mag',arg=old,timeout=10000)
+   finally:page.evaluate("questDevice.button('right',0,false)")
+   frames(3);pulse('right',5);wait('Rainward.state.player.mag===6&&!Rainward.state.player.reload')
    check(True,'RT fires finite rounds and B reloads using the direct Quest bindings')
   else:
    pause();check(page.evaluate('Rainward.snapshot().xr.menuVisible'),'An open left palm summons the menu when it is needed')
