@@ -60,6 +60,7 @@
     if(state.selectReady&&edge('draw',0)&&state.hover>=0){const type=slots[state.hover].type;if(M.available(g.game,type)){g.setType(type);C.emit(g.game,'focus-select',{arrow:type,physical:true});}else{g.toast('That arrow is empty or locked. Release and try another.');}state.prev=buttons;return;}
     state.prev=buttons;return;
    }
+   if(g.wayfinder?.input(dt,head,bow,hand,buttons,edge)){state.prev=buttons;return;}
    if(edge('bow',interactIndex)&&!g.latch.drawing){g.interact();if(g.paused){state.prev=buttons;return;}}
    const ax=hand.axes.length>=4?hand.axes[2]:hand.axes[0]||0;
    if(Math.abs(ax)<.25)g.snapArmed=true;else if(Math.abs(ax)>.7&&g.snapArmed){g.turn(ax>0?-Math.PI/6:Math.PI/6);g.snapArmed=false;g.cancel();return;}
