@@ -7,13 +7,18 @@ permissions:
   contents: read
 jobs:
   model:
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 12
+          fetch-depth: 24
           persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            level-design-library
+            .github/workflows
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -38,7 +43,7 @@ jobs:
           path: native-model.txt
           retention-days: 30
   browser:
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
       fail-fast: false
@@ -61,7 +66,20 @@ jobs:
         env:
           SUITE: ${{ matrix.suite }}
         run: |
-          python -m http.server 8765 > server.log 2>&1 &
+          python -u -m http.server 8765 --bind 127.0.0.1 > server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          python - <<'PY'
+          import time,urllib.request
+          for attempt in range(30):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8765/svgn-planet/',timeout=2) as r:
+                      assert r.status==200
+                  break
+              except Exception:
+                  if attempt==29:raise
+                  time.sleep(1)
+          PY
           if [ "$SUITE" = main ]; then python svgn-planet/main-browser.py; else python svgn-planet/main-navigation-browser.py; fi
       - uses: actions/upload-artifact@v4
         if: always()
