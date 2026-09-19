@@ -19,3 +19,9 @@ test('Locked exit remains an informative interaction, not a win button',()=>{
  for(const m of s.world.pipeline.modules){path(s,m.slot?s.world.pipeline.connector:[m.front]);path(s,m.paths.bypass.slice(1));}
  const exit=s.world.pipeline.controls.find(c=>c.kind==='exit');walk(s,exit.p[0],exit.p[2]);const c=W.current(s,C,P,R);a.equal(c.kind,'exit');a.match(W.status(s,c),/locked/);a.equal(C.interact(s),true);a.equal(s.phase,'playing');a.equal(s.sectors,0);
 });
+
+test('Older Endless exit keeps its warden requirement, not a relay requirement',()=>{
+ const s=C.create('BELL-01',1);
+ const c={kind:'exit',label:'Defeat the remaining wardens to open this exit'};
+ a.equal(W.status(s,c),c.label);
+});

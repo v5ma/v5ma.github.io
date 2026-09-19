@@ -27,6 +27,6 @@
   if(s.chapter)return {text:R.objective(s),detail:s.chapter.bellRung?'Return to the refuge and interact.':'Ring the bell by shooting or nearby interaction.',point:s.chapter.bellRung?R.controls.refuge.p:R.controls.bell.p};
   return {text:s.portalReady?'EXIT READY / choose a blessing there':'Defeat the wardens to open the beacon',detail:'Use the exit to proceed to the next sector.',point:s.portalReady?[s.world.rooms[s.world.exit].x,0,s.world.rooms[s.world.exit].z-3.8]:null};
  }
- function status(s,c){if(!c)return '';if(c.kind==='exit'&&!s.portalReady)return s.targets.size+'/'+s.world.targets.length+' signals restored / exit locked';return c.label;}
+ function status(s,c){if(!c)return '';if(s.pilgrimage&&c.kind==='exit'&&!s.portalReady)return s.targets.size+'/'+s.world.targets.length+' signals restored / exit locked';return c.label;}
  const api=Object.freeze({current,aimed,goal,status});root.WayfinderModel=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

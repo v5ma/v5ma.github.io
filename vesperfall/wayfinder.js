@@ -45,9 +45,9 @@
     const a=message?state.messageTitle:M.status(s,c),b=message?state.message:g.xr?(g.goldwind.enabled()?side+' '+binding+': use / point + '+other+' grip: use':'Bow-hand lower button: use'):'Xbox A / keyboard E: use';
     paint(panel,a,b,message?objective.text:c.kind==='exit'&&!s.portalReady?objective.detail:'Shutters, relays and exits use the same interaction.','text');
    }
-   // Attach guidance below the visible palm panel, never to the tracked camera.
+   // Put guidance above/beyond the visible palm, still hand-anchored, not a fixed camera HUD.
    const base=g.ritual.panel.mesh;wrist.mesh.visible=live&&g.xr&&base.visible;
-   if(wrist.mesh.visible){wrist.mesh.position.copy(base.position).add(new T.Vector3(0,-.19,0).applyQuaternion(base.quaternion));wrist.mesh.quaternion.copy(base.quaternion);paint(wrist,objective.text,objective.detail,direction(objective.point)+' / pause: Objectives and Missions','wristText');}
+   if(wrist.mesh.visible){wrist.mesh.position.copy(base.position).add(new T.Vector3(other==='right'?-.12:.12,.24,-.32).applyQuaternion(base.quaternion));wrist.mesh.quaternion.copy(base.quaternion);paint(wrist,objective.text,objective.detail,direction(objective.point)+' / pause: Objectives and Missions','wristText');}
   };
   const drawMenu=g.drawMenu.bind(g);g.drawMenu=function(){drawMenu();if(!g.xrPanel||!g.game.pilgrimage||g.arMode)return;const info=M.goal(g.game,P,R),{ctx,texture}=g.xrPanel;ctx.fillStyle='#142230';ctx.fillRect(35,100,954,76);ctx.fillStyle='#eee1be';ctx.font='25px Arial';ctx.textAlign='center';ctx.fillText(info.text,512,127,915);ctx.font='20px Arial';ctx.fillText(g.game.phase==='reward'?info.detail:info.detail+' '+direction(info.point),512,164,920);texture.needsUpdate=true;};
   const remove=g.remove.bind(g);g.remove=function(){for(const p of[panel,wrist]){p.mesh.geometry?.dispose();p.mesh.material?.map?.dispose();p.mesh.material?.dispose();p.mesh.removeFromParent();}remove();};
