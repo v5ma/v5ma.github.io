@@ -1,12 +1,61 @@
-name: Theology Egyptian Seed integration (completed)
-# Successful integration run 35425493673; generated output saved as 0463cdcd050bfd99abe2280589a1a39c36916dfa.
+name: Theology one-shot Moses Jesus Mammon integration
 on:
-  workflow_dispatch:
+  push:
+    branches: ['theology/moses-jesus-mammon-20260918']
+    paths:
+      - 'theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/**'
+      - '.github/workflows/theology-egypt-emanation-integration.yml'
 permissions:
   contents: read
 jobs:
-  completed:
-    if: ${{ false }}
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/moses-jesus-mammon-20260918'
     runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      INTEGRATED: '1'
     steps:
-      - run: echo 'The Egyptian Seed integration is complete. Further edits require a new reviewed change.'
+      - uses: actions/checkout@v4
+        with:
+          ref: theology/moses-jesus-mammon-20260918
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read both preserved publication baselines
+        run: |
+          git fetch --no-tags --depth=1 origin e26d07ab5dc4e0865705a0de635c5f7bbed9f433
+          git fetch --no-tags --depth=1 origin fc195b79f293c1bd7b983c8788c970df98d8e1fc
+      - name: Generate navigation and check exact source preservation
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/egypt-emanation/moses-mammon
+          node theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/integrate.cjs
+          node theology-wiki/comparative-religion/build.cjs
+          git add theology-wiki/comparative-religion/egypt-emanation/
+          python theology-wiki/comparative-religion/egypt-emanation/check_pages.py | tee theology-test-output/egypt-emanation/moses-mammon/parent-structure.json
+          python theology-wiki/comparative-religion/egypt-emanation/check_scope.py | tee theology-test-output/egypt-emanation/moses-mammon/parent-scope.json
+          python theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/check_scope.py | tee theology-test-output/egypt-emanation/moses-mammon/scope.json
+          node --test theology-wiki/tests/research.test.cjs theology-wiki/comparative-religion/comparative.test.cjs theology-wiki/comparative-religion/egypt-emanation/research.test.cjs theology-wiki/comparative-religion/egypt-emanation/moses-jesus-mammon/research.test.cjs | tee theology-test-output/egypt-emanation/moses-mammon/contracts.log
+      - name: Commit only validated nested research output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theology-wiki/comparative-religion/egypt-emanation/
+          if git diff --cached --name-only | grep -Ev '^theology-wiki/comparative-religion/egypt-emanation/'; then exit 1; fi
+          git diff --cached --quiet && exit 0
+          git commit -m 'Generate Moses Jesus Mammon studies and reciprocal navigation after preservation tests'
+          git push origin HEAD:refs/heads/theology/moses-jesus-mammon-20260918
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-moses-mammon-integration
+          path: |
+            theology-test-output/egypt-emanation/moses-mammon/
+            theology-wiki/comparative-religion/egypt-emanation/
+          if-no-files-found: error
