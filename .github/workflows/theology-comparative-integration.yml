@@ -1,0 +1,12 @@
+name: Theology comparative integration (completed)
+# The tested integration was committed by run 35424255783. No continuing writer is enabled.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The comparative-religion integration is complete. Later content changes require a new reviewed change.'

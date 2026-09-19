@@ -13,7 +13,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 ## Begin with an argument
 
-[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.
 
 [[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
@@ -43,7 +43,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]: How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.
 
-[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.
 
 [[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
 

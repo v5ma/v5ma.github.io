@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "counts": {
+    "studies": 9,
+    "directory": 36,
+    "claims": 20,
+    "unverified_quotations": 6,
+    "sources": 67,
+    "study_words": 5517
+  },
+  "files": [
+    {
+      "path": "sovereignty-and-adversaries.html",
+      "sha256": "e562fc008f55753393fdf280eba4d7c6a8a94321dd351e61783943c07b19c205"
+    },
+    {
+      "path": "maimonides-and-mystical-continuities.html",
+      "sha256": "46f88dd578a9ee2db8f3ff4406bb876a149937a62dcffdf94d04446c94a57bf3"
+    },
+    {
+      "path": "iranian-and-greek-contact.html",
+      "sha256": "4d5b656f31278d2ba900cf3316bc51c49064f30145b311bbfe90fbbab31ec05a"
+    },
+    {
+      "path": "mandaean-comparisons.html",
+      "sha256": "ab3d5d5d936476947f05643da80a5a923c9da61f587c5e53c17a5fd10b511f3e"
+    },
+    {
+      "path": "nag-hammadi-and-ritual.html",
+      "sha256": "fdd5939986dc013644843eed7c8b1e59455c348f198bdab9968ed2b8f597788d"
+    },
+    {
+      "path": "shared-repertoire.html",
+      "sha256": "8cae8924508bfa15cd0ce0e258cba42da5863149ef9c11ddd0e6a5bd990e8aca"
+    },
+    {
+      "path": "jewish-and-christian-boundaries.html",
+      "sha256": "1986d4f91fe479c6e39f4e273435ca9b2384f892441349db9a142e325f071133"
+    },
+    {
+      "path": "manichaeism-and-prophetic-lineages.html",
+      "sha256": "c7ef6bb90f3dc80ef295988092cb16927cd55e45036204fb6f6aff3867ef9911"
+    },
+    {
+      "path": "encyclopedia-method.html",
+      "sha256": "68cb1964fc42ae05a869527335690e2b5b8cfea63fbade2121841422fc5794c2"
+    },
+    {
+      "path": "index.html",
+      "sha256": "e33bd156e3f05edf5f0085128bc1f818dd187f5d34d04def49b66cbf35d560bc"
+    },
+    {
+      "path": "directory.html",
+      "sha256": "ffb3a05562d1210fa1457ea0606767437359d0dea3428dea59c8d2779b5bc176"
+    },
+    {
+      "path": "claim-audit.html",
+      "sha256": "f8332d02cfe87ea55a2d2a0029f1a5a2402e63d83cbaf5043a1b8ac706ea2562"
+    },
+    {
+      "path": "sources.html",
+      "sha256": "033f3fa86a8f385a7532429fb0c7bbdc80c6f692a9fca86417b2bd270c1494b2"
+    },
+    {
+      "path": "index.json",
+      "sha256": "b5fdc670879da74af9bfdbe784bcf66403aed68787f640da62a12ef6a8ac58ef"
+    },
+    {
+      "path": "READING.md",
+      "sha256": "526c6aef4a00a526cc2f06dcdbbf3c78d2ffe03e9c6d256b3d786ac2fcf61e08"
+    }
+  ]
+}

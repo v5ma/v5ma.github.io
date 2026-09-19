@@ -13112,10 +13112,10 @@
     "slug": "apocalyptic-repair-theology",
     "title": "Apocalyptic Repair Theology",
     "category": "apocalypse",
-    "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
+    "summary": "Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.",
     "art": "riders",
     "kind": "Developed article",
-    "updated": "2026-09-06",
+    "updated": "2026-09-18",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "externalSources": [
       "luke-10-depth",
@@ -13160,7 +13160,7 @@
         "sha256": "57995e5a57f216d127ed84591c465d944a8d307c36b92cc32c3676f49a5e382a"
       }
     ],
-    "readMinutes": 8,
+    "readMinutes": 14,
     "related": [
       "early-vs-later-gnosticism",
       "antichrist-as-a-pattern-of-conduct",
@@ -13169,6 +13169,7 @@
       "religion-for-conscious-robots",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
+      "sacred-inheritance-and-rival-continuations",
       "jewish-apocalyptic-repair-timeline",
       "image-collection",
       "gnosticism-and-temple-trauma",
@@ -13855,9 +13856,10 @@
       "god-and-our-models-of-god",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 15,
+    "backlinkCount": 16,
     "backlinks": [
       "home",
+      "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
       "god-and-our-models-of-god",

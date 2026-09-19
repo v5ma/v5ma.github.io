@@ -1,6 +1,6 @@
 {
   "schema": "theology-listening-library/v1",
-  "version": "2026.09.18-identity-agency-scarcity-1",
+  "version": "2026.09.18-comparative-religion-1",
   "policy": "One research foundation, several ways to encounter it. Full article narration is distinct from first-person episode scripts. Synthetic narration is not an author voice recording or a recovered quotation. The separate XR runtime and private SAN manuscript are not included.",
   "articles": [
     {
@@ -367,7 +367,7 @@
     {
       "slug": "apocalyptic-repair-theology",
       "title": "Apocalyptic Repair Theology",
-      "summary": "How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.",
+      "summary": "Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.",
       "category": "apocalypse",
       "kind": "Developed article",
       "chapters": [
@@ -388,12 +388,12 @@
         }
       ],
       "source": "content/developed/apocalyptic-repair-theology.md",
-      "sourceSha256": "0a21621c176be26dce1bca05ae2500c9fb08c7c47b8aef183f84c5024ee14757",
+      "sourceSha256": "4a8cac5805dd9bee173bf2c2ba9a46814e6fbc9eb70bdeecdf6aa429812d8ea2",
       "narration": "data/listening/apocalyptic-repair-theology.json",
-      "narrationSha256": "c05c70e9bdda19280621548c4f90389ccbe05c1bc218bcbd43d98030b3207210",
+      "narrationSha256": "4a60d2fcdb142eac539a63e7f945d6730a589892529f77c56737b77da6be4780",
       "transcript": "products/transcripts/apocalyptic-repair-theology.txt",
-      "segments": 48,
-      "words": 1201
+      "segments": 73,
+      "words": 2377
     },
     {
       "slug": "god-and-our-models-of-god",

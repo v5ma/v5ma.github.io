@@ -1,4 +1,5 @@
 'use strict';
+if(require('node:fs').existsSync(require('node:path').join(__dirname,'../comparative-religion/revision-receipt.json'))){require('../comparative-religion/verify-preservation.cjs').verify();return;}
 // Explicit extension of the original immutable baseline; previous six declared changes remain pinned.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),manifest=require('./manifest.json'),load=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));

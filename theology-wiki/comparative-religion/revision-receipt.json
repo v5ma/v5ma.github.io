@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "baseline": "eebe9c097f1ac6795a63ccb258a87067f91460c9",
+  "scope": "Exactly the Apocalyptic Repair Theology article and its narration JSON and text transcript. Both previous revision receipts and all other pinned files retain their previous bytes.",
+  "files": {
+    "content/developed/apocalyptic-repair-theology.md": {
+      "before": "0a21621c176be26dce1bca05ae2500c9fb08c7c47b8aef183f84c5024ee14757",
+      "after": "4a8cac5805dd9bee173bf2c2ba9a46814e6fbc9eb70bdeecdf6aa429812d8ea2"
+    },
+    "data/listening/apocalyptic-repair-theology.json": {
+      "before": "c05c70e9bdda19280621548c4f90389ccbe05c1bc218bcbd43d98030b3207210",
+      "after": "4a60d2fcdb142eac539a63e7f945d6730a589892529f77c56737b77da6be4780"
+    },
+    "products/transcripts/apocalyptic-repair-theology.txt": {
+      "before": "41c441b0d5803949816370d66d655fef65ee0837cef018fea1f23c0296a08d71",
+      "after": "8914b9d9e2c82966efb7a8c38b6e5ca40282f14dfc1ef85f6cf7cfd6a819db52"
+    }
+  }
+}
