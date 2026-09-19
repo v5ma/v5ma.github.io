@@ -31,8 +31,10 @@ with sync_playwright() as pw:
    if chapter=='duck-armada':
     p.keyboard.press('KeyP');p.wait_for_function("River.snapshot().phase==='paused'");t=p.evaluate('River.snapshot().time');p.wait_for_timeout(250)
     check(p.evaluate('River.snapshot().time')==t,'Pause freezes music-relative combat and water phases')
-    p.locator('#resume').click();p.wait_for_function("River.snapshot().phase==='playing'");p.mouse.up();p.mouse.move(640,500);p.mouse.down()
+    check(not p.locator('#scene-wrap').evaluate('(e)=>e.hasPointerCapture(1)'),'Pause releases the held canvas pointer before modal interaction')
+    p.mouse.up();p.locator('#resume').click();p.wait_for_function("River.snapshot().phase==='playing'");p.mouse.move(640,500);p.mouse.down()
    p.wait_for_function("River.snapshot().section==='High Tide Airshow'||River.snapshot().section==='Shield Break'||River.snapshot().phase==='failed'",timeout=70000)
+   p.wait_for_function("River.snapshot().water>.3||River.snapshot().phase==='failed'",timeout=5000)
    check(p.evaluate('River.snapshot().water')>.3,chapter+': water advances into a higher gameplay phase')
    p.wait_for_function("['complete','failed','escaped'].includes(River.snapshot().phase)",timeout=65000)
    r=p.evaluate('River.snapshot().result');results[chapter]=r

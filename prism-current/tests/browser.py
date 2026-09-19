@@ -5,7 +5,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];MODE=os.getenv('PRISM_SUITE','desktop');OUT=ROOT/'test-output'/('prism-'+MODE);OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173').rstrip('/');checks=[];errors=[]
-RELEASE=json.loads((ROOT/'prism-current/release.json').read_text())['version']
+RELEASE=json.loads((ROOT/'prism-current/rhythm-release.json').read_text())['version']
 DRIVER=(ROOT/'prism-current/tests/input-driver.js').read_text()
 def check(v,s):
  assert v,s
@@ -22,14 +22,14 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(40000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   if MODE=='desktop':
-   page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click()
-  else:page.goto(BASE+'/prism-current/',wait_until='domcontentloaded')
+   page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click();page.locator('#classic').click()
+  else:page.goto(BASE+'/prism-current/rhythm.html',wait_until='domcontentloaded')
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0');page.evaluate(DRIVER)
   check(snapshot(page)['version']==RELEASE,'The actual A-Frame renderer loads the declared isolated rhythm release')
   page.screenshot(path=str(OUT/'title.png'))
   page.locator('[data-track="first-light"]').click();page.locator('#difficulty').select_option('flow')
   if MODE=='desktop':
-   check(page.url.endswith('/prism-current/index.html'),'The homepage game card opens the playable page')
+   check(page.url.endswith('/prism-current/rhythm.html'),'The homepage game card opens the playable page')
    check(page.locator('#tracks button').count()==5,'All five tracks are selectable')
    check(page.locator('#enter-ar').is_disabled(),'Unsupported AR is not presented as a working mode')
    page.locator('#input').select_option('keys');check(snapshot(page)['input']=='keys','Selecting an input mode preserves the chosen value');page.locator('#start').click();page.wait_for_function('Prism.snapshot().phase==="playing"')

@@ -19,8 +19,8 @@ with sync_playwright() as pw:
  p=c.new_page();p.set_default_timeout(60000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
  try:
   p.goto(BASE+'/test-baseline/prism-current/',wait_until='domcontentloaded');ready(p);p.screenshot(path=str(OUT/'before-studio.png'))
-  p.goto(BASE+'/prism-current/',wait_until='domcontentloaded');ready(p);p.locator('[data-track="first-light"]').click();p.locator('#difficulty').select_option('flow');p.wait_for_function('Prism.component.art.graphics.materialsReady')
-  check(p.evaluate('Prism.snapshot().version')==json.loads((ROOT/'prism-current/release.json').read_text())['version'],'The declared application release loads with the preserved Jewelbox renderer')
+  p.goto(BASE+'/prism-current/rhythm.html',wait_until='domcontentloaded');ready(p);p.locator('[data-track="first-light"]').click();p.locator('#difficulty').select_option('flow');p.wait_for_function('Prism.component.art.graphics.materialsReady')
+  check(p.evaluate('Prism.snapshot().version')==json.loads((ROOT/'prism-current/rhythm-release.json').read_text())['version'],'The declared application release loads with the preserved Jewelbox renderer')
   check(p.evaluate('Prism.component.art.fx.physical.every(m=>m.envMap&&m.transmission>0&&m.clearcoat===1)'),'Cinematic crystal uses real PMREM reflection, transmission and clearcoat')
   p.wait_for_timeout(500);p.screenshot(path=str(OUT/'after-studio.png'))
   check(p.evaluate('Prism.component.art.fx.physical.every(m=>m.dispersion>0&&m.iridescence>0)'),'Spectral dispersion and thin-film iridescence are enabled on the optical materials')

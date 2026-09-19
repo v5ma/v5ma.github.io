@@ -5,6 +5,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-undertow';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.getenv('PRISM_URL','http://127.0.0.1:4173/prism-current/')
+URL=URL.rstrip('/').removesuffix('/index.html').removesuffix('/rhythm.html')+'/rhythm.html'  # Preserve legacy entry; River has its own main-entry suite.
 PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text();checks=[];errors=[];main_snapshot=None;xr_startup_stall=None
 LEGACY={'first-light/flow/keys':{'score':1234,'accuracy':74,'best':11},'tidal-bloom/flow/ar':{'score':2100,'accuracy':82,'best':14}}
 def check(value,text):

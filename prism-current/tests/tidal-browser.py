@@ -6,6 +6,7 @@ import json,os
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'test-output/prism-tidal';OUT.mkdir(parents=True,exist_ok=True)
 URL=os.environ.get('PRISM_URL','http://127.0.0.1:4173/prism-current/')
+URL=URL.rstrip('/').removesuffix('/index.html').removesuffix('/rhythm.html')+'/rhythm.html'  # Preserve legacy entry; River has its own main-entry suite.
 LEGACY={'first-light/flow/keys':{'score':2500,'accuracy':75,'best':16},'first-light/flow/ar':{'score':900,'accuracy':60,'best':8}}
 PAD=(ROOT/'prism-current/tests/standard-pad.js').read_text()
 checks=[]
