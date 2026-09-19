@@ -2,7 +2,7 @@ This is the plain-text counterpart of three studies. Primary evidence, reported 
 
 Gold, Apollo and the god of fortresses
 
-Distinguish a material, an artistic subject, a public representation of authority and an act of worship.
+Reported Apollo imagery, ancient destruction wordplay, distinct dawn figures and the modern interpretive chain, with the limits of each source retained.
 
 The author's proposal and the actual textual references
 
@@ -22,7 +22,7 @@ An identifiable royal-art connection
 
 Versailles describes Louis XIV's use of Apollo as a royal allegory, including a sun chariot, patronage of the arts and the image of a peacemaker. This is a documented example of mythological imagery being used to represent a ruler. It is more specific than a general association between a precious metal and power.
 
-Us Weekly's November 2015 description of Trump's New York residence reports gold and marble decoration, Greek mythological imagery and a Louis XIV-inspired style. A separate 2016 secondary report labels a picture above a fireplace as Apollo and Aurora. Direct access to that latter page failed during this review; its indexed description is retained as an artwork-identification lead, not a recovered catalogue or authenticated statement by the owner.
+The earlier residence reports are now supplemented by Paul Mullins's November 22, 2016 essay, whose photograph caption explicitly identifies a painting of Apollo in his chariot in the penthouse. This provides a named author's attribution, not merely an anonymous image-board label. Mullins also discusses ceiling paintings separately; his caption does not establish that the framed picture and a particular ceiling image are the same work. His essay is a material-culture interpretation, not an endorsement of the Apollo-Antichrist theory. The artwork's maker, medium, acquisition record and the owner's intended religious meaning remain unrecovered.
 
 The meaningful distinction is between a reported visual subject and the significance a later interpreter assigns to it. A mythological picture can be owned, commissioned, displayed, admired or used as a deliberate self-comparison. Those are different claims. None of the consulted residence sources establishes that Trump worships Apollo.
 
@@ -34,7 +34,41 @@ The user also proposes comparisons involving Putin's palaces and other rulers. T
 
 The next evidentiary connection would be a sourced public statement or institutional practice linking an image to an asserted authority or required allegiance. A photographic resemblance is evidence for a visual comparison, not a substitute for those additional records.
 
-Sources: https://ebible.org/engwebp/DAN07.htm ; https://ebible.org/engwebp/DAN11.htm ; https://ebible.org/engwebp/DAN03.htm ; https://ebible.org/engwebp/REV18.htm ; https://ebible.org/engwebp/REV21.htm ; https://periodic-table.rsc.org/element/79/gold ; https://periodic-table.rsc.org/element/76/osmium ; https://en.chateauversailles.fr/news/life-on-estate/restoration-apollo-fountain ; https://www.usmagazine.com/celebrity-news/news/donald-trumps-extravagant-gold-rimmed-nyc-penthouse-is-amazing-pics-20151111/ ; https://www.faceofmalawi.com/2016/11/16/take-a-look-inside-the-president-elects-100-million-trump-tower-penthouse-complete-with-gold-rimmed-candy-bowls-and-ceiling-murals-of-the-greek-gods/ ; https://ktvz.com/politics/cnn-us-politics/2025/03/16/flags-figurines-and-gold-everywhere-trump-transforms-the-oval-office-into-a-gilded-gallery/
+Apollo and destruction: an ancient wordplay, not merely a modern sound-alike
+
+The supplied Apollo-Apollyon comparison has an ancient literary basis that the preceding edition did not examine. In Aeschylus's Agamemnon, Cassandra invokes Apollo and calls him her destroyer, playing on the name and language of destruction. The relevant exchange occurs around Greek lines 1080-1086; the Morshead English version consulted renders the destructive association explicitly. This supports the existence of the wordplay before Christianity, not a new identification of a contemporary person.
+
+Plato's Cratylus, around 404e-406a, discusses the feared destructive sound of Apollo's name while offering other explanations connected with purification, truth, archery and harmony. These competing literary explanations matter. An ancient author can exploit a name's sound without establishing its historical etymology or making every proposed derivation equally correct.
+
+Revelation 9:11 uses Apollyon, conventionally rendered destroyer, alongside the Hebrew name Abaddon. The Greek derives the designation from the language of destroying; the ordinary Greek name of Apollo is Apollon. The Aeschylean and Platonic parallels make an Apollo echo a legitimate literary question. They do not turn the two spellings into identical words or make a possible allusion a demonstrated equation among Apollo, Satan and every beast in Revelation.
+
+Dawn, the Morning Star and a painting's separate figures
+
+For the proposed Aurora comparison, the securely identified reference work is Guido Reni's early-seventeenth-century fresco in Rome. The city's account and Shannon Pritchard's art-historical analysis distinguish Aurora, who precedes the chariot, Apollo, who drives it, and the torch-bearing Phosphorus, a personification of the Morning Star. Those figures should not become one individual merely because the composition connects light and dawn.
+
+Isaiah 14:12's morning-star and son-of-dawn language belongs to a passage introduced in verse 4 as a taunt against Babylon's king. The chapter does not name Eos or Apollo. Relating that Hebrew poetic language to a later classical painting is an intertextual or theological comparison, not a stated identification of the goddess in Isaiah. The Rome fresco's attribution also does not, without an object-level comparison, authenticate the precise artist or subject of every penthouse ceiling.
+
+The estate and forces wording does not name a modern residence
+
+The King James phrase in his estate in Daniel 11:38 should not be converted into a prediction specifically about real estate or a penthouse. The Hebrew expression al-kanno concerns place or station; the consulted translations render it with wording such as in their place or on his station. Similar place-language occurs in the chapter's succession statements. Translation choices require interpretation, but none of this supplies the phrase golden sanctuary in New York.
+
+The word rendered forces in that verse is the plural ma'uzzim, strongholds or fortresses, not a technical expression for kinetic energy. Homer's Iliad 1 does give Apollo a destructive role through plague-bearing arrows, so destructive Apollo imagery is not invented by modern bloggers. That literary association does not identify him as the unnamed god in Daniel. The connection remains an interpretation requiring an additional argument, not a lexical result.
+
+Revelation's fifth and sixth trumpets must remain distinct
+
+The direct naming in Revelation 9:11 identifies Abaddon/Apollyon as the angel of the abyss and king over the locusts. The passage does not explicitly call him Satan, the first beast, or Apollo. Reading those figures together may form part of a theological proposal, but their narrative identities cannot be merged merely by sharing imagery or a destructive role.
+
+The publicly readable Patreon post also connects Apollyon with the two-hundred-million cavalry and the death of a third of humanity. Revelation 9 separates those scenes: the fifth-trumpet locusts are restricted from killing and torment for five months, while the sixth trumpet introduces four released angels and the cavalry. The text does not explicitly say Apollyon commands that second force. Keeping the units distinct makes the interpretive chain inspectable without changing what the commentator actually proposed.
+
+The supplied sources document a published interpretation, not every link's truth
+
+The Patreon post by Sword of the Word Apologetics w/ Zach explicitly connects Trump, Apollo, Apollyon and dawn imagery. It is a primary witness to that commentator's theory. The retrieved header says February 24 without displaying a year, so this record does not invent one. The supplied Reddit discussion likewise contains comments relating the reported decoration to Daniel's fortresses. Neither publication is an artist's catalogue or an account by Trump explaining his worship.
+
+Mullins's caption, the classical name-play, Daniel's gifts and the online interpretation perform different evidentiary jobs. Evidence that one author identifies a picture establishes a reported visual subject. A classical text establishes ancient literary usage. A blogger establishes the circulation of an interpretation. A claim of deliberate cult practice, supernatural descent or prophetic fulfillment does not follow automatically from combining those different kinds of source.
+
+The archived theory can therefore be stated accurately as a chain of proposed associations, some supported by actual ancient language and reported iconography, with the modern religious identification remaining the commentator's conclusion. The next sources needed for the residence claim are a clearly identified object, dated photographs, an artist or decorator record and an attributable explanation of its commissioning. Repetition of the same unattributed label across image boards does not supply independent corroboration.
+
+Sources: https://ebible.org/engwebp/DAN07.htm ; https://ebible.org/engwebp/DAN11.htm ; https://ebible.org/engwebp/DAN03.htm ; https://ebible.org/engwebp/REV18.htm ; https://ebible.org/engwebp/REV21.htm ; https://periodic-table.rsc.org/element/79/gold ; https://periodic-table.rsc.org/element/76/osmium ; https://en.chateauversailles.fr/news/life-on-estate/restoration-apollo-fountain ; https://www.usmagazine.com/celebrity-news/news/donald-trumps-extravagant-gold-rimmed-nyc-penthouse-is-amazing-pics-20151111/ ; https://www.faceofmalawi.com/2016/11/16/take-a-look-inside-the-president-elects-100-million-trump-tower-penthouse-complete-with-gold-rimmed-candy-bowls-and-ceiling-murals-of-the-greek-gods/ ; https://paulmullins.wordpress.com/2016/11/22/the-triumph-of-tackiness-the-materiality-of-trump/ ; https://ktvz.com/politics/cnn-us-politics/2025/03/16/flags-figurines-and-gold-everywhere-trump-transforms-the-oval-office-into-a-gilded-gallery/ ; https://classics.mit.edu/Aeschylus/agamemnon.html ; https://classics.mit.edu/Plato/cratylus.html ; https://ebible.org/engwebp/REV09.htm ; https://biblehub.com/text/revelation/9-11.htm ; https://biblehub.com/greek/623.htm ; https://www.turismoroma.it/en/node/56216 ; https://smarthistory.org/reni-aurora/ ; https://ebible.org/engwebp/ISA14.htm ; https://biblehub.com/text/daniel/11-38.htm ; https://www.theoi.com/Text/HomerIliad1.html ; https://www.patreon.com/posts/antichrist-trump-151583167 ; https://www.reddit.com/r/Christianity/comments/16hpcju/is_djt_the_antichrist/
 
 Images, allegiance and economic participation
 

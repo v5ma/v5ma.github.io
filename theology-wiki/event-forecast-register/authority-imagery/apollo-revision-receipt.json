@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-19",
+  "base_commit": "967ba69021ca644fa1d8186b05a09e34eb403a8b",
+  "plan_sha256": "8685597fe15e6868b818891db4ee775c0d6d23dd76276b926707978a734d428d",
+  "original_artwork_paragraph": "Us Weekly's November 2015 description of Trump's New York residence reports gold and marble decoration, Greek mythological imagery and a Louis XIV-inspired style. A separate 2016 secondary report labels a picture above a fireplace as Apollo and Aurora. Direct access to that latter page failed during this review; its indexed description is retained as an artwork-identification lead, not a recovered catalogue or authenticated statement by the owner.",
+  "preserved_timeline_sha256": "aa9bfabf09e85ac93dd114c5d3181001048cfb42c3a289f39896629f9a404094",
+  "files": {
+    "studies.json": {
+      "before": "02a0572119f1c27e77caebc0e8ef630d335ec3aedf1c65b70c5d57bc1694d869",
+      "after": "ddd77f1d3b72002d786a29367552c9bf364a8a0e3f0601a5e62ab2500f738dbd"
+    },
+    "sources.json": {
+      "before": "e5a6fc4b553a76c9a44f2ae815c66c6ed82597629e244834904cea9ba1bd1385",
+      "after": "b228f54a45e684f47567a1fd79a39cde2088438897b6cb18a7379f6298c002a2"
+    },
+    "records.json": {
+      "before": "4858e9232ab25e749b29627a0cd6438833ef94be353f18aa2197fd3f98fc0ee2",
+      "after": "8c74c9117e49c129830175aabe380aaa8e502f1b24800bcf32cad071049cff1f"
+    },
+    "manifest.json": {
+      "before": "93da4f50de6d540ac4fb9b97aec3c6f32378f0544af4e0bee4a8fc50313d273d",
+      "after": "5a6e79deb0cd299f08dc7df7da2fabfc56ee3fed9975b24ac6205da834393ec1"
+    },
+    "build.cjs": {
+      "before": "277e44af910b82f26961b327fe3e877dd1f0952d28292b11c6bceed752310495",
+      "after": "bbb42353da7ef5e2a01b0bd6b55fb8f0499a3cd22a2a2f8ff92a725720c3f979"
+    },
+    "research.test.cjs": {
+      "before": "83c9d50e255a1e37124125ba52e0b6a80e0215f1a3f9f80e91ad28669a317ca3",
+      "after": "0d39348dc13cfa6072a7a686acad7c3f02171a7ac94e018268eede03099e2812"
+    },
+    "README.md": {
+      "before": "162d1a859368dad55e9519b752a60bf7a0779b72f72d73f4b56b05229f2e8eb0",
+      "after": "b4d80a505c73f72d5a2d7d8c1f9842290588df09dcdcf2581125725108182aa2"
+    },
+    "browser_checks.py": {
+      "before": "a3ab24beace6f273ccd0c32e9dccb179cc0450970f57e1916cb61ac2b24ecfba",
+      "after": "07d97ce5c13f0f11486975a856825c07f634d4b152b8690561ee619bb8e0f43b"
+    },
+    "hosted_checks.py": {
+      "before": "d62feaf82220612743c66a45e5a9fd4b0cb4bac4f247cc28c03de5af087bd551",
+      "after": "43398af10c556df2cdd9fe33e6ac6197e3fadd35bfc8a415049a5d8b52628890"
+    }
+  }
+}
