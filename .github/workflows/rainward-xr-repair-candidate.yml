@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   integrate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 8
     outputs:
       sha: ${{ steps.commit.outputs.sha }}
@@ -52,7 +52,7 @@ jobs:
           retention-days: 14
   render:
     needs: integrate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 24
     permissions:
       contents: read
