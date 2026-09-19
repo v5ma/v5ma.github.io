@@ -1,0 +1,84 @@
+name: Vesperfall Wayfinder candidate
+on:
+  push:
+    branches: [vesperfall-wayfinder-20260919]
+    paths: ['vesperfall/**', '.github/vesperfall-wayfinder-apply.py', '.github/workflows/vesperfall-wayfinder-stage.yml']
+permissions:
+  contents: read
+concurrency:
+  group: vesperfall-wayfinder-candidate
+  cancel-in-progress: true
+jobs:
+  prepare:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: source
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python .github/vesperfall-wayfinder-apply.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          if ! git diff --cached --quiet; then
+            git commit -m 'Wire contextual mechanism grip and visible progression guidance into Goldwind'
+            git push origin HEAD:vesperfall-wayfinder-20260919
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > test-output/source-revision.txt
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wayfinder-model
+          path: test-output/
+  play:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [vr, ar, goldwind]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.source }}
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - env:
+          XR_MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          if [ "$XR_MODE" = goldwind ]; then
+            timeout 1500 python -u vesperfall/tests/goldwind-browser.py | tee test-output/browser.log
+          else
+            timeout 1500 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/browser.log
+          fi
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wayfinder-${{ matrix.mode }}
+          path: test-output/
+          retention-days: 14
