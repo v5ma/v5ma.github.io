@@ -17,7 +17,7 @@ Theology of domination, prophetic warning and collective restoration.
 
 [[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.
 
-[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: How domination and repair can accumulate at the same time, with scriptural comparisons and concrete applications to persons, communities and institutions.
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.
 
 [[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.
 

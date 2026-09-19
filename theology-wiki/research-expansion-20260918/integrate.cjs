@@ -16,12 +16,13 @@ for(const row of manifest.articles){
 }
 const metadata=path.join(root,'editorial/authorial.json'),meta=JSON.parse(fs.readFileSync(metadata));
 if(meta.updated>manifest.edition_date)throw Error('A newer authorial edition requires reconciliation before integration.');
-meta.version=manifest.version;meta.updated=manifest.edition_date;
+const activeVersion=fs.existsSync(path.join(root,'comparative-religion/manifest.json'))?require('../comparative-religion/manifest.json').version:manifest.version;
+meta.version=activeVersion;meta.updated=manifest.edition_date;
 for(const row of manifest.articles){const article=meta.articles.find(a=>a.slug===row.slug);if(!article)throw Error('Missing article metadata');article.summary=row.summary;article.updated=manifest.edition_date;}
 const teacher=meta.articles.find(a=>a.slug==='jesus-teacher-of-righteousness-hypothesis');
 teacher.aliases=[...new Set([...(teacher.aliases||[]),'Earlier-Founder Jesus-Teacher Identity Hypothesis'])];
 fs.writeFileSync(metadata,JSON.stringify(meta,null,2)+'\n');
-const productPath=path.join(root,'editorial/products.json'),products=JSON.parse(fs.readFileSync(productPath));products.version=manifest.version;fs.writeFileSync(productPath,JSON.stringify(products,null,2)+'\n');
+const productPath=path.join(root,'editorial/products.json'),products=JSON.parse(fs.readFileSync(productPath));products.version=activeVersion;fs.writeFileSync(productPath,JSON.stringify(products,null,2)+'\n');
 // Historical tooling must not downgrade a later, explicitly integrated edition.
 const oldPath=path.join(root,'scripture-concordance/integrate.cjs');let old=fs.readFileSync(oldPath,'utf8');
 const before="meta.version='2026.09.17-scripture-concordance-1';meta.updated='2026-09-17';";
