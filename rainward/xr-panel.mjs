@@ -1,3 +1,4 @@
+import {menuControlVisible} from './menu-visibility.mjs';
 /* Native UI actions mirrored onto a ray/pinch-accessible in-world canvas.
  * No DOM Overlay dependency and no screenshots used as buttons. */
 import * as T from './vendor/three.module.js';
@@ -16,7 +17,7 @@ export function createXRPanel(E){
   const mode=E.mode();if(mode!==lastMode){lastMode=mode;if(mode!=='pause'){documentText=null;drawnDocument=null;}page=0;textPage=0;reading=false;mapView=false;release();lastSignature='';}
   const r=root();caption=documentText?.title||(mode==='play'?E.hint():r?.querySelector('h1,h2')?.textContent||mode.toUpperCase());
   if(mode==='play')all=E.actions().map(a=>action(a.label,a.id,a.run));
-  else all=r?[...r.querySelectorAll('button,input,select,summary')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length&&!el.id.startsWith('xr-')).flatMap(el=>{
+  else all=r?[...r.querySelectorAll('button,input,select,summary')].filter(el=>menuControlVisible(el)&&!el.id.startsWith('xr-')).flatMap(el=>{
    if(el.type==='range'||el.tagName==='SELECT')return [-1,1].map(sign=>action((sign<0?'- ':'+ ')+nativeLabel(el),el.id+(sign<0?'-minus':'-plus'),()=>{if(el.tagName==='SELECT')el.selectedIndex=(el.selectedIndex+sign+el.options.length)%el.options.length;else el.value=String(Math.max(Number(el.min)||0,Math.min(Number(el.max)||100,Number(el.value)+sign*(Number(el.step)||1))));el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));},{element:el,disabled:el.disabled}));
    return [action(nativeLabel(el),el.id||el.textContent.trim(),()=>el.click(),{element:el,disabled:el.disabled,held:E.isHeld(el)})];
   }):[];
