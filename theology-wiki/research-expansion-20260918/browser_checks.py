@@ -28,6 +28,9 @@ try:
   targets=[('jesus-teacher-of-righteousness-hypothesis','The Earlier-Founder Jesus-Teacher Identity Hypothesis','An earlier founder and a surviving community'),('divine-will-and-self-authorizing-power','Messiah, divine identity and the discipline of a distinct will','Desire is present, but it is not the final authority'),('ukraine-russia-forecast-record','AI, scarcity and the proposed transition from representation to enforcement','A warning with more than one layer')]
   for slug,new,old in targets:
    page.goto(prefix+'/san-reader.html?page='+slug,wait_until='networkidle');page.wait_for_function('(title)=>document.body.textContent.includes(title)',arg=new);assert old in page.locator('body').inner_text();assert page.locator('a[href*="research-expansion-20260918/index.html"]').count()>0;assert page.evaluate('document.documentElement.scrollWidth <= innerWidth');checks.append('The actual main reader preserves the original body and renders the linked extension at 390px: '+slug)
+  import importlib.util
+  spec=importlib.util.spec_from_file_location('board_peace_checks',HERE/'board-peace-followup/browser_checks.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+  mod.check_followup(browser,page,url,checks)
   assert not errors,errors;checks.append('The tested notebook and main routes produced no page JavaScript errors.');browser.close()
  report.update(status='passed',check_count=len(checks),checks=checks)
 except Exception as e:

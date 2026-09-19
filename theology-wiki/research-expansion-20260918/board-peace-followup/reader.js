@@ -1,0 +1,16 @@
+'use strict';
+(()=>{
+ const get=id=>document.getElementById(id),make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+ function p(parent,label,text){parent.append(make('p',label+text));}
+ function link(label,url){const u=new URL(url,location.href);if(!['http:','https:'].includes(u.protocol))throw Error('Unsupported source protocol');const a=make('a',label);a.href=u.href;return a;}
+ function notes(parent,ids,sources){if(!ids.length)return;const d=make('details');d.append(make('summary','Sources and access scope'));for(const id of ids){const s=sources.get(id);if(!s)throw Error('Unknown source '+id);const q=make('p');q.append(link(s.title,s.url),document.createTextNode('. Source date: '+(s.source_date||'Not applicable')+'. '+s.access_scope));d.append(q);}parent.append(d);}
+ function wiki(parent,urls){for(const url of urls||[]){const q=make('p');q.append(link('Related Wiki record',url));parent.append(q);}}
+ function locate(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(id)get(id)?.scrollIntoView();}
+ async function load(){const r=await fetch('register.json',{cache:'no-cache'});if(!r.ok)throw Error('The source request failed');const data=await r.json();if(data.schema_version!==1)throw Error('Unsupported source schema');const sources=new Map(data.sources.map(s=>[s.id,s]));
+ for(const x of data.claims){const a=make('article');a.id=x.id;a.append(make('p',x.kind,'meta'),make('h3',x.title));p(a,'',x.statement);p(a,'Scope: ',x.scope);notes(a,x.source_ids,sources);wiki(a,x.wiki_links);get('claim-cards').append(a);}
+ for(const x of data.forecasts){const a=make('article');a.id=x.id;a.append(make('p',x.kind+' / '+x.originator,'meta'),make('h3',x.title));p(a,'Original issued date: ',x.original_issued+'. First logged here: '+x.first_logged+'.');p(a,'Assessment window: ',x.window_start+' to '+x.window_end+'.');p(a,'Geography: ',x.geography);p(a,'Forecast or scenario: ',x.forecast);p(a,'Assumptions or trigger: ',x.assumptions_or_trigger);p(a,'Verification: ',x.verification);p(a,'Qualification or alternative: ',x.qualification_or_alternative);p(a,'Outcome: ',x.outcome_status+'. No theological onset date assigned.');notes(a,x.source_ids,sources);get('forecast-cards').append(a);}
+ for(const x of data.research_leads){const a=make('article');a.id=x.id;a.append(make('p',x.status,'meta'),make('h3',x.title));p(a,'',x.finding);p(a,'Research use: ',x.use);notes(a,x.source_ids,sources);wiki(a,x.wiki_links);get('research-cards').append(a);}
+ for(const t of data.method)get('method-text').append(make('p',t));for(const t of data.coverage_gaps)get('method-text').append(make('p','Remaining gap: '+t));
+ get('status').textContent=data.claims.length+' claim records, '+data.forecasts.length+' forecast/scenario records and '+data.research_leads.length+' research leads loaded. Evidence reviewed September 18, 2026.';window.addEventListener('hashchange',locate);locate();}
+ load().catch(e=>{for(const id of ['claim-cards','forecast-cards','research-cards','method-text'])get(id).replaceChildren();get('status').textContent='The interactive view could not load. The complete JSON register and scope notes remain linked above. '+e.message;});
+})();
