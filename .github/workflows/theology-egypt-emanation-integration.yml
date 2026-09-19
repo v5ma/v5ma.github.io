@@ -1,0 +1,12 @@
+name: Theology Egyptian Seed integration (completed)
+# Successful integration run 35425493673; generated output saved as 0463cdcd050bfd99abe2280589a1a39c36916dfa.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The Egyptian Seed integration is complete. Further edits require a new reviewed change.'
