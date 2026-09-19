@@ -36,12 +36,12 @@ async def main():
    await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0');await wait('SVGNPlanet.inspect().speed===0');await frames(6);city=await page.evaluate('SVGNPlanet.inspect()');report['departureCity']=city;ok('Original main-world movement and stopping work through the retained Xbox path')
    await press(9);await page.click('#visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert not (await state())['paused'];await page.screenshot(path=str(OUT/'main-lantern-district.png'));ok('Main-game district travel opens the recovered mission neighborhood in the same document')
    await press(13);await wait('document.querySelector("#ward-menu").open');assert await page.locator('#ward-missions [data-mission]').count()>=10;await page.click('[data-mission="watch"]');await frames();q=await state();assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Main-game mission board exposes resident stories and Night Watch; tracking grants no progress')
-   for _ in range(180):
-    r=await page.evaluate("""()=>{const s=NeighborhoodMissions.inspect().ward,dx=-10-s.x,dz=14-s.z,d=Math.hypot(dx,dz);__pad.axes=[d>.22?dx/d:0,d>.22?dz/d:0,0,0];return {d,speed:s.speed}}""")
+   for _ in range(300):
+    r=await page.evaluate("""async()=>{const {approachAxes}=await import('./tests/unified-driver.mjs'),s=NeighborhoodMissions.inspect().ward,a=approachAxes(-10-s.x,14-s.z);__pad.axes=a.axes;__pad.buttons[6]={pressed:a.brake,value:a.brake?1:0};return {d:a.distance,speed:s.speed,x:s.x,z:s.z}}""")
     if r['d']<.3 and r['speed']<.05:break
-    await frames(6)
-   else:raise AssertionError('Mara could not be reached through integrated movement')
-   await page.evaluate('__pad.axes=[0,0,0,0]');await frames(5);await press(2);assert (await state())['ward']['watch']['stage']==1;ok('Mara actually briefs the Watch mission through the integrated main-game interaction')
+    await frames(2)
+   else:raise AssertionError('Mara could not be reached through integrated movement: '+str(r))
+   await page.evaluate('__pad.axes=[0,0,0,0];__pad.buttons[6]={pressed:false,value:0}');await frames(5);await press(2);assert (await state())['ward']['watch']['stage']==1;ok('Mara actually briefs the Watch mission through the integrated main-game interaction')
    for ar in ['vr','ar']:
     for prefix in ['first-person','third-person','diorama-first','diorama-third']:
      mode=prefix+'-'+ar
