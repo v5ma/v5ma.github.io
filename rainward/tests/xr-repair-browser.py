@@ -59,7 +59,14 @@ with sync_playwright() as pw:
   if VIEW.endswith('-ar'):check(all(e['transparent']>100 for e in image['eyes']),'Both AR eye images retain transparent room area')
   if not VIEW.startswith('diorama'):
    aim();r=p.evaluate('Rainward.snapshot().xr.weapon');check(abs(r['direction'][1])<1e-5 and r['direction'][2]<-.999,'Gun points level despite a deliberately tilted physical grip pose')
-   before=p.evaluate('Rainward.state.player.mag');tap('right',0);wait('Rainward.state.player.mag<'+str(before));shot=p.evaluate('Rainward.state.events.filter(e=>e.type==="shot").at(-1)');ray=p.evaluate('Rainward.snapshot().xr.weapon');check(abs(shot['to']['y']-shot['from']['y'])<.15,'Forward trigger fire travels forward without aiming at the sky')
+   before=p.evaluate('Rainward.state.player.mag')
+   # Fire is a held action consumed by the bounded 60 Hz simulation, not an
+   # edge event. One 90 Hz mock-frame tap can contain no simulation step.
+   # Keep the real trigger held until the first finite-ammo shot, then release.
+   p.evaluate("questDevice.button('right',0,true)")
+   try:p.wait_for_function('(mag)=>Rainward.state.player.mag<mag',arg=before,timeout=10000)
+   finally:p.evaluate("questDevice.button('right',0,false)")
+   frames(3);shot=p.evaluate('Rainward.state.events.filter(e=>e.type==="shot").at(-1)');ray=p.evaluate('Rainward.snapshot().xr.weapon');check(abs(shot['to']['y']-shot['from']['y'])<.15,'Forward trigger fire travels forward without aiming at the sky')
    check(sum((shot['from'][k]-ray['muzzle'][i])**2 for i,k in enumerate(['x','y','z']))<.0025,'Actual projectile starts at the visible safe muzzle')
    tap('right',5);wait('Rainward.state.player.mag===6&&!Rainward.state.player.reload');check(True,'A short B press reloads rather than opening the menu')
    scope('02-sight-first-chapter')
