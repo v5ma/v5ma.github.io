@@ -1,0 +1,94 @@
+name: Audit downloaded Aether Clear Window
+on:
+  push:
+    branches: [aether/clear-window-backup-audit-20260918]
+    paths: ['.github/workflows/aether-clear-window-download-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/clear-window-backup-audit-20260918'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE: 60c7695bb0924a14fbd63360c3d68c6645abcca0
+      TAG: aether-v0.14.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 60c7695bb0924a14fbd63360c3d68c6645abcca0
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download existing release without replacing tag or assets
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/clear-window-audit/download
+          gh release view "$TAG" --json tagName,targetCommitish,assets > /tmp/clear-window-audit/release-before.json
+          gh release download "$TAG" --dir /tmp/clear-window-audit/download
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,re,zipfile
+          root=Path('/tmp/clear-window-audit/download')
+          expected={}
+          for line in (root/'SHA256SUMS.txt').read_text().splitlines():
+              digest,name=line.split('  ',1)
+              assert re.fullmatch('[0-9a-f]{64}',digest)
+              assert Path(name).name==name and name not in expected
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+              expected[name]=digest
+          assert {p.name for p in root.iterdir()}==set(expected)|{'SHA256SUMS.txt'}
+          source=root/'Aether-Reach-v0.14.1-source.zip'
+          assert hashlib.sha256(source.read_bytes()).hexdigest()=='a69114879f5416a7d42a188f1d0846fb74283c2ae74e7588733157efbe5dd9b9'
+          evidence=root/'Aether-Reach-v0.14.1-native-grounded-evidence.zip'
+          assert hashlib.sha256(evidence.read_bytes()).hexdigest()=='5eb83bb4399d05f7955742bf35c3f20e95e3f6befb7a58b4b85960a19b25a68c'
+          manifest=json.loads((root/'BACKUP-MANIFEST.json').read_text())
+          assert manifest['source']==os.environ['SOURCE'] and manifest['version']=='0.14.1'
+          assert len(manifest['files'])==224
+          with zipfile.ZipFile(source) as z:
+              assert z.read('BACKUP-MANIFEST.json')==(root/'BACKUP-MANIFEST.json').read_bytes()
+              for name,spec in manifest['files'].items():
+                  assert hashlib.sha256(z.read(name)).hexdigest()==spec['sha256'],name
+                  assert Path(name).read_bytes()==z.read(name),name
+          print('All published assets and all 224 source files match the pinned release.')
+          PY
+      - name: Restore downloaded source and rerun unchanged tests
+        run: |
+          set -euo pipefail
+          python aether-reach/tools/backup.py --restore /tmp/clear-window-audit/download/Aether-Reach-v0.14.1-source.zip --destination /tmp/clear-window-restored
+          (cd /tmp/clear-window-restored && node --test aether-reach/tests/*.test.mjs) > /tmp/clear-window-audit/restore-tests.log
+          (cd /tmp/clear-window-restored && python aether-reach/tests/backup_test.py) > /tmp/clear-window-audit/backup-input-tests.log 2>&1
+          (cd /tmp/clear-window-restored && node aether-reach/tests/release-manifest.mjs)
+          gh release view "$TAG" --json tagName,targetCommitish,assets > /tmp/clear-window-audit/release-after.json
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,re
+          folder=Path('/tmp/clear-window-audit');restored=Path('/tmp/clear-window-restored')
+          before=json.loads((folder/'release-before.json').read_text());after=json.loads((folder/'release-after.json').read_text())
+          assert before==after,'Existing release metadata or assets changed during audit.'
+          files=json.loads((restored/'aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          public=json.loads((folder/'download/aether-publication.json').read_text())
+          assert public['all_match'] and public['source']==os.environ['SOURCE']
+          assert set(files)==set(public['files']) and len(files)==116
+          for name,digest in files.items():
+              assert public['files'][name]['status']==200 and public['files'][name]['match']
+              assert digest==public['files'][name]['sha256']==hashlib.sha256((restored/name).read_bytes()).hexdigest(),name
+          text=(folder/'restore-tests.log').read_text()
+          assert re.search(r'^# tests 277$',text,re.M) and re.search(r'^# pass 277$',text,re.M) and re.search(r'^# fail 0$',text,re.M)
+          backup=(folder/'backup-input-tests.log').read_text();assert 'Ran 6 tests' in backup and '\nOK' in backup
+          report={'source':os.environ['SOURCE'],'tag':os.environ['TAG'],'downloadedAndRestored':True,'sourceFiles':224,'runtimeFiles':len(files),'modelTests':277,'backupInputTests':6,'tagAndAssetsUnchanged':True,'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (folder/'download').iterdir()},'scope':'Read-only downloaded release audit. No new gameplay, no player storage access, no physical-device or new browser acceptance.'}
+          (folder/'download-roundtrip.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-clear-window-downloaded-audit
+          path: /tmp/clear-window-audit/
+          retention-days: 30
