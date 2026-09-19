@@ -1,3 +1,7 @@
+Wayfinder interaction repair / September 19, 2026.
+
+Read WAYFINDER.md. The owner reports that pickups and combat work but mechanisms and chapter completion are not discoverable in headset play. The default palm setting hides the old objective HUD. This repair adds local mechanism/exit prompts, a palm objective card and a targeted free-hand grip path through the existing interaction owner. Golden arrows, geometry, objectives, saves and the canonical roadmap/workbook are unchanged. Larger/longer chapters remain an explicit next content priority, not a completed part of this repair.
+
 Fieldwork repair / September 18, 2026.
 
 Read FIELDWORK.md alongside PILGRIMAGE.md. This iteration recovers the previously unpublished two-chapter generator and fixes grip pickup priority, clear gain/full-vitality feedback, contact collection height, first-screen mission access and a separate full-world AR expedition path. Goldwind A/B draws are retained. The original Returning Bell, Endless, Oath and training are directly selectable in the headset; Archive also supports direct entry. AR expedition uses the same scored model and saves progress, unlike stationary unscored Sanctuary and paused architectural inspection. It does not scan furniture or establish physical supports.
