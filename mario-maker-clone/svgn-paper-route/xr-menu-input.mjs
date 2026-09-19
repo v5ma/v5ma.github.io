@@ -25,7 +25,7 @@ export function createMenuInput() {
   const slots=[0,1,4,5];
   function state(source) {
     let s=states.get(source);
-    if(!s){s={down:new Map(slots.map(i=>[i,buttonDown(source.gamepad,i)])),used:new Set(slots.filter(i=>buttonDown(source.gamepad,i))),selecting:false,dir:0,repeat:0};states.set(source,s);}
+    if(!s){s={down:new Map(slots.map(i=>[i,buttonDown(source.gamepad,i)])),used:new Set(slots.filter(i=>buttonDown(source.gamepad,i))),selecting:false,dir:0,repeat:0,axisArmed:false};states.set(source,s);}
     return s;
   }
   function event(source,command,index) {count++;last=source.handedness+' '+(index===0?'trigger':index===1?'grip':index===4?(source.handedness==='left'?'X':'A'):index===5?(source.handedness==='left'?'Y':'B'):'stick');return {source,command,index};}
@@ -42,12 +42,15 @@ export function createMenuInput() {
         }
         const x=source.gamepad.axes?.[2]||0,y=source.gamepad.axes?.[3]||0;
         const dir=Math.abs(y)>.6?(y>0?1:-1):Math.abs(x)>.6?(x>0?2:-2):0;
-        if(!visible||!menu){s.dir=dir;s.repeat=now+400;continue;}
-        if(!dir){s.dir=0;s.repeat=0;continue;}
+        if(!visible||!menu){s.dir=dir;s.repeat=now+400;s.axisArmed=false;continue;}
+        if(!dir){s.dir=0;s.repeat=0;s.axisArmed=true;continue;}
+        if(!s.axisArmed)continue;
         if(dir!==s.dir||now>=s.repeat){s.dir=dir;s.repeat=now+320;events.push(event(source,dir===1?'next':dir===-1?'previous':dir===2?'increase':'decrease',-1));}
       }
-      // Update every latch before dispatch; caller applies at most one action to a menu.
-      return events.sort((a,b)=>(a.command==='back'||a.command==='pause'?-1:0)-(b.command==='back'||b.command==='pause'?-1:0));
+      // Update every latch before dispatch. Buttons beat concurrent navigation;
+      // caller applies at most one action to the current menu.
+      const priority=c=>c==='back'||c==='pause'?0:c==='confirm'||c==='select'?1:2;
+      return events.sort((a,b)=>priority(a.command)-priority(b.command));
     },
     selectStart(source,{menu=false,visible=true}={}) {
       if(!trackedController(source))return null;const s=state(source);s.selecting=true;
@@ -58,7 +61,6 @@ export function createMenuInput() {
     get diagnostics(){return {sources:states.size,actions:count,last};}
   };
 }
-
 // Accumulated pose movement, not just a changed label, switches back to aiming.
 export function aimChanged(previous,current){
   if(!previous)return true;
