@@ -1,0 +1,55 @@
+name: Theology one-shot comparative integration
+on:
+  push:
+    branches: ['theology/comparative-dualism-20260918']
+    paths:
+      - 'theology-wiki/comparative-religion/**'
+      - '.github/workflows/theology-comparative-integration.yml'
+permissions:
+  contents: read
+jobs:
+  integrate:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/comparative-dualism-20260918'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      INTEGRATED: '1'
+      REQUIRE_CORPUS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: theology/comparative-dualism-20260918
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover exact compatibility and build the integrated edition
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/comparative
+          node theology-wiki/comparative-religion/resume-compatibility.cjs
+          node theology-wiki/comparative-religion/build.cjs
+          node theology-wiki/comparative-religion/integrate.cjs
+          node theology-wiki/tools/build.cjs | tee theology-test-output/comparative/build.log
+          node theology-wiki/comparative-religion/reconcile.cjs
+          python theology-wiki/comparative-religion/check_pages.py | tee theology-test-output/comparative/structure.json
+          node --test theology-wiki/tests/research.test.cjs theology-wiki/scripture-concordance/concordance.test.cjs theology-wiki/research-expansion-20260918/expansion.test.cjs theology-wiki/comparative-religion/comparative.test.cjs | tee theology-test-output/comparative/contracts.log
+      - name: Save only the tested Theology integration to the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theology-wiki/
+          if git diff --cached --name-only | grep -Ev '^theology-wiki/'; then exit 1; fi
+          git diff --cached --quiet && exit 0
+          git commit -m 'Generate comparative studies and integrate the exact repair-theology supplement after validation'
+          git push origin HEAD:refs/heads/theology/comparative-dualism-20260918
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-comparative-integration
+          path: |
+            theology-test-output/comparative/
+            theology-wiki/comparative-religion/
+          if-no-files-found: error
