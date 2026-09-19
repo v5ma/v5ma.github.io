@@ -1,3 +1,17 @@
+# Resume Sky Cycle: XR buttons 0.26.2
+
+The latest physical report concerns unresponsive A/B/X/Y, triggers and grips in AR menus. Prior 0.26.1 software acceptance does not close this new report. Read XR-BUTTONS-0.26.2.md and verification/xr-buttons-0.26.2.json for exact source, acceptance, publication and remaining device observations. Do not reconstruct the repair or treat a pending CI job as a pass.
+
+PR 203 / sky-cycle/xr-buttons-0.26.2 is the active repair. The final runtime candidate is f279935ce328485d76f72442ad953aa1dfbacf3f. The direct session-owned menu handler maps A/X confirm, B/Y one-level back, both triggers select, grips previous/next and sticks navigation/adjustment. It ignores unmapped sensor values, deduplicates native/polled triggers, gives buttons priority over concurrent navigation, and independently gates held sticks after a system interruption. Fresh ray motion restores aiming after navigation even within the same row. Uncaptured trigger events remain available to ordinary gameplay.
+
+The visible headset selection, not hidden browser focus, owns virtual footer activation. The button tests include native-style getters, twelve-slot pads, active passive sensors, no-ray grip/A confirmation, nested menus and original gameplay trigger/release checks. The original Workspace, Portal Network, delivery, hidden-document, hand and moved-head tests remain required. The menu reports its build and last detected input locally. No telemetry, new framework, save migration or physics change is introduced.
+
+This is a Milestones F/G input repair. Keep the fixed-world AR aperture and absent controller riding panel, all eight campaign IDs, remaps, soundtrack owner, Workshop drafts and independent save namespaces. Keep the separate Canal Choice branch unchanged until after this repair. The complete long-range roadmap and earlier handoffs remain below; their older current-release labels are historical.
+
+Release gates are exact-source tests and capture review, normal expected-head merge preserving sibling work, 34 public runtime hashes and both public AR/VR all-button journeys. Physical Quest passthrough, controller/hand behavior, headset readability, comfort and long sessions remain separate open observations. Never clear localStorage to obtain an update or a test pass.
+
+---
+
 # Resume Sky Cycle: XR recovery 0.26.1
 
 Continue the existing game in mario-maker-clone/svgn-paper-route. Read verification/xr-recovery-0.26.1.json and XR-RECOVERY-0.26.1.md before interpreting release status. The previous full handoff is preserved unchanged in archive/RESUME-HERE-before-xr-recovery-0.26.1.md. Resolve its relative references from this original development directory. Its older acceptance does not override the new physical playtest failure.
