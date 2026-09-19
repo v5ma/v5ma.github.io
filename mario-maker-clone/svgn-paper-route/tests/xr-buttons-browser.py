@@ -28,6 +28,7 @@ extra='''
   for hand,button,backhand in [('right',4,'left'),('left',4,'right')]:
    seek('Sound & music',hand);press(button,hand)
    check(page.evaluate('document.getElementById("score-dialog").open'), ('A' if hand=='right' else 'X')+' activates the real Sound menu with passive sensors active')
+   capture(KIND+'-'+('A' if hand=='right' else 'X')+'-sound-menu')
    press(5,backhand);frames(8)
    check(page.evaluate('!document.getElementById("score-dialog").open && __delivery.paused'), ('Y' if backhand=='left' else 'B')+' closes one nested menu without cascading')
   for hand in ['left','right']:
@@ -42,5 +43,15 @@ extra='''
   page.evaluate("xrEmulator.button('left',1,true);xrEmulator.button('right',1,true)");frames()
 '''
 source=source.replace(marker,marker+extra)
+marker="  check(True,'Ordinary riding advances while the HTML page is hidden')"
+assert source.count(marker)==1
+source=source.replace(marker,marker+'''
+  # A select event with no visible/captured UI must not swallow ordinary inputs.
+  for hand,key in [('right','KeyC'),('left','KeyX')]:
+   page.evaluate('(h)=>{xrEmulator.button(h,0,true);xrEmulator.select("start",h)}',hand);frames(8)
+   check(page.evaluate('(key)=>keys[key]&&!__delivery.paused&&!SkyCycleXR.diagnostics.uiVisible',key), hand+' trigger reaches the original gameplay input when no UI captures it')
+   page.evaluate('(h)=>{xrEmulator.button(h,0,false);xrEmulator.select("end",h)}',hand);frames()
+   check(page.evaluate('(key)=>!keys[key]',key), hand+' gameplay trigger releases without a stuck action')
+''')
 source=source.replace("'coverage':'Actual game/renderer", "'coverage':'All face buttons, both grips and triggers; getter-backed twelve-slot pads and active passive sensors; actual game/renderer")
 exec(compile(source,str(base),'exec'),{'__file__':str(base),'__name__':'__main__'})
