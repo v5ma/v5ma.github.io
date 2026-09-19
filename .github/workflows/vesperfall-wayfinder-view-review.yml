@@ -1,0 +1,60 @@
+name: Vesperfall Wayfinder view review
+on:
+  push:
+    branches: [vesperfall-wayfinder-20260919]
+    paths: ['.github/workflows/vesperfall-wayfinder-view-review.yml']
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply the bounded presentation correction and retain all model contracts
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          python .github/vesperfall-wayfinder-review.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vesperfall
+          if ! git diff --cached --quiet; then
+            git commit -m 'Keep the on-demand objective card inside both eyes without changing the tracked pose'
+            git push origin HEAD:vesperfall-wayfinder-20260919
+          fi
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - name: Install view-review browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Review real objective texture and stereo projection in VR and AR
+        env:
+          WAYFINDER_VIEW_ONLY: '1'
+        run: |
+          set -euo pipefail
+          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
+          for mode in vr ar; do
+            XR_MODE=$mode timeout 180 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/view-${mode}.log
+            test -s test-output/wayfinder-${mode}/view-review.json
+            test ! -e test-output/wayfinder-${mode}/failure.json
+          done
+      - name: Retain exact source and view evidence
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wayfinder-view-review
+          path: test-output/
+          retention-days: 14
