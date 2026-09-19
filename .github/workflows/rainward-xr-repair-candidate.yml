@@ -7,7 +7,7 @@ permissions:
   contents: write
 concurrency:
   group: rainward-xr-repair-candidate
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   integrate:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply scoped source and image-review corrections
+      - name: Apply scoped source and retained failure corrections
         run: |
           mkdir -p test-output
           python rainward/tools/finalize-xr-repair.py
@@ -32,9 +32,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rainward/app.mjs rainward/direct-xr-input.mjs rainward/quest-xr.mjs rainward/xr-reading.mjs rainward/xr-panel.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/FREEFIELD-HANDOFF.md rainward/tests/xr-repair.test.mjs rainward/tests/xr-repair-browser.py rainward/tests/xr-repair-device.js rainward/tests/handoff.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/aquatic.test.mjs
+          git add rainward/app.mjs rainward/direct-xr-input.mjs rainward/quest-xr.mjs rainward/xr-reading.mjs rainward/xr-panel.mjs rainward/portal-view.mjs rainward/world.mjs rainward/index.html rainward/release.json rainward/production-plan.json rainward/AAA_CHECKLIST.md rainward/README.md rainward/CONTROLLER.md rainward/DEVELOPMENT-HANDOFF.md rainward/FREEFIELD-HANDOFF.md rainward/tests/xr-repair.test.mjs rainward/tests/xr-repair-browser.py rainward/tests/xr-repair-device.js rainward/tests/handoff.test.mjs rainward/tests/reclaimed.test.mjs rainward/tests/aquatic.test.mjs
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate image-reviewed readable XR documents and current repair release'
+            git commit -m 'Integrate readable XR text, safe portal scene rebinding and current repair release'
             git push origin HEAD:fix/rainward-xr-recovery-20260918
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
