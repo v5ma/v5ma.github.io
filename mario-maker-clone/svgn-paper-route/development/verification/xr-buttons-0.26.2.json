@@ -1,0 +1,26 @@
+{
+  "version": "0.26.2",
+  "build": "sky-cycle-xr-buttons-2026.09.19",
+  "status": "final-source-qualification-pending",
+  "baseline_master": "3d87ff8eb19d4c71df821c446baacaa449553ff4",
+  "candidate_source": "f279935ce328485d76f72442ad953aa1dfbacf3f",
+  "branch": "sky-cycle/xr-buttons-0.26.2",
+  "pull_request": 203,
+  "physical_report": "A/B/X/Y, triggers and grips seem non-functional in the AR menu after the previous repair.",
+  "confirmed_code_gaps": ["The old neutral check considered unused extra controller slots.","Old menu mappings omitted X and both grips.","Native select events had no per-button sampled menu fallback.","An uncaptured select event could suppress the ordinary gameplay trigger."],
+  "physical_cause_not_established": true,
+  "repair": "Session-owned per-source menu edges; A/X confirm, B/Y one-level back, both triggers select, grips previous/next, both sticks navigation/adjustment. Passive values do not hold readiness. Native/polled triggers share a latch. Fresh ray movement restores aiming; activation uses displayed targets. Buttons take priority over concurrent navigation and held sticks require individual release after system interruption. Uncaptured triggers remain available to gameplay.",
+  "hosted": {"run":35460852626,"source":"f279935ce328485d76f72442ad953aa1dfbacf3f","accepted":false,"status":"Pending at this checkpoint; inspect actual jobs and artifacts before any acceptance claim."},
+  "runtime_hashes": {"xr-play.js":"00a3f8293369b77cb3d97102cc148517f782a90a701839079dc45d8a7b3d177d","xr-input-core.mjs":"c806528f9929fe9100ace6b538f0d52b380b1120b7248782af6348d6a2476b32"},
+  "retained_failures": [
+    {"source":"38ec34c63aa528c68b46722e6ee8168c0944f497","run":35460045645,"scope":"A detected after grip navigation but selected an old target instead of the pointed Sound menu.","vr_artifact":10589827404,"vr_sha256":"feb764834d4213913b00e7a70194032991a1d91292b0e1c12ef8a91875df0364","ar_artifact":10589573055,"ar_sha256":"d37542c2b8c956eb7bad1a1d122c0ed483ee87becc7fa9359898d5927df7daed","correction":"Track accumulated ray-pose movement and keep activation bound to displayed controls."},
+    {"source":"87a5506d47bef3528a78a9a6d9cd99489df3829a","run":35460329888,"scope":"After passing the face/grip/trigger checks, the old stick oracle measured hidden DOM focus instead of the visible virtual footer selection.","ar_artifact":10589268921,"ar_sha256":"1725a421d6b0c2aff28447a8b150072aeb4ba3fa3dd6ad3f85429caf2688b5b1","vr_artifact":10589458723,"vr_sha256":"75552d2341842fae51be75fb8f2c6294fde97b3fd90368e6a1a580b4561dc18d","correction":"Require a changed currently displayed headset selection for both sticks and additionally prove grip navigation plus A opens the real Sound menu with both rays away."},
+    {"source":"89200031932f8cfb7d1613411ca80c6663023777","run":35460607668,"scope":"Superseded by the final simultaneous-input priority correction; cancelled jobs do not establish acceptance."},
+    {"scope":"Temporary integration placeholder intentionally stopped before runtime writes; replaced by source-bound readable integration and removed from final tree."},
+    {"scope":"Local browser navigation was blocked by administrator policy. Local Node tests are a separate evidence class from hosted real-browser testing."}
+  ],
+  "publication": null,
+  "preservation": {"campaign_routes":8,"physics_changed":false,"storage_cleared":false,"save_migration":false,"remaps_retained":true,"workshop_documents_retained":true,"fixed_AR_aperture_retained":true,"persistent_controller_riding_panel":false,"canal_choice_branch_unchanged":true,"new_framework":false,"telemetry_added":false},
+  "open_gates": ["Final exact-source rules and native reports","Actual capture review","Normal expected-head merge","34-file public hash comparison","Public AR/VR all-button replay","Physical Quest retest and actual controller/hand ergonomics","Passthrough, headset readability, comfort and long sessions"],
+  "handoff": "../RESUME-HERE.md"
+}
