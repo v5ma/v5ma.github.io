@@ -58,3 +58,10 @@ export function createMenuInput() {
     get diagnostics(){return {sources:states.size,actions:count,last};}
   };
 }
+
+// Accumulated pose movement, not just a changed label, switches back to aiming.
+export function aimChanged(previous,current){
+  if(!previous)return true;
+  return [12,13,14].some(i=>Math.abs(current[i]-previous[i])>.005)||
+    [0,1,2,4,5,6,8,9,10].some(i=>Math.abs(current[i]-previous[i])>.01);
+}

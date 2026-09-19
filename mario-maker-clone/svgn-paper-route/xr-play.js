@@ -6,12 +6,12 @@
 import * as T from './vendor/three.webgpu.js';
 import {addOverlay,POINTER_ORDER} from './xr-overlay.mjs';
 import {protectOpaqueXRFramebuffer} from './xr-webgl-compat.mjs';
-import {createMenuInput,trackedController} from './xr-menu-input.mjs';
+import {createMenuInput,trackedController,aimChanged} from './xr-menu-input.mjs';
 import {mappedPad,sourcesNeutral,pointInRects} from './xr-input-core.mjs';
 import {controls,menuEntries,controlLabel,wrapText,paginate,editValue,visible,focusEntry} from './xr-ui-core.mjs';
 import {createWorldAperture} from './xr-world-aperture.mjs';
 import {stageSettings,sessionOptions,presentation,clipPlanes} from './xr-spatial-core.mjs';
-const menuInput=createMenuInput();let menuCursor=0,menuNavigating=false;
+const menuInput=createMenuInput();let menuCursor=0,menuNavigating=false,lastMenuAction=null;
 const $=id=>document.getElementById(id),fd=()=>window.SkyCycleFlightDeck;
 const panel=()=>fd()?.topPanel();
 let session=null,starting=false,presenting=false,finishing=false,neutral=true,renderer=null,originalRender=null,originalScene=null,oldView=null;
@@ -244,7 +244,7 @@ function tracked(source){let entry=visuals.get(source);if(entry)return entry;
 }
 function poseObject(object,pose){object.visible=!!pose;if(pose){object.matrix.fromArray(pose.transform.matrix);object.matrix.decompose(object.position,object.quaternion,object.scale);}}
 function updateTracking(frame){for(const [source,v] of visuals)if(![...session.inputSources].includes(source)){xrScene.remove(v.root,v.grip,v.dot.parent,...v.joints);disposeObject(v.dot);disposeObject(v.root);disposeObject(v.grip);for(const j of v.joints)disposeObject(j);visuals.delete(source);}
- for(const source of session.inputSources){const v=tracked(source);poseObject(v.root,frame.getPose(source.targetRaySpace,reference));poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label||v.menuKey!==lastMenuKey){v.hover=r.label;v.menuKey=lastMenuKey;menuNavigating=false;focusLabel=r.label;rayFocus=r.hover?null:r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
+ for(const source of session.inputSources){const v=tracked(source);const rayPose=frame.getPose(source.targetRaySpace,reference),moved=!!rayPose&&aimChanged(v.aim,rayPose.transform.matrix);if(moved)v.aim=Array.from(rayPose.transform.matrix);poseObject(v.root,rayPose);poseObject(v.grip,source.gripSpace?frame.getPose(source.gripSpace,reference):null);const r=hit(source,frame)||((screenMode==='workshop'||screenMode==='editor')&&canvasHit(source,frame)?{label:'Live editor canvas'}:null);v.dot.visible=!!r;if(r){v.dot.position.copy(raycaster.ray.at(raycaster.ray.origin.distanceTo(lastHit),vector));const len=raycaster.ray.origin.distanceTo(lastHit);v.ray.scale.y=len;v.ray.position.z=-len/2;if(v.hover!==r.label||v.menuKey!==lastMenuKey||moved){v.hover=r.label;v.menuKey=lastMenuKey;menuNavigating=false;focusLabel=r.label;rayFocus=r.hover?null:r.label;r.hover?.();lastUI=0;}}else{v.hover=null;v.ray.scale.y=1.4;v.ray.position.z=-.7;}if(source.hand){let i=0;for(const joint of source.hand.values()){const j=v.joints[i++];if(!j)break;const p=frame.getJointPose?.(joint,reference);poseObject(j,p);if(p)j.scale.setScalar(Math.max(.003,Math.min(.015,p.radius||.005)));}for(;i<v.joints.length;i++)v.joints[i].visible=false;}}
 }
 
 function sourceRay(source,frame){
@@ -269,7 +269,7 @@ function dispatchMenuInput(event,frame=lastFrame){
     lastUI=0;return;
   }
   if(!current)return;
-  makeMenu(performance.now(),true);
+  if(current!==lastPanel)makeMenu(performance.now(),true);
   if(!rects.length)return;
   const at=rects.findIndex(r=>r.label===focusLabel);if(at>=0)menuCursor=at;
   menuCursor=Math.min(menuCursor,rects.length-1);
@@ -282,7 +282,7 @@ function dispatchMenuInput(event,frame=lastFrame){
   }
   const pointed=(!menuNavigating||command==='select')?hit(source,frame):null;
   const r=pointed||rects[menuCursor];
-  if(r&&typeof r.action==='function'){r.action();lastUI=0;}
+  if(r&&typeof r.action==='function'){lastMenuAction={hand:source.handedness,command,target:r.label};r.action();lastUI=0;}
 }
 function selectStart(e){
   if(!presenting||session.visibilityState!=='visible')return;
@@ -397,5 +397,5 @@ window.SkyCycleXR=Object.freeze({version:'0.26.2',get presenting(){return presen
   const pad=[...(navigator.getGamepads?.()||[])].find(p=>p?.connected&&p.mapping==='standard');
   if(pad&&!neutral&&session.visibilityState==='visible'){for(let i=0;i<out.buttons.length;i++)if(pad.buttons[i]?.pressed)out.buttons[i]={pressed:true,value:pad.buttons[i].value||1};for(let i=0;i<out.axes.length;i++)if(Math.abs(pad.axes[i]||0)>.25)out.axes[i]=pad.axes[i];}
   return out;
- },get diagnostics(){return {presenting,starting,menuInput:menuInput.diagnostics,focusedButton:focusLabel,controllerInputs:[...(session?.inputSources||[])].filter(trackedController).map(s=>({hand:s.handedness,mapping:s.gamepad.mapping,profiles:[...s.profiles||[]],buttons:[...s.gamepad.buttons].map(b=>({pressed:b.pressed,touched:b.touched,value:b.value}))})),uiVisible:!!ui?.visible,aperture:aperture?.diagnostics||null,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!aperture?.diagnostics.active,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
+ },get diagnostics(){return {presenting,starting,menuInput:menuInput.diagnostics,lastMenuAction,focusedButton:focusLabel,controllerInputs:[...(session?.inputSources||[])].filter(trackedController).map(s=>({hand:s.handedness,mapping:s.gamepad.mapping,profiles:[...s.profiles||[]],buttons:[...s.gamepad.buttons].map(b=>({pressed:b.pressed,touched:b.touched,value:b.value}))})),uiVisible:!!ui?.visible,aperture:aperture?.diagnostics||null,mode:sessionMode,presentation:screenMode,placement:{...spatial},frames:frameCount,eyes:eyeCount,trackedSources:visuals.size,handJoints:[...visuals.values()].reduce((n,v)=>n+v.joints.filter(j=>j.visible).length,0),neutral,error:errorText,buttons:rects.map(({label,x,y,w,h})=>({label,x,y,w,h})),page,uiMatrix:ui?.matrixWorld.elements.slice(),screenMatrix:screen?.matrixWorld.elements.slice(),screenVisible:!!screen?.visible,screenSource:screenSource?.id||null,ownedScene:!!world?.children.includes(originalScene),clipped:!!aperture?.diagnostics.active,transparent:sessionMode==='immersive-ar'&&xrScene?.background===null,typing:!!typing,menuRoot:virtualRoot?.id||null,pointerTarget:screenPointer?.target?.id||null,editorTool:window.RouteWorkshop?.state?.tool||null};}});
 support();

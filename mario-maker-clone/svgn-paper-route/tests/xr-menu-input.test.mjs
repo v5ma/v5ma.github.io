@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {createMenuInput,trackedController} from '../xr-menu-input.mjs';
+import {createMenuInput,trackedController,aimChanged} from '../xr-menu-input.mjs';
 import {sourcesNeutral,mappedPad} from '../xr-input-core.mjs';
 function controller(hand='right',size=12) {
  const buttons=Array.from({length:size},()=>({pressed:false,touched:false,value:0}));
@@ -52,4 +52,12 @@ test('Removal discards a source state and re-entry consumes an already-held trig
 });
 test('Direct input code does not depend on DOM focus or write game state',()=>{
  const s=readFileSync(new URL('../xr-menu-input.mjs',import.meta.url),'utf8');assert(!/document\.|localStorage|player\.|requestAnimationFrame/.test(s));
+});
+
+test('Aiming movement can regain selection even when the ray stays on the same control',()=>{
+ const a=[1,0,0,0,0,1,0,0,0,0,1,0,.2,1.3,-.25,1];
+ assert(aimChanged(null,a));assert(!aimChanged(a,a));
+ const b=[...a];b[12]+=.02;assert(aimChanged(a,b));
+ const c=[...a];c[0]-=.04;assert(aimChanged(a,c));
+ const jitter=[...a];jitter[12]+=.001;assert(!aimChanged(a,jitter));
 });
