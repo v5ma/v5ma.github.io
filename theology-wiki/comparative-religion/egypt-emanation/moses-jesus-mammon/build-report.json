@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "counts": {
+    "studies": 3,
+    "comparisons": 12,
+    "sources": 29,
+    "study_words": 2721,
+    "html_pages": 6
+  },
+  "files": [
+    {
+      "path": "calf-name-and-afterlife.html",
+      "sha256": "b27db028e0dadd3ca39ffe4717da1c4a273eabf3d6d9a6bc50d69493cc1aaebb"
+    },
+    {
+      "path": "moses-jesus-and-shared-life.html",
+      "sha256": "c87b03a38607cbd60ea84207e3dafc485e0c02c210b0f94d7b5a83069ad3c9a1"
+    },
+    {
+      "path": "wealth-mortality-and-responsibility.html",
+      "sha256": "1affc5b245628a4e28b2358bc47a9d65cd79f217a988f80e9be4b56607df5d87"
+    },
+    {
+      "path": "index.html",
+      "sha256": "2e7827b73e9d99020d8cd6e9311143998206570d4d55342dc51601c21862a708"
+    },
+    {
+      "path": "comparisons.html",
+      "sha256": "82f9cfbb7e528efc596ea5cad0feb12d880e8a40bec01f24808ab57c2ced7d61"
+    },
+    {
+      "path": "sources.html",
+      "sha256": "38ea64208303eb50e00a7dad6f46a661235f4a6e3c7d31b0bf30d27a072b1031"
+    },
+    {
+      "path": "index.json",
+      "sha256": "8c05c9372e7109e78bbe6c28c8d1b128955291c5e3402bc0327f87196b2bffe1"
+    },
+    {
+      "path": "READING.md",
+      "sha256": "2551bd8b9c069108f0884b86ca0e3eda2c35cf65fb4640a124d27cdd9386d024"
+    }
+  ]
+}
