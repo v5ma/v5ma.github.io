@@ -68,10 +68,19 @@ jobs:
           gh release view "$TAG" --json tagName,targetCommitish,assets > /tmp/clear-window-audit/release-after.json
           python - <<'PY'
           from pathlib import Path
-          import hashlib,json,os,re
+          import copy,hashlib,json,os,re
           folder=Path('/tmp/clear-window-audit');restored=Path('/tmp/clear-window-restored')
           before=json.loads((folder/'release-before.json').read_text());after=json.loads((folder/'release-after.json').read_text())
-          assert before==after,'Existing release metadata or assets changed during audit.'
+          def identity(record):
+              # Our read increments downloadCount; every other asset field stays strict.
+              return {**record,'assets':sorted(({k:v for k,v in a.items() if k!='downloadCount'} for a in record['assets']),key=lambda a:a['id'])}
+          sample=copy.deepcopy(before);sample['assets'][0]['downloadCount']+=1
+          assert identity(sample)==identity(before)
+          sample['assets'][0]['digest']='sha256:'+'0'*64
+          assert identity(sample)!=identity(before),'Asset identity test must reject content changes.'
+          assert identity(before)==identity(after),'Existing release identity changed during audit.'
+          counts={a['id']:a['downloadCount'] for a in before['assets']}
+          assert all(a['downloadCount']>=counts[a['id']] for a in after['assets'])
           files=json.loads((restored/'aether-reach/test-output/runtime-manifest.json').read_text())['files']
           public=json.loads((folder/'download/aether-publication.json').read_text())
           assert public['all_match'] and public['source']==os.environ['SOURCE']
@@ -82,7 +91,7 @@ jobs:
           text=(folder/'restore-tests.log').read_text()
           assert re.search(r'^# tests 277$',text,re.M) and re.search(r'^# pass 277$',text,re.M) and re.search(r'^# fail 0$',text,re.M)
           backup=(folder/'backup-input-tests.log').read_text();assert 'Ran 6 tests' in backup and '\nOK' in backup
-          report={'source':os.environ['SOURCE'],'tag':os.environ['TAG'],'downloadedAndRestored':True,'sourceFiles':224,'runtimeFiles':len(files),'modelTests':277,'backupInputTests':6,'tagAndAssetsUnchanged':True,'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (folder/'download').iterdir()},'scope':'Read-only downloaded release audit. No new gameplay, no player storage access, no physical-device or new browser acceptance.'}
+          report={'source':os.environ['SOURCE'],'tag':os.environ['TAG'],'downloadedAndRestored':True,'sourceFiles':224,'runtimeFiles':len(files),'modelTests':277,'backupInputTests':6,'tagAndAssetIdentityUnchanged':True,'downloadCounterChangesExpected':True,'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (folder/'download').iterdir()},'scope':'Read-only downloaded release audit. No new gameplay, no player storage access, no physical-device or new browser acceptance.'}
           (folder/'download-roundtrip.json').write_text(json.dumps(report,indent=2)+'\n')
           print(json.dumps(report,indent=2))
           PY
