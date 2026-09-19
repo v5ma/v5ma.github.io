@@ -10,10 +10,92 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Apply reviewed runtime patch only inside Sky Cycle
-        env:
-          PATCH: 'eNrtPGlz20ay3/UrICcrAOEQ4qGTDKTYjrPx2/h4knK8Uqm8IDEkYYEAgoMSl+R/f909M8CApGLJld2XquekyiLm7Onpe3rGD0Yjo9kcB7nh7U+9NIibU++Wp81hGEd8P5uNo2biJVCQxkXO91Meci/jzSz38iJzPmbG4LO67QSRz++N1pAf8nbXcYaHR/5ht2O0W62jg4OdZrP5mfDsNBqNz4Xpu++MZpsdGw3857vvdoz9b4xX90kYDAE9gyIIfcOLfGPoTRMvGEdGyj0/iHiWOca7JA/iyAsNr8gncRpEYyOP4zAzpkWWG1GcGz4fBj7fMYxvjLtJMJxUwwSZEcaez31Gw3uRUUSjIAqyCfcNP76LsLYaKEu8u8iIARjfyz3H+GZ/x7BGRTRECCx7YRYZN7I8DYa52d9pGsM4gp6/vLq4fP3urWu2nM6R0zbZi59f//S9a2a38+ZwPgx58x4Qw4fxjKfzZqcFjVqnTvsEhmhsHaKzfYhBkefQuhrhFEYwjP1944KPgyznqTHgozjlRj7hRsjH3nBufP/uzcs4ynmU/0SIMBIPFxFi+4injvHWy4MZN/zAC+NxJsZDoIopjROkBqDJuOXzQeylvsFnMFRm3AWwF0UO6MTxaE9gTtp9KPN5GnEvnzgw3B2QY3zneL7/Crv+JCe2TBgSd8BkNKR7Jhte3s5f4Iop/CIPxJP+eD2/PnQlsXsj/wecWtbVZnhbc7u/4n8diQJBx9CRKph6SsY6GLW/QajnOyZCfdg9PP5exxJhP5SnRS7BTu4P8BP8iQy2AHo1nQGIZ0OqznvFMUOMzRuXEYlj6KaKU7YH+OTbHimbrtEkVjS0TdGT59g9bi2JyAfn?'
+      - name: Apply source-bound menu integration
         run: |
           python - <<'PY'
-          raise SystemExit('Staging placeholder: no runtime mutation. Complete checksum-bound patch before execution.')
+          from pathlib import Path
+          import json,hashlib
+          G=Path('mario-maker-clone/svgn-paper-route')
+          expected={'xr-play.js':'fd10f1997bf834e5bc90bede5456d7668807253b4557879d315d40c2468ee72a','xr-input-core.mjs':'347ea03a18388382291188d3c2c9b0ea08c0bcc687c28452005f14219b452114'}
+          for name,digest in expected.items():assert hashlib.sha256((G/name).read_bytes()).hexdigest()==digest,name
+          p=G/'xr-input-core.mjs';s=p.read_text();s="import {trackedController} from './xr-menu-input.mjs';\n"+s
+          s=s.replace('enabled=true,allowRecovery=false','enabled=true,allowRecovery=false,directMenu=false')
+          s=s.replace('if(allowRecovery)for','if(allowRecovery&&!directMenu)for')
+          s=s.replace("if(source.hand||p?.mapping!=='xr-standard')continue;","if(!trackedController(source)||(directMenu&&panel))continue;")
+          s=s.replace('if(pressed(p,5))set(9);','if(pressed(p,5)&&!directMenu)set(9);')
+          a=s.index('export function sourcesNeutral(');b=s.index('\nexport function pointInRects',a)
+          s=s[:a]+'''export function sourcesNeutral(sources,{panel=false}={}){
+           return sources.every(s=>{
+            const p=s.gamepad;if(!p)return true;
+            if(trackedController(s)){
+             // Only controls used in this context count. Thumbrest, proximity, touchpad
+             // placeholders and stick-click sensors must never lock the entire menu.
+             const used=panel?[0,4,5]:s.handedness==='right'?[0,1,4,5]:[0,4,5];
+             return used.every(i=>!p.buttons?.[i]?.pressed&&!(p.buttons?.[i]?.value>.2))&&[2,3].every(i=>Math.abs(p.axes?.[i]||0)<.25);
+            }
+            return (p.buttons||[]).every(b=>!b.pressed&&!(b.value>.2))&&(p.axes||[]).every(v=>Math.abs(v||0)<.25);
+           });
+          }'''+s[b:];p.write_text(s)
+          p=G/'xr-play.js';s=p.read_text();s=s.replace("import {mappedPad", "import {createMenuInput,trackedController} from './xr-menu-input.mjs';\nimport {mappedPad",1)
+          s=s.replace("const $=id", "const menuInput=createMenuInput();let menuCursor=0,menuNavigating=false;\nconst $=id",1)
+          start=s.index('function selectStart(e){')
+          s=s[:start]+'''function dispatchMenuInput(event,frame=lastFrame){
+            if(!event||!presenting||session?.visibilityState!=='visible')return;
+            const current=panel();const {command,source}=event;
+            if(command==='back'||command==='pause'){
+              if(current)fd()?.back(current);else if(typeof mode!=='undefined'&&mode==='play'&&!won)pause();else openWorkspace();
+              lastUI=0;return;
+            }
+            if(!current)return;
+            makeMenu(performance.now(),true);
+            if(!rects.length)return;
+            const at=rects.findIndex(r=>r.label===focusLabel);if(at>=0)menuCursor=at;
+            menuCursor=Math.min(menuCursor,rects.length-1);
+            if(['previous','next','increase','decrease'].includes(command)){
+              if((command==='increase'||command==='decrease')&&rects[menuCursor]?.control?.matches('input[type="range"],input[type="number"],select')){
+                const el=rects[menuCursor].control;const suffix=command==='increase'?'plus':'minus';
+                menuEntries(current,{invoke,edit,external}).find(e=>e.el===el&&e.label.endsWith(suffix))?.action();
+              }else menuCursor=(menuCursor+(['previous','decrease'].includes(command)?-1:1)+rects.length)%rects.length;
+              const r=rects[menuCursor];r.hover?.();focusLabel=r.label;menuNavigating=true;lastUI=0;return;
+            }
+            const pointed=(!menuNavigating||command==='select')?hit(source,frame):null;
+            const r=pointed||rects[menuCursor];
+            if(r&&typeof r.action==='function'){r.action();lastUI=0;}
+          }
+          ''' + s[start:]
+          s=s.replace("if(!presenting||neutral||suppressed.has(e.inputSource)||session.visibilityState!=='visible')return;", """if(!presenting||session.visibilityState!=='visible')return;
+            if(trackedController(e.inputSource)&&(panel()||typing)){
+              dispatchMenuInput(menuInput.selectStart(e.inputSource,{menu:true,visible:true}),e.frame||lastFrame);return;
+            }
+            if(neutral||suppressed.has(e.inputSource))return;""")
+          s=s.replace("function selectEnd(e){\n", "function selectEnd(e){\n  menuInput.selectEnd(e.inputSource);\n")
+          s=s.replace("page=0;release();lastUI=0;}","page=0;menuCursor=0;menuNavigating=false;release();lastUI=0;}",1)
+          s=s.replace("function button(label,x,y,w,h,action,hover=null)","function button(label,x,y,w,h,action,hover=null,control=null)")
+          s=s.replace("label,action,hover});","label,action,hover,control});",1)
+          s=s.replace("()=>e.el.focus({preventScroll:true})));","()=>e.el.focus({preventScroll:true}),e.el));")
+          s=s.replace("v.hover=r.label;v.menuKey=lastMenuKey;focusLabel", "v.hover=r.label;v.menuKey=lastMenuKey;menuNavigating=false;focusLabel")
+          s=s.replace("    window.pollGamepad?.();window.tick();", "    const commands=menuInput.sample(sources,{menu:!!panel()||!!typing,visible:session.visibilityState==='visible',now});\n    if(commands.length)dispatchMenuInput(commands[0],f);\n    if(!presenting)return;\n    window.pollGamepad?.();window.tick();")
+          s=s.replace("guide.close();makeStage();release();", "guide.close();makeStage();release();menuInput.seed([...session.inputSources]);")
+          s=s.replace("panel:!!panel()||!!typing,suppressed", "panel:!!panel()||!!typing,directMenu:true,suppressed")
+          s=s.replace("version:'0.26.1'", "version:'0.26.2'")
+          s=s.replace("return {presenting,starting,uiVisible:","return {presenting,starting,menuInput:menuInput.diagnostics,focusedButton:focusLabel,controllerInputs:[...(session?.inputSources||[])].filter(trackedController).map(s=>({hand:s.handedness,mapping:s.gamepad.mapping,profiles:[...s.profiles||[]],buttons:[...s.gamepad.buttons].map(b=>({pressed:b.pressed,touched:b.touched,value:b.value}))})),uiVisible:")
+          s=s.replace("  texture.needsUpdate=true;\n}", """  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v0.26.2 | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
+            texture.needsUpdate=true;
+          }""",1)
+          p.write_text(s)
+          r=json.loads((G/'release.json').read_text());r.update(version='0.26.2',build='sky-cycle-xr-buttons-2026.09.19',date='2026-09-19',changes=['Session-owned menu button edges for A/X confirm, B/Y back, triggers select, grips/sticks navigation','Trigger event and raw button polling share one latch; no repeated activation from a held press','Unused contact/proximity sensor values no longer block control readiness','Retain no-panel controller riding, fixed AR aperture, all original physics, saves and editor documents','Menu shows current build and last received command; physical Quest retest remains open'])
+          (G/'release.json').write_text(json.dumps(r,indent=2)+'\n')
+          for n in ['release-status.js','sw.js']:
+           p=G/n;s=p.read_text().replace('0.26.1','0.26.2').replace('sky-cycle-xr-recovery-2026.09.18','sky-cycle-xr-buttons-2026.09.19').replace('sky-cycle-xr-recovery-20260918','sky-cycle-xr-buttons-20260919');p.write_text(s)
+          p=G/'tests/xr-workspace-published.py';s=p.read_text().replace("FILES=[","FILES=['xr-menu-input.mjs',",1);p.write_text(s)
+          expected={'xr-play.js':'2253b9117d4cf2a0e3ea7dd1f94b2597d20aa6fa38756b4908cfc77dd15dbac5','xr-input-core.mjs':'c806528f9929fe9100ace6b538f0d52b380b1120b7248782af6348d6a2476b32'}
+          for name,digest in expected.items():assert hashlib.sha256((G/name).read_bytes()).hexdigest()==digest,name
           PY
+          node --check mario-maker-clone/svgn-paper-route/xr-play.js
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs
+          git add mario-maker-clone/svgn-paper-route
+          git rm .github/workflows/sky-cycle-button-integrate.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(sky-cycle): route headset menus through direct per-button edges'
+          git push origin HEAD:refs/heads/sky-cycle/xr-buttons-0.26.2
