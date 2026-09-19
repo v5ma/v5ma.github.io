@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-18",
+  "version": "2026.09.18-identity-agency-scarcity-1",
+  "base_commit": "46d2d5f93723922630147c367a10ea7af98e459b",
+  "articles": [
+    {"slug":"jesus-teacher-of-righteousness-hypothesis","supplement":"teacher-identity.md","position":"prepend","original_git_blob":"d801512a0a4a964c6f694ff06e0259b334c85b85","summary":"The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison."},
+    {"slug":"divine-will-and-self-authorizing-power","supplement":"divine-agency.md","position":"append","original_git_blob":"efa4b3564e5469132c893688865d9ba78accdd58","summary":"Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction."},
+    {"slug":"ukraine-russia-forecast-record","supplement":"ai-scarcity.md","position":"append","original_git_blob":"085b5aeda4e543c065d6791beac8032440502c5e","summary":"Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems."}
+  ]
+}
