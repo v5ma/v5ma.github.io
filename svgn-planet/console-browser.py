@@ -40,7 +40,15 @@ async def main():
    await wait('NeighborhoodMissions.inspect().xr.console.progress>=.99');await frames(3)
    for _ in range(30):
     rows=await page.evaluate('NeighborhoodMissions.panel().rows');r=next((r for r in rows if r.get('id')==label or r['label']==label),None)
-    if r:await click(r,u);return
+    if r:
+     if r.get('id')=='hub-mission-watch' and 'missionPreview' not in report:
+      assert r.get('detail','').startswith('Next: Meet Mara'),r
+      before=await page.evaluate('NeighborhoodMissions.inspect().ward.watch')
+      assert before['stage']==0 and before['credits']==0,before
+      report['missionPreview']={'title':r['label'],'nextStep':r['detail']}
+      await capture('mission-next-step')
+      ok('Mission button states the actual next meeting point before selection, with no progress granted')
+     await click(r,u);return
     nxt=next((r for r in rows if r['label'].startswith('Next ')),None)
     assert nxt,'Missing native row '+label+' '+str(rows)
     await click(nxt)

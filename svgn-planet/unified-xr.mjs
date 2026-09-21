@@ -1,3 +1,4 @@
+import {drawConsoleMenuRow} from './console-menu.mjs';
 import {hideTrackedSources} from './xr-session-cleanup.mjs';
 import {createSpatialConsole} from './spatial-console.mjs';
 import {triggerVehicleSpeed} from './console-state.mjs';
@@ -47,12 +48,12 @@ export function createUnifiedXR(hooks){
   rows=[];ctx.fillStyle='#142e39';ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#fff0ca';ctx.font='bold 32px sans-serif';ctx.fillText((r?.querySelector('h1,h2')?.textContent||'Neighborhood Missions').slice(0,53),36,52);
   ctx.font='23px sans-serif';const description=nativeMenuDescription(r,hooks.goal());const copy=(error||description||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
   if(r){const all=[...r.querySelectorAll('button,select,input,a[href],textarea')].filter(visible),pages=Math.max(1,Math.ceil(all.length/6));page=Math.max(0,Math.min(page,pages-1));
-   all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
+   all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,detail:el.dataset.xrDetail||'',id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
    rows.push({label:'Previous page',x:36,y:854,w:300,h:70,act:()=>{page=(page+pages-1)%pages;}},{label:'Next '+(page+1)+'/'+pages,x:361,y:854,w:300,h:70,act:()=>{page=(page+1)%pages;}},{label:'Back / resume',x:686,y:854,w:300,h:70,act:()=>back(r)});
    // The actual map is available as its own full native page, not a label promising a map.
    const map=r.querySelector('canvas');if(map&&!map.hidden&&r.dataset.xrMap==='1'){ctx.drawImage(map,38,190,948,610);rows=rows.filter(x=>x.y>800);}
   }else if(handActions){for(const [i,a]of [['Interact','interact'],['Move (hold)','move'],['Brake (hold)','brake'],['Menu','pause']].entries())rows.push({label:a[0],x:40,y:210+i*145,w:944,h:120,hold:a[1]==='move'||a[1]==='brake'?a[1]:null,act:()=>hooks.action(a[1])});}
-  for(const row of rows){ctx.fillStyle='#365866';ctx.fillRect(row.x,row.y,row.w,row.h);ctx.fillStyle='#fff3d5';ctx.font='27px sans-serif';ctx.fillText(row.label.replace(/\s+/g,' '),row.x+15,row.y+row.h/2+9,row.w-30);}tex.needsUpdate=true;consoleUI.sync(rows);lastPaint=performance.now();
+  for(const row of rows)drawConsoleMenuRow(ctx,row);tex.needsUpdate=true;consoleUI.sync(rows);lastPaint=performance.now();
  }
  const caster=new T.Raycaster();
  function update(now,frame){
@@ -115,6 +116,6 @@ export function createUnifiedXR(hooks){
   preference(k,v){const n={...prefs,[k]:v};if(!preferencesBlocked&&!saveXRPrefs(hooks.storage,n)){preferencesBlocked=true;hooks.message('XR preference storage is unavailable. Current-session settings still work.');}prefs=n;clear();},get preferences(){return {...prefs};},
   setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;consoleUI.recenter();clear();},
   consolePreference:(k,v)=>consoleUI.configure(k,v),get consolePreferences(){return consoleUI.prefs;},recenterConsole:()=>{consoleUI.recenter();clear();},
-  panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,id,x,y,w,h})=>({label,id,x,y,w,h}))};},
+  panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,detail,id,x,y,w,h})=>({label,detail,id,x,y,w,h}))};},
   inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,console:consoleUI.inspect(),environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
 }

@@ -1,3 +1,4 @@
+import {missionCards,wardFieldStatus} from './mission-presentation.mjs';
 import {mountConsoleSettings} from './console-settings.mjs';
 import {controlContext} from './controller-context.mjs';
 /* Main game district integration. Same document, renderer, XR session and inputs;
@@ -26,7 +27,7 @@ export function createMainHub(hooks){
  function wardMenu(){if(!wardActive)return;refreshMissions();open('ward-menu');}
  function openMap(){if(wardActive){drawMap($('ward-map'),ward,false);open('ward-map-dialog');}else hooks.openMap();}
  function refreshMissions(){
-  if(!ward)return;const list=$('ward-missions');list.replaceChildren();for(const m of missionOptions(ward)){const b=document.createElement('button');b.dataset.mission=m.id;b.id='hub-mission-'+m.id.replace(':','-');b.textContent=m.title;b.title=m.detail;b.disabled=!!m.disabled;b.onclick=()=>{message(trackStory(ward,m.id));persistWard();close();};list.append(b);}
+  if(!ward)return;const list=$('ward-missions');list.replaceChildren();for(const m of missionCards(ward)){const b=document.createElement('button');b.dataset.mission=m.id;b.id='hub-mission-'+m.id.replace(':','-');b.textContent=m.title;b.title=m.detail;b.dataset.xrDetail=m.detail;b.disabled=!!m.disabled;b.onclick=()=>{message(trackStory(ward,m.id));persistWard();close();};list.append(b);}
   $('ward-status').textContent=missionGoal(ward);$('ward-ledgers').textContent=ward.credits+' chapter / '+cityState(ward).credits+' resident / '+watchState(ward).credits+' Watch / '+campaignState(ward).credits+' campaign credits';
  }
  function ensureWard(){if(ward)return;const r=load(store);ward=r.state;blocked=r.blocked;wardView=createDistrictView(hooks.canvas,renderer);wardSpatial=spatialView(wardView,'ward');}
@@ -63,7 +64,7 @@ export function createMainHub(hooks){
   action:(name,ray)=>name==='pause'?(wardActive?wardMenu():hooks.pause()):field(name,ray),
   hud:()=>{
    const controls=xr.preferences.profile==='courier'?'Off trigger: speed / primary grip: throw':(wardActive?ward.ride!=='foot':hooks.state().ride)?(xr.consolePreferences.triggerDrive?'Primary trigger: speed / off grip: brake':'Move-stick click: speed / off grip: brake'):'Primary grip: interact / trigger: action',menu=xr.preferences.dominant==='right'?'Y':'B';
-   if(wardActive){const n=navigation(ward,yaw);return {title:'LANTERN WARD',goal:missionGoal(ward),detail:Math.ceil(n.distance)+' m / '+n.level,equipment:ward.ride+' / '+watchRuntime(ward).tool,map:$('ward-mini'),health:watchState(ward).tracking?watchInspect(ward).health:null,controls,menu};}
+   if(wardActive)return {title:'LANTERN WARD',...wardFieldStatus(ward,yaw),map:$('ward-mini'),controls,menu};
    return {title:'MAIN NEIGHBORHOODS',goal:$('objective-title').textContent,detail:$('objective-text').textContent,equipment:$('ride-name').textContent,map:hooks.cityMap?.(),controls,menu};
   },
   combat:()=>wardActive&&(watchState(ward).tracking||!!campaignState(ward).active),embodied:()=>wardActive&&(!!campaignState(ward).active||watchState(ward).stage===4),canGlide:()=>wardActive&&campaignCanGlide(ward),goal:()=>wardActive?missionGoal(ward):$('objective-title').textContent+' / '+$('objective-text').textContent});
