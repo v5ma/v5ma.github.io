@@ -10,16 +10,25 @@ permissions:
 concurrency:
   group: pages-rescue-publish
   cancel-in-progress: true
+# Reuse the established publisher for the Dino .3 recovery; preserve all sibling work.
 jobs:
   build:
     runs-on: macos-15
     timeout-minutes: 20
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: master
           submodules: recursive
           persist-credentials: false
+      - name: Record the actual current-master source being published
+        id: source
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD
+          shasum -a 256 dino-atlas/spatial-console.js dino-atlas/classic-xr.css dino-atlas/tidegate.css
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
@@ -31,6 +40,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Identify the published source
+        env:
+          PAGES_SOURCE: ${{ needs.build.outputs.source }}
+        run: echo "Publishing current master at $PAGES_SOURCE"
       - name: Deploy current master
         id: deployment
         uses: actions/deploy-pages@v5
