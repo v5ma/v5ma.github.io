@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   superseded:
-    if: false
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
-      - run: echo 'Candidate merged; use master run 35557266771. No acceptance result is manufactured here.'
+      - run: echo 'Candidate merged; use master run 35557266771. This bookkeeping job is not a test or acceptance result.'
