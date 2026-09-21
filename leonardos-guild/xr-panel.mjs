@@ -17,9 +17,9 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
  const button=(key,text,x,y,w,h,run,hold=null,element=null)=>buttons.push({key,text,x,y,w,h,run,hold,element});
  function controls(){
   return [
-   ['jump','A / Jump or stair',()=>actions.jump()],['interact','X / Interact',()=>actions.interact()],
-   ['vehicle','Y / Ride or dressing',()=>actions.vehicle()],['quick','LB tap / Last tool',()=>actions.quickTool()],
-   ['reload','Reload sling',()=>actions.reload()],['dodge','B / Dodge',()=>actions.dodge()],
+   ['jump','A / Jump or stair',()=>actions.jump()],['interact','B (right) / Interact',()=>actions.interact()],
+   ['vehicle','Ride / leave vehicle',()=>actions.vehicle()],['quick','X (left) / Last tool',()=>actions.quickTool()],
+   ['reload','Reload sling',()=>actions.reload()],['dodge','Right grip / Dodge',()=>actions.dodge()],
    ['tools','Equipment wheel',()=>actions.openWheel('tools')],['dispatch','Guild dispatch',()=>actions.dispatch()],
    ['map','Map',()=>actions.map()],['pause','Pause / settings',()=>actions.pause()],
    ['scan','Inspect nearby',()=>actions.scan()],['cover','Take cover',()=>actions.cover()],
@@ -33,7 +33,7 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
   const s=getState();let text='',title='',items=[];
   if(root){
    title=root.getAttribute('aria-label')||root.querySelector('h1,h2,h3')?.textContent||'Guild menu';
-   text=root.innerText||root.textContent||'';
+   const description=root.cloneNode(true);description.querySelectorAll?.('button,nav,select,input,script,style').forEach(e=>e.remove());text=description.textContent||'';
    items=ui.choices(root).flatMap((e,index)=>{
     if(e.tagName==='SELECT'||e.type==='range')return [
      [`dom${index}-minus`,label(e)+' -',()=>ui.adjust(e,-1),null,e],

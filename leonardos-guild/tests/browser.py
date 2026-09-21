@@ -61,10 +61,10 @@ with sync_playwright() as p:
   page.screenshot(path=str(OUT/'00-homepage.png'));card.locator('a.primary-link').click();page.wait_for_function('window.LeonardoGuild')
   check('/leonardos-guild/' in page.url,'The homepage card opens the independently hosted browser game')
   check(read(page)['version']==json.loads((ROOT/'release.json').read_text())['version'],'The isolated Leonardo’s Guild application matches its release version')
-  check(read(page)['quarter']['active'] and read(page)['render']['quarter']['physicalScene'],'The homepage opens the authored Quarter using actual scene geometry')
+  check(not read(page)['quarter']['active'] and read(page)['render']['triangles']>50000,'The homepage opens the full Vinci adventure using actual city geometry')
   page.screenshot(path=str(OUT/'01-sunrise-title.png'))
   # User-accessible low-power mode and a smaller window, not faster simulation.
-  page.goto(BASE+'/leonardos-guild/index.html?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
+  page.goto(BASE+'/leonardos-guild/index.html?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
   check(read(page)['render']['triangles']>50000,'Native WebGL retains the actual older city geometry');page.set_viewport_size({'width':960,'height':640});page.locator('#start').click();page.locator('#world').focus()
   for z,completed in [(16,0),(53,2)]:
    drive(page,2,z)

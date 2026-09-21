@@ -1,3 +1,5 @@
+import {createFieldDesk} from './xr-field-desk.mjs';
+import {beginXRPass,restoreXRPass} from './xr-frame-pass.mjs';
 import {createSpatialXR} from './spatial-xr.mjs';
 import {XR_REPAIR_BUILD,createMenuAnchor,createDialogBridge,guardFrame} from './xr-recovery.mjs';
 import {XR_ENTRY_BUILD,XR_MODES,xrEnvironmentProblem,xrFailureText,probeXRMode,bindXREntry,immersiveVisible} from './xr-entry.mjs';
@@ -28,8 +30,8 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const scene=new T.Scene();scene.background=new T.Color('#101b27');
  const camera=new T.PerspectiveCamera(55,1,.05,1800),stage=new T.Group();scene.add(stage);
  const sources=new Map(),visuals=[];
- const geo=new T.SphereGeometry(1,6,4),handleGeo=new T.BoxGeometry(.042,.042,.12),rayGeo=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-4)]);
- const handMaterial=new T.MeshBasicMaterial({color:'#d4b68e',toneMapped:false}),leftMaterial=new T.MeshBasicMaterial({color:'#83cfdf',toneMapped:false}),rightMaterial=new T.MeshBasicMaterial({color:'#f5cf8f',toneMapped:false}),rayMaterial=new T.LineBasicMaterial({color:'#def8ff',toneMapped:false});
+ const geo=new T.SphereGeometry(1,6,4),handleGeo=new T.CapsuleGeometry(.023,.065,4,8),rayGeo=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-4)]);
+ const handMaterial=new T.MeshBasicMaterial({color:'#d4b68e',toneMapped:false}),leftMaterial=new T.MeshBasicMaterial({color:'#83cfdf',toneMapped:false}),rightMaterial=new T.MeshBasicMaterial({color:'#f5cf8f',toneMapped:false}),rayMaterial=new T.LineBasicMaterial({color:'#def8ff',toneMapped:false,depthTest:false,depthWrite:false});
  const raycaster=new T.Raycaster(),pointer=new T.Vector3(),direction=new T.Vector3(),orientation=new T.Quaternion();
  const panel=createXRPanel({ui,actions,getState,consoleUI,exit:()=>exit()}),bar=createXRToolbar(actions);
  const screenMaterial=new T.MeshBasicMaterial({side:T.DoubleSide,toneMapped:false});
@@ -39,7 +41,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  const toolbar=new T.Mesh(new T.PlaneGeometry(2.85,.7125),new T.MeshBasicMaterial({map:bar.texture,side:T.DoubleSide,toneMapped:false}));toolbar.position.set(-.44,.43,-2.38);toolbar.rotation.x=-.16;stage.add(toolbar);
  const hudToggle=new T.Mesh(new T.SphereGeometry(.045,12,8),new T.MeshBasicMaterial({color:'#d8bd86'}));hudToggle.name='Show or hide controls';hudToggle.position.set(1.25,1.45,-1.0);stage.add(hudToggle);
  function toggleHUD(){hudRequested=!hudRequested;resetInput();updateHUD();}
- const menuAnchor=createMenuAnchor(panelMesh,stage);
+ const menuAnchor=createFieldDesk({panel:panelMesh,stage,back:()=>ui.back(),release:resetInput,getState,getObjective:actions.objective,summon:()=>actions.pause()});
  function updateHUD(){const real=!!session&&!!spatial&&spatial.effective()!=='theatre',root=ui.root()||actions.wheelActive(),modal=!!root;panelMesh.visible=!real||modal||hudRequested;toolbar.visible=!real||hudRequested&&!modal;hudToggle.visible=real&&!modal;menuAnchor.update(real,root,panelMesh.visible,menuPose);}
  const notice=document.createElement('p');notice.id='guild-xr-status';notice.setAttribute('role','status');notice.textContent=status;
  const titleButton=document.createElement('button');titleButton.id='guild-xr-enter';titleButton.textContent='Enter seated XR (Quest)';titleButton.disabled=true;titleButton.setAttribute('aria-describedby',notice.id);
@@ -75,8 +77,8 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  }
  function resetInput(){held={};x=y=turn=lookPitch=0;xrActivity=false;clearInput?.();for(const s of sources.values()){s.capture=null;s.pinch=false;s.presses.forEach(p=>p.reset());s.axisGate.reset();s.repeat.reset();s.contextButton.reset();}}
  function makeVisual(){
-  const root=new T.Group(),ray=new T.Line(rayGeo,rayMaterial),grip=new T.Mesh(handleGeo,rightMaterial),joints=new Map();root.add(ray,grip);scene.add(root);root.visible=false;
-  return {root,ray,grip,joints};
+  const root=new T.Group(),ray=new T.Line(rayGeo,rayMaterial),grip=new T.Mesh(handleGeo,rightMaterial),joints=new Map(),dot=new T.Mesh(geo,new T.MeshBasicMaterial({color:'#ffe6aa',depthTest:false,depthWrite:false}));dot.scale.setScalar(.008);dot.renderOrder=4501;ray.renderOrder=4500;dot.visible=false;root.add(ray,grip,dot);scene.add(root);root.visible=false;
+  return {root,ray,grip,joints,dot};
  }
  function acquire(source){
   if(sources.has(source))return sources.get(source);
@@ -90,11 +92,11 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  function applyPose(object,pose){object.position.copy(pose.transform.position);object.quaternion.copy(pose.transform.orientation);object.updateMatrixWorld(true);}
  function hitTarget(pose){
   pointer.copy(pose.transform.position);orientation.copy(pose.transform.orientation);direction.set(0,0,-1).applyQuaternion(orientation).normalize();raycaster.set(pointer,direction);raycaster.far=8;
-  updateHUD();stage.updateWorldMatrix(true,true);if(hudToggle.visible&&raycaster.intersectObject(hudToggle,false).length)return {key:'hud-toggle',kind:'spatial',id:'spatial:hud-toggle',run:toggleHUD};const hits=raycaster.intersectObjects([panelMesh,toolbar].filter(o=>o.visible),false);
+  updateHUD();stage.updateWorldMatrix(true,true);const deskHit=menuAnchor.hit(raycaster);if(deskHit)return deskHit;if(hudToggle.visible&&raycaster.intersectObject(hudToggle,false).length)return {key:'hud-toggle',kind:'spatial',id:'spatial:hud-toggle',run:toggleHUD};const hits=raycaster.intersectObjects([panelMesh,toolbar].filter(o=>o.visible),false);
   if(!hits.length)return spatial?.hit(raycaster)||null;const h=hits[0],kind=h.object===panelMesh?'panel':'bar',b=kind==='panel'?panel.hit(h.uv.x,h.uv.y):bar.hit(h.uv.x,h.uv.y);
-  return b?{...b,kind,id:kind+':'+b.key}:null;
+  return b?{...b,kind,distance:h.distance,id:kind+':'+b.key}:null;
  }
- function invoke(hit){if(hit.kind==='panel')panel.invoke(hit.key);else if(!ui.root()&&!actions.wheelActive()&&active())hit.run?.();}
+ function invoke(hit){if(hit.kind==='desk'){hit.run?.();return;}if(hit.kind==='panel'){panel.invoke(hit.key);if(!ui.root()&&!actions.wheelActive()&&!/^(page-|text-)/.test(hit.key)){hudRequested=false;updateHUD();}}else if(!ui.root()&&!actions.wheelActive()&&active())hit.run?.();}
  async function enter(selected=modeSelect?.value||'theatre',autoStart=false){
   if(session){await exit();return;}if(requesting)return;
   const choice=XR_MODES[selected],problem=environmentProblem();
@@ -176,7 +178,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   // Anchor once in front of this viewer, not at an assumed room origin. Keep
   // the theatre stationary afterwards; head movement never moves the player.
   if(!theatrePlaced){const p=viewer.transform.position;orientation.copy(viewer.transform.orientation);stage.position.set(p.x,p.y-1.6,p.z);stage.rotation.y=new T.Euler().setFromQuaternion(orientation,'YXZ').y;theatrePlaced=true;}
-  spatial?.poll(viewer,frame,reference);
+  spatial?.poll(viewer,frame,reference);const leftSource=Array.from(session.inputSources).find(s=>s.handedness==='left');menuAnchor.tick(now,trackedPose(frame,leftSource?.gripSpace||leftSource?.targetRaySpace,reference),referenceType);
   for(const src of sources.keys())if(!Array.from(session.inputSources).includes(src))release(src);
   for(const src of Array.from(session.inputSources).slice(0,4)){
    const value=acquire(src);if(!value)continue;const {visual}=value;
@@ -199,7 +201,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    }else if(present)controllerCount++;
    const edges=input.buttons.map((down,i)=>value.presses[i].read(present&&(i!==0||pinchValid),down));
    const stick=value.axisGate.read(present,input.x,input.y),menuDirection=value.repeat.read(stick.x,stick.y,now);
-   const select=edges[0],hit=present?hitTarget(pose):null;
+   const select=edges[0],hit=present?hitTarget(pose):null;visual.dot.visible=!!hit&&Number.isFinite(hit.distance);visual.ray.scale.z=visual.dot.visible?Math.max(.01,hit.distance)/4:1;if(visual.dot.visible)visual.dot.position.copy(pointer).addScaledVector(direction,hit.distance);
    if(!present){if(wheelOwner===src){actions.closeWheel(false);wheelOwner=null;frameBlocked=true;}value.capture=null;value.contextButton.reset();value.repeat.reset();continue;}
    if(inputContext()!==frameContext){frameBlocked=true;continue;}
    if(hit){if(hit.kind==='panel')hoverPanel=hit.key;else hoverBar=hit.key;}
@@ -230,6 +232,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
     else actions.updateWheel(command.x,command.y,command.variant,0);
     continue;
    }
+   if(hudRequested&&src.handedness==='right'&&edges[5]?.pressed){hudRequested=false;resetInput();frameBlocked=true;updateHUD();continue;}
    if(!active())continue;
    if(src.handedness==='left'){
     x+=stick.x;y+=stick.y;held.aim ||= select.down&&!value.capture&&!hit;
@@ -255,27 +258,23 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    const delta=pose.heading-actions.heading();return {...neutralXR(),...fallback,cameraYaw:pose.heading,moveYaw:Number.isFinite(fallback.moveYaw)?fallback.moveYaw+delta:undefined,look:0};
   }
   const mx=cap(x+(held.right?1:0)-(held.left?1:0),-1,1),my=cap(y+(held.backward?1:0)-(held.forward?1:0),-1,1),look=cap(turn+(held.turnRight?1:0)-(held.turnLeft?1:0),-1,1);
-  const pose=spatial?.controls(mx,my,look);if(pose?.blocked)return neutralXR();return {...xrLocomotion(getState(),mx,my,pose?0:look,held,pose?.heading??actions.heading(),dt),lookY:pose?0:cap(lookPitch,-1,1)*dt*2.1};
+  const pose=spatial?.controls(mx,my,look);if(pose?.blocked)return neutralXR();return {...xrLocomotion(getState(),mx,my,pose?0:look,held,pose?.heading??actions.heading(),dt),lookY:pose||spatial?.effective()==='diorama'?0:cap(lookPitch,-1,1)*dt*2.1};
  }
  function beforeGame(){
   if(!session||!renderer.xr.isPresenting||!gameTarget)return;
   suppressGameRender=!!spatial&&spatial.effective()!=='theatre';view.spatial?.setSkipRender(suppressGameRender);
-  savedRenderer={target:renderer.getRenderTarget(),viewport:renderer.getViewport(new T.Vector4()),scissor:renderer.getScissor(new T.Vector4()),scissorTest:renderer.getScissorTest()};
-  // Render the existing camera once into a bounded texture, not once per eye.
-  // The following immersive render uses that same GPU texture; no readPixels or
-  // DOM/canvas capture, additional WebGL context or frame-by-frame allocation.
-  renderer.xr.enabled=false;if(renderer.getPixelRatio()!==1)renderer.setPixelRatio(1);renderer.setRenderTarget(gameTarget);renderer.setScissorTest(false);renderer.setViewport(0,0,1024,576);
-  view.camera.aspect=16/9;view.camera.updateProjectionMatrix();
+  savedRenderer=beginXRPass(renderer,gameTarget,suppressGameRender);
+  if(!suppressGameRender){view.camera.aspect=16/9;view.camera.updateProjectionMatrix();}
  }
  function fail(error){
   entryError=xrFailureText(error);entryPhase='failed';entryAutoStart=false;
-  if(savedRenderer){const old=savedRenderer;savedRenderer=null;renderer.setRenderTarget(old.target);renderer.setViewport(old.viewport);renderer.setScissor(old.scissor);renderer.setScissorTest(old.scissorTest);}
+  if(savedRenderer){const old=savedRenderer;savedRenderer=null;restoreXRPass(renderer,old);}
   suppressGameRender=false;view.spatial?.setSkipRender(false);renderer.xr.enabled=true;message(entryError);
   void exit().catch(endError=>{console.error(endError);onEnd(session);});
  }
  function afterGame(){
   if(!savedRenderer||!session)return;
-  const old=savedRenderer;savedRenderer=null;renderer.setRenderTarget(old.target);renderer.setViewport(old.viewport);renderer.setScissor(old.scissor);renderer.setScissorTest(old.scissorTest);
+  const old=savedRenderer;savedRenderer=null;restoreXRPass(renderer,old);
   renderer.xr.enabled=true;suppressGameRender=false;updateHUD();
   const real=spatial&&spatial.effective()!=='theatre';screen.visible=!real;reticle.visible=reticle.visible&&!real;toolbar.position.set(-.44,real?.6:.43,real?-.6:-2.38);toolbar.scale.setScalar(real?.55:1);
   try{
