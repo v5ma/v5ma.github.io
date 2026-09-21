@@ -1,6 +1,6 @@
 # Dino Atlas: Field Rotunda
 
-Build ranger-spatial-console-20260920.1. Scope: the full Classic Reserve and Tidegate games, retaining the existing three XR modes. This is a focused interface refit, not an engine migration or another demonstration level.
+Build ranger-spatial-console-20260920.2. Scope: the full Classic Reserve and Tidegate games, retaining the existing three XR modes. This is a focused interface refit, not an engine migration or another demonstration level.
 
 ## Playtest changes
 
@@ -23,3 +23,13 @@ Three WebXRManager grip and hand spaces and WebXR local-floor reference spaces i
 Run all Node tests and syntax checks. The new spatial-console-browser.py runs separately in Classic and Tidegate with actual input and the production renderer, mocking only unavailable XR sessions/poses and gamepad input. It must demonstrate clear play, real movement, stable menu pose under head motion, workspace/map tabs, controller adjustments, hand summon/movement/release, real session exit and unchanged rewards/preferences. Public file matching and public browser journeys are separate from local/candidate evidence.
 
 The earlier grounded hand test now deliberately summons Field controls before selecting hand movement; it no longer assumes a permanently visible board. No gameplay outcome is assigned to manufacture acceptance. Physical Quest 3 controllers/hands, wrist orientation, readable sizing, stereo/passthrough, comfort, sustained performance and user approval remain open. Keep failures and exact run identities in the handoff rather than describing queued checks as passed.
+
+## Additional interaction pass
+
+The .2 refinement adds deliberate 15-degree workspace rotation steps (bounded to 60 degrees each way), preserving the captured placement and independent game-portal transform. Rotation uses the existing personal-preference key; missing values default to zero.
+
+Visible personal UI owns the whole surface. Nonbutton text and blank panel regions consume trigger/pinch input without selecting an action or firing through the slate. The press remains consumed until release even after pointing away. Hidden ancestors remove their descendants from picking. Nearby overlapping personal surfaces are resolved by actual ray distance. Gameplay controls and mounted weapon rules are unchanged.
+
+Pointer feedback now identifies the actual button object, so identical plus/minus labels do not highlight every setting. The direct navigation tabs and compact Menu/Field controls receive contrasting hover feedback. Compact helicopter guidance distinguishes the Active stick-altitude layout from Legacy trigger piloting.
+
+Four ray/feedback assertions failed on the recovered .1 runtime and passed after repair. The final local model suite contains 254 passing tests; new native checks cover workspace rotation, unchanged diorama placement, repeated-label feedback, visible-slate input ownership, release/rearm and ordinary tool firing. Native and public results must be recorded separately. These tests do not certify physical Quest/Xbox devices or human comfort.

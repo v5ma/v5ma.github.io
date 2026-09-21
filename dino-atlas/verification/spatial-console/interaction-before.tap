@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: The nonbutton area of a visible wrist slate consumes the ray without firing or selecting
+not ok 1 - The nonbutton area of a visible wrist slate consumes the ray without firing or selecting
+  ---
+  duration_ms: 4.029258
+  type: 'test'
+  location: '/mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:15:43)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: A hidden parent prevents a still-visible child slate from accepting an invisible click
+not ok 2 - A hidden parent prevents a still-visible child slate from accepting an invisible click
+  ---
+  duration_ms: 1.070563
+  type: 'test'
+  location: '/mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   label: 'Field controls',
+    +   run: [Function: run]
+    + }
+    - null
+    
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: Panel blank space is an inert UI hit, not an opening for accidental tool fire
+not ok 3 - Panel blank space is an inert UI hit, not an opening for accidental tool fire
+  ---
+  duration_ms: 0.485628
+  type: 'test'
+  location: '/mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:21:106)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Repeated plus labels highlight only the pointed control, not every plus on the menu
+not ok 4 - Repeated plus labels highlight only the pointed control, not every plus on the menu
+  ---
+  duration_ms: 0.800184
+  type: 'test'
+  location: '/mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:23:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected "actual" to be strictly unequal to:
+    
+    16766852
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 16766852
+  actual: 16766852
+  operator: 'notStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-spatial-refinement/source/dino-atlas/tests/spatial-interaction.test.mjs:26:24)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.662034

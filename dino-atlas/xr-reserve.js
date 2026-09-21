@@ -1,4 +1,4 @@
-import {SpatialConsole} from './spatial-console.js?v=rotunda1';
+import {SpatialConsole} from './spatial-console.js?v=rotunda2';
 import {TravelControls} from './travel-controls.js';
 import {activeTrackedMotion} from './active-controls.js';
 import * as T from './vendor/three.module.js';
@@ -63,7 +63,7 @@ export class ReserveXR{
  headCamera(){if(this.ctx.renderer.xr.isPresenting)this.ctx.renderer.xr.updateCamera(this.ctx.camera);return this.ctx.camera;}
  snap(amount){const camera=this.headCamera(),before=camera.getWorldPosition(new T.Vector3());this.rig.rotation.y+=amount;this.rig.updateMatrixWorld(true);const after=camera.getWorldPosition(new T.Vector3());this.originOffset.add(before.sub(after));this.position();this.paintClock=1;}
  rayFor(entry){if(!entry.ray.visible)return null;entry.ray.updateWorldMatrix(true,false);this.rotation.extractRotation(entry.ray.matrixWorld);return {origin:new T.Vector3().setFromMatrixPosition(entry.ray.matrixWorld),direction:new T.Vector3(0,0,-1).applyMatrix4(this.rotation).normalize()};}
- hit(entry){const special=this.console?.hit(entry);if(special)return special;const ray=this.rayFor(entry);if(!ray||!this.panel.visible)return null;this.raycaster.set(ray.origin,ray.direction);const hit=this.raycaster.intersectObject(this.panel,false)[0];if(!hit?.uv)return null;entry.uiDistance=hit.distance;const x=hit.uv.x*1024,y=(1-hit.uv.y)*1024;return this.tiles.find(t=>x>=t.x&&x<=t.x+t.w&&y>=t.y&&y<=t.y+t.h)||null;}
+ hit(entry){if(this.console)return this.console.hit(entry);const ray=this.rayFor(entry);if(!ray||!this.panel.visible)return null;this.raycaster.set(ray.origin,ray.direction);const hit=this.raycaster.intersectObject(this.panel,false)[0];if(!hit?.uv)return null;entry.uiDistance=hit.distance;const x=hit.uv.x*1024,y=(1-hit.uv.y)*1024;return this.tiles.find(t=>x>=t.x&&x<=t.x+t.w&&y>=t.y&&y<=t.y+t.h)||null;}
  selectStart(source,entry){
   if(!this.active||this.invisible||!source)return;
   const tile=this.hit(entry);if(!tile)return;this.consumed.add(source);

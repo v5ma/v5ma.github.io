@@ -301,3 +301,5 @@ This continues INPUT-08a/NAV-08a and LEVEL-PM-03 without closing human gates. No
 - [ ] UI-09c: Separate canvas-native screen HUD and manipulation-handle pass after the current XR menu loop has player feedback. Keep the accessible screen fallback until a replacement is proven.
 
 No private hub implementation, sphere portal, cross-site or walking portal is part of this Dino pass. Existing place-mastery, mission-route coverage and physical acceptance gates remain open.
+
+- [ ] UI-09a2: Refine the recovered rotunda with workspace-only rotation, exact-button/tab feedback, blank-surface input consumption, hidden-ancestor rejection and correct profile-sensitive flight hints. Local 254-test evidence is not completion of native or public acceptance. Preserve the original UI-09b physical and UI-09c screen/handle work.
