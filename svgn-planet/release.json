@@ -1,8 +1,8 @@
 {
   "version": "0.16.1",
-  "revision": "master-reconcile-1",
+  "revision": "wayfinding-1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods / Spatial Console",
+  "edition": "Unified Neighborhoods / Way In",
   "date": "2026-09-21",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
@@ -10,11 +10,18 @@
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "../release-receipts/neighborhood-missions-spatial-console-0.16.1.json",
+  "publicationEvidence": "../release-receipts/neighborhood-missions-wayfinding-20260921.json",
   "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "Direct-master reconciliation over b38d54f; see INTEGRATION-AUDIT.md",
-  "sourceAcceptanceRuns": [35551197282, 35551588021, 35552082042, 35552545981, 35554765805],
+  "runtimeCheckpoint": "See WAYFINDING.md and the exact-source external publication receipt",
+  "sourceAcceptanceRuns": [
+    35551197282,
+    35551588021,
+    35552082042,
+    35552545981,
+    35554765805
+  ],
   "changes": [
+    "Gold task marker plus cyan next-entrance cue, supported route map and dismount/dock guidance; existing shortcuts and water states affect the suggestion without moving or advancing the player.",
     "Reconcile the competing Field Desk physical left/right vehicle-trigger option into the existing console; preserve current primary-hand defaults and all on-foot/Courier/Xbox controls.",
     "Remove fourteen obsolete writer/duplicate workflow wrappers; retain all unique tests in three existing read-only master workflows.",
     "Native XR page follows Xbox/keyboard focus, with a visible focus marker and a direct Choose a mission jump; Pause and cancel-first restoration remain unchanged.",
@@ -33,9 +40,9 @@
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 387,
+    "localModelTestsPassed": 411,
     "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "Reconciliation passes 387 local tests and 102 frozen legacy hashes. Current rendered and public results are separate; prior public run 35564523386 failed.",
+    "sourceAndPublicEvidence": "Consult the external receipt for exact model, rendered and publication outcomes; no complete-device approval is implied.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,

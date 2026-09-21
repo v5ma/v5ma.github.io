@@ -22,7 +22,7 @@ def main():
     imports=json.loads(re.search(r'<script type="importmap">(.*?)</script>',html,re.S).group(1))['imports']
     expected['svgn-planet/']={**expected['svgn-planet/index.html'],'alias':True}
     for target in imports.values():
-        if 'rev=master-reconcile-1' not in target:continue
+        if 'rev=' not in target:continue
         name='svgn-planet/'+target.removeprefix('./');path=name.split('?',1)[0]
         expected[name]={**expected[path],'alias':True}
     rows={};homepage_link=False;release=json.loads((ROOT/'release.json').read_text());commit=os.getenv('COMMIT',os.getenv('GITHUB_SHA','local-check'))

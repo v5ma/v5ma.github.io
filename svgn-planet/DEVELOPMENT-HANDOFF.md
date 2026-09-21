@@ -1,3 +1,7 @@
+# Current pass: Way In
+
+Read WAYFINDING.md and release.json. Entrance/elevation guidance now uses the existing geometry and changing routes, with cyan way-in and gold final-task markers. No gameplay ledger or original layout is changed. All local tests and actual source/public acceptance are recorded separately in the external receipt. Retain current direct-master instructions. The earlier reconciliation record below remains historical context.
+
 # Neighborhood Missions / direct-master reconciliation
 
 Read AGENTS.md, INTEGRATION-AUDIT.md, production/integration-audit-20260921.json and release.json first. Older instructions that require new pull requests, staging branches or source-import workflows are historical, not the current process. Write completed scoped changes directly to the latest reconciled master with a single parent and no force push.

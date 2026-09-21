@@ -1,3 +1,4 @@
+import {routeGuide} from './route-guide.mjs';
 import * as T from '../vendor/three.module.js';
 import {residents,storyTarget,cityMarkers,cityState} from './city.mjs';
 export function createCityView({world,box,cyl,label}){
@@ -27,6 +28,11 @@ export function createCityView({world,box,cyl,label}){
  const ring=new T.Mesh(new T.TorusGeometry(.8,.09,8,32),material);ring.rotation.x=Math.PI/2;ring.position.y=.09;ring.renderOrder=30;target.add(ring);
  const arrow=new T.Mesh(new T.ConeGeometry(.24,.6,8),material);arrow.rotation.z=Math.PI;arrow.position.y=2.05;arrow.renderOrder=30;target.add(arrow);
  const flag=label('NEXT OBJECTIVE',0,3.7,0,3,.48,'#6c5413','#fff4c6',target);flag.material.depthTest=false;flag.renderOrder=31;
+ const approach=new T.Group();approach.name='Next reachable approach cue';world.add(approach);
+ const approachMaterial=new T.MeshBasicMaterial({color:0x73e5ee,depthTest:false,depthWrite:false,transparent:true,opacity:.9});
+ const approachRing=new T.Mesh(new T.TorusGeometry(.52,.065,6,24),approachMaterial);approachRing.rotation.x=Math.PI/2;approachRing.position.y=.12;approachRing.renderOrder=30;approach.add(approachRing);
+ const approachArrow=new T.Mesh(new T.ConeGeometry(.2,.45,6),approachMaterial);approachArrow.rotation.z=Math.PI;approachArrow.position.y=1.3;approachArrow.renderOrder=30;approach.add(approachArrow);
+ const approachFlag=label('WAY IN',0,1.95,0,1.8,.36,'#174b58','#c4ffff',approach);approachFlag.material.depthTest=false;approachFlag.renderOrder=31;
  const paper=box(scene,0xffedbd,-9.6,1.65,1.1,.65,.03,.42);
  const dining=new T.Group();scene.add(dining);for(let i=0;i<4;i++)cyl(dining,0xf4c168,-21.1+i*.4,1.07,-2.7,.14,.09);
  const roofPlants=new T.Group();scene.add(roofPlants);for(let i=0;i<4;i++)cyl(roofPlants,0x619c6a,-15+i*.4,4.95,-4.4,.16,.75);
@@ -35,7 +41,7 @@ export function createCityView({world,box,cyl,label}){
  const gathering=new T.Group();scene.add(gathering);for(let i=0;i<7;i++)cyl(gathering,0xffd162,4.8+i*.55,3.2,8,.15,.3);
  return {update(s,yaw){
   const markers=cityMarkers(s),c=cityState(s);for(const p of people){const near=Math.hypot(s.x-p.r.x,s.z-p.r.z)<4;p.g.rotation.y=near?Math.atan2(s.x-p.r.x,s.z-p.r.z):0;p.name.rotation.y=yaw;p.bang.rotation.y=yaw;p.bang.visible=markers.find(m=>m.id===p.r.id).available;}
-  const t=storyTarget(s);target.visible=!!t;if(t){target.position.set(t.x,t.y,t.z);diamond.rotation.y=s.time*.6;flag.rotation.y=yaw;}
+  const t=storyTarget(s),guide=routeGuide(s,t);approach.visible=!!guide.cue&&guide.path.length>2;if(approach.visible){approach.position.set(guide.cue.x,guide.cue.y,guide.cue.z);approachFlag.rotation.y=yaw;}target.visible=!!t;if(t){target.position.set(t.x,t.y,t.z);diamond.rotation.y=s.time*.6;flag.rotation.y=yaw;}
   radioReady.visible=c.completed.includes('radio');marketLights.visible=c.completed.includes('lamps');paper.visible=c.completed.includes('press');dining.visible=c.completed.includes('kitchen');roofPlants.visible=c.completed.includes('garden');gathering.visible=c.completed.includes('gathering');
- },target,inspect:()=>({residents:people.length,missionBeacon:target.visible})};
+ },target,inspect:()=>({residents:people.length,missionBeacon:target.visible,approachBeacon:approach.visible})};
 }
