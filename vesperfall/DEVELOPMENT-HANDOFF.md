@@ -1,3 +1,7 @@
+Threshold spatial interface / September 21, 2026.
+
+Read THRESHOLD.md. The XR pause panel is an adjustable world-anchored floor desk. Settings / Spatial desk opens a checkpoint-protected local Vesperfall walking round trip, with viewer crossing, hand menus, seated return and actual session exit. No private hub integration or assets are included. Preserve Goldwind, Wayfinder, all five layout readers, the current game object and save namespaces. Physical-device gates and the larger-adventure request remain open. The canonical workbook is unchanged; work maps to V41/V42/V65/V68. Read the exact publication receipt before calling the candidate live.
+
 Wayfinder interaction repair / September 19, 2026.
 
 Read WAYFINDER.md. The owner reports that pickups and combat work but mechanisms and chapter completion are not discoverable in headset play. The default palm setting hides the old objective HUD. This repair adds local mechanism/exit prompts, a palm objective card and a targeted free-hand grip path through the existing interaction owner. Golden arrows, geometry, objectives, saves and the canonical roadmap/workbook are unchanged. Larger/longer chapters remain an explicit next content priority, not a completed part of this repair.

@@ -10,5 +10,10 @@
     "name": "Wayfinder",
     "date": "2026-09-19",
     "scope": "Visible mechanism and exit affordances, objective wrist card and grip progression. Existing world identities, chapter length, save and reward contracts unchanged. See WAYFINDER.md and the separate publication receipt."
+  },
+  "threshold": {
+    "name": "Threshold",
+    "date": "2026-09-21",
+    "scope": "World-anchored adjustable XR desk and a checkpoint-protected walking round trip to a local Vesperfall foyer. No private hub integration, cross-site travel, sphere portals, altered saved geometry or desktop UI replacement. See THRESHOLD.md and its separate publication receipt."
   }
 }

@@ -4,7 +4,7 @@
  function install(g){
   const T=g.T,M=VesperThresholdModel,ui=g.dominionControls,$=id=>document.getElementById(id),KEY='vesperfall-spatial-desk-v1';
   let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}');}catch{}
-  const state={settings:M.settings(saved),phase:'game',walking:false,frames:0,crossings:0,previous:{},moveReady:false,menuNeutral:false,hidden:new Map(),snapshot:null,ending:false,placed:false};
+  const state={settings:M.settings(saved),phase:'game',walking:false,frames:0,crossings:0,previous:{},moveReady:false,menuNeutral:false,walkingPinches:new Map(),hidden:new Map(),snapshot:null,ending:false,placed:false};
   const crossing=new M.Crossing(),desk=new T.Group(),stage=new T.Group(),door=new T.Group(),frame=new T.Group();
   desk.name='Vesperfall floor desk';stage.name='Vesperfall local travel foyer';door.name='Walking doorway / local destination';frame.name='Spatial menu anchor';
   g.scene.object3D.add(desk,stage,frame);stage.add(door);desk.visible=stage.visible=false;
@@ -32,8 +32,8 @@
   function screen(name){ui.setScreen(name);if(!panel.visible||!state.placed)g.placePanel();}
   function persist(){state.settings=M.settings(state.settings);try{localStorage.setItem(KEY,JSON.stringify(state.settings));}catch{g.toast('Desk settings are temporary: storage is unavailable.');}layout();g.drawMenu();}
   function cycle(key,values){const i=values.findIndex(v=>Math.abs(v-state.settings[key])<.01);state.settings[key]=values[(i+1)%values.length];persist();}
-  function signText(){const {ctx,texture}=sign;ctx.fillStyle='#142230';ctx.fillRect(0,0,768,192);ctx.textAlign='center';ctx.fillStyle='#f3ddb2';ctx.font='35px Georgia';ctx.fillText(state.phase==='outbound'?'VESPERFALL / LOCAL TRAVEL FOYER':'RETURN TO YOUR EXPEDITION',384,52,720);ctx.font='22px Arial';ctx.fillStyle='#cee4dc';ctx.fillText('Walk through, or use the movement stick.',384,98,710);ctx.fillText('Free-hand stick click: menu / seated return',384,132,710);ctx.font='18px Arial';ctx.fillText('Virtual doorway. Stay inside your clear real play space.',384,167,710);texture.needsUpdate=true;}
-  function poseDoor(){const h=g.head.object3D.getWorldPosition(new T.Vector3()),f=forward();stage.position.set(h.x,g.rig.position.y,h.z);stage.rotation.set(0,Math.atan2(-f.x,-f.z),0);door.position.set(0,0,-1.25);stage.updateMatrixWorld(true);crossing.reset();state.moveReady=false;state.previous={};signText();}
+  function signText(){const {ctx,texture}=sign;ctx.fillStyle='#142230';ctx.fillRect(0,0,768,192);ctx.textAlign='center';ctx.fillStyle='#f3ddb2';ctx.font='35px Georgia';ctx.fillText(state.phase==='outbound'?'VESPERFALL / LOCAL TRAVEL FOYER':'RETURN TO YOUR EXPEDITION',384,52,720);ctx.font='22px Arial';ctx.fillStyle='#cee4dc';ctx.fillText('Walk through, or use the '+($('handedness').value==='left'?'left':'right')+' stick.',384,98,710);ctx.fillText('Free-hand stick click or fresh hand pinch: menu',384,132,710);ctx.font='18px Arial';ctx.fillText('Virtual doorway. Stay inside your clear real play space.',384,167,710);texture.needsUpdate=true;}
+  function poseDoor(){const h=g.head.object3D.getWorldPosition(new T.Vector3()),f=forward();stage.position.set(h.x,g.rig.position.y,h.z);stage.rotation.set(0,Math.atan2(-f.x,-f.z),0);door.position.set(0,0,-1.25);stage.updateMatrixWorld(true);crossing.reset();state.walkingPinches.clear();state.moveReady=false;state.previous={};floor.material.transparent=!!g.arExpedition;floor.material.opacity=g.arExpedition?.15:1;floor.material.depthWrite=!g.arExpedition;floor.material.needsUpdate=true;signText();}
   function stopWalking(){state.walking=false;state.menuNeutral=true;crossing.reset();g.cancel();panel.visible=false;screen('foyer');}
   function begin(){
    if(!g.xr||!g.checkpoint.eligible||g.game.phase!=='playing'||g.returningBell.state.table){ui.notice('Start or resume a scored expedition in VR or AR expedition before opening its return doorway. Sanctuary, inspection and training stay separate.');return;}
@@ -52,7 +52,7 @@
   function returnNow(){restore();g.setPaused(true);screen('main');g.toast('Expedition unchanged. Resume when ready.');}
   function openReturn(){state.phase='returning';state.walking=true;poseDoor();g.cancel();panel.visible=desk.visible=false;}
   async function exit(){
-   if(state.ending)return;state.ending=true;restore();g.setPaused(true);
+   if(state.ending)return;state.ending=true;if(state.walking)stopWalking();g.setPaused(true);
    try{const session=g.scene.renderer.xr.getSession();if(session)await session.end();else if(g.xr)await g.scene.exitVR();}
    catch(e){ui.notice('Immersive exit did not complete. Retry Exit XR. '+e.message);}
    finally{state.ending=false;}
@@ -93,11 +93,19 @@
    let viewer=null;try{viewer=g.scene.frame?.getViewerPose(ref);}catch{}
    if(session?.visibilityState!=='visible'||!viewer||viewer.emulatedPosition){crossing.reset();state.moveReady=false;return;}
    const hands=Object.entries(g.hands),bow=$('handedness').value,free=bow==='left'?'right':'left';
-   if(hands.length<2||[...(session?.inputSources||[])].some(s=>s.hand)){stopWalking();oldProcess(dt,head);return;}
+   const optical=[...(session?.inputSources||[])].filter(s=>s.hand);
+   if(optical.length){
+    for(const source of optical){
+     if(!state.walkingPinches.has(source))state.walkingPinches.set(source,new VesperSurestep.Pinch());
+     let distance=NaN;
+     try{const a=g.scene.frame.getJointPose(source.hand.get('thumb-tip'),ref)?.transform.position,b=g.scene.frame.getJointPose(source.hand.get('index-finger-tip'),ref)?.transform.position;if(a&&b)distance=Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);}catch{}
+     if(state.walkingPinches.get(source).update(distance)){for(const p of g.questHands.state.sources.values())p.pinch.reset();stopWalking();return oldProcess(dt,head);}
+    }
+   }else if(hands.length<2){stopWalking();oldProcess(dt,head);return;}
    const neutral=hands.every(([,h])=>!h.buttons.some(Boolean)&&h.axes.every(v=>Math.abs(v)<.25));if(neutral)state.moveReady=true;
    if(g.hands[free]?.buttons[3]&&!state.previous[free]?.[3]){stopWalking();return;}
-   if(state.moveReady){const h=g.hands[bow],x=h.axes.length>=4?h.axes[2]:h.axes[0]||0,z=h.axes.at(-1)||0;
-    if(Math.hypot(x,z)>.25){const v=new T.Vector3(x,0,z);if(v.length()>1)v.normalize();v.multiplyScalar(Math.min(.04,dt)*1.15).applyQuaternion(stage.quaternion);const local=stage.worldToLocal(head.clone().add(v));if(Math.abs(local.x)<3&&Math.abs(local.z)<3)g.rig.position.add(v);g.rig.updateMatrixWorld(true);}
+   if(state.moveReady&&hands.length===2&&!optical.length){const h=g.hands[bow],x=h.axes.length>=4?h.axes[2]:h.axes[0]||0,z=h.axes.at(-1)||0;
+    if(Math.hypot(x,z)>.25){const v=new T.Vector3(x,0,z);if(v.length()>1)v.normalize();v.multiplyScalar(Math.min(.04,dt)*1.15).applyQuaternion(stage.quaternion);const local=stage.worldToLocal(head.clone().add(v));if(local.x*local.x+local.z*local.z<9)g.rig.position.add(v);g.rig.updateMatrixWorld(true);}
    }
    state.previous=Object.fromEntries(hands.map(([n,h])=>[n,[...h.buttons]]));
    if(crossing.update(door.worldToLocal(g.head.object3D.getWorldPosition(new T.Vector3())).toArray())){state.crossings++;if(state.phase==='outbound'){state.phase='foyer';stopWalking();signText();}else returnNow();}

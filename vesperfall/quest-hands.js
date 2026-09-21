@@ -112,7 +112,7 @@
       for (const x of [...Object.values(rays), ...Object.values(dots)]) { x.geometry.dispose(); x.material.dispose(); x.removeFromParent(); }
       remove();
     };
-    return {state, reset};
+    return {state, reset, rays, dots};
   }
   root.QuestHands = Object.freeze({install});
 })(globalThis);
