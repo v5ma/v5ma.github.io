@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   source:
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
@@ -40,8 +40,8 @@ jobs:
           set -o pipefail
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee console-model.txt
           for f in svgn-planet/*.mjs; do node --check "$f"; done
-          python -m py_compile svgn-planet/console-browser.py
-          python - <<'PY'
+          python3 -m py_compile svgn-planet/console-browser.py
+          python3 - <<'PY'
           import json,hashlib,pathlib
           root=pathlib.Path('svgn-planet');m=json.loads((root/'legacy-layout.json').read_text())
           for row in m['files']:assert hashlib.sha256((root/row['path']).read_bytes()).hexdigest()==row['sha256'],row['path']
@@ -55,7 +55,7 @@ jobs:
           retention-days: 30
   browser:
     needs: source
-    runs-on: ubuntu-latest
+    runs-on: macos-15
     timeout-minutes: 25
     strategy:
       fail-fast: false
