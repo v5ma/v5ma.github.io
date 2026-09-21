@@ -76,6 +76,13 @@ with sync_playwright() as pw:
   check(page.evaluate('JSON.stringify({route:__delivery.state.route,code:levelCode(),deliveries,tries})')==before,'Rejected XR permission neither changes the route nor silently starts screen play')
   check(not page.evaluate('SkyCycleXR.presenting'),'Rejected entry leaves a recoverable normal browser')
   page.locator('#sc-entry-back').click();page.evaluate('xrEmulator.deny=false')
+  # Delayed permission is an OS facade fixture, not a game-state assignment.
+  page.evaluate("(()=>{const original=navigator.xr.requestSession.bind(navigator.xr);window.restoreRequest=()=>{navigator.xr.requestSession=original;};navigator.xr.requestSession=(...args)=>new Promise((resolve,reject)=>{window.finishPendingRequest=()=>original(...args).then(resolve,reject);});})()")
+  page.locator(f'button[data-sc-route="first-neighborhood"][data-sc-mode="{KIND}"]').click()
+  page.wait_for_function('SkyCycleRouteEntry.diagnostics.busy');page.locator('#sc-entry-back').click()
+  page.evaluate('finishPendingRequest()');page.wait_for_function('!SkyCycleXR.presenting&&!SkyCycleXR.diagnostics.starting')
+  check(page.evaluate('JSON.stringify({route:__delivery.state.route,code:levelCode(),deliveries,tries})')==before,'Cancelling delayed permission closes the later acquired session without replacing the current route')
+  page.evaluate('restoreRequest()')
   # Explicit fault injection only for the new independent preference key.
   page.evaluate("(()=>{const set=Storage.prototype.setItem;window.restorePrefStore=()=>{Storage.prototype.setItem=set;};Storage.prototype.setItem=function(k,v){if(k==='svgn.skycycle.launch.v1')throw new DOMException('fixture quota','QuotaExceededError');return set.call(this,k,v);};})()")
   page.locator('button[data-sc-route="first-neighborhood"][data-sc-mode="screen"]').click();page.wait_for_function('__delivery.state.route===4')

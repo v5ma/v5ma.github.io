@@ -233,7 +233,7 @@ function makeMenu(now,force=false){
   if(current)button(window.RouteWorkshop?.active?'Resume editing now':'Resume play',895,10,270,62,resumeWorkspace);
   button('Recenter',35,822,255,62,()=>{recenter=true;});button('All menus',305,822,275,62,openWorkspace);button('Spatial setup',595,822,285,62,show);button('Exit XR',895,822,270,62,endSession);
   if(uiMessageUntil>now){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text(uiMessage,35,810,1,1110,16);}
-  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v0.26.2 | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
+  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v'+(window.PaperDeliveryRelease?.version||'0.27.0')+' | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
   texture.needsUpdate=true;
 }
 function tracked(source){let entry=visuals.get(source);if(entry)return entry;
