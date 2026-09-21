@@ -3,7 +3,7 @@
   "version": "0.15.0",
   "title": "Field Rotunda",
   "recordedUtc": "2026-09-21",
-  "status": "Merged; Pages and independent public verification pending",
+  "status": "Merged into master; shared Pages deployment still queued; not yet verified publicly served",
   "source": "8b6904f734abfd29cfef87880c5fba9ccaa868ac",
   "acceptedHead": "ef4f042e406a361f8bcdc97c2f5696a1d1b055ca",
   "pullRequest": 207,
@@ -16,11 +16,24 @@
   "runtimeFiles": 121,
   "allNativeArtifactDigestsAndManifestsReviewed": true,
   "additionalPass": "Preference edits retain the captured opening origin; geometric reset preserves HUD/motion/aim preferences; post-render stereo screenshots show actual WebGL separately from the DOM fallback.",
-  "pagesRun": 35556485515,
+  "pagesRun": 35557265250,
+  "pagesBuildJob": 106203220193,
+  "pagesStatus": "queued, no assigned runner or completed build steps at last check",
+  "deploymentSource": "2a527853cffebc837f078dafdc015124b629992d",
+  "supersededPagesRuns": [35556485515,35556668485],
   "publicByteRun": 35556486345,
-  "publicApplication": "Not yet accepted; the established published workflow runs rotunda, window and portal journeys against actual HTTPS.",
-  "backup": "Unique aether-v0.15.0 release and downloaded-source restore remain pending.",
+  "publicByteJob": 106200996689,
+  "publicByteStatus": "queued at last check",
+  "publicApplication": "Not yet accepted; the established published workflow must run rotunda, window and portal journeys against actual HTTPS after byte verification succeeds.",
+  "backup": "Unique aether-v0.15.0 release and downloaded-source restore remain pending. No new verified release archive is claimed.",
+  "siblingScope": "After the Aether merge, 62793eff changed only a Prism test; 2a527853 changed only Dino Atlas files and its workflow. Both are descendants and preserve all Aether and root chooser bytes. Their new Pages runs superseded earlier queued runs. No sibling jobs were cancelled by this recovery.",
   "retainedFailure": "Legacy launch screenshot timeout after nine assertions; artifact 10619279804 / SHA-256 9ff05a6595eb428c06d8a5fe966e4766acd70633be60419705bc7578d7debdfe. Unchanged retry accepted; do not count initial failure as success.",
-  "scope": "This audit-branch checkpoint changes no runtime or master. Preserve sibling changes, version-1 saves, remaps, first-person aim, ammo/damage/reward rules and existing Bellwether. No private SaaS hub, travel portal or framework migration. Physical devices and human usability remain unverified.",
-  "next": "Finish public service and public input checks, download/restore the versioned source, then record actual results at release-receipts/aether-v0.15.0-20260920.json on master. Do not repeat old transfers. The existing audit branch originally pointed at ef4f042 and was reused without resetting it."
+  "limitations": [
+    "Physical Quest/Xbox and human usability remain unverified; synthetic passes do not override negative owner playtests.",
+    "Desktop/touch retains accessible HTML UI. This is not a complete desktop-canvas conversion.",
+    "Workspace transforms use explicit controls; free grabbing and two-handed resizing remain unimplemented.",
+    "No ammunition rebalance, private SaaS hub, travel portals or A-Frame conversion is included."
+  ],
+  "scope": "This audit-branch checkpoint changes no runtime or shared master and does not supersede the pending deployment. Preserve version-1 saves, remaps, first-person aim, damage/reward rules and all Bellwether work.",
+  "next": "Read the latest Pages and public-byte results before taking any further action. If a newer Pages run supersedes 35557265250, compare its Aether and root chooser scope with the accepted source. After deployment verify all 121 served files and the separate public rotunda/window/portal inputs; then download and restore the unique versioned source. Write final receipt at release-receipts/aether-v0.15.0-20260920.json only from actual results. Do not restart transfers, reset master, cancel sibling jobs, or claim a local/CI pass proves public deployment."
 }
