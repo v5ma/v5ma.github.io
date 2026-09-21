@@ -2,7 +2,7 @@ name: Neighborhood spatial console acceptance
 on:
   push:
     branches: [neighborhood-missions/spatial-console-20260920]
-    paths: ['svgn-planet/**', '.github/upgrades/console-finalize.py', '.github/workflows/neighborhood-console.yml']
+    paths: ['svgn-planet/**', '.github/upgrades/console-edge.py', '.github/workflows/neighborhood-console.yml']
 permissions:
   contents: read
 concurrency:
@@ -28,20 +28,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Prepare scoped release records without changing missions or saves
+      - name: Apply verified single-source UI refinement
         id: source
         run: |
-          python .github/upgrades/console-finalize.py
+          python .github/upgrades/console-edge.py
           python - <<'PY'
           import subprocess,os,pathlib
-          allowed={'svgn-planet/index.html','svgn-planet/release.json','svgn-planet/SPATIAL-CONSOLE.md','svgn-planet/DEVELOPMENT-HANDOFF.md','svgn-planet/AAA_ROADMAP.md','svgn-planet/production/roadmap.json'}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines())
+          allowed={'svgn-planet/spatial-console.mjs','svgn-planet/spatial-console.test.mjs','svgn-planet/console-browser.py','svgn-planet/release.json','svgn-planet/SPATIAL-CONSOLE.md'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
           assert changed.issubset(allowed),changed
           if changed:
               subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
               subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
               subprocess.run(['git','add',*sorted(changed)],check=True)
-              subprocess.run(['git','commit','-m','docs(neighborhood): integrate spatial console records and versioned module entry'],check=True)
+              subprocess.run(['git','commit','-m','fix(neighborhood): keep one-handed console menus reachable'],check=True)
               subprocess.run(['git','push','origin','HEAD:neighborhood-missions/spatial-console-20260920'],check=True)
           commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();pathlib.Path('SOURCE-COMMIT.txt').write_text(commit+'\n')
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('commit='+commit+'\n')
