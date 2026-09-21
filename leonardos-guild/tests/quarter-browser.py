@@ -45,7 +45,7 @@ with sync_playwright() as p:
  if RELAY:context.add_init_script(path=str(ROOT/'tests/xr-hardware-mock.js'))
  page=context.new_page();page.set_default_timeout(100000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(6)
+  page.goto(BASE+'/leonardos-guild/?district=quarter&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild');frames(6)
   check(read()['quarter']['active'] and read()['version']==json.loads((ROOT/'release.json').read_text())['version'],'Fresh actual game starts in Waterwheel Quarter, not the prototype rows')
   press(0);page.wait_for_function('LeonardoGuild.inspect().running');frames(12);capture('arrival');original=read()
   check(read()['render']['quarter']['cameraSafety']['valid'] and read()['render']['quarter']['cameraSafety']['obstacle']=='workshop-back','The actual arrival camera is on the apprentice side of the workshop wall')
