@@ -27,14 +27,14 @@
     "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation."
   },
   "validation": {
-    "localModelTestsPassed": 333,
+    "localModelTestsPassed": 334,
     "localModelTestsFailed": 0,
     "sourceAndPublicEvidence": "Consult the exact run artifacts and publicationEvidence. Queued or failed runs are not accepted.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "newPresentationTests": 18
+    "newPresentationTests": 19
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 5,
