@@ -14,3 +14,19 @@ export function workspaceStep(value,open,dt,motion=true){
  const target=open?1:0;if(!motion)return target;
  return value+(target-value)*Math.min(1,Math.max(0,Number.isFinite(dt)?dt:0)*14);
 }
+
+/* Capture a room-space origin once. Preference edits must not sample head motion. */
+export function createWorkspacePlacement(){
+ let origin=null;
+ return {
+  locate(head,config,recall=false){
+   if(!origin||recall)origin={x:head?.x,z:head?.z,forward:{x:head?.forward?.x,z:head?.forward?.z}};
+   return workspaceAnchor(origin,config);
+  },
+  reset(){origin=null;}
+ };
+}
+export function resetWorkspacePlacement(config){
+ const {height,distance,scale,yaw}=cleanWorkspace();
+ return {...cleanWorkspace(config),height,distance,scale,yaw};
+}

@@ -1,7 +1,7 @@
 """Full application with ordinary UI/Touch/hand input and read-only observations.
 No writes to player, inventory, health, mission, save or clock. Not hardware QA.
 """
-import json,os
+import json,os,base64,struct
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'aether-reach/test-output';OUT.mkdir(exist_ok=True)
@@ -14,12 +14,19 @@ with sync_playwright() as pw:
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
  b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=1,service_workers='block')
  ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));ctx.add_init_script(path=str(ROOT/'aether-reach/tests/hand-devices.js'))
- ctx.add_init_script('''navigator.xr.isSessionSupported=async m=>['immersive-vr','immersive-ar'].includes(m);const req=navigator.xr.requestSession.bind(navigator.xr);navigator.xr.requestSession=async(m,o)=>{const s=await req(m,o);s.environmentBlendMode=m==='immersive-ar'?'alpha-blend':'opaque';s.inputSources.forEach(i=>i.gamepad.buttons=i.gamepad.buttons.slice(0,6));return s;};''')
+ ctx.add_init_script('''navigator.xr.isSessionSupported=async m=>['immersive-vr','immersive-ar'].includes(m);const req=navigator.xr.requestSession.bind(navigator.xr);navigator.xr.requestSession=async(m,o)=>{const s=await req(m,o);s.environmentBlendMode=m==='immersive-ar'?'alpha-blend':'opaque';s.inputSources.forEach(i=>i.gamepad.buttons=i.gamepad.buttons.slice(0,6));const raf=s.requestAnimationFrame.bind(s);s.requestAnimationFrame=fn=>raf((t,f)=>{fn(t,f);if(TestXR.captureCanvas){const done=TestXR.captureCanvas;TestXR.captureCanvas=null;done(document.getElementById('world').toDataURL('image/png'));}});return s;};''')
  p=ctx.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:shader.append(m.text) if m.type=='error' and any(s in m.text for s in ['Shader Error','WebGLProgram','VALIDATE_STATUS']) else None)
  def snap():return p.evaluate('AetherReach.snapshot()')
  def work():return snap()['devices']['presentation']['workspace']
  def frames(n=3):p.evaluate('(n)=>new Promise(r=>{function f(){if(--n<=0)r();else requestAnimationFrame(f)}requestAnimationFrame(f)})',n)
  def settled():p.wait_for_function('AetherReach.snapshot().devices.presentation.workspace.progress>.995')
+ def capture(name):
+  # Read after the real XR draw, not a DOM screenshot obscured by accessible dialogs.
+  data=p.evaluate("()=>new Promise(resolve=>{TestXR.captureCanvas=resolve;})")
+  raw=base64.b64decode(data.split(',',1)[1]);assert raw[:8]==b'\x89PNG\r\n\x1a\n' and len(raw)>2000
+  (OUT/name).write_bytes(raw)
+  check(struct.unpack('>II',raw[16:24])==(960,640),'Actual stereo WebGL canvas capture: '+name)
+
  def tap(side,i):
   p.evaluate('([s,i])=>TestXR.button(s,i,true)',[side,i]);frames(2);p.evaluate('([s,i])=>TestXR.button(s,i,false)',[side,i]);frames(2)
  def pin(x,y,side='right'):
@@ -52,16 +59,20 @@ with sync_playwright() as pw:
   check(w['progress']>.995 and w['panelRoomPosition']['y']>.9,'Workspace rises to its configured physical working height')
   before=w['anchor'];p.evaluate('TestXR.devices.headX=.2;TestXR.devices.headRoll=.4;TestXR.devices.headPitch=-.3');frames(6)
   check(work()['anchor']==before,'Head lean and tilt do not drag the raised workspace through the scene')
-  p.screenshot(path=str(OUT/'rotunda-raised-ar.png'))
+  p.screenshot(path=str(OUT/'rotunda-raised-ar.png'));capture('rotunda-raised-canvas.png')
   p.evaluate('TestXR.devices.headX=0;TestXR.devices.headRoll=0;TestXR.devices.headPitch=0;TestXR.useHands()');frames(6)
   choose('#pause-workspace');check(snap()['devices']['menu']=='workspace-dialog','Real hand pointing reaches rotunda preferences through the full pause menu')
+  p.evaluate('TestXR.devices.headX=.24;TestXR.devices.headYaw=.32');frames(4);fixed=work()['anchor']
   choose('#workspace-height');old=work()['config']['height'];pin(500,691);check(work()['config']['height']>old,'Hand adjustment raises the workspace without changing the game window')
+  check(all(abs(work()['anchor'][k]-fixed[k])<1e-9 for k in ['x','z','yaw']),'Height edit after leaning and looking aside does not recenter the workspace')
   choose('#workspace-scale');old=work()['config']['scale'];pin(500,691);check(work()['config']['scale']>old,'Resizing the panel through its actual spatial controls remains selectable')
   choose('#workspace-distance');old=work()['config']['distance'];pin(180,691);check(work()['config']['distance']<old,'Distance can be adjusted after resizing through the same hit regions')
   choose('#workspace-yaw');old=work()['config']['yaw'];pin(500,691);check(work()['config']['yaw']>old,'Rotating the workspace preserves working spatial selection')
   choose('#workspace-guidedAim');check(not work()['config']['guidedAim'],'Guided third-person aim is optional and can be disabled in headset')
   choose('#workspace-motion');check(not work()['config']['motion'],'Motion can be disabled without native browser controls')
-  p.screenshot(path=str(OUT/'rotunda-adjusted-hand-ui.png'));configured=work()['config'];check(p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==saved,'Workspace changes do not replace expedition saves')
+  before=work()['anchor'];configured=work()['config'];choose('#workspace-recall');frames(3)
+  check(abs(work()['anchor']['x']-before['x'])+abs(work()['anchor']['z']-before['z'])>.05 and work()['config']==configured,'Only explicit recall moves the workspace to the new head position without resetting preferences')
+  p.screenshot(path=str(OUT/'rotunda-adjusted-hand-ui.png'));capture('rotunda-adjusted-canvas.png');check(p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==saved,'Workspace changes do not replace expedition saves')
   pin(830,633);check(snap()['devices']['menu']=='pause-dialog','Spatial Back returns to the visible paused parent')
   choose('#resume');frames(3);check(not work()['open'] and work()['interactiveButtons']==0,'Dismissing the rotunda removes all menu hit targets')
   p.evaluate('TestXR.useControllers();TestXR.devices.rays={};TestXR.axes("left",[0,0,.5,0])');frames(8);moved=snap();p.evaluate('TestXR.axes("left",[0,0,0,0])');frames(2)
@@ -71,8 +82,9 @@ with sync_playwright() as pw:
   check(p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==saved,'Reload keeps the same expedition storage record')
   p.locator('#workspace-button').click();p.locator('#workspace-reset').click();check(work()['config']['height']==1.12,'Workspace reset only restores bounded UI preferences')
   check(p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==saved,'Workspace reset never clears saved gameplay')
+  check(all(work()['config'][k]==configured[k] for k in ['hud','motion','guidedAim']),'Placement reset retains status side, reduced motion and aim assistance choices')
   check(not errors and not shader,'No application or shader errors during combat, transformations, hand menus, exit or reload')
-  (OUT/'rotunda-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader,'scope':'Actual HTTP/HTTPS full application, supported low graphics, full pixel density 960x640, synthetic Touch/hand input. No physical headset or human-usability approval. No game-state injection.'},indent=2))
+  (OUT/'rotunda-browser.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'shaderErrors':shader,'scope':'Actual HTTP/HTTPS full application, supported low graphics, full pixel density 960x640, synthetic Touch/hand input. Post-render canvas PNGs show actual synthetic stereo WebGL separately from DOM fallback screenshots. No physical headset or human-usability approval. No game-state injection.'},indent=2))
  except Exception as e:
   (OUT/'rotunda-browser-failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'shaderErrors':shader,'snapshot':snap()},indent=2))
   try:p.screenshot(path=str(OUT/'rotunda-browser-failure.png'))

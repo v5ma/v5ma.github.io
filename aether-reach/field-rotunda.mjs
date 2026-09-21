@@ -2,9 +2,10 @@
  * All coordinates below are physical local-floor coordinates, under the XR rig,
  * never the camera or the miniature world. Existing modal actions remain canonical. */
 import * as T from './vendor/three.module.js';
-import {ROTUNDA_KEY,cleanWorkspace,workspaceAnchor,workspaceStep} from './rotunda-core.mjs';
+import {ROTUNDA_KEY,cleanWorkspace,workspaceStep,createWorkspacePlacement,resetWorkspacePlacement} from './rotunda-core.mjs';
 export function createFieldRotunda({rig,panel,hud,texture,api}){
  let config;try{config=cleanWorkspace(JSON.parse(localStorage.getItem(ROTUNDA_KEY)||'null'));}catch{config=cleanWorkspace();}
+ const placement=createWorkspacePlacement();
  const root=new T.Group();root.name='Field rotunda / room space';root.userData.xrUI=true;root.visible=false;rig.add(root);
  const lift=new T.Group();root.add(lift);lift.add(panel);panel.position.set(0,0,0);panel.rotation.set(0,0,0);
  const baseMat=new T.MeshBasicMaterial({color:0x194249,transparent:true,opacity:.96,depthTest:false,depthWrite:false});
@@ -23,7 +24,7 @@ export function createFieldRotunda({rig,panel,hud,texture,api}){
   b.position.set(((item.x+item.w/2)/1024-.5)*1.36,(.5-(item.y+item.h/2)/768)*1.02,pressedKey===key(item)&&performance.now()<pressedUntil?.012:item===hover||item.focused?.036:.023);
   const uv=b.geometry.attributes.uv;for(let j=16;j<20;j++){const u=(j%2),v=j<18?1:0;uv.setXY(j,(item.x+u*item.w)/1024,1-(item.y+(1-v)*item.h)/768);}uv.needsUpdate=true;
  }}
- function place(head){lastHead=head||lastHead;anchor=workspaceAnchor(lastHead,config);root.position.set(anchor.x,0,anchor.z);root.rotation.set(0,anchor.yaw,0);summon.position.set(anchor.x,.035,anchor.z);summon.rotation.set(-Math.PI/2,0,-anchor.yaw);}
+ function place(head,recall=true){anchor=placement.locate(head||lastHead,config,recall);root.position.set(anchor.x,0,anchor.z);root.rotation.set(0,anchor.yaw,0);summon.position.set(anchor.x,.035,anchor.z);summon.rotation.set(-Math.PI/2,0,-anchor.yaw);}
  function update({enabled,menu,head,frame,space,sources,dt,items,hover}){
   active=!!enabled;lastHead=head||lastHead;const open=active&&!!menu;
   if(!active){root.visible=panel.visible=hud.visible=summon.visible=point.visible=false;wasOpen=false;progress=0;return;}
@@ -53,15 +54,15 @@ export function createFieldRotunda({rig,panel,hud,texture,api}){
   return menu?h.object.userData.item:{kind:'summon',label:'Open rotunda'};
  }
  function press(item){pressedKey=key(item);pressedUntil=performance.now()+150;}
- function save(){config=cleanWorkspace(config);try{localStorage.setItem(ROTUNDA_KEY,JSON.stringify(config));}catch{}if(lastHead)place(lastHead);fill();}
+ function save(){config=cleanWorkspace(config);try{localStorage.setItem(ROTUNDA_KEY,JSON.stringify(config));}catch{}if(lastHead)place(lastHead,false);fill();}
  const dialog=document.createElement('dialog');dialog.id='workspace-dialog';dialog.setAttribute('aria-labelledby','workspace-title');
  dialog.innerHTML='<p class="eyebrow">IN-SCENE FIELD ROTUNDA</p><h2 id="workspace-title">Your workspace, out of the way.</h2><p>Y or Xbox Menu summons the workspace. It rests at floor level during play and rises only when selected. Height, distance, rotation and size change this workspace, not the diorama. Point and trigger or pinch to select. Looking down alone never pauses. Use the standard focus controls to reach every setting.</p><div class="settings-grid"><label>Working height<input id="workspace-height" type="range" min="0.55" max="1.65" step="0.05"></label><label>Distance<input id="workspace-distance" type="range" min="0.65" max="1.8" step="0.05"></label><label>Panel size<input id="workspace-scale" type="range" min="0.55" max="1.2" step="0.05"></label><label>Rotation<input id="workspace-yaw" type="range" min="-3.14159" max="3.14159" step="0.1"></label><label>Compact status<select id="workspace-hud"><option value="left">Left controller</option><option value="right">Right controller</option><option value="floor">Floor dock</option><option value="hidden">Hidden</option></select></label><label><input id="workspace-motion" type="checkbox">Animate the workspace</label><label><input id="workspace-guidedAim" type="checkbox">Guided third-person aim: steady horizontal sweep; hold fine aim for full elevation</label></div><button id="workspace-recall">Recall workspace here</button><button id="workspace-reset">Reset workspace placement</button><form method="dialog"><button id="workspace-back">Back</button></form>';
  document.body.append(dialog);
  function fill(){for(const k of ['height','distance','scale','yaw','hud','motion','guidedAim']){const el=document.getElementById('workspace-'+k);if(el.type==='checkbox')el.checked=config[k];else el.value=config[k];}}
  for(const k of ['height','distance','scale','yaw','hud','motion','guidedAim']){const el=document.getElementById('workspace-'+k);el.addEventListener(el.type==='range'?'input':'change',()=>{config[k]=el.type==='checkbox'?el.checked:el.type==='range'?Number(el.value):el.value;save();});}
  document.getElementById('workspace-recall').onclick=()=>place(lastHead);
- document.getElementById('workspace-reset').onclick=()=>{config=cleanWorkspace();save();};
+ document.getElementById('workspace-reset').onclick=()=>{config=resetWorkspacePlacement(config);save();};
  for(const [target,id]of [['.start-actions','workspace-button'],['#pause-dialog','pause-workspace'],['#settings-dialog','settings-workspace']]){const parent=document.querySelector(target);if(!parent)continue;const b=document.createElement('button');b.id=id;b.textContent='Field rotunda / UI placement';b.onclick=()=>{fill();api.show('workspace-dialog');};parent.append(b);}
  fill();
- return {update,hit,press,recall:()=>place(lastHead),get config(){return {...config};},reset(){anchor=null;wasOpen=false;progress=0;root.visible=panel.visible=hud.visible=summon.visible=point.visible=false;active=false;},stats:()=>({active,open:wasOpen,progress,config:{...config},anchor:anchor?{...anchor}:null,panelRoomPosition:anchor?{x:anchor.x,y:lift.position.y,z:anchor.z}:null,panelScale:config.scale,panelRotation:[panel.rotation.x,root.rotation.y,0],hudDock,headLocked:false,attachedToWindow:false,visibleButtons:wasOpen?lastItems.length:0,interactiveButtons:wasOpen?lastItems.filter(i=>!i.disabled).length:0,summonVisible:summon.visible})};
+ return {update,hit,press,recall:()=>place(lastHead),get config(){return {...config};},reset(){placement.reset();anchor=null;wasOpen=false;progress=0;root.visible=panel.visible=hud.visible=summon.visible=point.visible=false;active=false;},stats:()=>({active,open:wasOpen,progress,config:{...config},anchor:anchor?{...anchor}:null,panelRoomPosition:anchor?{x:anchor.x,y:lift.position.y,z:anchor.z}:null,panelScale:config.scale,panelRotation:[panel.rotation.x,root.rotation.y,0],hudDock,headLocked:false,attachedToWindow:false,visibleButtons:wasOpen?lastItems.length:0,interactiveButtons:wasOpen?lastItems.filter(i=>!i.disabled).length:0,summonVisible:summon.visible})};
 }
