@@ -1,65 +1,57 @@
 name: Neighborhood spatial console acceptance
 on:
   push:
-    branches: [neighborhood-missions/spatial-console-20260920]
-    paths: ['svgn-planet/**', '.github/upgrades/console-edge.py', '.github/workflows/neighborhood-console.yml']
+    branches: [master, neighborhood-missions/spatial-console-20260920]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-console.yml']
+  pull_request:
+    paths: ['svgn-planet/console-*.mjs', 'svgn-planet/spatial-console*.mjs', 'svgn-planet/unified-xr.mjs', 'svgn-planet/main-hub.mjs', 'svgn-planet/console-browser.py', '.github/workflows/neighborhood-console.yml']
 permissions:
   contents: read
 concurrency:
-  group: neighborhood-console-source
+  group: neighborhood-console-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   source:
-    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/spatial-console-20260920'
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    permissions:
-      contents: write
-    outputs:
-      commit: ${{ steps.source.outputs.commit }}
     steps:
       - uses: actions/checkout@v4
         with:
+          persist-credentials: false
           sparse-checkout: |
             svgn-planet
             little-planet
-            .github/upgrades
+            level-design-library/applied
             .github/workflows
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply verified single-source UI refinement
-        id: source
+      - name: Record exact source
         run: |
-          python .github/upgrades/console-edge.py
-          python - <<'PY'
-          import subprocess,os,pathlib
-          allowed={'svgn-planet/spatial-console.mjs','svgn-planet/spatial-console.test.mjs','svgn-planet/console-browser.py','svgn-planet/release.json','svgn-planet/SPATIAL-CONSOLE.md'}
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
-          assert changed.issubset(allowed),changed
-          if changed:
-              subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
-              subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-              subprocess.run(['git','add',*sorted(changed)],check=True)
-              subprocess.run(['git','commit','-m','fix(neighborhood): keep one-handed console menus reachable'],check=True)
-              subprocess.run(['git','push','origin','HEAD:neighborhood-missions/spatial-console-20260920'],check=True)
-          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();pathlib.Path('SOURCE-COMMIT.txt').write_text(commit+'\n')
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('commit='+commit+'\n')
-          PY
-      - name: All inherited and new tests
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          tar -czf console-source.tar.gz svgn-planet little-planet level-design-library/applied index.html .github/workflows SOURCE-COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: console-source
+          path: console-source.tar.gz
+          retention-days: 30
+      - name: All inherited and new tests with frozen legacy validation
         run: |
           set -o pipefail
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee console-model.txt
           for f in svgn-planet/*.mjs; do node --check "$f"; done
           python -m py_compile svgn-planet/console-browser.py
-      - name: Archive exact source
-        if: always()
-        run: tar -czf console-source.tar.gz svgn-planet little-planet index.html .github/workflows SOURCE-COMMIT.txt console-model.txt
+          python - <<'PY'
+          import json,hashlib,pathlib
+          root=pathlib.Path('svgn-planet');m=json.loads((root/'legacy-layout.json').read_text())
+          for row in m['files']:assert hashlib.sha256((root/row['path']).read_bytes()).hexdigest()==row['sha256'],row['path']
+          print('All',len(m['files']),'legacy file hashes match')
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: console-source
-          path: console-source.tar.gz
+          name: console-model
+          path: console-model.txt
           retention-days: 30
   browser:
     needs: source
@@ -72,7 +64,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.source.outputs.commit }}
           persist-credentials: false
           sparse-checkout: |
             svgn-planet

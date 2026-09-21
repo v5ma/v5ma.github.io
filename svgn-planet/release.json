@@ -10,31 +10,31 @@
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
   "publicationEvidence": "../release-receipts/neighborhood-missions-spatial-console-0.16.1.json",
-  "status": "Unified release manifest. Actual publication and verification are recorded in the separate receipt; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "2c888c231b40800c87676fa9a0d5fab256c5c398",
-  "sourceAcceptanceRuns": [
-    35551197282
-  ],
+  "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
+  "runtimeCheckpoint": "ea336280ceb621ba115a4b6342d5de09236cfc4a",
+  "sourceAcceptanceRuns": [35551197282,35551588021,35552082042],
   "changes": [
-    "Summonable floor rotunda or free-controller menu, saved height/distance/scale, raised raycast buttons and native pinch interaction.",
-    "Compact free-hand or floor objective/map card, never attached to the headset.",
-    "Explicit Action-profile primary-trigger vehicle speed with on-foot, Courier and Xbox controls preserved.",
+    "Summonable floor rotunda or free-controller menu with saved height, distance, scale and native raised buttons.",
+    "Compact free-hand or floor objective/map card; neither HUD nor menu is attached to the headset.",
+    "Single-hand/controller floor fallback and correct UI ordering above translucent world effects.",
+    "Explicit Action-profile primary-trigger vehicle speed; on-foot, Courier and Xbox controls preserved.",
     "Existing city, Lantern Ward, eight native modes, legacy saves and independent reward ledgers retained."
   ],
   "saveContracts": {
     "original": "svgn.paper-delivery-3d.v1",
     "lantern": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
-    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation."
+    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation.",
+    "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 334,
+    "localModelTestsPassed": 335,
     "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "Consult the exact run artifacts and publicationEvidence. Queued or failed runs are not accepted.",
+    "sourceAndPublicEvidence": "Exact run and artifact outcomes are retained in publicationEvidence. Historical runs above include superseded and failed attempts, not only acceptance.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "newPresentationTests": 19
+    "newPresentationTests": 20
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 5,

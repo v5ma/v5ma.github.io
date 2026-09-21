@@ -4,9 +4,11 @@ import * as T from './vendor/three.module.js';
 import {floorAnchor,consoleTransform,loadConsolePrefs,saveConsolePrefs,parseConsolePrefs} from './console-state.mjs';
 const up=new T.Vector3(0,1,0),unitScale=new T.Vector3(1,1,1);
 export function createSpatialConsole(ui,panel,atlas,hooks){
+ // Draw after the transparent world queue; depthTest=false alone is insufficient.
+ panel.material.transparent=true;panel.material.needsUpdate=true;
  const loaded=loadConsolePrefs(hooks.storage);let prefs=loaded.prefs,blocked=loaded.blocked,anchor=null,amount=0,opened=false,rows=[],lastHUD=-Infinity,signature='',hostHand=null,controllerDocked=false;
  const base=new T.Group();base.name='Floor rotunda (reference-space anchored)';ui.add(base);
- const surface=(color,extra={})=>new T.MeshBasicMaterial({color,toneMapped:false,depthTest:false,depthWrite:false,...extra});
+ const surface=(color,extra={})=>new T.MeshBasicMaterial({color,transparent:true,toneMapped:false,depthTest:false,depthWrite:false,...extra});
  const disc=new T.Mesh(new T.CylinderGeometry(.24,.26,.025,40),surface(0x294652));disc.renderOrder=9997;base.add(disc);
  const rim=new T.Mesh(new T.TorusGeometry(.255,.006,6,48),surface(0xdce9bb));rim.rotation.x=Math.PI/2;rim.renderOrder=9998;base.add(rim);
  const post=new T.Mesh(new T.CylinderGeometry(.028,.045,1,12),surface(0x416977));post.renderOrder=9996;base.add(post);
