@@ -1,0 +1,17 @@
+name: Retire superseded Rainward Field Desk staging
+on:
+  push:
+    branches: [maintenance/rainward-retire-field-desk-stage-20260921]
+    paths: ['.github/workflows/rainward-retire-field-desk-stage.yml']
+permissions:
+  contents: read
+# Only the old pre-PR staging group. Never cancel PR214 or sibling workflows.
+concurrency:
+  group: rainward-field-desk-stage
+  cancel-in-progress: true
+jobs:
+  retire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - run: echo 'Earlier staging source is superseded by PR214. Its model artifact is preserved; current-source PR validation remains required.'
