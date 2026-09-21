@@ -1,0 +1,105 @@
+name: Vesperfall owner playtest publication
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/vesperfall-playtest.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vesperfall-owner-playtest
+  cancel-in-progress: false
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record the exact current game and publication scope
+        run: |
+          mkdir -p test-output
+          python - <<'PY'
+          import hashlib,json,subprocess
+          from pathlib import Path
+          app=Path('vesperfall');out=Path('test-output')
+          paths=[p for p in app.iterdir() if p.suffix in ('.js','.css','.html','.json','.xlsx','.md')]
+          paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
+          files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
+          digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          prior=json.loads((app/'tests/evidence/wayfinder-0.17.0/publication.json').read_text())
+          assert digest==prior['manifestDigest'],'The runtime changed; review that change before reusing this playtest scope.'
+          report={'commit':revision,'manifestDigest':digest,'files':files,'release':json.loads((app/'release.json').read_text()),'scope':'Republish the current complete Vesperfall. No new gameplay, portal, rotunda or private-hub implementation is claimed.','physicalDeviceApproval':False}
+          (out/'source-manifest.json').write_text(json.dumps(report,indent=2))
+          (out/'source-revision.txt').write_text(revision+'\n')
+          print('Frozen Vesperfall playtest source:',revision,'files:',len(files),'manifest:',digest)
+          PY
+      - name: Validate game models and preserved planning contracts
+        run: |
+          set -euo pipefail
+          for f in vesperfall/*.js; do node --check "$f"; done
+          node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
+          python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
+          python scripts/check-vesperfall.py
+      - name: Match actual served game files before browser play
+        run: python -u vesperfall/tests/verify-live.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-playtest-source
+          path: test-output/
+          retention-days: 14
+  play:
+    needs: source
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [vr, ar, goldwind, interface]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Install verification browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the actual public game with ordinary input events
+        env:
+          TEST_BASE_URL: https://v5ma.github.io
+          XR_MODE: ${{ matrix.mode }}
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          if [ "$XR_MODE" = goldwind ]; then
+            timeout 1800 python -u vesperfall/tests/goldwind-browser.py | tee test-output/browser.log
+            test -s test-output/goldwind/report.json
+            test ! -e test-output/goldwind/failure.json
+          elif [ "$XR_MODE" = interface ]; then
+            timeout 300 python -u vesperfall/tests/launch.py | tee test-output/launch.log
+            timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
+          else
+            timeout 1800 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/browser.log
+            test -s test-output/wayfinder-${XR_MODE}/report.json
+            test ! -e test-output/wayfinder-${XR_MODE}/failure.json
+          fi
+          python -u vesperfall/tests/verify-live.py
+      - name: Retain source identity, reports and failures without rewriting them
+        if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/source-revision.txt
+          git diff --stat > test-output/uncommitted-diff.txt
+          tar -czf test-output/vesperfall-source.tgz vesperfall scripts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-playtest-${{ matrix.mode }}
+          path: test-output/
+          retention-days: 14
