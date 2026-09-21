@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "version": "0.16.0",
+  "version": "0.16.1",
   "title": "Neighborhood Missions: path to a production-quality title",
-  "reviewed": "2026-09-18",
+  "reviewed": "2026-09-20",
   "currentMilestone": "M1",
   "qualityClaim": "Stylized browser-game vertical slice. AAA-quality ambition, not AAA certification.",
   "statusDefinitions": {
@@ -623,7 +623,7 @@
       "status": "partial",
       "title": "Controller-complete gameplay and menus",
       "acceptance": "Native XR menus include original-city and district maps, mission selection, field tools, settings and explicit cancel-first recovery. Menu remains available while held gameplay controls block rearm.",
-      "next": "Test every original-city puzzle and longer dialogue on hardware; preserve direct frequently used actions and inspect readability without relying on desktop overlays.",
+      "next": "Playtest the saved riding trigger profile and field desk reach with real Quest controllers and hands. Screen-play DOM menus remain a separate migration task.",
       "dependencies": [
         "INPUT-01"
       ],
@@ -639,10 +639,11 @@
         "../lantern/NIGHT-WATCH.md",
         "evidence/night-watch-0.14.0/local-acceptance.json",
         "../UNIFIED-NEIGHBORHOODS.md",
-        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json",
+        "../FIELD-DESK.md"
       ],
       "owner": "Engineering / QA",
-      "lastReviewed": "2026-09-18"
+      "lastReviewed": "2026-09-20"
     },
     {
       "id": "ACCESS-02",
@@ -935,7 +936,7 @@
       "status": "needs-playtest",
       "title": "Authored Lantern Ward replacement chapter",
       "acceptance": "Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.",
-      "next": "Test unfamiliar and returning players for orientation, meaningful route choice and useful mastery. Improve the existing authored places before adding more map area.",
+      "next": "Observe whether the wrist map and next-step objective help unfamiliar players find mission sources, relevant floors and return points without coaching.",
       "dependencies": [],
       "evidence": [
         "../lantern/README.md",
@@ -952,10 +953,11 @@
         "../lantern/campaign.test.mjs",
         "../lantern/xr-embodiment.test.mjs",
         "../UNIFIED-NEIGHBORHOODS.md",
-        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json",
+        "../FIELD-DESK.md"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-18"
+      "lastReviewed": "2026-09-20"
     },
     {
       "id": "XR-02",
@@ -979,10 +981,11 @@
         "../lantern/campaign.test.mjs",
         "../lantern/xr-embodiment.test.mjs",
         "../UNIFIED-NEIGHBORHOODS.md",
-        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json"
+        "../../../release-receipts/neighborhood-missions-unified-0.16.0.json",
+        "../FIELD-DESK.md"
       ],
       "owner": "Level design / Engineering / QA",
-      "lastReviewed": "2026-09-18"
+      "lastReviewed": "2026-09-20"
     },
     {
       "id": "LEGACY-01",
@@ -1047,5 +1050,5 @@
     }
   ],
   "releaseEvidence": "../../../release-receipts/neighborhood-missions-unified-0.16.0.json",
-  "edition": "Unified Neighborhoods and Night Watch"
+  "edition": "Field Desk"
 }

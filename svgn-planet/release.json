@@ -1,22 +1,21 @@
 {
-  "version": "0.16.0",
+  "version": "0.16.1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods and Night Watch",
-  "date": "2026-09-18",
+  "edition": "Field Desk",
+  "date": "2026-09-20",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
   "lanternComponentVersion": "0.15.0",
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "../release-receipts/neighborhood-missions-unified-0.16.0.json",
+  "publicationEvidence": "../release-receipts/neighborhood-missions-field-desk-0.16.1.json",
   "status": "Unified release manifest. Actual publication and verification are recorded in the separate receipt; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "f18340b64b628679544caeaff1f5c09bbce942da",
-  "sourceAcceptanceRuns": [
-    35406083163,
-    35406668272
-  ],
   "changes": [
+    "Summonable world-fixed field desk with independently saved height, distance, scale and reduced-motion setting.",
+    "Compact in-canvas wrist or near-feet map and current mission goal in both districts.",
+    "Physical left/right-trigger riding options, with the old Action/Courier mapping still available and on-foot controls retained.",
+    "Native ray intersection dot and button highlight; large UI and rays hidden on resume.",
     "Original city is the main entry; Lantern Ward is a district in the same document, renderer and active XR session.",
     "Eight actual-geometry views in both districts: first/third-person AR/VR and first/third-person diorama AR/VR. No comfort-theater screen.",
     "Room-fixed full-depth portal follows the player, with front/top/both apertures and shader ownership preventing duplicate GLSL.",
@@ -31,15 +30,23 @@
     "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation."
   },
   "validation": {
-    "localModelTestsPassed": 311,
+    "localModelTestsPassed": 326,
     "localModelTestsFailed": 0,
     "sourceAndPublicEvidence": "Consult the exact run artifacts and publicationEvidence. Queued or failed runs are not accepted.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
-    "humanLevelApproval": false
+    "humanLevelApproval": false,
+    "fieldDeskRenderedAcceptance": "Pending source and live focused journeys. Physical playtest findings remain open."
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 5,
-  "campaignRewardTotal": 950
+  "campaignRewardTotal": 950,
+  "priorRelease": "0.16.0",
+  "foundationRuntimeCheckpoint": "f18340b64b628679544caeaff1f5c09bbce942da",
+  "foundationSourceAcceptanceRuns": [
+    35406083163,
+    35406668272
+  ],
+  "sourceAcceptance": "Field Desk source and rendered evidence are recorded in the versioned external receipt; inherited run IDs describe the foundation only."
 }

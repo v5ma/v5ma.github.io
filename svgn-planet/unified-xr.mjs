@@ -1,3 +1,5 @@
+import {createFieldDesk} from './field-desk.mjs';
+import {ridingTrigger,isRiding} from './field-desk-state.mjs';
 import {mountNativeChrome,nativeMenuDescription} from './native-ui.mjs';
 /* One native WebXR session for every district. No canvas/video world screen. */
 import * as T from './vendor/three.module.js';
@@ -10,18 +12,19 @@ export function createUnifiedXR(hooks){
  const renderer=hooks.renderer,ui=new T.Group();ui.name='Native XR menu and tracked input';
  const c=document.createElement('canvas');c.width=1024;c.height=1024;const ctx=c.getContext('2d'),tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;
  const panel=new T.Mesh(new T.PlaneGeometry(1.4,1.4),new T.MeshBasicMaterial({map:tex,toneMapped:false,side:T.DoubleSide,depthTest:false,depthWrite:false}));panel.renderOrder=10000;ui.add(panel);panel.visible=false;
+ const desk=createFieldDesk({panel,ui,storage:hooks.storage,state:hooks.state,status:hooks.status,drawMap:hooks.drawFieldMap,message:hooks.message});
  const geometry=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-3)]),jointGeo=new T.SphereGeometry(.009,6,4),jointMat=new T.MeshBasicMaterial({color:0x9edbc8});
  const slots=[0,1].map(()=>{const ray=new T.Line(geometry,new T.LineBasicMaterial({color:0xb6eee1})),grip=new T.LineSegments(new T.EdgesGeometry(new T.IcosahedronGeometry(.022,1)),new T.LineBasicMaterial({color:0xa9ccc1,transparent:true,opacity:.45})),joints=Array.from({length:25},()=>new T.Mesh(jointGeo,jointMat));ui.add(ray,grip,...joints);return {ray,grip,joints,source:null,previous:[],ready:false,pinch:false,menuTime:0,menuUsed:false,relative:null,hand:null,head:null,armed:true};});
  let session=null,pending=false,kind='third-person-vr',origin=new T.Vector3(),heading=0,viewer=null,aligned=false,rootBefore=null,page=0,rows=[],lastPaint=0,last=0,frames=0,selections=0,error='',lastSnap=false,modeChanges=0;
  let prefs=loadXRPrefs(hooks.storage).prefs,preferencesBlocked=loadXRPrefs(hooks.storage).blocked;
- const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false;
+ const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false,floorSpace=null,floorY=null,lastDeskRoot=null;
  const $=id=>document.getElementById(id),visible=e=>!!e&&!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length>0;
  const root=()=>visible($('failure'))?$('failure'):['ward-confirm','confirm-reset','save-confirm'].map($).find(visible)||[...document.querySelectorAll('dialog[open]')].at(-1)||(visible($('welcome'))?$('welcome'):null);
  function clear(){clearXRInput();hooks.clear();for(const s of slots){s.ready=false;s.previous=[];s.relative=s.hand=s.head=null;s.menuTime=0;s.menuUsed=false;s.armed=true;}lastSnap=false;}
  function resetRoot(){rootBefore=null;lastPaint=0;page=0;clear();}
  function pause(){hooks.pause();resetRoot();}
  function place(){if(!viewer)return;origin.copy(viewer.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));heading=Math.atan2(-f.x,-f.z);aligned=true;}
- function finish(){session=null;pending=false;aligned=false;clear();ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
+ function finish(){session=null;pending=false;aligned=false;clear();ui.removeFromParent();panel.visible=false;desk.hide();floorSpace=null;floorY=null;lastDeskRoot=null;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
  async function enter(mode){
   const info=modeInfo(mode);if(session){if(info.session===modeInfo(kind).session){kind=info.id;modeChanges++;clear();lastPaint=0;return;}error='AR and VR use different headset sessions. Exit XR, then select '+modeLabel(mode)+'.';hooks.message(error);return;}
   if(pending)return;pending=true;error='';kind=info.id;
@@ -30,7 +33,7 @@ export function createUnifiedXR(hooks){
    if(info.ar&&next.environmentBlendMode==='opaque'){await next.end();throw Error('This device did not supply passthrough. AR was not replaced with VR.');}
    session=next;renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');renderer.xr.setFoveation(1);renderer.shadowMap.enabled=false;
    next.addEventListener('end',()=>queueMicrotask(finish),{once:true});next.addEventListener('visibilitychange',pause);next.addEventListener('inputsourceschange',pause);
-   await renderer.xr.setSession(next);aligned=false;document.body.classList.add('in-xr');pause();hooks.changed?.();
+   await renderer.xr.setSession(next);try{floorSpace=await next.requestReferenceSpace('local-floor');}catch{floorSpace=null;}aligned=false;document.body.classList.add('in-xr');pause();hooks.changed?.();
   }catch(e){error=String(e.message||e);if(session){try{await session.end();}catch{}}else{pending=false;hooks.message(error);} }finally{pending=false;}
  }
  function adjust(el,u){el.focus({preventScroll:true});if(el.tagName==='SELECT'){const opts=[...el.options].filter(o=>!o.disabled),i=opts.indexOf(el.selectedOptions[0]);el.value=opts[(i+(u<.33?-1:1)+opts.length)%opts.length].value;el.dispatchEvent(new Event('change',{bubbles:true}));}else if(el.type==='range'){el.value=String(T.MathUtils.clamp(Number(el.value)+(Number(el.step)||1)*(u<.5?-1:1),Number(el.min)||0,Number(el.max)||100));el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));}else if(el.tagName==='TEXTAREA')el.scrollTop+=el.clientHeight*.6;else el.click();}
@@ -53,10 +56,13 @@ export function createUnifiedXR(hooks){
  function update(now,frame){
   clearXRInput();if(!session||!frame)return;frames++;const dt=Math.min(.1,last?(now-last)/1000:0);last=now;const ref=renderer.xr.getReferenceSpace();viewer=ref&&frame.getViewerPose(ref);
   if(!viewer||session.visibilityState!=='visible'){pause();return;}if(!aligned)place();const sv=hooks.spatial();if(ui.parent!==sv.view.scene){sv.view.scene.add(ui);resetRoot();}
-  const r=root();if(r!==rootBefore){rootBefore=r;page=0;clear();lastPaint=0;const p=new T.Vector3().copy(viewer.transform.position),f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation)),h=Math.atan2(-f.x,-f.z);panel.position.copy(p).add(new T.Vector3(0,-.1,-1.7).applyAxisAngle(new T.Vector3(0,1,0),h));panel.rotation.set(0,h,0);}
-  const sources=Array.from(session.inputSources),hasHands=sources.some(s=>s.hand);panel.visible=!!r||(handActions&&hasHands);
+  const r=root();if(r!==rootBefore){rootBefore=r;page=0;clear();lastPaint=0;}
+  if(floorSpace){try{const f=frame.getPose(floorSpace,ref);if(Number.isFinite(f?.transform?.position?.y))floorY=f.transform.position.y;}catch{}}
+  if((r&&!lastDeskRoot)||!desk.inspect().anchored)desk.capture(viewer.transform,floorY);lastDeskRoot=r;
+  const sources=Array.from(session.inputSources),hasHands=sources.some(s=>s.hand);desk.update(now,dt,!!r,frame,ref,sources,prefs.dominant);
   if(panel.visible&&(!lastPaint||now-lastPaint>120))paint(r);ui.updateMatrixWorld(true);
-  const ar=modeInfo(kind),off=sources.find(s=>!s.hand&&s.handedness!==prefs.dominant),aiming=!r&&prefs.profile==='action'&&((off?.gamepad?.buttons[0]?.value||0)>.2||off?.gamepad?.buttons[0]?.pressed);
+  const vehicle= isRiding(hooks.state()) && desk.settings.vehicleSpeed!=='profile';
+  const ar=modeInfo(kind),off=sources.find(s=>!s.hand&&s.handedness!==prefs.dominant),aiming=!vehicle&&!r&&prefs.profile==='action'&&((off?.gamepad?.buttons[0]?.value||0)>.2||off?.gamepad?.buttons[0]?.pressed);
   let tracked=0,consumed=false,bodyHands=[],bodyGrips=[];
   for(let i=0;i<slots.length;i++){
    const slot=slots[i],source=sources[i];slot.ray.visible=slot.grip.visible=false;slot.joints.forEach(j=>j.visible=false);if(source!==slot.source){slot.source=source;slot.ready=false;slot.previous=[];}if(!source)continue;
@@ -68,7 +74,8 @@ export function createUnifiedXR(hooks){
     const a=frame.getJointPose(source.hand.get('thumb-tip'),ref),q=frame.getJointPose(source.hand.get('index-finger-tip'),ref);if(!a||!q){tracked--;slot.ready=false;continue;}b[0]=new T.Vector3().copy(a.transform.position).distanceTo(q.transform.position)<(slot.pinch?.04:.024);slot.pinch=b[0];}
    const axes=source.gamepad?.axes||[],offset=axes.length>=4?2:0,ax=axes[offset]||0,ay=axes[offset+1]||0;if(xrNeutral(b,ax,ay))slot.ready=true;const edge=j=>slot.ready&&b[j]&&!slot.previous[j];
    const rayOrigin=new T.Vector3().copy(pose.transform.position),rayDirection=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(pose.transform.orientation));caster.set(rayOrigin,rayDirection);
-   const hit=panel.visible?caster.intersectObject(panel)[0]:null,cx=hit?.uv.x*1024,cy=(1-(hit?.uv.y||0))*1024,row=hit&&rows.find(a=>cx>=a.x&&cx<=a.x+a.w&&cy>=a.y&&cy<=a.y+a.h);
+   const hit=panel.visible&&desk.ready&&r?caster.intersectObject(panel)[0]:null,cx=hit?.uv.x*1024,cy=(1-(hit?.uv.y||0))*1024,row=hit&&rows.find(a=>cx>=a.x&&cx<=a.x+a.w&&cy>=a.y&&cy<=a.y+a.h);
+   if(row)desk.highlight(hit,row);
    if(row&&slot.ready&&b[0]){consumed=true;if(row.hold&&!r){if(row.hold==='move')xrInput.y=1;else xrInput.brake=true;}else if(edge(0)){row.act?.((cx-row.x)/row.w);selections++;lastPaint=0;clear();}}
    const wrist=source.hand?.get('wrist'),wp=wrist&&frame.getJointPose(wrist,ref),hand=new T.Vector3().copy((wp||gp||pose).transform.position),head=new T.Vector3().copy(viewer.transform.position),relative=hand.clone().sub(head).applyAxisAngle(new T.Vector3(0,1,0),-heading).toArray();
    bodyHands.push(relative);bodyGrips.push(b[1]&&slot.ready);
@@ -78,9 +85,13 @@ export function createUnifiedXR(hooks){
     if(source.hand){if(b[0]&&relative[1]<-.5)xrInput.y=1;else if(edge(0)&&!nearHead)hooks.action('interact');}
     else{
      const role=sourceRoles(source.handedness,prefs),ray=sv.ray(rayOrigin,rayDirection),zone=hooks.embodied?.()?holsterZone(relative):null;
-     if(role.movement){xrInput.x=Math.abs(ax)>.16?ax:0;xrInput.y=Math.abs(ay)>.16?-ay:0;if(prefs.profile==='action')xrInput.boost=b[3];}
+     if(role.movement){xrInput.x=Math.abs(ax)>.16?ax:0;xrInput.y=Math.abs(ay)>.16?-ay:0;if(!vehicle&&prefs.profile==='action')xrInput.boost=b[3];}
      else{if(Math.abs(ax)>.65&&!lastSnap)hooks.turn(-Math.sign(ax)*prefs.snap*Math.PI/180);lastSnap=Math.abs(ax)>.3;if(edge(3))hooks.action('tool-cycle');}
-     if(prefs.profile==='courier'){
+     if(vehicle){
+      const drive=ridingTrigger(desk.settings,hooks.state(),source.handedness,b[0]);xrInput.boost=xrInput.boost||drive.boost;xrInput.brake=xrInput.brake||drive.brake;
+      if(role.primary){if(edge(1))hooks.action('interact',ray);if(edge(4))hooks.action('hop');if(edge(5))hooks.action('ride');}
+      else{xrInput.brake=xrInput.brake||b[1];if(edge(4))hooks.action('bell');if(edge(5))pause();}
+     }else if(prefs.profile==='courier'){
       if(role.primary){if(edge(0))hooks.action('interact',ray);if(edge(1))hooks.action('throw');if(edge(4))hooks.action('hop');if(edge(5))hooks.action('ride');}
       else{xrInput.boost=b[0];xrInput.brake=b[1];if(edge(4)||edge(5))pause();}
      }else if(role.primary){
@@ -104,6 +115,7 @@ export function createUnifiedXR(hooks){
  return {enter,update,present,flatRender:draw=>{hooks.spatial().restore();draw();},prepare:()=>hooks.spatial().restore(),retarget:()=>{resetRoot();if(viewer)place();},clear,exit:()=>session?.end(),get active(){return !!session;},get mode(){return kind;},settings,
   preference(k,v){const n={...prefs,[k]:v};if(!preferencesBlocked&&!saveXRPrefs(hooks.storage,n)){preferencesBlocked=true;hooks.message('XR preference storage is unavailable. Current-session settings still work.');}prefs=n;clear();},get preferences(){return {...prefs};},
   setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;clear();},
+  get deskSettings(){return desk.settings;},deskPreference:(key,value)=>{desk.preference(key,value);clear();},placeDesk:()=>{if(viewer)desk.capture(viewer.transform,floorY);},
   panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,id,x,y,w,h})=>({label,id,x,y,w,h}))};},
-  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
+  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs},fieldDesk:desk.inspect()})};
 }
