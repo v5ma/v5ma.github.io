@@ -1,3 +1,4 @@
+import {hideTrackedSources} from './xr-session-cleanup.mjs';
 import {createSpatialConsole} from './spatial-console.mjs';
 import {triggerVehicleSpeed} from './console-state.mjs';
 import {mountNativeChrome,nativeMenuDescription} from './native-ui.mjs';
@@ -24,7 +25,7 @@ export function createUnifiedXR(hooks){
  function resetRoot(){rootBefore=null;lastPaint=0;page=0;clear();}
  function pause(){hooks.pause();resetRoot();}
  function place(){if(!viewer)return;origin.copy(viewer.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));heading=Math.atan2(-f.x,-f.z);aligned=true;}
- function finish(){floorSpace=null;consoleUI.end();session=null;pending=false;aligned=false;clear();ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
+ function finish(){floorSpace=null;consoleUI.end();session=null;pending=false;aligned=false;clear();hideTrackedSources(slots);viewer=null;rows=[];rootBefore=null;lastPaint=0;last=0;ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
  async function enter(mode){
   const info=modeInfo(mode);if(session){if(info.session===modeInfo(kind).session){kind=info.id;modeChanges++;clear();lastPaint=0;return;}error='AR and VR use different headset sessions. Exit XR, then select '+modeLabel(mode)+'.';hooks.message(error);return;}
   if(pending)return;pending=true;error='';kind=info.id;
