@@ -1,5 +1,6 @@
 {
   "version": "0.16.1",
+  "revision": "mission-clarity",
   "name": "Neighborhood Missions",
   "edition": "Unified Neighborhoods / Spatial Console",
   "date": "2026-09-20",
@@ -11,9 +12,10 @@
   "legacyLayout": "legacy-layout.json",
   "publicationEvidence": "../release-receipts/neighborhood-missions-spatial-console-0.16.1.json",
   "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "948a45c6e6c4a24a71ed174abf94ad5f4ad4e8f9 plus the readability pass documented in CONSOLE-RECOVERY.md",
-  "sourceAcceptanceRuns": [35551197282,35551588021,35552082042,35552545981],
+  "runtimeCheckpoint": "PR 204 / f1b0f198 plus mission-clarity revision; see CLARITY-RECOVERY.md and the external receipt",
+  "sourceAcceptanceRuns": [35551197282,35551588021,35552082042,35552545981,35554765805],
   "changes": [
+    "Native mission buttons show the next saved task before selection; the HUD names the active campaign tool rather than stale Watch equipment.",
     "Summonable floor rotunda or free-controller menu with saved height, distance, scale and native raised buttons.",
     "Compact free-hand or floor objective/map card; neither HUD nor menu is attached to the headset.",
     "Non-overlapping map and wrapped objective, equipment and controls; complete speed/brake hints and mount-specific dismissal text.",
@@ -28,14 +30,14 @@
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 342,
+    "localModelTestsPassed": 357,
     "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "Exact run and artifact outcomes are retained in publicationEvidence. Historical runs above include superseded and failed attempts, not only acceptance.",
+    "sourceAndPublicEvidence": "The recovered spatial console passed all eight source mode journeys. The prior public byte attempt failed (262/281 matching); this revision requires separate publication and rendered evidence in publicationEvidence.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "newPresentationTests": 27
+    "newPresentationTests": 42
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 5,
