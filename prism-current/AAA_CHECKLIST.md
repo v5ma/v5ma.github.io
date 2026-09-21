@@ -1,40 +1,24 @@
-# River Prism 0.10.1: active production checklist
+# Prism Current / Rotunda 0.11.0 production checklist
 
-The owner's latest direction is the main-game rhythmic action toybox: a rising river, duck catapults, airborne fruit, bombboats, aircraft, saber lasers, grip shields and mothership combat. This is not a separate exploration detour. The complete earlier board is preserved at AAA_CHECKLIST-v090.md, with its previous archives and open reliability/accessibility tasks. No historical testing count constitutes owner approval of music or fun.
+This pass implements the owner's Prism-only spatial-interface direction. Read ROTUNDA.md and PR #205 for exact scope and observed tests. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
 
-Implementation owner: Development. Creative acceptance: Micah. Physical-device acceptance: an actual Quest/Xbox/touch tester, not browser emulation. P0 means a blocker for the announced release scope; P1 means next product refinement; P2 means later expansion.
+## Current UI milestone
 
-## XR menu recovery after the owner's blocked-start report
+- [x] UI-R01 / implementation. One scene-rendered menu for screen and XR. Direct Duck Armada and Mothership AR/VR/screen choices. Retain explicit semantic text controls as an alternative.
+- [x] UI-R02 / implementation. Summonable floor pedestal, stowed during combat, with height, distance, scale and rotation controls. Placement stays world-anchored rather than following head motion. Reset is directly reachable.
+- [x] UI-R03 / implementation. Painted button extents and scene picking stay aligned under transforms. Preserve rays, intersection cursor, thumbstick/A-X selection, B-Y direct start/pause/resume and hand-pinch menu access.
+- [x] UI-R04 / implementation. Compact controller-mounted score, hull and combo with a floor alternative and brief actual score/damage deltas. Preserve boss health in the world.
+- [x] UI-R05 / implementation. Saved AR water opacity and separate sound controls. Menu adjustment does not restart an encounter. Remove the arbitrary positional pause while keeping actual tracking/visibility recovery.
+- [x] UI-R06 / implementation. End the immersive session and retain the current paused battle in memory for same-mode re-entry. Do not silently reclassify an XR score as screen play.
+- [ ] UI-R07 / recurring source/public gate. Run exact-source model and actual-renderer input tests, then verify committed bytes and playable journeys on GitHub Pages. Outcomes are recorded by exact SHA in PR #205, not inferred from code presence.
+- [ ] UI-R08 / owner/device gate. Physical Quest AR/VR, Xbox, touch, seated/standing readability, sound adjustment, exit/re-entry, room movement, ordinary-resolution performance and owner approval remain open until playtested.
 
-RV-04 was reopened by the owner's actual AR playtest: the 0.10.0 menu did not start through controller rays or buttons. Its earlier emulator used an ordinary inputSources array, hiding a real WebXR collection incompatibility. XR_MENU_HOTFIX.md is the scoped diagnosis and regression contract.
+## Preserved work and open feedback
 
-- [x] RV-04-R / P0 implementation. Convert the live controller collection, pick the rendered menu's UV, share drawing/picking rectangles, show hover/cursor feedback, and provide thumbstick/A-X selection plus direct B/Y start/resume. Keep the menu usable without grip poses; retain the two-controller requirement for combat.
-- [ ] RV-04-DEVICE / P0 owner retest. Confirm actual Quest AR start, VR start, pause/resume, recenter, exit, and both ray and thumbstick/button paths. An emulated pass does not close this box.
+RV-01 through RV-06, the core chapters, old music, scoring rules, saves, native-shaped XR controller handling, classic rhythm, lessons, Practice Lab and Floodgate Recovery retain their contracts. All prior source/device gates remain documented in the archived board. No private hub code, portals or sibling-game changes are authorized by this pass.
 
-The unchanged main-game rules and prior saved data remain protected. Source CI, deployed bytes and the owner's device report must be recorded separately. The repair's PR/publication receipt is authoritative for its test results; PR #193 documents the initial 0.10.0 delivery, not this repair.
+This release does not implement color-changing blades, base rewards for either-color fruit cuts, color-match bonuses, redesigned missile counterplay or explosion-radius visualization. Those Prism playtest items remain next gameplay work. It also does not add a new ocean shader, soundtrack, new chapters, persistent mid-battle saving across browser closure or full hand-only combat.
 
-## Current playable slice
+A-03 save export/recovery, authored accessible charts, calibration, human onboarding, remapping and the full performance/accessibility matrix remain open under the historical board. Preserve failed traces and distinguish model fixtures, input emulation, physical-device feedback and published-file verification.
 
-- [x] RV-01 / P1. Two approximately 89-second beat-authored chapters: Duck Armada and Mothership Channel. River tide and enemy families change across four phases; the final boss must actually be defeated before a clear is recorded.
-- [x] RV-02 / P0. Eight-direction swept fruit cuts, aimed lasers, oriented projectile-blocking shields, timed stronger reflections, damage, dodging and explicit escape/failure results use one gameplay state.
-- [x] RV-03 / P1. Original merged toy models, approaching analytic water, foam, caustic-like patterns and capped effects. Camera is not moved by rising water. These effects are not ray-traced fluid optics.
-- [x] RV-04 / P0 implementation, device approval reopened above. Desktop and standard-controller combat; tracked XR saber/laser/shield input; spatial pause/menu controls; hand pinch menu input. Full hand-tracked combat is not included.
-- [x] RV-05 / P0. Separate River record namespace; original rhythm entry and release copied to rhythm.html and rhythm-release.json; all older scripts/music and save readers retained.
-- [ ] RV-06 / P0 per release. Exact-source native acceptance must complete both chapters, exercise gamepad and tracked controls, preserve old saves and verify deployed hashes. Results belong in the release's PR and receipt, not inferred from these implementation boxes.
-- [ ] RV-HUMAN / P1. Owner play/listening feedback, unfamiliar-player readability and physical Quest/Xbox/touch comfort/performance. Neither automated success nor a screenshot closes this gate.
-
-## Acceptance and limits
-
-Both chapters use the existing original Undertow soundtrack. This edition is not two newly licensed or newly recorded songs. The main entry must expose the new battles without hiding them behind a side-mode link. The former note-based game and its lessons/practice remain explicitly reachable.
-
-A saved clear requires a destroyed boss and completed song. Ignoring the boss must yield an escape; Cruise may prevent hull failure but cannot fabricate a boss kill. Failed/aborted attempts cannot become wins. Input verification must never assign actor position, health, score, time, inventory or completion to manufacture a pass.
-
-Maintain no forced XR camera motion, readable projectile telegraphs, bounded reachable combat, same-hand shield exclusion of its gun/blade, tracking-loss pause and explicit resume. Desktop and head-tracked sidesteps/dodges are not a promise of arbitrary room-scale locomotion. AR is a transparent stage, not a furniture scan.
-
-## Retained roadmap and next work
-
-The previous A-03 save export/recovery, authored accessible charts, remapping, audio calibration, human onboarding review, music approval, hardware thermal/latency measurements and full platform matrix remain open under AAA_CHECKLIST-v090.md and its linked detailed archives. Retain old formats; do not clear storage or reset sibling projects.
-
-Prioritize the owner's observed problems in cut readability, enemy variety, sound and controller feel before adding another side mode. Additional chapter-specific compositions, deeper enemy patterns and measured performance improvements depend on that feedback.
-
-F-02 source tests, F-03 normal merge/deployment with exact served-file hashes, and F-04 live gameplay plus scoped rollback are recurring obligations for every release. Revert only the scoped release on current master to roll back; do not reset unrelated game work.
+F-02 exact source tests, F-03 normal merge/deployment with public hashes, and F-04 live input recovery plus scoped rollback recur every release. UI implementation alone does not close them. Revert only this scoped release on current master; never reset unrelated games or clear localStorage.

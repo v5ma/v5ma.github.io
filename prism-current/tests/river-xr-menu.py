@@ -25,6 +25,7 @@ with sync_playwright() as pw:
         p.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,index]);p.wait_for_timeout(180)
         p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,index]);p.wait_for_timeout(150)
     def aim(p,hand,index,corner='center'):
+        if p.evaluate('!!River.snapshot().rotunda'):p.wait_for_function('River.snapshot().rotunda.progress>.99')
         # Literal artwork coordinates, not invisible hitboxes or production helpers.
         p.evaluate('''([hand,i,corner])=>{const T=AFRAME.THREE,m=AFRAME.scenes[0].object3D.getObjectByName('river-xr-menu');m.updateWorldMatrix(true,false);
         const x=i%2?631:56,y=306+Math.floor(i/2)*122,points={center:[x+256.5,y+45],tl:[x+2,y+2],tr:[x+511,y+2],bl:[x+2,y+88],br:[x+511,y+88]},q=points[corner];
@@ -40,7 +41,7 @@ with sync_playwright() as pw:
         if before:
             c,p=page();old_errors=[];p.on('pageerror',lambda e:old_errors.append(str(e)))
             p.route('**/river/xr.js*',lambda route:route.fulfill(status=200,content_type='text/javascript',body=Path(before).read_text()))
-            p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready')
+            p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready');p.keyboard.press('F2')
             p.locator('#enter-ar').click();p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated')
             p.evaluate('TestXR.pose("left",[-.4,1.53,-.4])');p.wait_for_timeout(180);button(p,'left',0)
             reproduced=any('filter' in error for error in old_errors)
@@ -49,11 +50,11 @@ with sync_playwright() as pw:
         for mode in ['ar','vr']:
             c,p=page();p.on('pageerror',lambda e:errors.append(str(e)))
             p.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
-            p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready')
+            p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready');p.keyboard.press('F2')
             p.evaluate('''()=>{const S=TestXR.state,T=AFRAME.THREE;S.head=[2.7,1.21,-1.6];S.yaw=.83;for(const hand of['left','right'])S.hands[hand]=new T.Vector3(hand==='left'?-.23:.23,-.3,-.4).applyAxisAngle(new T.Vector3(0,1,0),S.yaw).add(new T.Vector3(...S.head)).toArray();S.rotate.right=[.7,1.6,0];}''')
             p.locator('#enter-'+mode).click();p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().xrUI.trackedControllers===2')
             check(p.evaluate('!Array.isArray(TestXR.state.session.inputSources)&&TestXR.state.session.inputSources.filter===undefined'),mode+': native-shaped XR source collection, not an ordinary array')
-            check(p.evaluate('River.snapshot().xrUI.version')=='0.10.1',mode+': repaired XR module loaded')
+            check(p.evaluate('River.snapshot().xrUI.version')=='0.11.0',mode+': repaired XR module loaded')
             check(p.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==(0 if mode=='ar' else 1),mode+': correct compositor transparency')
             p.evaluate('TestXR.away()')
             for index in range(8):
@@ -88,10 +89,10 @@ with sync_playwright() as pw:
             check(p.evaluate('River.snapshot().chapter')=='mothership',mode+': direct B starts the second chapter with no pointer')
             button(p,'right',5);p.wait_for_function("River.snapshot().phase==='paused'");p.evaluate('TestXR.reset()');p.wait_for_function('!River.snapshot().calibrated');aim(p,'left',2);primary(p,'left')
             check(p.evaluate('River.snapshot().calibrated') and p.evaluate('River.snapshot().phase')=='paused',mode+': Recenter restores calibration without automatically starting combat')
-            data=p.evaluate('AFRAME.scenes[0].components["river-game"].art.stage.getObjectByName("river-xr-menu").material.map.image.toDataURL()')
+            data=p.evaluate('AFRAME.scenes[0].object3D.getObjectByName("river-xr-menu").material.map.image.toDataURL()')
             (OUT/(mode+'-menu-texture.png')).write_bytes(base64.b64decode(data.split(',')[1]));p.screenshot(path=str(OUT/(mode+'-emulated-view.png')))
             aim(p,'left',3);primary(p,'left');p.wait_for_function('!River.snapshot().immersive')
-            check(p.evaluate('River.snapshot().phase')=='menu',mode+': Exit headset is selectable and returns to the desktop launcher')
+            check(p.evaluate('River.snapshot().phase')=='paused',mode+': Exit headset returns to screen with the current battle still paused')
             for key,value in SAVED.items():check(p.evaluate('(k)=>localStorage.getItem(k)',key)==value,mode+': saved data preserved: '+key)
             c.close()
         check(not errors,'No uncaught script or shader errors in the repaired AR/VR menu checks')

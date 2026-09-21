@@ -22,7 +22,7 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(40000);page.on('pageerror',lambda e:errors.append(str(e)))
  try:
   if MODE=='desktop':
-   page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click();page.locator('#classic').click()
+   page.goto(BASE+'/',wait_until='domcontentloaded');page.locator('a#prism-launch').click();page.wait_for_function('window.River?.snapshot().rotunda');page.keyboard.press('F2');page.locator('#classic').click()
   else:page.goto(BASE+'/prism-current/rhythm.html',wait_until='domcontentloaded')
   page.wait_for_function('window.Prism?.snapshot().ready&&AFRAME.scenes[0].renderer.info.render.calls>0');page.evaluate(DRIVER)
   check(snapshot(page)['version']==RELEASE,'The actual A-Frame renderer loads the declared isolated rhythm release')

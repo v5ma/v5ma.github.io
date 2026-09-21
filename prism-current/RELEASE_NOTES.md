@@ -1,13 +1,13 @@
-# Prism Current 0.10.1 / XR menu recovery
+# River Prism 0.11.0 / Rotunda
 
-This repair responds to the owner's blocked-start report in AR. The previous Start handler incorrectly assumed that the headset's live inputSources collection had Array.filter. The older emulator used a normal array and missed that failure. Source lists are now converted explicitly, and regression testing uses a native-shaped iterable with no array convenience methods.
+Prism's main entry now uses an in-scene pedestal rather than a browser-window menu overlay. Direct chapter choices offer AR, VR and screen play. The menu is stowed during combat and summoned by the familiar pause action; it stays where placed rather than following head motion.
 
-Point at a menu button and squeeze the trigger to select it. A visible dot marks the ray intersection, and the button highlights. Picking uses the actual rendered panel and the same rectangles used to draw its buttons, not separately positioned invisible targets.
+Placement controls raise/lower, bring closer/move farther, resize and rotate the panel. The displayed labels and actual picking surface share the same transform. Reset panel, a paused XR stick click, or Home in screen play recovers placement. Screen panels fit the viewport; F2 or the Controls page exposes the retained semantic text-control alternative.
 
-Either XR thumbstick moves the highlighted selection. A/X confirms without requiring a ray. B/Y directly starts or resumes the selected chapter from a menu; during a battle, B/Y pauses. Native primary events and polled triggers are deduplicated. A trigger used to resume must be released before it can fire a laser.
+Score, hull and combo appear on a compact controller-mounted display in XR, with a selectable floor display. Brief point/damage deltas reflect the existing game state. Sound controls and saved AR water opacity are inside the rotunda. Changing them does not restart the paused battle.
 
-The menu remains operable with one controller or temporarily missing grip poses. Starting combat still requires both tracked controllers and provides an explicit message when either is unavailable. Reopening the menu places it in front of the current view without moving the gameplay camera. Hand-pinch menu interaction and transparent AR remain supported.
+The old small positional pause rectangle is removed. Normal physical dodging no longer triggers that game-imposed restriction; genuine tracking and session visibility loss still pause. Exiting XR ends the immersive session and keeps the battle paused in memory for explicit same-mode re-entry and resume. This is not a persistent unfinished-battle save across browser closure.
 
-The combat core, art, soundtrack, desktop/Xbox mappings, existing records and retained rhythm/water modes are unchanged. The app snapshot adds only the new release identifier and read-only XR UI diagnostics. Updated script URLs prevent the previous XR module from being reused under the same cache version.
+Existing combat rules, bosses, music, chapters, score formats, classic rhythm, lessons, Practice Lab and Floodgate Recovery remain. No other game, portal or private hub implementation is included. Color-change controls, either-color base scoring and revised hazard/blast rules remain separate open gameplay work.
 
-Read XR_MENU_HOTFIX.md for the diagnosis, strict device-shaped test coverage and evidence boundaries. The repair must pass source and deployed-file checks separately. The owner's physical Quest retest remains necessary; an emulated renderer test is not hardware acceptance. Previous release notes are preserved at RELEASE_NOTES-v0100.md.
+Read ROTUNDA.md for the exact interaction scope, AAA_CHECKLIST.md for outstanding tasks and PR #205 for source/public receipts. Physical Quest/Xbox/touch, owner readability/comfort approval and sustained ordinary-resolution performance remain open. Previous release notes are archived at RELEASE_NOTES-v0101.md.
