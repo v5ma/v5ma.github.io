@@ -24,7 +24,7 @@ with sync_playwright() as pw:
  def vertical(button,condition):
   p.evaluate('(i)=>testPad.buttons[i]={pressed:true,value:1}',button);p.wait_for_function(condition,timeout=10000);p.evaluate('(i)=>testPad.buttons[i]={pressed:false,value:0}',button)
  try:
-  p.goto(BASE+'/prism-current/index.html',wait_until='domcontentloaded');p.locator('#water-launch').click();p.wait_for_function('!!window.PrismWater');p.bring_to_front();p.keyboard.press('Shift')
+  p.goto(BASE+'/prism-current/index.html',wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda');p.keyboard.press('F2');p.locator('#water-launch').click();p.wait_for_function('!!window.PrismWater');p.bring_to_front();p.keyboard.press('Shift')
   check(snap()['mode']=='briefing','The rhythm menu opens the playable water expedition')
   press(0);p.wait_for_function("PrismWater.snapshot().mode==='playing'")
   check(snap()['stage']==0,'The mission begins at auxiliary power, not invented completion')

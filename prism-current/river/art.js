@@ -37,11 +37,11 @@
    const core=new T.Mesh(sphere,handMats[0]);core.scale.setScalar(kind.startsWith('boss')?.64:.14);core.position.set(0,0,kind.startsWith('boss')?.75:.72);core.visible=kind.startsWith('boss')||kind==='boat';g.add(core);const outline=new T.Mesh(ringGeo,handMats[0]);outline.visible=kind.startsWith('boss');if(outline.visible){outline.scale.setScalar(2.4);outline.position.z=.77;g.add(outline);}return {g,body,icon,health,core,outline,kind};}
   function kindOf(s,n){return n.type==='boss'?(s.chapter==='mothership'?'boss-space':'boss-duck'):n.type==='fruit'?'fruit'+n.id%3:n.type;}
   function release(id){const o=active.get(id);o.g.visible=false;(free.get(o.kind)||free.set(o.kind,[]).get(o.kind)).push(o);active.delete(id);}
-  const u={time:{value:0},level:{value:-.18},phase:{value:0},motion:{value:1},energy:{value:.5}};
+  const u={time:{value:0},level:{value:-.18},phase:{value:0},motion:{value:1},energy:{value:.5},opacity:{value:1}};
   const waterGeo=geo(new T.PlaneGeometry(10.5,42,28,80));waterGeo.rotateX(-Math.PI/2);waterGeo.translate(0,0,-22);
   const waterMaterial=mat(new T.ShaderMaterial({uniforms:u,transparent:true,depthWrite:false,side:T.DoubleSide,
    vertexShader:`uniform float time,level,motion;varying vec3 p;void main(){p=position;vec3 v=position;v.y=level+motion*(sin(v.x*2.3+time)*.023+sin(v.z*1.9-time*3.)*.036);gl_Position=projectionMatrix*modelViewMatrix*vec4(v,1.);}`,
-   fragmentShader:`uniform float time,phase,motion,energy;varying vec3 p;void main(){vec2 q=p.xz;float flow=time*3.2*motion;q.y-=flow;float n=sin(q.x*3.+sin(q.y*.7))+cos(q.y*2.+sin(q.x*1.4));float caustic=pow(max(0.,1.-abs(n)*.62),9.);float lines=pow(.5+.5*sin(q.y*2.4+sin(q.x*4.)),18.);vec3 deep=mix(vec3(.025,.23,.29),vec3(.07,.29,.44),phase/3.);vec3 c=deep+vec3(.06,.21,.16)*caustic+vec3(.14,.26,.24)*lines*.35;float foam=smoothstep(4.1,5.2,abs(p.x))*(.45+.35*sin(q.y*3.+q.x));c+=vec3(.40,.72,.65)*foam*.55;float distant=1.-exp(-abs(p.z)*.04);c=mix(c,vec3(.08,.20,.25),distant*.45);gl_FragColor=vec4(c,.95);
+   fragmentShader:`uniform float time,phase,motion,energy,opacity;varying vec3 p;void main(){vec2 q=p.xz;float flow=time*3.2*motion;q.y-=flow;float n=sin(q.x*3.+sin(q.y*.7))+cos(q.y*2.+sin(q.x*1.4));float caustic=pow(max(0.,1.-abs(n)*.62),9.);float lines=pow(.5+.5*sin(q.y*2.4+sin(q.x*4.)),18.);vec3 deep=mix(vec3(.025,.23,.29),vec3(.07,.29,.44),phase/3.);vec3 c=deep+vec3(.06,.21,.16)*caustic+vec3(.14,.26,.24)*lines*.35;float foam=smoothstep(4.1,5.2,abs(p.x))*(.45+.35*sin(q.y*3.+q.x));c+=vec3(.40,.72,.65)*foam*.55;float distant=1.-exp(-abs(p.z)*.04);c=mix(c,vec3(.08,.20,.25),distant*.45);gl_FragColor=vec4(c,.95*opacity);
 #include <tonemapping_fragment>
 #include <colorspace_fragment>
 }` }));
@@ -62,7 +62,7 @@
   const laserGeo=geo(new T.CylinderGeometry(.008,.013,1,5)),lasers=Array.from({length:12},(_,i)=>{const m=new T.Mesh(laserGeo,handMats[i%2]);m.visible=false;fx.add(m);return {m,born:-10};});let ei=0,li=0;
   const preview=[{type:'catapult',id:-1,x:2.2,y:.75,z:-5.5},{type:'boat',id:-2,x:3.1,y:.6,z:-9},{type:'plane',id:-3,x:1.4,y:2.5,z:-7}].map(n=>{const o=make(n.type);o.g.position.set(n.x,n.y,n.z);actors.add(o.g);return o;});
   function update(s,time,dt,ar=false,quiet=false,playing=false){const chapter=s?.chapter||'duck-armada',space=chapter==='mothership',ph=C.phase(chapter,s?.time||time);sky.visible=!ar;river.visible=banks.visible=arches.visible=!space;stars.visible=space&&!ar;sky.material.uniforms.space.value=space?1:0;
-   u.time.value=quiet?0:time;u.level.value=C.water(chapter,s?.time||time);u.phase.value=ph.index;u.motion.value=quiet?0:1;
+   u.time.value=quiet?0:time;u.level.value=C.water(chapter,s?.time||time);u.phase.value=ph.index;u.motion.value=quiet?0:1;u.opacity.value=ar?(scene.components?.['river-game']?.dock?.prefs.opacity??.38):1;
    if(ar){banks.visible=arches.visible=false;river.scale.x=.55;}else river.scale.x=1;
    for(const o of preview)o.g.visible=(!s||s.mode==='ready')&&!space;if(!s||s.mode==='ready'){preview[0].g.rotation.y=Math.sin(time*.25)*.18;preview[0].g.position.y=.75+Math.sin(time)*.10;}
    const ids=new Set();for(const n of s?.entities||[]){if(n.dead)continue;ids.add(n.id);let o=active.get(n.id);if(!o){const kind=kindOf(s,n);o=free.get(kind)?.pop()||make(kind);actors.add(o.g);active.set(n.id,o);}o.g.visible=true;const p=C.position(s,n);o.g.position.fromArray(p);o.g.rotation.y=n.type==='fruit'?Math.sin(time*1.3+n.id)*.12:Math.sin(time*.6+n.id)*.10;
