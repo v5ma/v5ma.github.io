@@ -1,0 +1,19 @@
+{
+  "version": "0.27.0",
+  "build": "sky-cycle-route-entry-2026.09.20",
+  "status": "implementation-checkpoint-native-acceptance-pending",
+  "baseline_master": "d539c8e6bdf16339df16d3c514df1a2f4043af15",
+  "baseline_runtime": "f279935ce328485d76f72442ad953aa1dfbacf3f",
+  "branch": "sky-cycle/route-entry-0.27",
+  "scope": "Explicit AR, VR and Screen controls beside the eight original route cards; preserve requested route through WebGL handoff, denial/cancellation and deliberate session switching. Independent remembered mode hint without auto-entering immersion.",
+  "roadmap": "Milestones F/G: first-session entry and controller/XR continuity",
+  "prepared_patch_sha256": "d6f79617e2b59e738acad20e60ddac489837b5e7996126479e3ecc92df16d9b9",
+  "local_rules": {"game":354,"soundtrack":12,"failures":0,"evidence_class":"Local rule tests only, not native or physical gameplay"},
+  "native_acceptance": null,
+  "publication": null,
+  "preservation": ["Eight campaign IDs and original route builders","Original momentum, jumping, boost, paper and whip physics","Published v0.26.2 input owner and fixed-world AR aperture","No persistent controller riding panel","Independent saves, remaps, audio owner and Workshop documents","Concurrent sibling projects and separate Canal Choice branch"],
+  "private_boundary": "No private hub source/assets, attached brief or cross-game portals are included. A pedestal/rotunda is not implemented by this entry slice.",
+  "known_limits": ["Local browser navigation blocked by administrator policy; hosted browser evidence required","Physical Quest/Xbox and passthrough ergonomics remain open","Ground traps and aerial geometry are not changed or certified by entry tests","Actual WebGPU-to-WebGL handoff hardware needs separate qualification"],
+  "required_gates": ["Exact candidate source","Native AR and VR route-entry journeys","Existing all-button, Workshop, portal and delivery regressions","Actual capture review","Expected-head merge preserving sibling work","37-file public hash match","Public route-entry AR and VR replay"],
+  "handoff": "../ROUTE-ENTRY-0.27.md"
+}
