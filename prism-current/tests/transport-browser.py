@@ -57,7 +57,9 @@ with sync_playwright() as pw:
             p.evaluate('NativeAudioGate.release()');p.wait_for_timeout(350)
             check(snap()['phase']=='paused' and snap()['result']==before['result'],mode+': ending XR cancels pending playback and preserves progress')
             check(p.evaluate("!AFRAME.scenes[0].components['river-game'].audio.playing"),mode+': no old soundtrack starts after the immersive session ends')
-            p.locator('#enter-'+mode).click();p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().xrUI.trackedControllers===2')
+            # A preserved run returns to the paused screen, not the chapter menu.
+            # Its actual Resume control deliberately re-enters the recorded XR mode.
+            p.locator('#resume').click();p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().xrUI.trackedControllers===2')
             check(snap()['phase']=='paused' and snap()['time']==before['time'],mode+': same-mode re-entry does not silently start the suspended run')
             p.evaluate('TestXR.away()');button();p.wait_for_function("River.snapshot().phase==='playing'")
             check(snap()['mode']==mode,mode+': the recovered battle remains deliberately resumable')
