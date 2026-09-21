@@ -1,7 +1,7 @@
 name: Neighborhood spatial console acceptance
 on:
   push:
-    branches: [master, neighborhood-missions/spatial-console-20260920]
+    branches: [master, neighborhood-missions/spatial-console-20260920, neighborhood-missions/mission-focus-20260921]
     paths: ['svgn-planet/**', '.github/workflows/neighborhood-console.yml']
   pull_request:
     paths: ['svgn-planet/console-*.mjs', 'svgn-planet/spatial-console*.mjs', 'svgn-planet/unified-xr.mjs', 'svgn-planet/main-hub.mjs', 'svgn-planet/console-browser.py', '.github/workflows/neighborhood-console.yml']
@@ -78,7 +78,7 @@ jobs:
         env:
           CONSOLE_MODE: ${{ matrix.mode }}
         run: |
-          python -u -m http.server 8765 --bind 127.0.0.1 > server.log 2>&1 &
+          python -u svgn-planet/tests/serve-modules.py --port 8765 > server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           python - <<'PY'

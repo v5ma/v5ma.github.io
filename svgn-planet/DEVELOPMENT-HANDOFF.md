@@ -1,3 +1,9 @@
+# Neighborhood Missions mission-focus continuation
+
+Read release.json and FOCUS-RECOVERY.md first. This revision preserves the unified game and spatial console, fixes off-page native keyboard/Xbox focus, and provides a direct mission-list jump. It implements part of existing LEVEL-01 and XR-02; their needs-playtest states remain valid. All 369 local model/input/adapter tests and 102 frozen legacy hashes pass. Two actual local HTTP tests validate the test server module MIME types and exact bytes. Neither is rendered or physical approval.
+
+The eight-mode console journey retains every earlier assertion and additionally checks Jobs focus across pages, Pause default, direct mission access, and actual mission subtitles without progression. Inspect current source and live reports before counting those journeys as passed. Full source/public workflows remain active. Store publication receipts outside svgn-planet; do not reset master, erase storage, reapply stale branches, or publish private SaaS files. The historical handoff follows.
+
 # Neighborhood Missions 0.16.1 spatial-console handoff
 
 Read release.json, SPATIAL-CONSOLE.md and the external receipt first. This is only the native in-game floor/controller UI and explicit vehicle-trigger preference. No private hub implementation, external portals or framework migration. Presentation preferences are separate from all saves. All 333 model/input tests passed; consult exact rendered and public reports rather than treating source counts as physical approval. Preserve all 102 legacy files and concurrent sibling work. The earlier handoff follows as historical context.

@@ -1,6 +1,6 @@
 {
   "version": "0.16.1",
-  "revision": "mission-clarity",
+  "revision": "mission-focus",
   "name": "Neighborhood Missions",
   "edition": "Unified Neighborhoods / Spatial Console",
   "date": "2026-09-20",
@@ -12,9 +12,16 @@
   "legacyLayout": "legacy-layout.json",
   "publicationEvidence": "../release-receipts/neighborhood-missions-spatial-console-0.16.1.json",
   "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "PR 204 / f1b0f198 plus mission-clarity revision; see CLARITY-RECOVERY.md and the external receipt",
-  "sourceAcceptanceRuns": [35551197282,35551588021,35552082042,35552545981,35554765805],
+  "runtimeCheckpoint": "Mission clarity d222c62b plus focused menu recovery; see FOCUS-RECOVERY.md and external receipt",
+  "sourceAcceptanceRuns": [
+    35551197282,
+    35551588021,
+    35552082042,
+    35552545981,
+    35554765805
+  ],
   "changes": [
+    "Native XR page follows Xbox/keyboard focus, with a visible focus marker and a direct Choose a mission jump; Pause and cancel-first restoration remain unchanged.",
     "Native mission buttons show the next saved task before selection; the HUD names the active campaign tool rather than stale Watch equipment.",
     "Summonable floor rotunda or free-controller menu with saved height, distance, scale and native raised buttons.",
     "Compact free-hand or floor objective/map card; neither HUD nor menu is attached to the headset.",
@@ -30,14 +37,14 @@
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 357,
+    "localModelTestsPassed": 369,
     "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "The recovered spatial console passed all eight source mode journeys. The prior public byte attempt failed (262/281 matching); this revision requires separate publication and rendered evidence in publicationEvidence.",
+    "sourceAndPublicEvidence": "369 local tests pass. Current source, public bytes and all rendered mode outcomes are distinct acceptance gates, recorded in the external receipt.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "newPresentationTests": 42
+    "newPresentationTests": 54
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 5,
