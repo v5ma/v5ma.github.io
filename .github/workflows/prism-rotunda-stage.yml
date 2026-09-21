@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply exact nine-file Prism patch and run all model tests
+      - name: Apply exact Prism patches and run all model tests
         shell: bash
         run: |
           set -euo pipefail
@@ -51,7 +51,8 @@ jobs:
           python - <<'PY'
           import json,subprocess
           paths=json.load(open('/tmp/rotunda-paths.json'))
-          assert len(paths)<=9 and all(p.startswith('prism-current/') and '..' not in p.split('/') for p in paths)
+          allowed={p['path'] for n in ['edits','followup'] for p in json.load(open('.github/prism-rotunda-'+n+'.json'))}
+          assert len(paths)<=11 and set(paths)<=allowed and all(p.startswith('prism-current/') and '..' not in p.split('/') for p in paths)
           changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
           assert set(changed)==set(paths)
           if paths:subprocess.run(['git','add','--',*paths],check=True)
