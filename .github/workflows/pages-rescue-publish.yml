@@ -30,6 +30,7 @@ jobs:
           git rev-parse HEAD
           shasum -a 256 dino-atlas/spatial-console.js dino-atlas/classic-xr.css dino-atlas/tidegate.css
           shasum -a 256 leonardos-guild/campaign-entry.mjs leonardos-guild/field-status.mjs leonardos-guild/xr-field-desk.mjs leonardos-guild/release.json
+          shasum -a 256 svgn-planet/main-hub.mjs svgn-planet/unified-xr.mjs svgn-planet/native-menu-focus.mjs svgn-planet/release.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
