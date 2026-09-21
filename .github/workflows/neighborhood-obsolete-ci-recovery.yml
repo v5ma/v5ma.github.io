@@ -1,0 +1,74 @@
+name: Retire obsolete Neighborhood verification runs
+on:
+  push:
+    branches: [neighborhood-missions/obsolete-ci-recovery-20260920]
+    paths: ['.github/workflows/neighborhood-obsolete-ci-recovery.yml']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  retire:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/obsolete-ci-recovery-20260920'
+    runs-on: macos-15
+    timeout-minutes: 8
+    steps:
+      - name: Retain current source, current public checks, Pages and every sibling game
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,urllib.request,urllib.error,urllib.parse
+          repo='v5ma/v5ma.github.io';base='https://api.github.com/repos/'+repo
+          paths={'.github/workflows/'+n for n in ('neighborhood-console.yml','neighborhood-unified-acceptance.yml','neighborhood-unified-focus.yml','neighborhood-native-visibility.yml','neighborhood-lantern.yml','neighborhood-grounded.yml','neighborhood-lantern-published.yml','neighborhood-grounded-published.yml','paper-art-published.yml','svgn-planet-published.yml')}
+          cutoff='2026-09-21T02:37:00Z'
+          protected={'f1b0f1983df3f4dd6cacc461a1b317be4c1d7470','2813ee6e0b6d638310d125480dfa3402cffd1397'}
+          def eligible(r):
+              return (r.get('path') in paths and r.get('status') in ('queued','pending','in_progress') and r.get('conclusion') is None and r.get('head_sha') not in protected and isinstance(r.get('created_at'),str) and r['created_at']<cutoff and (r.get('head_branch')=='master' or r.get('head_branch','').startswith('neighborhood-missions/')))
+          sample={'path':'.github/workflows/neighborhood-console.yml','status':'queued','conclusion':None,'head_sha':'old','created_at':'2026-09-21T02:20:00Z','head_branch':'neighborhood-missions/spatial-console-20260920'}
+          assert eligible(sample)
+          for change in [{'path':'dynamic/pages/pages-build-deployment'},{'path':'.github/workflows/rainward-xr-repair.yml'},{'created_at':'2026-09-21T02:38:00Z'},{'status':'completed','conclusion':'success'},{'head_branch':'dino-spatial-repair'}]+[{'head_sha':s} for s in protected]:assert not eligible(sample|change),change
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,req,fp,code,msg,headers,newurl):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          def request(path,method='GET'):
+              req=urllib.request.Request(base+path,method=method,data=b'' if method=='POST' else None,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10'})
+              with opener.open(req,timeout=20) as response:
+                  data=response.read();return response.status,json.loads(data) if data else None
+          report={'scope':'Maintenance only, not gameplay acceptance. Normal cancellation of obsolete pre-02:37 Neighborhood tests; never deletes records or artifacts.','protectedCommits':sorted(protected),'cutoff':cutoff,'allowedWorkflowPaths':sorted(paths),'requests':[],'errors':[],'currentVerificationCancelled':False,'pagesCancelled':False,'siblingRunsCancelled':False}
+          try:
+              candidates={}
+              for status in ['queued','pending','in_progress']:
+                  for page in range(1,5):
+                      query=urllib.parse.urlencode({'status':status,'per_page':100,'page':page})
+                      _,data=request('/actions/runs?'+query)
+                      runs=data['workflow_runs']
+                      for r in runs:
+                          if eligible(r):candidates[r['id']]=r
+                      if len(runs)<100:break
+              for run_id in sorted(candidates)[:40]:
+                  # Recheck immediately before the only write. A completing or
+                  # no-longer-eligible run is left unchanged. No force-cancel.
+                  _,r=request('/actions/runs/'+str(run_id))
+                  if not eligible(r):continue
+                  row={k:r.get(k) for k in ['id','path','head_sha','head_branch','created_at','status']}
+                  try:
+                      code,_=request('/actions/runs/'+str(run_id)+'/cancel','POST')
+                      row['cancelHTTPStatus']=code;row['cancellationRequested']=code==202
+                  except urllib.error.HTTPError as e:
+                      row['cancelHTTPStatus']=e.code;row['cancellationRequested']=False
+                      if e.code not in (409,):raise
+                  report['requests'].append(row)
+                  print('Obsolete run',run_id,row['path'],row['cancelHTTPStatus'],flush=True)
+          except Exception as error:
+              report['errors'].append(type(error).__name__+': '+str(error));raise
+          finally:
+              raw=json.dumps(report,indent=2)+'\n';assert os.environ['GH_TOKEN'] not in raw
+              pathlib.Path('obsolete-neighborhood-runs.json').write_text(raw)
+          print('Requested cancellation of',sum(r['cancellationRequested'] for r in report['requests']),'obsolete runs; current verification and Pages are unchanged.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: obsolete-neighborhood-runs
+          path: obsolete-neighborhood-runs.json
+          retention-days: 30
