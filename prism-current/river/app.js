@@ -2,12 +2,12 @@
    All combat uses RiverCore; UI never awards hits. One original audio transport. */
 (function(){'use strict';const $=id=>document.getElementById(id),C=RiverCore,PREF='prism-current.river.settings.v1';
  AFRAME.registerComponent('river-game',{
-  init(){this.T=AFRAME.THREE;this.art=RiverArt.build(this.T,this.el);this.audio=new PrismAudio();this.state=null;this.chapter='duck-armada';this.phase='menu';this.immersive=false;this.message='Cut fruit. Shoot engines. Grip shields. Hold your ground.';this.cruise=false;this.quiet=matchMedia('(prefers-reduced-motion: reduce)').matches;this.quality='balanced';this.serial=0;this.busy=false;this.aim=[0,0];this.playerX=0;this.crouch=0;this.activeHand=0;this.keys=new Set();this.captures=new Map();this.previous=[null,null];this.animations=[null,null];this.shields=[null,null];this.mouse=null;this.mouseFire=false;this.touchFire=false;this.touchShield=false;this.padId=null;this.padOld=[];this.seedPad=true;this.padDir=0;this.repeatAt=0;this.lastTime=0;this.lastFx=0;this.runMode='desktop';this.records={};this.cut=[0,-1];
+  init(){this.T=AFRAME.THREE;this.art=RiverArt.build(this.T,this.el);this.audio=new PrismAudio();this.state=null;this.chapter='duck-armada';this.phase='menu';this.immersive=false;this.message='Recovery 0.11.1 / Cut fruit. Shoot engines. Grip shields.';this.cruise=false;this.quiet=matchMedia('(prefers-reduced-motion: reduce)').matches;this.quality='balanced';this.serial=0;this.busy=false;this.aim=[0,0];this.playerX=0;this.crouch=0;this.activeHand=0;this.keys=new Set();this.captures=new Map();this.previous=[null,null];this.animations=[null,null];this.shields=[null,null];this.mouse=null;this.mouseFire=false;this.touchFire=false;this.touchShield=false;this.padId=null;this.padOld=[];this.seedPad=true;this.padDir=0;this.repeatAt=0;this.lastTime=0;this.lastFx=0;this.runMode='desktop';this.records={};this.cut=[0,-1];
    try{this.records=C.records(localStorage.getItem(C.KEY));const v=JSON.parse(localStorage.getItem(PREF)||'{}');if(['light','balanced','cinematic'].includes(v.quality))this.quality=v.quality;if(typeof v.quiet==='boolean')this.quiet=v.quiet;if(typeof v.cruise==='boolean')this.cruise=v.cruise;}catch{}
    this.xr=RiverXR.install(this);this.ui();this.inputs();this.sync();
    document.addEventListener('visibilitychange',()=>{if(document.hidden&&!this.immersive){this.phase==='loading'?this.cancel():this.pauseRun('Window hidden. Resume when ready.');this.clearInputs();}});window.addEventListener('blur',()=>{if(!this.immersive){this.phase==='loading'?this.cancel():this.pauseRun('Window lost focus.');this.clearInputs();}this.seedPad=true;});
    this.el.addEventListener('renderstart',()=>this.ready=true);this.ready=!!this.el.renderer;
-   window.River={snapshot:()=>({version:'0.11.0',xrUI:this.xr.diagnostics,rotunda:this.dock?.diagnostics,phase:this.phase,chapter:this.chapter,ready:this.ready,immersive:this.immersive,calibrated:this.xr.calibrated,controller:this.padId!==null,mode:this.runMode,cruise:this.cruise,time:this.state?.time||0,water:C.water(this.chapter,this.state?.time||0),section:C.phase(this.chapter,this.state?.time||0).name,aim:[...this.aim],body:this.body(),result:this.state?C.result(this.state):null,entities:this.state?.entities.filter(n=>!n.dead).map(n=>({id:n.id,type:n.type,position:C.position(this.state,n),hp:n.hp,dir:n.dir,hand:n.hand,r:n.r,open:C.open(this.state,n)}))||[],shields:this.shields.map(s=>s?{...s}:null),stats:this.art.stats,records:{...this.records},message:this.message})};
+   window.River={snapshot:()=>({version:'0.11.1',busy:this.busy,xrUI:this.xr.diagnostics,rotunda:this.dock?.diagnostics,phase:this.phase,chapter:this.chapter,ready:this.ready,immersive:this.immersive,calibrated:this.xr.calibrated,controller:this.padId!==null,mode:this.runMode,cruise:this.cruise,time:this.state?.time||0,water:C.water(this.chapter,this.state?.time||0),section:C.phase(this.chapter,this.state?.time||0).name,aim:[...this.aim],body:this.body(),result:this.state?C.result(this.state):null,entities:this.state?.entities.filter(n=>!n.dead).map(n=>({id:n.id,type:n.type,position:C.position(this.state,n),hp:n.hp,dir:n.dir,hand:n.hand,r:n.r,open:C.open(this.state,n)}))||[],shields:this.shields.map(s=>s?{...s}:null),stats:this.art.stats,records:{...this.records},message:this.message})};
   },
   body(){return [this.playerX,1.45-this.crouch,0];},
   notice(text){this.message=text;$('status').textContent=text;},
@@ -22,16 +22,47 @@
    if(this.el.renderer&&!this.immersive)this.el.renderer.setPixelRatio(Math.min(devicePixelRatio,this.quality==='cinematic'?1.5:this.quality==='light'?.7:1));
    const record=this.records[[this.chapter,this.immersive?(this.el.is('ar-mode')?'ar':'vr'):this.padId!==null?'gamepad':'desktop',this.cruise?'cruise':'arcade'].join('/')];$('best').textContent=record?`Local best: ${record.score.toLocaleString()} / ${record.wins} clears`:'New battle. River records are separate from your previous scores.';
   },
-  async start(){if(this.busy)return;const serial=++this.serial;this.busy=true;this.phase='loading';this.state=null;this.clearInputs();this.art.reset();this.lastFx=0;this.playerX=this.crouch=0;this.activeHand=0;this.sync();try{
-    await this.audio.context().resume();await this.audio.prepare('undertow');if(serial!==this.serial)return;if(document.hidden&&!this.immersive){this.cancel();return;}
+  playbackAllowed(session){
+   return this.immersive?!!session&&this.xr?.session===session&&session.visibilityState==='visible'&&this.xr.calibrated:session===null&&!document.hidden;
+  },
+  async start(){
+   if(this.busy)return;
+   const session=this.immersive?this.xr.session:null;
+   if(!this.playbackAllowed(session)){this.notice('Return to the visible, calibrated view before starting.');return;}
+   const serial=++this.serial;this.busy=true;this.phase='loading';this.state=null;this.clearInputs();this.art.reset();this.lastFx=0;this.playerX=this.crouch=0;this.activeHand=0;this.sync();
+   try{
+    await this.audio.context().resume();await this.audio.prepare('undertow');if(serial!==this.serial)return;
+    if(!this.playbackAllowed(session)){this.cancel();this.notice('Start interrupted. Choose Play again when ready.');return;}
     this.state=C.create(this.chapter,this.cruise);this.runMode=this.immersive?(this.el.is('ar-mode')?'ar':'vr'):this.padId!==null?'gamepad':'desktop';this.lastTime=0;
-    // Prepare real currently visible models before starting the musical clock.
     this.art.update(this.state,0,0,this.el.is('ar-mode'),this.quiet,false);if(this.el.renderer.compileAsync)await this.el.renderer.compileAsync(this.el.object3D,this.el.camera);if(serial!==this.serial)return;
-    const played=await this.audio.play('undertow',0);if(serial!==this.serial||played===false)return;this.phase='playing';this.state.mode='playing';this.notice('Four beats in. Slice the arrowed fruit; fire at engines; shield the pink projectiles.');$('scene-wrap').focus();
-   }catch(e){if(serial===this.serial){this.phase='menu';this.state=null;this.notice(e.message);}}finally{if(serial===this.serial){this.busy=false;this.sync();}}},
-  pauseRun(reason='Paused'){if(this.phase!=='playing')return;this.audio.pause();this.phase='paused';this.state.mode='paused';this.clearInputs();this.notice(reason);this.sync();this.focus($('resume'));},
+    if(!this.playbackAllowed(session)){this.cancel();this.notice('Start interrupted. Choose Play again when ready.');return;}
+    const played=await this.audio.play('undertow',0);if(serial!==this.serial||played===false)return;
+    if(!this.playbackAllowed(session)){this.cancel();this.notice('Start interrupted. Choose Play again when ready.');return;}
+    this.phase='playing';this.state.mode='playing';this.notice('Four beats in. Slice the arrowed fruit; fire at engines; shield the pink projectiles.');$('scene-wrap').focus();
+   }catch(e){if(serial===this.serial){this.phase='menu';this.state=null;this.notice(e.message);}}
+   finally{if(serial===this.serial){this.busy=false;this.sync();}}
+  },
+  pauseRun(reason='Paused'){
+   // A pending audio resume is still a paused battle. Cancel its request as well
+   // as its audio token, so a later promise cannot silently restart the encounter.
+   if(this.phase==='paused'&&this.busy){this.serial++;this.busy=false;this.audio.pause();this.clearInputs();this.notice(reason);this.sync();this.focus($('resume'));return;}
+   if(this.phase!=='playing')return;
+   this.audio.pause();this.phase='paused';this.state.mode='paused';this.clearInputs();this.notice(reason);this.sync();this.focus($('resume'));
+  },
   pause(){this.pauseRun('Rendering paused. Resume when ready.');},
-  async resume(){if(this.phase!=='paused'||this.busy||!this.state)return;if(!this.immersive&&['ar','vr'].includes(this.runMode)){this.xr.enter(this.runMode==='ar');return;}const serial=this.serial;this.busy=true;try{if(this.immersive&&!this.xr.calibrated){this.notice('Recenter before resuming.');return;}const played=await this.audio.play('undertow',this.audio.offset);if(serial!==this.serial||played===false)return;if(document.hidden&&!this.immersive){this.audio.pause();return;}this.phase='playing';this.state.mode='playing';this.lastTime=this.audio.offset;this.previous=[null,null];$('scene-wrap').focus();}catch(e){this.notice(e.message);}finally{this.busy=false;this.sync();}},
+  async resume(){
+   if(this.phase!=='paused'||this.busy||!this.state)return;
+   if(!this.immersive&&['ar','vr'].includes(this.runMode)){this.xr.enter(this.runMode==='ar');return;}
+   const serial=this.serial,run=this.state,session=this.immersive?this.xr.session:null;
+   if(!this.playbackAllowed(session)){this.notice('Return to the visible, calibrated view before resuming.');return;}
+   this.busy=true;
+   try{
+    const played=await this.audio.play('undertow',this.audio.offset);if(serial!==this.serial||played===false)return;
+    if(this.phase!=='paused'||this.state!==run||!this.playbackAllowed(session)){this.audio.pause();return;}
+    this.phase='playing';run.mode='playing';this.lastTime=this.audio.offset;this.previous=[null,null];$('scene-wrap').focus();
+   }catch(e){if(serial===this.serial)this.notice(e.message);}
+   finally{if(serial===this.serial){this.busy=false;this.sync();}}
+  },
   cancel(){this.serial++;this.busy=false;this.audio.stop();this.state=null;this.phase='menu';this.clearInputs();this.art.reset();this.sync();},
   finish(){if(!this.state||!['complete','failed','escaped'].includes(this.state.mode))return;this.phase=this.state.mode;this.audio.stop();this.clearInputs();const r=C.result(this.state);if(r.complete){const k=[this.state.chapter,this.runMode,this.state.cruise?'cruise':'arcade'].join('/'),old=this.records[k];this.records[k]={score:Math.max(r.score,old?.score||0),wins:(old?.wins||0)+1};try{localStorage.setItem(C.KEY,JSON.stringify(this.records));}catch{this.notice('Battle cleared; storage could not save this result.');}}
    $('result-title').textContent=r.complete?(this.chapter==='mothership'?'Mothership down.':'The river is yours.'):(this.phase==='failed'?'Hull lost. Try another run.':'The flagship escaped.');$('result-score').textContent=r.score.toLocaleString();$('result-detail').textContent=`${r.slices} slices / ${r.shotHits} laser hits / ${r.blocks} blocks / ${r.reflects} perfect reflects / ${r.dodges} dodges. Best combo: ${r.combo}.`;$('next').textContent=this.chapter==='duck-armada'?'Play Mothership Channel':'Play Duck Armada';this.sync();this.focus($('again'));},

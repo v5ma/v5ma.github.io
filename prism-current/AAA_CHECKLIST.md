@@ -1,4 +1,4 @@
-# Prism Current / Rotunda 0.11.0 production checklist
+# Prism Current / Rotunda Recovery 0.11.1 production checklist
 
 This pass implements the owner's Prism-only spatial-interface direction. Read ROTUNDA.md and PR #205 for exact scope and observed tests. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
 
@@ -10,8 +10,9 @@ This pass implements the owner's Prism-only spatial-interface direction. Read RO
 - [x] UI-R04 / implementation. Compact controller-mounted score, hull and combo with a floor alternative and brief actual score/damage deltas. Preserve boss health in the world.
 - [x] UI-R05 / implementation. Saved AR water opacity and separate sound controls. Menu adjustment does not restart an encounter. Remove the arbitrary positional pause while keeping actual tracking/visibility recovery.
 - [x] UI-R06 / implementation. End the immersive session and retain the current paused battle in memory for same-mode re-entry. Do not silently reclassify an XR score as screen play.
-- [ ] UI-R07 / recurring source/public gate. Run exact-source model and actual-renderer input tests, then verify committed bytes and playable journeys on GitHub Pages. Outcomes are recorded by exact SHA in PR #205, not inferred from code presence.
+- [ ] UI-R07 / recurring source/public gate. Run exact-source model and actual-renderer input tests, then verify committed bytes and playable journeys on GitHub Pages. Outcomes are recorded by exact SHA in the release discussion, not inferred from code presence.
 - [ ] UI-R08 / owner/device gate. Physical Quest AR/VR, Xbox, touch, seated/standing readability, sound adjustment, exit/re-entry, room movement, ordinary-resolution performance and owner approval remain open until playtested.
+- [x] UI-R09 / implementation. Cancel pending audio resumes on interruption and require the same visible calibrated session before playback. Preserve the paused battle; stale promises cannot unlock or overwrite a newer request. Ten regression fixtures cover the actual component methods. Native fault-injection and public acceptance are separate gates; see INTERRUPTION-RECOVERY.md.
 
 ## Preserved work and open feedback
 

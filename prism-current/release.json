@@ -1,10 +1,10 @@
 {
-  "version": "0.11.0",
+  "version": "0.11.1",
   "name": "Prism Current",
   "date": "2026-09-20",
   "engine": "A-Frame 1.8.0",
-  "edition": "River Prism / Rotunda",
-  "scope": "Prism-only in-scene adjustable pedestal menu, controller/floor score-health HUD, direct AR/VR/screen choices, saved AR water opacity, room-scale movement without arbitrary position pauses, and paused-battle preservation across XR exit/re-entry. Source and public gates determine acceptance.",
+  "edition": "River Prism / Rotunda Recovery",
+  "scope": "Retains the in-scene Rotunda, controller/floor HUD and room movement. Cancels pending audio resumes on interruption; requires a visible calibrated matching XR session before playback; stale promises cannot unlock or relabel a newer run. Source and public verification remain separate from physical-device acceptance.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html"
