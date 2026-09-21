@@ -1,12 +1,12 @@
 {
-  "version": "0.26.2",
-  "build": "sky-cycle-xr-buttons-2026.09.19",
-  "date": "2026-09-19",
+  "version": "0.27.0",
+  "build": "sky-cycle-route-entry-2026.09.20",
+  "date": "2026-09-20",
   "changes": [
-    "Session-owned menu button edges for A/X confirm, B/Y back, triggers select, grips/sticks navigation",
-    "Trigger event and raw button polling share one latch; no repeated activation from a held press",
-    "Unused contact/proximity sensor values no longer block control readiness",
-    "Retain no-panel controller riding, fixed AR aperture, all original physics, saves and editor documents",
-    "Menu shows current build and last received command; physical Quest retest remains open"
+    "Explicit AR, VR and Screen choices beside each existing route card",
+    "Requested route starts only after immersive entry succeeds; denial never silently falls back",
+    "Selected route survives a guarded WebGL reload with fresh explicit immersive entry",
+    "Independent last-used-mode hint with session-only storage feedback",
+    "Preserves v0.26.2 headset button mappings, fixed AR aperture, campaign and Workshop saves"
   ]
 }

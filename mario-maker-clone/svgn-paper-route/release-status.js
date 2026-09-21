@@ -1,7 +1,7 @@
 /* Explicit build and campaign readiness. Optional authoring tools must not decide
  * which campaign is loaded, and an unfinished download must not spawn old data. */
 (function(){'use strict';
- const VERSION='0.26.2',BUILD='sky-cycle-xr-buttons-2026.09.19';
+ const VERSION='0.27.0',BUILD='sky-cycle-route-entry-2026.09.20';
  // Register before the legacy DOMContentLoaded pause listener. Native dialogs
  // consume their own keyboard events without unpausing the route underneath.
  window.addEventListener('keydown',event=>window.SkyCycleFlightDeck?.handleKey(event),true);
@@ -51,7 +51,7 @@
   }).finally(()=>{
    import('./prismatic-renderer.js').catch(error=>console.error('Optional material pass could not load:',error));
    import('./ride-lab-loader.js').catch(error=>console.error('Ride Lab could not load:',error));
-   import('./flight-deck.js').then(()=>import('./route-compass.js')).then(()=>import('./sensory.js').catch(error=>console.error('Optional comfort settings could not load:',error))).then(()=>import('./xr-play.js')).catch(error=>console.error('Flight Deck or Route Compass could not load:',error));
+   import('./flight-deck.js').then(()=>import('./route-compass.js')).then(()=>import('./sensory.js').catch(error=>console.error('Optional comfort settings could not load:',error))).then(()=>import('./xr-play.js')).then(()=>import('./route-entry.js').catch(error=>console.error('Route mode choices could not load:',error))).catch(error=>console.error('Flight Deck or Route Compass could not load:',error));
   });
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();

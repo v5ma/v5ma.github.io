@@ -233,7 +233,7 @@ function makeMenu(now,force=false){
   if(current)button(window.RouteWorkshop?.active?'Resume editing now':'Resume play',895,10,270,62,resumeWorkspace);
   button('Recenter',35,822,255,62,()=>{recenter=true;});button('All menus',305,822,275,62,openWorkspace);button('Spatial setup',595,822,285,62,show);button('Exit XR',895,822,270,62,endSession);
   if(uiMessageUntil>now){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text(uiMessage,35,810,1,1110,16);}
-  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v0.26.2 | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
+  if(current){context.fillStyle='#10283a';context.fillRect(20,790,1160,27);context.fillStyle='#f7e9b4';text('v'+(window.PaperDeliveryRelease?.version||'0.27.0')+' | A/X select; B/Y back; triggers select; grips/sticks move | '+menuInput.diagnostics.last,35,810,1,1110,16);}
   texture.needsUpdate=true;
 }
 function tracked(source){let entry=visuals.get(source);if(entry)return entry;
@@ -362,13 +362,13 @@ async function finish(){
   const next=pendingHandoff;pendingHandoff=null;next?.();
 }
 async function enter(kind='immersive-vr'){
-  if(starting||presenting||finishing)return;selectedMode=kind;
+  if(starting||presenting||finishing)return false;selectedMode=kind;
   renderer=window.__merged?.renderer;
-  if(!renderer||!window.__gpuReady){status('The 3D renderer is not ready. Ordinary play is still available.');return;}
+  if(!renderer||!window.__gpuReady){status('The 3D renderer is not ready. Ordinary play is still available.');return false;}
   if(!renderer.backend.isWebGLBackend){
-    if(window.RouteWorkshop?.state.dirty||window.RouteWorkshop?.active||window.RouteWorkshop?.testing){status('Save the Workshop draft, then return to a campaign route before the WebGL reload. Nothing was changed.');return;}
+    if(window.RouteWorkshop?.state.dirty||window.RouteWorkshop?.active||window.RouteWorkshop?.testing){status('Save the Workshop draft, then return to a campaign route before the WebGL reload. Nothing was changed.');return false;}
     const url=new URL(location.href);url.searchParams.set('xr','1');url.searchParams.set('xrMode',kind==='immersive-ar'?'ar':'vr');
-    const route=window.DeliveryCampaign?.routes[window.__delivery?.state.route];if(route&&window.SkyCyclePortals?.destinations.some(d=>d.id===route.id))url.searchParams.set('destination',route.id);location.assign(url.href);return;
+    const route=window.DeliveryCampaign?.routes[window.__delivery?.state.route];if(route&&window.SkyCyclePortals?.destinations.some(d=>d.id===route.id))url.searchParams.set('destination',route.id);location.assign(url.href);return false;
   }
   starting=true;$('sky-xr-enter').disabled=true;$('sky-xr-enter-ar').disabled=true;let acquired=null;
   try{
@@ -381,14 +381,23 @@ async function enter(kind='immersive-vr'){
     // r177 captures the application callback in setSession and wraps it with XR camera/target setup.
     // Installing our callback afterward bypasses that wrapper and renders a blank headset.
     renderer.xr.enabled=true;renderer.xr.setReferenceSpaceType('local');await renderer.setAnimationLoop(frame);await renderer.xr.setSession(session);
-    if(!session||!starting)return;presenting=true;starting=false;if($('sky-xr-tools'))$('sky-xr-tools').hidden=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};
+    if(!session||!starting)return false;presenting=true;starting=false;if($('sky-xr-tools'))$('sky-xr-tools').hidden=false;renderer.render=function(scene,cam){if(!presenting)return originalRender.call(this,scene,cam);};
     status(kind==='immersive-ar'?'AR active. Recenter and Spatial setup position the game in your room.':'VR active. All menus and Spatial setup remain available.');
-  } catch(e){const reason='XR could not start: '+e.message;try{await acquired?.end();}catch{}if(starting||presenting)await finish();status(reason);}
+    return true;
+  } catch(e){const reason='XR could not start: '+e.message;try{await acquired?.end();}catch{}if(starting||presenting)await finish();status(reason);return false;}
   finally{$('sky-xr-enter').disabled=!supportState.vr;$('sky-xr-enter-ar').disabled=!supportState.ar;}
+}
+// Route cards share the original XR lifecycle; no second renderer or input owner.
+function leaveMode(){
+ if(!presenting||finishing||pendingHandoff)return Promise.resolve(false);
+ return new Promise(resolve=>{
+  pendingHandoff=()=>resolve(true);pause();
+  session.end().catch(e=>{pendingHandoff=null;status(e.message);resolve(false);});
+ });
 }
 $('sky-xr-enter').onclick=()=>enter('immersive-vr');$('sky-xr-enter-ar').onclick=()=>enter('immersive-ar');
 window.addEventListener('pagehide',()=>{pause();session?.end().catch(()=>{});});
-window.SkyCycleXR=Object.freeze({version:'0.26.2',get presenting(){return presenting;},get inputVisible(){return presenting&&session?.visibilityState==='visible';},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,activateRay,openMenu:openWorkspace,
+window.SkyCycleXR=Object.freeze({version:'0.27.0',requestMode:enter,leaveMode,get presenting(){return presenting;},get inputVisible(){return presenting&&session?.visibilityState==='visible';},get menuPanel(){return presenting?virtualRoot:null;},back,activate,focusControl,show,activateRay,openMenu:openWorkspace,
  getGamepad(){
   if(!presenting||!session)return null;
   const activeHeld=new Set(held);for(const [key,until]of pulses)if(performance.now()<until)activeHeld.add(key);else pulses.delete(key);

@@ -1,25 +1,47 @@
-# Resume Sky Cycle: published XR buttons v0.26.2
+# Resume Sky Cycle: Route Entry v0.27
 
-Sky Cycle v0.26.2 / sky-cycle-xr-buttons-2026.09.19 is published and software-verified. The game is https://v5ma.github.io/mario-maker-clone/svgn-paper-route/?xr=1 . Open AR / VR, then Enter AR or Enter VR. In an older tab, save any Workshop draft before Check update/reload; never clear site data as an update procedure.
+Continue the existing game in `mario-maker-clone/svgn-paper-route/`. The last verified live release is v0.26.2. The next candidate is v0.27.0 / `sky-cycle-route-entry-2026.09.20`, on `sky-cycle/route-entry-0.27`, PR 213. Read `verification/route-entry-0.27.json` for the current state; this checkpoint does not claim a public v0.27 deployment.
 
-## Current source and publication
+## First action: inspect the existing exact-source run
 
-PR 203 merged as 7ccc6cceb43f1c3031454c8dc30b52646718baff, preserving the actual first parent f5a13730f40574edbb25ee8a4b6d2bd19756e926 and its concurrent sibling work. Accepted runtime f279935ce328485d76f72442ad953aa1dfbacf3f passed 332 game rules, 12 soundtrack rules and 241 native checks across the recorded attempts. The unchanged first delivery failure and retry remain disclosed.
+Candidate `a2a3eeb06964c4e642a84cf826afe6c955efc99a` is under hosted qualification in run `35556641185`. The nine applicable jobs were queued with runner_id 0 and no executed steps, not failed and not passed. The scheduling cause is not established. Local browser navigation was blocked by administrator policy before the game loaded, so that attempt supplies no native evidence and was not bypassed.
 
-Pages run 35461850034 completed both build 105947009979 and deploy 105947899733. Publication run 35461851265, attempt 2, job 105949456946 matched all 34 owned runtime files at 2026-09-19T18:59:36Z. Live AR job 105949919267 passed 44 checks; live VR job 105949919275 passed 43. Downloaded report source IDs, public origin and ZIP SHA-256 digests were checked, and the expected public hashes independently match the exact merged-source archive. All 16 public-journey PNGs were inspected in contact sheets. The complete record is verification/xr-buttons-0.26.2.json; the full unchanged pre-publication evidence remains in verification/xr-buttons-0.26.2-accepted.json.
+Rules job: `106201424905`. Route-entry AR/VR: `106201424951` / `106201424904`. All-button AR/VR: `106201424879` / `106201424985`. Workspace AR/VR: `106201424943` / `106201424837`. Portal Network: `106201424693`. Waterwheel deliveries: `106201424898`.
 
-This publication recovery did not introduce a new runtime build or rerun a physical-device session. It recovered the already successful deployment and corrected the pending release record. A failed direct web/container fetch is not new live evidence; the retained hosted public-byte and real-game journeys are the publication evidence.
+Read those existing results and artifacts before changing runtime again. Later development-only commits preserve the tested source. Do not restart the candidate merely because the earlier session ended while jobs were queued. Once successful, verify report source IDs and ZIP digests, inspect actual route-card/stereo captures, normally merge the expected reviewed PR head preserving current master, compare 37 public runtime hashes, and repeat both public route-entry journeys. Do not force a stale Pages deployment or infer live success from a merge/version label.
 
-## What to test
+## What was implemented and additionally refined
 
-In menus, A/X confirms, B/Y goes back one level, either trigger selects, grips step previous/next, and either stick navigates or adjusts the selected setting. These menu roles do not replace jump, boost, paper or whip during play. The menu displays the current build and last received command locally, with no telemetry. Use that readout to distinguish an unreceived physical button from an action-routing failure.
+The eight original route cards now have semantic sibling AR, VR and Screen buttons. Screen means the supported 2D view; the original large card still offers Play in current view. Starting or changing the selected route waits for the requested immersive session to succeed. Denial and cancellation do not silently choose another presentation. The same immersive mode can use the existing session; a different mode requires explicit exit and fresh entry.
 
-Test entering AR, selecting a route, riding, pausing, opening Sound, changing a value, going back, Resume play, and Exit XR. Repeat with VR and hands. Holding a button must not cascade through multiple menus. Leaning or looking up should not cause a menu slab to block controller riding or move the fixed-world aperture. An actual physical Quest report remains authoritative even when these emulated checks pass.
+A WebGL reload carries only the intended stable route and mode in transient URL fields. The warning correctly says reloading ends the unfinished run but preserves saved progress. Active/testing/dirty Workshop state blocks replacement. Stable route identity and draft state are checked again after permission returns. Late approval after cancellation closes the acquired session without starting the unwanted route.
 
-## Preservation and next work
+An independent `svgn.skycycle.launch.v1` key remembers only the last successful mode. It does not auto-launch XR or change saved gameplay mappings. Storage failure is described as session-only. The headset footer now reads the loaded release identity instead of retaining a hardcoded v0.26.2 label.
 
-Keep the original physics, all eight campaign IDs, independent saves, soundtrack owner, Xbox remaps, Workshop documents, fixed-world AR mask and absent persistent controller-riding panel. No storage migration, framework replacement or new reward owner belongs in this release. Continue GITHUB-RELEASE-PROCESS.md and AAA-ROADMAP.md; their historical sections do not override this receipt.
+The additional accessibility pass removed an inconsistent aria-disabled state from unsupported-mode explanation controls. Those controls remain reachable and explicitly identify themselves as explanations; the entry policy still forbids unsupported session requests. Pending capability checks are labelled checking. An attempted CSS-only refinement was blocked before execution by a tool safety-status check and was not rerouted through another write tool; no unavailable-color styling change is claimed.
 
-The proposed spatial pedestal/rotunda and per-route AR/VR launch redesign are not implemented in v0.26.2. No new cross-game portals or private hub assets are included. Do not publish private integration material while improving the public game. Preserve sky-cycle/canal-choice-0.25 at c946e556d1a4d970e4e406d09b7a1f547ae0e8a7 and reconcile it rather than overwriting either its geometry or current XR files.
+## Actual local evidence and limits
 
-Actual Quest passthrough, controller/hand ergonomics, headset readability, comfort, long-session performance and complete XR chapter playthroughs remain open. The full previous handoff, including integration traps and earlier version history, is retained unchanged in archive/RESUME-HERE-before-xr-buttons-publication.md. Resolve its historical relative links from this development directory. Do not reconstruct or republish an older candidate in response to an outdated pending-status paragraph.
+The local suite passed 359 game tests and 12 original soundtrack tests. Changed runtime/module/release blobs were reconstructed from the repository and checked against their Git blob identities; the baseline archive is the verified v0.26.2 merge. The hosted exact-source archive and native results are still required for release acceptance.
+
+Four isolated card-update tests execute the actual function. The recovered old function fails three of four; the corrected function passes all four. The unaffected session-only case passes in both. The original function was restored after the local negative comparison.
+
+Six additional isolated lifecycle checks are retained in `experiments/route-entry-lifecycle.mjs`: rejected entry, late cancelled approval, one successful commitment, a newly protected draft, reordered stable IDs and a repeated request while permission is pending. These fixtures do not load the native game, simulate a physical Quest or qualify an actual browser permission dialog.
+
+The native test script covers route-card AR/VR entry, normal riding, same-mode travel, cancelled and confirmed mode change, Screen return, denied and delayed permission, preference-write failure, explicit pending-URL entry and unsupported-mode explanation. The old all-button, Workspace, portal and twelve-delivery regressions remain separate mandatory checks. Do not call them passed until their actual reports exist.
+
+## Preserve these contracts
+
+Keep all eight campaign IDs and indices, original route builders, movement/throw physics, awards, soundtrack ownership and every independent save namespace. Preserve medals, credits, ledgers, ghosts, exploration, Market Pilot, Keeper, audio/graphics settings, remaps and user-authored Workshop documents. Waterwheel remains a non-awarding preview, not a ninth campaign route or a promoted replacement. Never clear localStorage, consolidate saves or assign rider/win state to manufacture test acceptance.
+
+Preserve the published v0.26.2 session-owned menu handler: A/X confirms, B/Y backs out one level, triggers select, grips move among controls, and either stick navigates/adjusts menus. Ordinary riding retains its separate jump, boost, paper, whip and interaction actions and saved mappings. Keep the fixed-world AR aperture, no persistent controller-riding slab, input-loss cleanup and real XR exit. This entry module is not another renderer, duplicate game or A-Frame migration.
+
+No private SaaS hub source/assets/internal review document or attached multi-game brief belongs in this public repository. No cross-game walking or sphere portal is added here. The pedestal/rotunda remains a separate proposed spatial UI, not an implemented feature of these cards.
+
+## Roadmap integration and next opportunity
+
+The canonical `AAA-ROADMAP.md` remains intact. This slice addresses Milestones F/G entry clarity, accessible controls and safe session transitions without closing their broader gates. `ROUTE-ENTRY-0.27.md` records the bounded mapping; `ROUTE-ENTRY-PLAYTEST.md` specifies the remaining physical review, not completed observations.
+
+After the entry release is actually verified, reconcile `sky-cycle/canal-choice-0.25` at `c946e556d1a4d970e4e406d09b7a1f547ae0e8a7` with the newer XR/input files. Preserve its unfinished movement-first work rather than overwrite it. Read the shared library's six references, especially `SKY-CYCLE-LEVEL-DESIGN.md`, and the local Waterwheel chapter workbook. Ground traps, low structures, useful high/low outcomes and connected launch/inverted-curve/receiver flow require real carried-state and ordinary-input testing; the menu checks do not resolve them.
+
+Physical Quest/Xbox, real passthrough, actual WebGPU-to-WebGL handoff, headset readability, controller/hand ergonomics, complete XR chapters and long-session comfort/performance remain open. Previous complete handoff text is preserved unchanged in `archive/RESUME-HERE-before-route-entry-0.27.md`; resolve its references from this original directory and treat its current-version headings as historical.
