@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updated": "2026-09-18",
+  "updated": "2026-09-20",
   "project": "Aether Reach",
-  "release": "0.14.1 Clear Window",
+  "release": "0.15.0 Field Rotunda owner playtest",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -885,6 +885,20 @@
       "acceptance": "No filled shell/cloud sheets in window modes; real two-axis aim and movement while firing/reloading; explicit first-person AR window; save/remap and original VR continuity; separate physical approval.",
       "evidence": "CLEAR-WINDOW.md; window-controls.test.mjs, window-browser.py and portal GPU fixtures. Actual release evidence belongs in the 0.14.1 receipt, not inferred from code presence.",
       "next": "Physical Quest repeat of the reported sheet, simultaneous movement/aim/fire/reload and first-person window readability."
+    },
+    {
+      "id": "X12",
+      "phase": "XR / player experience",
+      "title": "Summonable room-space rotunda and readable third-person shots",
+      "priority": "P0",
+      "status": "Implemented",
+      "depends": [
+        "X11",
+        "I02"
+      ],
+      "acceptance": "Actual full game: summon/dismiss, stable head-independent placement, saved size/height/rotation, controller and hand button navigation, independent combat and visible genuine shots; public bytes separately verified. No private hub or travel portals.",
+      "evidence": "FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here.",
+      "next": "Owner physical Quest playtest: reach, transform clarity, head motion, move/aim/fire/reload, shot feedback and saved placement. Free-grab transforms and complete desktop UI replacement remain future work."
     }
   ],
   "milestones": [

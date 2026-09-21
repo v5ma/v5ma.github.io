@@ -1,3 +1,7 @@
+# Field Rotunda 0.15.0 device update
+
+In XR, Touch Y and Xbox Menu open the room-anchored rotunda. In-game Field rotunda / UI placement offers saved height, distance, size, rotation and controller/floor status placement. The workspace has real raised raycast buttons and hand pinch interaction using the same existing modal actions. It is neither head-locked nor attached to the diorama. Direct gameplay mappings, saved remaps and original first-person VR aim remain intact. Guided third-person aim can be disabled and fine aim preserves deliberate vertical targeting. Hands are UI-only; tracked controllers or Xbox remain necessary for combat and movement. Physical Quest/Xbox acceptance remains open. Desktop retains its existing HTML fallback. See FIELD-ROTUNDA.md. Historical baseline follows.
+
 # Clear Window 0.14.1 device correction
 
 The owner reported that 0.14.0 AR diorama was not physically usable despite its software checks. No physical approval is claimed. Read CLEAR-WINDOW.md for current window controls and evidence requirements.

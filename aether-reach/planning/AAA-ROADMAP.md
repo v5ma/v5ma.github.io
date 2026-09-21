@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.14.1 Clear Window. Updated 2026-09-18.
+Current plan: 0.15.0 Field Rotunda owner playtest. Updated 2026-09-20.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -427,6 +427,12 @@ State: Implemented. Priority: P0. Dependencies: X10.
 Acceptance: No filled shell/cloud sheets in window modes; real two-axis aim and movement while firing/reloading; explicit first-person AR window; save/remap and original VR continuity; separate physical approval.
 Evidence: CLEAR-WINDOW.md; window-controls.test.mjs, window-browser.py and portal GPU fixtures. Actual release evidence belongs in the 0.14.1 receipt, not inferred from code presence.
 Next: Physical Quest repeat of the reported sheet, simultaneous movement/aim/fire/reload and first-person window readability.
+
+### X12 - Summonable room-space rotunda and readable third-person shots
+State: Implemented. Priority: P0. Dependencies: X11, I02.
+Acceptance: Actual full game: summon/dismiss, stable head-independent placement, saved size/height/rotation, controller and hand button navigation, independent combat and visible genuine shots; public bytes separately verified. No private hub or travel portals.
+Evidence: FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here.
+Next: Owner physical Quest playtest: reach, transform clarity, head motion, move/aim/fire/reload, shot feedback and saved placement. Free-grab transforms and complete desktop UI replacement remain future work.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.
