@@ -1,6 +1,6 @@
 # Prism Current / Rotunda Recovery 0.11.1 production checklist
 
-This pass implements the owner's Prism-only spatial-interface direction. Read ROTUNDA.md and PR #205 for exact scope and observed tests. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
+This pass implements the owner's Prism-only spatial-interface direction. Read AGENTS.md and INTEGRATION-AUDIT.md for the current direct-master maintenance decision; ROTUNDA.md and historical PR #205 retain the interface design and earlier evidence. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
 
 ## Current UI milestone
 
@@ -22,4 +22,10 @@ This release does not implement color-changing blades, base rewards for either-c
 
 A-03 save export/recovery, authored accessible charts, calibration, human onboarding, remapping and the full performance/accessibility matrix remain open under the historical board. Preserve failed traces and distinguish model fixtures, input emulation, physical-device feedback and published-file verification.
 
-F-02 exact source tests, F-03 normal merge/deployment with public hashes, and F-04 live input recovery plus scoped rollback recur every release. UI implementation alone does not close them. Revert only this scoped release on current master; never reset unrelated games or clear localStorage.
+F-02 exact source tests, F-03 direct, fresh-master commit followed by separate deployment/public hashes, and F-04 live input recovery plus scoped rollback recur every release. UI implementation alone does not close them. Revert only this scoped release on current master; never reset unrelated games or clear localStorage.
+
+## Integration reconciliation
+
+All 14 audited Prism branch tips are already integrated; no lost branch feature or open Prism pull request was found. Keep the current 0.11.1 app and later test correction rather than merging an older snapshot again. The inspected public receipt still served the older app, which is a deployment discrepancy, not a merge conflict. See INTEGRATION-AUDIT.md for the exact evidence and outstanding features.
+
+The owner requires direct writes to master without new PRs or staging branches. Reconcile concurrent master changes first and never force an update. The existing verification is read-only; source and public outcomes are independent. No failed check, skipped replay or historical pass closes UI-R07 or UI-R08.

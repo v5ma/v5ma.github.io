@@ -1,4 +1,6 @@
-# Prism Current / River Prism Rotunda 0.11.0
+# Prism Current / River Prism Rotunda Recovery 0.11.1
+
+The current application is 0.11.1; unchanged Rotunda/XR components retain their 0.11.0 revision. Read INTEGRATION-AUDIT.md for the branch reconciliation, source-versus-live distinction and features not yet implemented. AGENTS.md records the owner-required direct-master workflow.
 
 The ordinary index.html entry now presents a scene-rendered pedestal with direct AR, VR and screen-play choices for Duck Armada and Mothership Channel. Read ROTUNDA.md for this release's controls, placement, movement, HUD, sound, opacity and paused-XR recovery behavior. The previous README and dependency/history notes are preserved at README-v0101.md.
 
@@ -10,4 +12,4 @@ Exit XR ends the actual session and leaves the current battle paused in memory. 
 
 The retained rhythm.html entry still provides the previous tracks, lessons and Practice Lab. Floodgate Recovery remains at water-mission/index.html. Existing score formats and completed progress are preserved. No other game, private hub implementation or portal system is included.
 
-The active board is AAA_CHECKLIST.md. QA.md, ROTUNDA-QA.md and PR #205 distinguish exact-source tests, public-file verification and physical-device acceptance. User feedback remains authoritative even where emulated tests passed. This is a focused UI playtest release, not a claim that the whole attached brief, color-bonus scoring, new hazard rules, new music or every AAA gate has been implemented.
+The active board is AAA_CHECKLIST.md. QA.md, INTERRUPTION-RECOVERY.md, ROTUNDA-QA.md and historical PR #205 distinguish exact-source tests, public-file verification and physical-device acceptance. User feedback remains authoritative even where emulated tests passed. This is a focused UI playtest release, not a claim that the whole attached brief, color-bonus scoring, new hazard rules, new music or every AAA gate has been implemented.

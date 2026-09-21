@@ -1,0 +1,4 @@
+# Local generated files are not game source or release evidence.
+__pycache__/
+*.py[cod]
+.pytest_cache/
