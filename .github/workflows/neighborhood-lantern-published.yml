@@ -22,38 +22,7 @@ jobs:
       - name: Verify exact public main game, districts, legacy layout and evidence bytes
         env:
           COMMIT: ${{ github.sha }}
-        run: |
-          mkdir -p published-results
-          python - <<'PY'
-          import concurrent.futures,hashlib,json,os,pathlib,time,urllib.request
-          root=pathlib.Path('svgn-planet');base='https://v5ma.github.io/';commit=os.environ['COMMIT']
-          paths=sorted(p for p in root.rglob('*') if p.is_file() and not any(x.startswith('.') or x in ('tests','tools','node_modules','__pycache__') for x in p.relative_to(root).parts) and p.suffix not in ('.py','.pyc'))
-          paths.extend(pathlib.Path('level-design-library/applied')/name for name in ['NEIGHBORHOOD-MISSIONS-WORKING-QUAY.md','NEIGHBORHOOD-MISSIONS-LIVING-PORTAL.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH.md','NEIGHBORHOOD-MISSIONS-NIGHT-WATCH-CAMPAIGN.md'])
-          expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};rows={}
-          def check(path):
-              row={'path':path,'expected':expected[path],'matches':False}
-              try:
-                  req=urllib.request.Request(base+path+'?source='+commit+'&nocache='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
-                  with urllib.request.urlopen(req,timeout=25) as response:
-                      assert response.status==200
-                      data=response.read()
-                  row.update(sha256=hashlib.sha256(data).hexdigest(),bytes=len(data));row['matches']=row['sha256']==row['expected']
-              except Exception as e:row['error']=str(e)
-              return row
-          deadline=time.monotonic()+1500
-          while time.monotonic()<deadline:
-              pending=[p for p in expected if not rows.get(p,{}).get('matches')]
-              if not pending:break
-              with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
-                  for r in pool.map(check,pending):rows[r['path']]=r
-              count=sum(r['matches'] for r in rows.values());print('Verified',count,'of',len(paths),flush=True)
-              if count==len(paths):break
-              time.sleep(10)
-          version=json.loads((root/'release.json').read_text())['version']
-          receipt={'commit':commit,'version':version,'scope':'Exact main game, district, legacy and applied design file closure; unrelated sibling files may advance.','files':[rows[k] for k in sorted(rows)],'success':len(rows)==len(paths) and all(r['matches'] for r in rows.values())}
-          pathlib.Path('published-results/bytes.json').write_text(json.dumps(receipt,indent=2))
-          assert receipt['success'],'Public files did not match this exact game snapshot within the verification window'
-          PY
+        run: python3 svgn-planet/tests/verify-published.py --output published-results/bytes.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -66,8 +35,9 @@ jobs:
     timeout-minutes: 50
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
-        route: [main, main-nav, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui, console-first-person-vr, console-third-person-vr, console-diorama-first-vr, console-diorama-third-vr, console-first-person-ar, console-third-person-ar, console-diorama-first-ar, console-diorama-third-ar]
+        route: [grounded-browser, main, main-nav, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui, console-first-person-vr, console-third-person-vr, console-diorama-first-vr, console-diorama-third-vr, console-first-person-ar, console-third-person-ar, console-diorama-first-ar, console-diorama-third-ar]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -101,6 +71,7 @@ jobs:
         run: |
           case "$WARD_ROUTE" in
             console-*) export CONSOLE_MODE="${WARD_ROUTE#console-}"; python svgn-planet/console-browser.py ;;
+            grounded-browser) GROUNDED_BASE=https://v5ma.github.io/svgn-planet/legacy.html GROUNDED_OUTPUT=published-results/legacy python svgn-planet/tests/grounded-browser.py ;;
             main) python svgn-planet/main-browser.py ;;
             main-nav) python svgn-planet/main-navigation-browser.py ;;
             campaign) python svgn-planet/lantern/campaign-browser.py ;;

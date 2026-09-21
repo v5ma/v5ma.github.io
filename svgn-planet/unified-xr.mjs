@@ -1,3 +1,4 @@
+import {vehicleTriggerSignal} from './vehicle-trigger.mjs';
 import {createNativeMenuFocus} from './native-menu-focus.mjs';
 import {drawConsoleMenuRow} from './console-menu.mjs';
 import {hideTrackedSources} from './xr-session-cleanup.mjs';
@@ -69,7 +70,7 @@ export function createUnifiedXR(hooks){
   if(panel.visible&&(!lastPaint||now-lastPaint>120))paint(r);ui.updateMatrixWorld(true);
   const vehicleDrive=prefs.profile==='action'&&triggerVehicleSpeed(hooks.state(),consoleUI.prefs.triggerDrive);
   const ar=modeInfo(kind),off=sources.find(s=>!s.hand&&s.handedness!==prefs.dominant),aiming=!r&&!vehicleDrive&&prefs.profile==='action'&&((off?.gamepad?.buttons[0]?.value||0)>.2||off?.gamepad?.buttons[0]?.pressed);
-  let tracked=0,consumed=false,bodyHands=[],bodyGrips=[];
+  let tracked=0,consumed=false,bodyHands=[],bodyGrips=[],vehicleBoost=false,vehicleBrake=false;
   for(let i=0;i<slots.length;i++){
    const slot=slots[i],source=sources[i];slot.ray.visible=slot.grip.visible=false;slot.joints.forEach(j=>j.visible=false);if(source!==slot.source){slot.source=source;slot.ready=false;slot.previous=[];}if(!source)continue;
    const pose=frame.getPose(source.targetRaySpace,ref);if(!pose){slot.ready=false;continue;}tracked++;
@@ -89,6 +90,7 @@ export function createUnifiedXR(hooks){
    const nearHead=relative[1]>-.12&&relative[1]<.35&&relative[2]<-.08&&relative[2]>-.6&&Math.abs(relative[0])<.65;
    if(source.hand&&b[0]&&nearHead&&slot.ready&&!row){slot.menuTime+=dt;if(slot.menuTime>.55&&!slot.menuUsed){slot.menuUsed=true;if(r)back(r);else pause();consumed=true;}}else {slot.menuTime=0;if(!b[0])slot.menuUsed=false;}
    if(!r&&slot.ready&&!consumed){
+    if(vehicleDrive&&!source.hand){const v=vehicleTriggerSignal(consoleUI.prefs.driveHand,prefs.dominant,source.handedness,b[0]);vehicleBoost=vehicleBoost||v.boost;vehicleBrake=vehicleBrake||v.brake;}
     if(source.hand){if(b[0]&&relative[1]<-.5)xrInput.y=1;else if(edge(0)&&!nearHead)hooks.action('interact');}
     else{
      const role=sourceRoles(source.handedness,prefs),ray=sv.ray(rayOrigin,rayDirection),zone=hooks.embodied?.()?holsterZone(relative):null;
@@ -99,8 +101,7 @@ export function createUnifiedXR(hooks){
       else{xrInput.boost=b[0];xrInput.brake=b[1];if(edge(4)||edge(5))pause();}
      }else if(role.primary){
       if(edge(1)){if(zone)hooks.action('holster-'+zone);else hooks.action('interact',ray);}
-      if(vehicleDrive)xrInput.boost=b[0];
-      else if(edge(0)){hooks.action(aiming?'tool':hooks.combat?.()?'strike':'interact',ray);slot.armed=false;}
+      if(!vehicleDrive&&edge(0)){hooks.action(aiming?'tool':hooks.combat?.()?'strike':'interact',ray);slot.armed=false;}
       if(edge(4))hooks.action('hop');if(edge(5))hooks.action('ride');
       if(!b[1]||relative[2]>-.28)slot.armed=true;
       const hd=slot.hand?hand.distanceTo(slot.hand):0,vd=slot.head?head.distanceTo(slot.head):0;
@@ -110,6 +111,7 @@ export function createUnifiedXR(hooks){
    }else if(r&&slot.ready&&!source.hand&&edge(5)&&source.handedness!==prefs.dominant)back(r);
    slot.relative=relative;slot.hand=hand;slot.head=head;slot.previous=b;
   }
+  if(vehicleDrive){xrInput.boost=vehicleBoost;xrInput.brake=xrInput.brake||vehicleBrake;}
   if(!r&&hooks.canGlide?.()&&capeGesture(bodyHands,bodyGrips)){xrInput.glide=true;xrInput.brake=xrInput.guard=false;}
   if(hasHands&&!xrInput.y)xrInput.brake=true;
   if(tracked!==sources.length||tracked===0){pause();clearXRInput();}

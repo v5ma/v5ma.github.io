@@ -1,0 +1,99 @@
+{
+  "date": "2026-09-21",
+  "repository": "v5ma/v5ma.github.io",
+  "application": "svgn-planet",
+  "scope": "26 visible neighborhood-prefixed branch heads plus the old Signal City PR65 head. PR43 is a separate svgn-city application and was not changed.",
+  "auditBase": "fda53bedb376d54c3bad3bdacf5a15aba85dba61",
+  "gameSnapshot": "b38d54f58f98acc9b39c8c9fbd809cfa577ae759",
+  "gameUnchangedBetweenSnapshotAndAuditBase": true,
+  "branchCount": 27,
+  "ancestorHeads": 18,
+  "divergedHeads": 9,
+  "comparisonMethod": "GitHub compare_commits(base=auditBase, head=exact head). Ahead counts are branch-only commits, NOT counts of missing runtime features. Compare lists are merge-base diffs and were reconciled against current files.",
+  "mergeConflictMarkersFound": 0,
+  "preserved": [
+    "Integrated original city and Lantern Ward",
+    "all eight native first/third-person full-world/portal AR/VR modes",
+    "Working Quay, eight resident stories, Signal Hijack and five-case Night Watch",
+    "spatial floor/controller console, mission subtitles and visible keyboard/gamepad focus",
+    "all 102 frozen legacy files, stable IDs, independent saved ledgers and current controller defaults"
+  ],
+  "ported": [
+    "Field Desk physical left/right vehicle-trigger choice into current console, explicitly opt-in and independent of dominant hand",
+    "opposite-trigger braking only for explicit physical left/right choices; current primary/off-grip behavior unchanged by default"
+  ],
+  "notPorted": [
+    {
+      "source": "PR65 / e79f70c19",
+      "features": "Three enterable cars, battery-limited scout drone, CivicGrid device interactions and Waterfront File investigation",
+      "reason": "Old app/model/world/scene and city-scene names conflict with current sphere-city/legacy contracts. Whole-file merge would replace current integration and frozen originals. Requires a bounded current-world adapter rewrite, not a discarded-as-duplicate claim.",
+      "roadmap": "DESIGN-02"
+    },
+    {
+      "source": "neighborhood-tideglass-20260912 / 6dce269c",
+      "features": "Indoor depth swimming, seven-ring route, submerged keepsakes and underwater-valve missions with pool-specific reflections/refractions",
+      "reason": "Distinct from outdoor Tidewater. Old aquatics branch rewrites original application/save/model/scene/controller files. Preserve source for a safe adapter rewrite; do not substitute outdoor missions as evidence these were delivered.",
+      "roadmap": "WATER-01"
+    }
+  ],
+  "discardedAsMergeInputs": [
+    "Duplicate Field Desk renderer and its second live preference/controller stack",
+    "Old Living Portal and Coastal import writers, transfer payloads and old launch/manifest overwrites; current recovered implementations retained",
+    "Fourteen superseded source-write/evidence-write or duplicate workflow wrappers; see workflow-coverage.json"
+  ],
+  "historicalPublicEvidence": {
+    "run": 35564523386,
+    "sourceJob": 106223605151,
+    "sourceResult": "success",
+    "sourceModels": 371,
+    "sourceRenderedChecks": 14,
+    "publicJob": 106223605254,
+    "publicResult": "failure",
+    "publicBrowser": "skipped because served-byte verification failed",
+    "sourceArtifact": 10623902062,
+    "sourceArtifactSHA256": "d9e95a49916c24957c7d9849cf3a67db04e6c574e0f32de0781ab8b001f4962c",
+    "publicFailureArtifact": 10623473660,
+    "newPublicationClaimed": false
+  },
+  "newVerification": {
+    "modelTests": 387,
+    "failures": 0,
+    "legacyFilesMatched": 102,
+    "realUnifiedAdapterWithFakeRenderer": 5,
+    "renderedBrowser": "Local Chromium navigation returned ERR_BLOCKED_BY_ADMINISTRATOR. Extended existing console journeys are not counted as passed until actual results.",
+    "initialRegressionFailure": "One new test expected stick-click while retained caption used stick click. Corrected the assertion to the existing caption; the first failed TAP remains in recovery package.",
+    "physicalDevicesTested": false
+  },
+  "writeMethod": "Direct scoped single-parent master commit, optimistic fast-forward; no new PR, staging branch, source-transfer workflow, or shared/sibling publisher change.",
+  "reconciledMasterBeforeWrite": "1052c46e6ff4464e48def1aa743e534dae35e4a0",
+  "reconciliationResult": "Only own AGENTS.md and an Aether audit changed since auditBase; runtime paths remain at the reviewed source.",
+  "branches": [
+    {"branch":"neighborhood-missions-city-20260911","head":"246761ea1e0dc0ec2d9d327a2547a7de54ba17f9","ahead":1,"behind":1153,"disposition":"obsolete-workflow-only"},
+    {"branch":"neighborhood-missions/clarity-verification-20260920","head":"6e6ef4822b19a58f5edbcc7d46dd565a59982a3e","ahead":0,"behind":58,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/field-desk-20260920","head":"8363e6125d96db888fdd63cc8095ff629436742c","ahead":10,"behind":158,"disposition":"selective-port-trigger-choice"},
+    {"branch":"neighborhood-missions/grounded-controls-20260914","head":"b324b75d721ef97bc5667f2be90081a41ec9279f","ahead":0,"behind":698,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/lantern-publication-recovery-20260915","head":"768a8cf5f2192cb237661ccccddce1e666f75cc8","ahead":0,"behind":593,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/lantern-ward-playable-20260915","head":"2464bff39d31f0349cc6d9ea05e24ed0f406f2de","ahead":0,"behind":606,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/living-portal-20260917","head":"cb0cb99a1ca24c839a27cbddedd6cd2b22f51056","ahead":12,"behind":381,"disposition":"recovered-and-superseded"},
+    {"branch":"neighborhood-missions/living-portal-release-20260917","head":"f4199f292963dc12559b8b8f34c5b669aad7b1b8","ahead":13,"behind":381,"disposition":"recovered-and-superseded"},
+    {"branch":"neighborhood-missions/mission-clarity-20260920","head":"95d5f92e39834e6a1e7384e51d7a7e7de399e83f","ahead":0,"behind":63,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/mission-focus-20260921","head":"b0e44049dc63f49f2de89065eb0f23d03c6c4fd3","ahead":0,"behind":46,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/mission-focus-verify-20260921","head":"98ee493aa92b9726058ddc7bcc8f2365a86046a3","ahead":1,"behind":8,"disposition":"obsolete-workflow-only"},
+    {"branch":"neighborhood-missions/native-visibility-20260918","head":"a712d6571b941359be019e67e43a9fb5f7cba275","ahead":0,"behind":302,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/night-watch-recovery-20260917","head":"15381b1cc42dd3855784f006ea72cd1535fdf441","ahead":0,"behind":313,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/obsolete-ci-recovery-20260920","head":"25d12322ba2936380ceb3b93aa00a4f67257ebe9","ahead":2,"behind":111,"disposition":"obsolete-workflow-only"},
+    {"branch":"neighborhood-missions/place-mastery-design-20260915","head":"150168b02e15958378db719f413c227e1904ccf7","ahead":0,"behind":634,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/release-record-20260915","head":"e1599675fa464d00d568a008fe399bb22ef39c24","ahead":0,"behind":639,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/spatial-console-20260920","head":"f1b0f1983df3f4dd6cacc461a1b317be4c1d7470","ahead":0,"behind":144,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/unified-docs-20260918","head":"18cbd098810aab281dc9edcbdcf0a8def42d658a","ahead":0,"behind":299,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/unified-release-20260918","head":"98fb2dc1fe43a4f201897ab06bae5ff61be0481a","ahead":0,"behind":308,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/working-quay-20260915","head":"241a2676d3c117da5bbb25293a6ff0555f3f7d05","ahead":0,"behind":466,"disposition":"ancestor"},
+    {"branch":"neighborhood-missions/working-quay-release-20260915","head":"305b10c0716b26739095ea48a989176b7d229722","ahead":0,"behind":464,"disposition":"ancestor"},
+    {"branch":"neighborhood-atmosphere-20260912","head":"f29f9698166ac53eb2c5f912c420700b541a2b81","ahead":0,"behind":877,"disposition":"ancestor"},
+    {"branch":"neighborhood-coastal-pulse-20260911","head":"61139e59ab9172d076f3876000790d8dc46b634c","ahead":23,"behind":1050,"disposition":"recovered-and-superseded"},
+    {"branch":"neighborhood-homecoming-20260911","head":"2fd60d14502b793c20127cf12a8984a5f379d4f9","ahead":0,"behind":1008,"disposition":"ancestor"},
+    {"branch":"neighborhood-tideglass-20260912","head":"6dce269cb0ea94ece573ad0dd2ed5bfee0cc151e","ahead":3,"behind":821,"disposition":"rewrite-required-not-shipped"},
+    {"branch":"neighborhood-tidewater-20260913","head":"21fa5da7e056ce3f395eb8eab6537b73a6afa588","ahead":0,"behind":799,"disposition":"ancestor"},
+    {"branch":"feat/signal-city-waterfront-20260907","head":"e79f70c19f57928096cd1b48ce56bdd015e271f9","ahead":7,"behind":1344,"disposition":"rewrite-required-not-shipped"}
+  ]
+}

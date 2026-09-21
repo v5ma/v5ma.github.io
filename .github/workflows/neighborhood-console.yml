@@ -1,10 +1,8 @@
 name: Neighborhood spatial console acceptance
 on:
   push:
-    branches: [master, neighborhood-missions/spatial-console-20260920, neighborhood-missions/mission-focus-20260921]
+    branches: [master]
     paths: ['svgn-planet/**', '.github/workflows/neighborhood-console.yml']
-  pull_request:
-    paths: ['svgn-planet/console-*.mjs', 'svgn-planet/spatial-console*.mjs', 'svgn-planet/unified-xr.mjs', 'svgn-planet/main-hub.mjs', 'svgn-planet/console-browser.py', '.github/workflows/neighborhood-console.yml']
 permissions:
   contents: read
 concurrency:
@@ -59,6 +57,7 @@ jobs:
     timeout-minutes: 25
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
         mode: [first-person-vr, third-person-vr, diorama-first-vr, diorama-third-vr, first-person-ar, third-person-ar, diorama-first-ar, diorama-third-ar]
     steps:

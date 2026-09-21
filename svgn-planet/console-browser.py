@@ -77,6 +77,19 @@ async def main():
    # Summon through the actual floor target after looking down. This changes only input.
    await page.evaluate('__xrFixture.viewerPitch=-.95');await frames(5);a=await page.evaluate('NeighborhoodMissions.inspect().xr.console.anchor');distance=await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.distance');import math
    await aim([a['x']-math.sin(a['yaw'])*distance,a['y']+.05,a['z']-math.cos(a['yaw'])*distance]);await trigger();await wait('NeighborhoodMissions.inspect().paused');await page.evaluate('__xrFixture.viewerPitch=0');await frames(12);ok('Pointing and selecting the floor disc summons a usable menu without a gameplay action')
+   # Recovered physical trigger option: actual native settings and riding input.
+   # Deliberately restore the existing profile before continuing inherited checks.
+   await choose('pause-dialog-spatial-ui');await choose('console-driveHand');await choose('console-back');await wait('!NeighborhoodMissions.inspect().paused');await frames(6)
+   assert await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.driveHand')=='left'
+   await aim([4,0,-2]);await page.evaluate('__xrFixture.left.gamepad.buttons[0]={pressed:true,value:1}');await wait('SVGNPlanet.inspect().speed>.15')
+   await page.evaluate('__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await wait('NeighborhoodMissions.inspect().xr.input.brake');await wait('SVGNPlanet.inspect().speed===0')
+   await page.evaluate('__xrFixture.left.gamepad.buttons[0]={pressed:false,value:0};__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(6)
+   await menu();await choose('pause-dialog-spatial-ui');await choose('console-driveHand');await choose('console-back');await wait('!NeighborhoodMissions.inspect().paused');await frames(6)
+   assert await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.driveHand')=='right'
+   await aim([4,0,-2]);await page.evaluate('__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await wait('SVGNPlanet.inspect().speed>.15')
+   await page.evaluate('__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await wait('SVGNPlanet.inspect().speed===0')
+   await menu();await choose('pause-dialog-spatial-ui');await choose('console-driveHand');assert await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.driveHand')=='primary'
+   await choose('console-back');await menu();ok('Recovered left/right trigger selection drives and brakes through actual inputs, then restores the existing profile')
    await choose('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames(6)
    # D-pad Jobs must lead to actual mission focus, even after the next controller
    # scope poll; it must not silently select a mission or award anything.

@@ -1,13 +1,15 @@
 /* Presentation preferences only. Never reads or rewrites a game save. */
 import * as T from './vendor/three.module.js';
 export const CONSOLE_KEY='svgn.neighborhood-spatial-console.v1';
-export const CONSOLE_DEFAULTS=Object.freeze({v:1,mount:'floor',height:.95,distance:.9,size:.72,hud:'wrist',motion:true,triggerDrive:true});
+export const CONSOLE_DEFAULTS=Object.freeze({v:1,mount:'floor',height:.95,distance:.9,size:.72,hud:'wrist',motion:true,triggerDrive:true,driveHand:'primary'});
 const ranges={height:[.35,1.5],distance:[.55,1.5],size:[.45,1]};
 export function parseConsolePrefs(raw){
  const p=raw==null?{...CONSOLE_DEFAULTS}:typeof raw==='string'?JSON.parse(raw):raw;
  if(!p||p.v!==1||!['floor','controller'].includes(p.mount)||!['wrist','floor','off'].includes(p.hud)||typeof p.motion!=='boolean'||typeof p.triggerDrive!=='boolean')throw Error('Unsupported spatial console preferences; original data retained.');
+ const driveHand=p.driveHand===undefined?'primary':p.driveHand;
+ if(!['primary','left','right'].includes(driveHand))throw Error('Unsupported vehicle trigger choice; original data retained.');
  for(const [k,[a,b]] of Object.entries(ranges))if(!Number.isFinite(p[k])||p[k]<a||p[k]>b)throw Error('Invalid spatial console '+k+'; original data retained.');
- return Object.fromEntries(Object.keys(CONSOLE_DEFAULTS).map(k=>[k,p[k]]));
+ return Object.fromEntries(Object.keys(CONSOLE_DEFAULTS).map(k=>[k,k==='driveHand'?driveHand:p[k]]));
 }
 export function loadConsolePrefs(store){try{return {prefs:parseConsolePrefs(store?.getItem(CONSOLE_KEY)),blocked:false};}catch(e){return {prefs:{...CONSOLE_DEFAULTS},blocked:true,error:e.message};}}
 export function saveConsolePrefs(store,prefs){try{const text=JSON.stringify(parseConsolePrefs(prefs));store.setItem(CONSOLE_KEY,text);return store.getItem(CONSOLE_KEY)===text;}catch{return false;}}

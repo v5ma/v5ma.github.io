@@ -1,3 +1,4 @@
+import {vehicleControlCaption} from './vehicle-trigger.mjs';
 import {focusMissionList} from './native-menu-focus.mjs';
 import {missionCards,wardFieldStatus} from './mission-presentation.mjs';
 import {mountConsoleSettings} from './console-settings.mjs';
@@ -65,7 +66,7 @@ export function createMainHub(hooks){
   spatial:()=>wardActive?wardSpatial:citySpatial,state:()=>wardActive?ward:hooks.state(),yaw:()=>yaw,turn:d=>wardActive?yaw+=d:cityView.orbitBy(d),
   action:(name,ray)=>name==='pause'?(wardActive?wardMenu():hooks.pause()):field(name,ray),
   hud:()=>{
-   const controls=xr.preferences.profile==='courier'?'Off trigger: speed / primary grip: throw':(wardActive?ward.ride!=='foot':hooks.state().ride)?(xr.consolePreferences.triggerDrive?'Primary trigger: speed / off grip: brake':'Move-stick click: speed / off grip: brake'):'Primary grip: interact / trigger: action',menu=xr.preferences.dominant==='right'?'Y':'B';
+   const riding=wardActive?ward.ride!=='foot':!!hooks.state().ride,controls=vehicleControlCaption(xr.consolePreferences,xr.preferences.profile,xr.preferences.dominant,riding),menu=xr.preferences.dominant==='right'?'Y':'B';
    if(wardActive)return {title:'LANTERN WARD',...wardFieldStatus(ward,yaw),map:$('ward-mini'),controls,menu};
    return {title:'MAIN NEIGHBORHOODS',goal:$('objective-title').textContent,detail:$('objective-text').textContent,equipment:$('ride-name').textContent,map:hooks.cityMap?.(),controls,menu};
   },

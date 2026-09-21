@@ -1,0 +1,10 @@
+{
+  "sourceWorkflow": "neighborhood-unified-acceptance.yml",
+  "sourceSuites": ["main", "main-nav", "campaign", "watch-roof", "watch-combat", "xr-ui", "city", "portal", "portal-render", "street", "roof", "canal", "xr", "market", "coastal_browser_release", "homecoming_browser", "atmosphere-browser", "tidewater-browser", "grounded-browser"],
+  "consoleWorkflow": "neighborhood-console.yml",
+  "consoleModes": ["first-person-vr", "third-person-vr", "diorama-first-vr", "diorama-third-vr", "first-person-ar", "third-person-ar", "diorama-first-ar", "diorama-third-ar"],
+  "publicWorkflow": "neighborhood-lantern-published.yml",
+  "publicSuites": ["main", "main-nav", "campaign", "street", "xr", "market", "city", "portal", "portal-render", "watch-roof", "watch-combat", "xr-ui", "grounded-browser", "console-first-person-vr", "console-third-person-vr", "console-diorama-first-vr", "console-diorama-third-vr", "console-first-person-ar", "console-third-person-ar", "console-diorama-first-ar", "console-diorama-third-ar"],
+  "removedObsoleteWorkflowFiles": ["neighborhood-atmosphere-record.yml", "neighborhood-atmosphere.yml", "neighborhood-clarity-recheck.yml", "neighborhood-coastal-pulse.yml", "neighborhood-grounded-published.yml", "neighborhood-grounded.yml", "neighborhood-homecoming-record.yml", "neighborhood-homecoming.yml", "neighborhood-lantern.yml", "neighborhood-native-visibility.yml", "neighborhood-tidewater.yml", "paper-art-published.yml", "svgn-planet-published.yml", "svgn-planet.yml"],
+  "reason": "Six source-import/evidence writers and redundant wrappers replaced by existing read-only current-source workflows. No gameplay test files or assertions deleted. Historical git commits and artifacts remain available. The old public legacy journey is retained explicitly; sibling-wide homepage hashing is replaced with a scoped current game-link check."
+}

@@ -1,7 +1,7 @@
 name: Unified Neighborhood acceptance
 on:
   push:
-    branches: [master, neighborhood-missions/night-watch-recovery-20260917, neighborhood-missions/unified-release-20260918]
+    branches: [master]
     paths: ['svgn-planet/**', '.github/workflows/neighborhood-unified-acceptance.yml']
 permissions:
   contents: read
@@ -37,6 +37,7 @@ jobs:
         run: |
           set -o pipefail
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee unified-model.txt
+          python3 svgn-planet/tests/check-reconciliation.py
           for f in svgn-planet/*.mjs svgn-planet/lantern/*.mjs; do node --check "$f"; done
       - uses: actions/upload-artifact@v4
         if: always()
@@ -45,10 +46,12 @@ jobs:
           path: unified-model.txt
           retention-days: 30
   browser:
+    needs: model
     runs-on: ubuntu-latest
     timeout-minutes: 50
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
         suite: [main, main-nav, campaign, watch-roof, watch-combat, xr-ui, city, portal, portal-render, street, roof, canal, xr, market, coastal_browser_release, homecoming_browser, atmosphere-browser, tidewater-browser, grounded-browser]
     steps:
@@ -70,7 +73,10 @@ jobs:
           CITY_SUITE: ${{ matrix.suite }}
           WATCH_SUITE: ${{ matrix.suite }}
         run: |
-          python -m http.server 8765 > server.log 2>&1 &
+          python -u svgn-planet/tests/serve-modules.py --port 8765 > server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          python svgn-planet/tests/check-http-ready.py
           case "$WARD_ROUTE" in
             main) python svgn-planet/main-browser.py ;;
             main-nav) python svgn-planet/main-navigation-browser.py ;;
