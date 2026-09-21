@@ -1,3 +1,7 @@
+# Neighborhood Missions 0.16.1 spatial-console handoff
+
+Read release.json, SPATIAL-CONSOLE.md and the external receipt first. This is only the native in-game floor/controller UI and explicit vehicle-trigger preference. No private hub implementation, external portals or framework migration. Presentation preferences are separate from all saves. All 333 model/input tests passed; consult exact rendered and public reports rather than treating source counts as physical approval. Preserve all 102 legacy files and concurrent sibling work. The earlier handoff follows as historical context.
+
 # Unified Neighborhood Missions v0.16.0 handoff
 
 Start with release.json, UNIFIED-NEIGHBORHOODS.md, RECOVERY-CHECKPOINT.md and the external publication receipt ../release-receipts/neighborhood-missions-unified-0.16.0.json. The original main city and Lantern Ward share one document/renderer/session. All eight native modes are required in both districts. The old flat theater is only a historical legacy entry, not the requested main experience.
