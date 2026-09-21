@@ -1,0 +1,12 @@
+name: Neighborhood Field Desk source acceptance
+on:
+  push:
+    branches: [neighborhood-missions/field-desk-20260920]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-field-review.yml', '.github/workflows/neighborhood-field-desk.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    uses: ./.github/workflows/neighborhood-field-desk.yml
+    with:
+      source_ref: ${{ github.sha }}

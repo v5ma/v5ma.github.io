@@ -14,7 +14,7 @@ async def main():
   browser=await p.chromium.launch(headless=True,args=['--use-angle=swiftshader','--enable-unsafe-swiftshader','--autoplay-policy=no-user-gesture-required'])
   page=await browser.new_page(viewport={'width':960,'height':600});page.set_default_timeout(90000)
   fixture=Path(__file__).with_name('lantern').joinpath('xr-fixture.js').read_text()
-  floor="""(()=>{const request=navigator.xr.requestSession; navigator.xr.requestSession=async(...a)=>{const s=await request(...a),r=s.requestReferenceSpace.bind(s);s.requestReferenceSpace=async type=>{const space=await r(type);if(type==='local-floor')space.pose={position:{x:0,y:-1.65,z:0},orientation:{x:0,y:0,z:0,w:1}};return space;};})();"""
+  floor=Path(__file__).with_name('tests').joinpath('field-desk-fixture.js').read_text()
   await page.add_init_script(fixture+'\n'+floor)
   page.on('pageerror',lambda e:report['errors'].append(str(e)));page.on('console',lambda m:report['consoleErrors'].append(m.text) if m.type=='error' else None)
   async def wait(q):await page.wait_for_function(q,timeout=90000)
@@ -25,16 +25,16 @@ async def main():
    await page.evaluate('([h,i,d])=>__xrFixture[h].gamepad.buttons[i]={pressed:d,value:d?1:0}',[hand,index,down]);await frames(3)
   async def menu():
    await trigger('left',5,True);await wait('NeighborhoodMissions.inspect().paused');await trigger('left',5,False);await wait('NeighborhoodMissions.inspect().xr.fieldDesk.progress===1')
-  async def hit(row):
-   await page.evaluate("""async r=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w/2)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",row)
+  async def hit(row,u=.5):
+   await page.evaluate("""async ([r,u])=>{const T=await import('./vendor/three.module.js'),p=NeighborhoodMissions.panel(),target=new T.Vector3(((r.x+r.w*u)/1024-.5)*p.width,(.5-(r.y+r.h/2)/1024)*p.height,0).applyMatrix4(new T.Matrix4().fromArray(p.referenceMatrix)),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),target.normalize()),m=new T.Matrix4().makeRotationFromQuaternion(q),pose={position:{x:0,y:0,z:0,w:1},orientation:q,matrix:m.elements};__xrFixture.right.targetRaySpace.pose=__xrFixture.hand.targetRaySpace.pose=pose;}""",[row,u])
    await frames(3);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand')
    await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3)
    await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(5)
-  async def choose(id):
+  async def choose(id,u=.5):
    await wait('NeighborhoodMissions.inspect().xr.fieldDesk.progress===1')
    for _ in range(30):
     rows=await page.evaluate('NeighborhoodMissions.panel().rows');r=next((r for r in rows if r.get('id')==id or r['label']==id),None)
-    if r:await hit(r);return
+    if r:await hit(r,u);return
     nxt=next((r for r in rows if r['label'].startswith('Next ')),None);assert nxt,'Missing native row '+id;await hit(nxt)
    raise AssertionError('Cannot reach '+id)
   try:
@@ -46,7 +46,7 @@ async def main():
    await trigger('left',0,True);await wait('SVGNPlanet.inspect().speed>0.2');assert (await state())['xr']['input']['boost'];await trigger('left',0,False);await wait('SVGNPlanet.inspect().speed===0');assert not (await state())['xr']['input']['boost'];ok('Left trigger actually drives the original city vehicle and release stops it')
    await menu();await choose('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames(5);q=await state();assert q['xr']['active'] and q['xr']['kind']==MODE;assert q['ward']['ride']=='foot';ok('District travel preserves the active XR session and new UI')
    await menu();await choose('hub-mission-watch');await wait('!NeighborhoodMissions.inspect().paused');q=await state();assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;await frames(5);assert q['xr']['fieldDesk']['hudVisible'];ok('Mission selection tracks the real next objective without granting progress')
-   await menu();await choose('ward-controls');await choose('desk-vehicle-speed');await choose('desk-height');prefs=json.loads(await page.evaluate('localStorage.getItem("svgn.neighborhood-field-desk.v1")'));assert prefs['vehicleSpeed']=='right-trigger' and prefs['height']>1.1;await choose('xr-controls-back');await choose('ward-resume');ok('Native settings change and save trigger choice and desk height independently of game saves')
+   await menu();await choose('ward-controls');await choose('desk-vehicle-speed');await choose('desk-height',.75);prefs=json.loads(await page.evaluate('localStorage.getItem("svgn.neighborhood-field-desk.v1")'));assert prefs['vehicleSpeed']=='right-trigger' and prefs['height']>1.1;await choose('xr-controls-back');await choose('ward-resume');ok('Native settings change and save trigger choice and desk height independently of game saves')
    await trigger('right',0,True);assert not (await state())['xr']['input']['boost'];await trigger('right',0,False);assert (await state())['ward']['watch']['stage']==0;ok('On-foot trigger retains interaction/tool behavior and never becomes vehicle acceleration')
    await page.evaluate('__xrFixture.useHands()');await wait('NeighborhoodMissions.inspect().paused');await choose('ward-resume');await frames(5);assert (await state())['xr']['fieldDesk']['hudVisible'];assert not (await state())['xr']['actionPanelVisible'];ok('Hand-joint pinch resumes the same menu and supplies compact wrist feedback')
    # Reopen with the actual raised-pinch gesture, not a game pause setter.
