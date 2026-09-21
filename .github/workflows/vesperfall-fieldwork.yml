@@ -30,9 +30,10 @@ jobs:
           paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
           files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
           digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-          receipt=app/'tests/evidence/fieldwork-0.17.0/publication.json'
+          receipt=app/'tests/evidence/threshold-0.17.0/publication.json'
+          if not receipt.exists():receipt=app/'tests/evidence/fieldwork-0.17.0/publication.json'
           previous=json.loads(receipt.read_text()) if receipt.exists() else {}
-          verify=previous.get('manifestDigest')!=digest
+          verify=os.getenv('GITHUB_EVENT_NAME')=='workflow_dispatch' or previous.get('manifestDigest')!=digest
           sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           (out/'source-manifest.json').write_text(json.dumps({'commit':sha,'manifestDigest':digest,'files':files},indent=2))
           (out/'source-revision.txt').write_text(sha+'\n')
@@ -58,7 +59,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [fieldwork, pilgrimage, goldwind, interface]
+        suite: [fieldwork, pilgrimage, goldwind, interface, threshold-vr, threshold-ar]
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -75,6 +76,10 @@ jobs:
           if [ "$SUITE" = interface ]; then
             timeout 300 python -u vesperfall/tests/launch.py | tee test-output/launch.log
             timeout 300 python -u vesperfall/tests/production-browser.py | tee test-output/production.log
+          elif [ "$SUITE" = threshold-vr ] || [ "$SUITE" = threshold-ar ]; then
+            XR_MODE="${SUITE#threshold-}" timeout 1800 python -u vesperfall/tests/threshold-browser.py | tee test-output/${SUITE}.log
+            test -s test-output/${SUITE}/report.json
+            test ! -e test-output/${SUITE}/failure.json
           else
             timeout 1800 python -u vesperfall/tests/${SUITE}-browser.py | tee test-output/${SUITE}.log
             test -s test-output/${SUITE}/report.json

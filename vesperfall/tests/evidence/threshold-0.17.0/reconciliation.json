@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "project": "Vesperfall",
+  "version": "0.17.0",
+  "scope": "Threshold branch-to-master reconciliation only",
+  "baseMaster": "26eb4459f7437415f224c9737c4c507f2d551243",
+  "alreadyMergedPR": {
+    "number": 215,
+    "head": "f1c5ea8c800c531e3f3a1453a5038387789be6c9",
+    "merge": "99872232e85013060eba25cbf8d771198b293e25"
+  },
+  "recoveredBranchHead": "cf3dc524521bb6e290b836de5f71646391dc2f9b",
+  "conflictingPRScope": {
+    "inspectedPublicPRs": [19, 27, 43, 51, 62, 65, 134, 139, 147, 165, 176, 208],
+    "vesperfallRuntimeOrWorkflowChanges": 0,
+    "sharedHomepage43": "Inspected patch adds an unrelated City card, not missing Vesperfall code. Left unchanged.",
+    "otherRepository": "v5ma/svgn PR1 is unrelated and was not modified.",
+    "openVesperfallTitleSearch": 0
+  },
+  "decisions": {
+    "recover": [
+      "Optical-hand travel with a fresh-pinch menu rather than immediate cancellation",
+      "AR-only translucent foyer floor with depthWrite disabled",
+      "Handedness-aware doorway movement hints",
+      "Circular rather than square stick-travel boundary",
+      "Session-end restoration retaining room-scale camera cleanup"
+    ],
+    "rewrite": [
+      "Clear stale travel-pinch arming after lost viewer/visibility or a removed hand source",
+      "Test button selection using actual transformed controller rays and observed hover; retain separate joystick assertion",
+      "Preserve the original failure when the browser cannot navigate"
+    ],
+    "retain": "Current master app integration, script order, version banner, control bindings, saves, chapter generation and world geometry.",
+    "exclude": [
+      "Old temporary .github/threshold-prepare.py and threshold-review.json",
+      "Old write-enabled candidate workflow",
+      "Obsolete branch index/release/handoff copies that would replace current master metadata"
+    ],
+    "notMissingFromMerge": "Goldwind default and golden arrows, grip supplies, Lantern Causeway/Ashen Archive generation, XR missions and Wayfinder guidance are already present.",
+    "notImplementedByThisRepair": "Longer/larger chapters, direct grabbed/resized panels, rising rotunda animation and private-hub/cross-site integration. Those are not implemented upgrades hidden in a conflicting Vesperfall PR."
+  },
+  "tests": {
+    "baselineModel": 254,
+    "reconciledModel": 263,
+    "failed": 0,
+    "skipped": 0,
+    "newLifecycleTests": 9,
+    "preFixFailures": 6,
+    "oldBranchRemainingFailure": "Travel pinch remains armed across a visibility interruption",
+    "workbook": "Six sheets, 76 complete task rows, cached summary values and canonical hash match; unchanged bytes.",
+    "runtimeSyntax": "All Vesperfall JavaScript files passed node --check.",
+    "browserSyntax": "Recovered browser test compiles.",
+    "nativeLocal": "ERR_BLOCKED_BY_ADMINISTRATOR on loopback navigation. Not a pass and not bypassed.",
+    "publicBrowser": "Pending the existing Fieldwork workflow extended with threshold-vr and threshold-ar. Not credited before actual reports."
+  },
+  "failedCandidate": {
+    "run": 35556980206,
+    "job": 106202384718,
+    "artifact": 10620433264,
+    "sha256": "ae5c9f10d5134b71ffd57ab1b5bb5bb0fe9e0e61c3fd79c96be81bd4cbeec62a",
+    "passedBeforeFailure": 4,
+    "failure": "Size adjustment changes the actual raycast panel",
+    "observed": "Driver changed height again; panel size stayed 100%. No captured application errors."
+  },
+  "masterSourceArchive": {
+    "run": 35558049828,
+    "artifact": 10622022693,
+    "sha256": "5376ac116811fb5221b246298af953655a3d639cb1504e489985434af26297ee",
+    "source": "99872232e85013060eba25cbf8d771198b293e25"
+  },
+  "unchangedProtectedSha256": {
+    "core.js": "a51075b81713670cbe7df5f49265e31b07ed0f5db7c0e01b74172af5370c3d4c",
+    "goldwind-xr.js": "6d686f73d66821a2cc5126ac0c95be663c83f25e2422142345c1963b0803e1ad",
+    "goldwind-model.js": "47c2567321d77d08d8c5ab4192d83a23cf6691df0981b63e39aca7d2efca7359",
+    "fieldwork.js": "a64e77618d39196cdac2ece56787a1394dbd18648964ae8e45c6787f5e663489",
+    "fieldwork-model.js": "dfc1abb20f7b4ddbbdd26e443d409b25e052d22855793e12115a4a1d29141fb7",
+    "wayfinder.js": "fd72486b078eab9b16d1c683de0cba07dc525442a2baf8b5b5fdf47fddb2ffbe",
+    "wayfinder-model.js": "a0600020ea10915116761444a27066a7ea686b6d77b97657412a09d02588b2ad",
+    "pilgrimage-model.js": "5ce6cde77ddb2cef32ce76cddb035c9e04f82d7ef26bec1bc4f0f9cc2d6e5742",
+    "pilgrimage-view.js": "a57482e68ea8e8ac0945f8fb68e2445c4408b04bbf39d7c3b49783bb6af7b01e",
+    "pilgrim-save.js": "15ab285ba25337766a889dfc4af40442f60a26b99889ecd97119740ede2caee4",
+    "pilgrim-rest.js": "9f05f6d4451b4dd755a7439f52bccff99a3f85d5297319430863f17f9b1c6506",
+    "dominion-controls.js": "fcc957ce329e93c8a1c7546046d09b27426659582a141bf89dab7442b323e719",
+    "quest-hands.js": "63649241a7697891f5b6154ef8f99c83cd953fb79f5a98da1d249771208e25c4",
+    "app.js": "39aa5a96536d5cb3e25bb27bcb636d230b0a57e1864f6cd5ba0c1f2dabc22fcd",
+    "returning-bell-model.js": "39659b9809bc89018a8dbe38775ca90f0c325ca5c09c98f83e1ecab9f1b92f86",
+    "returning-bell-lanes.js": "a1527846b9e0de526cd44fa6027e6812088aa90ffda1719cb6d14805db241beb",
+    "dominions-world.js": "1f425cf80190a38f256fea36b10638b6945f69abb97e8896ab1ef04b6ca6c407",
+    "roadmap.json": "d5c978532a19bdc3e6310501421c700d7d2b39a64a878251531654e5e9b0c6dd",
+    "AAA-PRODUCTION.xlsx": "a3ab035461532bb50a1d640fbe3ca3600575b29ff54b4d1aaa39ebe1f82cd2b2"
+  },
+  "safety": "No new PR, branch, workflow, private content, sibling-game modification, force reset, save clearing, live actor-state assignment or relaxed collision/objective rule.",
+  "limits": "Unit lifecycle tests use a mocked translation-only scene. Browser controller/head/hand inputs are simulated. Physical Quest/Xbox, sustained performance, comfort and human readability remain open."
+}
