@@ -1,3 +1,9 @@
+# Current pass / Rainward v0.16.2 Field Desk
+
+Read FIELD-DESK.md. The default XR menu stays in its summon-local position through page changes, with height, distance, size and yaw controls plus separate saved preferences. Resume, Map, Satchel and acquired-clue recall appear on the first pause page. The virtual pedestal stows during play; it does not detect the physical floor. The v0.16.1 weapon, scope, compositor and movement repairs remain. Existing chapters, save schemas, controller presets and remaps are preserved. Physical headset acceptance and final quality remain open; only the release PR and public-byte receipt establish publication.
+
+Earlier sections are retained history.
+
 # Current repair / Rainward v0.16.1
 
 Read XR-REPAIR.md and XR-REPAIR-HANDOFF.md. Hold B opens the default Quest menu; short B reloads on release, and R3 remains a recovery control. Acquired clues now appear as full readable spatial text. Mechanical weapon, safe muzzle and scope share the pointing axis; scopes reset between scenes. First-person AR and portals use one compositor draw. Fast land running is the default in Free Stride. Existing saved remaps, legacy choices and checkpoints are preserved. Physical Quest feedback remains distinct from synthetic device acceptance. The release PR and public-byte receipt establish delivery, not this header alone.

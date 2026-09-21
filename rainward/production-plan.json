@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.16.1",
-  "edition": "XR Repair",
+  "release": "0.16.2",
+  "edition": "Field Desk",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
-  "updated": "2026-09-18",
+  "updated": "2026-09-21",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
@@ -907,14 +907,14 @@
       "status": "Planned",
       "owner": "UI accessibility",
       "acceptance": "Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.",
-      "evidence": "XR-REPAIR.md",
+      "evidence": "FIELD-DESK.md",
       "depends": [
         "RW-047"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
-      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
+      "resumeNote": "Field Desk adds stable summon-local placement, saved bounded transforms, default reduced motion, quick map/satchel access and retained acquired clues. This is not physical-device or readability approval.",
+      "nextAction": "Playtest seated/standing placement, transformed ray/hand selection, repeated opening/closing, acquired clues and the existing direct controls on the physical Quest."
     },
     {
       "id": "RW-051",
@@ -924,10 +924,12 @@
       "status": "Implemented",
       "owner": "UI engineering",
       "acceptance": "Players can reduce environmental motion and disable quiet-HUD fading without removing necessary gameplay information.",
-      "evidence": "survival-ui.mjs",
+      "evidence": "FIELD-DESK.md",
       "depends": [],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "Field Desk adds stable summon-local placement, saved bounded transforms, default reduced motion, quick map/satchel access and retained acquired clues. This is not physical-device or readability approval.",
+      "nextAction": "Playtest seated/standing placement, transformed ray/hand selection, repeated opening/closing, acquired clues and the existing direct controls on the physical Quest."
     },
     {
       "id": "RW-052",
@@ -1304,6 +1306,19 @@
       "hardware": "User reported failures; physical retest remains required",
       "software": "Separate pointing/grip frames and real external base/projection framebuffer attachments",
       "preserved": "Original stable IDs, save schemas, rewards, geometry, enemies and legacy alternatives"
+    },
+    "fieldDesk": {
+      "baseline": "Published XR Repair 0.16.1 / PR194",
+      "status": "Implemented; exact-source browser and public-file evidence required",
+      "evidence": "FIELD-DESK.md",
+      "tasks": [
+        "RW-003",
+        "RW-049",
+        "RW-050",
+        "RW-051"
+      ],
+      "scope": "Stable summon-local panel with bounded saved transforms, stowable virtual pedestal, immediate map access and acquired-clue recall. No imported private UI or portal.",
+      "hardware": "Physical Quest and unfamiliar-player review remain open"
     }
   }
 }

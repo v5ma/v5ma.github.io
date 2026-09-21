@@ -2,6 +2,8 @@
  * Headset poses never replace collision checks or grant items. Assets are original.
  * Physical Quest 3 acceptance remains an explicit, separate release gate. */
 import * as T from './vendor/three.module.js';
+import {createFieldDesk} from './field-desk.mjs';
+import {createReadingLog,restoredReading} from './xr-reading-log.mjs';
 import {interactionReading} from './xr-reading.mjs';
 import {createXRNotice} from './xr-notice.mjs';
 import {goalText} from './goal-guide.mjs';
@@ -23,7 +25,7 @@ export function createQuestXR(E){
  const isDiorama=()=>viewMode.startsWith('diorama');
  const rig=new T.Group(),camera=new T.PerspectiveCamera(65,1,.06,220);rig.name='Rainward XR locomotion rig';rig.visible=false;rig.add(camera);
  let renderContext=null,scene=null,renderer=null,session=null,pending=false,disposed=false,active=false,preference='controllers',lastMode='',layout=0,calibration=null,previousHead=null,headPose=null,eye=null,turn=0,slow=E.freefield?.freeStride===false,handBlink=false,handFire=false,handSprint=false,handListen=false,tracking='Awaiting tracking',safe=false,lastSources='',missing=false,palmTime=0,palmLatch=false;
- let lastReading=null,entryHelp=true,observedHint='';const notice=createXRNotice();rig.add(notice.mesh);
+ let desk=null,lastReading=null,entryHelp=true,observedHint='';const readingLog=createReadingLog();const notice=createXRNotice();rig.add(notice.mesh);
  let currentRay={origin:V(),direction:new T.Vector3(0,0,-1)},sourceSeq=0,cycle=0,stamp=0;const identities=new WeakMap(),pinches=new WeakMap(),anchors=new WeakMap();
  const oldInput=createXRInput(),directInput=createDirectXRInput(),currentInput=()=>E.freefield?.xrLayout==='legacy'?oldInput:directInput;const input={reset(){oldInput.reset();directInput.reset();},sample:(...args)=>currentInput().sample(...args),isArmed:()=>currentInput().isArmed()},rays={};let sample=emptyXR();
  const status=()=>{const p=E.state().player;return (isDiorama()?(viewMode==='diorama-ar'?'AR DIORAMA':'VR DIORAMA')+' | ':'FIRST PERSON | ')+(safe?'':'RELEASE INPUTS / ')+tracking+' | HP '+Math.ceil(p.hp)+' | '+(p.waterMode==='swim'?'AIR '+Math.ceil(p.oxygen):p.equipped+' '+p.mag+'/'+p.reserve)+(handFire?' | HAND FIRE ARMED':'');};
@@ -50,8 +52,9 @@ export function createQuestXR(E){
   return list;
  }
 
- const panel=createXRPanel({mode:E.mode,shortcutActions:()=>E.mode()==='pause'&&!E.freefield?.pinnedXR?[
+ const panel=createXRPanel({mode:E.mode,autoMap:()=>E.freefield?.xrLayout!=='legacy',deskActions:()=>E.freefield?.pinnedXR?[]:desk?.actions()||[],shortcutActions:()=>E.mode()==='pause'&&!E.freefield?.pinnedXR?[
    action('LAST FIELD MESSAGE','last-reading',()=>{if(lastReading)panel.showDocument(lastReading);}),
+   action('LAST ACQUIRED CLUE / NOTE','last-clue',()=>{const clue=readingLog.clue();panel.showDocument(clue||{title:'Acquired clues',text:'No clue or field note acquired in this expedition yet. Explore and interact with an inscription or note to record its text.'});}),
    action('SATCHEL / CRAFT','pack',()=>{E.back();E.act('pack');}),action('MAP / NEXT GOAL','map',()=>{E.back();E.act('map');}),
    action(handFire?'HAND FIRE: ON':'HAND FIRE: OFF','hand-fire',()=>{handFire=!handFire;handBlink=false;E.back();}),
    action(handBlink?'HAND BLINK: ON':'HAND BLINK: OFF','hand-blink',()=>{handBlink=!handBlink;handFire=false;E.back();}),
@@ -72,7 +75,7 @@ export function createQuestXR(E){
    action(handSprint?'HAND SPRINT: ON':'HAND SPRINT: OFF','hand-sprint',()=>{handSprint=!handSprint;}),action(handListen?'HAND LISTEN: ON':'HAND LISTEN: OFF','hand-listen',()=>{handListen=!handListen;}),action(slow?'MOVE SPEED: COMFORT':'MOVE SPEED: NORMAL','comfort-speed',()=>{slow=!slow;}),command('SELECT MEDKIT','heal')],
   back(){if(E.mode()==='play')E.act('pause');else E.back();},recenter(){recenter();},exit(){void exit();},isHeld:el=>E.isHeld(el),hold:(row,on)=>E.hold(row.element,on)});
  const badgeCanvas=document.createElement('canvas');badgeCanvas.width=1024;badgeCanvas.height=192;const bc=badgeCanvas.getContext('2d'),badgeTexture=new T.CanvasTexture(badgeCanvas);badgeTexture.colorSpace=T.SRGBColorSpace;
- const badge=new T.Mesh(new T.PlaneGeometry(1.20,.225),new T.MeshBasicMaterial({map:badgeTexture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));badge.renderOrder=10001;badge.name='XR vitals and pause target';rig.add(panel.mesh,badge);
+ const badge=new T.Mesh(new T.PlaneGeometry(1.20,.225),new T.MeshBasicMaterial({map:badgeTexture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false}));badge.renderOrder=10001;badge.name='XR vitals and pause target';rig.add(panel.mesh,badge);desk=createFieldDesk(panel.mesh,rig,storage);
  const veil=new T.Mesh(new T.SphereGeometry(.12,12,8),new T.MeshBasicMaterial({color:0x000000,side:T.BackSide,transparent:true,opacity:0,depthTest:false,depthWrite:false}));veil.renderOrder=9900;camera.add(veil);
  const weapons=createXRWeapons(),sight=createXRSight();weapons.root.add(sight.group);const blinkMarker=new T.Mesh(new T.RingGeometry(.25,.36,32),new T.MeshBasicMaterial({color:0x94d4b7,side:T.DoubleSide}));blinkMarker.rotation.x=-Math.PI/2;blinkMarker.visible=false;
  const visuals={};for(const side of ['left','right']){
@@ -83,11 +86,11 @@ export function createQuestXR(E){
   const jointLines=new T.LineSegments(new T.BufferGeometry().setAttribute('position',new T.BufferAttribute(new Float32Array(48*3),3)),new T.LineBasicMaterial({color:0xd8ece5}));jointLines.frustumCulled=false;rig.add(jointLines);
   group.visible=grip.visible=joints.visible=jointLines.visible=false;visuals[side]={group,laser,cursor,grip,joints,jointLines};
  }
- function bind(next){sight.reset();notice.clear();entryHelp=true;observedHint=E.state().hint;lastReading=null;panel.clearDocument();if(!active)headPose=null;renderContext=next;scene=next.scene;renderer=next.renderer;scene.add(rig,blinkMarker);next.bindXR(api);diorama.reset();calibration=null;previousHead=null;eye=null;reset();}
+ function bind(next){desk.reset();readingLog.clear();readingLog.add(restoredReading(E.state()));sight.reset();notice.clear();entryHelp=true;observedHint=E.state().hint;lastReading=null;panel.clearDocument();if(!active)headPose=null;renderContext=next;scene=next.scene;renderer=next.renderer;scene.add(rig,blinkMarker);next.bindXR(api);diorama.reset();calibration=null;previousHead=null;eye=null;reset();}
  function detach(){rig.removeFromParent();blinkMarker.removeFromParent();scene=null;}
  function snap(angle){turn+=angle;previousHead=null;reset();recenter(false);}
- function recenter(replaceTable=true){if(replaceTable)diorama.reset();if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
- function end(error){if(!active&&!session&&!pending)return;session=null;active=false;rig.visible=false;blinkMarker.visible=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
+ function recenter(replaceTable=true){desk?.recall();if(replaceTable)diorama.reset();if(headPose)calibration={x:headPose.position.x,y:headPose.position.y,z:headPose.position.z};previousHead=null;stamp=-1;layout++;}
+ function end(error){if(!active&&!session&&!pending)return;session=null;active=false;desk?.reset();rig.visible=false;blinkMarker.visible=false;safe=false;input.reset();sample=emptyXR();tracking=error?'XR failed: '+error.message:'XR ended';document.body.classList.remove('immersive-rainward');E.hold(null,false);queueMicrotask(()=>E.end(error));}
  async function enter(kind='controllers',requestedView=preferences.view){
   if(disposed||pending||active)return false;pending=true;preference=kind;viewMode=normalizeDiorama({view:requestedView}).view;remember({view:viewMode});E.audio();let candidate;
   try{
@@ -114,11 +117,11 @@ export function createQuestXR(E){
  function drawBadge(){bc.fillStyle='#10232a';bc.fillRect(0,0,1024,192);bc.fillStyle='#efdcad';bc.font='bold 29px sans-serif';bc.fillText('HOLD B / R3 MENU',22,42);bc.fillStyle='#ffffff';bc.font='24px sans-serif';const s=status();bc.fillText(s.slice(0,77),22,82);bc.fillText(s.slice(77,154),22,111);const p=E.state().player;bc.fillStyle=p.submerged&&p.oxygen<=25?'#ffd0ba':'#c3ded4';bc.fillText(p.submerged&&p.oxygen<=25?(E.freefield?.xrLayout==='legacy'?'LOW AIR: A TO SURFACE':'LOW AIR: X TO SURFACE / Y SWIM BOOST'):p.healing?'HOLD FIRE / BANDAGING':p.craft?'HOLD SELECT / ASSEMBLING':E.state().hint?.slice(0,77)||'Point and select. Raise left open palm to pause.',22,161);badgeTexture.needsUpdate=true;}
  function placePanels(){if(!headPose)return;const q=new T.Quaternion().copy(headPose.orientation),f=new T.Vector3(0,0,-1).applyQuaternion(q);const yaw=Math.atan2(-f.x,-f.z),h=headPose.position;
   const put=(mesh,x,y,z)=>{const v=new T.Vector3(x,y,z).applyAxisAngle(Y,yaw);mesh.position.set(h.x+v.x,h.y+v.y,h.z+v.z);mesh.rotation.set(0,yaw,0);};
-  const playing=E.mode()==='play';panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?(isDiorama()?-1.22:-.85):0,playing?(isDiorama()?-.25:-.56):-.06,playing?-1.55:-1.55);put(badge,0,playing?(isDiorama()?.10:-.62):.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
+  const playing=E.mode()==='play';if(E.freefield?.pinnedXR){panel.mesh.scale.setScalar(playing?.60:1);put(panel.mesh,playing?(isDiorama()?-1.22:-.85):0,playing?(isDiorama()?-.25:-.56):-.06,-1.55);}else desk.place(E.mode(),headPose);put(badge,0,playing?(isDiorama()?.10:-.62):.89,playing?-1.80:-1.60);rig.updateMatrixWorld(true);
  }
- function updatePresentation(state){
-  const playing=E.mode()==='play',pinned=!!E.freefield?.pinnedXR;notice.update(playing);if(playing&&headPose&&state.hintTime>0&&state.hint&&state.hint!==observedHint){observedHint=state.hint;lastReading={title:'Field message',text:state.hint};notice.show(state.hint,headPose);}
-  panel.mesh.visible=!playing||pinned;badge.visible=!panel.document()&&(!playing||pinned);
+ function updatePresentation(state,dt=0){
+  const playing=E.mode()==='play',pinned=!!E.freefield?.pinnedXR;notice.update(playing);if(playing&&headPose&&state.hintTime>0&&state.hint&&state.hint!==observedHint){observedHint=state.hint;lastReading={title:'Field message',text:state.hint};readingLog.add(lastReading);notice.show(state.hint,headPose);}
+  if(!pinned){desk.place(E.mode(),headPose);desk.update(dt);}else{desk.reset();panel.mesh.visible=true;}badge.visible=pinned&&!panel.document();
   if(playing&&!pinned&&headPose){const left=visuals.left.grip.visible?visuals.left.grip:visuals.left.group;
    badge.scale.setScalar(.20);badge.position.copy(left.position).add(new T.Vector3(0,.09,0));
    const toHead=new T.Vector3().copy(headPose.position).sub(badge.position);badge.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),toHead.clone().normalize());
@@ -140,7 +143,7 @@ export function createQuestXR(E){
   }
   previousHead={x:h.x,z:h.z};align(state,dt);
   const hd=new T.Vector3(0,0,-1).applyQuaternion(headPose.orientation).applyAxisAngle(Y,turn);view.yaw=Math.atan2(-hd.x,-hd.z)-(isDiorama()?diorama.heading():0);view.pitch=Math.asin(Math.max(-1,Math.min(1,hd.y)));
-  if(lastMode!==E.mode()||stamp!==layout){lastMode=E.mode();stamp=layout;placePanels();}panel.collect();
+  if(lastMode!==E.mode()||stamp!==layout){lastMode=E.mode();stamp=layout;placePanels();}updatePresentation(state,dt);panel.collect();
   const available=[...session.inputSources].filter(s=>['left','right'].includes(s.handedness));const list=[];
   for(const side of ['left','right']){
    const matches=available.filter(s=>s.handedness===side),src=matches.find(s=>preference==='hands'?s.hand:!s.hand)||matches[0],visual=visuals[side];
@@ -170,7 +173,7 @@ export function createQuestXR(E){
   const signature=list.map(s=>s.id).sort().join('|');if(lastSources&&signature!==lastSources){E.pause();reset();handFire=false;handBlink=false;handListen=false;handSprint=false;}lastSources=signature;
   if(!list.length){tracking='No tracked controllers or hands';E.pause();reset();return sample;}
   tracking=list.map(s=>s.side+' '+(s.hand?'hand':'controller')).join(' + ');
-  sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire,handBlink,water:state.player.waterMode==='swim',mapping:E.buttonRemaps?.xr});safe=input.isArmed();if(safe&&entryHelp&&E.mode()==='play'){entryHelp=false;notice.show('Hold B or press R3 for the menu. Tap B reloads. A / right grip interacts. Raise your open left palm for hand menus.',headPose);}if(panel.document()&&(sample.confirm||sample.back)){panel.clearDocument();E.back();reset();return emptyXR();}
+  sample=input.sample(list,dt,{mode:E.mode(),key:E.mode()+':'+layout,handFire,handBlink,water:state.player.waterMode==='swim',mapping:E.buttonRemaps?.xr});safe=input.isArmed();if(safe&&entryHelp&&E.mode()==='play'){entryHelp=false;notice.show('Hold B or press R3 for the menu. Tap B reloads. A / right grip interacts. Raise your open left palm for hand menus.',headPose);}if(panel.view()==='desk'&&sample.back){panel.closeDesk();reset();return emptyXR();}if(panel.document()&&(sample.confirm||sample.back)){panel.clearDocument();E.back();reset();return emptyXR();}
   panel.setHover(hoverTarget(list));
   if(panel.held()){
    // Only the initiating ray may sustain this hold. The other trigger cannot
@@ -183,6 +186,7 @@ export function createQuestXR(E){
    if(data.overUI&&side==='right')sample.fire=false;
    if(data.overUI&&side==='left'){if(data.hand)sample.move=[0,0];sample.aim=false;}
   }
+  if(panel.view()==='desk'){panel.navigate(sample,dt);return emptyXR();}
   const anySelect=list.some(s=>s.hand?s.pinch:s.buttons[0]?.pressed||s.buttons[0]?.value>.65);if(panel.held()&&!anySelect)panel.release();
   if(E.mode()!=='play')sample.fire=false;
   if(sample.turn){const angle=sample.turn;turn+=angle;previousHead=null;align(E.state(),dt);view.yaw+=angle;recenter(false);sample.move=[0,0];sample.fire=false;}
@@ -194,7 +198,7 @@ export function createQuestXR(E){
   updatePresentation(state);if(cycle%8===0)drawBadge();return sample;
  }
  function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}updatePresentation(state);if(panel.mesh.visible)panel.collect();if(!isDiorama())currentRay=weapons.ray();}}
- const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;observedHint=E.state().hint;lastReading=item;if(item.persistent){E.pause();panel.showDocument(item);recenter(false);}else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
+ const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;observedHint=E.state().hint;lastReading=item;readingLog.add(item);if(item.persistent){E.pause();panel.showDocument(item);recenter(false);}else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
   preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
   supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
   render(){const p=E.state().player,automatic=renderer.xr.cameraAutoUpdate;
@@ -205,8 +209,8 @@ export function createQuestXR(E){
    }finally{renderer.xr.cameraAutoUpdate=automatic;}
   },
   ray:()=>{if(active&&!isDiorama()&&headPose){align(E.state(),0);currentRay=weapons.ray();}return currentRay;},aimYaw:()=>{const d=isDiorama()&&E.aimDirection?E.aimDirection():currentRay.direction;return Math.atan2(-d.x,-d.z);},
-  stats:()=>({active,pending,mode:isDiorama()||viewMode==='first-person-ar'?viewMode:'immersive-first-person',menuVisible:panel.mesh.visible,wristVisible:badge.visible,weapon:weapons.stats(),reading:panel.document(),notice:notice.stats(),sight:sight.stats(),handBlink,sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelHover:panel.hover(),panelHoldOwner:panel.held()?.sourceId||null,craftReadout:craftReadout(E.state().player),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
-  dispose(){disposed=true;void exit();panel.dispose();notice.dispose();sight.dispose();weapons.dispose();blinkMarker.removeFromParent();blinkMarker.geometry.dispose();blinkMarker.material.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
+  stats:()=>({active,pending,mode:isDiorama()||viewMode==='first-person-ar'?viewMode:'immersive-first-person',menuVisible:panel.mesh.visible,fieldDesk:desk.stats(),readingLogSize:readingLog.size(),wristVisible:badge.visible,weapon:weapons.stats(),reading:panel.document(),notice:notice.stats(),sight:sight.stats(),handBlink,sessionMode:sessionType(viewMode),diorama:diorama.stats(),preference,tracking,armed:safe,handFire,comfortSpeed:slow,hardwareVerified:false,rigVisible:rig.visible,safetyFade:veil.material.opacity,panelView:panel.view(),panelHover:panel.hover(),panelHoldOwner:panel.held()?.sourceId||null,craftReadout:craftReadout(E.state().player),panelPage:panel.page(),panelRows:panel.rows(),panelMatrix:panel.mesh.matrix.toArray(),rig:{x:rig.position.x,y:rig.position.y,z:rig.position.z,yaw:turn},handJoints:Object.fromEntries(Object.entries(visuals).map(([k,v])=>[k,v.joints.visible?v.joints.count:0]))}),
+  dispose(){disposed=true;void exit();desk.dispose();panel.dispose();notice.dispose();sight.dispose();weapons.dispose();blinkMarker.removeFromParent();blinkMarker.geometry.dispose();blinkMarker.material.dispose();diorama.dispose();rig.removeFromParent();const gs=new Set(),ms=new Set();rig.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());badgeTexture.dispose();}
  };
  return api;
 }

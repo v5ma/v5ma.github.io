@@ -1,16 +1,15 @@
 {
-  "version": "0.16.1",
-  "build": "rainward-xr-repair-20260918",
+  "version": "0.16.2",
+  "build": "rainward-field-desk-20260921",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
   "changes": [
-    "Add reserved hold-B menu recovery and a brief entry reminder without restoring a pinned gameplay menu",
-    "Display acquired puzzle text and field-note bodies in a dismissible spatial reading panel; show action feedback in view",
-    "Align mechanical pistol/rifle silhouettes, tracked safe muzzle, shots and scope to the same pointing direction",
-    "Reset scope timing on chapter/retry changes and preserve compositor/camera state",
-    "Render first-person AR and world portals in a single compositor scene pass; preserve centered perspective depth",
-    "Make fast no-fatigue land running the default with separate saved walking and legacy alternatives",
-    "Preserve seven chapters, existing IDs, rewards, checkpoints, remaps, licenses and concurrent sibling work"
+    "Add a summon-local field desk with saved height, distance, size and yaw; hide it completely during gameplay",
+    "Make the default XR menu stable through head movement and menu actions rather than reanchoring on every selection",
+    "Put Resume, Map, Satchel and acquired-clue recall on the first menu page; show the map immediately in the Direct layout",
+    "Keep an acquired clue separate from transient field messages, including a clue already earned in a restored checkpoint",
+    "Preserve v0.16.1 muzzle/scope/compositor repairs, fast running, seven expeditions, save keys, remaps and licensed characters",
+    "No private hub, engine migration or inter-game portals; panel grabbing and independently transforming multiple panels remain future work"
   ]
 }
