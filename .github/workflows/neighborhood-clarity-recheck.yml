@@ -11,6 +11,9 @@ concurrency:
 env:
   SOURCE: d222c62b326a9f2d847789984f2e345fb7706a94
   PYTHONIOENCODING: utf-8
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: core.autocrlf
+  GIT_CONFIG_VALUE_0: 'false'
 jobs:
   source:
     runs-on: windows-latest
