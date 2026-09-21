@@ -28,6 +28,6 @@
   return art;
  }
  const api=Object.freeze({TREES,WIND,install});
- if(root.RiverArt&&!root.RiverArt.currentworksTrees){const build=root.RiverArt.build;root.RiverArt.build=function(T,scene){const art=build.call(this,T,scene);try{return install(T,scene,art);}catch(e){art.dispose();throw e;}};root.RiverArt.currentworksTrees='0.1.2';}
+ if(root.RiverArt&&!root.RiverArt.currentworksTrees){const build=root.RiverArt.build;root.RiverArt.build=function(T,scene){const art=build.call(this,T,scene);try{return install(T,scene,art);}catch(e){art.dispose();throw e;}};root.RiverArt.currentworksTrees='0.1.3';}
  root.PrismBankTrees=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

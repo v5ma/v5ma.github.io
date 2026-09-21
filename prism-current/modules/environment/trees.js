@@ -1,11 +1,11 @@
-/* Currentworks Trees 0.1.2. Original seeded geometry and host-clock wind.
+/* Currentworks Trees 0.1.3. Original seeded geometry and host-clock wind.
  * Supply the existing THREE namespace; no renderer, clock, DOM, input or storage.
  * All roots and geometry are FOREST-GROUP-LOCAL. No collision or gameplay owner.
  * Skeleton is generated once, all three detail meshes are built before playing.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.2',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
+ const VERSION='0.1.3',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
  const PRESETS=Object.freeze(['palm','alder','willow']);
  const DETAIL=Object.freeze([
   Object.freeze({name:'near',radial:8,pathStride:1,leafStride:1,leafScale:1}),
@@ -122,9 +122,9 @@
  }
  const windGLSL=`
  uniform float cwTime,cwStrength;uniform vec2 cwDirection;
- attribute vec4 cwRoot;attribute float cwPhase;varying vec2 vCWUv;
+ attribute vec4 cwRoot;attribute float cwTree;uniform float cwAmplitude[24];varying vec2 vCWUv;
  vec2 cwBend(){float y=position.y-cwRoot.y,h=1./cwRoot.w,k=clamp(y*cwRoot.w,0.,1.4);
- float a=cwStrength*(.065*sin(cwTime*1.07+cwPhase)+.027*sin(cwTime*1.91+cwPhase*.73));
+ float a=cwAmplitude[int(cwTree+.5)];
  return vec2(h*k*k*a,(y>0.&&y*cwRoot.w<1.4)?2.*k*a:0.);}
  `;
  function create(T,input={}){
@@ -136,7 +136,7 @@
   let prepared=false,preparing=null,warmupDraws=0;
   let disposed=false,time=0,quality='balanced',quiet=false,visible=true,xr=false,ar=false,levelChanges=0,updates=0;
   let strength=num(input.windStrength,.35,0,1.5),direction=[1,.35];const near=num(input.near,16,2,100),far=num(input.far,30,near+2,500);
-  const uniforms={cwTime:{value:0},cwStrength:{value:strength},cwDirection:{value:new T.Vector2(...direction).normalize()}};
+  const uniforms={cwAmplitude:{value:new Float32Array(MAX_TREES)},cwTime:{value:0},cwStrength:{value:strength},cwDirection:{value:new T.Vector2(...direction).normalize()}};
   const materials=[],geometries=[],records=[],world=new T.Vector3(),viewer=new T.Vector3();
   function material(leaves){
    const m=new T.MeshStandardMaterial({name:'Currentworks '+(leaves?'foliage':'bark')+' '+VERSION,vertexColors:true,roughness:leaves?.83:.96,metalness:0,side:leaves?T.DoubleSide:T.FrontSide});
@@ -151,11 +151,11 @@
   }
   const woodMat=material(false),leafMat=material(true);
   function geometry(data,d){
-   const g=new T.BufferGeometry();for(const [key,size]of [['position',3],['normal',3],['color',3],['uv',2],['cwRoot',4],['cwPhase',1]])g.setAttribute(key,new T.BufferAttribute(data[key],size));g.setIndex(new T.BufferAttribute(data.index,1));g.computeBoundingBox();g.boundingBox.expandByScalar(d.height*.30);g.computeBoundingSphere();g.boundingSphere.radius+=d.height*.30;geometries.push(g);return g;
+   const g=new T.BufferGeometry();for(const [key,size]of [['position',3],['normal',3],['color',3],['uv',2],['cwRoot',4]])g.setAttribute(key,new T.BufferAttribute(data[key],size));g.setAttribute('cwTree',new T.BufferAttribute(new Float32Array(data.cwPhase.length).fill(desc.indexOf(d)),1));g.setIndex(new T.BufferAttribute(data.index,1));g.computeBoundingBox();g.boundingBox.expandByScalar(d.height*.30);g.computeBoundingSphere();g.boundingSphere.radius+=d.height*.30;geometries.push(g);return g;
   }
   try{for(const d of desc){const sk=skeleton(d),node=new T.Group();node.name='Currentworks tree '+d.id;node.userData.treeId=d.id;group.add(node);const lods=[];
    for(let i=0;i<3;i++){const data=geometryData(sk,i),pair=new T.Group();pair.add(new T.Mesh(geometry(data.wood,d),woodMat),new T.Mesh(geometry(data.foliage,d),leafMat));pair.visible=false;node.add(pair);lods.push(pair);}
-   records.push({descriptor:d,node,lods,selected:-1});
+   records.push({descriptor:d,node,lods,selected:-1,phase:sk.phase,index:records.length});
   }}catch(e){for(const g of geometries)g.dispose();for(const m of materials)m.dispose();throw e;}
   function update(frame={}){
    if(disposed||!frame||typeof frame!=='object'||Array.isArray(frame))return false;
@@ -167,7 +167,8 @@
    group.updateWorldMatrix(true,false);const scale=Math.max(1e-6,group.matrixWorld.getMaxScaleOnAxis()),haveView=vector(frame.viewer);
    if(haveView)viewer.fromArray(frame.viewer);
    const minimum=quality==='light'||xr?1:0;
-   for(const r of records){world.fromArray(r.descriptor.position).applyMatrix4(group.matrixWorld);const distance=haveView?world.distanceTo(viewer)/scale:0,l=level(distance,r.selected,minimum,near,far);
+   // One phase calculation per tree, shared by every wood/leaf vertex and both eyes.
+   for(const r of records){uniforms.cwAmplitude.value[r.index]=quiet?0:strength*(.065*Math.sin(time*1.07+r.phase)+.027*Math.sin(time*1.91+r.phase*.73));world.fromArray(r.descriptor.position).applyMatrix4(group.matrixWorld);const distance=haveView?world.distanceTo(viewer)/scale:0,l=level(distance,r.selected,minimum,near,far);
     if(l!==r.selected){r.selected=l;levelChanges++;for(let i=0;i<3;i++)r.lods[i].visible=i===l;}
    }updates++;return true;
   }

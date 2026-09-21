@@ -20,10 +20,10 @@ with sync_playwright() as pw:
         page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
     try:
         c=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');p=c.new_page();watch(p);p.set_default_timeout(45000)
-        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().stats.trees?.version==="0.1.2"&&River.snapshot().rotunda.open')
+        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().stats.trees?.version==="0.1.3"&&River.snapshot().rotunda.open')
         p.evaluate("""()=>{const scene=AFRAME.scenes[0],renderer=scene.renderer,original=renderer.render,log=[];window.treeRenderObservations=log;
           renderer.render=function(){const begin=performance.now(),value=original.apply(this,arguments),elapsed=performance.now()-begin;
-           if(elapsed>75){const game=scene.components['river-game'];log.push({renderMs:elapsed,phase:game.phase,time:game.state?.time||0,calls:this.info.render.calls,triangles:this.info.render.triangles,programs:this.info.programs.length});if(log.length>64)log.shift();}return value;};}""")
+           if(elapsed>75){const game=scene.components['river-game'];log.push({renderMs:elapsed,phase:game.phase,time:game.state?.time||0,pointerHeld:!!game.mouse,calls:this.info.render.calls,triangles:this.info.render.triangles,programs:this.info.programs.length});if(log.length>64)log.shift();}return value;};}""")
         check(p.evaluate('River.snapshot().stats.trees.trees')==8,'The ordinary Duck Armada entry contains exactly eight authored bank trees')
         check(p.evaluate('River.snapshot().stats.water.version==="0.1.0"&&River.snapshot().stats.fire.version==="0.1.3"'),'Existing water and fire implementations are retained')
         check(p.evaluate('River.snapshot().stats.trees.geometries===48&&River.snapshot().stats.trees.materials===2&&River.snapshot().stats.trees.textures===0'),'Tree resource counts are fixed before gameplay')
