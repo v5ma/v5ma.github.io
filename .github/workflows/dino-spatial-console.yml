@@ -1,8 +1,9 @@
 name: Dino Atlas Field Rotunda
 on:
   push:
-    branches: [master, 'dino-atlas/rotunda-release-20260920']
-    paths: ['dino-atlas/**', '.github/workflows/dino-spatial-console.yml', '.github/patches/dino-rotunda-repair.json']
+    branches: [master]
+    paths: ['dino-atlas/**', '.github/workflows/dino-spatial-console.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -12,51 +13,19 @@ jobs:
   model:
     runs-on: ubuntu-latest
     timeout-minutes: 12
-    permissions:
-      contents: write
     outputs:
       source: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
+          persist-credentials: false
           sparse-checkout: |
             dino-atlas
             .github
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply only the exact saved repair before its first validation
-        if: github.ref == 'refs/heads/dino-atlas/rotunda-release-20260920'
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib,json,subprocess
-          p=Path('.github/patches/dino-rotunda-repair.json')
-          if p.exists():
-              raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()=='dbe662d31ddb1c3a8b066248c4ebbf2b4ea6add983c50999b81a79ec90ab2c83'
-              entries=json.loads(raw);assert len(entries)==10
-              for e in entries:
-                  path=Path(e['path']);assert not path.is_absolute() and '..' not in path.parts and str(path).startswith('dino-atlas/')
-                  if e['before'] is None:
-                      assert not path.exists(),str(path)+' already exists'
-                      text=e['content']
-                  else:
-                      old=path.read_bytes();assert hashlib.sha256(old).hexdigest()==e['before'],str(path)+' baseline changed'
-                      text=old.decode()
-                      for start,end,replacement in reversed(e['edits']):
-                          assert 0<=start<=end<=len(text)
-                          text=text[:start]+replacement+text[end:]
-                  data=text.encode();assert hashlib.sha256(data).hexdigest()==e['after'],str(path)+' result mismatch'
-                  path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
-              subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
-              subprocess.run(['git','add',*[e['path'] for e in entries]],check=True)
-              subprocess.run(['git','rm',str(p)],check=True)
-              subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
-              subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-              subprocess.run(['git','commit','-m','Fix closed rotunda dialog and verify front-side wrist interaction'],check=True)
-              subprocess.run(['git','push','origin','HEAD:dino-atlas/rotunda-release-20260920'],check=True)
-          PY
       - id: source
         name: Record exact tested source and complete model evidence
         run: |
@@ -64,15 +33,15 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD > spatial-evidence/source-commit.txt
           tar -czf spatial-source.tgz dino-atlas .github/workflows/dino-spatial-console.yml
-          find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+          npm --prefix dino-atlas run check
           python -m py_compile dino-atlas/tests/spatial-console-browser.py
           set -o pipefail
-          node --test dino-atlas/tests/*.test.mjs | tee spatial-evidence/unit-tests.tap
+          npm --prefix dino-atlas test | tee spatial-evidence/unit-tests.tap
           python - <<'PY'
           from pathlib import Path
           import hashlib,json,subprocess
           paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
-          files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
+          files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/','dino-atlas/scripts/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
           m={'build':'ranger-spatial-console-20260920.3','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
           Path('spatial-evidence/manifest.json').write_text(json.dumps(m,indent=2))
           PY
