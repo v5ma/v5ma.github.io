@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {ReserveXR} from './xr-reserve.js?v=fieldops1';
+import {ReserveXR} from './xr-reserve.js?v=rotunda1';
 import {readPresentation,savePresentation,settings,openings,stageMatrix,gameRay} from './diorama-core.js';
 import {PORTAL_BUILD,PORTAL_SPAN,dimensions,boxInverse,enterPortal,PortalMaterials,shellMaterial} from './diorama-portal.js';
 // The physical simulation stays at its original scale. The miniature transform is
@@ -118,6 +118,7 @@ export class DioramaXR extends ReserveXR {
   return {origin,direction:direction.normalize()};
  }
  positionPanel(){
+  if(this.console){this.console.positionPanel();return;}
   if(!this.diorama){this.panel.scale.setScalar(1);return;}
   // ReserveXR asks hit() before evaluating held actions. Reposition here, not
   // only after super.update(), so hover, selection and holds share one pose.

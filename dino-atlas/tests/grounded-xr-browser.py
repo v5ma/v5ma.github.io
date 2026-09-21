@@ -75,6 +75,10 @@ try:
    wait('__dinoRanger.state.paused');xr_ready('__hand')
    check(page.evaluate('__dinoGrounded.state.hands')==1,'Switching tracked controller to mocked hand is recognized and pauses')
    page.evaluate("__rayTile(t=>t.label==='Back / B',__hand)");wait('!__dinoRanger.state.paused');xr_ready('__hand')
+   # The full field board is now deliberately hidden. Summon it through its
+   # rendered floor-slate action, using the same production hand select event.
+   page.evaluate("""()=>{const x=__dinoRanger.xr,e=x.controllers[1],m=x.console.wrist.mesh,T=__THREE;const p=new T.Vector3(.10,-.076,0);m.localToWorld(p);x.rig.worldToLocal(p);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),p.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);e.ray.dispatchEvent({type:'selectstart',data:__hand});e.ray.dispatchEvent({type:'selectend',data:__hand});}""")
+   wait('__dinoRanger.xr.console.trayOpen');xr_ready('__hand')
    page.evaluate("__rayTile(t=>t.label==='Zapper',__hand)");check(page.evaluate('__dinoRanger.state.tool')=='zapper','Hand select event uses same direct tool action')
    page.evaluate("__rayTile(t=>t.label==='Hold Forward',__hand,false)");page.wait_for_timeout(400);check(page.evaluate('__dinoGrounded.state.held')==1,'Hand hold-to-move remains active while pointing at tile')
    page.evaluate("__dinoRanger.xr.controllers[1].ray.dispatchEvent({type:'selectend',data:__hand})");page.wait_for_timeout(100);check(page.evaluate('__dinoGrounded.state.held')==0,'Hand release clears locomotion immediately')
