@@ -54,7 +54,7 @@ export function createFieldDesk(panel,rig,storage){
   action('SMALLER / '+Math.round(options.scale*100)+'%','desk-smaller',()=>change('scale',-.08)),action('LARGER / '+Math.round(options.scale*100)+'%','desk-larger',()=>change('scale',.08)),
   action('ROTATE LEFT','desk-left',()=>change('yaw',.1)),action('ROTATE RIGHT','desk-right',()=>change('yaw',-.1)),
   action('RECALL HERE / KEEP MY SIZE','desk-recall',()=>{recalled=true;}),
-  action('RESET COMFORTABLE POSITION','desk-reset',()=>{options=deskOptions();saved=writeDesk(storage,options);recalled=true;}),
+  action('RESET PANEL POSITION','desk-reset',()=>{options=deskOptions({pedestal:options.pedestal,motion:options.motion});saved=writeDesk(storage,options);recalled=true;}),
   action('PEDESTAL: '+(options.pedestal?'ON':'OFF'),'desk-pedestal',()=>{options.pedestal=!options.pedestal;saved=writeDesk(storage,options);apply();}),
   action('PEDESTAL MOTION: '+(options.motion?'ON':'OFF'),'desk-motion',()=>{options.motion=!options.motion;saved=writeDesk(storage,options);})
  ];}
