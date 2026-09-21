@@ -1,10 +1,10 @@
 {
-  "version": "0.27.2",
-  "build": "sky-cycle-route-layout-2026.09.21",
+  "version": "0.27.3",
+  "build": "sky-cycle-cue-margin-2026.09.21",
   "date": "2026-09-21",
   "changes": [
-    "Prevent route cards and AR/VR/Screen choices from shrinking into overlapping text or the header",
-    "Preserve recovered Canal Choice, the latest XR buttons, cancellation recovery, saves and official routes",
-    "Verify ordinary route-card hit testing in four viewport sizes and load original soundtrack tests independently of the repository package mode"
+    "Keep the Waterwheel route-choice placard fully readable across the portrait approach interval without attaching it to the camera",
+    "Retain intrinsic route-card layout, AR/VR/Screen choices, all-button XR handling and recovered Canal Choice",
+    "Preserve original physics, eight official campaign routes, saves, remaps and Workshop documents"
   ]
 }
