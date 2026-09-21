@@ -1,0 +1,42 @@
+{
+  "version": "0.27.1",
+  "build": "sky-cycle-reconciled-2026.09.21",
+  "status": "direct-master-integration-prepared",
+  "audit_master": "26eb4459f7437415f224c9737c4c507f2d551243",
+  "integration_base": "4c58f1bbf99dee417ad2d2f35a821bef66190d7b",
+  "related_existing_pr": 176,
+  "new_prs_created": 0,
+  "new_remote_branches_created": 0,
+  "new_workflows_created": 0,
+  "scope": "Sky Cycle runtime, tests, documentation and its own workflows only",
+  "branches": [
+    {"branch":"sky-cycle/portal-network-0.21","sha":"89897e4d2379464bd37be9e54ca384925c4da84e","resolution":"already integrated"},
+    {"branch":"sky-cycle/quiet-water-0.22","sha":"c3e7b0131fc55f77a24a4de071bd70b61698e79c","resolution":"already integrated"},
+    {"branch":"sky-cycle/waterwheel-chapter-0.23","sha":"7ab6de32921dd62490e6d4eceb47f10d17a22f7d","resolution":"already integrated"},
+    {"branch":"sky-cycle/waterwheel-deliveries-0.24","sha":"2ddfe2cdd8f096a84973ed1cdec23a2993a82428","resolution":"already integrated"},
+    {"branch":"sky-cycle/spatial-workspace-0.26","sha":"49bfe5182ebdec381c0f76e0180b6b48459fd950","resolution":"already integrated"},
+    {"branch":"sky-cycle/xr-buttons-0.26.2","sha":"2b0ddeded1851c0c8320ebb18d6f3590f837ff91","resolution":"already integrated"},
+    {"branch":"sky-cycle/route-entry-0.27","sha":"171701fbb4cbd38cfc4d50975c3ebfb1d2e127d5","resolution":"already integrated; cancellation defect corrected"},
+    {"branch":"sky-cycle/xr-menu-recovery-0.26.1","sha":"5ef8b872088a3230882438c58761a9dfc7b2b133","resolution":"runtime integrated; obsolete pinned public retry retired"},
+    {"branch":"sky-cycle/waterwheel-xr-audit-0.23","sha":"9e72fee07a600ed16c259365c6edafaa6ae457c0","resolution":"superseded old menu oracle; not copied"},
+    {"branch":"sky-cycle/waterwheel-reference-0.23","sha":"f165f7523369fd39197598d0f05be28ce814be4e","resolution":"competing campaign replacement withheld; preserve established preview and save contract"},
+    {"branch":"sky-cycle/canal-choice-0.25","sha":"c946e556d1a4d970e4e406d09b7a1f547ae0e8a7","resolution":"useful source selectively reconciled; discard old release, XR and handoff overwrites"}
+  ],
+  "selected_from_canal": ["waterwheel-fork-core.mjs","waterwheel-layout-core.mjs","waterwheel-preview-art.mjs","waterwheel-preview.js","tests/waterwheel-fork.test.mjs","tests/waterwheel-edited-fork.test.mjs","tests/waterwheel-2d-choice.test.mjs","tests/waterwheel-fork-browser.py"],
+  "kept_from_master": ["xr-play.js","xr-input-core.mjs","xr-menu-input.mjs","xr-world-aperture.mjs","flight-deck.js","route-entry.js","tests/waterwheel-deliveries-browser.py","tests/portal-network-browser.py","all campaign and storage owners"],
+  "rewritten": ["xr-webgl-compat.mjs early cancellation guard","route-entry-browser.py stricter native manager cleanup and isolated unsupported context","coherent release identity","current handoff and direct-master release process"],
+  "discarded_changes": ["old .025 release downgrade and cache key","old .025 xr-play.js overwrite","old .025 delivery timing overwrite","competing reference chapter campaign replacement/record scheme","old XR audit pixel-row and label assumptions","duplicate Canal Choice workflow and shared-library writes"],
+  "historical_canal": {"run":35273226907,"source":"c946e556d1a4d970e4e406d09b7a1f547ae0e8a7","run_conclusion":"success","inspected_lower_artifact":10518504053,"sha256":"a65e0ac2c388c3328d30541b278a5fbe19f82938260087554a220a04242c617c","checks":23,"delivered_mail":1,"first_attempt_finish":true,"does_not_qualify_new_source":true},
+  "retained_entry_failure": {"run":35556641185,"source":"a2a3eeb06964c4e642a84cf826afe6c955efc99a","artifact":10621476165,"sha256":"c128426100d3de8d811312183871d50b3eac23e9095481580f424734cf0cb2e1","first_checks_passed":23,"timeout":"second unsupported-browser context did not finish startup","page_error":"Cannot read properties of null (reading 'dispose')","verified_code_fault":"pinned Renderer._resetXRState unconditionally disposes a possibly-null frame target; actual-method preimage test reproduces this","unsupported_timeout_cause":"not established; fresh context now has its own diagnostics, resource policy and proper capability facade"},
+  "local": {"game_rules":403,"soundtrack_rules":12,"failures":0,"evidence":"local integrated rule/fixture execution; not native or physical approval","browser":"ERR_BLOCKED_BY_ADMINISTRATOR before local game navigation; not bypassed"},
+  "workflow_resolution": {
+    "automatic": "sky-cycle-route-entry.yml",
+    "retired_workflow_definitions": ["sky-cycle-bathhouse.yml","sky-cycle-design-source.yml","sky-cycle-flight-deck.yml","sky-cycle-luminous.yml","sky-cycle-portals.yml","sky-cycle-publish-check.yml","sky-cycle-quiet-water.yml","sky-cycle-recovery-source.yml","sky-cycle-route-compass.yml","sky-cycle-source-snapshot.yml","sky-cycle-spatial.yml","sky-cycle-sunrise.yml","sky-cycle-waterwheel-deliveries.yml","sky-cycle-waterwheel.yml","sky-cycle-xr-buttons.yml","sky-cycle-xr-public-retry.yml","sky-cycle-xr-recovery.yml"],
+    "test_scripts_deleted": 0,
+    "history": "Historical specialized definitions and results remain in Git; core and recovered feature coverage is consolidated in the existing route-entry workflow. No sibling or site-wide Pages configuration changed."
+  },
+  "publication": null,
+  "new_source_native": null,
+  "preservation": {"campaign_routes":8,"official_geometry_changed":false,"preview_rails":7,"preview_other_six_curves_changed":false,"ground_mailboxes_checkpoints_changed":false,"physics_changed":false,"saves_cleared":false,"migration":false,"private_hub_uploaded":false},
+  "open_gates": ["exact-source hosted verification","38-file public match and public replay","physical Quest/Xbox","full XR chapter completion","long-session performance","revision-aware default chapter promotion"]
+}

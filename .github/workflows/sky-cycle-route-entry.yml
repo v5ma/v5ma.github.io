@@ -1,7 +1,7 @@
-name: Sky Cycle route entry
+name: Sky Cycle verification
 on:
   push:
-    branches: [master, 'sky-cycle/route-entry-0.27']
+    branches: [master]
     paths:
       - 'mario-maker-clone/svgn-paper-route/**'
       - '!mario-maker-clone/svgn-paper-route/development/**'
@@ -39,7 +39,6 @@ jobs:
           path: /tmp/route-rules/
           retention-days: 30
   native:
-    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
@@ -67,13 +66,12 @@ jobs:
           retention-days: 30
           if-no-files-found: error
   regression:
-    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
-        script: [portal-network-browser.py, waterwheel-deliveries-browser.py]
+        script: [portal-network-browser.py, waterwheel-deliveries-browser.py, bathhouse-browser.py, sunrise-browser.py]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -92,6 +90,34 @@ jobs:
           path: /tmp/route-regression/
           retention-days: 30
           if-no-files-found: error
+  fork:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        grip: [forgiving, precision]
+        scenario: [high, lower, early, coast]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Recovered Canal Choice through original controls, collision and save owners
+        env:
+          FORK_GRIP: ${{ matrix.grip }}
+          FORK_CASE: ${{ matrix.scenario }}
+          ARTIFACT_DIR: /tmp/canal-native
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-fork-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canal-${{ matrix.grip }}-${{ matrix.scenario }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/canal-native/
+          retention-days: 30
+          if-no-files-found: error
   published:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-24.04
@@ -100,7 +126,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Independent 37-file public runtime hash match
+      - name: Independent 38-file public runtime hash match
         env:
           ARTIFACT_DIR: /tmp/route-public
         run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-published.py
@@ -137,5 +163,30 @@ jobs:
         with:
           name: route-live-${{ matrix.mode }}-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/route-live/
+          retention-days: 30
+          if-no-files-found: error
+  live-canal:
+    needs: published
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Public lower-route return and actual terrace delivery
+        env:
+          FORK_GRIP: forgiving
+          FORK_CASE: lower
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/canal-live
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-fork-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canal-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/canal-live/
           retention-days: 30
           if-no-files-found: error

@@ -1,12 +1,11 @@
 {
-  "version": "0.27.0",
-  "build": "sky-cycle-route-entry-2026.09.20",
-  "date": "2026-09-20",
+  "version": "0.27.1",
+  "build": "sky-cycle-reconciled-2026.09.21",
+  "date": "2026-09-21",
   "changes": [
-    "Explicit AR, VR and Screen choices beside each existing route card",
-    "Requested route starts only after immersive entry succeeds; denial never silently falls back",
-    "Selected route survives a guarded WebGL reload with fresh explicit immersive entry",
-    "Independent last-used-mode hint with session-only storage feedback",
-    "Preserves v0.26.2 headset button mappings, fixed AR aperture, campaign and Workshop saves"
+    "Recover Canal Choice: brake-selected lower receiver, purposeful road return and advance route cues",
+    "Retain latest AR/VR/Screen route cards, all-button XR handling and fixed-world AR aperture",
+    "Repair cancelled-session cleanup before the first XR framebuffer exists",
+    "Preserve eight campaign routes, optional Workshop preview, saves, remaps and original physics"
   ]
 }

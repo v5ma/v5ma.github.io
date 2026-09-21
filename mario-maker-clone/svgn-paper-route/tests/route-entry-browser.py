@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3];GAME=ROOT/'mario-maker-clone/svgn-paper-route'
 OUT=Path(os.getenv('ARTIFACT_DIR','/tmp/route-entry'));OUT.mkdir(parents=True,exist_ok=True)
 KIND=os.getenv('XR_MODE','ar');OTHER='vr' if KIND=='ar' else 'ar'
-checks=[];errors=[];logs=[];samples=[];passed=False;failure=None
+checks=[];errors=[];logs=[];samples=[];passed=False;failure=None;unsupported=None;unsupported_page=None
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*a):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start()
@@ -80,8 +80,9 @@ with sync_playwright() as pw:
   page.evaluate("(()=>{const original=navigator.xr.requestSession.bind(navigator.xr);window.restoreRequest=()=>{navigator.xr.requestSession=original;};navigator.xr.requestSession=(...args)=>new Promise((resolve,reject)=>{window.finishPendingRequest=()=>original(...args).then(resolve,reject);});})()")
   page.locator(f'button[data-sc-route="first-neighborhood"][data-sc-mode="{KIND}"]').click()
   page.wait_for_function('SkyCycleRouteEntry.diagnostics.busy');page.locator('#sc-entry-back').click()
-  page.evaluate('finishPendingRequest()');page.wait_for_function('!SkyCycleXR.presenting&&!SkyCycleXR.diagnostics.starting')
+  page.evaluate('finishPendingRequest()');page.wait_for_function('!SkyCycleXR.presenting&&!SkyCycleXR.diagnostics.starting&&!__merged.renderer.xr.isPresenting')
   check(page.evaluate('JSON.stringify({route:__delivery.state.route,code:levelCode(),deliveries,tries})')==before,'Cancelling delayed permission closes the later acquired session without replacing the current route')
+  check(page.evaluate('!__merged.renderer.xr.getSession()&&!__merged.scene.parent'),'Cancelled late approval fully clears the native XRManager and original-scene ownership')
   page.evaluate('restoreRequest()')
   # Explicit fault injection only for the new independent preference key.
   page.evaluate("(()=>{const set=Storage.prototype.setItem;window.restorePrefStore=()=>{Storage.prototype.setItem=set;};Storage.prototype.setItem=function(k,v){if(k==='svgn.skycycle.launch.v1')throw new DOMException('fixture quota','QuotaExceededError');return set.call(this,k,v);};})()")
@@ -100,10 +101,13 @@ with sync_playwright() as pw:
   check(page.locator('#sc-entry-title').inner_text()=='Ready for Waterwheel Boulevard' and page.evaluate('xrEmulator.request===null'),'A WebGL handoff URL retains its selected route and still requires a fresh entry gesture')
   page.locator('#sc-entry-back').click();check('scRoute=' not in page.url,'Cancelling a pending handoff consumes only its transient URL parameters')
   # Unsupported hardware is a distinct browser context, not a gameplay mutation.
+  ctx.close() # The independent unsupported-browser test owns a fresh renderer, not the prior XR context.
   unsupported=browser.new_context(viewport={'width':1100,'height':800},service_workers='block')
-  unsupported.add_init_script("Object.defineProperty(navigator,'xr',{configurable:true,value:{isSessionSupported:async()=>false}});localStorage.setItem('sprocket_muted','1');")
-  p=unsupported.new_page();p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)))
-  p.goto(BASE+'?xr=1',wait_until='domcontentloaded');p.wait_for_function('window.SkyCycleRouteEntry?.diagnostics.checked')
+  unsupported.add_init_script("(()=>{const system=new EventTarget();system.isSessionSupported=async()=>false;system.requestSession=async()=>{throw new DOMException('Unsupported fixture','NotSupportedError');};Object.defineProperty(navigator,'xr',{configurable:true,value:system});localStorage.setItem('sprocket_muted','1');})()")
+  unsupported.route('**/*',lambda r:r.continue_() if urlparse(r.request.url).hostname==urlparse(origin).hostname or r.request.url.startswith(('blob:','data:')) else r.abort())
+  p=unsupported.new_page();unsupported_page=p;p.set_default_timeout(90000);p.on('pageerror',lambda e:errors.append(str(e)))
+  p.on('console',lambda m:logs.append('unsupported: '+m.text) if m.type=='error' else None)
+  p.goto(BASE+'?xr=1',wait_until='domcontentloaded');p.bring_to_front();p.wait_for_function('window.SkyCycleRouteEntry?.diagnostics.checked')
   prior=p.evaluate('__delivery.state.route');p.locator(f'button[data-sc-route="first-neighborhood"][data-sc-mode="{KIND}"]').click()
   check('unavailable' in p.locator('#sc-entry-message').inner_text() and p.evaluate('__delivery.state.route')==prior,'Unsupported immersion explains the limitation instead of selecting another mode')
   p.locator('#sc-entry-back').click();p.locator('button[data-sc-route="first-neighborhood"][data-sc-mode="screen"]').click()
@@ -115,7 +119,8 @@ with sync_playwright() as pw:
   passed=True
  except Exception as exc:
   failure=str(exc)
-  try:page.screenshot(path=str(OUT/'failure.png'));samples.append(page.evaluate('({route:__delivery.state.route,paused:__delivery.paused,panel:SkyCycleFlightDeck.topPanel()?.id,entry:SkyCycleRouteEntry.diagnostics,xr:SkyCycleXR.diagnostics})'))
+  observed=unsupported_page if unsupported_page and not unsupported_page.is_closed() else page
+  try:observed.screenshot(path=str(OUT/'failure.png'));samples.append(observed.evaluate('({route:window.__delivery?.state.route,paused:window.__delivery?.paused,panel:window.SkyCycleFlightDeck?.topPanel()?.id,entry:window.SkyCycleRouteEntry?.diagnostics,xr:window.SkyCycleXR?.diagnostics,campaign:window.PaperDeliveryCampaign?.status,ready:document.readyState,frameError:document.getElementById("campaign-load-state")?.textContent})'))
   except Exception:pass
   raise
  finally:

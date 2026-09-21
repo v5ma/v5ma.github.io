@@ -19,7 +19,18 @@ export function protectOpaqueXRFramebuffer(renderer) {
     return original.call(this, descriptor);
   }
   backend._setFramebuffer = bind;
+  // r177 can end an accepted session before its first frame allocates this target.
+  // Keep its normal reset/disposal path unless that target is explicitly null.
+  const originalReset = renderer._resetXRState;
+  function resetXRState(...args) {
+    if (this._frameBufferTarget !== null) return originalReset.apply(this, args);
+    this.backend.setXRTarget(null);
+    this.setOutputRenderTarget(null);
+    this.setRenderTarget(null);
+  }
+  if (typeof originalReset === 'function') renderer._resetXRState = resetXRState;
   return () => {
     if (backend._setFramebuffer === bind) backend._setFramebuffer = original;
+    if (renderer._resetXRState === resetXRState) renderer._resetXRState = originalReset;
   };
 }
