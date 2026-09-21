@@ -21,7 +21,9 @@ function message(title,body,action=null){
  dialog.append(h,p,row);if(!dialog.open)dialog.showModal();back.focus({preventScroll:true});
 }
 function persist(mode){pref=preference({mode});try{localStorage.setItem(STORE,JSON.stringify(pref));saveOK=true;}catch{saveOK=false;}updateCards();}
-function currentGate(id,mode){return entryGate({routes:window.DeliveryCampaign?.routes,id,mode,
+function currentGate(id,mode){
+ if(mode!=='screen'&&!checked)return {ok:false,reason:'Immersive support is still being checked. Your route is unchanged; try again when the check finishes.'};
+ return entryGate({routes:window.DeliveryCampaign?.routes,id,mode,
  ready:window.PaperDeliveryCampaign?.status==='ready',protectedDraft:!!(window.RouteWorkshop?.active||window.RouteWorkshop?.testing||window.RouteWorkshop?.state?.dirty),
  busy,supported,webgl:!!window.__merged?.renderer?.backend?.isWebGLBackend,currentMode:xr()?.presenting?xr().diagnostics.mode:null});}
 function commitRoute(id,mode){
@@ -74,8 +76,13 @@ function launch(id,mode){
 function updateCards(){
  for(const b of document.querySelectorAll('[data-sc-mode]')){
   const mode=b.dataset.scMode,available=mode==='screen'||supported[mode];
-  b.setAttribute('aria-disabled',available?'false':'true');b.dataset.preferred=String(pref.mode===mode);
-  b.textContent=mode==='screen'?'Screen':`${mode.toUpperCase()}${checked&&!available?' unavailable':''}`;
+  // This remains a usable explanation action when immersion is unavailable.
+  // A disabled control would hide that explanation from Xbox and XR navigation.
+  b.removeAttribute('aria-disabled');b.dataset.unavailable=String(checked&&!available);b.dataset.preferred=String(pref.mode===mode);
+  const name=window.DeliveryCampaign?.routes.find(r=>r.id===b.dataset.scRoute)?.name||'this route';
+  const label=mode==='screen'?'Screen':mode.toUpperCase();
+  b.setAttribute('aria-label',checked&&!available?`${label} unavailable for ${name}: show explanation`:`Play ${name} in ${label}`);
+  b.textContent=mode==='screen'?'Screen':`${label}${checked&&!available?' unavailable':!checked?' checking':''}`;
  }
  for(const n of document.querySelectorAll('.sc-route-preference'))n.textContent=pref.mode?`Last used: ${pref.mode==='screen'?'Screen':pref.mode.toUpperCase()}${saveOK?'':' / this session only'}`:'Choose how to play';
 }
