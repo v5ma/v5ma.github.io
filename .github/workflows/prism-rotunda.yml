@@ -13,7 +13,7 @@ jobs:
   source:
     name: Checked-out Prism source
     runs-on: ubuntu-latest
-    timeout-minutes: 23
+    timeout-minutes: 27
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,6 +33,17 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Fire ownership and actual source effects
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        env:
+          PRISM_URL: http://127.0.0.1:4173/prism-current/
+        run: |
+          set -euo pipefail
+          python prism-current/tests/environment-fire-objects.py
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/fire-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 240 python -u prism-current/tests/environment-fire-browser.py
       - name: Water ownership and actual source gameplay
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         env:
@@ -78,7 +89,7 @@ jobs:
     name: Published Prism bytes and gameplay
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    timeout-minutes: 28
+    timeout-minutes: 32
     steps:
       - uses: actions/checkout@v4
         with:
@@ -110,6 +121,11 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Public fire effects and reusable shader fixtures
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        env:
+          PRISM_URL: https://v5ma.github.io/prism-current/
+        run: timeout 240 python -u prism-current/tests/environment-fire-browser.py
       - name: Public water graphics and battle
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         env:

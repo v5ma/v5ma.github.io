@@ -1,0 +1,42 @@
+(()=>{'use strict';const T=AFRAME.THREE,F=SVGNFire,checks=[];
+ const check=(v,m)=>{if(!v)throw Error(m);checks.push(m);};
+ const f=F.create(T),scene=new T.Scene();scene.add(f.group);
+ check(f.group.isGroup&&f.group.children.filter(c=>c.isMesh).length===7,'Fixed six volume boxes and one instanced spark draw');
+ f.update({time:.2});f.emit(Object.freeze({id:1,position:Object.freeze([0,1,-4]),radius:.7}));f.update({time:.5});
+ check(f.stats.activeVolumes===1&&f.stats.activeSparks>0,'An observed burst produces volume and ember objects');
+ const flame=f.group.children.find(c=>c.name==='Currentworks flame 0');
+ check(flame.material.uniforms.fireNoise.value.isData3DTexture,'Volume noise is a real three-dimensional texture');
+ check(flame.material.side===T.BackSide&&flame.material.depthTest&&!flame.material.depthWrite,'Volume proxies render inside and outside with depth testing');
+ const a=new T.PerspectiveCamera(65,1,.05,100),b=a.clone();a.position.set(-.032,1.65,0);b.position.set(.032,1.65,0);a.updateMatrixWorld();b.updateMatrixWorld();
+ f.group.position.set(2,.3,-1);f.group.rotation.y=.73;f.group.scale.set(1.3,.8,1.5);f.group.updateMatrixWorld(true);
+ flame.onBeforeRender(null,scene,a);const left=flame.material.uniforms.eyeLocal.value.clone();flame.onBeforeRender(null,scene,b);const right=flame.material.uniforms.eyeLocal.value.clone();
+ check(left.distanceTo(right)>.03,'Each eye receives its own transformed local ray origin');
+ const reconstructed=right.clone().applyMatrix4(flame.matrixWorld);check(reconstructed.distanceTo(b.position)<1e-9,'Nonuniform transformed stage maps ray origin back to actual camera');
+ check(flame.material.uniforms.localToView.value.equals(new T.Matrix4().multiplyMatrices(b.matrixWorldInverse,flame.matrixWorld)),'Per-draw depth mapping uses the actual eye and world matrices');
+ const snapshot=JSON.stringify(f.stats);f.update({time:.5});check(JSON.stringify(f.stats)===snapshot,'Repeating paused time preserves effect observations');
+ for(let i=2;i<50;i++)f.emit({id:i,position:[i,1,-5]});f.update({time:.6,quality:'cinematic',xr:true});check(f.stats.activeVolumes<=2&&f.stats.activeSparks<=32&&f.stats.lights<=1,'XR caps all volume, particle and lighting budgets');
+ f.update({time:.7,quiet:true});f.emit({id:55,position:[0,1,-5]});f.update({time:.8});check(f.stats.activeSparks===0&&f.stats.lights===0,'Quiet uses subdued volume feedback without moving embers or lights');
+ check(!f.emitter('jet',{position:[0,1,-5]}),'Quiet rejects sustained flame jets');f.reset();check(f.stats.activeVolumes===0&&f.stats.activeSparks===0,'Reset clears effects without resetting another scene');
+ f.update({time:0,quiet:false,xr:false});check(f.emitter('jet',{position:[0,1,-5],direction:[1,0,0],length:3}),'Standalone jet API accepts an explicit oriented emitter');
+ const jet=f.group.children.find(c=>c.isMesh&&c.visible&&c.name!=='Currentworks embers');check(jet.position.distanceTo(new T.Vector3(1.5,1,-5))<1e-9,'Jet box extends from the nozzle along its supplied axis');
+ f.stop('jet');f.update({time:.9});check(f.stats.activeVolumes===0,'Stopped emitter cannot burn forever');
+ const resources=new Set();f.group.traverse(o=>{if(o.geometry)resources.add(o.geometry);if(o.material)resources.add(o.material);});resources.add(flame.material.uniforms.fireNoise.value);
+ let freed=0;resources.forEach(r=>r.addEventListener('dispose',()=>freed++));const unrelated=new T.Group();scene.add(unrelated);
+ f.dispose();f.dispose();check(freed===resources.size,'Every owned geometry/material/texture is disposed exactly once');check(scene.children.length===1&&scene.children[0]===unrelated,'Disposal leaves other scene owners untouched');
+ check(!f.update({time:10})&&!f.emit({position:[0,0,0]})&&!f.stop('jet'),'Disposed module cannot be resurrected by later input');
+ const g=F.create(T,{lights:false});check(!g.group.children.some(o=>o.isLight),'Hosts can opt out of dynamic light ownership');g.dispose();
+ // Read-only adapter driven by an ordinary pure-core model journey.
+ const host={object3D:new T.Scene(),components:{'river-game':{quality:'balanced',dock:{prefs:{opacity:.24}}}},is:()=>false};
+ const art=RiverArt.build(T,host),run=RiverCore.create('duck-armada',true);run.mode='playing';
+ let destroyed=0;
+ for(let t=0;t<18;t+=.05){RiverCore.advance(run,t);const target=run.entities.find(n=>!n.dead&&['catapult','boat','plane'].includes(n.type));
+  if(target){const at=RiverCore.position(run,target),from=[0,1.25,0],aim=new T.Vector3(...at).sub(new T.Vector3(...from)).normalize().toArray();RiverCore.shoot(run,0,from,aim);}
+  const before=JSON.stringify(run);art.update(run,t,.05,false,false,true);if(JSON.stringify(run)!==before)throw Error('Fire adapter changed core state');
+  destroyed=run.events.filter(e=>e.type==='destroy'&&['catapult','boat','plane','fighter','bomb','boss'].includes(e.kind)).length;
+ }
+ check(destroyed>0&&art.stats.fire.emitted>0,'Real core destruction events drive the integrated fire without state mutation');
+ const emitted=art.stats.fire.emitted;art.update(run,run.time,0,false,false,false);art.update(run,run.time,0,false,false,false);
+ check(art.stats.fire.emitted===emitted,'Repeated event observations never replay the same destruction');
+ art.reset();check(art.stats.fire.activeVolumes===0&&art.stats.water.liveDisturbances===0,'One host reset clears both independent graphics modules');
+ art.dispose();check(art.stats.fire.disposed&&art.stats.water.disposed,'Host teardown releases both water and fire');
+ window.fireObjectReport={passed:checks.length,checks,threeRevision:T.REVISION,scope:'Actual Three objects and per-eye matrices without a WebGL context; not physical XR or a rendered battle.'};})();

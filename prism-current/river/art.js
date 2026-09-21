@@ -1,4 +1,4 @@
-/* Original River Prism toy models, Currentworks modular water and space arena.
+/* Original River Prism toy models, Currentworks modular water/fire and space arena.
    Shared merged geometry, capped effects, no imported imagery or screen samples. */
 (function(root){'use strict';
  function build(T,scene){const C=RiverCore,stage=new T.Group(),environment=new T.Group(),actors=new T.Group(),fx=new T.Group();stage.add(environment,actors,fx);scene.object3D.add(stage);
@@ -41,6 +41,7 @@
   const waterSystem=SVGNWater.create(T,{width:10.5,length:42,centerZ:-22,level:-.18,preset:'river'});
   const river=waterSystem.mesh;environment.add(river);
   const wakeBodies=[];
+  const fireSystem=SVGNFire.create(T);fx.add(fireSystem.group);
   const banks=new T.Group();environment.add(banks);const bankParts=[];
   for(const side of[-1,1])for(let i=0;i<16;i++){const z=-i*2.8-2;bankParts.push(point(box,side*6,-.02,z,2.2,.65,2.9,0,0,0,0x54755a));bankParts.push(point(sphere,side*(5.1+(i%3)*.14),.18,z,.4,.3,.7,0,0,0,i%2?0x91b79a:0x7a9a83));if(i%2===0)for(let j=0;j<3;j++)bankParts.push(point(cone,side*(5.7+j*.19),.75+j*.18,z+j*.12,.12,1.6,.1,0,0,side*.1,0x87b893));}
   banks.add(new T.Mesh(merge(bankParts),base));
@@ -68,7 +69,9 @@
    }for(const id of active.keys())if(!ids.has(id))release(id);
    waterSystem.update({time,level:waterLevel,visible:!space,quiet,xr:scene.is('vr-mode')||ar,
     opacity:ar?(g?.dock?.prefs.opacity??.38):1,quality:g?.quality||'balanced',bodies:wakeBodies});
+   fireSystem.update({time,quiet,xr:scene.is('vr-mode')||ar,quality:g?.quality||'balanced'});
    for(const e of s?.events||[]){if(e.id<=lastEvent)continue;lastEvent=e.id;
+    if(e.type==='destroy'&&e.position&&['catapult','boat','plane','fighter','bomb','boss'].includes(e.kind))fireSystem.emit({id:e.id,position:e.position,radius:e.kind==='boss'?1.2:e.kind==='bomb'?.45:.70,life:e.kind==='boss'?2:1.65});
     if(!space&&e.type==='destroy'&&e.position&&['catapult','boat','boss'].includes(e.kind))waterSystem.splash(e.position[0]/river.scale.x,e.position[2],e.kind==='boss'?1:.65,e.kind==='boss'?.65:.24);
     if(e.type==='laser'){const l=lasers[li++%lasers.length],a=new T.Vector3(...e.start),b=new T.Vector3(...e.end),d=b.clone().sub(a);l.m.position.copy(a).add(b).multiplyScalar(.5);l.m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.clone().normalize());l.m.scale.y=d.length();l.m.material=handMats[e.hand];l.born=time;l.m.visible=true;}
     if(['destroy','block','damage','hit','armored'].includes(e.type)&&e.position){const f=effects[ei++%effects.length];f.born=time;f.type=e.reason==='slice'?'slice':'ring';f.dir=e.dir||0;f.g.position.fromArray(e.position);f.g.visible=true;f.g.scale.setScalar(1);f.ring.material=e.type==='damage'?danger:handMats[e.hand||0];f.ring.visible=f.type!=='slice';f.a.visible=f.b.visible=f.type==='slice';f.a.material=f.b.material=handMats[e.hand||0];f.a.scale.set(.11,.20,.20);f.b.scale.copy(f.a.scale);}
@@ -78,10 +81,10 @@
   }
   const zaxis=new T.Vector3(0,0,1),q=new T.Quaternion();
   function weapon(h,pose,shield){const w=weapons[h];w.g.visible=!!pose;w.shield.visible=!!shield?.active;if(pose){w.g.position.fromArray(pose.a);const d=new T.Vector3(...pose.b).sub(w.g.position),reach=d.length();w.g.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),d.normalize());w.blade.position.z=-(reach+.06)/2;w.blade.scale.z=Math.max(.01,reach-.06);w.blade.visible=!shield?.active;}if(shield?.active){w.shield.position.fromArray(shield.center);w.shield.quaternion.setFromUnitVectors(zaxis,new T.Vector3(...shield.normal).normalize());}}
-  function reset(){waterSystem.reset();lastEvent=0;for(const id of active.keys())release(id);for(const f of effects)f.g.visible=false;for(const l of lasers)l.m.visible=false;for(const h of[0,1])weapon(h,null,null);}
+  function reset(){waterSystem.reset();fireSystem.reset();lastEvent=0;for(const id of active.keys())release(id);for(const f of effects)f.g.visible=false;for(const l of lasers)l.m.visible=false;for(const h of[0,1])weapon(h,null,null);}
   function panel(w,h){const c=document.createElement('canvas');c.width=1200;c.height=Math.round(1200*h/w);const context=c.getContext('2d'),t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;textures.push(t);const material=mat(new T.MeshBasicMaterial({map:t,transparent:true,depthTest:false,depthWrite:false,side:T.DoubleSide})),mesh=new T.Mesh(geo(new T.PlaneGeometry(w,h)),material);mesh.renderOrder=15;stage.add(mesh);return {canvas:c,context,texture:t,mesh};}
-  function dispose(){if(disposed)return;disposed=true;waterSystem.dispose();stage.removeFromParent();for(const g of geometry)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
-  return {stage,update,weapon,reset,panel,dispose,get stats(){return {active:active.size,models:models.size,effectSlots:effects.length,laserSlots:lasers.length,water:waterSystem.stats,disposed};}};
+  function dispose(){if(disposed)return;disposed=true;waterSystem.dispose();fireSystem.dispose();stage.removeFromParent();for(const g of geometry)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
+  return {stage,update,weapon,reset,panel,dispose,get stats(){return {active:active.size,models:models.size,effectSlots:effects.length,laserSlots:lasers.length,water:waterSystem.stats,fire:fireSystem.stats,disposed};}};
  }
  root.RiverArt={build};
 })(globalThis);

@@ -3,7 +3,7 @@
   "collection": "Currentworks environment modules",
   "modules": {
     "water": {"status": "implemented", "version": "0.1.0", "script": "water.js", "module": "water.mjs", "global": "SVGNWater", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false},
-    "fire": {"status": "planned-next-pass", "entry": null},
+    "fire": {"status": "implemented-awaiting-native-acceptance", "version": "0.1.0", "script": "fire.js", "module": "fire.mjs", "global": "SVGNFire", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false},
     "trees": {"status": "planned-following-pass", "entry": null}
   },
   "publication": "See CHECKPOINT.md and exact source/public workflow outcomes; code presence is not physical-device acceptance."

@@ -8,5 +8,11 @@
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html",
-  "graphics": {"water": "Currentworks Water 0.1.0", "entry": "modules/environment/water.js", "pass": 1}
+  "graphics": {
+    "water": "Currentworks Water 0.1.0",
+    "entry": "modules/environment/water.js",
+    "pass": 2,
+    "fire": "Currentworks Fire 0.1.0",
+    "fireEntry": "modules/environment/fire.js"
+  }
 }
