@@ -169,7 +169,7 @@ jobs:
           retention-days: 30
   published:
     needs: [model, browser, entry]
-    if: github.ref == 'refs/heads/master'
+    if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -227,7 +227,7 @@ jobs:
           retention-days: 30
   release:
     needs: published
-    if: github.ref == 'refs/heads/master' && needs.published.result == 'success'
+    if: always() && github.ref == 'refs/heads/master' && needs.published.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: write
