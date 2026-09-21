@@ -9,11 +9,11 @@ permissions:
   id-token: write
 concurrency:
   group: pages-rescue-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    runs-on: macos-15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,8 +25,8 @@ jobs:
           path: .
   deploy:
     needs: build
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    runs-on: macos-15
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
