@@ -22,7 +22,7 @@ with sync_playwright() as pw:
   if KIND=='hands':p.evaluate("questDevice.pinch('right',true)")
   else:p.evaluate("questDevice.pulse('right',0)")
   if id=='exit':
-   wait('!Rainward.snapshot().xr.active');p.evaluate("()=>{questDevice.pinch('right',false);questDevice.button('right',0,false);}");return
+   wait('!Rainward.snapshot().xr.active');p.evaluate("()=>{if(questDevice.kind==='hands')questDevice.pinch('right',false);else questDevice.button('right',0,false);}");return
   frames(3)
   if KIND=='hands':p.evaluate("questDevice.pinch('right',false)");frames(3)
  def select(id):
