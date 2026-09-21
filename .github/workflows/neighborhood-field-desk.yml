@@ -1,0 +1,143 @@
+name: Neighborhood Field Desk verification
+on:
+  push:
+    branches: [master]
+    paths: ['svgn-planet/**', '.github/workflows/neighborhood-field-desk.yml']
+  workflow_call:
+    inputs:
+      source_ref:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            level-design-library
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record exact source and verify inherited models
+        run: |
+          git rev-parse HEAD > SOURCE-COMMIT.txt
+          tar -czf field-source.tar.gz svgn-planet little-planet level-design-library .github/workflows SOURCE-COMMIT.txt
+          set -o pipefail
+          node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee field-model.txt
+          for f in svgn-planet/*.mjs; do node --check "$f"; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-field-source
+          path: |
+            field-source.tar.gz
+            field-model.txt
+          retention-days: 30
+  bytes:
+    needs: model
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: svgn-planet
+      - name: Compare every published game file to this checkout
+        run: |
+          mkdir -p field-publication
+          python - <<'PY'
+          import concurrent.futures,hashlib,json,pathlib,subprocess,time,urllib.request
+          root=pathlib.Path('svgn-planet');commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          files=sorted(p for p in root.rglob('*') if p.is_file() and not any(x.startswith('.') or x in ('tests','tools','node_modules','__pycache__') for x in p.relative_to(root).parts) and p.suffix not in ('.py','.pyc'))
+          expected={p.as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files};rows={}
+          def check(name):
+              row={'path':name,'expected':expected[name],'matches':False}
+              try:
+                  request=urllib.request.Request('https://v5ma.github.io/'+name+'?field='+commit+'&t='+str(time.time_ns()),headers={'Cache-Control':'no-cache'})
+                  with urllib.request.urlopen(request,timeout=20) as r:
+                      assert r.status==200
+                      row['sha256']=hashlib.sha256(r.read()).hexdigest()
+                  row['matches']=row['sha256']==row['expected']
+              except Exception as e:row['error']=str(e)
+              return row
+          for attempt in range(80):
+              pending=[n for n in expected if not rows.get(n,{}).get('matches')]
+              if not pending:break
+              with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+                  for row in pool.map(check,pending):rows[row['path']]=row
+              count=sum(r['matches'] for r in rows.values());print('Public files:',count,'/',len(files),flush=True)
+              receipt={'commit':commit,'version':'0.16.1','files':[rows[n] for n in sorted(rows)],'success':count==len(files)}
+              pathlib.Path('field-publication/bytes.json').write_text(json.dumps(receipt,indent=2))
+              if receipt['success']:break
+              time.sleep(10)
+          assert receipt['success'],'Actual public files did not match the accepted checkout'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-field-public-bytes
+          path: field-publication/
+          retention-days: 30
+  browser:
+    needs: [model, bytes]
+    if: always() && needs.model.result == 'success' && (needs.bytes.result == 'success' || needs.bytes.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [first-person-vr, third-person-vr, diorama-first-vr, diorama-third-vr, first-person-ar, third-person-ar, diorama-first-ar, diorama-third-ar]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+          persist-credentials: false
+          sparse-checkout: svgn-planet
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser harness
+        run: |
+          python -m pip install playwright==1.55.0 pillow
+          python -m playwright install --with-deps chromium
+      - name: Test actual render, native menus, triggers, mission map and exit
+        env:
+          FIELD_MODE: ${{ matrix.mode }}
+          TEST_PUBLIC: ${{ github.ref == 'refs/heads/master' }}
+        run: |
+          if [ "$TEST_PUBLIC" = true ]; then
+            export FIELD_BASE=https://v5ma.github.io/svgn-planet/
+          else
+            python -u -m http.server 8765 --bind 127.0.0.1 > server.log 2>&1 &
+            SERVER_PID=$!
+            trap 'kill "$SERVER_PID" || true' EXIT
+            python - <<'PY'
+          import time,urllib.request
+          for i in range(30):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8765/svgn-planet/',timeout=2) as r:assert r.status==200
+                  break
+              except Exception:
+                  if i==29:raise
+                  time.sleep(1)
+          PY
+          fi
+          python svgn-planet/field-desk-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: neighborhood-field-${{ matrix.mode }}
+          path: |
+            field-results/
+            server.log
+          retention-days: 30
