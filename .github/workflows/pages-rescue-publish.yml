@@ -10,7 +10,7 @@ permissions:
 concurrency:
   group: pages-rescue-publish
   cancel-in-progress: true
-# Reuse the established publisher for the Dino .3 recovery; preserve all sibling work.
+# Publish current master, never an older game snapshot; retain all sibling work.
 jobs:
   build:
     runs-on: macos-15
@@ -29,6 +29,7 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD
           shasum -a 256 dino-atlas/spatial-console.js dino-atlas/classic-xr.css dino-atlas/tidegate.css
+          shasum -a 256 leonardos-guild/campaign-entry.mjs leonardos-guild/field-status.mjs leonardos-guild/xr-field-desk.mjs leonardos-guild/release.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
