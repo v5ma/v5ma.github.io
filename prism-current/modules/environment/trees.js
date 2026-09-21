@@ -1,11 +1,11 @@
-/* Currentworks Trees 0.1.0. Original seeded geometry and host-clock wind.
+/* Currentworks Trees 0.1.1. Original seeded geometry and host-clock wind.
  * Supply the existing THREE namespace; no renderer, clock, DOM, input or storage.
  * All roots and geometry are FOREST-GROUP-LOCAL. No collision or gameplay owner.
  * Skeleton is generated once, all three detail meshes are built before playing.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.0',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
+ const VERSION='0.1.1',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
  const PRESETS=Object.freeze(['palm','alder','willow']);
  const DETAIL=Object.freeze([
   Object.freeze({name:'near',radial:8,pathStride:1,leafStride:1,leafScale:1}),
@@ -36,7 +36,7 @@
   const phase=rng()*TAU,bend=[(rng()-.5)*h*.16,0,(rng()-.5)*h*.16];
   const trunk=Array.from({length:11},(_,i)=>{const t=i/10;return [bend[0]*t*t,h*t*(d.preset==='palm'?.87:.94),bend[2]*t*t];});
   paths.push({points:trunk,radius:h*(d.preset==='palm'?.034:.043),tip:h*.007,shade:.92});
-  function leaf(base,tip,width,span,shade){leaves.push({base,tip,width,span:norm(span),shade});}
+  function leaf(base,tip,width,span,shade,sample=leaves.length){leaves.push({base,tip,width,span:norm(span),shade,sample});}
   if(d.preset==='palm'){
    const crown=trunk.at(-1),fronds=12;
    for(let j=0;j<fronds;j++){
@@ -46,9 +46,9 @@
     for(let k=1;k<18;k++)for(const s of[-1,1]){
      const t=k/18,base=pathPoint(p,t),len=h*(.055+.105*Math.sin(Math.PI*t)**.8)*( .86+rng()*.24);
      const tip=add(base,add(mul(side,len*s),add(mul(dir,len*.27),[0,-len*.35,0])));
-     leaf(base,tip,len*.12,dir,.83+rng()*.36);
+     leaf(base,tip,len*.12,dir,.83+rng()*.36,k);
     }
-    leaf(pathPoint(p,.90),add(p.at(-1),mul(dir,h*.035)),h*.012,side,1.05);
+    leaf(pathPoint(p,.90),add(p.at(-1),mul(dir,h*.035)),h*.012,side,1.05,0);
    }
   }else{
    const branches=d.preset==='willow'?8:7;
@@ -95,7 +95,8 @@
    }
    for(let i=0;i<pts.length-1;i++)for(let j=0;j<r;j++){const a=start+i*(r+1)+j,b=a+r+1;wood.index.push(a,a+1,b,a+1,b+1,b);}
   }
-  for(let i=0;i<sk.leaves.length;i+=lod.leafStride){
+  for(let i=0;i<sk.leaves.length;i++){
+   if(sk.leaves[i].sample%lod.leafStride!==0)continue;
    const l=sk.leaves[i],axis=sub(l.tip,l.base),mid=add(l.base,mul(axis,.45)),span=mul(l.span,l.width*.5*lod.leafScale),tip=add(l.base,mul(axis,lod.leafScale)),n=norm(cross(axis,l.span)),bend=mul(n,Math.hypot(...axis)*.065),col=RGB[d.preset].map(c=>c*l.shade);
    const points=[l.base,sub(mid,span),add(mid,bend),add(mid,span),tip],uv=[[.5,0],[0,.45],[.5,.45],[1,.45],[.5,1]],start=foliage.position.length/3;
    for(let j=0;j<5;j++)vertex(foliage,points[j],col.map(c=>c*(j===4?1.12:1)),uv[j]);

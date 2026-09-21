@@ -3,16 +3,19 @@
   "name": "Prism Current",
   "date": "2026-09-21",
   "engine": "A-Frame 1.8.0",
-  "edition": "River Prism / Currentworks Water + Fire",
-  "scope": "Preserves Rotunda, water, controls, combat and saved progress. Adds independent event-driven volume fire, smoke and embers. Preloads fire texture/programs inside cancellable loading before soundtrack playback; repeated preparation shares its pending work. Cosmetic effects do not change damage rules. Fire 0.1.3 exercises density, geometry and first drawing into a disposable loading target before audio; no extra render target remains in gameplay.",
+  "edition": "River Prism / Currentworks Water + Fire + Trees",
+  "scope": "Preserves Rotunda, water, controls, combat and saved progress. Adds independent event-driven volume fire, smoke and embers. Preloads fire texture/programs inside cancellable loading before soundtrack playback; repeated preparation shares its pending work. Cosmetic effects do not change damage rules. Fire 0.1.3 exercises density, geometry and first drawing into a disposable loading target before audio; no extra render target remains in gameplay. Trees 0.1.1 adds eight seeded bank-side trees with host-clock wind and bounded detail levels. AR and Mothership hide the trees; the existing water, fire, controls and combat rules are unchanged.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html",
   "graphics": {
     "water": "Currentworks Water 0.1.0",
     "entry": "modules/environment/water.js",
-    "pass": 2,
+    "pass": 3,
     "fire": "Currentworks Fire 0.1.3",
-    "fireEntry": "modules/environment/fire.js"
+    "fireEntry": "modules/environment/fire.js",
+    "trees": "Currentworks Trees 0.1.1",
+    "treesEntry": "modules/environment/trees.js",
+    "passNumber": 3
   }
 }
