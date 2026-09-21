@@ -5,13 +5,22 @@ on:
     paths: ['.github/workflows/sky-cycle-route-entry-apply.yml']
 permissions:
   contents: write
+concurrency:
+  group: sky-cycle-route-entry-integration
+  cancel-in-progress: false
 jobs:
   apply:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: sky-cycle/route-entry-0.27
       - name: Verify exact patch and owned paths
         run: |
+          if [ ! -f .github/sky-route-entry.b64 ]; then
+            echo 'Checkpoint already applied; leaving branch unchanged.'
+            exit 0
+          fi
           python3 - <<'PY'
           from pathlib import Path
           import base64,lzma,hashlib
