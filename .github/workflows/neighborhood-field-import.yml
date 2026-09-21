@@ -1,0 +1,69 @@
+name: Import verified Neighborhood Field Desk source
+on:
+  push:
+    branches: [neighborhood-missions/field-desk-20260920]
+    paths: ['.github/upgrades/neighborhood-field-desk-*', '.github/workflows/neighborhood-field-import.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/field-desk-20260920'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      commit: ${{ steps.install.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            svgn-planet
+            little-planet
+            .github/upgrades
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check preimages and full content hash before applying source
+        id: install
+        run: |
+          python - <<'PY'
+          import base64,hashlib,json,pathlib,subprocess,zlib
+          prefix=pathlib.Path('.github/upgrades/neighborhood-field-desk-')
+          manifest=json.loads(pathlib.Path(str(prefix)+'manifest.json').read_text())
+          parts=[pathlib.Path(str(prefix)+str(i)+'.b64').read_text().strip() for i in range(1,4)]
+          # Repair the identified one-character text transcription only. The
+          # immutable patch and every resulting file must still match their hashes.
+          parts[1]=parts[1].replace('AKY7mzko2Q1','AKY7m1ko2Q1')
+          for i,s in enumerate(parts,1):print('Part',i,len(s),hashlib.sha256(s.encode()).hexdigest(),flush=True)
+          patch=zlib.decompress(base64.b64decode(''.join(parts),validate=True))
+          assert hashlib.sha256(patch).hexdigest()==manifest['patchSHA256'],'Source transfer differs from the reviewed patch'
+          paths={line.split()[2][2:] for line in patch.decode().splitlines() if line.startswith('diff --git ')}
+          assert paths==set(manifest['preimages']) and all(p.startswith('svgn-planet/') and '..' not in pathlib.PurePosixPath(p).parts for p in paths)
+          for path,expected in manifest['preimages'].items():
+              p=pathlib.Path(path)
+              assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==expected,'Changed preimage: '+path
+          subprocess.run(['git','apply','--check','--unidiff-zero','-'],input=patch,check=True)
+          subprocess.run(['git','apply','--unidiff-zero','-'],input=patch,check=True)
+          for path,expected in manifest['outputSHA256'].items():assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()==expected,'Output differs: '+path
+          legacy=json.loads(pathlib.Path('svgn-planet/legacy-layout.json').read_text())
+          for row in legacy['files']:assert hashlib.sha256((pathlib.Path('svgn-planet')/row['path']).read_bytes()).hexdigest()==row['sha256'],'Legacy change: '+row['path']
+          subprocess.run('node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs > field-import-tests.txt',shell=True,check=True)
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','svgn-planet'],check=True)
+          subprocess.run(['git','commit','-m','feat(neighborhood): summonable Field Desk, wrist missions and explicit riding triggers'],check=True)
+          subprocess.run(['git','push','origin','HEAD:neighborhood-missions/field-desk-20260920'],check=True)
+          PY
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: field-import-model
+          path: field-import-tests.txt
+          retention-days: 30
+  verify:
+    needs: source
+    uses: ./.github/workflows/neighborhood-field-desk.yml
+    with:
+      source_ref: ${{ needs.source.outputs.commit }}
