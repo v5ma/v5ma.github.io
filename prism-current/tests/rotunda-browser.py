@@ -72,14 +72,21 @@ with sync_playwright() as pw:
    click(p,0 if mode=='ar' else 2);p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().rotunda.progress>.99')
    check(not p.evaluate('Array.isArray(TestXR.state.session.inputSources)'),mode+': AR/VR launch uses the native-shaped input collection')
    def aim(i):
+    p.wait_for_function('River.snapshot().rotunda.open&&River.snapshot().rotunda.progress>=1')
+    frames()
     p.evaluate('p=>TestXR.point("left",p)',worldpoint(p,i));p.wait_for_function('(i)=>River.snapshot().xrUI.hover[0]===i',arg=i,timeout=10000)
    def select(i):
-    aim(i);p.evaluate('TestXR.select("left",true)');p.wait_for_timeout(180);p.evaluate('TestXR.select("left",false)');p.wait_for_timeout(180)
+    p.evaluate('TestXR.select("left",false)');frames()
+    p.wait_for_timeout(140) # Honor the real 120ms action debounce, never override it.
+    aim(i);frames();count=snapshot()['xrUI']['actions']
+    p.evaluate('TestXR.select("left",true)')
+    p.wait_for_function('(n)=>River.snapshot().xrUI.actions===n+1',arg=count,timeout=5000)
+    p.evaluate('TestXR.select("left",false)')
+    if snapshot()['immersive']:frames()
+    if 8<=i<12:p.wait_for_function('(v)=>River.snapshot().rotunda.page===v',arg=['play','layout','sound','help'][i-8],timeout=5000)
    def frames():
     p.evaluate("""async()=>{const session=TestXR.state.session;const frame=()=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('XR input frame timeout')),5000);session.requestAnimationFrame(()=>{clearTimeout(timer);resolve();});});await frame();await frame();}""")
    def button(hand,i):
-    # Polled buttons must be visible to the rendered input loop, not merely
-    # pressed and released between two slow software-rendered frames.
     p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,i]);frames()
     p.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,i]);frames()
     p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,i]);frames()
@@ -87,8 +94,6 @@ with sync_playwright() as pw:
    check(True,mode+': all rendered buttons, tabs, reset and HUD controls accept the ray')
    p.evaluate('TestXR.away();TestXR.axes("right",0,0)');frames()
    for expected in [12,11,10]:
-    # Observe one actual navigation result before releasing the stick.
-    # Keep the exact expected sequence; never assign focus or invoke actions.
     p.evaluate('TestXR.axes("right",-1,0)')
     p.wait_for_function('(i)=>River.snapshot().xrUI.focus===i&&River.snapshot().xrUI.focusMode==="stick"',arg=expected,timeout=5000)
     p.evaluate('TestXR.axes("right",0,0)');frames()
@@ -113,7 +118,7 @@ with sync_playwright() as pw:
    p.evaluate('TestXR.state.head[0]+=1.6;TestXR.state.head[2]+=1.1;for(const h of ["left","right"]){TestXR.state.hands[h][0]+=1.6;TestXR.state.hands[h][2]+=1.1;}');p.wait_for_timeout(550)
    check(snapshot()['phase']=='playing',mode+': sidestepping beyond the old arbitrary rectangle does not pause the game')
    button('right',5);p.wait_for_function("River.snapshot().phase==='paused'");p.wait_for_timeout(300);before=snapshot()
-   select(10);select(0);check(snapshot()['result']==before['result'] and snapshot()['time']==before['time'],mode+': music change does not clear progress or restart sound time')
+   select(10);p.wait_for_function('River.snapshot().rotunda.page==="sound"');select(0);check(snapshot()['result']==before['result'] and snapshot()['time']==before['time'],mode+': music change does not clear progress or restart sound time')
    select(8);select(3);p.wait_for_function('!River.snapshot().immersive');check(snapshot()['phase']=='paused' and snapshot()['result']==before['result'],mode+': ending XR returns to a usable browser page with this battle still paused')
    p.wait_for_timeout(300);click(p,0);p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated');p.wait_for_timeout(300);check(snapshot()['phase']=='paused' and snapshot()['result']==before['result'],mode+': re-entry recovers the same run without automatically resuming')
    button('left',5);p.wait_for_function("River.snapshot().phase==='playing'");p.evaluate('TestXR.hide(true)');p.wait_for_function("River.snapshot().phase==='paused'");p.evaluate('TestXR.hide(false)');p.wait_for_timeout(200)
