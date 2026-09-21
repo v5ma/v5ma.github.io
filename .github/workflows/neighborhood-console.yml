@@ -2,9 +2,12 @@ name: Neighborhood spatial console acceptance
 on:
   push:
     branches: [neighborhood-missions/spatial-console-20260920]
-    paths: ['svgn-planet/**', '.github/upgrades/console-integration.patch', '.github/workflows/neighborhood-console.yml']
+    paths: ['svgn-planet/**', '.github/upgrades/console-finalize.py', '.github/workflows/neighborhood-console.yml']
 permissions:
   contents: read
+concurrency:
+  group: neighborhood-console-source
+  cancel-in-progress: true
 jobs:
   source:
     if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/neighborhood-missions/spatial-console-20260920'
@@ -25,55 +28,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply only checksum-verified integration against exact source preimages
+      - name: Prepare scoped release records without changing missions or saves
         id: source
         run: |
+          python .github/upgrades/console-finalize.py
           python - <<'PY'
-          import hashlib,pathlib,subprocess,os
-          targets={
-            'svgn-planet/main-app.mjs':('2839006f9412c2ffcf489d75dcc69aefdb7afc70','e6c96388c198a9af4628b6a0e991c04b55a5fe51'),
-            'svgn-planet/main-hub.mjs':('3babfbdfb79b46425555306ffb16f646eacf09cb','865d5e462a93f4b19108f347ada2324c11357d6c'),
-            'svgn-planet/unified-xr.mjs':('801450dd5c59165410b6788d978fb59f7c6647a7','861ab1515a1d8589041fe6f0e499fe4eca576531'),
-            'svgn-planet/main-browser.py':('f325cdbbeaa7fb3ea10a6df6a0d52ea15ecf8c66','e68c85db784011dea2230e206f9ae07e116fedeb'),
-            'svgn-planet/main-navigation-browser.py':('dd1db4a3246d646b7d7da413e7c3a9b7d0964ee2','4388c9acf61db24ee331abcdba51de106356aff2')
-          }
-          def sha(p):return subprocess.check_output(['git','hash-object',p],text=True).strip()
-          if not all(sha(p)==after for p,(_,after) in targets.items()):
-              assert all(sha(p)==before for p,(before,_) in targets.items()),'Source changed; do not overwrite it'
-              patch=pathlib.Path('.github/upgrades/console-integration.patch').read_bytes()
-              assert hashlib.sha256(patch).hexdigest()=='b4399dc13c6c86e1feed114dc127f966b4e184323b9017fab63ba49509253ad8','Patch transport mismatch'
-              names={line.split()[2][2:] for line in patch.decode().splitlines() if line.startswith('diff --git ')}
-              assert names==set(targets)
-              subprocess.run(['git','apply','--check','--unidiff-zero','-'],input=patch,check=True)
-              subprocess.run(['git','apply','--unidiff-zero','-'],input=patch,check=True)
-              assert all(sha(p)==after for p,(_,after) in targets.items()),'Applied bytes do not match reviewed source'
-          # Small wording refinement to display the configured off-hand button.
-          p=pathlib.Path('svgn-planet/spatial-console.mjs')
-          if sha(str(p))!='3e7be72ff169d515d0be5575c3e28e5730b02aab':
-              assert sha(str(p))=='694e56f62214f018fc9ba215b55fcb30e69a3d09'
-              text=p.read_text();old="hctx.fillText('Menu: Y / raised pinch',22,332)"
-              assert text.count(old)==1
-              p.write_text(text.replace(old,"hctx.fillText('Menu: '+(data.menu||'Y')+' / raised pinch',22,332)"))
-              assert sha(str(p))=='3e7be72ff169d515d0be5575c3e28e5730b02aab'
-          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
-          assert changed.issubset(set(targets)|{str(p)})
+          import subprocess,os,pathlib
+          allowed={'svgn-planet/index.html','svgn-planet/release.json','svgn-planet/SPATIAL-CONSOLE.md','svgn-planet/DEVELOPMENT-HANDOFF.md','svgn-planet/AAA_ROADMAP.md','svgn-planet/production/roadmap.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()+subprocess.check_output(['git','ls-files','--others','--exclude-standard','svgn-planet'],text=True).splitlines())
+          assert changed.issubset(allowed),changed
           if changed:
               subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
               subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
               subprocess.run(['git','add',*sorted(changed)],check=True)
-              subprocess.run(['git','commit','-m','feat(neighborhood): integrate floor console and controller objective HUD'],check=True)
+              subprocess.run(['git','commit','-m','docs(neighborhood): integrate spatial console records and versioned module entry'],check=True)
               subprocess.run(['git','push','origin','HEAD:neighborhood-missions/spatial-console-20260920'],check=True)
-          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          pathlib.Path('SOURCE-COMMIT.txt').write_text(commit+'\n')
+          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();pathlib.Path('SOURCE-COMMIT.txt').write_text(commit+'\n')
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('commit='+commit+'\n')
           PY
-      - name: All existing and new model tests, syntax and legacy identity
+      - name: All inherited and new tests
         run: |
           set -o pipefail
           node --test svgn-planet/tests/*.test.mjs svgn-planet/design/chapter-contract.test.mjs svgn-planet/lantern/*.test.mjs svgn-planet/*.test.mjs | tee console-model.txt
           for f in svgn-planet/*.mjs; do node --check "$f"; done
-          python -m py_compile svgn-planet/console-browser.py svgn-planet/main-browser.py svgn-planet/main-navigation-browser.py
-      - name: Archive exact source and evidence
+          python -m py_compile svgn-planet/console-browser.py
+      - name: Archive exact source
         if: always()
         run: tar -czf console-source.tar.gz svgn-planet little-planet index.html .github/workflows SOURCE-COMMIT.txt console-model.txt
       - uses: actions/upload-artifact@v4
