@@ -39,6 +39,7 @@ jobs:
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install chromium
       - name: Require exact published root runtime before either journey
+        id: public
         run: python -u leonardos-guild/tests/verify-desk-public.py
       - name: Render the retained Quarter in separate eye attachments
         env:
