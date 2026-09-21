@@ -162,6 +162,9 @@ jobs:
               rewired = numbers >= (0, 12, 0)
               workflow = '.github/workflows/aether-rewired.yml' if rewired else '.github/workflows/aether-grounded.yml'
               prefix = 'aether-rewired-' if rewired else 'aether-grounded-'
+              if numbers == (0, 15, 0):
+                  workflow = '.github/workflows/aether-rotunda.yml'
+                  prefix = 'aether-rotunda-'
               runs = api(f'repos/{repo}/actions/runs?head_sha={head}&status=success&per_page=100')['workflow_runs']
               candidates = [r for r in runs if r['path'] == workflow and r['head_sha'] == head
                             and r['status'] == 'completed' and r['conclusion'] == 'success'
@@ -178,6 +181,9 @@ jobs:
               if numbers >= (0, 14, 0):
                   reports.update({'portal-render':'portal-render.json','portal-game':'portal-browser.json'})
                   minima.update({'portal-render':7,'portal-game':23})
+              if numbers == (0, 15, 0):
+                  reports = {'rotunda':'rotunda-browser.json','window':'window-browser.json','portal':'portal-browser.json','render':'portal-render.json','grounded':'grounded-browser.json','controller':'controller-journey-report.json'}
+                  minima = {'rotunda':28,'window':59,'portal':23,'render':9,'grounded':21,'controller':29}
               expected = json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
               for name, digest in expected.items():
                   if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
