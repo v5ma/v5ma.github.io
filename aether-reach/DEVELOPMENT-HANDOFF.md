@@ -1,3 +1,9 @@
+# Current continuation: Field Rotunda 0.15.0 owner playtest
+
+Read FIELD-ROTUNDA.md and the latest release receipt before continuing. The owner's spatial UI request is implemented as a room-anchored summonable rotunda, controller-side status, raised spatial button hit targets and saved explicit transform controls. Third-person window input adds horizontal-friendly aiming and visual echoes of genuine shots. First-person aiming, world-window geometry and save-v1 are preserved. The private hub is not published or integrated; no travel portals in Aether. Full desktop UI replacement and free grab transforms remain outside this bounded slice.
+
+Reviewed source: master 7ccc6cceb43f1c3031454c8dc30b52646718baff, retaining released 0.14.1 Aether runtime. X12 integrates this work into the existing roadmap. See ../release-receipts/aether-v0.15.0-20260920.json for actual native/public/source-backup evidence when published. Hardware and human approval stay open. Do not repeat prior transfer branches. Historical notes follow.
+
 # Current continuation: Clear Window 0.14.1
 
 Physical user feedback supersedes the prior 0.14.0 synthetic usability result: the AR diorama remained obstructed and simultaneous combat controls were unusable. Read CLEAR-WINDOW.md and the new release receipt before continuing. X11 is a repair of X10, not a new level. Keep physical acceptance open.

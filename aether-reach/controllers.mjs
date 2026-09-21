@@ -1,3 +1,4 @@
+import {stepDioramaLook} from './diorama-aim.mjs';
 import {dioramaMove} from './diorama-core.mjs';
 /* Controller-first input. Menus use fixed A/B/D-pad bindings even after remapping.
  * A gamepad never needs pointer lock or an OS popup to play this game. */
@@ -55,7 +56,7 @@ export function installControllers(api){
   if(!api.playing()||api.paused()||document.hidden){frameInput=null;return;}
   if(data.edges.pause){api.pause();frameInput=null;return;}if(data.edges.map){api.map();frameInput=null;return;}
   if(!xr.active||standardXR){if(data.edges.back)api.action('stance');if(data.edges.boost&&api.state().p.scoped&&api.state().p.weapon==='sniper'){api.action('zoom');data.edges.boost=false;}const profile=api.settings.controller;if(profile.toggleSprint){if(data.edges.boost)sprint=!sprint;data.held.boost=sprint;}if(profile.toggleAim){if(data.edges.aim)aim=!aim;data.held.aim=aim;}
-   if(standardXR&&!xr.dioramaActive)xr.padTurn(data.look[0]);else{api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);}
+   if(standardXR&&!xr.dioramaActive)xr.padTurn(data.look[0]);else if(xr.dioramaActive&&!xr.cameraWindow){stepDioramaLook(api.state().p,data.look,dt,{guided:xr.guidedDioramaAim,fine:!!data.held.aim,speed:api.settings.controllerSpeed||1,invertY:api.settings.invertY});}else{api.state().p.yaw+=data.look[0]*dt*2.2*(api.settings.controllerSpeed||1)*(api.state().p.scoped?.35:1);api.state().p.pitch=clamp(api.state().p.pitch-data.look[1]*dt*1.6*(api.settings.controllerSpeed||1)*(api.settings.invertY?-1:1)*(api.state().p.scoped?.35:1),-1.35,1.35);}
   }
   if(xr.active&&!standardXR&&data.window){for(const [edge,name]of Object.entries({jump:'traverse',interact:'use',reload:'reload',pulse:'pulse',next:'next',stance:'stance'}))if(data.edges[edge]){api.action(name);if(api.paused()){frameInput=null;return;}}}
   else if(xr.active&&!standardXR){for(const name of ['jump','interact','reload','pulse','reverse','next','previous','shop','field','survey'])if(data.edges[name]){api.action(name==='reverse'&&!api.state().p.rail?'power-next':name);if(api.paused()){frameInput=null;return;}}}

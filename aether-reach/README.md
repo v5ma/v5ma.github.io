@@ -1,4 +1,10 @@
-# Clear Window 0.14.1
+# Aether Reach 0.15.0 - Field Rotunda playtest
+
+The full expedition is retained. Open Field rotunda / UI placement to configure the new in-scene XR workspace. Touch Y or Xbox Menu summons it. Move with the left stick, aim with the right stick, fire with the right trigger, hold the left trigger for precise elevation, and use B to reload on Touch. Xbox retains the current saved bindings. First-person aiming is unchanged. Third-person shots now have visible red traces of their real collision result.
+
+See FIELD-ROTUNDA.md for scope and limitations, DEVELOPMENT-HANDOFF.md for recovery, and the versioned release receipt for actual verification. Physical-device acceptance is open. The private hub and game-travel portals are not included. Earlier documentation follows as history, not a new claim of completion.
+
+# Clear Window 0.15.0
 
 AR diorama usability repair: frame-only aperture, transparent-background status, independent twin-stick movement/aim/fire/reload, and first-person AR inside the same fixed window. Read CLEAR-WINDOW.md for controls, physical-test limits and the final release receipt. Existing saves and missions remain.
 

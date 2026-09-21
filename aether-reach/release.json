@@ -1,7 +1,7 @@
 {
-  "version": "0.14.1",
-  "focus": "Clear Window: unobstructed AR windows, independent twin-stick combat and first-person diorama AR",
+  "version": "0.15.0",
+  "focus": "Field Rotunda: summonable in-scene workspace, controller status, guided third-person aim and visible shot feedback",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
-  "scope": "Physical-playtest repair of 0.14.0. Save-v1 and mission rules unchanged. Software evidence is separate from physical Quest/Xbox approval."
+  "scope": "Owner playtest. Existing full expedition, save-v1, remaps and first-person controls preserved. The private hub, travel portals, engine migration and full desktop UI replacement are not included."
 }

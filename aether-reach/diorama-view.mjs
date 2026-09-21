@@ -36,7 +36,7 @@ export function createDiorama(view){
   config=cleanDiorama(cfg);preview=on&&desktop;
   if(on&&!active){saved.fog=scene.fog;saved.background=scene.background;saved.clear=renderer.getClearColor(new T.Color());saved.alpha=renderer.getClearAlpha();saved.clipping=renderer.localClippingEnabled;active=true;center(state,head);lastScan=0;}
   if(!on&&active){restore();active=false;preview=false;scene.fog=saved.fog;scene.background=saved.background;renderer.setClearColor(saved.clear,saved.alpha);renderer.localClippingEnabled=saved.clipping;if(rig){rig.scale.setScalar(1);rig=null;}lastPosition=null;actor?.grounding.reset();firstWindow.reset();root.scale.setScalar(1);}
-  document.body.classList.toggle('diorama-preview',preview);root.visible=active;hero.visible=active&&!cameraWindow();reticle.visible=false;
+  scene.userData.thirdPersonWindow=active&&!cameraWindow();document.body.classList.toggle('diorama-preview',preview);root.visible=active;hero.visible=active&&!cameraWindow();reticle.visible=false;
  }
  function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;if(cameraWindow()&&firstWindow.ready)firstWindow.center(firstWindow.reference,anchor,config.scale);lastScan=0;}
  function hide(o,yes){if(!hiddenObjects.has(o))hiddenObjects.set(o,o.visible);o.visible=yes?false:hiddenObjects.get(o);}
@@ -45,7 +45,7 @@ export function createDiorama(view){
   portal.collect(scene,new Set([rig,camera,root]));
  }
  function syncRig(target){if(!active||preview)return;rig=target;if(cameraWindow()){firstWindow.sync(rig,view.scene.userData.windowPlayer);return;}const pos=worldPoint({x:0,y:0,z:0},focus,anchor,viewConfig());rig.position.set(pos.x,pos.y,pos.z);rig.rotation.set(0,-viewConfig().yaw,0);rig.scale.setScalar(1/config.scale);rig.updateMatrixWorld(true);}
- function update(s,dt,{followAim=preview}={}){if(!active)return;
+ function update(s,dt,{followAim=preview}={}){scene.userData.thirdPersonWindow=active&&!cameraWindow();if(!active)return;
   const p=s.p;view.scene.userData.windowPlayer=p;focus={x:p.x,y:p.y,z:p.z};if(followAim)heading=p.yaw;
   scene.fog=null;scene.background=null;renderer.setClearColor(config.mode.endsWith('-ar')&&!preview?0x000000:0x0d202b,config.mode.endsWith('-ar')&&!preview?0:1);portal.active=true;
   const {x,y,z}=focus,low=y-3,q=viewConfig().yaw;
