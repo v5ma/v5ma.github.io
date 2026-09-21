@@ -2,6 +2,7 @@
 import {wrapConsoleText} from './console-hud.mjs';
 export function drawConsoleMenuRow(ctx,row){
  ctx.fillStyle='#365866';ctx.fillRect(row.x,row.y,row.w,row.h);
+ if(row.focused){ctx.fillStyle='#f6d689';ctx.fillRect(row.x,row.y,5,row.h);}
  const title=String(row.label||'').replace(/\s+/g,' ').trim(),detail=String(row.detail||'').replace(/\s+/g,' ').trim();
  const x=row.x+15,width=row.w-30;
  ctx.fillStyle='#fff3d5';ctx.font=detail?'bold 25px sans-serif':'27px sans-serif';

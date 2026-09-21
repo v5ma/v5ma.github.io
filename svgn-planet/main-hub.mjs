@@ -1,3 +1,4 @@
+import {focusMissionList} from './native-menu-focus.mjs';
 import {missionCards,wardFieldStatus} from './mission-presentation.mjs';
 import {mountConsoleSettings} from './console-settings.mjs';
 import {controlContext} from './controller-context.mjs';
@@ -24,10 +25,11 @@ export function createMainHub(hooks){
  function persistWard(){if(!ward)return true;if(blocked){message('District save needs recovery. Export your run before changing district.');return false;}const r=save(ward,store);if(!r.ok){blocked=true;message(r.error);}return r.ok;}
  function close(){for(const d of document.querySelectorAll('dialog[open]'))d.close();pending=null;$('ward-confirm').hidden=true;hooks.setPaused(false);xr.clear();}
  function open(id){hooks.setPaused(true);hooks.clear();for(const d of document.querySelectorAll('dialog[open]'))d.close();const d=$(id);d.showModal();(d.querySelector('[data-pad-default]')||d.querySelector('button'))?.focus();}
- function wardMenu(){if(!wardActive)return;refreshMissions();open('ward-menu');}
+ function focusMissions(){focusMissionList($('ward-missions'),$('ward-resume'));}
+ function wardMenu(initial='resume'){if(!wardActive)return;$('ward-resume').setAttribute('data-pad-default','');refreshMissions();open('ward-menu');if(initial==='missions')focusMissions();}
  function openMap(){if(wardActive){drawMap($('ward-map'),ward,false);open('ward-map-dialog');}else hooks.openMap();}
  function refreshMissions(){
-  if(!ward)return;const list=$('ward-missions');list.replaceChildren();for(const m of missionCards(ward)){const b=document.createElement('button');b.dataset.mission=m.id;b.id='hub-mission-'+m.id.replace(':','-');b.textContent=m.title;b.title=m.detail;b.dataset.xrDetail=m.detail;b.disabled=!!m.disabled;b.onclick=()=>{message(trackStory(ward,m.id));persistWard();close();};list.append(b);}
+  if(!ward)return;const list=$('ward-missions');list.replaceChildren();for(const m of missionCards(ward)){const b=document.createElement('button');b.dataset.mission=m.id;b.dataset.missionActive=String(!!m.active);b.id='hub-mission-'+m.id.replace(':','-');b.textContent=m.title;b.title=m.detail;b.dataset.xrDetail=m.detail;b.disabled=!!m.disabled;b.onclick=()=>{message(trackStory(ward,m.id));persistWard();close();};list.append(b);}
   $('ward-status').textContent=missionGoal(ward);$('ward-ledgers').textContent=ward.credits+' chapter / '+cityState(ward).credits+' resident / '+watchState(ward).credits+' Watch / '+campaignState(ward).credits+' campaign credits';
  }
  function ensureWard(){if(ward)return;const r=load(store);ward=r.state;blocked=r.blocked;wardView=createDistrictView(hooks.canvas,renderer);wardSpatial=spatialView(wardView,'ward');}
@@ -44,7 +46,7 @@ export function createMainHub(hooks){
  }
  function field(name,ray){if(!wardActive)return hooks.command(name);if(!ray&&['strike','pulse','tool'].includes(name))ray={origin:{x:ward.x,y:ward.y+1.3,z:ward.z},direction:{x:-Math.sin(yaw),y:0,z:-Math.cos(yaw)}};action(ward,name,ray);persistWard();}
  function command(code,ray){const map={KeyE:'interact',KeyQ:'throw',KeyF:'ride',Space:'hop',KeyG:'bell',KeyV:'camera',KeyM:'map',KeyJ:'jobs',KeyH:'help',KeyC:'recenter',KeyL:'scan',KeyZ:'strike',KeyT:'tool-cycle',KeyU:'campaign-route',KeyR:'grapple'};const name=map[code]||code;
-  if(['map','jobs','help','pause'].includes(name)){if(name==='map')openMap();else wardMenu();return;}
+  if(['map','jobs','help','pause'].includes(name)){if(name==='map')openMap();else wardMenu(name==='jobs'?'missions':'resume');return;}
   if(name==='camera'){yaw=0;return;}if(name==='recenter'){yaw=0;xr.recenter();return;}
   field(name,ray);
  }
@@ -53,7 +55,7 @@ export function createMainHub(hooks){
  const style=document.createElement('style');style.textContent=`body.in-lantern #hud,body.in-lantern #energy{display:none}#ward-map-shortcut{position:fixed;right:20px;top:84px}#ward-mini{width:165px;height:145px}.xr-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.xr-grid button{font-size:14px;padding:10px;min-height:44px}.hub-districts{margin:14px 0}#ward-missions{display:grid;gap:8px}dialog canvas{width:100%;height:auto}#ward-ledgers{font-size:14px}.in-xr #hud,.in-xr header,.in-xr footer,.in-xr #objective,.in-xr #ward-map-shortcut,.in-xr #touch{visibility:hidden}#welcome{max-height:88vh;overflow:auto}#ward-menu{max-height:88vh;overflow:auto}`;document.head.append(style);
  const panel=document.createElement('div');panel.innerHTML=`
  <aside id="ward-map-shortcut" hidden><button id="ward-map-open">Mission map</button><canvas id="ward-mini" width="220" height="190"></canvas></aside>
- <dialog id="ward-menu"><h2>Neighborhood Missions / Lantern Ward</h2><p id="ward-status"></p><button id="ward-resume" data-pad-default data-pad-back>Resume</button><button id="ward-map-button">Large mission map</button><button id="ward-xr">AR / VR views</button><button id="ward-controls">XR controls</button><button id="ward-city">Travel to main neighborhoods</button><p id="ward-ledgers"></p><div id="ward-missions"></div><h3>Field tools</h3><div id="ward-tools"></div><button id="ward-save">Save progress</button><button id="ward-export">Export district save</button><button id="ward-restore">Restore district backup...</button><div id="ward-confirm" hidden><p id="ward-confirm-text"></p><button id="ward-keep" data-cancel>Keep current progress</button><button id="ward-replace">Confirm replacement</button></div></dialog>
+ <dialog id="ward-menu"><h2>Neighborhood Missions / Lantern Ward</h2><p id="ward-status"></p><button id="ward-resume" data-pad-default data-pad-back>Resume</button><button id="ward-map-button">Large mission map</button><button id="ward-mission-list">Choose a mission</button><button id="ward-xr">AR / VR views</button><button id="ward-controls">XR controls</button><button id="ward-city">Travel to main neighborhoods</button><p id="ward-ledgers"></p><div id="ward-missions"></div><h3>Field tools</h3><div id="ward-tools"></div><button id="ward-save">Save progress</button><button id="ward-export">Export district save</button><button id="ward-restore">Restore district backup...</button><div id="ward-confirm" hidden><p id="ward-confirm-text"></p><button id="ward-keep" data-cancel>Keep current progress</button><button id="ward-replace">Confirm replacement</button></div></dialog>
  <dialog id="ward-map-dialog" data-xr-map="1"><h2>Lantern Ward / Your next objective</h2><button id="ward-map-back" data-pad-default data-pad-back>Back to Missions</button><canvas id="ward-map" width="760" height="540"></canvas></dialog>
  <dialog id="main-map-view" data-xr-map="1"><h2>Main neighborhoods / City map</h2><p>Original city districts retain their compass and transit routes. Lantern Ward is a connected district reached through the map destination controls.</p><button id="main-map-back" data-pad-default data-pad-back>Back to destinations</button><canvas id="main-map-canvas" width="760" height="400"></canvas></dialog>
  <dialog id="xr-mode-dialog"><h2>Neighborhood Missions / AR and VR</h2><p>Every option renders the actual game in both districts. There is no theater screen. AR needs a passthrough-capable headset browser.</p><button id="xr-mode-back" data-pad-default data-pad-back>Back / resume</button><div id="xr-mode-options" class="xr-grid"></div><button id="xr-exit">Exit XR</button><button id="xr-controls">Controller settings</button><label>Opening</label><select id="xr-opening"><option value="both">Front and top open</option><option value="top">Top open</option><option value="front">Front open</option></select><label>Portal size</label><input type="range" id="xr-size" min="0.024" max="0.075" step="0.004" value="0.04"><label>Portal height</label><input type="range" id="xr-height" min="-1.2" max="-0.1" step="0.1" value="-0.9"><label>Portal distance</label><input type="range" id="xr-distance" min="1.2" max="2.8" step="0.1" value="1.55"><button id="xr-recenter">Recenter view</button></dialog>
@@ -86,6 +88,7 @@ export function createMainHub(hooks){
  const mapViewButton=document.createElement('button');mapViewButton.id='main-show-map';mapViewButton.textContent='View city map';$('map-close').after(mapViewButton);
  mapViewButton.onclick=()=>{const source=$('map'),dest=$('main-map-canvas');dest.width=source.width;dest.height=source.height;dest.getContext('2d').drawImage(source,0,0);open('main-map-view');};$('main-map-back').onclick=()=>open('map-dialog');
 
+ $('ward-mission-list').onclick=focusMissions;
  $('ward-city').onclick=()=>switchDistrict('city');$('ward-resume').onclick=close;$('ward-map-open').onclick=$('ward-map-button').onclick=openMap;$('ward-map-back').onclick=wardMenu;
  $('ward-xr').onclick=()=>open('xr-mode-dialog');$('ward-controls').onclick=$('xr-controls').onclick=()=>open('xr-controls-dialog');
  $('xr-mode-back').onclick=$('xr-controls-back').onclick=()=>wardActive?wardMenu():hooks.resume();$('xr-exit').onclick=()=>xr.exit();$('xr-recenter').onclick=()=>xr.recenter();

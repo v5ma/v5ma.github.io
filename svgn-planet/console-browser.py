@@ -53,6 +53,14 @@ async def main():
     assert nxt,'Missing native row '+label+' '+str(rows)
     await click(nxt)
    raise AssertionError('Missing control '+label)
+  async def xbox(i):
+   await page.evaluate('(i)=>{window.__focusPoll=NeighborhoodController.inspect().polls;__pad.buttons[i]={pressed:true,value:1}}',i)
+   await wait('NeighborhoodController.inspect().polls>__focusPoll+2')
+   await page.evaluate('(i)=>{window.__focusPoll=NeighborhoodController.inspect().polls;__pad.buttons[i]={pressed:false,value:0}}',i)
+   await wait('NeighborhoodController.inspect().polls>__focusPoll+2');await frames(6)
+  async def visibleFocus():
+   await wait('NeighborhoodMissions.panel().rows.some(r=>r.id===document.activeElement.id&&r.focused)')
+   return await page.evaluate('document.activeElement.id')
   async def menu():
    await page.evaluate('__xrFixture.left.gamepad.buttons[5]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.left.gamepad.buttons[5]={pressed:false,value:0}');await wait('NeighborhoodMissions.inspect().paused');await frames(12)
   try:
@@ -69,7 +77,17 @@ async def main():
    # Summon through the actual floor target after looking down. This changes only input.
    await page.evaluate('__xrFixture.viewerPitch=-.95');await frames(5);a=await page.evaluate('NeighborhoodMissions.inspect().xr.console.anchor');distance=await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.distance');import math
    await aim([a['x']-math.sin(a['yaw'])*distance,a['y']+.05,a['z']-math.cos(a['yaw'])*distance]);await trigger();await wait('NeighborhoodMissions.inspect().paused');await page.evaluate('__xrFixture.viewerPitch=0');await frames(12);ok('Pointing and selecting the floor disc summons a usable menu without a gameplay action')
-   await choose('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames(6);await menu();await choose('hub-mission-watch');await wait('!NeighborhoodMissions.inspect().paused');await frames(5);q=await page.evaluate('NeighborhoodMissions.inspect()');assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Native mission selection updates the integrated district without awarding progress')
+   await choose('visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames(6)
+   # D-pad Jobs must lead to actual mission focus, even after the next controller
+   # scope poll; it must not silently select a mission or award anything.
+   await xbox(13);await wait('NeighborhoodMissions.inspect().paused');await wait('NeighborhoodMissions.inspect().xr.console.progress>=.99')
+   first=await visibleFocus();assert first.startswith('hub-mission-'),first
+   for _ in range(7):await xbox(13);await visibleFocus()
+   q=await page.evaluate('NeighborhoodMissions.inspect()');assert q['ward']['watch']['stage']==0 and q['ward']['watch']['credits']==0
+   await capture('visible-gamepad-focus');ok('Xbox Jobs and D-pad navigation keep the focused control visible across native pages')
+   await choose('ward-resume');await wait('!NeighborhoodMissions.inspect().paused');await menu();assert await visibleFocus()=='ward-resume'
+   await choose('ward-mission-list');assert (await visibleFocus()).startswith('hub-mission-');ok('Pause still defaults to Resume while Choose a mission jumps directly to the existing list')
+   await choose('hub-mission-watch');await wait('!NeighborhoodMissions.inspect().paused');await frames(5);q=await page.evaluate('NeighborhoodMissions.inspect()');assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Native mission selection updates the integrated district without awarding progress')
    await menu();await choose('ward-map-button');await frames(5);assert await page.locator('#ward-map-dialog').evaluate('(e)=>e.open');await capture('mission-map');await choose('Back / resume');await choose('ward-save');await choose('ward-restore');await frames(5);rows=await page.evaluate('NeighborhoodMissions.panel().rows');assert rows[0]['id']=='ward-keep';saved=await page.evaluate('localStorage.getItem("svgn.lantern-ward.v1")');await choose('ward-keep');assert saved==await page.evaluate('localStorage.getItem("svgn.lantern-ward.v1")');ok('Map and cancel-first restore work on the same console without changing saved progress')
    await choose('ward-menu-spatial-ui');await choose('console-mount');await choose('console-back');await choose('ward-resume');await page.evaluate('__xrFixture.useHands()');await wait('NeighborhoodMissions.inspect().paused');await frames(12);assert not await page.evaluate('NeighborhoodMissions.inspect().xr.console.controllerDocked');await choose('ward-map-button');await choose('Back / resume');await choose('ward-resume');await wait('!NeighborhoodMissions.inspect().paused');ok('Hand pinch operates map, back and resume without a permanent action board')
    await page.evaluate('__xrFixture.tracking=false');await wait('NeighborhoodMissions.inspect().paused');assert not await page.evaluate('NeighborhoodMissions.inspect().xr.input.y');await page.evaluate('__xrFixture.tracking=true');await frames(12);await choose('ward-xr');await choose('xr-exit');await wait('!NeighborhoodMissions.inspect().xr.active');q=await page.evaluate('NeighborhoodMissions.inspect()');assert q['xr']['visibleRays']==0 and not q['xr']['actionPanelVisible'];assert await page.evaluate('__xrFixture.session.ended');await page.click('#ward-resume');await wait('!NeighborhoodMissions.inspect().paused');assert not await page.evaluate('document.body.classList.contains("in-xr")');ok('Tracking loss clears movement; native Exit XR restores usable desktop access with no stale rays')

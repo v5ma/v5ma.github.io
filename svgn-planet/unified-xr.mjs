@@ -1,3 +1,4 @@
+import {createNativeMenuFocus} from './native-menu-focus.mjs';
 import {drawConsoleMenuRow} from './console-menu.mjs';
 import {hideTrackedSources} from './xr-session-cleanup.mjs';
 import {createSpatialConsole} from './spatial-console.mjs';
@@ -18,15 +19,16 @@ export function createUnifiedXR(hooks){
  const slots=[0,1].map(()=>{const ray=new T.Line(geometry,new T.LineBasicMaterial({color:0xb6eee1})),grip=new T.LineSegments(new T.EdgesGeometry(new T.IcosahedronGeometry(.022,1)),new T.LineBasicMaterial({color:0xa9ccc1,transparent:true,opacity:.45})),joints=Array.from({length:25},()=>new T.Mesh(jointGeo,jointMat));ui.add(ray,grip,...joints);return {ray,grip,joints,source:null,previous:[],ready:false,pinch:false,menuTime:0,menuUsed:false,relative:null,hand:null,head:null,armed:true};});
  let session=null,pending=false,kind='third-person-vr',origin=new T.Vector3(),heading=0,viewer=null,aligned=false,rootBefore=null,page=0,rows=[],lastPaint=0,last=0,frames=0,selections=0,error='',lastSnap=false,modeChanges=0;
  let prefs=loadXRPrefs(hooks.storage).prefs,preferencesBlocked=loadXRPrefs(hooks.storage).blocked;
+ const menuFocus=createNativeMenuFocus();
  const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false,floorSpace=null;
  const consoleUI=createSpatialConsole(ui,panel,tex,{storage:hooks.storage,goal:hooks.goal,hud:hooks.hud,message:hooks.message,clear});
  const $=id=>document.getElementById(id),visible=e=>!!e&&!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length>0;
  const root=()=>visible($('failure'))?$('failure'):['ward-confirm','confirm-reset','save-confirm'].map($).find(visible)||[...document.querySelectorAll('dialog[open]')].at(-1)||(visible($('welcome'))?$('welcome'):null);
  function clear(){clearXRInput();hooks.clear();for(const s of slots){s.ready=false;s.previous=[];s.relative=s.hand=s.head=null;s.menuTime=0;s.menuUsed=false;s.armed=true;}lastSnap=false;}
- function resetRoot(){rootBefore=null;lastPaint=0;page=0;clear();}
+ function resetRoot(){rootBefore=null;lastPaint=0;page=0;menuFocus.reset();clear();}
  function pause(){hooks.pause();resetRoot();}
  function place(){if(!viewer)return;origin.copy(viewer.transform.position);const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation));heading=Math.atan2(-f.x,-f.z);aligned=true;}
- function finish(){floorSpace=null;consoleUI.end();session=null;pending=false;aligned=false;clear();hideTrackedSources(slots);viewer=null;rows=[];rootBefore=null;lastPaint=0;last=0;ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
+ function finish(){menuFocus.reset();floorSpace=null;consoleUI.end();session=null;pending=false;aligned=false;clear();hideTrackedSources(slots);viewer=null;rows=[];rootBefore=null;lastPaint=0;last=0;ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
  async function enter(mode){
   const info=modeInfo(mode);if(session){if(info.session===modeInfo(kind).session){kind=info.id;modeChanges++;clear();lastPaint=0;return;}error='AR and VR use different headset sessions. Exit XR, then select '+modeLabel(mode)+'.';hooks.message(error);return;}
   if(pending)return;pending=true;error='';kind=info.id;
@@ -48,7 +50,7 @@ export function createUnifiedXR(hooks){
   rows=[];ctx.fillStyle='#142e39';ctx.fillRect(0,0,1024,1024);ctx.fillStyle='#fff0ca';ctx.font='bold 32px sans-serif';ctx.fillText((r?.querySelector('h1,h2')?.textContent||'Neighborhood Missions').slice(0,53),36,52);
   ctx.font='23px sans-serif';const description=nativeMenuDescription(r,hooks.goal());const copy=(error||description||hooks.goal()).split(/\s+/);let line='',y=99;for(const w of copy){if(ctx.measureText(line+w).width>920){ctx.fillText(line,36,y);line='';y+=28;if(y>177)break;}line+=w+' ';}ctx.fillText(line,36,y);
   if(r){const all=[...r.querySelectorAll('button,select,input,a[href],textarea')].filter(visible),pages=Math.max(1,Math.ceil(all.length/6));page=Math.max(0,Math.min(page,pages-1));
-   all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,detail:el.dataset.xrDetail||'',id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
+   all.slice(page*6,page*6+6).forEach((el,i)=>{let label=(el.labels?.[0]?.textContent||el.textContent||el.getAttribute('aria-label')||el.id).trim();if(el.tagName==='SELECT')label+=': '+el.selectedOptions[0]?.textContent;if(el.type==='range')label+=': '+el.value;if(el.type==='checkbox')label=(el.checked?'[on] ':'[off] ')+label;rows.push({label,detail:el.dataset.xrDetail||'',focused:el===document.activeElement,id:el.id,x:36,y:212+i*101,w:952,h:85,act:u=>adjust(el,u)});});
    rows.push({label:'Previous page',x:36,y:854,w:300,h:70,act:()=>{page=(page+pages-1)%pages;}},{label:'Next '+(page+1)+'/'+pages,x:361,y:854,w:300,h:70,act:()=>{page=(page+1)%pages;}},{label:'Back / resume',x:686,y:854,w:300,h:70,act:()=>back(r)});
    // The actual map is available as its own full native page, not a label promising a map.
    const map=r.querySelector('canvas');if(map&&!map.hidden&&r.dataset.xrMap==='1'){ctx.drawImage(map,38,190,948,610);rows=rows.filter(x=>x.y>800);}
@@ -60,6 +62,8 @@ export function createUnifiedXR(hooks){
   clearXRInput();if(!session||!frame)return;frames++;const dt=Math.min(.1,last?(now-last)/1000:0);last=now;const ref=renderer.xr.getReferenceSpace();viewer=ref&&frame.getViewerPose(ref);
   if(!viewer||session.visibilityState!=='visible'){pause();return;}if(!aligned)place();const sv=hooks.spatial();if(ui.parent!==sv.view.scene){sv.view.scene.add(ui);resetRoot();}
   const r=root();if(r!==rootBefore){rootBefore=r;page=0;clear();lastPaint=0;}
+  const controls=r?[...r.querySelectorAll('button,select,input,a[href],textarea')].filter(visible):[];
+  const focusPage=menuFocus.sync(r,controls,document.activeElement,page);if(focusPage!==page){page=focusPage;lastPaint=0;}
   const sources=Array.from(session.inputSources),hasHands=sources.some(s=>s.hand);panel.visible=!!r||(handActions&&hasHands);
   const floorPose=floorSpace&&frame.getPose(floorSpace,ref);consoleUI.step({viewer,floorY:floorPose?.transform?.position?.y,open:panel.visible,dt,frame,ref,sources,dominant:prefs.dominant,now});
   if(panel.visible&&(!lastPaint||now-lastPaint>120))paint(r);ui.updateMatrixWorld(true);
@@ -116,6 +120,6 @@ export function createUnifiedXR(hooks){
   preference(k,v){const n={...prefs,[k]:v};if(!preferencesBlocked&&!saveXRPrefs(hooks.storage,n)){preferencesBlocked=true;hooks.message('XR preference storage is unavailable. Current-session settings still work.');}prefs=n;clear();},get preferences(){return {...prefs};},
   setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;consoleUI.recenter();clear();},
   consolePreference:(k,v)=>consoleUI.configure(k,v),get consolePreferences(){return consoleUI.prefs;},recenterConsole:()=>{consoleUI.recenter();clear();},
-  panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,detail,id,x,y,w,h})=>({label,detail,id,x,y,w,h}))};},
+  panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,detail,focused,id,x,y,w,h})=>({label,detail,focused,id,x,y,w,h}))};},
   inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,console:consoleUI.inspect(),environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
 }
