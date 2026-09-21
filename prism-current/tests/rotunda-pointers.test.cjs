@@ -1,0 +1,2 @@
+const {test}=require('node:test'),A=require('node:assert/strict'),fs=require('node:fs');
+test('Menu rays and cursors share the late transparent pass instead of being obscured by the panel',()=>{const xr=fs.readFileSync(__dirname+'/../river/xr.js','utf8'),dock=fs.readFileSync(__dirname+'/../river/rotunda.js','utf8');A.equal((xr.match(/transparent:true,opacity:1,depthTest:false,depthWrite:false/g)||[]).length,2);A.match(xr,/river-xr-ray-'\+h;m.renderOrder=50/);A.match(xr,/river-xr-cursor-'\+h;m.renderOrder=51/);A.match(dock,/menu.mesh.renderOrder=31/);});
