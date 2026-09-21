@@ -22,8 +22,18 @@ with sync_playwright() as pw:
         c.add_init_script('for(const [k,v]of Object.entries('+json.dumps(SAVED)+'))localStorage.setItem(k,v)')
         p=c.new_page();p.set_default_timeout(45000);return c,p
     def button(p,hand,index):
-        p.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,index]);p.wait_for_timeout(180)
-        p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,index]);p.wait_for_timeout(150)
+        p.evaluate('''async ([h,i])=>{
+            const session=TestXR.state.session;
+            const frames=()=>new Promise((resolve,reject)=>{
+                const timeout=setTimeout(()=>reject(Error('XR input frames did not arrive')),5000);
+                session.requestAnimationFrame(()=>session.requestAnimationFrame(()=>{clearTimeout(timeout);resolve();}));
+            });
+            // Present neutral/press/release across real XR frames. Do not lose a
+            // complete short button pulse inside a software shader-compilation gap.
+            TestXR.button(h,i,false);await frames();
+            TestXR.button(h,i,true);await frames();
+            TestXR.button(h,i,false);await frames();
+        }''',[hand,index])
     def aim(p,hand,index,corner='center'):
         if p.evaluate('!!River.snapshot().rotunda'):p.wait_for_function('River.snapshot().rotunda.progress>.99')
         # Literal artwork coordinates, not invisible hitboxes or production helpers.
