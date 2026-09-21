@@ -56,7 +56,7 @@ function launch(id,mode){
  const g=currentGate(id,mode);
  if(!g.ok){lastOutcome='blocked';message('Route unchanged',g.reason);return;}
  if(g.action==='reload'){
-  message(`Prepare ${mode.toUpperCase()} / ${g.route.name}`,'This renderer needs a WebGL reload for immersion. The current unfinished run will restart only after you confirm entry on the reloaded page. Saved progress remains. Cancel to keep this tab unchanged.',
+  message(`Prepare ${mode.toUpperCase()} / ${g.route.name}`,'This renderer needs a WebGL reload for immersion. Reloading ends the current unfinished run but preserves saved progress. Your selected route will wait for another explicit entry on the reloaded page. Cancel to keep this tab unchanged.',
    {label:`Reload for ${mode.toUpperCase()}`,run:()=>{const guard=currentGate(id,mode);if(!guard.ok){message('Route unchanged',guard.reason);return;}location.assign(entryURL(location.href,id,mode));}});return;
  }
  if(g.action==='switch'||g.action==='leave'){
