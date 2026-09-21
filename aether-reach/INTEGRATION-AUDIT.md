@@ -1,0 +1,13 @@
+# Aether Reach integration audit
+
+Audit started 2026-09-21 against master fda53bedb376d54c3bad3bdacf5a15aba85dba61. Only Aether Reach is in scope. Use direct master commits after reconciling current master; do not create new pull requests, staging branches or temporary deployment workflows. Never reset master or overwrite sibling games.
+
+The entire aether-reach tree in the recovered 0.15.0 tested archive hashes to 3951a78298054754a97cf5d0bad369231360e0bb, exactly matching current master. Field Rotunda PR 207 is merged at 8b6904f734abfd29cfef87880c5fba9ccaa868ac. Its rotunda, independent placement controls, guided third-person aiming, projectile feedback and preceding Clear Window/World Portal/Bellwether fixes are present. They are not missing merge work. Public delivery is a separate question; the prior byte-check run 35556486345 failed and must not be described as a deployment success.
+
+Two genuinely unmerged Aether proposals were found. PR 139, feat/aether-tideglass-reservoir-20260912 at 0a152577c7fd9636a09568ff1de7324ecfb244fd, contains the missing Tideglass Reservoir water missions and five tideglass modules. It diverges from a43d01ddd75ac7c07280e660f7dcba2282214c8f, predates the current window controls and still labels itself 0.11.0. Wholesale merging would regress current code. The source was recovered from artifact 10323230294 and its SHA-256 22f44d50143b3a90469f98fa95965cf0de008565a9d0054abd3c326f272b1c8f verified.
+
+PR 62, feat/aether-living-city at ddf78e852a23077408e6162b7647bac43a9485f8, contains the separate living-city interiors, conversations, attributes, Mend and Kestrel skiff experiment. It diverges from ffae9dddf81119d9b809a0fd389a4a6ab3438a41. The current game explicitly excludes that experiment; its raw integration cannot replace today's licensed cast, collision, mission or XR implementation. Its latest city-specific workflow failed. Its original source was recovered from artifact 10032539814 and SHA-256 439ed93e1138cd41cd269c0aa56a165e1f92127c0717022ed4331b3987400019 verified. Preserve substantive source even where its old integration must be rejected or rewritten.
+
+PR 43 belongs to the separate SVGN City/neighborhood project despite mentioning Aether in its text. It is out of scope and must not be changed.
+
+This is a progress checkpoint, not a claim that the old proposals have been integrated or that the public release is verified. Reconcile input ownership, physical geometry, save fields, objective routing, rendering and test evidence before deciding each incoming change. Preserve version-1 saves, namespaces, remaps, stable identifiers, once-only rewards, first-person VR aim, current window behavior and private-hub boundaries. Physical Quest/Xbox and human usability remain unverified.
