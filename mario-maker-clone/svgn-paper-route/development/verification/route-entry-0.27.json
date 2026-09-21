@@ -1,10 +1,10 @@
 {
   "version": "0.27.0",
   "build": "sky-cycle-route-entry-2026.09.20",
-  "status": "local-rules-passed-hosted-runners-unassigned",
+  "status": "merged-publication-retry",
   "baseline_master": "d539c8e6bdf16339df16d3c514df1a2f4043af15",
   "baseline_runtime": "f279935ce328485d76f72442ad953aa1dfbacf3f",
-  "current_verified_live_version": "0.26.2",
+  "current_verified_live_version": "0.26.2 until public v0.27 bytes are independently observed",
   "branch": "sky-cycle/route-entry-0.27",
   "pull_request": 213,
   "candidate_source": "a2a3eeb06964c4e642a84cf826afe6c955efc99a",
@@ -68,8 +68,16 @@
   "retained_observations": [
     {
       "scope": "Unavailable-mode explanation access",
-      "old_function_result": {"isolated_tests":4,"passed":1,"failed":3},
-      "corrected_function_result": {"isolated_tests":4,"passed":4,"failed":0},
+      "old_function_result": {
+        "isolated_tests": 4,
+        "passed": 1,
+        "failed": 3
+      },
+      "corrected_function_result": {
+        "isolated_tests": 4,
+        "passed": 4,
+        "failed": 0
+      },
       "note": "The old function was substituted only in the local isolated test fixture, then restored. No deployed state or runtime physics was altered to manufacture acceptance."
     },
     {
@@ -91,13 +99,48 @@
       "result": "Cancelled after later candidate changes; no source or native acceptance is inferred."
     }
   ],
-  "merge": null,
-  "publication": null,
+  "merge": {
+    "pull_request": 213,
+    "sha": "53b4d7badfce220936116af1880127cdadfeb6ea",
+    "expected_head": "171701fbb4cbd38cfc4d50975c3ebfb1d2e127d5",
+    "method": "normal expected-head merge",
+    "sibling_work_preserved": true
+  },
+  "publication": {
+    "state": "queued",
+    "initial_pages_run": 35558192338,
+    "initial_pages_build_job": 106205844578,
+    "initial_route_publication_run": 35558193384,
+    "retry_reason": "GitHub Pages and route-entry public jobs were queued with no executed steps after merge. Documentation-only retry requested by owner; gameplay bytes unchanged."
+  },
   "public_files_required": 37,
-  "preservation": ["Eight campaign IDs and authored builders","Original movement, jumping, boost, paper and whip physics","Published v0.26.2 input owner and fixed-world AR aperture","No persistent controller riding panel","Independent saves, remaps, soundtrack and Workshop documents","Sibling projects and separate Canal Choice branch"],
+  "preservation": [
+    "Eight campaign IDs and authored builders",
+    "Original movement, jumping, boost, paper and whip physics",
+    "Published v0.26.2 input owner and fixed-world AR aperture",
+    "No persistent controller riding panel",
+    "Independent saves, remaps, soundtrack and Workshop documents",
+    "Sibling projects and separate Canal Choice branch"
+  ],
   "private_boundary": "No private hub source, assets, internal review material, attached multi-game brief or cross-game portals. Pedestal/rotunda is not implemented by this entry slice.",
-  "required_gates": ["Complete exact-source hosted run","Verify all report source IDs and artifact digests","Review actual route-card and stereo captures","Normally merge the expected reviewed head preserving newer master changes","Match all 37 public runtime files with the accepted source","Complete both public route-entry journeys","Physical Quest/Xbox retest remains separate"],
+  "required_gates": [
+    "Complete exact-source hosted run",
+    "Verify all report source IDs and artifact digests",
+    "Review actual route-card and stereo captures",
+    "Match all 37 public runtime files with the accepted source",
+    "Complete both public route-entry journeys",
+    "Physical Quest/Xbox retest remains separate",
+    "Observe successful Pages deployment",
+    "Match all 37 public runtime files with the merged source",
+    "Complete both public route-entry journeys",
+    "Physical Quest/Xbox retest remains separate"
+  ],
   "resume_instruction": "Inspect run 35556641185 and PR 213 before making new runtime edits. Later development-only checkpoints do not change the tested game. Do not restart the candidate or repeat completed repairs merely because hosted runners were queued.",
   "handoff": "../RESUME-HERE.md",
-  "known_limits": ["Hosted native and public gates have not run at this checkpoint","Physical Quest/Xbox and passthrough ergonomics remain open","Ground traps and aerial geometry are unchanged and unqualified by entry rules","Actual hardware WebGPU-to-WebGL handoff needs separate qualification"]
+  "known_limits": [
+    "Hosted native and public gates have not run at this checkpoint",
+    "Physical Quest/Xbox and passthrough ergonomics remain open",
+    "Ground traps and aerial geometry are unchanged and unqualified by entry rules",
+    "Actual hardware WebGPU-to-WebGL handoff needs separate qualification"
+  ]
 }
