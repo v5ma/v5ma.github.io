@@ -21,7 +21,8 @@ with sync_playwright() as pw:
   frames(3);p.evaluate('''async id=>{const T=await import('./vendor/three.module.js'),xr=Rainward.snapshot().xr,r=xr.panelRows.find(r=>r.id===id);if(!r)throw Error('Missing '+id);const target=new T.Vector3(((r.x+r.w/2)/1024-.5)*1.45,(.5-(r.y+r.h/2)/1024)*1.45,0).applyMatrix4(new T.Matrix4().fromArray(xr.panelMatrix)),src=questDevice.sources[1],dir=target.sub(new T.Vector3(src.position.x,src.position.y,src.position.z)).normalize(),q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,-1),dir);src.orientation={x:q.x,y:q.y,z:q.z,w:q.w};}''',id);frames(3)
   if KIND=='hands':p.evaluate("questDevice.pinch('right',true)")
   else:p.evaluate("questDevice.pulse('right',0)")
-  if id=='exit':wait('!Rainward.snapshot().xr.active');return
+  if id=='exit':
+   wait('!Rainward.snapshot().xr.active');p.evaluate("()=>{questDevice.pinch('right',false);questDevice.button('right',0,false);}");return
   frames(3)
   if KIND=='hands':p.evaluate("questDevice.pinch('right',false)");frames(3)
  def select(id):
@@ -35,7 +36,7 @@ with sync_playwright() as pw:
   raise AssertionError('Unreachable '+id)
  def menu():
   if KIND=='hands':
-   p.evaluate("()=>{const s=questDevice.sources[0];s.position={x:-.2,y:1.55,z:-.3};s.orientation={x:-Math.SQRT1_2,y:0,z:0,w:Math.SQRT1_2};s.pinch=false;}");wait('Rainward.mode==="pause"');p.evaluate("()=>{const s=questDevice.sources[0];s.position={x:-.25,y:1.25,z:-.4};s.orientation={x:0,y:0,z:0,w:1};}")
+   p.evaluate("()=>{const s=questDevice.sources[0],h=questDevice.head;s.position={x:h.x-.2,y:h.y-.1,z:h.z-.3};s.orientation={x:-Math.SQRT1_2,y:0,z:0,w:Math.SQRT1_2};s.pinch=false;}");wait('Rainward.mode==="pause"');p.evaluate("()=>{const s=questDevice.sources[0];s.position={x:-.25,y:1.25,z:-.4};s.orientation={x:0,y:0,z:0,w:1};}")
   else:
    p.evaluate("questDevice.button('right',5,true)");wait('Rainward.mode==="pause"');p.evaluate("questDevice.button('right',5,false)")
   frames(4)
@@ -63,7 +64,7 @@ with sync_playwright() as pw:
   check('NEXT:' in p.locator('#next-goal').text_content(),'Opening the map immediately displays the current mission objective');capture('02-map');click('back');wait('Rainward.mode==="play"');frames(5)
   check(p.evaluate('!Rainward.snapshot().xr.menuVisible&&!Rainward.snapshot().xr.fieldDesk.visible'),'Closing the map removes its visual and hit target, not just its text')
   menu();select('last-clue');wait('!!Rainward.snapshot().xr.reading');check('No clue' in p.evaluate('Rainward.snapshot().xr.reading.text'),'Clue recall does not reveal an unacquired solution');click('back');wait('Rainward.mode==="play"')
-  menu();select('musicVolume-plus');frames(3);select('resume');wait('Rainward.mode==="play"');menu();check(p.evaluate('Rainward.state.player.mag')==original['mag'],'Menu selection and layout controls do not spend ammunition')
+  menu();volume=int(p.locator('#musicVolume').input_value());select('musicVolume-plus');frames(3);check(int(p.locator('#musicVolume').input_value())>volume,'The first-page music control changes the actual saved mixer value');select('resume');wait('Rainward.mode==="play"');menu();check(p.evaluate('Rainward.state.player.mag')==original['mag'],'Menu selection and layout controls do not spend ammunition')
   check(preserved()==save,'Layout, map and audio changes preserve checkpoints and remaps byte-for-byte')
   stored=p.evaluate('localStorage.getItem("svgn.rainward.v1.field-desk")');select('exit');check(p.evaluate('Rainward.mode')=='pause','Exit ends the actual XR session and retains native pause recovery')
   p.locator('#xr-hands' if KIND=='hands' else '#xr-start').click();wait('Rainward.snapshot().xr.active');frames(5)
