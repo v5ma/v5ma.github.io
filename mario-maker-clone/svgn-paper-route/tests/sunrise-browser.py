@@ -43,7 +43,7 @@ with sync_playwright() as pw:
   page.screenshot(path=str(OUT/(label+'-finish.png')))
  try:
   page.goto(BASE,wait_until='domcontentloaded');page.bring_to_front()
-  page.wait_for_function('!!window.SkyCycleCompass && !!window.SkyCycleSunrise && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady===true')
+  page.wait_for_function('!!window.SkyCycleCompass && !!window.SkyCycleSunrise && window.PaperDeliveryCampaign?.status==="ready" && window.__gpuReady===true && window.SkyCycleRouteEntry?.diagnostics.checked')
   page.locator('[data-course="4"]').click();page.wait_for_function('!!SkyCycleSunrise.run && player.onGround')
   check(page.evaluate('tracks.some(t=>t.sky?.id==="sunrise-market") && tracks.length>=17'),'New practice balcony exists in the real collision world')
   check(page.evaluate('__sky.state.data.gp.sunrise.version===1'),'Existing Sunrise chapter loads the new challenge')
@@ -90,8 +90,14 @@ with sync_playwright() as pw:
   check(page.evaluate('SkyCycleSunrise.records.marketPilot && SkyCycleSunrise.records.finishes===1'),'Market Pilot persists across a real page reload')
   check(not errors,'No uncaught JavaScript exceptions');passed=True
  except Exception as e:
-  try:(OUT/'failure.json').write_text(json.dumps({'error':str(e),'state':state(),'checks':checks,'errors':errors},indent=2));page.screenshot(path=str(OUT/'failure.png'))
-  except Exception:pass
+  detail={'error':str(e),'checks':checks,'errors':errors}
+  try:detail['state']=state()
+  except Exception as diagnostic:detail['state_error']=str(diagnostic)
+  try:
+   detail['layout']=page.evaluate('Object.fromEntries(["delivery-header","delivery-menu"].map(id=>[id,document.getElementById(id)?.getBoundingClientRect().toJSON()]))')
+   page.screenshot(path=str(OUT/'failure.png'))
+  except Exception as diagnostic:detail['capture_error']=str(diagnostic)
+  (OUT/'failure.json').write_text(json.dumps(detail,indent=2))
   raise
  finally:
   (OUT/'report.json').write_text(json.dumps({'commit':__import__('subprocess').check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'passed':passed,'checks':checks,'errors':errors,'coverage':'Real 3D branch traversal and controller journal; three complete native-engine routes using supported 2D view for their remainder. Standard Gamepad samples and ordinary keyboard/button input only; no debug wins, player-state or score assignments. Not physical-device or performance certification.'},indent=2))

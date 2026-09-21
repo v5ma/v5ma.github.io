@@ -1,11 +1,10 @@
 {
-  "version": "0.27.1",
-  "build": "sky-cycle-reconciled-2026.09.21",
+  "version": "0.27.2",
+  "build": "sky-cycle-route-layout-2026.09.21",
   "date": "2026-09-21",
   "changes": [
-    "Recover Canal Choice: brake-selected lower receiver, purposeful road return and advance route cues",
-    "Retain latest AR/VR/Screen route cards, all-button XR handling and fixed-world AR aperture",
-    "Repair cancelled-session cleanup before the first XR framebuffer exists",
-    "Preserve eight campaign routes, optional Workshop preview, saves, remaps and original physics"
+    "Prevent route cards and AR/VR/Screen choices from shrinking into overlapping text or the header",
+    "Preserve recovered Canal Choice, the latest XR buttons, cancellation recovery, saves and official routes",
+    "Verify ordinary route-card hit testing in four viewport sizes and load original soundtrack tests independently of the repository package mode"
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "version": "0.27.2",
+  "build": "sky-cycle-route-layout-2026.09.21",
+  "status": "direct-master-correction-prepared",
+  "baseline_runtime": "fda53bedb376d54c3bad3bdacf5a15aba85dba61",
+  "integration_base": "1052c46e6ff4464e48def1aa743e534dae35e4a0",
+  "scope": "Sky Cycle route-card CSS, game-local tests, release identity, evidence and existing game workflow only",
+  "new_prs": 0,
+  "new_branches": 0,
+  "new_workflows": 0,
+  "local_rules": {"game":410,"original_soundtrack":12,"failed":0,"browser":"Local navigation blocked before loading; not bypassed and not acceptance"},
+  "prior_public": {"source":"fda53bedb376d54c3bad3bdacf5a15aba85dba61","run":35565728678,"job":106227045401,"artifact":10625168437,"sha256":"67debf5c3c90f145435af98a318b911786fc0810e5032f37f7f0851e44cac79a","verified_utc":"2026-09-21T06:50:17Z","matched_runtime_files":38,"downloaded_report_and_digest_checked":true,"whole_run_passed":false},
+  "retained_failures": [
+    {"kind":"original soundtrack test loading","run":35565728678,"job":106227045479,"artifact":10624754142,"sha256":"6eeb9b35a9b656ec347fb5869f24b50f71907fdd957865e283847a799239d0d3","game_rules_before_failure":406,"cause":"Parent type-module package changes the old CJS require of a browser UMD file","fix":"Game-local unchanged twelve assertions load exact score source as a classic script; shared package and soundtrack remain untouched"},
+    {"kind":"route card intercepted by header","run":35565728678,"job":106227045328,"artifact":10625310471,"sha256":"a82bc71fef6438de3660eb64711abc1dc86a30c1f6a6ec6d8e82e04042c3f3c2","cause":"Shrinkable nested route-card content and centered bounded grid; header Route journal intercepted the normal Sunrise click","fix":"Intrinsic card rows and outer chooser scrolling, no forced click; retain original Sunrise journey and add four-viewport native layout/hit-test coverage"}
+  ],
+  "older_pr_dispositions": [
+    {"pr":51,"head":"ba04ea67b70e4cd6ce64a8f1b056e957270698d3","reject":"Old duplicate peg/route wrappers and release overwrite","preserve_current":"Newer Cloudpost relay, live registry, journal and modal owners","unported":"Six ordered-route passport stamps","tracking":"SC-REC-PASSPORT"},
+    {"pr":27,"head":"9fbe34ecb92f9f485cf6bc375c82e26785713d84","reject":"Old generated campaign and outdated contact-state solver, transport writers","preserve_current":"Current private grip-engine Ride Lab and undoable authoring","unported":"Global route graph and automatic receiver-fit proposals","tracking":"SC-REC-FIT"},
+    {"pr":19,"head":"2dbd9b0286189044620075c18672990bbd66b686","reject":"Obsolete editor and two-spec builder replacing current chapter indices","preserve_current":"Existing Workshop and eight official campaign routes","unported":"Switchback Quarry and Relay Vault exploration layouts","tracking":"SC-REC-EXPLORE"}
+  ],
+  "native": null,
+  "publication": null,
+  "physical_device_approval": false,
+  "preservation": {"physics_changed":false,"campaign_builders_changed":false,"saves_cleared":false,"save_migration":false,"soundtrack_changed":false,"xr_input_changed":false,"private_hub_uploaded":false},
+  "next": "Inspect exact-source tests, rendered four-viewport card captures and ordinary Sunrise journey, then independent 38 public hashes and public AR/VR/Canal/layout replays. Keep all failures visible.",
+  "audit": "../RECONCILIATION-CONTINUATION.md"
+}

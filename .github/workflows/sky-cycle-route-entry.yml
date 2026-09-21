@@ -28,10 +28,13 @@ jobs:
           set -euo pipefail
           mkdir -p /tmp/route-rules
           git rev-parse HEAD > /tmp/route-rules/commit.txt
-          node --check mario-maker-clone/svgn-paper-route/route-entry.js
-          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs | tee /tmp/route-rules/game.tap
-          node --test tests/adventure_score.test.cjs | tee /tmp/route-rules/score.tap
-          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows level-design-library > /tmp/route-rules/source.tar.gz
+          result=0
+          node --check mario-maker-clone/svgn-paper-route/route-entry.js || result=$?
+          node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs | tee /tmp/route-rules/game.tap || result=$?
+          node --test mario-maker-clone/svgn-paper-route/tests/original-score.test.cjs | tee /tmp/route-rules/score.tap || result=$?
+          # Preserve the exact source AND parent package mode even when a test fails.
+          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows level-design-library package.json > /tmp/route-rules/source.tar.gz || result=$?
+          exit "$result"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -71,7 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        script: [portal-network-browser.py, waterwheel-deliveries-browser.py, bathhouse-browser.py, sunrise-browser.py]
+        script: [portal-network-browser.py, waterwheel-deliveries-browser.py, bathhouse-browser.py, sunrise-browser.py, route-card-browser.py]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -188,5 +191,28 @@ jobs:
         with:
           name: canal-live-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/canal-live/
+          retention-days: 30
+          if-no-files-found: error
+  live-layout:
+    needs: published
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Public card layout and ordinary click paths at four viewport sizes
+        env:
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/card-live
+        run: python mario-maker-clone/svgn-paper-route/tests/route-card-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: card-live-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/card-live/
           retention-days: 30
           if-no-files-found: error
