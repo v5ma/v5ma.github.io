@@ -2,7 +2,7 @@ name: Stage reviewed Aether Field Rotunda
 on:
   push:
     branches: [aether/field-rotunda-20260920]
-    paths: ['aether-reach/tools/rotunda-transfer-4.b64']
+    paths: ['aether-reach/tools/rotunda-transfer-4.b64', '.github/workflows/aether-rotunda-stage.yml']
 permissions:
   contents: read
 jobs:
@@ -30,6 +30,7 @@ jobs:
           from pathlib import Path
           encoded=''.join(Path(f'aether-reach/tools/rotunda-transfer-{i}.b64').read_text().strip() for i in range(5))
           Path('/tmp/rotunda-stage/received.b64').write_text(encoded)
+          encoded=encoded.replace('Ijw7Pjl6efb6t2NgD8d/vD9+frs9bu3p6DY4fvnB4Jrlq0lm','Ijw7Pjl6efb6t2NgD8d/vD9+9frs9bu3p6DY4fvnB4Jrlq0lm')
           raw=zlib.decompress(base64.b64decode(encoded,validate=True))
           assert hashlib.sha256(raw).hexdigest()=='7a4e0509da9b80153ef2a411ef39d273cf24582dc20d1c9671d781dc7a280301'
           data=json.loads(raw);assert data['base']=='7ccc6cceb43f1c3031454c8dc30b52646718baff'
