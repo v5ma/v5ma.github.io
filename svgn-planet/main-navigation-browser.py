@@ -24,6 +24,7 @@ async def main():
    await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3)
    await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
   async def choose(name,u=.5):
+   await wait('NeighborhoodMissions.inspect().xr.console.progress>=.99')
    await wait('NeighborhoodMissions.inspect().xr.actionPanelVisible');await frames(4)
    for _ in range(32):
     rows=await page.evaluate('NeighborhoodMissions.panel().rows');r=next((r for r in rows if r.get('id')==name or r['label']==name),None)

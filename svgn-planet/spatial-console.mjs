@@ -62,7 +62,7 @@ export function createSpatialConsole(ui,panel,atlas,hooks){
   for(const word of String(data.goal||'Choose a mission').split(/\s+/)){if(hctx.measureText(line+word).width>710){hctx.fillText(line,22,y);line='';y+=36;if(y>168)break;}line+=word+' ';}hctx.fillText(line,22,y);
   hctx.font='26px sans-serif';hctx.fillStyle='#cde9e1';hctx.fillText(String(data.detail||'').slice(0,53),22,228);hctx.fillText(String(data.equipment||'').slice(0,38),22,277);
   if(data.map){hctx.drawImage(data.map,510,272,238,220);}
-  hctx.font='24px sans-serif';hctx.fillText('Menu: Y / raised pinch',22,332);hctx.fillText('Lower hand to clear view',22,368);hctx.fillText(String(data.controls||'').slice(0,35),22,415);
+  hctx.font='24px sans-serif';hctx.fillText('Menu: '+(data.menu||'Y')+' / raised pinch',22,332);hctx.fillText('Lower hand to clear view',22,368);hctx.fillText(String(data.controls||'').slice(0,35),22,415);
   if(data.health!=null)hctx.fillText('Health: '+data.health,22,466);ht.needsUpdate=true;
  }
  function sync(newRows){

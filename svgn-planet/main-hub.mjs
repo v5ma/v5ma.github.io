@@ -1,3 +1,4 @@
+import {mountConsoleSettings} from './console-settings.mjs';
 import {controlContext} from './controller-context.mjs';
 /* Main game district integration. Same document, renderer, XR session and inputs;
  * original sphere and authored metre-space district keep their own honest save ledgers. */
@@ -13,7 +14,7 @@ import {watchRuntime,watchState,watchInspect} from './lantern/watch.mjs';
 import {campaignState,campaignCanGlide,campaignInspect} from './lantern/campaign.mjs';
 import {padState} from './controller.mjs';
 import {xrInput} from './xr-input.mjs';
-const VERSION='0.16.0',HUB_KEY='svgn.neighborhood-hub.v1';
+const VERSION='0.16.1',HUB_KEY='svgn.neighborhood-hub.v1';
 export function createMainHub(hooks){
  const $=id=>document.getElementById(id),cityView=hooks.view,renderer=cityView.renderer,citySpatial=spatialView(cityView,'city');
  let ward=null,wardView=null,wardSpatial=null,wardActive=false,blocked=false,yaw=0,last=0,saveTime=0,frames=0,transfers=0,error='',pending=null,stopped=false;
@@ -60,7 +61,13 @@ export function createMainHub(hooks){
  const xr=createUnifiedXR({renderer,storage:store,clear:hooks.clear,playing:hooks.playing,pause:()=>wardActive?wardMenu():hooks.pause(),resume:()=>wardActive?close():hooks.resume(),message,changed:hooks.changed,
   spatial:()=>wardActive?wardSpatial:citySpatial,state:()=>wardActive?ward:hooks.state(),yaw:()=>yaw,turn:d=>wardActive?yaw+=d:cityView.orbitBy(d),
   action:(name,ray)=>name==='pause'?(wardActive?wardMenu():hooks.pause()):field(name,ray),
+  hud:()=>{
+   const controls=xr.preferences.profile==='courier'?'Off trigger: speed / primary grip: throw':(wardActive?ward.ride!=='foot':hooks.state().ride)?(xr.consolePreferences.triggerDrive?'Primary trigger: speed / off grip: brake':'Move-stick click: speed / off grip: brake'):'Primary grip: interact / trigger: action',menu=xr.preferences.dominant==='right'?'Y':'B';
+   if(wardActive){const n=navigation(ward,yaw);return {title:'LANTERN WARD',goal:missionGoal(ward),detail:Math.ceil(n.distance)+' m / '+n.level,equipment:ward.ride+' / '+watchRuntime(ward).tool,map:$('ward-mini'),health:watchState(ward).tracking?watchInspect(ward).health:null,controls,menu};}
+   return {title:'MAIN NEIGHBORHOODS',goal:$('objective-title').textContent,detail:$('objective-text').textContent,equipment:$('ride-name').textContent,map:hooks.cityMap?.(),controls,menu};
+  },
   combat:()=>wardActive&&(watchState(ward).tracking||!!campaignState(ward).active),embodied:()=>wardActive&&(!!campaignState(ward).active||watchState(ward).stage===4),canGlide:()=>wardActive&&campaignCanGlide(ward),goal:()=>wardActive?missionGoal(ward):$('objective-title').textContent+' / '+$('objective-text').textContent});
+ mountConsoleSettings({xr,open,back:()=>wardActive?wardMenu():hooks.resume()});
  // Pass world-space target rays through the common input path, without writing actor state.
  // field() already translates per-district commands.
  const buttons=[];function modeButtons(parent,suffix){for(const mode of MODES){const b=document.createElement('button');b.id='xr-'+mode+suffix;b.dataset.xrMode=mode;b.textContent=modeLabel(mode);b.onclick=()=>{hooks.ensureStarted();xr.enter(mode);};parent.append(b);buttons.push(b);}}
