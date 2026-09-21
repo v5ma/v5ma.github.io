@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "status": "local-refinement-tested-native-and-public-pending",
+  "baselineMaster": "d539c8e6bdf16339df16d3c514df1a2f4043af15",
+  "recoveredMerge": "562932250f09e3a0e0e4e6887f9161fd7988ba0a",
+  "recoveredPr": 206,
+  "recoveredRun": 35552429718,
+  "sourceArtifact": {"id":10619202464,"sha256":"18113fdb7e05a6586cfd09c0025b3416a9e3fc3afe3f87baf243ab08b7234434","hashMatched":true},
+  "tidegateArtifact": {"id":10619342637,"sha256":"36f4ab4414ebb04f53cb0c2de21b4381e1f79d79d66e7026f2c75a90e7b05f12","hashMatched":true},
+  "recoveredManifestFilesMatched": 72,
+  "recoveredTidegateSpatialChecks": 19,
+  "refinement": "Protect informational and blank UI surfaces from click-through tools; ignore hidden ancestors; highlight the exact control rather than every repeated label; add fixed-pose workspace rotation and correct Active/Legacy flight hints.",
+  "redEvidence": "Four production ray/feedback fixture assertions failed against the recovered runtime before repair. A malformed initial fixture was corrected before recording the four genuine failures.",
+  "localAfter": {"testsPassed":254,"testsFailed":0,"testsSkipped":0,"javascriptSyntax":"passed","browserScriptSyntax":"passed"},
+  "nativeAndPublic": "Not yet run for the refinement; recovered successes do not retroactively certify amended source.",
+  "scope": "Dino only; preserve saves, rewards, movement, vehicle physics, controller mappings and the accepted game portal. No private hub implementation, combined transcript, engine migration or new travel portals.",
+  "hardwareVerified": false
+}
