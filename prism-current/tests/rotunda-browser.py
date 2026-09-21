@@ -113,11 +113,11 @@ with sync_playwright() as pw:
    select(3);p.wait_for_function('!River.snapshot().immersive');p.reload(wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open')
    check(snapshot()['rotunda']['preferences']['hud']=='floor' and snapshot()['rotunda']['preferences']['opacity']<.38,mode+': UI preferences persist independently across reload')
    c.close()
-  c=b.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1,service_workers='block');p=c.new_page();p.set_default_timeout(60000);watch(p);p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open');p.wait_for_timeout(800);p.screenshot(path=str(OUT/'rotunda-1440.png'));click(p,9);click(p,0);p.keyboard.press('Home');check(abs(snapshot()['rotunda']['preferences']['height']+.27)<.001,'Home recovers screen placement without pointing')
+  c=b.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1,service_workers='block');p=c.new_page();p.set_default_timeout(60000);watch(p);p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open');p.wait_for_timeout(800);p.screenshot(path=str(OUT/'rotunda-1440.png'));click(p,9);click(p,0);p.keyboard.press('Home');p.wait_for_function('Math.abs(River.snapshot().rotunda.preferences.height+.27)<.001',timeout=5000);check(abs(snapshot()['rotunda']['preferences']['height']+.27)<.001,'Home recovers screen placement without pointing')
   p.set_viewport_size({'width':390,'height':844});p.wait_for_timeout(400)
   for i in range(14):
    v=worldpoint(p,i);check(p.evaluate('p=>{const v=new AFRAME.THREE.Vector3(...p).project(AFRAME.scenes[0].camera);return Math.abs(v.x)<1&&Math.abs(v.y)<1;}',v),'Narrow-screen control '+str(i)+' remains in the rendered view')
-  p.keyboard.press('F2');check(p.locator('#play').is_visible(),'F2 retains a usable semantic text-control alternative');c.close()
+  p.keyboard.press('F2');p.locator('#play').wait_for(state='visible');check(p.locator('#play').is_visible(),'F2 retains a usable semantic text-control alternative');c.close()
   check(not errors,'No uncaught JavaScript or shader errors in exercised new UI paths')
   (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'results':results,'errors':errors,'scope':'Actual rendered controls, two complete real-time battles, native-shaped emulated AR/VR menu inputs and room movement; no actor/score/health/clock assignments. Small software gameplay buffers, separate full-resolution scene capture. Physical Quest, Xbox and touch acceptance remain open.'},indent=2))
  except Exception as e:
