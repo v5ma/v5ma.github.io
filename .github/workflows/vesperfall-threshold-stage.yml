@@ -4,49 +4,24 @@ on:
     branches: [vesperfall-threshold-20260921]
     paths: ['.github/workflows/vesperfall-threshold-stage.yml']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: vesperfall-threshold-candidate
+  cancel-in-progress: true
 jobs:
-  prepare:
-    permissions:
-      contents: write
+  acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
-    outputs:
-      source: ${{ steps.source.outputs.sha }}
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - id: source
+      - name: Integrate exact source and preserve all original model/workbook gates
         run: |
           set -euo pipefail
           mkdir -p test-output
-          python - <<'PY'
-          from pathlib import Path
-          import hashlib,json
-          root=Path('vesperfall')
-          edits={
-            'app.js':('abe6d22c80089c9f36ec4d175672e4bcceb1ffc0550cf3ba943f4a215e704be7', [('this.wayfinder=Wayfinder.install(this);','this.wayfinder=Wayfinder.install(this);this.threshold=VesperThreshold.install(this);')]),
-            'index.html':('4032ad9a319650d57a3e73533e4a81a1238ec2048c5f503bb060adc5844bb773', [('<script src="./app.js?v=0.17.0-wayfinder"></script>','<script src="./threshold-model.js?v=0.17.0-threshold"></script><script src="./threshold.js?v=0.17.0-threshold"></script><script src="./app.js?v=0.17.0-threshold"></script>'),('./dominion-controls.js?v=0.17.0-fieldwork','./dominion-controls.js?v=0.17.0-threshold')]),
-            'dominion-controls.js':('d76606711542d128e672f3c1b8ee692b038aeebd4213bc2175e96694e023fb0b', [("if(state.xrScreen==='settings')return pageRows([...settings","if(state.xrScreen==='settings')return pageRows([['Spatial desk / walking doorway',()=>g.threshold?.screen('spatial')],...settings")])
-          }
-          for name,(digest,pairs) in edits.items():
-            p=root/name;s=p.read_text()
-            if all(new in s for old,new in pairs):continue
-            assert hashlib.sha256(p.read_bytes()).hexdigest()==digest,name
-            for old,new in pairs:
-              assert s.count(old)==1,(name,old)
-              s=s.replace(old,new)
-            p.write_text(s)
-          p=root/'DEVELOPMENT-HANDOFF.md';s=p.read_text()
-          if not s.startswith('Threshold spatial interface'):
-            assert hashlib.sha256(p.read_bytes()).hexdigest()=='951235522d6ffc10bfad610328fb3cde8ec7a2c7d7b8d59f0d9495253356df38'
-            p.write_text('Threshold spatial interface / September 21, 2026.\n\nRead THRESHOLD.md before altering scene menus or walking transitions. The existing XR panel is now a bounded adjustable world-anchored floor desk. Settings / Spatial desk opens a saved, paused round trip through a local Vesperfall travel foyer, with controller or room-scale crossing, a seated return, hand-pinch menus and actual XR exit. This is not integration with the private SaaS launcher, and contains no external destination or private hub asset. Desktop UI remains available. Preserve the Goldwind and Wayfinder behavior, all five layout readers, current game object and save contracts. Exact native/public acceptance is recorded separately; do not credit physical-device approval or a larger chapter from this interface pass. Existing V41/V42/V65/V68 obligations and the canonical workbook remain.\n\n'+s)
-          p=root/'release.json';d=json.loads(p.read_text())
-          d['threshold']={'name':'Threshold','date':'2026-09-21','scope':'World-anchored adjustable XR desk and a checkpoint-protected walking round trip to a local Vesperfall foyer. No private hub integration, cross-site travel, sphere portals, altered saved geometry or desktop UI replacement. See THRESHOLD.md and its separate publication receipt.'}
-          p.write_text(json.dumps(d,indent=2)+'\n')
-          PY
+          python .github/threshold-prepare.py
           for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
           python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
@@ -55,55 +30,45 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add vesperfall
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate local Vesperfall Threshold desk and walking transition without altering saved worlds'
+            git commit -m 'Integrate reviewed Threshold desk, intentional crossings and exact expedition restoration'
             git push origin HEAD:vesperfall-threshold-20260921
           fi
-          git rev-parse HEAD > test-output/source-revision.txt
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: threshold-candidate-model
-          path: test-output/
-          retention-days: 14
-  native:
-    needs: prepare
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [vr, ar, goldwind, wayfinder]
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.prepare.outputs.source }}
-      - run: |
+      - name: Install production WebGL browser
+        run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - env:
-          SUITE: ${{ matrix.suite }}
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/threshold-server.log 2>&1 &
+      - name: Complete VR walking and hand-menu round trip
+        env:
+          XR_MODE: vr
+        run: timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-vr.log
+      - name: Complete AR walking and hand-menu round trip
+        env:
+          XR_MODE: ar
+        run: timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-ar.log
+      - name: Preserve actual golden-arrow and crossbow input
+        run: timeout 900 python -u vesperfall/tests/goldwind-browser.py | tee test-output/goldwind.log
+      - name: Preserve complete in-headset chapter progression
+        run: timeout 900 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/wayfinder.log
+      - name: Require complete reports, not only a zero shell pipeline status
         run: |
-          set -euo pipefail
-          mkdir -p test-output
-          python -m http.server 4173 --bind 127.0.0.1 > test-output/server.log 2>&1 &
-          SERVER=$!
-          trap 'kill $SERVER' EXIT
-          if [ "$SUITE" = vr ] || [ "$SUITE" = ar ]; then
-            XR_MODE="$SUITE" timeout 1200 python -u vesperfall/tests/threshold-browser.py | tee test-output/browser.log
-            test -s test-output/threshold-${SUITE}/report.json
-          else
-            timeout 1200 python -u vesperfall/tests/${SUITE}-browser.py | tee test-output/browser.log
-          fi
-      - if: always()
+          test -s test-output/threshold-vr/report.json
+          test -s test-output/threshold-ar/report.json
+          test -s test-output/goldwind/report.json
+          test -s test-output/wayfinder-vr/report.json
+          test ! -e test-output/threshold-vr/failure.json
+          test ! -e test-output/threshold-ar/failure.json
+      - name: Retain tested source and unsuccessful traces
+        if: always()
         run: |
           mkdir -p test-output
           git rev-parse HEAD > test-output/source-revision.txt
           git diff --stat > test-output/uncommitted-diff.txt
+          cp /tmp/threshold-server.log test-output/server.log 2>/dev/null || true
           tar -czf test-output/vesperfall-source.tgz vesperfall scripts
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: threshold-candidate-${{ matrix.suite }}
+          name: threshold-reviewed-candidate
           path: test-output/
           retention-days: 14
