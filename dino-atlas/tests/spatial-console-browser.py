@@ -36,7 +36,8 @@ try:
    (OUT/(SCENE+'-'+name+'.png')).write_bytes(base64.b64decode(data))
   try:
    page.goto(BASE+PAGE+'?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
-   check(page.evaluate('x.console.snapshot().build')=='ranger-spatial-console-20260920.2','Exact spatial console build boots in '+SCENE)
+   check(page.evaluate('x.console.snapshot().build')=='ranger-spatial-console-20260920.3','Exact spatial console build boots in '+SCENE)
+   check(page.evaluate('''()=>{const d=document.getElementById('spatial-console-settings');return !d.open&&getComputedStyle(d).display==='none'&&d.getClientRects().length===0;}'''),'Closed workspace is absent from the screen and pointer layout at launch')
    press(0);wait('g.state.started')
    if page.locator('dialog[open]').count():press(1)
    press(9);page.locator('#quality-select' if SCENE=='classic' else '#quality').select_option('low');press(1)
@@ -45,7 +46,9 @@ try:
    # This is the hardware boundary: session and tracked poses only, not the game state.
    page.evaluate('''async()=>{window.T=await import('./vendor/three.module.js');const make=handedness=>({handedness,gamepad:{mapping:'xr-standard',axes:[0,0,0,0],buttons:Array.from({length:6},()=>({value:0}))}});window.left=make('left');window.right=make('right');window.session=new EventTarget();session.inputSources=[left,right];session.visibilityState='visible';window.ended=0;session.end=async()=>{ended++;session.dispatchEvent(new Event('end'));};Object.defineProperty(navigator,'xr',{configurable:true,value:{isSessionSupported:async()=>true,requestSession:async()=>session}});g.renderer.xr.setSession=async()=>{};await x.checkSupport();}''')
    press(9);page.locator('#xr-presentation').select_option('first-person-vr');page.locator('#xr-enter').click();wait('x.active')
-   page.evaluate('''()=>{g.camera.position.set(0,1.65,0);g.camera.quaternion.identity();for(const [i,s] of [[0,left],[1,right]]){const e=x.controllers[i];e.ray.visible=true;e.ray.position.set(i?.25:-.25,1.3,-.25);e.ray.quaternion.identity();e.ray.updateMatrix();e.grip.visible=true;e.grip.position.copy(e.ray.position);e.grip.updateMatrix();e.ray.dispatchEvent({type:'connected',data:s});}}''')
+   # Pose fixture: the pointing hand is above/in front of the worn slate.
+   # The earlier equal-height pose aimed through its non-rendered underside.
+   page.evaluate('''()=>{g.camera.position.set(0,1.65,0);g.camera.quaternion.identity();for(const [i,s] of [[0,left],[1,right]]){const e=x.controllers[i];e.ray.visible=true;e.ray.position.set(i?.25:-.25,i?1.5:1.3,i?-.05:-.25);e.ray.quaternion.identity();e.ray.updateMatrix();e.grip.visible=true;e.grip.position.copy(e.ray.position);e.grip.updateMatrix();e.ray.dispatchEvent({type:'connected',data:s});}}''')
    if page.locator('dialog[open]').count():press(1)
    xrready();wait('!x.console.expanded&&!x.panel.visible')
    check(page.evaluate('x.console.wrist.mesh.visible&&x.console.wrist.mesh.parent===x.controllers[0].grip'),'Compact status attaches to tracked grip, not the head')
@@ -62,7 +65,7 @@ try:
    check(max(abs(a-b) for a,b in zip(pose['p'],after['p']))<.002 and pose['q']==after['q'],'Open workspace remains fixed when the tracked head turns and moves')
    page.evaluate('g.camera.position.x-=.3;g.camera.quaternion.identity()')
    # Aim an actual target ray at a rendered surface and dispatch real select events.
-   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true,allowBackground=false)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);window.lastPointed=x.hit(e)?.label;if(!lastPointed&&!(allowBackground&&x.hit(e)?.occludesUI))throw Error('Synthetic ray missed visible surface');e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
+   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true,allowBackground=false)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);const target=mesh.localToWorld(new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0)),normal=new T.Vector3(0,0,1).transformDirection(mesh.matrixWorld);window.lastSurfaceProbe={name:mesh.name,origin:e.ray.getWorldPosition(new T.Vector3()).toArray(),target:target.toArray(),signedFacing:normal.dot(e.ray.getWorldPosition(new T.Vector3()).sub(target)),visible:mesh.visible};window.lastPointed=x.hit(e)?.label;if(!lastPointed&&!(allowBackground&&x.hit(e)?.occludesUI))throw Error('Synthetic ray missed visible surface');e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
    page.evaluate('rail(4)');wait('document.getElementById("spatial-console-settings").open');xrready()
    check(True,'Pointed Workspace tab opens real adjustable settings without searching long menus')
    # Standard controller focus and adjustment, not setting configuration directly.
@@ -92,6 +95,7 @@ try:
    if SCENE=='classic':
     xrpress(5);page.locator('#menu-controls').click();wait('document.getElementById("controls-dialog").open');xrready();page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');check(True,'Direct Resume clears the original nested Controls back destination')
    # A visible slate owns its whole surface, including informational pixels.
+   check(page.evaluate('''()=>{const d=document.getElementById('spatial-console-settings');return !d.open&&getComputedStyle(d).display==='none'&&d.getClientRects().length===0;}'''),'Resume removes the closed screen workspace as well as its spatial hit target')
    wait('x.console.wrist.mesh.visible');xrready();ammo=page.evaluate('x.ctx.fleet.state.ammo[0]')
    page.evaluate("tapSurface(x.console.wrist.mesh,.5,.7,false,true);right.gamepad.buttons[0].value=1")
    page.wait_for_timeout(600)
@@ -124,15 +128,16 @@ try:
    wait('x.console.wrist.mesh.visible');xrready();page.evaluate('tapSurface(x.console.wrist.mesh,.25,.12)');wait('g.state.paused');xrready()
    page.evaluate('rail(5)');wait('!x.active');check(page.evaluate('ended')==1 and not page.evaluate('x.console.root.visible||x.console.wrist.mesh.visible'),'Leave XR ends the actual session owner and removes all spatial UI')
    if page.locator('dialog[open]').count():press(1)
+   check(page.evaluate('''()=>{const d=document.getElementById('spatial-console-settings');return !d.open&&getComputedStyle(d).display==='none'&&d.getClientRects().length===0;}'''),'Leaving XR restores screen play without an orphaned workspace overlay')
    press(14);check(page.evaluate('x.ctx.fleet.state.tool')==0,'Screen/controller play remains usable after XR exit')
    check(page.evaluate('g.state.field.commendations')==before['field'],'UI inspection does not grant or reset mission rewards')
    settings=page.evaluate('x.console.cfg');page.reload(wait_until='domcontentloaded');wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
    check(page.evaluate('x.console.cfg')==settings and not page.evaluate('x.console.trayOpen'),'Workspace preferences survive reload without restoring armed menu input')
    check(not errors,'No captured game JavaScript or HTTP errors')
-   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.2','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
+   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.3','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
   except Exception as e:
    diag={}
-   try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id,pointed:window.lastPointed,hold:x?.holds?.size,beforePose:window.beforePose,afterPose:window.afterPose,progress:x?.console?.progress})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)
+   try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id,pointed:window.lastPointed,surfaceProbe:window.lastSurfaceProbe,hold:x?.holds?.size,beforePose:window.beforePose,afterPose:window.afterPose,progress:x?.console?.progress})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)
    except:pass
    (OUT/(SCENE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'diagnostic':diag},indent=2));raise
   finally:browser.close()

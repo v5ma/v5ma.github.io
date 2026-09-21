@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "baselineMaster": "919a7cdebfb3a9935c7f4f983b724ecac0d92067",
+  "previousRuntimeCommit": "2a527853cffebc837f078dafdc015124b629992d",
+  "build": "ranger-spatial-console-20260920.3",
+  "status": "source-checked-native-public-pending",
+  "failedCandidateRun": 35555017066,
+  "failedMasterRun": 35557266771,
+  "artifacts": [
+    {"id":10620914312,"sha256":"0462a1d7a988d79e5c0ec6f7c02dbd347641eb55c978b470f9ad8556e197b35b","hashMatched":true},
+    {"id":10622045115,"sha256":"72de5864a74a79a912e7079d5812a2d075a5793b3e31d9189584a1cca858a78c","hashMatched":true},
+    {"id":10621810202,"sha256":"272b46a18979f889d8f060630f26c7bedfe70c8538b0eeccd41d6ca9c2e5384c","hashMatched":true}
+  ],
+  "runtimeHashesMatched": 72,
+  "failedProbe": "Synthetic ray missed visible surface at wrist information following workspace Resume",
+  "fixture": {"oldOrigin":[0.25,1.3,-0.25],"oldSignedFacing":-0.08645609772417899,"oldHit":null,"frontOrigin":[0.25,1.5,-0.05],"frontSignedFacing":0.196209428055252,"frontHit":"UI_BACKGROUND","productionPickingChanged":false},
+  "realDefect": "Closed workspace dialog inherited display:grid and overlaid screen play. Scope the not-open display:none rule to that dialog only.",
+  "localResults": {"tests":257,"passed":257,"failed":0,"skipped":0,"syntax":"passed"},
+  "physicalHardwareVerified": false,
+  "publicResults": "pending",
+  "preserved": ["historical saves/rewards","mounted tools and missions","movement and vehicle physics","control profiles","single-sided picking","portal size and placement","private/public separation","sibling games"]
+}

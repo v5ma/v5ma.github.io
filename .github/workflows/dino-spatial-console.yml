@@ -1,88 +1,71 @@
 name: Dino Atlas Field Rotunda
 on:
   push:
-    branches: [master, 'dino-atlas/spatial-refinement-20260920']
-    paths: ['dino-atlas/**', '.github/workflows/dino-spatial-console.yml', '.github/patches/dino-spatial-refine.b64']
+    branches: [master, 'dino-atlas/rotunda-release-20260920']
+    paths: ['dino-atlas/**', '.github/workflows/dino-spatial-console.yml', '.github/patches/dino-rotunda-repair.json']
 permissions:
   contents: read
 concurrency:
   group: dino-spatial-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  integrate:
-    if: github.ref == 'refs/heads/dino-atlas/spatial-refinement-20260920'
+  model:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     permissions:
       contents: write
     outputs:
-      source: ${{ steps.apply.outputs.source }}
+      source: ${{ steps.source.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: dino-atlas/spatial-refinement-20260920
+          ref: ${{ github.sha }}
           sparse-checkout: |
             dino-atlas
             .github
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - id: apply
-        name: Verify source hashes and apply Dino-only refinement once
+      - name: Apply only the exact saved repair before its first validation
+        if: github.ref == 'refs/heads/dino-atlas/rotunda-release-20260920'
         run: |
           python - <<'PY'
           from pathlib import Path
-          import base64,lzma,hashlib,json,subprocess,os
-          payload=Path('.github/patches/dino-spatial-refine.b64')
-          if payload.exists():
-              raw=lzma.decompress(base64.b64decode(payload.read_text().strip(),validate=True))
-              assert hashlib.sha256(raw).hexdigest()=='3b197b4e38374b8b27ee4d2248aafe7d4d92c7e89484ab1a0ba6f60d07361719'
-              entries=json.loads(raw);assert len(entries)==16
+          import hashlib,json,subprocess
+          p=Path('.github/patches/dino-rotunda-repair.json')
+          if p.exists():
+              raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()=='dbe662d31ddb1c3a8b066248c4ebbf2b4ea6add983c50999b81a79ec90ab2c83'
+              entries=json.loads(raw);assert len(entries)==10
               for e in entries:
-                  p=Path(e['path']);assert not p.is_absolute() and '..' not in p.parts and str(p).startswith('dino-atlas/')
+                  path=Path(e['path']);assert not path.is_absolute() and '..' not in path.parts and str(path).startswith('dino-atlas/')
                   if e['before'] is None:
-                      assert not p.exists(),str(p)+' already exists'
+                      assert not path.exists(),str(path)+' already exists'
                       text=e['content']
                   else:
-                      old=p.read_bytes();assert hashlib.sha256(old).hexdigest()==e['before'],str(p)+' baseline changed'
+                      old=path.read_bytes();assert hashlib.sha256(old).hexdigest()==e['before'],str(path)+' baseline changed'
                       text=old.decode()
                       for start,end,replacement in reversed(e['edits']):
                           assert 0<=start<=end<=len(text)
                           text=text[:start]+replacement+text[end:]
-                  data=text.encode();assert hashlib.sha256(data).hexdigest()==e['after'],str(p)+' output mismatch'
-                  p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+                  data=text.encode();assert hashlib.sha256(data).hexdigest()==e['after'],str(path)+' result mismatch'
+                  path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
               subprocess.run(['bash','-c','node --test dino-atlas/tests/*.test.mjs'],check=True)
               subprocess.run(['git','add',*[e['path'] for e in entries]],check=True)
-              subprocess.run(['git','rm',str(payload)],check=True)
+              subprocess.run(['git','rm',str(p)],check=True)
               subprocess.run(['git','config','user.name','Dino Atlas Build'],check=True)
               subprocess.run(['git','config','user.email','60057241+v5ma@users.noreply.github.com'],check=True)
-              subprocess.run(['git','commit','-m','Refine Field Rotunda input capture, exact feedback and personal workspace rotation'],check=True)
-              subprocess.run(['git','push','origin','HEAD:dino-atlas/spatial-refinement-20260920'],check=True)
-          sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('source='+sha+'\n')
+              subprocess.run(['git','commit','-m','Fix closed rotunda dialog and verify front-side wrist interaction'],check=True)
+              subprocess.run(['git','push','origin','HEAD:dino-atlas/rotunda-release-20260920'],check=True)
           PY
-  model:
-    needs: integrate
-    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.integrate.outputs.source || github.sha }}
-          persist-credentials: false
-          sparse-checkout: |
-            dino-atlas
-            .github
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Preserve complete model suite and exact source
+      - id: source
+        name: Record exact tested source and complete model evidence
         run: |
           mkdir -p spatial-evidence
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD > spatial-evidence/source-commit.txt
           tar -czf spatial-source.tgz dino-atlas .github/workflows/dino-spatial-console.yml
           find dino-atlas -maxdepth 1 -name '*.js' -print0 | xargs -0 -n1 node --check
+          python -m py_compile dino-atlas/tests/spatial-console-browser.py
           set -o pipefail
           node --test dino-atlas/tests/*.test.mjs | tee spatial-evidence/unit-tests.tap
           python - <<'PY'
@@ -90,8 +73,8 @@ jobs:
           import hashlib,json,subprocess
           paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
           files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
-          report={'build':'ranger-spatial-console-20260920.2','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
-          Path('spatial-evidence/manifest.json').write_text(json.dumps(report,indent=2))
+          m={'build':'ranger-spatial-console-20260920.3','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
+          Path('spatial-evidence/manifest.json').write_text(json.dumps(m,indent=2))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
@@ -102,10 +85,9 @@ jobs:
             spatial-source.tgz
           retention-days: 30
   browser:
-    needs: integrate
-    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
+    needs: model
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -113,18 +95,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.integrate.outputs.source || github.sha }}
+          ref: ${{ needs.model.outputs.source }}
           persist-credentials: false
           sparse-checkout: dino-atlas
       - name: Install native browser
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Actual menus, motion, hand controls, settings and session exit
+      - name: Actual spatial menus, input capture, motion and exit
         env:
           SPATIAL_SCENE: ${{ matrix.scene }}
         run: python dino-atlas/tests/spatial-console-browser.py
-      - name: Preserve world portal and vehicle actions
+      - name: Preserve full-world portal and vehicle controls
         env:
           PORTAL_SCENE: ${{ matrix.scene }}
           EXPRESS_SCENE: ${{ matrix.scene }}
@@ -141,14 +123,13 @@ jobs:
             express-evidence/
           retention-days: 30
   entry:
-    needs: integrate
-    if: always() && (needs.integrate.result == 'success' || needs.integrate.result == 'skipped')
+    needs: model
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.integrate.outputs.source || github.sha }}
+          ref: ${{ needs.model.outputs.source }}
           persist-credentials: false
           sparse-checkout: dino-atlas
       - name: Install native browser
@@ -171,7 +152,7 @@ jobs:
     needs: [model, browser, entry]
     if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -182,7 +163,7 @@ jobs:
         with:
           name: dino-spatial-model-${{ github.run_id }}
           path: model
-      - name: Match public runtime separately from the source checkout
+      - name: Match served runtime separately from source and candidate success
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -199,10 +180,10 @@ jobs:
               with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
                   for path,digest in pool.map(fetch,list(pending.items())):
                       if digest:matched[path]=digest;pending.pop(path,None)
-              print('Public files matched',len(matched),'pending',len(pending),flush=True)
+              print('Public matched',len(matched),'pending',len(pending),flush=True)
               if not pending:break
               time.sleep(15)
-          assert not pending,'Public files mismatch: '+str(list(pending))
+          assert not pending,'Public mismatch: '+str(list(pending))
           out=Path('spatial-evidence');out.mkdir(exist_ok=True)
           (out/'public-verification.json').write_text(json.dumps({'build':m['build'],'commit':m['commit'],'files':matched,'allMatched':True,'physicalHardwareVerified':False},indent=2))
           PY
@@ -210,7 +191,7 @@ jobs:
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Play actual public regular-game and Tidegate menu journeys
+      - name: Play published Classic and Tidegate with real UI handlers and explicit XR mocks
         env:
           DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
         run: |
@@ -241,11 +222,11 @@ jobs:
         with:
           pattern: dino-spatial-*-${{ github.run_id }}
           path: evidence
-      - name: Archive verified playtest build without replacing earlier releases
+      - name: Archive verified playtest without replacing historical releases
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view dino-spatial-console-20260920.2 >/dev/null 2>&1; then
+          if ! gh release view dino-spatial-console-20260920.3 >/dev/null 2>&1; then
             tar -czf dino-spatial-console-evidence.tgz -C evidence .
-            gh release create dino-spatial-console-20260920.2 --target '${{ github.sha }}' --title 'Dino Atlas: Field Rotunda interaction refinement' --prerelease --notes-file dino-atlas/SPATIAL-CONSOLE.md dino-spatial-console-evidence.tgz
+            gh release create dino-spatial-console-20260920.3 --target '${{ github.sha }}' --title 'Dino Atlas: Field Rotunda recovery and interaction refinement' --prerelease --notes-file dino-atlas/ROTUNDA-RECOVERY.md dino-spatial-console-evidence.tgz
           fi

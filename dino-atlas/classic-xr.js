@@ -1,4 +1,4 @@
-import {DioramaXR as SharedXR} from './diorama-xr.js?v=rotunda2';
+import {DioramaXR as SharedXR} from './diorama-xr.js?v=rotunda3';
 
 export const CLASSIC_XR_ENTRY_BUILD='classic-xr-entry-20260918.1';
 const views=['first-person-vr','diorama-vr','diorama-ar'];
