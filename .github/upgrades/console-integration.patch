@@ -1,0 +1,91 @@
+diff --git a/svgn-planet/main-app.mjs b/svgn-planet/main-app.mjs
+index 2839006..e6c9638 100644
+--- a/svgn-planet/main-app.mjs
++++ b/svgn-planet/main-app.mjs
+@@ -94 +94 @@ function boot(){try{view=createScene(canvas);hub=createMainHub({view,canvas,stat
+- pause,resume,openMap,clear,playing:()=>started&&!paused&&!failed&&!graphicsLost,setPaused:v=>{paused=v;clear();},persistCity:persist,ensureStarted:()=>{if(!started)$('start').click();},changed:()=>{renderDirty=true;last=0;},
++ pause,resume,openMap,clear,cityMap:()=>{drawMap();return $('map');},playing:()=>started&&!paused&&!failed&&!graphicsLost,setPaused:v=>{paused=v;clear();},persistCity:persist,ensureStarted:()=>{if(!started)$('start').click();},changed:()=>{renderDirty=true;last=0;},
+diff --git a/svgn-planet/main-browser.py b/svgn-planet/main-browser.py
+index f325cdb..e68c85d 100644
+--- a/svgn-planet/main-browser.py
++++ b/svgn-planet/main-browser.py
+@@ -21 +21 @@ async def main():
+-   await wait('NeighborhoodMissions.inspect().xr.actionPanelVisible');await frames(4)
++   await wait('NeighborhoodMissions.inspect().xr.actionPanelVisible&&NeighborhoodMissions.inspect().xr.console.progress>=.99');await frames(4)
+@@ -35 +35 @@ async def main():
+-   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']=='0.16.0';assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
++   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']=='0.16.1';assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
+diff --git a/svgn-planet/main-hub.mjs b/svgn-planet/main-hub.mjs
+index 3babfbd..865d5e4 100644
+--- a/svgn-planet/main-hub.mjs
++++ b/svgn-planet/main-hub.mjs
+@@ -0,0 +1 @@
++import {mountConsoleSettings} from './console-settings.mjs';
+@@ -16 +17 @@ import {xrInput} from './xr-input.mjs';
+-const VERSION='0.16.0',HUB_KEY='svgn.neighborhood-hub.v1';
++const VERSION='0.16.1',HUB_KEY='svgn.neighborhood-hub.v1';
+@@ -62,0 +64,5 @@ export function createMainHub(hooks){
++  hud:()=>{
++   const controls=xr.preferences.profile==='courier'?'Off trigger: speed / primary grip: throw':(wardActive?ward.ride!=='foot':hooks.state().ride)?(xr.consolePreferences.triggerDrive?'Primary trigger: speed / off grip: brake':'Move-stick click: speed / off grip: brake'):'Primary grip: interact / trigger: action',menu=xr.preferences.dominant==='right'?'Y':'B';
++   if(wardActive){const n=navigation(ward,yaw);return {title:'LANTERN WARD',goal:missionGoal(ward),detail:Math.ceil(n.distance)+' m / '+n.level,equipment:ward.ride+' / '+watchRuntime(ward).tool,map:$('ward-mini'),health:watchState(ward).tracking?watchInspect(ward).health:null,controls,menu};}
++   return {title:'MAIN NEIGHBORHOODS',goal:$('objective-title').textContent,detail:$('objective-text').textContent,equipment:$('ride-name').textContent,map:hooks.cityMap?.(),controls,menu};
++  },
+@@ -63,0 +70 @@ export function createMainHub(hooks){
++ mountConsoleSettings({xr,open,back:()=>wardActive?wardMenu():hooks.resume()});
+diff --git a/svgn-planet/main-navigation-browser.py b/svgn-planet/main-navigation-browser.py
+index dd1db4a..4388c9a 100644
+--- a/svgn-planet/main-navigation-browser.py
++++ b/svgn-planet/main-navigation-browser.py
+@@ -26,0 +27 @@ async def main():
++   await wait('NeighborhoodMissions.inspect().xr.console.progress>=.99')
+diff --git a/svgn-planet/unified-xr.mjs b/svgn-planet/unified-xr.mjs
+index 801450d..861ab15 100644
+--- a/svgn-planet/unified-xr.mjs
++++ b/svgn-planet/unified-xr.mjs
+@@ -0,0 +1,2 @@
++import {createSpatialConsole} from './spatial-console.mjs';
++import {triggerVehicleSpeed} from './console-state.mjs';
+@@ -17 +19,2 @@ export function createUnifiedXR(hooks){
+- const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false;
++ const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false,floorSpace=null;
++ const consoleUI=createSpatialConsole(ui,panel,tex,{storage:hooks.storage,goal:hooks.goal,hud:hooks.hud,message:hooks.message,clear});
+@@ -24 +27 @@ export function createUnifiedXR(hooks){
+- function finish(){session=null;pending=false;aligned=false;clear();ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
++ function finish(){floorSpace=null;consoleUI.end();session=null;pending=false;aligned=false;clear();ui.removeFromParent();panel.visible=false;hooks.spatial().end();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.setClearColor(0xabc8cb,1);document.body.classList.remove('in-xr');hooks.pause();hooks.message('XR ended. Your district and progress are retained.');hooks.changed?.();}
+@@ -33 +36,2 @@ export function createUnifiedXR(hooks){
+-   await renderer.xr.setSession(next);aligned=false;document.body.classList.add('in-xr');pause();hooks.changed?.();
++   await renderer.xr.setSession(next);floorSpace=null;
++   next.requestReferenceSpace?.('local-floor').then(space=>{if(session===next)floorSpace=space;}).catch(()=>{});aligned=false;document.body.classList.add('in-xr');pause();hooks.changed?.();
+@@ -50 +54 @@ export function createUnifiedXR(hooks){
+-  for(const row of rows){ctx.fillStyle='#365866';ctx.fillRect(row.x,row.y,row.w,row.h);ctx.fillStyle='#fff3d5';ctx.font='27px sans-serif';ctx.fillText(row.label.replace(/\s+/g,' '),row.x+15,row.y+row.h/2+9,row.w-30);}tex.needsUpdate=true;lastPaint=performance.now();
++  for(const row of rows){ctx.fillStyle='#365866';ctx.fillRect(row.x,row.y,row.w,row.h);ctx.fillStyle='#fff3d5';ctx.font='27px sans-serif';ctx.fillText(row.label.replace(/\s+/g,' '),row.x+15,row.y+row.h/2+9,row.w-30);}tex.needsUpdate=true;consoleUI.sync(rows);lastPaint=performance.now();
+@@ -56 +60 @@ export function createUnifiedXR(hooks){
+-  const r=root();if(r!==rootBefore){rootBefore=r;page=0;clear();lastPaint=0;const p=new T.Vector3().copy(viewer.transform.position),f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion().copy(viewer.transform.orientation)),h=Math.atan2(-f.x,-f.z);panel.position.copy(p).add(new T.Vector3(0,-.1,-1.7).applyAxisAngle(new T.Vector3(0,1,0),h));panel.rotation.set(0,h,0);}
++  const r=root();if(r!==rootBefore){rootBefore=r;page=0;clear();lastPaint=0;}
+@@ -57,0 +62 @@ export function createUnifiedXR(hooks){
++  const floorPose=floorSpace&&frame.getPose(floorSpace,ref);consoleUI.step({viewer,floorY:floorPose?.transform?.position?.y,open:panel.visible,dt,frame,ref,sources,dominant:prefs.dominant,now});
+@@ -59 +64,2 @@ export function createUnifiedXR(hooks){
+-  const ar=modeInfo(kind),off=sources.find(s=>!s.hand&&s.handedness!==prefs.dominant),aiming=!r&&prefs.profile==='action'&&((off?.gamepad?.buttons[0]?.value||0)>.2||off?.gamepad?.buttons[0]?.pressed);
++  const vehicleDrive=prefs.profile==='action'&&triggerVehicleSpeed(hooks.state(),consoleUI.prefs.triggerDrive);
++  const ar=modeInfo(kind),off=sources.find(s=>!s.hand&&s.handedness!==prefs.dominant),aiming=!r&&!vehicleDrive&&prefs.profile==='action'&&((off?.gamepad?.buttons[0]?.value||0)>.2||off?.gamepad?.buttons[0]?.pressed);
+@@ -71,2 +77,4 @@ export function createUnifiedXR(hooks){
+-   const hit=panel.visible?caster.intersectObject(panel)[0]:null,cx=hit?.uv.x*1024,cy=(1-(hit?.uv.y||0))*1024,row=hit&&rows.find(a=>cx>=a.x&&cx<=a.x+a.w&&cy>=a.y&&cy<=a.y+a.h);
+-   if(row&&slot.ready&&b[0]){consumed=true;if(row.hold&&!r){if(row.hold==='move')xrInput.y=1;else xrInput.brake=true;}else if(edge(0)){row.act?.((cx-row.x)/row.w);selections++;lastPaint=0;clear();}}
++   const picked=consoleUI.ready?consoleUI.hit(caster,panel.visible,b[0]):null,hit=picked?.hit,row=picked?.row;
++   slot.ray.scale.z=hit?Math.min(1,hit.distance/3):1;
++   if(picked?.summon){slot.ray.visible=true;if(edge(0)){pause();consumed=true;}}
++   if(row&&slot.ready&&b[0]){consumed=true;if(row.hold&&!r){if(row.hold==='move')xrInput.y=1;else xrInput.brake=true;}else if(edge(0)){row.act?.(picked.u);selections++;lastPaint=0;clear();}}
+@@ -81 +89 @@ export function createUnifiedXR(hooks){
+-     if(role.movement){xrInput.x=Math.abs(ax)>.16?ax:0;xrInput.y=Math.abs(ay)>.16?-ay:0;if(prefs.profile==='action')xrInput.boost=b[3];}
++     if(role.movement){xrInput.x=Math.abs(ax)>.16?ax:0;xrInput.y=Math.abs(ay)>.16?-ay:0;if(prefs.profile==='action'&&!vehicleDrive)xrInput.boost=b[3];}
+@@ -88 +96,2 @@ export function createUnifiedXR(hooks){
+-      if(edge(0)){hooks.action(aiming?'tool':hooks.combat?.()?'strike':'interact',ray);slot.armed=false;}
++      if(vehicleDrive)xrInput.boost=b[0];
++      else if(edge(0)){hooks.action(aiming?'tool':hooks.combat?.()?'strike':'interact',ray);slot.armed=false;}
+@@ -106 +115,2 @@ export function createUnifiedXR(hooks){
+-  setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;clear();},
++  setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;consoleUI.recenter();clear();},
++  consolePreference:(k,v)=>consoleUI.configure(k,v),get consolePreferences(){return consoleUI.prefs;},recenterConsole:()=>{consoleUI.recenter();clear();},
+@@ -108 +118 @@ export function createUnifiedXR(hooks){
+-  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
++  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,console:consoleUI.inspect(),environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
