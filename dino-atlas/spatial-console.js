@@ -14,11 +14,14 @@ export function summonPose(head,yaw,options={}){
  const cfg=consoleSettings(options),distance=cfg.distance;
  return {x:head.x-Math.sin(yaw)*distance,y:cfg.height,z:head.z-Math.cos(yaw)*distance,yaw};
 }
+// All console surfaces share the late transparent pass so world labels cannot
+// render over an otherwise opaque menu after the main opaque pass has finished.
+export const consoleMaterial=options=>new T.MeshBasicMaterial({...options,transparent:true,depthTest:false,depthWrite:false,toneMapped:false});
 const text=id=>document.getElementById(id)?.textContent?.replace(/\s+/g,' ').trim()||'';
 function makeSurface(w,h,width,height){
  const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
  const texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
- const material=new T.MeshBasicMaterial({map:texture,depthTest:false,depthWrite:false,toneMapped:false});
+ const material=consoleMaterial({map:texture});
  const mesh=new T.Mesh(new T.PlaneGeometry(width,height),material);mesh.renderOrder=10030;
  return {canvas,texture,mesh,paint:canvas.getContext('2d')};
 }
@@ -32,32 +35,35 @@ function lines(c,value,x,y,width,step,max=2){
 export class SpatialConsole{
  constructor(xr){
   this.xr=xr;this.cfg=readConsole(xr.ctx.storage);this.trayOpen=false;this.placed=false;this.expanded=false;this.clock=0;this.progress=0;this.lastRoot=null;this.lastSession=null;this.pose=null;
+  xr.panel.material.transparent=true;xr.panel.material.depthWrite=false;xr.panel.material.needsUpdate=true;
   this.root=new T.Group();this.root.name='Personal spatial console / not miniature world';xr.rig.add(this.root);
-  this.rotunda=new T.Mesh(new T.CylinderGeometry(.36,.40,.035,32),new T.MeshBasicMaterial({color:0x294f48,transparent:true,opacity:.8,depthTest:false}));this.rotunda.renderOrder=9998;this.root.add(this.rotunda);
-  this.column=new T.Mesh(new T.CylinderGeometry(.026,.10,1,12),new T.MeshBasicMaterial({color:0xc2b37a,transparent:true,opacity:.7,depthTest:false}));this.column.renderOrder=9997;this.root.add(this.column);
+  this.rotunda=new T.Mesh(new T.CylinderGeometry(.36,.40,.035,32),consoleMaterial({color:0x294f48,opacity:.8}));this.rotunda.renderOrder=9998;this.root.add(this.rotunda);
+  this.column=new T.Mesh(new T.CylinderGeometry(.026,.10,1,12),consoleMaterial({color:0xc2b37a,opacity:.7}));this.column.renderOrder=9997;this.root.add(this.column);
   this.dock=makeSurface(512,192,.48,.18);this.dock.mesh.name='Floor menu dock';this.dock.mesh.rotation.x=-Math.PI/2;this.root.add(this.dock.mesh);
   this.rail=makeSurface(1200,140,1.45,.17);this.rail.mesh.name='Workspace direct tabs';xr.panel.add(this.rail.mesh);this.rail.mesh.position.set(0,.82,.025);
   this.wrist=makeSurface(768,384,.40,.20);this.wrist.mesh.name='Compact wrist status and menu access';this.root.add(this.wrist.mesh);
-  this.buttonPool=[];this.box=new T.BoxGeometry(1,1,1);this.capMaterial=new T.MeshBasicMaterial({map:xr.texture,depthTest:false,depthWrite:false,toneMapped:false});
-  this.pointerMaterial=new T.MeshBasicMaterial({color:0xffefab,depthTest:false,depthWrite:false});
+  this.buttonPool=[];this.box=new T.BoxGeometry(1,1,1);this.capMaterial=consoleMaterial({map:xr.texture});
+  this.pointerMaterial=consoleMaterial({color:0xffefab});
   this.dots=xr.controllers.map(e=>{const dot=new T.Mesh(new T.SphereGeometry(.009,8,6),this.pointerMaterial);dot.renderOrder=10100;dot.visible=false;e.ray.add(dot);return dot;});
   this.shortcuts=[{label:'Menu',run:()=>this.menu()},{label:'Field controls',run:()=>this.field()}];
-  this.tabs=[{label:'Resume',run:()=>{if(xr.ctx.modal())xr.ctx.action('back');this.hideField();}},{label:'Map',run:()=>xr.ctx.action('map')},{label:'Missions',run:()=>document.getElementById('menu-field-contracts').click()},{label:'Field',run:()=>{if(xr.ctx.modal())xr.ctx.action('back');this.field();}},{label:'Workspace',run:()=>this.workspace()},{label:'Leave XR',run:()=>xr.enter()}];
+  this.tabs=[{label:'Resume',run:()=>this.resume()},{label:'Map',run:()=>xr.ctx.action('map')},{label:'Missions',run:()=>document.getElementById('menu-field-contracts').click()},{label:'Field',run:()=>{this.resume();this.field();}},{label:'Workspace',run:()=>this.workspace()},{label:'Leave XR',run:()=>xr.enter()}];
   this.installSettings();this.paintRail();this.paintDock();this.root.visible=false;this.wrist.mesh.visible=false;
  }
  installSettings(){
   const settings=document.createElement('dialog');settings.className='settings';settings.style.cssText='max-height:85vh;overflow:auto;background:#183c35;color:#fff1d1;border:2px solid #d4bc7e;padding:24px';settings.id='spatial-console-settings';
   settings.innerHTML='<h3>Spatial workspace</h3><p>B opens or closes the menu. Point and pinch at the floor dock or wrist to open it without controllers. The workspace stays where summoned, not on your head.</p><button id="spatial-field">Open field controls / hand movement</button><button id="spatial-place">Bring workspace here</button><label>Workspace height <input id="spatial-height" type="range" min="0.55" max="1.8" step="0.05"></label><label>Workspace distance <input id="spatial-distance" type="range" min="0.8" max="2.2" step="0.1"></label><label>Workspace size <input id="spatial-scale" type="range" min="0.55" max="1.2" step="0.05"></label><label><input id="spatial-wrist" type="checkbox"> Compact wrist status</label><button id="spatial-reset">Reset workspace for seated / standing view</button>';
-  const menu=document.getElementById('menu-dialog');document.body.append(settings);const button=document.createElement('button');button.id='spatial-workspace-button';button.textContent='Spatial workspace / height and size';button.onclick=()=>this.workspace();menu.querySelector('[data-close]').after(button);settings.addEventListener('cancel',e=>{e.preventDefault();this.xr.ctx.action('back');});const back=document.createElement('button');back.textContent='Resume game';back.onclick=()=>this.xr.ctx.action('back');settings.append(back);
+  const menu=document.getElementById('menu-dialog');document.body.append(settings);const button=document.createElement('button');button.id='spatial-workspace-button';button.textContent='Spatial workspace / height and size';button.onclick=()=>this.workspace();menu.querySelector('[data-close]').after(button);settings.addEventListener('cancel',e=>{e.preventDefault();this.xr.ctx.action('back');});const back=document.createElement('button');back.textContent='Resume game';back.onclick=()=>this.resume();settings.append(back);
   for(const key of ['height','distance','scale','wrist']){
    const e=document.getElementById('spatial-'+key);if(key==='wrist')e.checked=this.cfg[key];else e.value=this.cfg[key];
    const update=()=>{this.cfg=consoleSettings({...this.cfg,[key]:key==='wrist'?e.checked:Number(e.value)});this.persist();if(key==='distance')this.summon();this.positionPanel();};
    e.addEventListener(key==='wrist'?'change':'input',update);
   }
-  document.getElementById('spatial-field').onclick=()=>{if(this.xr.ctx.modal())this.xr.ctx.action('back');this.field();};
+  document.getElementById('spatial-field').onclick=()=>{this.resume();this.field();};
   document.getElementById('spatial-place').onclick=()=>this.summon();
   document.getElementById('spatial-reset').onclick=()=>{const h=this.head();this.cfg=consoleSettings({height:clamp(h.y-.35,.65,1.5)});this.persist();for(const k of ['height','distance','scale'])document.getElementById('spatial-'+k).value=this.cfg[k];document.getElementById('spatial-wrist').checked=true;this.summon();};
  }
+ // A direct Resume is not a one-level Back: Classic can return to its parent menu.
+ resume(){for(let n=0;n<6&&this.xr.ctx.modal()?.tagName==='DIALOG';n++)this.xr.ctx.action('back');this.hideField();}
  workspace(){for(const d of document.querySelectorAll('dialog[open]'))d.close();const d=document.getElementById('spatial-console-settings');d.showModal();this.xr.clear();d.querySelector('button').focus({preventScroll:true});}
  paintRail(){const c=this.rail.paint;c.fillStyle='#172f2b';c.fillRect(0,0,1200,140);c.textAlign='center';c.font='bold 28px sans-serif';this.tabs.forEach((t,i)=>{c.fillStyle='#32584a';c.fillRect(i*200+6,6,188,128);c.fillStyle='#ffe1a2';c.fillText(t.label,i*200+100,84);});this.rail.texture.needsUpdate=true;}
  persist(){if(!saveConsole(this.xr.ctx.storage,this.cfg))this.xr.ctx.notify('Workspace preference could not be saved. Game progress is unchanged.');}
@@ -124,7 +130,7 @@ export class SpatialConsole{
  }
  decorate(){
   const x=this.xr;let i=0;for(const tile of x.tiles){
-   let b=this.buttonPool[i];if(!b){const group=new T.Group(),material=new T.MeshBasicMaterial({color:0x749c85,depthTest:false,depthWrite:false,toneMapped:false}),base=new T.Mesh(this.box,material),cap=new T.Mesh(new T.PlaneGeometry(1,1),this.capMaterial);base.renderOrder=10010;cap.renderOrder=10011;group.add(base,cap);x.panel.add(group);b={group,base,cap};this.buttonPool.push(b);}
+   let b=this.buttonPool[i];if(!b){const group=new T.Group(),material=consoleMaterial({color:0x749c85}),base=new T.Mesh(this.box,material),cap=new T.Mesh(new T.PlaneGeometry(1,1),this.capMaterial);base.renderOrder=10010;cap.renderOrder=10011;group.add(base,cap);x.panel.add(group);b={group,base,cap};this.buttonPool.push(b);}
    const {x:tx,y:ty,w,h}=tile,bw=w/1024*1.45,bh=h/1024*1.45;b.tile=tile;b.group.visible=true;b.group.position.set(((tx+w/2)/1024-.5)*1.45,(.5-(ty+h/2)/1024)*1.45,.008);b.base.scale.set(bw,bh,.017);b.cap.position.z=.011;b.cap.scale.set(bw-.008,bh-.008,1);
    const u=b.cap.geometry.attributes.uv;u.setXY(0,tx/1024,1-ty/1024);u.setXY(1,(tx+w)/1024,1-ty/1024);u.setXY(2,tx/1024,1-(ty+h)/1024);u.setXY(3,(tx+w)/1024,1-(ty+h)/1024);u.needsUpdate=true;i++;
   }

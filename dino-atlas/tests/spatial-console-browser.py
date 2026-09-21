@@ -55,14 +55,14 @@ try:
    try:page.wait_for_function('p=>Math.hypot(g.state.position.x-p.x,g.state.position.z-p.z)>.5',arg=p,timeout=60000)
    finally:page.evaluate('left.gamepad.axes[2]=0')
    check(not page.evaluate('x.panel.visible'),'Actual gameplay moves with the full field board hidden')
-   xrpress(5);wait('g.state.paused&&x.panel.visible&&x.console.expanded');page.wait_for_timeout(350)
-   pose=page.evaluate('({p:x.panel.position.toArray(),q:x.panel.quaternion.toArray()})')
+   xrpress(5);wait('g.state.paused&&x.panel.visible&&x.console.expanded');wait('x.console.progress>.9999')
+   pose=page.evaluate('window.beforePose={p:x.panel.position.toArray(),q:x.panel.quaternion.toArray(),progress:x.console.progress}')
    page.evaluate('g.camera.position.x+=.3;g.camera.rotation.y=.5');page.wait_for_timeout(400)
-   after=page.evaluate('({p:x.panel.position.toArray(),q:x.panel.quaternion.toArray()})')
+   after=page.evaluate('window.afterPose={p:x.panel.position.toArray(),q:x.panel.quaternion.toArray(),progress:x.console.progress}')
    check(max(abs(a-b) for a,b in zip(pose['p'],after['p']))<.002 and pose['q']==after['q'],'Open workspace remains fixed when the tracked head turns and moves')
    page.evaluate('g.camera.position.x-=.3;g.camera.quaternion.identity()')
    # Aim an actual target ray at a rendered surface and dispatch real select events.
-   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
+   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);window.lastPointed=x.hit(e)?.label;if(!lastPointed)throw Error('Synthetic ray missed visible surface');e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
    page.evaluate('rail(4)');wait('document.getElementById("spatial-console-settings").open');xrready()
    check(True,'Pointed Workspace tab opens real adjustable settings without searching long menus')
    # Standard controller focus and adjustment, not setting configuration directly.
@@ -78,9 +78,11 @@ try:
    check(page.evaluate('x.presentation.width')==before['portal']['width'],'Workspace resizing preserves accepted diorama width')
    capture('raised-workspace');xrready();page.evaluate('rail(1)');wait('document.getElementById("map-dialog").open');xrready();check(page.evaluate('x.panel.visible'),'Direct Map tab displays the actual mission map in the workspace');capture('mission-map')
    page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');xrready();check(True,'Resume removes the menu hit surface and restores normal play')
+   if SCENE=='classic':
+    xrpress(5);page.locator('#menu-controls').click();wait('document.getElementById("controls-dialog").open');xrready();page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');check(True,'Direct Resume clears the original nested Controls back destination')
    # A controller may disappear while the hand remains a connected input source.
    page.evaluate('''()=>{for(const e of x.controllers)e.ray.dispatchEvent({type:'disconnected'});window.right={handedness:'right',hand:new Map()};session.inputSources=[right];const e=x.controllers[1];e.ray.visible=true;e.grip.visible=false;e.ray.dispatchEvent({type:'connected',data:right});}''');wait('g.state.paused');xrready();page.evaluate('rail(0)');wait('!g.state.paused');xrready()
-   wait('x.console.wrist.mesh.visible');page.evaluate('tapSurface(x.console.wrist.mesh,.75,.12)');wait('x.console.trayOpen&&x.panel.visible&&!g.state.paused');xrready()
+   wait('x.console.wrist.mesh.visible');page.evaluate('tapSurface(x.console.wrist.mesh,.75,.12)');wait('x.console.trayOpen&&x.panel.visible&&!g.state.paused');xrready();wait('x.console.progress>.9999')
    check(True,'Hand-only floor slate summons field controls without pausing gameplay')
    page.evaluate('tile("Zapper")');check(page.evaluate('x.ctx.fleet.state.tool')==1,'Hand selection reaches original tool handler')
    p=page.evaluate('g.state.position')
@@ -100,7 +102,7 @@ try:
    (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
   except Exception as e:
    diag={}
-   try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)
+   try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id,pointed:window.lastPointed,hold:x?.holds?.size,beforePose:window.beforePose,afterPose:window.afterPose,progress:x?.console?.progress})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)
    except:pass
    (OUT/(SCENE+'-failure.json')).write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'diagnostic':diag},indent=2));raise
   finally:browser.close()

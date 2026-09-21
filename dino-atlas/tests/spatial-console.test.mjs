@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from '../vendor/three.module.js';
 import {readFileSync} from 'node:fs';
-import {consoleSettings,readConsole,saveConsole,summonPose,SPATIAL_KEY,SpatialConsole} from '../spatial-console.js';
+import {consoleSettings,readConsole,saveConsole,summonPose,SPATIAL_KEY,SpatialConsole,consoleMaterial} from '../spatial-console.js';
 
 test('Workspace validates height, distance and scale without serializing game state',()=>{
  assert.deepEqual(consoleSettings({height:Infinity,distance:NaN,scale:-9,wrist:false,active:true}),{version:1,height:1.15,distance:1.25,scale:.55,wrist:false});
@@ -35,4 +35,14 @@ test('Changing workspace scale and height cannot change world or diorama transfo
 test('Shared renderer routes actual menu hit tests and post-draw placement through workspace',()=>{
  const a=readFileSync(new URL('../xr-reserve.js',import.meta.url),'utf8'),b=readFileSync(new URL('../diorama-xr.js',import.meta.url),'utf8');
  assert.match(a,/this.console=new SpatialConsole\(this\)/);assert.match(a,/this.console\.update\(dt,root\)/);assert.match(a,/this.console\?\.hit\(entry\)/);assert.match(b,/if\(this.console\)\{this.console.positionPanel\(\);return;\}/);
+});
+test('Resume closes nested Classic back destinations and Field cannot leave a hidden pause',()=>{
+ const c=Object.create(SpatialConsole.prototype);let dialog={tagName:'DIALOG',id:'controls-dialog'},back='menu-dialog',closed=0,hidden=0;
+ c.xr={ctx:{modal:()=>dialog,action(key){assert.equal(key,'back');closed++;dialog=back?{tagName:'DIALOG',id:back}:null;back=null;}}};c.hideField=()=>{hidden++;};
+ c.resume();assert.equal(dialog,null);assert.equal(closed,2);assert.equal(hidden,1);
+ dialog={tagName:'DIV',id:'intro'};c.resume();assert.equal(closed,2,'Do not force-start an unstarted game');
+});
+
+test('Personal UI surfaces render in a late transparent pass above world labels',()=>{
+ const m=consoleMaterial({color:0x294f48,opacity:.8});assert.equal(m.transparent,true);assert.equal(m.depthTest,false);assert.equal(m.depthWrite,false);assert.equal(m.toneMapped,false);m.dispose();
 });
