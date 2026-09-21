@@ -1,4 +1,4 @@
-import {SpatialConsole} from './spatial-console.js?v=rotunda2';
+import {SpatialConsole} from './spatial-console.js?v=rotunda3';
 import {TravelControls} from './travel-controls.js';
 import {activeTrackedMotion} from './active-controls.js';
 import * as T from './vendor/three.module.js';

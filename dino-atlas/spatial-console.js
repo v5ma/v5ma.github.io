@@ -1,6 +1,8 @@
 import * as T from './vendor/three.module.js';
 
-export const SPATIAL_BUILD='ranger-spatial-console-20260920.2';
+export const SPATIAL_BUILD='ranger-spatial-console-20260920.3';
+// A layout class must never override the browser's closed-dialog hiding.
+export const WORKSPACE_VISIBILITY_CSS='#spatial-console-settings:not([open]){display:none!important}';
 export const SPATIAL_KEY='dino-atlas.spatial-console.v1';
 const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
 const finite=(v,f,a,b)=>typeof v==='number'&&Number.isFinite(v)?clamp(v,a,b):f;
@@ -55,6 +57,7 @@ export class SpatialConsole{
   this.installSettings();this.paintRail();this.paintDock();this.root.visible=false;this.wrist.mesh.visible=false;
  }
  installSettings(){
+  const visibility=document.createElement('style');visibility.textContent=WORKSPACE_VISIBILITY_CSS;document.head.append(visibility);
   const settings=document.createElement('dialog');settings.className='settings';settings.style.cssText='max-height:85vh;overflow:auto;background:#183c35;color:#fff1d1;border:2px solid #d4bc7e;padding:24px';settings.id='spatial-console-settings';
   settings.innerHTML='<h3>Spatial workspace</h3><p>B opens or closes the menu. Point and pinch at the floor dock or wrist to open it without controllers. The workspace stays where summoned, not on your head.</p><button id="spatial-field">Open field controls / hand movement</button><button id="spatial-place">Bring workspace here</button><label>Workspace height <input id="spatial-height" type="range" min="0.55" max="1.8" step="0.05"></label><label>Workspace distance <input id="spatial-distance" type="range" min="0.8" max="2.2" step="0.1"></label><label>Workspace size <input id="spatial-scale" type="range" min="0.55" max="1.2" step="0.05"></label><label>Workspace rotation <input id="spatial-rotation" type="range" min="-60" max="60" step="15"></label><label><input id="spatial-wrist" type="checkbox"> Compact wrist status</label><button id="spatial-reset">Reset workspace for seated / standing view</button>';
   const menu=document.getElementById('menu-dialog');document.body.append(settings);const button=document.createElement('button');button.id='spatial-workspace-button';button.textContent='Spatial workspace / height and size';button.onclick=()=>this.workspace();menu.querySelector('[data-close]').after(button);settings.addEventListener('cancel',e=>{e.preventDefault();this.xr.ctx.action('back');});const back=document.createElement('button');back.textContent='Resume game';back.onclick=()=>this.resume();settings.append(back);
