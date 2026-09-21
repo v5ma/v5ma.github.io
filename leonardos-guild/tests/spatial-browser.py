@@ -61,7 +61,7 @@ with sync_playwright() as p:
  browser=p.chromium.launch(**opts);ctx=browser.new_context(viewport={'width':1280,'height':800},service_workers='block');ctx.add_init_script(path=str(ROOT/'tests/xr-hardware-mock.js'))
  page=ctx.new_page();page.set_default_timeout(90000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
  try:
-  page.goto(BASE+'/leonardos-guild/?quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild&&LeonardoGuild.inspect().xr.supported')
+  page.goto(BASE+'/leonardos-guild/?district=quarter&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild&&LeonardoGuild.inspect().xr.supported')
   check(read()['quarter']['active'],'Spatial acceptance starts in the actual authored opening')
   page.locator('#guild-xr-enter').click();page.wait_for_function('LeonardoGuild.inspect().xr.presenting');frames(8)
   check(read()['xr']['mode']=='diorama-vr' and read()['xr']['spatial']['renderedEyes']==2,'VR diorama renders the actual shared district with both headset cameras')
