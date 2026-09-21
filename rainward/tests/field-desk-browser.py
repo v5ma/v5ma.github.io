@@ -60,6 +60,19 @@ with sync_playwright() as pw:
   if KIND=='controllers':
    p.evaluate("questDevice.sources[1].orientation={x:0,y:1,z:0,w:0};questDevice.sources[0].gamepad.axes[3]=1");frames(3);p.evaluate('questDevice.sources[0].gamepad.axes[3]=0');frames(4);p.evaluate("questDevice.pulse('right',4)");frames(4)
    check(p.evaluate('Rainward.snapshot().xr.fieldDesk.options.height')>after['height'],'Thumbstick focus and A also operate placement without a pointed ray')
+  if VIEW=='first-person' and KIND=='controllers':
+   # Fault only the new preference key; never inject or erase campaign state.
+   old_layout=p.evaluate('localStorage.getItem("svgn.rainward.v1.field-desk")');old_distance=p.evaluate('Rainward.snapshot().xr.fieldDesk.options.distance')
+   p.evaluate("()=>{window.deskStorageWriter=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='svgn.rainward.v1.field-desk')throw new DOMException('Test storage quota','QuotaExceededError');return Reflect.apply(window.deskStorageWriter,this,[key,value]);};}")
+   try:
+    click('desk-farther');frames(3)
+    check(p.evaluate('Rainward.snapshot().xr.fieldDesk.options.distance')>old_distance and p.evaluate('localStorage.getItem("svgn.rainward.v1.field-desk")')==old_layout,'Rejected preference writes keep the adjusted desk usable without overwriting its last saved layout')
+    check(p.evaluate('Rainward.snapshot().xr.fieldDesk.saveStatus')=='session-only' and p.evaluate('Rainward.snapshot().xr.panelRows.find(r=>r.id==="desk-recall").label.includes("SESSION ONLY - NOT SAVED")'),'The actual spatial control reports session-only placement rather than falsely promising a saved layout')
+    capture('03-session-only-placement')
+   finally:p.evaluate('Storage.prototype.setItem=window.deskStorageWriter;delete window.deskStorageWriter')
+   click('desk-closer');frames(3)
+   check(p.evaluate('Rainward.snapshot().xr.fieldDesk.saveStatus')=='saved' and json.loads(p.evaluate('localStorage.getItem("svgn.rainward.v1.field-desk")'))==p.evaluate('Rainward.snapshot().xr.fieldDesk.options'),'A later successful adjustment saves the active layout and clears the warning')
+   check(preserved()==save,'A preference-storage failure does not mutate campaign saves or controller remaps')
   click('back');wait('Rainward.snapshot().xr.panelView!=="desk"');select('map');wait('Rainward.mode==="map"&&Rainward.snapshot().xr.panelView==="map"');frames(4)
   check('NEXT:' in p.locator('#next-goal').text_content(),'Opening the map immediately displays the current mission objective');capture('02-map');click('back');wait('Rainward.mode==="play"');frames(5)
   check(p.evaluate('!Rainward.snapshot().xr.menuVisible&&!Rainward.snapshot().xr.fieldDesk.visible'),'Closing the map removes its visual and hit target, not just its text')

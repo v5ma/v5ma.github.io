@@ -11,3 +11,16 @@ test('Resume removes menu hit targets immediately, even during optional pedestal
 test('Missing tracking cannot place a desk and bad inputs never create nonfinite transforms',()=>{const {desk,panel}=fixture();desk.place('pause',null);assert.equal(panel.visible,false);assert.equal(deskAnchor(head(NaN)),null);const t=deskTransform(deskAnchor(head(2,1.1,-3)),{distance:Infinity,height:-99,scale:NaN});assert.ok(t.position.toArray().every(Number.isFinite));assert.ok(t.scale>=.65);desk.dispose();});
 test('Acquired clues survive newer status messages without mutating the original record',()=>{const log=createReadingLog(),clue={title:'Inscription',text:'Read SUN / LEAF / WAVE.',persistent:true};log.add(clue);for(let i=0;i<40;i++)log.add({text:'Hint '+i});assert.equal(log.clue().text,clue.text);assert.equal(log.latest().text,'Hint 39');assert.equal(log.size(),12);const copy=log.clue();copy.text='altered';assert.equal(log.clue().text,clue.text);log.clear();assert.equal(log.clue(),null);});
 test('Clue recall from an earned checkpoint reveals nothing unacquired and never changes saved state',()=>{for(const level of Object.keys(LEVELS)){const s=M.createGame(level),before=M.checkpoint(s);assert.equal(restoredReading(s),null);assert.equal(M.checkpoint(s),before);if(s.puzzle){s.puzzle.clueRead=true;const acquired=M.checkpoint(s);assert.equal(restoredReading(s).text,LEVELS[level].puzzle.clue.text);assert.equal(M.checkpoint(s),acquired);}}});
+
+// Explicit storage fault, not a game-state fixture. Movement/poses remain real.
+test('A rejected layout write stays usable, reports session-only, and a later successful adjustment recovers',()=>{
+ const disk=store();let reject=true;const storage={getItem:disk.getItem,setItem(k,v){if(reject)throw Error('storage unavailable');disk.setItem(k,v);}};
+ const {desk,panel}=fixture(storage);try{
+  desk.place('pause',head());desk.update(.016);assert.equal(desk.stats().saveStatus,'unchanged');
+  const distance=desk.stats().options.distance;desk.actions().find(a=>a.id==='desk-farther').run();
+  assert.ok(desk.stats().options.distance>distance);assert.equal(desk.stats().saveStatus,'session-only');assert.ok(panel.visible);assert.equal(disk.getItem(DESK_KEY),undefined);
+  assert.match(desk.actions().find(a=>a.id==='desk-recall').label,/SESSION ONLY - NOT SAVED/);
+  const frame=desk.stats().anchor;desk.actions().find(a=>a.id==='desk-recall').run();desk.place('pause',head(.2,1.1));assert.notDeepEqual(desk.stats().anchor,frame);assert.equal(desk.stats().saveStatus,'session-only');
+  reject=false;desk.actions().find(a=>a.id==='desk-closer').run();assert.equal(desk.stats().saveStatus,'saved');assert.deepEqual(JSON.parse(disk.getItem(DESK_KEY)),desk.stats().options);assert.match(desk.actions().find(a=>a.id==='desk-recall').label,/LAYOUT SAVED/);
+ }finally{desk.dispose();}
+});

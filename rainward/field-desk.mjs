@@ -25,7 +25,7 @@ export function deskTransform(anchor,options){
  return {position,yaw,scale:p.scale,baseY:anchor.y-1.62};
 }
 export function createFieldDesk(panel,rig,storage){
- let options=readDesk(storage),anchor=null,open=false,recalled=true,lift=0,saved=true;
+ let options=readDesk(storage),anchor=null,open=false,recalled=true,lift=0,saved=null;
  const root=new T.Group();root.name='Rainward summonable field desk';rig.add(root);
  const material=new T.MeshBasicMaterial({color:0x23423e,transparent:true,opacity:.88,depthTest:false,depthWrite:false});
  const accent=new T.MeshBasicMaterial({color:0xc6d7b5,transparent:true,opacity:.9,depthTest:false,depthWrite:false});
@@ -53,10 +53,10 @@ export function createFieldDesk(panel,rig,storage){
   action('CLOSER / '+options.distance.toFixed(2)+' m','desk-closer',()=>change('distance',-.15)),action('FARTHER / '+options.distance.toFixed(2)+' m','desk-farther',()=>change('distance',.15)),
   action('SMALLER / '+Math.round(options.scale*100)+'%','desk-smaller',()=>change('scale',-.08)),action('LARGER / '+Math.round(options.scale*100)+'%','desk-larger',()=>change('scale',.08)),
   action('ROTATE LEFT','desk-left',()=>change('yaw',.1)),action('ROTATE RIGHT','desk-right',()=>change('yaw',-.1)),
-  action('RECALL HERE / KEEP MY SIZE','desk-recall',()=>{recalled=true;}),
+  action(saved===false?'RECALL HERE / SESSION ONLY - NOT SAVED':saved===true?'RECALL HERE / LAYOUT SAVED':'RECALL HERE / KEEP MY SIZE','desk-recall',()=>{recalled=true;}),
   action('RESET PANEL POSITION','desk-reset',()=>{options=deskOptions({pedestal:options.pedestal,motion:options.motion});saved=writeDesk(storage,options);recalled=true;}),
   action('PEDESTAL: '+(options.pedestal?'ON':'OFF'),'desk-pedestal',()=>{options.pedestal=!options.pedestal;saved=writeDesk(storage,options);apply();}),
   action('PEDESTAL MOTION: '+(options.motion?'ON':'OFF'),'desk-motion',()=>{options.motion=!options.motion;saved=writeDesk(storage,options);})
  ];}
- return {place,update,actions,recall(){recalled=true;},reset(){anchor=null;open=false;recalled=true;lift=0;panel.visible=false;root.visible=false;},stats:()=>({open,anchor:anchor?{...anchor}:null,options:{...options},saved,lift,visible:root.visible,reference:'summon-local; calibrated virtual base, not a room anchor',panel:panel.matrix.toArray()}),dispose(){root.removeFromParent();root.traverse(o=>o.geometry?.dispose());material.dispose();accent.dispose();}};
+ return {place,update,actions,recall(){recalled=true;},reset(){anchor=null;open=false;recalled=true;lift=0;panel.visible=false;root.visible=false;},stats:()=>({open,anchor:anchor?{...anchor}:null,options:{...options},saved,saveStatus:saved===false?'session-only':saved===true?'saved':'unchanged',lift,visible:root.visible,reference:'summon-local; calibrated virtual base, not a room anchor',panel:panel.matrix.toArray()}),dispose(){root.removeFromParent();root.traverse(o=>o.geometry?.dispose());material.dispose();accent.dispose();}};
 }

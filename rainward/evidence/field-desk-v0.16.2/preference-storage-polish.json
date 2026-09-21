@@ -1,0 +1,16 @@
+{
+  "status": "Saved source polish; final-source browser validation and public delivery required",
+  "baseline_head": "021e8fe4b01b271151933ae23d34354de43248ec",
+  "finding": "Layout persistence failures were caught internally but the placement footer still claimed Saved layout. The adjusted session remained usable, yet the visible feedback overstated persistence.",
+  "correction": "Only report saved after a successful write. Recall row reports session-only on a rejected write. A subsequent successful user adjustment saves the active options and clears the warning. Footer describes the protected campaign boundary without promising persistence.",
+  "tests": "Two added model/panel tests plus a first-person compositor test that makes only the new preference key reject writes, operates actual ray controls, restores the browser writer, retries an adjustment, and verifies untouched checkpoint/remap bytes. This is explicit storage-fault simulation, not actor-state assignment.",
+  "unchanged": "Gameplay, collision, character assets, movement, weapons, scope, compositor, action mappings, chapter IDs, save formats and rewards.",
+  "legacy_failed_run": {
+    "run": 35557031670,
+    "job": 106202534692,
+    "artifact": 10622435362,
+    "sha256": "87f4ee47fa9c96de0387c89ab9e96332436a5d7443c9cb9637547985eae309c0",
+    "observed": "The unchanged keyboard Conservatory route acquired both objectives and solved the puzzle, then died near the final exit. This is retained encounter/timing evidence, not an accepted complete run."
+  },
+  "hardware": "Physical Quest/Xbox, actual room placement, comfort and sustained performance remain unapproved."
+}
