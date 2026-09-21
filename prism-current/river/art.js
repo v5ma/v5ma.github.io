@@ -84,7 +84,7 @@
   function reset(){waterSystem.reset();fireSystem.reset();lastEvent=0;for(const id of active.keys())release(id);for(const f of effects)f.g.visible=false;for(const l of lasers)l.m.visible=false;for(const h of[0,1])weapon(h,null,null);}
   function panel(w,h){const c=document.createElement('canvas');c.width=1200;c.height=Math.round(1200*h/w);const context=c.getContext('2d'),t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;textures.push(t);const material=mat(new T.MeshBasicMaterial({map:t,transparent:true,depthTest:false,depthWrite:false,side:T.DoubleSide})),mesh=new T.Mesh(geo(new T.PlaneGeometry(w,h)),material);mesh.renderOrder=15;stage.add(mesh);return {canvas:c,context,texture:t,mesh};}
   function dispose(){if(disposed)return;disposed=true;waterSystem.dispose();fireSystem.dispose();stage.removeFromParent();for(const g of geometry)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
-  return {stage,update,weapon,reset,panel,dispose,get stats(){return {active:active.size,models:models.size,effectSlots:effects.length,laserSlots:lasers.length,water:waterSystem.stats,fire:fireSystem.stats,disposed};}};
+  return {stage,update,weapon,reset,panel,dispose,prepare:(renderer,camera)=>fireSystem.prepare(renderer,camera,scene.object3D),get stats(){return {active:active.size,models:models.size,effectSlots:effects.length,laserSlots:lasers.length,water:waterSystem.stats,fire:fireSystem.stats,disposed};}};
  }
  root.RiverArt={build};
 })(globalThis);

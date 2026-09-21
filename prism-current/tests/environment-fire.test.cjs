@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),A=require('node:assert/strict'),fs=require('node:fs');
 const F=require('../modules/environment/fire');
-test('Fire exports immutable budgets and a separately loadable module',async()=>{const e=await import('../modules/environment/fire.mjs');A.equal(e.default,F);A.equal(F.VERSION,'0.1.0');A.ok(Object.isFrozen(F.QUALITY.balanced));A.equal(F.limits('cinematic',true).steps,12);});
+test('Fire exports immutable budgets and a separately loadable module',async()=>{const e=await import('../modules/environment/fire.mjs');A.equal(e.default,F);A.equal(F.VERSION,'0.1.1');A.ok(Object.isFrozen(F.QUALITY.balanced));A.equal(F.limits('cinematic',true).steps,12);});
 test('Generated volume is deterministic and three dimensional',()=>{const a=F.noiseData(16,71);A.deepEqual(a,F.noiseData(16,71));A.notDeepEqual(a,F.noiseData(16,72));A.equal(a.length,4096);A.ok(new Set(a).size>100);A.throws(()=>F.noiseData(31),RangeError);});
 test('Bursts copy immutable input and normalize the local impact axis',()=>{const p=new F.Pool(),e=Object.freeze({id:'one',mode:'impact',position:Object.freeze([2,3,4]),direction:Object.freeze([0,0,2]),radius:.5});A.ok(p.emit(e));A.deepEqual(p.slots[0].direction,[0,0,1]);A.notEqual(p.slots[0].position,e.position);A.equal(p.slots[0].mode,2);});
 test('Invalid emissions never upload nonfinite positions',()=>{const p=new F.Pool();for(const e of [null,{}, {position:[NaN,0,0]},{position:[0,Infinity,0]},{position:[0,0]}])A.equal(p.emit(e),false);A.equal(p.emitted,0);});

@@ -76,7 +76,7 @@ test('Reusable module owns no renderer, input, storage, network or animation loo
 test('Main Prism loads water before art and keeps the game and UI scripts',()=>{
  const root=path.join(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');
  A.ok(html.indexOf('modules/environment/water.js')<html.indexOf('src="./river/art.js'));
- A.match(html,/river\/rotunda\.js/);A.match(html,/river\/xr\.js/);A.match(html,/river\/app\.js\?v=0.11.1/);
+ A.match(html,/river\/rotunda\.js/);A.match(html,/river\/xr\.js/);A.match(html,/river\/app\.js\?v=0.11.2/);
  const art=fs.readFileSync(path.join(root,'river/art.js'),'utf8');A.match(art,/SVGNWater.create/);A.match(art,/waterSystem\.dispose\(\)/);A.match(art,/waterSystem\.reset\(\)/);
  A.doesNotMatch(art,/function wave\(/);A.match(art,/water:waterSystem.stats/);
 });

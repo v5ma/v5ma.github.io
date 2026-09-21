@@ -1,11 +1,11 @@
-/* Currentworks Fire 0.1.0. Original WebGL2 volume effects, caller-owned THREE.
+/* Currentworks Fire 0.1.1. Original WebGL2 volume effects, caller-owned THREE.
  * No renderer, DOM, input, clock, storage or gameplay ownership. All emitter
  * coordinates are GROUP-LOCAL. Visual radius is NEVER a damage radius.
  * See FIRE.md for budgets, clipping limits, reuse and reduced-motion behavior.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.0',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
+ const VERSION='0.1.1',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
  const QUALITY=Object.freeze({light:Object.freeze({volumes:2,steps:12,sparks:32}),balanced:Object.freeze({volumes:3,steps:20,sparks:64}),cinematic:Object.freeze({volumes:6,steps:32,sparks:128})});
  const finite=Number.isFinite,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  const num=(n,d,a,b)=>finite(n)?clamp(n,a,b):d;
@@ -59,12 +59,12 @@
   if(mode>.5&&mode<1.5){
    float y=clamp((p.y+.95)/1.9,0.,1.);float radius=.15+.48*pow(y,.65);
    shape=radius-length(q.xz)+(n-.5)*.65;
-   heat=clamp(1.-y*.68+(n-.5)*.7,0.,1.);
+   heat=clamp(1.06-y*.48-length(q.xz)*.88+(n-.5)*.22,0.,1.);
   }else{
    float expansion=.19+.42*(1.-exp(-age*10.));
    float r=length(q*vec3(1.,mode>1.5?1.40:.91,1.));
    shape=expansion-r+(n-.48)*.62;
-   heat=clamp(.98-age*.73+(n-.5)*.95-r*.26,0.,1.);
+   heat=clamp(1.12-age*.65+(n-.5)*.45-r*.95,0.,1.);
   }
   float edge=1.-smoothstep(.79,.99,max(max(abs(p.x),abs(p.y)),abs(p.z)));
   float d=smoothstep(-.08,.12,shape)*smoothstep(.18,.68,n)*edge*fade*power;
@@ -83,9 +83,9 @@
    float alpha=1.-exp(-f.x*stride*5.4);if(alpha<.002)continue;
    if(first==end)first=d;
    vec3 smoke=mix(vec3(.09,.095,.105),vec3(.22,.20,.19),f.y);
-   vec3 color=mix(smoke,vec3(2.3,.13,.009),smoothstep(.12,.36,f.y));
-   color=mix(color,vec3(4.3,1.05,.085),smoothstep(.37,.69,f.y));
-   color=mix(color,vec3(5.,3.5,1.4),smoothstep(.75,1.,f.y));
+   vec3 color=mix(smoke,vec3(2.3,.065,.001),smoothstep(.12,.36,f.y));
+   color=mix(color,vec3(4.3,.55,.015),smoothstep(.37,.69,f.y));
+   color=mix(color,vec3(5.,2.8,.75),smoothstep(.75,1.,f.y));
    color=mix(color,vec3(.8,.20,.045),quiet*.75);
    total.rgb+=(1.-total.a)*alpha*color;total.a+=(1.-total.a)*alpha;
   }
@@ -112,7 +112,7 @@
   if(!T?.Data3DTexture||!T?.ShaderMaterial||!T?.InstancedBufferGeometry)throw new TypeError('Fire requires an existing compatible THREE WebGL2 namespace.');
   if(!input||typeof input!=='object')input={};
   const pool=new Pool(),group=new T.Group();group.name='Currentworks Fire';
-  let disposed=false,quality=Object.hasOwn(QUALITY,input.quality)?input.quality:'balanced',prepared=false,activeVolumes=0,activeSparks=0,lit=0;
+  let disposed=false,quality=Object.hasOwn(QUALITY,input.quality)?input.quality:'balanced',prepared=false,preparing=null,activeVolumes=0,activeSparks=0,lit=0;
   const noise=new T.Data3DTexture(noiseData(32,Number.isSafeInteger(input.seed)?input.seed:2731),32,32,32);noise.name='Currentworks generated fire density';noise.format=T.RedFormat;noise.type=T.UnsignedByteType;noise.minFilter=noise.magFilter=T.LinearFilter;noise.wrapS=noise.wrapT=noise.wrapR=T.RepeatWrapping;noise.unpackAlignment=1;noise.colorSpace=T.NoColorSpace;noise.needsUpdate=true;
   const box=new T.BoxGeometry(2,2,2),axis=new T.Vector3(0,1,0),inverse=new T.Matrix4(),eye=new T.Vector3(),dir=new T.Vector3();
   const volumes=Array.from({length:CAPACITY},(_,i)=>{const uniforms={fireNoise:{value:noise},eyeLocal:{value:new T.Vector3()},localToView:{value:new T.Matrix4()},fireProjection:{value:new T.Matrix4()},clock:{value:0},age:{value:0},fade:{value:0},power:{value:0},seed:{value:0},steps:{value:20},mode:{value:0},quiet:{value:0}};
@@ -149,10 +149,18 @@
   function emitter(id,o){if(disposed)return false;const ok=pool.emitter(id,o);sync();return ok;}
   function stop(id){if(disposed)return false;const ok=pool.stop(id);sync();return ok;}
   function reset(time=0){if(disposed)return;pool.reset(time);sync();}
-  // Compile hidden effect programs before the audio starts, restoring all flags.
-  // Uses the HOST renderer once; it never creates or retains another renderer.
-  async function prepare(renderer,camera){if(disposed||prepared)return;const flags=volumes.map(m=>m.visible),gv=group.visible,sv=sparks.visible;try{group.visible=true;for(const m of volumes)m.visible=true;sparks.visible=true;if(renderer.compileAsync)await renderer.compileAsync(group,camera);else renderer.compile(group,camera);if(!disposed)prepared=true;}finally{if(!disposed){volumes.forEach((m,i)=>m.visible=flags[i]);group.visible=gv;sparks.visible=sv;sync();}}}
-  function dispose(){if(disposed)return;disposed=true;group.removeFromParent();pool.clear(true);for(const m of volumes)m.material.dispose();box.dispose();noise.dispose();particleGeometry.dispose();sparkMaterial.dispose();for(const l of lights)l.dispose();}
+  // Preload density before gameplay. The compiler traverses invisible meshes;
+  // never reveal stale pool slots or take ownership of the host render loop.
+  function prepare(renderer,camera,scene=null){
+   if(disposed||prepared)return Promise.resolve();if(preparing)return preparing;
+   preparing=Promise.resolve().then(()=>{
+    if(disposed)return;
+    renderer.initTexture?.(noise);
+    return renderer.compileAsync?renderer.compileAsync(group,camera,scene):renderer.compile(group,camera,scene);
+   }).then(()=>{if(!disposed)prepared=true;}).finally(()=>{preparing=null;});
+   return preparing;
+  }
+  function dispose(){if(disposed)return;disposed=true;activeVolumes=activeSparks=lit=0;group.removeFromParent();pool.clear(true);for(const m of volumes)m.material.dispose();box.dispose();noise.dispose();particleGeometry.dispose();sparkMaterial.dispose();for(const l of lights)l.dispose();}
   return Object.freeze({group,update,emit,emitter,stop,reset,prepare,dispose,get stats(){return {module:'Currentworks Fire',version:VERSION,time:pool.time,quiet:pool.quiet,xr:pool.xr,quality,visible:pool.visible,emitted:pool.emitted,activeVolumes,activeSparks,capacity:CAPACITY,sparkCapacity:PARTICLES,emitters:pool.slots.filter(s=>s.active&&s.emitter!==null).length,lights:lit,prepared,disposed,renderTargets:0};}});
  }
  const api=Object.freeze({VERSION,CAPACITY,MAX_EMITTERS,PARTICLES,QUALITY,limits,noiseData,Pool,create,shaders:Object.freeze({vertexShader,fragmentShader,sparkVertex,sparkFragment})});
