@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "pass": 2,
+  "module": "Currentworks Fire",
+  "module_version": "0.1.3",
+  "water_version": "0.1.0",
+  "host_version": "0.11.2",
+  "verified_runtime_commit": "783236d7bb4e229d8f9c3461f93070f519f90450",
+  "workflow_run": 35655444660,
+  "source_job": {"id": 106517718343, "conclusion": "success"},
+  "public_job": {"id": 106517718679, "conclusion": "success"},
+  "source_artifact": {"id": 10663579282, "sha256": "90144f39bb42f7674929b276c66792c0ed4519de9e5b1607e56953776784b113"},
+  "public_artifact": {"id": 10664252481, "sha256": "46ed0188b15f6d9edb57bbb0548925fdde495beb3b768872c10ccdfc9cd7f676"},
+  "archives_downloaded_and_digest_verified": true,
+  "public_files_checked": 104,
+  "public_files_match": true,
+  "archived_source_files_checked": 104,
+  "archived_source_files_match": true,
+  "node_tests_passed": 289,
+  "closeout_local_node_rerun": {"passed": 289, "failed": 0, "skipped": 0},
+  "object_checks": {"fire": 64, "water": 37},
+  "source_rendered_suites": {"fire": 24, "water": 13, "interruption": 19, "rotunda": 73, "total": 129, "captured_errors": []},
+  "public_rendered_suites": {"fire": 24, "water": 13, "interruption": 19, "rotunda": 73, "total": 129, "captured_errors": []},
+  "first_visible_burst_matches_prepared_program": true,
+  "first_destruction_stall_observed_in_successful_run": false,
+  "public_battles": {
+    "duck-armada": {"complete": true, "bossDefeated": true, "health": 100, "score": 16640, "slices": 33, "shotHits": 129, "blocks": 29, "reflects": 15, "bossDamage": 44},
+    "mothership": {"complete": true, "bossDefeated": true, "health": 100, "score": 21025, "slices": 31, "shotHits": 153, "blocks": 71, "reflects": 0, "bossDamage": 60}
+  },
+  "protected_hashes": {
+    "modules/environment/fire.js": "184f9eb2326c35b5dea06b1cbbfff3677886376012e672ea8d668f8d91af6dc7",
+    "modules/environment/fire.mjs": "1f634e19671cdbff7ad831b767f4c2d344328bb94588265895fb4216911165f7",
+    "modules/environment/water.js": "8f2a03185a6f8de5a971016a38b1cef7372cdff85ce17a7f0ba1b37ff555093b",
+    "river/art.js": "3c545e78ff0287a1c59fddcca39775d2533c80ed9fbe9914d9fd426605b1c1d2",
+    "river/app.js": "9515e8c6de52bc21be39fa3f2ba4b5794391281de3f28633ae822c2bba4c0a6e",
+    "river/core.js": "c0ac67b197fdb1fd32b769aec2f6d0539a8d8f91b2556108d44099da3804986d",
+    "river/xr.js": "1c73d3e76be98ee4b33c70bdb8c2925c3c5b533e78b622285eacb35cd8550f91",
+    "river/rotunda.js": "b1c8a33ad830871af9a8e6ba87345dab25ceeebaee7ce50877cb6c6de742fe9a",
+    "audio.js": "2224e450bb9abf0fd1141f6053722ca5ffac249e1f143cbe859faf8ad9e4d822"
+  },
+  "comparison_to_water_pass_archive": {
+    "archive_name": "prism-water-source-retry-validation.zip",
+    "existing_runtime_assets_compared": 45,
+    "unchanged": 41,
+    "changed_paths": ["prism-current/release.json", "prism-current/index.html", "prism-current/river/app.js", "prism-current/river/art.js"],
+    "scope": "Original JS, HTML, CSS, SVG and JSON runtime/entry/assets including package metadata, excluding modules, tests and qa. New fire files and documentation are separate. The preserved water module hash was checked independently."
+  },
+  "visual_inspection": {
+    "standalone_fixtures": "Five 960x640 reusable-effect fixtures are separate from gameplay. Burst and jet images show the volume, hot core, smoke or embers as applicable; they are not photographs or headset captures.",
+    "actual_game": "The public paused-destruction image is a 320x250 drawing buffer; the public entry image is 1440x1000. These do not measure normal-resolution sustained combat performance."
+  },
+  "physical_device_test": false,
+  "all_legacy_workflows_green_claimed": false,
+  "historical_failures_preserved_in": ["FIRE-REFINEMENT.md", "FIRE-PASS2-RECOVERY.md", "SOURCE-RETRY-PASS1.md"],
+  "next_module": "Seeded trees and foliage with bounded detail, host-driven wind, independent ownership and unobstructed combat/AR presentation. Not implemented in Pass 2."
+}

@@ -2,36 +2,12 @@
   "schema": 1,
   "collection": "Currentworks environment modules",
   "modules": {
-    "water": {
-      "status": "implemented",
-      "version": "0.1.0",
-      "script": "water.js",
-      "module": "water.mjs",
-      "global": "SVGNWater",
-      "renderer": "caller-owned Three.js WebGL2",
-      "testedThreeRevision": "184",
-      "integration": "../../river/art.js",
-      "ownsInput": false,
-      "ownsStorage": false,
-      "ownsRenderer": false
-    },
-    "fire": {
-      "status": "implemented-awaiting-final-native-acceptance",
-      "version": "0.1.3",
-      "script": "fire.js",
-      "module": "fire.mjs",
-      "global": "SVGNFire",
-      "renderer": "caller-owned Three.js WebGL2",
-      "testedThreeRevision": "184",
-      "integration": "../../river/art.js",
-      "ownsInput": false,
-      "ownsStorage": false,
-      "ownsRenderer": false
-    },
-    "trees": {
-      "status": "planned-following-pass",
-      "entry": null
-    }
+    "water": {"status": "implemented-and-publicly-verified", "version": "0.1.0", "script": "water.js", "module": "water.mjs", "global": "SVGNWater", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false},
+    "fire": {"status": "implemented-and-publicly-verified", "version": "0.1.3", "script": "fire.js", "module": "fire.mjs", "global": "SVGNFire", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false, "preparation": "Await prepare(renderer,camera,scene) in cancellable loading before gameplay audio. A disposable loading target is used; none remains during gameplay.", "compatibility": "The output-policy warmup is pinned to Three r184; revalidate when upgrading or changing renderer/context."},
+    "trees": {"status": "planned-following-pass", "entry": null}
   },
-  "publication": "See CHECKPOINT.md and exact source/public workflow outcomes; code presence is not physical-device acceptance."
+  "verified_runtime_commit": "783236d7bb4e229d8f9c3461f93070f519f90450",
+  "verification_receipt": "PUBLIC-PASS2.json",
+  "physical_device_approval": false,
+  "publication": "Source/public rendering passed for the exact recorded runtime. Documentation closeout does not change that runtime; future code changes require new evidence."
 }

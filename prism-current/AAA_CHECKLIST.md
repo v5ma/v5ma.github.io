@@ -1,43 +1,41 @@
-# Prism Current / Rotunda 0.11.1 + Water 0.1.0 production checklist
+# Prism Current / Host 0.11.2, Water 0.1.0, Fire 0.1.3
 
-This pass implements the owner's Prism-only spatial-interface direction. Read AGENTS.md and INTEGRATION-AUDIT.md for the current direct-master maintenance decision; ROTUNDA.md and historical PR #205 retain the interface design and earlier evidence. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
+The active graphics milestone is Currentworks Pass 2. Source and public runtime 783236d7bb4e229d8f9c3461f93070f519f90450 passed both verification jobs. modules/environment/PUBLIC-PASS2.json records the exact evidence. Checkboxes below distinguish implementation, the named automated runtime and still-open physical/creative approval. All recurring gates must be rerun after new gameplay or rendering changes.
 
-## Current UI milestone
+Read AGENTS.md before writing. Updates go directly onto reconciled current master without force, PRs or staging branches. INTEGRATION-AUDIT.md is historical branch evidence; its observed old deployment is not the current live status. The complete older board and task IDs remain in AAA_CHECKLIST-v0101.md and earlier archives.
 
-- [x] UI-R01 / implementation. One scene-rendered menu for screen and XR. Direct Duck Armada and Mothership AR/VR/screen choices. Retain explicit semantic text controls as an alternative.
-- [x] UI-R02 / implementation. Summonable floor pedestal, stowed during combat, with height, distance, scale and rotation controls. Placement stays world-anchored rather than following head motion. Reset is directly reachable.
-- [x] UI-R03 / implementation. Painted button extents and scene picking stay aligned under transforms. Preserve rays, intersection cursor, thumbstick/A-X selection, B-Y direct start/pause/resume and hand-pinch menu access.
-- [x] UI-R04 / implementation. Compact controller-mounted score, hull and combo with a floor alternative and brief actual score/damage deltas. Preserve boss health in the world.
-- [x] UI-R05 / implementation. Saved AR water opacity and separate sound controls. Menu adjustment does not restart an encounter. Remove the arbitrary positional pause while keeping actual tracking/visibility recovery.
-- [x] UI-R06 / implementation. End the immersive session and retain the current paused battle in memory for same-mode re-entry. Do not silently reclassify an XR score as screen play.
-- [ ] UI-R07 / recurring source/public gate. Run exact-source model and actual-renderer input tests, then verify committed bytes and playable journeys on GitHub Pages. Outcomes are recorded by exact SHA in the release discussion, not inferred from code presence.
-- [ ] UI-R08 / owner/device gate. Physical Quest AR/VR, Xbox, touch, seated/standing readability, sound adjustment, exit/re-entry, room movement, ordinary-resolution performance and owner approval remain open until playtested.
-- [x] UI-R09 / implementation. Cancel pending audio resumes on interruption and require the same visible calibrated session before playback. Preserve the paused battle; stale promises cannot unlock or overwrite a newer request. Ten regression fixtures cover the actual component methods. Native fault-injection and public acceptance are separate gates; see INTERRUPTION-RECOVERY.md.
+## Spatial interface
 
-## Preserved work and open feedback
+- [x] UI-R01 / implementation. One rendered menu for screen/XR, direct chapter AR/VR/screen choices, and explicit semantic text-control alternative.
+- [x] UI-R02 / implementation. Summonable pedestal, stowed during combat, with height, distance, scale, rotation and reset. Placement does not follow head motion.
+- [x] UI-R03 / implementation. Visible controls and picking remain aligned under transforms. Preserve rays, contact cursor, thumbstick/A-X selection, B-Y start/pause/resume and hand-pinch menu access.
+- [x] UI-R04 / implementation. Compact controller score/hull/combo with a floor alternative and brief point/damage deltas. Boss health remains in the world.
+- [x] UI-R05 / implementation. Saved AR opacity and independent sound controls. Menu adjustment preserves the encounter. Ordinary movement does not trigger the removed arbitrary positional pause; real tracking/visibility loss still pauses.
+- [x] UI-R06 / implementation. Actual session end retains the current paused encounter in page memory for matching-mode re-entry, without reclassifying an XR score as screen play.
+- [x] UI-R07 / named automated runtime only. The 783236d7 source and public fire/water/interruption/Rotunda jobs pass. Each has 129 renderer checks and complete Arcade battles; 104 served files matched. Future changes reopen this gate. This is not physical approval.
+- [ ] UI-R08 / owner/device. Physical Quest AR/VR, Xbox, touch, seated/standing readability, sound, exit/re-entry, movement, sustained performance and owner approval.
+- [x] UI-R09 / implementation and named automated runtime. Cancel stale audio resumes; require visible calibrated matching sessions. Preserve paused state and newer operations. The 19-check interruption suite passes on the named source and public build.
 
-RV-01 through RV-06, the core chapters, old music, scoring rules, saves, native-shaped XR controller handling, classic rhythm, lessons, Practice Lab and Floodgate Recovery retain their contracts. All prior source/device gates remain documented in the archived board. No private hub code, portals or sibling-game changes are authorized by this pass.
+## Reusable graphics modules
 
-This release does not implement color-changing blades, base rewards for either-color fruit cuts, color-match bonuses, redesigned missile counterplay or explosion-radius visualization. Those Prism playtest items remain next gameplay work. The Currentworks Water first pass below improves the main river; it does not add an FFT ocean, a soundtrack, new chapters, persistent mid-battle saving across browser closure or full hand-only combat.
+- [x] ENV-W01 / implementation. Independent WebGL2 water and ES facade: geometric waves/normals, authored-depth shading, sky approximation, foam, bounded wakes/splashes, CPU query, reset and cleanup.
+- [x] ENV-W02 / integration. Observe real River boats/events within the existing recentered stage. Preserve AR opacity, quiet/quality settings, combat, input, sound and records.
+- [x] ENV-W03 / reuse. API, coordinate/ownership limits, construction presets, research, tests and continuation checkpoint are saved alongside code.
+- [x] ENV-W04 / named automated runtime. Water13 and actual-Three object37 checks pass, with the shared exact-public gate. Re-run after changes; physical water appearance/performance remains open.
+- [x] ENV-F01 / implementation. Independent volume-fire module supports bursts, sustained jets and surface impacts, smoke phase, instanced embers, bounded optional lights, paused clock, quality limits, reset/disposal and duplicate-event protection.
+- [x] ENV-F02 / integration. Real destruction events trigger Prism bursts. Load density/geometry and the matching display shader before audio, restoring renderer state and disposing the loading target. No extra renderer or per-frame scene pass, flamethrower or new damage rules.
+- [x] ENV-F03 / named automated runtime. Fire24 passes on source and public, including prepared/visible program-key equality and no observed first-destruction stall. Fire object/lifecycle64 and all289 Node tests pass. Keep the earlier failures recorded. No change to the 0.35-second safeguard or game rules was used to pass.
+- [ ] ENV-T01 / next implementation. Seeded trees/foliage with stable geometry, bounded detail, host-driven wind and cleanup. Preserve approach-lane sightlines and transparent AR.
+- [ ] ENV-HUMAN / physical and creative approval. Sustained named-device frame times, stereo appearance, readability, comfort, and owner judgment against the supplied water/fire references.
 
-A-03 save export/recovery, authored accessible charts, calibration, human onboarding, remapping and the full performance/accessibility matrix remain open under the historical board. Preserve failed traces and distinguish model fixtures, input emulation, physical-device feedback and published-file verification.
+## Scope and outstanding requests
 
-F-02 exact source tests, F-03 direct, fresh-master commit followed by separate deployment/public hashes, and F-04 live input recovery plus scoped rollback recur every release. UI implementation alone does not close them. Revert only this scoped release on current master; never reset unrelated games or clear localStorage.
+Preserve RV-01 through RV-06, both chapters, soundtracks, record formats, native-shaped XR input, Classic rhythm, lessons, Practice Lab and Floodgate Recovery. The graphics adapter is not authority to change their rules. No private hub implementation, full combined multi-game brief, portals or sibling-game work is included.
 
-## Integration reconciliation
+Color-changing blades, base rewards for either blade, color-match bonuses, redesigned missile counterplay and gameplay explosion-radius feedback remain unimplemented. Fire's cosmetic radius must not be described as the requested hazard danger radius. No new soundtrack, chapters, FFT ocean, full hand-only combat or mid-battle save across browser closure is claimed.
 
-All 14 audited Prism branch tips are already integrated; no lost branch feature or open Prism pull request was found. Keep the current 0.11.1 app and later test correction rather than merging an older snapshot again. The inspected public receipt still served the older app, which is a deployment discrepancy, not a merge conflict. See INTEGRATION-AUDIT.md for the exact evidence and outstanding features.
+Artistic refinement remains necessary. In the reviewed standalone image, the jet silhouette is still regularly wavy; later work should improve irregular turbulent shape, smoke breakup and surface interaction without sacrificing input performance. The low-resolution game capture proves integration, not high-resolution gameplay quality. Approximate water reflection and volume/surface compositing are known limits.
 
-The owner requires direct writes to master without new PRs or staging branches. Reconcile concurrent master changes first and never force an update. The existing verification is read-only; source and public outcomes are independent. No failed check, skipped replay or historical pass closes UI-R07 or UI-R08.
+A-03 save export/recovery, accessible charts, calibration, human onboarding, remapping and the full platform/accessibility matrix remain open in the historical board. F-02 source tests, F-03 fresh-master commit plus separate deployment hashes, and F-04 real live input recovery with scoped rollback recur on every release. Do not reset the repository, clear localStorage, lower gameplay requirements to manufacture passes, or substitute emulator success for the owner's reported physical failures.
 
-## Currentworks environment modules / Pass 1
-
-- [x] ENV-W01 / implementation. An independent WebGL2 water module and ES facade, using the host Three.js and clock. Analytic wave geometry/normals, procedural surface data, authored-depth shading, Fresnel sky approximation, foam, bounded wakes/splashes, reset and disposal.
-- [x] ENV-W02 / integration. Replace only RiverArt's former water surface; preserve the recentered stage, saved AR opacity, quiet controls, input, combat, sound and scores. Observe real moving boats and actual destruction events without altering actors.
-- [x] ENV-W03 / reusable source. API, coordinate/ownership limits, research, construction presets, tests and continuation notes are saved beside the module. Periodic checkpoints use direct-master writes and retain concurrent changes.
-- [ ] ENV-W04 / recurring evidence gate. Consult the exact source/public reports in modules/environment/VALIDATION.md. A local object/shader pass is not a public gameplay or physical-device pass. Repeat applicable gates after subsequent source changes.
-- [ ] ENV-F01 / next pass. Independently owned fire module for jets, bursts and impacts; paused-clock lifecycle, quality limits, smoke/embers and actual-event integration. No new weapon or blast damage is implied by decorative fire.
-- [ ] ENV-T01 / following pass. Seeded trees/foliage with reusable construction, LOD, host-driven wind and ownership cleanup. Preserve combat sightlines and transparent AR.
-- [ ] ENV-HUMAN / device and creative acceptance. Physical Quest/Xbox/touch, ordinary-resolution performance, stereo appearance, readability and owner review against the supplied visual references.
-
-The Currentworks module README, ROADMAP and CHECKPOINT are the entry points for the next coding session. The first native CI failure exposed the root ES-module package scope; Prism's local CommonJS boundary fixes it without changing the browser code or weakening tests. The saved report retains that failure and distinguishes it from later runs.
+The next coding session starts from modules/environment/CHECKPOINT.md and ROADMAP.md. All usable source milestones are durable on master; future work should build on the accepted runtime rather than reapplying an obsolete archive.
