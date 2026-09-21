@@ -36,7 +36,7 @@ try:
    (OUT/(SCENE+'-'+name+'.png')).write_bytes(base64.b64decode(data))
   try:
    page.goto(BASE+PAGE+'?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
-   check(page.evaluate('x.console.snapshot().build')=='ranger-spatial-console-20260920.1','Exact spatial console build boots in '+SCENE)
+   check(page.evaluate('x.console.snapshot().build')=='ranger-spatial-console-20260920.2','Exact spatial console build boots in '+SCENE)
    press(0);wait('g.state.started')
    if page.locator('dialog[open]').count():press(1)
    press(9);page.locator('#quality-select' if SCENE=='classic' else '#quality').select_option('low');press(1)
@@ -62,7 +62,7 @@ try:
    check(max(abs(a-b) for a,b in zip(pose['p'],after['p']))<.002 and pose['q']==after['q'],'Open workspace remains fixed when the tracked head turns and moves')
    page.evaluate('g.camera.position.x-=.3;g.camera.quaternion.identity()')
    # Aim an actual target ray at a rendered surface and dispatch real select events.
-   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);window.lastPointed=x.hit(e)?.label;if(!lastPointed)throw Error('Synthetic ray missed visible surface');e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
+   page.evaluate('''()=>{window.tapSurface=(mesh,u,v,release=true,allowBackground=false)=>{const e=x.controllers[1];mesh.updateWorldMatrix(true,false);const box=mesh.geometry.boundingBox||(mesh.geometry.computeBoundingBox(),mesh.geometry.boundingBox),point=new T.Vector3(box.min.x+(box.max.x-box.min.x)*u,box.min.y+(box.max.y-box.min.y)*v,0);mesh.localToWorld(point);e.ray.parent.worldToLocal(point);e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),point.sub(e.ray.position).normalize());e.ray.updateMatrix();e.ray.updateWorldMatrix(true,false);window.lastPointed=x.hit(e)?.label;if(!lastPointed&&!(allowBackground&&x.hit(e)?.occludesUI))throw Error('Synthetic ray missed visible surface');e.ray.dispatchEvent({type:'selectstart',data:right});if(release)e.ray.dispatchEvent({type:'selectend',data:right});};window.rail=i=>tapSurface(x.console.rail.mesh,(i+.5)/6,.5);window.tile=label=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label===label);if(!t)throw Error('No tile '+label);tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);};}''')
    page.evaluate('rail(4)');wait('document.getElementById("spatial-console-settings").open');xrready()
    check(True,'Pointed Workspace tab opens real adjustable settings without searching long menus')
    # Standard controller focus and adjustment, not setting configuration directly.
@@ -76,10 +76,40 @@ try:
     press(13)
    scale=page.evaluate('x.console.cfg.scale');press(15);check(page.evaluate('x.console.cfg.scale')>scale,'Xbox D-pad resizes workspace independently of the game')
    check(page.evaluate('x.presentation.width')==before['portal']['width'],'Workspace resizing preserves accepted diorama width')
+   poseBefore=page.evaluate('({p:x.panel.position.toArray(),anchor:x.anchor.toArray(),yaw:x.displayYaw})')
+   for _ in range(20):
+    if page.evaluate('document.activeElement?.id')=='spatial-rotation':break
+    press(13)
+   else:raise AssertionError('Controller cannot reach workspace rotation')
+   press(15);wait('x.console.cfg.rotation===15')
+   check(page.evaluate('Math.abs(x.panel.rotation.y-x.console.pose.yaw-Math.PI/12)<.001'),'Xbox rotates only the workspace by one deliberate 15-degree step')
+   check(page.evaluate('x.anchor.toArray()')==poseBefore['anchor'] and page.evaluate('x.displayYaw')==poseBefore['yaw'],'Personal workspace rotation does not turn or move the game portal')
+   page.evaluate("()=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label==='+');tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);}")
+   wait("x.controllers[1].hit?.label==='+'")
+   wait("x.console.buttonPool.some(b=>b.group.visible&&b.tile.label==='+'&&b.base.material.color.getHex()===0xffd784)");check(page.evaluate("x.console.buttonPool.filter(b=>b.group.visible&&b.tile.label==='+'&&b.base.material.color.getHex()===0xffd784).length")==1,'Only the pointed plus control is highlighted, not every repeated label')
    capture('raised-workspace');xrready();page.evaluate('rail(1)');wait('document.getElementById("map-dialog").open');xrready();check(page.evaluate('x.panel.visible'),'Direct Map tab displays the actual mission map in the workspace');capture('mission-map')
    page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');xrready();check(True,'Resume removes the menu hit surface and restores normal play')
    if SCENE=='classic':
     xrpress(5);page.locator('#menu-controls').click();wait('document.getElementById("controls-dialog").open');xrready();page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');check(True,'Direct Resume clears the original nested Controls back destination')
+   # A visible slate owns its whole surface, including informational pixels.
+   wait('x.console.wrist.mesh.visible');xrready();ammo=page.evaluate('x.ctx.fleet.state.ammo[0]')
+   page.evaluate("tapSurface(x.console.wrist.mesh,.5,.7,false,true);right.gamepad.buttons[0].value=1")
+   page.wait_for_timeout(600)
+   check(page.evaluate('x.ctx.fleet.state.ammo[0]')==ammo and not page.evaluate('g.state.paused'),'Pointing at wrist information does not spend ammunition or open a menu')
+   page.evaluate("right.gamepad.buttons[0].value=0;x.controllers[1].ray.dispatchEvent({type:'selectend',data:right})");xrready()
+   xrpress(5);wait('x.panel.visible');xrready();page.evaluate('rail(3)');wait('x.console.trayOpen&&!g.state.paused');xrready();wait('x.console.progress>.9999')
+   page.evaluate("tapSurface(x.panel,.5,.97,false,true);right.gamepad.buttons[0].value=1")
+   page.wait_for_timeout(600)
+   check(page.evaluate('x.ctx.fleet.state.ammo[0]')==ammo,'Blank Field-panel background consumes a trigger instead of firing into the reserve')
+   page.evaluate("()=>{const e=x.controllers[1];e.ray.quaternion.setFromUnitVectors(new T.Vector3(0,0,-1),new T.Vector3(0,1,0));e.ray.updateMatrix();}")
+   page.wait_for_timeout(400)
+   check(page.evaluate('x.ctx.fleet.state.ammo[0]')==ammo,'A trigger started on the panel stays consumed when the pointer leaves it')
+   page.evaluate("right.gamepad.buttons[0].value=0;x.controllers[1].ray.dispatchEvent({type:'selectend',data:right})");xrready()
+   page.evaluate('right.gamepad.buttons[0].value=1')
+   try:page.wait_for_function('a=>x.ctx.fleet.state.ammo[0]<a',arg=ammo,timeout=30000)
+   finally:page.evaluate('right.gamepad.buttons[0].value=0')
+   check(True,'A new intentional world trigger still uses the original tool after UI release')
+   page.evaluate('tile("Hide field controls")');wait('!x.panel.visible');xrready()
    # A controller may disappear while the hand remains a connected input source.
    page.evaluate('''()=>{for(const e of x.controllers)e.ray.dispatchEvent({type:'disconnected'});window.right={handedness:'right',hand:new Map()};session.inputSources=[right];const e=x.controllers[1];e.ray.visible=true;e.grip.visible=false;e.ray.dispatchEvent({type:'connected',data:right});}''');wait('g.state.paused');xrready();page.evaluate('rail(0)');wait('!g.state.paused');xrready()
    wait('x.console.wrist.mesh.visible');page.evaluate('tapSurface(x.console.wrist.mesh,.75,.12)');wait('x.console.trayOpen&&x.panel.visible&&!g.state.paused');xrready();wait('x.console.progress>.9999')
@@ -99,7 +129,7 @@ try:
    settings=page.evaluate('x.console.cfg');page.reload(wait_until='domcontentloaded');wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
    check(page.evaluate('x.console.cfg')==settings and not page.evaluate('x.console.trayOpen'),'Workspace preferences survive reload without restoring armed menu input')
    check(not errors,'No captured game JavaScript or HTTP errors')
-   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
+   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.2','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
   except Exception as e:
    diag={}
    try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id,pointed:window.lastPointed,hold:x?.holds?.size,beforePose:window.beforePose,afterPose:window.afterPose,progress:x?.console?.progress})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)

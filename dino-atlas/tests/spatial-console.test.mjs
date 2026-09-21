@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {consoleSettings,readConsole,saveConsole,summonPose,SPATIAL_KEY,SpatialConsole,consoleMaterial} from '../spatial-console.js';
 
 test('Workspace validates height, distance and scale without serializing game state',()=>{
- assert.deepEqual(consoleSettings({height:Infinity,distance:NaN,scale:-9,wrist:false,active:true}),{version:1,height:1.15,distance:1.25,scale:.55,wrist:false});
+ assert.deepEqual(consoleSettings({height:Infinity,distance:NaN,scale:-9,wrist:false,active:true}),{version:1,height:1.15,distance:1.25,scale:.55,rotation:0,wrist:false});
  assert.equal(consoleSettings({height:99,distance:99,scale:99}).height,1.8);
  assert.equal(consoleSettings(null).height,1.15);
 });
@@ -34,7 +34,7 @@ test('Changing workspace scale and height cannot change world or diorama transfo
 });
 test('Shared renderer routes actual menu hit tests and post-draw placement through workspace',()=>{
  const a=readFileSync(new URL('../xr-reserve.js',import.meta.url),'utf8'),b=readFileSync(new URL('../diorama-xr.js',import.meta.url),'utf8');
- assert.match(a,/this.console=new SpatialConsole\(this\)/);assert.match(a,/this.console\.update\(dt,root\)/);assert.match(a,/this.console\?\.hit\(entry\)/);assert.match(b,/if\(this.console\)\{this.console.positionPanel\(\);return;\}/);
+ assert.match(a,/this.console=new SpatialConsole\(this\)/);assert.match(a,/this.console\.update\(dt,root\)/);assert.match(a,/this.console.hit\(entry\)/);assert.match(b,/if\(this.console\)\{this.console.positionPanel\(\);return;\}/);
 });
 test('Resume closes nested Classic back destinations and Field cannot leave a hidden pause',()=>{
  const c=Object.create(SpatialConsole.prototype);let dialog={tagName:'DIALOG',id:'controls-dialog'},back='menu-dialog',closed=0,hidden=0;
@@ -45,4 +45,11 @@ test('Resume closes nested Classic back destinations and Field cannot leave a hi
 
 test('Personal UI surfaces render in a late transparent pass above world labels',()=>{
  const m=consoleMaterial({color:0x294f48,opacity:.8});assert.equal(m.transparent,true);assert.equal(m.depthTest,false);assert.equal(m.depthWrite,false);assert.equal(m.toneMapped,false);m.dispose();
+});
+
+test('Workspace rotation is bounded and affects only the captured panel orientation',()=>{
+ const c=fixture();c.xr.ctx.modal=()=>({id:'settings'});c.cfg=consoleSettings({rotation:15});
+ const originalPose={...c.pose};c.positionPanel();assert.ok(Math.abs(c.xr.panel.rotation.y-(c.pose.yaw+Math.PI/12))<1e-9);
+ assert.deepEqual(c.pose,originalPose);assert.equal(c.xr.panel.position.x,1);assert.equal(c.xr.panel.position.z,-2);
+ assert.equal(consoleSettings({rotation:1000}).rotation,60);assert.equal(consoleSettings({rotation:Infinity}).rotation,0);
 });
