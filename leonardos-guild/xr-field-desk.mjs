@@ -3,6 +3,7 @@
  * and bounded preferences never enter player movement, inventory or saves. */
 import * as T from './vendor/three.module.js';
 import {xrPosition} from './xr-recovery.mjs';
+import {fieldStatus,floorStatusPlacement,statusLines} from './field-status.mjs';
 export const DESK_KEY='svgn.leonardos-guild.field-desk.v1';
 const bound=(v,lo,hi,d)=>Number.isFinite(v)?Math.max(lo,Math.min(hi,v)):d;
 export function deskPreferences(raw={}){
@@ -52,12 +53,18 @@ export function createFieldDesk({panel,stage,back,release,getState,getObjective,
   const body=new T.Mesh(new T.BoxGeometry(.32,.105,.035),new T.MeshBasicMaterial({color:'#244b56',depthTest:false,depthWrite:false}));body.position.set((i%3-1)*.35,-.97-Math.floor(i/3)*.13,.045);body.renderOrder=4001;frame.add(body);
   const face=new T.Mesh(new T.PlaneGeometry(.30,.09),new T.MeshBasicMaterial({map:labelTexture(text),depthTest:false,depthWrite:false,toneMapped:false}));face.position.z=.02;face.renderOrder=4002;body.add(face);controls.push({id,body,run:()=>modify(id)});
  }
- const statusCanvas=document.createElement('canvas');statusCanvas.width=640;statusCanvas.height=240;const context=statusCanvas.getContext('2d'),texture=new T.CanvasTexture(statusCanvas);texture.colorSpace=T.SRGBColorSpace;
- const status=new T.Mesh(new T.PlaneGeometry(.28,.105),new T.MeshBasicMaterial({map:texture,depthTest:false,depthWrite:false,toneMapped:false,side:T.DoubleSide}));status.name='Compact tool and objective status';status.renderOrder=3998;stage.parent.add(status);let statusText='',statusAt=-Infinity,tracking=null;
+ const statusCanvas=document.createElement('canvas');statusCanvas.width=800;statusCanvas.height=320;const context=statusCanvas.getContext('2d'),texture=new T.CanvasTexture(statusCanvas);texture.colorSpace=T.SRGBColorSpace;
+ const status=new T.Mesh(new T.PlaneGeometry(.32,.128),new T.MeshBasicMaterial({map:texture,depthTest:false,depthWrite:false,toneMapped:false,side:T.DoubleSide}));status.name='Compact tool and objective status';status.renderOrder=3998;stage.parent.add(status);let statusText='',statusAt=-Infinity,tracking=null,statusDetails=null;
  function updateStatus(){
-  if(now-statusAt<150)return;statusAt=now;const s=getState(),goal=getObjective?.()||{},tool=s.resonance?.tool||s.mode;
-  statusText=(goal.title||'Explore Vinci')+' | '+tool;context.fillStyle='#122b34';context.fillRect(0,0,640,240);context.fillStyle='#fff2cf';context.font='bold 30px sans-serif';context.fillText('LEO / '+String(tool).toUpperCase(),16,39,455);context.font='26px sans-serif';context.fillText('Health '+Math.round(s.health||0)+' / Sling '+(s.resonance?.ready??0),16,80,455);context.fillText(String(goal.title||'Explore Vinci'),16,124,455);context.fillText(String(goal.hint||'Y: Dispatch / B: interact, then back'),16,168,455);context.fillText('HUD: '+prefs.status+' / field desk adjusts placement',16,212,600);
-  const map=document.getElementById('minimap');if(map?.width)context.drawImage(map,478,12,150,150);texture.needsUpdate=true;
+  if(!spatial||visible||prefs.status==='off'||now-statusAt<150)return;
+  statusAt=now;statusDetails=fieldStatus(getState(),getObjective?.()||{});
+  const info=statusDetails;statusText=info.title+' | '+info.header+' | '+info.primary+' | '+info.secondary;
+  context.fillStyle='#122b34';context.fillRect(0,0,800,320);context.fillStyle='#fff2cf';
+  const write=(text,y,size,width=554,count=1)=>{context.font=`${size}px sans-serif`;statusLines(context,text,width,count).forEach((line,i)=>context.fillText(line,18,y+i*(size+6)));};
+  write(info.header,40,29);write(info.resources,81,25);write(info.title,120,26,554,2);write(info.hint,191,22,554);
+  write(info.primary,242,24,764);write(info.secondary,278,20,764);
+  const map=document.getElementById('minimap');if(map?.width)context.drawImage(map,595,15,187,146);
+  texture.needsUpdate=true;
  }
  function layout(){
   if(!spatial)return;
@@ -66,7 +73,11 @@ export function createFieldDesk({panel,stage,back,release,getState,getObjective,
   frame.visible=visible;panel.visible=visible;controls.forEach(c=>c.body.material.color.set(c.id===hover?'#547c87':'#244b56'));
   status.visible=spatial&&!visible&&prefs.status!=='off';
   if(status.visible&&prefs.status==='wrist'&&tracking){const p=xrPosition(tracking.transform.position),q=new T.Quaternion().copy(tracking.transform.orientation);status.position.copy(p).add(new T.Vector3(-.045,.075,.045).applyQuaternion(q));status.quaternion.copy(q).multiply(new T.Quaternion().setFromAxisAngle(new T.Vector3(1,0,0),-Math.PI/2));}
-  else if(status.visible){status.position.set(stage.position.x,stage.position.y+.25,stage.position.z);status.position.add(new T.Vector3(0,0,-.6).applyAxisAngle(new T.Vector3(0,1,0),stage.rotation.y));status.rotation.set(-Math.PI/3,stage.rotation.y,0);status.scale.setScalar(1.6);}
+  else if(status.visible){
+   const floor=floorStatusPlacement(anchor);
+   if(floor){status.position.set(floor.x,floor.y,floor.z);status.rotation.set(-Math.PI/3,floor.yaw,0);status.scale.setScalar(1.6);}
+   else status.visible=false;
+  }
   if(prefs.status==='wrist'&&tracking)status.scale.setScalar(1);
   frame.updateWorldMatrix(true,true);base.updateWorldMatrix(true,true);status.updateWorldMatrix(true,false);
  }
@@ -80,5 +91,5 @@ export function createFieldDesk({panel,stage,back,release,getState,getObjective,
  function hit(ray){if(!spatial)return null;if(!visible){const h=ray.intersectObject(rim,false)[0];return h?{key:'desk-summon',kind:'desk',id:'desk:summon',distance:h.distance,run:()=>summon?.()}:null;}frame.updateWorldMatrix(true,true);const h=ray.intersectObjects(controls.map(c=>c.body),false)[0];if(!h)return null;const c=controls.find(c=>c.body===h.object);hover=c.id;return {key:'desk-'+c.id,kind:'desk',id:'desk:'+c.id,run:c.run,distance:h.distance};}
  function reset(){visible=false;anchor=null;pose=null;tracking=null;frame.visible=base.visible=status.visible=false;}
  frame.visible=base.visible=status.visible=false;
- return {update,tick,hit,modify,reset,inspect:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),placements,depthTest:panel.material.depthTest,spatial,reference:'stationary-floor-desk',preferences:{...prefs},visible,statusVisible:status.visible,statusText,controls:controls.map(c=>({id:c.id,matrix:c.body.matrixWorld.toArray()}))};}};
+ return {update,tick,hit,modify,reset,inspect:()=>{panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),placements,depthTest:panel.material.depthTest,spatial,reference:'stationary-floor-desk',preferences:{...prefs},visible,statusVisible:status.visible,statusText,statusDetails,statusMatrix:status.matrixWorld.toArray(),controls:controls.map(c=>({id:c.id,matrix:c.body.matrixWorld.toArray()}))};}};
 }

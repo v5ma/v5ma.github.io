@@ -3,7 +3,7 @@
 import {newState} from './model.mjs';
 import {attachFrontier} from './frontier-core.mjs';
 import {attachQuarter} from './quarter-core.mjs';
-export const PLAYTEST_BUILD='guild-vinci-desk-20260920';
+export const PLAYTEST_BUILD='guild-field-status-20260920';
 export function requestedCampaign(search=''){
  return new URLSearchParams(search).get('district')==='quarter'?'quarter':'vinci';
 }
