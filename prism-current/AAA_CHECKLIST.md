@@ -1,4 +1,4 @@
-# Prism Current / Rotunda Recovery 0.11.1 production checklist
+# Prism Current / Rotunda 0.11.1 + Water 0.1.0 production checklist
 
 This pass implements the owner's Prism-only spatial-interface direction. Read AGENTS.md and INTEGRATION-AUDIT.md for the current direct-master maintenance decision; ROTUNDA.md and historical PR #205 retain the interface design and earlier evidence. The complete 0.10.1 board is retained at AAA_CHECKLIST-v0101.md, including all earlier task identifiers and archives. Earlier checks are not human approval of the new interface.
 
@@ -18,7 +18,7 @@ This pass implements the owner's Prism-only spatial-interface direction. Read AG
 
 RV-01 through RV-06, the core chapters, old music, scoring rules, saves, native-shaped XR controller handling, classic rhythm, lessons, Practice Lab and Floodgate Recovery retain their contracts. All prior source/device gates remain documented in the archived board. No private hub code, portals or sibling-game changes are authorized by this pass.
 
-This release does not implement color-changing blades, base rewards for either-color fruit cuts, color-match bonuses, redesigned missile counterplay or explosion-radius visualization. Those Prism playtest items remain next gameplay work. It also does not add a new ocean shader, soundtrack, new chapters, persistent mid-battle saving across browser closure or full hand-only combat.
+This release does not implement color-changing blades, base rewards for either-color fruit cuts, color-match bonuses, redesigned missile counterplay or explosion-radius visualization. Those Prism playtest items remain next gameplay work. The Currentworks Water first pass below improves the main river; it does not add an FFT ocean, a soundtrack, new chapters, persistent mid-battle saving across browser closure or full hand-only combat.
 
 A-03 save export/recovery, authored accessible charts, calibration, human onboarding, remapping and the full performance/accessibility matrix remain open under the historical board. Preserve failed traces and distinguish model fixtures, input emulation, physical-device feedback and published-file verification.
 
@@ -29,3 +29,15 @@ F-02 exact source tests, F-03 direct, fresh-master commit followed by separate d
 All 14 audited Prism branch tips are already integrated; no lost branch feature or open Prism pull request was found. Keep the current 0.11.1 app and later test correction rather than merging an older snapshot again. The inspected public receipt still served the older app, which is a deployment discrepancy, not a merge conflict. See INTEGRATION-AUDIT.md for the exact evidence and outstanding features.
 
 The owner requires direct writes to master without new PRs or staging branches. Reconcile concurrent master changes first and never force an update. The existing verification is read-only; source and public outcomes are independent. No failed check, skipped replay or historical pass closes UI-R07 or UI-R08.
+
+## Currentworks environment modules / Pass 1
+
+- [x] ENV-W01 / implementation. An independent WebGL2 water module and ES facade, using the host Three.js and clock. Analytic wave geometry/normals, procedural surface data, authored-depth shading, Fresnel sky approximation, foam, bounded wakes/splashes, reset and disposal.
+- [x] ENV-W02 / integration. Replace only RiverArt's former water surface; preserve the recentered stage, saved AR opacity, quiet controls, input, combat, sound and scores. Observe real moving boats and actual destruction events without altering actors.
+- [x] ENV-W03 / reusable source. API, coordinate/ownership limits, research, construction presets, tests and continuation notes are saved beside the module. Periodic checkpoints use direct-master writes and retain concurrent changes.
+- [ ] ENV-W04 / recurring evidence gate. Consult the exact source/public reports in modules/environment/VALIDATION.md. A local object/shader pass is not a public gameplay or physical-device pass. Repeat applicable gates after subsequent source changes.
+- [ ] ENV-F01 / next pass. Independently owned fire module for jets, bursts and impacts; paused-clock lifecycle, quality limits, smoke/embers and actual-event integration. No new weapon or blast damage is implied by decorative fire.
+- [ ] ENV-T01 / following pass. Seeded trees/foliage with reusable construction, LOD, host-driven wind and ownership cleanup. Preserve combat sightlines and transparent AR.
+- [ ] ENV-HUMAN / device and creative acceptance. Physical Quest/Xbox/touch, ordinary-resolution performance, stereo appearance, readability and owner review against the supplied visual references.
+
+The Currentworks module README, ROADMAP and CHECKPOINT are the entry points for the next coding session. The first native CI failure exposed the root ES-module package scope; Prism's local CommonJS boundary fixes it without changing the browser code or weakening tests. The saved report retains that failure and distinguishes it from later runs.

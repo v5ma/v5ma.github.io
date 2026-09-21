@@ -75,15 +75,26 @@ with sync_playwright() as pw:
     p.evaluate('p=>TestXR.point("left",p)',worldpoint(p,i));p.wait_for_function('(i)=>River.snapshot().xrUI.hover[0]===i',arg=i,timeout=10000)
    def select(i):
     aim(i);p.evaluate('TestXR.select("left",true)');p.wait_for_timeout(180);p.evaluate('TestXR.select("left",false)');p.wait_for_timeout(180)
+   def frames():
+    p.evaluate("""async()=>{const session=TestXR.state.session;const frame=()=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('XR input frame timeout')),5000);session.requestAnimationFrame(()=>{clearTimeout(timer);resolve();});});await frame();await frame();}""")
    def button(hand,i):
-    p.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,i]);p.wait_for_timeout(150);p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,i]);p.wait_for_timeout(150)
+    # Polled buttons must be visible to the rendered input loop, not merely
+    # pressed and released between two slow software-rendered frames.
+    p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,i]);frames()
+    p.evaluate('([h,i])=>TestXR.button(h,i,true)',[hand,i]);frames()
+    p.evaluate('([h,i])=>TestXR.button(h,i,false)',[hand,i]);frames()
    for i in range(14):aim(i)
    check(True,mode+': all rendered buttons, tabs, reset and HUD controls accept the ray')
-   p.evaluate('TestXR.away()')
-   for _ in range(3):
-    p.evaluate('TestXR.axes("right",-1,0)');p.wait_for_timeout(150);p.evaluate('TestXR.axes("right",0,0)');p.wait_for_timeout(150)
-   button('right',4);check(snapshot()['rotunda']['page']=='sound',mode+': thumbstick and A select a tab with both rays pointing away')
-   p.evaluate('TestXR.state.handMode=true;TestXR.state.pinch=false');p.wait_for_timeout(180);aim(11);p.evaluate('TestXR.state.pinch=true');p.wait_for_timeout(200);p.evaluate('TestXR.state.pinch=false');p.wait_for_timeout(180)
+   p.evaluate('TestXR.away();TestXR.axes("right",0,0)');frames()
+   for expected in [12,11,10]:
+    # Observe one actual navigation result before releasing the stick.
+    # Keep the exact expected sequence; never assign focus or invoke actions.
+    p.evaluate('TestXR.axes("right",-1,0)')
+    p.wait_for_function('(i)=>River.snapshot().xrUI.focus===i&&River.snapshot().xrUI.focusMode==="stick"',arg=expected,timeout=5000)
+    p.evaluate('TestXR.axes("right",0,0)');frames()
+    check(snapshot()['xrUI']['focus']==expected,mode+': one visible thumbstick step reaches '+str(expected))
+   button('right',4);p.wait_for_function('River.snapshot().rotunda.page==="sound"',timeout=5000);check(snapshot()['rotunda']['page']=='sound',mode+': thumbstick and A select a tab with both rays pointing away')
+   p.evaluate('TestXR.state.handMode=true;TestXR.state.pinch=false');frames();aim(11);p.evaluate('TestXR.state.pinch=true');p.wait_for_function('River.snapshot().rotunda.page==="help"',timeout=5000);p.evaluate('TestXR.state.pinch=false');frames()
    check(snapshot()['rotunda']['page']=='help',mode+': hand pinch operates the actual rotunda controls')
    p.evaluate('TestXR.state.handMode=false');p.wait_for_timeout(180);select(9)
    for i in [0,2,4,7]:select(i)
