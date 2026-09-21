@@ -1,0 +1,96 @@
+{
+  "application": "Neighborhood Missions",
+  "version": "0.16.1",
+  "revision": "master-reconcile-1",
+  "recordedDateUTC": "2026-09-21",
+  "status": "committed-source-verified-public-pending",
+  "publishedRevisionVerified": false,
+  "completeRenderedAcceptance": false,
+  "gameCommit": "e104538b65c9dd47f02e3206a7375cfcaa4d77ad",
+  "parentCommit": "594496bcfcc4f7cc33a4b92e15c6fd7de77cdc9f",
+  "writeMethod": "Direct single-parent master commit with force=false. No new PR, staging branch, import writer or publication workflow.",
+  "verifiedDiff": "38 changed paths, restricted to svgn-planet and its owned workflow files. Concurrent Sky Cycle and other sibling changes preserved exactly relative to parent.",
+  "audit": {
+    "path": "svgn-planet/production/integration-audit-20260921.json",
+    "report": "svgn-planet/INTEGRATION-AUDIT.md",
+    "exactBranchHeadsCompared": 27,
+    "ancestors": 18,
+    "diverged": 9,
+    "unresolvedConflictMarkers": 0,
+    "note": "Divergence is not a count of missing upgrades. Current Mission Focus, spatial console, main city, Lantern Ward and campaign source were already integrated."
+  },
+  "recoveredFeature": "Physical left/right vehicle-trigger choice adapted from competing Field Desk into the current Spatial UI. Existing saved primary-hand defaults and on-foot/Courier/Xbox controls preserved; opposite trigger brakes only for explicit physical-side choices.",
+  "unportedFeatures": [
+    {
+      "source": "feat/signal-city-waterfront-20260907 at e79f70c19f57928096cd1b48ce56bdd015e271f9",
+      "features": "Enterable cars, scout drone, CivicGrid device interactions and Waterfront File investigation",
+      "decision": "Reject old app/model/world/scene overwrites; retain source for current-adapter rewrite under DESIGN-02. Not implemented by this repair."
+    },
+    {
+      "source": "neighborhood-tideglass-20260912 at 6dce269cb0ea94ece573ad0dd2ed5bfee0cc151e",
+      "features": "Indoor depth-swimming rings, submerged keepsakes, underwater valves and pool rendering",
+      "decision": "Distinct from current outdoor Tidewater. Preserve source for current-adapter rewrite under WATER-01. Not implemented by this repair."
+    }
+  ],
+  "obsoleteMergeProposals": {
+    "208": "Closed after selective trigger recovery; newer spatial console retained.",
+    "65": "Closed as an unsafe old whole-file merge, not as completed feature work. Missing features remain in audit and source branch.",
+    "branchesDeleted": false,
+    "unrelatedPR43Changed": false
+  },
+  "workflowConsolidation": {
+    "obsoleteWrappersRemoved": 14,
+    "existingReadOnlyWorkflowsRetained": 3,
+    "sourceJourneys": 19,
+    "consoleModes": 8,
+    "publicJourneys": 21,
+    "coverage": "svgn-planet/production/workflow-coverage.json",
+    "gameTestFilesDeleted": false,
+    "acceptanceAssertionsRemoved": false,
+    "sharedPublisherChanged": false
+  },
+  "exactSourceVerification": {
+    "sourceRun": 35623737050,
+    "modelJob": 106413232309,
+    "modelJobResult": "success",
+    "artifact": 10651020302,
+    "artifactSHA256": "d8ebd3273da28a0a04265a39933997200476a4ef1553684a14555821ccb5a937",
+    "artifactSourceCommitVerified": true,
+    "downloadedSourceTests": 387,
+    "downloadedSourceFailures": 0,
+    "downloadedSourceSkipped": 0,
+    "downloadedSourceTestReportSHA256": "d70c612be42d1fb787d7a66263d437c1cfe167ab7d53293209acbe936f949a9b",
+    "legacyHashesMatched": 102,
+    "adapterTestsWithFakeRenderer": 5,
+    "adapterTestsAreRenderedOrPhysicalTests": false,
+    "pythonCompilation": "console-browser.py and verify-published.py passed",
+    "scopeCheck": "No conflict markers; full 19/8/21 journey coverage preserved."
+  },
+  "publicationAtRecording": {
+    "pagesRun": 35623735639,
+    "build": "success",
+    "deploy": "in_progress",
+    "publicVerificationRun": 35623737029,
+    "publicFileJob": "in_progress",
+    "publicFileArtifactAvailable": false,
+    "directWebCheck": "Main URL and release manifest were not accessible through the web tool; no live-source inference made.",
+    "note": "A committed source, successful model job or successful Pages build is not proof that the latest revision is served. Record the completed actual public result separately."
+  },
+  "historicalFailedPublication": {
+    "run": 35564523386,
+    "artifact": 10623473660,
+    "artifactSHA256": "1bad8c7898c7220fde833b68c190fd2bbed497a417633f39f135d1505d040e38",
+    "success": false,
+    "matchingRequests": 263,
+    "totalRequests": 301,
+    "liveBrowser": "skipped after byte verification failed",
+    "sourceEvidence": "Historical 371 models and 14 synthetic rendered checks passed on b38d54f, not evidence that the newer repair is fully rendered/physically approved."
+  },
+  "physicalQuestTested": false,
+  "physicalXboxTested": false,
+  "physicalHandTrackingTested": false,
+  "comfortApproved": false,
+  "sustainedHardwarePerformanceApproved": false,
+  "recoveryPackageSHA256": "9fed9193a6d584648065c95baa84fb91275aa7e4362fb4f077ee7c384fe15704",
+  "recovery": "Continue directly on current master after reading svgn-planet/AGENTS.md. No reset, force-push, stale branch reapplication, private hub publication or sibling-game edits. This receipt does not modify the verified game source."
+}
