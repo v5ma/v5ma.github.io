@@ -1,0 +1,75 @@
+name: Guild field-status public verification
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/guild-field-status-check.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-field-status-public-check
+  cancel-in-progress: true
+# Read-only supplemental verification. Existing acceptance workflows stay intact.
+# Use the established Pages publisher's runner family; never rewrite game state.
+jobs:
+  verify:
+    runs-on: macos-15
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        attachment: [framebuffer, projection]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run the ordinary source and design checks
+        run: |
+          mkdir -p field-status-evidence
+          set -o pipefail
+          npm --prefix leonardos-guild test | tee field-status-evidence/source-tests.tap
+          node --test leonardos-guild/design/validate-design.mjs | tee field-status-evidence/design-tests.tap
+      - name: Install pinned native browser dependencies
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install chromium
+      - name: Require exact published root runtime before either journey
+        run: python -u leonardos-guild/tests/verify-desk-public.py
+      - name: Render the retained Quarter in separate eye attachments
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+          TEST_BASE_URL: https://v5ma.github.io
+        run: |
+          set -o pipefail
+          python -u leonardos-guild/tests/compositor-browser.py 2>&1 | tee field-status-evidence/quarter-browser.log
+      - name: Play the full Vinci entry, hands, desk, menus, movement and exit
+        if: success() || (failure() && steps.public.outcome == 'success')
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+          TEST_BASE_URL: https://v5ma.github.io
+        run: |
+          set -o pipefail
+          python -u leonardos-guild/tests/vinci-desk-browser.py 2>&1 | tee field-status-evidence/vinci-browser.log
+      - name: Preserve exact identity, source hashes and unmodified-source evidence
+        if: always()
+        run: |
+          mkdir -p field-status-evidence
+          git rev-parse HEAD > field-status-evidence/tested-commit.txt
+          git diff --stat > field-status-evidence/uncommitted-diff.txt
+          git ls-files -z leonardos-guild .github/workflows/guild-field-status-check.yml | xargs -0 shasum -a 256 > field-status-evidence/source-hashes.txt
+          test ! -s field-status-evidence/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-field-status-${{ matrix.attachment }}
+          path: |
+            field-status-evidence/
+            desk-public-source.json
+            leonardos-guild/desk-${{ matrix.attachment }}-output/
+            leonardos-guild/compositor-${{ matrix.attachment }}-output/
+          retention-days: 14
