@@ -1,0 +1,83 @@
+name: Stage reviewed Aether Field Rotunda
+on:
+  push:
+    branches: [aether/field-rotunda-20260920]
+    paths: ['aether-reach/tools/rotunda-transfer-4.b64']
+permissions:
+  contents: read
+jobs:
+  stage:
+    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/aether/field-rotunda-20260920'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            aether-reach
+            .github/workflows
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply exact-base reviewed content
+        run: |
+          mkdir -p /tmp/rotunda-stage
+          python - <<'PY'
+          import base64,zlib,json,hashlib
+          from pathlib import Path
+          encoded=''.join(Path(f'aether-reach/tools/rotunda-transfer-{i}.b64').read_text().strip() for i in range(5))
+          Path('/tmp/rotunda-stage/received.b64').write_text(encoded)
+          raw=zlib.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='7a4e0509da9b80153ef2a411ef39d273cf24582dc20d1c9671d781dc7a280301'
+          data=json.loads(raw);assert data['base']=='7ccc6cceb43f1c3031454c8dc30b52646718baff'
+          for name,item in data['changes'].items():
+            p=Path(name);assert name.startswith('aether-reach/') and '..' not in p.parts and not p.is_symlink()
+            assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==item['before'],name
+            text=p.read_text() if p.exists() else ''
+            for start,end,replacement in reversed(item['edits']):
+              assert 0<=start<=end<=len(text),name
+              text=text[:start]+replacement+text[end:]
+            assert hashlib.sha256(text.encode()).hexdigest()==item['after'],name
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          Path('/tmp/rotunda-stage/changes.json').write_text(json.dumps(data))
+          PY
+          git diff --check
+      - name: Model and input validation
+        run: |
+          set -euo pipefail
+          node --test aether-reach/tests/*.test.mjs > /tmp/rotunda-stage/node-tests.log
+          python aether-reach/tests/backup_test.py
+          for f in aether-reach/*.mjs; do node --check "$f"; done
+          python -m compileall -q aether-reach/tests
+          node aether-reach/tests/release-manifest.mjs
+          python aether-reach/tools/render-production-plan.py
+      - name: Create reviewed content commit without moving refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          data=json.loads(Path('/tmp/rotunda-stage/changes.json').read_text())
+          def post(endpoint,payload):
+            p=Path('/tmp/rotunda-stage/request.json');p.write_text(json.dumps(payload))
+            return json.loads(subprocess.check_output(['gh','api','--method','POST','repos/'+os.environ['GH_REPO']+'/'+endpoint,'--input',str(p)],text=True))
+          tree=[{'path':n,'mode':'100644','type':'blob','content':Path(n).read_text()} for n in data['changes']]
+          tree += [{'path':f'aether-reach/tools/rotunda-transfer-{i}.b64','mode':'100644','type':'blob','sha':None} for i in range(5)]
+          t=post('git/trees',{'base_tree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'tree':tree})
+          c=post('git/commits',{'message':'feat(aether): room-space field rotunda and guided third-person shot feedback','tree':t['sha'],'parents':[os.environ['GITHUB_SHA']]})
+          Path('/tmp/rotunda-stage/candidate.json').write_text(json.dumps({'commit':c['sha'],'tree':t['sha'],'files':list(data['changes']),'scope':'Source/model validation only. Native browser, public serving and physical-device acceptance are separate gates.'},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aether-rotunda-staged
+          path: |
+            /tmp/rotunda-stage/candidate.json
+            /tmp/rotunda-stage/node-tests.log
+            /tmp/rotunda-stage/received.b64
+          retention-days: 14
