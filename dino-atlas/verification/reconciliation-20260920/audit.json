@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "auditedAtUtc": "2026-09-21T05:25:06.120218+00:00",
+  "game": "dino-atlas",
+  "baseMaster": "26eb4459f7437415f224c9737c4c507f2d551243",
+  "baseDinoTree": "268820fd7c1a39af1faebf513159c0c7f2a7cbc2",
+  "method": "Direct scoped master update; no new PR, branch, source transport or workflow. Existing workflow simplified without dropping acceptance gates.",
+  "openDinoTitlePrSearch": 0,
+  "historicalDinoBranchInventory": 23,
+  "inventoryIsNotExhaustivePerLineReview": true,
+  "recentRotundaMerge": "1796de4cb0a2a3b2d4197f07d67da13791fedcf8",
+  "fieldOperationsMerge": "ac0ec69882cdca97ca773f1fdc855d0948fc344d",
+  "fieldRelease": {
+    "tag": "dino-field-operations-20260917.1",
+    "id": 391155622,
+    "run": 35289464270,
+    "jobsSucceeded": 18,
+    "publicJob": 105436825402,
+    "releaseJob": 105446444916,
+    "publishedAt": "2026-09-18T01:26:01Z"
+  },
+  "unported": [
+    {
+      "branch": "dino-northstar-signature-20260912",
+      "head": "456741a2fea01b26b191225de10d15fa6f5a8a8b",
+      "decision": "Preserve; reject obsolete whole-runtime/transport replay; focused current-system port required."
+    },
+    {
+      "branch": "dino-crew-canopy-20260912",
+      "head": "f4a5bf4dc426231ca503940d0dd3cf7faa8b6072",
+      "latestReturnedRun": 34718008692,
+      "runConclusion": "failure",
+      "decision": "Preserve assets and branch; do not overwrite current IK, shaders or Pelagic reward allowlist."
+    }
+  ],
+  "tests": {
+    "oldNpmTest": 10,
+    "beforeIntegrationPassed": 5,
+    "beforeIntegrationFailed": 3,
+    "afterPassed": 265,
+    "afterFailed": 0,
+    "afterSkipped": 0,
+    "syntaxFiles": 60,
+    "conflictScannedFiles": 70
+  },
+  "runtimeChanged": false,
+  "saveKeysChanged": false,
+  "vendorFilesChanged": false,
+  "physicalHardwareVerified": false,
+  "freshBrowserPass": false,
+  "publicAccess": "Container DNS resolution failed and web reader rejected live route. No public byte match is claimed for this audit.",
+  "testTranscriptSha256": {
+    "before-npm-test.tap": "d10d1d109822de068fda94339af09446ec28be9b1374ff4555c75e8eb0316296",
+    "before-integration.tap": "36b34257d97c0345ab3c4eb58ffbd7252989465c2b6583c05846828959c5a10a",
+    "check-source.log": "217718031c51e327779f78a452b1660bc8f7dc574a9ac1f6ba03fad40b1c9c76",
+    "after-tests.tap": "9a2b06d5e957334d092eca1697f21e22c244df14784da0e84ce70bf56481ec41"
+  },
+  "repairCommit": "7330b797d7524af747b87559fbfbb6b7f3c5c1c1",
+  "repairParent": "4c58f1bbf99dee417ad2d2f35a821bef66190d7b",
+  "nonFastForwardRejected": true,
+  "fullTranscripts": "Conversation artifact Dino-Atlas-Integration-Audit-20260920.zip; repository test-summary.txt is explicitly an excerpt."
+}

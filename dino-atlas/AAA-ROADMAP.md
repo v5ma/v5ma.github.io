@@ -271,7 +271,7 @@ LEVEL-PM-03 remains open for unfamiliar and returning players. XR-DIO-02 and LEV
 
 The user's clarification supersedes the fixed-map miniature interpretation, not the level-design program. Keep the accepted physical box width and placement. Frame the normal game around the active character/vehicle, mask its projected outline, preserve game depth through the sides/rear and make eye-facing enclosure panels automatically transparent. Do not crop game geometry to a cuboid or create a separate simplified map. See DIORAMA-PORTAL.md and design/DIORAMA-PORTAL-REQUEST-20260917.md.
 
-- [ ] XR-DIO-01c: Verify the character-centered full-world portal in Tidegate and Classic, far-world visibility without outside leakage from two render eyes, automatic shell cutaway, real controller-driven movement, first-person return, tool/vehicle behavior and unchanged saves. Separate candidate, published bytes/play and release evidence must close this engineering item.
+- [x] XR-DIO-01c: Verify the character-centered full-world portal in Tidegate and Classic, far-world visibility without outside leakage from two render eyes, automatic shell cutaway, real controller-driven movement, first-person return, tool/vehicle behavior and unchanged saves. Separate candidate, published bytes/play and release evidence must close this engineering item.
 - [ ] XR-DIO-02c: Physical Quest 3 inspection of near-plane/inside-box behavior, stereo parallax, side/rear visibility, AR composition, menus, hand/controller pointing and comfort. Automated eye poses are not physical-device approval.
 
 Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains the observation/feeder route's useful information versus the learned harbor/service return, not more map area. Presentation alone does not establish level quality or introduce asset-sector streaming.
@@ -279,8 +279,8 @@ Keep LEVEL-PM-03 and LEVEL-PM-04 open. The next level-design question remains th
 
 ## Express travel and field controls / 2026-09-17
 
-- [ ] INPUT-08a: Implement unlimited-duration vehicle express at selectable 2x/4x/8x, grip interaction and independent trigger tools in Quest Active, optional Xbox stick-drive profile, persisted preferences and disarmed pause/tracking/vehicle transitions. Test actual helicopter boarding, altitude, firing and flight in both games.
-- [ ] NAV-08a: Larger active goal markers, labeled map target and player heading, distance/compass/elevation cues and in-world beacon. Keep real approach choices and current mission target logic; do not manufacture a straight-line route.
+- [x] INPUT-08a: Implement unlimited-duration vehicle express at selectable 2x/4x/8x, grip interaction and independent trigger tools in Quest Active, optional Xbox stick-drive profile, persisted preferences and disarmed pause/tracking/vehicle transitions. Test actual helicopter boarding, altitude, firing and flight in both games.
+- [x] NAV-08a: Larger active goal markers, labeled map target and player heading, distance/compass/elevation cues and in-world beacon. Keep real approach choices and current mission target logic; do not manufacture a straight-line route.
 - [ ] INPUT-08b: Physical Xbox and Quest 3 acceptance of Active/Legacy layouts, express control, braking distance, motion comfort, hand UI and reduced-vision map legibility. Emulated input and graphics evidence do not close this gate.
 
 These tasks refine the accepted character-centered world portal and service-loop level. No new map bounds, saved mission schema, repeat rewards, asset licenses or sibling-game changes. See EXPRESS-FIELD-CONTROLS.md and EXPRESS-HANDOFF.md.
@@ -288,7 +288,7 @@ These tasks refine the accepted character-centered world portal and service-loop
 
 ## Mounted utilities and field assignments / 2026-09-17
 
-- [ ] FIELD-OPS-01a: Twelve authored ranger assignments across the two existing worlds; visible per-vehicle water/pulse/survey/recovery rigs; real range/sight/stable-hover gates, crew protection, actual herd clearance, grounded reports, secured-carrier save/resume and unique commendations. Verify the declared native journeys and separate public result; retain model-only coverage boundaries.
+- [x] FIELD-OPS-01a: Twelve authored ranger assignments across the two existing worlds; visible per-vehicle water/pulse/survey/recovery rigs; real range/sight/stable-hover gates, crew protection, actual herd clearance, grounded reports, secured-carrier save/resume and unique commendations. Verify the declared native journeys and separate public result; retain model-only coverage boundaries.
 - [ ] FIELD-OPS-01b: Expand native coverage to every supported vehicle and alternate approach for distant census, stand-off, cargo and induction missions. Do not infer all routes from progression fixtures.
 - [ ] FIELD-OPS-02: Physical Quest/Xbox aim/utility changes, hand menus, stable-hoist comfort, and unfamiliar/returning player understanding of vehicle/tool/route tradeoffs.
 
@@ -303,3 +303,13 @@ This continues INPUT-08a/NAV-08a and LEVEL-PM-03 without closing human gates. No
 No private hub implementation, sphere portal, cross-site or walking portal is part of this Dino pass. Existing place-mastery, mission-route coverage and physical acceptance gates remain open.
 
 - [ ] UI-09a2: Refine the recovered rotunda with workspace-only rotation, exact-button/tab feedback, blank-surface input consumption, hidden-ancestor rejection and correct profile-sensitive flight hints. Local 254-test evidence is not completion of native or public acceptance. Preserve the original UI-09b physical and UI-09c screen/handle work.
+
+
+## Source reconciliation / 2026-09-20
+
+INTEGRATION-AUDIT.md is the current branch-disposition record. The portal engineering item was already release-verified in run35265511581. Express, guidance and the declared field-operation engineering journeys were already public/release-verified in run35289464270; these four corrected checkboxes do not certify later runtime changes, every optional mission route or physical devices. Their old pending prose describes release-time history.
+
+- [x] RECON-01: Restore full npm test/check coverage, remove completed branch source mutation from the existing rotunda workflow, and reconcile the current handoffs with master and actual historical release evidence. Eight integration tests protect loader wiring, mounted catalog, reward retention, closed workspace and complete validation commands. No gameplay, save or vendor replacement.
+- [ ] RECON-02: Port unique Northstar Canopy and licensed seven-staff work from its preserved old branches only after reconciling current reward IDs, collision, actor/IK, portal materials, licenses and input. Do not copy the obsolete ranger, entry, economy or shader stack wholesale. The latest returned crew workflow failed; no completed port is claimed.
+
+Direct-master writes are the default. No new PR, branch or temporary deployment/source workflow unless explicitly requested. Preserve concurrent sibling work and use non-forced updates. UI-09a/UI-09a2 still need actual current public acceptance; UI-09b/UI-09c, FIELD-OPS-01b/FIELD-OPS-02 and all other human/hardware gates remain open.
