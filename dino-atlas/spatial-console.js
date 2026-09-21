@@ -76,7 +76,7 @@ export class SpatialConsole{
  }
  menu(){if(!this.xr.active)return;this.trayOpen=false;if(!this.xr.ctx.modal())this.xr.ctx.action('menu');this.summon();}
  field(){if(!this.xr.active)return;this.trayOpen=true;this.xr.clear();this.summon();this.xr.paintClock=1;this.positionPanel();}
- hideField(){this.trayOpen=false;this.xr.clear();this.positionPanel();this.dots.forEach(d=>d.visible=false);}
+ hideField(){this.trayOpen=false;this.expanded=!!this.xr.ctx.modal();this.xr.clear();this.positionPanel();this.placeWrist();this.dots.forEach(d=>d.visible=false);}
  end(){this.trayOpen=false;this.placed=false;this.expanded=false;this.pose=null;this.progress=0;this.root.visible=false;this.wrist.mesh.visible=false;this.xr.panel.visible=false;this.dots.forEach(d=>d.visible=false);}
  update(dt,root){
   if(!this.xr.active){this.end();return;}

@@ -91,7 +91,7 @@ try:
    finally:page.evaluate("x.controllers[1].ray.dispatchEvent({type:'selectend',data:right})")
    check(page.evaluate('x.holds.size')==0,'Hand field controls move the actual ranger and stop on release')
    page.evaluate('tile("Hide field controls")');wait('!x.panel.visible&&!x.console.trayOpen');check(True,'Closing the field tray removes its full-size hit area')
-   page.evaluate('tapSurface(x.console.wrist.mesh,.25,.12)');wait('g.state.paused');xrready()
+   wait('x.console.wrist.mesh.visible');xrready();page.evaluate('tapSurface(x.console.wrist.mesh,.25,.12)');wait('g.state.paused');xrready()
    page.evaluate('rail(5)');wait('!x.active');check(page.evaluate('ended')==1 and not page.evaluate('x.console.root.visible||x.console.wrist.mesh.visible'),'Leave XR ends the actual session owner and removes all spatial UI')
    if page.locator('dialog[open]').count():press(1)
    press(14);check(page.evaluate('x.ctx.fleet.state.tool')==0,'Screen/controller play remains usable after XR exit')
