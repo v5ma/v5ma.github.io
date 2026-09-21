@@ -67,7 +67,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        route: [main, main-nav, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui]
+        route: [main, main-nav, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui, console-first-person-vr, console-third-person-vr, console-diorama-first-vr, console-diorama-third-vr, console-first-person-ar, console-third-person-ar, console-diorama-first-ar, console-diorama-third-ar]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -83,6 +83,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Verify live main entry, native district travel, campaign and spatial XR
         env:
+          CONSOLE_BASE: https://v5ma.github.io/svgn-planet/
+          CONSOLE_OUT: published-results/console
           MAIN_BASE: https://v5ma.github.io/svgn-planet/
           WARD_BASE: https://v5ma.github.io/svgn-planet/lantern-ward.html
           WARD_ROUTE: ${{ matrix.route }}
@@ -98,6 +100,7 @@ jobs:
           CAMPAIGN_OUT: published-results/campaign
         run: |
           case "$WARD_ROUTE" in
+            console-*) export CONSOLE_MODE="${WARD_ROUTE#console-}"; python svgn-planet/console-browser.py ;;
             main) python svgn-planet/main-browser.py ;;
             main-nav) python svgn-planet/main-navigation-browser.py ;;
             campaign) python svgn-planet/lantern/campaign-browser.py ;;

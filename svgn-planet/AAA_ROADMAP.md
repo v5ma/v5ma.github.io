@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Unified Neighborhoods and Night Watch v0.16.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-18.
+Current release: Unified Neighborhoods / Spatial Console v0.16.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-20.
 
 ## How to use this workbook
 
@@ -134,15 +134,15 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.
-  Next: Test unfamiliar and returning players for orientation, meaningful route choice and useful mastery. Improve the existing authored places before adding more map area.
+  Next: Use the current objective/map card to evaluate unfamiliar-player next-step comprehension in both neighborhoods. Improve mission source, relevant entrance and return-route clarity before adding geography.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py
 
 - [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
   Acceptance: Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.
-  Next: Retain exact main-URL and native menu tests. Obtain physical Quest 3/3S, Touch Plus and hand-tracking approval for menu reach, head tilt, cape/holster gestures, comfort and sustained frame time.
+  Next: Physically test stable floor placement, free-hand mounting, hand pinch, portal sightlines and seated reach in all eight modes. No framework migration or external hub integration.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py
 
 - [x] LEGACY-01 / P0 / verified / Versioned original-world preservation
   Acceptance: Freeze the prior entry and runtime/asset hashes; keep old save keys and geometry separate.
@@ -302,9 +302,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-01 / P0 / partial / Controller-complete gameplay and menus
   Acceptance: Native XR menus include original-city and district maps, mission selection, field tools, settings and explicit cancel-first recovery. Menu remains available while held gameplay controls block rearm.
-  Next: Test every original-city puzzle and longer dialogue on hardware; preserve direct frequently used actions and inspect readability without relying on desktop overlays.
+  Next: Validate owner reach, text size, controller/hand selection and all menu paths with the new console. Desktop HTML fallback remains accessible; a screen-canvas rewrite is not claimed.
   Owner role: Engineering / QA. Dependencies: INPUT-01.
-  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json
+  Evidence: evidence/v0.8.0.json ; ../GROUNDED-NEIGHBORHOOD.md ; ../tests/grounded.test.mjs ; evidence/v0.11.0.json ; https://github.com/v5ma/v5ma.github.io/actions/runs/35000416468 ; evidence/v0.11.0-published.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py
 
 - [ ] ACCESS-02 / P1 / partial / Remapping and input alternatives
   Acceptance: Support per-action keyboard/gamepad remapping, adjustable dead zones, hold/toggle alternatives and conflict-safe defaults. Essential actions need touch equivalents.
