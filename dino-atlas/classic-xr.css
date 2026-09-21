@@ -18,3 +18,6 @@
 #menu-dialog .classic-xr-entry{margin:16px 0}
 @media(max-width:720px){#intro{padding:88px 16px 24px}#intro .intro-copy{max-width:none}.classic-xr-modes{gap:5px}.classic-xr-modes button{font-size:12px;padding:9px 5px}.topbar nav{flex-wrap:wrap;justify-content:flex-end}.topbar #input-status{display:none}.brand small{letter-spacing:.14em}}
 @media(max-height:650px) and (min-width:721px){#intro{padding-top:86px}#intro h1{font-size:42px}#intro .intro-description{font-size:13px;margin:8px 0}#intro .primary{padding:12px 18px}.classic-xr-entry{padding:10px;margin:10px 0}.classic-xr-entry p{margin:6px 0}}
+
+/* Keep a closed personal workspace out of the page layout. */
+#spatial-console-settings:not([open]){display:none!important}

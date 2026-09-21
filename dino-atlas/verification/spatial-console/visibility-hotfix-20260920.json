@@ -1,0 +1,15 @@
+{
+  "schema":1,
+  "scope":"CSS-only bootstrap guard for the already-merged Field Rotunda .2",
+  "baseline":"54ab359748595766834255a2324b66299b4b0c18",
+  "runtimeChanges":["classic-xr.css","tidegate.css"],
+  "javascriptChanged":false,
+  "saveKeysChanged":false,
+  "rule":"#spatial-console-settings:not([open]){display:none!important}",
+  "localSourceTests":{"passed":254,"failed":0,"skipped":0},
+  "realChromiumStylesheetFixture":{"scenes":["classic","tidegate"],"before":{"open":false,"display":"grid","rects":1},"fixedClosed":{"open":false,"display":"none","rects":0},"open":{"open":true,"display":"grid","rects":1},"closedAgain":{"open":false,"display":"none","rects":0}},
+  "sourceHashes":{"classic-xr.css":"28cb41878c64f6d87c5955208b86937de14cccca4828188c773eed7b1c62d88d","tidegate.css":"e9d89ea91cf471aee3b6814d66ce4e4e0a3e9087442a1c41acbbf43ac2a6cab4"},
+  "pending":"Pages and separate public CSS/readiness/open/close browser checks. PR217 retains the fuller .3 synthetic-pose and cache-chain recovery; do not merge its temporary transport.",
+  "physicalHardwareVerified":false,
+  "limitations":"The local Chromium fixture is in-memory stylesheet validation, not a complete game or headset test. Historical .2 spatial browser failures still require the separate corrected device-pose regression. No private hub, new portal, gameplay, controller, physics, mission, reward or sibling changes."
+}
