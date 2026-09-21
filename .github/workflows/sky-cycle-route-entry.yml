@@ -5,6 +5,7 @@ on:
     paths:
       - 'mario-maker-clone/svgn-paper-route/**'
       - '!mario-maker-clone/svgn-paper-route/development/**'
+      - '.github/workflows/sky-cycle-route-entry.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,7 +31,7 @@ jobs:
           node --check mario-maker-clone/svgn-paper-route/route-entry.js
           node --test mario-maker-clone/svgn-paper-route/tests/*.test.mjs | tee /tmp/route-rules/game.tap
           node --test tests/adventure_score.test.cjs | tee /tmp/route-rules/score.tap
-          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows > /tmp/route-rules/source.tar.gz
+          git archive --format=tar.gz HEAD mario-maker-clone tests .github/workflows level-design-library > /tmp/route-rules/source.tar.gz
       - uses: actions/upload-artifact@v4
         if: always()
         with:
