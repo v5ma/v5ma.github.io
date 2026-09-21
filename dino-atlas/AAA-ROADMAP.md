@@ -293,3 +293,11 @@ These tasks refine the accepted character-centered world portal and service-loop
 - [ ] FIELD-OPS-02: Physical Quest/Xbox aim/utility changes, hand menus, stable-hoist comfort, and unfamiliar/returning player understanding of vehicle/tool/route tradeoffs.
 
 This continues INPUT-08a/NAV-08a and LEVEL-PM-03 without closing human gates. No map expansion, legacy save reset, humanoid-combat claim or independent ammunition economy. See FIELD-OPERATIONS.md and its handoff.
+
+## Field Rotunda / player feedback on 2026-09-20
+
+- [ ] UI-09a: Replace the persistent XR field board with a deliberate floor-relative workspace, compact tracked status, direct map/mission/field tabs, height/distance/size controls, visible hit feedback and reliable hand/controller resume/exit. See SPATIAL-CONSOLE.md and SPATIAL-CONSOLE-HANDOFF.md. Implementation is not public acceptance until the recorded public run passes.
+- [ ] UI-09b: Physical Quest 3 seated/standing reach, wrist orientation, portal separation, AR/VR readability, input conflicts and comfort. Respect the user's playtest failures even when emulated checks pass.
+- [ ] UI-09c: Separate canvas-native screen HUD and manipulation-handle pass after the current XR menu loop has player feedback. Keep the accessible screen fallback until a replacement is proven.
+
+No private hub implementation, sphere portal, cross-site or walking portal is part of this Dino pass. Existing place-mastery, mission-route coverage and physical acceptance gates remain open.

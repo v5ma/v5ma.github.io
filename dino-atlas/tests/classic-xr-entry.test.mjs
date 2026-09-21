@@ -22,7 +22,7 @@ test('Classic includes all three choices in the static entry before the other di
  for(const view of ['first-person-vr','diorama-vr','diorama-ar'])assert.ok(html.includes(`data-classic-xr-view="${view}"`));
  assert.ok(html.indexOf('id="classic-xr-entry"')<html.indexOf('id="tidegate-entry"'));
  assert.ok(html.includes('id="classic-xr-button"'));assert.ok(html.includes(CLASSIC_XR_ENTRY_BUILD));
- assert.ok(html.includes('"./diorama-xr.js?v=fieldops1":"./classic-xr.js?v=xrentry1"'));
+ assert.ok(html.includes('"./diorama-xr.js?v=fieldops1":"./classic-xr.js?v=rotunda1"'));
 });
 test('Launcher retains shared portal implementation and never resets gameplay storage',()=>{
  const src=readFileSync(new URL('../classic-xr.js',import.meta.url),'utf8');
