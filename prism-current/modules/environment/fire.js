@@ -1,11 +1,11 @@
-/* Currentworks Fire 0.1.1. Original WebGL2 volume effects, caller-owned THREE.
+/* Currentworks Fire 0.1.2. Original WebGL2 volume effects, caller-owned THREE.
  * No renderer, DOM, input, clock, storage or gameplay ownership. All emitter
  * coordinates are GROUP-LOCAL. Visual radius is NEVER a damage radius.
  * See FIRE.md for budgets, clipping limits, reuse and reduced-motion behavior.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.1',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
+ const VERSION='0.1.2',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
  const QUALITY=Object.freeze({light:Object.freeze({volumes:2,steps:12,sparks:32}),balanced:Object.freeze({volumes:3,steps:20,sparks:64}),cinematic:Object.freeze({volumes:6,steps:32,sparks:128})});
  const finite=Number.isFinite,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  const num=(n,d,a,b)=>finite(n)?clamp(n,a,b):d;
@@ -112,7 +112,7 @@
   if(!T?.Data3DTexture||!T?.ShaderMaterial||!T?.InstancedBufferGeometry)throw new TypeError('Fire requires an existing compatible THREE WebGL2 namespace.');
   if(!input||typeof input!=='object')input={};
   const pool=new Pool(),group=new T.Group();group.name='Currentworks Fire';
-  let disposed=false,quality=Object.hasOwn(QUALITY,input.quality)?input.quality:'balanced',prepared=false,preparing=null,activeVolumes=0,activeSparks=0,lit=0;
+  let disposed=false,quality=Object.hasOwn(QUALITY,input.quality)?input.quality:'balanced',prepared=false,preparing=null,activeVolumes=0,activeSparks=0,lit=0,warmupDraws=0;
   const noise=new T.Data3DTexture(noiseData(32,Number.isSafeInteger(input.seed)?input.seed:2731),32,32,32);noise.name='Currentworks generated fire density';noise.format=T.RedFormat;noise.type=T.UnsignedByteType;noise.minFilter=noise.magFilter=T.LinearFilter;noise.wrapS=noise.wrapT=noise.wrapR=T.RepeatWrapping;noise.unpackAlignment=1;noise.colorSpace=T.NoColorSpace;noise.needsUpdate=true;
   const box=new T.BoxGeometry(2,2,2),axis=new T.Vector3(0,1,0),inverse=new T.Matrix4(),eye=new T.Vector3(),dir=new T.Vector3();
   const volumes=Array.from({length:CAPACITY},(_,i)=>{const uniforms={fireNoise:{value:noise},eyeLocal:{value:new T.Vector3()},localToView:{value:new T.Matrix4()},fireProjection:{value:new T.Matrix4()},clock:{value:0},age:{value:0},fade:{value:0},power:{value:0},seed:{value:0},steps:{value:20},mode:{value:0},quiet:{value:0}};
@@ -149,19 +149,59 @@
   function emitter(id,o){if(disposed)return false;const ok=pool.emitter(id,o);sync();return ok;}
   function stop(id){if(disposed)return false;const ok=pool.stop(id);sync();return ok;}
   function reset(time=0){if(disposed)return;pool.reset(time);sync();}
-  // Preload density before gameplay. The compiler traverses invisible meshes;
-  // never reveal stale pool slots or take ownership of the host render loop.
+  // Shader compilation does not upload vertex buffers or exercise a first draw.
+  // Use a disposable 24px scratch target during loading; never expose a pool slot
+  // or paint into the user's canvas/XR framebuffer. No target survives this call.
+  function warmDraw(renderer,scene){
+   if(!renderer.isWebGLRenderer)return; // Controlled compile-only collaborators.
+   const target=new T.WebGLRenderTarget(24,24,{depthBuffer:true,stencilBuffer:false});
+   target.texture.colorSpace=renderer.outputColorSpace;
+   const warmScene=new T.Scene(),camera=new T.PerspectiveCamera(55,1,.01,20);
+   camera.position.z=3;
+   // Match the host's shader lighting/fog keys without borrowing its scene nodes.
+   warmScene.fog=scene?.fog||null;warmScene.environment=scene?.environment||null;
+   scene?.traverseVisible?.(o=>{if(o.isLight)warmScene.add(o.clone(false));});
+   const volume=new T.Mesh(box,volumes[0].material),ember=new T.Mesh(particleGeometry,sparkMaterial);
+   volume.frustumCulled=ember.frustumCulled=false;warmScene.add(volume,ember);
+   const u=volume.material.uniforms,savedUniforms={};
+   for(const [name,uniform] of Object.entries(u))savedUniforms[name]=uniform.value?.isTexture?uniform.value:uniform.value?.clone?uniform.value.clone():uniform.value;
+   const savedCenters=centers.array.slice(),savedSizes=sizes.array.slice(),count=particleGeometry.instanceCount;
+   const viewport=renderer.getViewport(new T.Vector4()),scissor=renderer.getScissor(new T.Vector4());
+   const previous={target:renderer.getRenderTarget(),face:renderer.getActiveCubeFace(),mip:renderer.getActiveMipmapLevel(),autoClear:renderer.autoClear,scissorTest:renderer.getScissorTest(),xr:renderer.xr.enabled};
+   volume.onBeforeRender=(r,s,c)=>{
+    u.eyeLocal.value.setFromMatrixPosition(c.matrixWorld).applyMatrix4(new T.Matrix4().copy(volume.matrixWorld).invert());
+    u.localToView.value.multiplyMatrices(c.matrixWorldInverse,volume.matrixWorld);
+    u.fireProjection.value.copy(c.projectionMatrix);volume.material.uniformsNeedUpdate=true;
+   };
+   try{
+    u.clock.value=.3;u.age.value=.3;u.fade.value=1;u.power.value=1;u.seed.value=0;u.steps.value=20;u.mode.value=0;u.quiet.value=0;
+    centers.setXYZ(0,0,0,.2);sizes.setXY(0,.10,.8);centers.needsUpdate=sizes.needsUpdate=true;particleGeometry.instanceCount=1;
+    renderer.xr.enabled=false;renderer.autoClear=true;renderer.setRenderTarget(target);renderer.setScissorTest(false);
+    renderer.render(warmScene,camera);
+    // A one-time loading barrier: do not move deferred first-use work into audio.
+    renderer.getContext().finish();warmupDraws++;
+   }finally{
+    warmScene.clear();
+    for(const [name,value] of Object.entries(savedUniforms)){const old=u[name].value;if(old?.copy&&!old.isTexture)old.copy(value);else u[name].value=value;}
+    centers.array.set(savedCenters);sizes.array.set(savedSizes);centers.needsUpdate=sizes.needsUpdate=true;particleGeometry.instanceCount=count;
+    renderer.setRenderTarget(previous.target,previous.face,previous.mip);
+    renderer.setViewport(viewport);renderer.setScissor(scissor);renderer.setScissorTest(previous.scissorTest);
+    renderer.autoClear=previous.autoClear;renderer.xr.enabled=previous.xr;target.dispose();
+   }
+  }
+  // Preparation belongs in the host's cancellable loading path before playback.
+  // Share pending work; a disposed or failed preparation cannot report readiness.
   function prepare(renderer,camera,scene=null){
    if(disposed||prepared)return Promise.resolve();if(preparing)return preparing;
    preparing=Promise.resolve().then(()=>{
     if(disposed)return;
     renderer.initTexture?.(noise);
     return renderer.compileAsync?renderer.compileAsync(group,camera,scene):renderer.compile(group,camera,scene);
-   }).then(()=>{if(!disposed)prepared=true;}).finally(()=>{preparing=null;});
+   }).then(()=>{if(!disposed){warmDraw(renderer,scene);prepared=true;}}).finally(()=>{preparing=null;});
    return preparing;
   }
   function dispose(){if(disposed)return;disposed=true;activeVolumes=activeSparks=lit=0;group.removeFromParent();pool.clear(true);for(const m of volumes)m.material.dispose();box.dispose();noise.dispose();particleGeometry.dispose();sparkMaterial.dispose();for(const l of lights)l.dispose();}
-  return Object.freeze({group,update,emit,emitter,stop,reset,prepare,dispose,get stats(){return {module:'Currentworks Fire',version:VERSION,time:pool.time,quiet:pool.quiet,xr:pool.xr,quality,visible:pool.visible,emitted:pool.emitted,activeVolumes,activeSparks,capacity:CAPACITY,sparkCapacity:PARTICLES,emitters:pool.slots.filter(s=>s.active&&s.emitter!==null).length,lights:lit,prepared,disposed,renderTargets:0};}});
+  return Object.freeze({group,update,emit,emitter,stop,reset,prepare,dispose,get stats(){return {module:'Currentworks Fire',version:VERSION,time:pool.time,quiet:pool.quiet,xr:pool.xr,quality,visible:pool.visible,emitted:pool.emitted,activeVolumes,activeSparks,capacity:CAPACITY,sparkCapacity:PARTICLES,emitters:pool.slots.filter(s=>s.active&&s.emitter!==null).length,lights:lit,prepared,warmupDraws,disposed,renderTargets:0};}});
  }
  const api=Object.freeze({VERSION,CAPACITY,MAX_EMITTERS,PARTICLES,QUALITY,limits,noiseData,Pool,create,shaders:Object.freeze({vertexShader,fragmentShader,sparkVertex,sparkFragment})});
  if(typeof module!=='undefined'&&module.exports)module.exports=api;root.SVGNFire=api;
