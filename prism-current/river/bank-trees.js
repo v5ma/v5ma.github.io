@@ -14,19 +14,20 @@
  function install(T,scene,art){
   const forest=root.SVGNTrees.create(T,{trees:TREES,windStrength:WIND,near:16,far:30,hideInAR:true});
   art.stage.add(forest.group);const eye=new T.Vector3(),eyeArray=[0,1.65,0];
-  const update=art.update,reset=art.reset,dispose=art.dispose,stats=Object.getOwnPropertyDescriptor(art,'stats').get;let disposed=false;
+  const update=art.update,reset=art.reset,dispose=art.dispose,prepare=art.prepare,stats=Object.getOwnPropertyDescriptor(art,'stats').get;let disposed=false;
   art.update=function(s,time,dt,ar,quiet,playing){
    if(disposed)return;update.call(art,s,time,dt,ar,quiet,playing);
    const g=scene.components?.['river-game'],camera=scene.renderer?.xr?.isPresenting?scene.renderer.xr.getCamera():scene.camera;
    if(camera){camera.getWorldPosition(eye);eye.toArray(eyeArray);}
    forest.update({time,quiet,quality:g?.quality||'balanced',visible:(s?.chapter||'duck-armada')!=='mothership',ar:!!ar,xr:scene.is('vr-mode')||!!ar,viewer:camera?eyeArray:undefined});
   };
+  art.prepare=async function(renderer,camera){if(disposed)return;if(prepare)await prepare.call(art,renderer,camera);if(!disposed)await forest.prepare(renderer,camera,scene.object3D);};
   art.reset=function(){if(!disposed){reset.call(art);forest.reset();}};
   art.dispose=function(){if(disposed)return;disposed=true;forest.dispose();dispose.call(art);};
   Object.defineProperty(art,'stats',{configurable:true,get:()=>({...stats.call(art),trees:forest.stats})});
   return art;
  }
  const api=Object.freeze({TREES,WIND,install});
- if(root.RiverArt&&!root.RiverArt.currentworksTrees){const build=root.RiverArt.build;root.RiverArt.build=function(T,scene){const art=build.call(this,T,scene);try{return install(T,scene,art);}catch(e){art.dispose();throw e;}};root.RiverArt.currentworksTrees='0.1.1';}
+ if(root.RiverArt&&!root.RiverArt.currentworksTrees){const build=root.RiverArt.build;root.RiverArt.build=function(T,scene){const art=build.call(this,T,scene);try{return install(T,scene,art);}catch(e){art.dispose();throw e;}};root.RiverArt.currentworksTrees='0.1.2';}
  root.PrismBankTrees=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

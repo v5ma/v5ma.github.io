@@ -1,11 +1,11 @@
-/* Currentworks Trees 0.1.1. Original seeded geometry and host-clock wind.
+/* Currentworks Trees 0.1.2. Original seeded geometry and host-clock wind.
  * Supply the existing THREE namespace; no renderer, clock, DOM, input or storage.
  * All roots and geometry are FOREST-GROUP-LOCAL. No collision or gameplay owner.
  * Skeleton is generated once, all three detail meshes are built before playing.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.1',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
+ const VERSION='0.1.2',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
  const PRESETS=Object.freeze(['palm','alder','willow']);
  const DETAIL=Object.freeze([
   Object.freeze({name:'near',radial:8,pathStride:1,leafStride:1,leafScale:1}),
@@ -133,6 +133,7 @@
   const list=input.trees===undefined?[{}]:input.trees;if(!Array.isArray(list)||list.length>MAX_TREES)throw new RangeError('Trees expects up to 24 descriptors.');
   const ids=new Set(),desc=list.map((v,i)=>{const d=descriptor(v,Number.isSafeInteger(input.seed)?input.seed>>>0:173);if(ids.has(d.id))throw new TypeError('Duplicate tree id: '+d.id);ids.add(d.id);return d;});
   const group=new T.Group();group.name='Currentworks Trees';
+  let prepared=false,preparing=null,warmupDraws=0;
   let disposed=false,time=0,quality='balanced',quiet=false,visible=true,xr=false,ar=false,levelChanges=0,updates=0;
   let strength=num(input.windStrength,.35,0,1.5),direction=[1,.35];const near=num(input.near,16,2,100),far=num(input.far,30,near+2,500);
   const uniforms={cwTime:{value:0},cwStrength:{value:strength},cwDirection:{value:new T.Vector2(...direction).normalize()}};
@@ -171,12 +172,42 @@
    }updates++;return true;
   }
   function reset(){if(disposed)return;time=0;uniforms.cwTime.value=0;for(const r of records)r.selected=-1;update({time:0});}
+  // Reusable host-loading hook. Cold LOD buffer uploads must not coincide with
+  // the soundtrack or a headset entry. Draw every prebuilt mesh once in a tiny
+  // discarded target, never into the user's screen or XR compositor.
+  function prepare(renderer,camera,scene=null){
+   if(disposed||prepared)return Promise.resolve();if(preparing)return preparing;
+   preparing=Promise.resolve().then(async()=>{
+    if(disposed)return;
+    const warm=new T.Scene(),cam=new T.PerspectiveCamera(52,1,.01,60);
+    cam.position.set(0,2.5,10);cam.lookAt(0,2,0);warm.fog=scene?.fog||null;warm.environment=scene?.environment||null;
+    scene?.traverseVisible?.(o=>{if(o.isLight)warm.add(o.clone(false));});
+    // Exact GPU buffers and materials, but independent transforms/visibility.
+    for(const r of records)for(const pair of r.lods)for(const original of pair.children){
+     const m=new T.Mesh(original.geometry,original.material);m.position.fromArray(r.descriptor.position).multiplyScalar(-1);m.frustumCulled=false;warm.add(m);
+    }
+    try{
+     if(renderer.compileAsync)await renderer.compileAsync(warm,cam);else renderer.compile(warm,cam);
+     if(disposed)return;
+     if(renderer.isWebGLRenderer){
+      const rt=new T.WebGLRenderTarget(24,24,{depthBuffer:true,stencilBuffer:false});
+      const old={target:renderer.getRenderTarget(),face:renderer.getActiveCubeFace(),mip:renderer.getActiveMipmapLevel(),xr:renderer.xr.enabled,autoClear:renderer.autoClear,scissor:renderer.getScissorTest(),viewport:renderer.getViewport(new T.Vector4()),rect:renderer.getScissor(new T.Vector4())};
+      rt.isXRRenderTarget=!old.target||old.target.isXRRenderTarget===true;
+      rt.texture.colorSpace=rt.isXRRenderTarget?(old.target?.texture.colorSpace||renderer.outputColorSpace):T.ColorManagement.workingColorSpace;
+      try{renderer.xr.enabled=false;renderer.autoClear=true;renderer.setRenderTarget(rt);renderer.setScissorTest(false);renderer.render(warm,cam);renderer.getContext().finish();warmupDraws++;}
+      finally{renderer.setRenderTarget(old.target,old.face,old.mip);renderer.setViewport(old.viewport);renderer.setScissor(old.rect);renderer.setScissorTest(old.scissor);renderer.autoClear=old.autoClear;renderer.xr.enabled=old.xr;rt.dispose();}
+     }
+     prepared=true;
+    }finally{warm.clear();}
+   }).finally(()=>{preparing=null;});return preparing;
+  }
+
   function dispose(){if(disposed)return;disposed=true;group.removeFromParent();for(const g of geometries)g.dispose();for(const m of materials)m.dispose();}
   update({quality:input.quality||'balanced',quiet:input.quiet===true});
-  return Object.freeze({group,uniforms,update,reset,dispose,
+  return Object.freeze({group,uniforms,update,reset,prepare,dispose,
    describe:()=>desc.map(d=>({...d,position:d.position.slice(),schema:SCHEMA,generator:VERSION})),
    get stats(){let triangles=0,vertices=0;const lod=[0,0,0];if(!disposed&&group.visible)for(const r of records){lod[r.selected]++;for(const m of r.lods[r.selected].children){triangles+=m.geometry.index.count/3;vertices+=m.geometry.attributes.position.count;}}
-    return {module:'Currentworks Trees',version:VERSION,trees:records.length,visible:!disposed&&group.visible,time,quiet,quality,xr,ar,lod,triangles,vertices,drawCalls:!disposed&&group.visible?records.length*2:0,geometries:disposed?0:geometries.length,materials:disposed?0:materials.length,textures:0,renderTargets:0,levelChanges,updates,disposed};}
+    return {module:'Currentworks Trees',version:VERSION,trees:records.length,visible:!disposed&&group.visible,time,quiet,quality,xr,ar,lod,triangles,vertices,drawCalls:!disposed&&group.visible?records.length*2:0,geometries:disposed?0:geometries.length,materials:disposed?0:materials.length,textures:0,renderTargets:0,levelChanges,updates,prepared,warmupDraws,disposed};}
   });
  }
  const api=Object.freeze({VERSION,SCHEMA,MAX_TREES,PRESETS,DETAIL,random,descriptor,skeleton,geometryData,wind,level,create});

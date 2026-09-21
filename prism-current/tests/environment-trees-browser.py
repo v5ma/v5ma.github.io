@@ -20,7 +20,10 @@ with sync_playwright() as pw:
         page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
     try:
         c=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');p=c.new_page();watch(p);p.set_default_timeout(45000)
-        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().stats.trees?.version==="0.1.1"&&River.snapshot().rotunda.open')
+        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().stats.trees?.version==="0.1.2"&&River.snapshot().rotunda.open')
+        p.evaluate("""()=>{const scene=AFRAME.scenes[0],renderer=scene.renderer,original=renderer.render,log=[];window.treeRenderObservations=log;
+          renderer.render=function(){const begin=performance.now(),value=original.apply(this,arguments),elapsed=performance.now()-begin;
+           if(elapsed>75){const game=scene.components['river-game'];log.push({renderMs:elapsed,phase:game.phase,time:game.state?.time||0,calls:this.info.render.calls,triangles:this.info.render.triangles,programs:this.info.programs.length});if(log.length>64)log.shift();}return value;};}""")
         check(p.evaluate('River.snapshot().stats.trees.trees')==8,'The ordinary Duck Armada entry contains exactly eight authored bank trees')
         check(p.evaluate('River.snapshot().stats.water.version==="0.1.0"&&River.snapshot().stats.fire.version==="0.1.3"'),'Existing water and fire implementations are retained')
         check(p.evaluate('River.snapshot().stats.trees.geometries===48&&River.snapshot().stats.trees.materials===2&&River.snapshot().stats.trees.textures===0'),'Tree resource counts are fixed before gameplay')
@@ -30,6 +33,7 @@ with sync_playwright() as pw:
         check(p.evaluate('River.snapshot().stats.trees.triangles')<18000,'Light quality uses the bounded lower-detail forest')
         p.locator('#quiet').check();p.wait_for_function('River.snapshot().stats.trees.quiet');check(p.evaluate('River.snapshot().stats.trees.quiet'),'The existing quiet control applies to foliage too')
         p.locator('#quiet').uncheck();p.locator('#quality').select_option('balanced');p.locator('#play').click();p.wait_for_function('River.snapshot().phase==="playing"')
+        check(p.evaluate('River.snapshot().stats.trees.prepared&&River.snapshot().stats.trees.warmupDraws===1'),'Tree detail geometry is drawn in loading before soundtrack playback')
         p.mouse.move(640,500);p.mouse.down();p.evaluate((ROOT/'prism-current/tests/river-driver.js').read_text());p.evaluate('startRiverDriver()')
         p.wait_for_function('River.snapshot().result.slices>0&&River.snapshot().stats.fire.emitted>0',timeout=35000)
         check(p.evaluate('River.snapshot().phase')=='playing','Slicing and destruction continue with trees, water and fire active together')
@@ -67,7 +71,7 @@ with sync_playwright() as pw:
         p.evaluate('''()=>{const T=AFRAME.THREE,renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(1100,760);renderer.setClearColor(0xb8d4db,1);document.body.style.margin=0;document.body.append(renderer.domElement);
         const scene=new T.Scene(),camera=new T.PerspectiveCamera(47,1100/760,.05,100);camera.position.set(8.5,5.7,13);camera.lookAt(0,2,-1);
         scene.add(new T.HemisphereLight(0xdbf0fc,0x3c4330,2));const sun=new T.DirectionalLight(0xffe6bf,2.4);sun.position.set(-4,8,5);scene.add(sun);
-        const floor=new T.Mesh(new T.PlaneGeometry(25,25),new T.MeshStandardMaterial({color:0x727861,roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.025;scene.add(floor);
+        const floor=new T.Mesh(new T.PlaneGeometry(25,25),new T.MeshStandardMaterial({color:0x727861,roughness:1}));floor.rotation.x=-Math.PI/2;scene.add(floor);
         const trees=SVGNTrees.create(T,{trees:[{id:'palm',seed:137,height:4,position:[-4,0,0],preset:'palm'},{id:'alder',seed:557,height:4.2,position:[0,0,0],preset:'alder'},{id:'willow',seed:881,height:4.4,position:[4,0,0],preset:'willow'}]});scene.add(trees.group);window.fixture={renderer,scene,camera,trees};}''')
         for name,time,quality in [('near',0,'cinematic'),('wind',2,'cinematic'),('light',2,'light'),('quiet',2,'balanced')]:
             p.evaluate('''([name,time,quality])=>{const f=fixture;f.trees.update({time,quality,quiet:name==='quiet',viewer:[0,2,0]});f.renderer.render(f.scene,f.camera);}''',[name,time,quality])
@@ -79,7 +83,9 @@ with sync_playwright() as pw:
     except Exception as e:
         try:state=p.evaluate('window.River?.snapshot()')
         except:state=None
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
+        try:render_trace=p.evaluate('window.treeRenderObservations||[]')
+        except:render_trace=[]
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'slowRenders':render_trace},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise

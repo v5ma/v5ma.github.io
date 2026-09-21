@@ -2,7 +2,7 @@
 'use strict';
 const {test}=require('node:test'),A=require('node:assert/strict'),fs=require('node:fs');
 const T=require('../modules/environment/trees');
-test('Trees exposes frozen limits and the same ES-module implementation',async()=>{const e=await import('../modules/environment/trees.mjs');A.equal(e.default,T);A.equal(T.VERSION,'0.1.1');A.ok(Object.isFrozen(T.DETAIL[0]));A.equal(T.MAX_TREES,24);});
+test('Trees exposes frozen limits and the same ES-module implementation',async()=>{const e=await import('../modules/environment/trees.mjs');A.equal(e.default,T);A.equal(T.VERSION,'0.1.2');A.ok(Object.isFrozen(T.DETAIL[0]));A.equal(T.MAX_TREES,24);});
 test('Seed and schema reconstruct exactly the same skeleton',()=>{for(const preset of T.PRESETS){const a=T.skeleton({seed:19,preset,height:4}),b=T.skeleton(JSON.parse(JSON.stringify(a.descriptor)));A.deepEqual(a,b);A.notDeepEqual(a,T.skeleton({seed:20,preset,height:4}));A.equal(a.schema,1);}});
 test('Descriptors copy input and reject invalid identity or positions',()=>{const p=Object.freeze([1,2,3]),d=Object.freeze({id:'oak',seed:17,height:4,position:p});const r=T.descriptor(d);A.notEqual(r.position,p);A.deepEqual(r.position,p);for(const bad of [null,[],{id:''},{position:[NaN,2,3]},{position:[1,2]}])A.throws(()=>T.descriptor(bad),TypeError);});
 test('Untrusted numeric settings are bounded before generation',()=>{const d=T.descriptor({height:Infinity,yaw:NaN,seed:NaN,preset:'__proto__',position:[1e12,-1e12,0]});A.equal(d.height,4);A.equal(d.yaw,0);A.equal(d.preset,'palm');A.deepEqual(d.position,[10000,-10000,0]);A.equal(T.descriptor({height:99}).height,18);A.equal(T.descriptor({height:0}).height,.5);});
