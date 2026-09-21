@@ -1,5 +1,8 @@
 name: Rainward XR repair compositor acceptance
 on:
+  push:
+    branches: [master]
+    paths: ['rainward/*.mjs','rainward/index.html','rainward/release.json','rainward/tests/xr-repair*','.github/workflows/rainward-xr-repair.yml']
   pull_request:
     paths: ['rainward/**','.github/workflows/rainward-xr-repair.yml']
   workflow_dispatch:
@@ -54,7 +57,7 @@ jobs:
           python rainward/tests/release.py
           git rev-parse HEAD > test-output/tested-commit.txt
           git diff > test-output/uncommitted.diff
-          tar -czf test-output/rainward-source.tgz rainward index.html projects.css
+          tar -czf test-output/rainward-source.tgz rainward
       - uses: actions/upload-artifact@v4
         if: always()
         with:
