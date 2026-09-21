@@ -1,0 +1,52 @@
+name: Guild real compositor attachment verification
+on:
+  push:
+    branches: ['guild/vinci-desk-20260920', master]
+    paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-compositor-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        attachment: [framebuffer, projection]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm --prefix leonardos-guild test
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Render actual separate eye attachments
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/server.log 2>&1 &
+          python -u leonardos-guild/tests/compositor-browser.py
+      - name: Preserve identity and failures
+        if: always()
+        run: |
+          mkdir -p compositor-evidence
+          git rev-parse HEAD > compositor-evidence/tested-commit.txt
+          git diff --stat > compositor-evidence/uncommitted-diff.txt
+          git ls-files leonardos-guild .github/workflows/guild-compositor.yml | xargs sha256sum > compositor-evidence/source-hashes.txt
+          test ! -s compositor-evidence/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-compositor-${{ matrix.attachment }}
+          path: |
+            compositor-evidence/
+            leonardos-guild/compositor-${{ matrix.attachment }}-output/

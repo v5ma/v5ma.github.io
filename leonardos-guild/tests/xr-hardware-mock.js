@@ -39,7 +39,7 @@
   requestReferenceSpace(type){return type==='local-floor'&&!data.floor?Promise.reject(new Error('No floor reference')):Promise.resolve({type,getOffsetReferenceSpace(){return this;}});}
   requestHitTestSource(){return data.hitSupported?Promise.resolve({cancel(){data.hitCancelled=true;}}):Promise.reject(Error('Hit test unavailable'));}
   updateRenderState(v){Object.assign(this.renderState,v);}
-  requestAnimationFrame(callback){const id=raf(time=>{this.pending.delete(id);if(!this.ended){callback(time,new Frame(this));if(data.captureNext){data.captureNext=false;data.capture=document.getElementById('world').toDataURL('image/png');}}});this.pending.add(id);return id;}
+  requestAnimationFrame(callback){const id=raf(time=>{this.pending.delete(id);if(!this.ended){callback(time,new Frame(this));if(data.captureNext){data.captureNext=false;data.capture=data.captureFrame?data.captureFrame():document.getElementById('world').toDataURL('image/png');}}});this.pending.add(id);return id;}
   cancelAnimationFrame(id){this.pending.delete(id);caf(id);}
   async end(){if(this.ended)return;this.ended=true;for(const id of this.pending)caf(id);this.pending.clear();this.dispatchEvent(new Event('end'));data.session=null;}
  }
