@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.16.1 / XR Repair.
+Release baseline: v0.16.2 / Field Desk.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -441,16 +441,19 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Owner role: UI accessibility. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.
   Dependencies: RW-047.
-  Evidence: XR-REPAIR.md.
+  Evidence: FIELD-DESK.md.
 
-  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
-  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
+  Continuation: Field Desk adds stable summon-local placement, saved bounded transforms, default reduced motion, quick map/satchel access and retained acquired clues. This is not physical-device or readability approval.
+  Next action: Playtest seated/standing placement, transformed ray/hand selection, repeated opening/closing, acquired clues and the existing direct controls on the physical Quest.
 
 - [ ] RW-051 / P1 / Reduced motion and adjustable HUD / Implemented
   Owner role: UI engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Players can reduce environmental motion and disable quiet-HUD fading without removing necessary gameplay information.
   Dependencies: None.
-  Evidence: survival-ui.mjs.
+  Evidence: FIELD-DESK.md.
+
+  Continuation: Field Desk adds stable summon-local placement, saved bounded transforms, default reduced motion, quick map/satchel access and retained acquired clues. This is not physical-device or readability approval.
+  Next action: Playtest seated/standing placement, transformed ray/hand selection, repeated opening/closing, acquired clues and the existing direct controls on the physical Quest.
 
 - [ ] RW-052 / P0 / Target hardware matrix / Planned
   Owner role: Technical direction. Assigned reviewer: Unassigned. Effort: Unestimated.

@@ -1,0 +1,93 @@
+name: Rainward Field Desk acceptance
+on:
+  pull_request:
+    paths: ['rainward/**','.github/workflows/rainward-field-desk.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rainward-field-desk-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  models:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source, save, input, transform and canonical roadmap checks
+        run: |
+          mkdir -p test-output
+          node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
+          python -m compileall -q rainward/tests
+          python rainward/tools/build-production-plan.py
+          git diff --exit-code -- rainward/AAA_CHECKLIST.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-field-desk-models
+          path: test-output/
+          retention-days: 14
+  browser:
+    needs: models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - view: first-person
+            kind: controllers
+            layer: projection
+          - view: first-person-ar
+            kind: controllers
+            layer: base
+          - view: diorama-vr
+            kind: controllers
+            layer: base
+          - view: diorama-ar
+            kind: controllers
+            layer: projection
+          - view: diorama-ar
+            kind: hands
+            layer: projection
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Normal-start transformed UI and XR reentry
+        env:
+          XR_VIEW: ${{ matrix.view }}
+          QUEST_KIND: ${{ matrix.kind }}
+          XR_LAYER: ${{ matrix.layer }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 660 python -u rainward/tests/field-desk-browser.py
+      - name: Preserve actual source, captures and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-field-desk-${{ matrix.view }}-${{ matrix.kind }}-${{ matrix.layer }}
+          path: test-output/
+          retention-days: 14
