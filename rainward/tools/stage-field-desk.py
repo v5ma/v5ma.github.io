@@ -1,11 +1,15 @@
 """Temporary exact-hash source transport. Remove with its manifest before release.
-The local code was edited/reviewed against the published v0.16.1 archive. This
-applies only those reviewed text edits and never builds from arbitrary URLs.
+Only reviewed Rainward text edits are accepted, with before/after integrity.
 """
 from pathlib import Path
 import hashlib,json,subprocess
 ROOT=Path(__file__).resolve().parents[2]
 manifest=json.loads(Path(__file__).with_name('field-desk-stage.json').read_text())
+for record in manifest:
+ if record['path']=='rainward/xr-panel.mjs':
+  for edit in record['edits']:
+   edit[2]=edit[2].replace("['resume','map','pack','last-clue','last-reading']","['resume','map','pack','last-clue','last-reading','musicVolume-minus','musicVolume-plus']").replace('if(sample.confirm)select(actions.find(a=>a.id===hoverId)||actions[deskFocus]);','if(sample.confirm)select(actions[deskFocus]);')
+  record['after']='a14292ed7fed630162f3770676dec92216d014dc846dc8d88a8bb63d6b5ba29a'
 ready=[]
 for record in manifest:
  path=ROOT/record['path']
