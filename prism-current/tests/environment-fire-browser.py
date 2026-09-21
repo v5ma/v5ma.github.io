@@ -21,17 +21,19 @@ with sync_playwright() as pw:
         page.on('console',lambda m:errors.append(m.text) if m.type=='error' and ('Shader Error' in m.text or 'VALIDATE_STATUS' in m.text) else None)
     try:
         c=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block');p=c.new_page();watch(p);p.set_default_timeout(45000)
-        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready&&River.snapshot().stats.fire?.version==="0.1.2"')
+        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready&&River.snapshot().stats.fire?.version==="0.1.3"')
         check(p.evaluate('River.snapshot().stats.water.version')=='0.1.0','Main game retains the actual reusable water module')
         check(p.evaluate('River.snapshot().rotunda.open'),'Main in-canvas interface is still the ordinary entry')
         check(p.evaluate('AFRAME.scenes[0].systems.renderer.data.sortTransparentObjects'),'Transparent effects use the real A-Frame sorting setting')
         p.keyboard.press('F2');p.locator('#play').click();p.wait_for_function('River.snapshot().phase==="playing"')
-        check(p.evaluate('AFRAME.scenes[0].renderer.info.programs.some(p=>p.name==="Currentworks Fire 0.1.2")'),'Host loading precompiles fire before the first destruction')
+        check(p.evaluate('AFRAME.scenes[0].renderer.info.programs.some(p=>p.name==="Currentworks Fire 0.1.3")'),'Host loading precompiles fire before the first destruction')
         check(p.evaluate('River.snapshot().stats.fire.warmupDraws')==1,'Actual density, geometry and draw preparation completes before audio')
         check(p.evaluate('River.snapshot().stats.fire.emitted')==0,'Loading warmup never creates a gameplay fire event')
+        p.evaluate("()=>{const s=AFRAME.scenes[0],m=s.object3D.getObjectByName('Currentworks flame 0');window.firePreparedKey=s.renderer.properties.get(m.material).currentProgram.cacheKey;}")
         p.mouse.move(640,500);p.mouse.down();p.evaluate((ROOT/'prism-current/tests/river-driver.js').read_text());p.evaluate('startRiverDriver()')
         p.wait_for_function('River.snapshot().stats.fire.activeVolumes>0&&River.snapshot().stats.fire.emitted>0',timeout=35000)
         check(p.evaluate('River.snapshot().stats.fire.prepared'),'Density texture and fire programs were prepared before gameplay')
+        check(p.evaluate("(()=>{const s=AFRAME.scenes[0],m=s.object3D.getObjectByName('Currentworks flame 0');return s.renderer.properties.get(m.material).currentProgram.cacheKey===window.firePreparedKey;})()"),'The first visible burst uses the same shader variant exercised during loading')
         check(p.evaluate('River.snapshot().phase')=='playing','First destruction did not trigger a rendering-stall pause')
         check(p.evaluate('River.snapshot().result.shotHits')>0,'Normal laser hits produce actual destruction feedback')
         p.keyboard.press('KeyP');p.wait_for_function('River.snapshot().phase==="paused"');p.mouse.up();p.wait_for_timeout(150)
@@ -63,7 +65,7 @@ with sync_playwright() as pw:
         const scene=new T.Scene(),camera=new T.PerspectiveCamera(60,1.5,.05,50);camera.position.set(2,1.7,3);camera.lookAt(0,1,-2);scene.add(new T.HemisphereLight(0xb5dbff,0x253521,1.5));
         const ground=new T.Mesh(new T.PlaneGeometry(15,15),new T.MeshStandardMaterial({color:0x253342,roughness:.65}));ground.rotation.x=-Math.PI/2;scene.add(ground);
         const fire=SVGNFire.create(T,{quality:'cinematic'});scene.add(fire.group);window.fixture={T,scene,camera,renderer,fire};}''')
-        p.evaluate('async()=>{const f=fixture;await f.fire.prepare(f.renderer,f.camera)}')
+        p.evaluate('async()=>{const f=fixture;await f.fire.prepare(f.renderer,f.camera,f.scene)}')
         check(p.evaluate('fixture.fire.stats.prepared'),'Standalone host can prepare all effect programs explicitly')
         for mode,age in [('burst',.25),('burst-smoke',1.12),('jet',.5),('impact',.35),('quiet',.3)]:
             p.evaluate('''([mode,age])=>{const {fire,renderer,scene,camera}=fixture;fire.reset();fire.update({time:0,quiet:mode==='quiet'});
@@ -79,7 +81,9 @@ with sync_playwright() as pw:
     except Exception as e:
         try:state=p.evaluate('window.River?.snapshot()')
         except:state=None
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
+        try:program=p.evaluate("(()=>{const s=AFRAME.scenes[0],m=s.object3D.getObjectByName('Currentworks flame 0');return {prepared:window.firePreparedKey,current:s.renderer.properties.get(m.material).currentProgram?.cacheKey};})()")
+        except:program=None
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'program':program},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise

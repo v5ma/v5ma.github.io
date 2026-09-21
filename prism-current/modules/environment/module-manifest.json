@@ -17,7 +17,7 @@
     },
     "fire": {
       "status": "implemented-awaiting-final-native-acceptance",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "script": "fire.js",
       "module": "fire.mjs",
       "global": "SVGNFire",

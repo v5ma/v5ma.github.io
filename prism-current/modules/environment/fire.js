@@ -1,11 +1,11 @@
-/* Currentworks Fire 0.1.2. Original WebGL2 volume effects, caller-owned THREE.
+/* Currentworks Fire 0.1.3. Original WebGL2 volume effects, caller-owned THREE.
  * No renderer, DOM, input, clock, storage or gameplay ownership. All emitter
  * coordinates are GROUP-LOCAL. Visual radius is NEVER a damage radius.
  * See FIRE.md for budgets, clipping limits, reuse and reduced-motion behavior.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.2',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
+ const VERSION='0.1.3',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
  const QUALITY=Object.freeze({light:Object.freeze({volumes:2,steps:12,sparks:32}),balanced:Object.freeze({volumes:3,steps:20,sparks:64}),cinematic:Object.freeze({volumes:6,steps:32,sparks:128})});
  const finite=Number.isFinite,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  const num=(n,d,a,b)=>finite(n)?clamp(n,a,b):d;
@@ -155,7 +155,6 @@
   function warmDraw(renderer,scene){
    if(!renderer.isWebGLRenderer)return; // Controlled compile-only collaborators.
    const target=new T.WebGLRenderTarget(24,24,{depthBuffer:true,stencilBuffer:false});
-   target.texture.colorSpace=renderer.outputColorSpace;
    const warmScene=new T.Scene(),camera=new T.PerspectiveCamera(55,1,.01,20);
    camera.position.z=3;
    // Match the host's shader lighting/fog keys without borrowing its scene nodes.
@@ -168,6 +167,10 @@
    const savedCenters=centers.array.slice(),savedSizes=sizes.array.slice(),count=particleGeometry.instanceCount;
    const viewport=renderer.getViewport(new T.Vector4()),scissor=renderer.getScissor(new T.Vector4());
    const previous={target:renderer.getRenderTarget(),face:renderer.getActiveCubeFace(),mip:renderer.getActiveMipmapLevel(),autoClear:renderer.autoClear,scissorTest:renderer.getScissorTest(),xr:renderer.xr.enabled};
+   // Three r184 uses this target tag for the display color/tone-mapping variant.
+   // Match the current host target; this does NOT start or route an XR session.
+   target.isXRRenderTarget=!previous.target||previous.target.isXRRenderTarget===true;
+   target.texture.colorSpace=target.isXRRenderTarget?(previous.target?.texture.colorSpace||renderer.outputColorSpace):T.ColorManagement.workingColorSpace;
    volume.onBeforeRender=(r,s,c)=>{
     u.eyeLocal.value.setFromMatrixPosition(c.matrixWorld).applyMatrix4(new T.Matrix4().copy(volume.matrixWorld).invert());
     u.localToView.value.multiplyMatrices(c.matrixWorldInverse,volume.matrixWorld);

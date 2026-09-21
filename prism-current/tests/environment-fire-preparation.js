@@ -18,14 +18,14 @@ window.fireAsyncComplete=(async()=>{
 window.fireWarmupComplete=(async()=>{
  const T=AFRAME.THREE,checks=[],check=(v,m)=>{if(!v)throw Error(m);checks.push(m);};
  const host=new T.Scene();host.add(new T.PointLight(),new T.DirectionalLight());const hidden=new T.PointLight();hidden.visible=false;host.add(hidden);host.fog=new T.Fog(0,1,20);
- function fixture(fail=false){
-  const originalTarget={name:'host-owned-target'},viewport=new T.Vector4(3,4,640,480),scissor=new T.Vector4(7,8,90,100),events=[];
+ function fixture(fail=false,kind='xr'){
+  const originalTarget=kind==='screen'?null:{name:'host-owned-target',isXRRenderTarget:kind==='xr',texture:{colorSpace:T.SRGBColorSpace}},viewport=new T.Vector4(3,4,640,480),scissor=new T.Vector4(7,8,90,100),events=[];
   const r={isWebGLRenderer:true,outputColorSpace:T.SRGBColorSpace,autoClear:false,xr:{enabled:true},target:originalTarget,face:2,mip:1,scissorTest:true,viewport:viewport.clone(),scissor:scissor.clone(),freed:0,
    initTexture(t){events.push('texture');},compileAsync:async()=>{events.push('compile');},
    getViewport(v){return v.copy(this.viewport);},getScissor(v){return v.copy(this.scissor);},getRenderTarget(){return this.target;},getActiveCubeFace(){return this.face;},getActiveMipmapLevel(){return this.mip;},getScissorTest(){return this.scissorTest;},
    setRenderTarget(t,face=0,mip=0){this.target=t;this.face=face;this.mip=mip;if(t?.isWebGLRenderTarget)t.addEventListener('dispose',()=>this.freed++);},
    setViewport(v){this.viewport.copy(v);},setScissor(v){this.scissor.copy(v);},setScissorTest(v){this.scissorTest=v;},
-   render(scene,camera){events.push('draw');check(this.target!==originalTarget&&this.target.width===24&&this.target.height===24,'Warmup draw uses only a bounded temporary target');check(this.xr.enabled===false,'Loading draw cannot target the active headset framebuffer');check(scene.children.filter(o=>o.isLight).length===2&&scene.fog===host.fog,'Warmup preserves host shader light and fog selection without reparenting');const meshes=scene.children.filter(o=>o.isMesh);check(meshes.length===2&&meshes[1].geometry.instanceCount===1,'Warmup exercises volume and instanced ember geometry');scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);meshes[0].onBeforeRender(this,scene,camera);if(fail)throw Error('intentional warmup draw failure');},
+   render(scene,camera){events.push('draw');check(this.target!==originalTarget&&this.target.width===24&&this.target.height===24,'Warmup draw uses only a bounded temporary target');check(this.xr.enabled===false,'Loading draw cannot target the active headset framebuffer');check(this.target.isXRRenderTarget===(kind!=='linear')&&this.target.texture.colorSpace===(kind==='linear'?T.ColorManagement.workingColorSpace:this.outputColorSpace),'Offscreen preparation retains the host color/tone-mapping shader selection');check(scene.children.filter(o=>o.isLight).length===2&&scene.fog===host.fog,'Warmup preserves host shader light and fog selection without reparenting');const meshes=scene.children.filter(o=>o.isMesh);check(meshes.length===2&&meshes[1].geometry.instanceCount===1,'Warmup exercises volume and instanced ember geometry');scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);meshes[0].onBeforeRender(this,scene,camera);if(fail)throw Error('intentional warmup draw failure');},
    getContext(){return {finish:()=>events.push('finish')};}
   };
   return {r,events,restored:()=>r.target===originalTarget&&r.face===2&&r.mip===1&&r.autoClear===false&&r.xr.enabled===true&&r.scissorTest===true&&r.viewport.equals(viewport)&&r.scissor.equals(scissor)};
@@ -43,5 +43,6 @@ window.fireWarmupComplete=(async()=>{
  check(failed&&!g.stats.prepared&&g.stats.warmupDraws===0,'Failed draw rejects readiness instead of silently starting playback');
  check(broken.restored()&&broken.r.freed===1,'Failed warmup also restores the exact renderer state and disposes its target');
  const retry=fixture();await g.prepare(retry.r,new T.PerspectiveCamera(),host);check(g.stats.prepared&&g.stats.warmupDraws===1,'Explicit retry of a failed warmup works without replacing the game');g.dispose();
+ for(const kind of ['screen','linear']){const module=SVGNFire.create(T),state=fixture(false,kind);await module.prepare(state.r,new T.PerspectiveCamera(),host);check(module.stats.prepared&&state.restored()&&state.r.freed===1,kind+': preparation restores the original output destination and frees its temporary target');module.dispose();}
  window.fireWarmupReport={passed:checks.length,checks};return true;
 })();
