@@ -28,7 +28,7 @@ with sync_playwright() as pw:
   c.add_init_script("localStorage.setItem('prism-current.v1.records','{\"sentinel\":true}');")
   p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open');p.bring_to_front();p.keyboard.press('Shift')
   check(p.evaluate("getComputedStyle(document.getElementById('menu')).opacity==='0'"),'Untouched main entry uses rendered scene controls, not the HTML overlay')
-  check(snapshot()['version']=='0.11.0','New rotunda runtime identifies the actual version')
+  check(snapshot()['version']==json.loads((ROOT/'prism-current/release.json').read_text())['version'],'New rotunda runtime identifies the actual version')
   click(p,9);check(snapshot()['rotunda']['page']=='layout','Canvas tab opens placement controls')
   for i in [0,2,4,7]:click(p,i)
   prefs=snapshot()['rotunda']['preferences'];check(prefs['size']>.86 and prefs['yaw']>0,'Raise, move, resize and rotate are live controls')

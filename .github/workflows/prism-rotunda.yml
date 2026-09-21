@@ -54,13 +54,14 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Rendered menus, complete chapters and native-shaped XR input
+      - name: Interrupted resume, rendered menus and complete chapters
         env:
           PRISM_URL: ${{ github.event_name == 'push' && 'https://v5ma.github.io/prism-current/' || 'http://127.0.0.1:4173/prism-current/' }}
         run: |
           python -m http.server 4173 --bind 127.0.0.1 >/tmp/rotunda-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
+          timeout 180 python -u prism-current/tests/transport-browser.py
           timeout 720 python -u prism-current/tests/rotunda-browser.py
       - if: always()
         run: |
