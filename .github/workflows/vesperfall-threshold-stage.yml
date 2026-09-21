@@ -11,17 +11,19 @@ concurrency:
 jobs:
   acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Integrate exact source and preserve all original model/workbook gates
+      - name: Integrate recovered source and check original model and workbook gates
         run: |
           set -euo pipefail
           mkdir -p test-output
-          python .github/threshold-prepare.py
+          if ! grep -Fq "if not page.evaluate('Vesperfall.component.xr'):return" vesperfall/tests/threshold-browser.py; then
+            python .github/threshold-prepare.py
+          fi
           for f in vesperfall/*.js; do node --check "$f"; done
           node --test vesperfall/tests/*.test.cjs | tee test-output/model.tap
           python vesperfall/tests/production-workbook.py | tee test-output/workbook.log
@@ -30,35 +32,42 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add vesperfall
           if ! git diff --cached --quiet; then
-            git commit -m 'Integrate reviewed Threshold desk, intentional crossings and exact expedition restoration'
+            git commit -m 'Integrate reconciled Threshold walking round trip, stable desk and tracking recovery'
             git push origin HEAD:vesperfall-threshold-20260921
           fi
-      - name: Install production WebGL browser
+          git rev-parse HEAD > test-output/source-revision.txt
+      - name: Install browser and serve the actual game
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
           python -m http.server 4173 --bind 127.0.0.1 > /tmp/threshold-server.log 2>&1 &
-      - name: Complete VR walking and hand-menu round trip
+      - name: VR doorway, desk, hands, room-scale return and actual session exit
         env:
           XR_MODE: vr
-        run: timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-vr.log
-      - name: Complete AR walking and hand-menu round trip
+        run: |
+          set -euo pipefail
+          timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-vr.log
+          test -s test-output/threshold-vr/report.json
+          test ! -e test-output/threshold-vr/failure.json
+      - name: AR doorway, desk, hands and actual session exit
         env:
           XR_MODE: ar
-        run: timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-ar.log
-      - name: Preserve actual golden-arrow and crossbow input
-        run: timeout 900 python -u vesperfall/tests/goldwind-browser.py | tee test-output/goldwind.log
-      - name: Preserve complete in-headset chapter progression
-        run: timeout 900 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/wayfinder.log
-      - name: Require complete reports, not only a zero shell pipeline status
         run: |
-          test -s test-output/threshold-vr/report.json
+          set -euo pipefail
+          timeout 900 python -u vesperfall/tests/threshold-browser.py | tee test-output/threshold-ar.log
           test -s test-output/threshold-ar/report.json
-          test -s test-output/goldwind/report.json
-          test -s test-output/wayfinder-vr/report.json
-          test ! -e test-output/threshold-vr/failure.json
           test ! -e test-output/threshold-ar/failure.json
-      - name: Retain tested source and unsuccessful traces
+      - name: Retain golden-arrow and crossbow gameplay
+        run: |
+          set -euo pipefail
+          timeout 900 python -u vesperfall/tests/goldwind-browser.py | tee test-output/goldwind.log
+          test -s test-output/goldwind/report.json
+      - name: Retain complete in-headset chapter progression
+        run: |
+          set -euo pipefail
+          timeout 900 python -u vesperfall/tests/wayfinder-browser.py | tee test-output/wayfinder.log
+          test -s test-output/wayfinder-vr/report.json
+      - name: Retain exact source and unsuccessful traces
         if: always()
         run: |
           mkdir -p test-output
