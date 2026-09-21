@@ -15,7 +15,7 @@ export function createXRPanel(E){
  function action(label,id,fn,extra={}){return {label,id,run:fn,...extra};}
  function collect(){
   const hasDesk=!!E.deskActions?.().length,mode=E.mode();if(mode!==lastMode){lastMode=mode;if(mode!=='pause'){documentText=null;drawnDocument=null;}page=0;textPage=0;deskView=false;reading=false;mapView=mode==='map'&&!!E.autoMap?.();release();lastSignature='';}
-  const r=root();caption=documentText?.title||(mode==='play'?E.hint():r?.querySelector('h1,h2')?.textContent||mode.toUpperCase());
+  const r=root();caption=documentText?.title||(mode==='map'&&mapView?r?.querySelector('#next-goal')?.textContent:null)||(mode==='play'?E.hint():r?.querySelector('h1,h2')?.textContent||mode.toUpperCase());
   if(mode==='play')all=E.actions().map(a=>action(a.label,a.id,a.run));
   else all=r?[...r.querySelectorAll('button,input,select,summary')].filter(el=>menuControlVisible(el)&&!el.id.startsWith('xr-')).flatMap(el=>{
    if(el.type==='range'||el.tagName==='SELECT')return [-1,1].map(sign=>action((sign<0?'- ':'+ ')+nativeLabel(el),el.id+(sign<0?'-minus':'-plus'),()=>{if(el.tagName==='SELECT')el.selectedIndex=(el.selectedIndex+sign+el.options.length)%el.options.length;else el.value=String(Math.max(Number(el.min)||0,Math.min(Number(el.max)||100,Number(el.value)+sign*(Number(el.step)||1))));el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));},{element:el,disabled:el.disabled}));
