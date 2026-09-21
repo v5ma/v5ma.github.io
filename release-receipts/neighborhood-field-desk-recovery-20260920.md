@@ -1,0 +1,7 @@
+# Neighborhood Missions field-desk recovery
+
+Base master: 7ccc6cceb43f1c3031454c8dc30b52646718baff. svgn-planet is unchanged since the verified 23013de81809f8ee250f69b7ba7ade589f966ee8 archive. Work only on Neighborhood Missions. The owner's new playtest brief asks for clear current goals, compact map, explicit trigger-based vehicle speed, and in-canvas, non-head-locked UI. The requested private WebXR SaaS hub and local REVIEW.md are not uploaded and must not be published or reconstructed. No inter-game sphere or walking portals are in scope.
+
+Planned bounded v0.16.1 work: a summonable adjustable field desk/pedestal for existing native XR menus, compact wrist mission/map feedback, a saved explicitly labelled vehicle trigger option preserving on-foot action controls, and focused same-session/district/exit verification. Keep all eight modes, mission IDs, reward ledgers, legacy file hashes and sibling games. No engine migration is needed for this pass.
+
+Recovery is from the existing source archive, not a fresh game. Local Chromium navigation returned ERR_BLOCKED_BY_ADMINISTRATOR; no local rendered test is claimed. Run pure tests locally and focused real-WebGL tests through the authorized GitHub Actions workflow, retain failures, merge normally, then verify served bytes and public input paths. Update this checkpoint and a permanent external receipt as actual results become available. This initial checkpoint does not claim the changes are implemented or published.
