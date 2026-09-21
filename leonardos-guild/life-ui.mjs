@@ -1,10 +1,10 @@
 import {QUESTS,PEOPLE,ROOMS,ATTRIBUTES,nearest,targets,actions,use,spend,cast,stats,points,questStatus,done,lifeDescription,mapTarget} from './life-core.mjs';
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function createLifeUI({getState,world,setPause,save,active,onTransition}){
+export function createLifeUI({getState,world,setPause,save,active,canOpen=active,onTransition}){
  const dialog=document.createElement('dialog');dialog.id='life-dialog';dialog.setAttribute('aria-labelledby','life-title');dialog.innerHTML='<header class="life-heading"><div><p class="eyebrow">A LIFE IN LEONARDO’S TOWN</p><h2 id="life-title">Apprentice’s Notebook</h2></div><button id="life-close">Return to town</button></header><nav id="life-tabs"><button data-tab="quests">Commissions</button><button data-tab="people">People & places</button><button data-tab="character">Character</button></nav><main id="life-content"></main><p id="life-message" role="status"></p>';
  document.body.append(dialog);let page='quests',target=null,wasActive=false;
  const $=id=>document.getElementById(id);$('life-close').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{if(wasActive)setPause(false);onTransition();});
- function open(kind='quests',subject=null){if(!active())return;wasActive=true;setPause(true);page=kind;target=subject;$('life-message').textContent='';render();dialog.showModal();}
+ function open(kind='quests',subject=null){if(!canOpen())return;wasActive=true;setPause(true);page=kind;target=subject;$('life-message').textContent='';render();dialog.showModal();}
  function note(){open('quests');}
  function talk(id=null){const s=getState(),t=id?targets(s,world).find(p=>p.id===id&&Math.hypot(s.x-p.x,s.z-p.z)<3.4):nearest(s,world);if(!t){s.toast='Walk close to a resident, cat, marked object or basement stairs. T / Talk interacts; N opens your notebook.';s.toastT=4;return false;}open('talk',t);return true;}
  function report(text){$('life-message').textContent=text;}

@@ -1,0 +1,86 @@
+TAP version 13
+# Subtest: doors-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+not ok 1 - doors-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+  ---
+  duration_ms: 5.002463
+  type: 'test'
+  location: '/mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:8:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Pause must not silently reject this menu
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:15:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: life-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+not ok 2 - life-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+  ---
+  duration_ms: 1.144464
+  type: 'test'
+  location: '/mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:8:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Pause must not silently reject this menu
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:15:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: frontier-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+not ok 3 - frontier-ui.mjs: an explicit paused-menu permission opens a child without resuming play
+  ---
+  duration_ms: 1.169306
+  type: 'test'
+  location: '/mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:8:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    Pause must not silently reject this menu
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-audit/leonardos-guild/tests/pause-menu-reconciliation.test.mjs:15:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 0
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.137012

@@ -2,7 +2,7 @@ import {FLOOR_NAMES,doorLevel,doorLocation,doorSites,nearbyDoors,doorOptions,use
 import {storyProgress,storyClues} from './stories-core.mjs';
 import {PAD_LAYOUT,CLASSIC_PAD_LAYOUT} from './gamepad.mjs';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function createDoorsUI({getState,world,setPause,save,active,onTransition,legacyNearby,journal,settings}){
+export function createDoorsUI({getState,world,setPause,save,active,canOpen=active,onTransition,legacyNearby,journal,settings}){
  const dialog=document.createElement('dialog');dialog.id='doors-dialog';dialog.setAttribute('aria-labelledby','doors-title');document.body.append(dialog);
  let tab='nearby',page=0,message='',next=null;
  const hud=document.createElement('div');hud.id='doors-objective';document.getElementById('hud').append(hud);
@@ -33,7 +33,7 @@ export function createDoorsUI({getState,world,setPause,save,active,onTransition,
   const prev=dialog.querySelector('#houses-prev'),nextPage=dialog.querySelector('#houses-next');if(prev)prev.onclick=()=>{page--;render();};if(nextPage)nextPage.onclick=()=>{page++;render();};
   dialog.querySelector('#doors-legacy').onclick=()=>switchTo(legacyNearby);dialog.querySelector('#doors-journal').onclick=()=>switchTo(journal);dialog.querySelector('#doors-settings').onclick=()=>switchTo(settings);
  }
- function open(which='nearby'){if(!active())return;tab=which;message='';setPause(true);render();dialog.showModal();}
+ function open(which='nearby'){if(!canOpen())return;tab=which;message='';setPause(true);render();dialog.showModal();}
  function interact(){
   if(!active())return;const s=getState();
   // Reuse the original purchase dialog and its handlers, at the actual stall.

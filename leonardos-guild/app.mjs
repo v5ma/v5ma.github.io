@@ -1,3 +1,4 @@
+import {canOpenMenu} from './menu-access.mjs';
 import {createCampaignState,PLAYTEST_BUILD} from './campaign-entry.mjs';
 import {gamePageHidden} from './xr-entry.mjs';
 import {createSpatialOptions} from './spatial-xr.mjs';
@@ -64,11 +65,12 @@ window.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.t
  if(e.code==='KeyM')map();if(e.code==='KeyF'||e.code==='KeyE'){if(distance(state,world.shop)<7&&Math.abs(state.speed)<1.7)openShop();else enterExit(state,world);}if(e.code==='KeyX')scan(state);if(e.code==='Space')jump=true;if(e.code==='KeyJ')attack(state,world);if(e.code==='KeyB')openShop();
 });window.addEventListener('keyup',e=>keys.delete(e.code));window.addEventListener('blur',()=>{if(xr?.visible?.()){clearInput();return;}if(playing&&!paused)pause();else clearInput();});document.addEventListener('visibilitychange',()=>{if(gamePageHidden(document.hidden,xr?.visible?.())&&playing)pause();});
 function touchAction(action){if(!playing||paused)return;if(inQuarter(state)&&['adventures','nearby','work','social'].includes(action)){quarterUI.interact();return;}if(inBadlands(state)&&['adventures','nearby','work','social'].includes(action)){frontierUI.open();return;}switch(action){case'adventures':doorsUI.open();break;case'nearby':cityUI.open();break;case'work':streetUI.interact();break;case'social':lifeUI.talk();break;case'magic':cast(state);break;case'vehicle':if(distance(state,world.shop)<7&&Math.abs(state.speed)<1.7)openShop();else enterExit(state,world);break;case'attack':fireTool(state,world,{attack,throwPaper,cast});break;case'dispatch':consoleUI.dispatch();break;case'reload':reloadSling(state);break;case'jump':jump=true;break;case'recenter':view?.recenter();break;}}
-lifeUI=createLifeUI({getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>view?.update(0,state,{snap:true})});
+const canOpenNotebook=()=>canOpenMenu(playing,paused,pad?.ui.root());
+lifeUI=createLifeUI({canOpen:canOpenNotebook,getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>view?.update(0,state,{snap:true})});
 streetUI=createStreetUI({getState:()=>state,world,setPause,save,active:()=>playing&&!paused});
 cityUI=createCityUI({getState:()=>state,world,setPause,save,active:()=>playing&&!paused,lifeUI,streetUI});
-doorsUI=createDoorsUI({getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>view?.update(0,state,{snap:true}),legacyNearby:()=>cityUI.open(),journal:()=>lifeUI.note(),settings:()=>$('settings-button').click()});
-frontierUI=createFrontierUI({getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>{clearInput();view?.recenter();view?.update(0,state,{snap:true,consoleCamera:pad?.inspect().profile!=='classic'});updateUI();},legacyNearby:()=>doorsUI.interact()});
+doorsUI=createDoorsUI({canOpen:canOpenNotebook,getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>view?.update(0,state,{snap:true}),legacyNearby:()=>cityUI.open(),journal:()=>lifeUI.note(),settings:()=>$('settings-button').click()});
+frontierUI=createFrontierUI({canOpen:canOpenNotebook,getState:()=>state,world,setPause,save,active:()=>playing&&!paused,onTransition:()=>{clearInput();view?.recenter();view?.update(0,state,{snap:true,consoleCamera:pad?.inspect().profile!=='classic'});updateUI();},legacyNearby:()=>doorsUI.interact()});
 quarterUI=createQuarterUI({getState:()=>state,setPause,save,onTransition:()=>{clearInput();view?.recenter();view?.update(0,state,{snap:true});updateUI();}});
 consoleUI=createResonanceUI({getState:()=>state,world,audio,setPause,save,active:()=>playing&&!paused,playing:()=>playing,actions:{nearby:()=>{if(!quarterUI.interact()&&!frontierUI.interact())cityUI.open();},guide:()=>inQuarter(state)?quarterUI.open():inBadlands(state)?frontierUI.open('contracts'):doorsUI.open('adventures'),journal:()=>inQuarter(state)?quarterUI.open():inBadlands(state)?frontierUI.open('pack'):lifeUI.note(),expeditions:()=>inQuarter(state)?quarterUI.open():frontierUI.open(),map}});
 function consoleJump(){
