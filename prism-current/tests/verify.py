@@ -7,6 +7,7 @@ files += [str(p.relative_to(ROOT)) for p in (APP/'river').glob('*') if p.is_file
 files += [str(p.relative_to(ROOT)) for p in (APP/'water-mission').glob('*') if p.is_file()]
 files += [str(p.relative_to(ROOT)) for p in (APP/'graphics').glob('*') if p.is_file()]
 files += [str(p.relative_to(ROOT)) for p in (APP/'qa').glob('*.json') if p.is_file()]
+files += [str(p.relative_to(ROOT)) for p in (APP/'modules').rglob('*') if p.is_file() and p.suffix in ['.js','.mjs','.json','.md','.ts']]
 for n in files:
  p=ROOT/n;assert p.is_file(),n
  if p.suffix in ['.js','.html','.css','.md'] and 'vendor' not in p.parts:

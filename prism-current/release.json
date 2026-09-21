@@ -7,5 +7,6 @@
   "scope": "Retains the in-scene Rotunda, controller/floor HUD and room movement. Cancels pending audio resumes on interruption; requires a visible calibrated matching XR session before playback; stale promises cannot unlock or relabel a newer run. Source and public verification remain separate from physical-device acceptance.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
-  "classic": "rhythm.html"
+  "classic": "rhythm.html",
+  "graphics": {"water": "Currentworks Water 0.1.0", "entry": "modules/environment/water.js", "pass": 1}
 }
