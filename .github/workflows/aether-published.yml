@@ -4,15 +4,21 @@ on:
     branches: [master]
     paths: ['aether-reach/**','index.html','projects.css','.github/workflows/aether-published.yml']
   workflow_dispatch:
+  workflow_run:
+    workflows: ['pages build and deployment', 'Publish current master to GitHub Pages', 'Aether Field Rotunda playtest']
+    types: [completed]
+    branches: [master]
 permissions:
   contents: read
 jobs:
   published:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - name: Generate explicit public runtime contract
         run: node aether-reach/tests/release-manifest.mjs

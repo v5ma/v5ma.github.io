@@ -1,8 +1,8 @@
 name: Aether Field Rotunda playtest
 on:
   push:
-    branches: [aether/field-rotunda-20260920]
-    paths: ['aether-reach/**', '.github/workflows/aether-rotunda.yml']
+    branches: [master]
+    paths: ['aether-reach/**', '.github/workflows/aether-rotunda.yml', '.github/workflows/aether-release-backup.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
           mkdir -p aether-reach/test-output
           node --test aether-reach/tests/*.test.mjs > aether-reach/test-output/rotunda-node.log
           python aether-reach/tests/backup_test.py
+          python aether-reach/tests/release_evidence_test.py
           for f in aether-reach/*.mjs; do node --check "$f"; done
           node aether-reach/tests/release-manifest.mjs
           python aether-reach/tools/render-production-plan.py

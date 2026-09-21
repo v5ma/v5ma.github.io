@@ -1,7 +1,7 @@
 name: Archive verified Aether release
 on:
   workflow_run:
-    workflows: ['Verify published Aether Reach']
+    workflows: ['Verify published Aether Reach', 'Aether Field Rotunda playtest']
     types: [completed]
     branches: [master]
   workflow_call:
@@ -14,30 +14,62 @@ on:
         type: string
 permissions:
   contents: read
+  actions: read
+concurrency:
+  group: aether-release-archive
+  cancel-in-progress: false
 jobs:
   scope:
-    if: (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository) || (inputs.source != '' && inputs.publication_run != '')
+    if: (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) || (inputs.source != '' && inputs.publication_run != '')
     runs-on: ubuntu-latest
     timeout-minutes: 3
     outputs:
       changed: ${{ steps.diff.outputs.changed }}
+      publication_run: ${{ steps.receipt.outputs.publication_run }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.source || github.event.workflow_run.head_sha }}
           fetch-depth: 2
           persist-credentials: false
-      - id: diff
-        name: Ignore unrelated homepage-only publications
+      - id: receipt
+        name: Resolve independent public verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SOURCE: ${{ inputs.source || github.event.workflow_run.head_sha }}
+          EXPLICIT: ${{ inputs.publication_run }}
+          TRIGGER_NAME: ${{ github.event.workflow_run.name }}
+          TRIGGER_ID: ${{ github.event.workflow_run.id }}
         run: |
-          if git diff --quiet HEAD^ HEAD -- aether-reach .github/workflows/aether-release-backup.yml; then
+          python - <<'PY'
+          import json,os,subprocess
+          selected=os.environ.get('EXPLICIT','')
+          if not selected and os.environ['TRIGGER_NAME']=='Verify published Aether Reach':
+            selected=os.environ['TRIGGER_ID']
+          if not selected:
+            path=f"repos/{os.environ['GH_REPO']}/actions/runs?head_sha={os.environ['SOURCE']}&status=success&per_page=100"
+            runs=json.loads(subprocess.check_output(['gh','api',path],text=True))['workflow_runs']
+            good=[r for r in runs if r['path']=='.github/workflows/aether-published.yml' and r['status']=='completed' and r['conclusion']=='success' and r['head_branch']=='master']
+            if good:selected=str(max(good,key=lambda r:(r['updated_at'],r['id']))['id'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('publication_run='+selected+'\n')
+          if not selected:print('Public verification is pending; no archive approval or release is created.')
+          PY
+      - id: diff
+        name: Include a missing release after sibling-only publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('aether-reach/release.json')).version")
+          if git diff --quiet HEAD^ HEAD -- aether-reach .github/workflows/aether-release-backup.yml && gh release view "aether-v$VERSION" >/dev/null 2>&1; then
             echo 'changed=false' >> "$GITHUB_OUTPUT"
           else
             echo 'changed=true' >> "$GITHUB_OUTPUT"
           fi
   archive:
     needs: scope
-    if: needs.scope.outputs.changed == 'true'
+    if: needs.scope.outputs.changed == 'true' && needs.scope.outputs.publication_run != ''
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -48,7 +80,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
       SOURCE: ${{ inputs.source || github.event.workflow_run.head_sha }}
-      PUBLICATION_RUN: ${{ inputs.publication_run || github.event.workflow_run.id }}
+      TOOL_SOURCE: ${{ github.workflow_sha }}
+      PUBLICATION_RUN: ${{ needs.scope.outputs.publication_run }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -70,7 +103,7 @@ jobs:
           def api(path):return json.loads(subprocess.check_output(['gh','api',path],text=True))
           run=api(f'repos/{repo}/actions/runs/{run_id}')
           assert run['status']=='completed' and run['conclusion']=='success'
-          assert run['event']=='push' and run['head_branch']=='master' and run['head_sha']==source
+          assert run['event'] in ('push','workflow_dispatch','workflow_run') and run['head_branch']=='master' and run['head_sha']==source
           assert run['path']=='.github/workflows/aether-published.yml'
           assert run['repository']['full_name']==repo and run['head_repository']['full_name']==repo
           pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f'repos/{repo}/actions/runs/{run_id}/artifacts?per_page=100'],text=True))
@@ -103,112 +136,8 @@ jobs:
           ZIP=$(find /tmp/aether-release -name '*source.zip' -print -quit)
           python aether-reach/tools/backup.py --restore "$ZIP" --destination /tmp/aether-release-restore
           (cd /tmp/aether-release-restore && node --test aether-reach/tests/*.test.mjs) > /tmp/aether-release/restore-check.txt
-          python - <<'PY'
-          """Collect native review artifacts by creation time and verify their identities."""
-          from pathlib import Path, PurePosixPath
-          import hashlib, io, json, os, re, subprocess, zipfile
-
-          def choose_artifact(items, name, head):
-              candidates = [a for a in items if a['name'] == name and not a['expired']
-                            and a.get('workflow_run', {}).get('head_sha') == head]
-              if not candidates:
-                  raise ValueError('No matching, unexpired artifact: ' + name)
-              return max(candidates, key=lambda a: (a['created_at'], a['updated_at'], a['id']))
-
-          def inspect_artifact(raw, selected, expected, report_name, minimum):
-              digest = hashlib.sha256(raw).hexdigest()
-              if selected.get('digest') != 'sha256:' + digest:
-                  raise ValueError('Artifact digest mismatch')
-              with zipfile.ZipFile(io.BytesIO(raw)) as z:
-                  names = z.namelist()
-                  if len(names) != len(set(names)) or len(names) > 1000:
-                      raise ValueError('Duplicate or excessive artifact members')
-                  if sum(i.file_size for i in z.infolist()) > 128 * 1024 * 1024:
-                      raise ValueError('Artifact exceeds expanded-size limit')
-                  for i in z.infolist():
-                      p = PurePosixPath(i.filename)
-                      if p.is_absolute() or '..' in p.parts or '\\' in i.filename or ((i.external_attr >> 16) & 0o170000) == 0o120000:
-                          raise ValueError('Unsafe artifact member')
-                  if z.read('uncommitted-diff.txt').strip():
-                      raise ValueError('Uncommitted changes in native review')
-                  if json.loads(z.read('runtime-manifest.json'))['files'] != expected:
-                      raise ValueError('Native review does not match the complete source contract')
-                  tested = z.read('tested-commit.txt').decode().strip()
-                  if not re.fullmatch('[0-9a-f]{40}', tested):
-                      raise ValueError('Invalid tested commit identity')
-                  report = json.loads(z.read(report_name))
-                  if report['passed'] < minimum or len(report['checks']) != report['passed'] or report.get('errors') or report.get('shaderErrors') or report.get('nativeDialogs'):
-                      raise ValueError('Incomplete or unsuccessful native report: ' + report_name)
-                  files = {n: z.read(n) for n in names if len(PurePosixPath(n).parts) == 1 and PurePosixPath(n).suffix in {'.json', '.png', '.txt', '.log'}}
-                  return files, {'artifact': selected['id'], 'createdAt': selected['created_at'],
-                                 'sha256': digest, 'testedCommit': tested, 'passed': report['passed']}
-
-          def main():
-              source = os.environ['SOURCE']; repo = os.environ['GH_REPO']
-              if not re.fullmatch('[0-9a-f]{40}', source):
-                  raise ValueError('Invalid release source')
-              version = json.loads(Path('aether-reach/release.json').read_text())['version']
-              numbers = tuple(map(int, version.split('.')))
-              if numbers < (0, 11, 0):
-                  subprocess.run(['python', 'aether-reach/tools/collect_release_evidence.py'], check=True)
-                  return
-              def api(path):
-                  return json.loads(subprocess.check_output(['gh', 'api', path], text=True))
-              pr = next(p for p in api(f'repos/{repo}/commits/{source}/pulls')
-                        if p.get('merged_at') and p.get('merge_commit_sha') == source and p['base']['ref'] == 'master')
-              head = pr['head']['sha']
-              if not re.fullmatch('[0-9a-f]{40}', head):
-                  raise ValueError('Invalid accepted head')
-              rewired = numbers >= (0, 12, 0)
-              workflow = '.github/workflows/aether-rewired.yml' if rewired else '.github/workflows/aether-grounded.yml'
-              prefix = 'aether-rewired-' if rewired else 'aether-grounded-'
-              if numbers == (0, 15, 0):
-                  workflow = '.github/workflows/aether-rotunda.yml'
-                  prefix = 'aether-rotunda-'
-              runs = api(f'repos/{repo}/actions/runs?head_sha={head}&status=success&per_page=100')['workflow_runs']
-              candidates = [r for r in runs if r['path'] == workflow and r['head_sha'] == head
-                            and r['status'] == 'completed' and r['conclusion'] == 'success'
-                            and r['repository']['full_name'] == repo and r['head_repository']['full_name'] == repo]
-              run = max(candidates, key=lambda r: (r['updated_at'], r['id']))
-              pages = json.loads(subprocess.check_output(['gh', 'api', '--paginate', '--slurp', f"repos/{repo}/actions/runs/{run['id']}/artifacts?per_page=100"], text=True))
-              items = [a for page in pages for a in page['artifacts']]
-              reports = {'grounded':'grounded-browser.json','xr':'xr-report.json','controller':'controller-journey-report.json','blackout':'bellwether-browser.json','skyglass':'skyglass-browser.json','foundry':'foundry-browser.json','glide':'glide-report.json','tactics-tools':'tools-tactics-report.json','tactics-recovery':'recovery-tactics-report.json'}
-              if rewired:
-                  reports = {'diorama':'diorama-browser.json','rewired':'rewired-browser.json','grounded':'grounded-browser.json','controller':'controller-journey-report.json','expedition':'expedition-report.json','glide':'glide-report.json'}
-              if numbers >= (0, 13, 0):
-                  reports['windbreak'] = 'windbreak-browser.json'
-              minima = {'diorama':25,'rewired':29,'grounded':21,'controller':29,'expedition':16,'glide':10,'windbreak':40} if numbers >= (0,13,0) else {}
-              if numbers >= (0, 14, 0):
-                  reports.update({'portal-render':'portal-render.json','portal-game':'portal-browser.json'})
-                  minima.update({'portal-render':7,'portal-game':23})
-              if numbers == (0, 15, 0):
-                  reports = {'rotunda':'rotunda-browser.json','window':'window-browser.json','portal':'portal-browser.json','render':'portal-render.json','grounded':'grounded-browser.json','controller':'controller-journey-report.json'}
-                  minima = {'rotunda':28,'window':59,'portal':23,'render':9,'grounded':21,'controller':29}
-              expected = json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
-              for name, digest in expected.items():
-                  if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
-                      raise ValueError('Source changed after manifest creation: ' + name)
-              out = Path('/tmp/aether-release'); out.mkdir(exist_ok=True)
-              selections = {}
-              with zipfile.ZipFile(out / f'Aether-Reach-v{version}-native-grounded-evidence.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-                  for suite, name in reports.items():
-                      selected = choose_artifact(items, prefix + suite, head)
-                      if selected['size_in_bytes'] > 32 * 1024 * 1024:
-                          raise ValueError('Artifact exceeds compressed-size limit')
-                      raw = subprocess.check_output(['gh', 'api', f"repos/{repo}/actions/artifacts/{selected['id']}/zip"])
-                      files, receipt = inspect_artifact(raw, selected, expected, name, minima.get(suite, 1))
-                      selections[suite] = receipt
-                      for filename, contents in files.items():
-                          archive.writestr(suite + '/' + filename, contents)
-                  scope = {'source':source,'head':head,'workflow':run['id'],'suites':reports,'artifacts':selections,
-                           'scope':'Latest-created, digest-verified artifacts from a successful exact-head native workflow. All runtime files match the release source. Software WebGL and synthetic device inputs only; no physical Xbox/Quest or player-quality approval.'}
-                  archive.writestr('scope.json', json.dumps(scope, indent=2))
-              (out / 'native-artifact-selection.json').write_text(json.dumps(scope, indent=2) + '\n')
-              print('Archived latest exact-source native reports from', run['id'])
-
-          if __name__ == '__main__':
-              main()
-          PY
+          git show "$TOOL_SOURCE:aether-reach/tools/release_evidence.py" > /tmp/aether-release-evidence.py
+          AETHER_SOURCE_ROOT="$GITHUB_WORKSPACE" python /tmp/aether-release-evidence.py
           cp aether-reach/planning/*.xlsx /tmp/aether-release/
           cp /tmp/aether-publication/*.json /tmp/aether-release/
           python - <<'PY'
@@ -226,12 +155,21 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release download "$TAG" --pattern BACKUP-MANIFEST.json --dir /tmp/aether-existing
             python - <<'PY'
-          import json,os
+          import json,os,runpy
           from pathlib import Path
           m=json.loads(Path('/tmp/aether-existing/BACKUP-MANIFEST.json').read_text())
-          assert m['source']==os.environ['SOURCE'],'This version already belongs to a different commit; refusing replacement.'
+          expected=json.loads(Path('aether-reach/test-output/runtime-manifest.json').read_text())['files']
+          version=json.loads(Path('aether-reach/release.json').read_text())['version']
+          archived=runpy.run_path('/tmp/aether-release-evidence.py')['validate_existing_archive'](m,version,expected)
+          Path('/tmp/aether-release-origin.json').write_text(json.dumps({'requestedSource':os.environ['SOURCE'],'archivedSource':archived,'reusedExisting':True}))
+          print('Existing release retained unchanged at',archived,'; current runtime is byte-identical.')
           PY
           else
+            python - <<'PY'
+          import os,json
+          from pathlib import Path
+          Path('/tmp/aether-release-origin.json').write_text(json.dumps({'requestedSource':os.environ['SOURCE'],'archivedSource':os.environ['SOURCE'],'reusedExisting':False}))
+          PY
             printf 'Verified public Aether Reach %s. Source: %s.\n\nIncludes the public game source, archived v0.3 workbook, checksums, clean-restore model tests, exact-source native browser evidence and verified deployment receipt. Physical Xbox/Quest acceptance and unfamiliar-player design approval remain open. No private narrative or player browser saves. This is a game snapshot, not a full Git mirror or independent off-site backup. See aether-reach/BACKUPS.md.\n' "$VERSION" "$SOURCE" >/tmp/aether-release-notes.md
             gh release create "$TAG" /tmp/aether-release/* --target "$SOURCE" --title "Aether Reach $VERSION - verified source backup" --notes-file /tmp/aether-release-notes.md --latest=false
           fi
@@ -245,8 +183,9 @@ jobs:
           from pathlib import Path
           import os,json,hashlib
           root=Path('/tmp/aether-release-roundtrip');manifest=json.loads((root/'BACKUP-MANIFEST.json').read_text())
-          assert manifest['source']==os.environ['SOURCE']
-          report={'source':manifest['source'],'version':manifest['version'],'releaseTag':Path('/tmp/aether-release-tag.txt').read_text().strip(),'downloadedAndVerified':True,'sourceFiles':len(manifest['files']),'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in root.iterdir() if p.is_file()},'scope':'Public game only. No browser saves, private story, full Git history or off-site mirroring.'}
+          origin=json.loads(Path('/tmp/aether-release-origin.json').read_text())
+          assert manifest['source']==origin['archivedSource']
+          report={'source':manifest['source'],'requestedSource':origin['requestedSource'],'reusedExisting':origin['reusedExisting'],'sourceExactlyRequested':manifest['source']==origin['requestedSource'],'version':manifest['version'],'releaseTag':Path('/tmp/aether-release-tag.txt').read_text().strip(),'downloadedAndVerified':True,'sourceFiles':len(manifest['files']),'assets':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in root.iterdir() if p.is_file()},'scope':'Public game only. No browser saves, private story, full Git history or off-site mirroring.'}
           Path('/tmp/aether-backup-receipt.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
