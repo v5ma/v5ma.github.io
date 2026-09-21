@@ -1,4 +1,5 @@
 import * as T from './vendor/three.module.js';
+import {applyGroundedMotion} from './grounded-motion.mjs';
 /* Bounded visual IK only. Does not move the collision body or save any joints. */
 export function solveTwoBone(hip,knee,foot,target,pole){
  hip.updateWorldMatrix(true,true);const h=hip.getWorldPosition(new T.Vector3()),k=knee.getWorldPosition(new T.Vector3()),f=foot.getWorldPosition(new T.Vector3()),a=h.distanceTo(k),b=k.distanceTo(f),delta=target.clone().sub(h),raw=delta.length();
@@ -9,14 +10,14 @@ export function solveTwoBone(hip,knee,foot,target,pole){
  function aim(bone,from,to){const world=bone.getWorldQuaternion(new T.Quaternion()),parent=bone.parent.getWorldQuaternion(new T.Quaternion()).invert(),turn=new T.Quaternion().setFromUnitVectors(from.normalize(),to.normalize());bone.quaternion.copy(parent.multiply(turn).multiply(world));bone.updateWorldMatrix(true,true);}
  aim(hip,k.clone().sub(h),desiredK.clone().sub(h));const nk=knee.getWorldPosition(new T.Vector3()),nf=foot.getWorldPosition(new T.Vector3());aim(knee,nf.sub(nk),desiredF.sub(nk));return true;
 }
-export function footContacts(actor,player,heightAt){
- if(player.hp<=0||player.waterMode==='swim'||player.stance==='prone'||player.vault||player.dodge>0){actor.contacts=null;return;}
- actor.root.updateMatrixWorld(true);const location=new T.Vector3(player.x,0,player.z),old=actor.contacts;if(!old||old.position.distanceTo(location)>3||old.stance!==player.stance)actor.contacts={position:location.clone(),stance:player.stance,feet:[null,null]};const c=actor.contacts;c.position.copy(location);
- for(const [i,start]of [11,14].entries()){
-  const hip=actor.bones[start],knee=actor.bones[start+1],foot=actor.bones[start+2],current=foot.getWorldPosition(new T.Vector3()),plant=(player.speed||0)<.2||Math.cos(actor.gait+(i?Math.PI:0))<-.1;
-  if(!plant)c.feet[i]=null;if(plant&&!c.feet[i])c.feet[i]=current.clone();let target=c.feet[i]?.clone()||current.clone();target.y=heightAt(target.x,target.z)+.105;
-  if(c.feet[i]&&new T.Vector2(current.x-target.x,current.z-target.z).length()>.5){c.feet[i]=current.clone();target=current.clone();target.y=heightAt(target.x,target.z)+.105;}
-  if(!plant&&current.y>=target.y)continue;const pole=hip.getWorldPosition(new T.Vector3()).add(new T.Vector3(0,.05,-1).applyQuaternion(actor.root.quaternion));solveTwoBone(hip,knee,foot,target,pole);
-  const parent=foot.parent.getWorldQuaternion(new T.Quaternion()).invert();foot.quaternion.copy(parent.multiply(actor.root.quaternion));foot.updateWorldMatrix(true,true);
- }actor.skin.skeleton.update();
+/* Scene integration point is retained: base pose -> actual terrain height ->
+ * this single visual solve. Do not run the superseded contact loop afterward. */
+export function footContacts(actor,player,heightAt=()=>0){
+ const time=Number.isFinite(actor.lastTime)?actor.lastTime:0;
+ const dt=actor.motion?Math.max(0,Math.min(.1,time-actor.motion.time)):1/60;
+ // The scene gives its base enemy pose this same inferred aiming state.
+ // Use a render-only copy; never add animation flags to an enemy's game state.
+ const renderState=actor.enemy&&player.aim===undefined?{...player,aim:player.state==='chase'&&(player.aimTime||0)>.1}:player;
+ applyGroundedMotion(actor,renderState,time,dt,heightAt);
+ actor.root.updateMatrixWorld(true);actor.skin.skeleton.update();
 }

@@ -1,5 +1,8 @@
-name: Rainward Field Desk acceptance
+name: Rainward Field Desk and recovered motion acceptance
 on:
+  push:
+    branches: [master]
+    paths: ['rainward/*.mjs','rainward/index.html','rainward/release.json','rainward/tests/**','.github/workflows/rainward-field-desk.yml']
   pull_request:
     paths: ['rainward/**','.github/workflows/rainward-field-desk.yml']
   workflow_dispatch:
@@ -89,5 +92,42 @@ jobs:
         if: always()
         with:
           name: rainward-field-desk-${{ matrix.view }}-${{ matrix.kind }}-${{ matrix.layer }}
+          path: test-output/
+          retention-days: 14
+  motion:
+    needs: models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve the immutable published contact baseline
+        run: git fetch --no-tags --depth=1 origin 03602e107a355a182a8c6e93f2d102ed4f8e88be
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Compare recovered motion on the same retained bodies
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-motion-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 660 python -u rainward/tests/grounded.py
+      - name: Preserve motion metrics, images and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-reconciled-motion
           path: test-output/
           retention-days: 14

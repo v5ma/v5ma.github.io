@@ -1,0 +1,106 @@
+{
+  "baselineMaster": "fda53bedb376d54c3bad3bdacf5a15aba85dba61",
+  "baselineRainward": "03602e107a355a182a8c6e93f2d102ed4f8e88be",
+  "version": "0.16.3",
+  "policy": "Direct scoped master write; no new PR, branch or temporary workflow.",
+  "decisions": [
+    {
+      "pr": 147,
+      "head": "9e23d93b9cda8a32f474a5c6fc99c4953a5e2664",
+      "decision": "selective port",
+      "recovered": [
+        "world-space foot plants with cubic release transitions",
+        "slope following and visual pelvis compensation",
+        "displacement-based stride",
+        "treading, swim strokes, alternating flutter kicks and forward crouch"
+      ],
+      "notImported": [
+        "older body/proportion fitting and wardrobe replacement",
+        "old scene/release/roadmap overwrites",
+        "old workflow and stale acceptance claims"
+      ],
+      "adjusted": [
+        "sole height matches retained .105 bind landmark",
+        "existing adapter preserves exact scene and actor code",
+        "short-step easing covers current 9-14 m/s Free Stride",
+        "dodge releases contacts"
+      ]
+    },
+    {
+      "pr": 165,
+      "head": "1a8386597706a3c49f29f98fc43a0702218e9000",
+      "decision": "discard conflicting experiment; preserve historical source",
+      "notImported": [
+        "ward-freight-firebreak task",
+        "coupled central partition and east yard door",
+        "obsolete district/scene/supply/save/version changes",
+        "shared library edit outside Rainward scope"
+      ],
+      "retained": "Current ward-radio-powered west loading passage / Freight Cut",
+      "failure": {
+        "run": 35057047479,
+        "artifact": 10432600152,
+        "sha256": "28332180a1f57de2ce5257abee02b59772af8834e9067803d5c8bb90222dce5f",
+        "observed": "Mechanism and required pickups worked but the recorded living-threat route died near the quay. This is not a successful extraction."
+      }
+    },
+    {
+      "pr": 194,
+      "decision": "already merged; retain XR Repair"
+    },
+    {
+      "pr": 214,
+      "decision": "already merged; retain complete Field Desk and storage-warning polish"
+    }
+  ],
+  "protectedRuntimeSHA256": {
+    "actors.mjs": "967f2c5976870914914e08a9449a33e8a0bad6cebb88ac97cec4d490a2349a3f",
+    "rainworn-humans.mjs": "48470fc2aa0a9292e603ae946807a71fc57084f1f022f46d19058f57a54a8e5a",
+    "scene.mjs": "a23d492c9c06b34678ee6ea7e521f7c4255b8dbd178b7fdf8229763414022162",
+    "model.mjs": "337638a4b8585ee1a3d0369547637a3337d55776c9a1facb160b85fab411926f",
+    "district.mjs": "ba5ec6d37163ed70a96dcf03cd18173624965123560bcf644e065153016e99e8",
+    "freight-cut.mjs": "5dd312656902a0064a419d2b06593bdc87359d7c7bcd582e33098214487f4d74",
+    "field-tasks.mjs": "de96177cfc60cbd526f47ca9d2a1b7c087d37471243db7a4e63b2e2964aafaa1",
+    "supplies.mjs": "0aeb79cbdcf0b8025afebf43a777d33758bfb1d8c2b2eac5ec9f4c000744a3a0",
+    "freefield.mjs": "4d4153e899271e8dcd278ea3a86a87935a69c4f0fad1dd5e41b200be7118d41a",
+    "quest-xr.mjs": "31c413f1185e1576e309634339b8e9056905d18514fb5c74a0aa2679d0fb28fc",
+    "xr-panel.mjs": "e86bcc588bbcc8dea1a251551981fb4670678cf91ff77399ed3aecaa91cb1307",
+    "field-desk.mjs": "35c4e7e60973c0e0ce4eb245d3db7edb9338f5d025db92ef5c436771b8d6120b",
+    "xr-sight.mjs": "db2144fbabc2af83ee24b7b5f4c163d1c49841640c833b127e53f4de6d2137c1",
+    "xr-reading-log.mjs": "679ad836daa6f441c50a3887cb5d69fad9246535566816ca82149261c11c113e"
+  },
+  "protectedAssetsSHA256": {
+    "assets/freefield-weapons/LICENSE.txt": "bece5f4d99cca9dcf86931221a69909862ff6cc95e1735462ee678516a1063e2",
+    "assets/freefield-weapons/pistol.glb": "4371b52514b9749523ee649b36ded8c8c75c16d4f0f3914133b8de5f662d6ffb",
+    "assets/freefield-weapons/rifle.glb": "b97149f1b00d5c9f6ca808fcc5c39715ff980a67844369cb092b6140903d85bb",
+    "assets/freefield-weapons/manifest.json": "a5e71999b7180879819e4d29c7b658886afd8654cd541664f66068420dadc516",
+    "assets/humans/LICENSE-Quaternius.txt": "e08f717c3cfd999f4b44f2be4522b11a3ac3c0e5b6364b3a8788d25d4c90ff94",
+    "assets/humans/survivor-female.glb": "5705e2638af402d35c79be9383139af584fbfe7f37f4c119f9c8d476506b51a0",
+    "assets/humans/survivor-male.glb": "c4ea3e1a3c828abc2113eb49e4016b7dba02f97f2241339e5c6141f0388eecbb",
+    "assets/humans/manifest.json": "df6321f1e39d440387eabe7f22149d0580de2c1bf05c6c8fd54bce5b4236c823",
+    "assets/scanned/fern_02.glb": "a731f296919b94406390c0595d0bcfed4e5af9b31d2d2bd0f2ad70b577f96418",
+    "assets/scanned/boulder_01.glb": "0ecebaf727cce874e0d9439ab33e34b48974336aea80845f90fbdb46ed92269e",
+    "assets/scanned/daylight.hdr": "206c67e3a1b992282821cf06662bdd69bbb4915c1c4444a66338a40d6a7d4e34",
+    "assets/scanned/rock_moss_set_01.glb": "39a914d4118f58b0b7ca3901a41cfb4a88c087ae9976f48f72a0be53188cc647",
+    "assets/scanned/source-lock.json": "16d7d90e4d97cf459f6fb6bb87a0a69575872d0ea4a302c2103b6a969ea7645d",
+    "assets/scanned/manifest.json": "95d7653dae634d5117721bb1406113a00fc881cd911dcc301b4f0ceeeaf420ac",
+    "assets/scanned/paving/normal.webp": "a52c098e0a62e4ff462ce3b03c9bf24dd3ef20ceb554c79b7d92915a694100a2",
+    "assets/scanned/paving/color.webp": "986a505da777b1d539811b52d1a135ef834273ac4cae3d77bcd09f256c3aa89f",
+    "assets/scanned/paving/orm.webp": "9bcddd8a1f47937f8ed367e51b9455dd22d261dfb62688c19bc3a53ad303a8e7",
+    "assets/scanned/ground/normal.webp": "9411fc07e8d9e30b2f0036fff57d7c7d6973d57ac5b2efbe3b0652d009b888fa",
+    "assets/scanned/ground/color.webp": "fe50653af106b0e539f00ec538bafd3527f5bb062ea756540ef1bad8a3a0dfdc",
+    "assets/scanned/ground/orm.webp": "3ce1b6d71823b61c16e972d9769b25bfd0a6e349a49df2f3b3872fec052ccbe5",
+    "assets/scanned/brick/normal.webp": "4939ffadd2d77b9ed368e7ac7404da17895fec423308ac5cacc77a3081dd9a39",
+    "assets/scanned/brick/color.webp": "97e26cd73167b0f3da515bffdb5028b6fc1a966ee9b06d83b813c572f6c87fa3",
+    "assets/scanned/brick/orm.webp": "f71455af1f3f1001d66dd828e10126f16967d301eb319b7994c4a0fdeaba0911",
+    "assets/scanned/stone/normal.webp": "8ef3892693a87cdb60bec3eddd65aed96f248ae7af8ef2b43dfd3b1c09caa42e",
+    "assets/scanned/stone/color.webp": "f8d865ae6fb20d2fad3ccb3cbd92214d18c69a69b9039c0d246af4c221056d98",
+    "assets/scanned/stone/orm.webp": "1fe242d102e88d89fc51c32ab81cca5c4f278b4704f337056e3f662cee037dcf"
+  },
+  "failedLocalAttempt": {
+    "path": "motion-first.tap",
+    "observation": "Old fixed 100 ms contact easing and 110 ms measurement window cannot characterize the much shorter 9 m/s stance. Original five-speed tests are unchanged; separate 9/14 m/s tests measure completed easing. Runtime easing now scales to a bounded fraction of stance duration. A follow-up timing check used transition elapsed rather than the age increment on the transition frame."
+  },
+  "status": "Source prepared; final browser and public evidence recorded separately.",
+  "physicalDevices": "Not tested; no physical approval implied."
+}

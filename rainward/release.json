@@ -1,15 +1,14 @@
 {
-  "version": "0.16.2",
-  "build": "rainward-field-desk-20260921",
+  "version": "0.16.3",
+  "build": "rainward-reconciled-motion-20260921",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
   "changes": [
-    "Add a summon-local field desk with saved height, distance, size and yaw; hide it completely during gameplay",
-    "Make the default XR menu stable through head movement and menu actions rather than reanchoring on every selection",
-    "Put Resume, Map, Satchel and acquired-clue recall on the first menu page; show the map immediately in the Direct layout",
-    "Keep an acquired clue separate from transient field messages, including a clue already earned in a restored checkpoint",
-    "Preserve v0.16.1 muzzle/scope/compositor repairs, fast running, seven expeditions, save keys, remaps and licensed characters",
-    "No private hub, engine migration or inter-game portals; panel grabbing and independently transforming multiple panels remain future work"
+    "Recover the missing Grounded foot-plant and swimming motion from PR147 through the existing visual contact adapter",
+    "Keep the published character geometry, face textures, clothing, skeleton binds, scene, fast movement, saves and XR input/compositor code unchanged",
+    "Scale contact easing to short Free Stride steps and release plants during dodge, swim, vault, death and shelter relocation",
+    "Retain the shipped Freight Cut radio-operated west passage instead of the conflicting older Firebreak east-door experiment",
+    "Preserve the published Field Desk and XR Repair features; correct stale continuation metadata and use direct master updates without new PRs"
   ]
 }

@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.16.2 / Field Desk.
+Release baseline: v0.16.3 / Reconciled Motion.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -20,12 +20,12 @@ Each checkbox remains open until human acceptance is recorded. Automated status 
 ## Resume from another chat
 
 Start with [DEVELOPMENT-HANDOFF.md](DEVELOPMENT-HANDOFF.md) and [CONTROLLER.md](CONTROLLER.md).
-Historical baseline: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). Current upgrade: [Clear Water](CLEAR-WATER.md).
+Historical baseline: [Undertow receipt](evidence/undertow-v0.13.0/summary.json). Current upgrade: [Reconciled Motion](MERGE-RECONCILIATION.md).
 
 - [ ] H-01 / Automated / RW-032, RW-031, RW-028 / Record a living-enemy Natatorium browser mission from normal start to extraction. Preserve oxygen, enemy, task, puzzle and resource rules.
   Acceptance: Both components, puzzle and required tasks complete using ordinary inputs; no safe fixture or model teleport substitutes for this run.
 
-- [ ] H-02 / Open / RW-035, RW-036, RW-014 / Author swimming and land-action blends, then hand/foot contacts for the fitted seventeen-bone humans.
+- [ ] H-02 / Open / RW-035, RW-036, RW-014 / Review the recovered procedural land/swim motion on the retained seventeen-bone characters, then complete general weapon/hand/traversal contacts.
   Acceptance: Before/after motion review, no collar/cuff gaps, no animation authority over collision, and no broken reload/craft/heal or dive/surface transitions.
 
 - [ ] H-03 / Open / RW-044, RW-045, RW-046, RW-048 / Review and improve water/combat Foley, room acoustics, score transitions and dramatic silence.
@@ -139,6 +139,7 @@ Gate: A 15-20 minute Floodgate slice passes an art review and a recorded, indepe
   Dependencies: RW-010.
   Evidence: Not recorded yet.
 
+  Continuation: Old PR165 Firebreak was not shipped; its east-door/task patch conflicts with the later released Freight Cut and is discarded in this reconciliation. Preserve the original living-route failures and refine the current quay recovery instead.
 - [ ] RW-013 / P1 / Environmental story beat / Implemented
   Owner role: Narrative design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: An original scene communicates who lived here and why the player should care, using space and interaction rather than a text dump.
@@ -306,28 +307,28 @@ Gate: Camera-matched art reviews approve the hero, enemies, animation, architect
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Build an original coherent hero mesh with clothing layers, facial detail, UVs and LODs; compare against the current procedural rig.
   Dependencies: RW-033.
-  Evidence: RAINWORN.md.
+  Evidence: FREEFIELD.md.
 
-  Continuation: Imported CC0 Quaternius Standard face/hands/hair are fitted to the existing seventeen-bone rig and original clothing. The paid Source edition was not used; this is not a fully original final hero sculpt.
+  Continuation: Retained CC0 Quaternius full authored body/outfit surfaces use the existing seventeen-bone rig, face/skin textures and original backpack. The paid Source edition was not used; this is not a fully original final hero sculpt.
   Next action: Keep license/hash provenance, collars/cuffs, independent skeletons, attachment fit, fallback and distance-detail tests during character upgrades.
 
 - [ ] RW-035 / P1 / Authored locomotion and action clips / Planned
   Owner role: Animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Approve walk, run, crouch, crawl, turn, aim, reload, strike, stagger, vault, heal and craft transitions without visible snapping.
   Dependencies: RW-034.
-  Evidence: FREEFIELD.md.
+  Evidence: MERGE-RECONCILIATION.md.
 
-  Continuation: Authored body surfaces and high-speed gait adjustments do not constitute a complete authored action-clip set.
-  Next action: Author and review land/water transitions with before/after captures.
+  Continuation: Missing Grounded procedural land/swim and contact work selectively recovered through the existing adapter. Current geometry/materials and game state are unchanged. Complete authored clips, general hand contacts, arbitrary stairs and physical/art review remain open.
+  Next action: Inspect seated/standing Quest and screen-play motion, sharp turns, water entry/exit, 9-14 m/s running and reload/craft/heal; then address remaining hand/traversal contacts without changing collision.
 
 - [ ] RW-036 / P1 / Foot placement and hand contacts / Planned
   Owner role: Technical animation. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Feet follow slopes and stairs; hands align to weapons and traversal contacts; solve IK failures without destabilizing gameplay.
   Dependencies: RW-035.
-  Evidence: FREEFIELD.md.
+  Evidence: MERGE-RECONCILIATION.md.
 
-  Continuation: Bounded visual two-bone foot placement and planting are implemented. Hand contacts and full action coverage remain unfinished.
-  Next action: Review slopes, stops and turns on actual models, then add weapon grips without changing collision.
+  Continuation: Missing Grounded procedural land/swim and contact work selectively recovered through the existing adapter. Current geometry/materials and game state are unchanged. Complete authored clips, general hand contacts, arbitrary stairs and physical/art review remain open.
+  Next action: Inspect seated/standing Quest and screen-play motion, sharp turns, water entry/exit, 9-14 m/s running and reload/craft/heal; then address remaining hand/traversal contacts without changing collision.
 
 - [ ] RW-037 / P1 / Enemy silhouettes and reactions / Planned
   Owner role: Character art. Assigned reviewer: Unassigned. Effort: Unestimated.
