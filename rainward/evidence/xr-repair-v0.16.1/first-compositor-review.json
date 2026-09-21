@@ -1,0 +1,14 @@
+{
+  "kind": "Retained failed native journey and image-review correction, not release acceptance",
+  "tested_checkout": "a4ae2aae3f4237261e3b7af4166150c87c3fa43e",
+  "run": 35406191050,
+  "job": 105796598349,
+  "artifact": 10573016993,
+  "archive_sha256": "cc0ea5b46b2bd8b26de48a76b53a82d787fbe424c80a79b6358649a709f82db2",
+  "checks_passed_before_failure": 12,
+  "observed": "Both real base-layer framebuffer eye captures contained the scene. Hold-B opened the menu, the level gun pointed forward despite the 65-degree grip offset, finite shots began at its muzzle, B tapped reload and the acquired clue appeared in full. The journey then died to a pursuing guard before finishing the wheels. No captured JavaScript or console error occurred.",
+  "failure_position": {"x":-29.07492527181115,"z":-5.839643543891582,"health":0},
+  "image_review": "The full reading panel was present but its text was too small relative to the available surface. Increase acquired-document font from 23 to 32 pixels, wrap at 46 characters with 13 lines per page, and hide the redundant wrist badge while reading. Retain every source word.",
+  "driver_review": "The initial 9m/s stick driver used a minimum command near each path node and visibly oscillated at turns. Use proportional braking and inverse deadzone mapping through the same real controller axes. The driver may point and fire the ordinary finite weapon at a visible pursuing enemy instead of ignoring attacks while working the puzzle. No enemy stats, health, damage, ammo, clock or puzzle state are assigned or weakened.",
+  "scope": "Actual HTTP/WebGL game and external framebuffer with artificial XR poses. Partial successes do not convert a failed journey into acceptance. Physical Quest retesting remains required."
+}

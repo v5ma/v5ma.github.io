@@ -1,3 +1,9 @@
+# Current repair / Rainward v0.16.1
+
+Read XR-REPAIR.md and XR-REPAIR-HANDOFF.md. Hold B opens the default Quest menu; short B reloads on release, and R3 remains a recovery control. Acquired clues now appear as full readable spatial text. Mechanical weapon, safe muzzle and scope share the pointing axis; scopes reset between scenes. First-person AR and portals use one compositor draw. Fast land running is the default in Free Stride. Existing saved remaps, legacy choices and checkpoints are preserved. Physical Quest feedback remains distinct from synthetic device acceptance. The release PR and public-byte receipt establish delivery, not this header alone.
+
+The earlier sections below are retained history, not current publication status.
+
 # Freefield continuation / current candidate
 
 Public baseline remains verified Freight Cut 0.15.0 until the Freefield PR and a served-byte receipt establish publication. Freefield source is saved on feat/rainward-freefield-20260917; do not restart from an uncommitted local sketch or repeat prior claims of unavailable local work.

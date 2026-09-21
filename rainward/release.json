@@ -1,15 +1,16 @@
 {
-  "version": "0.16.0",
-  "build": "rainward-freefield-20260917",
+  "version": "0.16.1",
+  "build": "rainward-xr-repair-20260918",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
   "changes": [
-    "Replace cropped miniatures with character-centered perspective portals and add first-person AR waist cutaway",
-    "Hide the full XR field menu in ordinary play; offer direct Quest actions and separately saved Quest/Xbox remaps",
-    "Add optional clear-ground blink, faster continuous running, quieter player Foley and a sparse original score",
-    "Reshape Meridian around a sunken drain, raised clinic courtyard, reading ridge and distinct footprints",
-    "Retain authored body surfaces and face treatment; add bounded visual foot contacts and local licensed weapons",
-    "Preserve seven chapter identities, stable objectives, rewards, shelters, old checkpoints and optional legacy settings"
+    "Add reserved hold-B menu recovery and a brief entry reminder without restoring a pinned gameplay menu",
+    "Display acquired puzzle text and field-note bodies in a dismissible spatial reading panel; show action feedback in view",
+    "Align mechanical pistol/rifle silhouettes, tracked safe muzzle, shots and scope to the same pointing direction",
+    "Reset scope timing on chapter/retry changes and preserve compositor/camera state",
+    "Render first-person AR and world portals in a single compositor scene pass; preserve centered perspective depth",
+    "Make fast no-fatigue land running the default with separate saved walking and legacy alternatives",
+    "Preserve seven chapters, existing IDs, rewards, checkpoints, remaps, licenses and concurrent sibling work"
   ]
 }

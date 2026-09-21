@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.16.0 / Freefield.
+Release baseline: v0.16.1 / XR Repair.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
@@ -194,7 +194,10 @@ Gate: Melee, ranged, evasion, detection and resource economies hold up across re
   Owner role: Combat design. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Tune aim speed, recoil, spread, reticle and reload poses on controller; validate sidearm and rifle as distinct choices.
   Dependencies: RW-006, RW-019.
-  Evidence: Not recorded yet.
+  Evidence: XR-REPAIR.md.
+
+  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
+  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
 
 - [ ] RW-021 / P1 / Patrol communication and search variety / Planned
   Owner role: AI design. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -429,19 +432,19 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Owner role: Accessibility engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Offer remapping, conflict resolution, hold/toggle alternatives and readable per-device prompts; test every resulting action path.
   Dependencies: RW-017.
-  Evidence: FREEFIELD.md.
+  Evidence: XR-REPAIR.md.
 
-  Continuation: Saved gameplay remaps and reserved menu recovery controls are implemented. Exhaustive combinations and accessibility hold alternatives remain open.
-  Next action: Test non-default remaps in native journeys and refine per-action prompts.
+  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
+  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
 
 - [ ] RW-050 / P1 / Caption and interface readability / Planned
   Owner role: UI accessibility. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.
   Dependencies: RW-047.
-  Evidence: Not recorded yet.
+  Evidence: XR-REPAIR.md.
 
-  Continuation: Water HUD currently says B DIVE, while the documented Survival gesture is hold B. The desired wording fix is not included in this documentation change.
-  Next action: Make prompts preset-aware, test readability while oxygen is low, and keep color-independent cues.
+  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
+  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
 
 - [ ] RW-051 / P1 / Reduced motion and adjustable HUD / Implemented
   Owner role: UI engineering. Assigned reviewer: Unassigned. Effort: Unestimated.
@@ -480,7 +483,10 @@ Gate: The agreed hardware matrix meets its frame-time, memory, readability and a
   Owner role: Compatibility QA. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Run agreed browser/OS/controller combinations, phones and focus-loss scenarios; scope VR separately from desktop certification.
   Dependencies: RW-006, RW-052.
-  Evidence: Not recorded yet.
+  Evidence: XR-REPAIR.md.
+
+  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
+  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
 
 ## G7 / Release and production
 
@@ -537,10 +543,10 @@ Gate: Release blockers are closed, rights are documented, saves migrate, and a r
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.
   Acceptance: Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.
   Dependencies: RW-057.
-  Evidence: FREEFIELD.md.
+  Evidence: XR-REPAIR.md.
 
-  Continuation: Four XR views share one game. Portals center the survivor, first-person AR cuts environment at the waist, and panels are on demand.
-  Next action: Run physical Quest controllers/hands, permissions, sight, low air, saves, comfort and performance.
+  Continuation: Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.
+  Next action: Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps.
 
 - [ ] RW-064 / P0 / Release candidate approval / Blocked
   Owner role: Game direction. Assigned reviewer: Unassigned. Effort: Unestimated.

@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "game": "Rainward",
-  "release": "0.16.0",
-  "edition": "Freefield",
+  "release": "0.16.1",
+  "edition": "XR Repair",
   "baseline": "ef91e3b057755b1564393430e8c5a6c64176e79c",
-  "updated": "2026-09-17",
+  "updated": "2026-09-18",
   "purpose": "A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.",
   "policy": "Canonical delivery statuses change only in a reviewed source commit. Browser checkmarks are local review notes, not proof of implementation. Proposed targets require owner approval. Preserve all seven chapters, saves, sibling applications and asset credits.",
   "statusDefinitions": {
@@ -65,6 +65,10 @@
     }
   ],
   "references": [
+    {
+      "title": "Quest feedback repair and compositor acceptance",
+      "url": "XR-REPAIR.md"
+    },
     {
       "title": "Freefield changes, evidence and limitations",
       "url": "FREEFIELD.md"
@@ -420,13 +424,15 @@
       "status": "Planned",
       "owner": "Combat design",
       "acceptance": "Tune aim speed, recoil, spread, reticle and reload poses on controller; validate sidearm and rifle as distinct choices.",
-      "evidence": "",
+      "evidence": "XR-REPAIR.md",
       "depends": [
         "RW-006",
         "RW-019"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
+      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
     },
     {
       "id": "RW-021",
@@ -884,14 +890,14 @@
       "status": "Planned",
       "owner": "Accessibility engineering",
       "acceptance": "Offer remapping, conflict resolution, hold/toggle alternatives and readable per-device prompts; test every resulting action path.",
-      "evidence": "FREEFIELD.md",
+      "evidence": "XR-REPAIR.md",
       "depends": [
         "RW-017"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Saved gameplay remaps and reserved menu recovery controls are implemented. Exhaustive combinations and accessibility hold alternatives remain open.",
-      "nextAction": "Test non-default remaps in native journeys and refine per-action prompts."
+      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
+      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
     },
     {
       "id": "RW-050",
@@ -901,14 +907,14 @@
       "status": "Planned",
       "owner": "UI accessibility",
       "acceptance": "Review text size, contrast, safe areas, caption direction, speaker identification and color-independent signals across target displays.",
-      "evidence": "",
+      "evidence": "XR-REPAIR.md",
       "depends": [
         "RW-047"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Water HUD currently says B DIVE, while the documented Survival gesture is hold B. The desired wording fix is not included in this documentation change.",
-      "nextAction": "Make prompts preset-aware, test readability while oxygen is low, and keep color-independent cues."
+      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
+      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
     },
     {
       "id": "RW-051",
@@ -993,13 +999,15 @@
       "status": "Planned",
       "owner": "Compatibility QA",
       "acceptance": "Run agreed browser/OS/controller combinations, phones and focus-loss scenarios; scope VR separately from desktop certification.",
-      "evidence": "",
+      "evidence": "XR-REPAIR.md",
       "depends": [
         "RW-006",
         "RW-052"
       ],
       "estimate": "Unestimated",
-      "reviewer": "Unassigned"
+      "reviewer": "Unassigned",
+      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
+      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
     },
     {
       "id": "RW-057",
@@ -1103,14 +1111,14 @@
       "status": "Implemented",
       "owner": "Game direction",
       "acceptance": "Decide separately whether full VR, native packaging or multiplayer serves the game; each needs its own cost, input and QA plan.",
-      "evidence": "FREEFIELD.md",
+      "evidence": "XR-REPAIR.md",
       "depends": [
         "RW-057"
       ],
       "estimate": "Unestimated",
       "reviewer": "Unassigned",
-      "resumeNote": "Four XR views share one game. Portals center the survivor, first-person AR cuts environment at the waist, and panels are on demand.",
-      "nextAction": "Run physical Quest controllers/hands, permissions, sight, low air, saves, comfort and performance."
+      "resumeNote": "Physical Quest feedback superseded the old mock-only assurance. The repair adds readable acquired text, discoverable menu recovery, aligned mechanical guns, per-scene scope refresh and external-layer rendering checks. Broader human/device criteria remain open.",
+      "nextAction": "Retest the four modes on the actual Quest with controllers and hands, including acquired clues, firing/aim alignment, chapter changes and preserved custom remaps."
     },
     {
       "id": "RW-064",
@@ -1287,6 +1295,15 @@
       "publicStatus": "Use the PR and served-file receipt; candidate tests alone are not delivery",
       "physicalQuest3": "Not tested",
       "scope": "Four XR views, centered portals, on-demand UI, direct/saved controls, Free Stride, blink, quiet audio, Meridian relief and partial foot contacts. Not all seven redesigned chapters or complete authored animation."
+    },
+    "xrRepair": {
+      "baseline": "Freefield 0.16.0 / PR183",
+      "sourceBranch": "fix/rainward-xr-recovery-20260918",
+      "evidence": "XR-REPAIR.md",
+      "status": "Implemented; final acceptance and publication require actual receipts",
+      "hardware": "User reported failures; physical retest remains required",
+      "software": "Separate pointing/grip frames and real external base/projection framebuffer attachments",
+      "preserved": "Original stable IDs, save schemas, rewards, geometry, enemies and legacy alternatives"
     }
   }
 }

@@ -16,6 +16,7 @@ with sync_playwright() as pw:
  def tap(i):frames(3);page.evaluate('(i)=>pulses=[i]',i);frames(3)
  def nav(id):
   for _ in range(130):
+   if page.evaluate('Rainward.mode')=='dead':raise AssertionError('Actor died during real controller navigation to '+id)
    if page.evaluate('document.activeElement.id')==id:return
    tap(13)
   raise AssertionError('No controller route to '+id)
@@ -42,12 +43,15 @@ with sync_playwright() as pw:
   go(0,-29);check(page.evaluate('Rainward.state.player.y< -2.3'),'Actual movement descends into the sunken drainage route')
   go(33,-24);use('Rainward.state.taken.has("library-cache")');go(42,-27);use('Rainward.state.objectives.crank');check(page.evaluate('Rainward.state.player.y>5.9'),'Actual movement climbs the reading-hall ridge to recover its original key')
   go(42,-15);use('Rainward.state.puzzle.solved');go(45,-12);use('Rainward.state.checkpoint==="meridian-library"');capture('03-reading-hall')
+  # A shelter saves progress but does not stop a pursuer. Leave the exposed
+  # reading-room fight before opening the vulnerable real-time satchel.
+  go(22,-26);go(0,-29)
   before_prepare=page.evaluate('({cloth:Rainward.state.player.cloth,canister:Rainward.state.player.canister,medkit:Rainward.state.player.medkit})');made=0
   while made<2 and page.evaluate('Rainward.state.player.cloth>0&&Rainward.state.player.canister>0&&Rainward.state.player.medkit<3'):
    craft();made+=1
   check(page.evaluate('Rainward.state.taken.has("library-cache")&&Rainward.state.player.medkit>0') and page.evaluate('Rainward.state.player.cloth')==before_prepare['cloth']-made and page.evaluate('Rainward.state.player.canister')==before_prepare['canister']-made,'Existing librarian supplies fund recovery with the original recipe cost and carrying limit')
   check(page.evaluate('Rainward.state.puzzle.wheels.join(",")==="2,0,1"'),'The original three-part pressure mechanism still opens the gate')
-  go(22,-26);go(0,-29);go(0,-50);go(0,-60);go(0,-72);use('Rainward.state.completedTasks.includes("meridian-signal")');go(0,-80);use('Rainward.mode==="won"');final=page.evaluate('Rainward.snapshot()')
+  go(0,-50);go(0,-60);go(0,-72);use('Rainward.state.completedTasks.includes("meridian-signal")');go(0,-80);use('Rainward.mode==="won"');final=page.evaluate('Rainward.snapshot()')
   check(final['objectives']=={'cell':True,'crank':True} and final['player']['hp']>0,'The real redesigned expedition reaches extraction with its original requirements')
   check(all(e['hp']>0 for e in final['enemies']) and final['stats']['shots']==0,'Faster movement and learned routes can finish without removing or killing enemies')
   page.screenshot(path=str(OUT/'04-extraction.png'));page.reload(wait_until='domcontentloaded');wait('window.Rainward');nav('continue');tap(0);wait('Rainward.mode==="play"');check(page.evaluate('Rainward.state.checkpoint==="meridian-library"&&Rainward.state.objectives.cell&&Rainward.state.objectives.crank&&Rainward.state.puzzle.solved'),'Browser reload restores the earned reading-hall shelter with unchanged checkpoint format')
