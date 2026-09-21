@@ -1,0 +1,77 @@
+name: Stage Prism Rotunda
+on:
+  pull_request:
+    paths: ['prism-current/**', '.github/prism-rotunda-*', '.github/workflows/prism-rotunda-stage.yml']
+permissions:
+  contents: write
+concurrency:
+  group: prism-rotunda-stage-${{ github.head_ref }}
+  cancel-in-progress: true
+jobs:
+  rotunda:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feat/prism-rotunda-v0110'
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          sparse-checkout: |
+            prism-current
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply exact nine-file Prism patch and run all model tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p test-output
+          git rev-parse HEAD > /tmp/rotunda-base
+          python .github/prism-rotunda-apply.py
+          python prism-current/tests/verify.py
+          node --test prism-current/tests/*.test.cjs | tee test-output/core.tap
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise actual scene controls and both complete chapters
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rotunda-http.log 2>&1 &
+          SERVER=$!
+          trap 'kill $SERVER' EXIT
+          timeout 660 python -u prism-current/tests/rotunda-browser.py
+      - name: Commit only the verified patch files to this feature branch
+        env:
+          TARGET: ${{ github.head_ref }}
+        run: |
+          test "$TARGET" = 'feat/prism-rotunda-v0110'
+          git fetch origin "$TARGET"
+          test "$(git rev-parse FETCH_HEAD)" = "$(cat /tmp/rotunda-base)"
+          python - <<'PY'
+          import json,subprocess
+          paths=json.load(open('/tmp/rotunda-paths.json'))
+          assert len(paths)<=9 and all(p.startswith('prism-current/') and '..' not in p.split('/') for p in paths)
+          changed=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert set(changed)==set(paths)
+          if paths:subprocess.run(['git','add','--',*paths],check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Apply exact Prism rotunda runtime after native scene-control acceptance'
+            git push origin "HEAD:refs/heads/$TARGET"
+          fi
+          git rev-parse HEAD > test-output/runtime-commit.txt
+      - if: always()
+        run: |
+          mkdir -p test-output
+          git rev-parse HEAD > test-output/checkout-commit.txt
+          git diff --stat > test-output/uncommitted.txt
+          tar czf test-output/source.tgz prism-current
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-rotunda-stage
+          path: test-output/
+          retention-days: 14

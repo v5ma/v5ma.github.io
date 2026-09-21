@@ -1,10 +1,10 @@
 {
-  "version": "0.10.1",
+  "version": "0.11.0",
   "name": "Prism Current",
-  "date": "2026-09-19",
+  "date": "2026-09-20",
   "engine": "A-Frame 1.8.0",
-  "edition": "River Prism",
-  "scope": "XR menu hotfix: native-shaped input source lists, rendered-panel UV picking and hover cursors, thumbstick/A-X selection, B-Y start/resume, native select events, and translated/yawed stage tests. Gameplay and save formats are unchanged.",
+  "edition": "River Prism / Rotunda",
+  "scope": "Prism-only in-scene adjustable pedestal menu, controller/floor score-health HUD, direct AR/VR/screen choices, saved AR water opacity, room-scale movement without arbitrary position pauses, and paused-battle preservation across XR exit/re-entry. Source and public gates determine acceptance.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html"
