@@ -11,7 +11,7 @@ permissions:
   contents: read
 concurrency:
   group: sky-cycle-route-entry-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+  cancel-in-progress: true
 jobs:
   rules:
     runs-on: ubuntu-24.04

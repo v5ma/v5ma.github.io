@@ -36,7 +36,7 @@ export const DELIVERIES=Object.freeze([
  {id:'millworkers-arrival',tx:138,region:'Millworkers Court',role:'ordinary',intent:'An arrival delivery resets the rhythm after the express decision.'},
  {id:'millworkers-terrace',tx:157,region:'Millworkers Court',role:'control',intent:'A terraced delivery rewards braking and stable approach rather than maximum speed.'},
  {id:'gallery-gate',tx:176,region:'Waterwheel Galleries',role:'ordinary',intent:'A readable doorstep before the gallery encounter, not on its receiving deck.'},
- {id:'waterwheel-overlook',tx:206,region:'Waterwheel Galleries',role:'discovery',intent:'A landmark-facing delivery ties a road delivery to the waterwheel and upper route.'},
+ {id:'waterwheel-overlook',tx:206,region:'Waterwheel Galleries',role:'discovery',intent:'A landmark-facing delivery ties the waterwheel to the road journey and upper route.'},
  {id:'wheelhouse-finale',tx:238,region:'Wheelhouse Depot',role:'finale',intent:'A final optional doorstep after the last encounter and before the depot flags.'}
 ].map(Object.freeze));
 function curve(points,a,b,c,d,n=64){for(let i=points.length?1:0;i<=n;i++){const t=i/n,u=1-t;points.push([u*u*u*a[0]+3*u*u*t*b[0]+3*u*t*t*c[0]+t*t*t*d[0],u*u*u*a[1]+3*u*u*t*b[1]+3*u*t*t*c[1]+t*t*t*d[1]]);}}
