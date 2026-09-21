@@ -1,0 +1,56 @@
+name: Guild compositor and full-game release
+on:
+  push:
+    branches: [master, 'guild/live-playtest-20260920']
+    paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
+  pull_request:
+    paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
+permissions:
+  contents: read
+concurrency:
+  group: guild-compositor-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compositor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        attachment: [framebuffer, projection]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm --prefix leonardos-guild test
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise real compositor paths
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-http.log 2>&1 &
+          trap 'kill $!' EXIT
+          python -u leonardos-guild/tests/compositor-browser.py
+      - name: Record exact source and retain failures
+        if: always()
+        env:
+          ATTACHMENT: ${{ matrix.attachment }}
+        run: |
+          python - <<'PY'
+          import pathlib,json,hashlib,subprocess,os
+          out=pathlib.Path('leonardos-guild/compositor-'+os.environ['ATTACHMENT']+'-output');out.mkdir(exist_ok=True)
+          files=subprocess.check_output(['git','ls-files','leonardos-guild'],text=True).splitlines()
+          (out/'source.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'hashes':{f:hashlib.sha256(pathlib.Path(f).read_bytes()).hexdigest() for f in files}},indent=2))
+          diff=subprocess.check_output(['git','diff','--stat'],text=True);(out/'source-diff.txt').write_text(diff);assert not diff
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-compositor-${{ matrix.attachment }}
+          path: leonardos-guild/compositor-${{ matrix.attachment }}-output/
+          retention-days: 14
