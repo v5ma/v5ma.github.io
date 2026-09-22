@@ -1,0 +1,96 @@
+TAP version 13
+# Subtest: Origin preserves the user fictional Singularity and fossil-fit premise without ancient-blood cloning
+ok 1 - Origin preserves the user fictional Singularity and fossil-fit premise without ancient-blood cloning
+  ---
+  duration_ms: 0.874534
+  type: 'test'
+  ...
+# Subtest: Only the actual current ordered interaction progresses the opening chapter
+ok 2 - Only the actual current ordered interaction progresses the opening chapter
+  ---
+  duration_ms: 1.170699
+  type: 'test'
+  ...
+# Subtest: Remote, elevated, moving, wrong-mode and occluded interactions do not complete tasks
+ok 3 - Remote, elevated, moving, wrong-mode and occluded interactions do not complete tasks
+  ---
+  duration_ms: 0.274792
+  type: 'test'
+  ...
+# Subtest: A real visible animal is necessary for the observation and no tool hit is required
+ok 4 - A real visible animal is necessary for the observation and no tool hit is required
+  ---
+  duration_ms: 0.151107
+  type: 'test'
+  ...
+# Subtest: Chapter has no progress or open-gate side effects until explicitly selected
+ok 5 - Chapter has no progress or open-gate side effects until explicitly selected
+  ---
+  duration_ms: 0.101873
+  type: 'test'
+  ...
+# Subtest: Restore is durable through suspension and reload, without paying any legacy reward
+ok 6 - Restore is durable through suspension and reload, without paying any legacy reward
+  ---
+  duration_ms: 0.383447
+  type: 'test'
+  ...
+# Subtest: Future save version is not overwritten; blocked storage fails explicitly
+ok 7 - Future save version is not overwritten; blocked storage fails explicitly
+  ---
+  duration_ms: 0.269064
+  type: 'test'
+  ...
+# Subtest: Malformed saved data is bounded and completion cannot become armed again
+ok 8 - Malformed saved data is bounded and completion cannot become armed again
+  ---
+  duration_ms: 0.15291
+  type: 'test'
+  ...
+# Subtest: Every completed field event has replayable authored dialogue and a reachable named next goal
+ok 9 - Every completed field event has replayable authored dialogue and a reachable named next goal
+  ---
+  duration_ms: 0.316665
+  type: 'test'
+  ...
+# Subtest: Main entry versions the actual boot module and preserves the regular XR entries
+ok 10 - Main entry versions the actual boot module and preserves the regular XR entries
+  ---
+  duration_ms: 0.683377
+  type: 'test'
+  ...
+# Subtest: Story uses existing interactions, shared spatial menus and an inclusive gate rule, not a replacement simulation
+ok 11 - Story uses existing interactions, shared spatial menus and an inclusive gate rule, not a replacement simulation
+  ---
+  duration_ms: 0.537687
+  type: 'test'
+  ...
+# using deprecated parameters for the initialization function; pass a single object instead
+# Subtest: Opening chapter walks its existing roads and restored real gate without teleport or collider removal
+not ok 12 - Opening chapter walks its existing roads and restored real gate without teleport or collider removal
+  ---
+  duration_ms: 2909.513458
+  type: 'test'
+  location: '/mnt/data/dino-living-reserve/src/dino-atlas/tests/living-reserve-route.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: 'Blocked approach to 18,18 from {"x":9.624899864196777,"y":0.9088965654373169,"z":19.51870346069336}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'fail'
+  stack: |-
+    walk (file:///mnt/data/dino-living-reserve/src/dino-atlas/tests/living-reserve-route.test.mjs:18:216)
+    TestContext.<anonymous> (file:///mnt/data/dino-living-reserve/src/dino-atlas/tests/living-reserve-route.test.mjs:21:122)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 11
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3088.020248

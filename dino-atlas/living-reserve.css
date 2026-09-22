@@ -1,0 +1,5 @@
+/* Readable DOM fallback; the existing spatial console renders these same controls in XR. */
+.living-dialog{background:#142e29;color:#fff2d4;border:2px solid #d9bb79;border-radius:12px;max-width:690px;width:88vw;max-height:84vh;padding:22px;overflow:auto}
+.living-dialog p{font-size:17px;line-height:1.65;max-width:62ch}.living-dialog button{padding:12px 18px;margin:6px 8px 6px 0;white-space:normal}
+.living-dialog .fine-print{font-size:13px;color:#d4d8c4}.living-dialog .entry-list button{display:block;width:100%;text-align:left}
+.living-play{display:block;margin-top:10px;background:#e1bd76!important;color:#142e29!important;min-height:48px}

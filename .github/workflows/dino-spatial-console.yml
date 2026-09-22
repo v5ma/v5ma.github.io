@@ -42,7 +42,7 @@ jobs:
           import hashlib,json,subprocess
           paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
           files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/','dino-atlas/scripts/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
-          m={'build':'ranger-field-clarity-20260922.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
+          m={'build':'living-reserve-20260922.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
           Path('spatial-evidence/manifest.json').write_text(json.dumps(m,indent=2))
           PY
       - uses: actions/upload-artifact@v4
@@ -120,9 +120,33 @@ jobs:
             xr-entry-evidence/
             dino-atlas/verification/grounded-xr/
           retention-days: 30
+  story:
+    needs: model
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.model.outputs.source }}
+          persist-credentials: false
+          sparse-checkout: dino-atlas
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Play First Light with real movement, dialogue and saved return
+        run: |
+          python dino-atlas/tests/living-reserve-browser.py
+          LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dino-spatial-story-${{ github.run_id }}
+          path: living-evidence/
+          retention-days: 30
   published:
-    needs: [model, browser, entry]
-    if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success'
+    needs: [model, browser, entry, story]
+    if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success' && needs.story.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
@@ -167,6 +191,8 @@ jobs:
         env:
           DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
         run: |
+          python dino-atlas/tests/living-reserve-browser.py
+          LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
           SPATIAL_SCENE=classic python dino-atlas/tests/field-feedback-browser.py
           SPATIAL_SCENE=tidegate python dino-atlas/tests/field-feedback-browser.py
           SPATIAL_SCENE=classic python dino-atlas/tests/spatial-console-browser.py
@@ -177,6 +203,7 @@ jobs:
         with:
           name: dino-spatial-published-${{ github.run_id }}
           path: |
+            living-evidence/
             feedback-evidence/
             spatial-evidence/
             portal-evidence/
@@ -201,7 +228,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view dino-field-clarity-20260922.1 >/dev/null 2>&1; then
+          if ! gh release view dino-living-reserve-20260922.1 >/dev/null 2>&1; then
             tar -czf dino-spatial-console-evidence.tgz -C evidence .
-            gh release create dino-field-clarity-20260922.1 --target '${{ github.sha }}' --title 'Dino Atlas: live floor map, interaction feedback and tall diorama' --prerelease --notes-file dino-atlas/FIELD-CLARITY.md dino-spatial-console-evidence.tgz
+            gh release create dino-living-reserve-20260922.1 --target '${{ github.sha }}' --title 'Dino Atlas: The Living Reserve / First Light' --prerelease --notes-file dino-atlas/LIVING-RESERVE.md dino-spatial-console-evidence.tgz
           fi
