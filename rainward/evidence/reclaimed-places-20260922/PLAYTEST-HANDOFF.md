@@ -1,31 +1,37 @@
-# Reclaimed Places playtest continuation
+# Reclaimed Places playtest continuation / completed delivery
 
-This is a notes-only checkpoint for the owner's request to save progress during work. It changes no runtime or test. Continue from FUTURE-DIRECTION.md and DEVELOPMENT-HANDOFF.md in the Rainward directory, then read this record and any newer adjacent receipt.
+The owner requested continual GitHub notes so another chat can resume. Read ../../FUTURE-DIRECTION.md, ../../DEVELOPMENT-HANDOFF.md and playtest-verification.json beside this file. This notes-only update does not alter the verified runtime.
 
-## Actual committed source
+## Actual source
 
-The level-content source is a1b74d4174e94a169925366790b99d3476961eef, with the visual plaque correction at 953a187e2d1c97c0e88823cd4963e73bcfb59c22. The new title/journal usability follow-up is e361025f37bc19e836ee18328cb9da239d361f32, successfully fast-forwarded to master. Its build is rainward-reclaimed-places-playtest-20260922 and version remains 0.16.4.
+The level-content commit is a1b74d4174e94a169925366790b99d3476961eef. The plaque correction is 953a187e2d1c97c0e88823cd4963e73bcfb59c22. The title/journal follow-up and verified playable source is e361025f37bc19e836ee18328cb9da239d361f32, build rainward-reclaimed-places-playtest-20260922, version 0.16.4.
 
-The previous candidate ca8c4ad3634c963aecd2c05615a57f0493712488 was NOT placed on master: the non-forced write correctly rejected concurrent sibling work. The successful e361025 was rebuilt on 5b6c50b8ec001fe2ffeef6c40a001ef1c41ad175, preserving that work. Do not use an unpublished candidate as the release reference.
+The earlier candidate ca8c4ad3634c963aecd2c05615a57f0493712488 was rejected by the non-forced ref update because sibling work had advanced. It was not published. The successful source was rebuilt on current master, preserving that work. The much earlier 888ee08-prefixed commit reported in chat was invalid and was never created. Repository reads and actual receipts, not those chat claims, are authoritative.
 
-The new runtime paths are place-briefing.mjs and field-journal.mjs. They highlight the two upgraded chapters in the existing selector and show real route prerequisites/open states in the existing journal. Full task completion hints remain readable. Start, Continue, seven choices, saves, task rewards, geometry, enemies, controls, character/animation assets and XR modules are unchanged by this follow-up. The handoff, release metadata, six new unit checks and additional assertions in the existing places-browser.py accompany it.
+The new place-briefing.mjs and edited field-journal.mjs identify the two upgraded expeditions in the existing selector and show actual route prerequisites/open states in the existing journal. Full completion hints remain readable. Start, Continue, all seven choices, saves, rewards, geometry, enemies, controls, character/animation assets and XR modules are unchanged by this follow-up. Its six new unit checks and additional native title/journal assertions preserve the preceding mission criteria.
 
-## Verification checkpoint
+## Completed evidence
 
-The local complete model/source suite passed 469 tests with no failures. Log SHA-256: d43877fa6c0cbb907da89a8985d2d243e4920aa0e2a318e8e38ddb804accac8e. A second local full run also passed. All six continuous model missions reached extraction with finite earned supplies, every original enemy alive and zero shots. These are model results, not native browser or physical-device evidence.
+The local suite passed 469 tests twice, and the exact-source hosted suite also passed 469 with no failed/skipped checks. Six continuous model missions reach extraction using finite earned supplies and synthetic steering. These are not native or hardware evidence.
 
-Exact-source hosted checks have been created for e361025. The Field Desk, motion and two ordinary-input mission workflow is 35786158152. The compositor workflow is 35786158144. The public-file verifier is 35786158103. The associated Pages deployment is 35786153908. At this checkpoint they remain queued; no new native or live-delivery success is claimed. Read their actual results, artifact source hashes and failures before changing that statement.
+Both actual browser missions independently completed the two upgraded expeditions from normal Start through extraction and checkpoint reload. Floodgate passed 15 checks with health 61, five living enemies and no shots/takedowns. Terminus passed 19 checks with health 53, four living enemies and no shots/takedowns. Their captured script, graphics and dialog error lists are empty. Artifact archives and exact source were downloaded and checked locally. The scripted input uses the supported Classic/legacy movement option; it is not a claim of physical Xbox or all-preset acceptance.
 
-The local blank-page WebGL2 probe was unavailable. An isolated local HTTP DOM component check also stopped before loading with ERR_BLOCKED_BY_ADMINISTRATOR. No browser-policy workaround was attempted and no local rendered-image acceptance is claimed. The established authorized GitHub browser workflow is a separate environment.
+The Field Desk controller journeys passed in first-person VR, first-person AR, diorama VR and diorama AR. The AR-hand journey's browser step also passed. The retained-body motion fixture passed. The separate extended compositor workflow 35786158144 is not confirmed complete here. Physical devices, real passthrough, human comprehension and sustained target-hardware performance remain unapproved.
 
-Retain the earlier 953a187 district failure (run 35777699937, job 106915697248, artifact 10717710388): the synthetic no-kill route died in the existing freight aisle with one smoke unused and no medkits. The same source's Terminus mission, five XR Field Desk input/view journeys and motion benchmark passed. Do not manufacture a district pass by changing health, enemies, resources or the simulation clock. The original a1b74d4 missions passed both chapters, but that does not certify a later repeat.
+Publication workflow 35786158103 attempt 3, job 106949890366 passed. Downloaded artifact 10720144019 has SHA-256 c2ff41821845b41a404b53dad91ef91982efe9d6728192f49d354249f9ed7334. Local inspection confirmed all 190 expected paths returned HTTP 200 and matched their e361025 source hashes. The raw receipt SHA-256 is bd5799c8650a54aef671a6c135f6187ad3baca1708879da4512148f5a405ea72, and source manifest SHA-256 is a8a673481d3f7c5559e7081ebce5d79c3909fd75dae52c985aef5be33b4938d4. The two previous attempts found five stale/missing files while Pages jobs were cancelled or queued. Those failures remain recorded. Successful delivery is supported by actual public-file comparison, not a queued or cancelled deployment label.
 
-The earlier publication run 35777700002 initially failed because reclaimed-places-art.mjs was stale; its other checked bytes matched. A targeted retry was requested before e361025 was committed. Do not substitute that older-source receipt for the new build.
+The owner-requested design log was saved before editing in 741a969, and the pending-work checkpoint was saved in 67eff167 before the browser/public results. This final notes update follows successful runtime delivery; its own later documentation is not retroactively included in the old 190-file comparison.
 
-## Next design work
+## Failures and observation limits
 
-Finish publication and inspect the two exact-source mission results first. Observe whether players find the pump-room exits, recognize the dispatch shortcut and understand that pursuers can use opened doors. Keep the approach, observation, commitment, recovery and return sequence readable without adding compulsory menus.
+Retain the 953a187 district failure in run 35777699937, job 106915697248, artifact 10717710388. The original no-kill route died in the old freight aisle with one unused smoke and no medkits. The later e361025 pass used the same mission criteria and route strategy; no health, enemy, inventory or clock assignment manufactured a pass. One successful replay is not proof that the encounter is always safe.
 
-For the next Conservatory pass, inspect conservatory.mjs and the existing archive-pages and garden-seeds tasks rather than recreating them. Arrival and sanctuary height changes, archive/glasshouse lanes, physical sluice gate and shallow pools already exist. Current water depths are only 0.22 to 0.32 metres: do not silently turn existing saved routes into swim-required geometry. A new maintenance/observation loop should trade useful information or shelter for exposure, preserve the lens/core and wheel puzzle, and keep both optional task rewards idempotent. This is a proposed next slice, not an implemented change.
+Local WebGL2 was unavailable, and a local HTTP component check was blocked by administrator before loading. No policy workaround was attempted. Credit hosted native tests separately. Inspected hosted screenshots show the title, pump room and station exit. The journal screenshot is at the top of its scroll area, not proof that every new route paragraph fits on one screen. Low-graphics captures use the procedural human fallback, not a new character-art approval.
 
-Physical Quest/Xbox testing, unfamiliar-player comprehension, sustained hardware performance, additional weapons, richer enemy tactics, original Foley upgrades and full seven-chapter redesign remain open. Save actual completed results in a new adjacent receipt and update this checkpoint before ending the development session.
+## Next design slice
+
+First review actual first-time/repeat player choices, route-journal scrolling and existing guidance clipping in tight rooms. The question is whether people understand the pump-room alternatives, notice the dispatch escape and remember that enemies can follow.
+
+Then inspect conservatory.mjs and its archive-pages and garden-seeds tasks. Arrival/sanctuary height changes, archive/glasshouse lanes, physical sluice gate and shallow pools already exist. Current depths are only 0.22 to 0.32 metres. Design one maintenance/observation return loop that changes information or shelter, not a random extra room, and do not make saved walkable routes suddenly require swimming. Preserve the lens/core, wheel puzzle and optional one-time rewards.
+
+New weapons, expanded enemy tactics, original Foley/room acoustics, complete authored animation, arbitrary climbing and redesign of the other five chapters remain distinct unfinished roadmap work. Keep direct-master scoped commits, no force pushes, no unnecessary branches/workflows, no storage clearing and no sibling edits. Update the running notes at each meaningful checkpoint.
