@@ -1,0 +1,49 @@
+{
+  "project": "leonardos-guild",
+  "build": "guild-vr-startup-20260921",
+  "version": "0.14.0",
+  "source_commit": "c1316b45bad303edd9b18dfc99d85ee5fe459878",
+  "game_tree": "e2c685cd37ece01f8760f737b712b74ae07b7feb",
+  "game_url": "https://v5ma.github.io/leonardos-guild/",
+  "user_report": "Started VR mode and froze. Exact played build, first-person versus diorama and whether head tracking continued are not established.",
+  "source_reproductions": [
+    "Original context-loss handler leaves its blocking failure screen active after synthetic restoration.",
+    "Actual XR adapter had no deadline while waiting for the initial reference-space request.",
+    "Actual XR adapter had no deadline while waiting for renderer initialization."
+  ],
+  "local_tests": {"passed":427,"failed":0,"design_passed":14,"design_failed":0,"new_regressions":15},
+  "physical_quest_verified": false,
+  "local_native_browser": "Navigation refused with ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass.",
+  "pages": {"run_id":35692454412,"build":"success","deploy":"success","report_build_status":"success"},
+  "public_runtime": {
+    "run_id":35692455515,
+    "artifact_id":10679522078,
+    "artifact_sha256":"36f34322108d20e62141fe1f15bf49eea20431542b7fc5697588dab0696b7be5",
+    "files":92,
+    "all_match":true,
+    "downloaded_and_independently_checked":true,
+    "local_runtime_hash_differences":0
+  },
+  "full_publication": {
+    "run_id":35692455496,
+    "artifact_id":10678937658,
+    "artifact_sha256":"42fa55a845409577bc3ecdd2b5e22a4f4195659b627240b96f8918d4502c2a50",
+    "files":294,
+    "all_match":true,
+    "models":32,
+    "audio_files":50,
+    "music_tracks":5,
+    "homepage_status":200,
+    "homepage_game_link_present":true,
+    "downloaded_and_independently_checked":true
+  },
+  "native_verification": {
+    "run_id":35692455515,
+    "startup_framebuffer":"in_progress_at_receipt",
+    "startup_projection":"in_progress_at_receipt",
+    "full_vinci_and_public_journeys":"in_progress_at_receipt",
+    "evidence_class":"Real WebGL context loss/restoration and eye textures, with synthetic XR poses, controls and initialization timing. Not physical Quest."
+  },
+  "scope":"Direct master writes to Leo's Guild and its existing dedicated verifier. No PR, branch, new workflow, shared publisher change or sibling-runtime edit.",
+  "limits":"Publication identity is verified, not the user's exact physical freeze. Hard GPU/browser hangs, headset comfort, sustained performance, end-to-end hardware controls and physical re-entry remain open. This receipt does not mark running tests as passed."
+}
