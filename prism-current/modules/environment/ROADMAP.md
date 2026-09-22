@@ -1,31 +1,29 @@
-# Currentworks multi-pass plan
+# Currentworks continuation / three module foundations saved
 
-The user authorized five or more iterative passes and asked for periodic durable checkpoints. This is a continuation plan, not scheduled background work. Save usable code directly to fresh master without a new PR/branch. Keep API, tests and scope near each implementation.
+The user authorized five or more iterative passes and periodic durable checkpoints. This is a continuation plan, not background work scheduled after the conversation. Save usable changes directly to fresh master without PRs or staging branches. Keep API, test results and scope beside the implementation.
 
-## First pass: reusable water and actual Prism integration
+## Pass 1: Water 0.1.0 implemented and integrated
 
-Water 0.1.0 supplies geometry, normal detail, authored depth color, Fresnel sky approximation, crest/shore/wake foam, splash rings, pausable clock, query, quality/opacity/quiet controls and ownership cleanup. The thin RiverArt integration reads actual boat positions and existing destruction events. It does not change actors, collisions, scoring, audio, controls or the Rotunda.
+Independent wave geometry/normals, procedural surface data, authored-depth shading, Fresnel sky approximation, crest/shore/wake foam, splashes, query, pausable time and cleanup are in water.js/water.mjs. The River adapter reads actual boat positions and destruction events without changing actors or scores. PUBLIC-PASS1.json retains the original live evidence and failures. Preserve AR opacity and quiet/quality controls.
 
-The recovery checkpoint preserved water.js and water.mjs before any entry-point change. Subsequent checkpoints add documentation, tests and the adapter. Complete native and public verification, inspect actual screenshots and get owner Quest feedback before claiming device quality. Preserve the earlier shader-only evidence as separate evidence.
+## Pass 2: Fire 0.1.3 implemented and integrated
 
-## Second pass: separate fire module
+fire.js/fire.mjs support bursts, jets and impact volumes, smoke, embers, quality limits, deduplication and explicit ownership. Prism uses actual destruction bursts; do not add an unrequested flamethrower or imply cosmetic radius is blast damage. FIRE.md and PUBLIC-PASS2.json explain loading-time preparation, per-eye behavior, output-policy compatibility and prior accepted evidence.
 
-Implement Fire.create(THREE, options) with independently owned fixed pools. Support bounded burst, jet and surface-impact emitters, a hot core, turbulent three-dimensional flame, smoke fade and embers. Feed it only actual host events. Keep explosion decoration distinct from gameplay danger radius and never replace the saber lasers with an unrequested flamethrower weapon.
+## Pass 3: Trees 0.1.3 implemented and integrated
 
-Use explicit update, reset and dispose; quality/XR caps; pausable time; duplicate-event protection and reduced motion. Do not cover panels, pointers, health bars or enemy silhouettes. Test per-eye origins, inside/outside volume cameras, transformed parents, interrupted loading and cleanup. Scene-copy heat haze requires separate stereo/performance evidence.
+trees.js/trees.mjs create seeded palm/alder/willow skeletons, three prebuilt detail levels, actual leaf geometry, shared root-fixed wind and cleanup. Eight authored trees stay outside the action corridor. Screen/VR Duck Armada shows them; AR and Mothership hide them. TREES.md describes reuse. PUBLIC-PASS3.json records 151 passing public checks, 113 matching files and the separate source reliability failures/retry.
 
-## Third pass: trees and foliage
+EZ-Tree was researched, including its license, but no code or asset dependency was copied. Keep the small deliberate set and existing sightlines; do not turn the task into a large forest editor or another side demo.
 
-Create seeded trunk/branch/foliage geometry with a documented coordinate contract, stable identifiers, bounded LOD, host-driven wind and idempotent disposal. Research EZ-Tree but verify license and compatibility before any dependency adoption. Prefer independent presets that can be reused without the entire game.
+## Pass 4: next coherence and reliability work
 
-Place a small, deliberate riverbank set in Prism only. Keep targets and the river approach readable. Disable intrusive vegetation in AR and avoid shared-game rewrites. Do not build a new editor or side demo instead of improving the existing game.
+Reproduce the remaining source frame/input failures with settled target geometry, actual input-delivery history and draw timing. Separate a driver/test scheduling issue from a production defect before changing code. Preserve first-slice requirements, the 0.35-second stall safeguard and every scoring/health rule. A passing public run does not erase a source failure or the owner's physical feedback.
 
-## Fourth pass: coherence and interactions
+Then refine water, fire, smoke, tree colors and scene lighting together from owner playtests. Improve fuller but readable tree crowns, bark, shoreline transitions, wake appearance, irregular flame shapes and smoke breakup. Preserve the stationary XR camera, transparent AR and stable UI. Evaluate any larger mesh, weather, real reflections or heat-haze pass against measured cost before enabling it.
 
-Refine water, flame, smoke, tree colors and lighting together based on owner screenshots/playtest. Improve shoreline transitions, wakes and combustion shapes without inventing physics. Consider mesh patches, explicit scene reflections and weather only after measuring the present profile. Preserve transparent AR and stable UI.
+## Pass 5: measured polish
 
-## Fifth pass: measured validation and polish
+Repeat both battles and the full screen/AR/VR Rotunda journey: sound, placement, opacity, pause, exit/re-entry, input recovery and saves. Check allocation limits and disposal. Measure ordinary-resolution frame-time percentiles on named physical devices rather than only low-resolution software rendering. Ask whether effects improve the game instead of merely filling the view.
 
-Repeat both battles and the complete screen/AR/VR Rotunda journey, sound, placement, pause, exit/re-entry, input recovery and saved opacity. Check old saves, bounded allocations and disposal. Measure ordinary-resolution frame-time percentiles on named devices, not only low-resolution emulation. Gather owner judgments of readability and whether effects improve the game.
-
-Additional passes may be needed for actual defects, weak visuals or physical-device results. Do not predeclare all five passes sufficient. FFT ocean simulation, a WebGPU backend, full hand-only combat and new soundtracks are not secretly included.
+Extra passes may be necessary for actual defects, weak visuals or physical-device results. Five passes are not a guarantee. New gameplay scoring/color mechanics, full hand-only combat, new soundtracks, WebGPU and FFT fluid simulation remain distinct work unless explicitly selected. Never reset sibling games, expose private hub material or claim future checks have passed.

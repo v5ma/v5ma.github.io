@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "module": "Currentworks Trees",
+  "module_version": "0.1.3",
+  "host_version": "0.11.2",
+  "water_version": "0.1.0",
+  "fire_version": "0.1.3",
+  "verified_runtime_commit": "18d83fa4b5aa2f4115d6c602af2bf9a51c06896a",
+  "workflow_run": 35662908643,
+  "public_job_result": "success",
+  "public_files_checked": 113,
+  "public_files_match": true,
+  "public_artifact": {
+    "id": 10668297888,
+    "sha256": "311aea3f1e6d16eba20c2d9636bb13c7ef6dd33d251ff86bb30559a54f75b73b"
+  },
+  "source_first_attempt_artifact": {
+    "id": 10668296795,
+    "sha256": "7ae15137fc9d69890826f481b1277283b1b3eabd8b117699c3dedbd7bbaeefb0"
+  },
+  "source_retry_artifact": {
+    "id": 10671669543,
+    "sha256": "f908b9d8e53deaf42e9ffd010f33157151a376b5c6c326635dbbaa8bef945d23"
+  },
+  "public_suites": {
+    "trees": {"passed": 22, "errors": []},
+    "fire": {"passed": 24, "errors": []},
+    "water": {"passed": 13, "errors": []},
+    "interruption": {"passed": 19, "errors": []},
+    "rotunda": {"passed": 73, "errors": []}
+  },
+  "public_battles": {
+    "duck-armada": {"chapter": "duck-armada", "score": 15400, "combo": 5, "health": 100, "bossDefeated": true, "complete": true, "slices": 33, "shots": 254, "shotHits": 127, "blocks": 28, "reflects": 8, "dodges": 0, "misses": 41, "damage": 0, "bossDamage": 44},
+    "mothership": {"chapter": "mothership", "score": 21010, "combo": 9, "health": 100, "bossDefeated": true, "complete": true, "slices": 30, "shots": 338, "shotHits": 155, "blocks": 70, "reflects": 0, "dodges": 0, "misses": 30, "damage": 0, "bossDamage": 60}
+  },
+  "local_recovered_models": 306,
+  "local_models_with_module_index_tests": 309,
+  "real_three_object_checks": {"trees_and_preparation": 83, "fire": 64, "water": 37},
+  "runtime_sha256": {
+    "modules/environment/trees.js": "2782b0f5ab2ec456af93ac0d2e5e02e5fd4b2ffe2a0e5d98f6555f60952d4315",
+    "modules/environment/trees.mjs": "0788af34fc5d632a28676cf389568ddcc12b00ef66815bccfa9138465ac2cd86",
+    "river/bank-trees.js": "0bcb35f57750405642a3b857742498eeb2569a5dd62a22e6bceb00de56ec5139",
+    "index.html": "c9c942bc0cf1b61e52476ac41899943ad740f26d2979c3eba9e4fc8e9619dea1"
+  },
+  "public_visual_review": "Inspected actual 1440x1000 entry and separate near/light/quiet tree fixtures. Stylized sparse crowns, not photorealistic vegetation. These are not sustained-performance measurements.",
+  "preservation": {
+    "pass2_original_js_html_css_svg_compared": 43,
+    "changed_original_paths": ["prism-current/index.html"],
+    "all_other_compared_paths_byte_identical": true
+  },
+  "source_first_attempt": {
+    "result": "failure",
+    "models": "passed306",
+    "objects": "passed",
+    "trees": "Failed on rendering-stall pause at time21.17; instrumented gameplay renderer call470ms.",
+    "fire": "passed24",
+    "water": "Failed after rendering-stall pause at time21.19.",
+    "interruption": "passed19",
+    "rotunda": "Failed initial layout-transform assertion; no battle run in that suite.",
+    "captured_shader_script_errors": []
+  },
+  "source_retry": {
+    "result": "failure",
+    "job_id": 106573075692,
+    "runtime_and_tests_changed": false,
+    "models": "passed306",
+    "objects": {"trees": 83, "fire": 64, "water": 37},
+    "trees": "Failed waiting for slicing and fire together after rendering-stall pause at7.6395s. No >200ms gameplay renderer call captured;465.8ms loading call occurred before audio. Cause of the subsequent frame gap remains unresolved.",
+    "fire": "passed24",
+    "water": "passed13",
+    "interruption": "AR9 checks passed; VR startup stalled at0.1017s before its injected interruption journey.",
+    "rotunda": "passed73; both normal Arcade chapters completed.",
+    "captured_shader_script_errors": []
+  },
+  "source_retry_battles": {
+    "duck-armada": {"chapter": "duck-armada", "score": 15360, "combo": 4, "health": 100, "bossDefeated": true, "complete": true, "slices": 15, "shots": 240, "shotHits": 120, "blocks": 33, "reflects": 19, "dodges": 0, "misses": 59, "damage": 0, "bossDamage": 44},
+    "mothership": {"chapter": "mothership", "score": 20990, "combo": 9, "health": 100, "bossDefeated": true, "complete": true, "slices": 29, "shots": 324, "shotHits": 152, "blocks": 70, "reflects": 2, "dodges": 0, "misses": 31, "damage": 0, "bossDamage": 60}
+  },
+  "physical_device_test": false,
+  "all_ci_green_claimed": false,
+  "next_pass": "Refine visual coherence and instrument residual rendering/input failures before adding GPU cost. Do not rebuild completed modules or relax gameplay safeguards."
+}

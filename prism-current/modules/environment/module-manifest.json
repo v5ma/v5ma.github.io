@@ -2,12 +2,52 @@
   "schema": 1,
   "collection": "Currentworks environment modules",
   "modules": {
-    "water": {"status": "implemented-and-publicly-verified", "version": "0.1.0", "script": "water.js", "module": "water.mjs", "global": "SVGNWater", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false},
-    "fire": {"status": "implemented-and-publicly-verified", "version": "0.1.3", "script": "fire.js", "module": "fire.mjs", "global": "SVGNFire", "renderer": "caller-owned Three.js WebGL2", "testedThreeRevision": "184", "integration": "../../river/art.js", "ownsInput": false, "ownsStorage": false, "ownsRenderer": false, "preparation": "Await prepare(renderer,camera,scene) in cancellable loading before gameplay audio. A disposable loading target is used; none remains during gameplay.", "compatibility": "The output-policy warmup is pinned to Three r184; revalidate when upgrading or changing renderer/context."},
-    "trees": {"status": "planned-following-pass", "entry": null}
+    "water": {
+      "status": "implemented-and-publicly-verified",
+      "version": "0.1.0",
+      "script": "water.js",
+      "module": "water.mjs",
+      "global": "SVGNWater",
+      "renderer": "caller-owned Three.js WebGL2",
+      "testedThreeRevision": "184",
+      "integration": "../../river/art.js",
+      "ownsInput": false,
+      "ownsStorage": false,
+      "ownsRenderer": false
+    },
+    "fire": {
+      "status": "implemented-and-publicly-verified",
+      "version": "0.1.3",
+      "script": "fire.js",
+      "module": "fire.mjs",
+      "global": "SVGNFire",
+      "renderer": "caller-owned Three.js WebGL2",
+      "testedThreeRevision": "184",
+      "integration": "../../river/art.js",
+      "ownsInput": false,
+      "ownsStorage": false,
+      "ownsRenderer": false,
+      "preparation": "Await prepare(renderer,camera,scene) in cancellable loading before gameplay audio. A disposable loading target is used; none remains during gameplay.",
+      "compatibility": "The output-policy warmup is pinned to Three r184; revalidate when upgrading or changing renderer/context."
+    },
+    "trees": {
+      "status": "implemented-and-publicly-verified",
+      "version": "0.1.3",
+      "script": "trees.js",
+      "module": "trees.mjs",
+      "global": "SVGNTrees",
+      "renderer": "caller-owned Three.js WebGL2",
+      "testedThreeRevision": "184",
+      "integration": "../../river/bank-trees.js",
+      "ownsInput": false,
+      "ownsStorage": false,
+      "ownsRenderer": false,
+      "preparation": "Await prepare(renderer,camera,scene) in cancellable host loading. All prebuilt detail buffers are drawn in a disposable 24x24 target; no target survives gameplay.",
+      "compatibility": "Standard-material shader hooks and loading output policy are pinned to Three r184. Revalidate when changing renderer, context or shader chunks."
+    }
   },
-  "verified_runtime_commit": "783236d7bb4e229d8f9c3461f93070f519f90450",
-  "verification_receipt": "PUBLIC-PASS2.json",
+  "verified_runtime_commit": "18d83fa4b5aa2f4115d6c602af2bf9a51c06896a",
+  "verification_receipt": "PUBLIC-PASS3.json",
   "physical_device_approval": false,
-  "publication": "Source/public rendering passed for the exact recorded runtime. Documentation closeout does not change that runtime; future code changes require new evidence."
+  "publication": "All five native public suites passed for the named runtime. Separate source rendering failures remain documented in PUBLIC-PASS3.json; neither emulator nor publication is physical-device approval."
 }
