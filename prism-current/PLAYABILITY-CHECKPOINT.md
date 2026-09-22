@@ -1,0 +1,9 @@
+# Owner playtest response: readable health and four difficulty levels
+
+Baseline master 54f9f60b8e571f12074b699e07788c9d4cb99153. The owner found the current encounter too difficult, health unclear, aircraft missiles unintuitive, enemies too fast, and bosses present too early. The newest feedback supersedes the previous requirement to preserve that exact encounter pressure. Preserve graphics, input, soundtrack, old saved data and sibling games instead.
+
+First checkpoint: four immutable, tested profiles in river/difficulty.js. They are not loaded by the live game yet. Easy is the intended new default. Enemy density, thrown-item density, approach speed, healing supply and boss endurance change with the selected mode. All modes give ducks and aircraft longer on-screen passes than the prior version. Easy/Normal omit explosive bombs. Do not claim this standalone save already changes gameplay.
+
+Next checkpoint must integrate the core, art and UI together: aircraft and ducks launch fruit and cuttable/shootable blocks; eliminate the uncuttable red bolts; health crates heal once up to 100 by slicing, shooting or contact; a labeled health gauge stays readable in the scene; bosses enter only in the final phrase with an actual entrance. Difficulty belongs to the immutable run configuration. New records are partitioned by difficulty without overwriting prior River or Classic records. Preserve late audio cancellation, canvas reuse, AR opacity, scene placement and input recovery.
+
+Verify authored counts, late bosses, healing caps, actual cut/laser/block interaction, identity and old-save isolation before a full ordinary-input source/public replay. Never fabricate gameplay completion by assigning test state. Physical user enjoyment still needs a new playtest. No PR, new branch, private brief upload, portal or sibling edit.

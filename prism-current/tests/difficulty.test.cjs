@@ -1,0 +1,5 @@
+/* Pure profile tests. Native input and physical enjoyment are separate. */
+'use strict';const {test}=require('node:test'),A=require('node:assert/strict'),D=require('../river/difficulty');
+test('Exactly four named modes; Easy is the safe first-play fallback',()=>{A.deepEqual(D.ORDER,['easy','normal','hard','ultra-hard']);for(const v of [undefined,null,'bad','__proto__'])A.equal(D.normalize(v),'easy');A.equal(D.get('ultra-hard').name,'Ultra Hard');});
+test('Pressure, approach time and healing differ across all four modes',()=>{const p=D.ORDER.map(D.get);for(let i=1;i<p.length;i++){A.ok(p[i].itemStep<p[i-1].itemStep);A.ok(p[i].enemyStep<p[i-1].enemyStep);A.ok(p[i].lifeBeats<p[i-1].lifeBeats);A.ok(p[i].travelBeats<p[i-1].travelBeats);A.ok(p[i].healthBeats.length<p[i-1].healthBeats.length);}A.ok(p.every(v=>v.lifeBeats>10));A.equal(p[0].bombStep,0);A.equal(p[1].bombStep,0);});
+test('Profiles and health schedules cannot be mutated by a menu',()=>{A.throws(()=>D.PROFILES.easy.bossHP=99,TypeError);A.throws(()=>D.PROFILES.easy.healthBeats.push(0),TypeError);});
