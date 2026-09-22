@@ -20,7 +20,7 @@
   for(let i=0;i<4;i++){pool.push({mend:bottle('mend',scene),frost:bottle('frost',scene)});}
   for(let i=0;i<4;i++){const geo=new T.RingGeometry(.08,1,28),mat=new T.MeshBasicMaterial({color:'#88d5c5',side:T.DoubleSide,transparent:true,opacity:0,depthWrite:false}),o=new T.Mesh(geo,mat);o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);effects.push({o,until:0});resources.push(geo,mat);}
   const prompt=g.makePanel(768,144,.85,.159);prompt.mesh.material.depthTest=true;prompt.mesh.material.depthWrite=false;prompt.mesh.visible=false;scene.add(prompt.mesh);let promptText='';
-  function live(){return g.running&&!g.paused&&M.eligible(g.game)&&!g.practice&&!g.firstBell?.state.coach&&!g.returningBell?.state.table&&g.threshold?.state.phase==='game';}
+  function live(){return g.running&&!g.paused&&!g.ritual?.focus.open&&M.eligible(g.game)&&!g.practice&&!g.firstBell?.state.coach&&!g.returningBell?.state.table&&g.threshold?.state.phase==='game';}
   function clear(){state.held=state.source=null;state.used=false;state.armed=false;state.previous={};state.sources=null;motion.reset();held.visible=frostHeld.visible=false;}
   const cancel=g.cancel.bind(g);g.cancel=function(){clear();return cancel();};
   const pause=g.setPaused.bind(g);g.setPaused=function(...args){clear();return pause(...args);};
