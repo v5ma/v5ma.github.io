@@ -19,7 +19,8 @@ export function setOpening(shell,part,open){
 export function sessionType(view){return view.endsWith('-ar')?'immersive-ar':'immersive-vr';}
 export function readDioramaPreferences(storage){try{return normalizeDiorama(JSON.parse(storage.getItem(XR_PREFS_KEY)||'{}'));}catch{return {...DIORAMA_DEFAULTS};}}
 export function writeDioramaPreferences(storage,value){const state=normalizeDiorama(value);try{storage.setItem(XR_PREFS_KEY,JSON.stringify(state));return true;}catch{return false;}}
-export function stageMetres(size=1){const s=normalizeDiorama({size}).size;return {width:STAGE_METRES.width*s,depth:STAGE_METRES.depth*s,height:STAGE_METRES.height*s};}\nexport function displayBounds(scale=.04,size=1){const p=normalizeDiorama({scale,size}),stage=stageMetres(p.size);return {width:stage.width/p.scale,depth:stage.depth/p.scale,height:stage.height/p.scale};}
+export function stageMetres(size=1){const s=normalizeDiorama({size}).size;return {width:STAGE_METRES.width*s,depth:STAGE_METRES.depth*s,height:STAGE_METRES.height*s};}
+export function displayBounds(scale=.04,size=1){const p=normalizeDiorama({scale,size}),stage=stageMetres(p.size);return {width:stage.width/p.scale,depth:stage.depth/p.scale,height:stage.height/p.scale};}
 export function followCentre(centre,player,yaw,width,depth,dt,follow=true){
  if(!centre)return {x:player.x,z:player.z};if(!follow)return {...centre};
  const c=Math.cos(yaw),s=Math.sin(yaw),dx=player.x-centre.x,dz=player.z-centre.z,lx=c*dx-s*dz,lz=s*dx+c*dz;
