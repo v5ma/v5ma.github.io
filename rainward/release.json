@@ -1,6 +1,6 @@
 {
   "version": "0.16.4",
-  "build": "rainward-reclaimed-places-20260922",
+  "build": "rainward-reclaimed-places-playtest-20260922",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
@@ -14,6 +14,8 @@
     "Replace the Floodgate quay solid ruin with interconnected pump and evacuation rooms, observation sill, hard-cover recovery and contrasting exposed approaches",
     "Make existing Terminus dispatch and workshop radio interactions open real shared-collision escape routes; retain the original puzzle, required objectives and finite rewards",
     "Add original flood, evacuation and interrupted-repair scene details through the existing environment renderer without replacing characters or XR",
-    "Retain all seven mission contracts, saves, items, patrols, task IDs and resource quantities; no required new task or forced combat"
+    "Retain all seven mission contracts, saves, items, patrols, task IDs and resource quantities; no required new task or forced combat",
+    "Highlight the two rebuilt expeditions in the existing chapter selector, without changing Start, Continue or saved progress",
+    "Show read-only route opportunities and earned open/closed states in the existing journal; retain full task completion messages for later reading"
   ]
 }

@@ -61,6 +61,9 @@ with sync_playwright() as pw:
  try:
   page.goto(BASE+'/rainward/?chapter='+CHAPTER,wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2')
   check(page.evaluate('!localStorage.getItem("svgn.rainward.v1.checkpoint")'),'No planted save before normal title Start')
+  check('UPDATED /' in page.locator('#expedition-briefing').text_content(),'The title identifies the selected upgraded expedition before Start')
+  check(page.locator('#chapter-select option').count()==7,'All seven chapter choices remain available')
+  capture('00-expedition-briefing')
   nav('start');pulse(0);wait('Rainward.mode==="play"')
   check(page.evaluate('(async()=>{const W=await import("./world.mjs");return W.CURRENT.placesRevision==="reclaimed-places-1"})()'),'The loaded expedition contains the new authored layout')
   count=page.evaluate('Rainward.state.enemies.length');check(page.evaluate('Rainward.state.enemies.every(e=>e.hp>0)'),'All original enemies start alive')
@@ -97,11 +100,15 @@ with sync_playwright() as pw:
   record('extraction');capture('04-extraction')
   saved=page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")');page.reload(wait_until='domcontentloaded');wait('window.Rainward&&padPolls>2');nav('continue');pulse(0);wait('Rainward.mode==="play"')
   check(page.evaluate('Rainward.state.level')==CHAPTER and page.evaluate('localStorage.getItem("svgn.rainward.v1.checkpoint")')==saved,'Reload restores the earned shelter without rewriting its saved bytes')
+  pulse(8);wait('Rainward.mode==="map"');wait('!document.getElementById("route-opportunities").hidden')
+  check(page.locator('#route-opportunities').text_content().find('OPEN')>=0,'The existing map journal contains route status from the restored expedition')
+  check(page.locator('#route-opportunities button').count()==0,'Route advice introduces no new menu navigation or gameplay hit targets')
+  capture('05-route-journal');pulse(1);wait('Rainward.mode==="play"')
   check(not errors and not console and not dialogs,'No captured script, graphics or blocking-dialog errors')
   (OUT/'report.json').write_text(json.dumps({'chapter':CHAPTER,'passed':len(checks),'checks':checks,'final':final,'errors':errors,'console':console,'dialogs':dialogs,'scope':__doc__},indent=2))
  except Exception as e:
   failure={'error':str(e),'checks':checks,'errors':errors,'console':console,'dialogs':dialogs}
-  try:failure['snapshot']=page.evaluate('Rainward.snapshot()');capture('failure')
+  try:failure['snapshot']=page.evaluate('Rainward.snapshot()');failure['recoveryInputs']=page.evaluate('padRecoveryInputs');failure['breakawayInputs']=page.evaluate('padBreakawayInputs');capture('failure')
   except Exception:pass
   (OUT/'failure.json').write_text(json.dumps(failure,indent=2));raise
  finally:context.close();browser.close()
