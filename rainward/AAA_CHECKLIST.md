@@ -1,6 +1,6 @@
 # Rainward: AAA-quality production checklist
 
-Release baseline: v0.16.3 / Reconciled Motion.
+Release baseline: v0.16.4 / Glance Map + Tall Diorama.
 
 A proposed production path toward AAA-quality finish, not a claim of current AAA status, a funded schedule or platform certification.
 
