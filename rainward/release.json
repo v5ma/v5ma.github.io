@@ -9,6 +9,7 @@
     "Add a live glanceable floor map that refreshes from Rainward's authoritative field map and current objective without following the player's face",
     "Make the default diorama shell much taller and add saved controls for physically larger or smaller diorama boxes",
     "Keep separate character zoom controls and expose quick menu larger/smaller actions in the spatial pause interface",
-    "Preserve v0.16.3 character presentation, reconciled motion, fast running, saves, remaps, weapon/scope alignment and all seven expeditions"
+    "Preserve v0.16.3 character presentation, reconciled motion, fast running, saves, remaps, weapon/scope alignment and all seven expeditions",
+    "Keep acquired clues nonblocking during interaction: record them immediately, show only a two-second floor confirmation, and leave full text available on demand"
   ]
 }
