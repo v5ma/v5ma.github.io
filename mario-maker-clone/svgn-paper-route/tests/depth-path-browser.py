@@ -33,8 +33,14 @@ with sync_playwright() as pw:
    if page.evaluate('(s)=>SkyCycleXR.diagnostics.buttons.some(b=>b.label.includes(s))',label):break
    page.evaluate("xrEmulator.point(' - Next')");frames();page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames()
   page.evaluate('(s)=>xrEmulator.point(s)',label);frames();page.evaluate("xrEmulator.select('start');xrEmulator.select('end')");frames()
- def capture(name):
-  data=page.evaluate('xrEmulator.image()');(OUT/(name+'.png')).write_bytes(base64.b64decode(data.split(',')[1]));samples.append(page.evaluate('({x:player.x,y:player.y,deliveries,tries,depth:SkyCycleDepth.diagnostics,point:SkyCycleDepth.sample(player.x+13),pixels:{colors:xrEmulator.lastCapture.colors,opaque:xrEmulator.lastCapture.opaque},xr:SkyCycleXR.diagnostics})'))
+ def capture(name,playing=False):
+  if playing:
+   select('Resume play')
+   page.wait_for_function('!__delivery.paused && !SkyCycleXR.diagnostics.uiVisible')
+   check(True,name+' captures the actual curved road during unobstructed controller play')
+  data=page.evaluate('xrEmulator.image()');(OUT/(name+'.png')).write_bytes(base64.b64decode(data.split(',')[1]));samples.append(page.evaluate('(name)=>({capture:name,x:player.x,y:player.y,deliveries,tries,depth:SkyCycleDepth.diagnostics,point:SkyCycleDepth.sample(player.x+13),pixels:{colors:xrEmulator.lastCapture.colors,opaque:xrEmulator.lastCapture.opaque},xr:SkyCycleXR.diagnostics})',name))
+  if playing:
+   press(5);page.wait_for_function('__delivery.paused')
  def ride(target):
   page.evaluate('xrEmulator.axis(1)');page.wait_for_function('(x)=>player.x>=x',arg=target,timeout=240000);page.evaluate('xrEmulator.axis(0)');press(5);page.wait_for_function('__delivery.paused')
  try:
@@ -57,13 +63,13 @@ with sync_playwright() as pw:
    requestAnimationFrame(step);
   }requestAnimationFrame(step);})''')
   page.wait_for_function('deliveries===1');check(True,'Right trigger delivers a real paper to the market mailbox while the 3D corridor bends')
-  ride(1170);check(page.evaluate('SkyCycleDepth.sample(player.x+13).z')<-85,'The ordinary road reaches the receding side of the curved market');capture(KIND+'-away')
+  ride(1170);check(page.evaluate('SkyCycleDepth.sample(player.x+13).z')<-85,'The ordinary road reaches the receding side of the curved market');capture(KIND+'-away',playing=True)
   check(page.evaluate('SkyCycleDepth.diagnostics.active&&SkyCycleDepth.diagnostics.materials>0'),'The actual stereo scene uses the shared curved material mapping')
   signature=page.evaluate('SkyCycleDepth.sample(1190)');aperture=page.evaluate('SkyCycleXR.diagnostics.aperture.inverse')
   # Move only the emulated viewer; authored mapping and exhibit mask stay fixed.
-  page.evaluate('''()=>{const s=xrEmulator.session,base=s.frame.bind(s);s.frame=function(){const f=base(),pose=f.getViewerPose;f.getViewerPose=(...args)=>{const p=pose(...args);for(const v of [p,...p.views]){v.transform.matrix[12]+=.18;v.transform.matrix[13]+=.07;}return p;};return f;};}''');frames();capture(KIND+'-lean')
+  page.evaluate('''()=>{const s=xrEmulator.session,base=s.frame.bind(s);s.frame=function(){const f=base(),pose=f.getViewerPose;f.getViewerPose=(...args)=>{const p=pose(...args);for(const v of [p,...p.views]){v.transform.matrix[12]+=.18;v.transform.matrix[13]+=.07;}return p;};return f;};}''');frames();capture(KIND+'-lean',playing=True)
   check(page.evaluate('SkyCycleDepth.sample(1190)')==signature and page.evaluate('SkyCycleXR.diagnostics.aperture.inverse')==aperture,'Head translation changes the view but not the authored curve or world aperture')
-  select('Resume play');ride(2250);check(page.evaluate('SkyCycleDepth.sample(player.x+13).z')>80,'The same continuous road returns toward the viewer');capture(KIND+'-toward')
+  select('Resume play');ride(2250);check(page.evaluate('SkyCycleDepth.sample(player.x+13).z')>80,'The same continuous road returns toward the viewer');capture(KIND+'-toward',playing=True)
   # Both source views retain the same route and document without a restart.
   select('All menus');select('2D view');select('Resume play');page.wait_for_function('SkyCycleXR.diagnostics.presentation==="screen"');frames()
   check(not page.evaluate('SkyCycleDepth.diagnostics.active'),'The existing 2D fallback is straight and removes curved material hooks')
