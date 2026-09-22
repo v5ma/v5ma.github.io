@@ -9,3 +9,8 @@ All 36 entries in the pre-existing comparative-religion directory are carried in
 The parent comparative build is modified only to require the atlas generator and insert the same atlas callout into the comparative index and tradition directory. Canonical comparative directory data, study JSON, source registries, principal Theology Wiki article sources, original conversations and forecasts remain unchanged.
 
 The temporary branch writer is disabled before review and has only read permission. Persistent validation is read-only and unscheduled. Candidate browser behavior, merge identity, public-byte identity and hosted-browser behavior remain separate obligations to be confirmed from actual runs. Contract tests establish file structure and preservation, not which community's religious claim is true.
+
+
+The first pull-request browser run on the generated pages exposed a real relative-link defect: group pages live one directory below the atlas index, so their existing-Wiki-context links needed one additional ../ segment. The index, filtering, mobile layouts and dedicated pages themselves rendered successfully before that navigation assertion failed. The generator was corrected, the contract was strengthened to require the exact parent link on all 60 group pages, and the one-shot writer was temporarily re-enabled only for regeneration.
+
+Repair generation run 35674050887 completed successfully and committed regenerated output as ebdc6b33d3681859abd664eb7f65018b109c364f. The same atlas contracts passed after the fix. The temporary writer was disabled again immediately afterward. The revealing failed browser result is preserved rather than relabeled as success.
