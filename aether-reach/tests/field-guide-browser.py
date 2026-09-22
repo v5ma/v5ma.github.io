@@ -82,6 +82,7 @@ with sync_playwright() as pw:
   choose('#story-chapters');check(snap()['devices']['menu']=='story-index-dialog','Hand UI reaches a direct chapter index')
   check(p.locator('[data-story-id="dispatch-taken"]').count()==1 and p.locator('[data-story-id="dispatch-delivered"]').count()==0,'Only the accepted dispatch is unlocked, not its unearned delivery ending')
   choose('[data-story-id="dispatch-taken"]');check(snap()['devices']['menu']=='story-dialog' and 'IONA:' in p.locator('#story-copy').inner_text(),'Selecting an earned chapter returns to its actual readable text')
+  drawn=work()['panelDraws'];frames(2);check(work()['panelDraws']>drawn,'Story text panel is actually drawn in the stereo eye views, not only present in the DOM')
   capture('story-dispatch-hand-canvas.png')
   first=p.locator('#story-copy').inner_text();choose('#story-next-page');check(p.locator('#story-copy').inner_text()!=first,'Hand-operated text pagination reveals the remainder of the narrative')
   check(p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==original_save,'Reading, chapter selection and pagination do not write the expedition save')

@@ -3,7 +3,12 @@
  * never the camera or the miniature world. Existing modal actions remain canonical. */
 import * as T from './vendor/three.module.js';
 import {ROTUNDA_KEY,cleanWorkspace,workspaceStep,createWorkspacePlacement,resetWorkspacePlacement} from './rotunda-core.mjs';
+/* Three's union-camera broad-phase can reject a physically visible thin room
+ * panel under the inverse diorama scale. Keep only the bounded room UI in the
+ * per-eye draw; normal visibility, picking, world culling and portal masks stay. */
+export function keepRoomUIInEyeViews(mesh){mesh.frustumCulled=false;return mesh;}
 export function createFieldRotunda({rig,panel,hud,texture,api,onRecall}){
+ let panelDraws=0;keepRoomUIInEyeViews(panel);panel.onAfterRender=()=>{panelDraws++;};
  let config;try{config=cleanWorkspace(JSON.parse(localStorage.getItem(ROTUNDA_KEY)||'null'));}catch{config=cleanWorkspace();}
  const placement=createWorkspacePlacement();
  const root=new T.Group();root.name='Field rotunda / room space';root.userData.xrUI=true;root.visible=false;rig.add(root);
@@ -19,7 +24,7 @@ export function createFieldRotunda({rig,panel,hud,texture,api,onRecall}){
  let anchor=null,lastHead=null,progress=0,wasOpen=false,active=false,pressedKey=null,pressedUntil=0,lastItems=[],hudDock='floor';
  const key=i=>i?.element?.id||i?.key||i?.kind;
  function buttonMeshes(items,hover){lastItems=items;for(let i=0;i<Math.max(items.length,buttons.length);i++){
-  const item=items[i];if(!buttons[i]&&item){const g=new T.BoxGeometry(1,1,1),m=new T.Mesh(g,[side,side,side,side,front,side]);m.renderOrder=1002;m.userData.xrUI=true;panel.add(m);buttons.push(m);}
+  const item=items[i];if(!buttons[i]&&item){const g=new T.BoxGeometry(1,1,1),m=new T.Mesh(g,[side,side,side,side,front,side]);m.renderOrder=1002;m.userData.xrUI=true;keepRoomUIInEyeViews(m);panel.add(m);buttons.push(m);}
   const b=buttons[i];if(!b)continue;b.visible=!!item;if(!item)continue;b.userData.item=item;b.scale.set(item.w/1024*1.36,item.h/768*1.02,.025);
   b.position.set(((item.x+item.w/2)/1024-.5)*1.36,(.5-(item.y+item.h/2)/768)*1.02,pressedKey===key(item)&&performance.now()<pressedUntil?.012:item===hover||item.focused?.036:.023);
   const uv=b.geometry.attributes.uv;for(let j=16;j<20;j++){const u=(j%2),v=j<18?1:0;uv.setXY(j,(item.x+u*item.w)/1024,1-(item.y+(1-v)*item.h)/768);}uv.needsUpdate=true;
@@ -64,5 +69,5 @@ export function createFieldRotunda({rig,panel,hud,texture,api,onRecall}){
  document.getElementById('workspace-reset').onclick=()=>{config=resetWorkspacePlacement(config);save();};
  for(const [target,id]of [['.start-actions','workspace-button'],['#pause-dialog','pause-workspace'],['#settings-dialog','settings-workspace']]){const parent=document.querySelector(target);if(!parent)continue;const b=document.createElement('button');b.id=id;b.textContent='Menu size / floor map / placement';b.onclick=()=>{fill();api.show('workspace-dialog');};parent.append(b);}
  fill();
- return {update,hit,press,recall:()=>place(lastHead),get config(){return {...config};},reset(){placement.reset();anchor=null;wasOpen=false;progress=0;root.visible=panel.visible=hud.visible=summon.visible=point.visible=false;active=false;},stats:()=>({active,open:wasOpen,progress,config:{...config},anchor:anchor?{...anchor}:null,panelRoomPosition:anchor?{x:anchor.x,y:lift.position.y,z:anchor.z}:null,panelScale:config.scale,panelRotation:[panel.rotation.x,root.rotation.y,0],hudDock,headLocked:false,attachedToWindow:false,visibleButtons:wasOpen?lastItems.length:0,interactiveButtons:wasOpen?lastItems.filter(i=>!i.disabled).length:0,summonVisible:summon.visible})};
+ return {update,hit,press,recall:()=>place(lastHead),get config(){return {...config};},reset(){placement.reset();anchor=null;wasOpen=false;progress=0;root.visible=panel.visible=hud.visible=summon.visible=point.visible=false;active=false;},stats:()=>({active,panelDraws,open:wasOpen,progress,config:{...config},anchor:anchor?{...anchor}:null,panelRoomPosition:anchor?{x:anchor.x,y:lift.position.y,z:anchor.z}:null,panelScale:config.scale,panelRotation:[panel.rotation.x,root.rotation.y,0],hudDock,headLocked:false,attachedToWindow:false,visibleButtons:wasOpen?lastItems.length:0,interactiveButtons:wasOpen?lastItems.filter(i=>!i.disabled).length:0,summonVisible:summon.visible})};
 }
