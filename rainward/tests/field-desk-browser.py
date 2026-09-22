@@ -46,7 +46,8 @@ with sync_playwright() as pw:
  try:
   p.goto(BASE+'/rainward/',wait_until='domcontentloaded');wait('window.Rainward');check(p.evaluate('!localStorage.getItem("svgn.rainward.v1.checkpoint")'),'Normal entry uses no planted checkpoint')
   p.locator('#xr-view-title').select_option(VIEW);p.evaluate('(kind)=>questDevice.use(kind)',KIND);p.locator('#xr-title-hands' if KIND=='hands' else '#xr-title').click();wait('Rainward.snapshot().xr.active');select('start');wait('Rainward.mode==="play"');frames(5)
-  check(p.evaluate('!Rainward.snapshot().xr.menuVisible&&!Rainward.snapshot().xr.fieldDesk.visible'),'The panel and pedestal are stowed during ordinary gameplay')\n  check(p.evaluate('Rainward.snapshot().xr.liveMap.visible&&Rainward.snapshot().xr.liveMap.live'),'A live map is visible at floor level during ordinary gameplay')
+  check(p.evaluate('!Rainward.snapshot().xr.menuVisible&&!Rainward.snapshot().xr.fieldDesk.visible'),'The panel and pedestal are stowed during ordinary gameplay')
+  check(p.evaluate('Rainward.snapshot().xr.liveMap.visible&&Rainward.snapshot().xr.liveMap.live'),'A live map is visible at floor level during ordinary gameplay')
   menu();rows=p.evaluate('Rainward.snapshot().xr.panelRows.map(r=>r.id)');check(all(id in rows for id in ['resume','map','pack','last-clue']),'Resume, map, satchel and clue recall are on the first menu page')
   original=p.evaluate('({matrix:Rainward.snapshot().xr.panelMatrix,anchor:Rainward.snapshot().xr.fieldDesk.anchor,player:{x:Rainward.state.player.x,z:Rainward.state.player.z},mag:Rainward.state.player.mag})');save=preserved()
   p.evaluate('questDevice.head.x+=.2;questDevice.headYaw=.35;questDevice.headPitch=-.1');frames(8);select('next');frames(3)
