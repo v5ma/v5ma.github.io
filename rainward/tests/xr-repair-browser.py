@@ -70,8 +70,10 @@ with sync_playwright() as pw:
    check(sum((shot['from'][k]-ray['muzzle'][i])**2 for i,k in enumerate(['x','y','z']))<.0025,'Actual projectile starts at the visible safe muzzle')
    tap('right',5);wait('Rainward.state.player.mag===6&&!Rainward.state.player.reload');check(True,'A short B press reloads rather than opening the menu')
    scope('02-sight-first-chapter')
-   go(-7,19);go(-29,10);go(-29,7);tap('right',1);wait('Rainward.mode==="pause"&&Rainward.snapshot().xr.reading')
-   note=p.evaluate('Rainward.snapshot().xr.reading');expected=p.evaluate('(async()=>{const W=await import("./world.mjs");return W.CURRENT.puzzle.clue.text;})()');check(note['text']==expected and len(note['visibleLines'])>1,'The complete acquired puzzle inscription appears in VR, not a truncated wrist hint');capture('03-readable-puzzle');click('back');wait('Rainward.mode==="play"');defend()
+   go(-7,19);go(-29,10);go(-29,7);tap('right',1);wait('Rainward.state.puzzle.clueRead')
+   check(p.evaluate('Rainward.mode')=='play' and p.evaluate('Rainward.snapshot().xr.notice.placement')=='floor','Acquiring the clue does not pause or put text across the forward view')
+   wait('!Rainward.snapshot().xr.notice.visible');menu();select('last-clue');wait('!!Rainward.snapshot().xr.reading')
+   note=p.evaluate('Rainward.snapshot().xr.reading');expected=p.evaluate('(async()=>{const W=await import("./world.mjs");return W.CURRENT.puzzle.clue.text;})()');check(note['text']==expected and len(note['visibleLines'])>1,'The complete acquired puzzle inscription remains available on demand');capture('03-readable-puzzle');click('back');wait('Rainward.mode==="play"');defend()
    for x,z,count in [(-29,1,2),(-29,-7,3),(-29,-15,1)]:
     go(x,z);defend()
     for _ in range(count):tap('right',1)
