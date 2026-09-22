@@ -1,3 +1,9 @@
+# Current continuation: A City With a Voice 0.16.0
+
+Read STORY-INTEGRATION.md first. The owner approved the public story summarized in this conversation and asked to integrate it into the existing game. The opening establishes the engineer-courier, Iona and the Registry closures. Story so far is an optional, paged reader on the existing desktop/Xbox/Touch/hand modal path. Mission purposes and real earned story updates connect the existing mechanics. Read current save flags; never grant progress for reading or replay old rewards on Continue. Retain the 0.15.2 aim repair, floor guide, full-depth window and all existing districts and controls.
+
+Reviewed master: 9f637073131fd71a81e533aa15e46910b4aeb121. Its complete Aether subtree was unchanged from accepted 2690d7b7b6000e73d35d8c198cb9834c8007a56c. Use direct master integration and preserve concurrent sibling changes. Local model results, native/public browser results, live byte verification, backup roundtrip and physical usability are separate; read the release receipt for the actual status. No private narrative or old living-city experiment is included. Historical handoffs follow.
+
 # Current continuation: Field Guide aim repair 0.15.2
 
 Read AIM-REPAIR.md first. This direct-master X12/X11 repair makes the window marker and short avatar line share the actual weapon hit geometry, equipped range, friendly exclusion and dynamic cover. Window weapon getters now refresh the avatar ray at the current simulation step; missing tracking remains null and original tracked first-person VR remains unchanged. No new district, progression, damage, spread, save or control mapping is introduced.

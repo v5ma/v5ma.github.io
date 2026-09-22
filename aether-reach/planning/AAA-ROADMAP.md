@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.15.2 Field Guide aim repair. Updated 2026-09-22.
+Current plan: 0.16.0 A City With a Voice. Updated 2026-09-22.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -317,8 +317,8 @@ Next: Extend to two-wave completion, interruptions and varied real loadouts.
 ### P01 - Bellwether authored district quality gate
 State: In review. Priority: P0. Dependencies: F01, W01, B06.
 Acceptance: One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.
-Evidence: v0.12 replaces simple Bellwether route connections with shared collision/render geometry, practice, circuit feedback and a service shortcut. First slice only; unfamiliar-player approval and physical XR remain open.
-Next: Playtest the connected streets, service loop and maintenance galleries without coaching before rebuilding another district.
+Evidence: v0.12 replaces simple Bellwether route connections with shared collision/render geometry, practice, circuit feedback and a service shortcut. First slice only; unfamiliar-player approval and physical XR remain open. STORY-INTEGRATION.md: the existing public story is integrated through the opening, optional spatial story reader, assignment purposes and real milestone feedback. Chapters read existing save flags; no alternate world or new objective chain.
+Next: Observe whether a new player can explain the courier role, Registry closures and why Bellwether repairs matter. Read the 0.16.0 exact-source native/public receipts; no human narrative approval is implied.
 
 ### P02 - Authored character and weapon animation
 State: In review. Priority: P1. Dependencies: P01.
@@ -431,7 +431,7 @@ Next: Physical Quest repeat of the reported sheet, simultaneous movement/aim/fir
 ### X12 - Summonable room-space rotunda and readable third-person shots
 State: Implemented. Priority: P0. Dependencies: X11, I02.
 Acceptance: Actual full game: summon/dismiss, stable head-independent placement, saved size/height/rotation, controller and hand button navigation, independent combat and visible genuine shots; public bytes separately verified. No private hub or travel portals. Live floor map, current-object prompt, exactly two-second notices with readable history, independent menu/map/window sizes, and real noticeboard pickup-to-delivery guidance.
-Evidence: FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt. AIM-REPAIR.md; shared read-only weapon trace, current-step avatar muzzle, tests/aim-guide.test.mjs and expanded three-mode window journey. New native/public results must be recorded separately from the accepted 0.15.1 baseline.
+Evidence: FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt. AIM-REPAIR.md; shared read-only weapon trace, current-step avatar muzzle, tests/aim-guide.test.mjs and expanded three-mode window journey. New native/public results must be recorded separately from the accepted 0.15.1 baseline. The 0.16.0 story reader shares the existing modal and spatial controls, with bounded text pages and no automatic interruption.
 Next: Observe the owner on physical Quest: find the floor map, read the current use prompt, take and deliver the dispatch, reread faded text and resize without losing interaction. Preserve existing gameplay. Test both seated and standing; do not infer comprehension from an automated completion. Retest marker-versus-shot agreement near cover, humanoids, long-range targets and fast movement; a centerline is not a guarantee against weapon spread.
 
 ## Release evidence

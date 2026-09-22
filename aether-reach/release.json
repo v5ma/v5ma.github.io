@@ -1,6 +1,6 @@
 {
-  "version": "0.15.2",
-  "focus": "Field Guide aim repair: shared weapon hit geometry and range, cover-aware marker, current-step XR muzzle",
+  "version": "0.16.0",
+  "focus": "A City With a Voice: state-derived story journal, assignment purpose and earned narrative milestones",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
   "scope": "Current expedition and saves retained. Software playtest; physical headset usability must be retested. No private hub, travel portals, historical content merge or engine migration."

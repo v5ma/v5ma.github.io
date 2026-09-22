@@ -1,0 +1,21 @@
+/* Optional paged story reader on the existing modal/spatial UI. No new input
+ * binding, automatic pause, head-locked overlay, save key or reward path. */
+import {STORY_TITLE,storyEntries,storyPage,createStoryObserver} from './story-core.mjs';
+export function installStoryUI(api){
+ const $=id=>document.getElementById(id),observer=createStoryObserver();
+ const dialog=document.createElement('dialog');dialog.id='story-dialog';dialog.setAttribute('aria-labelledby','story-title');
+ dialog.innerHTML='<p class="eyebrow">AETHER REACH / STORY SO FAR</p><h2 id="story-title"></h2><p id="story-copy" aria-live="polite"></p><form method="dialog"><button id="story-back" data-initial-focus>Back</button></form><button id="story-previous-page">Previous text page</button><button id="story-next-page">Next text page</button><button id="story-latest">Latest earned chapter</button><button id="story-chapters">Choose a chapter or archive</button><p class="fine">Chapters reflect your current save, not a required play order. Recovered archive notes appear after the story. Reading never changes progress. Use Adventures to select a task; What do I do? shows the immediate action.</p>';
+ document.body.append(dialog);let entries=[],entryIndex=0,pageIndex=0,openingKey='assignment',latestId=null;
+ function fill(){const e=entries[entryIndex],p=storyPage(e,pageIndex);pageIndex=p.page;$('story-title').textContent=e.title;$('story-copy').textContent=p.description;$('story-previous-page').disabled=pageIndex===0;$('story-next-page').disabled=pageIndex===p.count-1;$('story-latest').disabled=!entries.some(e=>e.id!=='assignment'&&!e.id.startsWith('archive-')&&!['arrival','city','iona','relays'].includes(e.id));dialog.dataset.entry=e.id;dialog.dataset.page=String(pageIndex);dialog.dataset.entryCount=String(entries.length);}
+ function open(id='assignment'){entries=storyEntries(api.state());entryIndex=Math.max(0,entries.findIndex(e=>e.id===id));pageIndex=0;openingKey=entries[entryIndex].id;fill();api.show('story-dialog');}
+ $('story-previous-page').onclick=()=>{pageIndex--;fill();};$('story-next-page').onclick=()=>{pageIndex++;fill();};
+ const index=document.createElement('dialog');index.id='story-index-dialog';index.setAttribute('aria-labelledby','story-index-title');index.innerHTML='<p class="eyebrow">YOUR EARNED STORY</p><h2 id="story-index-title">Choose a chapter</h2><p>Only discoveries in this expedition appear here. Choose Current assignment to return to what matters now.</p><form method="dialog"><button id="story-index-back" data-initial-focus>Back to reading</button></form><div id="story-index-entries"></div>';document.body.append(index);
+ $('story-chapters').onclick=()=>{const list=$('story-index-entries');list.replaceChildren();for(const [i,e]of entries.entries()){const b=document.createElement('button');b.dataset.storyId=e.id;b.textContent=e.id==='assignment'?'Current assignment':e.title;b.onclick=()=>{entryIndex=i;pageIndex=0;fill();index.close();};list.append(b);}api.show('story-index-dialog');};
+ $('story-latest').onclick=()=>{const recent=entries.findIndex(e=>e.id===latestId);entryIndex=recent>=0?recent:entries.findLastIndex(e=>e.id!=='assignment'&&!e.id.startsWith('archive-'));pageIndex=0;fill();};
+ for(const [target,id]of [['.start-actions','start-story'],['#pause-dialog','pause-story'],['#expedition-dialog','journal-story'],['#complete-dialog','complete-story'],['#field-guide-dialog','help-story']]){
+  const parent=document.querySelector(target);if(!parent)continue;const b=document.createElement('button');b.id=id;b.textContent='Story so far / '+STORY_TITLE;b.onclick=()=>open(id==='complete-story'?'broadcast':'assignment');
+  if(id==='start-story')$('settings-button').after(b);else if(id==='pause-story')$('pause-atlas').after(b);else if(id==='journal-story')$('expedition-route').after(b);else parent.append(b);
+ }
+ observer.reset(api.state());
+ return {open,reset(s){observer.reset(s);latestId=null;},sync(){const next=observer.poll(api.state());if(next){latestId=next.id;api.toast(next.notice);}},snapshot(){return {chapterIds:storyEntries(api.state()).map(e=>e.id),open:dialog.open,entry:dialog.open?entries[entryIndex]?.id:null,page:dialog.open?pageIndex:null,openingKey};}};
+}

@@ -2,7 +2,7 @@
   "version": 1,
   "updated": "2026-09-22",
   "project": "Aether Reach",
-  "release": "0.15.2 Field Guide aim repair",
+  "release": "0.16.0 A City With a Voice",
   "notice": "AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.",
   "tasks": [
     {
@@ -637,8 +637,8 @@
         "B06"
       ],
       "acceptance": "One coherent 20-30 minute route combines street combat, interior exploration, rooftop travel, rewards and a clear ending.",
-      "evidence": "v0.12 replaces simple Bellwether route connections with shared collision/render geometry, practice, circuit feedback and a service shortcut. First slice only; unfamiliar-player approval and physical XR remain open.",
-      "next": "Playtest the connected streets, service loop and maintenance galleries without coaching before rebuilding another district."
+      "evidence": "v0.12 replaces simple Bellwether route connections with shared collision/render geometry, practice, circuit feedback and a service shortcut. First slice only; unfamiliar-player approval and physical XR remain open. STORY-INTEGRATION.md: the existing public story is integrated through the opening, optional spatial story reader, assignment purposes and real milestone feedback. Chapters read existing save flags; no alternate world or new objective chain.",
+      "next": "Observe whether a new player can explain the courier role, Registry closures and why Bellwether repairs matter. Read the 0.16.0 exact-source native/public receipts; no human narrative approval is implied."
     },
     {
       "id": "P02",
@@ -897,7 +897,7 @@
         "I02"
       ],
       "acceptance": "Actual full game: summon/dismiss, stable head-independent placement, saved size/height/rotation, controller and hand button navigation, independent combat and visible genuine shots; public bytes separately verified. No private hub or travel portals. Live floor map, current-object prompt, exactly two-second notices with readable history, independent menu/map/window sizes, and real noticeboard pickup-to-delivery guidance.",
-      "evidence": "FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt. AIM-REPAIR.md; shared read-only weapon trace, current-step avatar muzzle, tests/aim-guide.test.mjs and expanded three-mode window journey. New native/public results must be recorded separately from the accepted 0.15.1 baseline.",
+      "evidence": "FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt. AIM-REPAIR.md; shared read-only weapon trace, current-step avatar muzzle, tests/aim-guide.test.mjs and expanded three-mode window journey. New native/public results must be recorded separately from the accepted 0.15.1 baseline. The 0.16.0 story reader shares the existing modal and spatial controls, with bounded text pages and no automatic interruption.",
       "next": "Observe the owner on physical Quest: find the floor map, read the current use prompt, take and deliver the dispatch, reread faded text and resize without losing interaction. Preserve existing gameplay. Test both seated and standing; do not infer comprehension from an automated completion. Retest marker-versus-shot agreement near cover, humanoids, long-range targets and fast movement; a centerline is not a guarantee against weapon spread."
     }
   ],
