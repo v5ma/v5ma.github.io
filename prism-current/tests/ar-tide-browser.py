@@ -25,11 +25,27 @@ with sync_playwright() as pw:
         data=p.evaluate('AFRAME.scenes[0].object3D.getObjectByName("river-xr-menu").material.map.image.toDataURL()')
         (OUT/name).write_bytes(base64.b64decode(data.split(',')[1]))
     try:
+        # Wider, ordinary-resolution view of the SAME AR scene via its existing
+        # emulator. Only view framebuffer dimensions change for this capture.
+        # It does not claim physical passthrough imagery or measured Quest speed.
+        c=browser.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1,service_workers='block')
+        fake=(ROOT/'prism-current/tests/river-fake-xr.js').read_text().replace('this.framebufferWidth=240;this.framebufferHeight=160','this.framebufferWidth=1200;this.framebufferHeight=800').replace("x:v.eye==='left'?0:120,y:0,width:120,height:160","x:v.eye==='left'?0:600,y:0,width:600,height:800")
+        c.add_init_script(fake+'\n'+(ROOT/'prism-current/tests/river-strict-xr.js').read_text());p=c.new_page();watch(p);p.set_default_timeout(60000)
+        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready');p.keyboard.press('F2');p.wait_for_function('!document.getElementById("enter-ar").disabled');p.locator('#enter-ar').click()
+        p.wait_for_function('River.snapshot().immersive&&River.snapshot().stats.arScenery.visible');p.wait_for_timeout(800)
+        p.screenshot(path=str(OUT/'ar-islands-stereo-1200.png'))
+        check(p.evaluate('River.snapshot().stats.arScenery.visible'),'Separate ordinary-resolution stereo scene capture retains AR islands')
+        p.evaluate('TestXR.state.session.end()');p.wait_for_function('!River.snapshot().immersive');c.close()
         c=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.125,service_workers='block')
         c.add_init_script((ROOT/'prism-current/tests/river-fake-xr.js').read_text()+'\n'+(ROOT/'prism-current/tests/river-strict-xr.js').read_text())
         c.add_init_script("if(!localStorage.getItem('prism-current.river.records.v1'))localStorage.setItem('prism-current.river.records.v1','{\"sentinel\":true}')")
         p=c.new_page();watch(p);p.set_default_timeout(45000)
         p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open&&River.snapshot().stats.arScenery')
+        # Install diagnostics and the input pilot while the menu is open, not
+        # while the soundtrack is measuring frame intervals. Neither owns state.
+        p.add_script_tag(content=(ROOT/'prism-current/tests/frame-trace.js').read_text())
+        p.add_script_tag(content=(ROOT/'prism-current/tests/playability-xr-driver.js').read_text())
+        p.evaluate("()=>{window.arTideTrace=RiverFrameTrace.install(AFRAME.scenes[0].components['river-game']);}")
         def snap():return p.evaluate('River.snapshot()')
         def frames():
             p.evaluate('async()=>{const s=TestXR.state.session;await new Promise((r,j)=>{const timeout=setTimeout(()=>j(Error("No XR frames")),5000);s.requestAnimationFrame(()=>s.requestAnimationFrame(()=>{clearTimeout(timeout);r();}));});}')
@@ -72,7 +88,7 @@ with sync_playwright() as pw:
         p.wait_for_function('River.snapshot().phase==="playing"&&River.snapshot().rotunda.healthGaugeVisible')
         check(snap()['stats']['arScenery']['prepared'],'New tree, cloud and material preparation completes before gameplay')
         check(snap()['result']['health']==100,'The running AR game starts with a visible HEALTH 100 gauge')
-        p.add_script_tag(content=(ROOT/'prism-current/tests/playability-xr-driver.js').read_text());p.evaluate('observeFriendlyXR()')
+        p.evaluate('observeFriendlyXR()')
         p.wait_for_function('River.snapshot().result.health<100',timeout=30000);damaged=snap()['result']['health']
         p.evaluate('startFriendlyXR("heal")');p.wait_for_function('River.snapshot().result.healed>0',timeout=10000);p.evaluate('stopFriendlyXR()')
         check(snap()['result']['health']>damaged,'An actual tracked laser heals actual damage while the islands are present')
@@ -84,10 +100,11 @@ with sync_playwright() as pw:
         select(11);select(7);select(1);select(4)
         check(snap()['result']==before['result'] and snap()['time']==before['time'],'Changing scenery and opacity preserves the exact paused encounter')
         select(0);select(8);p.evaluate('TestXR.away()');button('right',5);p.wait_for_function('River.snapshot().phase==="playing"')
-        p.evaluate('startFriendlyXR("boss")');p.wait_for_function('River.snapshot().entities.some(n=>n.type==="boss")',timeout=45000)
+        p.evaluate('startFriendlyXR("boss")');p.wait_for_function('River.snapshot().entities.some(n=>n.type==="boss")',timeout=90000)
         check(not p.evaluate('friendlyXRObserved.earlyBoss'),'Admiral Quack still arrives only in the final phrase')
         p.wait_for_function('["complete","failed","escaped"].includes(River.snapshot().phase)',timeout=30000);p.evaluate('stopFriendlyXR();clearInterval(friendlyXRObserver)')
         result=snap()['result'];check(result['complete'] and result['bossDefeated'],'The full Easy AR battle clears through real hits, healing, blocks and a late boss')
+        (OUT/'frame-trace.json').write_text(json.dumps(p.evaluate('arTideTrace.snapshot()'),indent=2))
         check(not p.evaluate('friendlyXRObserved.bolt'),'No old red missile is reintroduced')
         check(p.evaluate("localStorage.getItem('prism-current.river.records.v1')")=='{"sentinel":true}','Older saved River records remain untouched')
         p.screenshot(path=str(OUT/'ar-result.png'))
@@ -99,23 +116,14 @@ with sync_playwright() as pw:
         check(snap()['rotunda']['preferences']['arScenery']=='minimal','The deliberate scenery preference survives XR exit and page reload')
         check(p.evaluate('AFRAME.scenes[0].renderer.info.programs.every(p=>!p.diagnostics||p.diagnostics.runnable!==false)'),'All exercised game shaders report runnable')
         c.close()
-        # Wider, ordinary-resolution view of the SAME AR scene via its existing
-        # emulator. Only view framebuffer dimensions change for this capture.
-        # It does not claim physical passthrough imagery or measured Quest speed.
-        c=browser.new_context(viewport={'width':1440,'height':1000},device_scale_factor=1,service_workers='block')
-        fake=(ROOT/'prism-current/tests/river-fake-xr.js').read_text().replace('this.framebufferWidth=240;this.framebufferHeight=160','this.framebufferWidth=1200;this.framebufferHeight=800').replace("x:v.eye==='left'?0:120,y:0,width:120,height:160","x:v.eye==='left'?0:600,y:0,width:600,height:800")
-        c.add_init_script(fake+'\n'+(ROOT/'prism-current/tests/river-strict-xr.js').read_text());p=c.new_page();watch(p);p.set_default_timeout(60000)
-        p.goto(URL,wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().ready');p.keyboard.press('F2');p.wait_for_function('!document.getElementById("enter-ar").disabled');p.locator('#enter-ar').click()
-        p.wait_for_function('River.snapshot().immersive&&River.snapshot().stats.arScenery.visible');p.wait_for_timeout(800)
-        p.screenshot(path=str(OUT/'ar-islands-stereo-1200.png'))
-        check(p.evaluate('River.snapshot().stats.arScenery.visible'),'Separate ordinary-resolution stereo scene capture retains AR islands')
-        p.evaluate('TestXR.state.session.end()');p.wait_for_function('!River.snapshot().immersive');c.close()
         check(not errors,'No captured JavaScript or shader errors in the new AR path')
         (OUT/'native-report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'result':result,'errors':errors,'scope':'Actual source/served AR canvas, input handlers and full Easy battle with strict emulated XR. Existing small gameplay framebuffer and a separate 1200x800 stereo scene capture. No game state writes or physical headset claim.'},indent=2))
     except Exception as e:
         try:state=p.evaluate('window.River?.snapshot()')
         except:state=None
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'result':result,'errors':errors,'state':state},indent=2))
+        try:trace=p.evaluate('window.arTideTrace?.snapshot()')
+        except:trace=None
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'result':result,'errors':errors,'state':state,'trace':trace},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise

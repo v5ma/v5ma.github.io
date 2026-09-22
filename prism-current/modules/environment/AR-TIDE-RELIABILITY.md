@@ -1,0 +1,13 @@
+# AR Tide first rendered outcomes / retained failure
+
+Integration runtime6e1d3b01b4dda3564e1894e0939d52fb44dcde68 is served. Run35775489222's public receipt matched all141 expected Prism files. The new scene compiles without captured shader/script errors; source and public both exercised the actual AR card, transparent composition, two islands/clouds, conservative LOD, scenery hiding/restoration, opacity, reset and world anchoring. The source passed376 model tests and23 bundled-Three object checks.
+
+The first complete AR battle failed in both tests: source paused at1.4891383219954637s before damage; public paused at17.499297052154198s after real damage and laser healing but before the required block cut. The message in both was Rendering stalled. Try Light quality, then resume. Neither run is a full acceptance pass. No runtime correction or hidden automatic Resume has been made based on these incomplete traces.
+
+Downloaded source artifact10716300547 has SHA-256 c7eb6148b0487e53dbdb16bf764f0414894414afc81ee631e142873d81afd690. Public artifact10716410937 has SHA-25692b90a20a5e508dd7d50aa5bf6a1d19237e5e957d47e56287c65ae4c86d03fe4. Both were inspected. The source archive's browser/test scripts match the intended local files. The public failure preserves its successful file receipt and14 preceding checks. These are emulated input observations, not physical Quest timing.
+
+Next diagnostic checkpoint changes tests only: install the already existing bounded RiverFrameTrace and the input producer while the menu is open rather than compiling the test script after audio has started. Record full-frame, art/menu, render-submission, resize, input, long-task and pause context without writing game state. This is a diagnostic isolation step, not a proven solution to every prior frame gap.
+
+The same ordinary-resolution stereo capture is moved before the battle in a separate context so a later failure cannot hide visual inspection. Gameplay still uses the same strict emulator dimensions, effect budgets, quality setting and0.35s guard. Boss observation now allows90s instead of45s because a first block cut can occur before25s while the designed boss arrives near69s; the exact no-early-boss and actual completion conditions remain mandatory. No boss time or health is assigned.
+
+Keep source/public outcomes separate, retain revealing failures, and fix only demonstrated causes. Existing Friendly Current and companion suite failures are not closed by a hash match. Documentation and registry updates follow actual inspection of the new rendered artifact. No PR, staging branch, new workflow or unrelated game change is needed.
