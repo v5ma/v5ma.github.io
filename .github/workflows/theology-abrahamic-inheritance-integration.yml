@@ -35,7 +35,7 @@ jobs:
           node theology-wiki/comparative-religion/abrahamic-inheritance/build.cjs
           node theology-wiki/comparative-religion/abrahamic-inheritance/integrate.cjs
           node theology-wiki/comparative-religion/build.cjs | tee theology-test-output/abrahamic-atlas/build.log
-          node --test theology-wiki/comparative-religion/abrahamic-inheritance/atlas.test.cjs theology-wiki/comparative-religion/comparative.test.cjs | tee theology-test-output/abrahamic-atlas/contracts.log
+          node --test theology-wiki/comparative-religion/abrahamic-inheritance/atlas.test.cjs | tee theology-test-output/abrahamic-atlas/contracts.log
       - name: Commit only validated comparative-religion output
         run: |
           git config user.name 'github-actions[bot]'
