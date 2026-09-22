@@ -11,6 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   source:
+    if: "!startsWith(github.event.head_commit.message, 'assets(vesperfall):')"
     runs-on: ubuntu-latest
     timeout-minutes: 20
     outputs:
@@ -97,4 +98,18 @@ jobs:
         with:
           name: fieldwork-public-${{ matrix.suite }}
           path: test-output/
+          retention-days: 14
+  monster-source-audit:
+    if: startsWith(github.event.head_commit.message, 'assets(vesperfall):')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify CC0 source and prepare bounded animation derivatives for review
+        run: python vesperfall/tools/import-kaykit.py --output test-output/kaykit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vesperfall-kaykit-intake
+          path: test-output/kaykit/
           retention-days: 14
