@@ -59,6 +59,7 @@ with sync_playwright() as pw:
    select(7);select(3);check(p.evaluate('River.snapshot().result')==before and p.evaluate('River.snapshot().difficulty')=='easy',mode+': a paused menu cannot relabel difficulty or change progress')
    image=p.evaluate('AFRAME.scenes[0].object3D.getObjectByName("prism-health-gauge").material.map.image.toDataURL()');(OUT/(mode+'-health.png')).write_bytes(base64.b64decode(image.split(',')[1]))
    select(6);p.evaluate('TestXR.away()');button('right',5);p.wait_for_function('River.snapshot().phase==="playing"')
+   check(True,mode+': B/Y immediately after the Back action resumes instead of being dropped')
    p.evaluate('startFriendlyXR("boss")');p.wait_for_function('River.snapshot().entities.some(n=>n.type==="boss")',timeout=45000)
    check(not p.evaluate('friendlyXRObserved.earlyBoss'),mode+': the boss arrives only in the final phrase')
    p.wait_for_function('["complete","escaped","failed"].includes(River.snapshot().phase)',timeout=30000);p.evaluate('stopFriendlyXR();clearInterval(friendlyXRObserver)')

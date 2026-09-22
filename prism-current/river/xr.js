@@ -1,8 +1,8 @@
-/* River Prism XR UI 0.10.1. Pick the rendered panel's UV, not a second set of
+/* River Prism XR UI 0.12.2. Pick the rendered panel's UV, not a second set of
    invisible button meshes. Native select events and polled inputs share a latch.
    Grip shields / trigger lasers are unchanged. No forced gameplay head motion. */
 (function(root){'use strict';
- const VERSION='0.11.0',WIDTH=1200,HEIGHT=814;
+ const VERSION='0.12.2',WIDTH=1200,HEIGHT=814;
  const RECTS=Object.freeze(Array.from({length:8},(_,i)=>Object.freeze({x:i%2?631:56,y:306+Math.floor(i/2)*122,w:513,h:90})));
  const list=value=>Array.from(value||[]);
  function actionAtUV(u,v){if(!Number.isFinite(u)||!Number.isFinite(v))return -1;const x=u*WIDTH,y=(1-v)*HEIGHT;return RECTS.findIndex(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);}
@@ -19,7 +19,7 @@
   function clear(){prior.clear();queued.clear();nativeHeld.clear();latched.clear();fireArmed.fill(false);hover.fill(-1);missing=null;for(const r of [...rays,...cursors])r.visible=false;}
   function placeMenu(){if(!viewer)return;if(dock){dock.summon(viewer);focus=0;focusMode='pointer';hover.fill(-1);lastText='';return;}stage.updateWorldMatrix(true,false);const p=viewer.transform.position,q=viewer.transform.orientation,world=scene.object3D.localToWorld(new T.Vector3(p.x,p.y,p.z)),forward=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion(q.x,q.y,q.z,q.w));forward.y=0;forward.normalize();const target=scene.object3D.localToWorld(new T.Vector3(p.x,p.y-.17,p.z).addScaledVector(forward,1.95));menu.mesh.position.copy(stage.worldToLocal(target));const head=stage.worldToLocal(world),d=menu.mesh.position.clone().sub(head);menu.mesh.rotation.set(0,Math.atan2(-d.x,-d.z),0);menu.mesh.updateWorldMatrix(true,false);focus=0;focusMode='pointer';hover.fill(-1);lastText='';}
   function recenter(){if(!viewer)return;g.pauseRun('Stage recentered. Check your clear space before resuming.');const p=viewer.transform.position,q=viewer.transform.orientation,f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion(q.x,q.y,q.z,q.w));stage.position.set(p.x,p.y-1.65,p.z);stage.rotation.y=Math.atan2(-f.x,-f.z);stage.updateMatrixWorld(true);calibrated=true;g.clearInputs();fireArmed.fill(false);placeMenu();}
-  function action(i){if(!session||session.visibilityState!=='visible'||performance.now()-lastAction<120)return;if(i<0||i> (dock?13:7))return;lastAction=performance.now();actions++;if(dock?.action(i)){lastText='';return;}
+  function action(i,direct=false){if(!session||session.visibilityState!=='visible'||(!direct&&performance.now()-lastAction<120))return;if(i<0||i> (dock?13:7))return;lastAction=performance.now();actions++;if(dock?.action(i)){lastText='';return;}
    if(i===0){if(g.busy||g.phase==='loading')return;if(!calibrated)recenter();if(!calibrated||controllerHands(session.inputSources).size<2||tracked.size<2){g.notice('Use both tracked controllers to fight. One controller or hands can use this menu.');return;}g.phase==='paused'?g.resume():g.start();}
    if(i===1){g.cancel();g.chapter=g.chapter==='duck-armada'?'mothership':'duck-armada';g.sync();}if(i===2)recenter();if(i===3)scene.exitVR();if(i===4)g.music(-.1);if(i===5)g.music(.1);if(i===6){g.quiet=!g.quiet;g.sync();}if(i===7){g.cruise=!g.cruise;g.cancel();g.notice('Mode changed. Start a fresh battle.');g.sync();}lastText='';
   }
@@ -48,7 +48,7 @@
    const frame=scene.frame,space=scene.renderer.xr.getReferenceSpace();if(space!==referenceSpace){referenceSpace?.removeEventListener('reset',reset);referenceSpace=space;space?.addEventListener('reset',reset);}if(!frame||!space)return output;viewer=frame.getViewerPose(space);if(!viewer){g.pauseRun('Head tracking unavailable.');g.clearInputs();clear();return output;}if(!centeredOnce){centeredOnce=true;recenter();}if(session.visibilityState!=='visible'){visibility();return output;}
    if(g.phase!==lastPhase){if(g.phase==='playing')fireArmed.fill(false);else if(lastPhase==='playing')placeMenu();lastPhase=g.phase;}
    const p=viewer.transform.position,head=stage.worldToLocal(scene.object3D.localToWorld(new T.Vector3(p.x,p.y,p.z)));output.body=[head.x,head.y-.2,head.z];
-   const input=list(session.inputSources),active=new Set(input);for(const src of prior.keys())if(!active.has(src)){prior.delete(src);queued.delete(src);nativeHeld.delete(src);latched.delete(src);}tracked=new Set();let requested=-1,pausePressed=false;
+   const input=list(session.inputSources),active=new Set(input);for(const src of prior.keys())if(!active.has(src)){prior.delete(src);queued.delete(src);nativeHeld.delete(src);latched.delete(src);}tracked=new Set();let requested=-1,pausePressed=false,directAction=false;
    for(const r of [...rays,...cursors])r.visible=false;
    for(const src of input){const h=src.handedness==='right'?1:0,old=prior.get(src),aim=src.targetRaySpace&&frame.getPose(src.targetRaySpace,space),pose=src.gripSpace&&frame.getPose(src.gripSpace,space),btn=list(src.gamepad?.buttons).map(x=>!!x.pressed||x.value>.55),was=old?.btn||btn;let pinch=false;
     if(src.hand){const a=src.hand.get('thumb-tip'),b=src.hand.get('index-finger-tip'),pa=a&&frame.getJointPose?.(a,space),pb=b&&frame.getJointPose?.(b,space);if(pa&&pb){const p=pa.transform.position,q=pb.transform.position;pinch=Math.hypot(p.x-q.x,p.y-q.y,p.z-q.z)<.025;}}
@@ -58,7 +58,7 @@
     if(g.phase!=='playing'){
      if(dir!=='0,0'&&old&&(dir!==oldDir||stamp>=repeatAt)){focus=dock?dock.navigate(focus,...direction):navigate(focus,...direction);focusMode='stick';repeatAt=stamp+(dir!==oldDir?380:160);}
      if(btn[3]&&!was[3]&&dock){dock.reset();placeMenu();}
-     if(btn[5]&&!was[5]){if(dock) dock.action(8);requested=0;}
+     if(btn[5]&&!was[5]){if(dock) dock.action(8);requested=0;directAction=true;}
      else if(btn[4]&&!was[4]&&requested<0)requested=focus;
      else if(clicked&&requested<0)requested=hit>=0?hit:focusMode==='stick'?focus:-1;
     }else if(btn[5]&&!was[5])pausePressed=true;
@@ -70,8 +70,10 @@
     }else{fireArmed[h]=false;g.previous[h]=null;}
     prior.set(src,{btn,primary:down||event,raised,dir,repeatAt});
    }
-   // One action per frame; native selectstart and button polling cannot double-click.
-   if(pausePressed){g.pauseRun('Paused. Point + trigger, or thumbstick + A/X. B/Y resumes.');placeMenu();}else if(requested>=0)action(requested);
+   // One action per frame. A new B/Y edge is an explicit command, not a duplicate
+   // pointer click: do not discard it behind the previous menu action debounce.
+   // Held-button edge checks and native/polled selection latches stay unchanged.
+   if(pausePressed){g.pauseRun('Paused. Point + trigger, or thumbstick + A/X. B/Y resumes.');placeMenu();}else if(requested>=0)action(requested,directAction);
    if(tracked.size<2&&g.phase==='playing'){missing??=performance.now();if(performance.now()-missing>220)g.pauseRun('Both controllers are needed for combat. Hands can use the paused menu.');}else missing=null;
    // The headset boundary remains authoritative. Ordinary room-scale dodging does not pause play.
    menu.mesh.visible=g.phase!=='playing';if(!menu.mesh.visible)for(const r of [...rays,...cursors])r.visible=false;

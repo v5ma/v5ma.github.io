@@ -1,10 +1,10 @@
 {
-  "version": "0.12.1",
+  "version": "0.12.2",
   "name": "Prism Current",
   "date": "2026-09-22",
   "engine": "A-Frame 1.8.0",
   "edition": "River Prism / Friendly Current",
-  "scope": "Four difficulty profiles, Easy first-play default, slower fruit-launching enemies, cuttable/shootable blocks instead of red missiles, one-time healing boxes, readable scene health bar and late-only boss entrances. Existing graphics and old scores preserved; new records are difficulty-specific. Status textures update only when their contents change and are uploaded during loading before the soundtrack.",
+  "scope": "Four difficulty profiles, Easy first-play default, slower fruit-launching enemies, cuttable/shootable blocks instead of red missiles, one-time healing boxes, readable scene health bar and late-only boss entrances. Existing graphics and old scores preserved; new records are difficulty-specific. Status textures update only when their contents change and are uploaded during loading before the soundtrack. Direct B/Y start/resume is no longer discarded by a preceding pointer-action debounce; native selection latches and controller/visibility checks remain.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html",

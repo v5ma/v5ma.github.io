@@ -64,7 +64,7 @@ with sync_playwright() as pw:
             p.evaluate('''()=>{const S=TestXR.state,T=AFRAME.THREE;S.head=[2.7,1.21,-1.6];S.yaw=.83;for(const hand of['left','right'])S.hands[hand]=new T.Vector3(hand==='left'?-.23:.23,-.3,-.4).applyAxisAngle(new T.Vector3(0,1,0),S.yaw).add(new T.Vector3(...S.head)).toArray();S.rotate.right=[.7,1.6,0];}''')
             p.locator('#enter-'+mode).click();p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().xrUI.trackedControllers===2')
             check(p.evaluate('!Array.isArray(TestXR.state.session.inputSources)&&TestXR.state.session.inputSources.filter===undefined'),mode+': native-shaped XR source collection, not an ordinary array')
-            check(p.evaluate('River.snapshot().xrUI.version')=='0.11.0',mode+': repaired XR module loaded')
+            check(p.evaluate('River.snapshot().xrUI.version')=='0.12.2',mode+': repaired XR module loaded')
             check(p.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==(0 if mode=='ar' else 1),mode+': correct compositor transparency')
             p.evaluate('TestXR.away()')
             for index in range(8):

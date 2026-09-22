@@ -42,6 +42,15 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           timeout 360 python -u prism-current/tests/playability-xr-browser.py
+      - name: Save primary XR source evidence immediately
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-friendly-xr-source-${{ github.sha }}
+          path: |
+            test-output/playability-xr/
+            test-output/prism-manifest.json
+          retention-days: 14
       - name: Source difficulty, healing and late bosses
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         env:
@@ -168,6 +177,16 @@ jobs:
         env:
           PRISM_URL: https://v5ma.github.io/prism-current/
         run: timeout 360 python -u prism-current/tests/playability-xr-browser.py
+      - name: Save primary XR public evidence immediately
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-friendly-xr-public-${{ github.sha }}
+          path: |
+            test-output/playability-xr/
+            test-output/prism-manifest.json
+            test-output/rotunda-publication.json
+          retention-days: 14
       - name: Public difficulty, healing and late bosses
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         env:
