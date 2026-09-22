@@ -1,3 +1,7 @@
+Lantern Vault survey / LANTERN-VAULT-10, September 22, 2026.
+
+This bounded playable optical/maintenance survey and town-return consequence advances existing NEXT01/NEXT06/S01/S02/S03/F03. Read LANTERN-VAULT.md for actual scope, ordinary-movement tests, preserved old content and remaining browser/physical gates. All canonical task IDs and broad acceptance criteria below remain unchanged. This checkpoint does not close an MMO, final-art, guardian, vertical-gallery or human/device milestone.
+
 World Portal owner correction / September 17, 2026.
 
 Read WORLD-PORTAL.md and release.json before the historical notes below. XR-PORTAL-02 advances F03 and NEXT02 without closing broad production/human/device gates. The regular complete game now moves around the centered player inside the unchanged exhibit; mask depth continues beyond the side/rear faces. Near display panels become transparent, and large XR controls appear only on demand or for a dialog. First-person AR is a separately requested AR session. Quarter map goals remain visible across floors with an explicit next-action card.
@@ -59,7 +63,7 @@ This sequence records the current continuation plan; it does not claim that the 
 - [ ] NEXT05 Develop genuinely distinct frontier enemy roles and more varied optional adventures: fair telegraphs, obstacle-aware pursuit/retreat, difficulty/accessibility and peaceful alternatives where appropriate. Current wisps are not a finished ranged/support class. Keep enemies and projectiles out of safe zones. Maps to C04-C06 and S01/S02.
 - [ ] NEXT06 Improve an authored sample of existing houses, then scale worthwhile interior work and consequences across districts. Preserve every house's four-floor access; distinguish eight reused craft patterns from bespoke stories. Do not replace the town with a new map. Maps to V04/V05, D03/D07/D16 and S01/S02.
 - [ ] NEXT07 Design the later farmland region in the same game, with a peaceful session loop. Gathering, irrigation, crops/animals, deliveries and artisan trade are candidates; exact scope is undecided. No current map, farm purchase or offline penalty system is implied. Build after the current region loop and quality gates are satisfactory. Maps to W06, D04/D14 and S03/S07.
-- [ ] NEXT08 Consider free swimming/diving or boats only after actual movement, depth transitions, controller bindings, camera, animation, accessibility, recovery and saves are implemented/tested. Do not advertise the current drain-and-wade mission as those systems. Maps to C02/C03, W03, S05 and Q02/Q03.
+- [ ] NEXT08 Consider free swimming/diving or boats only after actual movement, depth transitions, controller bindings, camera, animation, accessibility, recovery and saves are implemented/tested). Do not advertise the current drain-and-wade mission as those systems. Maps to C02/C03, W03, S05 and Q02/Q03.
 
 ## Phase 0 - Stable, calm, controller-complete foundation
 

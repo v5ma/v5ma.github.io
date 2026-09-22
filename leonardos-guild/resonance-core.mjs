@@ -1,3 +1,4 @@
+import {vaultSolids} from './vault-data.mjs';
 import {inQuarter,quarterBlocked} from './quarter-core.mjs';
 import {activeQuarterWalls} from './quarter-data.mjs';
 import {inBadlands,safeTown,frontierBlocked,frontierSight,hurtMonster,FRONTIER_SOLIDS} from './frontier-core.mjs';
@@ -36,7 +37,7 @@ function solidPoint(s,w,x,z){if(inQuarter(s))return quarterBlocked(s,x,z,.08);
   if(!s.relay&&w.gates.some(b=>Math.abs(x-b.x)<b.hx&&Math.abs(z-b.z)<b.hz))return true;
   return w.colliders.some(b=>Math.abs(x-b.x)<b.hx&&Math.abs(z-b.z)<b.hz);
 }
-export function clearShot(s,w,a,b){if(inBadlands(s))return frontierSight(a,b);const length=dist(a,b),steps=Math.max(1,Math.ceil(length/.3));for(let i=1;i<steps;i++){const f=i/steps;if(solidPoint(s,w,a.x+(b.x-a.x)*f,a.z+(b.z-a.z)*f))return false;}return true;}
+export function clearShot(s,w,a,b){if(inBadlands(s))return frontierSight(a,b,s);const length=dist(a,b),steps=Math.max(1,Math.ceil(length/.3));for(let i=1;i<steps;i++){const f=i/steps;if(solidPoint(s,w,a.x+(b.x-a.x)*f,a.z+(b.z-a.z)*f))return false;}return true;}
 export function aimTarget(s,w,yaw,enabled=true){
   if(!enabled)return null;
   return validTargets(s,w).filter(e=>dist(e,s)<30&&Math.abs(angle(Math.atan2(e.x-s.x,e.z-s.z)-yaw))<.72&&clearShot(s,w,s,e)).sort((a,b)=>dist(a,s)-dist(b,s))[0]||null;
@@ -48,7 +49,7 @@ export function chooseDiscipline(s,w,id){if(!DISCIPLINES.some(t=>t.id===id))retu
 export function specialAbility(s){const c=s.resonance;if(c.specialCD>0||c.special>0)return false;if(s.life.focus<40){notify(s,'This ability needs 40 focus. Let it recover, or use an earned restorative service.','resonance-denied');return false;}s.life.focus-=40;c.special=7;c.specialCD=25;if(c.discipline==='artificer'){s.scan=8;s.scanCD=2;}notify(s,({courier:'Second Wind',warden:'Steadfast',artificer:'Ingenio Focus'})[c.discipline]+'!','resonance-special');return true;}
 export function coverObject(s,w){
   if(s.mode!=='foot'||s.doors.level||s.life.inside)return null;
-  return (inQuarter(s)?activeQuarterWalls(s.quarter):inBadlands(s)?FRONTIER_SOLIDS:w.colliders).map(b=>{const x=clamp(s.x,b.x-b.hx,b.x+b.hx),z=clamp(s.z,b.z-b.hz,b.z+b.hz);return {id:b.id,x,z,d:dist(s,{x,z})};}).filter(b=>b.d>.2&&b.d<1.9).sort((a,b)=>a.d-b.d)[0]||null;
+  return (inQuarter(s)?activeQuarterWalls(s.quarter):inBadlands(s)?[...FRONTIER_SOLIDS,...vaultSolids(s)]:w.colliders).map(b=>{const x=clamp(s.x,b.x-b.hx,b.x+b.hx),z=clamp(s.z,b.z-b.hz,b.z+b.hz);return {id:b.id,x,z,d:dist(s,{x,z})};}).filter(b=>b.d>.2&&b.d<1.9).sort((a,b)=>a.d-b.d)[0]||null;
 }
 export function toggleCover(s,w){const c=s.resonance;if(c.cover){c.cover=null;return false;}const cover=coverObject(s,w);if(!cover){notify(s,'Stand beside a wall, counter or street obstacle to take cover. LT with the staff also braces.','resonance-denied');return false;}c.cover=cover;notify(s,'In cover. Move away, press RB again, or dodge with B to leave.','resonance-cover');return true;}
 function damageTarget(s,w,t,damage,stun){

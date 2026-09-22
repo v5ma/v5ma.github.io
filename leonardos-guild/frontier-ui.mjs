@@ -1,3 +1,4 @@
+import {vaultTarget} from './vault-core.mjs';
 import {cisternStatus,cisternOptions} from './cistern-core.mjs';
 /* Controller-first region notebook. Every button calls a validated reducer;
  * choosing a map destination cannot move the character or award progression. */
@@ -37,7 +38,7 @@ export function createFrontierUI({getState,world,setPause,save,active,canOpen=ac
  }
  function open(which='journey'){if(!canOpen())return;tab=which;message='';setPause(true);render();dialog.showModal();}
  function interact(){if(inBadlands(getState())||nearbyFrontier(getState(),world).length){open();return true;}return false;}
- function update(){const s=getState(),f=s.frontier;if(!f)return;badge.hidden=!document.getElementById('menu').hidden;const bad=inBadlands(s);if(rideButton)rideButton.innerHTML=bad?'<b>Y</b>Dressing':rideLabel;const camp=bad&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<18,target=frontierTarget(s);document.body.classList.toggle('in-badlands',bad);badge.className=bad&&!camp?'hostile':'safe';badge.textContent=(bad?(camp?'GATE CAMP / SANCTUARY':'CINDER HOLLOW / BADLANDS'):'VINCI / SAFE TOWN')+(target?' | '+target.name+' / '+Math.round(Math.hypot(s.x-target.x,s.z-target.z))+' m':'');
+ function update(){const s=getState(),f=s.frontier;if(!f)return;badge.hidden=!document.getElementById('menu').hidden;const bad=inBadlands(s);if(rideButton)rideButton.innerHTML=bad?'<b>Y</b>Dressing':rideLabel;const camp=bad&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<18,target=vaultTarget(s)||frontierTarget(s);document.body.classList.toggle('in-badlands',bad);badge.className=bad&&!camp?'hostile':'safe';badge.textContent=(bad?(camp?'GATE CAMP / SANCTUARY':'CINDER HOLLOW / BADLANDS'):'VINCI / SAFE TOWN')+(target?' | '+target.name+' / '+Math.round(Math.hypot(s.x-target.x,s.z-target.z))+' m':'');
   if(safeTown(s)){document.getElementById('duel').hidden=true;document.getElementById('doors-enemy').hidden=true;}
  }
  function drawMap(canvas,full=false){
@@ -47,7 +48,7 @@ export function createFrontierUI({getState,world,setPause,save,active,canOpen=ac
   for(const [a,b]of TRAIL_EDGES){g.beginPath();g.moveTo(X(TRAIL_NODES[a][0]),Z(TRAIL_NODES[a][1]));g.lineTo(X(TRAIL_NODES[b][0]),Z(TRAIL_NODES[b][1]));g.stroke();}
   for(const p of FRONTIER_SITES.filter(p=>['beacon','exit','relic','water'].includes(p.kind))){g.fillStyle=p.id==='return'?'#8ed9ad':s.frontier.visited.includes(p.id)?'#81adae':'#edca7e';g.fillRect(X(p.x)-3,Z(p.z)-3,6,6);if(full){g.font='12px Arial';g.fillText(p.name,X(p.x)+8,Z(p.z)-5);}}
   for(const m of s.frontier.enemies){if(m.hp<=0||Math.hypot(s.x-m.x,s.z-m.z)>30||!frontierSight(s,m))continue;g.fillStyle='#ee9378';g.beginPath();g.arc(X(m.x),Z(m.z),full?4:2.5,0,Math.PI*2);g.fill();}
-  const p=frontierTarget(s);if(p){g.strokeStyle='#e4eea6';g.lineWidth=2;g.beginPath();g.arc(X(p.x),Z(p.z),full?10:6,0,Math.PI*2);g.stroke();}
+  const p=vaultTarget(s)||frontierTarget(s);if(p){g.strokeStyle='#e4eea6';g.lineWidth=2;g.beginPath();g.arc(X(p.x),Z(p.z),full?10:6,0,Math.PI*2);g.stroke();}
   g.fillStyle='#faf4d6';g.beginPath();g.arc(X(s.x),Z(s.z),full?5:4,0,Math.PI*2);g.fill();g.strokeStyle='#fff6c5';g.beginPath();g.moveTo(X(s.x),Z(s.z));g.lineTo(X(s.x)+Math.sin(s.yaw)*10,Z(s.z)-Math.cos(s.yaw)*10);g.stroke();return true;
  }
  return {open,interact,update,drawMap,close(){if(!dialog.open)return false;dialog.close();return true;}};

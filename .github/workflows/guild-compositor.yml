@@ -173,3 +173,54 @@ jobs:
             desk-public-source.json
             leonardos-guild/road-source-output/
             leonardos-guild/road-public-output/
+  lantern-vault:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - site: source
+            base: http://127.0.0.1:4173
+            route: optical
+          - site: public
+            base: https://v5ma.github.io
+            route: service
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm --prefix leonardos-guild test
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Start ordinary source server
+        run: python -m http.server 4173 --bind 127.0.0.1 >/tmp/vault-server.log 2>&1 &
+      - name: Verify the published runtime
+        if: matrix.site == 'public'
+        run: python -u leonardos-guild/tests/verify-desk-public.py
+      - name: Walk the survey, use tools, enter XR, and return with the plans
+        env:
+          TEST_BASE_URL: ${{ matrix.base }}
+          VAULT_ROUTE: ${{ matrix.route }}
+        run: python -u leonardos-guild/tests/vault-browser.py
+      - name: Preserve source identity and failures
+        if: always()
+        run: |
+          mkdir -p vault-evidence
+          git rev-parse HEAD > vault-evidence/commit.txt
+          git diff --stat > vault-evidence/uncommitted-diff.txt
+          git ls-files -z leonardos-guild | xargs -0 sha256sum > vault-evidence/source-hashes.txt
+          cp /tmp/vault-server.log vault-evidence/ 2>/dev/null || true
+          test ! -s vault-evidence/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-lantern-vault-${{ matrix.site }}
+          path: |
+            vault-evidence/
+            desk-public-source.json
+            leonardos-guild/vault-${{ matrix.site }}-output/

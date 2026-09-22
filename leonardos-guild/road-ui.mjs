@@ -1,6 +1,7 @@
+import {vaultInventory} from './vault-core.mjs';
 import {ROAD_NODES,ROAD_ITEMS,ROAD_STEPS,roadNear,roadTarget,reviewRoadAction,commitRoadReview} from './road-core.mjs';
 /* One native dialog model reused by the existing Xbox and world-space XR desk. */
-export function createRoadUI({getState,playing,setPause,persist,onChange,travel,legacyJournal,legacyFrontier}){
+export function createRoadUI({getState,playing,setPause,persist,onChange,travel,legacyJournal,legacyFrontier,survey}){
  const make=(tag,text,parent)=>{const e=document.createElement(tag);if(text)e.textContent=text;if(parent)parent.append(e);return e;};
  const dialog=make('dialog',null,document.body);dialog.id='road-dialog';dialog.setAttribute('aria-label','Lantern road story and inventory');
  const review=make('dialog',null,document.body);review.id='road-review';review.setAttribute('aria-label','Review exact transaction');
@@ -52,6 +53,7 @@ export function createRoadUI({getState,playing,setPause,persist,onChange,travel,
    const entries=Object.entries(r.items).filter(([id,q])=>ROAD_ITEMS[id]&&q>0);
    if(!entries.length)paragraph('Your new satchel is empty. The survey charter provides its own bound materials; no purchase is required to finish it.');
    for(const [id,q]of entries){const d=ROAD_ITEMS[id];make('h3',d.name+' x '+q,dialog);paragraph(d.type+(d.bound?' / Quest-bound, cannot be sold.':'.')+' '+d.detail);if(id==='tonic')button(dialog,'road-use-tonic','Use one tonic / review',()=>ask('use:tonic'));}
+   if(survey){for(const i of vaultInventory(s.vault))paragraph(i.name+' / '+i.where+'. '+i.detail);button(dialog,'road-survey-tools','Lantern Vault / tools and field notes',()=>{dialog.close();survey();});}
    button(dialog,'road-old-journal','Open original notebook and character',()=>{dialog.close();legacyJournal();});
    make('h3','Recent saved receipts',dialog);if(!r.receipts.length)paragraph('No exchanges yet.');for(const p of [...r.receipts].reverse().slice(0,5))paragraph('Receipt '+p.id+': '+p.summary+' Balance '+p.balance+'.');
    paragraph('Player-to-player trade is not enabled. Future trades need authenticated participants, locked offer revisions, both confirmations, and an atomic server exchange.');

@@ -1,3 +1,4 @@
+import {vaultState,saveVault,vaultTarget,vaultText} from './vault-core.mjs';
 import {roadState,saveRoad,roadTarget,roadText} from './road-core.mjs';
 import {inQuarter,saveQuarter,quarterBlocked,quarterTarget,quarterText,stepQuarter,quarterRecover} from './quarter-core.mjs';
 import {deliveryIdentitySet} from './save-identities.mjs';
@@ -11,7 +12,7 @@ import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocc
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.15.0';
+export const VERSION='0.16.0';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -45,21 +46,22 @@ export function newState(saved=null){
  for(let i=0;i<18;i++)s.pedestrians.push({id:i,x:(i%3-1)*80+(i%2?10.8:-10.8),z:30+i*19%340,yaw:i%2?0:Math.PI,phase:i*1.3});
  for(let i=0;i<7;i++)s.traffic.push({id:i,x:(i%3-1)*80+(i%2?3.1:-3.1),z:45+i*53%345,dir:i%2?1:-1,speed:0});
  if(saved){for(const k of ['credits','score','relay','completed','folio','defeated','upgraded'])s[k]=saved[k];s.deliveries=new Set(saved.deliveries);s.banditHP=s.defeated?0:100;s.mission=s.completed?4:s.folio?3:s.relay&&s.deliveries.size>=4?2:s.deliveries.size>=4?1:0;}
- initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);s.doors=freshDoors(saved?.doors);s.resonance=resonanceState(saved?.resonance);s.road=roadState(saved?.road);return s;
+ initLife(s,saved?.life);s.street=streetState(saved?.street);s.city=cityState(saved?.city);s.cycle=cycleState(saved?.cycle);s.doors=freshDoors(saved?.doors);s.resonance=resonanceState(saved?.resonance);s.road=roadState(saved?.road);s.vault=vaultState(saved?.vault);return s;
 }
 export function readSave(raw,world){
  try{if(!raw||raw.length>32768)return null;const v=JSON.parse(raw),ids=deliveryIdentitySet(world);if(v.version!==2||!Number.isInteger(v.credits)||v.credits<0||v.credits>10000000||!Number.isInteger(v.score)||v.score<0||v.score>10000000||!Array.isArray(v.deliveries)||v.deliveries.length>64||!v.deliveries.every(id=>ids.has(id))||typeof v.relay!=='boolean'||typeof v.completed!=='boolean'||!['folio','defeated','upgraded'].every(k=>typeof v[k]==='boolean')||v.folio&&!v.defeated||v.completed&&!v.folio)return null;return {...v,deliveries:[...new Set(v.deliveries)]};}catch{return null;}
 }
-export function saveData(s){return {version:2,road:saveRoad(s.road),quarter:saveQuarter(s),frontier:saveFrontier(s),resonance:saveResonance(s.resonance),doors:saveDoors(s.doors),cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
+export function saveData(s){return {version:2,vault:saveVault(s.vault),road:saveRoad(s.road),quarter:saveQuarter(s),frontier:saveFrontier(s),resonance:saveResonance(s.resonance),doors:saveDoors(s.doors),cycle:saveCycle(s.cycle),city:saveCity(s.city),street:streetSave(s.street),life:saveLife(s.life),folio:s.folio,defeated:s.defeated,upgraded:s.upgraded,credits:Math.floor(s.credits),score:Math.floor(s.score),deliveries:[...s.deliveries],relay:s.relay,completed:s.completed};}
 export function tell(s,text){s.toast=text;s.toastT=4;}
 function event(s,type,data={}){s.events.push({type,step:s.steps,...data});if(s.events.length>160)s.events.shift();}
 export function activeTarget(s,w){if(inQuarter(s))return quarterTarget(s);
+ const survey=vaultTarget(s);if(survey)return survey;
  const road=roadTarget(s);if(road)return road;
  const region=frontierTarget(s);if(region)return region;
  if(s.mission===0){let targets=w.mailboxes.filter(b=>b.route&&!s.deliveries.has(b.id));if(!targets.length)targets=w.mailboxes.filter(b=>!s.deliveries.has(b.id));return targets.sort((a,b)=>distance(a,s)-distance(b,s))[0]||w.depot;}
  if(s.mission===1)return w.nodes[0];if(s.mission===2)return s.defeated?w.newsroom:w.bandit;return w.depot;
 }
-export function missionText(s){if(inQuarter(s))return quarterText(s);const road=roadText(s);if(road)return road;if(inBadlands(s))return {tag:'EXPEDITION / CINDER HOLLOW',title:'Three trails beyond the walls.',text:'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'};if(safeTown(s)&&s.mission===2&&!s.defeated)return {tag:'03 / THE STOLEN FOLIO',title:'A peaceful return.',text:'Vinci is safe. Speak to the folio watchman on Arno Road with X, then retrieve the folio at the archive as before.'};return [
+export function missionText(s){if(inQuarter(s))return quarterText(s);const survey=vaultText(s);if(survey)return survey;const road=roadText(s);if(road)return road;if(inBadlands(s))return {tag:'EXPEDITION / CINDER HOLLOW',title:'Three trails beyond the walls.',text:'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'};if(safeTown(s)&&s.mission===2&&!s.defeated)return {tag:'03 / THE STOLEN FOLIO',title:'A peaceful return.',text:'Vinci is safe. Speak to the folio watchman on Arno Road with X, then retrieve the folio at the archive as before.'};return [
  {tag:'01 / THE MASTER’S LETTERS',title:'An apprentice’s first ride.',text:`Leonardo needs four sealed plans delivered. ${Math.min(s.deliveries.size,4)}/4 complete. Q throws left; C throws right. Follow the gold markers.`},
  {tag:'02 / THE WATERWORKS',title:'Ingenio opens the way.',text:'Ride to the market waterwheel. X inspects mechanisms. Stop and hold H to restore the bridge. A merchant nearby trades useful supplies.'},
  {tag:'03 / THE STOLEN FOLIO',title:'A sketch worth defending.',text:s.defeated?'The guard has yielded. Reach the gold marker by the archive and press H to recover Leonardo’s folio.':'A folio thief waits by the Arno road. Dismount with F. J swings your staff; hold K to brace. You can always retreat and recover at the workshop.'},

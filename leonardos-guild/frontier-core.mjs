@@ -1,3 +1,4 @@
+import {vaultBlocked} from './vault-data.mjs';
 import {cisternState,saveCistern,cisternStep,cisternAction,poolBlocked,waterDepth} from './cistern-core.mjs';
 /* Region session above the retained campaign model. No networking or payments.
  * Old model-only fixtures remain usable without installing a region session;
@@ -62,11 +63,11 @@ export function attachFrontier(s,raw){s.frontier=frontierState(raw);return s;}
 export function saveFrontier(s){if(!s.frontier)return undefined;const {zone,enemies,lastArea,notice,gateTracked,cistern,...data}=s.frontier;return JSON.parse(JSON.stringify({...data,cistern:saveCistern(cistern)}));}
 export function frontierBlocked(x,z,r=.33,s=null){
  if(!Number.isFinite(x)||!Number.isFinite(z))return true;
- if(poolBlocked(x,z,r,s))return true;
+ if(poolBlocked(x,z,r,s)||vaultBlocked(x,z,r,s))return true;
  const b=BADLANDS;if(x<b.minX+r||x>b.maxX-r||z<b.minZ+r||z>b.maxZ-r)return true;
  return FRONTIER_SOLIDS.some(b=>Math.hypot(x-clamp(x,b.x-b.hx,b.x+b.hx),z-clamp(z,b.z-b.hz,b.z+b.hz))<r);
 }
-export function frontierSight(a,b){const n=Math.max(1,Math.ceil(dist(a,b)/.25));for(let i=1;i<=n;i++)if(frontierBlocked(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.09))return false;return true;}
+export function frontierSight(a,b,s=null){const n=Math.max(1,Math.ceil(dist(a,b)/.25));for(let i=1;i<=n;i++)if(frontierBlocked(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,.09,s))return false;return true;}
 export function refreshMonsters(s){s.frontier.enemies=MONSTERS.map(m=>({...m,homeX:m.x,homeZ:m.z,hp:s.frontier.defeated.includes(m.id)?0:m.hp,maxHP:m.hp,phase:'patrol',timer:0,flash:0,yaw:0}));}
 export function enterBadlands(s){
  if(!safeTown(s)||s.mode!=='foot'||s.doors.level||s.life.inside||dist(s,TOWN_GATE)>4||Math.abs(s.speed)>1.7)return fail('Stop on foot beside the expedition gate at the south entrance to Vinci.');
@@ -148,7 +149,7 @@ export function hurtMonster(s,id,damage,stun=.4){
 }
 export function strikeFrontier(s){
  if(!inBadlands(s)||s.attackCD>0)return false;s.attackCD=s.resonance.variants.staff===1?.85:.6;s.attackT=.25;
- const targets=s.frontier.enemies.filter(m=>m.hp>0&&dist(m,s)<3.4&&frontierSight(s,m)).sort((a,b)=>dist(a,s)-dist(b,s));
+ const targets=s.frontier.enemies.filter(m=>m.hp>0&&dist(m,s)<3.4&&frontierSight(s,m,s)).sort((a,b)=>dist(a,s)-dist(b,s));
  if(!targets.length)return false;const m=targets[0];s.yaw=Math.atan2(m.x-s.x,m.z-s.z);return hurtMonster(s,m.id,s.upgraded?40:28,.4);
 }
 export function stepFrontier(s,w,input,dt){
@@ -167,9 +168,9 @@ export function stepFrontier(s,w,input,dt){
  const sanctuary=dist(s,CAMP)<18;
  for(const m of f.enemies){
   m.flash=Math.max(0,m.flash-dt);if(m.hp<=0)continue;m.timer=Math.max(0,m.timer-dt);
-  const near=dist(s,m),home={x:m.homeX,z:m.homeZ},sees=!sanctuary&&near<13&&dist(s,home)<23&&frontierSight(s,m);
+  const near=dist(s,m),home={x:m.homeX,z:m.homeZ},sees=!sanctuary&&near<13&&dist(s,home)<23&&frontierSight(s,m,s);
   if(m.phase==='windup'){
-   if(!m.timer){if(!sanctuary&&near<3.2&&s.inv===0&&frontierSight(s,m)){s.health=Math.max(0,s.health-(s.guarding?2:m.harm));s.inv=.7;}m.phase='recover';m.timer=1.1;}continue;
+   if(!m.timer){if(!sanctuary&&near<3.2&&s.inv===0&&frontierSight(s,m,s)){s.health=Math.max(0,s.health-(s.guarding?2:m.harm));s.inv=.7;}m.phase='recover';m.timer=1.1;}continue;
   }
   if(m.timer>0)continue;
   if(sees&&near<2.8){m.phase='windup';m.timer=m.windup;continue;}

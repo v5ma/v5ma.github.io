@@ -1,3 +1,9 @@
+Continue Leo's Guild / Playable Lantern Vault survey, v0.16.0.
+
+Read LANTERN-VAULT.md, release.json and the newest release-receipts/leonardos-guild-lantern-vault-* record first. The original eight-space roofless survey wing is now implemented in Cinder Hollow, east of Gate Camp: free loaned tools, optical and maintenance alternatives, protected plans, a persistent return latch and a once-only town report with a Map House exhibit. Start with Play Lantern Vault survey or ?chapter=lantern-vault. This is not the planned guardian, upper-storey expansion, procedural generator or MMO. Physical Quest and current browser/public evidence remain separate gates.
+
+New code: vault-data/core/ui/art.mjs, tests/vault.test.mjs and tests/vault-browser.py. Use original movement, gates, saves and XR controls. Do not replace Vinci or publish private lore. The 497 source/model/integration tests and 14 design checks pass locally; the browser refused loopback navigation before load, so completed Actions artifacts must establish actual browser coverage. Future plans remain in FUTURE-DIRECTION.md and DUNGEON-ADAPTATION.md.
+
 Continue Leo's Guild / The Road Beyond the Lanterns.
 
 September 22 reference-design supplement: read DUNGEON-ADAPTATION.md after FUTURE-DIRECTION.md. It separates the supplied Eye of the Beholder, Dungeons of Eternity and Realm Online evidence and proposes puzzle-driven frontier expeditions, useful inventory tools, original bestiary behavior, trusted cooperative loot and a bounded Lantern Vault chapter. These additions are design proposals, not implemented features, new private-world canon, a changed release or evidence of MMO readiness. Finish the current playability and charter/travel acceptance gates before expanding; preserve the canonical task IDs and all existing content.
