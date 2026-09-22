@@ -202,7 +202,7 @@ export function createQuestXR(E){
   updatePresentation(state);if(cycle%8===0)drawBadge();return sample;
  }
  function update(state,view,dt){if(active){align(state,dt);if(stamp!==layout){stamp=layout;placePanels();}updatePresentation(state);if(panel.mesh.visible)panel.collect();if(!isDiorama())currentRay=weapons.ray();}}
- const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;observedHint=E.state().hint;lastReading=item;readingLog.add(item);if(item.persistent){E.pause();panel.showDocument(item);recenter(false);}else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
+ const api={camera,rig,notifyInteraction(target,accepted){const item=interactionReading(E.state(),target,accepted);if(!item)return;observedHint=E.state().hint;lastReading=item;readingLog.add(item);if(item.persistent)notice.show((item.title||'Clue')+' recorded. Open MENU / LAST ACQUIRED CLUE to read.',headPose);else notice.show(item.text,headPose);},bind,detach,poll,update,enter,exit,reset,recenter,isActive:()=>active,isDiorama,changeView,containsWorldPoint:(point,environment=false)=>diorama.contains(point,environment),
   preferences:()=>({...preferences}),setViewPreference(value){if(active)return changeView(value);viewMode=normalizeDiorama({view:value}).view;remember({view:viewMode});return true;},
   supported:async(view=preferences.view)=>{try{return !!navigator.xr&&await navigator.xr.isSessionSupported(sessionType(view));}catch{return false;}},
   render(){const p=E.state().player,automatic=renderer.xr.cameraAutoUpdate;
