@@ -8,7 +8,7 @@ test('Blink prediction uses identical swept fixed-step trajectory and its first 
 });
 test('A visible light-draw aiming lane reaches the gallery and does not teleport through its deck',()=>{
  const s=fresh(),a=shot(s,.45,30),p=C.predictBlink(s,a.origin,a.dir,a.charge);assert.ok(p.ok,p.reason);assert.equal(p.destination[1],3.2);C.fire(s,a.origin,a.dir,a.charge,'blink');tick(s,180);assert.equal(s.p[1],3.2);
- const blocked=C.predictBlink(s,[0,1.6,-4.85],[0,1,0],.4);assert.equal(blocked.ok,false);assert.equal(blocked.hit,'wall');
+ const below=fresh(),blocked=C.predictBlink(below,[0,1.6,-4.85],[0,1,0],.4);assert.equal(blocked.ok,false);assert.equal(blocked.hit,'wall');
 });
 test('Blink validation rejects missing floors, enemies, edges and non-finite targets',()=>{
  const s=fresh();for(const p of[[0,Infinity,0],[NaN,0,0],[0,3,0],[10,0,10],[6,0,6]])assert.equal(C.landing(s,p).ok,false);

@@ -3,6 +3,7 @@
  * between positions so a fast arrow cannot tunnel through a thin wall. */
 (function(root){'use strict';
  const VERSION='0.17.0',G=9.8,R=.28;
+ const travel=root.SureflightModel||(typeof require!=='undefined'?require('./sureflight-model.js'):null);
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((v,x,i)=>v+x*b[i],0),len=a=>Math.hypot(...a),unit=a=>mul(a,1/(len(a)||1));
  function hash(text){let h=2166136261;for(const c of String(text).slice(0,64))h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
@@ -19,7 +20,7 @@
  const encounters=root.VesperEncounters||(typeof require!=='undefined'?require('./encounters.js'):null);
  const architecture=root.CloisterLayout||(typeof require!=='undefined'?require('./architecture.js'):null);
  function floorAt(world,p,margin=0){return architecture.floorAt(world,p,margin);}
- function walkable(world,p,r=R){const y=architecture.floorAt(world,p,0,.42,.55);return y!==null&&[[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>architecture.floorAt(world,[p[0]+x,y,p[2]+z],0,.42,.55)!==null)&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>y+.1&&b.min[1]<y+1.65);}
+ function walkable(world,p,r=R){const y=architecture.floorAt(world,p,0,.42,.55),perch=travel.perchAt(world,p,.42,.55);return y!==null&&((perch&&Math.abs(perch.y-y)<.001)||[[0,0],[r,0],[-r,0],[0,r],[0,-r]].every(([x,z])=>architecture.floorAt(world,[p[0]+x,y,p[2]+z],0,.42,.55)!==null))&&!world.solids.some(b=>p[0]>b.min[0]-r&&p[0]<b.max[0]+r&&p[2]>b.min[2]-r&&p[2]<b.max[2]+r&&b.max[1]>y+.1&&b.min[1]<y+1.65);}
  function segmentBlocked(world,a,b,pad=0){return world.solids.some(w=>boxHit(a,b,w,pad)!==null);}
  function route(world,from,to){const q=[from],prev=new Map([[from,null]]);for(let i=0;i<q.length;i++)for(const n of world.links[q[i]])if(!prev.has(n)){prev.set(n,q[i]);q.push(n);}if(!prev.has(to))return [];const out=[];for(let n=to;n!==null;n=prev.get(n))out.unshift(n);return out;}
  function roomAt(world,p){if(world.pilgrimage)return pilgrimage.roomAt(world,p);if(world.returningBell)return returning.roomAt(world,p);let id=0,dist=Infinity;for(const r of world.rooms){const d=Math.hypot(r.x-p[0],r.z-p[2]);if(d<dist){dist=d;id=r.id;}}return id;}
@@ -46,13 +47,14 @@
   if(type==='ricochet'&&!s.ricochetUnlocked)return false;
   const crossbow=s.weapon==='crossbow';if(crossbow&&!s.crossbow.loaded)return false;if(crossbow)charge=.9;
   charge=clamp(charge,0,1);if(crossbow)s.crossbow.loaded=false;if(type in s.ammo)s.ammo[type]--;if(type==='blink')s.blinkCD=.85;else s.shots++;
-  const speed=type==='blink'?7+charge*10:crossbow?38:12+charge*24,arrow={p:[...origin],v:mul(direction,speed),type,damage:(crossbow?66:24+charge*48)*s.power,life:4,dead:false,bounces:type==='ricochet'?2:0};if(type==='volley'){arrow.damage*=.55;for(const sign of[-1,1]){const a=sign*.075,c=Math.cos(a),sn=Math.sin(a),v=arrow.v;s.arrows.push({...arrow,p:[...origin],v:[v[0]*c-v[2]*sn,v[1],v[0]*sn+v[2]*c]});}}
+  const speed=type==='blink'?7+charge*10:crossbow?38:12+charge*24,arrow={p:[...origin],v:mul(direction,speed),type,damage:(crossbow?66:24+charge*48)*s.power,life:type==='blink'?Math.min(8,travel.duration(s.world,origin,mul(direction,speed))):4,dead:false,bounces:type==='ricochet'?2:0};if(type==='volley'){arrow.damage*=.55;for(const sign of[-1,1]){const a=sign*.075,c=Math.cos(a),sn=Math.sin(a),v=arrow.v;s.arrows.push({...arrow,p:[...origin],v:[v[0]*c-v[2]*sn,v[1],v[0]*sn+v[2]*c]});}}
   s.arrows.push(arrow);while(s.arrows.length>48)s.arrows.shift();emit(s,'shot',{arrow:type,charge,weapon:s.weapon,origin:[...origin],direction:[...direction]});return true;
  }
  function move(s,dx,dz){if(s.phase!=='playing'||!Number.isFinite(dx)||!Number.isFinite(dz)||Math.hypot(dx,dz)>5)return;if(s.playerSlow>0){dx*=.55;dz*=.55;}const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.15));for(let i=0;i<n;i++){const x=s.p[0]+dx/n,z=s.p[2]+dz/n;if(walkable(s.world,[x,s.p[1],s.p[2]])){s.p[0]=x;s.p[1]=floorAt(s.world,s.p);}if(walkable(s.world,[s.p[0],s.p[1],z])){s.p[2]=z;s.p[1]=floorAt(s.world,s.p);}}}
- function blink(s,p){if(!landing(s,p).ok)return false;s.p=[p[0],floorAt(s.world,p),p[2]];s.invuln=Math.max(s.invuln,.25);s.blinks++;emit(s,'blink',{p:[...s.p]});return true;}
+ function blink(s,p){const target=landing(s,p);if(!target.ok)return false;const delta=sub(target.p,s.p);s.p=[...target.p];s.head=add(s.head,delta);s.invuln=Math.max(s.invuln,.25);s.blinks++;emit(s,'blink',{p:[...s.p]});return true;}
  function damageEnemy(s,e,amount,type,head=false){if(e.dead)return;amount=oath.damage(s,e,amount,head,enemyAPI);if(amount<=0)return;if(head)s.headshots++;e.hp-=amount;e.aware=true;if(type==='frost'){e.slow=4;e.frozen=e.kind==='warden'?.65:1.35;e.wind=0;e.charge=null;e.recovery=.4;}s.sparks.push({p:[...e.p],life:.25,type});if(e.hp<=0){e.dead=true;s.kills++;s.orders?.add(e.kind);s.score+=(e.kind==='warden'?250:100)+(head?25:0);emit(s,'kill',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}else emit(s,'hit',{id:e.id,kind:e.kind,head,p:[...e.p],arrow:type,amount});}
  function strike(s,a,hit){
+  if(a.type==='blink'){const result=resolveBlink(s,hit,a.v);if(result.ok)blink(s,result.p);else emit(s,'blink-denied',{reason:result.reason,p:[...hit.p]});s.sparks.push({p:[...hit.p],life:.3,type:'blink'});a.dead=true;return;}
   if(hit.kind==='wall'&&a.type==='ricochet'&&a.bounces>0){const normal=wallNormal(hit.p,hit.box,a.v);a.v=mul(sub(a.v,mul(normal,2*dot(a.v,normal))),.82);a.p=add(hit.p,mul(normal,.055));a.bounces--;a.damage*=.7;s.sparks.push({p:[...hit.p],life:.3,type:'ricochet'});emit(s,'ricochet',{p:[...hit.p],remaining:a.bounces});return;}
   if(hit.kind==='wall'||hit.kind==='floor')emit(s,'impact',{p:[...hit.p],surface:hit.kind,arrow:a.type});
   if(hit.kind==='enemy'){s.hits++;damageEnemy(s,hit.enemy,a.damage*(hit.head?1.5:1),a.type,hit.head);}
@@ -60,7 +62,6 @@
   else if(hit.kind==='mechanism'){lanes.release(s,enemyAPI);}
   else if(hit.kind==='pilgrim-release'){pilgrimage.toggle(s,hit.slot,enemyAPI,true);}
   else if(hit.kind==='target'){if(!s.targets.has(hit.id)){s.targets.add(hit.id);s.score+=10;emit(s,'target',{id:hit.id});}}
-  else if(hit.kind==='floor'&&a.type==='blink'){if(!blink(s,hit.p))emit(s,'blink-denied');}
   if(a.type==='cinder'){
    // Detonate on the first actual surface, not only on a direct enemy hit.
    const center=add(hit.p,mul(unit(a.v),-.065));center[1]=Math.max(center[1],hit.kind==='floor'?hit.p[1]+.06:center[1]);
@@ -85,10 +86,18 @@
   const floor=architecture.floorHit(s.world,old,next);if(floor)candidate(floor.t,{kind:'floor',landing:floor.p});
   if(best)best.p=best.landing||add(old,mul(sub(next,old),best.t));return best;
  }
- function arrowStep(s,a,dt){a.v[1]-=G*dt;const next=add(a.p,mul(a.v,dt)),hit=probe(s,a,next);if(hit)strike(s,a,hit);else a.p=next;a.life-=dt;if(a.life<=0||a.p[1]<-8)a.dead=true;}
+ function arrowStep(s,a,dt){a.v[1]-=G*dt;const next=add(a.p,mul(a.v,dt)),hit=probe(s,a,next);if(hit)strike(s,a,hit);else a.p=next;a.life-=dt;
+  // Blink lifetime follows the world's lowest floor, not a fixed four-second
+  // range. Old in-flight save arrows also finish their physical trajectory.
+  const expired=a.type==='blink'?a.p[1]<travel.bottom(s.world):a.life<=0||a.p[1]<-8;
+  if(!a.dead&&expired){if(a.type==='blink')emit(s,'blink-denied',{reason:'no supporting surface below the arrow'});a.dead=true;}
+  if(a.type==='blink'&&!a.dead)a.life=Math.min(8,Math.max(a.life,travel.duration(s.world,a.p,a.v)));
+ }
+ function resolveBlink(s,hit,velocity){return travel.resolve(s,hit,velocity,{landing,floorAt:architecture.floorAt,boxHit});}
  function landing(s,p){if(!Array.isArray(p)||p.length!==3||!p.every(Number.isFinite))return {ok:false,reason:'invalid destination'};
-  if(!walkable(s.world,p,.42))return {ok:false,reason:'edge or stonework'};
+  if(!walkable(s.world,p,R))return {ok:false,reason:'edge or stonework'};
   const floor=floorAt(s.world,p);if(floor===null||Math.abs(floor-p[1])>.1)return {ok:false,reason:'not a floor'};
+  const height=Math.max(1.65,Math.min(2.6,s.head[1]-s.p[1]+.12));if(s.world.solids.some(b=>p[0]+R>b.min[0]&&p[0]-R<b.max[0]&&p[2]+R>b.min[2]&&p[2]-R<b.max[2]&&b.max[1]>floor+.1&&b.min[1]<floor+height))return {ok:false,reason:'insufficient head clearance'};
   if(s.world.enemies.some(e=>!e.dead&&Math.hypot(e.p[0]-p[0],e.p[2]-p[2])<1.25&&Math.abs(e.p[1]-1.05-floor)<1.8))return {ok:false,reason:'enemy occupies landing'};
   return {ok:true,reason:'clear landing',p:[p[0],floor,p[2]]};
  }
@@ -96,10 +105,10 @@
   if(!Array.isArray(origin)||!Array.isArray(direction)||origin.length!==3||direction.length!==3||![...origin,...direction,charge].every(Number.isFinite)||Math.abs(len(direction)-1)>.01)return {points:[],ok:false,reason:'invalid aim'};
   const c=s.weapon==='crossbow'?.9:clamp(charge,0,1),a={p:[...origin],v:mul(direction,7+c*10),type:'blink'},points=[[...origin]];
   if(segmentBlocked(s.world,s.head,origin))return {points,ok:false,reason:'bow behind cover'};
-  for(let tick=0;tick<360;tick++){a.v[1]-=G/90;const next=add(a.p,mul(a.v,1/90)),hit=probe(s,a,next);
-   if(hit){points.push(hit.p);const check=hit.kind==='floor'?landing(s,hit.p):{ok:false,reason:'stone blocks the arrow'};return {...check,points,destination:hit.p,hit:hit.kind,ticks:tick+1};}
-   a.p=next;if(tick%6===0)points.push([...next]);if(next[1]<-8)break;
-  }return {points,ok:false,reason:'no landing in range'};
+  for(let tick=0,budget=Math.ceil(travel.duration(s.world,a.p,a.v)*90);tick<budget;tick++){a.v[1]-=G/90;const next=add(a.p,mul(a.v,1/90)),hit=probe(s,a,next);
+   if(hit){points.push(hit.p);const check=resolveBlink(s,hit,a.v);return {...check,points,destination:check.p||hit.p,impact:hit.p,hit:hit.kind,ticks:tick+1};}
+   a.p=next;if(tick%6===0)points.push([...next]);if(next[1]<travel.bottom(s.world))break;
+  }return {points,ok:false,reason:'no supporting surface below the arrow'};
  }
  function setWeapon(s,type){if(!['bow','crossbow'].includes(type)||s.phase!=='playing')return false;s.weapon=type;emit(s,'equip',{weapon:type});return true;}
  function reload(s,physical=false){if(s.phase!=='playing'||s.weapon!=='crossbow'||s.crossbow.loaded||s.crossbow.reload>0||s.shield)return false;s.crossbow.reload=physical?(s.quickwind?.35:.48):(s.quickwind?1.05:1.55);s.crossbow.reloadDuration=s.crossbow.reload;emit(s,'reload',{physical:!!physical});return true;}
@@ -142,5 +151,5 @@
  function interact(s){if(s.pilgrimage)return pilgrimage.interact(s,enemyAPI);if(s.chapter){const ok=returning.interact(s,enemyAPI);lanes.apply(s);return ok;}const r=s.world.rooms[s.world.exit];if(s.phase!=='playing')return false;if(s.portalReady&&Math.abs(s.p[1])<.5&&Math.hypot(s.p[0]-r.x,s.p[2]-(r.z-3.8))<2.7){s.phase='reward';s.finished=true;s.sectors++;emit(s,'sector-complete');return true;}return false;}
  function reward(s,type){if(s.phase!=='reward'||!['vitality','power','supplies'].includes(type))return null;const n=create(s.world.seed,s.world.depth+1,{challenge:s.challenge?'nightfall':'normal',oath:!!s.oath,pilgrimage:pilgrimage.next(s)});n.maxHealth=s.maxHealth+(type==='vitality'?12:0);n.health=Math.min(n.maxHealth,s.health+35);n.power=s.power+(type==='power'?.12:0);n.ammo={cinder:s.ammo.cinder+(type==='supplies'?6:2),frost:s.ammo.frost+(type==='supplies'?6:2)};n.ricochetUnlocked=s.ricochetUnlocked;n.ammo.ricochet=(s.ammo.ricochet||0)+(s.ricochetUnlocked?3:0);if(s.ricochetUnlocked)addRicochetLoot(n.world);n.weapon=s.weapon;n.quickwind=s.quickwind;n.volleyUnlocked=s.volleyUnlocked;n.ammo.volley=(s.ammo.volley||0)+(s.volleyUnlocked?3:0);n.maxGuard=s.maxGuard;n.guard=n.maxGuard;n.maxShards=s.maxShards;n.shardCharges=n.maxShards;for(const key of['headshots','blocks','blinks','shardsUsed','sectors'])n[key]=s[key];n.score=s.score+200;n.kills=s.kills;n.shots=s.shots;n.hits=s.hits;return n;}
  const enemyAPI={dot,add,sub,mul,unit,len,canAttack:(s,e)=>oath.canAttack(s,e,enemyAPI),walkable,floorAt,route,roomAt,segmentBlocked,emit,shieldHit,block,hurt};
- const api={emit,collectPickup,wallNormal,VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={emit,collectPickup,wallNormal,VERSION,G,clamp,add,sub,mul,dot,len,unit,hash,rng,boxHit,sphereHit,floorAt,floorHit:architecture.floorHit,walkable,segmentBlocked,route,roomAt,generate,drawState,create,fire,move,blink,landing,resolveBlink,predictBlink,setWeapon,reload,shield,shieldHit,shard,step,interact,reward};root.VesperCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

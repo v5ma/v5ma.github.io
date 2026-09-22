@@ -3,6 +3,7 @@
  * No geometry, image, character, texture or story data from reference games. */
 (function(root){'use strict';
  const GALLERY_Y=3.2;
+ const travel=root.SureflightModel||(typeof require!=='undefined'?require('./sureflight-model.js'):null);
  function box(min,max,type){return {min,max,type};}
  function augment(world){
   // Tall enclosure walls use the existing collision footprint. Ground graph
@@ -47,7 +48,11 @@
   for(const f of world.floors){if(p[0]<f.x-f.w/2+margin||p[0]>f.x+f.w/2-margin||p[2]<f.z-f.d/2+margin||p[2]>f.z+f.d/2-margin)continue;
    const y=elevation(f,p);if(y>(p[1]||0)+maxRise+1e-5||y<(p[1]||0)-maxDrop-1e-5)continue;
    if(best===null||y>best)best=y;
-  }return best;
+  }
+  // Structural rail tops are support surfaces, not new saved geometry.
+  const perch=travel.perchAt(world,p,maxRise,maxDrop);
+  if(perch&&(best===null||perch.y>best))best=perch.y;
+  return best;
  }
  function floorHit(world,a,b){let best=null;
   for(const f of world.floors){const da=a[1]-elevation(f,a)-.02,db=b[1]-elevation(f,b)-.02;if(da<0||db>0||da-db<1e-9)continue;
