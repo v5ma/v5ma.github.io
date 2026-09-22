@@ -33,7 +33,7 @@ with sync_playwright() as p:
         page.goto(BASE+'/index.html',wait_until='networkidle')
         check(page.locator('.project').count()>=4,'Homepage presents public projects')
         for href in ['warledger-chess/','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']:
-            check(page.locator('a.primary-link[href="./'+href+'"]').count()==1,'Homepage links to '+href)
+            check(page.locator('.projects a.primary-link[href^="./'+href+'"]').count()==1,'Homepage links to '+href)
         page.screenshot(path=str(OUT/'homepage.png'),full_page=True)
         page.goto(BASE+'/warledger-chess/',wait_until='networkidle')
         check(page.locator('#board button').count()==64,'War Ledger Chess renders a full board')
