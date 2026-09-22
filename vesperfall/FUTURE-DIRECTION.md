@@ -1,53 +1,111 @@
-# Vesperfall future direction and resumption contract
+# Vesperfall — Future Direction / Continuation Handoff
 
-Updated 2026-09-22. This file is the durable design record beside the actual game. Update it and DEVELOPMENT-HANDOFF.md at each substantial pass. Record implemented behavior, exact tests, failed observations, remaining work and the next concrete action. Do not infer completion from this document or lose unfinished requests between chats.
+Last updated: 2026-09-22
 
-## Approved direction
+This file is the durable continuation note for future ChatGPT/Codex sessions. Read it before changing Vesperfall. Reconcile it against current master and newer evidence; do not recreate features already shipped.
 
-Grow Vesperfall from an archery demonstration into a physical dungeon adventure. Use the owner's Dungeons of Eternity reference for dependable handling, useful equipment, purposeful dungeon situations, exploration rewards and eventual cooperation. Keep Vesperfall's own cathedral, Last Lantern fiction, precision archery and Goldwind/Sureflight teleportation. Do not copy franchise assets, names, maps or fiction. Do not replace the working game with a separate prototype.
+## Current identity
 
-Interaction should honor plausible player intent under pressure. Grabbing, stowing, throwing, drinking, blocking, reading, operating mechanisms and teleporting need readable results and recovery. Earned upgrades must never be prerequisites for basic tracking or control reliability. More geometry or enemies alone is not better level design.
+Vesperfall should evolve toward the qualities that make Dungeons of Eternity compelling while remaining distinctly Vesperfall: dependable physical archery, Goldwind golden teleport arrows, vertical traversal, procedural gothic spaces, meaningful alternate routes, AR/VR presentation, environmental mechanisms, and an emerging Last Lantern story.
 
-Develop one complete expedition loop: prepare in a refuge, observe ground/gallery/service alternatives, spend tools for a reason, discover a useful connection, recover supplies, accomplish an objective and return to a visibly changed place. The upper route trades exposure and traversal for observation and useful supplies; the sheltered route supports recovery. All mandatory progression must remain possible alone. Preserve meaningful ordinary paths beside expert teleport shortcuts.
+The target is not “copy Dungeons of Eternity.” The target is a physical dungeon adventure where grabbing, throwing, shielding, teleporting, exploration, loot, mechanisms, enemies, and eventually cooperation combine into memorable situations.
 
-## Recovered implementation, not work to recreate
+## Highest-priority player experience goals
 
-Current source was recovered at master 8ee642005f647644e8e8025a9912f91d333cd9a1. Goldwind default, golden A/B arrows, rail-aware long-distance Sureflight, two-second floor feedback, six Last Lantern readings, two Pilgrimage chapter families, old mission access, Wayfinder mechanisms/exits and the local Threshold desk/foyer already exist.
+Teleportation is a core promise. Golden teleport arrows should almost always honor a physically plausible player intention. Supported railings and stair rails are valid destinations. Safe wall impacts should recover to nearby supported footing when possible. Distance alone must not make a teleport fail. Never recover through walls, onto unsupported abyss edges, into living enemies, or onto unrelated distant geometry.
 
-Pilgrim's Kit was implemented at d2c563a7e01326f0fe1144a265ca9d6c933d744e with input ownership corrected at 92871871042ebc9078eae276a16477afa2c00d02. It adds finite healing/frost bottles, physical waist slots, stow/throw/drink actions, arrival/refuge/gallery caches, keyboard/Xbox equivalents and an additive saved fieldkit state. Read FIELD-KIT.md and tests/evidence/field-kit-0.17.0/runtime-publication.json. Its runtime was published; full new-feature input acceptance was not finished at that checkpoint.
+Physical interaction should be trustworthy under pressure. Objects that look usable should communicate and behave consistently. Grabbing, throwing, catching, shield use, supplies, mechanisms, and teleportation should tolerate reasonable human imprecision rather than require perfect demonstrations.
 
-The recovered hosted test 35780846097 passed initial keyboard, waist-slot, stow and full-health drink checks, but the physical throw failed. Its trace contains valid motion at 0, 0.1167 and 0.28 seconds. The short rolling sample window discarded one observation, leaving two valid points that the old three-point release rule rejected. This is a real low-sample robustness problem, not permission to fake a successful throw or assign inventory. Keep stationary-drop, discontinuous-pose, stale-input and no-accidental-disk protections.
+The player wants larger and longer levels, but not empty corridors. Longer chapters should add meaningful route decisions, verticality, landmarks, mechanisms, environmental storytelling, recovery paths, shortcuts, changing states, and reasons to revisit familiar spaces.
 
-## Current playable pass
+## Dungeons-of-Eternity direction
 
-Finish the physical-supplies loop already started. Repair evidence-backed input failures, exercise actual finite consumption and nearby resupply, preserve all old bow/teleport controls, and make the field-kit instructions and purpose understandable without leaving the experience. Use existing architecture and caches rather than introducing another untested world generator. Record hosted/public acceptance separately from model fixtures. The primary observation is whether a player can grab, stow, deliberately throw, recover at a cache and resume the saved expedition with exactly the right stock.
+Build toward several complementary expedition types rather than one endless combat template. Candidate Vesperfall modes include combat/loot raids, relic or crystal recovery, survival/soul-harvest encounters, rescue/escort objectives, and story expeditions. These should share systems and authored procedural modules rather than become disconnected minigames.
 
-## Next content and systems passes
+Procedural generation should remain authored-module/graph based. Rooms and route modules need gameplay purpose and metadata: traversal role, sightline role, elevation, cover, mechanisms, encounter sockets, loot sockets, story sockets, supported Blink destinations, recovery paths, and compatible neighbors. Different seeds should create different tactical relationships, not merely rearranged corridors.
 
-Next, build a more substantial Last Lantern objective that changes a familiar refuge or route: teach the physical rule safely, vary it in an exposed gallery, combine it with a mechanism or enemy, then show a persistent consequence. Reusable lanterns/power objects should have multiple coherent uses rather than becoming another collectible counter. Define ownership, release, interruption, save state and solo recovery before adding them.
+Loot should change options and play style. Favor equipment with understandable physical behavior and meaningful perks over tiny statistical noise. Reliable controls, teleportation, and throwing are baseline quality and must never be progression unlocks.
 
-Larger and longer chapters remain requested. Introduce new versioned layout identities for changed geography; never silently alter an old checkpoint's world. Extend purposeful exploration, traps, puzzles, enemy roles, secrets and a satisfying objective or guardian sequence, with optional mastery and recovery. Validate real movement, stairs, shot lines, collision, enemies, resources, saves and each supported input path before final decoration.
+Future co-op is desirable, but do not rush networking ahead of the solo game. Design interactive objects now with ownership, release, simultaneous use, persistence, and solo fallback in mind. A future two-player milestone should test passing supplies, protecting another player during mechanisms, revives, shared discoveries, and correct reward/save behavior before scaling to four players.
 
-A dependable close-range weapon and expressive shield can follow trusted object handling. Preserve a viable archery approach; do not bury frequent actions in menus or steal the golden-arrow controls. Useful loot should change tactical choices, not just inflate numbers. Cosmetics and a coherent equipment economy can follow a good core loop.
+## Physical interaction roadmap
 
-Co-op is a later explicit milestone, not currently implemented. Plan authority, ownership transfer, shared mechanisms, revival, rewards, disconnect recovery and compatibility before networking. Start with a reliable two-player expedition; four-player/cross-platform service work follows measured success. No remote account or private SaaS infrastructure is authorized for public disclosure.
+Continue Pilgrim’s Kit and related physical-object work. Finite healing and frost flasks, waist storage, caches, and throwable objects should feel predictable. Improve low-sample and high-speed throws rather than compensating with invisible state changes.
 
-## Outstanding owner requests that remain open
+Add a small set of multi-use physical objects before a huge arsenal. Strong candidates are a courier lantern that can illuminate, activate prepared braziers, distract/stagger appropriate enemies when thrown, and participate in story/mechanism puzzles; crystals/relics that can be carried and inserted into alternate mechanisms; and a physical shield that blocks, creates space, and protects mechanism use.
 
-First-person AR should play the same expedition as VR, with sparse wire/brick architecture and virtual occlusion: passthrough remains visible while game objects behind solid walls remain hidden. Keep real openings, stairs and drop boundaries legible. This is not the paused Architect's Table or a replacement arena. No room scanning or physical-floor guarantees.
+Add melee selectively. A short sword or similar close-range weapon should have readable impact, parry/block reactions, and deliberate shield-bash interactions without making archery obsolete. Do not ship a large weapon catalogue until one melee weapon and one shield feel trustworthy.
 
-Easy, Normal, Hard and Ultra Hard should deliberately change encounter population, detection distance, elevated threats and feasible patrol routes, with walls still blocking perception. Preserve legacy encounter identities and saved runs. Never advertise upstairs navigation that the AI cannot perform.
+## Story and world consequences
 
-Upgrade monster appearance using license-verified, appropriately animated assets with original hitboxes/readable attacks and fallbacks. Validate the public Prism environment modules against Vesperfall's existing renderer before adapting water, fire and trees; do not load another engine or modify Prism. Coherent landmarks and sightlines matter more than decoration count.
+The Last Lantern is the starting narrative thread, not the finished story. Move from optional notes toward events the player causes. Keeper Ilyra, courier Orin, refuges, signals, and missing pilgrims can anchor the first campaign arc.
 
-Keep scene-rendered menus, controller-local information, adjustable world-anchored desk and fading floor confirmations. Larger rotunda animation and directly grabbed/resizable panels remain future work. The public local foyer is not the private WebXR SaaS hub. Do not publish private hub code or add sphere portals.
+A good chapter should create a visible consequence. Restoring a refuge could relight its lantern, reopen a route, bring NPC activity back, unlock a service, alter later encounters, or reveal a new story interaction. Returning to a known place should sometimes change its meaning.
 
-## Preservation, release and evidence
+Keep brief notifications out of the player’s forward view. Floor/world messages should remain visible briefly and fade after about two seconds. Longer material belongs in the journal or an intentionally summoned spatial interface.
 
-Write directly to current master after reconciling concurrent work. No new PRs, staging branches, source-writing workflows or sibling-game changes. Keep the optional existing Vinci visit/return hook. Preserve saved preferences, all five immutable layout readers, existing rewards, save/profile keys, authored content and licenses. Never clear localStorage or force-reset the remote branch.
+## Enemies and difficulty
 
-Current work maps to existing V30, V41, V53, V57, V65 and V68. The 76-task canonical roadmap and six-sheet workbook keep their existing statuses until their actual broad gates are met. New notes do not manufacture an improved completion score.
+Expose Easy, Normal, Hard, and Ultra Hard as deliberate expedition choices. Difficulty should affect encounter population, detection distance, patrol complexity, vertical/elevated placement, reinforcement pressure, and possibly resource pressure while preserving line-of-sight rules and readable telegraphs.
 
-Separate source/model tests, input-driven rendered tests, public served-byte checks and physical Quest/Xbox approval. Retain failed traces and explain any fixture correction. Never assign actor positions, health, inventory, time or mission state to manufacture an end-to-end pass. A screenshot is not a completed journey; publication is not proof of enjoyment. A published regression must be fixed, not hidden by a test rewrite.
+More enemies should use valid upstairs/gallery positions and actual routes. Patrols need supported navigation, turns, stairs where supported, and recovery behavior. Never fake difficulty by letting enemies see or attack through walls.
 
-For additive save features, rollback must retain their reader. Disable a new interaction/render path rather than rejecting newly created saves. Stop only at a truthful, recorded state with the next unfinished action clear. Store final per-pass receipts under tests/evidence/ and link their exact tested source in DEVELOPMENT-HANDOFF.md.
+Upgrade enemy appearance coherently. Free/redistributable 3D assets may be evaluated, but verify licenses, rigging, animations, hitbox compatibility, attack readability, performance, and art direction before integration. Keep current procedural/fallback enemies until replacements are genuinely better.
+
+Bosses should combine movement, mechanisms, equipment, rescue/recovery opportunities, and arena knowledge rather than simply having more health.
+
+## AR direction
+
+First-person AR should be the same playable expedition as first-person VR, not a separate simplified arena. Preserve objectives, enemies, mechanisms, archery, teleportation, saves, and progression.
+
+Architecture should remain legible while passthrough stays visually clean. Walls should occlude virtual content behind them while presenting sparse translucent/wireframe architectural cues—e.g. edges, mortar/brick fragments, or roughly 5–10% visual coverage rather than an opaque wall. Doorways/windows remain true openings. Floors should use light grids/edges with stronger cues at stairs, drops, platforms, and unsafe boundaries.
+
+Do not claim room scanning, physical-surface anchoring, or real-world safety support unless actually implemented and tested.
+
+## Environment art
+
+Evaluate the existing Prism Current environment modules for water, fire, and procedural trees as shared technical references/assets, but integrate them into Vesperfall only after renderer compatibility and performance checks. Use them to create memorable landmarks and gameplay situations, not decorative clutter. Do not modify Prism Current while doing Vesperfall work.
+
+Potential uses: water courts with traversal consequences, fire-lit refuge/ritual spaces, trees that distinguish outdoor approaches and sightlines, and environmental state changes after objectives.
+
+## Level design
+
+The Lantern Causeway and Ashen Archive are foundations, not final scale. Expand future chapter families with longer loops, more vertical connections, distinct landmarks, optional chambers, shortcuts that matter on return, mechanisms that change sightlines/routes, and encounter pacing with recovery spaces.
+
+Every alternate route should differ in at least one meaningful dimension: information, risk, speed, resource use, tactical position, traversal demand, discovery, social opportunity, or narrative understanding.
+
+Design likely mistakes and recovery alongside ideal success. A player should leave a chapter with useful mastery of its geography and systems.
+
+## UI / XR
+
+Keep important UI in the game world, not permanently head-locked. Continue the spatial desk/rotunda concept: summonable, world anchored, adjustable, and stowed during play. Controller/wrist surfaces and object-local prompts are appropriate for compact immediate information.
+
+Walking portals are the Vesperfall integration direction for a future private WebXR hub. Do not publish private hub code, credentials, or inferred endpoints. Sphere portals and other-game integration are deferred until explicitly requested.
+
+## Preservation contracts
+
+Preserve existing saves, immutable layout readers/IDs, reward receipts, explicit Classic preferences, Goldwind as the fresh-settings default, Xbox shortcuts, Quest controller roles, hand-menu access, First Bell/Returning Bell/Oath/Endless access, and current procedural chapter continuation.
+
+Do not clear localStorage, manufacture acceptance by assigning player state, silently mutate old geometry under an existing layout ID, or confuse generated XR/gamepad tests with physical Quest/Xbox approval.
+
+Write Vesperfall changes directly to master after reconciling concurrent master changes unless the owner explicitly asks for a branch/PR. Do not create pull requests merely to publish our own Vesperfall work.
+
+## Immediate development sequence
+
+First, finish and harden the playable physical-object pass already underway: reliable flask/lantern throws, useful physical interactions, cache/waist-slot behavior, and save persistence.
+
+Next, make the courier lantern/refuge restoration into a small consequential story-system loop rather than a decorative interaction.
+
+Then expand one existing procedural chapter substantially using the new physical systems: additional vertical route, optional chamber, environmental mechanism, patrols, and a reward/story consequence.
+
+After that, implement the four difficulty tiers with valid encounter scaling and elevated patrols.
+
+Then continue the first-person AR architectural rendering pass and coherent monster-art evaluation.
+
+Only after these systems feel good should the project broaden into a larger weapon catalogue, boss suite, multiple new realms, or networked co-op.
+
+## Session-resume checklist
+
+On a new chat/session: read this file, DEVELOPMENT-HANDOFF.md, SUREFLIGHT.md, FIELDWORK.md, PILGRIMAGE.md, WAYFINDER.md, THRESHOLD.md, release.json, roadmap.json, current tests/evidence, and current master source. Check whether newer commits supersede any item here. Continue the strongest unfinished gameplay item rather than writing another plan.
+
+After every substantial Vesperfall pass, update this file with what actually shipped, what failed or remains unverified, and the next concrete opportunity. Keep claims separated into source implemented, automated/browser verified, public served, and physical-device/human playtested.
