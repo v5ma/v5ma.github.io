@@ -43,7 +43,10 @@ try:
    press(5);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Xbox RB retains tool cycle');press(9);wait('__dinoRanger.state.paused');choose('quick-tools-toggle');check(not page.evaluate('__dinoGrounded.state.quickTools'),'Xbox toggles legacy D-pad preset');press(1);wait('!__dinoRanger.state.paused');press(15);check(page.evaluate('__dinoRanger.state.tool')=='water','Legacy D-pad cycle wraps from zapper to water');press(14);check(page.evaluate('__dinoRanger.state.tool')=='zapper','Legacy D-pad left cycles back to zapper')
    press(9);choose('quick-tools-toggle');press(1);wait('!__dinoRanger.state.paused');press(14)
    press(3);wait('__dinoRanger.state.mode==="foot"');check(page.evaluate('__dinoRanger.personModel.userData.bodyRig.limbs.length')==2,'Rendered ranger has articulated boots and adult-like proportions');snap('02-grounded-ranger.png')
-   before=page.evaluate('__dinoRanger.state.position');page.evaluate('__pad.axes[1]=-1');page.wait_for_timeout(1400);page.evaluate('__pad.axes[1]=0');after=page.evaluate('__dinoRanger.state.position');check(abs(after['z']-before['z'])+abs(after['x']-before['x'])>.2,'Xbox walking drives actual character physics')
+   before=page.evaluate('__dinoRanger.state.position');wait('!__dinoRanger.xr.ctx.input.neutral');page.evaluate('__pad.axes[1]=-1')
+   try:page.wait_for_function('p=>Math.abs(__dinoRanger.state.position.z-p.z)+Math.abs(__dinoRanger.state.position.x-p.x)>.2',arg=before,timeout=30000)
+   finally:page.evaluate('__pad.axes[1]=0')
+   after=page.evaluate('__dinoRanger.state.position');check(abs(after['z']-before['z'])+abs(after['x']-before['x'])>.2,'Xbox walking drives actual character physics')
    press(9);wait('__dinoRanger.state.paused');check(page.evaluate('localStorage.getItem("dino-atlas.progress.v1")')=='legacy-sentinel','New controls leave old save sentinel unchanged')
    page.evaluate("Object.defineProperty(navigator,'xr',{value:{isSessionSupported:async()=>true,requestSession:async()=>{throw new Error('test rejection')}},configurable:true})")
    page.evaluate('async()=>{await __dinoRanger.xr.checkSupport();await __dinoRanger.xr.enter();}')
@@ -91,7 +94,7 @@ try:
   except Exception as exc:
    try:snap('failure.png')
    except:pass
-   (OUT/'failure.json').write_text(json.dumps({'error':str(exc),'checks':checks,'errors':errors},indent=2));raise
+   (OUT/'failure.json').write_text(json.dumps({'error':str(exc),'checks':checks,'errors':errors,'diagnostic':page.evaluate('({state:window.__dinoRanger?.state,neutral:window.__dinoRanger?.xr.ctx.input.neutral,focus:document.activeElement?.id})')},indent=2));raise
   finally:browser.close()
 finally:
  if server:server.terminate()

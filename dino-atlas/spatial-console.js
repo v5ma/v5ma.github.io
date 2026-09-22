@@ -1,7 +1,7 @@
-import {FieldFeedback} from './field-feedback.js?v=clarity1';
+import {FieldFeedback} from './field-feedback.js?v=clarity2';
 import * as T from './vendor/three.module.js';
 
-export const SPATIAL_BUILD='ranger-field-clarity-20260921.1';
+export const SPATIAL_BUILD='ranger-field-clarity-20260922.1';
 // A layout class must never override the browser's closed-dialog hiding.
 export const WORKSPACE_VISIBILITY_CSS='#spatial-console-settings:not([open]){display:none!important}';
 export const SPATIAL_KEY='dino-atlas.spatial-console.v1';

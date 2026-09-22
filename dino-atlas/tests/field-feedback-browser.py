@@ -35,7 +35,7 @@ try:
         try:
             page.goto(BASE+ROUTE+'?test=1&clarity=1',wait_until='domcontentloaded',timeout=90000);wait('window.'+KEY+'?.state.ready',120000)
             page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
-            check(page.evaluate('x.console.feedback.snapshot().build')=='ranger-field-clarity-20260921.1','Exact floor-feedback implementation boots in '+SCENE)
+            check(page.evaluate('x.console.feedback.snapshot().build')=='ranger-field-clarity-20260922.1','Exact floor-feedback implementation boots in '+SCENE)
             check(page.evaluate('x.presentation.height')==2,'Default box is 2 meters tall without clearing older saves')
             press(0);wait('g.state.started')
             for _ in range(5):
@@ -56,6 +56,8 @@ try:
                 press(1)
             wait('x.console.feedback.snapshot().visible&&x.console.feedback.mapFrames>2');ready()
             check(True,'Headset play shows the floor map and readable goal without opening a menu')
+            if SCENE=='classic':
+                check(page.evaluate("x.console.feedback.data().step.includes('Left stick: drive')&&!x.console.feedback.data().step.includes('RT accelerates')"),'First-patrol instructions use the selected Active profile rather than trigger driving')
             check(page.evaluate('x.size.height')==2 and page.evaluate('x.size.height/x.size.width')>.8,'Actual rendered aperture is tall, not the old shallow box')
             pose=page.evaluate('x.console.feedback.root.position.toArray()');page.evaluate('g.camera.rotation.y=.4;g.camera.rotation.x=-.25');page.wait_for_timeout(250)
             check(page.evaluate('x.console.feedback.root.position.toArray()')==pose,'Looking around does not drag the floor guide with the head')
@@ -97,7 +99,7 @@ try:
             page.reload(wait_until='domcontentloaded');wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
             check(page.evaluate('x.presentation')==saved,'Box dimensions and selected presentation survive ordinary reload')
             check(not errors,'No captured game JavaScript or HTTP errors')
-            report={'build':'ranger-field-clarity-20260921.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limitations':'Real game/UI and renderer, synthetic Xbox and explicit XR session/head/controller poses. No gameplay-state assignments. Not physical Quest, stereo compositor or human readability acceptance.'}
+            report={'build':'ranger-field-clarity-20260922.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limitations':'Real game/UI and renderer, synthetic Xbox and explicit XR session/head/controller poses. No gameplay-state assignments. Not physical Quest, stereo compositor or human readability acceptance.'}
             (OUT/(SCENE+'-report.json')).write_text(json.dumps(report,indent=2));print(json.dumps(report),flush=True)
         except Exception as exc:
             diagnostic={}

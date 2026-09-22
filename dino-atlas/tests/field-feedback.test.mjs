@@ -44,7 +44,7 @@ test('Tall and resized boxes keep character centering, real-world ray depth and 
 test('Controls reflect the selected profile, on-foot versus flight mode and tracked hands',()=>{
  assert.equal(controlCard({xr:true,active:true}).interact,'GRIP (either hand)');assert.match(controlCard({xr:true,mode:'helicopter'}).move,/Right stick up\/down: altitude/);
  assert.match(controlCard({xr:true,active:false,mode:'helicopter'}).move,/RT\/LT raise\/lower/);assert.equal(controlCard({xr:true,active:false}).interact,'A');
- assert.match(controlCard({xr:true,hands:true}).move,/Pinch FIELD/);assert.match(controlCard({active:false}).tools,/LB \+ RT/);assert.match(controlCard({active:true}).tools,/LT: aim/);
+ assert.match(controlCard({xr:true,hands:true}).move,/Pinch FIELD/);assert.match(controlCard({active:false,mode:'jeep'}).tools,/LB \+ RT/);assert.match(controlCard({active:true}).tools,/LT: aim/);
 });
 test('Floor UI preferences are bounded and do not contain game state',()=>{
  assert.deepEqual(feedbackSettings({scale:99,height:-5,visible:false,credits:999}),{version:1,scale:1.6,height:.03,visible:false});assert.deepEqual(feedbackSettings(null),{version:1,scale:1,height:.05,visible:true});

@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: Active Quest first-patrol instruction never asks aim/fire triggers to drive
+not ok 1 - Active Quest first-patrol instruction never asks aim/fire triggers to drive
+  ---
+  duration_ms: 1.41808
+  type: 'test'
+  location: '/mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /RT accelerates|LT brakes/. Input:
+    
+    'Drive through the gold marker beyond the visitor center. RT accelerates, LT brakes; left stick steers. Keyboard: W / S and A / D.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Drive through the gold marker beyond the visitor center. RT accelerates, LT brakes; left stick steers. Keyboard: W / S and A / D.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:9:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: First patrol explains boarding when the current ranger is on foot, without awarding progress
+ok 2 - First patrol explains boarding when the current ranger is on foot, without awarding progress
+  ---
+  duration_ms: 0.408561
+  type: 'test'
+  ...
+# Subtest: Keyboard help describes actual keys instead of claiming Xbox controls are active
+not ok 3 - Keyboard help describes actual keys instead of claiming Xbox controls are active
+  ---
+  duration_ms: 0.234331
+  type: 'test'
+  location: '/mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /WASD/. Input:
+    
+    'Xbox Active: left stick moves/drives. B: brake.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Xbox Active: left stick moves/drives. B: brake.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:15:62)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Floor map title is distinct from the legend and cannot extend into the mission column
+not ok 4 - Floor map title is distinct from the legend and cannot extend into the mission column
+  ---
+  duration_ms: 7.61119
+  type: 'test'
+  location: '/mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(calls.some(v=>v[0]==='LIVE MAP'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:21:19)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: XR HERE prompt never contradicts the grip mapping with an obsolete A suffix
+not ok 5 - XR HERE prompt never contradicts the grip mapping with an obsolete A suffix
+  ---
+  duration_ms: 0.646857
+  type: 'test'
+  location: '/mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:23:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'GRIP (either hand): Recover floating supplies / A'
+    - 'GRIP (either hand): Recover floating supplies'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'GRIP (either hand): Recover floating supplies'
+  actual: 'GRIP (either hand): Recover floating supplies / A'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/dino-clarity-resume/source/dino-atlas/tests/clarity-recovery.test.mjs:25:124)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 1
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 103.348401

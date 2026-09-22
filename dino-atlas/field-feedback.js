@@ -1,7 +1,9 @@
+import {controlCard,guidanceContext} from './ranger-guidance.js?v=clarity2';
+export {controlCard} from './ranger-guidance.js?v=clarity2';
 import * as T from './vendor/three.module.js';
 
 // Personal, floor-relative information. Never change game progress or the camera.
-export const FEEDBACK_BUILD='ranger-field-clarity-20260921.1';
+export const FEEDBACK_BUILD='ranger-field-clarity-20260922.1';
 export const FEEDBACK_KEY='dino-atlas.field-feedback.v1';
 export const MESSAGE_SECONDS=2;
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
@@ -14,12 +16,6 @@ export class MessageTrail{
  constructor(){this.current=null;this.history=[];this.serial=0;}
  push(value,now){const message=String(value||'').trim();if(!message||!Number.isFinite(now))return;this.current={text:message,at:now,id:++this.serial};this.history.unshift({...this.current});this.history.length=Math.min(12,this.history.length);}
  opacity(now){return this.current?messageOpacity(now-this.current.at):0;}
-}
-export function controlCard({xr=false,hands=false,mode='foot',active=true}={}){
- if(hands)return {interact:'FIELD > Interact',move:'Pinch FIELD, then hold a movement button. Release to stop.',tools:'FIELD: select Water, Pulse, Scan or Recovery; hold Fire to use.',buttons:'MENU: pause/settings. FIELD: hand controls. Map: live location.'};
- if(xr&&active)return {interact:'GRIP (either hand)',move:mode==='helicopter'?'Left stick: fly. Right stick up/down: altitude. A: hover/brake.':mode==='foot'?'Left stick: walk. A: jump. Hold left-stick click: run.':'Left stick: drive/steer. A: brake. Click left stick: Express.',tools:'LT: aim. RT: use selected tool. X: reload. Y: board / exit.',buttons:'B: menu/back. Right-stick click: map. Field tray: choose tools.'};
- if(xr)return {interact:'A',move:mode==='helicopter'?'Legacy: left stick flies; RT/LT raise/lower. Left grip aims tools.':mode==='foot'?'Legacy: left stick walks; right stick turns.':'Legacy: RT drives; LT reverses. Left grip aims tools.',tools:'X: reload. Y: board / exit. Field tray: tool selection.',buttons:'B: menu/back. Right-stick click: cycle tool. Map tab: full map.'};
- return {interact:'A / E',move:active?'Xbox Active: left stick moves/drives. B: brake.':'Xbox Familiar: left stick walks; RT drives; LT reverses.',tools:active?'LT: aim. RT: tool. X: reload. Y: board / exit.':'LB + RT: vehicle tools. X: reload. Y: board / exit.',buttons:'View / M: map. Menu / Esc: settings. Keyboard: WASD, E interact, F board.'};
 }
 function surface(width,height,w,h){
  const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
@@ -73,10 +69,10 @@ export class FieldFeedback{
    observer.observe(node,{childList:true,subtree:true,characterData:true});this.observers.push(observer);
   }
  }
- card(){const x=this.xr,sources=Array.from(x.session?.inputSources||[]);return controlCard({xr:x.active,hands:!!sources.length&&sources.every(s=>s.hand),mode:x.ctx.fleet.mode,active:x.active?x.travel.activeLayout:x.travel.settings.xboxLayout==='active'});}
+ card(){return controlCard(guidanceContext(this.xr.ctx));}
  data(){
   const card=this.card(),nav=this.xr.travel.navigation,goal=nav?.goal;
-  const raw=text('interact-label'),ready=!document.getElementById('interact-button')?.disabled;
+  const raw=text('interact-label').replace(/\s*\/\s*A(?:\s*\/\s*E)?\s*$/,''),button=document.getElementById('interact-button'),ready=!!button&&!button.disabled;
   return {goal:goal?.name||goal?.title||text('mission-title')||'Explore the reserve',step:goal?.detail||goal?.hint||text('mission-copy')||'Choose a field assignment from the menu.',bearing:text('goal-compass'),prompt:ready?card.interact+': '+raw:(raw&&!/^Explore/.test(raw)?raw:'Move closer to an object; stop when its action appears.'),card,tool:text('tool-name')+' / '+text('ammo'),utility:text('field-utility-status')};
  }
  help(){
@@ -102,9 +98,9 @@ export class FieldFeedback{
   this.clock+=Math.min(.1,dt);if(this.clock>=.2){this.clock=0;this.syncSizes();if(this.guide.mesh.visible)this.paint();}
  }
  paint(){
-  const c=this.guide.c,d=this.data();c.fillStyle='#102d29';c.fillRect(0,0,1536,768);c.strokeStyle='#e6cb87';c.lineWidth=6;c.strokeRect(3,3,1530,762);c.textAlign='left';c.fillStyle='#ffe1a2';c.font='bold 30px sans-serif';c.fillText('LIVE MAP / WHITE: YOU / GOLD: GOAL',22,44);
+  const c=this.guide.c,d=this.data();c.fillStyle='#102d29';c.fillRect(0,0,1536,768);c.strokeStyle='#e6cb87';c.lineWidth=6;c.strokeRect(3,3,1530,762);c.textAlign='left';c.fillStyle='#ffe1a2';c.font='bold 30px sans-serif';c.fillText('LIVE MAP',22,44);c.font='bold 22px sans-serif';c.fillText('WHITE: YOU / GOLD: GOAL',22,481,444);
   const map=this.xr.travel.navigation?.liveMap||document.getElementById('minimap');
-  if(map?.width){const factor=Math.min(444/map.width,420/map.height),w=map.width*factor,h=map.height*factor;c.drawImage(map,22+(444-w)/2,64+(420-h)/2,w,h);this.mapFrames++;}else{c.fillStyle='#fff4d1';c.font='28px sans-serif';lines(c,'Map initializing. You can still open Map from the menu.',30,130,420,34,3);}
+  if(map?.width){const factor=Math.min(444/map.width,380/map.height),w=map.width*factor,h=map.height*factor;c.drawImage(map,22+(444-w)/2,72+(380-h)/2,w,h);this.mapFrames++;}else{c.fillStyle='#fff4d1';c.font='28px sans-serif';lines(c,'Map initializing. You can still open Map from the menu.',30,130,420,34,3);}
   c.fillStyle='#fff3c8';c.font='bold 36px sans-serif';lines(c,d.goal,495,56,1015,43,2);
   c.font='29px sans-serif';c.fillStyle='#dff0e7';lines(c,d.step,495,155,1015,36,3);
   c.font='bold 27px sans-serif';c.fillStyle='#ffe1a2';lines(c,d.bearing,495,291,1015,33,2);

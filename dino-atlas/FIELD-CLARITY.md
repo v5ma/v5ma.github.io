@@ -1,8 +1,8 @@
-# Field Clarity / 2026-09-21
+# Field Clarity / 2026-09-22
 
 ## Implemented response to the playtest
 
-Build ranger-field-clarity-20260921.1 addresses missing interaction messages, absent live XR maps, unclear next actions, and the shallow diorama. It is the same full Classic Reserve and Tidegate, not a new simplified game. Runtime publication and exact-source browser verification must be recorded separately from this implementation description.
+Build ranger-field-clarity-20260922.1 addresses missing interaction messages, absent live XR maps, unclear next actions, and the shallow diorama. It is the same full Classic Reserve and Tidegate, not a new simplified game. Runtime publication and exact-source browser verification must be recorded separately from this implementation description.
 
 The old compact wrist UI omitted the notification and radio streams altogether. The floor display now copies actual game messages and the existing navigation data into canvas-textured, floor-relative surfaces outside the miniature-world transform. A persistent HERE line shows the current nearby interaction and its actual control, or why the ranger needs to move closer or stop. It does not falsely imply that the trigger is the interaction button. Existing menu and wrist access remain.
 
@@ -31,3 +31,16 @@ The baseline full suite passed 265 tests. Three source/presentation regression a
 The new field-feedback-browser.py drives both full games with real synthetic Xbox values and production menu/pointing handlers. It checks live maps during actual movement, ordinary reload feedback and its expiry while paused, floor Help, size controls through ray intersection, no actor movement during resizing, session exit and persisted dimensions. It uses explicit XR session/head/controller mocks, not assigned player/mission/inventory/reward state. The existing spatial, portal, Express and regular-game entry checks remain in the existing read-only Dino workflow; its public job separately checks served hashes and repeats public journeys before archiving the release.
 
 Local localhost browser navigation is blocked by environment policy. No local full-game rendered pass is claimed. Hosted source/public outcomes must be appended from their actual results. Physical Quest/Xbox, passthrough/stereo compositor, room comfort, text reach/readability and human understanding remain open; request player feedback rather than treating synthetic rays as physical approval.
+
+
+## Recovery refinement / 2026-09-22
+
+The saved baseline b736121c35f1b62b9a4c981e55a9cbd166557ddc already contained the requested floor map, messages and tall aperture. Source run35693523781 passed both full-world feedback/spatial/portal/Express jobs and the launcher itself, but the later Grounded walking assertion failed after a fixed1.4-second input pulse. Its public and release jobs were skipped, not accepted.
+
+Review of its actual renderer capture found a separate player-facing defect: the long map legend overlapped the mission title. The revised layout uses a short LIVE MAP heading, a separate bounded legend under the map, and a dedicated goal column. A real Canvas2D layout fixture verifies measured text extents without claiming a full-game or headset run.
+
+First-patrol and guided-lesson instructions now derive from the selected device/profile instead of telling Active Quest users to accelerate with their tool trigger. Boarding is explained when the ranger is on foot. Help distinguishes keyboard, hand-only, Xbox and Active/Legacy Quest controls. Legacy squeeze aiming stays unchanged. HERE removes obsolete A suffixes when the current interaction uses grip. These are read-only descriptions; mission targets, gates, progress, rewards, inputs and physics are not reassigned.
+
+The Grounded runner now waits for the same required physical displacement under ordinary stick input instead of assuming1.4 seconds is enough on software rendering. A blocked ranger still fails after30 seconds. It records state/focus/neutral diagnostics on failure; no teleport, progression assignment or reduced displacement criterion is introduced. This change requires its own hosted result before calling the failure resolved.
+
+Four reproduced pre-repair guidance/layout assertions and their red trace are retained. The final local suite passes285 tests with zero failures/skips, checks62 JavaScript files, and scans72 owned runtime/script files for conflict markers. Eight new focused checks cover profile-specific instructions, unchanged task identities, keyboard and Legacy mappings, layout and HERE labels. Actual browser/public/hardware evidence remains separate. Use verification/field-clarity/recovery-20260922.json and later publication receipts for completed results.

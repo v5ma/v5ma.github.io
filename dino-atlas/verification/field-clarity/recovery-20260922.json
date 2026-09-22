@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-22",
+  "build": "ranger-field-clarity-20260922.1",
+  "status": "source-tested-public-validation-pending",
+  "baselineCommit": "b736121c35f1b62b9a4c981e55a9cbd166557ddc",
+  "baselineRun": 35693523781,
+  "masterReconciledBeforeWrite": "b582d40f7829590a9d6168980b25c437f37d10f8",
+  "baselineResults": {
+    "model": "success",
+    "classicBrowser": "success",
+    "tidegateBrowser": "success",
+    "launcher": 23,
+    "groundedWalking": "failed after fixed 1.4 second pulse",
+    "published": "skipped",
+    "release": "skipped"
+  },
+  "downloadedArtifacts": [
+    {
+      "id": 10678913710,
+      "sha256": "d2522ed03a59b82e489905312fde1c0cf2893c2bac5ad74ddac4aec9da110c58",
+      "hashMatched": true
+    },
+    {
+      "id": 10679619179,
+      "sha256": "2becb51e4b90dbbde655d0f08b9a95edc6720bf9deb4c0214cee7ad0bcc3bf7f",
+      "hashMatched": true
+    },
+    {
+      "id": 10680342963,
+      "sha256": "d12fde897603a9a82440cdc2220035557216ab1f287828e00e907fda67df0f3c",
+      "hashMatched": true
+    }
+  ],
+  "archivedBaselineManifestHashesMatched": 73,
+  "repairs": [
+    "Separate floor map legend from mission heading.",
+    "Derive guided-lesson descriptions from current device/profile; explain boarding on foot.",
+    "Correct keyboard and Legacy squeeze-aim help; remove obsolete A from grip-ready HERE.",
+    "Keep walking displacement requirement and ordinary input, but wait for actual motion instead of a 1.4-second pulse.",
+    "Use new import revision and distinct release identity through the existing read-only workflow."
+  ],
+  "redTests": {
+    "tests": 5,
+    "failed": 4,
+    "passed": 1,
+    "traceSha256": "63b0d116a3461cdaf12e9cd62cd6e40e0273f017d5723592f905679b99bb47d5"
+  },
+  "localFinal": {
+    "passed": 285,
+    "failed": 0,
+    "skipped": 0,
+    "syntaxFiles": 62,
+    "conflictScannedFiles": 72,
+    "unitTranscriptSha256": "72f14626fc0e337af4d7255ab85ac98727e9cad510f349a55fc4982595f39533"
+  },
+  "layoutFixture": {
+    "kind": "native Chromium Canvas2D using production painting with labeled stub map/data; not full game or headset",
+    "headerRight": 163.68,
+    "legendRight": 312.87,
+    "goalColumnStarts": 495,
+    "mapFrames": 1,
+    "reportSha256": "0fce6e334179d28d71c8ac8a44b7e35f28e1f56b43607f650f51af627d94302b"
+  },
+  "preserved": [
+    "all original saves and rewards",
+    "current mission identities and targets",
+    "movement and collision",
+    "controller remaps and hand UI",
+    "mounted tools and Express",
+    "character-centered full-depth portal and independent sizes",
+    "sibling games and private hub boundary"
+  ],
+  "publication": "Not inferred from local tests or a master write. Require separate served-byte and actual public-browser evidence.",
+  "physicalHardwareVerified": false
+}
