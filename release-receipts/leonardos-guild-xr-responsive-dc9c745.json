@@ -1,0 +1,96 @@
+{
+  "project": "leonardos-guild",
+  "version": "0.14.0",
+  "build": "guild-xr-responsive-20260922",
+  "runtime_commit": "dc9c745da4a180acbd79c47be0b2b8c5c5ab1e82",
+  "initial_game_tree": "8078b930955032779502f2b810fd2ec7484a4f4a",
+  "diagnostic_commit": "5f486d494a6d079a9cfbb522dc5f8682d47f155a",
+  "latest_test_commit": "cba5c1beee4263c75297ee2753e3277d02497fcd",
+  "scope": "10 paths under leonardos-guild. Follow-up commits changed only the same browser test. Direct non-forced master updates preserved concurrent Rainward changes. No new PR, branch, workflow, shared publisher or sibling edit. This receipt is outside the tested game tree.",
+  "preserved": "Full Vinci default, optional Quarter accomplishments, original version-2 saves and reward identities, movement, collisions, controls, geometry, assets, audio preferences and sibling games.",
+  "repairs": [
+    "Cache unchanged neutral hand-toolbar frames instead of repainting and re-uploading its canvas texture every frame.",
+    "Share the actual menu model between ray tests and drawing, with immediate root/focus/page/DOM invalidation and bounded property refresh.",
+    "Repaint changed pages immediately so the visible menu agrees with its hit targets.",
+    "Cache unchanged paused game-scene work during XR while keeping headset input, pose changes and stereo rendering active."
+  ],
+  "fixture_measurements": {
+    "two_second_two_ray_dialog_clones_before": 432,
+    "two_second_two_ray_dialog_clones_after": 18,
+    "neutral_toolbar_redundant_uploads_before": 180,
+    "neutral_toolbar_redundant_uploads_after": 0,
+    "physical_quest_frame_rate_measurement": false
+  },
+  "local_tests": {"source_model_input_scene_graph_passed":437,"failed":0,"new_regressions":10,"design_passed":14,"design_failed":0},
+  "browser_framebuffer": {
+    "run_id":35749434501,
+    "job_id":106819403278,
+    "artifact_id":10704394130,
+    "artifact_sha256":"10280061d48f4780f2e237abc6fbf5e52c24f36e4fc191f671b28c1f99fefd02",
+    "status":"success",
+    "checks":49,
+    "errors":[],
+    "verified_source_hashes":393,
+    "uncommitted_diff_empty":true,
+    "modes":["first-person VR","diorama VR"],
+    "journey":"Full Vinci startup, explicit timeout/retry, real WEBGL_lose_context restoration, subsequent movement, actual pause input, changed headset pose while paused, stationary desk/player, continuing stereo draw, tracked right-B resume, movement after resume, nonblank eye textures, actual session end and re-entry, unchanged currency/deliveries.",
+    "paused_scene_update_pairs":[[34,34],[87,87],[30,30],[81,81]],
+    "advancing_geometry_draw_pairs":[[36,49],[108,120],[34,47],[104,117]],
+    "screenshots_reviewed":["first-person-1.png","diorama-vr-1.png"],
+    "evidence_class":"Real browser WebGL and stereo attachments, synthetic XR hardware/poses/buttons. Not a physical Quest test."
+  },
+  "initial_projection_failure": {
+    "run_id":35749434501,
+    "artifact_id":10703864985,
+    "artifact_sha256":"d0b90ee509d6ba41ac3f5d62e1a7f67c5a6efc9cdbdd9dc5d6a66081253b8b1b",
+    "partial_checks":14,
+    "result":"Wait for running and more than four entry frames failed on second first-person entry; preserved, not counted as a pass."
+  },
+  "projection_diagnostic": {
+    "run_id":35750142443,
+    "artifact_id":10704607376,
+    "artifact_sha256":"95d85310f7546316c7299c25999dc26136b60d763c430c1ab948f5292ca09f4a",
+    "partial_checks":14,
+    "entry_error":"Error: Test graphics restoration timed out",
+    "graphics_interruptions":2,
+    "graphics_restorations":2,
+    "xr_presenting_after_error":false,
+    "synthetic_session_after_error":null,
+    "game_paused_after_error":true,
+    "failure_overlay_hidden":true,
+    "responsive_browser_frame_gate_skips":4010,
+    "production_deadline_expired":false,
+    "interpretation":"The synthetic compatibility hook rejected at its own 8-second limit before the production 12-second guard. The browser continued updating; the game ended its session and reported an entry error. This is not proof of the physical Quest freeze or a dead application loop."
+  },
+  "test_correction": {
+    "commit":"cba5c1beee4263c75297ee2753e3277d02497fcd",
+    "driver_blob":"407f8b3e39e291b80ebda134bc062a477f3aa013",
+    "change":"Removed only the competing test-only deadline. Kept the actual 12-second runtime deadline and every recovery/gameplay/pixel assertion; added real context-event timestamps and immediate failure on an explicit application entry error.",
+    "runtime_unchanged":true,
+    "run_id":35751405492,
+    "status":"not a completed pass at receipt",
+    "jobs_at_checkpoint":{"native_projection":"attachment test success; full menu journey in progress","native_framebuffer":"attachment test success; full menu journey in progress","startup_framebuffer":"in progress","startup_projection":"queued","public":"queued"}
+  },
+  "public_runtime": {
+    "run_id":35750142443,
+    "source":"5f486d494a6d079a9cfbb522dc5f8682d47f155a",
+    "artifact_id":10705350464,
+    "artifact_sha256":"f8751dfefd98ae6b7431846520838cf65aa48b18b1d5f337e417ba60f04db54f",
+    "files":92,
+    "all_match":true,
+    "independently_compared_to_local_bytes":true,
+    "later_test_only_commit_changes_no_runtime_bytes":true
+  },
+  "earlier_publication_attempt": {
+    "run_id":35749434579,
+    "artifact_id":10703259857,
+    "artifact_sha256":"fc02a0378bb618f64812345ba2feb5f396597b4eda72aebe6c0d6bc8b6af76a7",
+    "files":295,
+    "all_match":false,
+    "unmatched":7,
+    "interpretation":"Earlier check preceded runtime convergence. Do not claim this full-file check passed. Later 92-file runtime verification did pass."
+  },
+  "local_browser":"Ordinary navigation was blocked by ERR_BLOCKED_BY_ADMINISTRATOR before game load; local navigation is not counted as a pass. Successful browser evidence above comes from the GitHub runner.",
+  "physical_quest_verified":false,
+  "limits":"The owner's physical VR freeze, sustained Quest frame time, large geometry/draw-call workload, longer complete menu journeys, aiming feedback and audio comfort remain open. Neither source-test counts nor publication hashes certify physical playability. Keep the initial and diagnostic failures as evidence."
+}
