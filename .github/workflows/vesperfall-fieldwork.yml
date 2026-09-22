@@ -101,15 +101,55 @@ jobs:
           retention-days: 14
   monster-source-audit:
     if: startsWith(github.event.head_commit.message, 'assets(vesperfall):')
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Verify CC0 source and prepare bounded animation derivatives for review
+        with:
+          fetch-depth: 2
+      - name: Reproduce the reviewed, pinned CC0 derivatives
         run: python vesperfall/tools/import-kaykit.py --output test-output/kaykit
+      - name: Install only the seven reviewed asset files without replacing existing content
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          src=Path('test-output/kaykit');dst=Path('vesperfall/assets/monsters');dst.mkdir(parents=True,exist_ok=True)
+          report=json.loads((src/'intake.json').read_text())
+          assert report['revision']=='15b62b9bad122f72926c10fb14d622c73819fa54' and report['license']=='CC0'
+          names=['LICENSE.txt','skeleton_texture.png','intake.json']
+          for row in report['models']:
+            name=row['name']+'.glb';data=(src/name).read_bytes()
+            assert hashlib.sha256(data).hexdigest()==row['sha256'] and len(data)<1100000
+            names.append(name)
+          assert len(names)==7 and len(set(names))==7
+          for name in names:
+            assert '/' not in name and '..' not in name
+            data=(src/name).read_bytes();p=dst/name
+            if p.exists():assert p.read_bytes()==data,'Refuse to overwrite '+str(p)
+            else:p.write_bytes(data)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- vesperfall/assets/monsters
+          if ! git diff --cached --quiet; then
+            git diff --cached --name-only | tee test-output/asset-scope.txt
+            git commit -m 'Add verified CC0 KayKit skeleton art and provenance for Vesperfall [skip ci]'
+            for attempt in 1 2 3; do
+              git fetch origin master
+              git rebase origin/master
+              if git push origin HEAD:master; then break; fi
+              test "$attempt" != 3
+              sleep 3
+            done
+          fi
+          git rev-parse HEAD > test-output/asset-revision.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: vesperfall-kaykit-intake
-          path: test-output/kaykit/
+          path: test-output/
           retention-days: 14
