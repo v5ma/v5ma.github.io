@@ -19,5 +19,10 @@
   "sureflight": {
     "date": "2026-09-22",
     "scope": "Impact-local golden-arrow recovery, supported rail perches, no four-second Blink expiry, two-second floor messages and six optional Last Lantern dispatches. Existing chapter identities, rewards and save formats remain. See SUREFLIGHT.md; physical-device verification remains open."
+  },
+  "fieldKit": {
+    "name": "Pilgrim's Kit",
+    "date": "2026-09-22",
+    "scope": "Finite healing and frost vials with physical grip/throw/stow/drink, Xbox and keyboard alternatives, optional supply caches and exact additive save continuation. No co-op, melee, new realm or private hub. See FIELD-KIT.md and its public evidence receipt."
   }
 }

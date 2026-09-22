@@ -20,7 +20,7 @@
   g.toast=show;
   const setType=g.setType.bind(g);g.setType=function(type){setType(type);if(type==='blink')show('Golden arrows: safe floors, rail tops, or footing beside the wall you hit.');};
   function live(){return g.running&&!g.paused&&g.game.phase==='playing'&&!g.arMode&&!g.practice&&!g.returningBell?.state.table&&g.threshold?.state.phase==='game';}
-  function current(){return live()&&!g.wayfinder.current()?M.current(g.game,C):null;}
+  function current(){return live()&&!g.wayfinder.current()&&!g.fieldKit?.viewTarget()?M.current(g.game,C):null;}
   function read(n){if(!n)return false;if(!state.found.includes(n.id)){state.found.push(n.id);try{localStorage.setItem(KEY,JSON.stringify(state.found));}catch{}}
    C.emit(g.game,'story-read',{id:n.id,title:n.title});show(n.short);return true;}
   const interact=g.interact.bind(g);g.interact=function(){const n=current();if(n){read(n);return;}return interact();};

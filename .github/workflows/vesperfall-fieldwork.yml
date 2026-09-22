@@ -31,7 +31,8 @@ jobs:
           paths += [p for folder in ['assets','vendor'] for p in (app/folder).rglob('*') if p.is_file()]
           files={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
           digest=hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-          receipt=app/'tests/evidence/sureflight-0.17.0/publication.json'
+          receipt=app/'tests/evidence/field-kit-0.17.0/publication.json'
+          if not receipt.exists():receipt=app/'tests/evidence/sureflight-0.17.0/publication.json'
           if not receipt.exists():receipt=app/'tests/evidence/threshold-0.17.0/publication.json'
           if not receipt.exists():receipt=app/'tests/evidence/fieldwork-0.17.0/publication.json'
           previous=json.loads(receipt.read_text()) if receipt.exists() else {}
@@ -61,7 +62,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [fieldwork, pilgrimage, goldwind, interface, threshold-vr, threshold-ar, sureflight]
+        suite: [fieldwork, pilgrimage, goldwind, interface, threshold-vr, threshold-ar, sureflight, field-kit]
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:

@@ -7,6 +7,7 @@
  const C=root.VesperCore||(typeof require!=='undefined'?require('./core.js'):null);
  const P=root.VesperChronicle||(typeof require!=='undefined'?require('./chronicle.js'):null);
  const E=root.VesperEncounters||(typeof require!=='undefined'?require('./encounters.js'):null);
+ const K=root.PilgrimKitModel||(typeof require!=='undefined'?require('./field-kit-model.js'):null);
  const KEY='vesperfall-expedition-v1',PROFILE_KEY='vesperfall-profile-v1',GENERATOR='hollow-dominions-1',LIMIT=180000;
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k),copy=o=>JSON.parse(JSON.stringify(o));
  const fail=message=>{throw new Error(message);};
@@ -23,7 +24,7 @@
  const sets=['discovered','orders','sideRewards','targets'];
  const counters=['score','kills','shots','hits','shardCharges','maxShards','headshots','blocks','blinks','shardsUsed','sectors'];
  const enemyFields=['id','room','kind','p','hp','maxHp','speed','cd','wind','slow','frozen','recovery','dead','aware','required','bodyRadius','headRadius','facing','aim','windTotal','phase','charge','combo','comboTime','oathWave','oathBoss','bossPhase','bossTransition','bossPattern','bossMove','aimFloor'];
- const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups','oath','chapter','pilgrimage'];
+ const stateFields=[...Object.keys(numberFields),...flags,...sets,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards','enemies','pickups','oath','chapter','pilgrimage','fieldkit'];
  function enemy(raw,base){keys(raw,enemyFields);const out={...base};
   for(const k of['id','room','kind','maxHp','speed','required','bodyRadius','headRadius','oathWave','oathBoss'])if(raw[k]!==base[k])fail('Enemy identity or stats do not match this world.');
   out.p=vector(raw.p);out.hp=num(raw.hp,-100000,base.maxHp);out.dead=bool(raw.dead);out.aware=bool(raw.aware);if(out.dead!==(out.hp<=0))fail('Enemy life state is inconsistent.');
@@ -48,6 +49,7 @@
   const state={};for(const k of[...Object.keys(numberFields),...flags,'p','head','phase','ammo','type','weapon','crossbow','arrows','bolts','hazards'])state[k]=copy(s[k]??(k==='playerSlow'?0:undefined));
   // Near-miss audio bookkeeping is transient, not expedition physics.
   state.bolts=state.bolts.map(({soundPassed,...bolt})=>bolt);
+  if(s.fieldkit)state.fieldkit=K.restore(s.fieldkit);
   if(s.oath)state.oath=copy(s.oath);if(s.chapter)state.chapter=copy(s.chapter);if(s.pilgrimage)state.pilgrimage=copy(s.pilgrimage);
   for(const k of sets)state[k]=[...(s[k]||[])];
   state.enemies=s.world.enemies.map(e=>{const o={};for(const k of enemyFields)if(own(e,k))o[k]=copy(e[k]);return o;});
@@ -90,6 +92,7 @@
   const m=keys(checkpoint.meta,['id','banked','receipt','yaw','pitch','focus']);if(typeof m.id!=='string'||!/^[-a-zA-Z0-9]{8,64}$/.test(m.id))fail('Saved expedition identity is invalid.');
   const meta={id:m.id,banked:num(m.banked,0,s.kills,true),yaw:num(m.yaw,-Math.PI,Math.PI),pitch:num(m.pitch,-1.5,1.5),focus:num(m.focus,0,3),receipt:{}};
   keys(m.receipt,P.FIELDS);for(const k of P.FIELDS)if(own(m.receipt,k))meta.receipt[k]=num(m.receipt[k],0,s[k],true);
+  if(own(d,'fieldkit'))s.fieldkit=K.restore(d.fieldkit);else delete s.fieldkit;
   // Physical input latches and cosmetic history are deliberately not restored.
   s.shield=null;s.events=[];s.sparks=[];s.eventSeq=0;s.unscored=false;s.manualPickups=false;
   return {game:s,meta};
