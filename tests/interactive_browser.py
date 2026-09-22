@@ -1,4 +1,4 @@
-"""Native HTTP browser validation for the three public projects.
+"""Native HTTP browser validation for the public projects.
 Run a static server at PORT=4173 before invoking this file. The GitHub runner
 uses real ES modules and software-rendered WebGL, not an inline/mock harness.
 External services are blocked: these tests never write to live game accounts.
@@ -31,10 +31,15 @@ with sync_playwright() as p:
     page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
     try:
         page.goto(BASE+'/index.html',wait_until='networkidle')
-        check(page.locator('.project').count()==3,'Homepage presents three projects')
-        for href in ['mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']:
+        check(page.locator('.project').count()>=4,'Homepage presents public projects')
+        for href in ['warledger-chess/','mario-maker-clone/svgn-paper-route/index.html','theology-wiki/san-reader.html','dino-atlas/index.html']:
             check(page.locator('a.primary-link[href="./'+href+'"]').count()==1,'Homepage links to '+href)
         page.screenshot(path=str(OUT/'homepage.png'),full_page=True)
+        page.goto(BASE+'/warledger-chess/',wait_until='networkidle')
+        check(page.locator('#board button').count()==64,'War Ledger Chess renders a full board')
+        page.get_by_role('button',name='e2').click()
+        page.get_by_role('button',name='e4').click()
+        check('Black to move' in page.locator('#status').inner_text(),'War Ledger Chess accepts a legal move')
         import subprocess,sys
         # Validate the current main game and current Create workflow. The older
         # expert regression assumes Create opens the legacy palette, which is
