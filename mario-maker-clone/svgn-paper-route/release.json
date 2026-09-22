@@ -1,10 +1,10 @@
 {
-  "version": "0.27.3",
-  "build": "sky-cycle-cue-margin-2026.09.21",
-  "date": "2026-09-21",
+  "version": "0.28.0",
+  "build": "sky-cycle-curved-depth-2026.09.22",
+  "date": "2026-09-22",
   "changes": [
-    "Keep the Waterwheel route-choice placard fully readable across the portrait approach interval without attaching it to the camera",
-    "Retain intrinsic route-card layout, AR/VR/Screen choices, all-button XR handling and recovered Canal Choice",
-    "Preserve original physics, eight official campaign routes, saves, remaps and Workshop documents"
+    "Optional Waterwheel curved 2.5D preview with an arc-length market road receding and returning in real depth",
+    "One mapping for original 3D geometry, instanced paper packets and a rigid rider; unchanged physics and saves",
+    "Stable headset viewpoint and world aperture, straight 2D/editor fallback and original Xbox/XR menus"
   ]
 }

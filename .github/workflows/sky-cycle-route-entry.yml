@@ -48,7 +48,7 @@ jobs:
       fail-fast: false
       matrix:
         mode: [ar, vr]
-        script: [route-entry-browser.py, xr-buttons-browser.py, xr-workspace-browser.py]
+        script: [route-entry-browser.py, xr-buttons-browser.py, xr-workspace-browser.py, depth-path-browser.py]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -129,7 +129,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Independent 38-file public runtime hash match
+      - name: Independent 40-file public runtime hash match
         env:
           ARTIFACT_DIR: /tmp/route-public
         run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-published.py
@@ -214,5 +214,34 @@ jobs:
         with:
           name: card-live-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/card-live/
+          retention-days: 30
+          if-no-files-found: error
+
+  live-depth:
+    needs: published
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [ar, vr]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Public curved surface, packet delivery and input recovery
+        env:
+          XR_MODE: ${{ matrix.mode }}
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/depth-live
+        run: python mario-maker-clone/svgn-paper-route/tests/depth-path-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: depth-live-${{ matrix.mode }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/depth-live/
           retention-days: 30
           if-no-files-found: error

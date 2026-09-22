@@ -1,6 +1,8 @@
 /* Explicit Workshop preview: original campaign and existing record owners stay intact. */
 import {build,PREVIEW,REVISION,TRANSFERS} from './waterwheel-layout-core.mjs';
 import {populate,draw2D} from './waterwheel-preview-art.mjs';
+import './depth-path.mjs';
+import {PROFILE} from './depth-path-core.mjs';
 import {noticePlacement} from './sensory-core.mjs';
 const BACKUP='svgn.skycycle.waterwheel-preview-backup.v1';
 const $=id=>document.getElementById(id);
@@ -24,7 +26,7 @@ function observeNotice(){const el=$('toast');if(el)noticeObserver.observe(el,{ch
 observeNotice();window.addEventListener('resize',scheduleNotice);
 const style=document.createElement('link');style.rel='stylesheet';style.href=new URL('./waterwheel-preview.css',import.meta.url);document.head.append(style);
 const panel=document.createElement('dialog');panel.id='ww-preview';panel.setAttribute('aria-labelledby','ww-preview-title');
-panel.innerHTML='<small>SKY CYCLE / CHAPTER DESIGN LAB</small><h2 id="ww-preview-title">Waterwheel Boulevard / revision 2</h2><p>A new South Quay, Parcel Market, Service Bridge, Millworkers Court and Wheelhouse Depot. Try the delivery road or short porch. At the express runway, keep speed for the high gallery or brake and release for canal deliveries.</p><p>This is an editable development preview, not a replacement for your campaign. Preview finishes do not award medals, badges, stamps, daily results or ghost records. The optional whip link, campaign promotion and human/device playtest gates remain unfinished.</p><p id="ww-preview-status" role="status">Save or export any dirty Workshop draft before opening another document.</p><div class="ww-preview-actions"><button id="ww-preview-ride">Ride the new layout</button><button id="ww-preview-ground">Ride with the sky hidden</button><button id="ww-preview-edit">Open editable blueprint</button><button id="ww-preview-restore">Restore previous blueprint</button><button id="ww-preview-back">Back</button></div>';
+panel.innerHTML='<small>SKY CYCLE / CHAPTER DESIGN LAB</small><h2 id="ww-preview-title">Waterwheel Boulevard / revision 2</h2><p>A new South Quay, Parcel Market, Service Bridge, Millworkers Court and Wheelhouse Depot. Try the delivery road or short porch. At the express runway, keep speed for the high gallery or brake and release for canal deliveries.</p><p>The curved 2.5D option sweeps the market road away and back through real depth in AR, VR and desktop 3D. The same controls and physics apply; 2D remains straight. This is an editable development preview, not a replacement for your campaign. Preview finishes do not award medals, badges, stamps, daily results or ghost records. The optional whip link, campaign promotion and human/device playtest gates remain unfinished.</p><p id="ww-preview-status" role="status">Save or export any dirty Workshop draft before opening another document.</p><div class="ww-preview-actions"><button id="ww-preview-curve">Ride curved 2.5D layout</button><button id="ww-preview-ride">Ride the new layout</button><button id="ww-preview-ground">Ride with the sky hidden</button><button id="ww-preview-edit">Open editable blueprint</button><button id="ww-preview-restore">Restore previous blueprint</button><button id="ww-preview-back">Back</button></div>';
 document.body.append(panel);
 function note(text){$('ww-preview-status').textContent=text;}
 function show(){if(panel.open)return;resume=mode==='play'&&!won&&!__delivery.paused&&!__delivery.state.menu;focus=document.activeElement;if(resume)__delivery.act('pause');panel.showModal();$('ww-preview-ride').focus();window.SkyCycleFlightDeck?.resetInput();}
@@ -36,7 +38,7 @@ function safe(){
  if(mode==='edit'&&!workshop.active&&!__delivery.state.menu){note('Open the Workshop and save the current legacy-editor document before switching.');return false;}
  return true;
 }
-function begin(groundOnly=false,editOnly=false){
+function begin(groundOnly=false,editOnly=false,curved=false){
  if(!safe())return;
  try{
   const current=RouteWorkshop.state.doc;
@@ -44,7 +46,9 @@ function begin(groundOnly=false,editOnly=false){
    const code=current?WorkshopCore.encode(current):levelCode();WorkshopCore.decode(code);
    localStorage.setItem(BACKUP,JSON.stringify({version:1,code}));
   }
-  const code=GroundCampaign.encode(build(__gameRefs.T,{groundOnly}));WorkshopCore.decode(code);
+  const document=build(__gameRefs.T,{groundOnly});
+  if(curved)document.gp.waterwheel.depthPath={version:PROFILE.version,id:PROFILE.id};
+  const code=GroundCampaign.encode(document);WorkshopCore.decode(code);
   resume=false;panel.close();window.SkyCycleFlightDeck?.releaseForTravel();RouteWorkshop.open(code);
   if(!editOnly)RouteWorkshop.action('test');
  }catch(error){note('Preview could not start safely: '+error.message+'. Existing campaign records are unchanged.');}
@@ -54,6 +58,7 @@ function restore(){
  try{const saved=JSON.parse(localStorage.getItem(BACKUP)||'null');if(saved?.version!==1||typeof saved.code!=='string')throw Error('No previous blueprint backup');WorkshopCore.decode(saved.code);resume=false;panel.close();RouteWorkshop.open(saved.code);window.SkyCycleFlightDeck?.resetInput();}
  catch(error){note(error.message+'. No current document was changed.');}
 }
+$('ww-preview-curve').onclick=()=>begin(false,false,true);
 $('ww-preview-ride').onclick=()=>begin();$('ww-preview-ground').onclick=()=>begin(true);$('ww-preview-edit').onclick=()=>begin(false,true);$('ww-preview-restore').onclick=restore;$('ww-preview-back').onclick=()=>panel.close();
 panel.addEventListener('cancel',e=>{e.preventDefault();panel.close();});panel.addEventListener('close',()=>{if(resume&&!document.hidden&&mode==='play'&&!won&&!__delivery.state.menu&&!document.querySelector('dialog[open]'))__delivery.act('resume');resume=false;if(focus?.isConnected&&focus.getClientRects().length)focus.focus({preventScroll:true});window.SkyCycleFlightDeck?.resetInput();});
 window.addEventListener('blur',()=>{resume=false;});document.addEventListener('visibilitychange',()=>{if(document.hidden)resume=false;});
