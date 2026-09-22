@@ -1,3 +1,4 @@
+import {loadPresentation,savePresentation,parsePresentation} from './presentation-prefs.mjs';
 import {vehicleTriggerSignal} from './vehicle-trigger.mjs';
 import {createNativeMenuFocus} from './native-menu-focus.mjs';
 import {drawConsoleMenuRow} from './console-menu.mjs';
@@ -21,8 +22,8 @@ export function createUnifiedXR(hooks){
  let session=null,pending=false,kind='third-person-vr',origin=new T.Vector3(),heading=0,viewer=null,aligned=false,rootBefore=null,page=0,rows=[],lastPaint=0,last=0,frames=0,selections=0,error='',lastSnap=false,modeChanges=0;
  let prefs=loadXRPrefs(hooks.storage).prefs,preferencesBlocked=loadXRPrefs(hooks.storage).blocked;
  const menuFocus=createNativeMenuFocus();
- const settings={scale:.04,height:-.9,distance:1.55,rotation:0};let handActions=false,floorSpace=null;
- const consoleUI=createSpatialConsole(ui,panel,tex,{storage:hooks.storage,goal:hooks.goal,hud:hooks.hud,message:hooks.message,clear});
+ const presentation=loadPresentation(hooks.storage),settings={...presentation.prefs};let presentationBlocked=presentation.blocked;let handActions=false,floorSpace=null;
+ const consoleUI=createSpatialConsole(ui,panel,tex,{storage:hooks.storage,goal:hooks.goal,hud:hooks.hud,feedback:hooks.feedback,message:hooks.message,clear});
  const $=id=>document.getElementById(id),visible=e=>!!e&&!e.disabled&&!e.closest('[hidden]')&&e.getClientRects().length>0;
  const root=()=>visible($('failure'))?$('failure'):['ward-confirm','confirm-reset','save-confirm'].map($).find(visible)||[...document.querySelectorAll('dialog[open]')].at(-1)||(visible($('welcome'))?$('welcome'):null);
  function clear(){clearXRInput();hooks.clear();for(const s of slots){s.ready=false;s.previous=[];s.relative=s.hand=s.head=null;s.menuTime=0;s.menuUsed=false;s.armed=true;}lastSnap=false;}
@@ -121,7 +122,9 @@ export function createUnifiedXR(hooks){
  return {enter,update,present,flatRender:draw=>{hooks.spatial().restore();draw();},prepare:()=>hooks.spatial().restore(),retarget:()=>{resetRoot();if(viewer)place();},clear,exit:()=>session?.end(),get active(){return !!session;},get mode(){return kind;},settings,
   preference(k,v){const n={...prefs,[k]:v};if(!preferencesBlocked&&!saveXRPrefs(hooks.storage,n)){preferencesBlocked=true;hooks.message('XR preference storage is unavailable. Current-session settings still work.');}prefs=n;clear();},get preferences(){return {...prefs};},
   setOpening:value=>hooks.spatial().setOpening(value),recenter:()=>{aligned=false;consoleUI.recenter();clear();},
+  presentationPreference(k,v){const next=parsePresentation({...settings,[k]:v});Object.assign(settings,next);if(!presentationBlocked&&!savePresentation(hooks.storage,next)){presentationBlocked=true;hooks.message('View size applied for this session; saved preferences were retained.');}clear();return {...settings};},
+  messageHistory:()=>consoleUI.messageHistory(),
   consolePreference:(k,v)=>consoleUI.configure(k,v),get consolePreferences(){return consoleUI.prefs;},recenterConsole:()=>{consoleUI.recenter();clear();},
   panelPose(){panel.updateWorldMatrix(true,false);return {matrix:panel.matrixWorld.toArray(),referenceMatrix:panel.matrixWorld.toArray(),width:1.4,height:1.4,rows:rows.map(({label,detail,focused,id,x,y,w,h})=>({label,detail,focused,id,x,y,w,h}))};},
-  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,console:consoleUI.inspect(),environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
+  inspect:()=>({active:!!session,pending,kind,frames,selections,error,modeChanges,presentation:{...settings},presentationStorageBlocked:presentationBlocked,console:consoleUI.inspect(),environmentBlendMode:session?.environmentBlendMode,actionPanelVisible:panel.visible,visibleRays:slots.filter(s=>s.ray.visible).length,headLockedPanels:false,stereoGameWorld:!!session,renderTargetScreen:false,eyes:session?renderer.xr.getCamera().cameras.length:0,panelMatrix:panel.matrixWorld.toArray(),input:{...xrInput},spatial:hooks.spatial().inspect(),controls:{...prefs}})};
 }

@@ -10,7 +10,7 @@ export function modeLabel(mode){const m=modeInfo(mode);return (m.portal?'Diorama
 const up=new T.Vector3(0,1,0);
 export function presentationMatrix({feet,basis,origin,heading,settings,mode}){
  const m=modeInfo(mode),anchor=origin.clone().add(new T.Vector3(0,settings.height-4*settings.scale,-settings.distance).applyAxisAngle(up,heading));
- const portalSize=new T.Vector3(49*settings.scale,17*settings.scale,43*settings.scale);
+ const portalSize=new T.Vector3(49*settings.scale,17*settings.scale*(settings.boxHeight??3),43*settings.scale);
  const rotation=heading+(m.portal?settings.rotation:0),q=new T.Quaternion().setFromAxisAngle(up,rotation);
  const scale=m.portal&&!m.first?settings.scale*2:1;
  // First-person maps the character's eyes to the calibrated physical eye pose.

@@ -20,9 +20,9 @@ import {xrInput} from './xr-input.mjs';
 const VERSION='0.16.1',HUB_KEY='svgn.neighborhood-hub.v1';
 export function createMainHub(hooks){
  const $=id=>document.getElementById(id),cityView=hooks.view,renderer=cityView.renderer,citySpatial=spatialView(cityView,'city');
- let ward=null,wardView=null,wardSpatial=null,wardActive=false,blocked=false,yaw=0,last=0,saveTime=0,frames=0,transfers=0,error='',pending=null,stopped=false;
+ let ward=null,wardView=null,wardSpatial=null,wardActive=false,blocked=false,yaw=0,last=0,saveTime=0,frames=0,transfers=0,error='',pending=null,stopped=false,noticeRevision=0;
  let store;try{store=localStorage;}catch{store={getItem(){throw Error('Storage unavailable');},setItem(){throw Error('Storage unavailable');}};}
- function message(text){if(wardActive&&ward){ward.message=text;ward.messageTime=9;}$('toast').textContent=text;$('toast').classList.add('visible');}
+ function message(text){noticeRevision++;if(wardActive&&ward){ward.message=text;ward.messageTime=9;}else{hooks.state().toast=text;hooks.state().toastT=9;}$('toast').textContent=text;$('toast').classList.add('visible');}
  function persistWard(){if(!ward)return true;if(blocked){message('District save needs recovery. Export your run before changing district.');return false;}const r=save(ward,store);if(!r.ok){blocked=true;message(r.error);}return r.ok;}
  function close(){for(const d of document.querySelectorAll('dialog[open]'))d.close();pending=null;$('ward-confirm').hidden=true;hooks.setPaused(false);xr.clear();}
  function open(id){hooks.setPaused(true);hooks.clear();for(const d of document.querySelectorAll('dialog[open]'))d.close();const d=$(id);d.showModal();(d.querySelector('[data-pad-default]')||d.querySelector('button'))?.focus();}
@@ -65,9 +65,10 @@ export function createMainHub(hooks){
  const xr=createUnifiedXR({renderer,storage:store,clear:hooks.clear,playing:hooks.playing,pause:()=>wardActive?wardMenu():hooks.pause(),resume:()=>wardActive?close():hooks.resume(),message,changed:hooks.changed,
   spatial:()=>wardActive?wardSpatial:citySpatial,state:()=>wardActive?ward:hooks.state(),yaw:()=>yaw,turn:d=>wardActive?yaw+=d:cityView.orbitBy(d),
   action:(name,ray)=>name==='pause'?(wardActive?wardMenu():hooks.pause()):field(name,ray),
+  feedback:()=>wardActive?{revision:noticeRevision,scope:'lantern',text:ward.message,remaining:ward.messageTime}:{revision:noticeRevision,scope:'city',text:hooks.state().toast,remaining:hooks.state().toastT},
   hud:()=>{
    const riding=wardActive?ward.ride!=='foot':!!hooks.state().ride,controls=vehicleControlCaption(xr.consolePreferences,xr.preferences.profile,xr.preferences.dominant,riding),menu=xr.preferences.dominant==='right'?'Y':'B';
-   if(wardActive)return {title:'LANTERN WARD',...wardFieldStatus(ward,yaw),map:$('ward-mini'),controls,menu};
+   if(wardActive){drawMap($('ward-map'),ward,false);return {title:'LANTERN WARD',...wardFieldStatus(ward,yaw),map:$('ward-map'),controls,menu};}
    return {title:'MAIN NEIGHBORHOODS',goal:$('objective-title').textContent,detail:$('objective-text').textContent,equipment:$('ride-name').textContent,map:hooks.cityMap?.(),controls,menu};
   },
   combat:()=>wardActive&&(watchState(ward).tracking||!!campaignState(ward).active),embodied:()=>wardActive&&(!!campaignState(ward).active||watchState(ward).stage===4),canGlide:()=>wardActive&&campaignCanGlide(ward),goal:()=>wardActive?missionGoal(ward):$('objective-title').textContent+' / '+$('objective-text').textContent});

@@ -1,8 +1,8 @@
 {
   "version": "0.16.1",
-  "revision": "wayfinding-1",
+  "revision": "floor-feedback-1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods / Way In",
+  "edition": "Unified Neighborhoods / Floor Feedback",
   "date": "2026-09-21",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
@@ -10,9 +10,9 @@
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "../release-receipts/neighborhood-missions-wayfinding-20260921.json",
+  "publicationEvidence": "../release-receipts/neighborhood-missions-floor-feedback-20260921.json",
   "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "See WAYFINDING.md and the exact-source external publication receipt",
+  "runtimeCheckpoint": "Current direct-master floor-feedback-1 update; see FLOOR-FEEDBACK.md",
   "sourceAcceptanceRuns": [
     35551197282,
     35551588021,
@@ -21,6 +21,10 @@
     35554765805
   ],
   "changes": [
+    "Interaction captions render independently on the floor and disappear completely after 2000 ms, with complete text available in Recent interaction text.",
+    "A live mission map updates during normal XR play without a raised-hand gesture, including the original city and Lantern Ward.",
+    "Diorama box is three times taller by default; menu size, overall diorama size, vertical window height and floor-map size can be adjusted independently.",
+    "Late floor-reference acquisition corrects an estimated height; the UI remains outside the game world and never parents to the headset.",
     "Gold task marker plus cyan next-entrance cue, supported route map and dismount/dock guidance; existing shortcuts and water states affect the suggestion without moving or advancing the player.",
     "Reconcile the competing Field Desk physical left/right vehicle-trigger option into the existing console; preserve current primary-hand defaults and all on-foot/Courier/Xbox controls.",
     "Remove fourteen obsolete writer/duplicate workflow wrappers; retain all unique tests in three existing read-only master workflows.",
@@ -40,9 +44,9 @@
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 411,
+    "localModelTestsPassed": 437,
     "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "Consult the external receipt for exact model, rendered and publication outcomes; no complete-device approval is implied.",
+    "sourceAndPublicEvidence": "437 local model/input/geometry/presentation tests pass. Rendered and live acceptance are separate; consult the external receipt.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,

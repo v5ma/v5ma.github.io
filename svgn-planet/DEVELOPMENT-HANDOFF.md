@@ -1,3 +1,7 @@
+# Floor Feedback / current continuation
+
+Read FLOOR-FEEDBACK.md and release.json first. This update responds to the owner's invisible-message/map report, adds 2-second floor captions and a persistent live floor map, triples the default diorama height and exposes independent saved size controls. Continue directly on current master. 437 local checks pass; inspect the separate current public receipt before making rendered or publication claims. Earlier handoffs below are historical.
+
 # Current pass: Way In
 
 Read WAYFINDING.md and release.json. Entrance/elevation guidance now uses the existing geometry and changing routes, with cyan way-in and gold final-task markers. No gameplay ledger or original layout is changed. All local tests and actual source/public acceptance are recorded separately in the external receipt. Retain current direct-master instructions. The earlier reconciliation record below remains historical context.

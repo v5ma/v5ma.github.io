@@ -1,12 +1,14 @@
 /* Neighborhood-only in-scene console. Scene/reference/controller coordinates;
  * no DOM overlay, camera child, browser navigation, hub code or gameplay writes. */
 import * as T from './vendor/three.module.js';
+import {createFloorFeedback} from './floor-feedback.mjs';
 import {drawConsoleHUD} from './console-hud.mjs';
 import {floorAnchor,consoleTransform,loadConsolePrefs,saveConsolePrefs,parseConsolePrefs} from './console-state.mjs';
 const up=new T.Vector3(0,1,0),unitScale=new T.Vector3(1,1,1);
 export function createSpatialConsole(ui,panel,atlas,hooks){
  // Draw after the transparent world queue; depthTest=false alone is insufficient.
  panel.material.transparent=true;panel.material.needsUpdate=true;
+ const floorFeedback=createFloorFeedback(ui,hooks);
  const loaded=loadConsolePrefs(hooks.storage);let prefs=loaded.prefs,blocked=loaded.blocked,anchor=null,amount=0,opened=false,rows=[],lastHUD=-Infinity,signature='',hostHand=null,controllerDocked=false;
  const base=new T.Group();base.name='Floor rotunda (reference-space anchored)';ui.add(base);
  const surface=(color,extra={})=>new T.MeshBasicMaterial({color,transparent:true,toneMapped:false,depthTest:false,depthWrite:false,...extra});
@@ -35,7 +37,12 @@ export function createSpatialConsole(ui,panel,atlas,hooks){
   return new T.Matrix4().compose(v,q.multiply(new T.Quaternion().setFromEuler(new T.Euler(-.45,0,0))),new T.Vector3().setScalar(scale));
  }
  function step({viewer,floorY,open,dt,frame,ref,sources,dominant,now}){
-  if(!anchor||open&&!opened)locate(viewer,floorY);opened=open;
+  if(!anchor||open&&!opened)locate(viewer,floorY);
+  else if(!anchor.measured&&Number.isFinite(floorY)){
+   const resolved=floorAnchor(viewer.transform||viewer,floorY);
+   if(resolved.measured)anchor={...anchor,y:resolved.y,eye:resolved.eye,measured:true};
+  }
+  opened=open;
   const moving=prefs.motion&&!(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
   amount=moving?T.MathUtils.clamp(amount+(open?1:-1)*Math.min(.1,Math.max(0,dt))/.24,0,1):Number(open);
   panel.matrixAutoUpdate=false;panel.matrix.copy(consoleTransform(anchor,prefs,amount));panel.matrixWorldNeedsUpdate=true;
@@ -58,6 +65,7 @@ export function createSpatialConsole(ui,panel,atlas,hooks){
    hud.matrixWorldNeedsUpdate=true;
    if(now-lastHUD>400){drawHUD(hooks.hud?.()||{goal:hooks.goal?.()||'Open Missions to choose your next goal.'});lastHUD=now;}
   }
+  floorFeedback.step({anchor,open,time:now,prefs});
   ui.updateMatrixWorld(true);
  }
  function drawHUD(data){drawConsoleHUD(hctx,data,{floor:prefs.hud==='floor'});ht.needsUpdate=true;}
@@ -75,6 +83,6 @@ export function createSpatialConsole(ui,panel,atlas,hooks){
   for(const c of controls){if(!c.group.visible)continue;const h=caster.intersectObject(c.face)[0];if(h){cursor.visible=true;cursor.position.copy(h.point);c.body.material.color.setHex(0xf6d689);c.group.position.z=pressed?.001:.008;return {hit:h,row:c.row,u:h.uv.x};}}
   return null;
  }
- function end(){panel.visible=base.visible=hud.visible=cursor.visible=false;anchor=null;opened=false;amount=0;controllerDocked=false;rows=[];controls.forEach(c=>c.group.visible=false);}
- return {step,sync,hit,end,configure,recenter:()=>{anchor=null;},get prefs(){return {...prefs};},get ready(){return !opened||amount>=.99;},inspect:()=>({mount:prefs.mount,controllerDocked,preferences:{...prefs},storageBlocked:blocked,open:opened,progress:amount,anchor:anchor&&{...anchor},floorMeasured:!!anchor?.measured,headAttached:false,buttonMeshes:controls.filter(c=>c.group.visible&&panel.visible).length,hoverVisible:cursor.visible,hudVisible:hud.visible,hudHost:hostHand,panelMatrix:panel.matrixWorld.toArray(),hudMatrix:hud.matrixWorld.toArray(),signature})};
+ function end(){floorFeedback.end();panel.visible=base.visible=hud.visible=cursor.visible=false;anchor=null;opened=false;amount=0;controllerDocked=false;rows=[];controls.forEach(c=>c.group.visible=false);}
+ return {step,sync,hit,end,configure,messageHistory:floorFeedback.history,recenter:()=>{anchor=null;},get prefs(){return {...prefs};},get ready(){return !opened||amount>=.99;},inspect:()=>({floor:floorFeedback.inspect(),mount:prefs.mount,controllerDocked,preferences:{...prefs},storageBlocked:blocked,open:opened,progress:amount,anchor:anchor&&{...anchor},floorMeasured:!!anchor?.measured,headAttached:false,buttonMeshes:controls.filter(c=>c.group.visible&&panel.visible).length,hoverVisible:cursor.visible,hudVisible:hud.visible,hudHost:hostHand,panelMatrix:panel.matrixWorld.toArray(),hudMatrix:hud.matrixWorld.toArray(),signature})};
 }

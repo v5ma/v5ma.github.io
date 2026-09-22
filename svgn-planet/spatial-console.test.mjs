@@ -21,3 +21,9 @@ test('Closing, controller loss and end leave no stale interactive surfaces',()=>
 test('A single tracked hand or controller can always use the floor fallback instead of pointing at its own wrist',()=>{const h=fixture();h.consoleUI.configure('mount','controller');h.step();assert.equal(h.consoleUI.inspect().controllerDocked,true);h.sources.pop();h.step();assert.equal(h.consoleUI.inspect().controllerDocked,false);assert.equal(h.consoleUI.inspect().mount,'controller');assert.ok(h.consoleUI.ready);assert.ok(h.consoleUI.inspect().panelMatrix.every(Number.isFinite));});
 
 test('Native menu surfaces render after translucent world materials, not before water and effects',()=>{const h=fixture();h.step();h.ui.traverse(o=>{if(o.isMesh){assert.equal(o.material.transparent,true,o.name);assert.equal(o.material.depthWrite,false,o.name);}});});
+
+test('Late floor reference corrects estimated floor height without making the console follow head translation',()=>{
+ const h=fixture(),step=(floorY,now)=>h.consoleUI.step({viewer:h.viewer,floorY,open:false,dt:.025,frame:{getPose:s=>s.pose,getJointPose:s=>s.pose},ref:{},sources:h.sources,dominant:'right',now});
+ h.viewer.transform=pose(0,1.1,0).transform;step(undefined,0);const a=h.consoleUI.inspect().anchor;assert.equal(a.measured,false);assert.ok(a.y<0);
+ h.viewer.transform.position.x=.2;step(0,25);const b=h.consoleUI.inspect().anchor;assert.equal(b.measured,true);assert.equal(b.y,0);assert.equal(b.x,a.x);
+});
