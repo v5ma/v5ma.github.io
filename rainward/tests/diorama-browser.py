@@ -71,7 +71,7 @@ with sync_playwright() as pw:
    p.evaluate('({head,pitch})=>{questDevice.head=head;questDevice.headPitch=pitch}',{'head':head,'pitch':pitch});frames(4)
   scale=p.evaluate('Rainward.snapshot().xr.diorama.scale');select('display-larger');frames(5)
   d=p.evaluate('Rainward.snapshot().xr.diorama');check(abs(d['scale']-scale-.01)<1e-9 and d['physicalDimensions']=={'width':1.6,'depth':1.2,'height':1.65},'Zoom enlarges game content without enlarging the physical display')
-  select('display-smaller');frames(5);check(p.evaluate('Rainward.snapshot().xr.diorama.extraRenderTargets')==0,'The diorama adds no offscreen theatre or full-screen render target')
+  select('display-smaller');frames(5);box=p.evaluate('Rainward.snapshot().xr.diorama.physicalDimensions');select('display-box-larger');frames(5);grown=p.evaluate('Rainward.snapshot().xr.diorama.physicalDimensions');check(grown['height']>box['height'] and grown['width']>box['width'],'Diorama box size can be enlarged independently of character zoom');select('display-box-smaller');frames(5);check(p.evaluate('Rainward.snapshot().xr.diorama.extraRenderTargets')==0,'The diorama adds no offscreen theatre or full-screen render target')
   select('display-follow');check(p.evaluate('Rainward.snapshot().xr.diorama.follow')==True,'The requested portal always follows the centered survivor, including old stored preferences')
   select('display-follow');select('recenter');frames(5)
   away();frames(6);wait('Rainward.snapshot().xr.armed');start=p.evaluate('Rainward.state.player.z')
