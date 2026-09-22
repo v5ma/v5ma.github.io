@@ -24,7 +24,8 @@ export function fieldGuidance(s,near,use='Right grip'){
  else if(p.gliding)step='Left stick steers and brakes the Foldwing. Look for a landing or rail. Touch A folds it; Xbox B folds it.';
  let interaction=String(near?.label||'').replace(/^(?:X\s*\/\s*)?E\s*(?:[.:\-]|\u00b7)?\s*/i,'').replace(/^X\s*\/\s*E\s*-?\s*/i,'');
  if(near?.type==='rail'||near?.type==='exp-ride')interaction='';
- return {goal,step,interaction:interaction?use+' / '+interaction:'Move closer to a named object to interact.',interactionId:near?.id||null,canInteract:!!interaction,use};
+ const locked=near?.type==='exit'&&s.relays.size<3;
+ return {goal,step,interaction:locked?'Broadcast console: for later, after restoring three relays. Follow NEXT.':interaction?use+' / '+interaction:'Move closer to a named object to interact.',interactionId:near?.id||null,canInteract:!!interaction&&!locked,use};
 }
 /* Goal stays on the local map edge when beyond its range. Not pathfinding. */
 export function localMapPoint(p,target,range=45,edge=.88){
