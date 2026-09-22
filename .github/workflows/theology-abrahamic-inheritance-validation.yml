@@ -1,0 +1,67 @@
+name: Validate Theology Abrahamic inheritance atlas
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/comparative-religion/abrahamic-inheritance/**'
+      - 'theology-wiki/comparative-religion/build.cjs'
+      - 'theology-wiki/comparative-religion/index.html'
+      - 'theology-wiki/comparative-religion/directory.html'
+      - '.github/workflows/theology-abrahamic-inheritance-validation.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/comparative-religion/abrahamic-inheritance/**'
+      - 'theology-wiki/comparative-religion/build.cjs'
+      - 'theology-wiki/comparative-religion/index.html'
+      - 'theology-wiki/comparative-religion/directory.html'
+      - '.github/workflows/theology-abrahamic-inheritance-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read preservation base
+        run: git fetch --no-tags --depth=1 origin 18d83fa4b5aa2f4115d6c602af2bf9a51c06896a
+      - name: Rebuild and verify exact atlas
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/abrahamic-atlas
+          node theology-wiki/comparative-religion/abrahamic-inheritance/build.cjs
+          node theology-wiki/comparative-religion/abrahamic-inheritance/integrate.cjs
+          node theology-wiki/comparative-religion/build.cjs
+          git diff --exit-code -- theology-wiki/comparative-religion/
+          node --test theology-wiki/comparative-religion/abrahamic-inheritance/atlas.test.cjs | tee theology-test-output/abrahamic-atlas/contracts.log
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise index, dedicated pages and parent navigation
+        run: python theology-wiki/comparative-religion/abrahamic-inheritance/browser_checks.py --report theology-test-output/abrahamic-atlas/browser.json --screenshots theology-test-output/abrahamic-atlas/native
+      - name: Compare actual production bytes after deployment
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/abrahamic-inheritance/hosted_checks.py --report theology-test-output/abrahamic-atlas/hosted-content.json
+      - name: Repeat browser checks on actual public origin
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/comparative-religion/abrahamic-inheritance/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/abrahamic-atlas/hosted-browser.json --screenshots theology-test-output/abrahamic-atlas/hosted
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-abrahamic-inheritance-validation
+          path: |
+            theology-test-output/abrahamic-atlas/
+            theology-wiki/comparative-religion/abrahamic-inheritance/
+          if-no-files-found: error
