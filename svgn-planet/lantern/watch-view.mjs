@@ -1,4 +1,5 @@
 /* Same scene, same portal shader collection: no overlays or independent world. */
+import {highlineKit} from './highline-layout.mjs';
 import * as T from '../vendor/three.module.js';
 import {WATCH_POINTS,GRAPPLE_ANCHORS,watchState,watchRuntime,validGrapple} from './watch.mjs';
 import {blocked,lineClear,support,floorHeight,surfaces} from './core.mjs';
@@ -15,7 +16,7 @@ export function createWatchView({world,box,cyl,label}){
  let active=false;
  return {update(s){const w=watchState(s),r=watchRuntime(s);active=w.tracking&&w.stage>0&&w.stage<3;
   bots.forEach((b,i)=>{const e=r.sentries[i];b.g.visible=active||w.stage>=3;b.g.position.set(e.x,e.y,e.z);b.g.rotation.y=Math.atan2(s.x-e.x,s.z-e.z);b.g.scale.y=e.hp>0?1:.35;b.light.material.color.setHex(e.hp===0?0x65c69c:e.stun?0xeeee88:0xffbd60);b.cue.visible=active&&e.phase==='windup';b.cue.scale.setScalar(1+(e.timer||0)*.2);b.text.visible=active;});
-  rings.forEach(b=>{b.mesh.visible=b.text.visible=w.stage>=1;const safe=w.stage>=1&&validGrapple(s,b.a,{blocked,lineClear,support,floorHeight,surfaces});b.mesh.material.color.setHex(safe?0x8bf4c8:0x466875);b.mesh.rotation.y=-s.yaw;b.text.visible=w.stage>=1&&r.scan;});
+  rings.forEach(b=>{const unlocked=(w.stage>=1||highlineKit(s))&&(!b.a.highline||highlineKit(s));b.mesh.visible=b.text.visible=unlocked;const safe=unlocked&&validGrapple(s,b.a,{blocked,lineClear,support,floorHeight,surfaces});b.mesh.material.color.setHex(safe?0x8bf4c8:0x466875);b.mesh.rotation.y=-s.yaw;b.text.visible=unlocked&&(r.scan||s.campaign?.active==='highline');});
   devices.forEach((d,i)=>{d.g.visible=w.tracking||w.stage>=3;d.lamp.material.color.setHex(w.stage>=3?0x79d6ac:r.scan?0x83eeeb:0xffad54);});trace.visible=active&&r.scan;
   smoke.visible=r.smoke>0;smoke.position.set(s.x,s.y+1,s.z);},inspect:()=>({caseActive:active,sentries:2,grappleAnchors:rings.length,worldSpace:true,screenOverlayPlanes:0})};
 }

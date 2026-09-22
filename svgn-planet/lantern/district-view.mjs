@@ -1,3 +1,4 @@
+import {addHighlineStair,createHighlineView} from './highline-view.mjs';
 import {createWatchView} from './watch-view.mjs';
 import {createCampaignView} from './campaign-view.mjs';
 import {PortalMaterials,createPortalFrame,followPosition} from './portal.mjs';
@@ -30,7 +31,8 @@ export function createDistrictView(canvas, sharedRenderer){
  const lowGroup=new T.Group();world.add(lowGroup);const decks=[];
  for(const f of floors){
   const group=f.low?lowGroup:new T.Group();if(!f.low)world.add(group);
-  if(f.stairs){const n=24;for(let i=0;i<n;i++){const z=f.z-f.d/2+(i+.5)*f.d/n,y=floorHeight(f,z);box(group,f.low?0x8d9d95:0xb8b6a1,f.x,y-.13,z,f.w,.26,f.d/n+.03);}for(const x of[f.x-f.w/2,f.x+f.w/2])for(let i=0;i<9;i++){const z=f.z-f.d/2+i*f.d/8,y=floorHeight(f,z);cyl(group,0x45616a,x,y+.48,z,.042,.95);}}
+  if(f.highline&&f.stairs)addHighlineStair(group,f,mat,floorHeight);
+  else if(f.stairs){const n=24;for(let i=0;i<n;i++){const z=f.z-f.d/2+(i+.5)*f.d/n,y=floorHeight(f,z);box(group,f.low?0x8d9d95:0xb8b6a1,f.x,y-.13,z,f.w,.26,f.d/n+.03);}for(const x of[f.x-f.w/2,f.x+f.w/2])for(let i=0;i<9;i++){const z=f.z-f.d/2+i*f.d/8,y=floorHeight(f,z);cyl(group,0x45616a,x,y+.48,z,.042,.95);}}
   else box(group,f.low?0x8a9b8e:f.y>1?0xc1aa87:0xbbbfae,f.x,f.y-.18,f.z,f.w,.36,f.d);
   if(!f.low&&f.y>1&&!f.stairs)decks.push({f,group});
  }
@@ -124,6 +126,7 @@ export function createDistrictView(canvas, sharedRenderer){
  batch(decor);batch(lowGroup);for(const g of world.children)if(g!==decor&&g!==lowGroup&&g.isGroup&&g.children.some(m=>m.geometry===boxGeo))batch(g);
  const marketView=createMarketView({world,box,cyl,label,batch});
  const cityView=createCityView({world,box,cyl,label});
+ const highlineView=createHighlineView({world,wallMeshes,box,cyl,label});
  const watchView=createWatchView({world,box,cyl,label});
  const campaignView=createCampaignView({world,box,cyl,label});
  const portalMaterials=new PortalMaterials();portalMaterials.collect(world);
@@ -147,7 +150,7 @@ export function createDistrictView(canvas, sharedRenderer){
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
-  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);watchView.update(s);campaignView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
+  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);watchView.update(s);campaignView.update(s);highlineView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
   const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
@@ -161,9 +164,9 @@ export function createDistrictView(canvas, sharedRenderer){
    if(!started||mode==='overview'){camera.position.set(37,34,42);camera.lookAt(0,1,0);portalFrame.group.visible=false;}
    else if(first){camera.position.set(s.x,s.y+1.65,s.z);camera.rotation.order='YXZ';camera.rotation.set(0,yaw,0);}
    else if(mode==='diorama'){presentPortal(s,{scale:.04,height:-.9,distance:1.55,rotation:0},new T.Vector3(),0,yaw);camera.position.set(0,0,0);camera.lookAt(anchor.x,anchor.y+.18,anchor.z);cutaway(s,world.worldToLocal(camera.position.clone()));}
-   else{const dist=11;const to=new T.Vector3(s.x+Math.sin(yaw)*dist,s.y+dist*(mode==='diorama'?.9:.65),s.z+Math.cos(yaw)*dist);camera.position.lerp(to,1-Math.exp(-dt*7));camera.lookAt(s.x,s.y+1,s.z);}
+   else{const dist=11;const to=new T.Vector3(s.x+Math.sin(yaw)*dist,s.y+dist*(mode==='diorama'?.9:.65),s.z+Math.cos(yaw)*dist);camera.position.lerp(to,1-Math.exp(-dt*7));camera.lookAt(s.x,s.y+1,s.z);if(s.y>6)cutaway(s,camera.position);}
   }
  }
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({watch:watchView.inspect(),campaign:campaignView.inspect(),market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({highline:highlineView.inspect(),watch:watchView.inspect(),campaign:campaignView.inspect(),market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }

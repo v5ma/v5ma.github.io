@@ -17,7 +17,7 @@ import {watchRuntime,watchState,watchInspect} from './lantern/watch.mjs';
 import {campaignState,campaignCanGlide,campaignInspect} from './lantern/campaign.mjs';
 import {padState} from './controller.mjs';
 import {xrInput} from './xr-input.mjs';
-const VERSION='0.16.1',HUB_KEY='svgn.neighborhood-hub.v1';
+const VERSION='0.17.0',HUB_KEY='svgn.neighborhood-hub.v1';
 export function createMainHub(hooks){
  const $=id=>document.getElementById(id),cityView=hooks.view,renderer=cityView.renderer,citySpatial=spatialView(cityView,'city');
  let ward=null,wardView=null,wardSpatial=null,wardActive=false,blocked=false,yaw=0,last=0,saveTime=0,frames=0,transfers=0,error='',pending=null,stopped=false,noticeRevision=0;
@@ -42,7 +42,7 @@ export function createMainHub(hooks){
   try{if(next==='lantern'){ensureWard();wardActive=true;controlContext.ward=true;if(mission)message(trackStory(ward,mission));}else{wardActive=false;controlContext.ward=controlContext.combat=controlContext.canGlide=false;}
    document.body.classList.toggle('in-lantern',wardActive);$('ward-map-shortcut').hidden=!wardActive;$('district-name').textContent=wardActive?'LANTERN WARD':'MAIN NEIGHBORHOODS';transfers++;last=0;saveTime=0;
    try{store.setItem(HUB_KEY,JSON.stringify({v:1,district:next}));}catch{}
-   xr.retarget();if(xr.active)renderer.shadowMap.enabled=false;close();message(wardActive?'Lantern Ward. Resident stories, Night Watch and the original delivery loop are on your Missions board.':'Returned to your original city position and progress.');hooks.changed();return true;
+   xr.retarget();if(xr.active)renderer.shadowMap.enabled=false;close();message(wardActive&&mission?missionGoal(ward):wardActive?'Lantern Ward. Resident stories, Night Watch and the original delivery loop are on your Missions board.':'Returned to your original city position and progress.');hooks.changed();return true;
   }catch(e){error=String(e.message||e);message('District travel could not finish: '+error);hooks.pause();return false;}
  }
  function field(name,ray){if(!wardActive)return hooks.command(name);if(!ray&&['strike','pulse','tool'].includes(name))ray={origin:{x:ward.x,y:ward.y+1.3,z:ward.z},direction:{x:-Math.sin(yaw),y:0,z:-Math.cos(yaw)}};action(ward,name,ray);persistWard();}
@@ -78,6 +78,8 @@ export function createMainHub(hooks){
  const buttons=[];function modeButtons(parent,suffix){for(const mode of MODES){const b=document.createElement('button');b.id='xr-'+mode+suffix;b.dataset.xrMode=mode;b.textContent=modeLabel(mode);b.onclick=()=>{hooks.ensureStarted();xr.enter(mode);};parent.append(b);buttons.push(b);}}
  modeButtons($('xr-mode-options'),'');const launch=document.createElement('section');launch.className='hub-districts';launch.innerHTML='<p>One game: the original city, Lantern Ward, resident stories and Night Watch.</p><button id="enter-ward">Enter Lantern Ward district</button><div id="xr-launch-options" class="xr-grid"></div>'; $('welcome').append(launch);modeButtons($('xr-launch-options'),'-launch');
  $('enter-ward').onclick=()=>switchDistrict('lantern');
+ const highline=document.createElement('button');highline.id='play-highline';highline.textContent='Play Highline / taller rooftop adventure';highline.onclick=()=>switchDistrict('lantern','campaign:highline');$('enter-ward').before(highline);
+ const highlinePause=highline.cloneNode(true);highlinePause.id='visit-highline';highlinePause.onclick=highline.onclick;$('pause-dialog').prepend(highlinePause);
  const cityButtons=document.createElement('div');cityButtons.innerHTML='<button id="visit-ward">Lantern Ward / resident missions</button><button id="visit-watch">Night Watch investigation</button><button id="main-xr-modes">AR / VR views</button>'; $('pause-dialog').prepend(cityButtons);
  $('visit-ward').onclick=()=>switchDistrict('lantern');$('visit-watch').onclick=()=>switchDistrict('lantern','watch');$('main-xr-modes').onclick=()=>open('xr-mode-dialog');
  const headerButton=document.createElement('button');headerButton.id='main-xr';headerButton.textContent='AR / VR';headerButton.onclick=()=>open('xr-mode-dialog');document.querySelector('header nav').append(headerButton);

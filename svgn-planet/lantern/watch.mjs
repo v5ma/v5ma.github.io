@@ -1,5 +1,6 @@
 /* Night Watch: optional, original action/investigation case on existing geography.
  * Durable progress and credits are separate from both courier ledgers. */
+import {HIGHLINE_ANCHORS,HIGHLINE_MAX_Y,highlineKit} from './highline-layout.mjs';
 export const WATCH_REWARD=180;
 export const WATCH_POINTS=Object.freeze({
  desk:{id:'watch-desk',label:'Meet Mara at the neighborhood watch desk',x:-10,y:0,z:14},
@@ -12,7 +13,8 @@ export const GRAPPLE_ANCHORS=Object.freeze([
  {id:'print-perch',label:'Print terrace',x:-14.5,y:4.4,z:-4.5},
  {id:'loft-perch',label:'Loading loft',x:10.5,y:4.4,z:-3.6},
  {id:'pump-landing',label:'Pump landing',x:6.5,y:0,z:-12.2},
- {id:'arcade-landing',label:'Arcade landing',x:-21.5,y:0,z:-12.5}
+ {id:'arcade-landing',label:'Arcade landing',x:-21.5,y:0,z:-12.5},
+ ...HIGHLINE_ANCHORS
 ]);
 export const freshWatch=()=>({v:1,tracking:false,stage:0,route:'roof',credits:0});
 export function parseWatch(raw){
@@ -42,10 +44,10 @@ function aimScore(s,t,ray){
 }
 export function grapplePath(from,to,t){const arc=Math.max(3,Math.abs(to.y-from.y)*.9);return {x:from.x+(to.x-from.x)*t,y:from.y+(to.y-from.y)*t+Math.sin(t*Math.PI)*arc,z:from.z+(to.z-from.z)*t};}
 export function validGrapple(s,a,api){
- if(watchState(s).stage<1||s.ride!=='foot'||s.lift||s.transition||watchRuntime(s).travel||distance(s,a)>15||distance(s,a)<1.2)return false;
+ if((watchState(s).stage<1&&!highlineKit(s))||(a.highline&&!highlineKit(s))||s.ride!=='foot'||s.lift||s.transition||watchRuntime(s).travel||distance(s,a)>15||distance(s,a)<1.2)return false;
  const sf=api.support(s,a.x,a.z,a.y+.1);if(!sf||Math.abs(api.floorHeight(sf,a.z)-a.y)>.15||api.blocked(s,a.x,a.y,a.z))return false;
  const from={x:s.x,y:s.y,z:s.z};
- let previous=from;for(let i=1;i<=60;i++){const p=grapplePath(from,a,i/60);if(p.y>7.95||api.blocked(s,p.x,p.y,p.z))return false;
+ let previous=from;for(let i=1;i<=60;i++){const p=grapplePath(from,a,i/60);if(p.y>HIGHLINE_MAX_Y-.05||api.blocked(s,p.x,p.y,p.z))return false;
   // Never pull the head through the underside of a solid floor.
   if(api.surfaces&&api.surfaces(s,p.x,p.z).some(f=>!f.stairs&&api.floorHeight(f,p.z)>previous.y+1.7&&api.floorHeight(f,p.z)<p.y+1.7))return false;previous=p;}
  return true;

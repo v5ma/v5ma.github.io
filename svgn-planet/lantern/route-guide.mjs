@@ -1,6 +1,7 @@
 /* Advisory wayfinding through the existing floors and openings. Never moves
  * actors, unlocks routes, changes missions or stores progress. Gold stays the
  * final objective; cyan identifies a useful next entrance or elevation change. */
+import {HIGHLINE_GUIDE_POINTS} from './highline-layout.mjs';
 import {walls,floors,inside,floorHeight,canal,lineClear} from './core.mjs';
 const point=(label,x,y,z)=>({label,x,y,z});
 export const GUIDE_POINTS=Object.freeze([
@@ -33,11 +34,14 @@ const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 // timing or enemy positions. A suggested route is not a promise of no traffic.
 export function walkLink(s,a,b){
  const n=Math.max(1,Math.ceil(Math.hypot(a.x-b.x,a.z-b.z)/.18));let y=a.y;
+ const minX=Math.min(a.x,b.x),maxX=Math.max(a.x,b.x),minZ=Math.min(a.z,b.z),maxZ=Math.max(a.z,b.z);
+ const crosses=(r,p=0)=>r.x+r.w/2+p>=minX&&r.x-r.w/2-p<=maxX&&r.z+r.d/2+p>=minZ&&r.z-r.d/2-p<=maxZ;
+ const localFloors=floors.filter(f=>crosses(f)),localWalls=walls.filter(w=>crosses(w,.31));
  for(let i=0;i<=n;i++){
   const u=i/n,x=a.x+(b.x-a.x)*u,z=a.z+(b.z-a.z)*u;
   if(Math.abs(x)>23.6||Math.abs(z)>20.6)return false;
   let next=-Infinity;
-  for(const floor of floors){
+  for(const floor of localFloors){
    if(floor.low&&s.water!=='low'||!inside(x,z,floor))continue;
    const h=floorHeight(floor,z);if(h<=y+.31&&h>next)next=h;
   }
@@ -46,16 +50,19 @@ export function walkLink(s,a,b){
   // A modest downward step is traversable; large drops need another approach.
   if(next>y+.31||y-next>.8)return false;y=next;
   if(s.water!=='low'&&y<.5&&inside(x,z,canal,-.08))return false;
-  if(walls.some(w=>!(w.gate&&s.gate)&&y+.1<w.y+w.h&&y+1.7>w.y&&inside(x,z,w,.31)))return false;
+  if(localWalls.some(w=>!(w.gate&&s.gate)&&y+.1<w.y+w.h&&y+1.7>w.y&&inside(x,z,w,.31)))return false;
  }
  return Math.abs(y-b.y)<.23;
 }
 const networks=new Map(),cache=new WeakMap();
-function network(s){
- const key=String(!!s.gate)+'/'+s.water;if(networks.has(key))return networks.get(key);
- const edges=GUIDE_POINTS.map(()=>[]);
- for(let i=0;i<edges.length;i++)for(let j=0;j<edges.length;j++)if(i!==j&&walkLink(s,GUIDE_POINTS[i],GUIDE_POINTS[j]))edges[i].push([j,dist(GUIDE_POINTS[i],GUIDE_POINTS[j])]);
- networks.set(key,edges);return edges;
+function network(s,high){
+ const key=String(!!s.gate)+'/'+s.water+'/'+high;if(networks.has(key))return networks.get(key);
+ // Ordinary deliveries do not need the upper graph. Deduplicate shared stair
+ // endpoints before building the high graph, keeping geometry checks unchanged.
+ const points=high?[...new Map([...GUIDE_POINTS,...HIGHLINE_GUIDE_POINTS].map(p=>[[p.x,p.y,p.z].join('/'),p])).values()]:GUIDE_POINTS;
+ const edges=points.map(()=>[]);
+ for(let i=0;i<edges.length;i++)for(let j=0;j<edges.length;j++)if(i!==j&&walkLink(s,points[i],points[j]))edges[i].push([j,dist(points[i],points[j])]);
+ const result={points,edges};networks.set(key,result);return result;
 }
 function calculate(s,target){
  const start=point('You',s.x,s.y,s.z),goal={...target};
@@ -63,8 +70,8 @@ function calculate(s,target){
   const z=target.z<0?-11.5:12,cue=point('Public pier / dock to continue',-.5,-.72,z);
   return {target:goal,cue,path:[start,cue],hint:'Follow the canal to the pier, then use Mount / dock.',status:'dock',remaining:dist(start,cue)};
  }
- const base=network(s),nodes=[...GUIDE_POINTS,start,goal],begin=nodes.length-2,end=nodes.length-1;
- const edges=base.map(a=>a.slice());edges.push([],[]);
+ const base=network(s,s.y>6||target.y>6),nodes=[...base.points,start,goal],begin=nodes.length-2,end=nodes.length-1;
+ const edges=base.edges.map(a=>a.slice());edges.push([],[]);
  for(const index of [begin,end])for(let j=0;j<index;j++){
   const cost=dist(nodes[index],nodes[j]);
   if(walkLink(s,nodes[index],nodes[j]))edges[index].push([j,cost]);

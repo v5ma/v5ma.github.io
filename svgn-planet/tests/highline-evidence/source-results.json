@@ -1,0 +1,45 @@
+{
+  "phase": "source-tested; publication and rendered acceptance pending",
+  "reviewedBaseline": "bfb7d105cb6df7e151a6ed5b2959399bad2dc5e3",
+  "localTests": {
+    "passed": 452,
+    "failed": 0,
+    "skipped": 0,
+    "node": "v22.16.0",
+    "fullLocalLogSHA256": "5fbccf419cc9696adf0205d758d2fc286a17cd5071b7513dcce05f2b0dfe38d2"
+  },
+  "journeys": [
+    "Fresh -> Sal -> Print Exchange 10.8 m -> Print Exchange 17.2 m -> Radio Tower 23.6 m -> Sal -> Mara, all stairs.",
+    "Fresh -> same objectives -> real hop/glide/release onto Print Exchange 17.2 m -> stairs -> Sal -> Mara."
+  ],
+  "preservation": "All 102 frozen legacy hashes and the old input-only Watch/five-case campaign pass. Original credits and old case progress remain unchanged in both new journeys.",
+  "localWebGL2": false,
+  "browserHarness": "lantern/highline-browser.py",
+  "physicalQuestTested": false,
+  "physicalXboxTested": false,
+  "physicalHandTrackingTested": false,
+  "knownLimitations": [
+    "Two taller landmarks, not a city-wide rebuild.",
+    "Graybox upper architecture and text narrative, not final character animation or voiced cutscenes.",
+    "Hosted source/public browser results must be read separately."
+  ],
+  "priorFailures": [
+    {
+      "kind": "geometry",
+      "observation": "Old 4.4 m launch-to-arcade glide could not reach its receiver because the new upper facade began at 6.4 m and clipped the hopping actor head.",
+      "resolution": "Upper walls start at 7.2 m. Original glide test and full old campaign pass unchanged.",
+      "trace": "Declared launch-to-arcade flight uses real hop, cape, collision and gravity: AssertionError: Landing must be reachable before terrain blocks flight."
+    },
+    {
+      "kind": "geometry",
+      "observation": "Radio descent ended at z=-5.05 beyond the old loft edge z=-5.0.",
+      "resolution": "Added a shared rendered/collidable base landing, preserving the original return criterion.",
+      "trace": "Fresh input-only Highline all stairs: AssertionError: Height at 18,-5.05: 4.033333333333334 expected 4.4."
+    },
+    {
+      "kind": "performance",
+      "observation": "Unrestricted upper wayfinding graph increased old route suite time past 120 seconds.",
+      "resolution": "Use upper graph only for upper travel, deduplicate endpoints, and prefilter the same collision geometry by each segment. Full suite now approximately 19 seconds locally; not a hardware performance certification."
+    }
+  ]
+}

@@ -2,6 +2,12 @@
 
 Owner decision, September 22, 2026: make the Watch Dogs 2 / Uncharted / Batman Arkham direction playable, including genuinely taller buildings. Keep these notes beside the game and update them at implementation, verification and handoff checkpoints so another chat can resume. This document records design intent, not proof that every feature exists.
 
+## Current implementation checkpoint
+
+Highline is implemented in this source revision and passes 452 local tests. Read HIGHLINE.md for the actual six-step mission, controls, 17.2 m Print Exchange, 23.6 m Radio Tower, two crossings, ten switchback stair flights and five added grapple anchors. It is available immediately through Play Highline on the main welcome or pause screen, without erasing saves or completing old cases for the player. Source implementation, served publication, rendered acceptance and physical approval are distinct; the latest observed results belong in tests/highline-evidence/status.json and public-receipt.json. Do not call pending jobs passed.
+
+The first notes checkpoint was dae0860960e62d56aaea579628aca19c31201590. The upload/recovery checkpoint was 4279592bd950f9882b50d6e167928515512157ad. The integrated code is committed on freshly reconciled master with no sibling changes. DEVELOPMENT-HANDOFF.md gives the current resume task. Keep updating these records rather than relying on this chat being available.
+
 ## Identity and priorities
 
 Build an original neighborhood adventure. Watch Dogs 2 is a lens for manipulating a living city's infrastructure and choosing approaches. Arkham is a lens for useful verticality, observation, grappling, gliding, readable stealth and counters. Uncharted is a lens for character relationships, discovery, traversal pacing and authored payoffs. Do not copy franchise characters, dialogue, maps, assets or branding. Preserve peaceful resident work and optional action rather than turning all streets into combat.
@@ -10,22 +16,20 @@ Height must create gameplay, not taller empty boxes. Retain low shops and street
 
 Longer-term goals are multi-level functional interiors, better patrol/search behavior, environmental distractions and power controls, persistent shortcuts and visible neighborhood consequences, stronger dialogue while moving, and larger authored adventure sequences. These are priorities, not implemented claims. Cars, drone gameplay, fully voiced chapters, advanced climbing and a city-wide high-rise rebuild remain unimplemented unless a later checkpoint provides source and evidence.
 
-## Active playable upgrade: Highline
+## Highline: what exists and what comes next
 
-Working baseline: Neighborhood source bfb7d105cb6df7e151a6ed5b2959399bad2dc5e3, unchanged within svgn-planet at inspected master 6f1e4bdcae98dd4b4e81e43dd8e039d93b7a303f. Prior Neighborhood Focus and the five Night Watch cases already exist; do not recreate them.
+Highline adds actual shared collision/render floors above the old Lantern Ward without replacing its streets, interiors, old 4.4 m route, residents or cases. Sal lends the kit; Ada's upper archive leads to a rooftop survey; either crossing reaches the Radio Tower; restoring the repeater stands down the sentries; the recording returns through Sal to Mara for 240 credits exactly once. The new case is additive in the existing campaign ledger. It does not complete Rooftop Run, Signal Hijack or the delivery chapter for the player.
 
-Planned bounded slice: add a taller Print Exchange and Radio Tower above the current Lantern Ward, with shared collision/render floors, switchback stairs, two upper crossings, supported grapple perches and a glide return. Provide an explicitly selected Highline mission immediately from the main game rather than requiring completion of the older campaign. Extend height validation, guidance, save recovery and native presentation together. Keep the original streets, old 4.4 m roof route, residents, delivery chapter and all older cases usable.
+Next, inspect the actual source and public Highline browser artifacts. Fix any control, route or save failure without assigning test progress or reducing acceptance to a boot check. Obtain the owner's feedback on vertical scale, route understanding and XR readability. Then deepen one upper interior into a meaningful systems encounter, add a new story payoff for the recording's unidentified sender, and give the lower and upper paths stronger distinct consequences. Those future chapters and interiors are not implemented by this checkpoint.
 
-Proposed experience: meet Sal, investigate a high archive, survey the tower, choose a lower exposed crossing or an upper bypass, restore a rooftop repeater, and return to familiar people below. Rewards must be awarded exactly once through a validated additive ledger. Temporary loaned traversal equipment must not falsely complete an older equipment-unlock mission.
+The current geometry is a playable graybox, not final production art. Two taller landmarks are not a whole-city rebuilding project. The old five-case campaign and previous Neighborhood Focus remain, with their own unresolved polish and physical acceptance requirements.
 
 ## Non-negotiable implementation contract
 
 Read AGENTS.md and the current release/handoff before work. The main entry is index.html, main-app.mjs and main-hub.mjs; Lantern Ward is an integrated district. Never replace it with a separate demo or make a recovery entry the only way to try new content.
 
-Preserve saves, stable old mission IDs, independent reward ledgers, the 102 frozen legacy hashes, Xbox controls, eight native AR/VR modes, controller and hand UI, hidden normal-play menus, floor feedback and independently adjustable diorama dimensions. No localStorage clearing or invented test progress. No private hub, cross-site travel, A-Frame migration, sibling-game edits, new PR, staging branch or publication pipeline. Commit directly to freshly reconciled master without force.
+Preserve saves, stable old mission IDs, independent reward ledgers, the 102 frozen legacy hashes, Xbox controls, eight native AR/VR modes, controller and hand UI, hidden normal-play menus, floor feedback and independently adjustable diorama dimensions. The 32 m safety ceiling and supported high save positions are now necessary; do not restore the old 8 m parser. No localStorage clearing or invented test progress. No private hub, cross-site travel, A-Frame migration, sibling-game edits, new PR, staging branch or publication pipeline. Commit directly to freshly reconciled master without force.
 
 ## Checkpoint and evidence protocol
 
-At this checkpoint only the direction and recovery plan are saved; Highline is not yet implemented or published. Continue from the current branch, not a stale whole-game snapshot.
-
-Before each code checkpoint, run source/model tests and record exact source hashes. After publication, independently inspect public bytes. Keep model fixtures, actual-input model journeys, DOM checks, rendered synthetic-device browser tests and physical Quest/Xbox/hand testing distinct. Preserve failed traces and explain actual remaining failures. A queued job is not a pass. Update this section and DEVELOPMENT-HANDOFF.md with implementation SHA, test results, public evidence and the next concrete task before ending the session.
+Before each code checkpoint, run source/model tests and record exact source hashes. After publication, independently inspect public bytes. Keep model fixtures, actual-input model journeys, DOM checks, rendered synthetic-device browser tests and physical Quest/Xbox/hand testing distinct. Preserve failed traces and explain actual remaining failures. A queued job is not a pass. Update the evidence status and DEVELOPMENT-HANDOFF.md with implementation SHA, test results, public evidence and the next concrete task before ending the session. Tests are not a self-awarded AAA quality score.

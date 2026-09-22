@@ -1,3 +1,11 @@
+# Current resume point: Highline / September 22, 2026
+
+Read FUTURE-DIRECTION.md and HIGHLINE.md before the historical handoff below. The new owner direction combines systemic city interaction, useful Arkham-style verticality and authored adventure. Highline adds a 17.2 m Print Exchange and 23.6 m Radio Tower to the integrated Lantern Ward, with a direct Play Highline button in the main game. It preserves all older cases and ledgers. The local 452-test suite passes; exact implementation SHA, public byte verification and browser results are recorded separately in tests/highline-evidence/status.json. Do not infer rendered or hardware approval from local tests. Continue on freshly reconciled master, not from an old whole-game branch.
+
+Next work: inspect the actual Highline browser artifacts, fix any main-entry or route failure without assigning test progress, obtain the owner's rooftop/AR readability feedback, and deepen upper interiors and encounter choices before more map extent. Keep updating these notes and the evidence checkpoint beside the game. The old campaign and original neighborhood must remain playable.
+
+---
+
 # Floor Feedback / current continuation
 
 Read FLOOR-FEEDBACK.md and release.json first. This update responds to the owner's invisible-message/map report, adds 2-second floor captions and a persistent live floor map, triples the default diorama height and exposes independent saved size controls. Continue directly on current master. 437 local checks pass; inspect the separate current public receipt before making rendered or publication claims. Earlier handoffs below are historical.

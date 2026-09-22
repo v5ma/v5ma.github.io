@@ -1,26 +1,25 @@
 {
-  "version": "0.16.1",
-  "revision": "floor-feedback-1",
+  "version": "0.17.0",
+  "revision": "highline-1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods / Floor Feedback",
-  "date": "2026-09-21",
+  "edition": "Unified Neighborhoods / Highline",
+  "date": "2026-09-22",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
   "lanternComponentVersion": "0.15.0",
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "../release-receipts/neighborhood-missions-floor-feedback-20260921.json",
-  "status": "Spatial UI release manifest. Consult the separate receipt for actual publication and verification; this manifest alone is not a deployment claim.",
-  "runtimeCheckpoint": "Current direct-master floor-feedback-1 update; see FLOOR-FEEDBACK.md",
-  "sourceAcceptanceRuns": [
-    35551197282,
-    35551588021,
-    35552082042,
-    35552545981,
-    35554765805
-  ],
+  "publicationEvidence": "tests/highline-evidence/public-receipt.json",
+  "status": "Highline source checkpoint; consult HIGHLINE.md and its evidence before claiming rendered or physical acceptance.",
+  "runtimeCheckpoint": "Highline: The Rooftop Signal. Direct selection from the main game. See FUTURE-DIRECTION.md and HIGHLINE.md.",
+  "sourceAcceptanceRuns": [],
   "changes": [
+    "Two genuinely taller playable buildings: Print Exchange 17.2 m and Radio Tower 23.6 m, with switchback stairs, supported grapple landings, and crossings at 10.8 m and 17.2 m.",
+    "Immediately available Highline mission: meet Sal, discover upper archive evidence, survey routes, restore the rooftop repeater, bring a recording home and receive 240 campaign credits exactly once.",
+    "Lower-crossing patrols are optional: the upper crossing bypasses them; restoring the repeater stands them down with a persistent green indicator.",
+    "Save validation and recovery support the new altitude without changing the original chapter/layout identity, city/resident/Watch ledgers or old campaign gates.",
+    "Direction and recovery notes remain next to the game; all five previous cases, original neighborhood, controls and eight XR views are retained.",
     "Interaction captions render independently on the floor and disappear completely after 2000 ms, with complete text available in Recent interaction text.",
     "A live mission map updates during normal XR play without a raised-hand gesture, including the original city and Lantern Ward.",
     "Diorama box is three times taller by default; menu size, overall diorama size, vertical window height and floor-map size can be adjusted independently.",
@@ -40,25 +39,31 @@
   "saveContracts": {
     "original": "svgn.paper-delivery-3d.v1",
     "lantern": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
-    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180 and campaign 950 credits remain independent. No automatic currency transfer or old-coordinate reinterpretation.",
+    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180, the old campaign 950 and optional Highline 240 retain their separate contracts. Highline uses an additive ID in the existing campaign ledger.",
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "localModelTestsPassed": 437,
-    "localModelTestsFailed": 0,
-    "sourceAndPublicEvidence": "437 local model/input/geometry/presentation tests pass. Rendered and live acceptance are separate; consult the external receipt.",
+    "sourceTests": "452 local tests passed; Node input journeys and Three object fixtures. See tests/highline-evidence/status.json for separately observed hosted/public results.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "newPresentationTests": 54
+    "localModelTestsPassed": 452,
+    "localModelTestsFailed": 0
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
-  "campaignCases": 5,
-  "campaignRewardTotal": 950,
+  "campaignCases": 6,
+  "campaignRewardTotal": 1190,
   "previousPublicationEvidence": "../release-receipts/neighborhood-missions-unified-0.16.0.json",
   "unportedBranchFeatures": [
     "Signal City cars, scout drone and Waterfront File: current-adapter rewrite required",
     "Tideglass indoor depth swimming and its three missions: current-adapter rewrite required"
+  ],
+  "previousSourceAcceptanceRuns": [
+    35551197282,
+    35551588021,
+    35552082042,
+    35552545981,
+    35554765805
   ]
 }

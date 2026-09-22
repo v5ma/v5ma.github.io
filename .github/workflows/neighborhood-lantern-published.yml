@@ -37,7 +37,7 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        route: [console-diorama-third-ar, main-nav, console-first-person-vr, grounded-browser, main, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui, console-third-person-vr, console-diorama-first-vr, console-diorama-third-vr, console-first-person-ar, console-third-person-ar, console-diorama-first-ar]
+        route: [highline, console-diorama-third-ar, main-nav, console-first-person-vr, grounded-browser, main, campaign, street, xr, market, city, portal, portal-render, watch-roof, watch-combat, xr-ui, console-third-person-vr, console-diorama-first-vr, console-diorama-third-vr, console-first-person-ar, console-third-person-ar, console-diorama-first-ar]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,6 +72,7 @@ jobs:
           case "$WARD_ROUTE" in
             console-*) export CONSOLE_MODE="${WARD_ROUTE#console-}"; python svgn-planet/console-browser.py ;;
             grounded-browser) GROUNDED_BASE=https://v5ma.github.io/svgn-planet/legacy.html GROUNDED_OUTPUT=published-results/legacy python svgn-planet/tests/grounded-browser.py ;;
+            highline) python svgn-planet/lantern/highline-browser.py ;;
             main) python svgn-planet/main-browser.py ;;
             main-nav) python svgn-planet/main-navigation-browser.py ;;
             campaign) python svgn-planet/lantern/campaign-browser.py ;;

@@ -1,0 +1,12 @@
+{
+  "application": "Neighborhood Missions",
+  "version": "0.17.0",
+  "revision": "highline-1",
+  "status": "awaiting-public-verification",
+  "publishedRevisionVerified": false,
+  "completeRenderedAcceptance": false,
+  "physicalQuestTested": false,
+  "physicalXboxTested": false,
+  "physicalHandTrackingTested": false,
+  "note": "Implementation source tests pass. Read actual source/public workflow artifacts and update this receipt with observed results, not queued-job assumptions."
+}

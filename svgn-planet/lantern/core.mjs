@@ -1,3 +1,4 @@
+import {HIGHLINE_FLOORS,HIGHLINE_WALLS,HIGHLINE_MAX_Y} from './highline-layout.mjs';
 import {freshWatch,parseWatch,watchRuntime,watchAction,advanceWatch,watchBlocks} from './watch.mjs';
 import {freshCampaign,parseCampaign,campaignState,campaignRuntime,campaignAction,campaignInteract,advanceCampaign,campaignBlocks,campaignCanGlide} from './campaign.mjs';
 import {freshCity,parseCity,cityInteract,missionGoal} from './city.mjs';
@@ -61,6 +62,7 @@ for(const id of ['market-stall','market-north','quiet-garden']){
   {...b,id:id+'-right',x:b.x+b.w/2-t/2,w:t});
  floors.push({id:id+'-roof',x:b.x,z:b.z,w:b.w,d:b.d,y:b.h});
 }
+floors.push(...HIGHLINE_FLOORS);walls.push(...HIGHLINE_WALLS);
 export const places=[
  {id:'depot',name:'DEPOT',x:-12,z:15,y:0},
  {id:'arcade',name:'MARKET ARCADE',x:-20,z:-9,y:0},
@@ -92,7 +94,7 @@ export function serialize(s){return {v:1,chapter:CHAPTER,layout:LAYOUT,x:s.x,y:s
 export function parse(raw){
  const p=typeof raw==='string'?JSON.parse(raw):raw;
  if(!p||p.v!==1||p.chapter!==CHAPTER||p.layout!==LAYOUT)throw Error('Unsupported chapter/layout. Original save retained; export it before replacing.');
- if(flags.some(k=>typeof p[k]!=='boolean')||!['high','low'].includes(p.water)||!['foot','bicycle','boat'].includes(p.ride)||['x','y','z','yaw'].some(k=>!Number.isFinite(p[k]))||Math.abs(p.x)>24||Math.abs(p.z)>21||p.y< -3||p.y>8||!Number.isSafeInteger(p.credits)||p.credits<0||p.credits>600||p.delivered&&!p.parcel||p.claimed&&!complete(p)||p.credits!==(p.claimed?600:0))throw Error('Invalid chapter save. Original data retained.');
+ if(flags.some(k=>typeof p[k]!=='boolean')||!['high','low'].includes(p.water)||!['foot','bicycle','boat'].includes(p.ride)||['x','y','z','yaw'].some(k=>!Number.isFinite(p[k]))||Math.abs(p.x)>24||Math.abs(p.z)>21||p.y< -3||p.y>HIGHLINE_MAX_Y||!Number.isSafeInteger(p.credits)||p.credits<0||p.credits>600||p.delivered&&!p.parcel||p.claimed&&!complete(p)||p.credits!==(p.claimed?600:0))throw Error('Invalid chapter save. Original data retained.');
  const s={...fresh(),...p,city:parseCity(p.city),watch:parseWatch(p.watch),campaign:parseCampaign(p.campaign),visited:Array.isArray(p.visited)?p.visited.filter(v=>places.some(q=>q.id===v)):['depot']};
  if([!!s.watch.tracking,!!s.city.active,!!s.campaign.active].filter(Boolean).length>1)throw Error('Only one mission may be tracked. Original progress retained.');
  s.safe=Array.isArray(p.safe)&&p.safe.length===3&&p.safe.every(Number.isFinite)&&Math.abs(p.safe[0])<24&&Math.abs(p.safe[2])<21?p.safe:[-12,0,17];
@@ -101,7 +103,7 @@ export function parse(raw){
  s.hoistY=Number.isFinite(p.hoistY)?clamp(p.hoistY,0,4.4):0;s.transition=null;s.lift=null;s.vx=s.vz=s.vy=0;resetMarket(s);return s;
 }
 export function save(s,store){
- let text;try{const payload=serialize(s);const trip=watchRuntime(s).travel;if(trip){Object.assign(payload,trip.from);payload.ride='foot';}const lunge=campaignRuntime(s).lunge;if(lunge){Object.assign(payload,lunge.from);payload.ride='foot';}if(campaignCanGlide(s)&&s.y>1.2&&Math.abs(s.vy)>.1){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>8){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
+ let text;try{const payload=serialize(s);const trip=watchRuntime(s).travel;if(trip){Object.assign(payload,trip.from);payload.ride='foot';}const lunge=campaignRuntime(s).lunge;if(lunge){Object.assign(payload,lunge.from);payload.ride='foot';}if(campaignCanGlide(s)&&s.y>1.2&&Math.abs(s.vy)>.1){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}if(s.lift){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';payload.hoistY=s.lift.from>2?4.4:0;}if(payload.y< -3||payload.y>HIGHLINE_MAX_Y){[payload.x,payload.y,payload.z]=s.safe;payload.ride='foot';}text=JSON.stringify(payload);parse(text);const old=store.getItem(SAVE_KEY);if(old){parse(old);store.setItem(SAVE_KEY+'.backup',old);if(store.getItem(SAVE_KEY+'.backup')!==old)throw Error('Backup verification failed');}
  store.setItem(SAVE_KEY+'.pending',text);if(store.getItem(SAVE_KEY+'.pending')!==text)throw Error('Staging verification failed');store.setItem(SAVE_KEY,text);if(store.getItem(SAVE_KEY)!==text)throw Error('Save verification failed');store.removeItem(SAVE_KEY+'.pending');return {ok:true};}catch(e){return {ok:false,error:String(e.message||e)};}
 }
 export function load(store){
@@ -117,14 +119,14 @@ export function actors(s){
 }
 export function surfaces(s,x,z){return [...floors,{id:'hoist-platform',x:6.8,z:.5,w:2,d:2,y:s.hoistY||0}].filter(f=>(!f.low||s.water==='low')&&inside(x,z,f));}
 export function support(s,x,z,y){const fs=surfaces(s,x,z).filter(f=>floorHeight(f,z)<=y+.31);return fs.sort((a,b)=>floorHeight(b,z)-floorHeight(a,z))[0];}
-export function blocked(s,x,y,z,r=.3){
+export function blocked(s,x,y,z,r=.3,ignoreActor=null){
  if(Math.abs(x)>23.6||Math.abs(z)>20.6)return true;
  for(const w of walls)if(!(w.gate&&s.gate)&&y+.1<w.y+w.h&&y+1.7>w.y&&inside(x,z,w,r))return true;
  if(s.ride==='bicycle'&&surfaces(s,x,z).some(f=>f.stairs&&floorHeight(f,z)<y+.5&&floorHeight(f,z)>y-.5))return true;
  if(s.ride!=='boat'&&s.water==='high'&&y<.5&&inside(x,z,canal,-.08))return true;
  if(s.ride==='boat'&&!inside(x,z,canal,-.5))return true;
  if(marketBlocks(s,x,y,z,r))return true;
- if(campaignBlocks(s,x,y,z))return true;
+ if(campaignBlocks(s,x,y,z,ignoreActor))return true;
  return false;
 }
 export function lineClear(s,a,b){const d=Math.hypot(b.x-a.x,b.z-a.z,b.y-a.y),n=Math.max(1,Math.ceil(d/.12));for(let i=1;i<n;i++){const u=i/n,x=a.x+(b.x-a.x)*u,z=a.z+(b.z-a.z)*u,y=a.y+(b.y-a.y)*u;for(const w of walls)if(!(w.gate&&s.gate)&&y>w.y&&y<w.y+w.h&&inside(x,z,w))return false;}return true;}
