@@ -1,3 +1,4 @@
+import {createXRStartupWatch} from './xr-startup-recovery.mjs';
 import {createFieldDesk} from './xr-field-desk.mjs';
 import {beginXRPass,restoreXRPass} from './xr-frame-pass.mjs';
 import {createSpatialXR} from './spatial-xr.mjs';
@@ -20,10 +21,11 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
  let turn=0,lookPitch=0,x=0,y=0,held={},hoverPanel='',hoverBar='',xrActivity=false,hudRequested=false,suppressGameRender=false;
  const rawRender=renderer.render;renderer.render=function(s,c){if(suppressGameRender&&s===view.scene)return;return rawRender.call(this,s,c);};
  let lastContext=null,frameContext=null,frameBlocked=false,wheelOwner=null;
- let entry=null,entryPhase='idle',entryError='',entrySelection=null,entryAutoStart=false,entryReady=false,entryFrames=0,viewerReady=false,startupTimer=null,probeId=0;
+ let entry=null,entryPhase='idle',entryError='',entrySelection=null,entryAutoStart=false,entryReady=false,entryFrames=0,viewerReady=false,probeId=0,entryEpoch=0;
  // Keep a UI exception from stopping Three's next-frame scheduling. Desktop
  // behavior is untouched; immersive failure exits to an explicit saved-game error.
  if(renderer.setAnimationLoop){const setLoop=renderer.setAnimationLoop.bind(renderer);renderer.setAnimationLoop=fn=>{if(!fn)return setLoop(fn);const guarded=guardFrame(fn,error=>{console.error(error);fail(error);});return setLoop((...args)=>session?guarded(...args):fn(...args));};}
+ const startup=createXRStartupWatch({current:()=>session,timeout:phase=>{entryError='XR startup stalled during '+phase+'. Returning to the browser without resetting your adventure.';entryPhase='failed';entryAutoStart=entryReady=false;message(entryError);void exit();}});
  const environmentProblem=()=>xrEnvironmentProblem();
  const inputContext=()=>ui.root()||actions.wheelActive()||(active()?'play':'inactive');
  const dialogs=createDialogBridge(()=>!!session&&entryReady&&!ending);let menuPose=null;
@@ -103,6 +105,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   if(!choice||problem){message(problem||'Choose one of the available XR modes.');return;}
   const available=choice.session==='immersive-ar'?arSupported:vrSupported;
   if(available===false){message(choice.label+' is unavailable in this browser. Choose another mode or play on screen.');return;}
+  const epoch=++entryEpoch;
   entrySelection=selected;sessionMode=choice.session;entryAutoStart=autoStart;entryReady=false;entryFrames=0;entryError='';entryPhase='requesting';
   if(modeSelect){modeSelect.value=pauseMode.value=selected;}
   requesting=true;message('Starting '+choice.label+'. Accept the headset permission prompt.');
@@ -118,31 +121,33 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    requested.addEventListener('inputsourceschange',()=>{if(session!==requested)return;for(const src of sources.keys())if(!Array.from(requested.inputSources).includes(src))release(src);});
    if(choice.session==='immersive-ar'&&requested.environmentBlendMode==='opaque')throw new DOMException('This AR session does not expose passthrough blending','NotSupportedError');
    entryPhase='initializing';message('Initializing '+choice.label+' rendering and tracking.');
+   startup.stage(requested,'reference-space');
    try{await requested.requestReferenceSpace('local-floor');referenceType='local-floor';}catch{referenceType='local';}
-   if(ended)throw new DOMException('The headset ended the session during startup','AbortError');
+   if(ended||session!==requested)throw new DOMException('The headset ended the session during startup','AbortError');
    renderer.xr.setReferenceSpaceType(referenceType);renderer.xr.setFramebufferScaleFactor(.85);renderer.xr.enabled=true;
+   startup.stage(requested,'renderer');
    await renderer.xr.setSession(requested);
    if(ended||session!==requested)throw new DOMException('The headset ended the session during renderer setup','AbortError');
    scene.background=choice.session==='immersive-ar'?null:new T.Color('#101b27');renderer.setClearAlpha?.(choice.session==='immersive-ar'?0:1);
+   startup.stage(requested,'scene');
    await spatial?.begin(choice.presentation,requested,renderer.xr.getReferenceSpace(),choice.session);
+   if(ended||session!==requested)throw new DOMException('The headset ended the session during scene setup','AbortError');
    theatrePlaced=false;renderer.xr.getReferenceSpace()?.addEventListener?.('reset',()=>{theatrePlaced=false;resetInput();if(active())actions.pause();});
    gameTarget ||= new T.WebGLRenderTarget(1024,576,{depthBuffer:true});gameTarget.texture.colorSpace=T.SRGBColorSpace;screenMaterial.map=gameTarget.texture;screenMaterial.needsUpdate=true;
    resetInput();hadTracking=false;entryReady=true;entryPhase='waiting-for-frame';
    message('Waiting for the first tracked '+choice.label+' frame. Keep your headset tracking visible.');
-   clearTimeout(startupTimer);startupTimer=setTimeout(()=>{
-    if(session!==requested||entryFrames>0)return;
-    entryError='XR opened but no tracked frame arrived. Check headset tracking, exit other immersive apps, then choose a mode again.';entryPhase='failed';entryAutoStart=false;message(entryError);void exit();
-   },12000);startupTimer.unref?.();
+   startup.stage(requested,'first-frame');
   }catch(error){
-   entryError=xrFailureText(error);entryPhase='failed';entryAutoStart=false;entryReady=false;clearTimeout(startupTimer);
+   if(epoch!==entryEpoch)return;
+   entryError=entryError||xrFailureText(error);entryPhase='failed';entryAutoStart=false;entryReady=false;startup.stop();
    if(requested){try{await requested.end();}catch{}onEnd(requested);}
    else {session=null;renderer.xr.enabled=false;renderer.setClearAlpha?.(1);}
    message(entryError);
-  }finally{requesting=false;message(entryError||status);}
+  }finally{if(epoch===entryEpoch){requesting=false;message(entryError||status);}}
  }
  function onEnd(endedSession){
   if(endedSession&&session!==endedSession)return;
-  clearTimeout(startupTimer);entryAutoStart=entryReady=false;menuPose=null;menuAnchor.reset();dialogs.restore();
+  startup.stop();requesting=false;entryAutoStart=entryReady=false;menuPose=null;menuAnchor.reset();dialogs.restore();
   spatial?.end();view.spatial?.setSkipRender(false);renderer.setClearAlpha?.(1);session=null;ending=false;hudRequested=false;suppressGameRender=false;resetInput();for(const src of sources.keys())release(src);
   renderer.xr.enabled=false;renderer.setRenderTarget(null);savedRenderer=null;view.setQuality(view.inspect().quality);
   if(playing())actions.pause();if(!entryError)entryPhase='idle';message(entryError||'XR ended. Progress is preserved. Choose any mode or resume on screen.');
@@ -281,7 +286,7 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
    if(!spatial?.draw(renderer,camera))renderer.render(scene,camera);
    if(entryReady&&viewerReady){
     entryFrames++;
-    if(entryFrames===1){clearTimeout(startupTimer);entryPhase='running';message((XR_MODES[entrySelection]?.label||'XR')+' is running. Select the small gold control or exhibit handle for menus.');
+    if(entryFrames===1){startup.stop();entryPhase='running';message((XR_MODES[entrySelection]?.label||'XR')+' is running. Select the small gold control or exhibit handle for menus.');
      if(entryAutoStart){entryAutoStart=false;if(!playing())actions.start();else if(document.getElementById('pause-dialog')?.open)document.getElementById('resume').click();}
     }
    }
@@ -289,5 +294,5 @@ export function createGuildXR({renderer,view,getState,playing,active,actions,ui,
   finally{view.spatial?.setSkipRender(false);}
 
  }
- return {fail,visible:()=>immersiveVisible(!!session&&renderer.xr.isPresenting,session?.visibilityState,entryReady,ending),poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?(sessionMode==='immersive-ar'?'first-person-ar':'first-person-vr'):spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,entry:{build:XR_ENTRY_BUILD,phase:entryPhase,selection:entrySelection,frames:entryFrames,error:entryError,vr:vrSupported,ar:arSupported},referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,repair:XR_REPAIR_BUILD,dialogs:dialogs.inspect(),hud:{panel:menuAnchor.inspect(),panelVisible:panelMesh.visible,toolbarVisible:toolbar.visible,requested:hudRequested,toggle:hudToggle.position.toArray()},panel:panel.inspect(),physicalQuestVerified:false})};
+ return {fail,visible:()=>immersiveVisible(!!session&&renderer.xr.isPresenting,session?.visibilityState,entryReady,ending),poll,controls,beforeGame,afterGame,spatialAction:action=>{if(!session||!spatial)return false;return spatial.modify(action);},presenting:()=>!!session&&renderer.xr.isPresenting,inspect:()=>({supported,presenting:!!session&&renderer.xr.isPresenting,mode:spatial?.effective()==='first-person'?(sessionMode==='immersive-ar'?'first-person-ar':'first-person-vr'):spatial?.effective()==='diorama'?(sessionMode==='immersive-ar'?'diorama-ar':'diorama-vr'):'seated-theatre',sessionMode,arSupported,spatial:spatial?.inspect()||null,entry:{build:XR_ENTRY_BUILD,phase:entryPhase,selection:entrySelection,frames:entryFrames,error:entryError,vr:vrSupported,ar:arSupported},referenceType,theatreOrigin:{x:stage.position.x,y:stage.position.y,z:stage.position.z,yaw:stage.rotation.y},status,tracked,handCount,controllerCount,frames,renderTargets:gameTarget?1:0,targetSize:gameTarget?[gameTarget.width,gameTarget.height]:null,sourceCapacity:4,sources:sources.size,readbackCopies,reticleVisible:reticle.visible,repair:XR_REPAIR_BUILD,startup:startup.inspect(),dialogs:dialogs.inspect(),hud:{panel:menuAnchor.inspect(),panelVisible:panelMesh.visible,toolbarVisible:toolbar.visible,requested:hudRequested,toggle:hudToggle.position.toArray()},panel:panel.inspect(),physicalQuestVerified:false})};
 }

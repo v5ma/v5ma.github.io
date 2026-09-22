@@ -9,12 +9,50 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: guild-compositor-${{ github.ref }}
+  group: guild-xr-runtime-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  startup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        attachment: [framebuffer, projection]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Start ordinary source server
+        run: python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-startup-server.log 2>&1 &
+      - name: Full Vinci VR context restoration, retry and re-entry
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+          TEST_BASE_URL: http://127.0.0.1:4173
+        run: python -u leonardos-guild/tests/xr-startup-browser.py
+      - name: Preserve source identity and failure evidence
+        if: always()
+        run: |
+          mkdir -p startup-evidence
+          git rev-parse HEAD > startup-evidence/tested-commit.txt
+          git diff --stat > startup-evidence/uncommitted-diff.txt
+          git ls-files -z leonardos-guild | xargs -0 sha256sum > startup-evidence/source-hashes.txt
+          git ls-files -z leonardos-guild | tar --null -T - -czf startup-evidence/source.tgz
+          cp /tmp/guild-startup-server.log startup-evidence/ 2>/dev/null || true
+          test ! -s startup-evidence/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-startup-${{ matrix.attachment }}
+          path: |
+            startup-evidence/
+            leonardos-guild/startup-${{ matrix.attachment }}-output/
   native:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -63,15 +101,19 @@ jobs:
             leonardos-guild/compositor-${{ matrix.attachment }}-output/
   public:
     if: github.ref == 'refs/heads/master'
-    needs: native
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Verify published source before public journeys
         run: python -u leonardos-guild/tests/verify-desk-public.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-current-public-source
+          path: desk-public-source.json
       - run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
