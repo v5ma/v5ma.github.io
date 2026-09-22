@@ -1,10 +1,11 @@
 name: Guild real compositor attachment verification
 on:
   push:
-    branches: ['guild/vinci-desk-20260920', master]
+    branches: [master]
     paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
   pull_request:
     paths: ['leonardos-guild/**', '.github/workflows/guild-compositor.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -13,7 +14,7 @@ concurrency:
 jobs:
   native:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
@@ -29,24 +30,28 @@ jobs:
       - run: |
           python -m pip install playwright==1.57.0 Pillow==11.3.0
           python -m playwright install --with-deps chromium
-      - name: Verify published source before public journeys
-        if: github.ref == 'refs/heads/master'
-        run: python -u leonardos-guild/tests/verify-desk-public.py
-      - name: Render actual separate eye attachments
+      - name: Start ordinary committed-source server
+        run: python -m http.server 4173 --bind 127.0.0.1 >/tmp/guild-server.log 2>&1 &
+      - name: Render actual separate eye attachments from committed source
         env:
           XR_ATTACHMENT: ${{ matrix.attachment }}
-          TEST_BASE_URL: ${{ github.ref == 'refs/heads/master' && 'https://v5ma.github.io' || 'http://127.0.0.1:4173' }}
-        run: |
-          python -m http.server 4173 --bind 127.0.0.1 >/tmp/server.log 2>&1 &
-          python -u leonardos-guild/tests/compositor-browser.py
-          python -u leonardos-guild/tests/vinci-desk-browser.py
-      - name: Preserve identity and failures
+          TEST_BASE_URL: http://127.0.0.1:4173
+        run: python -u leonardos-guild/tests/compositor-browser.py
+      - name: Exercise full Vinci startup and field desk independently
+        if: ${{ !cancelled() }}
+        env:
+          XR_ATTACHMENT: ${{ matrix.attachment }}
+          TEST_BASE_URL: http://127.0.0.1:4173
+        run: python -u leonardos-guild/tests/vinci-desk-browser.py
+      - name: Preserve identity, committed source and failures
         if: always()
         run: |
           mkdir -p compositor-evidence
           git rev-parse HEAD > compositor-evidence/tested-commit.txt
           git diff --stat > compositor-evidence/uncommitted-diff.txt
-          git ls-files leonardos-guild .github/workflows/guild-compositor.yml | xargs sha256sum > compositor-evidence/source-hashes.txt
+          git ls-files -z leonardos-guild .github/workflows/guild-compositor.yml | xargs -0 sha256sum > compositor-evidence/source-hashes.txt
+          git ls-files -z leonardos-guild .github/workflows/guild-compositor.yml | tar --null -T - -czf compositor-evidence/source.tgz
+          cp /tmp/guild-server.log compositor-evidence/ 2>/dev/null || true
           test ! -s compositor-evidence/uncommitted-diff.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -54,6 +59,31 @@ jobs:
           name: guild-compositor-${{ matrix.attachment }}
           path: |
             compositor-evidence/
-            desk-public-source.json
             leonardos-guild/desk-${{ matrix.attachment }}-output/
             leonardos-guild/compositor-${{ matrix.attachment }}-output/
+  public:
+    if: github.ref == 'refs/heads/master'
+    needs: native
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify published source before public journeys
+        run: python -u leonardos-guild/tests/verify-desk-public.py
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise the actual public full-Vinci game
+        env:
+          XR_ATTACHMENT: framebuffer
+          TEST_BASE_URL: https://v5ma.github.io
+        run: python -u leonardos-guild/tests/vinci-desk-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-compositor-public
+          path: |
+            desk-public-source.json
+            leonardos-guild/desk-framebuffer-output/
