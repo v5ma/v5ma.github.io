@@ -17,9 +17,9 @@ with sync_playwright() as pw:
  page=ctx.new_page();page.set_default_timeout(90000)
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda e:console.append(e.text) if e.type=='error' else None)
  def wait(s,arg=None):return page.wait_for_function(s,arg=arg)
- def observe():return page.evaluate('({p:[...Vesperfall.state.p],health:Vesperfall.state.health,blinks:Vesperfall.state.blinks,score:Vesperfall.state.score,targets:[...Vesperfall.state.targets],phase:Vesperfall.state.phase})')
+ def observe():return page.evaluate('({p:[...Vesperfall.state.p],head:[...Vesperfall.state.head],health:Vesperfall.state.health,blinks:Vesperfall.state.blinks,score:Vesperfall.state.score,targets:[...Vesperfall.state.targets],phase:Vesperfall.state.phase,type:Vesperfall.state.type,yaw:Vesperfall.component.yaw,pitch:Vesperfall.component.pitch,charge:Vesperfall.component.charge,events:Vesperfall.state.events,arrows:Vesperfall.state.arrows})')
  def aim(yaw,pitch):
-  page.evaluate("""async ([yaw,pitch])=>{const g=Vesperfall.component,canvas=g.scene.canvas,held=new Set();const key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw)),b=pitch-g.pitch;key('ArrowLeft',a>.012);key('ArrowRight',a<-.012);key('ArrowUp',b>.012);key('ArrowDown',b<-.012);if(Math.abs(a)<.025&&Math.abs(b)<.025||performance.now()-start>40000){for(const k of [...held])key(k,false);clearInterval(timer);Math.abs(a)<.025&&Math.abs(b)<.025?resolve():reject(Error('Aim deadline'));}},4);});}""",[yaw,pitch])
+  page.evaluate("""async ([yaw,pitch])=>{const g=Vesperfall.component,canvas=g.scene.canvas,held=new Set();const key=(code,on)=>{if(held.has(code)===on)return;canvas.dispatchEvent(new KeyboardEvent(on?'keydown':'keyup',{code,bubbles:true}));on?held.add(code):held.delete(code);};await new Promise((resolve,reject)=>{const start=performance.now(),timer=setInterval(()=>{const a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw)),b=pitch-g.pitch;key('ArrowLeft',a>.006);key('ArrowRight',a<-.006);key('ArrowUp',b>.006);key('ArrowDown',b<-.006);if(Math.abs(a)<.011&&Math.abs(b)<.011||performance.now()-start>40000){for(const k of [...held])key(k,false);clearInterval(timer);Math.abs(a)<.011&&Math.abs(b)<.011?resolve():reject(Error('Aim deadline'));}},4);});}""",[yaw,pitch])
  try:
   page.goto(BASE+'/vesperfall/?acceptance=sureflight',wait_until='domcontentloaded');wait('window.Vesperfall?.component.echoes&&Vesperfall.component.stats.drawCalls>0')
   page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
@@ -33,8 +33,28 @@ with sync_playwright() as pw:
   wait('performance.now()-Vesperfall.component.echoes.state.shownAt>=2100');check(page.evaluate('!Vesperfall.component.echoes.floor.mesh.visible'),'The actual message panel disappears after two seconds')
   # Pick a reachable real rail by evaluating trajectories only. The input driver
   # then turns/draws through ordinary keyboard events; it never places the actor.
-  plan=page.evaluate("""()=>{const g=Vesperfall.component,C=VesperCore,T=g.T,s=g.game,head=g.head.object3D.getWorldPosition(new T.Vector3()).toArray();for(const b of s.world.solids.filter(b=>b.type==='balustrade')){const x=(b.min[0]+b.max[0])/2,z=b.max[2]-.25,yaw=Math.atan2(-(x-head[0]),-(z-head[2]));for(let pitch=.12;pitch<1.2;pitch+=.02){const d=[-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)],origin=C.add(head,C.mul(d,.18)),p=C.predictBlink(s,origin,d,1);if(p.ok&&p.reason==='rail / stone perch')return {yaw,pitch,p};}}throw Error('No accessible first rail');}""")
-  page.keyboard.press('Digit4');aim(plan['yaw'],plan['pitch']);page.keyboard.down('Space');wait('Vesperfall.component.charge===1');page.keyboard.up('Space');wait('Vesperfall.state.blinks>0');
+  # Choose a real rail lane with a small angular margin, not the first
+  # grazing corner accepted by a theoretical unquantized aim.
+  plan=page.evaluate("""()=>{const g=Vesperfall.component,C=VesperCore,s=g.game,head=[...s.head];
+   const trace=(yaw,pitch)=>{const d=[-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch)];return C.predictBlink(s,C.add(head,C.mul(d,.18)),d,1);};
+   for(const rail of s.world.solids.filter(b=>b.type==='balustrade')){
+    const yaw0=Math.atan2(-((rail.min[0]+rail.max[0])/2-head[0]),-((rail.min[2]+rail.max[2])/2-head[2]));
+    for(let yaw=yaw0-.08;yaw<yaw0+.081;yaw+=.01)for(let pitch=.35;pitch<.9;pitch+=.01){
+     const p=trace(yaw,pitch);if(!p.ok||p.reason!=='rail / stone perch')continue;
+     if([-.012,0,.012].every(a=>[-.012,0,.012].every(b=>{const r=trace(yaw+a,pitch+b);return r.ok&&r.reason==='rail / stone perch';})))return {yaw,pitch,p,aimTolerance:.011};
+    }
+   }throw Error('No rail lane with a quantized-input margin');}""")
+  (OUT/'planned-shot.json').write_text(json.dumps(plan,indent=2))
+  page.keyboard.press('Digit4');wait('Vesperfall.state.type==="blink"');aim(plan['yaw'],plan['pitch'])
+  page.keyboard.down('Space');wait('Vesperfall.component.charge===1')
+  launched=observe();(OUT/'before-release.json').write_text(json.dumps(launched,indent=2))
+  preview=page.evaluate('Vesperfall.component.blinkTrace');(OUT/'actual-aim-preview.json').write_text(json.dumps(preview,indent=2))
+  check(preview['ok'] and preview['reason']=='rail / stone perch','The actual held bow predicts a supported rail before release')
+  page.keyboard.up('Space')
+  wait('seq=>Vesperfall.state.events.some(e=>e.seq>seq&&e.type==="shot"&&e.arrow==="blink")',launched['events'][-1]['seq'])
+  wait('Vesperfall.state.arrows.length===0')
+  outcome=observe();(OUT/'resolved-shot.json').write_text(json.dumps(outcome,indent=2))
+  check(outcome['blinks']==launched['blinks']+1,'The released arrow resolves into exactly one real teleport')
   check(page.evaluate('SureflightModel.perchAt(Vesperfall.state.world,Vesperfall.state.p,.01,.01)!==null'),'An actual released golden projectile places the player on a structural rail')
   page.keyboard.press('KeyP');wait('Vesperfall.component.paused');page.locator('#save-expedition').click();saved=observe()
   page.screenshot(path=str(OUT/'rail-arrival.png'))

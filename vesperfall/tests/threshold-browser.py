@@ -40,8 +40,14 @@ with sync_playwright() as p:
   i=next(i for i,r in enumerate(rows) if text.lower() in r.lower())
   # A prior harness mixed a live ray with blind stick step counting and selected
   # Desk height again when it intended Panel size. Require the actual hover.
+  # Move the input ray deliberately before re-aiming. A changed panel can put
+  # the next row under almost the same ray; that is not a fresh pointer motion.
+  page.evaluate("TestXR.orientation('right',[0,Math.sin(.4),0,Math.cos(.4)])");frame();frame()
   aim_row(i);frame();frame()
-  wait('i=>Vesperfall.component.menuSelection===i',i)
+  try:wait('i=>Vesperfall.component.menuSelection===i',i)
+  except Exception:
+   snapshot=page.evaluate("""i=>{const g=Vesperfall.component,T=g.T,ref=g.scene.renderer.xr.getReferenceSpace();return {wanted:i,selection:g.menuSelection,ui:g.dominionControls.state.xrNav,activeRay:g.dominionControls.state.activeRay,panel:g.xrPanel.mesh.matrixWorld.toArray(),hits:Object.entries(g.hands).map(([name,h])=>{const pose=g.scene.frame.getPose(h.source.targetRaySpace,ref),o=new T.Vector3(pose.transform.position.x,pose.transform.position.y,pose.transform.position.z).applyMatrix4(g.rig.matrixWorld),q=g.rig.getWorldQuaternion(new T.Quaternion()).multiply(new T.Quaternion().copy(pose.transform.orientation)),hit=new T.Raycaster(o,new T.Vector3(0,0,-1).applyQuaternion(q)).intersectObject(g.xrPanel.mesh)[0];return {name,origin:o.toArray(),rotation:q.toArray(),uv:hit?.uv?.toArray(),buttons:h.buttons,axes:h.axes};})};}""",i)
+   (OUT/'menu-hover-failure.json').write_text(json.dumps(snapshot,indent=2));raise
   button('right',0,True);button('right',0,False)
  def state():return page.evaluate('PilgrimSave.capture(Vesperfall.state,{id:"compare",banked:Vesperfall.component.banked,receipt:Vesperfall.component.arsenal.state.receipt,yaw:0,pitch:0,focus:Vesperfall.component.ritual.focus.remaining}).state')
  try:
