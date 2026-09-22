@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "project": "Vesperfall",
+  "release": "0.17.0",
+  "pass": "Pilgrim's Kit",
+  "date": "2026-09-22",
+  "status": "The complete corrected field-kit runtime has been published and its 120 public file hashes independently verified. End-to-end public controller/hand/Xbox acceptance remains pending. This is not the final browser-acceptance publication.json receipt.",
+  "implementationCommit": "d2c563a7e01326f0fe1144a265ca9d6c933d744e",
+  "inputOwnershipCorrection": "92871871042ebc9078eae276a16477afa2c00d02",
+  "publicRuntime": {
+    "url": "https://v5ma.github.io/vesperfall/",
+    "manifestDigest": "b789d27c8de1f7292f276dbd9695957f3436b6a8cfd2d781304450f4643817ee6",
+    "fileCount": 120,
+    "allFeatureFilesMatch": true,
+    "evidenceRun": 35783597192,
+    "artifact": 10719688920,
+    "artifactSha256": "a7534189f5f9120c2d6727edae7751e4006365c16a3f4a675e639a72db74959b",
+    "method": "Recomputed all 120 actual HTTP-200 SHA256 values from the retained public-byte report against the complete corrected Kit manifest. Every value matches. The report's own newer-target all_match is false, and that failed target gate is retained rather than relabeled a passing workflow.",
+    "newerTarget": "ee03abf8f992d6868ab1101733cfe20355afd823",
+    "newerTargetManifest": "a7a9b56595af3a2e30ffb434dc6dca0cbcaec0306de96c0f8677b76c882dfbef",
+    "newerTargetDifference": "Only index.html differs: concurrent Guild work added an optional Vinci visit/return script. Its absence from the measured public index is not a missing field-kit feature. That sibling change is preserved on master, not reverted, and is not credited as deployed by this record."
+  },
+  "pages": {
+    "successfulRun": 35782835966,
+    "source": "9ed36aa7fc559a1000dbf7b84696cb5d40d7e892",
+    "build": "success",
+    "deploy": "success",
+    "reportBuildStatus": "success",
+    "limit": "This establishes deployment containing the Kit, not physical-device or end-to-end gameplay certification. Later sibling commits generated additional Pages runs."
+  },
+  "modelEvidence": {
+    "passed": 313,
+    "failed": 0,
+    "skipped": 0,
+    "hostedArtifact": 10719688920,
+    "newMechanicsTests": 20,
+    "newInputOwnerTests": 4,
+    "additionalFixtureAudit": "32 seed/chapter pairs, 64 actual model flask launches and 256 exact full checkpoint round trips. Isolated model fixtures, not rendered journeys.",
+    "workbook": "The canonical six-sheet, 76-task workbook is byte-for-byte unchanged and its existing validation passes. No human or physical-device gate was promoted."
+  },
+  "implemented": [
+    "Two healing and two frost vials on new scored expeditions, capped at three of each; finite state survives normal save/reload.",
+    "Free-hand waist slots, fresh grip acquisition, sampled ballistic throwing, stationary stowing, mouth-and-trigger drinking, and cancellation on pause/tracking interruption.",
+    "Healing drinks restore up to 32 vitality and retain their charge at full health. Thrown healing bursts within 2.8 metres; frost bursts within 3.2 metres and use existing Frost interruption/damage. Walls and floors occlude effects.",
+    "Arrival, connecting-refuge and upper-gallery cache relationships in Pilgrimage. Ordinary arrows can open seals; rewards still require nearby collection. Full stock leaves supplies available, and collected caches cannot pay twice.",
+    "Keyboard F drinks, G throws frost, T throws healing. Xbox LB+X drinks and LB+RB throws frost without also reloading or shard-stepping. Equipment exposes the spatial field-kit menu. Bare hands retain menu access, not hand-only combat.",
+    "An optional strictly validated fieldkit checkpoint member preserves stock, cache receipts and active flights. Old checkpoints without it retain exact old content until first explicit kit use.",
+    "Existing Provision adds at most one of each vial between sectors. Other blessings carry remaining stock without refilling it."
+  ],
+  "preserved": "Goldwind default and A/B golden arrows, Sureflight landing/range behavior, shields, quiver, disk, original supplies, Xbox down-Blink/left-damage, five immutable layout readers, old saves, original reward receipts, story ledger, two-second floor feedback and all concurrent sibling work.",
+  "revealingTests": [
+    "Initial model fixtures used the wrong floor-array name and an unreachable hand pose. Fixtures were corrected to actual geometry and legal reach; gameplay gates were not relaxed.",
+    "The effect-occlusion review required floors as well as wall boxes to block a splash. Both directions of floor crossing are now checked.",
+    "An actual-function regression reproduced a field-kit shortcut spending a vial before the open tactical quiver consumed input. Commit 9287187 gives that quiver priority and all four owner regressions pass.",
+    "Earlier source gates passed the model/workbook checks but saw older public production files while deployments were superseded. The failed public-byte traces remain separate from later publication proof.",
+    "Direct local loopback and public browser navigation returned ERR_BLOCKED_BY_ADMINISTRATOR. Those attempts were not bypassed and are not counted as gameplay passes."
+  ],
+  "pendingBrowserAcceptance": {
+    "test": "vesperfall/tests/field-kit-browser.py",
+    "run": 35780846097,
+    "head": "92871871042ebc9078eae276a16477afa2c00d02",
+    "lastObservedSourceJob": 106940810422,
+    "lastObservedStatus": "in_progress / checkout",
+    "reasonForRetainedSource": "This is the completed field-kit revision matching the independently measured public runtime. Re-running its read-only tests does not redeploy or roll back any repository files.",
+    "otherRetainedRun": 35783597192,
+    "required": "Actual grab/stow/throw/drink paths, no accidental disk, cache collection, exact stock/checkpoint reload, hand-menu boundaries, AR expedition, Xbox chords and existing Goldwind/Sureflight/Pilgrimage/Threshold journeys. Never count generated poses as physical Quest approval."
+  },
+  "remaining": "Full public input-driven acceptance; physical Quest/Xbox reach, throwing feel, comfort, readability, sustained performance and balance. Co-op, melee, larger adventures, sparse occluding AR architecture, four difficulty tiers and production monster integration are not implemented by this pass.",
+  "resume": "Read FIELD-KIT.md and this record first. Do not rebuild or recreate completed features, PRs, staging branches or temporary workflows. Recover the named run artifacts and diagnose any real failures. Keep the optional sibling return script. Compare current master before any narrow direct write. Only after actual input-driven reports and exact served-byte evidence are complete, create the separate publication.json with the correct observed manifest and its explicit limits. Do not convert this pending record into a fictional all-green result."
+}
