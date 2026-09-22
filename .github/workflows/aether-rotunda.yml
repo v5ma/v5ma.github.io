@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [rotunda, window, portal, render, grounded, controller]
+        suite: [rotunda, field-guide, window, portal, render, grounded, controller]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -58,7 +58,8 @@ jobs:
           SERVER=$!
           trap 'kill $SERVER' EXIT
           case "$SUITE" in
-            rotunda) python -u aether-reach/tests/rotunda-browser.py && python -u aether-reach/tests/field-guide-browser.py ;;
+            rotunda) python -u aether-reach/tests/rotunda-browser.py ;;
+            field-guide) python -u aether-reach/tests/field-guide-browser.py ;;
             window) python -u aether-reach/tests/window-browser.py ;;
             portal) python -u aether-reach/tests/portal-browser.py ;;
             render) python -u aether-reach/tests/portal-render-browser.py ;;

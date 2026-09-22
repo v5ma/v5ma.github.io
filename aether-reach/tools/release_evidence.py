@@ -162,16 +162,16 @@ def main():
     items = [a for page in pages for a in page['artifacts']]
     selections = {}
     contents = {}
-    for suite, (report_name, minimum) in SUITES.items():
+    suites = dict(SUITES)
+    if tuple(map(int, version.split('.'))) >= (0, 15, 1):
+        suites['field-guide'] = ('field-guide-browser.json', 24)
+    for suite, (report_name, minimum) in suites.items():
         selected = choose_artifact(items, 'aether-rotunda-' + suite, head)
         if selected['size_in_bytes'] > 32 * 1024 * 1024:
             raise ValueError('Artifact exceeds compressed-size limit')
         raw = subprocess.check_output(['gh', 'api', f"repos/{repo}/actions/artifacts/{selected['id']}/zip"])
         files, receipt = inspect_artifact(raw, selected, expected, head, report_name, minimum)
         selections[suite] = receipt
-        if suite == 'rotunda' and tuple(map(int, version.split('.'))) >= (0, 15, 1):
-            _, guide_receipt = inspect_artifact(raw, selected, expected, head, 'field-guide-browser.json', 24)
-            selections['field-guide'] = guide_receipt
         contents.update({suite + '/' + name: data for name, data in files.items()})
     # No evidence archive is written before every required suite validates.
     out = Path('/tmp/aether-release')
@@ -183,7 +183,7 @@ def main():
             archive.writestr(name, raw)
         archive.writestr('scope.json', json.dumps(scope, indent=2))
     (out / 'native-artifact-selection.json').write_text(json.dumps(scope, indent=2) + '\n')
-    print('Archived six validated Aether suites from', run['id'], 'tested at', head)
+    print('Archived', len(suites), 'validated Aether suites from', run['id'], 'tested at', head)
 
 
 if __name__ == '__main__':

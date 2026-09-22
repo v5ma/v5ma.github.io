@@ -14,7 +14,7 @@ with sync_playwright() as pw:
  if os.getenv('CHROMIUM_PATH'):args['executable_path']=os.environ['CHROMIUM_PATH']
  b=pw.chromium.launch(**args);ctx=b.new_context(viewport={'width':960,'height':640},device_scale_factor=1,service_workers='block')
  ctx.add_init_script(path=str(ROOT/'aether-reach/tests/fake-devices.js'));ctx.add_init_script(path=str(ROOT/'aether-reach/tests/hand-devices.js'))
- ctx.add_init_script('''navigator.xr.isSessionSupported=async m=>['immersive-vr','immersive-ar'].includes(m);const req=navigator.xr.requestSession.bind(navigator.xr);navigator.xr.requestSession=async(m,o)=>{const s=await req(m,o);s.environmentBlendMode=m==='immersive-ar'?'alpha-blend':'opaque';s.inputSources.forEach(i=>i.gamepad.buttons=i.gamepad.buttons.slice(0,6));const raf=s.requestAnimationFrame.bind(s);s.requestAnimationFrame=fn=>raf((t,f)=>{fn(t,f);if(TestXR.captureCanvas){const done=TestXR.captureCanvas;TestXR.captureCanvas=null;done(document.getElementById('world').toDataURL('image/png'));}});return s;};''')
+ ctx.add_init_script('''navigator.xr.isSessionSupported=async m=>['immersive-vr','immersive-ar'].includes(m);const req=navigator.xr.requestSession.bind(navigator.xr);navigator.xr.requestSession=async(m,o)=>{const s=await req(m,o);s.environmentBlendMode=m==='immersive-ar'?'alpha-blend':'opaque';s.inputSources.forEach(i=>i.gamepad.buttons=i.gamepad.buttons.slice(0,6));const raf=s.requestAnimationFrame.bind(s);s.requestAnimationFrame=fn=>raf((t,f)=>{fn(t,f);const g=window.AetherReach?.snapshot()?.devices?.presentation?.fieldGuide;if(!TestXR.noticeCanvas&&g?.notice?.startsWith('IONA:')&&g.noticeAlpha>0)TestXR.noticeCanvas=document.getElementById('world').toDataURL('image/png');if(TestXR.captureCanvas){const done=TestXR.captureCanvas;TestXR.captureCanvas=null;done(document.getElementById('world').toDataURL('image/png'));}});return s;};''')
  p=ctx.new_page();p.set_default_timeout(120000);p.on('pageerror',lambda e:errors.append(str(e)));p.on('console',lambda m:shader.append(m.text) if m.type=='error' and any(s in m.text for s in ['Shader Error','WebGLProgram','VALIDATE_STATUS']) else None)
  def snap():return p.evaluate('AetherReach.snapshot()')
  def guide():return snap()['devices']['presentation']['fieldGuide']
@@ -61,13 +61,17 @@ with sync_playwright() as pw:
   check(g['interactionId']=='dispatch-board' and g['interaction'].startswith('Right grip /'),'Reachable noticeboard has a visible current-controller interaction prompt')
   check(g['goal']['distance']<s['devices']['presentation']['fieldGuide']['goal']['distance'],'Goal distance decreases along the actual approach')
   # Observe notices on actual render frames. This observer reads snapshots only.
-  p.evaluate("""()=>{window.guideSamples=[];const stop=performance.now()+8000;function sample(){const g=AetherReach.snapshot().devices.presentation.fieldGuide;guideSamples.push({id:g.noticeId,age:g.noticeAge,alpha:g.noticeAlpha,text:g.notice});if(performance.now()<stop)requestAnimationFrame(sample);}requestAnimationFrame(sample);}""")
+  p.evaluate("""()=>{window.guideSamples=[];const stop=performance.now()+120000;function sample(){const g=AetherReach.snapshot().devices.presentation.fieldGuide;guideSamples.push({id:g.noticeId,age:g.noticeAge,alpha:g.noticeAlpha,text:g.notice});if(performance.now()<stop&&!(g.notice&&g.notice.startsWith('IONA:')&&g.noticeAge>=2300))requestAnimationFrame(sample);}requestAnimationFrame(sample);}""")
+  p.evaluate('TestXR.devices.headPitch=-1.15');frames(2)
   tap('right',1);p.wait_for_function('AetherReach.snapshot().devices.menu==="expedition-dialog"');frames(2)
   check(snap()['expedition']['flags'].count('dispatch-started')==1,'Ordinary right-grip use really accepts the dispatch once')
   check(guide()['goal']['id']=='market-board' and 'west' in guide()['nextStep'],'Persistent guidance updates to the actual delivery destination')
   check('IONA:' in p.locator('#expedition-summary').inner_text() and 'long stair' in p.locator('#expedition-summary').inner_text(),'Auto-opened journal foregrounds the interaction message rather than only completion counts')
   p.wait_for_function('AetherReach.snapshot().devices.presentation.fieldGuide.noticeAge>=2100');frames(2)
   samples=p.evaluate('guideSamples');check(any(x['alpha']>0 and 'IONA:' in x['text'] for x in samples),'The real noticeboard event reaches rendered floor-message feedback')
+  notice_image=p.evaluate('TestXR.noticeCanvas');check(bool(notice_image),'The notice has an actual post-render canvas capture, not only a status value')
+  (OUT/'field-guide-notice-canvas.png').write_bytes(base64.b64decode(notice_image.split(',',1)[1]))
+  p.evaluate('TestXR.devices.headPitch=0');frames(2)
   check(guide()['noticeAlpha']==0,'Floor message is gone after two wall-clock seconds, including while the journal pauses the game')
   check(guide()['liveMap'] and 'west' in guide()['nextStep'],'Message fade does not erase the live map or the next action')
   original_save=p.evaluate('localStorage.getItem("aether-reach.expedition.v1")');check(original_save is not None,'Actual interaction saved progress without test-written storage')

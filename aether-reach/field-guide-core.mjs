@@ -10,6 +10,17 @@ export function createNoticeFeed(){
  let serial=0,current=null;const entries=[];
  return {push(text,now){if(!String(text||'').trim()||!Number.isFinite(now))return;current={id:++serial,text:String(text),started:now};entries.push({...current});if(entries.length>40)entries.shift();},dismiss(){current=null;},current:()=>current?{...current}:null,history:()=>entries.map(e=>({...e}))};
 }
+/* Begin the visible lifetime once, at the first presentation frame. History
+ * keeps the original event timestamp. Rereading the same ID never renews it. */
+export function createNoticePresentation(){
+ let id=null,display=null;
+ return {read(notice,now){
+  if(!notice){id=null;display=null;return null;}
+  if(!Number.isFinite(now))return display;
+  if(notice.id!==id){id=notice.id;display={...notice,started:now};}
+  return display;
+ }};
+}
 export function readingPages(text,limit=260){
  const pages=[];let line='';for(const word of String(text||'').trim().split(/\s+/)){if(line&&(line+' '+word).length>limit){pages.push(line);line='';}line+=(line?' ':'')+word;}if(line)pages.push(line);return pages.length?pages:['No messages yet.'];
 }
