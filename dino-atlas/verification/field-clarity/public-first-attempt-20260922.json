@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "build": "ranger-field-clarity-20260922.1",
+  "runtimeCommit": "d1a2218e7a2244fe3877a0a9061355c6c0b947c8",
+  "run": 35750258792,
+  "attempt": 1,
+  "publicJob": 106832155972,
+  "publicJobResult": "failure",
+  "websiteDeployment": "Already succeeded in Pages run35751403964; this later verification failure does not undo deployment.",
+  "publicSource": {"filesMatched":74,"allMatched":true},
+  "successfulPublicJourneys": {
+    "classicFloorFeedback":22,
+    "tidegateFloorFeedback":22,
+    "classicSpatialConsole":30,
+    "tidegateSpatialConsole":29,
+    "total":103,
+    "capturedErrors":[]
+  },
+  "failedJourney": {
+    "script":"portal-game-browser.py",
+    "scene":"classic",
+    "phase":"Initial page bootstrap, before any portal or movement assertion",
+    "error":"Page.wait_for_function: Timeout 120000ms exceeded.",
+    "capturedErrors":[],
+    "state":null,
+    "screenshotFinding":"The actual page displays 3D unavailable and the caught bootstrap-failure fallback, not a successfully initialized game.",
+    "diagnosticLimitation":"This older script records uncaught page errors and console shader/WebGL errors, not every caught bootstrap message or failed HTTP request. An empty error array does not establish the absence of an underlying loading exception.",
+    "cause":"Undetermined. No claim of a network or GPU cause is made from the available evidence."
+  },
+  "artifact":{"id":10707103810,"sha256":"0301074d1fc2ce9af2e6a9cfff64db3b017c20fa288d3d5e3275ce0c19c1aabd","independentHashMatched":true},
+  "reportSha256":{
+    "spatial-evidence/public-verification.json":"7324fbc0047b2022eb65023b881a3ccdc468976d09dbdb309b96dbc4966d2707",
+    "feedback-evidence/classic-report.json":"7ef77e6a206f34fc3a09dff6dd1c0f05c710150370af9c8f1659102e924f3340",
+    "feedback-evidence/tidegate-report.json":"2b86a54c0be8ded9fd00977d26e1ca1509b0ebbb2f5b8605b91aad011444a439",
+    "spatial-evidence/classic-report.json":"47fe1b8e099094fa0ab85e4f3697329a81e5d432f9c4080f0a6aaf8cb51e7260",
+    "spatial-evidence/tidegate-report.json":"056a8fe8bdaf046bf644f8d40bb6a42dfb399179f21883cb34c8c42d205d8f9b",
+    "portal-evidence/classic-failure.json":"eb015febd98a5f4428fd48ff1326e5b8990e82d22688b539e2be37a40276a086"
+  },
+  "retry":"The authorized rerun_workflow_job action accepted a single retry of failed job106832155972. Source, assertions, input, timeout and gameplay rules are unchanged. Inspect the new attempt before claiming complete public or archival success.",
+  "physicalHardwareVerified":false,
+  "scope":"Documentation only. No new PR, branch, workflow, deployment configuration, runtime, saved data or sibling-game change."
+}
