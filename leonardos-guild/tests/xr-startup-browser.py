@@ -63,6 +63,7 @@ with sync_playwright() as p:
     check(not page.locator('#xr-launcher [data-xr-entry="'+mode+'"]').is_disabled(),'The failed startup leaves the launcher usable for an explicit retry')
     page.evaluate('__xr.blockReference=false')
    for repeat in range(2):
+    captures[mode+'-before-entry-'+str(repeat)]=read();report()
     selector=('#xr-pause-launcher' if repeat else '#xr-launcher')+' [data-xr-entry="'+mode+'"]'
     page.locator(selector).click()
     page.wait_for_function('LeonardoGuild.inspect().running&&LeonardoGuild.inspect().xr.entry.frames>4')
@@ -102,4 +103,11 @@ with sync_playwright() as p:
     check(read()['credits']==initial['credits'] and read()['deliveries']==initial['deliveries'],mode+': initialization and recovery do not grant or erase progress')
    ctx.close()
   check(not errors,'No captured application or shader errors during startup recovery')
+ except Exception as error:
+  captures['failure_message']=str(error)
+  try:
+   captures['failure_state']=read()
+   captures['failure_dom']=page.evaluate("({hidden:document.hidden,focus:document.activeElement?.id,dialogs:[...document.querySelectorAll('dialog[open]')].map(d=>({id:d.id,modal:d.matches(':modal')})),failureHidden:document.getElementById('failure').hidden,failureText:document.getElementById('failure-detail').textContent,hardwareSession:__xr.session?{ended:__xr.session.ended,visibility:__xr.session.visibilityState,pending:__xr.session.pending.size}:null})")
+  except Exception as diagnostic_error:captures['diagnostic_error']=str(diagnostic_error)
+  raise
  finally:report();browser.close()
