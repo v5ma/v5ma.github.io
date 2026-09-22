@@ -38,6 +38,8 @@ with sync_playwright() as pw:
  def ride(target):
   page.evaluate('xrEmulator.axis(1)');page.wait_for_function('(x)=>player.x>=x',arg=target,timeout=240000);page.evaluate('xrEmulator.axis(0)');press(5);page.wait_for_function('__delivery.paused')
  try:
+  page.goto(BASE+'tests/depth-render.html',wait_until='domcontentloaded');page.wait_for_function('window.fixture?.passed||window.fixture?.error');fixture=page.evaluate('fixture');check(fixture['passed'],'Independent GPU fixture agrees with CPU mapping for node and instanced classic materials: '+str(fixture.get('error')))
+  (OUT/'gpu-fixture.png').write_bytes(base64.b64decode(fixture['image'].split(',')[1]));samples.append({'gpu_fixture':{k:v for k,v in fixture.items() if k!='image'}})
   page.goto(BASE+'?xr=1',wait_until='domcontentloaded');page.bring_to_front();page.wait_for_function('window.SkyCycleDepth&&window.SkyCycleXR&&window.SkyCycleFlightDeck&&window.__gpuReady')
   saved=page.evaluate('Object.fromEntries(["curved-preserve","sprocket_credits","svgn_delivery_records_v1","svgn.skycycle.mastery.v1","sprocket_padmap"].map(k=>[k,localStorage.getItem(k)]))')
   campaign=page.evaluate('JSON.stringify(DeliveryCampaign.routes.map((r,i)=>({id:r.id,code:DeliveryCampaign.encode(DeliveryCampaign.build(i,__gameRefs.T))})))')
@@ -77,8 +79,6 @@ with sync_playwright() as pw:
   select('Exit XR');page.wait_for_function('!SkyCycleXR.presenting&&!__merged.scene.parent')
   check(page.evaluate('Object.fromEntries(["curved-preserve","sprocket_credits","svgn_delivery_records_v1","svgn.skycycle.mastery.v1","sprocket_padmap"].map(k=>[k,localStorage.getItem(k)]))')==saved,'Preview credit, campaign, remap and unrelated storage fixtures are unchanged on return')
   check(page.evaluate('JSON.stringify(DeliveryCampaign.routes.map((r,i)=>({id:r.id,code:DeliveryCampaign.encode(DeliveryCampaign.build(i,__gameRefs.T))})))')==campaign,'All eight official campaign builders remain byte-identical')
-  page.goto(BASE+'tests/depth-render.html',wait_until='domcontentloaded');page.wait_for_function('window.fixture?.passed||window.fixture?.error');fixture=page.evaluate('fixture');check(fixture['passed'],'Independent GPU fixture agrees with CPU mapping for node and instanced classic materials: '+str(fixture.get('error')))
-  (OUT/'gpu-fixture.png').write_bytes(base64.b64decode(fixture['image'].split(',')[1]));samples.append({'gpu_fixture':{k:v for k,v in fixture.items() if k!='image'}})
   check(not errors,'No uncaught errors in the exercised curved preview and exit')
   check(not [s for s in logs if any(x in s.lower() for x in ['tsl:','shader error','validation error','gl_invalid'])],'No detected shader or GPU validation errors');passed=True
  except Exception as e:

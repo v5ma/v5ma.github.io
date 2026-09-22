@@ -1,0 +1,12 @@
+{
+  "scope": "Pinned r177 compiler findings, not GPU or native acceptance",
+  "initial_source": "a014787e2e7a415c4b8b46eb9c40fc1bff97d2b2",
+  "findings": [
+    {"issue":"Method-chained mix uses receiver as blend factor","observed":"Generated GLSL placed the table row in the third mix argument and the intended factor in the second.","repair":"Explicit TSL mix(a,b,t) for table interpolation and rigid selection.","guard":"Real pinned GLSL builder assertions inspect all generated mix calls."},
+    {"issue":"Generated native instance placement follows positionNode","observed":"The first shader bent local primitive vertices before per-instance translation; particles and packets therefore missed the intended world-coordinate mapping.","repair":"Use actual instance matrix before the curve and its bounded inverse afterward, retaining the native final placement. Larger instance arrays use updated interleaved attributes.","guard":"Generated classic-instance shader must access the instance before curve-table lookup and restore the instance frame afterward."},
+    {"issue":"Skipped 3D owner prevented cleanup in 2D/editor","repair":"Shared existing render bridge restores render fields outside the curved 3D preview; four isolated bridge tests retain original arguments and return value.","committed":"a014787e2e7a415c4b8b46eb9c40fc1bff97d2b2"}
+  ],
+  "local_game_rules": 432,
+  "local_soundtrack_rules": 12,
+  "native_status": "Not established by compiler tests. The actual GPU fixture runs before the ordinary-input game journey."
+}
