@@ -48,6 +48,7 @@ jobs:
           TEST_BASE_URL: https://v5ma.github.io
         run: |
           python -u aether-reach/tests/rotunda-browser.py
+          python -u aether-reach/tests/field-guide-browser.py
           python -u aether-reach/tests/window-browser.py
           python -u aether-reach/tests/portal-browser.py
       - name: Evidence identity

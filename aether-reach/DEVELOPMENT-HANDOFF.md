@@ -1,3 +1,9 @@
+# Current continuation: Field Guide 0.15.1
+
+Read FIELD-GUIDE.md first. The owner could not see interaction text or a live map in 0.15.0 and could not understand the next action. X12 now routes real event messages to a two-second floor notice and session history, renders a continuously updated local floor map plus next step/reachable-use prompt, foregrounds the noticeboard instruction, and expands separate menu/map/window sizing. The default aperture is 2.5 times taller; old placement, save-v1 and remaps remain. A sound-setting reference error is also corrected. This is a physical-feedback repair, not certification that those complaints are gone on Quest.
+
+Base reviewed: ec5d977b553ce009d26d24db092c8f6c52a09151, retaining the complete reconciled 0.15.0 Aether source. Use direct master writes and the existing native/public/archive process. Read release receipts for completed evidence; pending jobs are not passes. Never restart old transfers or merge the archived city/water experiments. Historical notes below remain context rather than instructions to restore an older interface.
+
 # Current continuation: Field Rotunda 0.15.0 owner playtest
 
 Read FIELD-ROTUNDA.md and the latest release receipt before continuing. The owner's spatial UI request is implemented as a room-anchored summonable rotunda, controller-side status, raised spatial button hit targets and saved explicit transform controls. Third-person window input adds horizontal-friendly aiming and visual echoes of genuine shots. First-person aiming, world-window geometry and save-v1 are preserved. The private hub is not published or integrated; no travel portals in Aether. Full desktop UI replacement and free grab transforms remain outside this bounded slice.

@@ -8,7 +8,7 @@ import {windowAim} from './window-controls.mjs';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {prepareRig,cloneRig} from './cast-rig.mjs';
 import {createGrounding,strideRate} from './grounded-motion.mjs';
-import {cleanDiorama,openingState,worldPoint} from './diorama-core.mjs';
+import {cleanDiorama,dioramaHeight,openingState,worldPoint} from './diorama-core.mjs';
 import {DISTRICTS,SOLIDS,groundAt,rayBox,raySphere,presentationSolids} from './model.mjs';
 export function createDiorama(view){
  const {scene,renderer,camera}=view,root=new T.Group();root.name='Diorama enclosure and player';root.visible=false;scene.add(root);
@@ -30,7 +30,7 @@ export function createDiorama(view){
   const mixer=new T.AnimationMixer(model),actions=Object.fromEntries(source.clips.map(c=>[c.name,mixer.clipAction(c)]));
   actor={model,mixer,actions,action:null,pose:'',grounding:createGrounding(model,groundAt)};fallback.visible=false;actorStatus='ready';lastScan=0;
  }).catch(e=>{actorStatus='fallback';actorError=String(e.message||e);});
- function center(s,head=null){const p=s.p;view.scene.userData.windowPlayer=p;focus={x:p.x,y:p.y,z:p.z};heading=p.yaw;if(head){const n=Math.hypot(head.forward?.x??0,head.forward?.z??-1)||1;anchor={x:head.x+(head.forward?.x??0)/n*1.45,y:config.height,z:head.z+(head.forward?.z??-1)/n*1.45};if(cameraWindow())firstWindow.center(head,anchor,config.scale);}else anchor.y=config.height;}
+ function center(s,head=null){const p=s.p;view.scene.userData.windowPlayer=p;focus={x:p.x,y:p.y,z:p.z};heading=p.yaw;if(head){const n=Math.hypot(head.forward?.x??0,head.forward?.z??-1)||1;anchor={x:head.x+(head.forward?.x??0)/n*1.45,y:config.height,z:head.z+(head.forward?.z??-1)/n*1.45};if(cameraWindow())firstWindow.center(head,anchor,config.scale,dioramaHeight(config));}else anchor.y=config.height;}
  function restore(){portal.active=false;for(const[o,v]of hiddenObjects)o.visible=v;hiddenObjects.clear();}
  function set(on,cfg,state,{desktop=false,head=null}={}){
   config=cleanDiorama(cfg);preview=on&&desktop;
@@ -38,7 +38,7 @@ export function createDiorama(view){
   if(!on&&active){restore();active=false;preview=false;scene.fog=saved.fog;scene.background=saved.background;renderer.setClearColor(saved.clear,saved.alpha);renderer.localClippingEnabled=saved.clipping;if(rig){rig.scale.setScalar(1);rig=null;}lastPosition=null;actor?.grounding.reset();firstWindow.reset();root.scale.setScalar(1);}
   scene.userData.thirdPersonWindow=active&&!cameraWindow();document.body.classList.toggle('diorama-preview',preview);root.visible=active;hero.visible=active&&!cameraWindow();reticle.visible=false;
  }
- function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;if(cameraWindow()&&firstWindow.ready)firstWindow.center(firstWindow.reference,anchor,config.scale);lastScan=0;}
+ function configure(cfg){config=cleanDiorama(cfg);anchor.y=config.height;if(cameraWindow()&&firstWindow.ready)firstWindow.center(firstWindow.reference,anchor,config.scale,dioramaHeight(config));lastScan=0;}
  function hide(o,yes){if(!hiddenObjects.has(o))hiddenObjects.set(o,o.visible);o.visible=yes?false:hiddenObjects.get(o);}
  function scan(){
   const open=openingState(config.opening);scene.traverse(o=>{if(o.userData.roomShell)hide(o,!!open[o.userData.roomShell+'Open']);if(o.userData.portalBackdrop)hide(o,true);});
@@ -51,7 +51,7 @@ export function createDiorama(view){
   const {x,y,z}=focus,low=y-3,q=viewConfig().yaw;
   if(cameraWindow()&&rig){firstWindow.sync(rig,p);firstWindow.boxMatrix(rig,anchor,config.scale).decompose(root.position,root.quaternion,root.scale);}
   else{root.position.set(x,low,z);root.rotation.set(0,-q,0);root.scale.setScalar(1);}
-  root.updateMatrixWorld(true);portal.configure(root.matrixWorld);portal.uniforms.aetherPortalNearGate.value=cameraWindow()?0:1;inverse.copy(root.matrixWorld).invert();rim.position.set(0,17.5,0);
+  root.updateMatrixWorld(true);portal.configure(root.matrixWorld);portal.uniforms.aetherPortalHalf.value.y=dioramaHeight(config)/2;portal.uniforms.aetherPortalNearGate.value=cameraWindow()?0:1;inverse.copy(root.matrixWorld).invert();rim.scale.y=config.boxHeight;rim.position.set(0,dioramaHeight(config)/2,0);
   hero.visible=!cameraWindow();
   hero.position.set(p.x,p.y,p.z);hero.rotation.y=Math.PI-p.yaw;const a=aimGeometry.attributes.position;a.setXYZ(0,0,1.45,0);a.setXYZ(1,0,1.45+Math.sin(p.pitch)*7,Math.cos(p.pitch)*7);a.needsUpdate=true;aimGeometry.computeBoundingSphere();
   if(actor){const moving=Math.hypot(p.vx||0,p.vz||0),pose=!p.grounded?'Idle_Neutral':moving>.3?(moving>2.8?'Run':'Walk'):'Idle_Neutral',action=actor.actions[pose]||actor.actions.Walk||actor.actions.Idle_Neutral;
@@ -71,7 +71,7 @@ export function createDiorama(view){
   for(const enemy of s.drones){if(enemy.hp<=0)continue;const hit=raySphere(o,d,enemy,.9);if(hit!==null&&hit>0)t=Math.min(t,hit);}
   reticle.position.set(o.x+d.x*t,o.y+d.y*t,o.z+d.z*t);reticle.rotation.set(s.p.pitch,-s.p.yaw,0,'YXZ');reticle.scale.setScalar(cameraWindow()?Math.max(.1,t*.012):1);reticle.visible=true;
  }
- function aim(s,o,d){if(!active||!o||!d)return null;const entered=enterPortal(o,d,inverse);if(!entered){reticle.visible=false;return null;}o=entered.origin;d=entered.direction;const p=s.p;let t=Infinity,target=null;
+ function aim(s,o,d){if(!active||!o||!d)return null;const entered=enterPortal(o,d,inverse,{width:60,height:dioramaHeight(config),depth:48});if(!entered){reticle.visible=false;return null;}o=entered.origin;d=entered.direction;const p=s.p;let t=Infinity,target=null;
   // Choose a pointed enemy or a physical surface, never originate a shot at the giant user's hand.
   for(const b of presentationSolids(s)){const hit=rayBox(o,d,b,1800);if(hit!==null&&hit>0&&hit<t)t=hit;}
   if(d.y<-.001){const floor=(p.y+.08-o.y)/d.y;if(floor>0&&floor<t)t=floor;}
@@ -81,5 +81,5 @@ export function createDiorama(view){
   const origin={x:p.x,y:p.y+(p.crouched?.9:1.5),z:p.z},delta={x:end.x-origin.x,y:end.y-origin.y,z:end.z-origin.z},length=Math.hypot(delta.x,delta.y,delta.z);if(length<.15||length>100){reticle.visible=false;return null;}
   reticle.position.set(end.x,end.y+.04,end.z);reticle.visible=true;return {origin,direction:{x:delta.x/length,y:delta.y/length,z:delta.z/length}};
  }
- return {set,configure,center,syncRig,update,aim,follow(p){heading=p.yaw;},orbit(delta){heading+=delta;},get viewYaw(){return viewConfig().yaw},get cameraWindow(){return cameraWindow()},get active(){return active},get preview(){return preview},get config(){return {...config}},stats:()=>({active,preview,...config,...openingState(config.opening),focus:{...focus},anchor:{...anchor},widthMeters:60*config.scale,avatar:actorStatus,avatarError:actorError,avatarHeight:1.76,avatarPose:actor?.pose||null,clippedMaterials:portal.entries.size,portalMaterials:portal.entries.size,portalBuild:"aether-window-20260918.1",cameraWindow:cameraWindow(),shellFaces:root.children.filter(o=>o.isMesh).length,backdropSpritesHidden:[...hiddenObjects.keys()].filter(o=>o.userData.portalBackdrop&&!o.visible).length,fullDepth:true,playerCentered:true,viewYaw:viewConfig().yaw,roomAnchored:true,headMovesCharacter:false})};
+ return {set,configure,center,syncRig,update,aim,follow(p){heading=p.yaw;},orbit(delta){heading+=delta;},get viewYaw(){return viewConfig().yaw},get cameraWindow(){return cameraWindow()},get active(){return active},get preview(){return preview},get config(){return {...config}},stats:()=>({active,preview,...config,...openingState(config.opening),focus:{...focus},anchor:{...anchor},widthMeters:60*config.scale,heightMeters:dioramaHeight(config)*config.scale,avatar:actorStatus,avatarError:actorError,avatarHeight:1.76,avatarPose:actor?.pose||null,clippedMaterials:portal.entries.size,portalMaterials:portal.entries.size,portalBuild:"aether-window-20260918.1",cameraWindow:cameraWindow(),shellFaces:root.children.filter(o=>o.isMesh).length,backdropSpritesHidden:[...hiddenObjects.keys()].filter(o=>o.userData.portalBackdrop&&!o.visible).length,fullDepth:true,playerCentered:true,viewYaw:viewConfig().yaw,roomAnchored:true,headMovesCharacter:false})};
 }

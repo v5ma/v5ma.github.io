@@ -54,5 +54,5 @@ test('Window draw path has no shell planes, hides only marked atmospheric sheets
  assert(!view.includes('new T.PlaneGeometry'));assert(!view.includes('shellMaterial'));assert(view.includes('if(o.userData.portalBackdrop)hide(o,true)'));
  assert(!xr.includes("hi.fillRect"));assert(xr.includes("createFieldRotunda({rig,panel,hud"));assert(xr.includes('diorama.active&&!menu?windowControls'));assert(xr.includes("sessionMode==='first-person-ar'"));
  assert(xr.includes('item.line.visible=!windowPlay'));assert(xr.includes('item.barrel.visible=!diorama.active'));
- assert(view.includes('firstWindow.center(firstWindow.reference,anchor,config.scale)'));
+ assert(view.includes('firstWindow.center(firstWindow.reference,anchor,config.scale,dioramaHeight(config))'));
 });

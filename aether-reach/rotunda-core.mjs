@@ -3,7 +3,7 @@ export const ROTUNDA_KEY='aether-reach.workspace.v1';
 const bounded=(x,d,a,b)=>Number.isFinite(x)?Math.max(a,Math.min(b,x)):d;
 export function cleanWorkspace(v={}){
  v=v&&typeof v==='object'?v:{};
- return {height:bounded(v.height,1.12,.55,1.65),distance:bounded(v.distance,1.05,.65,1.8),scale:bounded(v.scale,.82,.55,1.2),yaw:bounded(v.yaw,0,-Math.PI,Math.PI),hud:['left','right','floor','hidden'].includes(v.hud)?v.hud:'left',motion:v.motion!==false,guidedAim:v.guidedAim!==false};
+ return {height:bounded(v.height,1.12,.55,1.65),distance:bounded(v.distance,1.05,.65,1.8),scale:bounded(v.scale,.82,.45,1.6),yaw:bounded(v.yaw,0,-Math.PI,Math.PI),hud:['left','right','floor','hidden'].includes(v.hud)?v.hud:'left',motion:v.motion!==false,guidedAim:v.guidedAim!==false,map:v.map!==false,mapScale:bounded(v.mapScale,1,.6,1.8),floorHeight:bounded(v.floorHeight,.06,.035,.65)};
 }
 export function workspaceAnchor(head,config){
  const c=cleanWorkspace(config),x=Number.isFinite(head?.x)?head.x:0,z=Number.isFinite(head?.z)?head.z:0;

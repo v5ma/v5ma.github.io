@@ -11,7 +11,7 @@ const near=(a,b)=>assert(Math.abs(a-b)<1e-9);
 test('Workspace defaults are bounded, independent preferences, not an expedition schema',()=>{
  const d=cleanWorkspace(null);assert.equal(d.height,1.12);assert.equal(d.hud,'left');assert.equal(d.guidedAim,true);assert(!ROTUNDA_KEY.includes('expedition'));
  assert.deepEqual(cleanWorkspace({height:Infinity,scale:NaN}),d);
- const v=cleanWorkspace({height:100,distance:-1,scale:5,yaw:-100,hud:'camera',motion:false});assert.equal(v.height,1.65);assert.equal(v.distance,.65);assert.equal(v.scale,1.2);assert.equal(v.yaw,-Math.PI);assert.equal(v.hud,'left');assert.equal(v.motion,false);
+ const v=cleanWorkspace({height:100,distance:-1,scale:5,yaw:-100,hud:'camera',motion:false});assert.equal(v.height,1.65);assert.equal(v.distance,.65);assert.equal(v.scale,1.6);assert.equal(v.yaw,-Math.PI);assert.equal(v.hud,'left');assert.equal(v.motion,false);
 });
 test('Workspace anchor uses horizontal room coordinates, not eye pitch or roll',()=>{
  const c=cleanWorkspace(),h={x:2,y:1.65,z:3,forward:{x:0,z:-1}};

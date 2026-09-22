@@ -6,9 +6,9 @@ import * as T from './vendor/three.module.js';
 import {eyeHeight} from './skirmish-core.mjs';
 export class FirstPersonWindow{
  constructor(){this.reference=new T.Vector3();this.windowView=new T.Quaternion();this.ready=false;this.aim=new T.Quaternion();this.matrix=new T.Matrix4();}
- center(head,anchor,scale){
+ center(head,anchor,scale,boxHeight=35){
   this.reference.set(head.x,head.y,head.z);
-  const target=new T.Vector3(anchor.x,anchor.y+14.5*scale,anchor.z);
+  const target=new T.Vector3(anchor.x,anchor.y+(boxHeight/2-3)*scale,anchor.z);
   this.windowView.setFromRotationMatrix(new T.Matrix4().lookAt(this.reference,target,new T.Vector3(0,1,0)));
   this.ready=true;
  }

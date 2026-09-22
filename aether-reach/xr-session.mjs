@@ -1,3 +1,4 @@
+import {createFieldGuide} from './field-guide.mjs';
 import {createFieldRotunda} from './field-rotunda.mjs';
 import {stepDioramaLook} from './diorama-aim.mjs';
 import {WINDOW_CONTROLS,windowControls,stepWindowLook,windowAim} from './window-controls.mjs';
@@ -24,7 +25,8 @@ export function createXR(view,api){
  const panel=new T.Mesh(new T.PlaneGeometry(1.36,1.02),new T.MeshBasicMaterial({map:tex,transparent:true,depthTest:false}));panel.position.set(0,0,-1.4);panel.name="XR menu / explicit pause only";panel.material.depthWrite=false;panel.renderOrder=1000;panel.visible=false;panel.userData.xrUI=true;
  const hudCanvas=document.createElement('canvas');hudCanvas.width=1024;hudCanvas.height=256;const hi=hudCanvas.getContext('2d'),ht=new T.CanvasTexture(hudCanvas);ht.colorSpace=T.SRGBColorSpace;
  const hud=new T.Mesh(new T.PlaneGeometry(.95,.2375),new T.MeshBasicMaterial({map:ht,transparent:true,depthTest:false}));hud.position.set(0,-.37,-1.1);hud.name="XR status dock";hud.material.depthWrite=false;hud.renderOrder=999;hud.visible=false;hud.userData.xrUI=true;
- const rotunda=createFieldRotunda({rig,panel,hud,texture:tex,api});
+ let fieldGuide;const rotunda=createFieldRotunda({rig,panel,hud,texture:tex,api,onRecall:h=>fieldGuide?.recall(h)});
+ fieldGuide=createFieldGuide({rig,api});
  const jointMesh=new T.InstancedMesh(new T.SphereGeometry(1,8,6),new T.MeshBasicMaterial({color:0x8cf1d5}),50);jointMesh.name='Tracked hand joints';jointMesh.frustumCulled=false;jointMesh.count=0;jointMesh.visible=false;rig.add(jointMesh);
  const jointMatrix=new T.Matrix4(),jointScale=new T.Vector3(),jointQ=new T.Quaternion();
  const handRays=['left','right'].map(side=>{const line=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-1)]),new T.LineBasicMaterial({color:0x9cf4db}));line.scale.z=3;line.visible=false;rig.add(line);return {side,line};});
@@ -40,12 +42,12 @@ export function createXR(view,api){
  }
  const vector=new T.Vector3(),originVector=new T.Vector3(),rotation=new T.Quaternion(),raycaster=new T.Raycaster(),hits=[];
  const validPose=pose=>pose?.transform&&['x','y','z'].every(k=>Number.isFinite(pose.transform.position[k]))&&['x','y','z','w'].every(k=>Number.isFinite(pose.transform.orientation[k]));
- function clearTracking(){for(const h of handRays)h.line.visible=false;aim=powerAim=null;lastHead=null;inputs.reset();pinches.reset();turn.reset();padTurner.reset();hover=null;jointMesh.count=0;trackedHands=trackedControllers=0;}
+ function clearTracking(){fieldGuide?.suspend();for(const h of handRays)h.line.visible=false;aim=powerAim=null;lastHead=null;inputs.reset();pinches.reset();turn.reset();padTurner.reset();hover=null;jointMesh.count=0;trackedHands=trackedControllers=0;}
  function wrapped(ctx,text,x,y,max,line=36){let row='';for(const word of String(text).split(/\s+/)){if(ctx.measureText(row+word).width>max){ctx.fillText(row,x,y);row='';y+=line;}row+=word+' ';}ctx.fillText(row,x,y);return y+line;}
  function paint(menu,items){
   const s=api.state();
   hi.clearRect(0,0,1024,256);hi.fillStyle='#fff0c6';hi.font='bold 39px sans-serif';hi.fillText(`HP ${Math.ceil(s.p.health)} / Shield ${Math.ceil(s.p.shield)} / Ammo ${s.p.ammo}`,24,55);
-  const goal=goalGuide(s);hi.font='32px sans-serif';wrapped(hi,goal?'NEXT: '+goal.name+' / '+goal.distance+' m / '+goal.level:'Explore the district',24,106,976,37);hi.font='29px sans-serif';hi.fillText('Y: FIELD ROTUNDA / Map, equipment and settings',24,238);ht.needsUpdate=true;
+  const goal=goalGuide(s);hi.font='32px sans-serif';wrapped(hi,goal?'NEXT: '+goal.name+' / '+goal.distance+' m / '+goal.level:'Explore the district',24,106,976,37);hi.font='29px sans-serif';hi.fillText('LOOK DOWN: live map / Y or Menu: help and sizes',24,238);ht.needsUpdate=true;
   if(!menu)return;ink.clearRect(0,0,1024,768);ink.fillStyle='#133846f8';ink.fillRect(0,0,1024,768);ink.strokeStyle='#c6b785';ink.lineWidth=4;ink.strokeRect(3,3,1018,762);ink.fillStyle='#ffe6b5';ink.font='bold 36px sans-serif';ink.fillText(menu.title.slice(0,45),34,55);ink.font='24px sans-serif';ink.fillStyle='#c8e1d6';wrapped(ink,menu.description.slice(0,330),34,98,952,31);
   if(menu.root?.id==='map-dialog')ink.drawImage(document.getElementById('map'),30,80,964,200);
   if(menu.root?.id==='field-dialog'&&document.getElementById('field-circuit')){ink.fillStyle='#12303d';ink.fillRect(24,70,976,210);ink.strokeStyle='#dfc382';ink.lineWidth=5;s.tactics.circuit.forEach((mask,i)=>{const x=380+(i%3)*64,y=76+Math.floor(i/3)*64;ink.fillStyle='#244e60';ink.fillRect(x,y,58,58);ink.beginPath();for(const [bit,dx,dy]of [[1,29,0],[2,58,29],[4,29,58],[8,0,29]])if(mask&bit){ink.moveTo(x+29,y+29);ink.lineTo(x+dx,y+dy);}ink.stroke();ink.fillStyle='#fff';ink.font='16px sans-serif';ink.fillText(String(i+1),x+3,y+54);});}
@@ -62,7 +64,7 @@ export function createXR(view,api){
   try{const supported=isSecureContext&&await navigator.xr?.isSessionSupported?.(kind);if(epoch!==supportEpoch)return;button.disabled=!supported;button.textContent=supported?'Enter '+name+' (preview)':name+' headset not available';}
   catch{if(epoch===supportEpoch)button.textContent='WebXR unavailable';}
  }
- function finish(){session=null;entering=false;head=null;handMode=false;suspended=false;clearTracking();ar.set(false);diorama.set(false,presentation.config,api.state());rotunda.reset();renderer.shadowMap.enabled=shadowBefore;scene.add(camera);camera.scale.setScalar(1);rig.position.set(0,0,0);rig.rotation.set(0,0,0);rig.scale.setScalar(1);hud.visible=panel.visible=jointMesh.visible=false;document.body.classList.remove('in-xr');exit.hidden=true;api.clear();api.pause();view.resize(innerWidth,innerHeight);presentation.refresh();checkSupport();}
+ function finish(){session=null;entering=false;head=null;handMode=false;suspended=false;clearTracking();ar.set(false);diorama.set(false,presentation.config,api.state());rotunda.reset();fieldGuide.reset();renderer.shadowMap.enabled=shadowBefore;scene.add(camera);camera.scale.setScalar(1);rig.position.set(0,0,0);rig.rotation.set(0,0,0);rig.scale.setScalar(1);hud.visible=panel.visible=jointMesh.visible=false;document.body.classList.remove('in-xr');exit.hidden=true;api.clear();api.pause();view.resize(innerWidth,innerHeight);presentation.refresh();checkSupport();}
  button.onclick=async()=>{
   if(entering||session)return;entering=true;button.disabled=true;api.clear();diorama.set(false,presentation.config,api.state());shadowBefore=renderer.shadowMap.enabled;
   try{
@@ -71,7 +73,7 @@ export function createXR(view,api){
    next.addEventListener('end',finish,{once:true});await renderer.xr.setSession(next);renderer.shadowMap.enabled=false;
    api.start();offsetYaw=api.state().p.yaw;rig.add(camera);camera.position.set(0,0,0);camera.quaternion.identity();camera.scale.setScalar(1);head=null;handMode=false;menuRoot=null;clearTracking();document.body.classList.add('in-xr');exit.hidden=false;
    diorama.set(sessionMode.startsWith('diorama-')||sessionMode==='first-person-ar',presentation.config,api.state());ar.set(false);
-   renderer.xr.getReferenceSpace()?.addEventListener?.('reset',()=>{placed=false;rotunda.reset();clearTracking();api.clear();api.pause();});
+   renderer.xr.getReferenceSpace()?.addEventListener?.('reset',()=>{placed=false;rotunda.reset();fieldGuide.reset();clearTracking();api.clear();api.pause();});
    next.addEventListener('visibilitychange',()=>{suspended=next.visibilityState!=='visible';if(suspended){api.pause();api.clear();clearTracking();}lastHead=null;});
    presentation.refresh();status.textContent='XR preview: tracked controllers play; hands point and pinch through menus. Open your hand before selecting. Physical Quest 3 QA pending.';
   }catch(error){const failed=session;session=null;try{await failed?.end();}catch{}finish();status.textContent='XR could not start: '+error.message+'. Desktop and controller play remain available.';}
@@ -103,6 +105,7 @@ export function createXR(view,api){
   lastHead={...head};if(diorama.active)diorama.follow(p);syncRig();
   const items=spatialPage(menu);
   rotunda.update({enabled:!!session,menu,head,frame,space,sources:sourceList,dt,items,hover});
+  fieldGuide.update({enabled:!!session,menu,head,config:rotunda.config,now:performance.now()});
   camera.updateWorldMatrix(true,true);
   // Window combat is stick-aimed. A visible controller laser or gun would lie
   // about shot direction; expose those only for actual pointing/VR actions.
@@ -123,5 +126,5 @@ export function createXR(view,api){
   if(diorama.active&&!diorama.cameraWindow&&!menu&&!p.rail&&!p.climb)controls.move=dioramaMove(controls.move,p.yaw,diorama.viewYaw);
   return controls;
  }
- return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt,{followAim:true});ar.update();},get guidedDioramaAim(){return rotunda.config.guidedAim},get cameraWindow(){return diorama.cameraWindow&&diorama.active},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.viewYaw},padTurn(axis){if(!diorama.active){offsetYaw+=padTurner.update(axis);syncRig();}},presentationStats:()=>({...diorama.stats(),firstPersonAR:{...ar.stats(),active:!!session&&diorama.cameraWindow,lifeSize:false,windowed:!!session&&diorama.cameraWindow,alpha:renderer.getClearAlpha()},windowControls:diorama.active?WINDOW_CONTROLS:null,workspace:rotunda.stats(),hudOpaqueBackground:false,hudBackgroundAlpha:hi.getImageData(0,0,1,1).data[3],uiHeadLocked:false,menuVisible:panel.visible,hudDocked:diorama.active&&hud.parent===rig,hudStage:hud.position.toArray(),menuStage:panel.position.toArray()}),reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();},stats:()=>({trackedHands,trackedControllers,handMode,windowPointerVisible:controllers.filter(i=>i.source&&i.line.visible).length,controllerBarrelsVisible:controllers.filter(i=>i.source&&i.barrel.visible).length,aimSource:diorama.active?'twin-stick':'tracked-ray',weaponAim:aim,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
+ return {frame,syncRig,end,present(s,dt,playing){if(!playing&&!session&&diorama.preview)diorama.set(false,presentation.config,s);diorama.update(s,dt,{followAim:true});ar.update();},get guidedDioramaAim(){return rotunda.config.guidedAim},get cameraWindow(){return diorama.cameraWindow&&diorama.active},get dioramaActive(){return diorama.active},get desktopDiorama(){return diorama.preview},get tableYaw(){return diorama.viewYaw},padTurn(axis){if(!diorama.active){offsetYaw+=padTurner.update(axis);syncRig();}},presentationStats:()=>({...diorama.stats(),firstPersonAR:{...ar.stats(),active:!!session&&diorama.cameraWindow,lifeSize:false,windowed:!!session&&diorama.cameraWindow,alpha:renderer.getClearAlpha()},windowControls:diorama.active?WINDOW_CONTROLS:null,workspace:rotunda.stats(),fieldGuide:fieldGuide.stats(),hudOpaqueBackground:false,hudBackgroundAlpha:hi.getImageData(0,0,1,1).data[3],uiHeadLocked:false,menuVisible:panel.visible,hudDocked:diorama.active&&hud.parent===rig,hudStage:hud.position.toArray(),menuStage:panel.position.toArray()}),reset(){inputs.reset();pinches.reset();turn.reset();padTurner.reset();},stats:()=>({trackedHands,trackedControllers,handMode,windowPointerVisible:controllers.filter(i=>i.source&&i.line.visible).length,controllerBarrelsVisible:controllers.filter(i=>i.source&&i.barrel.visible).length,aimSource:diorama.active?'twin-stick':'tracked-ray',weaponAim:aim,selections:selected,jointCount:jointMesh.count,handUIOnly:true,presentation:sessionMode,diorama:diorama.stats()}),get active(){return !!session},get powerAim(){return powerAim},get aim(){return aim},get supported(){return !button.disabled},get rig(){return rig}};
 }

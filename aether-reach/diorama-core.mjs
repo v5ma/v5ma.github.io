@@ -5,8 +5,9 @@ export const OPENINGS=Object.freeze(['both','top','front']);
 const finite=(v,f)=>Number.isFinite(v)?v:f,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function cleanDiorama(v={}){
  v=v&&typeof v==='object'?v:{};
- return {mode:PRESENTATIONS.includes(v.mode)?v.mode:'first-person-vr',opening:OPENINGS.includes(v.opening)?v.opening:'both',scale:clamp(finite(v.scale,.03),.02,.055),height:clamp(finite(v.height,.5),.35,1.15),yaw:finite(v.yaw,0)%(Math.PI*2)};
+ return {mode:PRESENTATIONS.includes(v.mode)?v.mode:'first-person-vr',opening:OPENINGS.includes(v.opening)?v.opening:'both',scale:clamp(finite(v.scale,.03),.015,.08),height:clamp(finite(v.height,.5),.35,1.15),boxHeight:clamp(finite(v.boxHeight,2.5),1,4),yaw:finite(v.yaw,0)%(Math.PI*2)};
 }
+export const dioramaHeight=v=>35*cleanDiorama(v).boxHeight;
 export function openingState(value){return {topOpen:value!=='front',frontOpen:value!=='top'};}
 export function setOpening(value,part,open){
  const state=openingState(value);if(part!=='top'&&part!=='front')return value;

@@ -169,6 +169,9 @@ def main():
         raw = subprocess.check_output(['gh', 'api', f"repos/{repo}/actions/artifacts/{selected['id']}/zip"])
         files, receipt = inspect_artifact(raw, selected, expected, head, report_name, minimum)
         selections[suite] = receipt
+        if suite == 'rotunda' and tuple(map(int, version.split('.'))) >= (0, 15, 1):
+            _, guide_receipt = inspect_artifact(raw, selected, expected, head, 'field-guide-browser.json', 24)
+            selections['field-guide'] = guide_receipt
         contents.update({suite + '/' + name: data for name, data in files.items()})
     # No evidence archive is written before every required suite validates.
     out = Path('/tmp/aether-release')

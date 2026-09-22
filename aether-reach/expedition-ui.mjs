@@ -19,7 +19,7 @@ export function installExpeditionUI(api){
  }
  function stock(){const s=api.state(),e=s.expedition;body.replaceChildren();let done=0;
   for(const t of TASKS){const complete=e.flags.includes(t.flag);if(complete)done++;const a=document.createElement('article');a.className=complete?'complete':e.tracked===t.id?'tracked':'';const title=document.createElement('h3');title.textContent=t.name;const p=document.createElement('p');p.textContent=t.description;const status=document.createElement('div');status.className='task-progress';status.textContent=progress(s,t);const b=document.createElement('button');b.dataset.track=t.id;b.textContent=complete?'COMPLETED - '+t.reward+' CREDITS':e.tracked===t.id?'TRACKING - '+t.reward+' CREDITS':'Track adventure - '+t.reward+' credits';b.disabled=complete;b.onclick=()=>{e.tracked=t.id;api.persist();stock();};a.append(title,p,status,b);body.append(a);}
-  $('expedition-summary').textContent=done+' / '+TASKS.length+' adventures complete. '+e.visited.length+' / '+EXP_DISTRICTS.length+' new districts explored. Rewards are earned once and saved on this device.';
+  $('expedition-summary').textContent=(api.notice?.()?.text?api.notice().text+' ':'')+done+' / '+TASKS.length+' adventures complete. '+e.visited.length+' / '+EXP_DISTRICTS.length+' new districts explored. Rewards are earned once and saved on this device.';
   const goal=expeditionGoal(s);$('expedition-route').textContent=goal?'Next tracked destination: '+goal.name+'. The map marks it with a gold diamond.':'';
  }
  function open(fromPause=false){if(!api.playing()||(api.paused()&&!fromPause))return;stock();api.show('expedition-dialog');}

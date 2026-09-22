@@ -1,7 +1,7 @@
 {
-  "version": "0.15.0",
-  "focus": "Field Rotunda: summonable in-scene workspace, controller status, guided third-person aim and visible shot feedback",
+  "version": "0.15.1",
+  "focus": "Field Guide: live room-floor map, real interaction feedback, two-second notices, tall resizable world window",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
-  "scope": "Owner playtest. Existing full expedition, save-v1, remaps and first-person controls preserved. The private hub, travel portals, engine migration and full desktop UI replacement are not included."
+  "scope": "Current expedition and saves retained. Software playtest; physical headset usability must be retested. No private hub, travel portals, historical content merge or engine migration."
 }
