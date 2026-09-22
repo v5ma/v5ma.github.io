@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-22",
+  "status": "website-published-and-public-gameplay-verified",
+  "build": "ranger-field-clarity-20260922.1",
+  "runtimeCommit": "d1a2218e7a2244fe3877a0a9061355c6c0b947c8",
+  "publicRoutes": ["https://v5ma.github.io/dino-atlas/","https://v5ma.github.io/dino-atlas/tidegate.html"],
+  "pages": {
+    "run":35751403964,
+    "deployJob":106828618491,
+    "commit":"cba5c1beee4263c75297ee2753e3277d02497fcd",
+    "result":"success",
+    "reconciliation":"The deployed descendant differs from the runtime commit only outside Dino. No Dino runtime was replaced."
+  },
+  "scopedRun":35750258792,
+  "sourceResults": {
+    "nodeTestsPassed":285,
+    "failed":0,
+    "skipped":0,
+    "javascriptSyntaxFiles":62,
+    "ownedFilesScannedForConflictMarkers":72,
+    "classic":{"floorFeedback":22,"spatialConsole":30,"portal":15,"express":24},
+    "tidegate":{"floorFeedback":22,"spatialConsole":29,"portal":15,"express":22},
+    "entry":{"classicLauncher":23,"groundedTrackedAndHandUi":22},
+    "capturedErrors":[]
+  },
+  "successfulPublicAttempt": {
+    "job":106839222425,
+    "result":"success",
+    "artifact":10708441054,
+    "artifactCreatedAt":"2026-09-22T16:43:25Z",
+    "artifactSha256":"ab235a1daee799d0269f840a0410f645d1dc78042842229b1107db16e74e23d1",
+    "independentlyDownloadedAndHashMatched":true,
+    "servedFilesMatched":74,
+    "servedFileSetEqualsExactSourceManifest":true,
+    "classicFloorFeedback":22,
+    "tidegateFloorFeedback":22,
+    "classicSpatialConsole":30,
+    "tidegateSpatialConsole":29,
+    "classicPortal":15,
+    "totalChecks":118,
+    "capturedErrors":[]
+  },
+  "firstPublicAttempt": {
+    "job":106832155972,
+    "result":"failure",
+    "successfulNewUiChecks":103,
+    "artifact":10707103810,
+    "archiveSha256":"0301074d1fc2ce9af2e6a9cfff64db3b017c20fa288d3d5e3275ce0c19c1aabd",
+    "failure":"Final retained Classic portal script hit the caught bootstrap fallback and then its 120-second readiness limit before assertions. The older error filter did not record the underlying caught exception.",
+    "cause":"Undetermined; the identical-source, identical-test rerun passed. Do not label a network/GPU/root cause as proven or universally fixed.",
+    "preservedRecord":"public-first-attempt-20260922.json",
+    "retryMethod":"One authorized rerun_workflow_job call. No code, criteria, input, timeout, save or gameplay-state changes to obtain the repeat result."
+  },
+  "archivalRelease": {
+    "tag":"dino-field-clarity-20260922.1",
+    "job":106841791367,
+    "result":"failure",
+    "reason":"GitHub release creation returned HTTP403 Resource not accessible by integration, despite successful evidence download and public validation.",
+    "tagReleaseRead":"404 Not Found after the failed creation",
+    "created":false,
+    "doesNotUndoWebsiteDeployment":true,
+    "permissionsChanged":false,
+    "scope":"No new workflow, alternate credential, permission change or repeated source deployment was used to work around the denied release action."
+  },
+  "independentRecovery": {
+    "sourceArtifact":10704816152,
+    "sourceArchiveSha256":"9da7d13ffcf1b963da0b14c83ea9f0ddd37777d576aacac4306424de4e15d9fe",
+    "sourceManifestHashesMatched":74,
+    "localSuiteRerunPassed":285,
+    "additionalSourceArtifacts":[10707036353,10705812057,10706101557],
+    "allDownloadedArchiveHashesMatched":true,
+    "publicReportsCheckedAgainstTheirAssertionCounts":true,
+    "publicFloorCapturesReviewed":["classic","tidegate"],
+    "localFullGameBrowserRun":false,
+    "note":"Local browser navigation is blocked; native full-game and public evidence comes from the hosted run. The local Canvas2D layout check is an explicitly labeled fixture."
+  },
+  "publicReportSha256": {
+    "feedback-evidence/classic-report.json":"7ef77e6a206f34fc3a09dff6dd1c0f05c710150370af9c8f1659102e924f3340",
+    "feedback-evidence/tidegate-report.json":"2b86a54c0be8ded9fd00977d26e1ca1509b0ebbb2f5b8605b91aad011444a439",
+    "spatial-evidence/classic-report.json":"47fe1b8e099094fa0ab85e4f3697329a81e5d432f9c4080f0a6aaf8cb51e7260",
+    "spatial-evidence/tidegate-report.json":"056a8fe8bdaf046bf644f8d40bb6a42dfb399179f21883cb34c8c42d205d8f9b",
+    "portal-evidence/classic-report.json":"692f83e78ee08d7e45cffa94584618d627556d4bd70c44a9dbb0f4e05d270d26"
+  },
+  "userFacingContract": {
+    "liveMap":"Persistent during ordinary XR play; white player and gold actual goal, with HERE interaction and current mission step.",
+    "temporaryMessages":"2 seconds in wall-clock time, final0.4 seconds fading; last12 retained in Help. Persistent goal/map/HERE do not time out.",
+    "boxHeightMeters":{"default":2,"minimum":0.6,"maximum":4},
+    "boxWidthMeters":{"minimum":0.8,"maximum":4.8},
+    "menuScale":{"minimum":0.55,"maximum":1.8},
+    "floorControls":["Map","What to do / controls","Menu / sizes"],
+    "sizes":"Menu, floor display and game portal have separate settings. Resizing preserves the displayed character center and real game coordinates.",
+    "guidance":"Read-only instructions reflect the selected device/profile; Active Quest grip interaction and LT/RT tool operation do not become legacy trigger driving."
+  },
+  "remaining": [
+    "Physical Quest/Xbox, actual hand poses, stereo/passthrough, seated reach, comfort, performance and human wayfinding are not verified by synthetic input or simulated viewpoints.",
+    "Some secondary field-utility text still mentions N/RB; primary HERE, Help and floor buttons use the current interface. Further copy consolidation remains.",
+    "Improve the old portal runner's caught-bootstrap and failed-request diagnostics in a subsequent scoped test update; retain the original failure.",
+    "Broader field-mission, art and place-mastery gates remain open."
+  ],
+  "physicalHardwareVerified":false,
+  "closeoutScope":"Documentation and evidence only. Live runtime, missions, rewards, saves, control profiles, world collision, mounted utilities, Express, vendor files and sibling games remain unchanged."
+}
