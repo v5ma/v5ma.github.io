@@ -1,55 +1,12 @@
-name: Theology one-shot Abrahamic inheritance atlas integration
+name: Theology Abrahamic inheritance atlas integration (completed)
+# Run 35673637178 generated all 60 dedicated pages after 11 atlas-specific contracts passed.
 on:
-  push:
-    branches: ['theology/abrahamic-inheritance-atlas-20260921']
-    paths:
-      - 'theology-wiki/comparative-religion/abrahamic-inheritance/**'
-      - '.github/workflows/theology-abrahamic-inheritance-integration.yml'
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  integrate:
-    if: github.repository == 'v5ma/v5ma.github.io' && github.ref == 'refs/heads/theology/abrahamic-inheritance-atlas-20260921'
+  completed:
+    if: ${{ false }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: write
-    env:
-      PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: theology/abrahamic-inheritance-atlas-20260921
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Read preservation base
-        run: git fetch --no-tags --depth=1 origin 18d83fa4b5aa2f4115d6c602af2bf9a51c06896a
-      - name: Generate sixty pages and durable parent links
-        run: |
-          set -o pipefail
-          mkdir -p theology-test-output/abrahamic-atlas
-          node theology-wiki/comparative-religion/abrahamic-inheritance/build.cjs
-          node theology-wiki/comparative-religion/abrahamic-inheritance/integrate.cjs
-          node theology-wiki/comparative-religion/build.cjs | tee theology-test-output/abrahamic-atlas/build.log
-          node --test theology-wiki/comparative-religion/abrahamic-inheritance/atlas.test.cjs | tee theology-test-output/abrahamic-atlas/contracts.log
-      - name: Commit only validated comparative-religion output
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add theology-wiki/comparative-religion/
-          if git diff --cached --name-only | grep -Ev '^theology-wiki/comparative-religion/'; then exit 1; fi
-          git diff --cached --quiet && exit 0
-          git commit -m 'Generate 60 linked Abrahamic inheritance pages and parent navigation'
-          git push origin HEAD:refs/heads/theology/abrahamic-inheritance-atlas-20260921
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: theology-abrahamic-inheritance-integration
-          path: |
-            theology-test-output/abrahamic-atlas/
-            theology-wiki/comparative-religion/abrahamic-inheritance/
-          if-no-files-found: error
+      - run: echo 'The September 21 Abrahamic inheritance atlas integration is complete. Later source changes require a new reviewed change.'
