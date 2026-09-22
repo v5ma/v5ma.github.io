@@ -1,0 +1,10 @@
+import * as T from './vendor/three.module.js';
+/* Glanceable live map copied from Rainward's authoritative field map. */
+export function createXRLiveMap(){
+ const canvas=document.createElement('canvas');canvas.width=700;canvas.height=700;const c=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
+ const mesh=new T.Mesh(new T.PlaneGeometry(.72,.72),new T.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthTest:false,depthWrite:false,side:T.DoubleSide}));mesh.renderOrder=9997;mesh.visible=false;const Y=new T.Vector3(0,1,0),X=new T.Vector3(1,0,0);let anchor=null,last=0;
+ function recenter(){anchor=null;}
+ function place(head){if(anchor||!head)return;const f=new T.Vector3(0,0,-1).applyQuaternion(head.orientation);f.y=0;if(f.lengthSq()<.001)f.set(0,0,-1);f.normalize();const yaw=Math.atan2(-f.x,-f.z),offset=new T.Vector3(-.48,.04,-.88).applyAxisAngle(Y,yaw);anchor={x:head.position.x+offset.x,y:.045,z:head.position.z+offset.z,yaw};}
+ function update(playing,head,drawMap,panelVisible=false){mesh.visible=!!playing&&!panelVisible&&!!head;if(!mesh.visible)return;place(head);if(!anchor)return;mesh.position.set(anchor.x,anchor.y,anchor.z);mesh.quaternion.setFromAxisAngle(Y,anchor.yaw).multiply(new T.Quaternion().setFromAxisAngle(X,-Math.PI/2));const now=performance.now();if(now-last<180)return;last=now;try{drawMap?.();const src=document.getElementById('map');if(!src)return;c.fillStyle='#13232a';c.fillRect(0,0,700,700);c.drawImage(src,25,25,650,604);const goal=document.getElementById('next-goal')?.textContent||'NEXT OBJECTIVE';c.fillStyle='#0e191dcc';c.fillRect(25,625,650,50);c.fillStyle='#f2e5bd';c.font='bold 19px sans-serif';c.fillText(('LIVE MAP / '+goal).slice(0,64),40,656);texture.needsUpdate=true;}catch{}}
+ return {mesh,update,recenter,stats:()=>({visible:mesh.visible,anchor:anchor?{...anchor}:null,placement:'floor-left',live:true}),dispose(){mesh.removeFromParent();mesh.geometry.dispose();mesh.material.dispose();texture.dispose();}};
+}
