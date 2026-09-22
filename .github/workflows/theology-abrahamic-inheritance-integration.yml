@@ -1,0 +1,12 @@
+name: Theology Abrahamic inheritance atlas integration (completed)
+# Initial generation: 35673637178. Link repair: 35674050887.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The September 21 Abrahamic inheritance atlas generation and link repair are complete. Later changes require a new reviewed change.'
