@@ -1,6 +1,20 @@
 import {watchState} from './watch.mjs';
 
 export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260});
+export const CAMPAIGN_SYSTEMS=Object.freeze([
+ {id:'market-speaker',label:'Market speaker loop',cases:Object.freeze(['predator','finale']),x:-20.5,y:0,z:-4.2,effect:'distract',radius:9,target:Object.freeze({x:-20.5,y:0,z:-2.7})},
+ {id:'court-lights',label:'Receiving-court work lights',cases:Object.freeze(['freeflow','finale']),x:4.8,y:0,z:6.2,effect:'stun',radius:5.5},
+ {id:'loft-brake',label:'Loading-hoist brake',cases:Object.freeze(['freeflow','finale']),x:10.2,y:4.4,z:-1.8,effect:'stun',radius:7}
+]);
+const INTERIOR_REVEALS=Object.freeze({
+ 'room-print':'Ada’s press logs show the outage arrived as timed maintenance commands, not a random failure.',
+ 'room-kitchen':'Bea’s kitchen timers lost power before the street lamps. Someone staged the blackout from inside the service network.',
+ 'room-store':'Tomas’s sort board repeats the same relay signature on deliveries that crossed the north quay.',
+ 'room-green':'Lin’s greenhouse controller shows the signal hopping through ordinary neighborhood equipment to hide its source.',
+ 'room-workshop':'Neri’s foundry recorder captures the final handoff: the bell-tower relay is rebroadcasting the forged maintenance sequence.',
+ 'room-water':'The canal service bed carries the same cable run beneath the ward. Ada now has a complete physical path back to the relay.',
+ 'room-report':'Ada pins the evidence together: whoever hijacked the ward expected every system to look like somebody else’s problem.'
+});
 const point=(id,label,x,y,z,kind='interact')=>({id,label,x,y,z,kind});
 export const CAMPAIGN_CASES=Object.freeze([
  {id:'flight',title:'Case 02: Rooftop Run',reward:150,summary:'Recover the cape rig, learn the service perches, then glide to a safe lower landing and reuse the familiar stair route.',steps:[
@@ -47,8 +61,8 @@ const patrols={
   {id:'final-1',role:'Watcher',home:[4,-3.5],route:[[4,-3.5],[8,-3.5]]},{id:'final-2',role:'Shield',home:[10,-3.5],route:[[10,-3.5],[14,-3.5]]},{id:'final-3',role:'Scout',home:[16,-2],route:[[16,-2],[18,-4]]}
  ]
 };
-function makeEnemy(e){return {...e,x:e.home[0],y:e.id.startsWith('final')?4.4:0,z:e.home[1],yaw:0,hp:e.role==='Brute'?5:3,phase:'patrol',timer:0,routeIndex:0,awareness:0,stun:0};}
-function runtimeFor(id){return {caseId:id,enemies:(patrols[id]||[]).map(makeEnemy),smoke:0,smokeCooldown:0,pulseCooldown:0,strikeCooldown:0,lunge:null,glideSeconds:0,glideLanded:false,takedowns:0,dropTakedowns:0,counters:0,bestCombo:0,combo:0,alertPeak:0,selected:'grapple',holsterDraws:0,guard:false,guardWindow:0};}
+function makeEnemy(e){return {...e,x:e.home[0],y:e.id.startsWith('final')?4.4:0,z:e.home[1],yaw:0,hp:e.role==='Brute'?5:3,phase:'patrol',timer:0,routeIndex:0,awareness:0,stun:0,distract:0,distractPoint:null};}
+function runtimeFor(id){return {caseId:id,enemies:(patrols[id]||[]).map(makeEnemy),smoke:0,smokeCooldown:0,pulseCooldown:0,strikeCooldown:0,lunge:null,glideSeconds:0,glideLanded:false,takedowns:0,dropTakedowns:0,counters:0,bestCombo:0,combo:0,alertPeak:0,selected:'grapple',holsterDraws:0,guard:false,guardWindow:0,focus:false,systemsUsed:[],systemUses:0};}
 export function campaignRuntime(s){const c=campaignState(s);let r=sessions.get(s);if(!r||r.caseId!==c.active){r=runtimeFor(c.active);sessions.set(s,r);}return r;}
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 const eye=s=>({x:s.x,y:s.y+1.3,z:s.z});
@@ -56,6 +70,25 @@ const visible=(s,e,api)=>api.lineClear(s,eye(s),{x:e.x,y:e.y+1,z:e.z});
 function enemyStepClear(s,e,x,z,api){const floor=api.support(s,x,z,e.y+.1);return !!floor&&Math.abs(api.floorHeight(floor,z)-e.y)<.4&&!api.blocked(s,x,e.y,z);}
 function behind(s,e){const to=Math.atan2(s.x-e.x,s.z-e.z),d=Math.atan2(Math.sin(to-e.yaw),Math.cos(to-e.yaw));return Math.abs(d)>2.15;}
 function close(s,t,api,r=1.9){return distance(s,t)<r&&api.lineClear(s,eye(s),{x:t.x,y:t.y+1,z:t.z});}
+function nearbySystem(s,m,r,api){
+ return CAMPAIGN_SYSTEMS.filter(n=>n.cases.includes(m.id)&&!r.systemsUsed.includes(n.id)&&distance(s,n)<2.5&&api.lineClear(s,eye(s),{x:n.x,y:n.y+1,z:n.z})).sort((a,b)=>distance(s,a)-distance(s,b))[0]||null;
+}
+function useSystem(s,m,r,node,api){
+ let affected=[];
+ if(node.effect==='distract'){
+  affected=r.enemies.filter(e=>e.hp>0).sort((a,b)=>distance(a,node.target)-distance(b,node.target)).slice(0,2);
+  if(!affected.length){api.say(s,'The '+node.label+' is ready, but no active patrol can hear it.');return true;}
+  for(const e of affected){e.distract=4.5;e.distractPoint={x:node.target.x,z:node.target.z};e.awareness=0;e.phase='investigate';}
+  api.say(s,node.label+': rerouted audio. '+affected.length+' patrol'+(affected.length===1?' is':'s are')+' investigating the false call.');
+ }else{
+  affected=r.enemies.filter(e=>e.hp>0&&distance(e,node)<=node.radius);
+  if(!affected.length){api.say(s,'The '+node.label+' is ready, but no sentry is inside its safe effect zone.');return true;}
+  for(const e of affected){e.stun=Math.max(e.stun,2.4);e.awareness=0;e.phase='stunned';}
+  api.say(s,node.label+': maintenance pulse fired. '+affected.length+' sentr'+(affected.length===1?'y is':'ies are')+' briefly staggered.');
+ }
+ r.systemsUsed.push(node.id);r.systemUses++;
+ return true;
+}
 function completeCase(s,m){const c=campaignState(s);if(!c.completed.includes(m.id)){c.completed.push(m.id);c.credits+=m.reward;}c.progress[m.id]=m.steps.length;c.active=null;return m.title+' complete. +'+m.reward+' Watch campaign credits.';}
 function next(s,text){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active);c.progress[m.id]=(c.progress[m.id]||0)+1;return c.progress[m.id]>=m.steps.length?completeCase(s,m):text+' Next: '+campaignTarget(s).label+'.';}
 export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),t=campaignTarget(s);if(!m||!t)return null;const r=campaignRuntime(s);t.kind=m.steps[c.progress[m.id]||0].kind;
@@ -65,13 +98,18 @@ export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASE
  if(!close(s,t,api,t.kind==='observe'?3:2.1))return null;
  if(t.kind==='observe')return next(s,'Patrol timing mapped from above.');
  if(t.kind==='vent')return next(s,'Service vent used. The route reconnects behind the market line.');
+ if(m.id==='finale'&&t.id==='finale-relay')return next(s,'The bell-tower relay accepts the repaired neighborhood key. The forged maintenance chain collapses and every district system comes back under local control.');
  if(t.kind==='relay')return next(s,'Relay disabled.');
  if(t.kind==='launch')return next(s,'Cape rig armed. Hop, glide west over the arcade, and release above the marked landing. Reuse the print-shop stairs to return.');
+ if(m.id==='interiors'&&INTERIOR_REVEALS[t.id])return next(s,INTERIOR_REVEALS[t.id]);
+ if(m.id==='finale'&&t.id==='finale-home')return next(s,'Mara and Sal hear the ward come back room by room. The routes you reopened are now the fastest way home.');
  return next(s,'Done.');
 }
 function strikeEnemy(s,e,r,api){if(e.role==='Shield'&&!e.stun&&!behind(s,e)){r.combo=0;api.say(s,'Shield held. Counter, pulse, or attack from behind.');return;}e.hp--;e.stun=.7;e.phase=e.hp?'stunned':'disabled';r.combo++;r.bestCombo=Math.max(r.bestCombo,r.combo);api.say(s,e.hp?'Strike landed. Keep the flow moving.':'Sentry disabled.');}
 function aimScore(s,e,ray){const o=ray?.origin||eye(s),d=ray?.direction||{x:-Math.sin(s.yaw||0),y:0,z:-Math.cos(s.yaw||0)},v={x:e.x-o.x,y:e.y+1-o.y,z:e.z-o.z},n=Math.hypot(v.x,v.y,v.z)*Math.hypot(d.x,d.y,d.z);return n?(v.x*d.x+v.y*d.y+v.z*d.z)/n:-1;}
 export function campaignAction(s,name,api,ray){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),kitUnlocked=watchState(s).stage===4||c.completed.length>0;const r=campaignRuntime(s);
+ if(name==='scan'&&m){r.focus=!r.focus;api.say(s,r.focus?'Neighborhood Focus on. City systems, patrol states and useful infrastructure are highlighted in the world.':'Neighborhood Focus off.');return true;}
+ if(name==='interact'&&m&&r.focus){const node=nearbySystem(s,m,r,api);if(node)return useSystem(s,m,r,node,api);}
  if(name.startsWith('holster-')&&kitUnlocked){const tool=name.slice(8);if(!['grapple','pulse','smoke','cape'].includes(tool))return false;r.selected=tool;r.holsterDraws++;api.say(s,tool==='cape'?'Cape rig ready.':'Drew '+tool+' from the body holster.');return true;}
  if(name==='tool-cycle'&&kitUnlocked){r.selected=['grapple','pulse','smoke','cape'][(['grapple','pulse','smoke','cape'].indexOf(r.selected)+1)%4];api.say(s,'Campaign tool: '+r.selected+'.');return true;}
  if(!m)return false;
@@ -88,7 +126,9 @@ export function advanceCampaign(s,input,dt,api){const c=campaignState(s),m=CAMPA
  if(input.glide&&campaignCanGlide(s)&&s.ride==='foot'){r.glideSeconds+=dt;if(s.y>1.0){s.vy=Math.max(s.vy-3.2*dt,-1.15);const speed=5.6;s.vx=-Math.sin(s.yaw)*speed;s.vz=-Math.cos(s.yaw)*speed;}}
  if(m.id==='flight'&&(c.progress.flight||0)===3&&r.glideSeconds>.25){const landing=m.steps.find(t=>t.id==='flight-land');if(Math.hypot(s.x-landing.x,s.z-landing.z)<2.5){const sf=api.support(s,s.x,s.z,s.y),ground=sf?api.floorHeight(sf,s.z):-99;if(Math.abs(s.y-ground)<.36&&Math.abs(s.y-landing.y)<.36&&s.vy<=0)r.glideLanded=true;}}
  if(!r.enemies.length)return false;
- let attacker=r.enemies.find(e=>e.phase==='windup'&&e.hp>0);for(const e of r.enemies){if(e.hp<=0)continue;e.stun=Math.max(0,e.stun-dt);e.timer+=dt;if(e.stun){e.phase='stunned';continue;}const dx=s.x-e.x,dz=s.z-e.z,d=Math.hypot(dx,dz),toPlayer=Math.atan2(dx,dz),facing=Math.cos(toPlayer-e.yaw),seen=d<8&&Math.abs(s.y-e.y)<1.3&&!r.smoke&&facing>.25&&visible(s,e,api);e.awareness=Math.max(0,Math.min(1.2,e.awareness+(seen?dt*1.2:-dt*.55)));r.alertPeak=Math.max(r.alertPeak,e.awareness);
+ let attacker=r.enemies.find(e=>e.phase==='windup'&&e.hp>0);for(const e of r.enemies){if(e.hp<=0)continue;e.stun=Math.max(0,e.stun-dt);e.timer+=dt;if(e.stun){e.phase='stunned';continue;}
+  if(e.distract>0&&e.distractPoint){e.distract=Math.max(0,e.distract-dt);const dx=e.distractPoint.x-e.x,dz=e.distractPoint.z-e.z,L=Math.hypot(dx,dz);if(L>.2){const step=Math.min(L,dt*1.05),x=e.x+dx/L*step,z=e.z+dz/L*step;if(enemyStepClear(s,e,x,z,api)){e.x=x;e.z=z;e.yaw=Math.atan2(dx,dz);}}e.awareness=0;e.phase=e.distract>0?'investigate':'search';continue;}
+  const dx=s.x-e.x,dz=s.z-e.z,d=Math.hypot(dx,dz),toPlayer=Math.atan2(dx,dz),facing=Math.cos(toPlayer-e.yaw),seen=d<8&&Math.abs(s.y-e.y)<1.3&&!r.smoke&&facing>.25&&visible(s,e,api);e.awareness=Math.max(0,Math.min(1.2,e.awareness+(seen?dt*1.2:-dt*.55)));r.alertPeak=Math.max(r.alertPeak,e.awareness);
   if(m.id==='predator'&&e.awareness<1){const p=e.route[e.routeIndex%e.route.length],px=p[0]-e.x,pz=p[1]-e.z,L=Math.hypot(px,pz);if(L<.18)e.routeIndex++;else{const step=Math.min(L,dt*.7);const x=e.x+px/L*step,z=e.z+pz/L*step;if(enemyStepClear(s,e,x,z,api)){e.x=x;e.z=z;}else e.routeIndex++;e.yaw=Math.atan2(px,pz);}e.phase=e.awareness>.35?'suspicious':'patrol';continue;}
   if(e.phase==='windup'){if(input.guard&&r.guardWindow>0&&e.timer>.22&&e.timer<1.05){e.phase='stunned';e.stun=1.45;e.timer=0;r.guardWindow=0;r.counters++;r.combo++;r.bestCombo=Math.max(r.bestCombo,r.combo);api.say(s,'Counter opening. Lunge or strike the next target.');continue;}if(e.timer>=1.05){e.phase='recover';e.timer=0;if(d<2.1&&!input.guard){r.combo=0;api.say(s,'Hit absorbed by the suit. Break the line or counter the blue cue.');}continue;}}
   if(e.phase==='recover'&&e.timer<.75)continue;if(d>1.7){const step=Math.min(dt*(e.role==='Brute'?.85:1.25),d-1.5),nx=e.x+dx/d*step,nz=e.z+dz/d*step;if(enemyStepClear(s,e,nx,nz,api)){e.x=nx;e.z=nz;e.yaw=toPlayer;}e.phase='pursue';}else if(!attacker){e.phase='windup';e.timer=0;attacker=e;}
@@ -96,4 +136,4 @@ export function advanceCampaign(s,input,dt,api){const c=campaignState(s),m=CAMPA
  if((m.id==='predator'||m.id==='freeflow'||m.id==='finale')&&r.enemies.length&&r.enemies.every(e=>e.hp<=0)){const n=c.progress[m.id]||0,t=m.steps[n];if(t&&(t.kind==='clear'||t.kind==='combat'||t.kind==='choice')){c.progress[m.id]=n+1;if(m.id==='freeflow'&&n===1){r.enemies=[{id:'loft-a',role:'Scout',home:[12,-1],route:[[12,-1],[16,-1]]},{id:'loft-b',role:'Shield',home:[16,1],route:[[16,1],[12,1]]},{id:'loft-c',role:'Brute',home:[18,-2],route:[[18,-2],[15,-3]]}].map(e=>({...makeEnemy(e),y:4.4}));}else r.enemies=[];api.say(s,'Encounter cleared. '+(campaignTarget(s)?.label||'Return to your contact.'));}}
  return false;
 }
-export function campaignInspect(s){const c=campaignState(s),r=campaignRuntime(s);return {progress:{...c},selected:r.selected,glideSeconds:r.glideSeconds,glideLanded:r.glideLanded,takedowns:r.takedowns,dropTakedowns:r.dropTakedowns,counters:r.counters,bestCombo:r.bestCombo,alertPeak:r.alertPeak,holsterDraws:r.holsterDraws,enemies:r.enemies.map(e=>({...e,route:e.route.map(p=>[...p])}))};}
+export function campaignInspect(s){const c=campaignState(s),r=campaignRuntime(s);return {progress:{...c},selected:r.selected,focus:r.focus,systemsUsed:[...r.systemsUsed],systemUses:r.systemUses,activeSystems:CAMPAIGN_SYSTEMS.filter(n=>n.cases.includes(c.active)).map(n=>n.id),glideSeconds:r.glideSeconds,glideLanded:r.glideLanded,takedowns:r.takedowns,dropTakedowns:r.dropTakedowns,counters:r.counters,bestCombo:r.bestCombo,alertPeak:r.alertPeak,holsterDraws:r.holsterDraws,enemies:r.enemies.map(e=>({...e,distractPoint:e.distractPoint?{...e.distractPoint}:null,route:e.route.map(p=>[...p])}))};}

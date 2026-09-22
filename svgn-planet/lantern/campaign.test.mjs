@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {fresh,serialize,parse,tick,action,lineClear,blocked,support,floorHeight,surfaces} from './core.mjs';
 import {trackStory,storyTarget} from './city.mjs';
-import {campaignState,campaignRuntime,campaignCanGlide,parseCampaign,CAMPAIGN_CASES} from './campaign.mjs';
+import {campaignState,campaignRuntime,campaignCanGlide,parseCampaign,CAMPAIGN_CASES,CAMPAIGN_SYSTEMS} from './campaign.mjs';
 const idle=(s,n=60,input={})=>{for(let i=0;i<n;i++)tick(s,input,1/60);};
 function seed(){const s=fresh();s.watch={v:1,tracking:false,stage:4,route:'roof',credits:180};return s;}
 function unlock(s,...ids){s.campaign.completed=[...ids];s.campaign.credits=ids.reduce((n,id)=>n+({flight:150,predator:180,interiors:160,freeflow:200,finale:260}[id]||0),0);for(const id of ids){const c=CAMPAIGN_CASES.find(x=>x.id===id);s.campaign.progress[id]=c.steps.length;}}
@@ -18,3 +18,8 @@ test('All campaign cases have distinct purposes and real target sequences',()=>{
 test('Freeflow counters require a freshly raised guard, not indefinite holding',()=>{const s=seed();unlock(s,'flight','predator','interiors');trackStory(s,'campaign:freeflow');campaignState(s).progress.freeflow=1;const r=campaignRuntime(s),e=r.enemies[0];s.x=e.x;s.y=e.y;s.z=e.z+1.4;idle(s,180,{guard:true});const n=r.counters;idle(s,180,{guard:true});assert.equal(r.counters,n);tick(s,{guard:false},1/60);for(let i=0;i<400&&r.counters===n;i++){const cue=e.phase==='windup'&&e.timer>.3;tick(s,{guard:cue},1/60);}assert.ok(r.counters>n);});
 
 test('A walking arrival cannot bypass the required cape glide',()=>{const s=seed();trackStory(s,'campaign:flight');campaignState(s).progress.flight=3;const t=storyTarget(s);s.x=t.x;s.y=t.y;s.z=t.z;action(s,'interact');assert.equal(s.campaign.progress.flight,3);assert.equal(s.campaign.credits,0);});
+
+
+test('Neighborhood Focus exposes systemic opportunities without changing durable save identity',()=>{const s=seed();unlock(s,'flight');trackStory(s,'campaign:predator');campaignState(s).progress.predator=2;const r=campaignRuntime(s),e=r.enemies.find(x=>x.id==='quiet-3'),hp=e.hp;s.x=-20.5;s.y=0;s.z=-4.2;action(s,'scan');assert.equal(r.focus,true);action(s,'interact');assert.ok(r.systemsUsed.includes('market-speaker'));assert.ok(e.distract>0);assert.equal(e.hp,hp);assert.equal(r.systemUses,1);const durable=JSON.stringify(serialize(s));assert.ok(!durable.includes('systemsUsed'));assert.ok(!durable.includes('systemUses'));assert.ok(CAMPAIGN_SYSTEMS.some(n=>n.id==='market-speaker'));});
+test('Receiving-court infrastructure can create a nonlethal freeflow opening',()=>{const s=seed();unlock(s,'flight','predator','interiors');trackStory(s,'campaign:freeflow');campaignState(s).progress.freeflow=1;const r=campaignRuntime(s),before=r.enemies.map(e=>e.hp);s.x=4.8;s.y=0;s.z=6.2;action(s,'scan');action(s,'interact');assert.ok(r.systemsUsed.includes('court-lights'));assert.ok(r.enemies.some(e=>e.stun>=2));assert.deepEqual(r.enemies.map(e=>e.hp),before);});
+test('Rooms of the Ward now reveals an authored investigation thread',()=>{const s=seed();unlock(s,'flight','predator');trackStory(s,'campaign:interiors');near(s,storyTarget(s));assert.match(s.message,/press logs/i);assert.equal(campaignState(s).progress.interiors,1);});

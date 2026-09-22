@@ -4,6 +4,10 @@ This campaign expands the existing courier/social neighborhood instead of replac
 
 The campaign unlocks after Signal Hijack. The player keeps all delivery-loop shortcuts, resident stories, interiors, Watch credits and chapter progress. Campaign rewards are a separate exactly-once ledger inside the existing validated chapter save.
 
+Neighborhood Focus is now a transient investigation layer inside active campaign cases. The existing scan control toggles world-space highlights for useful infrastructure rather than opening another menu. Highlighted systems are physical neighborhood equipment, not abstract hacking icons: the market speaker can pull patrol attention toward a false call, while the receiving-court lights and loading-hoist brake can briefly stagger nearby service sentries without damaging them. Each opportunity is bounded to the relevant encounter and resets with the transient encounter runtime; no save key, reward ledger or resident state changes.
+
+Rooms of the Ward now carries one continuous evidence thread through Ada's press logs, Bea's kitchen timers, Tomas's sort board, Lin's greenhouse controller, Neri's foundry recorder and the canal cable run. These discoveries build toward the bell-tower relay in Last Light, so the interiors serve story and investigation rather than functioning as a checklist of rooms.
+
 Case 02, Rooftop Run, teaches the cape rig as traversal. The player meets Sal, recovers the folded rig on the print terrace, reaches the loft launch rail and glides back toward a familiar terrace. The cape remains available afterward. Xbox holds LB+RB after unlock; XR uses a low two-hand grip-and-spread gesture. The gesture supplements rather than replaces stick movement and direct buttons. Real-device comfort remains open.
 
 Case 03, Quiet Circuit, is the predator-stealth showcase. A roof overlook reveals three service-sentry patrols. The player can use height, service circulation, smoke and behind/drop takedowns, then cross a market service vent and disable the greenhouse relay. Patrol awareness, search, pursuit and return-to-route are explicit small state machines. Residents are never attack targets.
