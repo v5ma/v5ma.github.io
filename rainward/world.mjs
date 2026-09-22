@@ -1,3 +1,4 @@
+import {applyReclaimedPlaces} from './reclaimed-places.mjs';
 /* Original fictional level and game collision geometry. */
 import {intersectHeightfield} from './terrain-ray.mjs';
 import {applyMeridianRelief,meridianHeight} from './meridian-relief.mjs';
@@ -55,6 +56,7 @@ export const PATROLS=[
 const DISTRICT={id:'district',tasks:LEGACY_TASKS.district,title:'The Floodgate',subtitle:'CHAPTER 01 / LARCH WARD',bounds:{...BOUNDS},start:{...START},obstacles:OBSTACLES.map(o=>({...o})),grass:GRASS.map(o=>({...o})),items:ITEMS.map(o=>({...o})),shelters:SHELTERS.map(o=>({...o})),exit:{...EXIT},patrols:PATROLS.map(o=>({...o})),water:[],zones:[],objectiveNames:{cell:'Signal battery',crank:'Gate spindle'}};
 applyFloodgateRecut(DISTRICT);applyFreightCut(DISTRICT);applyMeridianRelief(MERIDIAN);
 export const LEVELS=Object.freeze({district:DISTRICT,conservatory:{...CONSERVATORY,tasks:LEGACY_TASKS.conservatory},terminus:{...TERMINUS,tasks:LEGACY_TASKS.terminus},meridian:MERIDIAN,breakwater:BREAKWATER,whiteout:WHITEOUT,natatorium:NATATORIUM});
+for(const id of ['district','terminus'])applyReclaimedPlaces(LEVELS[id]);
 // Each expedition has a small, one-time survivor cache in the open start area.
 for(const d of Object.values(LEVELS)){d.items.push({id:d.id+'-survival-cache',x:d.start.x+3,z:d.start.z-4,type:'supplies',label:'Survivor cache / rifle cartridges and '+(d.id==='whiteout'?'blade':'club'),rifleRounds:8,meleeWeapon:d.id==='whiteout'?'blade':'club'});}
 OBSTACLES.splice(0,OBSTACLES.length,...DISTRICT.obstacles.map(o=>({...o})));GRASS.splice(0,GRASS.length,...DISTRICT.grass.map(g=>({...g})));

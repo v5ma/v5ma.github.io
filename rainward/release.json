@@ -1,6 +1,6 @@
 {
   "version": "0.16.4",
-  "build": "rainward-glance-map-tall-diorama-20260922",
+  "build": "rainward-reclaimed-places-20260922",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
@@ -10,6 +10,10 @@
     "Make the default diorama shell much taller and add saved controls for physically larger or smaller diorama boxes",
     "Keep separate character zoom controls and expose quick menu larger/smaller actions in the spatial pause interface",
     "Preserve v0.16.3 character presentation, reconciled motion, fast running, saves, remaps, weapon/scope alignment and all seven expeditions",
-    "Keep acquired clues nonblocking during interaction: record them immediately, show only a two-second floor confirmation, and leave full text available on demand"
+    "Keep acquired clues nonblocking during interaction: record them immediately, show only a two-second floor confirmation, and leave full text available on demand",
+    "Replace the Floodgate quay solid ruin with interconnected pump and evacuation rooms, observation sill, hard-cover recovery and contrasting exposed approaches",
+    "Make existing Terminus dispatch and workshop radio interactions open real shared-collision escape routes; retain the original puzzle, required objectives and finite rewards",
+    "Add original flood, evacuation and interrupted-repair scene details through the existing environment renderer without replacing characters or XR",
+    "Retain all seven mission contracts, saves, items, patrols, task IDs and resource quantities; no required new task or forced combat"
   ]
 }

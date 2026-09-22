@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir -p test-output
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
+          node rainward/tests/reclaimed-places-preflight.mjs > test-output/reclaimed-places-model-missions.json
           python -m compileall -q rainward/tests
           python rainward/tools/build-production-plan.py
           git diff --exit-code -- rainward/AAA_CHECKLIST.md
@@ -129,5 +130,46 @@ jobs:
         if: always()
         with:
           name: rainward-reconciled-motion
+          path: test-output/
+          retention-days: 14
+  places:
+    needs: models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [district, terminus]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Normal-start living-enemy missions through the new routes
+        env:
+          PLACES_CHAPTER: ${{ matrix.chapter }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-places-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          timeout 960 python -u rainward/tests/places-browser.py
+      - name: Preserve actual source, route captures and failures
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-reclaimed-places-${{ matrix.chapter }}
           path: test-output/
           retention-days: 14

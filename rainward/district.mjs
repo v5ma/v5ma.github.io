@@ -1,12 +1,13 @@
+import {createReclaimedPlacesArt} from './reclaimed-places-art.mjs';
 import {streetVehicle,streetTree} from './prop-kit.mjs';
 import * as T from './vendor/three.module.js';
-import {OBSTACLES,GRASS,SHELTERS} from './world.mjs';
+import {CURRENT,OBSTACLES,GRASS,SHELTERS} from './world.mjs';
 import {rnd,colors} from './artkit.mjs';
 export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,buckets}=A;
  add('box',0,-.2,-7,73,.4,87,0x5c6657,'ground');add('box',0,.01,-7,24,.04,87,colors.road,'paving');
  for(let z=-46;z<33;z+=3){add('box',-12.5,.04,z,1,.08,2.9,0x738078);add('box',12.5,.04,z,1,.08,2.9,0x738078);if(z<10&&z>-35)add('box',.1,.039,z,.13,.014,1.5,0xaeb398,'paint');}
  for(let i=0;i<42;i++){const x=(rnd(i+11)-.5)*50,z=-46+rnd(i+97)*77;const p=new T.Mesh(new T.CircleGeometry(1,18),new T.MeshStandardMaterial({color:0x697e78,roughness:.13,metalness:.6,transparent:true,opacity:.4}));p.rotation.x=-Math.PI/2;p.scale.set(1+rnd(i+2)*3,.35+rnd(i+9)*1.2,1);p.position.set(x,.04,z);scene.add(p);}
- for(const o of OBSTACLES){if(o.openOnTask)continue;
+ for(const o of OBSTACLES){if(o.openOnTask||o.placeArt)continue;
   const tint=o.kind==='brick'?colors.brick:o.kind==='planter'||o.kind==='fountain'?0x65796a:colors.wall;
   if(['bus','truck','car'].includes(o.kind)){streetVehicle(A,o);continue;}
   add('box',o.x,o.bottom+o.h/2,o.z,o.w,o.h,o.d,tint,o.kind==='brick'?'brick':'stone');
@@ -32,6 +33,7 @@ export function buildDistrict(scene,A){const {add,mesh,ivy,label,mat,geos,mats,b
  for(const [i,o]of OBSTACLES.filter(o=>o.kind==='planter').entries())streetTree(A,o.x,o.bottom+o.h,o.z,7+i,77+i*11);
  for(let i=0;i<12;i++)streetTree(A,(i%2?1:-1)*(38+rnd(i)*4),0,-44+Math.floor(i/2)*14,9+rnd(i+16)*5,i*41);
  for(let i=0;i<180;i++){const x=(rnd(i+79)-.5)*62,z=-47+rnd(i+15)*76,s=.1+rnd(i+97)*.22;add('box',x,.06,z,s,.08,s*.7,[0x909280,0x404d46,0x767660][i%3],'stone',0,rnd(i)*6,0);}
+ createReclaimedPlacesArt(scene,A,CURRENT);
  for(const {geo,mat:m,items} of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=geo!==geos.plane&&geo!==geos.blade;inst.userData.windFoliage=geo===geos.blade||geo===geos.reclaimedLeaf||[...A.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.receiveShadow=true;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of mats)if(key.endsWith(':grass')){m.side=T.DoubleSide;m.roughness=1;}
 }

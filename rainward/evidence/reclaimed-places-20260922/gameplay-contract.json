@@ -1,0 +1,77 @@
+{
+  "source": "5bb879e6533903a63e8d70ffc6f94eba77318b87",
+  "artifactSHA256": "79c57c736f508883c73e31f203ec4bdfa09a904103ecca60b3df09346cce3888",
+  "purpose": "Immutable gameplay contracts copied from the downloaded current-source archive before the layout edit. Geometry is deliberately revised; resources and progression are not.",
+  "levels": {
+    "district": {
+      "bounds": "524615e97366e0fe5d1b2a5fe6b73acc96669bc8e3b422e810c6fed9e1cf0e26",
+      "start": "89efc0a85e20fe003054ffcf45503208aa16aacf1afe60cd04a1d10d77448243",
+      "exit": "f85a212884fb226cab24c91b67cdf5e947d35204f4fec9d921c83dd99dd4be6d",
+      "shelters": "976e5ce29ccdaf61aa0a128fb8c486def29c3982f4c6e62be1fee15ecdd959ad",
+      "items": "0a6a79d4d3c33642eb6a2139c8921b13731ad289428ab72888ce3d3953bb9f55",
+      "patrols": "d7324ea34f6eb8b191f36d63dbb7ffeb8165b32f94684cdb935c2e55cefd230c",
+      "tasks": "1b4291ced059dc74aa46d4cb3734821884b568b8e902a3af488146f6737a22ea"
+    },
+    "conservatory": {
+      "bounds": "1eb5e22e9a050f33a2f2b05b5c4aeb835c2248748921a5fab3924839600cf9db",
+      "start": "834607c75fb865fb9da2063ed388e45744dd2b2467eecd025afaa2197964252b",
+      "exit": "4d8c1ff5e7275c6c2be3d2cfa215001277560cd79a15cdece7fef6b7797e24ad",
+      "shelters": "05158420c55f7ca884b8434416a8e47cc0330ee6592be994e91d0f87585b77af",
+      "items": "08c37feb91005ca50dbc70090d336ef4e370015bee3b9c84c0c37721675b88be",
+      "patrols": "c1c81a99287ca25e22811ba689af81897d77430a8a24248b3d0dd41dfaa5a328",
+      "puzzle": "181f28d9f989c57c40a1d18b331c304adcaf50aadf78210c2648994a922ea1f6",
+      "tasks": "9548a9a1c9ec68876a4b11958c43380378c07cb70cfb39ac4d1636ff72fe52f4"
+    },
+    "terminus": {
+      "bounds": "8e7f19bae99b92670f15addd6c830fd218f6f6575df2a9a35126911ba7d32391",
+      "start": "e9167f0d10242dd90efaa76cd9791334a8aa169d9176069593453e66317961cd",
+      "exit": "dae1bad70e1cc10a1bdcba5a668c6e4f6dd67be72cdc496fc6d1f9e5131022f3",
+      "shelters": "f88896fd70ee9286cfe1ffc9be7f20f547f3fdbde755748d44d06de4d64ff2b4",
+      "items": "0597af174ad167b1c4ee27d5bcc2bf4ec5eacfbc42de034849ff3c5eac70014c",
+      "patrols": "eaddea8c7fc270a36d09f9986a15aa0ef53626e6b84a83a3d4041891c06b8327",
+      "puzzle": "a5df77c3a942ebab936e2f8f271f6665b2219ec3683cc3b61578965e55ae251b",
+      "tasks": "d8cb0d6211a3469b4186eba7603e307273b8388fe06f92f7ef2a05874b474b0a"
+    },
+    "meridian": {
+      "bounds": "cfd18434dac558d7a1f03f22a4fe37ad9ddb4950530dc52e53b3368625f8dfa6",
+      "start": "adcea7fe6e0d8c4df21813ee4b1cc64ef0c91e60f2cd37d88554dc7b7b156c85",
+      "exit": "21db047405fde97edd7fc6fad38e167e1b2a8e807f91db4255b4fdd18b48f63e",
+      "shelters": "f8d8bae6dc3efdc335dbdab18085fa24dc036cd9f86fde639ae4f0caa7d38555",
+      "items": "6f42921dce734cf091af00a377282cbfb1948dda561ab8c9b192fdb7054d0b90",
+      "patrols": "98de720581a2fa41b9268ffea4d9c1dab8ae534aed534be98819b3305ce5c40a",
+      "puzzle": "626477dba404d422be450be015a61781dff9a2f9a46e306c151d5161dea44f88",
+      "tasks": "5335678c2597262ac0c4320960a81ca9c081b056d7e6ef4d50165a000ebb8217"
+    },
+    "breakwater": {
+      "bounds": "7d50f54dce77c1c6edb6864a76db3574f5272e2b5ca81bdfbc8dfc1f16cf0353",
+      "start": "a96227a34d50db1488933e9c801b294b1fa0ea6df073a9c8b6b1de382e9b7278",
+      "exit": "838ade1065c363a8d298c95f2ea5eab3f069e8d9118339bed7c55414733a34ac",
+      "shelters": "d574eb3daeed3c4d7a6f7e57de54e8ab74289e63f07dd89c5b20f760e59e5a67",
+      "items": "223f3260c0cdb11e635f7e28c92d7adf12b69e86fba2860cd02dcd20a8a440dd",
+      "patrols": "89ffb0ba16917cc6795fcbdbe309c24688a682bab455226a3076de289dd9fde3",
+      "puzzle": "ad4f1de1b156409dae52b3b5e25de2fc1cc2d2cb6aa9840754b39da6f781fde5",
+      "tasks": "87599d44b19b861c33f66f46c0ae03a5d7bd489cfb0df779355f28c3ce3a0ea9"
+    },
+    "whiteout": {
+      "bounds": "f168c8089736eee789f3b787d7c67ef534fb8bdaf24b50eef9fbbf7a65d8ca5d",
+      "start": "cfffd82e45d36ccddff92a706bbf5847f11d5634c28787bb252fc96850be1842",
+      "exit": "b94ae098bd9b57a1531bdfea7d28a825e836f199ecbe45713bfe66fd1ef89bef",
+      "shelters": "61833c4e573dcc4b5ff7540574b7c5cdd8e9f8eee91e62badf756982a532767f",
+      "items": "73797d7108de515fcacc78ab6ef5017f489270f7752f44fde50009407a42dd9c",
+      "patrols": "092239323d34fee5fb784aff4637981123422f8c57384d59e363bb994bcedd3d",
+      "puzzle": "576ffd68f016051154477c833d9ec9fa32c9c6820c890ddc35345eea602fe4e5",
+      "tasks": "fbccb89566c264d59ebe226a6172f4c4430fde0ec9094e93e444395f26143810"
+    },
+    "natatorium": {
+      "bounds": "57b46ec7728a55528eb5c50f8c725f66ebd744e1edc080ab7b4ccd9e2c05d7be",
+      "start": "834607c75fb865fb9da2063ed388e45744dd2b2467eecd025afaa2197964252b",
+      "exit": "8e1a2c2d0b009d92d8adf52d7f5360505d990271182c882d798612f95bb04ce2",
+      "shelters": "72da34f0fd263d2e0e822d382782efb0c59665887d94e3e6f53c829325929712",
+      "items": "d5e87cc908aab738920c5c2cb09b4cd1798e75aacf1b7f4acd1979dbf741cfc5",
+      "patrols": "f06efb993c3e4bad470f5c6abfbb978db63cf2b26547cfe7bf22dbbeefd92a65",
+      "puzzle": "f8c5b405064a74b9a9481dfe3f8717f051de7e1d635126d3afb3153250973242",
+      "tasks": "5fe1e6048445e6ff1333ad06bf9a75ca08b90e143f6c21e36f0ab29b6c8d5447"
+    }
+  },
+  "encoding": "SHA-256 of JSON.stringify of each field. Task hashes include only id,x,z,requires,reward,required,kind in that order."
+}

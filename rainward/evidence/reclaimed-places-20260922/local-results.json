@@ -1,0 +1,149 @@
+{
+  "baselineCommit": "5bb879e6533903a63e8d70ffc6f94eba77318b87",
+  "build": "rainward-reclaimed-places-20260922",
+  "localFullSuite": {
+    "tests": 461,
+    "passed": 461,
+    "failed": 0,
+    "command": "node --test rainward/tests/*.test.mjs",
+    "sha256": "74bcdbdbec755976d4a63478a922ca4eeb9b6243ec5a948c45cd267963e18b79"
+  },
+  "continuousModelMissions": [
+    {
+      "chapter": "district",
+      "startDelay": 0,
+      "decisionDelay": 0.4,
+      "status": "won",
+      "health": 87,
+      "livingEnemies": 5,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 5,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 5,
+        "seconds": 154.2500000000149
+      }
+    },
+    {
+      "chapter": "district",
+      "startDelay": 5,
+      "decisionDelay": 0.4,
+      "status": "won",
+      "health": 66,
+      "livingEnemies": 5,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 5,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 4,
+        "seconds": 162.4666666666881
+      }
+    },
+    {
+      "chapter": "district",
+      "startDelay": 10,
+      "decisionDelay": 0.4,
+      "status": "won",
+      "health": 91,
+      "livingEnemies": 5,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 3,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 3,
+        "seconds": 167.46666666669208
+      }
+    },
+    {
+      "chapter": "terminus",
+      "decisionDelay": 0.15,
+      "status": "won",
+      "health": 47,
+      "livingEnemies": 4,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 1,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 1,
+        "seconds": 98.74999999999568
+      }
+    },
+    {
+      "chapter": "terminus",
+      "decisionDelay": 0.4,
+      "status": "won",
+      "health": 89,
+      "livingEnemies": 4,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 1,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 1,
+        "seconds": 105.71666666666195
+      }
+    },
+    {
+      "chapter": "terminus",
+      "decisionDelay": 0.8,
+      "status": "won",
+      "health": 51,
+      "livingEnemies": 4,
+      "stats": {
+        "melee": 0,
+        "shots": 0,
+        "alerts": 1,
+        "takedowns": 0,
+        "hits": 0,
+        "bottles": 0,
+        "escapes": 1,
+        "seconds": 116.34999999999468
+      }
+    }
+  ],
+  "modelMissionTraceSHA256": "152dd470eb952761b2c69976513bee656aae6dbb763e02188839bfbd6d8e7aae",
+  "scope": "Full suite includes explicit geometry/restore/Three fixtures; continuous missions separately use ordinary model actions and finite earned resources with synthetic read-only steering. No native browser, physical hardware, visual-quality or human pacing claim.",
+  "localWebGL": {
+    "browser": "144.0.7559.96",
+    "scope": "Blank-page WebGL2 availability check; not game rendering or device acceptance",
+    "webgl2": false
+  },
+  "retainedFailures": [
+    {
+      "kind": "new targeted geometry tests",
+      "passed": 14,
+      "failed": 2,
+      "sha256": "97b1a04236cde18ec03855845599f16353ea3344fc0f1fd31a5b00ab499a097c",
+      "correction": "Shorten the outer station return rack from 4.4 to 3.2 metres to clear the actual route. Fix the test to inspect active OBSTACLES gate state rather than the immutable chapter template."
+    },
+    {
+      "kind": "first complete suite after art integration",
+      "passed": 459,
+      "failed": 1,
+      "sha256": "2d1ac388cb57cc1c685c6a1f7e7812b635129b645f50a6dd86b364c720c7313a",
+      "correction": "The historical district renderer hash intentionally changes for the new level. Keep the old receipt and explicitly repin that one file in render-revision.json; leave all other protected source/asset hashes intact."
+    }
+  ],
+  "runtimeChanges": [
+    "world.mjs",
+    "district.mjs",
+    "terminus-art.mjs",
+    "reclaimed-places.mjs",
+    "reclaimed-places-art.mjs"
+  ],
+  "unchanged": "All XR and input modules, character and animation modules, asset bytes, chapter mission contracts and production task statuses/reviewers. Canonical continuation links this pass without changing approval."
+}
