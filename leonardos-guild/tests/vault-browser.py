@@ -51,7 +51,7 @@ with sync_playwright() as p:
      a=(math.atan2(dx,dz)-s['yaw']+math.pi)%(math.pi*2)-math.pi
      keys((['w'] if abs(a)<.5 else [])+(['a' if a>0 else 'd'] if abs(a)>.06 else []));frames(2)
     else:raise AssertionError('No walking route to '+str((x,z))+' current '+str((read()['x'],read()['z'])))
-  def use():page.keyboard.press('g');frames(4)
+  def use():page.keyboard.press('i');frames(4)
   def equip(tool):
    page.keyboard.press('p');page.wait_for_selector('#pause-dialog[open]');page.locator('#desk-vault').click();page.wait_for_selector('#vault-dialog[open]');page.locator('#vault-equip-'+tool).click();page.locator('#vault-close').click();check(page.locator('#pause-dialog').get_attribute('open') is not None,'Survey Back retains the existing pause parent');page.locator('#resume').click();page.wait_for_function('LeonardoGuild.inspect().running')
   walk((0,3),(-8,3));use();page.wait_for_selector('#vault-dialog[open]')
