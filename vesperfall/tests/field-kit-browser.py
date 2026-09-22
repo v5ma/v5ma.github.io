@@ -37,6 +37,13 @@ with sync_playwright() as p:
  def acquire(kind):
   neutral();point=page.evaluate("kind=>{const g=Vesperfall.component;g.fieldKit.positionBelt();g.rig.updateMatrixWorld(true);return g.rig.worldToLocal(g.fieldKit.slots.find(s=>s.kind===kind).point.clone()).toArray();}",kind)
   pose('right',point);button('right',1,True);wait('k=>Vesperfall.component.fieldKit.state.held===k',kind);return point
+ def aim(yaw,pitch):
+  for attr,target,inc,dec in [('yaw',yaw,'ArrowLeft','ArrowRight'),('pitch',pitch,'ArrowUp','ArrowDown')]:
+   value=page.evaluate('Vesperfall.component.'+attr)
+   if abs(value-target)<.025:continue
+   key=inc if value<target else dec;page.keyboard.down(key)
+   wait('(a)=>Math.abs(Vesperfall.component[a.attr]-a.target)<.04',{'attr':attr,'target':target})
+   page.keyboard.up(key)
  def kit():return page.evaluate('JSON.parse(JSON.stringify(Vesperfall.state.fieldkit))')
  def handmenu(text):
   rows=page.evaluate('Vesperfall.component.xrMenuRows.map(r=>r[0])');i=next(i for i,r in enumerate(rows) if text.lower() in r.lower())
@@ -46,6 +53,13 @@ with sync_playwright() as p:
   page.goto(BASE+'/vesperfall/?journey=pilgrims-kit',wait_until='domcontentloaded');wait('window.Vesperfall?.component.fieldKit&&Vesperfall.component.echoes&&Vesperfall.component.stats.drawCalls>0')
   page.locator('#locomotion').select_option('smooth');page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(kit()['stock']=={'mend':2,'frost':2},'An ordinary new expedition starts with two healing and two frost vials')
+  # Actual keyboard camera input reveals the supply affordance before reach.
+  cacheAim=page.evaluate("()=>{const g=Vesperfall.component,C=VesperCore,d=C.unit(C.sub(PilgrimKitModel.center(PilgrimKitModel.anchors(g.game)[0]),g.head.object3D.getWorldPosition(new g.T.Vector3()).toArray()));return {yaw:Math.atan2(-d[0],-d[2]),pitch:Math.asin(d[1])};}")
+  before=kit();aim(cacheAim['yaw'],cacheAim['pitch']);wait('Vesperfall.component.fieldKit.prompt.mesh.visible')
+  check(kit()==before,'Looking toward a field cache reveals its supplies without collecting or changing them')
+  check(page.evaluate('Vesperfall.component.fieldKit.prompt.mesh.parent===Vesperfall.component.fieldKit.scene'),'The cache affordance belongs to its world object, not the head or browser window')
+  page.screenshot(path=str(OUT/'cache-before-reach.png'))
+  aim(0,0);wait('!Vesperfall.component.fieldKit.prompt.mesh.visible')
   page.keyboard.press('KeyF');check(kit()['stock']['mend']==2,'Full-health keyboard drinking keeps the vial rather than wasting it')
   page.keyboard.press('KeyG');wait('Vesperfall.state.fieldkit.throws===1');wait('Vesperfall.state.fieldkit.flights.length===0')
   check(kit()['stock']['frost']==1,'The keyboard throws a finite frost flask through the real swept physics')

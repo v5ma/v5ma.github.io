@@ -23,6 +23,7 @@
   "fieldKit": {
     "name": "Pilgrim's Kit",
     "date": "2026-09-22",
-    "scope": "Finite healing and frost vials with physical grip/throw/stow/drink, Xbox and keyboard alternatives, optional supply caches and exact additive save continuation. No co-op, melee, new realm or private hub. See FIELD-KIT.md and its public evidence receipt."
+    "scope": "Finite healing and frost vials with physical grip/throw/stow/drink, Xbox and keyboard alternatives, optional supply caches and exact additive save continuation. No co-op, melee, new realm or private hub. See FIELD-KIT.md and its public evidence receipt.",
+    "refinement": "Reliable Field Use / 2026-09-22: accept validated sparse-frame throws, retain accidental-drop protections, and identify visible cache supplies before reach. See FUTURE-DIRECTION.md for the continuing dungeon-adventure plan."
   }
 }

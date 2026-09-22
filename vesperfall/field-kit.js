@@ -19,18 +19,18 @@
   const held=bottle('mend',scene),frostHeld=bottle('frost',scene);held.visible=frostHeld.visible=false;
   for(let i=0;i<4;i++){pool.push({mend:bottle('mend',scene),frost:bottle('frost',scene)});}
   for(let i=0;i<4;i++){const geo=new T.RingGeometry(.08,1,28),mat=new T.MeshBasicMaterial({color:'#88d5c5',side:T.DoubleSide,transparent:true,opacity:0,depthWrite:false}),o=new T.Mesh(geo,mat);o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);effects.push({o,until:0});resources.push(geo,mat);}
-  const prompt=g.makePanel(768,144,.85,.159);prompt.mesh.material.depthTest=true;prompt.mesh.material.depthWrite=false;prompt.mesh.visible=false;scene.add(prompt.mesh);let promptText='';
+  const prompt=g.makePanel(768,192,1.15,.2875);prompt.mesh.material.depthTest=true;prompt.mesh.material.depthWrite=false;prompt.mesh.visible=false;scene.add(prompt.mesh);let promptText='';
   function live(){return g.running&&!g.paused&&!g.ritual?.focus.open&&M.eligible(g.game)&&!g.practice&&!g.firstBell?.state.coach&&!g.returningBell?.state.table&&g.threshold?.state.phase==='game';}
   function clear(){state.held=state.source=null;state.used=false;state.armed=false;state.previous={};state.sources=null;motion.reset();held.visible=frostHeld.visible=false;}
   const cancel=g.cancel.bind(g);g.cancel=function(){clear();return cancel();};
   const pause=g.setPaused.bind(g);g.setPaused=function(...args){clear();return pause(...args);};
-  function paint(p,text){const ctx=p.ctx;ctx.clearRect(0,0,p.canvas.width,p.canvas.height);ctx.fillStyle='rgba(18,38,47,.9)';ctx.fillRect(0,0,p.canvas.width,p.canvas.height);ctx.fillStyle='#f0e5c7';ctx.textAlign='center';ctx.font=(p.canvas.width===384?'24':'29')+'px Arial';ctx.fillText(text,p.canvas.width/2,p.canvas.height*.61,p.canvas.width-24);p.texture.needsUpdate=true;}
+  function paint(p,text){const ctx=p.ctx;ctx.clearRect(0,0,p.canvas.width,p.canvas.height);ctx.fillStyle='rgba(18,38,47,.9)';ctx.fillRect(0,0,p.canvas.width,p.canvas.height);ctx.fillStyle='#f0e5c7';ctx.textAlign='center';ctx.font=(p.canvas.width===384?'24':'29')+'px Arial';const lines=text.split('\n');lines.slice(0,2).forEach((line,i)=>ctx.fillText(line,p.canvas.width/2,p.canvas.height*(lines.length>1?.38+i*.36:.61),p.canvas.width-24));p.texture.needsUpdate=true;}
   function positionBelt(){const head=g.head.object3D.getWorldPosition(new T.Vector3()),forward=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion()));forward.y=0;if(forward.lengthSq()<.08)forward.set(0,0,-1).applyQuaternion(g.rig.quaternion);forward.normalize();
    const right=new T.Vector3(-forward.z,0,forward.x),sign=$('handedness').value==='left'?1:-1;const height=Math.max(g.game.p[1]+.38,head.y-.64);
    for(let i=0;i<slots.length;i++){const slot=slots[i];slot.point.copy(head).addScaledVector(right,sign*(.24+i*.25)).addScaledVector(forward,.12);slot.point.y=height;slot.object.position.copy(slot.point);slot.label.mesh.position.copy(slot.point).add(new T.Vector3(0,-.12,0));slot.label.mesh.quaternion.copy(g.head.object3D.getWorldQuaternion(new T.Quaternion()));}
   }
   function targetCache(origin,direction){if(!live())return null;const k=g.game.fieldkit;
-   return M.anchors(g.game).filter(c=>k?.caches[c.id]!==2).filter(c=>{const p=M.center(c),d=C.sub(p,origin);return C.len(d)<1.8&&(C.len(d)<.5||C.dot(C.unit(d),direction)>.91)&&!C.segmentBlocked(g.game.world,origin,p,.02);}).sort((a,b)=>C.len(C.sub(M.center(a),origin))-C.len(C.sub(M.center(b),origin)))[0]||null;
+   return M.anchors(g.game).filter(c=>k?.caches[c.id]!==2).filter(c=>{const p=M.center(c),d=C.sub(p,origin);return C.len(d)<1.8&&(C.len(d)<.5||C.dot(C.unit(d),direction)>.91)&&M.visible(g.game,origin,p,C);}).sort((a,b)=>C.len(C.sub(M.center(a),origin))-C.len(C.sub(M.center(b),origin)))[0]||null;
   }
   function viewTarget(){const p=g.head.object3D.getWorldPosition(new T.Vector3()).toArray(),d=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion())).toArray();return targetCache(p,d);}
   function say(text){g.toast(text);}
@@ -97,7 +97,7 @@
    for(const o of cached){const v=k.caches[o.c.id];o.lid.rotation.x=v?-.9:0;o.lid.position.z=v?-.13:0;o.seal.visible=!v;o.a.visible=o.b.visible=v!==2;}
    for(const e of g.game.events)if(e.seq>state.event){if(e.type.startsWith('kit-')&&e.text)say(e.text);if(e.type==='kit-splash'){const f=effects.find(f=>f.until<=g.game.time)||effects[0];f.until=g.game.time+1;f.o.position.set(e.p[0],e.p[1]+.025,e.p[2]);f.o.material.color.set(e.kind==='mend'?'#6fe0b0':'#8ccbff');f.radius=e.kind==='mend'?2.8:3.2;}}
    state.event=g.game.eventSeq||0;for(const e of effects){const left=e.until-g.game.time;e.o.visible=left>0;if(left>0){e.o.material.opacity=Math.min(.45,left*.45);e.o.scale.setScalar(e.radius*(1-left*.45));}}
-   const c=viewTarget();prompt.mesh.visible=active&&!!c;if(c){const v=k.caches[c.id],text=v===2?'Empty cache':v?'Grip / E / Xbox A: take field supplies':'Grip to open / shoot the seal';if(text!==promptText){paint(prompt,text);promptText=text;}prompt.mesh.position.set(...M.center(c)).add(new T.Vector3(0,.4,0));prompt.mesh.quaternion.copy(g.head.object3D.getWorldQuaternion(new T.Quaternion()));}
+   const eye=g.head.object3D.getWorldPosition(new T.Vector3()),direction=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion())),h=active?M.hint(g.game,eye.toArray(),direction.toArray(),C):null;prompt.mesh.visible=!!h;if(h){const text=h.label+'\n'+h.text;if(text!==promptText){paint(prompt,text);promptText=text;}prompt.mesh.position.set(...h.p).add(new T.Vector3(0,.45,0));prompt.mesh.quaternion.copy(g.head.object3D.getWorldQuaternion(new T.Quaternion()));}
   };
   function menuAction(action){if(g.xr&&g.questHands.state.active){g.dominionControls.notice('Pick up both controllers for field-kit play. Hand tracking remains available for menus.');return;}g.setPaused(false);action();}
   function rows(){const k=g.game.fieldkit||M.create();return [
@@ -110,7 +110,7 @@
   const controls=document.createElement('fieldset');controls.id='fieldkit-controls';controls.className='resonance-settings';controls.innerHTML='<legend>Pilgrim field kit / physical supplies</legend><p>Reach to the two free-hand waist slots and grip a vial. Move and release to throw; release without a throw to stow. Bring a healing vial to your mouth and press trigger to drink. Shoot or grip sealed caches, then take their finite supplies. F: heal. G: throw frost. T: throw healing. Xbox LB+X: heal. LB+RB: throw frost. Goldwind arrows and disk controls are unchanged.</p><button id="fieldkit-heal">Drink healing vial / F / LB+X</button><button id="fieldkit-frost">Throw frost flask / G / LB+RB</button><button id="fieldkit-mend">Throw healing vial / T</button>';
   document.querySelector('.settings').append(controls);$('fieldkit-heal').onclick=()=>menuAction(drink);$('fieldkit-frost').onclick=()=>menuAction(()=>flatThrow('frost'));$('fieldkit-mend').onclick=()=>menuAction(()=>flatThrow('mend'));
   const oldRemove=g.remove.bind(g);g.remove=function(){clear();window.removeEventListener('keydown',key);for(const c of cached)for(const r of c.resources)r.dispose();for(const r of resources)r.dispose();for(const p of[...slots.map(s=>s.label),prompt]){p.texture.dispose();p.mesh.geometry.dispose();p.mesh.material.dispose();}scene.removeFromParent();belt.removeFromParent();controls.remove();return oldRemove();};
-  return {state,slots,motion,scene,belt,rows,drink,flatThrow,padInput,targetCache,viewTarget,positionBelt};
+  return {state,slots,motion,scene,belt,prompt,rows,drink,flatThrow,padInput,targetCache,viewTarget,positionBelt};
  }
  root.PilgrimKit=Object.freeze({install});
 })(globalThis);

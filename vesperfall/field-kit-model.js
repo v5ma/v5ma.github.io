@@ -17,6 +17,16 @@
  }
  function center(c){return add(c.p,[0,.64,0]);}
  function visible(s,a,b,C){if(C.segmentBlocked(s.world,a,b,.015))return false;const f=C.floorHit(s.world,a,b)||C.floorHit(s.world,b,a);return !f||f.t>=.99;}
+ // Presentation-only preview: stock and expedition data remain read-only.
+ function hint(s,origin,direction,C){
+  if(!eligible(s)||!finite(origin)||!finite(direction))return null;
+  const candidates=anchors(s).filter(c=>s.fieldkit?.caches[c.id]!==2).map(c=>{const p=center(c),delta=sub(p,origin);return {c,p,distance:len(delta),aim:C.dot(C.unit(delta),C.unit(direction))};})
+   .filter(h=>h.distance<8&&(h.distance<.7||h.aim>.965)&&visible(s,origin,h.p,C)).sort((a,b)=>a.distance-b.distance);
+  const h=candidates[0];if(!h)return null;const stock=s.fieldkit?.stock||{mend:2,frost:2};
+  const m=Math.min(1,CAP-stock.mend),f=Math.min(1,CAP-stock.frost);
+  const text=!m&&!f?'Satchel full / supplies stay here':(h.distance>1.8?'Approach to open':'Grip / E / Xbox A')+' / +'+m+' healing, +'+f+' frost';
+  return {id:h.c.id,label:h.c.label,p:h.p,distance:h.distance,text};
+ }
  function cacheHit(s,a,b,C){if(!eligible(s))return null;const k=s.fieldkit;let best=null;
   for(const c of anchors(s)){if(k?.caches[c.id])continue;const t=C.sphereHit(a,b,center(c),.28);if(t!==null&&(!best||t<best.t))best={t,kind:'field-cache',id:c.id};}return best;
  }
@@ -64,11 +74,14 @@
   for(const f of raw.flights){exact(f,['id','type','p','v','life']);integer(f.id,raw.serial);if(!f.id||ids.has(f.id)||!TYPES.includes(f.type)||!finite(f.p)||f.p.some(v=>Math.abs(v)>4096)||!finite(f.v)||f.v.some(v=>Math.abs(v)>100)||!Number.isFinite(f.life)||f.life<=0||f.life>8)fail();ids.add(f.id);}
   return JSON.parse(JSON.stringify(raw));
  }
+ // Two distinct, timely positions already determine release velocity. Requiring
+ // three after pruning rejected clear throws during a slow rendering frame.
+ // Reach, speed, displacement, chronology and discontinuity checks stay intact.
  class Motion{
   constructor(){this.reset();}
   reset(){this.samples=[];this.invalid=false;}
   sample(p,t){if(!finite(p)||!Number.isFinite(t)){this.invalid=true;return;}const prev=this.samples.at(-1);if(prev&&(t<=prev.t||t-prev.t>.3||len(sub(p,prev.p))>Math.max(.25,(t-prev.t)*14))){this.invalid=true;return;}this.samples.push({p:[...p],t});while(this.samples.length>2&&this.samples[1].t<t-.13)this.samples.shift();}
-  release(p,t){this.sample(p,t);if(this.invalid||this.samples.length<3)return null;const a=this.samples[0],b=this.samples.at(-1),span=b.t-a.t,d=sub(b.p,a.p);if(span<.035||span>.3||len(d)<.055)return null;const v=mul(d,1/span),speed=len(v);return speed>=.6&&speed<=14?v:null;}
+  release(p,t){this.sample(p,t);if(this.invalid||this.samples.length<2)return null;const a=this.samples[0],b=this.samples.at(-1),span=b.t-a.t,d=sub(b.p,a.p);if(span<.035||span>.3||len(d)<.055)return null;const v=mul(d,1/span),speed=len(v);return speed>=.6&&speed<=14?v:null;}
  }
- const api=Object.freeze({TYPES,CAP,create,ensure,eligible,anchors,center,cacheHit,open,collect,drink,launch,step,next,restore,Motion});root.PilgrimKitModel=api;if(typeof module!=='undefined')module.exports=api;
+ const api=Object.freeze({TYPES,CAP,create,ensure,eligible,anchors,center,visible,hint,cacheHit,open,collect,drink,launch,step,next,restore,Motion});root.PilgrimKitModel=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
