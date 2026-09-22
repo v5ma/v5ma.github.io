@@ -1,0 +1,106 @@
+{
+  "project": "leonardos-guild",
+  "version": "0.16.0",
+  "build": "guild-lantern-vault-20260922",
+  "chapter_commit": "93140ea0baa2973aabd696dfa5ffdef649cf44e5",
+  "chapter_parent": "3eccd5cfbb57c7129ee85b9debc2a6b3c01ae346",
+  "completed_browser_test_commit": "9d7955ae1ad62b249b63e0b2a46a471ef9a09f27",
+  "visual_correction_commit": "c472b6ac2c40c03593687974a67becc3e7867e19",
+  "play_url": "https://v5ma.github.io/leonardos-guild/?chapter=lantern-vault",
+  "scope": "An original eight-space, roofless single-elevation survey wing in existing Cinder Hollow. Free recoverable inspection lens and one counterweight; optional inscription and caretaker account; an optical puzzle or maintenance route; protected plans; permanent inside return latch; physical report to Leonardo for 40 florins once and a visible Map House reading instrument. Not a guardian dungeon, procedural generator, upper gallery or MMO.",
+  "preservation": "Full Vinci, original stories and 49 multilevel households, vehicles, roofs, cellars, Cinder Hollow encounters, Stillwater, Quarter accomplishments, Lantern Road satchel/NPC shops and optional Vesperfall page handoff remain. Save key svgn.leonardos-guild.v1 and outer version 2 are unchanged. No private manuscripts or sibling runtime edits.",
+  "delivery": "Direct non-forced master updates. No new PR, staging branch or workflow. The existing Guild compositor verifier was extended. Concurrent Vesperfall work was retained.",
+  "controls": "Start with Play Lantern Vault survey / keep my adventure, or use the chapter link then select an existing XR mode. Dismount using F on keyboard, Y on Xbox, or the existing XR vehicle action. I is the existing keyboard nearby-interaction action at the town gate and all new instruments. G also operates Vault instruments, but at the original town gate opens the household guide. Xbox interaction is normally X; tracked XR uses right B. Pause > Lantern Vault / tools and field notes selects survey equipment; Inventory also links it.",
+  "local_tests": {
+    "passed": 499,
+    "failed": 0,
+    "design_passed": 14,
+    "design_failed": 0,
+    "new_checks": 24,
+    "complete_model_routes": 2,
+    "journey_rules": "Fresh rider, actual dismount, normal step movement and collision, original region gate actions, actual tool custody, physical return/report. No assigned actor coordinates, health, currency or quest stages in the two complete journeys. Separate rejection/unit fixtures are labelled.",
+    "local_browser": "Ordinary navigation failed with ERR_BLOCKED_BY_ADMINISTRATOR before loading; not bypassed or counted as a gameplay pass."
+  },
+  "completed_browser_journeys": {
+    "run_id": 35793784714,
+    "source_optical": {
+      "status": "success",
+      "artifact_id": 10723097114,
+      "zip_sha256": "97a0e8817c4f288e759b6bda3c9d1568965355a63e24beb5d60b10431240409d",
+      "checks": 22,
+      "errors": [],
+      "failure": null,
+      "stereo_eye_color_counts": [774, 898],
+      "presentation": "first-person VR",
+      "verified_local_source_hashes": 401,
+      "uncommitted_diff_empty": true
+    },
+    "public_maintenance": {
+      "status": "success",
+      "artifact_id": 10723007455,
+      "zip_sha256": "5e6b557e4c286358cdd20fa77fd7288c60b507222ebfe5f0305975620ccd6739",
+      "checks": 19,
+      "errors": [],
+      "failure": null,
+      "stereo_eye_color_counts": [2885, 2785],
+      "presentation": "AR diorama",
+      "verified_local_source_hashes": 401,
+      "uncommitted_diff_empty": true
+    },
+    "verified": "Ordinary keyboard/DOM movement and object use; labelled storage failure and retry; free tools; both distinct routes; protected plans; return latch; map; real WebGL eye attachments; synthetic hand-ray access to the real inventory; actual emulated-session end; physical return to Vinci; one report reward; visible Map House consequence; normal reload preservation.",
+    "source_note": "DUNGEON-ADAPTATION.md was present in the pinned checkout/hash manifest and publicly verified but absent from the old local source archive; no runtime file was missing or different.",
+    "evidence_class": "Real browser WebGL and real game actions with synthetic XR hardware. Not physical Quest or proof of general performance/visual quality."
+  },
+  "visual_review": {
+    "finding": "The first-person inside-latch screenshot contained an oversized nearby instrument label obscuring the scene. Nonblank pixels did not establish good presentation. The low-resolution desktop captures also show crowded legacy HUD/sign layout.",
+    "correction": "vault-art.mjs now clears instrument banners within 3 game metres and entrance/approach signs within 4 metres while retaining approach labels, mechanisms and the existing close-range prompts. No layout, collision, save, controls or reward change.",
+    "new_scene_graph_tests": "Two actual-art fixtures fail before and pass after. Full local suite is 499 passes.",
+    "reviewed_captures": ["first-person-archive.png", "diorama-ar-archive.png", "diorama-ar-inventory.png", "restored-map-house.png"],
+    "fresh_browser_run": 35794897496,
+    "fresh_browser_status": "Not a completed gameplay/capture pass at receipt. The earlier 41 browser checks precede this final visibility-only correction.",
+    "note": "leonardos-guild/VAULT-VISUAL-REVIEW.md"
+  },
+  "latest_public_runtime": {
+    "source": "c472b6ac2c40c03593687974a67becc3e7867e19",
+    "run_id": 35794897496,
+    "artifact_id": 10723706618,
+    "zip_sha256": "645b06f72700db02f0585824dd78102003d22f74a8d6e18d9c7d3ce4f78d0e6e",
+    "files": 102,
+    "all_match": true,
+    "independently_compared_to_reviewed_local_runtime": true
+  },
+  "latest_full_publication": {
+    "source": "c472b6ac2c40c03593687974a67becc3e7867e19",
+    "run_id": 35794897560,
+    "artifact_id": 10723717557,
+    "zip_sha256": "219ff939b2193fa161f018daa45100ae566f19082092394ef3cb73ccde0520a7",
+    "files": 310,
+    "all_match": true,
+    "registered_models": 32,
+    "audio_files": 50,
+    "music_tracks": 5,
+    "homepage_status": 200,
+    "homepage_game_link_present": true,
+    "downloaded_and_inspected": true
+  },
+  "initial_pages_deployment": {"run_id": 35793285342, "status": "success"},
+  "preserved_initial_failures": [
+    {"artifact_id": 10722901530, "zip_sha256": "74fabd5c7b6f563df11be859b1493f1ab8dfe9b94a96586e0edc66d65a2775d22", "checks": 4, "result": "Public driver sampled paused before the queued dialog-close event. A later captured state was running with no modal or save conflict. Test-only commit 0399101c waits for actual resume before walking; strict unexpected-pause assertions during movement remain."},
+    {"artifact_id": 10723066274, "zip_sha256": "1f8fa41fba1b3a72e30c0d2c2d8f60da8b484be5a98b6c1e06e58f88829c7ce8", "checks": 4, "result": "Source driver used G at the original town gate and opened the household guide. Test-only commit 9d7955ae uses existing nearby-interaction key I; no runtime remap, assigned state or weakened progression assertions."}
+  ],
+  "other_regression_still_open": {
+    "name": "Retained Lantern Road browser journey",
+    "run_id": 35793784714,
+    "artifact_id": 10723880052,
+    "zip_sha256": "589fbfa3f1266951f515915fc468f28b509fe48abad803669f2bb660f5947f77",
+    "partial_checks": 8,
+    "errors": [],
+    "result": "Failed on movement unexpectedly paused. The older driver does not await queued dialog-close resume before its next walk, but exact failure reconciliation remains open. No completed public journey; do not count this as a pass because the Vault routes succeeded."
+  },
+  "multiplayer": false,
+  "player_to_player_trading": false,
+  "physical_quest_verified": false,
+  "resume": ["leonardos-guild/AGENTS.md", "leonardos-guild/NEXT-SESSION.md", "leonardos-guild/LANTERN-VAULT.md", "leonardos-guild/VAULT-VISUAL-REVIEW.md", "leonardos-guild/FUTURE-DIRECTION.md", "leonardos-guild/DUNGEON-ADAPTATION.md", "leonardos-guild/AAA-ROADMAP.md"],
+  "rollback": "Reverse only reviewed patches on fresh master; preserve the additive Vault reader, earned plans and once-only reward history. Never reset the repository or either game's progress.",
+  "limits": "Physical Quest freezing, comfort, sustained performance, original aiming/audio feedback, broad visual polish and all old regression journeys are not certified. The survey is playable and published; unbuilt expansion and online systems remain explicitly future work."
+}
