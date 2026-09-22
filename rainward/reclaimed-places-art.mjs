@@ -6,7 +6,9 @@ import {PLACES_REVISION} from './reclaimed-places.mjs';
  */
 export function createReclaimedPlacesArt(scene,A,chapter){
  if(!chapter.placesRevision)return {update(){},stats:()=>null};
- const doors=[],{add,label}=A;
+ const doors=[],{add}=A;
+ // Physical plaques have a readable front, never mirrored text on the back.
+ const label=(...args)=>{const plaque=A.label(...args);if(plaque.material)plaque.material.side=T.FrontSide;return plaque;};
  for(const o of chapter.obstacles.filter(o=>o.placeArt)){
   if(o.openOnTask){
    const door=A.mesh('box',[o.w,o.h,o.d],0x526769,'metal');door.name=o.id;door.position.set(o.x,o.bottom+o.h/2,o.z);scene.add(door);
@@ -25,8 +27,8 @@ export function createReclaimedPlacesArt(scene,A,chapter){
   }
  }
  if(chapter.id==='district'){
-  label('PUMP 03\nQUAY SERVICE',-32,2.65,-24.94,2.7,.65,'#344e4a','#dfd2af');
-  label('NORTH QUAY\nTRANSMITTER',-32,2.65,-41.02,2.7,.65,'#344e4a','#dfd2af',Math.PI);
+  label('PUMP 03\nQUAY SERVICE',-33.75,1.75,-24.98,1.1,.45,'#344e4a','#dfd2af');
+  label('NORTH QUAY\nTRANSMITTER',-33.75,1.75,-40.48,1.1,.45,'#344e4a','#dfd2af');
   // Flood stain, disconnected pipe and a dry cabinet tell the building's use.
   for(const z of[-27,-30,-35,-38])add('box',-33.98,1.35,z,.022,.13,2.2,0xaaa78c,'paint');
   add('box',-33.91,2.45,-29.8,.16,.16,4.3,0x557070,'metal');
@@ -41,7 +43,7 @@ export function createReclaimedPlacesArt(scene,A,chapter){
   for(const z of[-26,-28.4,-30.8])add('box',-32.0,3.54,z,4.1,.11,.10,0x706e59,'metal');
   add('box',-33.75,2.82,-26.5,.16,.22,.13,0xe4c58a,'glow');
   for(const [x,z]of[[-32,-23.8],[-32,-42.2],[-27,-44.2],[-18,-46]]){add('box',x,.024,z,.55,.018,.09,0xb8b18b,'paint');}
-  label('COASTAL FREIGHT\nNIGHT DISPATCH',11,1.65,-38.57,2.4,.5,'#4b5043','#e4d8b7');
+  label('COASTAL FREIGHT\nNIGHT DISPATCH',11,.85,-38.63,2.0,.3,'#4b5043','#e4d8b7');
  }else{
   label('DRY RECORDS\nKEEP FLOOR CHANNEL CLEAR',31,2.45,-1.85,3.2,.7,'#37484b','#e4d3ad');
   // Suspended racks keep the same lower clearance in collision and art.

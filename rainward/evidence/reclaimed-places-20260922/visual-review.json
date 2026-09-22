@@ -1,0 +1,26 @@
+{
+  "reviewedSource": "a1b74d4174e94a169925366790b99d3476961eef",
+  "artifact": 10716507851,
+  "artifactSHA256": "3974c3fd9a281e71bac418a7a5ad497e028c255c7459b2a95c9ff194b79efebe",
+  "beforeImages": [
+    {
+      "path": "reclaimed-places-district/01-pump-room.png",
+      "sha256": "7c1ae277eee6e8e78db20eabb3bed56af780909ed7547b850aa257fd9d751a53"
+    },
+    {
+      "path": "reclaimed-places-district/02-evacuation-room.png",
+      "sha256": "172e6906c078e8ec1dab48fe6cbe9574d996d8a8d333c96c812f8ace4f9efa1c"
+    }
+  ],
+  "finding": "The complete living-enemy browser route passed, but its over-shoulder captures show a large pump doorway sign obscuring the room and mirrored north-exit lettering visible from inside. Do not treat a green test as art approval.",
+  "correction": "Move both quay doorway plaques onto solid western piers, face the north plaque toward the inside approach, and render all new place plaques front-side only. Move the baggage plaque onto its physical cover instead of obscuring the clear sightline above it.",
+  "unchanged": "All level collision, navigation, mission tasks, resources, seven chapters, character assets, animation, controls, saves and XR code.",
+  "localTests": {
+    "passed": 463,
+    "failed": 0,
+    "command": "node --test rainward/tests/*.test.mjs",
+    "logSHA256": "553410e0309b298bccac2fb734bf5b410e17cedda02d8d7fff164d7acaaa51b7"
+  },
+  "nativeReview": "Corrected-source normal-start mission captures and public-byte checks must run again. These local geometry/material tests are not pixel or physical-device acceptance.",
+  "physicalHardware": "Not tested; no human quality gate approved."
+}
