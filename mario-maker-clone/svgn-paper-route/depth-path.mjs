@@ -98,6 +98,13 @@ if(create)assets.create=function(...args){
 };
 const visual=window.SkyVisual;
 if(visual){const prior=visual.update;visual.update=function(...args){const result=prior.apply(this,args);update();return result;};}
+// The 2D and Workshop render paths deliberately skip SkyVisual.update. Release
+// deformation there as well; use the existing render owner, never a new loop.
+const draw=window.render;
+if(draw)window.render=function(...args){
+ if(!window.RouteWorkshop?.testing||window.__delivery?.state.view!=='3d')update();
+ return draw.apply(this,args);
+};
 window.SkyCycleDepth=Object.freeze({version:'0.28.0',sample:s=>path.sample(s),project:p=>path.project(p),get diagnostics(){return {...warp?.diagnostics,selected:!!lastProfile,headDriven:false,physics:'unchanged-2d',rigidRider:true};}});
 
 }
