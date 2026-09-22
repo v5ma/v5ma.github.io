@@ -26,9 +26,9 @@ export function createVaultArt(root){
  const beams=Array.from({length:2},()=>{const m=new T.Mesh(new T.BoxGeometry(1,.055,.055),glow);group.add(m);return m;});
  function beam(m,ax,az,bx,bz){const len=Math.hypot(bx-ax,bz-az);m.position.set((ax+bx)/2,2.55,(az+bz)/2);m.scale.x=Math.max(.01,len);m.rotation.y=-Math.atan2(bz-az,bx-ax);}
  let lastRevision=-1,reads=0;
- label(group,'LANTERN VAULT / EAST\nSURVEY TOOLS AT THE BENCH',310,2.3,23,4.6,.8,0,'#314846','#ffe6ae');
+ const approach=label(group,'LANTERN VAULT / EAST\nSURVEY TOOLS AT THE BENCH',310,2.3,23,4.6,.8,0,'#314846','#ffe6ae');
  const entry=label(group,'LANTERN VAULT\nSURVEY WING / EAST OF CAMP',326.7,2.7,25,5,1,-Math.PI/2,'#314846','#ffe6ae');
  return {update(s,camera){const v=s.vault||{revision:0,mirror:0};if(lastRevision!==v.revision){lastRevision=v.revision;reads++;gates[0].visible=!opticalOpen(v);gates[1].visible=!serviceOpen(v);shutter.position.y=v.weight==='shutter'?3.7:2.55;lens.visible=v.accepted&&v.lens==='emitter';weight.visible=v.accepted&&v.weight!=='pack';const at=v.weight==='service'?[347,36]:[347,28];weight.position.set(at[0],vaultGround(...at)+1.25,at[1]);reflector.rotation.y=-v.mirror*Math.PI/2+Math.PI/4;plans.visible=!v.record;receiver.material=opticalOpen(v)?glow:blue;beams[0].visible=lens.visible;beam(beams[0],339,25,v.weight==='shutter'?362:350,25);beams[1].visible=lens.visible&&v.weight==='shutter';const ends=[[362,18.4],[369.3,25],[362,31.6],[356.5,25]][v.mirror];beam(beams[1],362,25,...ends);}
-  for(const {n,tag}of labels){tag.visible=Math.hypot(s.x-n.x,s.z-n.z)<8.5;if(tag.visible)tag.quaternion.copy(camera.quaternion);}entry.visible=Math.hypot(s.x-328,s.z-25)<22;
+  for(const {n,tag}of labels){const distance=Math.hypot(s.x-n.x,s.z-n.z);tag.visible=distance>3&&distance<8.5;if(tag.visible)tag.quaternion.copy(camera.quaternion);}const entryDistance=Math.hypot(s.x-326.7,s.z-25);entry.visible=entryDistance>4&&entryDistance<22;const approachDistance=Math.hypot(s.x-310,s.z-23);approach.visible=approachDistance>4&&approachDistance<24;
  },inspect:()=>({layout:'lantern-vault-1',spaces:VAULT_ROOMS.length,mechanismUpdates:reads})};
 }
