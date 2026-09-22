@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "reviewedOn": "2026-09-22",
+  "status": "story-source-verified-and-public-files-matched-public-journey-running",
+  "build": "living-reserve-20260922.1",
+  "runtimeCommit": "6f1e4bdcae98dd4b4e81e43dd8e039d93b7a303f",
+  "scopedRun": 35778122352,
+  "recoveryWrites": {
+    "futureDirection": "50357130429074c7ffe558d575ea9910301addab",
+    "agentContinuityInstructions": "fab4cdba4ab8759823133d7f038d8015d4e6dc62",
+    "runtimeChangedDuringRecovery": false,
+    "directMasterOnly": true
+  },
+  "sourceEvidence": {
+    "allFiveSourceJobGroups": "success",
+    "localTestsPassed": 297,
+    "localTestsFailed": 0,
+    "localTestsSkipped": 0,
+    "javascriptSyntaxFiles": 64,
+    "ownedRuntimeScriptFilesChecked": 75,
+    "exactArchiveManifestFilesMatched": 77,
+    "storyScreenChecks": 16,
+    "storyXrMockChecks": 18,
+    "classicChecks": {"floor":22,"spatial":30,"portal":15,"express":24},
+    "tidegateChecks": {"floor":22,"spatial":29,"portal":15,"express":22},
+    "entryChecks": {"launcher":23,"groundedTrackedAndHandUi":22},
+    "capturedErrors": [],
+    "allFiveDownloadedSourceArchiveHashesMatched": true
+  },
+  "sourceArchives": [
+    {"artifact":10717670921,"kind":"model-and-source","sha256":"0aeec19d1716707383b90a03ed4ba212f6e3b35589794b5a1787fceeef33941b"},
+    {"artifact":10718143116,"kind":"story","sha256":"50e36113fc1d297275ec5f4199e314e02d67949fd35aff1fa5f4e9296661c523"},
+    {"artifact":10718245243,"kind":"classic","sha256":"7c3cdd9a34c65487a7c9525e13fb14de0dc4630225a951f4350ba930fbb03af6"},
+    {"artifact":10717399828,"kind":"tidegate","sha256":"a072e47502be466233a8784cf665a416b32a3271929e874eb10d6695d86bcf5c"},
+    {"artifact":10717273125,"kind":"entry","sha256":"2bd4a7fbefab366130a00806d8b162b66afd3d827d3d36eaa24f513d5c64ca0f"}
+  ],
+  "firstPublicAttempt": {
+    "job":106929883436,
+    "result":"failed-served-byte-comparison",
+    "matched":72,
+    "pending":5,
+    "pendingFiles":["dino-atlas/index.html","dino-atlas/living-reserve-core.js","dino-atlas/living-reserve.css","dino-atlas/living-reserve.js","dino-atlas/ranger.js"],
+    "publicGameplayExecuted":false
+  },
+  "publicRetry": {
+    "method":"One authorized rerun_workflow_job call on the failed public job, without source, input, timeout or assertion changes.",
+    "job":106941580415,
+    "servedFileComparison":"success",
+    "liveGameplay":"in_progress at this checkpoint; inspect the completed report before claiming a full public pass",
+    "archivalRelease":"not yet claimed"
+  },
+  "scope": "First Light is a seven-step optional opening inside full Classic Reserve. The future missing-team campaign and ending are not yet implemented. AI Singularity DNA design and above-99th-percentile fossil-fit are in-world fiction. Existing progress and UI remain.",
+  "localBrowser": "A real system-Chromium navigation attempt returned ERR_BLOCKED_BY_ADMINISTRATOR. No new local full-game or live-browser pass is claimed. Full-game evidence is from hosted software-WebGL runs.",
+  "physicalHardwareVerified": false,
+  "next": "Complete the current public journey, inspect and hash-check its reports, record the archival outcome separately, and update HANDOFF.md and LIVING-RESERVE-HANDOFF.md. Do not repeat the chapter implementation, create a PR, rebuild shared Pages configuration or discard sibling updates."
+}
