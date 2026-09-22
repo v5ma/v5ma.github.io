@@ -1,6 +1,6 @@
 # Dino Atlas future direction
 
-Last reviewed: 2026-09-22. This is the durable campaign brief requested by the user. Update it and the current handoff after each meaningful development checkpoint so another conversation can continue without reconstructing intent from chat. Distinguish shipped source, verified public play, proposals and remaining work. Preserve historical failure evidence.
+Last reviewed: 2026-09-22 16:54 PT. This is the durable campaign brief requested by the user. Update it and the current handoff after each meaningful development checkpoint so another conversation can continue without reconstructing intent from chat. Distinguish shipped source, verified public play, proposals and remaining work. Preserve historical failure evidence.
 
 ## User-approved identity and origin
 
@@ -55,3 +55,7 @@ First establish whether a player can find Mara, understand the AI-created-creatu
 The public relay capture still contains secondary Ranch and Coast dispatch copy and generic field-kit hints beside the selected First Light task. Audit that competing information in the next polish pass so unrelated guidance does not dilute the story objective. Do not hide required controls, remove optional activities or relabel this observation as an already fixed bug. The player-facing primary story goal and HERE have passed their current automated checks; unfamiliar-player comprehension remains open.
 
 After that bounded review, implement the missing-team chapter using the existing Tidegate geography, useful route choices, actual wildlife conditions and a safe separate chapter-state contract. Keep ongoing notes beside the game after each meaningful checkpoint, including what changed, what passed, what failed and what remains only proposed.
+
+## Continuity instruction from the user
+
+The user explicitly requires the future direction and continuation state to be saved on GitHub next to Dino Atlas throughout development so another chat can resume immediately if the current chat ends. Treat FUTURE-DIRECTION.md as the durable design/campaign document and HANDOFF.md plus feature-specific handoffs as the exact implementation/verification baton. Update them after meaningful changes, not only at release time. Include the current master/runtime identity, what is actually playable, unresolved bugs or confusing UX, tests/public verification actually completed, physical-device limits, and the next bounded task. Never leave a material design decision or recovery-critical fact only in conversation history.
