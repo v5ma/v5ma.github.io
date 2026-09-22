@@ -13,3 +13,5 @@ test('First-person AR is a distinct validated transparent session',()=>{assert.e
 
 import {blocksPortalFocus} from '../portal-occlusion.mjs';
 test('Foreground cutaway reveals the survivor without erasing ground or the farther world',()=>{const eye=new T.Vector3(0,1.65,0),focus=new T.Vector3(0,1.15,-1.5);assert.equal(blocksPortalFocus(eye,new T.Vector3(0,1.3,-1),focus,1.12,.2),true);assert.equal(blocksPortalFocus(eye,new T.Vector3(0,1,-1),focus,1.12,.2),false);assert.equal(blocksPortalFocus(eye,new T.Vector3(0,1.3,-4),focus,1.12,.2),false);assert.equal(blocksPortalFocus(eye,new T.Vector3(1,1.3,-1),focus,1.12,.2),false);});
+
+test('Diorama size preferences are bounded and the taller shell is the default',()=>{const d=normalizeDiorama({size:9});assert.equal(d.size,1.6);assert.equal(normalizeDiorama({size:.1}).size,.7);assert.equal(normalizeDiorama({}).size,1);});
