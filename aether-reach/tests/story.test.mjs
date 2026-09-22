@@ -72,3 +72,10 @@ test('Story entry identifiers are unique and all completion notices stay brief',
 test('Reader uses the existing modal path and safe text, without new storage or automatic pauses',()=>{
  const ui=readFileSync(new URL('../story-ui.mjs',import.meta.url),'utf8');assert(ui.includes("api.show('story-dialog')"));assert(ui.includes("api.show('story-index-dialog')"));assert(ui.includes('textContent=e.title'));assert(!ui.includes('localStorage'));assert(!ui.includes('api.pause('));assert(!ui.includes('saveState'));assert(!ui.includes('api.action('));
 });
+test('Title layout scrolls expanded actions with footer and controller help in normal flow',()=>{
+ const css=readFileSync(new URL('../controller.css',import.meta.url),'utf8');
+ assert.match(css,/#menu\{overflow-y:auto;scroll-padding:90px 24px;/);
+ assert(css.includes('#menu>.menu-footer,#menu>#controller-menu-hints{position:static;}'));
+ assert(css.includes('align-content:start;align-content:safe center;'));
+ assert(css.includes('#menu>.menu-footer,#menu>#controller-menu-hints{grid-column:1/-1;}'));
+});
