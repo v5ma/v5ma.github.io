@@ -19,7 +19,7 @@ for(const g of data.groups){
  const related=(byFamily.get(g.family)||[]).filter(x=>x.id!==g.id).slice(0,6);
  const body='<section><h2>Relationship to Abraham, Israel or covenant</h2><p>'+esc(g.continuity_claim)+'</p><p><strong>Claim type:</strong> '+esc(g.claim_type)+'</p><p>'+esc(g.scope_note)+'</p></section>'+
  '<section><h2>What this page represents</h2><p>'+esc(g.summary)+'</p><p><strong>Wiki research status:</strong> '+esc(g.research_status)+'.</p></section>'+
- '<section><h2>Existing Theology Wiki context</h2><p>'+link('Open the existing developed study or directory context',g.existing_wiki)+'</p>'+sourceList(g)+'</section>'+
+ '<section><h2>Existing Theology Wiki context</h2><p>'+link('Open the existing developed study or directory context','../'+g.existing_wiki)+'</p>'+sourceList(g)+'</section>'+
  '<section><h2>Related traditions in this atlas</h2>'+(related.length?related.map(r=>'<p>'+link(r.name,slug(r))+' — '+esc(r.claim_type)+'.</p>').join(''):'<p>No same-family page is currently indexed.</p>')+'</section>';
  write('groups/'+slug(g),pageShell(g,body));
 }
