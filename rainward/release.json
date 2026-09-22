@@ -1,14 +1,14 @@
 {
-  "version": "0.16.3",
-  "build": "rainward-reconciled-motion-20260921",
+  "version": "0.16.4",
+  "build": "rainward-glance-map-tall-diorama-20260922",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
   "changes": [
-    "Recover the missing Grounded foot-plant and swimming motion from PR147 through the existing visual contact adapter",
-    "Keep the published character geometry, face textures, clothing, skeleton binds, scene, fast movement, saves and XR input/compositor code unchanged",
-    "Scale contact easing to short Free Stride steps and release plants during dodge, swim, vault, death and shelter relocation",
-    "Retain the shipped Freight Cut radio-operated west passage instead of the conflicting older Firebreak east-door experiment",
-    "Preserve the published Field Desk and XR Repair features; correct stale continuation metadata and use direct master updates without new PRs"
+    "Move transient XR interaction messages to the local floor and fade them after 2 seconds so they do not block the action",
+    "Add a live glanceable floor map that refreshes from Rainward's authoritative field map and current objective without following the player's face",
+    "Make the default diorama shell much taller and add saved controls for physically larger or smaller diorama boxes",
+    "Keep separate character zoom controls and expose quick menu larger/smaller actions in the spatial pause interface",
+    "Preserve v0.16.3 character presentation, reconciled motion, fast running, saves, remaps, weapon/scope alignment and all seven expeditions"
   ]
 }
