@@ -1,0 +1,31 @@
+{
+  "application": "Neighborhood Missions",
+  "edition": "Highline",
+  "dateUTC": "2026-09-22",
+  "status": "source-upload-in-progress-not-live",
+  "implementedLocally": "Two shared-geometry towers, 17.2 m Print Exchange and 23.6 m Radio Tower, ten switchback stair flights, two upper crossings, five added grapple anchors, immediate optional six-step story and exactly-once 240-credit reward.",
+  "localTests": {"passed":452,"failed":0,"skipped":0,"scope":"Complete inherited model/input suite, original five campaign cases, two fresh-input Highline journeys, serialization and actual Three object fixtures. Not browser or physical acceptance."},
+  "baselineSourceCommit": "bfb7d105cb6df7e151a6ed5b2959399bad2dc5e3",
+  "baselineArtifact":10715637271,
+  "notesCommit":"dae0860960e62d56aaea579628aca19c31201590",
+  "uploadedSourceObjects": {
+    "highline-layout.mjs":"6e9a8524f3dcb840fb125ca1f37a129a9f6c9a74",
+    "highline-view.mjs":"d9f00ae0db89100739b968bbc26d507e71d3e37b",
+    "core.mjs":"477982957bc90be1c645c7e75dbcc90ca4f5f8a0",
+    "campaign.mjs":"057a701ce4369dbde3f272622e300c9dadf09734",
+    "watch.mjs":"fe376ce076fb480770c6bc14ce6b3edacc085b41",
+    "district-view.mjs":"56a725bb6eec0d26557c248caf3ad3714343c47f",
+    "main-hub.mjs":"4d28e8461db36b610fa066c8039f82c9a48af411",
+    "index.html":"b41ed7eaf59203df22b1bd0bddaba19cb7f93580",
+    "presentationTree":"ba820dd10bb444a61d6261b533c09ce3214e6156",
+    "navigationTree":"34fdcd486305a7c01bd156a3afddd10dd12dbe5c",
+    "newTestTree":"81b67c2a3a81b6b617b446d4a0c13e2dd1a32f6d"
+  },
+  "next":"Finish uploading the exact reviewed support files, tests and documentation. Build a scoped single-parent commit on freshly reconciled master. Keep all current sibling changes. Then inspect exact public bytes and actual Highline browser artifacts before marking published/accepted.",
+  "localWebGL2Available":false,
+  "publishedRevisionVerified":false,
+  "renderedHighlineJourneyPassed":false,
+  "physicalQuestTested":false,
+  "physicalXboxTested":false,
+  "physicalHandTrackingTested":false
+}
