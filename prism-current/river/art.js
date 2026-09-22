@@ -23,7 +23,13 @@
    const duck=(size=1)=>{put(sphere,0xffcd31,0,0,0,.43*size,.28*size,.48*size);put(sphere,0xffdc49,0,.31*size,.23*size,.26*size);put(sphere,0xf17c24,0,.26*size,.48*size,.23*size,.07*size,.17*size);for(const x of[-.15,.15]){put(sphere,0x152c39,x*size,.39*size,.435*size,.038*size);put(sphere,0xffe16e,x*size*2,.03*size,-.04*size,.13*size,.13*size,.28*size);}put(cone,0xffcc35,0,.12*size,-.45*size,.14*size,.25*size,.12*size,-.5);};
    if(kind==='catapult'||kind==='boss-duck'){
     const k=kind==='boss-duck'?2:1;duck(k);put(box,0x247b82,0,-.34*k,0,.95*k,.17*k,1.15*k);put(box,0xb87739,0,-.18*k,-.30*k,.45*k,.14*k,.42*k);put(box,0xa96834,0,.03*k,-.38*k,.09*k,.55*k,.1*k,-.4);put(sphere,0xf0a344,0,.30*k,-.3*k,.15*k,.07*k,.18*k);
-    if(k===2){put(cylinder,0x223d63,0,.96,.5,.44,.10,.44);put(sphere,0xe9f3e9,0,1.03,.5,.30,.16,.3);put(box,0xe76455,0,-.03,1.0,1.0,.10,.15);}
+    if(k===2){
+     // Admiral Quack: crowned duck flagship, paddle wheels and twin fruit mortars.
+     put(cylinder,0xffca49,0,1.03,.5,.43,.15,.43);
+     for(const x of[-.30,0,.30])put(cone,0xffd65b,x,1.25,.5,.12,.35,.12);
+     for(const x of[-1.05,1.05]){put(torus,0xf39a34,x,-.35,0,.42,.42,.22,0,Math.PI/2);put(cylinder,0x344d71,x,.15,.30,.16,.65,.16,Math.PI/2);put(sphere,0xf9ce63,x,.16,.67,.16);}
+     put(box,0x263e67,0,-.03,1.0,1.25,.12,.15);
+    }
    }else if(kind==='boat'){
     put(box,0xc95448,0,-.18,0,.98,.25,1.28);put(cone,0xc95448,0,-.16,.72,.48,.48,.23,-Math.PI/2);put(box,0xe9dca9,0,.0,0,.72,.08,.85);put(cylinder,0x3a8275,0,.25,-.08,.18,.45,.18);put(sphere,0xe8b784,0,.55,-.08,.15);put(sphere,0x3b6651,0,.63,-.08,.19,.10,.19);put(box,0x344c53,0,.35,.2,.14,.14,.50);put(torus,0x75f6d0,0,-.05,.79,.16,.16,.08);
    }else if(kind==='plane'||kind==='fighter'){
@@ -32,16 +38,24 @@
     put(sphere,0x414e86,0,.55,-.65,3.0,.40,1.7);put(sphere,0x8592bc,0,.72,-.68,1.2,.42,.78);put(torus,0x82ffe4,0,.49,-.5,1.4,1.4,.55,Math.PI/2);for(let i=0;i<8;i++){const a=i/8*Math.PI*2;put(sphere,0x938aff,Math.cos(a)*2.25,.49,-.65+Math.sin(a)*1.2,.16,.08,.16);}put(box,0x243858,0,.35,.42,.75,.52,.4);
    }else if(kind.startsWith('fruit')){
     const color=[0x65c065,0xffb242,0xee6881][Number(kind.at(-1))||0];put(sphere,color,0,0,0,.24);put(cylinder,0x70613a,0,.25,0,.025,.14,.025);put(sphere,0x4eab75,.06,.28,0,.1,.025,.05,0,0,.4);if(kind==='fruit0')for(let i=0;i<5;i++)put(torus,0x368c57,0,0,0,.245,.245,.245,0,i*.62,0);
+   }else if(kind==='block'){
+    put(box,0x9473e5,0,0,0,.42,.42,.42);
+    put(box,0xf3edff,0,0,.219,.26,.045,.016,0,0,.65);
+    put(box,0xf3edff,0,0,.219,.26,.045,.016,0,0,-.65);
+   }else if(kind==='health'){
+    put(box,0x67cba7,0,0,0,.44,.36,.38);put(box,0xf0fff3,0,0,.2,.30,.26,.025);
+    put(box,0x166d58,0,0,.22,.16,.045,.014);put(box,0x166d58,0,0,.22,.045,.16,.014);
+    put(box,0xf0fff3,0,.22,0,.22,.06,.10);
    }else if(kind==='bomb'){
     put(sphere,0x304351,0,0,0,.21);for(const v of[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1]])put(cone,0xfa7a72,v[0]*.24,v[1]*.24,v[2]*.24,.065,.15,.065,v[2]?Math.PI/2:0,0,v[0]?Math.PI/2:0);put(torus,0xff736e,0,0,.19,.11,.11,.1);
    }else{put(sphere,kind==='return'?0x8effdd:0xff677a,0,0,0,.12,.12,.22);}
    const g=merge(p);models.set(kind,g);return g;
   }
-  for(const k of ['catapult','boat','plane','fighter','boss-duck','boss-space','fruit0','fruit1','fruit2','bomb','bolt','return'])model(k);
+  for(const k of ['catapult','boat','plane','fighter','boss-duck','boss-space','fruit0','fruit1','fruit2','bomb','bolt','return','block','health'])model(k);
   const handColors=[0x73ffd7,0xff99c0],handMats=handColors.map(color=>mat(new T.MeshBasicMaterial({color}))),danger=mat(new T.MeshBasicMaterial({color:0xff736e})),dim=mat(new T.MeshBasicMaterial({color:0x253b50}));
   const plane=geo(new T.PlaneGeometry(1,1)),ringGeo=geo(new T.TorusGeometry(.36,.012,5,30)),barGeo=geo(new T.PlaneGeometry(1,.045));
   const glyphs=[];for(let h=0;h<2;h++){glyphs[h]=[];for(let d=0;d<8;d++){const c=document.createElement('canvas');c.width=c.height=128;const a=c.getContext('2d');a.fillStyle=h?'#ffbfd8':'#afffe4';a.beginPath();a.arc(64,64,61,0,Math.PI*2);a.fill();a.translate(64,64);const v=C.DIRS[d];a.rotate(Math.atan2(-v[1],v[0]));a.fillStyle='#123345';a.beginPath();a.moveTo(38,0);a.lineTo(0,-29);a.lineTo(0,-10);a.lineTo(-30,-10);a.lineTo(-30,10);a.lineTo(0,10);a.lineTo(0,29);a.closePath();a.fill();const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;textures.push(t);glyphs[h][d]=mat(new T.MeshBasicMaterial({map:t,transparent:true,depthWrite:false}));}}
-  function make(kind){const g=new T.Group(),body=new T.Mesh(model(kind),base);g.add(body);const icon=new T.Mesh(plane,white);icon.position.set(0,0,.25);icon.scale.setScalar(.30);icon.visible=false;g.add(icon);const health=new T.Mesh(barGeo,handMats[0]);health.position.set(0,.80,0);health.visible=false;g.add(health);
+  function make(kind){const g=new T.Group();g.name='river-actor-'+kind;const body=new T.Mesh(model(kind),base);g.add(body);const icon=new T.Mesh(plane,white);icon.position.set(0,0,.25);icon.scale.setScalar(.30);icon.visible=false;g.add(icon);const health=new T.Mesh(barGeo,handMats[0]);health.position.set(0,.80,0);health.visible=false;g.add(health);
    const core=new T.Mesh(sphere,handMats[0]);core.scale.setScalar(kind.startsWith('boss')?.64:.14);core.position.set(0,0,kind.startsWith('boss')?.75:.72);core.visible=kind.startsWith('boss')||kind==='boat';g.add(core);const outline=new T.Mesh(ringGeo,handMats[0]);outline.visible=kind.startsWith('boss');if(outline.visible){outline.scale.setScalar(2.4);outline.position.z=.77;g.add(outline);}return {g,body,icon,health,core,outline,kind};}
   function kindOf(s,n){return n.type==='boss'?(s.chapter==='mothership'?'boss-space':'boss-duck'):n.type==='fruit'?'fruit'+n.id%3:n.type;}
   function release(id){const o=active.get(id);o.g.visible=false;(free.get(o.kind)||free.set(o.kind,[]).get(o.kind)).push(o);active.delete(id);}
@@ -124,7 +138,8 @@ void main(){vec3 p=normalize(v);float h=clamp(p.y,0.,1.);
    if(ar){banks.visible=arches.visible=false;river.scale.x=.55;}else river.scale.x=1;
    for(const o of preview)o.g.visible=(!s||s.mode==='ready')&&!space;if(!s||s.mode==='ready'){preview[0].g.rotation.y=Math.sin(time*.25)*.18;preview[0].g.position.y=.75+Math.sin(time)*.10;}
    const ids=new Set();for(const n of s?.entities||[]){if(n.dead)continue;ids.add(n.id);let o=active.get(n.id);if(!o){const kind=kindOf(s,n);o=free.get(kind)?.pop()||make(kind);actors.add(o.g);active.set(n.id,o);}o.g.visible=true;const p=C.position(s,n);if(!space&&['catapult','boat','boss'].includes(n.type))wakeBodies.push({id:n.id,x:p[0]/river.scale.x,z:p[2],radius:(n.type==='boss'?.8:.38)/river.scale.x});o.g.position.fromArray(p);o.g.rotation.y=n.type==='fruit'?Math.sin(time*1.3+n.id)*.12:Math.sin(time*.6+n.id)*.10;
-    o.icon.visible=n.type==='fruit';if(o.icon.visible){o.icon.material=glyphs[n.hand][n.dir];o.icon.rotation.y=-o.g.rotation.y;}
+    if(['fruit','block','health'].includes(n.type))o.body.scale.setScalar(n.r/.24);
+    o.icon.visible=n.type==='fruit';if(o.icon.visible){o.icon.material=glyphs[n.hand][n.dir];o.icon.scale.setScalar(n.r*1.35);o.icon.rotation.y=-o.g.rotation.y;}
     o.health.visible=n.type==='boss'||['boat','catapult','plane','fighter'].includes(n.type);o.health.scale.x=Math.max(.01,n.hp/n.maxHP)*(n.type==='boss'?3: .7);o.health.position.y=n.type==='boss'?1.5:.75;o.health.material=C.open(s,n)?handMats[0]:danger;
     if(o.core.visible)o.core.material=C.open(s,n)?handMats[0]:danger;if(o.outline.visible){o.outline.material=C.open(s,n)?handMats[0]:danger;o.outline.rotation.z=time*.4;}
    }for(const id of active.keys())if(!ids.has(id))release(id);
@@ -135,7 +150,7 @@ void main(){vec3 p=normalize(v);float h=clamp(p.y,0.,1.);
     if(e.type==='destroy'&&e.position&&['catapult','boat','plane','fighter','bomb','boss'].includes(e.kind))fireSystem.emit({id:e.id,position:e.position,radius:e.kind==='boss'?1.2:e.kind==='bomb'?.45:.70,life:e.kind==='boss'?2:1.65});
     if(!space&&e.type==='destroy'&&e.position&&['catapult','boat','boss'].includes(e.kind))waterSystem.splash(e.position[0]/river.scale.x,e.position[2],e.kind==='boss'?1:.65,e.kind==='boss'?.65:.24);
     if(e.type==='laser'){const l=lasers[li++%lasers.length],a=new T.Vector3(...e.start),b=new T.Vector3(...e.end),d=b.clone().sub(a);l.m.position.copy(a).add(b).multiplyScalar(.5);l.m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.clone().normalize());l.m.scale.y=d.length();l.m.material=handMats[e.hand];l.born=time;l.m.visible=true;}
-    if(['destroy','block','damage','hit','armored'].includes(e.type)&&e.position){const f=effects[ei++%effects.length];f.born=time;f.type=e.reason==='slice'?'slice':'ring';f.dir=e.dir||0;f.g.position.fromArray(e.position);f.g.visible=true;f.g.scale.setScalar(1);f.ring.material=e.type==='damage'?danger:handMats[e.hand||0];f.ring.visible=f.type!=='slice';f.a.visible=f.b.visible=f.type==='slice';f.a.material=f.b.material=handMats[e.hand||0];f.a.scale.set(.11,.20,.20);f.b.scale.copy(f.a.scale);}
+    if(['destroy','block','damage','hit','armored','heal'].includes(e.type)&&e.position){const f=effects[ei++%effects.length];f.born=time;f.type=e.reason==='slice'?'slice':'ring';f.dir=e.dir||0;f.g.position.fromArray(e.position);f.g.visible=true;f.g.scale.setScalar(1);f.ring.material=e.type==='damage'?danger:handMats[e.hand||0];f.ring.visible=f.type!=='slice';f.a.visible=f.b.visible=f.type==='slice';f.a.material=f.b.material=handMats[e.hand||0];f.a.scale.set(.11,.20,.20);f.b.scale.copy(f.a.scale);}
    }
    for(const f of effects){const age=time-f.born;if(age>.55){f.g.visible=false;continue;}f.ring.scale.setScalar(1+age*3);if(f.type==='slice'){const d=C.DIRS[f.dir],a=.10+age*1.4;f.a.position.set(-d[1]*a,d[0]*a-age*age,0);f.b.position.set(d[1]*a,-d[0]*a-age*age,0);f.a.rotation.z=age*4;f.b.rotation.z=-age*4;}}
    for(const l of lasers)if(time-l.born>.07)l.m.visible=false;

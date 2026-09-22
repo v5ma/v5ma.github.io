@@ -7,7 +7,7 @@ with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path=os.getenv('CHROMIUM_PATH') or None,headless=True,args=['--no-sandbox'])
  try:
   p=b.new_page();p.goto('about:blank')
-  for name in ['vendor/aframe-1.8.0.min.js','modules/environment/water.js','modules/environment/fire.js','modules/environment/trees.js','river/core.js','river/art.js','river/bank-trees.js']:
+  for name in ['vendor/aframe-1.8.0.min.js','modules/environment/water.js','modules/environment/fire.js','modules/environment/trees.js','river/difficulty.js','river/core.js','river/art.js','river/bank-trees.js']:
    p.add_script_tag(content=(ROOT/'prism-current'/name).read_text())
   report=p.evaluate("""()=>{const T=AFRAME.THREE,checks=[],check=(v,m)=>{if(!v)throw Error(m);checks.push(m);};
    const scene={object3D:new T.Scene(),is:()=>false,components:{'river-game':{quality:'balanced',dock:{prefs:{opacity:.23}}}}},art=RiverArt.build(T,scene);

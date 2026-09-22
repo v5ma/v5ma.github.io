@@ -1,7 +1,7 @@
 /* Prism-only spatial furniture. No hub code, portal, camera parenting or game-state writes.
  * Screen and XR controls use this same scene surface, rectangle map and command set. */
 (function(root){'use strict';
- const VERSION='0.11.0',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
+ const VERSION='0.12.0',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
  const RECTS=Object.freeze([
   ...Array.from({length:8},(_,i)=>({x:i%2?631:56,y:306+Math.floor(i/2)*122,w:513,h:90})),
   ...Array.from({length:4},(_,i)=>({x:32+i*292,y:209,w:268,h:63})),
@@ -25,6 +25,8 @@
   const aimMarker=new T.Mesh(ownG(new T.RingGeometry(.017,.025,20)),ownM(new T.MeshBasicMaterial({color:0xd6fff0,depthTest:false,depthWrite:false,side:T.DoubleSide})));aimMarker.name='prism-scene-reticle';aimMarker.renderOrder=25;aimMarker.visible=false;scene.object3D.add(aimMarker);
   const hudBack=new T.Mesh(box,dark);hudBack.scale.set(1.80,.32,.025);hudBack.position.z=-.018;hud.mesh.add(hudBack);hud.mesh.name='prism-controller-status';hud.mesh.renderOrder=25;
   let page='play',progress=1,lastStamp=0,lastPaint='',focus=4,hover=-1,lastPhase='',headHeight=1.65,disposed=false,snapshot=null,lastHud=0,notice='',noticeAt=0,oldScore=0,oldHealth=100,oldRun=null;
+  const healthPanel=g.art.panel(1.45,.35);healthPanel.mesh.name='prism-health-gauge';
+  healthPanel.mesh.position.set(0,.62,-2.60);healthPanel.mesh.rotation.x=-.20;healthPanel.mesh.renderOrder=26;healthPanel.mesh.visible=false;
   let textControls=false;const support={ar:false,vr:false};
   const wrap=document.getElementById('scene-wrap'),ray=new T.Raycaster();ray.far=9;
   function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{notice='Layout applies for this session; storage is unavailable.';}lastPaint='';}
@@ -36,15 +38,22 @@
   function defaultAction(i){if(g.immersive)return false;
    if(page==='play'&&g.phase==='menu'){
     if(i<6){const chapter=i%2?'mothership':'duck-armada',mode=i<2?'ar':i<4?'vr':'screen';g.cancel();g.chapter=chapter;g.sync();if(mode==='screen')g.start();else if(support[mode])g.xr.enter(mode==='ar');else g.notice(mode.toUpperCase()+' is unavailable here. Select another supported mode.');return true;}
-    page=i===6?'sound':'help';return true;
+    page=i===6?'difficulty':'help';return true;
    }
    if(i===0){if(g.phase==='paused'&&['ar','vr'].includes(g.runMode)&&!g.immersive)g.xr.enter(g.runMode==='ar');else g.phase==='paused'?g.resume():g.start();}
    if(i===1){g.cancel();g.chapter=g.chapter==='duck-armada'?'mothership':'duck-armada';g.sync();}
-   if(i===2){anchor();reset();}if(i===3)g.cancel();if(i===4)g.music(-.1);if(i===5)g.music(.1);if(i===6){g.quiet=!g.quiet;g.sync();}if(i===7){g.cruise=!g.cruise;g.cancel();g.sync();}return true;
+   if(i===2){anchor();reset();}if(i===3)g.cancel();if(i===4)g.music(-.1);if(i===5)g.music(.1);if(i===6){g.quiet=!g.quiet;g.sync();}if(i===7){page='difficulty';lastPaint='';}return true;
   }
   function action(i){if(i<0||i>=RECTS.length||g.phase==='playing'||g.busy)return false;
    if(i>=8&&i<12){page=['play','layout','sound','help'][i-8];focus=0;lastPaint='';return true;}
    if(i===12){reset();return true;}if(i===13){prefs.hud=prefs.hud==='wrist'?'floor':'wrist';save();return true;}
+   if(page==='play'&&i===7&&g.immersive){page='difficulty';focus=0;lastPaint='';return true;}
+   if(page==='difficulty'){
+    if(i<4)g.setDifficulty(RiverCore.DIFFICULTIES.ORDER[i]);
+    else if(i===4){if(g.state)g.notice('Return to chapter selection to change Cruise.');else{g.cruise=!g.cruise;g.sync();}}
+    else if(i===5)page='help';else if(i===6)page='play';else g.notice('Mint health boxes: cut, shoot or touch. Restore health up to 100.');
+    lastPaint='';return true;
+   }
    if(page==='layout'){
     if(i===0||i===1)prefs.height=clamp(prefs.height+(i===0?.10:-.10),-.85,.4,-.27);
     if(i===2||i===3)prefs.distance=clamp(prefs.distance+(i===2?-.10:.10),.85,2.4,1.55);
@@ -66,19 +75,22 @@
    return defaultAction(i);
   }
   function labels(){
+   if(page==='difficulty')return [...RiverCore.DIFFICULTIES.ORDER.map(k=>(k===(g.state?.difficulty||g.difficulty)?'[SELECTED] ':'')+RiverCore.DIFFICULTIES.get(k).name),g.cruise?'Cruise: no health loss':'Cruise: off','Controls','Back to battle','Mint boxes restore HEALTH'];
    if(page==='layout')return ['Raise panel','Lower panel','Bring closer','Move farther','Larger panel','Smaller panel','Rotate left','Rotate right'];
    if(page==='sound')return ['Music - '+Math.round(g.audio.volume*100)+'%','Music +','Effects - '+Math.round(g.audio.effectsVolume*100)+'%','Effects +','AR opacity - '+Math.round(prefs.opacity*100)+'%','AR opacity +',g.quiet?'Motion: still':'Motion: flowing',g.quality==='light'?'Quality: Light':'Quality: Balanced'];
    if(page==='help')return ['Back to battle',g.cruise?'Cruise / separate scores':'Arcade / switch to Cruise',g.immersive?'Classic: exit XR first':'Classic rhythm',g.immersive?'Expedition: exit XR first':'Water expedition',g.immersive?'Hands: menus only':'Accessible text controls','Wrist / floor HUD','Sound and water','Panel placement'];
-   if(!g.immersive&&g.phase==='menu')return [support.ar?'Duck Armada / AR':'AR unavailable',support.ar?'Mothership / AR':'AR unavailable',support.vr?'Duck Armada / VR':'VR unavailable',support.vr?'Mothership / VR':'VR unavailable','Duck Armada / Screen','Mothership / Screen','Sound and water','Controls and older modes'];
-   return [g.busy?'Preparing...':g.phase==='paused'?'Resume battle':'Start battle','Other chapter',g.immersive?'Recenter stage':'Reset placement',g.immersive?'Exit headset':'Chapter selection','Music -','Music +',g.quiet?'Motion: still':'Motion: flowing',g.cruise?'Cruise / no fail':'Arcade: health'];
+   if(!g.immersive&&g.phase==='menu')return [support.ar?'Duck Armada / AR':'AR unavailable',support.ar?'Mothership / AR':'AR unavailable',support.vr?'Duck Armada / VR':'VR unavailable',support.vr?'Mothership / VR':'VR unavailable','Duck Armada / Screen','Mothership / Screen',RiverCore.DIFFICULTIES.get(g.difficulty).name+' / Choose difficulty','Controls and older modes'];
+   return [g.busy?'Preparing...':g.phase==='paused'?'Resume battle':'Start battle','Other chapter',g.immersive?'Recenter stage':'Reset placement',g.immersive?'Exit headset':'Chapter selection','Music -','Music +',g.quiet?'Motion: still':'Motion: flowing',RiverCore.DIFFICULTIES.get(g.state?.difficulty||g.difficulty).name+' / Difficulty'];
   }
-  function draw(f=focus,hov=[]){if(g.phase==='playing')return;focus=f;const s=g.state,key=[page,g.phase,g.chapter,g.message,g.audio.volume,g.audio.effectsVolume,g.quiet,g.cruise,g.quality,JSON.stringify(prefs),focus,...hov,s?.score,s?.health,s?.mode,support.ar,support.vr].join('|');if(key===lastPaint)return;lastPaint=key;
+  function draw(f=focus,hov=[]){if(g.phase==='playing')return;focus=f;const s=g.state,key=[page,g.phase,g.chapter,g.message,g.audio.volume,g.audio.effectsVolume,g.quiet,g.cruise,g.quality,g.difficulty,JSON.stringify(prefs),focus,...hov,s?.score,s?.health,s?.mode,support.ar,support.vr].join('|');if(key===lastPaint)return;lastPaint=key;
    const c=menu.context;c.clearRect(0,0,menu.canvas.width,menu.canvas.height);c.save();c.scale(menu.canvas.width/WIDTH,menu.canvas.height/HEIGHT);c.fillStyle='#102b3ff5';c.fillRect(0,0,WIDTH,HEIGHT);c.strokeStyle='#84dcbf';c.lineWidth=3;c.strokeRect(2,2,WIDTH-4,HEIGHT-4);
-   c.fillStyle='#b9ffe1';c.font='600 25px system-ui';c.fillText('RIVER PRISM / ROTUNDA '+VERSION,32,48);c.fillStyle='#ffffff';c.font='600 43px system-ui';c.fillText(page==='play'?(g.chapter==='mothership'?'Mothership Channel':'Duck Armada'):page==='layout'?'Place it where you want it.':page==='sound'?'Sound and transparent water.':'Cut. Shoot. Shield. Move.',32,110);
+   c.fillStyle='#b9ffe1';c.font='600 25px system-ui';c.fillText('RIVER PRISM / ROTUNDA '+VERSION,32,48);c.fillStyle='#ffffff';c.font='600 43px system-ui';c.fillText(page==='play'?(g.chapter==='mothership'?'Mothership Channel':'Duck Armada'):page==='layout'?'Place it where you want it.':page==='sound'?'Sound and transparent water.':page==='difficulty'?'Choose your pace.':'Cut. Shoot. Shield. Move.',32,110);
    c.fillStyle='#d5ede4';c.font='22px system-ui';let detail=g.immersive?'Trigger or pinch selects. Sticks navigate. A/X confirms. B/Y resumes.':'Click a 3D button, or use D-pad and A. P / Menu pauses; F2 text controls.';
    if(page==='help')detail=g.immersive?'Swing: cut. Triggers: laser. Grips: shield. B/Y: pause.':g.padId!==null?'Right stick: aim. A/X: cut. D-pad: direction. Menu: pause.':'Drag: cut. F: swap blade. Right mouse: fire. Q/E: shield. P: pause.';
    if(page==='layout')detail=g.immersive?'Panel stays planted. Stick click resets placement. Your camera never moves.':'Panel stays planted. Home resets placement. F2 opens text controls.';
-   c.fillText(detail,32,171);c.font='20px system-ui';const message=['complete','failed','escaped'].includes(g.phase)?`${s?.score||0} POINTS / ${g.phase==='complete'?'BOSS DEFEATED':g.phase==='failed'?'HULL LOST':'BOSS ESCAPED'}`:page==='help'?'Red bombs: shoot or shield. Pink bolts: shield, reflect or dodge.':page==='sound'?'Changing volume, opacity or layout never restarts the current encounter.':g.message;
+   if(page==='difficulty')detail='Easy: slow and sparse. Normal: relaxed. Hard: busy. Ultra Hard: intense.';
+   if(page==='play')detail=RiverCore.DIFFICULTIES.get(g.state?.difficulty||g.difficulty).name.toUpperCase()+' / '+detail;
+   c.fillText(detail,32,171,1130);c.font='20px system-ui';const message=['complete','failed','escaped'].includes(g.phase)?`${s?.score||0} POINTS / ${g.phase==='complete'?'BOSS DEFEATED':g.phase==='failed'?'HEALTH DEPLETED':'BOSS ESCAPED'}`:page==='difficulty'?(g.state?'Current battle locked. Chapter selection starts a new difficulty.':'Easy/Normal: either blade, any cut direction. Hard/Ultra: follow fruit arrows.'):page==='help'?'Purple blocks: cut, shoot or shield. Mint boxes: heal. Spiked bombs: shoot only.':page==='sound'?'Changing volume, opacity or layout never restarts the current encounter.':g.message;
    c.fillText(message.slice(0,102),32,199);
    const names=[...labels(),'Battle','Placement','Sound / water','Controls','Reset panel',prefs.hud==='wrist'?'HUD: wrist':'HUD: floor'];
    for(let i=0;i<RECTS.length;i++){const r=RECTS[i],selected=i===focus,tab=i>=8&&i<12&&['play','layout','sound','help'][i-8]===page;c.fillStyle=selected?'#b4ffe1':hov.includes(i)?'#518b80':tab?'#3d6d6a':'#244b62';c.fillRect(r.x,r.y,r.w,r.h);c.strokeStyle=selected?'#ffffff':'#5e9090';c.lineWidth=selected?5:2;c.strokeRect(r.x,r.y,r.w,r.h);c.fillStyle=selected?'#0d2d39':'#ffffff';c.font=(i<8?'600 25px':'600 22px')+' system-ui';c.fillText(names[i],r.x+16,r.y+r.h*.62,r.w-30);}
@@ -103,16 +115,20 @@
    lift.position.set(base.position.x,.055+(height-.055)*ease,base.position.z);lift.rotation.set(-Math.PI/2+ease*(Math.PI/2-.18),-prefs.yaw,0);const fit=g.immersive?prefs.size:Math.min(prefs.size,prefs.distance*Math.tan((scene.camera.fov||68)*Math.PI/360)*Math.min(scene.camera.aspect||1,1.4)*1.06);lift.scale.setScalar(fit*(.10+.90*ease));
    menu.mesh.visible=visible&&open;stem.visible=visible&&open;stem.position.set(base.position.x,lift.position.y/2,base.position.z);stem.scale.y=Math.max(.01,lift.position.y);
    if(!g.immersive){draw(focus,hover>=0?[hover]:[]);}const s=g.state;hud.mesh.visible=visible&&!!s&&g.phase==='playing';
-   if(g.immersive&&prefs.hud==='wrist'&&input?.hands?.[0]?.pose){const h=input.hands[0];hud.mesh.position.fromArray(h.pose.a);hud.mesh.position.y+=.15;hud.mesh.position.z+=.10;if(h.gripQuaternion)hud.mesh.quaternion.fromArray(h.gripQuaternion);else hud.mesh.quaternion.identity();hud.mesh.rotateX(-.45);hud.mesh.scale.set(.29,.57,1);}
+   if(g.immersive&&prefs.hud==='wrist'&&input?.hands?.[0]?.pose){const h=input.hands[0];hud.mesh.position.fromArray(h.pose.a);hud.mesh.position.y+=.15;hud.mesh.position.z+=.10;if(h.gripQuaternion)hud.mesh.quaternion.fromArray(h.gripQuaternion);else hud.mesh.quaternion.identity();hud.mesh.rotateX(-.45);hud.mesh.scale.set(.36,.72,1);}
    else{const v=new T.Vector3(base.position.x,g.immersive?.30:.90,base.position.z+(g.immersive?.15:-.40));root3D.localToWorld(v);stage.worldToLocal(v);hud.mesh.position.copy(v);const q=root3D.getWorldQuaternion(new T.Quaternion()),parentQ=stage.getWorldQuaternion(new T.Quaternion()).invert();hud.mesh.quaternion.copy(parentQ.multiply(q));hud.mesh.rotateX(-.70);hud.mesh.scale.set(.56,.85,1);}
-   if(oldRun!==s){oldRun=s;oldScore=s?.score||0;oldHealth=s?.health||100;notice='';}if(s&&s.score!==oldScore){notice='+'+(s.score-oldScore)+' points';oldScore=s.score;noticeAt=now;}if(s&&s.health<oldHealth){notice='-'+(oldHealth-s.health)+' hull / incoming hazard';oldHealth=s.health;noticeAt=now;}
-   if(now-lastHud>130){lastHud=now;const c=hud.context,w=hud.canvas.width,h=hud.canvas.height;c.clearRect(0,0,w,h);c.fillStyle='#112d40f5';c.fillRect(0,0,w,h);c.fillStyle='#b6ffe0';c.font='700 53px system-ui';c.fillText(`${s?.score||0} POINTS   ${s?.health??100} HULL   ${s?.combo||0}x`,25,64);c.font='30px system-ui';c.fillStyle='#ffffff';c.fillText(now-noticeAt<1600?notice:(s?RiverCore.phase(g.chapter,s.time).name:'River Prism'),25,117);c.font='23px system-ui';c.fillText(g.immersive?'B / Y: rotunda     Trigger: laser     Grip: shield':g.padId!==null?'Menu: rotunda     LT/RT: laser     LB/RB: shield':'P: rotunda     F: blade     Right mouse: laser     Q/E: shield',25,163);hud.texture.needsUpdate=true;}
+   if(oldRun!==s){oldRun=s;oldScore=s?.score||0;oldHealth=s?.health??100;notice='';}if(s&&s.score!==oldScore){notice='+'+(s.score-oldScore)+' points';oldScore=s.score;noticeAt=now;}if(s&&s.health!==oldHealth){notice=s.health<oldHealth?'-'+(oldHealth-s.health)+' HEALTH / block or bomb impact':'+'+(s.health-oldHealth)+' HEALTH / supply box';oldHealth=s.health;noticeAt=now;}
+   healthPanel.mesh.visible=visible&&!!s&&g.phase==='playing';
+   if(now-lastHud>130){lastHud=now;const health=s?.health??100,max=s?.maxHealth||100,low=health<=30;
+    const c=hud.context,w=hud.canvas.width,h=hud.canvas.height;c.clearRect(0,0,w,h);c.fillStyle='#102c3ff5';c.fillRect(0,0,w,h);c.fillStyle=low?'#ffbe73':'#b6ffe0';c.font='700 49px system-ui';c.fillText(`HEALTH ${health} / ${max}`,25,57);c.fillStyle='#305163';c.fillRect(25,73,700,25);c.fillStyle=low?'#ffb85e':'#61e3b2';c.fillRect(25,73,700*health/max,25);c.fillStyle='#ffffff';c.font='28px system-ui';c.fillText(`${s?.score||0} POINTS / ${s?.combo||0}x / ${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name}`,25,139);c.font='23px system-ui';c.fillText(now-noticeAt<1800?notice:'Mint health box: cut or shoot. B/Y or P: menu.',25,178);hud.texture.needsUpdate=true;
+    const a=healthPanel.context,pw=healthPanel.canvas.width,ph=healthPanel.canvas.height;a.clearRect(0,0,pw,ph);a.fillStyle='#112d40f5';a.fillRect(0,0,pw,ph);a.strokeStyle=low?'#ffc07b':'#a8ffe0';a.lineWidth=5;a.strokeRect(3,3,pw-6,ph-6);a.fillStyle='#ffffff';a.font='700 56px system-ui';a.fillText(`HEALTH ${health} / ${max}`,30,65);a.fillStyle='#34505f';a.fillRect(30,90,pw-60,46);a.fillStyle=low?'#ffb85e':'#61e3b2';a.fillRect(30,90,(pw-60)*health/max,46);a.fillStyle='#ffffff';a.font='29px system-ui';a.fillText(now-noticeAt<1800?notice:low?'LOW HEALTH / Collect a mint supply box':'Mint boxes heal / Purple blocks: cut, shoot or shield',30,180,pw-60);a.font='26px system-ui';a.fillText(`${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name.toUpperCase()} / ${s?.score||0} POINTS / ${s?.bossDefeated?'BOSS DEFEATED':s&&s.time>=RiverCore.BOSS_BEAT*RiverCore.BEAT?'FINALE: SHOOT THE BOSS':'Boss arrives in the finale'}`,30,225,pw-60);healthPanel.texture.needsUpdate=true;
+   }
    root3D.updateMatrixWorld(true);hud.mesh.updateMatrixWorld(true);
-   snapshot={page,focus,open,progress,preferences:{...prefs},anchor:root3D.position.toArray(),anchorRotation:root3D.rotation.toArray().slice(0,3),menuPosition:menu.mesh.getWorldPosition(new T.Vector3()).toArray(),hudPosition:hud.mesh.getWorldPosition(new T.Vector3()).toArray(),hudVisible:hud.mesh.visible,headAttached:false,textControls};
+   snapshot={page,focus,open,progress,preferences:{...prefs},anchor:root3D.position.toArray(),anchorRotation:root3D.rotation.toArray().slice(0,3),menuPosition:menu.mesh.getWorldPosition(new T.Vector3()).toArray(),hudPosition:hud.mesh.getWorldPosition(new T.Vector3()).toArray(),hudVisible:hud.mesh.visible,healthGaugeVisible:healthPanel.mesh.visible,health:s?.health??100,difficulty:s?.difficulty||g.difficulty,headAttached:false,textControls};
   }
   function setSupport(mode,v){support[mode]=v;if(v&&!g.immersive&&g.phase==='menu'&&page==='play')focus=support.ar?0:2;lastPaint='';}
   anchor();document.body.classList.add('scene-ui');
-  const api={action,draw,update,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);root3D.removeFromParent();aimMarker.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
+  const api={action,draw,update,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);root3D.removeFromParent();aimMarker.removeFromParent();healthPanel.mesh.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
   g.dock=api;return api;
  }
  const api={VERSION,KEY,WIDTH,HEIGHT,RECTS,preferences,hit,navigate,install};root.RiverRotunda=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
