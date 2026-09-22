@@ -1,0 +1,34 @@
+/* Real Three objects, not a GPU/frame-rate/physical headset test. */
+(()=>{'use strict';
+ const T=AFRAME.THREE,checks=[],check=(v,s)=>{if(!v)throw Error(s);checks.push(s);};
+ const style=SVGNToon.create(T),mat=style.material({vertexColors:true});let matDisposals=0;mat.addEventListener('dispose',()=>matDisposals++);
+ const island=SVGNIslands.create(T,{islands:PrismARIslands.ISLANDS,material:mat});
+ check(island.stats.triangles===400&&island.stats.geometries===2,'Two original islands use exactly 400 triangles and two meshes');
+ for(const m of island.group.children){const n=m.geometry.attributes.normal;check(n.array.every(Number.isFinite),'Island normal data is finite');}
+ check(island.socket('palm-shoal')[1]===.32,'Tree planting socket sits on the rendered cap');
+ const desc=island.describe();desc[0].position[0]=99;check(island.describe()[0].position[0]===-4.7,'Returned descriptions cannot change authored placement');
+ const parent=new T.Group(),other=new T.Group();parent.add(other,island.group);let gd=0;for(const m of island.group.children)m.geometry.addEventListener('dispose',()=>gd++);
+ island.dispose();island.dispose();check(gd===2&&matDisposals===0&&parent.children.length===1,'Island disposal preserves borrowed material and unrelated parent children');style.dispose();check(matDisposals===1,'Toon owner disposes its material separately');
+ const water=SVGNWater.create(T);const original=water.material.fragmentShader,optics=SVGNWaterOptics.attach(T,water.material);
+ check(water.material.fragmentShader!==original&&water.material.uniforms.optics.value.w===0,'Optics applies the complete validated shader extension');
+ let duplicate=false;try{SVGNWaterOptics.attach(T,water.material);}catch{duplicate=true;}check(duplicate,'Duplicate optics attachment is explicitly rejected');
+ optics.update({ar:true});check(water.material.uniforms.optics.value.w===1,'AR enables the near-viewer room-visibility fade');
+ optics.dispose();optics.dispose();check(water.material.fragmentShader===original&&!water.material.uniforms.optics,'Optics detaches without disposing or rewriting the water surface');water.dispose();
+ let ar=false;const host={object3D:new T.Scene(),camera:new T.PerspectiveCamera(68,1,.05,100),is:k=>k==='ar-mode'?ar:false,components:{'river-game':{quality:'balanced',dock:{prefs:{arScenery:'islands',opacity:.3}}}}};
+ host.camera.position.set(0,1.65,0);host.camera.updateMatrixWorld(true);
+ const art=RiverArt.build(T,host),s=RiverCore.create('duck-armada',false,'easy');
+ const before=JSON.stringify(s);art.update(s,0,0,false,false,false);check(!art.stats.arScenery.visible,'Screen mode retains its original banks without a duplicate AR scene');
+ ar=true;art.update(s,1,.02,true,false,false);check(art.stats.arScenery.visible&&art.stats.arScenery.islands.islands===2&&art.stats.arScenery.clouds.clouds===2,'Duck Armada AR shows two islands and two cloud clusters');
+ check(JSON.stringify(s)===before,'The scenery and optics adapter do not mutate encounter state');
+ check(art.stats.arScenery.clouds.levels.every(v=>v===2),'AR clouds use the shared conservative stereo LOD');
+ check(art.stats.arScenery.trees.lod[0]===0,'AR trees do not use their maximum-detail geometry');
+ const copy=()=>{const v=art.stats.arScenery;delete v.trees.updates;return JSON.stringify(v);};const snapshot=copy();art.update(s,1,.02,true,false,false);check(copy()===snapshot,'Repeated host time freezes scenery other than its diagnostic update counter');
+ host.components['river-game'].dock.prefs.arScenery='minimal';art.update(s,1,.02,true,false,false);check(!art.stats.arScenery.visible,'Minimal scenery hides only added decoration');
+ host.components['river-game'].dock.prefs.arScenery='islands';art.update({...s,chapter:'mothership'},1,.02,true,false,false);check(!art.stats.arScenery.visible,'Mothership keeps its current space presentation');
+ art.update(s,1,.02,true,true,false);check(art.stats.arScenery.clouds.quiet&&art.stats.arScenery.trees.quiet,'Existing quiet control applies to the AR islands');
+ const scene=host.object3D.getObjectByName('prism-ar-archipelago');art.stage.position.set(2.7,-.3,-1.6);art.stage.rotation.y=.6;art.stage.updateMatrixWorld(true);const matrix=scene.matrixWorld.clone();
+ host.camera.position.x+=.2;host.camera.updateMatrixWorld(true);art.update(s,1,.02,true,true,false);scene.updateWorldMatrix(true,false);check(scene.matrixWorld.equals(matrix),'Head movement does not move the anchored scenery');
+ art.reset();check(art.stats.arScenery.clouds.time===0,'Battle reset clears the cloud motion clock');
+ art.dispose();art.dispose();check(host.object3D.children.length===0&&art.stats.arScenery.islands.disposed,'Whole art disposal frees the added modules once');
+ window.arTideObjectReport={passed:checks.length,checks,scope:'Actual bundled Three resource and host-adapter model checks. No GPU rendering or physical headset.'};
+})();

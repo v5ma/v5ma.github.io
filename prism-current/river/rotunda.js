@@ -1,7 +1,7 @@
 /* Prism-only spatial furniture. No hub code, portal, camera parenting or game-state writes.
  * Screen and XR controls use this same scene surface, rectangle map and command set. */
 (function(root){'use strict';
- const VERSION='0.12.1',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
+ const VERSION='0.12.3',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
  const RECTS=Object.freeze([
   ...Array.from({length:8},(_,i)=>({x:i%2?631:56,y:306+Math.floor(i/2)*122,w:513,h:90})),
   ...Array.from({length:4},(_,i)=>({x:32+i*292,y:209,w:268,h:63})),
@@ -9,7 +9,7 @@
  ].map(Object.freeze));
  const clamp=(v,a,b,d)=>Number.isFinite(v)?Math.max(a,Math.min(b,v)):d;
  function preferences(raw){let v={};try{v=JSON.parse(raw||'{}')||{};}catch{}
-  return {height:clamp(v.height,-.85,.40,-.27),distance:clamp(v.distance,.85,2.4,1.55),size:clamp(v.size,.65,1.25,.86),yaw:clamp(v.yaw,-1.05,1.05,0),hud:v.hud==='floor'?'floor':'wrist',opacity:clamp(v.opacity,.08,.9,.38)};
+  return {height:clamp(v.height,-.85,.40,-.27),distance:clamp(v.distance,.85,2.4,1.55),size:clamp(v.size,.65,1.25,.86),yaw:clamp(v.yaw,-1.05,1.05,0),hud:v.hud==='floor'?'floor':'wrist',opacity:clamp(v.opacity,.08,.9,.38),arScenery:v.arScenery==='minimal'?'minimal':'islands'};
  }
  function hit(u,v){if(!Number.isFinite(u)||!Number.isFinite(v))return -1;const x=u*WIDTH,y=(1-v)*HEIGHT;return RECTS.findIndex(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);}
  function navigate(index,dx,dy){return (index+(dy?dy*2:dx)+RECTS.length)%RECTS.length;}
@@ -31,8 +31,8 @@
   for(const p of [hud,healthPanel]){p.texture.generateMipmaps=false;p.texture.minFilter=T.LinearFilter;}
   let textControls=false;const support={ar:false,vr:false};
   const wrap=document.getElementById('scene-wrap'),ray=new T.Raycaster();ray.far=9;
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{notice='Layout applies for this session; storage is unavailable.';}lastPaint='';}
-  function reset(){prefs={...preferences(null),opacity:prefs.opacity,hud:prefs.hud};save();}
+  function save(){const select=document.getElementById('ar-scenery');if(select)select.value=prefs.arScenery;try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{notice='Layout applies for this session; storage is unavailable.';}lastPaint='';}
+  function reset(){prefs={...preferences(null),opacity:prefs.opacity,hud:prefs.hud,arScenery:prefs.arScenery};save();}
   function anchor(viewer){const p=viewer?.transform?.position||{x:g.playerX||0,y:1.65-(g.crouch||0),z:0},q=viewer?.transform?.orientation||{x:0,y:0,z:0,w:1};headHeight=Math.max(.65,p.y);
    const f=new T.Vector3(0,0,-1).applyQuaternion(new T.Quaternion(q.x,q.y,q.z,q.w));root3D.position.set(p.x,0,p.z);root3D.rotation.set(0,Math.hypot(f.x,f.z)>.001?Math.atan2(-f.x,-f.z):root3D.rotation.y,0);root3D.updateMatrixWorld(true);lastPaint='';
   }
@@ -56,6 +56,12 @@
     else if(i===5)page='help';else if(i===6)page='play';else g.notice('Mint health boxes: cut, shoot or touch. Restore health up to 100.');
     lastPaint='';return true;
    }
+   if(page==='scenery'){
+    if(i===0||i===1){prefs.arScenery=i===0?'islands':'minimal';save();}
+    if(i===2||i===3){g.quality=i===2?'light':'balanced';g.sync();}
+    if(i===4||i===5){prefs.opacity=clamp(prefs.opacity+(i===4?-.08:.08),.08,.9,.38);save();}
+    if(i===6)page='help';if(i===7)page='play';lastPaint='';return true;
+   }
    if(page==='layout'){
     if(i===0||i===1)prefs.height=clamp(prefs.height+(i===0?.10:-.10),-.85,.4,-.27);
     if(i===2||i===3)prefs.distance=clamp(prefs.distance+(i===2?-.10:.10),.85,2.4,1.55);
@@ -72,24 +78,27 @@
     if(i===0){page='play';lastPaint='';}if(i===1){g.cruise=!g.cruise;g.cancel();g.sync();}
     if(i===2&&!g.immersive)location.href='./rhythm.html';if(i===3&&!g.immersive)location.href='./water-mission/index.html';
     if(i===4&&!g.immersive){textControls=true;document.body.classList.add('text-controls');document.getElementById('play').focus();}
-    if(i===5){prefs.hud=prefs.hud==='wrist'?'floor':'wrist';save();}if(i===6){page='sound';lastPaint='';}if(i===7){page='layout';lastPaint='';}return true;
+    if(i===5){prefs.hud=prefs.hud==='wrist'?'floor':'wrist';save();}if(i===6){page='sound';lastPaint='';}if(i===7){page='scenery';lastPaint='';}return true;
    }
    return defaultAction(i);
   }
   function labels(){
+   if(page==='scenery')return [prefs.arScenery==='islands'?'Islands + clouds [ON]':'Show islands + clouds',prefs.arScenery==='minimal'?'Minimal scenery [ON]':'Minimal scenery','Light rendering','Balanced rendering','AR water opacity - '+Math.round(prefs.opacity*100)+'%','AR water opacity +','Back to controls','Battle / recenter'];
+
    if(page==='difficulty')return [...RiverCore.DIFFICULTIES.ORDER.map(k=>(k===(g.state?.difficulty||g.difficulty)?'[SELECTED] ':'')+RiverCore.DIFFICULTIES.get(k).name),g.cruise?'Cruise: no health loss':'Cruise: off','Controls','Back to battle','Mint boxes restore HEALTH'];
    if(page==='layout')return ['Raise panel','Lower panel','Bring closer','Move farther','Larger panel','Smaller panel','Rotate left','Rotate right'];
    if(page==='sound')return ['Music - '+Math.round(g.audio.volume*100)+'%','Music +','Effects - '+Math.round(g.audio.effectsVolume*100)+'%','Effects +','AR opacity - '+Math.round(prefs.opacity*100)+'%','AR opacity +',g.quiet?'Motion: still':'Motion: flowing',g.quality==='light'?'Quality: Light':'Quality: Balanced'];
-   if(page==='help')return ['Back to battle',g.cruise?'Cruise / separate scores':'Arcade / switch to Cruise',g.immersive?'Classic: exit XR first':'Classic rhythm',g.immersive?'Expedition: exit XR first':'Water expedition',g.immersive?'Hands: menus only':'Accessible text controls','Wrist / floor HUD','Sound and water','Panel placement'];
+   if(page==='help')return ['Back to battle',g.cruise?'Cruise / separate scores':'Arcade / switch to Cruise',g.immersive?'Classic: exit XR first':'Classic rhythm',g.immersive?'Expedition: exit XR first':'Water expedition',g.immersive?'Hands: menus only':'Accessible text controls','Wrist / floor HUD','Sound and water','AR scenery'];
    if(!g.immersive&&g.phase==='menu')return [support.ar?'Duck Armada / AR':'AR unavailable',support.ar?'Mothership / AR':'AR unavailable',support.vr?'Duck Armada / VR':'VR unavailable',support.vr?'Mothership / VR':'VR unavailable','Duck Armada / Screen','Mothership / Screen',RiverCore.DIFFICULTIES.get(g.difficulty).name+' / Choose difficulty','Controls and older modes'];
    return [g.busy?'Preparing...':g.phase==='paused'?'Resume battle':'Start battle','Other chapter',g.immersive?'Recenter stage':'Reset placement',g.immersive?'Exit headset':'Chapter selection','Music -','Music +',g.quiet?'Motion: still':'Motion: flowing',RiverCore.DIFFICULTIES.get(g.state?.difficulty||g.difficulty).name+' / Difficulty'];
   }
   function draw(f=focus,hov=[]){if(g.phase==='playing')return;focus=f;const s=g.state,key=[page,g.phase,g.chapter,g.message,g.audio.volume,g.audio.effectsVolume,g.quiet,g.cruise,g.quality,g.difficulty,JSON.stringify(prefs),focus,...hov,s?.score,s?.health,s?.mode,support.ar,support.vr].join('|');if(key===lastPaint)return;lastPaint=key;
    const c=menu.context;c.clearRect(0,0,menu.canvas.width,menu.canvas.height);c.save();c.scale(menu.canvas.width/WIDTH,menu.canvas.height/HEIGHT);c.fillStyle='#102b3ff5';c.fillRect(0,0,WIDTH,HEIGHT);c.strokeStyle='#84dcbf';c.lineWidth=3;c.strokeRect(2,2,WIDTH-4,HEIGHT-4);
-   c.fillStyle='#b9ffe1';c.font='600 25px system-ui';c.fillText('RIVER PRISM / ROTUNDA '+VERSION,32,48);c.fillStyle='#ffffff';c.font='600 43px system-ui';c.fillText(page==='play'?(g.chapter==='mothership'?'Mothership Channel':'Duck Armada'):page==='layout'?'Place it where you want it.':page==='sound'?'Sound and transparent water.':page==='difficulty'?'Choose your pace.':'Cut. Shoot. Shield. Move.',32,110);
+   c.fillStyle='#b9ffe1';c.font='600 25px system-ui';c.fillText('RIVER PRISM / ROTUNDA '+VERSION,32,48);c.fillStyle='#ffffff';c.font='600 43px system-ui';c.fillText(page==='play'?(g.chapter==='mothership'?'Mothership Channel':'Duck Armada'):page==='layout'?'Place it where you want it.':page==='sound'?'Sound and transparent water.':page==='difficulty'?'Choose your pace.':page==='scenery'?'Islands in your room.':'Cut. Shoot. Shield. Move.',32,110);
    c.fillStyle='#d5ede4';c.font='22px system-ui';let detail=g.immersive?'Trigger or pinch selects. Sticks navigate. A/X confirms. B/Y resumes.':'Click a 3D button, or use D-pad and A. P / Menu pauses; F2 text controls.';
    if(page==='help')detail=g.immersive?'Swing: cut. Triggers: laser. Grips: shield. B/Y: pause.':g.padId!==null?'Right stick: aim. A/X: cut. D-pad: direction. Menu: pause.':'Drag: cut. F: swap blade. Right mouse: fire. Q/E: shield. P: pause.';
    if(page==='layout')detail=g.immersive?'Panel stays planted. Stick click resets placement. Your camera never moves.':'Panel stays planted. Home resets placement. F2 opens text controls.';
+   if(page==='scenery')detail='Duck Armada AR: compact islands and clouds. Minimal hides scenery, not gameplay.';
    if(page==='difficulty')detail='Easy: slow and sparse. Normal: relaxed. Hard: busy. Ultra Hard: intense.';
    if(page==='play')detail=RiverCore.DIFFICULTIES.get(g.state?.difficulty||g.difficulty).name.toUpperCase()+' / '+detail;
    c.fillText(detail,32,171,1130);c.font='20px system-ui';const message=['complete','failed','escaped'].includes(g.phase)?`${s?.score||0} POINTS / ${g.phase==='complete'?'BOSS DEFEATED':g.phase==='failed'?'HEALTH DEPLETED':'BOSS ESCAPED'}`:page==='difficulty'?(g.state?'Current battle locked. Chapter selection starts a new difficulty.':'Easy/Normal: either blade, any cut direction. Hard/Ultra: follow fruit arrows.'):page==='help'?'Purple blocks: cut, shoot or shield. Mint boxes: heal. Spiked bombs: shoot only.':page==='sound'?'Changing volume, opacity or layout never restarts the current encounter.':g.message;
@@ -141,8 +150,11 @@ const health=s?.health??100,max=s?.maxHealth||100,low=health<=30;
    snapshot={page,focus,open,progress,preferences:{...prefs},anchor:root3D.position.toArray(),anchorRotation:root3D.rotation.toArray().slice(0,3),menuPosition:menu.mesh.getWorldPosition(new T.Vector3()).toArray(),hudPosition:hud.mesh.getWorldPosition(new T.Vector3()).toArray(),hudVisible:hud.mesh.visible,healthGaugeVisible:healthPanel.mesh.visible,hudPaints,hudPrepared,health:s?.health??100,difficulty:s?.difficulty||g.difficulty,headAttached:false,textControls};
   }
   function setSupport(mode,v){support[mode]=v;if(v&&!g.immersive&&g.phase==='menu'&&page==='play')focus=support.ar?0:2;lastPaint='';}
+  const scenerySelect=document.getElementById('ar-scenery');
+  const changeScenery=()=>{prefs.arScenery=scenerySelect.value==='minimal'?'minimal':'islands';save();};
+  if(scenerySelect){scenerySelect.value=prefs.arScenery;scenerySelect.addEventListener('change',changeScenery);}
   anchor();document.body.classList.add('scene-ui');
-  const api={action,draw,update,prepare,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);root3D.removeFromParent();aimMarker.removeFromParent();healthPanel.mesh.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
+  const api={action,draw,update,prepare,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);scenerySelect?.removeEventListener('change',changeScenery);root3D.removeFromParent();aimMarker.removeFromParent();healthPanel.mesh.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
   g.dock=api;return api;
  }
  const api={VERSION,KEY,WIDTH,HEIGHT,RECTS,preferences,hit,navigate,install};root.RiverRotunda=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
