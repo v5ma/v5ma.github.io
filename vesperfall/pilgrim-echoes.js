@@ -45,14 +45,14 @@
   }}
   function openJournal(){g.setPaused(true);state.page=0;if(g.xr){ui.setScreen('stories');g.placePanel();}else ui.notice('THE LAST LANTERN. '+(state.found.length?state.found.map(id=>{const n=M.NOTES.find(n=>n.id===id);return n.title+': '+n.text;}).join('\n\n'):'Read dispatches beside the shelter, rest passage and far beacon. Restore the lanterns to follow the missing pilgrims.'));}
   const btn=document.createElement('button');btn.id='story-journal';btn.textContent='Story journal / The Last Lantern';btn.onclick=openJournal;$('journal-button').after(btn);
-  const drawMenu=g.drawMenu.bind(g);g.drawMenu=function(){drawMenu();if(!g.xrPanel||g.threshold?.state.phase!=='game')return;
+  const drawMenu=g.drawMenu.bind(g);g.drawMenu=function(){const selected=g.menuSelection;drawMenu();if(!g.xrPanel||g.threshold?.state.phase!=='game')return;
    let list=null;if(ui.state.xrScreen==='main'&&g.xrMenuRows.length===6){list=g.xrMenuRows.map(r=>[...r]);list[4]=['Story journal / Controller manual',()=>{state.page=0;ui.setScreen('stories');}];}
    if(ui.state.xrScreen==='stories'){const known=M.NOTES.filter(n=>state.found.includes(n.id)),pages=Math.max(1,Math.ceil(known.length/3));state.page%=pages;
     list=known.slice(state.page*3,state.page*3+3).map(n=>[n.title,()=>ui.notice(n.title+'. '+n.text)]);
     if(!known.length)list.push(['Find dispatches beside the shelter and refuges',()=>ui.notice('The Last Lantern: restore the Causeway signals and recover the missing pilgrims\' route through the Ashen Archive. Read a dispatch with grip, E, or Xbox A. Notes remain in this journal. No extra kills are required.')]);
     list.push(['More notes / '+(state.page+1)+' of '+pages,()=>{state.page=(state.page+1)%pages;g.drawMenu();}],['Controller manual / bestiary',()=>ui.setScreen('manual')],['Back to expedition',()=>ui.setScreen('main')]);
    }if(!list)return;
-   const {ctx,texture}=g.xrPanel;ctx.fillStyle='#142230';ctx.fillRect(70,190,884,457);g.xrMenuRows=list;g.menuSelection=Math.max(0,Math.min(g.menuSelection,list.length-1));list.forEach(([text],i)=>{ctx.fillStyle=i===g.menuSelection?'#486971':'#283e50';ctx.fillRect(95,195+i*75,834,61);ctx.fillStyle='#f7eed8';ctx.textAlign='center';ctx.font='27px Arial';ctx.fillText(text,512,235+i*75,800);});texture.needsUpdate=true;
+   const {ctx,texture}=g.xrPanel;ctx.fillStyle='#142230';ctx.fillRect(70,190,884,457);g.xrMenuRows=list;g.menuSelection=Math.max(0,Math.min(selected,list.length-1));list.forEach(([text],i)=>{ctx.fillStyle=i===g.menuSelection?'#486971':'#283e50';ctx.fillRect(95,195+i*75,834,61);ctx.fillStyle='#f7eed8';ctx.textAlign='center';ctx.font='27px Arial';ctx.fillText(text,512,235+i*75,800);});texture.needsUpdate=true;
   };
   const visuals=g.visuals.bind(g);g.visuals=function(){
    if(state.game!==g.game){state.game=g.game;state.event=g.game.eventSeq||0;clear();build();}

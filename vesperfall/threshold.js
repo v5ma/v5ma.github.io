@@ -74,10 +74,10 @@
    ];return null;
   }
   const oldDraw=g.drawMenu.bind(g);g.drawMenu=function(){
-   oldDraw();const list=customRows();
+   const selected=g.menuSelection;oldDraw();const list=customRows();
    if(!list){for(const row of g.xrMenuRows)if(/^Exit (?:VR|AR|immersive)/i.test(row[0]))row[1]=exit;return;}
    const {ctx,texture}=g.xrPanel;ctx.fillStyle='#142230';ctx.fillRect(0,0,1024,768);ctx.textAlign='center';ctx.fillStyle='#ecd5a3';ctx.font='43px Georgia';ctx.fillText(state.phase==='game'?'VESPERFALL / SPATIAL DESK':'VESPERFALL / LOCAL FOYER',512,80,945);ctx.fillStyle='#c6dfd6';ctx.font='23px Arial';ctx.fillText('World-anchored controls / expedition paused',512,135,930);
-   g.xrMenuRows=list;g.menuSelection=Math.max(0,Math.min(g.menuSelection,list.length-1));list.forEach(([text],i)=>{ctx.fillStyle=i===g.menuSelection?'#486971':'#283e50';ctx.fillRect(95,195+i*75,834,61);ctx.fillStyle='#f7eed8';ctx.font='27px Arial';ctx.fillText(text,512,235+i*75,800);});ctx.font='19px Arial';ctx.fillStyle='#bdd2cc';ctx.fillText(g.questHands.state.active?'Point and pinch. Open fingers between selections.':'Either ray + trigger selects. Upper face button goes back.',512,712,930);texture.needsUpdate=true;
+   g.xrMenuRows=list;g.menuSelection=Math.max(0,Math.min(selected,list.length-1));list.forEach(([text],i)=>{ctx.fillStyle=i===g.menuSelection?'#486971':'#283e50';ctx.fillRect(95,195+i*75,834,61);ctx.fillStyle='#f7eed8';ctx.font='27px Arial';ctx.fillText(text,512,235+i*75,800);});ctx.font='19px Arial';ctx.fillStyle='#bdd2cc';ctx.fillText(g.questHands.state.active?'Point and pinch. Open fingers between selections.':'Either ray + trigger selects. Upper face button goes back.',512,712,930);texture.needsUpdate=true;
   };
   const oldPause=g.setPaused.bind(g);g.setPaused=function(yes){if(!yes&&state.phase!=='game')restore();return oldPause(yes);};
   const oldExit=g.exitXR.bind(g);g.exitXR=function(){const travelling=restore();desk.visible=false;state.placed=false;state.menuNeutral=false;oldExit();if(travelling)g.rig.position.set(...g.game.p);panel.scale.setScalar(1);};
