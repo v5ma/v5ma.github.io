@@ -36,7 +36,7 @@ try:
    (OUT/(SCENE+'-'+name+'.png')).write_bytes(base64.b64decode(data))
   try:
    page.goto(BASE+PAGE+'?test=1',wait_until='domcontentloaded',timeout=90000);wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
-   check(page.evaluate('x.console.snapshot().build')=='ranger-spatial-console-20260920.3','Exact spatial console build boots in '+SCENE)
+   check(page.evaluate('x.console.snapshot().build')=='ranger-field-clarity-20260921.1','Exact spatial console build boots in '+SCENE)
    check(page.evaluate('''()=>{const d=document.getElementById('spatial-console-settings');return !d.open&&getComputedStyle(d).display==='none'&&d.getClientRects().length===0;}'''),'Closed workspace is absent from the screen and pointer layout at launch')
    press(0);wait('g.state.started')
    if page.locator('dialog[open]').count():press(1)
@@ -88,7 +88,7 @@ try:
    check(page.evaluate('Math.abs(x.panel.rotation.y-x.console.pose.yaw-Math.PI/12)<.001'),'Xbox rotates only the workspace by one deliberate 15-degree step')
    check(page.evaluate('x.anchor.toArray()')==poseBefore['anchor'] and page.evaluate('x.displayYaw')==poseBefore['yaw'],'Personal workspace rotation does not turn or move the game portal')
    page.evaluate("()=>{x.draw(x.ctx.modal());const t=x.tiles.find(t=>t.label==='+');tapSurface(x.panel,(t.x+t.w/2)/1024,1-(t.y+t.h/2)/1024);}")
-   wait("x.controllers[1].hit?.label==='+'")
+   wait("x.controllers[1].hit?.label==='+'");
    wait("x.console.buttonPool.some(b=>b.group.visible&&b.tile.label==='+'&&b.base.material.color.getHex()===0xffd784)");check(page.evaluate("x.console.buttonPool.filter(b=>b.group.visible&&b.tile.label==='+'&&b.base.material.color.getHex()===0xffd784).length")==1,'Only the pointed plus control is highlighted, not every repeated label')
    capture('raised-workspace');xrready();page.evaluate('rail(1)');wait('document.getElementById("map-dialog").open');xrready();check(page.evaluate('x.panel.visible'),'Direct Map tab displays the actual mission map in the workspace');capture('mission-map')
    page.evaluate('rail(0)');wait('!g.state.paused&&!x.panel.visible');xrready();check(True,'Resume removes the menu hit surface and restores normal play')
@@ -134,7 +134,7 @@ try:
    settings=page.evaluate('x.console.cfg');page.reload(wait_until='domcontentloaded');wait('window.'+KEY+'?.state.ready',120000);page.evaluate('window.g=window.'+KEY+';window.x=g.xr;window.input=x.ctx.input;')
    check(page.evaluate('x.console.cfg')==settings and not page.evaluate('x.console.trayOpen'),'Workspace preferences survive reload without restoring armed menu input')
    check(not errors,'No captured game JavaScript or HTTP errors')
-   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-spatial-console-20260920.3','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
+   (OUT/(SCENE+'-report.json')).write_text(json.dumps({'build':'ranger-field-clarity-20260921.1','scene':SCENE,'base':BASE,'passed':len(checks),'checks':checks,'errors':errors,'physicalHardwareVerified':False,'limits':'Actual game movement, UI handlers and renderer; synthetic Xbox/Quest values and mocked headset/session/hand poses. Not physical headset, stereo compositor, comfort or human readability acceptance.'},indent=2))
   except Exception as e:
    diag={}
    try:diag=page.evaluate('({state:g?.state,spatial:x?.console?.snapshot(),root:x?.ctx.modal()?.id,focus:document.activeElement?.id,pointed:window.lastPointed,surfaceProbe:window.lastSurfaceProbe,hold:x?.holds?.size,beforePose:window.beforePose,afterPose:window.afterPose,progress:x?.console?.progress})');page.screenshot(path=str(OUT/(SCENE+'-failure.png')),timeout=30000)

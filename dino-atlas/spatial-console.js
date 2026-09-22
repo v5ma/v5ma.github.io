@@ -1,13 +1,14 @@
+import {FieldFeedback} from './field-feedback.js?v=clarity1';
 import * as T from './vendor/three.module.js';
 
-export const SPATIAL_BUILD='ranger-spatial-console-20260920.3';
+export const SPATIAL_BUILD='ranger-field-clarity-20260921.1';
 // A layout class must never override the browser's closed-dialog hiding.
 export const WORKSPACE_VISIBILITY_CSS='#spatial-console-settings:not([open]){display:none!important}';
 export const SPATIAL_KEY='dino-atlas.spatial-console.v1';
 const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
 const finite=(v,f,a,b)=>typeof v==='number'&&Number.isFinite(v)?clamp(v,a,b):f;
 export function consoleSettings(v={}){
- return {version:1,height:finite(v?.height,1.15,.55,1.8),distance:finite(v?.distance,1.25,.8,2.2),scale:finite(v?.scale,.8,.55,1.2),rotation:finite(v?.rotation,0,-60,60),wrist:v?.wrist!==false};
+ return {version:1,height:finite(v?.height,1.15,.55,1.8),distance:finite(v?.distance,1.25,.8,2.2),scale:finite(v?.scale,.8,.55,1.8),rotation:finite(v?.rotation,0,-60,60),wrist:v?.wrist!==false};
 }
 export function readConsole(storage){try{return consoleSettings(JSON.parse(storage?.getItem(SPATIAL_KEY)||'null'));}catch{return consoleSettings();}}
 export function saveConsole(storage,v){try{storage?.setItem(SPATIAL_KEY,JSON.stringify(consoleSettings(v)));return !!storage;}catch{return false;}}
@@ -54,12 +55,12 @@ export class SpatialConsole{
   this.dots=xr.controllers.map(e=>{const dot=new T.Mesh(new T.SphereGeometry(.009,8,6),this.pointerMaterial);dot.renderOrder=10100;dot.visible=false;e.ray.add(dot);return dot;});
   this.shortcuts=[{label:'Menu',run:()=>this.menu()},{label:'Field controls',run:()=>this.field()}];
   this.tabs=[{label:'Resume',run:()=>this.resume()},{label:'Map',run:()=>xr.ctx.action('map')},{label:'Missions',run:()=>document.getElementById('menu-field-contracts').click()},{label:'Field',run:()=>{this.resume();this.field();}},{label:'Workspace',run:()=>this.workspace()},{label:'Leave XR',run:()=>xr.enter()}];
-  this.installSettings();this.paintRail();this.paintDock();this.root.visible=false;this.wrist.mesh.visible=false;
+  this.installSettings();this.feedback=new FieldFeedback(this);this.paintRail();this.paintDock();this.root.visible=false;this.wrist.mesh.visible=false;
  }
  installSettings(){
   const visibility=document.createElement('style');visibility.textContent=WORKSPACE_VISIBILITY_CSS;document.head.append(visibility);
   const settings=document.createElement('dialog');settings.className='settings';settings.style.cssText='max-height:85vh;overflow:auto;background:#183c35;color:#fff1d1;border:2px solid #d4bc7e;padding:24px';settings.id='spatial-console-settings';
-  settings.innerHTML='<h3>Spatial workspace</h3><p>B opens or closes the menu. Point and pinch at the floor dock or wrist to open it without controllers. The workspace stays where summoned, not on your head.</p><button id="spatial-field">Open field controls / hand movement</button><button id="spatial-place">Bring workspace here</button><label>Workspace height <input id="spatial-height" type="range" min="0.55" max="1.8" step="0.05"></label><label>Workspace distance <input id="spatial-distance" type="range" min="0.8" max="2.2" step="0.1"></label><label>Workspace size <input id="spatial-scale" type="range" min="0.55" max="1.2" step="0.05"></label><label>Workspace rotation <input id="spatial-rotation" type="range" min="-60" max="60" step="15"></label><label><input id="spatial-wrist" type="checkbox"> Compact wrist status</label><button id="spatial-reset">Reset workspace for seated / standing view</button>';
+  settings.innerHTML='<h3>Spatial workspace</h3><p>B opens or closes the menu. Point and pinch at the floor dock or wrist to open it without controllers. The workspace stays where summoned, not on your head.</p><button id="spatial-field">Open field controls / hand movement</button><button id="spatial-place">Bring workspace here</button><label>Workspace height <input id="spatial-height" type="range" min="0.55" max="1.8" step="0.05"></label><label>Workspace distance <input id="spatial-distance" type="range" min="0.8" max="2.2" step="0.1"></label><label>Workspace size <input id="spatial-scale" type="range" min="0.55" max="1.8" step="0.05"></label><label>Workspace rotation <input id="spatial-rotation" type="range" min="-60" max="60" step="15"></label><label><input id="spatial-wrist" type="checkbox"> Compact wrist status</label><button id="spatial-reset">Reset workspace for seated / standing view</button>';
   const menu=document.getElementById('menu-dialog');document.body.append(settings);const button=document.createElement('button');button.id='spatial-workspace-button';button.textContent='Spatial workspace / height and size';button.onclick=()=>this.workspace();menu.querySelector('[data-close]').after(button);settings.addEventListener('cancel',e=>{e.preventDefault();this.xr.ctx.action('back');});const back=document.createElement('button');back.textContent='Resume game';back.onclick=()=>this.resume();settings.append(back);
   for(const key of ['height','distance','scale','rotation','wrist']){
    const e=document.getElementById('spatial-'+key);if(key==='wrist')e.checked=this.cfg[key];else e.value=this.cfg[key];
@@ -80,12 +81,12 @@ export class SpatialConsole{
   const head=this.head(),q=this.xr.ctx.camera.quaternion,d=new T.Vector3(0,0,-1).applyQuaternion(q);d.y=0;if(d.lengthSq()<.01)d.set(0,0,-1);d.normalize();
   const yaw=Math.atan2(-d.x,-d.z);this.pose=summonPose(head,yaw,this.cfg);this.placed=true;
   this.dock.mesh.position.set(head.x+d.x*.46,.04,head.z+d.z*.46);this.dock.mesh.rotation.set(-Math.PI/2,0,-yaw);
-  this.positionPanel();
+  this.positionPanel();this.feedback?.place();
  }
  menu(){if(!this.xr.active)return;this.trayOpen=false;if(!this.xr.ctx.modal())this.xr.ctx.action('menu');this.summon();}
  field(){if(!this.xr.active)return;this.trayOpen=true;this.xr.clear();this.summon();this.xr.paintClock=1;this.positionPanel();}
  hideField(){this.trayOpen=false;this.expanded=!!this.xr.ctx.modal();this.xr.clear();this.positionPanel();this.placeWrist();this.dots.forEach(d=>d.visible=false);}
- end(){this.trayOpen=false;this.placed=false;this.expanded=false;this.pose=null;this.progress=0;this.root.visible=false;this.wrist.mesh.visible=false;this.xr.panel.visible=false;this.dots.forEach(d=>d.visible=false);}
+ end(){this.feedback?.end();this.trayOpen=false;this.placed=false;this.expanded=false;this.pose=null;this.progress=0;this.root.visible=false;this.wrist.mesh.visible=false;this.xr.panel.visible=false;this.dots.forEach(d=>d.visible=false);}
  update(dt,root){
   if(!this.xr.active){this.end();return;}
   if(this.lastSession!==this.xr.session){this.end();this.lastSession=this.xr.session;this.summon();}
@@ -96,7 +97,7 @@ export class SpatialConsole{
   // Motion is visual only; ray tests use the exact current rendered pose.
   const reduced=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   this.progress=reduced?Number(wants):this.progress+(Number(wants)-this.progress)*(1-Math.exp(-Math.min(.1,dt)*22));
-  this.root.visible=!this.xr.invisible;this.positionPanel();this.placeWrist();
+  this.root.visible=!this.xr.invisible;this.positionPanel();this.placeWrist();this.feedback?.update(dt,root);
   this.clock+=dt;if(this.clock>.16){this.clock=0;this.paintStatus();}
  }
  positionPanel(){
@@ -134,11 +135,13 @@ export class SpatialConsole{
   x.raycaster.set(ray.origin,ray.direction);const candidates=[];
   // Choose the nearest visible personal surface, then classify the exact pixel.
   // Nonbutton areas absorb a trigger/pinch but have no action or hold behavior.
-  for(const [kind,mesh] of [['rail',this.rail.mesh],['panel',x.panel],['wrist',this.wrist.mesh],['dock',this.dock.mesh]]){
+  for(const [kind,mesh] of [['rail',this.rail.mesh],['panel',x.panel],['wrist',this.wrist.mesh],['dock',this.dock.mesh],...(this.feedback?.surfaces()||[])]){
    if(!surfaceVisible(mesh))continue;mesh.updateWorldMatrix(true,false);
    const h=x.raycaster.intersectObject(mesh,false)[0];if(h?.uv)candidates.push({kind,...h});
   }
   candidates.sort((a,b)=>a.distance-b.distance);const h=candidates[0];if(!h)return null;entry.uiDistance=h.distance;
+  if(h.kind==='floor-guide')return this.feedback.pick(h.uv)||UI_BACKGROUND;
+  if(h.kind==='floor-notice')return UI_BACKGROUND;
   if(h.kind==='rail')return this.tabs[Math.min(5,Math.floor(h.uv.x*6))]||UI_BACKGROUND;
   if(h.kind==='dock'||h.kind==='wrist'&&h.uv.y<.27)return this.shortcuts[h.uv.x<.5?0:1];
   if(h.kind==='panel'){
@@ -165,5 +168,5 @@ export class SpatialConsole{
   if(key!==this.feedbackKey){this.feedbackKey=key;if(this.tabs?.length)this.paintRail();if(this.wrist?.paint)this.paintStatus();if(this.dock?.paint)this.paintDock();}
   x.controllers.forEach((e,i)=>{const d=this.dots[i];d.visible=!!e.hit&&!!e.ray.visible&&!x.invisible;if(d.visible){d.position.set(0,0,-Math.max(.01,e.uiDistance||1));d.scale.setScalar(e.hit.occludesUI?.6:1);}});
  }
- snapshot(){return {build:SPATIAL_BUILD,expanded:this.expanded,fieldOpen:this.trayOpen,settings:{...this.cfg},pose:this.pose?{...this.pose}:null,panelVisible:this.xr.panel.visible,headLocked:false,physicalHardwareVerified:false};}
+ snapshot(){return {feedback:this.feedback?.snapshot(),build:SPATIAL_BUILD,expanded:this.expanded,fieldOpen:this.trayOpen,settings:{...this.cfg},pose:this.pose?{...this.pose}:null,panelVisible:this.xr.panel.visible,headLocked:false,physicalHardwareVerified:false};}
 }

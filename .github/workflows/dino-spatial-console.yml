@@ -42,7 +42,7 @@ jobs:
           import hashlib,json,subprocess
           paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
           files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/','dino-atlas/scripts/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
-          m={'build':'ranger-spatial-console-20260920.3','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
+          m={'build':'ranger-field-clarity-20260921.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
           Path('spatial-evidence/manifest.json').write_text(json.dumps(m,indent=2))
           PY
       - uses: actions/upload-artifact@v4
@@ -56,7 +56,7 @@ jobs:
   browser:
     needs: model
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
@@ -74,7 +74,9 @@ jobs:
       - name: Actual spatial menus, input capture, motion and exit
         env:
           SPATIAL_SCENE: ${{ matrix.scene }}
-        run: python dino-atlas/tests/spatial-console-browser.py
+        run: |
+          python dino-atlas/tests/field-feedback-browser.py
+          python dino-atlas/tests/spatial-console-browser.py
       - name: Preserve full-world portal and vehicle controls
         env:
           PORTAL_SCENE: ${{ matrix.scene }}
@@ -87,6 +89,7 @@ jobs:
         with:
           name: dino-spatial-${{ matrix.scene }}-${{ github.run_id }}
           path: |
+            feedback-evidence/
             spatial-evidence/
             portal-evidence/
             express-evidence/
@@ -94,7 +97,7 @@ jobs:
   entry:
     needs: model
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -121,7 +124,7 @@ jobs:
     needs: [model, browser, entry]
     if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -164,6 +167,8 @@ jobs:
         env:
           DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
         run: |
+          SPATIAL_SCENE=classic python dino-atlas/tests/field-feedback-browser.py
+          SPATIAL_SCENE=tidegate python dino-atlas/tests/field-feedback-browser.py
           SPATIAL_SCENE=classic python dino-atlas/tests/spatial-console-browser.py
           SPATIAL_SCENE=tidegate python dino-atlas/tests/spatial-console-browser.py
           PORTAL_SCENE=classic python dino-atlas/tests/portal-game-browser.py
@@ -172,6 +177,7 @@ jobs:
         with:
           name: dino-spatial-published-${{ github.run_id }}
           path: |
+            feedback-evidence/
             spatial-evidence/
             portal-evidence/
           retention-days: 30
@@ -195,7 +201,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view dino-spatial-console-20260920.3 >/dev/null 2>&1; then
+          if ! gh release view dino-field-clarity-20260921.1 >/dev/null 2>&1; then
             tar -czf dino-spatial-console-evidence.tgz -C evidence .
-            gh release create dino-spatial-console-20260920.3 --target '${{ github.sha }}' --title 'Dino Atlas: Field Rotunda recovery and interaction refinement' --prerelease --notes-file dino-atlas/ROTUNDA-RECOVERY.md dino-spatial-console-evidence.tgz
+            gh release create dino-field-clarity-20260921.1 --target '${{ github.sha }}' --title 'Dino Atlas: live floor map, interaction feedback and tall diorama' --prerelease --notes-file dino-atlas/FIELD-CLARITY.md dino-spatial-console-evidence.tgz
           fi

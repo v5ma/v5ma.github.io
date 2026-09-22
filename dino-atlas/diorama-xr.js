@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 import {ReserveXR} from './xr-reserve.js?v=rotunda3';
-import {readPresentation,savePresentation,settings,openings,stageMatrix,gameRay} from './diorama-core.js';
-import {PORTAL_BUILD,PORTAL_SPAN,dimensions,boxInverse,enterPortal,PortalMaterials,shellMaterial} from './diorama-portal.js';
+import {readPresentation,savePresentation,settings,openings,stageMatrix,gameRay} from './diorama-core.js?v=clarity1';
+import {PORTAL_BUILD,PORTAL_SPAN,dimensions,boxInverse,enterPortal,PortalMaterials,shellMaterial} from './diorama-portal.js?v=clarity1';
 // The physical simulation stays at its original scale. The miniature transform is
 // applied only while rendering and undone in finally, including on render failure.
 export class DioramaXR extends ReserveXR {
@@ -16,11 +16,12 @@ export class DioramaXR extends ReserveXR {
   this.floor=slab([0,-1,0]);this.backWall=slab([0,0,-1]);this.leftWall=slab([-1,0,0]);this.rightWall=slab([1,0,0]);this.frontWall=slab([0,0,1]);this.lid=slab([0,1,0]);
   this.edges=Array.from({length:12},()=>{const m=new T.Mesh(cube,rim);m.renderOrder=110;this.stage.add(m);return m;});this.rim=this.edges[0];
   this.sky=new T.Mesh(new T.SphereGeometry(1,16,12),new T.MeshBasicMaterial({color:0xb7d3d0,side:T.BackSide,depthWrite:false,toneMapped:false,fog:false}));this.sky.renderOrder=-1000;this.sky.frustumCulled=false;this.stage.add(this.sky);this.portal.attach(this.sky.material);
-  const controls=document.createElement('div');controls.className='settings';controls.innerHTML='<label>XR presentation <select id="xr-presentation"><option value="first-person-vr">First-person VR</option><option value="diorama-vr">Third-person VR diorama</option><option value="diorama-ar">Third-person AR diorama / passthrough</option></select></label><label>Diorama openings <select id="xr-aperture"><option value="both">Top and front open / automatic cutaway</option><option value="top">Top open / front auto-transparent</option><option value="front">Front open / top auto-transparent</option></select></label><label>Display width in meters <input id="xr-width" type="range" min="1.2" max="3.2" step="0.2"></label><button id="xr-recenter">Place diorama in front of me</button><button id="xr-change-view">Switch first-person / diorama VR</button>';
+  const controls=document.createElement('div');controls.className='settings';controls.innerHTML='<label>XR presentation <select id="xr-presentation"><option value="first-person-vr">First-person VR</option><option value="diorama-vr">Third-person VR diorama</option><option value="diorama-ar">Third-person AR diorama / passthrough</option></select></label><label>Diorama openings <select id="xr-aperture"><option value="both">Top and front open / automatic cutaway</option><option value="top">Top open / front auto-transparent</option><option value="front">Front open / top auto-transparent</option></select></label><label>Display width in meters <input id="xr-width" type="range" min="0.8" max="4.8" step="0.2"></label><label>Box height in meters <input id="xr-height" type="range" min="0.6" max="4" step="0.2"></label><button id="xr-recenter">Place diorama in front of me</button><button id="xr-change-view">Switch first-person / diorama VR</button>';
   document.getElementById('menu-dialog').append(controls);
   const select=document.getElementById('xr-presentation');select.value=this.presentation.view;select.onchange=()=>{this.presentation=settings({...this.presentation,view:select.value});this.persist();this.refreshButtons();};
   const aperture=document.getElementById('xr-aperture');aperture.value=this.presentation.aperture;aperture.onchange=()=>{this.presentation=settings({...this.presentation,aperture:aperture.value});this.persist();this.updateStage();};
-  const width=document.getElementById('xr-width');width.value=this.presentation.width;width.oninput=()=>{this.presentation=settings({...this.presentation,width:Number(width.value)});this.persist();this.updateStage();};
+  const width=document.getElementById('xr-width');width.value=this.presentation.width;width.oninput=()=>this.setDisplaySize({width:Number(width.value)});
+  const height=document.getElementById('xr-height');height.value=this.presentation.height;height.oninput=()=>this.setDisplaySize({height:Number(height.value)});
   document.getElementById('xr-recenter').onclick=()=>this.place();document.getElementById('xr-change-view').onclick=()=>this.toggleView();
   this.checkSupport();
  }
@@ -59,7 +60,9 @@ export class DioramaXR extends ReserveXR {
  place(){
   if(!this.diorama)return;this.position();const c=this.headCamera(),p=c.getWorldPosition(new T.Vector3()),q=c.getWorldQuaternion(new T.Quaternion());
   const direction=new T.Vector3(0,0,-1).applyQuaternion(q);direction.y=0;if(direction.lengthSq()<.01)direction.set(0,0,-1);direction.normalize();
-  this.displayYaw=Math.atan2(-direction.x,-direction.z);this.anchor.copy(p).addScaledVector(direction,1.7);this.anchor.y=Math.max(.4,Math.min(1.1,(p.y||1.65)-.68));this.updateStage();
+  this.displayYaw=Math.atan2(-direction.x,-direction.z);this.anchor.copy(p).addScaledVector(direction,1.7);// Preserve the familiar character-center height while expanding the aperture vertically.
+  const middle=Math.max(.4,Math.min(1.1,(p.y||1.65)-.68))+this.presentation.width*16/136;
+  this.anchor.y=middle-this.presentation.height/2;this.updateStage();
  }
  toggleView(){
   if(!this.active||this.sessionMode!=='immersive-vr')return;
@@ -68,8 +71,14 @@ export class DioramaXR extends ReserveXR {
   document.getElementById('xr-presentation').value=this.actualView;this.refreshButtons();
  }
  snap(amount){if(!this.diorama)return super.snap(amount);this.displayYaw+=amount;this.updateStage();}
+ setDisplaySize(change){
+  const oldHeight=this.presentation.height;this.presentation=settings({...this.presentation,...change});
+  if(this.anchor)this.anchor.y+=(oldHeight-this.presentation.height)/2;
+  for(const key of ['width','height']){const e=document.getElementById('xr-'+key);if(e)e.value=this.presentation[key];}
+  this.persist();this.updateStage();this.console?.feedback?.syncSizes();
+ }
  updateStage(){
-  if(!this.stage)return;const {width:w,depth:d,height:h}=this.size=dimensions(this.presentation.width);
+  if(!this.stage)return;const {width:w,depth:d,height:h}=this.size=dimensions(this.presentation.width,this.presentation.height);
   this.stage.position.copy(this.anchor);this.stage.rotation.y=this.displayYaw;
   const setup=(m,x,y,z,sx,sy,sz)=>{m.position.set(x,y,z);m.scale.set(sx,sy,sz);if(m.material.uniforms?.shellPoint)m.material.uniforms.shellPoint.value.set(x,y,z);};
   setup(this.floor,0,-.015,0,w,.03,d);
@@ -135,5 +144,5 @@ export class DioramaXR extends ReserveXR {
   this.controlYaw=this.diorama?this.viewYaw-this.displayYaw:this.viewYaw;
   this.positionPanel();return motion;
  }
- snapshot(){return {...super.snapshot(),build:this.ctx.build||'diorama-20260915.1',portalBuild:PORTAL_BUILD,framing:'character-centered-depth-portal',portalSpan:PORTAL_SPAN,center:{x:this.center.x,y:this.center.y,z:this.center.z},mask:'per-eye-ray-box-aperture',automaticWallTransparency:true,view:this.actualView||this.presentation.view,sessionMode:this.sessionMode,arSupported:!!this.supportedAR,aperture:this.presentation?.aperture||'both',openings:openings(this.presentation?.aperture),width:this.presentation?.width,worldScaleRestored:this.ctx.worldRoot?.scale.x===1,anchoring:'manual-session-placement',hardwareVerified:false};}
+ snapshot(){return {...super.snapshot(),build:this.ctx.build||'diorama-20260915.1',portalBuild:PORTAL_BUILD,framing:'character-centered-depth-portal',portalSpan:PORTAL_SPAN,center:{x:this.center.x,y:this.center.y,z:this.center.z},mask:'per-eye-ray-box-aperture',automaticWallTransparency:true,view:this.actualView||this.presentation.view,sessionMode:this.sessionMode,arSupported:!!this.supportedAR,aperture:this.presentation?.aperture||'both',openings:openings(this.presentation?.aperture),width:this.presentation?.width,height:this.presentation?.height,worldScaleRestored:this.ctx.worldRoot?.scale.x===1,anchoring:'manual-session-placement',hardwareVerified:false};}
 }

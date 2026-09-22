@@ -1,9 +1,14 @@
 import * as T from './vendor/three.module.js';
+import {drawDistrictMap} from './tidegate-routes.js';
 import {navigationBearing} from './active-controls.js';
 // Guidance indicates a destination, not a path through walls or a mandatory itinerary.
 export class FieldNavigation{
  constructor({root,travel,fleet,task,yaw}){
-  Object.assign(this,{travel,fleet,task,yaw});this.goal=null;
+  Object.assign(this,{travel,fleet,task,yaw});this.goal=null;travel.navigation=this;
+  this.liveMap=document.getElementById('minimap');this.districtMap=!this.liveMap;
+  if(this.districtMap){this.liveMap=document.createElement('canvas');this.liveMap.id='minimap';this.liveMap.width=720;this.liveMap.height=560;this.liveMap.setAttribute('aria-label','Live Tidegate route map. White is you; gold is your current goal. Wildlife is not shown on this compact route map.');
+   const button=document.createElement('button');button.id='live-map-button';button.title='Open full map';button.style.cssText='position:absolute;right:16px;bottom:110px;width:clamp(150px,24vw,260px);padding:4px;background:#173c35;border:2px solid #edcf86;pointer-events:auto';this.liveMap.style.cssText='display:block;width:100%;height:auto';button.append(this.liveMap);button.onclick=()=>travel.ctx.action('map');document.getElementById('hud').append(button);
+  }
   this.group=new T.Group();this.group.name='Active destination guidance';root.add(this.group);
   const mat=new T.MeshBasicMaterial({color:0xffd34d,transparent:true,opacity:.85,depthTest:true});
   const ring=new T.Mesh(new T.TorusGeometry(2,.12,6,32),mat);ring.rotation.x=Math.PI/2;ring.position.y=.12;this.group.add(ring);
@@ -16,12 +21,15 @@ export class FieldNavigation{
  update(time=0){
   const t=this.task(),p=this.fleet.position,b=navigationBearing(p,t?.target,this.yaw());this.goal=b?{...t,bearing:b}:null;
   const show=!!b&&this.travel.settings.guidance;this.group.visible=show;this.hud.hidden=!show;
-  if(!b){this.mapText.textContent='No active destination. Choose an operation or explore.';return;}
+  if(!b){this.mapText.textContent='No active destination. Choose an operation or explore.';this.updateMap();return;}
   const elevation=b.height>3?' / ABOVE':b.height< -3?' / BELOW':'',title=t.name||t.title||'Active objective';
   this.text.textContent=`${b.compass} / ${Math.round(b.distance)} m${elevation} - ${title}`;this.arrow.style.transform=`rotate(${b.relative}rad)`;
   this.mapText.textContent=`GOAL: ${title} / ${Math.round(b.distance)} m${elevation}. ${t.hint||'Follow usable roads, paths, docks and entrances. The compass is a bearing, not a route through obstacles.'}`;
   this.group.position.set(t.target.x,Number.isFinite(t.target.y)?t.target.y:0,t.target.z);this.pointer.position.y=4+Math.sin(time*2)*.2;
+  // The compact Tidegate map updates without opening a modal or pausing the world.
+  this.updateMap();
  }
+ updateMap(){if(this.districtMap){drawDistrictMap(this.liveMap,this.fleet.state,this.fleet.position,[]);this.paint(this.liveMap,(x,z)=>[360+x*4.7,280+(z-3)*4.7]);}}
  paint(canvas,to,small=false){
   const c=canvas.getContext('2d'),g=this.goal,p=this.fleet.position;const margin=small?13:20,clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
   c.save();c.setLineDash([]);c.textAlign='center';

@@ -4,7 +4,7 @@
 import * as T from './vendor/three.module.js';
 export const PORTAL_BUILD='ranger-portal-20260917.1';
 export const PORTAL_SPAN=48; // game units across the unchanged physical display
-export function dimensions(width){return {width,depth:width*100/136,height:width*32/136};}
+export function dimensions(width,height=width*32/136){return {width,depth:width*100/136,height};}
 export function boxInverse(anchor,yaw){return new T.Matrix4().compose(anchor,new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),yaw),new T.Vector3(1,1,1)).invert();}
 // t is a ray parameter, not a distance unless direction is normalized.
 export function boxInterval(origin,direction,size){

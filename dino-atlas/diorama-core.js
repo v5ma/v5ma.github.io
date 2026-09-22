@@ -3,7 +3,7 @@ import * as T from './vendor/three.module.js';
 export const PRESENTATION_KEY='dino-atlas.presentation.v1';
 export const APERTURES=['both','top','front'];
 export const VIEWS=['first-person-vr','diorama-vr','diorama-ar'];
-export function settings(raw){return {version:1,view:VIEWS.includes(raw?.view)?raw.view:'diorama-vr',aperture:APERTURES.includes(raw?.aperture)?raw.aperture:'both',width:Number.isFinite(raw?.width)?Math.max(1.2,Math.min(3.2,raw.width)):2.4};}
+export function settings(raw){return {version:1,view:VIEWS.includes(raw?.view)?raw.view:'diorama-vr',aperture:APERTURES.includes(raw?.aperture)?raw.aperture:'both',width:Number.isFinite(raw?.width)?Math.max(.8,Math.min(4.8,raw.width)):2.4,height:Number.isFinite(raw?.height)?Math.max(.6,Math.min(4,raw.height)):2.0};}
 export function openings(aperture){return {top:aperture!=='front',front:aperture!=='top'};}
 export function setOpening(aperture,face,open){const v=openings(APERTURES.includes(aperture)?aperture:'both');if(!['top','front'].includes(face))return aperture;v[face]=!!open;if(!v.top&&!v.front)v[face==='top'?'front':'top']=true;return v.top&&v.front?'both':v.top?'top':'front';}
 export function readPresentation(storage){try{return settings(JSON.parse(storage?.getItem(PRESENTATION_KEY)||'null'));}catch{return settings();}}
