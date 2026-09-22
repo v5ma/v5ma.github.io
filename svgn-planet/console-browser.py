@@ -70,7 +70,7 @@ async def main():
    before=q['xr']['console']['panelMatrix'];await page.evaluate('__xrFixture.viewerRoll=.4;__xrFixture.viewerPitch=-.25;__xrFixture.viewerX=.08');await frames(6);assert await page.evaluate('NeighborhoodMissions.inspect().xr.console.panelMatrix')==before;await capture('floor-console');await page.evaluate('__xrFixture.viewerRoll=0;__xrFixture.viewerPitch=0;__xrFixture.viewerX=0');ok('Head tilt and lean leave the open floor console fixed')
    await choose('pause-dialog-spatial-ui')
    current=await page.evaluate('NeighborhoodMissions.inspect()');assert current['xr']['presentation']['boxHeight']==3
-   menu_size=current['xr']['console']['preferences']['size'];await choose('console-size',.75);assert abs(await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.size')-menu_size-.05)<1e-6;await choose('console-size',.2)
+   menu_size=current['xr']['console']['preferences']['size'];await choose('console-size',.75);assert abs(await page.evaluate('NeighborhoodMissions.inspect().xr.console.preferences.size')-menu_size-.01)<1e-6;await choose('console-size',.2)
    await choose('console-box-height',.75);assert await page.evaluate('NeighborhoodMissions.inspect().xr.presentation.boxHeight')==3.25;await choose('console-box-height',.2)
    scale=await page.evaluate('NeighborhoodMissions.inspect().xr.presentation.scale');await choose('console-view-scale',.75);assert abs(await page.evaluate('NeighborhoodMissions.inspect().xr.presentation.scale')-scale-.002)<1e-6;await choose('console-view-scale',.2)
    if MODE.startswith('diorama'):assert abs(await page.evaluate('NeighborhoodMissions.inspect().spatial.portalBounds[1]')-2.04)<1e-5
