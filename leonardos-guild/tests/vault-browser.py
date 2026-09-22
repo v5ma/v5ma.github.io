@@ -40,6 +40,8 @@ with sync_playwright() as p:
    for k in next-held:page.keyboard.down(k)
    held.clear();held.update(next)
   def walk(*points):
+   # HTML dialog close dispatch is queued; observe the real resume before sending movement.
+   page.wait_for_function('LeonardoGuild.inspect().running')
    for x,z in points:
     begin=time.monotonic()
     while time.monotonic()-begin<160:
