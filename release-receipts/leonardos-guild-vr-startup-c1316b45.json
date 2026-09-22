@@ -13,7 +13,7 @@
   ],
   "local_tests": {"passed":427,"failed":0,"design_passed":14,"design_failed":0,"new_regressions":15},
   "physical_quest_verified": false,
-  "local_native_browser": "Navigation refused with ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass. The successful native result below comes from the independent GitHub runner.",
+  "local_native_browser": "Navigation refused with ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass. The successful native results below come from independent GitHub runners.",
   "pages": {"run_id":35692454412,"build":"success","deploy":"success","report_build_status":"success"},
   "public_runtime": {
     "run_id":35692455515,
@@ -39,6 +39,7 @@
   },
   "native_verification": {
     "run_id":35692455515,
+    "startup_total_checks":66,
     "startup_framebuffer": {
       "status":"success",
       "artifact_id":10678982985,
@@ -54,8 +55,22 @@
       "screenshots_reviewed":["first-person-0.png","diorama-vr-0.png"],
       "eye_color_counts":[[2516,2526],[2628,2660],[1950,1979],[1934,1967]]
     },
-    "startup_projection":"in_progress_at_receipt",
-    "full_vinci_and_public_journeys":"in_progress_at_receipt",
+    "startup_projection": {
+      "status":"success",
+      "artifact_id":10679221771,
+      "artifact_sha256":"438733553980d2e41d889e55daa95c39fd50a802bdccfcd995cef118548c3196",
+      "checks":33,
+      "errors":[],
+      "verified_source_hashes":390,
+      "source_identical_to_framebuffer":true,
+      "uncommitted_diff_empty":true,
+      "modes":["first-person VR","diorama VR"],
+      "real_graphics_interruptions_per_mode":2,
+      "verified":"Same complete startup, explicit timeout retry, actual graphics restoration, movement, stereo pixels, session end and re-entry journey using projection-layer texture attachments.",
+      "screenshots_reviewed":["first-person-1.png"],
+      "eye_color_counts":[[2559,2560],[2707,2718],[1949,1971],[1970,1964]]
+    },
+    "full_vinci_and_public_menu_journeys":"in_progress_at_receipt; not counted as complete passes",
     "evidence_class":"Real WebGL context loss/restoration and eye textures, with synthetic XR poses, controls and initialization timing. Not physical Quest."
   },
   "baseline_diagnostics": {
@@ -70,5 +85,5 @@
   },
   "render_load_observation":"The successful low-quality browser captures report about 1474-1764 render calls and 0.98-1.11 million triangles. These are renderer counters, not Quest frame-rate measurements; hardware performance remains a separate risk to investigate.",
   "scope":"Direct master writes to Leo's Guild and its existing dedicated verifier. No PR, branch, new workflow, shared publisher change or sibling-runtime edit. Receipts remain outside the tested game tree.",
-  "limits":"Publication identity and the named framebuffer startup-recovery journey are verified, not the user's exact physical freeze. Hard GPU/browser hangs, headset comfort, sustained performance, end-to-end hardware controls and physical re-entry remain open. This receipt does not mark running tests as passed."
+  "limits":"Publication identity and both named browser startup-recovery journeys are verified, not the user's exact physical freeze. Hard GPU/browser hangs, headset comfort, sustained performance, end-to-end hardware controls and physical re-entry remain open. This receipt does not mark running tests as passed."
 }
