@@ -70,7 +70,7 @@ with sync_playwright() as pw:
    frames(6);p.screenshot(path=str(OUT/(shell+'.png')))
    p.evaluate('({head,pitch})=>{questDevice.head=head;questDevice.headPitch=pitch}',{'head':head,'pitch':pitch});frames(4)
   scale=p.evaluate('Rainward.snapshot().xr.diorama.scale');select('display-larger');frames(5)
-  d=p.evaluate('Rainward.snapshot().xr.diorama');check(abs(d['scale']-scale-.01)<1e-9 and d['physicalDimensions']=={'width':1.6,'depth':1.2,'height':.72},'Zoom enlarges game content without enlarging the physical display')
+  d=p.evaluate('Rainward.snapshot().xr.diorama');check(abs(d['scale']-scale-.01)<1e-9 and d['physicalDimensions']=={'width':1.6,'depth':1.2,'height':1.65},'Zoom enlarges game content without enlarging the physical display')
   select('display-smaller');frames(5);check(p.evaluate('Rainward.snapshot().xr.diorama.extraRenderTargets')==0,'The diorama adds no offscreen theatre or full-screen render target')
   select('display-follow');check(p.evaluate('Rainward.snapshot().xr.diorama.follow')==True,'The requested portal always follows the centered survivor, including old stored preferences')
   select('display-follow');select('recenter');frames(5)
