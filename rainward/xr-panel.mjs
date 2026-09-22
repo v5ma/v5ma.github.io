@@ -23,7 +23,7 @@ export function createXRPanel(E){
   }):[];
   all.unshift(...(E.shortcutActions?.()||[]).map(a=>action(a.label,a.id,a.run)));
   all.push(...(E.extraActions?.()||[]).map(a=>action(a.label,a.id,a.run)));
-  if(mode==='pause'&&hasDesk){const priority=['resume','map','pack','last-clue','last-reading','musicVolume-minus','musicVolume-plus'];all=priority.map(id=>all.find(a=>a.id===id)).filter(Boolean).concat(all.filter(a=>!priority.includes(a.id)));}
+  if(mode==='pause'&&hasDesk){const priority=['resume','map','pack','last-clue','menu-larger','menu-smaller','musicVolume-minus','musicVolume-plus','last-reading'];all=priority.map(id=>all.find(a=>a.id===id)).filter(Boolean).concat(all.filter(a=>!priority.includes(a.id)));}
   const focus=document.activeElement;if(mode!=='play'&&focus!==lastFocus){lastFocus=focus;const index=all.findIndex(row=>row.element===focus);if(index>=0&&!reading&&!deskView)page=Math.floor(index/8);}const pages=Math.max(1,Math.ceil(all.length/8));page=Math.min(page,pages-1);
   rows=all.slice(page*8,page*8+8).map((r,i)=>({...r,x:28,y:214+i*78,w:968,h:68}));
   const mapCanvas=r?.querySelector('canvas#map');const toolbar=[action(deskView?'DONE':documentText?'CLOSE':'BACK','back',()=>{if(deskView){deskView=false;return;}documentText=null;reading=false;E.back();}),action(documentText?'CLOSE':mapView?'CONTROLS':reading&&mapCanvas?'VIEW MAP':reading?'CONTROLS':'READ TEXT','read',()=>{if(deskView){deskView=false;return;}if(documentText){documentText=null;reading=false;E.back();return;}if(mapView){mapView=false;reading=false;}else if(reading&&mapCanvas){reading=false;mapView=true;}else reading=!reading;textPage=0;}),action('RECENTER','recenter',()=>E.recenter()),action('EXIT XR','exit',()=>E.exit())];
