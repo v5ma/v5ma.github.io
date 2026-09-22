@@ -10,7 +10,11 @@ jobs:
   play:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-24.04
-    timeout-minutes: 55
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [rotunda, field-guide, window, portal]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,14 +47,19 @@ jobs:
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
       - name: Exercise actual public HTTPS application
-        timeout-minutes: 40
+        timeout-minutes: 28
         env:
           TEST_BASE_URL: https://v5ma.github.io
+          SUITE: ${{ matrix.suite }}
         run: |
-          python -u aether-reach/tests/rotunda-browser.py
-          python -u aether-reach/tests/field-guide-browser.py
-          python -u aether-reach/tests/window-browser.py
-          python -u aether-reach/tests/portal-browser.py
+          set -euo pipefail
+          case "$SUITE" in
+            rotunda) python -u aether-reach/tests/rotunda-browser.py ;;
+            field-guide) python -u aether-reach/tests/field-guide-browser.py ;;
+            window) python -u aether-reach/tests/window-browser.py ;;
+            portal) python -u aether-reach/tests/portal-browser.py ;;
+            *) exit 1 ;;
+          esac
       - name: Evidence identity
         if: always()
         run: |
@@ -59,6 +68,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: aether-portal-live
+          name: aether-portal-live-${{ matrix.suite }}
           path: aether-reach/test-output/
           retention-days: 30
