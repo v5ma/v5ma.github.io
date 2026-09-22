@@ -1,43 +1,49 @@
-# Prism Current / Host 0.11.2, Water 0.1.0, Fire 0.1.3, Trees 0.1.3
+# Prism Current / Coherence Pass4 / host0.11.3
 
-The active graphics milestone is Currentworks Pass 3. Runtime 18d83fa4b5aa2f4115d6c602af2bf9a51c06896a passed its public tree/fire/water/interruption/Rotunda suites: 151 checks and 113 matching files. Its separate source attempt exposed rendering pauses and a panel-selection failure. See modules/environment/PUBLIC-PASS3.json for each attempt, not a blanket green claim. All recurring gates reopen after runtime changes; physical/creative approval remains separate.
+Current modules remain Water0.1.0, Fire0.1.3 and Trees0.1.3. Runtime52b054d1a29411d5f1d302cbefb791aacb9eb89f passed both source and public jobs in35675405642:162 native checks per job,322 Node tests and117 exact public-file matches. modules/environment/PUBLIC-PASS4.json preserves the actual results, negative reproduction, artifacts and older failed checkpoint. These named results are not physical-device or future-release approval.
 
-Read AGENTS.md before writing. Use direct, freshly reconciled master updates without force, PRs or staging branches. INTEGRATION-AUDIT.md is historical evidence, not current publication status. The complete older board and stable task IDs remain in AAA_CHECKLIST-v0101.md and earlier archives.
+Read AGENTS.md. Write directly to freshly reconciled master without force, PRs or staging branches. Preserve concurrent work and all save contracts. Earlier stable task IDs and detailed histories remain in AAA_CHECKLIST-v0101.md, preceding archives and versioned module receipts. INTEGRATION-AUDIT.md describes a historical snapshot, not current live status.
 
-## Spatial interface
+## Spatial interface and preservation
 
-- [x] UI-R01 / implementation. Shared rendered screen/XR menu, direct chapter AR/VR/screen choices, explicit semantic-control alternative.
+- [x] UI-R01 / implementation. Shared rendered screen/XR menu, direct chapter AR/VR/screen choices and explicit semantic-control alternative.
 - [x] UI-R02 / implementation. Summonable pedestal, stowed during combat, with height, distance, scale, rotation and reset; no head-following placement.
-- [x] UI-R03 / implementation. Picking follows transformed painted controls. Preserve rays, contact cursor, thumbstick/A-X, B-Y start/pause/resume and hand menu input.
-- [x] UI-R04 / implementation. Compact controller score/hull/combo, floor alternative and brief point/damage deltas. Boss health stays in the world.
-- [x] UI-R05 / implementation. Saved AR opacity, independent sound, encounter-preserving adjustment and ordinary movement without the former arbitrary positional pause. Keep real tracking/visibility recovery.
-- [x] UI-R06 / implementation. Real XR session end retains a paused in-memory encounter for matching-mode re-entry without reclassifying its score.
-- [ ] UI-R07 / recurring source/public reliability. Pass 3 public151 and both battles pass, but preserve separate source rendering/input failures and retry outcomes. Public success does not close reproducibility or hardware approval.
+- [x] UI-R03 / implementation. Painted controls and transformed picking agree; retain rays, contact cursor, thumbstick/A-X, B-Y and hand-menu access.
+- [x] UI-R04 / implementation. Compact controller score/hull/combo, floor alternative and brief feedback. Boss health stays in the world.
+- [x] UI-R05 / implementation. Saved AR opacity, independent sound, encounter-preserving adjustment and ordinary movement without the old arbitrary position restriction. Keep genuine tracking/visibility recovery.
+- [x] UI-R06 / implementation. Actual session end preserves a paused in-memory encounter for matching-mode re-entry without relabeling its score.
+- [x] UI-R07 / named source/public build. The162-check source and public runs on52b054d1 pass. Repeat after runtime changes; preserve historical failures and require separate physical approval.
 - [ ] UI-R08 / owner/device. Physical Quest AR/VR, Xbox, touch, seated/standing readability, sound, exit/re-entry, movement and sustained performance.
-- [x] UI-R09 / implementation. Cancel stale audio resumes; require visible calibrated matching sessions; preserve paused state and newer operations. Named interruption outcomes remain in their exact reports.
+- [x] UI-R09 / implementation and named tests. Cancel stale audio resumes; require visible calibrated matching sessions and preserve newer operations. Both current interruption19 suites pass.
 
 ## Reusable modules
 
-- [x] ENV-W01 / implementation. Independent WebGL2 water/ES facade, differentiated waves/normals, authored-depth shading, sky approximation, foam, bounded wakes/splashes, CPU query and cleanup.
-- [x] ENV-W02 / integration. Real River observations under the recentered stage; preserve AR opacity, quiet/quality, input, sound, combat and records.
+- [x] ENV-W01 / implementation. Independent WebGL2 water/ES facade, differentiated waves, authored-bed shading, sky approximation, foam, bounded wakes/splashes, query and cleanup.
+- [x] ENV-W02 / integration. Real River observations under the recentered stage with saved AR opacity, quiet/quality and unchanged gameplay.
 - [x] ENV-W03 / reuse. API, coordinates, ownership, presets, research, tests and checkpoints beside code.
-- [x] ENV-W04 / named public runtime. Water13 and shared exact-public gate pass on18d83fa4; water object37 passes. Keep separate source stall/retry records.
-- [x] ENV-F01 / implementation. Independent volume bursts/jets/impacts, smoke phase, bounded embers/lights, paused clock, reset/disposal and event deduplication.
-- [x] ENV-F02 / integration. Actual destruction bursts with density/geometry/program preparation before audio. Restore renderer state and dispose loading targets. No flamethrower, damage changes or per-frame extra scene pass.
-- [x] ENV-F03 / named public runtime. Fire24 and shared public gate pass on18d83fa4; fire object64 passes. Keep earlier preparation failures and the unchanged stall safeguard visible.
-- [x] ENV-T01 / implementation. Seeded palm/alder/willow skeletons, three prebuilt detail levels, actual leaf geometry, two shared standard materials, shared root-fixed wind, describe/reset/prepare/dispose and script/ES facades.
-- [x] ENV-T02 / integration. Eight bank trees with all-vertex maximum-wind clearance outside a7m-wide action corridor. Stable placement and quiet/quality controls; hidden in AR and Mothership. No combat/camera/music/score changes.
-- [x] ENV-T03 / named public runtime. Trees22 and all companion public suites passed on18d83fa4, with inspected entry/preset captures. Recovered source models306 and tree83/fire64/water37 object observations pass. Three metadata checks bring closeout models to309. Source repeatability and physical/artistic approval remain OPEN.
-- [ ] ENV-HUMAN / physical and creative approval. Named-device frame times, thermals, stereo appearance, readability, comfort and owner judgments against the reference visuals.
+- [x] ENV-W04 / named tests. Water13 and exact-public gate pass on52b054d1, plus water37 object checks.
+- [x] ENV-F01 / implementation. Independent volume burst/jet/impact APIs, smoke, bounded embers/lights, pausable time, event deduplication and cleanup.
+- [x] ENV-F02 / integration. Actual destruction bursts, pre-audio graphics preparation and full renderer restoration; no persistent extra target, new weapon or damage rule.
+- [x] ENV-F03 / named tests. Fire24 and exact-public gate pass on52b054d1, plus fire64 object checks.
+- [x] ENV-T01 / implementation. Seeded palm/alder/willow skeletons, three prebuilt detail levels, actual leaves, shared root-fixed wind, prepare/describe/reset/dispose and script/ES entries.
+- [x] ENV-T02 / integration. Eight trees outside the action corridor, now grounded on the shared bank profile; AR and Mothership hide them. Seeds, shapes, horizontal positions and budgets remain.
+- [x] ENV-T03 / named tests. Trees22 and exact-public gate pass on52b054d1, plus tree83 object checks and inspected entry/preset captures.
+- [ ] ENV-HUMAN / physical and artistic approval. Named-device timing, thermals, stereo appearance, visibility, comfort and owner assessment against reference images.
 
-## Outstanding feedback and next pass
+## Pass4 coherence and reliability
 
-Preserve RV-01 through RV-06, both chapters, soundtrack and record formats, native-shaped XR input, Classic rhythm, lessons, Practice Lab and Floodgate. Scenic modules do not authorize changing those rules. Do not publish private hub source, the full multi-game brief, portals or unrelated game files.
+- [x] ENV-C01 / implementation and reproduction. Eliminate redundant same-ratio drawing-buffer resets during blade/menu/start/pause sync. Negative old-code context produces four calls from four preference changes; fixed code produces zero at the same resolution. Real quality changes remain.
+- [x] ENV-C02 / implementation. Shared authored water/ground profile, tide-following wet surface, sloped banks,24 stones and80 narrow reed leaves. Reuse water data for the brighter sky and bank detail without new textures or reflection passes.
+- [x] ENV-C03 / named tests and diagnostics. Renderer-policy11 and shoreline-object19 checks pass. Bounded optional full-frame/input diagnostics are stored with tests, not loaded in ordinary play. No lowering of quality, input requirements, scoring or the0.35-second safeguard.
 
-Color-changing blades, either-blade base rewards, color-match bonuses, expanded missile counterplay and gameplay explosion-radius feedback remain unimplemented. Decorative fire radius is not a damage radius. No new soundtrack, chapters, FFT ocean, full hand-only combat or mid-battle saving across browser closure is claimed.
+The bank uses7536 triangles instead of10944, but three draws rather than one and richer shading. This tradeoff is not a hardware speedup claim. The first guard-only source checkpoint still saw a rendering pause; the final coherent source/public builds passed. All revealing earlier traces remain in the receipts.
 
-Pass 4 should reproduce residual source rendering/input failures before increasing visual cost, then refine the combined scene. Palms, alders and willows are intentionally stylized; fuller crowns, richer bark, shoreline grounding and gentler detail transitions remain polish work, not photorealistic claims. Improve irregular fire turbulence and smoke without obscuring hazards. Approximate water reflection and fire/surface compositing remain known limits.
+## Remaining work
 
-A-03 save export/recovery, accessible charts, calibration, onboarding, remapping and platform/accessibility coverage remain open in the historical board. F-02 exact source, F-03 direct fresh-master commit plus independent deployment/public hashes, and F-04 live recovery with scoped rollback recur every release. Do not reset the repository, clear localStorage or lower gameplay requirements to manufacture acceptance.
+Pass5 should use physical playtesting and named-device frame-time measurements, then refine organic crown density, bark, shore transitions and irregular flame/smoke behavior without obscuring targets. Reproduce remaining coordinate/timing edge cases before claiming blanket reliability. Five passes are not a guarantee that additional work will be unnecessary.
 
-Continue from modules/environment/CHECKPOINT.md and ROADMAP.md. All three foundations are saved; build on them rather than applying an obsolete archive or recreating the game.
+Preserve RV-01 through RV-06, both chapters, soundtracks, record formats, native-shaped XR handling, Classic rhythm, lessons, Practice Lab and Floodgate. Color-changing blades, either-blade base rewards, color-match bonuses, wider missile counterplay and gameplay explosion-danger feedback remain unfinished. Decorative radius is not damage radius. No new soundtrack, full fluid solver, hand-only combat or unfinished-battle persistence across browser closure is claimed.
+
+A-03 save export, accessible charts, calibration, onboarding, remapping and platform/accessibility work remain in the archived board. F-02 exact source tests, F-03 direct fresh-master commit plus independent deployment/public hashes, and F-04 live recovery and scoped rollback recur after changes. Do not reset master, clear localStorage, publish private hub/brief material, add portals or overwrite sibling games.
+
+Continue from modules/environment/CHECKPOINT.md and ROADMAP.md. All three foundations exist; build on them rather than recreating or applying old whole-game snapshots.

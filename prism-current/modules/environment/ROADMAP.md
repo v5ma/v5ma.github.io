@@ -1,29 +1,29 @@
-# Currentworks continuation / three module foundations saved
+# Currentworks continuation / Passes1-4 saved
 
-The user authorized five or more iterative passes and periodic durable checkpoints. This is a continuation plan, not background work scheduled after the conversation. Save usable changes directly to fresh master without PRs or staging branches. Keep API, test results and scope beside the implementation.
+The user authorized five or more iterative passes and periodic durable checkpoints. This plan does not schedule background work. Save usable changes directly to fresh master without PRs or staging branches, preserving concurrent work, ownership, APIs and evidence.
 
-## Pass 1: Water 0.1.0 implemented and integrated
+## Completed module foundations
 
-Independent wave geometry/normals, procedural surface data, authored-depth shading, Fresnel sky approximation, crest/shore/wake foam, splashes, query, pausable time and cleanup are in water.js/water.mjs. The River adapter reads actual boat positions and destruction events without changing actors or scores. PUBLIC-PASS1.json retains the original live evidence and failures. Preserve AR opacity and quiet/quality controls.
+Pass1 implemented Water0.1.0: wave geometry/normals, generated detail, authored-bed depth, Fresnel sky approximation, foam, wakes/splashes, query and cleanup. It observes real game events without changing gameplay. PUBLIC-PASS1.json retains its original evidence.
 
-## Pass 2: Fire 0.1.3 implemented and integrated
+Pass2 implemented Fire0.1.3: bounded burst/jet/impact volumes, smoke, embers, lights, pause/reset/disposal and loading preparation. Prism uses destruction bursts, not a new flamethrower. FIRE.md and PUBLIC-PASS2.json retain the original API, compatibility limits and accepted results.
 
-fire.js/fire.mjs support bursts, jets and impact volumes, smoke, embers, quality limits, deduplication and explicit ownership. Prism uses actual destruction bursts; do not add an unrequested flamethrower or imply cosmetic radius is blast damage. FIRE.md and PUBLIC-PASS2.json explain loading-time preparation, per-eye behavior, output-policy compatibility and prior accepted evidence.
+Pass3 implemented Trees0.1.3: seeded palms/alders/willows, shared-skeleton prebuilt detail levels, actual leaf geometry, shared root-fixed wind, preparation and cleanup. Eight trees frame the river outside the action corridor and stay hidden in AR/Mothership. TREES.md and PUBLIC-PASS3.json retain source/public results and failed attempts. No external tree code/assets were copied.
 
-## Pass 3: Trees 0.1.3 implemented and integrated
+## Pass4 delivered
 
-trees.js/trees.mjs create seeded palm/alder/willow skeletons, three prebuilt detail levels, actual leaf geometry, shared root-fixed wind and cleanup. Eight authored trees stay outside the action corridor. Screen/VR Duck Armada shows them; AR and Mothership hide them. TREES.md describes reuse. PUBLIC-PASS3.json records 151 passing public checks, 113 matching files and the separate source reliability failures/retry.
+Host0.11.3 avoids redundant same-ratio canvas resets. Its native negative/fixed test proves the old repeated resize calls and their removal while preserving actual quality changes and drawing resolution. The existing0.35-second safeguard and all gameplay requirements remain.
 
-EZ-Tree was researched, including its license, but no code or asset dependency was copied. Keep the small deliberate set and existing sightlines; do not turn the task into a large forest editor or another side demo.
+The new RiverArt integration shares one bed function between water optics and visible banks, tracks wet shading with the real tide, grounds the existing trees, and replaces old block/cone scenery with sloped ground, irregular stones and narrow reeds. It reuses the water texture for bank detail and a compatible sky palette. Module source/APIs, combat, saves, soundtrack and XR/Rotunda logic remain unchanged.
 
-## Pass 4: next coherence and reliability work
+Runtime52b054d1 passed both source/public162-check journeys, both normal Arcade chapters, source322 models and117 public hashes. Exact results and preceding failures are in PUBLIC-PASS4.json. This is named automated evidence, not physical-device or photorealistic approval.
 
-Reproduce the remaining source frame/input failures with settled target geometry, actual input-delivery history and draw timing. Separate a driver/test scheduling issue from a production defect before changing code. Preserve first-slice requirements, the 0.35-second stall safeguard and every scoring/health rule. A passing public run does not erase a source failure or the owner's physical feedback.
+## Pass5: remaining polish and measured validation
 
-Then refine water, fire, smoke, tree colors and scene lighting together from owner playtests. Improve fuller but readable tree crowns, bark, shoreline transitions, wake appearance, irregular flame shapes and smoke breakup. Preserve the stationary XR camera, transparent AR and stable UI. Evaluate any larger mesh, weather, real reflections or heat-haze pass against measured cost before enabling it.
+Use owner Quest feedback and ordinary-resolution frame-time evidence before adding GPU cost. Reproduce residual input/timing issues with the saved bounded diagnostics; CPU render submission is not GPU completion. Keep every real first-slice, first-destruction, pause, save and session test. Do not remove guards or auto-resume tests to fabricate success.
 
-## Pass 5: measured polish
+Refine fuller organic crowns, bark, gradual bank transitions, less periodic flame shapes and smoke breakup, while retaining corridor visibility and unobstructed AR. Revalidate sky/light coordinates after translated or rotated recentering when improving analytical reflection coherence. Add a zero-time paused-animation fixture before deciding whether to change the existing host time fallback. These are next checks, not already delivered fixes.
 
-Repeat both battles and the full screen/AR/VR Rotunda journey: sound, placement, opacity, pause, exit/re-entry, input recovery and saves. Check allocation limits and disposal. Measure ordinary-resolution frame-time percentiles on named physical devices rather than only low-resolution software rendering. Ask whether effects improve the game instead of merely filling the view.
+Repeat both battles and the full screen/AR/VR journey: sound, placement, opacity, pause, exit/re-entry, visibility/input loss and records. Check resources/disposal and named-device frame-time percentiles, heat and stereo comfort. Screenshots and low-resolution emulation do not establish sustained performance or fun.
 
-Extra passes may be necessary for actual defects, weak visuals or physical-device results. Five passes are not a guarantee. New gameplay scoring/color mechanics, full hand-only combat, new soundtracks, WebGPU and FFT fluid simulation remain distinct work unless explicitly selected. Never reset sibling games, expose private hub material or claim future checks have passed.
+More passes may be warranted by real bugs, weaker visuals or physical-device results. New blade scoring/color rules, expanded hazard feedback, full hand-only combat, new music, WebGPU and FFT fluid simulation are separate work, not silently included by decorative upgrades. Preserve private hub/brief boundaries and sibling projects.
