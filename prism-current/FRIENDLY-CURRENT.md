@@ -1,4 +1,4 @@
-# Friendly Current 0.12.0
+# Friendly Current 0.12.2
 
 The owner's physical playtest supersedes the previous high-pressure encounter tuning. The goal is to play and learn the toybox comfortably, see remaining health, and choose higher pressure deliberately. This release changes gameplay on purpose, while retaining the scenic modules, music, control scheme and saved previous records.
 
@@ -16,4 +16,6 @@ Neither boss exists in the playable scene at the start. At beat 152, about 69 se
 
 Previous River records under prism-current.river.records.v1 are preserved byte-for-byte and left separate. New clears use prism-current.river.pacing.records.v1 with chapter, input, difficulty and Arcade/Cruise in each key. Existing Classic scores, lessons and expedition data are unchanged. The old records are not silently converted into Easy or Ultra Hard scores. Paused in-memory encounters still require the same explicit session/resume behavior; unfinished runs do not persist across page closure.
 
-The local model suite passes 348 checks and the actual Three object suites pass. Native input, exact public hashes, source/public playthroughs and new physical balance feedback remain distinct gates. Read PLAYABILITY-CHECKPOINT.md and the actual verifier artifacts for current publication/acceptance status. This design note is not proof that any future workflow or device test passed.
+Recovery 0.12.1 removes unchanged status-canvas repaints, disables unnecessary mip generation at the same visible resolution and uploads the status textures before audio. Recovery 0.12.2 fixes a direct B/Y Resume being discarded immediately after a previous pointer action. Held-button edges, native/polled selection latches, controller/session checks and the existing frame-stall safeguard remain.
+
+The full local model/lifecycle suite passes 359 checks, including the actual status painter and XR dispatcher fixtures. That count is not a native or physical-device result. Read PLAYABILITY-CHECKPOINT.md and qa/friendly-current-public.json for the actual source/public outcomes and their limits. Separate desktop software-rendering stalls remain recorded rather than hidden behind successful companion checks. The owner's next physical playtest determines whether the new density, slower movement and health display feel right.
