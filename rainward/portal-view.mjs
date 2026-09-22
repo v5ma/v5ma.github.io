@@ -44,7 +44,7 @@ export function createWorldPortal(){
   try{
    for(const item of lamps){if(item.distance>0)item.light.distance=item.distance*config.scale;item.light.intensity=item.intensity*Math.pow(config.scale,item.light.decay||2);}
    scene.add(world);for(const child of children)world.add(child);world.matrixAutoUpdate=false;world.matrix.copy(display);world.matrixWorldNeedsUpdate=true;
-   occlusion.collect(environmentRoots);occlusion.configure(anchor.clone().add(new T.Vector3(0,STAGE_METRES.height/2,0)),anchor.y+stage.height/2-.9*config.scale,config.scale);materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
+   occlusion.collect(environmentRoots);occlusion.configure(anchor.clone().add(new T.Vector3(0,stage.height/2,0)),anchor.y+stage.height/2-.9*config.scale,config.scale);materials.collect(world);sky.position.copy(centre);sky.material.color.copy(bg?.isColor?bg:color);world.add(sky);
    scene.add(shell);scene.background=null;scene.fog=null;renderer.clippingPlanes=[];renderer.setClearColor(0x101c24,config.view==='diorama-ar'?0:1);
    occlusion.active=true;materials.active=true;world.updateMatrixWorld(true);renderer.autoClear=true;renderer.render(scene,camera);
    occlusion.active=false;materials.active=false;
@@ -55,6 +55,6 @@ export function createWorldPortal(){
   }
  }
  function gameRay(ray){if(!anchor||!ray)return null;const entered=enterPortal(ray,boxInverse(anchor,heading),stage);if(!entered)return null;return {origin:entered.origin.applyMatrix4(inverse),direction:entered.direction.transformDirection(inverse)};}
- function contains(point,environment=false){if(!anchor)return false;const shown=new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);if(!seesFragment(eye,shown,boxInverse(anchor,heading),stage))return false;return !environment||!blocksPortalFocus(eye,shown,anchor.clone().add(new T.Vector3(0,STAGE_METRES.height/2,0)),anchor.y+stage.height/2-.75*config.scale,Math.max(.10,3.5*config.scale));}
+ function contains(point,environment=false){if(!anchor)return false;const shown=new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);if(!seesFragment(eye,shown,boxInverse(anchor,heading),stage))return false;return !environment||!blocksPortalFocus(eye,shown,anchor.clone().add(new T.Vector3(0,stage.height/2,0)),anchor.y+stage.height/2-.75*config.scale,Math.max(.10,3.5*config.scale));}
  return {reset,update,render,gameRay,contains,heading:()=>heading,displayPoint(point){return new T.Vector3(point.x,point.y,point.z).applyMatrix4(display);},stats:()=>({enabled,portal:true,scale:config.scale,shell:config.shell,...shellOpenings(config.shell),physicalDimensions:{...stage},physicalScale:config.size,centre:{x:centre.x,y:centre.y,z:centre.z},anchor:anchor?{x:anchor.x,y:anchor.y,z:anchor.z}:null,heading,follow:true,rigScale:1,extraRenderTargets:0,beyondBackVisible:true,automaticEyeFacingTransparency:true,foregroundCutaway:true,worldMatrix:display.toArray(),closedFaces:Object.entries(faces).filter(([,m])=>m.visible).map(([k])=>k)}),dispose(){materials.dispose();occlusion.dispose();overlay.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});sky.geometry.dispose();sky.material.dispose();frameMaterial.dispose();}};
 }
