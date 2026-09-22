@@ -24,6 +24,7 @@ with sync_playwright() as pw:
         p.evaluate("""()=>{const scene=AFRAME.scenes[0],renderer=scene.renderer,original=renderer.render,log=[];window.treeRenderObservations=log;
           renderer.render=function(){const begin=performance.now(),value=original.apply(this,arguments),elapsed=performance.now()-begin;
            if(elapsed>75){const game=scene.components['river-game'];log.push({renderMs:elapsed,phase:game.phase,time:game.state?.time||0,pointerHeld:!!game.mouse,calls:this.info.render.calls,triangles:this.info.render.triangles,programs:this.info.programs.length});if(log.length>64)log.shift();}return value;};}""")
+        p.add_script_tag(content=(ROOT/'prism-current/tests/frame-trace.js').read_text());p.evaluate("window.frameTrace=RiverFrameTrace.install(AFRAME.scenes[0].components['river-game'])")
         check(p.evaluate('River.snapshot().stats.trees.trees')==8,'The ordinary Duck Armada entry contains exactly eight authored bank trees')
         check(p.evaluate('River.snapshot().stats.water.version==="0.1.0"&&River.snapshot().stats.fire.version==="0.1.3"'),'Existing water and fire implementations are retained')
         check(p.evaluate('River.snapshot().stats.trees.geometries===48&&River.snapshot().stats.trees.materials===2&&River.snapshot().stats.trees.textures===0'),'Tree resource counts are fixed before gameplay')
@@ -85,7 +86,9 @@ with sync_playwright() as pw:
         except:state=None
         try:render_trace=p.evaluate('window.treeRenderObservations||[]')
         except:render_trace=[]
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'slowRenders':render_trace},indent=2))
+        try:frame_trace=p.evaluate('window.frameTrace?.snapshot()||null')
+        except:frame_trace=None
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'slowRenders':render_trace,'frameTrace':frame_trace},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise

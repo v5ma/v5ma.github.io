@@ -1,14 +1,14 @@
 /* Authored Prism-only placement; no enemy, score, physics or input responsibilities. */
 (function(root){'use strict';
  const TREES=Object.freeze([
-  {id:'arrival-left',preset:'palm',seed:137,height:3.9,position:[-6.45,.31,-6.6],yaw:.2},
-  {id:'arrival-right',preset:'palm',seed:281,height:4.2,position:[6.65,.31,-8.1],yaw:-.45},
-  {id:'bend-left',preset:'alder',seed:557,height:3.7,position:[-6.65,.31,-15.5],yaw:1.1},
-  {id:'bend-right',preset:'alder',seed:619,height:4,position:[6.7,.31,-14.2],yaw:-1.6},
-  {id:'gate-left',preset:'willow',seed:881,height:4.1,position:[-6.6,.31,-26],yaw:.8},
-  {id:'gate-right',preset:'willow',seed:941,height:4.3,position:[6.65,.31,-24],yaw:-.3},
-  {id:'horizon-left',preset:'palm',seed:1093,height:4.3,position:[-6.8,.31,-38.5],yaw:.65},
-  {id:'horizon-right',preset:'palm',seed:1229,height:4.3,position:[6.8,.31,-36.7],yaw:-.8}
+  {id:'arrival-left',preset:'palm',seed:137,height:3.9,position:[-6.45,.96,-6.6],yaw:.2},
+  {id:'arrival-right',preset:'palm',seed:281,height:4.2,position:[6.65,.96,-8.1],yaw:-.45},
+  {id:'bend-left',preset:'alder',seed:557,height:3.7,position:[-6.65,.96,-15.5],yaw:1.1},
+  {id:'bend-right',preset:'alder',seed:619,height:4,position:[6.7,.96,-14.2],yaw:-1.6},
+  {id:'gate-left',preset:'willow',seed:881,height:4.1,position:[-6.6,.96,-26],yaw:.8},
+  {id:'gate-right',preset:'willow',seed:941,height:4.3,position:[6.65,.96,-24],yaw:-.3},
+  {id:'horizon-left',preset:'palm',seed:1093,height:4.3,position:[-6.8,.96,-38.5],yaw:.65},
+  {id:'horizon-right',preset:'palm',seed:1229,height:4.3,position:[6.8,.96,-36.7],yaw:-.8}
  ].map(d=>Object.freeze({...d,position:Object.freeze(d.position)})));
  const WIND=.35;
  function install(T,scene,art){
