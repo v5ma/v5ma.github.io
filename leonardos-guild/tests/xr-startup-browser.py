@@ -20,7 +20,7 @@ def check(ok,text):
 compat=r'''
 (()=>{
  const original=navigator.xr.requestSession;
- __xr.blockReference=false;__xr.compatibilitySwitches=0;
+ __xr.blockReference=false;__xr.compatibilitySwitches=0;__xr.compatibilityEvents=[];
  navigator.xr.requestSession=async(...args)=>{
   const s=await original(...args),reference=s.requestReferenceSpace.bind(s);
   s.requestReferenceSpace=type=>__xr.blockReference?new Promise(()=>{}):reference(type);
@@ -30,10 +30,12 @@ compat=r'''
   const gl=this,extension=gl.getExtension('WEBGL_lose_context');
   if(!extension)return Promise.reject(Error('Context-loss test extension unavailable'));
   __xr.compatibilitySwitches++;
-  return new Promise((resolve,reject)=>{
-   const timer=setTimeout(()=>reject(Error('Test graphics restoration timed out')),8000);
-   gl.canvas.addEventListener('webglcontextrestored',()=>{clearTimeout(timer);resolve();},{once:true});
-   gl.canvas.addEventListener('webglcontextlost',()=>setTimeout(()=>extension.restoreContext(),150),{once:true});
+  const event={requested:performance.now()};__xr.compatibilityEvents.push(event);
+  // The production 12-second renderer deadline remains authoritative. A
+  // competing test-only 8-second rejection can preempt actual GL restoration.
+  return new Promise(resolve=>{
+   gl.canvas.addEventListener('webglcontextrestored',()=>{event.restored=performance.now();resolve();},{once:true});
+   gl.canvas.addEventListener('webglcontextlost',()=>{event.lost=performance.now();setTimeout(()=>{event.restoreRequested=performance.now();extension.restoreContext();},150);},{once:true});
    extension.loseContext();
   });
  };
@@ -66,7 +68,9 @@ with sync_playwright() as p:
     captures[mode+'-before-entry-'+str(repeat)]=read();report()
     selector=('#xr-pause-launcher' if repeat else '#xr-launcher')+' [data-xr-entry="'+mode+'"]'
     page.locator(selector).click()
-    page.wait_for_function('LeonardoGuild.inspect().running&&LeonardoGuild.inspect().xr.entry.frames>4')
+    page.wait_for_function("(()=>{const s=LeonardoGuild.inspect();return s.running&&s.xr.entry.frames>4||s.xr.entry.phase==='failed';})()")
+    assert read()['xr']['entry']['phase']!='failed',read()['xr']['entry']['error']
+    captures[mode+'-compatibility-'+str(repeat)]=page.evaluate('__xr.compatibilityEvents');report()
     value=read();check(value['graphics']['restorations']==repeat+1,mode+': real graphics restoration completed on entry '+str(repeat+1))
     check(page.locator('#failure').get_attribute('hidden') is not None,mode+': recovered graphics release the blocking error screen')
     check(not value['graphics']['lost'] and value['xr']['presenting'],mode+': requested VR session remains active after recovery')
@@ -107,7 +111,7 @@ with sync_playwright() as p:
   captures['failure_message']=str(error)
   try:
    captures['failure_state']=read()
-   captures['failure_dom']=page.evaluate("({hidden:document.hidden,focus:document.activeElement?.id,dialogs:[...document.querySelectorAll('dialog[open]')].map(d=>({id:d.id,modal:d.matches(':modal')})),failureHidden:document.getElementById('failure').hidden,failureText:document.getElementById('failure-detail').textContent,hardwareSession:__xr.session?{ended:__xr.session.ended,visibility:__xr.session.visibilityState,pending:__xr.session.pending.size}:null})")
+   captures['failure_dom']=page.evaluate("({hidden:document.hidden,focus:document.activeElement?.id,dialogs:[...document.querySelectorAll('dialog[open]')].map(d=>({id:d.id,modal:d.matches(':modal')})),failureHidden:document.getElementById('failure').hidden,failureText:document.getElementById('failure-detail').textContent,compatibility:__xr.compatibilityEvents,hardwareSession:__xr.session?{ended:__xr.session.ended,visibility:__xr.session.visibilityState,pending:__xr.session.pending.size}:null})")
   except Exception as diagnostic_error:captures['diagnostic_error']=str(diagnostic_error)
   raise
  finally:report();browser.close()
