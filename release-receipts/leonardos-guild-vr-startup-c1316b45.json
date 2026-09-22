@@ -13,7 +13,7 @@
   ],
   "local_tests": {"passed":427,"failed":0,"design_passed":14,"design_failed":0,"new_regressions":15},
   "physical_quest_verified": false,
-  "local_native_browser": "Navigation refused with ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass.",
+  "local_native_browser": "Navigation refused with ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass. The successful native result below comes from the independent GitHub runner.",
   "pages": {"run_id":35692454412,"build":"success","deploy":"success","report_build_status":"success"},
   "public_runtime": {
     "run_id":35692455515,
@@ -39,11 +39,36 @@
   },
   "native_verification": {
     "run_id":35692455515,
-    "startup_framebuffer":"in_progress_at_receipt",
+    "startup_framebuffer": {
+      "status":"success",
+      "artifact_id":10678982985,
+      "artifact_sha256":"5f8df1863ead1c09413a5f5582cdb77b6cb9bf0d16b2a4e1f252aa746a5c30ff",
+      "checks":33,
+      "errors":[],
+      "verified_source_hashes":390,
+      "local_patch_differences":0,
+      "uncommitted_diff_empty":true,
+      "modes":["first-person VR","diorama VR"],
+      "real_graphics_interruptions_per_mode":2,
+      "verified":"Full Vinci entry; named error and actual session end after stalled reference request; explicit retry; real WEBGL_lose_context loss/restoration during makeXRCompatible; removal of blocking error screen; continued tracked-stick movement; nonblank game geometry in both independent eye textures; actual session end and re-entry; unchanged currency/deliveries.",
+      "screenshots_reviewed":["first-person-0.png","diorama-vr-0.png"],
+      "eye_color_counts":[[2516,2526],[2628,2660],[1950,1979],[1934,1967]]
+    },
     "startup_projection":"in_progress_at_receipt",
     "full_vinci_and_public_journeys":"in_progress_at_receipt",
     "evidence_class":"Real WebGL context loss/restoration and eye textures, with synthetic XR poses, controls and initialization timing. Not physical Quest."
   },
-  "scope":"Direct master writes to Leo's Guild and its existing dedicated verifier. No PR, branch, new workflow, shared publisher change or sibling-runtime edit.",
-  "limits":"Publication identity is verified, not the user's exact physical freeze. Hard GPU/browser hangs, headset comfort, sustained performance, end-to-end hardware controls and physical re-entry remain open. This receipt does not mark running tests as passed."
+  "baseline_diagnostics": {
+    "source":"ec5d977b553ce009d26d24db092c8f6c52a09151",
+    "run_id":35691064156,
+    "artifact_id":10679666306,
+    "artifact_sha256":"cbb34d0fbc8ec225239bad5a479ccb05c58a45f835d21941a544b2fb0a8c9680",
+    "attachment_checks":33,
+    "full_vinci_partial_checks":100,
+    "captured_errors":[],
+    "status":"The baseline framebuffer job reached its time limit during the fourth full-Vinci menu journey. Partial checks and captures are retained, not counted as a complete pass or reproduction of the user's freeze."
+  },
+  "render_load_observation":"The successful low-quality browser captures report about 1474-1764 render calls and 0.98-1.11 million triangles. These are renderer counters, not Quest frame-rate measurements; hardware performance remains a separate risk to investigate.",
+  "scope":"Direct master writes to Leo's Guild and its existing dedicated verifier. No PR, branch, new workflow, shared publisher change or sibling-runtime edit. Receipts remain outside the tested game tree.",
+  "limits":"Publication identity and the named framebuffer startup-recovery journey are verified, not the user's exact physical freeze. Hard GPU/browser hangs, headset comfort, sustained performance, end-to-end hardware controls and physical re-entry remain open. This receipt does not mark running tests as passed."
 }
