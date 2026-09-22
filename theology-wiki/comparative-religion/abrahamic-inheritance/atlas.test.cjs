@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process'),vm=require('node:vm');
 const HERE=__dirname,ROOT=path.resolve(HERE,'../..'),read=n=>fs.readFileSync(path.join(HERE,n),'utf8'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
-const data=JSON.parse(read('groups.json')),report=JSON.parse(read('build-report.json')),manifest=JSON.parse(read('manifest.json')),esc=x=>String(x).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+const data=JSON.parse(read('groups.json')),report=JSON.parse(read('build-report.json')),manifest=JSON.parse(read('manifest.json')),esc=x=>String(x).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const parentDir=JSON.parse(fs.readFileSync(path.join(HERE,'../directory.json'),'utf8')),parentSources=[...JSON.parse(fs.readFileSync(path.join(HERE,'../sources.json'),'utf8')).sources,...JSON.parse(fs.readFileSync(path.join(HERE,'../sources-more.json'),'utf8')).sources],sourceIds=new Set(parentSources.map(s=>s.id));
 test('atlas has sixty unique dedicated entries',()=>{assert.equal(data.count,60);assert.equal(data.groups.length,60);assert.equal(new Set(data.groups.map(g=>g.id)).size,60);assert.equal(new Set(data.groups.map(g=>g.name)).size,60);assert.equal(report.counts.group_pages,60);assert.equal(report.counts.html_pages,61);});
 test('all thirty-six pre-existing comparative directory entries are represented',()=>{assert.equal(parentDir.entries.length,36);const ids=new Set(data.groups.map(g=>g.id));for(const e of parentDir.entries)assert.ok(ids.has(e.id),e.id);});
