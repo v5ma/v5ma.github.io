@@ -11,7 +11,11 @@ window.startRiverDriver=()=>{
   }
   active=null;if(imminent){key('KeyR',false);key('KeyT',false);return;}
   const boss=s.entities.find(n=>n.type==='boss'&&n.open),enemy=s.entities.find(n=>n.type==='health'&&s.result.health<100)||boss||s.entities.find(n=>['plane','fighter','boat'].includes(n.type))||s.entities.find(n=>n.type==='catapult'&&n.position[2]>-8)||s.entities.find(n=>n.type==='bomb');
-  if(enemy){point(enemy.position);key('KeyR',true);key('KeyT',true);}else{key('KeyR',false);key('KeyT',false);}
+  // Since Friendly Current, fruit can also be shot. Keep a nearby fruit
+  // approach clear of test gunfire so this driver actually exercises slicing.
+  // This selects inputs only; no target, hit or score is written.
+  const fruitApproaching=s.entities.some(n=>n.type==='fruit'&&n.position[2]>-3.8);
+  if(enemy&&!fruitApproaching){point(enemy.position);key('KeyR',true);key('KeyT',true);}else{key('KeyR',false);key('KeyT',false);}
  },8);
  window.stopRiverDriver=()=>{clearInterval(window.riverDriver);for(const code of [...held])key(code,false);};
 };

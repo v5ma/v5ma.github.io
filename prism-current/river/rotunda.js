@@ -1,7 +1,7 @@
 /* Prism-only spatial furniture. No hub code, portal, camera parenting or game-state writes.
  * Screen and XR controls use this same scene surface, rectangle map and command set. */
 (function(root){'use strict';
- const VERSION='0.12.0',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
+ const VERSION='0.12.1',KEY='prism-current.rotunda.v1',WIDTH=1200,HEIGHT=814;
  const RECTS=Object.freeze([
   ...Array.from({length:8},(_,i)=>({x:i%2?631:56,y:306+Math.floor(i/2)*122,w:513,h:90})),
   ...Array.from({length:4},(_,i)=>({x:32+i*292,y:209,w:268,h:63})),
@@ -24,9 +24,11 @@
   const bevels=RECTS.map(r=>{const m=new T.Mesh(box,buttonMaterial);m.position.set(((r.x+r.w/2)/WIDTH-.5)*1.68,(.5-(r.y+r.h/2)/HEIGHT)*1.14,-.018);m.scale.set(r.w/WIDTH*1.68+.012,r.h/HEIGHT*1.14+.012,.045);m.renderOrder=30;menu.mesh.add(m);return m;});
   const aimMarker=new T.Mesh(ownG(new T.RingGeometry(.017,.025,20)),ownM(new T.MeshBasicMaterial({color:0xd6fff0,depthTest:false,depthWrite:false,side:T.DoubleSide})));aimMarker.name='prism-scene-reticle';aimMarker.renderOrder=25;aimMarker.visible=false;scene.object3D.add(aimMarker);
   const hudBack=new T.Mesh(box,dark);hudBack.scale.set(1.80,.32,.025);hudBack.position.z=-.018;hud.mesh.add(hudBack);hud.mesh.name='prism-controller-status';hud.mesh.renderOrder=25;
-  let page='play',progress=1,lastStamp=0,lastPaint='',focus=4,hover=-1,lastPhase='',headHeight=1.65,disposed=false,snapshot=null,lastHud=0,notice='',noticeAt=0,oldScore=0,oldHealth=100,oldRun=null;
+  let page='play',progress=1,lastStamp=0,lastPaint='',focus=4,hover=-1,lastPhase='',headHeight=1.65,disposed=false,snapshot=null,lastHud=0,notice='',noticeAt=0,oldScore=0,oldHealth=100,oldRun=null,lastHudKey='',hudPaints=0,hudPrepared=false;
   const healthPanel=g.art.panel(1.45,.35);healthPanel.mesh.name='prism-health-gauge';
   healthPanel.mesh.position.set(0,.62,-2.60);healthPanel.mesh.rotation.x=-.20;healthPanel.mesh.renderOrder=26;healthPanel.mesh.visible=false;
+  // Dynamic status canvases do not need a fresh mip chain at each health change.
+  for(const p of [hud,healthPanel]){p.texture.generateMipmaps=false;p.texture.minFilter=T.LinearFilter;}
   let textControls=false;const support={ar:false,vr:false};
   const wrap=document.getElementById('scene-wrap'),ray=new T.Raycaster();ray.far=9;
   function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch{notice='Layout applies for this session; storage is unavailable.';}lastPaint='';}
@@ -107,6 +109,21 @@
   }
   for(const type of ['pointermove','pointerdown','pointerup'])wrap.addEventListener(type,pointer,true);window.addEventListener('keydown',key,true);
   function pad(dir,confirm,back){if(textControls)return false;if(dir){focus=navigate(focus,Math.abs(dir)===2?dir/2:0,Math.abs(dir)===1?dir:0);draw();}if(confirm)action(focus);if(back){if(page!=='play'){page='play';draw();}else g.phase==='paused'?g.resume():g.cancel();}return true;}
+  function paintHealth(s,now){
+    const key=[s?.health??100,s?.maxHealth||100,s?.score||0,s?.combo||0,s?.difficulty||g.difficulty,!!s?.bossDefeated,!!s&&s.time>=RiverCore.BOSS_BEAT*RiverCore.BEAT,now-noticeAt<1800?notice:''].join('|');
+    if(key===lastHudKey)return false;lastHudKey=key;lastHud=now;hudPaints++;
+const health=s?.health??100,max=s?.maxHealth||100,low=health<=30;
+    const c=hud.context,w=hud.canvas.width,h=hud.canvas.height;c.clearRect(0,0,w,h);c.fillStyle='#102c3ff5';c.fillRect(0,0,w,h);c.fillStyle=low?'#ffbe73':'#b6ffe0';c.font='700 49px system-ui';c.fillText(`HEALTH ${health} / ${max}`,25,57);c.fillStyle='#305163';c.fillRect(25,73,700,25);c.fillStyle=low?'#ffb85e':'#61e3b2';c.fillRect(25,73,700*health/max,25);c.fillStyle='#ffffff';c.font='28px system-ui';c.fillText(`${s?.score||0} POINTS / ${s?.combo||0}x / ${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name}`,25,139);c.font='23px system-ui';c.fillText(now-noticeAt<1800?notice:'Mint health box: cut or shoot. B/Y or P: menu.',25,178);hud.texture.needsUpdate=true;
+    const a=healthPanel.context,pw=healthPanel.canvas.width,ph=healthPanel.canvas.height;a.clearRect(0,0,pw,ph);a.fillStyle='#112d40f5';a.fillRect(0,0,pw,ph);a.strokeStyle=low?'#ffc07b':'#a8ffe0';a.lineWidth=5;a.strokeRect(3,3,pw-6,ph-6);a.fillStyle='#ffffff';a.font='700 56px system-ui';a.fillText(`HEALTH ${health} / ${max}`,30,65);a.fillStyle='#34505f';a.fillRect(30,90,pw-60,46);a.fillStyle=low?'#ffb85e':'#61e3b2';a.fillRect(30,90,(pw-60)*health/max,46);a.fillStyle='#ffffff';a.font='29px system-ui';a.fillText(now-noticeAt<1800?notice:low?'LOW HEALTH / Collect a mint supply box':'Mint boxes heal / Purple blocks: cut, shoot or shield',30,180,pw-60);a.font='26px system-ui';a.fillText(`${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name.toUpperCase()} / ${s?.score||0} POINTS / ${s?.bossDefeated?'BOSS DEFEATED':s&&s.time>=RiverCore.BOSS_BEAT*RiverCore.BEAT?'FINALE: SHOOT THE BOSS':'Boss arrives in the finale'}`,30,225,pw-60);healthPanel.texture.needsUpdate=true;
+    return true;
+  }
+  function prepare(renderer){
+   if(disposed)return false;
+   if(typeof renderer?.initTexture!=='function')throw new TypeError('Health preparation requires the existing renderer.');
+   hudPrepared=false;paintHealth(g.state,performance.now());
+   // Upload first-use canvases before the soundtrack, without revealing them.
+   renderer.initTexture(hud.texture);renderer.initTexture(healthPanel.texture);hudPrepared=true;return true;
+  }
   function update(input,viewer){if(disposed)return;const now=performance.now(),dt=Math.min(.05,(now-lastStamp)/1000||0);lastStamp=now;
    const open=g.phase!=='playing';if(g.phase!==lastPhase){if(open&&lastPhase==='playing')summon(viewer);else if(!g.immersive&&open)anchor();lastPhase=g.phase;lastPaint='';}
    const visible=g.immersive||!textControls;root3D.visible=visible;aimMarker.visible=!g.immersive&&!textControls&&g.phase==='playing';if(aimMarker.visible)aimMarker.position.copy(g.point(-2));
@@ -119,16 +136,13 @@
    else{const v=new T.Vector3(base.position.x,g.immersive?.30:.90,base.position.z+(g.immersive?.15:-.40));root3D.localToWorld(v);stage.worldToLocal(v);hud.mesh.position.copy(v);const q=root3D.getWorldQuaternion(new T.Quaternion()),parentQ=stage.getWorldQuaternion(new T.Quaternion()).invert();hud.mesh.quaternion.copy(parentQ.multiply(q));hud.mesh.rotateX(-.70);hud.mesh.scale.set(.56,.85,1);}
    if(oldRun!==s){oldRun=s;oldScore=s?.score||0;oldHealth=s?.health??100;notice='';}if(s&&s.score!==oldScore){notice='+'+(s.score-oldScore)+' points';oldScore=s.score;noticeAt=now;}if(s&&s.health!==oldHealth){notice=s.health<oldHealth?'-'+(oldHealth-s.health)+' HEALTH / block or bomb impact':'+'+(s.health-oldHealth)+' HEALTH / supply box';oldHealth=s.health;noticeAt=now;}
    healthPanel.mesh.visible=visible&&!!s&&g.phase==='playing';
-   if(now-lastHud>130){lastHud=now;const health=s?.health??100,max=s?.maxHealth||100,low=health<=30;
-    const c=hud.context,w=hud.canvas.width,h=hud.canvas.height;c.clearRect(0,0,w,h);c.fillStyle='#102c3ff5';c.fillRect(0,0,w,h);c.fillStyle=low?'#ffbe73':'#b6ffe0';c.font='700 49px system-ui';c.fillText(`HEALTH ${health} / ${max}`,25,57);c.fillStyle='#305163';c.fillRect(25,73,700,25);c.fillStyle=low?'#ffb85e':'#61e3b2';c.fillRect(25,73,700*health/max,25);c.fillStyle='#ffffff';c.font='28px system-ui';c.fillText(`${s?.score||0} POINTS / ${s?.combo||0}x / ${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name}`,25,139);c.font='23px system-ui';c.fillText(now-noticeAt<1800?notice:'Mint health box: cut or shoot. B/Y or P: menu.',25,178);hud.texture.needsUpdate=true;
-    const a=healthPanel.context,pw=healthPanel.canvas.width,ph=healthPanel.canvas.height;a.clearRect(0,0,pw,ph);a.fillStyle='#112d40f5';a.fillRect(0,0,pw,ph);a.strokeStyle=low?'#ffc07b':'#a8ffe0';a.lineWidth=5;a.strokeRect(3,3,pw-6,ph-6);a.fillStyle='#ffffff';a.font='700 56px system-ui';a.fillText(`HEALTH ${health} / ${max}`,30,65);a.fillStyle='#34505f';a.fillRect(30,90,pw-60,46);a.fillStyle=low?'#ffb85e':'#61e3b2';a.fillRect(30,90,(pw-60)*health/max,46);a.fillStyle='#ffffff';a.font='29px system-ui';a.fillText(now-noticeAt<1800?notice:low?'LOW HEALTH / Collect a mint supply box':'Mint boxes heal / Purple blocks: cut, shoot or shield',30,180,pw-60);a.font='26px system-ui';a.fillText(`${RiverCore.DIFFICULTIES.get(s?.difficulty||g.difficulty).name.toUpperCase()} / ${s?.score||0} POINTS / ${s?.bossDefeated?'BOSS DEFEATED':s&&s.time>=RiverCore.BOSS_BEAT*RiverCore.BEAT?'FINALE: SHOOT THE BOSS':'Boss arrives in the finale'}`,30,225,pw-60);healthPanel.texture.needsUpdate=true;
-   }
+   paintHealth(s,now);
    root3D.updateMatrixWorld(true);hud.mesh.updateMatrixWorld(true);
-   snapshot={page,focus,open,progress,preferences:{...prefs},anchor:root3D.position.toArray(),anchorRotation:root3D.rotation.toArray().slice(0,3),menuPosition:menu.mesh.getWorldPosition(new T.Vector3()).toArray(),hudPosition:hud.mesh.getWorldPosition(new T.Vector3()).toArray(),hudVisible:hud.mesh.visible,healthGaugeVisible:healthPanel.mesh.visible,health:s?.health??100,difficulty:s?.difficulty||g.difficulty,headAttached:false,textControls};
+   snapshot={page,focus,open,progress,preferences:{...prefs},anchor:root3D.position.toArray(),anchorRotation:root3D.rotation.toArray().slice(0,3),menuPosition:menu.mesh.getWorldPosition(new T.Vector3()).toArray(),hudPosition:hud.mesh.getWorldPosition(new T.Vector3()).toArray(),hudVisible:hud.mesh.visible,healthGaugeVisible:healthPanel.mesh.visible,hudPaints,hudPrepared,health:s?.health??100,difficulty:s?.difficulty||g.difficulty,headAttached:false,textControls};
   }
   function setSupport(mode,v){support[mode]=v;if(v&&!g.immersive&&g.phase==='menu'&&page==='play')focus=support.ar?0:2;lastPaint='';}
   anchor();document.body.classList.add('scene-ui');
-  const api={action,draw,update,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);root3D.removeFromParent();aimMarker.removeFromParent();healthPanel.mesh.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
+  const api={action,draw,update,prepare,summon,reset,pad,setSupport,hit,navigate,menu:menu.mesh,root:root3D,get prefs(){return prefs},get diagnostics(){return snapshot},get textControls(){return textControls},get focus(){return focus},dispose(){if(disposed)return;disposed=true;for(const type of ['pointermove','pointerdown','pointerup'])wrap.removeEventListener(type,pointer,true);window.removeEventListener('keydown',key,true);root3D.removeFromParent();aimMarker.removeFromParent();healthPanel.mesh.removeFromParent();for(const v of ownedG)v.dispose();for(const v of ownedM)v.dispose();document.body.classList.remove('scene-ui');}};
   g.dock=api;return api;
  }
  const api={VERSION,KEY,WIDTH,HEIGHT,RECTS,preferences,hit,navigate,install};root.RiverRotunda=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;

@@ -31,8 +31,10 @@ with sync_playwright() as pw:
   for i,d in enumerate(['easy','normal','hard','ultra-hard']):
    click(p,i);p.wait_for_function('d=>River.snapshot().difficulty===d',arg=d);check(True,d+': actual in-canvas choice selects this profile')
   p.reload(wait_until='domcontentloaded');p.wait_for_function('window.River?.snapshot().rotunda?.open');check(p.evaluate('River.snapshot().difficulty')=='ultra-hard','Difficulty preference survives a page reload')
+  p.add_script_tag(content=(ROOT/'prism-current/tests/frame-trace.js').read_text());p.evaluate("window.playabilityTrace=RiverFrameTrace.install(AFRAME.scenes[0].components['river-game'])")
   click(p,6);click(p,0);click(p,6);click(p,4);p.wait_for_function('River.snapshot().phase==="playing"')
   check(p.evaluate('River.snapshot().difficulty')=='easy','The ordinary screen Start uses the selected Easy encounter')
+  p.wait_for_function('River.snapshot().rotunda.hudPrepared');check(True,'Health textures were uploaded during loading before the soundtrack')
   p.wait_for_function('River.snapshot().rotunda.healthGaugeVisible');check(p.evaluate('River.snapshot().result.health')==100,'A labeled persistent health gauge begins at 100')
   check(not p.evaluate('River.snapshot().entities.some(n=>n.type==="boss")'),'No boss exists at the start of a chapter')
   # Read-only observer of boss timing and incoming families through the whole run.
@@ -83,7 +85,9 @@ with sync_playwright() as pw:
  except Exception as e:
   try:s=p.evaluate('window.River?.snapshot()')
   except:s=None
-  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'results':outcomes,'errors':errors,'snapshot':s},indent=2))
+  try:trace=p.evaluate('window.playabilityTrace?.snapshot()')
+  except:trace=None
+  (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'results':outcomes,'errors':errors,'snapshot':s,'frameTrace':trace},indent=2))
   try:p.screenshot(path=str(OUT/'failure.png'))
   except:pass
   raise

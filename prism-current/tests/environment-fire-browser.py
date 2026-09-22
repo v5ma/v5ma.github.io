@@ -42,7 +42,10 @@ with sync_playwright() as pw:
         check(after['stats']['fire']['activeVolumes']<=3 and after['stats']['fire']['activeSparks']<=64,'Actual battle stays within the Balanced effect budget')
         p.screenshot(path=str(OUT/'game-paused-fire.png'))
         p.locator('#resume').click();p.wait_for_function('River.snapshot().phase==="playing"');p.mouse.move(640,500);p.mouse.down()
-        p.wait_for_function('River.snapshot().stats.fire.emitted>=3',timeout=20000)
+        # Easy keeps enemies alive longer and schedules fewer of them. Require the
+        # same three real destructions across its actual wave spacing, without
+        # accelerating the soundtrack or changing the selected difficulty.
+        p.wait_for_function('River.snapshot().stats.fire.emitted>=3',timeout=45000)
         check(p.evaluate('River.snapshot().stats.fire.emitters')==0,'No unrequested flamethrower is introduced into saber gameplay')
         p.keyboard.press('KeyP');p.wait_for_function('River.snapshot().phase==="paused"');p.mouse.up();p.evaluate('stopRiverDriver()')
         p.locator('#back').click();p.wait_for_function('River.snapshot().phase==="menu"&&River.snapshot().stats.fire.activeVolumes===0')
