@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-21",
+  "base_commit": "18d83fa4b5aa2f4115d6c602af2bf9a51c06896a",
+  "parent_build_before_sha256": "6c69f693a07c0c9b15fd8a66ddd9f3819ac9c69464bcbf4d0095ab4aa1c5b58b",
+  "parent_build_after_sha256": "6c69f693a07c0c9b15fd8a66ddd9f3819ac9c69464bcbf4d0095ab4aa1c5b58b",
+  "scope": "Adds one generator require and one atlas callout to the comparative index and directory. Existing directory.json, study JSON and source registries are not changed."
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "edition_date": "2026-09-21",
+  "counts": {
+    "groups": 60,
+    "group_pages": 60,
+    "claim_types": 35,
+    "families": 16,
+    "html_pages": 61
+  },
+  "files": [
+    {
+      "path": "groups/african-hebrew-israelites.html",
+      "sha256": "5215417e9e07bb262721dda0ee4b01bb9bb3b4758fe9232b90dbfae78fbd2288"
+    },
+    {
+      "path": "groups/ahmadi.html",
+      "sha256": "811393cb62e958c550d4a6e49e064c5f8dbadb59235289c581be331a26c17e9f"
+    },
+    {
+      "path": "groups/alawite.html",
+      "sha256": "b53bc07cd0b9cf4eb6f7fe25f2fd7b23644d9486a9d4f73901c68c8ee0fedd95"
+    },
+    {
+      "path": "groups/anusim.html",
+      "sha256": "e01fdc94ce24308c2a91a877f8a50dee8d6ba9b51aa13d1d545a473d4acb0420"
+    },
+    {
+      "path": "groups/assyrian-chaldean.html",
+      "sha256": "16cb60d30b7eae935e44a46c2ad54a65a3d51caf34d7f70eeb963bf22f3c7be8"
+    },
+    {
+      "path": "groups/baha.html",
+      "sha256": "73fb240eb2f103c03239f8d4c3d60ad6a5953c03f92c454cbb0def8c49cf20ac"
+    },
+    {
+      "path": "groups/basilidian.html",
+      "sha256": "d0d4471e1983d32a2c8599ac5c21ab1fa468ab066bd741021276b88a7e97545b"
+    },
+    {
+      "path": "groups/beta-israel.html",
+      "sha256": "2bdc0e545de80015b149b6a8be29a931a95db8b9dfb902d6cb59947c09a17f5f"
+    },
+    {
+      "path": "groups/black-hebrew-israelites.html",
+      "sha256": "18199d02220798ad636dad9d0f06225f78f1ebcb25f86b7e898a8a4b5767689a"
+    },
+    {
+      "path": "groups/british-israelism.html",
+      "sha256": "a22d9b00d879816848e0c9e25345ca659da920847f14d9a57845d8938c623ac5"
+    },
+    {
+      "path": "groups/buddhist.html",
+      "sha256": "50808b787b1a601c79ac86d264829b0dc0005d13bd043f88380ea2784d3dfb83"
+    },
+    {
+      "path": "groups/catholic-christianity.html",
+      "sha256": "2b8f173f1c19c2a4ea62a980d778cf3bfd6755fffb3af4d458300999824d4228"
+    },
+    {
+      "path": "groups/christian-identity.html",
+      "sha256": "2b0bf47303f45d1d9147f7dd57b8f848e25645d5138c67628cc1a05b62cbf414"
+    },
+    {
+      "path": "groups/christianity-general.html",
+      "sha256": "7faa386b6dc5edb003569d73787d0b0fabb9faf8281b9d9f0063c366df5752d8"
+    },
+    {
+      "path": "groups/conservative-judaism.html",
+      "sha256": "1a03df62b2d783e49a7ac2837fa4ee904a97087ef78e66b5e6ab3b51791ab38d"
+    },
+    {
+      "path": "groups/coptic.html",
+      "sha256": "609d6fc998810c4ba597262be75990107c21595f19f5c1f7d0edd109dce23969"
+    },
+    {
+      "path": "groups/druze.html",
+      "sha256": "153241a021a416a0c71681e63146655a7c59ff80ee2c1ef1285b14b8eba524e0"
+    },
+    {
+      "path": "groups/early-jesus-movement.html",
+      "sha256": "c60d04ed8d2e38900fbd360f55aadb9e929129e1a0512989ff01f61db79b35ca"
+    },
+    {
+      "path": "groups/eastern-orthodox.html",
+      "sha256": "adf86673e991441910759decc0a42588f57c57a92e4c7cc4be96079ef1673a7e"
+    },
+    {
+      "path": "groups/ebionites.html",
+      "sha256": "ff89e8455235b963ef0ee208b3fefa36b59b68dee452e30dfde94a4921eb8056"
+    },
+    {
+      "path": "groups/ethiopian-christianity.html",
+      "sha256": "8896c7c8699a3abf5dd60022f418174623fd06075e54cc47bae29bdb1025c3a1"
+    },
+    {
+      "path": "groups/greek-melkite.html",
+      "sha256": "d2e910de4b9a6feb3905d7be6bb07a7df2b7ef0608b2a3bcf538243434b70139"
+    },
+    {
+      "path": "groups/hasidic-judaism.html",
+      "sha256": "511339d2867cc13bf412abf022768cb9e6f3f97a68b97738aa4d26df38bb44df"
+    },
+    {
+      "path": "groups/hebrew-roots.html",
+      "sha256": "773e6ddcbf00f763039903147b302a9f60a7791441ef1fe0a0ecb2ff144b05b4"
+    },
+    {
+      "path": "groups/hermetic.html",
+      "sha256": "38db048f274fca983f6cb695482042b504d5091321c1e169cb1afd8ce25df7b1"
+    },
+    {
+      "path": "groups/ibadi.html",
+      "sha256": "27c55bc48d53bddc38f9db0a9837c3296c2fedf37ec1bf9b362287d6a7d3fccf"
+    },
+    {
+      "path": "groups/islam-general.html",
+      "sha256": "06dc3ffb05e5c05685dde861f7863baa91bfdb00f5dd7c0ffdee330a1a0eed68"
+    },
+    {
+      "path": "groups/ismaili.html",
+      "sha256": "cf22574f955b280ecae3d409d9cc3e47381dc01ed5592f6f3e96f456048ecbbf"
+    },
+    {
+      "path": "groups/jw.html",
+      "sha256": "9bcde1b667d66330506302a4d2f61fca691a9b22cc95059a294727b4686afb0c"
+    },
+    {
+      "path": "groups/kabbalah.html",
+      "sha256": "3d6762bb7fde2c54c90cf6342e188e0544947fa898384d5ecc94625df4b9604e"
+    },
+    {
+      "path": "groups/kabbalah-hasidism.html",
+      "sha256": "9db24d74bafd3d9622695351d49bcec66103488a1af9f76f8e1ca9f53677265e"
+    },
+    {
+      "path": "groups/karaite.html",
+      "sha256": "aa20a4876accc2643fb6c9b34cca9040369288ccb1dfa65f7a4b90fcc8a94bc2"
+    },
+    {
+      "path": "groups/lds.html",
+      "sha256": "fe7c6943da852bc4d7a589b70b72f84301b796e27a7867f0f29f60a140aa223d"
+    },
+    {
+      "path": "groups/mandaean.html",
+      "sha256": "cf57f08a6c48d428b1477b57aeddb407b696b59b6591f51783746a83823bb484"
+    },
+    {
+      "path": "groups/manichaean.html",
+      "sha256": "a95bbd1cf0e8e0bcb61eb2d25304f920d297f628624debbd4a686e968b093654"
+    },
+    {
+      "path": "groups/marcionite.html",
+      "sha256": "e4eaede3ecd9de5f723d0a40f2b972539a066e7bf448ddfb1ad7b5b0aad9b31f"
+    },
+    {
+      "path": "groups/maronite.html",
+      "sha256": "2261a7b021da5373c72e94a0163747fdf02ed89016ca24eac336ab2b70d64031"
+    },
+    {
+      "path": "groups/messianic-judaism.html",
+      "sha256": "eaef80954d505a8c10fd5ded7c3de97f3b268f82eddbb4f20720db7cb6e00d25"
+    },
+    {
+      "path": "groups/nation-islam.html",
+      "sha256": "33d9a1c95ee22463da94e871a0361f0ee21c96c53ac0509eff0f082ddfb1cfe1"
+    },
+    {
+      "path": "groups/old-calendar.html",
+      "sha256": "7d5f4940435917f1c411f0b56c4b7b944d49e116009d169913c83838515a4e78"
+    },
+    {
+      "path": "groups/oriental-orthodox.html",
+      "sha256": "7db9281df4da5ed20dc5bfc9ea17fc90b426e3e08ad207b3ea177706e353d0b9"
+    },
+    {
+      "path": "groups/orthodox-judaism.html",
+      "sha256": "aacf2ce71453613f6760fb39a737c74893413237366a89655755ada27c7c0db0"
+    },
+    {
+      "path": "groups/protestant-christianity.html",
+      "sha256": "12a065752257665fe75413dc8b7a0f1f3519fbb5efa367cded020335c65d5d3d"
+    },
+    {
+      "path": "groups/qumran.html",
+      "sha256": "4b22b3eb89fa9b0044c1c18cc387a77f9883d278ffe869c03bad0d20ad12f066"
+    },
+    {
+      "path": "groups/rabbinic.html",
+      "sha256": "6921e6229158e4c9ec5ccf92d8a5b544660f64803572679437892687f124cb1a"
+    },
+    {
+      "path": "groups/rastafari.html",
+      "sha256": "7b1080f2f81e162db95b3a423bce3d7d97110712c959e1b3306bcbe0efa697e8"
+    },
+    {
+      "path": "groups/reform-judaism.html",
+      "sha256": "a860c8afadc8f520576ab17ab215a24b03b190cd5bcf13b5c8c7bdf3b7c16b08"
+    },
+    {
+      "path": "groups/sacred-name.html",
+      "sha256": "60c75d4b2c294a9300bd25b684d9a635421f3e930bfbabcde8b6826e9ba650e0"
+    },
+    {
+      "path": "groups/thomas.html",
+      "sha256": "e8488cc14f593b8f655564c4e6672d1a83873621a3d78317aa58c6242dbea0ae"
+    },
+    {
+      "path": "groups/samaritan.html",
+      "sha256": "14bea92a0f34827fa6885809a2b4511434eb128df2abce398b60f3c8903d2e00"
+    },
+    {
+      "path": "groups/sethian.html",
+      "sha256": "923e8124cedc41fda569275fbbdd0ce52d26e3492aa0586e4866d3e387a25121"
+    },
+    {
+      "path": "groups/adventist.html",
+      "sha256": "a3fe93523b2b79d20dddf619806722a887ced580f6aae025b161b4cc94b2a2aa"
+    },
+    {
+      "path": "groups/shia-islam.html",
+      "sha256": "7283d7f6594fe7741d1d280fb6fd1319a753372635a74d9655ed04289123bc4d"
+    },
+    {
+      "path": "groups/sufi.html",
+      "sha256": "5a7e417394db60c935ed36009194122f145e2f74d1a0ad63720be14ffd03459f"
+    },
+    {
+      "path": "groups/sunni-shia.html",
+      "sha256": "374be7b82514525643832607878596fd42bb9baf4139ee59a44f09cc535d48b8"
+    },
+    {
+      "path": "groups/sunni-islam.html",
+      "sha256": "bd220140dfd692239e35c8ab15b688379160f95c31d2e033bf358103793f391f"
+    },
+    {
+      "path": "groups/valentinian.html",
+      "sha256": "175539dffe7686f8c605a31298c2dfb17f48a924b809fc3272c59fdf1f94497f"
+    },
+    {
+      "path": "groups/yazidi.html",
+      "sha256": "158fe89c66e8749fe60c18a76e3c5f99bb03d1e729096738efe41c422ba3ffcc"
+    },
+    {
+      "path": "groups/zaydi.html",
+      "sha256": "ffd31fb9068cba5eef587610857382e4baeed328e6f70c039e9dbbe41f3c4d48"
+    },
+    {
+      "path": "groups/zoroastrian.html",
+      "sha256": "48438f6050fba81c4a0006a936bdf1d9edbe36bbb45df75b0b6c021413f31b25"
+    },
+    {
+      "path": "index.html",
+      "sha256": "e5399c14a27d34f6f84c1d7a2d21ab2270c6ef251da10cdc7e86ec64318382bd"
+    },
+    {
+      "path": "index.json",
+      "sha256": "57316b720459be6e47508b23444a1db267be9a1702d38657c337fef0efeeb484"
+    },
+    {
+      "path": "READING.md",
+      "sha256": "fa7b5522ff7d9e94aa727b6f69b0d9d1a96d6d0d7aba159baa96d2c372e1973b"
+    }
+  ]
+}

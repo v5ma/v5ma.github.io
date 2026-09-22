@@ -48,11 +48,11 @@
     },
     {
       "path": "index.html",
-      "sha256": "ce27a163ad2d6d747d56d9ba2a6161d856964522c4d3a9d39e91dff6017fa7cc"
+      "sha256": "7e5a9fb757d3741bc5010e8655a535df79b87bf99cf708a58fec457a84e7cc5f"
     },
     {
       "path": "directory.html",
-      "sha256": "cd0f023cbe1e43c02020a7c3ca72628dd2640187725d4622c0417ffca852c094"
+      "sha256": "11aa28222541e14754e2696340e1fe3e5289c4358c17573e15b4a27d96eed2da"
     },
     {
       "path": "claim-audit.html",
