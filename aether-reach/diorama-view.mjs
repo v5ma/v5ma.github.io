@@ -4,7 +4,7 @@
 import * as T from './vendor/three.module.js';
 import {PortalMaterials,enterPortal} from './portal-aperture.mjs';
 import {FirstPersonWindow} from './first-person-window.mjs';
-import {windowAim} from './window-controls.mjs';
+import {windowAimPreview} from './window-controls.mjs';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {prepareRig,cloneRig} from './cast-rig.mjs';
 import {createGrounding,strideRate} from './grounded-motion.mjs';
@@ -21,6 +21,7 @@ export function createDiorama(view){
  const fallback=new T.Mesh(new T.CapsuleGeometry(.23,1.05,4,8),gold);fallback.position.y=.83;hero.add(fallback);
  const marker=new T.Mesh(new T.RingGeometry(.6,.76,32),new T.MeshBasicMaterial({color:0xffd682,side:T.DoubleSide,depthWrite:false}));marker.rotation.x=-Math.PI/2;marker.position.y=.06;hero.add(marker);
  const reticle=new T.Mesh(new T.RingGeometry(.24,.32,24),new T.MeshBasicMaterial({color:0xffe4a1,side:T.DoubleSide,depthTest:false}));reticle.rotation.x=-Math.PI/2;reticle.visible=false;scene.add(reticle);
+ const aimVector=new T.Vector3(),aimRotation=new T.Quaternion(),reticleNormal=new T.Vector3(0,0,1);let aimGuide=null;
  const aimGeometry=new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3(0,0,-5)]),aimLine=new T.Line(aimGeometry,new T.LineBasicMaterial({color:0xffd88d,transparent:true,opacity:.75}));aimLine.name='Courier aiming direction';hero.add(aimLine);
  const hiddenObjects=new Map(),saved={};let active=false,preview=false,config=cleanDiorama(),focus={x:0,y:0,z:0},anchor={x:0,y:.5,z:-1.45},lastScan=0,heading=0,rig=null,actor=null,actorStatus='loading',actorError=null,lastPosition=null;
  const viewConfig=()=>({...config,yaw:heading+config.yaw});
@@ -53,7 +54,7 @@ export function createDiorama(view){
   else{root.position.set(x,low,z);root.rotation.set(0,-q,0);root.scale.setScalar(1);}
   root.updateMatrixWorld(true);portal.configure(root.matrixWorld);portal.uniforms.aetherPortalHalf.value.y=dioramaHeight(config)/2;portal.uniforms.aetherPortalNearGate.value=cameraWindow()?0:1;inverse.copy(root.matrixWorld).invert();rim.scale.y=config.boxHeight;rim.position.set(0,dioramaHeight(config)/2,0);
   hero.visible=!cameraWindow();
-  hero.position.set(p.x,p.y,p.z);hero.rotation.y=Math.PI-p.yaw;const a=aimGeometry.attributes.position;a.setXYZ(0,0,1.45,0);a.setXYZ(1,0,1.45+Math.sin(p.pitch)*7,Math.cos(p.pitch)*7);a.needsUpdate=true;aimGeometry.computeBoundingSphere();
+  hero.position.set(p.x,p.y,p.z);hero.rotation.y=Math.PI-p.yaw;
   if(actor){const moving=Math.hypot(p.vx||0,p.vz||0),pose=!p.grounded?'Idle_Neutral':moving>.3?(moving>2.8?'Run':'Walk'):'Idle_Neutral',action=actor.actions[pose]||actor.actions.Walk||actor.actions.Idle_Neutral;
    actor.grounding.restore();if(action!==actor.action){actor.action?.fadeOut(.16);action.reset().fadeIn(.16).play();actor.action=action;actor.pose=pose;}action.setEffectiveTimeScale(strideRate(moving,pose));actor.mixer.update(Math.min(.08,Math.max(0,dt)));hero.updateMatrixWorld(true);actor.grounding.update(dt,{x:p.x,y:p.y,z:p.z,heading:p.yaw,grounded:!!p.grounded,reset:!lastPosition||Math.hypot(p.x-lastPosition.x,p.y-lastPosition.y,p.z-lastPosition.z)>1});
   }lastPosition={x:p.x,y:p.y,z:p.z};
@@ -66,10 +67,17 @@ export function createDiorama(view){
   else if(rig)syncRig(rig);
  }
  function showAim(s){
-  const ray=windowAim(s),o=ray.origin,d=ray.direction;let t=80;
-  for(const box of presentationSolids(s)){const hit=rayBox(o,d,box,80);if(hit!==null&&hit>0)t=Math.min(t,hit);}
-  for(const enemy of s.drones){if(enemy.hp<=0)continue;const hit=raySphere(o,d,enemy,.9);if(hit!==null&&hit>0)t=Math.min(t,hit);}
-  reticle.position.set(o.x+d.x*t,o.y+d.y*t,o.z+d.z*t);reticle.rotation.set(s.p.pitch,-s.p.yaw,0,'YXZ');reticle.scale.setScalar(cameraWindow()?Math.max(.1,t*.012):1);reticle.visible=true;
+  const guide=windowAimPreview(s),{origin:o,direction:d,end,distance:t}=guide;aimGuide=guide;
+  const color=guide.kind==='target'?0x91e8d1:guide.kind==='blocked'?0xf69570:0xffe4a1;
+  reticle.position.set(end.x,end.y,end.z);
+  aimVector.set(d.x,d.y,d.z);reticle.quaternion.setFromUnitVectors(reticleNormal,aimVector);
+  reticle.material.color.setHex(color);reticle.scale.setScalar(cameraWindow()?Math.max(.1,t*.012):1);reticle.visible=t>.01;
+  // The short avatar line uses that same ray, including crouch and recoil, and
+  // stops at nearby cover instead of painting a firing lane through a wall.
+  aimVector.applyQuaternion(aimRotation.copy(hero.quaternion).invert());
+  const length=Math.min(7,t),height=o.y-s.p.y,a=aimGeometry.attributes.position;
+  a.setXYZ(0,0,height,0);a.setXYZ(1,aimVector.x*length,height+aimVector.y*length,aimVector.z*length);
+  a.needsUpdate=true;aimGeometry.computeBoundingSphere();aimLine.material.color.setHex(color);
  }
  function aim(s,o,d){if(!active||!o||!d)return null;const entered=enterPortal(o,d,inverse,{width:60,height:dioramaHeight(config),depth:48});if(!entered){reticle.visible=false;return null;}o=entered.origin;d=entered.direction;const p=s.p;let t=Infinity,target=null;
   // Choose a pointed enemy or a physical surface, never originate a shot at the giant user's hand.
@@ -81,5 +89,5 @@ export function createDiorama(view){
   const origin={x:p.x,y:p.y+(p.crouched?.9:1.5),z:p.z},delta={x:end.x-origin.x,y:end.y-origin.y,z:end.z-origin.z},length=Math.hypot(delta.x,delta.y,delta.z);if(length<.15||length>100){reticle.visible=false;return null;}
   reticle.position.set(end.x,end.y+.04,end.z);reticle.visible=true;return {origin,direction:{x:delta.x/length,y:delta.y/length,z:delta.z/length}};
  }
- return {set,configure,center,syncRig,update,aim,follow(p){heading=p.yaw;},orbit(delta){heading+=delta;},get viewYaw(){return viewConfig().yaw},get cameraWindow(){return cameraWindow()},get active(){return active},get preview(){return preview},get config(){return {...config}},stats:()=>({active,preview,...config,...openingState(config.opening),focus:{...focus},anchor:{...anchor},widthMeters:60*config.scale,heightMeters:dioramaHeight(config)*config.scale,avatar:actorStatus,avatarError:actorError,avatarHeight:1.76,avatarPose:actor?.pose||null,clippedMaterials:portal.entries.size,portalMaterials:portal.entries.size,portalBuild:"aether-window-20260918.1",cameraWindow:cameraWindow(),shellFaces:root.children.filter(o=>o.isMesh).length,backdropSpritesHidden:[...hiddenObjects.keys()].filter(o=>o.userData.portalBackdrop&&!o.visible).length,fullDepth:true,playerCentered:true,viewYaw:viewConfig().yaw,roomAnchored:true,headMovesCharacter:false})};
+ return {set,configure,center,syncRig,update,aim,follow(p){heading=p.yaw;},orbit(delta){heading+=delta;},get viewYaw(){return viewConfig().yaw},get cameraWindow(){return cameraWindow()},get active(){return active},get preview(){return preview},get config(){return {...config}},stats:()=>({active,preview,aimGuide:active&&aimGuide?JSON.parse(JSON.stringify(aimGuide)):null,...config,...openingState(config.opening),focus:{...focus},anchor:{...anchor},widthMeters:60*config.scale,heightMeters:dioramaHeight(config)*config.scale,avatar:actorStatus,avatarError:actorError,avatarHeight:1.76,avatarPose:actor?.pose||null,clippedMaterials:portal.entries.size,portalMaterials:portal.entries.size,portalBuild:"aether-window-20260918.1",cameraWindow:cameraWindow(),shellFaces:root.children.filter(o=>o.isMesh).length,backdropSpritesHidden:[...hiddenObjects.keys()].filter(o=>o.userData.portalBackdrop&&!o.visible).length,fullDepth:true,playerCentered:true,viewYaw:viewConfig().yaw,roomAnchored:true,headMovesCharacter:false})};
 }

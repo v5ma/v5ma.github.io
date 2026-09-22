@@ -1,3 +1,9 @@
+# Current continuation: Field Guide aim repair 0.15.2
+
+Read AIM-REPAIR.md first. This direct-master X12/X11 repair makes the window marker and short avatar line share the actual weapon hit geometry, equipped range, friendly exclusion and dynamic cover. Window weapon getters now refresh the avatar ray at the current simulation step; missing tracking remains null and original tracked first-person VR remains unchanged. No new district, progression, damage, spread, save or control mapping is introduced.
+
+Recovered exact baseline: 7fea55ba3ccec87f1511ef29b87cdb6a3468279e, accepted 0.15.1. Its seven native suites, public-byte check and downloaded release backup were verified before editing. New source needs its own native/public/archive evidence; a local Chromium navigation restriction is not a game pass. Preserve failures. Physical Quest and Xbox approval stays false. The historical notes below remain context, not instructions to restore an older version.
+
 # Current continuation: Field Guide 0.15.1
 
 Read FIELD-GUIDE.md first. The owner could not see interaction text or a live map in 0.15.0 and could not understand the next action. X12 now routes real event messages to a two-second floor notice and session history, renders a continuously updated local floor map plus next step/reachable-use prompt, foregrounds the noticeboard instruction, and expands separate menu/map/window sizing. The default aperture is 2.5 times taller; old placement, save-v1 and remaps remain. A sound-setting reference error is also corrected. This is a physical-feedback repair, not certification that those complaints are gone on Quest.

@@ -1,6 +1,6 @@
 {
-  "version": "0.15.1",
-  "focus": "Field Guide: live room-floor map, real interaction feedback, two-second notices, tall resizable world window",
+  "version": "0.15.2",
+  "focus": "Field Guide aim repair: shared weapon hit geometry and range, cover-aware marker, current-step XR muzzle",
   "questHardwareVerified": false,
   "xboxHardwareVerified": false,
   "scope": "Current expedition and saves retained. Software playtest; physical headset usability must be retested. No private hub, travel portals, historical content merge or engine migration."

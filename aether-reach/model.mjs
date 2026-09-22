@@ -17,7 +17,7 @@ export {WEAPONS,DEPOTS,CACHES,ENEMIES,weaponStats};
 import {createTactics,cleanTactics,saveTactics} from './tactics-core.mjs';
 import {GLIDE,glideVelocity} from './glide.mjs';
 export {GLIDE};
-export const VERSION='0.15.1';
+export const VERSION='0.15.2';
 export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export const forward=(yaw,pitch=0)=>({x:Math.sin(yaw)*Math.cos(pitch),y:Math.sin(pitch),z:-Math.cos(yaw)*Math.cos(pitch)});
@@ -167,6 +167,14 @@ export function interact(s){const n=nearby(s),p=s.p;
 }
 export function detach(s,jump=true){const p=s.p;if(!p.rail)return;const r=RAILS.find(r=>r.id===p.rail.id),q=pointOnRail(r,p.rail.s),dir=p.rail.dir;p.vx=q.tangent.x*p.speed*dir;p.vz=q.tangent.z*p.speed*dir;p.vy=q.tangent.y*p.speed*dir+(jump?5:0);p.lastRail=p.rail.id;p.airSince=s.time;p.rail=null;p.latch=null;p.hookCooldown=.14;p.hookRequest=0;p.grounded=false;emit(s,'release');}
 export function reverseRail(s){if(!s.p.rail)return;s.p.rail.dir*=-1;s.p.speed=Math.max(7,s.p.speed*.35);s.stats.reversals++;emit(s,'reverse');}
+/* Read-only centerline query shared by real fire and the window aim guide.
+ * The caller supplies a normalized ray. Spread and damage remain in fire(). */
+export function traceWeaponRay(s,o,d,range=weaponStats(s).range){
+ let limit=range,hit=null,critical=false,blocked=false;
+ for(const b of stateSolids(s)){const t=rayBox(o,d,b,limit);if(t!==null){limit=t;blocked=true;}}
+ for(const bot of s.drones){if(bot.hp<=0||bot.allyUntil>s.time)continue;const body=raySphere(o,d,bot,bot.humanoid?(bot.kind==='breacher'?.67:.49):bot.kind==='heavy'?1.5:1.15),headHit=raySphere(o,d,{x:bot.x,y:bot.y+(bot.humanoid?.67:.55),z:bot.z},bot.humanoid?.25:.31),t=bot.humanoid?Math.min(body??Infinity,headHit??Infinity):body;if(t!==null&&t<limit){limit=t;hit=bot;critical=headHit!==null;}}
+ return {distance:limit,hit,critical,blocked:blocked&&!hit};
+}
 export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.reload>0||s.won)return false;if(p.ammo<=0){if(s.time-s.skirmish.dryAt>.2){s.skirmish.dryAt=s.time;emit(s,'dry-fire');}return false;}const head={x:p.x,y:p.y+eyeHeight(p),z:p.z},kick=s.skirmish.recoil;let o=head,d=forward(p.yaw+kick.x,p.pitch+kick.y);
  if(aim){if(!aim.origin||!aim.direction||!['x','y','z'].every(k=>Number.isFinite(aim.origin[k])&&Number.isFinite(aim.direction[k])))return false;const len=Math.hypot(aim.direction.x,aim.direction.y,aim.direction.z);if(len<.001||distance(head,aim.origin)>2.5||!clearLine(head,aim.origin,s))return false;o={...aim.origin};d={x:aim.direction.x/len,y:aim.direction.y/len,z:aim.direction.z/len};}
  p.shoot=w.delay;p.ammo--;s.kit.mags[p.weapon]=p.ammo;s.stats.shots++;
@@ -174,8 +182,7 @@ export function fire(s,aim=null){const p=s.p,w=weaponStats(s);if(p.shoot>0||p.re
  for(let pellet=0;pellet<w.pellets;pellet++){
   const a=(s.stats.shots*2.399+pellet*2.399),spread=w.spread*(p.scoped?(w.id==='sniper'?(Math.hypot(p.vx,p.vz)>2?.45:0):.28):1)*(p.crouched?.65:1)*(1+Math.min(2,Math.hypot(p.vx,p.vz)/8))*(p.grounded?1:1.45),rad=w.pellets>1?(pellet===0?0:spread):spread*.45,dx=Math.cos(a)*rad,dy=Math.sin(a)*rad;
   const v={x:d.x+across.x*dx+up.x*dy,y:d.y+up.y*dy,z:d.z+across.z*dx+up.z*dy},len=Math.hypot(v.x,v.y,v.z);for(const k of['x','y','z'])v[k]/=len;
-  let limit=w.range,hit=null,critical=false;for(const b of stateSolids(s)){const t=rayBox(o,v,b,limit);if(t!==null)limit=t;}
-  for(const bot of s.drones){if(bot.hp<=0||bot.allyUntil>s.time)continue;const body=raySphere(o,v,bot,bot.humanoid?(bot.kind==='breacher'?.67:.49):bot.kind==='heavy'?1.5:1.15),headHit=raySphere(o,v,{x:bot.x,y:bot.y+(bot.humanoid?.67:.55),z:bot.z},bot.humanoid?.25:.31),t=bot.humanoid?Math.min(body??Infinity,headHit??Infinity):body;if(t!==null&&t<limit){limit=t;hit=bot;critical=headHit!==null;}}
+  const {distance:limit,hit,critical}=traceWeaponRay(s,o,v,w.range);
   if(hit){const falloff=w.id==='scatter'?Math.max(.25,1-limit/40):1,damage=w.damage*falloff*(critical?1.6:1)*tactical.multiplier(s,hit);tactical.onHit(s,hit);hit.hp-=damage;hit.stun=Math.max(hit.stun,w.id==='sniper'?.5:.16);s.stats.hits++;if(critical)s.stats.critical++;if(hit.hp<=0)defeated(s,hit);else emit(s,'hit',{id:hit.id,damage,critical});}
   emit(s,'shot',{weapon:w.id,o,end:{x:o.x+v.x*limit,y:o.y+v.y*limit,z:o.z+v.z*limit},hit:!!hit,critical}); }skirmish.recoil(s);return true;
 }

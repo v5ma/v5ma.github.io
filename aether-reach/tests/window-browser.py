@@ -36,6 +36,10 @@ with sync_playwright() as pw:
    check(moving['position']['yaw']>start['position']['yaw'] and moving['position']['pitch']>start['position']['pitch'],mode+': right stick aims both horizontally and vertically')
    check(moving['stats']['shots']>start['stats']['shots'] and moving['ammo']<start['ammo'],mode+': trigger fires without pointing into the miniature')
    check(moving['scoped'],mode+': left trigger supplies independent fine aim')
+   guide=moving['devices']['presentation']['aimGuide'];aim=moving['devices']['xrTracking']['weaponAim'];pos=moving['position']
+   check(guide['range']==85 and guide['kind'] in ['target','blocked','range'] and 0<=guide['distance']<=85,mode+': live guide uses the starter weapon range and real obstruction category')
+   check(all(abs(guide['origin'][k]-aim['origin'][k])<1e-6 for k in ['x','y','z']) and all(abs(guide['direction'][k]-aim['direction'][k])<1e-6 for k in ['x','y','z']),mode+': drawn centerline and firing getter agree after movement and recoil')
+   check(abs(aim['origin']['x']-pos['x'])<1e-6 and abs(aim['origin']['z']-pos['z'])<1e-6 and abs(aim['origin']['y']-pos['y']-(.9 if moving['crouched'] else 1.65))<1e-6,mode+': weapon origin follows the current simulation position rather than stale frame input')
    p.evaluate('TestXR.axes("right",[0,0,0,0]);TestXR.button("right",0,false);TestXR.button("left",0,false);TestXR.button("right",5,true)');frames(2)
    reload=snap();check(reload['reload']>0 and not reload['paused'],mode+': B starts dedicated reload without opening a menu')
    p.evaluate('TestXR.button("right",5,false)');frames(8);p.evaluate('TestXR.axes("left",[0,0,0,0])');frames(3)
@@ -57,7 +61,9 @@ with sync_playwright() as pw:
    check(snap()['stats']['rescues']==0,mode+': combined controls did not require a rescue or reset')
    reports.append({'mode':mode,'start':start,'combat':moving,'reload':reload,'headTilt':tilted,'end':snap()})
   except Exception as e:
-   (OUT/'window-browser-failure.json').write_text(json.dumps({'mode':mode,'error':str(e),'checks':checks,'errors':errors,'shaderErrors':shader,'snapshot':snap()},indent=2))
+   try:failure_snapshot=snap()
+   except Exception as snapshot_error:failure_snapshot={'unavailable':str(snapshot_error)}
+   (OUT/'window-browser-failure.json').write_text(json.dumps({'mode':mode,'error':str(e),'checks':checks,'errors':errors,'shaderErrors':shader,'snapshot':failure_snapshot},indent=2))
    try:p.screenshot(path=str(OUT/'window-browser-failure.png'))
    except Exception:pass
    raise

@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.15.1 Field Guide owner-feedback repair. Updated 2026-09-21.
+Current plan: 0.15.2 Field Guide aim repair. Updated 2026-09-22.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -431,8 +431,8 @@ Next: Physical Quest repeat of the reported sheet, simultaneous movement/aim/fir
 ### X12 - Summonable room-space rotunda and readable third-person shots
 State: Implemented. Priority: P0. Dependencies: X11, I02.
 Acceptance: Actual full game: summon/dismiss, stable head-independent placement, saved size/height/rotation, controller and hand button navigation, independent combat and visible genuine shots; public bytes separately verified. No private hub or travel portals. Live floor map, current-object prompt, exactly two-second notices with readable history, independent menu/map/window sizes, and real noticeboard pickup-to-delivery guidance.
-Evidence: FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt.
-Next: Observe the owner on physical Quest: find the floor map, read the current use prompt, take and deliver the dispatch, reread faded text and resize without losing interaction. Preserve existing gameplay. Test both seated and standing; do not infer comprehension from an automated completion.
+Evidence: FIELD-ROTUNDA.md; tests/rotunda.test.mjs and tests/rotunda-browser.py; actual native/public outcomes recorded in release receipt, not inferred here. FIELD-GUIDE.md; field-guide.test.mjs, field-guide-browser.py and tall stereo aperture fixtures. Physical 0.15.0 playtest was negative; current acceptance must come from the new receipt. AIM-REPAIR.md; shared read-only weapon trace, current-step avatar muzzle, tests/aim-guide.test.mjs and expanded three-mode window journey. New native/public results must be recorded separately from the accepted 0.15.1 baseline.
+Next: Observe the owner on physical Quest: find the floor map, read the current use prompt, take and deliver the dispatch, reread faded text and resize without losing interaction. Preserve existing gameplay. Test both seated and standing; do not infer comprehension from an automated completion. Retest marker-versus-shot agreement near cover, humanoids, long-range targets and fast movement; a centerline is not a guarantee against weapon spread.
 
 ## Release evidence
 v0.8.0 Foundry Finish: PR #116; deployed source 878fc4923226c0fce2b5e7d90042bc2f1cbafc06; publication run 34702682332 matched 78 files.
