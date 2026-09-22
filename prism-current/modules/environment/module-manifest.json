@@ -44,10 +44,45 @@
       "ownsRenderer": false,
       "preparation": "Await prepare(renderer,camera,scene) in cancellable host loading. All prebuilt detail buffers are drawn in a disposable 24x24 target; no target survives gameplay.",
       "compatibility": "Standard-material shader hooks and loading output policy are pinned to Three r184. Revalidate when changing renderer, context or shader chunks."
+    },
+    "toon": {
+      "status": "implemented-library-only-not-game-integrated",
+      "version": "0.1.0",
+      "script": "toon.js",
+      "module": "toon.mjs",
+      "global": "SVGNToon",
+      "renderer": "caller-owned Three.js; real r184 object tests only",
+      "testedThreeRevision": "184",
+      "integration": null,
+      "ownsInput": false,
+      "ownsStorage": false,
+      "ownsRenderer": false,
+      "api": "AR-LIBRARY.md",
+      "verification": "AR-LIBRARY-VALIDATION.json",
+      "gpuValidated": false,
+      "physicalDeviceApproved": false
+    },
+    "cloudlets": {
+      "status": "implemented-library-only-not-game-integrated",
+      "version": "0.1.0",
+      "script": "cloudlets.js",
+      "module": "cloudlets.mjs",
+      "global": "SVGNCloudlets",
+      "renderer": "caller-owned Three.js; real r184 object tests only",
+      "testedThreeRevision": "184",
+      "integration": null,
+      "ownsInput": false,
+      "ownsStorage": false,
+      "ownsRenderer": false,
+      "api": "AR-LIBRARY.md",
+      "verification": "AR-LIBRARY-VALIDATION.json",
+      "gpuValidated": false,
+      "physicalDeviceApproved": false
     }
   },
   "verified_runtime_commit": "18d83fa4b5aa2f4115d6c602af2bf9a51c06896a",
   "verification_receipt": "PUBLIC-PASS3.json",
   "physical_device_approval": false,
-  "publication": "All five native public suites passed for the named runtime. Separate source rendering failures remain documented in PUBLIC-PASS3.json; neither emulator nor publication is physical-device approval."
+  "publication": "Historical integrated module receipt remains PUBLIC-PASS3.json; current gameplay is documented in ../../PLAYABILITY-CHECKPOINT.md. New Toon/Cloudlets are library-only, not covered by historical rendering/public/physical claims.",
+  "direction": "../../AR-FIRST.md"
 }
