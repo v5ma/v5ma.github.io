@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "81fce8c1c75c640f091b07ac75539dd4f4e57adc",
+  "run":35781941263,
+  "job":106930082976,
+  "artifact":10719045073,
+  "artifactSHA256":"2253b194c946823248370db46dd0f12cab20680dd45adf83a2a453e0b1f30d7c",
+  "artifactReport":"main-results/report.json",
+  "artifactImage":"main-results/failure.png",
+  "success":false,
+  "checksPassed":0,
+  "reportedRuntimeVersion":"0.17.0",
+  "reportedDistrict":"city",
+  "pageErrors":[],
+  "diagnosis":"main-browser.py line 35 required the old literal version 0.16.1. The actual main page reported the intended Highline version 0.17.0. console-browser.py retained the same stale comparison. No gameplay pass is inferred from this failed boot assertion.",
+  "correction":"Both test entry assertions now compare the observed runtime version strictly to release.json from the checked-out expected source. No input, geometry, progression, rendering, reward or save assertion was removed or weakened.",
+  "queueImprovement":"Move the new Highline journey out of each large matrix into an independent job in the same existing source/public workflows. All 19 inherited source, 8 console and 21 public journeys remain. No new workflow or publisher.",
+  "followup":"Read the corrected jobs and keep this first failure; do not count cancelled or pending jobs as passes."
+}

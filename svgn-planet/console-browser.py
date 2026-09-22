@@ -4,6 +4,7 @@ Each mode has its own context. Evidence is flushed after every successful check.
 import asyncio,json,os,traceback,time,base64,io
 from PIL import Image
 from pathlib import Path
+EXPECTED_VERSION=json.loads(Path(__file__).with_name('release.json').read_text())['version']
 from playwright.async_api import async_playwright
 BASE=os.getenv('CONSOLE_BASE','http://127.0.0.1:8765/svgn-planet/')
 MODE=os.getenv('CONSOLE_MODE','diorama-third-ar')
@@ -64,7 +65,7 @@ async def main():
   async def menu():
    await page.evaluate('__xrFixture.left.gamepad.buttons[5]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.left.gamepad.buttons[5]={pressed:false,value:0}');await wait('NeighborhoodMissions.inspect().paused');await frames(12)
   try:
-   await page.goto(BASE+('&' if '?' in BASE else '?')+'quality=low',wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();assert await page.evaluate('NeighborhoodMissions.inspect().version')=='0.16.1'
+   await page.goto(BASE+('&' if '?' in BASE else '?')+'quality=low',wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();assert await page.evaluate('NeighborhoodMissions.inspect().version')==EXPECTED_VERSION
    await page.click('#xr-'+MODE+'-launch');await wait('NeighborhoodMissions.inspect().xr.console.progress>=.99');await frames(4)
    q=await page.evaluate('NeighborhoodMissions.inspect()');assert q['xr']['eyes']==2 and q['xr']['console']['buttonMeshes']>0 and not q['xr']['headLockedPanels'];ok('Native raised button meshes render in '+MODE)
    before=q['xr']['console']['panelMatrix'];await page.evaluate('__xrFixture.viewerRoll=.4;__xrFixture.viewerPitch=-.25;__xrFixture.viewerX=.08');await frames(6);assert await page.evaluate('NeighborhoodMissions.inspect().xr.console.panelMatrix')==before;await capture('floor-console');await page.evaluate('__xrFixture.viewerRoll=0;__xrFixture.viewerPitch=0;__xrFixture.viewerX=0');ok('Head tilt and lean leave the open floor console fixed')

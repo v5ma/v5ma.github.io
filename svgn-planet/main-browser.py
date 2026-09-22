@@ -1,6 +1,7 @@
 """Unified main app: real WebGL and actual input paths. Synthetic devices, not hardware."""
 import asyncio,json,os,traceback
 from pathlib import Path
+EXPECTED_VERSION=json.loads(Path(__file__).with_name('release.json').read_text())['version']
 from playwright.async_api import async_playwright
 BASE=os.environ.get('MAIN_BASE','http://127.0.0.1:8765/svgn-planet/')
 OUT=Path(os.environ.get('MAIN_OUT','main-results'));OUT.mkdir(parents=True,exist_ok=True)
@@ -32,7 +33,7 @@ async def main():
    await frames(4);hands=await page.evaluate('!!__xrFixture.session.inputSources[0].hand');await page.evaluate('__xrFixture.pinch=.012' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:true,value:1}');await frames(3);await page.evaluate('__xrFixture.pinch=.06' if hands else '__xrFixture.right.gamepad.buttons[0]={pressed:false,value:0}');await frames(4)
   def ok(name):report['checks'].append(name);print('PASS',name,flush=True)
   try:
-   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']=='0.16.1';assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
+   await page.goto(BASE,wait_until='domcontentloaded');await wait('window.NeighborhoodMissions&&!document.querySelector("#start").disabled');await page.bring_to_front();q=await state();assert q['district']=='city' and q['version']==EXPECTED_VERSION;assert await page.locator('#xr-launch-options button').count()==8;ok('Main URL boots the original full city and exposes eight native XR entries, not a chapter redirect')
    await press(0);await wait('SVGNPlanet.inspect().started');await frames();await page.evaluate('__pad.axes[1]=-1');await wait('SVGNPlanet.inspect().distance>.2');await page.evaluate('__pad.axes[1]=0');await wait('SVGNPlanet.inspect().speed===0');await frames(6);city=await page.evaluate('SVGNPlanet.inspect()');report['departureCity']=city;ok('Original main-world movement and stopping work through the retained Xbox path')
    await press(9);await page.click('#visit-ward');await wait('NeighborhoodMissions.inspect().district==="lantern"');await frames();assert not (await state())['paused'];await page.screenshot(path=str(OUT/'main-lantern-district.png'));ok('Main-game district travel opens the recovered mission neighborhood in the same document')
    await press(13);await wait('document.querySelector("#ward-menu").open');assert await page.locator('#ward-missions [data-mission]').count()>=10;await page.click('[data-mission="watch"]');await frames();q=await state();assert q['ward']['watch']['tracking'] and q['ward']['watch']['stage']==0;ok('Main-game mission board exposes resident stories and Night Watch; tracking grants no progress')
