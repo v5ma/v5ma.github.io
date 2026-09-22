@@ -73,6 +73,25 @@ with sync_playwright() as p:
     page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>n+20',arg=value['xr']['frames'])
     page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]')
     check(math.hypot(read()['x']-start['x'],read()['z']-start['z'])>.1,mode+': ordinary tracked-stick movement works after graphics recovery')
+    # Pause through an actual input. Only the stable game-scene update may
+    # sleep; headset poses, controller input and stereo rendering must continue.
+    page.keyboard.press('p');page.wait_for_function('LeonardoGuild.inspect().paused')
+    page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>=n+6',arg=read()['xr']['frames'])
+    paused=read();page.evaluate('__xr.yaw=.2;__xr.pitch=-.06;__xr.roll=.12')
+    page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>=n+12',arg=paused['xr']['frames'])
+    moving_head=read();captures[mode+'-paused-work-'+str(repeat)]={'before':paused,'after':moving_head}
+    check(moving_head['render']['frameWork']['skipped']>paused['render']['frameWork']['skipped'],mode+': an unchanged paused world avoids redundant scene updates')
+    check(moving_head['xr']['spatial']['geometryDraws']>paused['xr']['spatial']['geometryDraws'] and moving_head['xr']['frames']>=paused['xr']['frames']+12,mode+': stereo rendering and tracking continue while paused scene work is cached')
+    check((moving_head['x'],moving_head['z'],moving_head['credits'])==(paused['x'],paused['z'],paused['credits']) and moving_head['xr']['hud']['panel']['matrix']==paused['xr']['hud']['panel']['matrix'],mode+': head movement neither drags the desk nor moves the paused player')
+    # Right B operates the existing Back action; the test cannot set paused.
+    page.evaluate('__xr.sources[1].gamepad.buttons[5]={pressed:true,value:1}')
+    page.wait_for_function('LeonardoGuild.inspect().running')
+    page.evaluate('__xr.sources[1].gamepad.buttons[5]={pressed:false,value:0};__xr.yaw=0;__xr.pitch=0;__xr.roll=0')
+    page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>=n+4',arg=read()['xr']['frames'])
+    resumed=read();page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,-.65]')
+    page.wait_for_function('(n)=>LeonardoGuild.inspect().xr.frames>=n+12',arg=resumed['xr']['frames'])
+    page.evaluate('__xr.sources[0].gamepad.axes=[0,0,0,0]')
+    check(math.hypot(read()['x']-resumed['x'],read()['z']-resumed['z'])>.1,mode+': B resumes normal tracked-stick gameplay after the cached pause')
     page.evaluate('__xr.capture=null;__xr.captureNext=true');page.wait_for_function('__xr.capture')
     path=OUT/(mode+'-'+str(repeat)+'.png');path.write_bytes(base64.b64decode(page.evaluate('__xr.capture').split(',',1)[1]))
     im=Image.open(path).convert('RGBA');counts=[]

@@ -10,11 +10,23 @@ function words(text,width=49){
  return result;
 }
 const label=e=>e.getAttribute('aria-label')||e.labels?.[0]?.textContent||e.textContent?.trim()||e.placeholder||e.id||e.tagName;
-export function createXRPanel({ui,actions,getState,consoleUI,exit}){
+export function createXRPanel({ui,actions,getState,consoleUI,exit,clock=()=>performance.now()}){
  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
  const g=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
  let buttons=[],root=null,page=0,textPage=0,last='',lastDraw=-Infinity,hover='',currentDescription='',lastFocus=null;
  const button=(key,text,x,y,w,h,run,hold=null,element=null)=>buttons.push({key,text,x,y,w,h,run,hold,element});
+ // Ray hit tests and painting share one model. Invalidate synchronously on
+ // DOM/focus/page changes; bounded refresh also sees property-only updates.
+ let cached=null,dirty=true,observed=null,modelAt=-Infinity,modelPage=-1,modelTextPage=-1,revision=0,paintRevision=-1,rebuilds=0,paints=0;
+ const observer=typeof globalThis.MutationObserver==='function'?new globalThis.MutationObserver(()=>{dirty=true;}):null;
+ function model(force=false){
+  const next=ui.root(),wheel=actions.wheelActive(),target=next||(wheel?document.getElementById('guild-wheel'):null),time=clock();
+  if(observer?.takeRecords().length)dirty=true;
+  if(target!==observed){observer?.disconnect();observed=target;if(target)observer?.observe(target,{subtree:true,childList:true,characterData:true,attributes:true});dirty=true;}
+  if(!force&&cached&&!dirty&&next===root&&wheel===last&&document.activeElement===lastFocus&&page===modelPage&&textPage===modelTextPage&&time>=modelAt&&time-modelAt<100)return cached;
+  cached=rebuild();modelPage=page;modelTextPage=textPage;modelAt=time;dirty=false;revision++;rebuilds++;return cached;
+ }
+
  function controls(){
   return [
    ['jump','A / Jump or stair',()=>actions.jump()],['interact','B (right) / Interact',()=>actions.interact()],
@@ -69,7 +81,7 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
   const readPage=root?.querySelector('canvas')?Math.max(0,textPage-1):textPage;return {title,lines:lines.slice(readPage*14,readPage*14+14),root,mapPage:textPage===0};
  }
  function draw(now,hit=''){
-  const data=rebuild();if(now-lastDraw<100&&hover===hit)return;lastDraw=now;hover=hit;
+  const data=model();if(now-lastDraw<100&&hover===hit&&paintRevision===revision)return;lastDraw=now;hover=hit;paintRevision=revision;paints++;
   g.fillStyle='#101e27';g.fillRect(0,0,W,H);g.fillStyle='#f2eddc';g.font='bold 36px sans-serif';g.fillText(data.title.slice(0,47),30,57);
   g.font='27px sans-serif';data.lines.forEach((l,i)=>g.fillText(l,30,110+i*35));
   // Maps are actual live map canvases, not a placeholder compass.
@@ -83,10 +95,10 @@ export function createXRPanel({ui,actions,getState,consoleUI,exit}){
   }
   texture.needsUpdate=true;
  }
- function hit(u,v){rebuild();const x=u*W,y=(1-v)*H;return buttons.find(b=>x>=b.x&&x<=b.x+b.w&&y>=b.y&&y<=b.y+b.h)||null;}
- function invoke(key){rebuild();const b=buttons.find(b=>b.key===key);if(!b)return false;b.run?.();lastDraw=-Infinity;return true;}
+ function hit(u,v){model();const x=u*W,y=(1-v)*H;return buttons.find(b=>x>=b.x&&x<=b.x+b.w&&y>=b.y&&y<=b.y+b.h)||null;}
+ function invoke(key){model(true);const b=buttons.find(b=>b.key===key);if(!b)return false;try{b.run?.();}finally{dirty=true;lastDraw=-Infinity;}return true;}
  draw(0);
- return {canvas,texture,draw,hit,invoke,inspect:()=>({title:currentDescription,page,textPage,buttons:buttons.map(b=>b.key)}),dispose:()=>texture.dispose()};
+ return {canvas,texture,draw,hit,invoke,inspect:()=>({title:currentDescription,page,textPage,buttons:buttons.map(b=>b.key),rebuilds,paints}),dispose:()=>{observer?.disconnect();texture.dispose();}};
 }
 export function createXRToolbar(actions){
  const canvas=document.createElement('canvas');canvas.width=1536;canvas.height=384;const g=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
@@ -94,9 +106,9 @@ export function createXRToolbar(actions){
   ['left','Left',null,'left'],['forward','Forward',null,'forward'],['right','Right',null,'right'],['turn-left','Look left',null,'turnLeft'],['turn-right','Look right',null,'turnRight'],['aim','Aim / brake',null,'aim'],
   ['backward','Back',null,'backward'],['sprint','Sprint / boost',null,'sprint'],['fire','Use tool',null,'fire'],['operate','Hold operate',null,'hack'],['interact','Interact',actions.interact],['jump','Jump / climb',actions.jump]
  ];
- let last='';
+ let last=null;
  function draw(hit=''){
-  if(last===hit&&last!=='')return;last=hit;g.fillStyle='#101e27';g.fillRect(0,0,1536,384);g.font='28px sans-serif';g.fillStyle='#fff4de';g.fillText('Point and hold pinch or trigger. Release to stop. Move your head freely; it does not move your character.',20,40);
+  if(last===hit)return;last=hit;g.fillStyle='#101e27';g.fillRect(0,0,1536,384);g.font='28px sans-serif';g.fillStyle='#fff4de';g.fillText('Point and hold pinch or trigger. Release to stop. Move your head freely; it does not move your character.',20,40);
   entries.forEach((e,i)=>{const x=(i%6)*256+8,y=65+Math.floor(i/6)*155;g.fillStyle=hit===e[0]?'#416777':'#263e4a';g.fillRect(x,y,240,135);g.strokeStyle=hit===e[0]?'#ffe6a7':'#728c93';g.lineWidth=hit===e[0]?5:2;g.strokeRect(x,y,240,135);g.fillStyle='#fff4de';g.font='30px sans-serif';words(e[1],13).forEach((line,j)=>g.fillText(line,x+12,y+55+j*35));});texture.needsUpdate=true;
  }
  function hit(u,v){const x=u*1536,y=(1-v)*384;return entries.map((e,i)=>({key:e[0],text:e[1],run:e[2],hold:e[3],x:(i%6)*256+8,y:65+Math.floor(i/6)*155})).find(e=>x>=e.x&&x<=e.x+240&&y>=e.y&&y<=e.y+135)||null;}

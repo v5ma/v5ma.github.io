@@ -1,0 +1,149 @@
+Original pre-fix TAP excerpt from baseline c1316b45. Six concrete toolbar/cache/paint regressions below; full original output additionally includes two new instrumentation checks and two passes. No headset evidence.
+
+TAP version 13
+# Subtest: Idle hand toolbar does not upload the same texture every XR frame
+not ok 1 - Idle hand toolbar does not upload the same texture every XR frame
+  ---
+  duration_ms: 10.864532
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:26:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Neutral hover must be cached, not treated as uninitialized
+    
+    182 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 182
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:28:42)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: Toolbar hover and return to neutral each repaint once, then remain cached
+not ok 2 - Toolbar hover and return to neutral each repaint once, then remain cached
+  ---
+  duration_ms: 0.654317
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    5 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 5
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:32:67)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Two controller rays reuse a paused dialog between bounded content refreshes
+not ok 3 - Two controller rays reuse a paused dialog between bounded content refreshes
+  ---
+  duration_ms: 7.443626
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:34:1'
+  failureType: 'testCodeFailure'
+  error: 'Two seconds at 72 Hz must not clone the same dialog hundreds of times: 432'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:37:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: A thumbstick focus/page change repaints immediately instead of leaving stale click targets
+not ok 4 - A thumbstick focus/page change repaints immediately instead of leaving stale click targets
+  ---
+  duration_ms: 0.870804
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:39:1'
+  failureType: 'testCodeFailure'
+  error: 'The visible page must match the page used by hit testing in this same frame'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:43:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Synchronous dialog mutations invalidate the cached model before a ray or paint
+not ok 5 - Synchronous dialog mutations invalidate the cached model before a ray or paint
+  ---
+  duration_ms: 11.663318
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:45:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(p.texture.version>v)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:48:77)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Changing to a different parent dialog invalidates immediately
+not ok 6 - Changing to a different parent dialog invalidates immediately
+  ---
+  duration_ms: 3.073127
+  type: 'test'
+  location: '/mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(p.texture.version>v)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-next/leonardos-guild/tests/xr-menu-workload.test.mjs:52:102)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
