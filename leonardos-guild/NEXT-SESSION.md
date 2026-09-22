@@ -1,3 +1,19 @@
+Continue Leo's Guild / The Road Beyond the Lanterns.
+
+Read release.json, LANTERN-ROAD.md, FUTURE-DIRECTION.md and the exact latest tests/evidence/lantern-road/receipt.json first. The owner approved Vinci as an artisan settlement connected to the wider fantasy world and Vesperfall as a frontier region. This release implements an original solo charter, small inventory, local NPC exchanges/crafting, a persistent street lantern and an explicit save-protected cross-game visit/return. It does not implement an MMO or secure player-to-player trading.
+
+Resume from current master, not an old artifact. The snapshot used for source work was 6f1e4bdcae98dd4b4e81e43dd8e039d93b7a303f; Guild runtime was dc9c745 with cba5c1be test refinements. Reconcile subsequent changes before direct non-forced writes. No PR, staging branch, new transfer workflow or engine migration. Protect sibling games. The approved Vesperfall connection is narrowly scoped to one optional script tag and the companion module under this game; it does not authorize publishing the private SaaS hub or NerveGear manuscripts.
+
+Full Vinci remains the game. Do not replace it with the Quarter or a new lobby. Preserve all original stories, households, vehicles, rooftops, cellars, Cinder Hollow, Stillwater and optional Quarter work. Existing v2 saves retain an additive road field. The new satchel links back to the original notebook. All four existing XR entry modes use the same world and existing spatial desk.
+
+The user supplied Realm Online social, cooperative, merchant, identification, crafting and trade inspiration. FUTURE-DIRECTION.md records the approved direction, proposed town services, safe-town policy, authoritative trade protocol, inventory boundary, account/server milestones, mixed-presentation rules and open decisions. Treat claimed historic prices/dungeon tiers as supplied inspiration, not verified implementation requirements.
+
+The next mandatory observation is a complete ordinary-input charter, inventory review/cancel, storage-failure recovery, gate travel and return in the published build. Native browser evidence and physical Quest approval remain separate. Physical freezes, aiming feedback, controller appearance, sound comfort and render workload remain open. Source/model counts alone never close them.
+
+The next MMO milestone is one authenticated two-client room and one server-owned, revision-bound, atomic item trade with disconnect/idempotency tests. Do not turn local saves or client-set balances into tradable online wealth. The next authored story should give one existing neighborhood distinct evidence routes and a useful visible return consequence; do not merely add more distant rooms.
+
+Previous continuation notes follow for history; their prohibition of all travel applied to the earlier repair scope and is superseded only by the owner's present explicit Vinci-Vesperfall approval.
+
 Continue Leo's Guild / Responsive XR menus
 
 Read current master, AGENTS.md, release.json, XR-RESPONSIVENESS.md and the latest exact-source receipt before editing. Build guild-xr-responsive-20260922 continues NEXT01/NEXT02/F03/P02 with a shared menu-model cache, immediate focus/page/mutation paint, neutral-toolbar caching and unchanged paused-scene caching. The headset compositor and input loop must continue while paused. Fresh browser, public and physical-device evidence are separate gates; never assume a running job has passed.

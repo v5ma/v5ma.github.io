@@ -1,0 +1,19 @@
+{
+  "project": "leonardos-guild",
+  "build": "guild-lantern-road-20260922",
+  "version": "0.15.0",
+  "baseline_runtime": "dc9c745da4a180acbd79c47be0b2b8c5c5ab1e82",
+  "baseline_tests": 437,
+  "source_model_input_scene_tests": {"passed": 475, "failed": 0, "new": 38},
+  "design_tests": {"passed": 14, "failed": 0},
+  "ordinary_model_journey": "Fresh rider dismounts and walks every charter stage through step() and original collision, without assigned progression or location shortcuts.",
+  "local_browser": "ERR_BLOCKED_BY_ADMINISTRATOR before game load; not counted as a pass and not bypassed.",
+  "native_browser": "Pending exact-source Actions journey and visual review.",
+  "public_bytes": "Pending independent served-byte verification after direct master publication.",
+  "physical_quest_verified": false,
+  "multiplayer": false,
+  "player_to_player_trade": false,
+  "scope": "Solo artisan charter, reviewed NPC economy, bound quest inventory, persisted town signal, explicit save-protected page trip to Vesperfall and return. Original games and v2 saves retained.",
+  "evidence_updates": "Read the newest release-receipts/leonardos-guild-lantern-road-* record alongside this initial checkpoint; later native/public results must not be inferred from the source counts.",
+  "resume": "FUTURE-DIRECTION.md, LANTERN-ROAD.md, NEXT-SESSION.md and AGENTS.md beside the game. Physical freeze and performance gates remain open."
+}

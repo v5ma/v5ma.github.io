@@ -1,3 +1,7 @@
+Current owner-approved scope / September 22, 2026.
+
+Read FUTURE-DIRECTION.md and LANTERN-ROAD.md first. The owner explicitly approved playable Vinci-as-artisan-settlement and Vesperfall-frontier direction, inventory/trade foundations and future notes beside this game. That supersedes only the earlier no-travel repair restriction below: the narrow optional Vesperfall arrival/return adapter is authorized. Do not publish private manuscripts or the SaaS hub, reset either game, invent shared rewards, or claim the solo NPC economy is multiplayer. Preserve the new additive road record and original v2 saves. Receipt-based local transactions must persist successfully before memory changes.
+
 Leo's Guild current agent contract / Direct master updates
 
 Read release.json, NEXT-SESSION.md, MERGE-RECONCILIATION.md, FIELD-STATUS-REPAIR.md, current master and actual release evidence before changing anything. PR212 restored full Vinci and PR221 refined field status; both are incorporated. PR134 is obsolete after PR135's recovery. Historical checkpoints remain in history/before-field-status-20260920/. A source manifest or commit does not prove public deployment.

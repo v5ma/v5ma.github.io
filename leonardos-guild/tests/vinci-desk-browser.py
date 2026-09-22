@@ -69,7 +69,7 @@ with sync_playwright() as p:
    desk('status');check(read()['xr']['hud']['panel']['preferences']['status']=='floor',mode+': status can move from wrist to floor')
    dom('#desk-map');page.wait_for_selector('#map-dialog[open]');frames(3);capture('map');panel('back');frames(3)
    check(read()['paused'] and page.locator('#pause-dialog').get_attribute('open') is not None,mode+': nested map returns to its existing pause parent')
-   for selector,child in [('#desk-missions','#doors-dialog'),('#desk-inventory','#life-dialog')]:
+   for selector,child in [('#desk-missions','#doors-dialog'),('#desk-inventory','#road-dialog')]:
     snapshot=read();dom(selector);page.wait_for_selector(child+'[open]');frames(3)
     check(read()['paused'] and page.locator('#pause-dialog').get_attribute('open') is not None,mode+': '+selector+' opens its child while the parent and simulation stay paused')
     check((read()['x'],read()['z'],read()['credits'])==(snapshot['x'],snapshot['z'],snapshot['credits']),mode+': notebook opening cannot move the player or pay a reward')
