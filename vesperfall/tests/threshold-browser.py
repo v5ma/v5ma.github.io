@@ -82,7 +82,7 @@ with sync_playwright() as p:
   (OUT/'desk-texture.png').write_bytes(base64.b64decode(texture))
   page.screenshot(path=str(OUT/'spatial-desk.png'))
   # Storage-fault fixture: fail the browser write, never rewrite a game save.
-  page.evaluate("window.ThresholdSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===PilgrimSave.KEY)throw Error('Injected write failure');return ThresholdSetItem.call(this,k,v)}")
+  page.evaluate("()=>{window.ThresholdSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===PilgrimSave.KEY)throw Error('Injected write failure');return ThresholdSetItem.call(this,k,v)};}")
   menu('Open walking doorway');check(page.evaluate('Vesperfall.component.threshold.state.phase')=='game','A failed checkpoint leaves the doorway closed and the expedition available')
   page.evaluate('Storage.prototype.setItem=ThresholdSetItem;delete window.ThresholdSetItem')
   menu('Back to menu');menu('Settings');menu('Spatial desk')
