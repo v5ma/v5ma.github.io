@@ -327,3 +327,44 @@ jobs:
           name: prism-field-guide-${{ matrix.target }}-${{ github.sha }}
           path: test-output/field-guide/
           retention-days: 14
+  clear-shoals:
+    name: Clear Shoals / ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [source, public]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: prism-current
+          persist-credentials: false
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Reversible optical resource ownership
+        if: matrix.target == 'source'
+        run: python prism-current/tests/clear-shoals-objects.py
+      - name: Real optical pixels and full Easy AR battle
+        env:
+          SHOAL_TARGET: ${{ matrix.target }}
+        run: |
+          if [ "$SHOAL_TARGET" = public ]; then
+            timeout 540 python -u prism-current/tests/clear-shoals-browser.py --public
+          else
+            timeout 300 python -u prism-current/tests/clear-shoals-browser.py
+          fi
+      - name: Record source identity and preserve evidence
+        if: always()
+        run: |
+          mkdir -p test-output/clear-shoals
+          git rev-parse HEAD > test-output/clear-shoals/tested-commit.txt
+          tar czf test-output/clear-shoals/source.tgz prism-current
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-clear-shoals-${{ matrix.target }}-${{ github.sha }}
+          path: test-output/clear-shoals/
+          retention-days: 14

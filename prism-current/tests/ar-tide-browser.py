@@ -72,7 +72,7 @@ with sync_playwright() as pw:
         check(a['trees']['lod'][0]==0 and a['clouds']['levels']==[2,2],'New AR trees and clouds respect their shared stereo detail limits')
         check(a['version']=='0.1.1' and a['grass']['patches']==2 and a['grass']['triangles']==216,'The live AR Tide upgrade draws both bounded grass patches')
         check(a['grass']['textures']==0 and a['grass']['renderTargets']==0,'Grass adds no texture, scene-copy target or separate renderer')
-        check(a['optics']['ar'] and a['optics']['extraTextures']==0,'Water optics is active without new sampling textures or reflection passes')
+        check(a['optics']['ar'] and a['optics']['extraTextures']==2 and a['optics']['renderTargets']==0,'Water optics uses two bounded data textures and no reflection passes')
         check(not snap()['entities'] or not any(n['type']=='boss' for n in snap()['entities']),'Scenery does not introduce an early boss')
         select(11);select(7);p.wait_for_function('River.snapshot().rotunda.page==="scenery"')
         capture_texture('ar-scenery-menu.png')

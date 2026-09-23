@@ -97,7 +97,7 @@
     },
     "water-optics": {
       "status": "implemented-and-integrated-current-acceptance-open",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "script": "water-optics.js",
       "module": "water-optics.mjs",
       "global": "SVGNWaterOptics",
@@ -109,7 +109,12 @@
       "ownsStorage": false,
       "ownsRenderer": false,
       "verification": "../../FUTURE-DIRECTION.md",
-      "physicalDeviceApproved": false
+      "physicalDeviceApproved": false,
+      "dependencies": [
+        "water-detail.js"
+      ],
+      "preparation": "Data generated once at attachment before the host starts music. No frame-time simulation, float targets or scene-copy pass.",
+      "scope": "Clear Shoals; precomputed reference-depth caustics, not live FFT/refracted wave simulation."
     },
     "grass": {
       "status": "implemented-and-integrated-current-acceptance-open",

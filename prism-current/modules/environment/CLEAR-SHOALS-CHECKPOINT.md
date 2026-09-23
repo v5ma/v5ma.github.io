@@ -1,26 +1,38 @@
-# Clear Shoals / Water Optics upgrade in progress
+# Clear Shoals / Water Optics 0.2.0 checkpoint
 
-Fresh baseline master: 562999d05f3f70df4b57dfc185d25941c28a1d34.
-Latest Prism runtime: ac1771187c57e74621811a078cfbbf0994f49eae, Color Match
-0.13.0. Preserve per-hand color switching, 120 base / 40 matching rewards,
-separate scoring ledger and the enlarged-fruit badge fix. Historical documents
-still describing these as unimplemented are stale. Preserve every existing AR
-island/grass/cloud, health, difficulty, late boss, menu and audio path.
+First durable save: d0fccef13fab90bc420a995f806fc33c533c0ab6 saved optical data
+and attribution before integration. This pass now upgrades the existing Water
+Optics attachment in the normal Prism entry. Water 0.1.0 geometry, height query,
+wakes, splashes, host clock and saved opacity are untouched. Color Match 0.13.0
+including badge visibility, base/match points and old record preservation stays
+intact. The full game is not replaced by a standalone ocean demonstration.
 
-This first checkpoint saves a reusable optical-data generator and license
-notice only. It is not loaded by index.html yet and changes no live graphics.
-Eight new local data tests and all 423 prior tests pass (431 total). Tests and
-the actual material integration are saved in the next checkpoint.
+The extension adds two mipmapped loading-time RGBA8 textures: a 128-square
+slope/moment/caustic atlas and a 256-square original pebble-bed texture. Base
+texels use 327680 bytes total (about 437000 including mips, before driver
+overhead). No float render target, FFT pass, scene reflection, postprocess or
+passthrough image sampling is added. Caustics are precomputed refracted-light
+flux at reference depth 1.25, then advected by the host clock; they are not
+re-simulated from current geometric waves. This is an affordable approximation,
+not the complete Clearwater renderer or equal-fidelity/performance claim.
 
-Clearwater at 4bc826134321043a25df3c2b6fed16fb7b9241e8 uses raw WebGL2,
-float render targets, FFT waves and an opaque scene pipeline, not a drop-in
-Three.js or transparent AR module. Its MIT license is retained for the adapted
-Fresnel helper. This pass uses original seeded micro-wave/pebble data and a
-loading-time refracted-light flux bake, rather than replacing the game renderer.
-The bake conserves flux before display clamping and exposes filtered slope
-moments for less aliased highlights. Fixed-depth precomputed caustics are an
-approximation, not live ray-traced lighting or Clearwater's full simulation.
+Clearwater commit 4bc826134321043a25df3c2b6fed16fb7b9241e8 is the reviewed
+primary source. Its MIT notice and adapted Fresnel attribution are retained in
+CLEARWATER-NOTICE.txt. The seed spectrum, data bake, pebble generation and
+reversible Three.js material integration are independently authored.
 
-Do not alter water geometry, input, collision, scoring, saves or the .35-second
-stall safeguard. Preserve saved AR opacity and near-viewer room visibility.
-No PR, branch, publishing helper, private hub or sibling-game changes.
+Local checks: all 431 model tests and 19 new actual bundled-Three resource,
+shader-contract and cleanup checks pass. The existing AR-island/grass object
+suite also passes. Local WebGL2 is unavailable; these are not GPU renders or
+physical Quest measurements. A separate Clear Shoals job added to the existing
+read-only Prism verifier tests actual pixels and a full Easy tracked AR run.
+Original workflow contents are unchanged before that added job. Its source
+and public reports must be inspected before calling the new graphics verified.
+
+Known earlier Color Match/AR Tide frame and input failures remain open. Do not
+weaken the .35-second safeguard, auto-resume failures or assign game state to
+obtain a pass. The old AR optics zero-texture assertion is updated to the new
+explicit two-texture budget while retaining zero scene-copy passes; gameplay
+assertions remain unchanged. No PR, branch, new workflow, private hub or sibling
+game changes. Next inspect source/public artifacts and actual images, record
+failures honestly, and retain current controls and room visibility.
