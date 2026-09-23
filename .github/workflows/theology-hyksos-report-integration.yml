@@ -37,7 +37,9 @@ jobs:
           node theology-wiki/research-reports/hyksos-avaris-20260922/decode.cjs | tee theology-test-output/hyksos/decode.json
           python theology-wiki/research-reports/hyksos-avaris-20260922/render.py
           node theology-wiki/research-reports/hyksos-avaris-20260922/integrate.cjs
+          node theology-wiki/research-reports/hyksos-avaris-20260922/prepare.cjs
           node theology-wiki/tools/build.cjs | tee theology-test-output/hyksos/main-build.log
+          node theology-wiki/research-reports/hyksos-avaris-20260922/verify-generated.cjs --write
           python theology-wiki/research-reports/hyksos-avaris-20260922/test_report.py 2>&1 | tee theology-test-output/hyksos/contracts.log
           git diff --stat > theology-test-output/hyksos/changed-files.txt
       - name: Capture broad legacy regression results separately
@@ -52,7 +54,7 @@ jobs:
           git add theology-wiki/
           if git diff --cached --name-only | grep -Ev '^theology-wiki/'; then exit 1; fi
           git diff --cached --quiet && exit 0
-          git commit -m 'Archive exact Hyksos report and regenerate linked Exodus chronology and Kenite articles'
+          git commit -m 'Archive exact Hyksos report, preserve recorded source versions and regenerate three linked Wiki articles'
           git push origin HEAD:refs/heads/theology/hyksos-report-20260922
       - uses: actions/upload-artifact@v4
         if: always()
