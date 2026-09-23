@@ -3,7 +3,7 @@ import {loadSession,saveSession} from './warledger-session.mjs';
 import {ATLAS,ART_TYPES,ART_NAMES,createArtFactory} from './warledger-art.mjs';
 import {nextPinch,gridStep,gamepadEdges} from './warledger-input.mjs';
 
-export const RELEASE='ar-blocks-20260922-1';
+export const RELEASE='ar-blocks-20260922-2';
 const scene=document.querySelector('a-scene');
 const status=document.querySelector('#status');
 const cap=s=>s[0].toUpperCase()+s.slice(1);
@@ -237,7 +237,11 @@ class LedgerAR {
     const T=this.THREE,p=this.root.position;
     const horizontal=this.orbitDistance*Math.cos(this.orbitPitch);
     this.viewer.object3D.position.set(p.x+Math.sin(this.orbitYaw)*horizontal,p.y+Math.sin(this.orbitPitch)*this.orbitDistance,p.z+Math.cos(this.orbitYaw)*horizontal);
-    this.viewer.object3D.lookAt(new T.Vector3(p.x,p.y+.02,p.z+.10));this.viewer.object3D.updateMatrixWorld(true);
+    // The A-Frame entity is a Group: lookAt aims its positive Z, unlike a Camera.
+    // Rotate the rig half a turn so the child camera's negative Z faces the board.
+    this.viewer.object3D.lookAt(new T.Vector3(p.x,p.y+.02,p.z+.10));
+    this.viewer.object3D.rotateY(Math.PI);
+    this.viewer.object3D.updateMatrixWorld(true);
   }
   pick(origin,direction) {
     this.root.updateMatrixWorld(true);this.raycaster.set(origin,direction);

@@ -1,8 +1,9 @@
-// Real Chromium/WebGL checks. XR rays and Xbox input are simulated; this is not a Quest hardware test.
+// Real Chromium/WebGL checks. XR rays and Xbox input are simulated, not Quest hardware.
 const assert=require('node:assert/strict');
-const fs=require('node:fs');const path=require('node:path');const http=require('node:http');const crypto=require('node:crypto');
+const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const {chromium}=require(path.join(process.env.WL_PLAYWRIGHT||process.cwd(),'node_modules/playwright'));
 const root=path.resolve(__dirname,'../..'),out=path.join(root,'warledger-check-output');fs.mkdirSync(out,{recursive:true});
+fs.cpSync(path.join(root,'warledger-chess'),path.join(out,'source'),{recursive:true});
 const mime={'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.webp':'image/webp','.png':'image/png','.css':'text/css','.json':'application/json'};
 const server=http.createServer((req,res)=>{
   let name=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(name.endsWith('/'))name+='index.html';
@@ -13,13 +14,20 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function runBrowser(browser,base,label){
   const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});const page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
+  page.on('response',r=>{if(r.url()==='https://aframe.io/releases/1.7.1/aframe.min.js')r.body().then(b=>fs.writeFileSync(path.join(out,'aframe-1.7.1.js'),b)).catch(()=>{});});
   try{
     await page.goto(`${base}warledger-chess/ar.html?test=${Date.now()}`,{waitUntil:'networkidle'});
     await page.waitForFunction(()=>window.WarLedgerAR?.ready,null,{timeout:45000});
     const info=await page.evaluate(()=>({pieces:WarLedgerAR.pieces.children.length,width:WarLedgerAR.atlas.image.width,height:WarLedgerAR.atlas.image.height,engineD:WarLedgerAR.art.make('D').userData.artType}));
     assert.deepEqual(info,{pieces:32,width:256,height:512,engineD:'D'});
-    async function square(s){const p=await page.evaluate(s=>WarLedgerAR.projectSquare(s),s);await page.mouse.click(p.x,p.y);await page.waitForTimeout(180);}
-    async function action(a){const p=await page.evaluate(a=>WarLedgerAR.projectAction(a),a);await page.mouse.click(p.x,p.y);await page.waitForTimeout(180);}
+    // Click the visible top of occupied pieces, not a tile point hidden behind a taller neighbor.
+    async function square(s){
+      const p=await page.evaluate(s=>{const a=WarLedgerAR,p=a.pieces.children.find(p=>p.userData.square===s);return p?a.projectObject(p.children[p.children.length-1]):a.projectSquare(s);},s);
+      await page.mouse.click(p.x,p.y);await page.waitForTimeout(200);
+    }
+    async function action(a){const p=await page.evaluate(a=>WarLedgerAR.projectAction(a),a);await page.mouse.click(p.x,p.y);await page.waitForTimeout(200);}
+    const facing=await page.evaluate(()=>{const a=WarLedgerAR,c=a.scene.camera,p=a.root.getWorldPosition(new a.THREE.Vector3()),d=c.getWorldDirection(new a.THREE.Vector3()),o=c.getWorldPosition(new a.THREE.Vector3());return d.dot(p.sub(o).normalize());});
+    assert.ok(facing>.9,'Camera must face the tabletop, not the back of the A-Frame rig.');
     await square('e2');assert.equal(await page.evaluate(()=>WarLedgerAR.selected),'e2');
     await square('e4');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[4][4]?.type),'P');assert.equal(await page.evaluate(()=>WarLedgerAR.state.sideToMove),'black');
     await square('e7');await square('e5');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[3][4]?.side),'black');
@@ -39,19 +47,20 @@ async function runBrowser(browser,base,label){
     assert.equal(await page.evaluate(()=>WarLedgerAR.state.licenses.white.D),1);await action('undo');assert.equal(await page.evaluate(()=>WarLedgerAR.state.bank.white),10);
     await action('new');assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'confirm');await action('cancel');assert.equal(await page.evaluate(()=>WarLedgerAR.state.bank.white),10);
     await action('new');await action('confirm');assert.equal(await page.evaluate(()=>WarLedgerAR.pieces.children.length),32);
-    // Standard mapping Xbox gamepad; exercise the actual per-frame input polling.
     await page.evaluate(()=>{window.testPad={id:'Xbox test',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};navigator.getGamepads=()=>[window.testPad];});
     async function press(b){await page.evaluate(b=>testPad.buttons[b]={pressed:true,value:1},b);await page.waitForTimeout(100);await page.evaluate(b=>testPad.buttons[b]={pressed:false,value:0},b);await page.waitForTimeout(100);}
     await press(15);assert.equal(await page.evaluate(()=>WarLedgerAR.focusSquare),'f2');await press(14);await press(0);
     assert.equal(await page.evaluate(()=>WarLedgerAR.selected),'e2');await press(12);await press(12);await press(0);assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[4][4]?.side),'white');
-    // A synthetic tracked-controller ray runs through the exact same ray hit path as XR select.
-    async function ray(s){await page.evaluate(s=>{const a=WarLedgerAR,t=a.tiles.find(t=>t.userData.square===s),p=t.getWorldPosition(new a.THREE.Vector3());a.selectRay(p.clone().add(new a.THREE.Vector3(0,.5,0)),new a.THREE.Vector3(0,-1,0));},s);await page.waitForTimeout(180);}
+    async function ray(s){await page.evaluate(s=>{const a=WarLedgerAR,t=a.tiles.find(t=>t.userData.square===s),p=t.getWorldPosition(new a.THREE.Vector3());a.selectRay(p.clone().add(new a.THREE.Vector3(0,.5,0)),new a.THREE.Vector3(0,-1,0));},s);await page.waitForTimeout(200);}
     await ray('e7');await ray('e5');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[3][4]?.side),'black');
     assert.deepEqual(errors,[]);
-    const report={label,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['texture decode','32 cuboid pieces','mouse legal moves','world-space market/cancel','11-art gallery','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox polling','XR ray routing']};
+    const report={label,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','mouse legal moves','world-space market/cancel','11-art gallery','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox polling','XR ray routing']};
     fs.writeFileSync(path.join(out,`${label}-report.json`),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
-  }catch(error){await page.screenshot({path:path.join(out,`${label}-failure.png`)}).catch(()=>{});fs.writeFileSync(path.join(out,`${label}-errors.json`),JSON.stringify({message:error.message,stack:error.stack,errors},null,2));throw error;}
-  finally{await context.close();}
+  }catch(error){
+    await page.screenshot({path:path.join(out,`${label}-failure.png`)}).catch(()=>{});
+    const state=await page.evaluate(()=>window.WarLedgerAR?{selected:WarLedgerAR.selected,mode:WarLedgerAR.mode,focus:WarLedgerAR.focusSquare,board:WarLedgerAR.state.board}:null).catch(()=>null);
+    fs.writeFileSync(path.join(out,`${label}-errors.json`),JSON.stringify({message:error.message,stack:error.stack,errors,state},null,2));throw error;
+  }finally{await context.close();}
 }
 (async()=>{
   await new Promise(resolve=>server.listen(8734,'127.0.0.1',resolve));
@@ -66,7 +75,8 @@ async function runBrowser(browser,base,label){
         try{
           const r=await fetch(`${base}warledger-chess/ar.html?v=${Date.now()}`);
           const a=await fetch(`${base}warledger-chess/assets/piece-faces.webp?v=${Date.now()}`);
-          if(r.ok&&a.ok&&(await r.text()).includes('ar-blocks-20260922-1')&&hash(Buffer.from(await a.arrayBuffer()))===hash(local)){ready=true;break;}
+          const j=await fetch(`${base}warledger-chess/warledger-ar.mjs?v=${Date.now()}`);
+          if(r.ok&&a.ok&&j.ok&&(await r.text()).includes('ar-blocks-20260922-2')&&(await j.text()).includes('ar-blocks-20260922-2')&&hash(Buffer.from(await a.arrayBuffer()))===hash(local)){ready=true;break;}
         }catch{}
         await sleep(6000);
       }
