@@ -1,0 +1,40 @@
+name: War Ledger Chess checks
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'warledger-chess/**'
+      - '.github/workflows/warledger-chess-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: warledger-chess-check
+  cancel-in-progress: true
+jobs:
+  engine-art-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Engine, piece-card, art, save and input contracts
+        run: node --test warledger-chess/tests/*.test.mjs
+      - name: Install pinned browser test tooling outside the game
+        run: |
+          npm install --prefix /tmp/warledger-browser --no-save playwright@1.55.0
+          /tmp/warledger-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Real local and published browser checks
+        env:
+          WL_PLAYWRIGHT: /tmp/warledger-browser
+          WL_VERIFY_LIVE: '1'
+        run: node warledger-chess/tests/ar-browser-check.cjs
+      - name: Preserve reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: warledger-chess-browser-evidence
+          path: warledger-check-output/
+          if-no-files-found: warn

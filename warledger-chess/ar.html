@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#172126">
+  <meta name="description" content="War Ledger Chess: playable illustrated block pieces on an A-Frame AR tabletop.">
+  <title>War Ledger Chess | AR Tabletop</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#172126;color:#f3e7c8;font-family:system-ui,Arial,sans-serif}
+    #desktop{position:fixed;inset:0 0 auto;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:linear-gradient(#10181ff2,#10181fdd);border-bottom:1px solid #766346}
+    h1{margin:0;font:700 20px Georgia,serif;letter-spacing:.03em}#status{margin:5px 0 0;font-size:13px;color:#d6d6ca;max-width:600px}
+    nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}button,a{font:600 13px system-ui;min-height:38px;padding:9px 13px;border:1px solid #8f7d58;border-radius:7px;background:#24333b;color:#fff0cc;cursor:pointer;text-decoration:none}
+    button:disabled{opacity:.4;cursor:not-allowed}button:hover:not(:disabled),a:hover{background:#3a514f}button:focus-visible,a:focus-visible{outline:3px solid #80dedb;outline-offset:2px}
+    #help{position:fixed;bottom:10px;left:12px;right:12px;z-index:5;pointer-events:none;text-align:center;font-size:12px;color:#d9ddcf;text-shadow:0 1px 3px #000;background:#10181fd9;border:1px solid #526466;border-radius:7px;padding:8px}
+    body.xr #desktop,body.xr #help{display:none}#failure{position:fixed;z-index:20;inset:30% 12%;padding:24px;background:#18232b;border:1px solid #b9a075;border-radius:10px}#failure[hidden]{display:none}
+    @media(max-width:720px){#desktop{padding:8px 10px;align-items:flex-start}h1{font-size:16px}#status{font-size:11px}nav{max-width:230px}button,a{font-size:11px;min-height:34px;padding:7px 9px}#help{font-size:11px}}
+  </style>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js" onerror="document.addEventListener('DOMContentLoaded',()=>document.querySelector('#failure').hidden=false)"></script>
+</head>
+<body data-release="ar-blocks-20260922-1">
+  <header id="desktop">
+    <div><h1>WAR LEDGER CHESS</h1><p id="status" role="status" aria-live="polite">Loading the illustrated tabletop...</p></div>
+    <nav aria-label="Tabletop controls">
+      <button id="enter-ar" disabled>Enter AR</button><button id="enter-vr" disabled>Enter VR</button>
+      <button data-action="undo">Undo</button><button data-action="market">Market</button>
+      <button data-action="gallery">Piece gallery</button><a href="./">2D board</a>
+    </nav>
+  </header>
+  <div id="help">Click a piece, then a highlighted square. Drag to orbit; scroll to zoom. Xbox: D-pad / left stick, A select, B cancel, X undo, Y market. Progress is saved.</div>
+  <div id="failure" hidden>A-Frame could not load. Check your connection, then reload this page. Your saved game is unchanged. <a href="./">Open the 2D board</a></div>
+  <a-scene renderer="antialias:true;alpha:true;colorManagement:true" xr-mode-ui="enabled:false" loading-screen="enabled:false" webxr="referenceSpaceType:local-floor;requiredFeatures:local-floor;optionalFeatures:hand-tracking,hit-test" keyboard-shortcuts="enterVR:false">
+    <a-entity id="viewer" camera="near:0.01;far:30" position="0 1.3 1.1"></a-entity>
+    <a-entity light="type:ambient;intensity:1.5;color:#fff4e1"></a-entity>
+    <a-entity light="type:directional;intensity:2;color:#ffffff" position="-1 3 2"></a-entity>
+    <a-entity id="table" position="0 0.72 0"></a-entity>
+    <a-entity hand-tracking-controls="hand:left;modelStyle:dots;modelColor:#ead5ab"></a-entity>
+    <a-entity hand-tracking-controls="hand:right;modelStyle:dots;modelColor:#80d3d1"></a-entity>
+  </a-scene>
+  <script type="module" src="./warledger-ar.mjs?v=ar-blocks-20260922-1"></script>
+</body>
+</html>
