@@ -32,6 +32,7 @@ export function createXR(view,hooks){
   // In AR, a virtual head-boundary reveals passthrough instead of a black VR curtain.
   const ar=kind.endsWith('-ar');world.visible=!(first&&ar&&view.curtain.visible);view.curtain.material.transparent=ar;view.curtain.material.opacity=ar?0:1;view.curtain.material.depthWrite=false;
   rig.updateMatrixWorld(true);world.updateMatrixWorld(true);
+  view.updateEnvironment?.(state,{viewer:rig.localToWorld(new T.Vector3().copy(lastViewer.transform.position)).toArray(),xr:true,ar});
   if(!first){const eye=world.worldToLocal(rig.localToWorld(new T.Vector3().copy(lastViewer.transform.position)));view.cutaway(state,eye);}
  }
  function finish(){document.body.classList.remove('in-xr');session=null;pending=false;lastViewer=null;missionPage=false;section='';handActions=false;view.stopPortal();world.visible=true;view.curtain.visible=false;panelGroup.visible=false;clear();renderer.xr.enabled=false;renderer.setRenderTarget(null);renderer.shadowMap.enabled=true;renderer.setClearColor(0xabc8cb,1);scene.background=new T.Color(0xabc8cb);scene.fog=new T.Fog(0xabc8cb,55,140);rig.position.set(0,0,0);rig.rotation.set(0,0,0);world.position.set(0,0,0);world.rotation.set(0,0,0);world.scale.setScalar(1);camera.position.set(20,25,30);camera.rotation.set(0,0,0);view.resize();slots.forEach(s=>{s.ray.visible=s.grip.visible=false;s.joints.forEach(j=>j.visible=false);});hooks.pause(true);hooks.message('XR ended. Desktop controls are ready after release.');}

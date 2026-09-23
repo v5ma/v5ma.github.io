@@ -2,7 +2,17 @@
 
 Owner decision, September 22, 2026: make the Watch Dogs 2 / Uncharted / Batman Arkham direction playable, including genuinely taller buildings. Keep these notes beside the game and update them at implementation, verification and handoff checkpoints so another chat can resume. This document records design intent, not proof that every feature exists.
 
-## Current implementation checkpoint
+## Currentworks and upper archive / 0.18.0
+
+Current request adds the owner's Prism environment library to the playable Highline direction. ENVIRONMENT-INTEGRATION.md records the pinned modules, r177/r184 compatibility boundary, settings, first-entry preparation and actual limits. The main district now uses Water/Optics, Trees and Cloudlets plus selective Toon materials. No new renderer, sibling-game runtime dependency or opaque AR world is introduced. Fire and Islands remain unintegrated in Neighborhood Missions.
+
+The next planned room is now an actual 10.8 m Print Exchange reading-room annex with shared collision/render geometry. After Highline, Archive: The Unsent Call continues Sal's recording through Ada, a crossfeed control, a recovered service log and return to Sal for 120 credits once. South Cable Exchange is the newly revealed future lead, not an implemented destination. Original Highline, five previous cases, city and reward ledgers remain. Highline launch is moved onto the first welcome screen without scrolling.
+
+The complete local suite passes 462 tests, including a fresh-input Highline-plus-archive journey. Read tests/environment-evidence/status.json and public-receipt.json for separate hosted, rendered and publication outcomes. Local WebGL2 is unavailable; physical Quest/Xbox/hand, comfort, sustained performance and unfamiliar-player approval stay open. Continue from current master, preserve failed traces and never reconstruct completed features from an older handoff.
+
+Next priority is owner review of the integrated graphics and upper-room route, then a stronger systemic archive encounter and a properly built South Cable Exchange story chapter. Keep these notes, ENVIRONMENT-INTEGRATION.md and DEVELOPMENT-HANDOFF.md updated after meaningful passes.
+
+## Previous Highline implementation checkpoint
 
 Highline is implemented in this source revision and passes 452 local tests. Read HIGHLINE.md for the actual six-step mission, controls, 17.2 m Print Exchange, 23.6 m Radio Tower, two crossings, ten switchback stair flights and five added grapple anchors. It is available immediately through Play Highline on the main welcome or pause screen, without erasing saves or completing old cases for the player. Source implementation, served publication, rendered acceptance and physical approval are distinct; the latest observed results belong in tests/highline-evidence/status.json and public-receipt.json. Do not call pending jobs passed.
 

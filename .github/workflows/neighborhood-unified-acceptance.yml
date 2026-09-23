@@ -100,7 +100,7 @@ jobs:
   highline:
     needs: model
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -119,6 +119,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           python svgn-planet/tests/check-http-ready.py
+          python svgn-planet/tests/environment-browser.py
           python svgn-planet/lantern/highline-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
@@ -126,5 +127,6 @@ jobs:
           name: unified-highline
           path: |
             highline-results/
+            environment-results/
             server.log
           retention-days: 30

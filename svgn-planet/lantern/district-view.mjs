@@ -1,3 +1,5 @@
+import {createWardEnvironment} from '../environment/ward-environment.mjs';
+import {createArchiveView} from './archive-view.mjs';
 import {addHighlineStair,createHighlineView} from './highline-view.mjs';
 import {createWatchView} from './watch-view.mjs';
 import {createCampaignView} from './campaign-view.mjs';
@@ -9,7 +11,7 @@ import {createCourier} from '../vehicles.mjs';
 import {placeChain} from '../grounded-motion.mjs';
 import {floors,walls,canal,floorHeight,actors,clamp,inside,support} from './core.mjs';
 import {openingState,panelsFor} from '../design/chapter-contract.mjs';
-export function createDistrictView(canvas, sharedRenderer){
+export function createDistrictView(canvas, sharedRenderer, preferences){
  const renderer=sharedRenderer || new T.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
  renderer.setPixelRatio(Math.min(1.5,devicePixelRatio));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.13;
  renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
@@ -75,9 +77,8 @@ export function createDistrictView(canvas, sharedRenderer){
  box(bellTower,0x447078,20,11.4,-3,3,.24,3);cyl(bellTower,0xca9b48,20,10.1,-3,.6,.6);cyl(bellTower,0x536461,20,12.1,-3,.05,1.2);
  // Three small overlooked rest areas give observation a purpose.
  for(const [x,z]of[[-9,11],[-21,11],[12,-11]]){box(decor,0x7d644d,x,.6,z,2.1,.18,.65);box(decor,0x7d644d,x,1.05,z+.35,2.1,.72,.12);for(const a of[-.8,.8])box(decor,0x3d5859,x+a,.3,z,.09,.6,.6);}
- for(const [x,z]of[[-21,17],[-5,9],[6,16],[14,-18],[22,15],[-22,-18]]){
-  cyl(decor,0x765f4b,x,1.6,z,.2,3.2);const crown=new T.Mesh(new T.IcosahedronGeometry(1,1),mat(0x648a73));crown.position.set(x,3.7,z);crown.scale.set(1.7,2,1.6);decor.add(crown);box(decor,0x748977,x,.2,z,2.3,.4,2.3);
- }
+ for(const [x,z]of[[-21,17],[-5,9],[6,16],[14,-18],[22,15],[-22,-18]])box(decor,0x748977,x,.2,z,2.3,.4,2.3);
+ const environment=createWardEnvironment(T,{world,preferences});
  const lanterns=[];for(const [x,z]of[[-6,17],[-18,10],[-21,-12],[4,-12],[7,11],[22,8],[-6,-8]]){
   cyl(decor,0x425861,x,2,z,.05,4);box(decor,0x536266,x,4,z,.55,.14,.55);const bulb=box(decor,0xffd38b,x,3.66,z,.3,.48,.3);bulb.material=new T.MeshStandardMaterial({color:0xffd38b,emissive:0xffa04c,emissiveIntensity:.4});lanterns.push(bulb);
  }
@@ -93,8 +94,6 @@ export function createDistrictView(canvas, sharedRenderer){
  function boat(){const b=new T.Group();box(b,0x92704d,0,.08,0,1.2,.22,2.15);for(const x of[-.62,.62])box(b,0x6a9690,x,.3,0,.12,.45,2.25);for(const z of[-1.06,1.06])box(b,0x6a9690,0,.3,z,1.24,.4,.12);box(b,0xcbb382,0,.35,.25,1.15,.12,.5);world.add(b);return b;}
  const boats=[boat(),boat(),boat()];boats[0].position.set(-.5,-.72,12);boats[1].position.set(-.5,-.72,-11.5);
  label('CANAL PIER / Y',-4.5,1.8,13.8,2.8,.45);label('PUBLIC PIER / Y',3,1.8,-13.4,2.8,.45);
- const waterGeo=new T.PlaneGeometry(5,28,1,1),waterMat=new T.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{time:{value:0},tint:{value:new T.Color(0x509caa)}},vertexShader:'varying vec2 uv0;void main(){uv0=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'uniform float time;uniform vec3 tint;varying vec2 uv0;void main(){float w=sin(uv0.x*70.+uv0.y*95.+time*1.3)+sin(uv0.x*130.-uv0.y*85.+time*.9);float glint=pow(max(0.,w*.5),10.);gl_FragColor=vec4(tint+glint*.3+w*.025,.88);\n#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}'});
- const water=new T.Mesh(waterGeo,waterMat);water.rotation.x=-Math.PI/2;water.position.set(-.5,-.75,1);world.add(water);
  const hero=createCourier(world);hero.unicycle.visible=false;hero.bicycle.visible=false;
  const flyingPaper=box(world,0xf5e7c5,0,0,0,.25,.025,.16);flyingPaper.visible=false;
  const people=[0x9e6651,0x709378,0xc6a25c].map(c=>{const a=createCourier(world,c);a.unicycle.visible=a.bicycle.visible=false;return a;});
@@ -129,6 +128,7 @@ export function createDistrictView(canvas, sharedRenderer){
  const highlineView=createHighlineView({world,wallMeshes,box,cyl,label});
  const watchView=createWatchView({world,box,cyl,label});
  const campaignView=createCampaignView({world,box,cyl,label});
+ const archiveView=createArchiveView({world,box,cyl,label,materials:environment.controls});
  const portalMaterials=new PortalMaterials();portalMaterials.collect(world);
  const portalFrame=createPortalFrame(scene,portalMaterials),anchor=new T.Vector3(),portalSize=new T.Vector3();
  let aperture='both',centerError=0;
@@ -150,10 +150,10 @@ export function createDistrictView(canvas, sharedRenderer){
  let cameraYaw=0,view='third',pitch=.58;
  function resize(){if(renderer.xr.isPresenting)return;renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
  function update(s,dt,{mode='third',yaw=cameraYaw,started=true}={}){
-  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);watchView.update(s);campaignView.update(s);highlineView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
+  view=mode;cameraYaw=yaw;marketView.update(s);cityView.update(s,yaw);watchView.update(s);campaignView.update(s);highlineView.update(s);archiveView.update(s);pose(hero,s,dt,true);const as=actors(s);as.forEach((a,i)=>pose(people[i],{...a,ride:'foot',yaw:a.yaw||0,time:s.time,speed:a.speed??1,distance:a.distance??s.time*.6},dt));
   flyingPaper.visible=!!s.paper;if(s.paper){const p=s.paper;flyingPaper.position.set(p.x+p.dx*p.t*6,p.y+Math.sin(p.t*Math.PI)*.5-p.t*.8,p.z+p.dz*p.t*6);flyingPaper.rotation.set(p.t*8,p.t*3,p.t*5);}
   gate.visible=!s.gate;latch.visible=!s.gate;parcel.visible=!s.parcel;lowGroup.visible=s.water==='low';
-  const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;water.position.y=-2+mix*1.25;water.visible=mix>.02;waterMat.uniforms.time.value=s.time;gauge.position.y=water.position.y;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
+  const mix=s.transition?s.transition.from==='high'?1-s.transition.t:s.transition.t:s.water==='high'?1:0;gauge.position.y=-2+mix*1.25;wheel.rotation.z=s.transition?s.transition.t*Math.PI*2:0;
   liftPlatform.position.y=(s.hoistY||0)-.09;
   boats[0].visible=boats[1].visible=s.water==='high';boats[2].visible=s.ride==='boat';boats[2].position.set(s.x,-.72,s.z);boats[2].rotation.y=s.yaw;
   const spatial=mode.startsWith('diorama'),first=mode==='first';if(!spatial)stopPortal();for(const {w,m}of wallMeshes)m.visible=!(w.gate&&s.gate);
@@ -167,6 +167,10 @@ export function createDistrictView(canvas, sharedRenderer){
    else{const dist=11;const to=new T.Vector3(s.x+Math.sin(yaw)*dist,s.y+dist*(mode==='diorama'?.9:.65),s.z+Math.cos(yaw)*dist);camera.position.lerp(to,1-Math.exp(-dt*7));camera.lookAt(s.x,s.y+1,s.z);if(s.y>6)cutaway(s,camera.position);}
   }
  }
+ function updateEnvironment(s,observation={}){return environment.update(s,observation);}
+ const environmentEye=new T.Vector3();
+ const baseUpdate=update;
+ function completeUpdate(s,dt,options){baseUpdate(s,dt,options);if(!renderer.xr.isPresenting)updateEnvironment(s,{viewer:camera.getWorldPosition(environmentEye).toArray()});}
  resize();addEventListener('resize',resize);
- return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({highline:highlineView.inspect(),watch:watchView.inspect(),campaign:campaignView.inspect(),market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
+ return {renderer,scene,camera,rig,world,hero,curtain,setOpening,resize,update:completeUpdate,updateEnvironment,prepareEnvironment:()=>environment.prepare(renderer,camera,scene),setEnvironmentPreferences:environment.setPreferences,presentPortal,stopPortal,cutaway,get yaw(){return cameraYaw;},get opening(){return aperture;},inspect:()=>({environment:environment.inspect(),archive:archiveView.inspect(),highline:highlineView.inspect(),watch:watchView.inspect(),campaign:campaignView.inspect(),market:marketView.inspect(),city:cityView.inspect(),portal:{active:portalMaterials.active,centerError,anchor:anchor.toArray(),size:portalSize.toArray(),materials:portalMaterials.entries.size,worldPosition:world.position.toArray(),worldYaw:world.rotation.y,kind:'perspective-ray-aperture',opaqueEnclosurePlanes:0},clearAlpha:renderer.getClearAlpha(),drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,aperture,topOpen:panelsFor(aperture).topOpen,frontOpen:panelsFor(aperture).frontOpen,stereoGameWorld:renderer.xr.isPresenting,eyes:renderer.xr.isPresenting?renderer.xr.getCamera().cameras.length:0,sceneMeshes:scene.children.length,contactError:maxError})};
 }

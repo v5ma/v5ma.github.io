@@ -1,7 +1,8 @@
+import {ARCHIVE_CASE,ARCHIVE_STORY} from './archive.mjs';
 import {watchState,watchAction} from './watch.mjs';
 import {highlineKit,highlineRestored,HIGHLINE_STORY} from './highline-layout.mjs';
 
-export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260,highline:240});
+export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260,highline:240,unsent:120});
 export const CAMPAIGN_SYSTEMS=Object.freeze([
  {id:'highline-call',label:'Highline maintenance call',cases:Object.freeze(['highline']),x:-5.5,y:10.8,z:-5.05,effect:'distract',radius:12,target:Object.freeze({x:4,y:10.8,z:-5.05})},
  {id:'market-speaker',label:'Market speaker loop',cases:Object.freeze(['predator','finale']),x:-20.5,y:0,z:-4.2,effect:'distract',radius:9,target:Object.freeze({x:-20.5,y:0,z:-2.7})},
@@ -35,7 +36,8 @@ export const CAMPAIGN_CASES=Object.freeze([
   point('highline-vantage','Survey the radio mast / Print Exchange 17.2 m',-12.5,17.2,-5.05,'observe'),
   point('highline-relay','Restore the rooftop repeater / Radio Tower 23.6 m',15,23.6,-5.05,'relay'),
   point('highline-recording','Collect Sal\'s recording / old loading loft 4.4 m',12,4.4,0),
-  point('highline-home','Bring the recording to Mara / depot',-10,0,14)]}
+  point('highline-home','Bring the recording to Mara / depot',-10,0,14)]},
+ ARCHIVE_CASE
 ]);
 
 export const freshCampaign=()=>({v:1,active:null,progress:{},completed:[],credits:0,route:'stealth'});
@@ -109,6 +111,7 @@ export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASE
  if(t.kind==='land')return r.glideLanded&&close(s,t,api,4)?next(s,'Glide route proven.'):'Hop from the print-terrace rail toward the marked arcade landing. Release the cape above it, then return by the print-shop stairs.';
  if(t.kind==='choice')return c.route==='stealth'&&r.enemies.every(e=>e.hp<=0)||c.route==='combat'&&r.enemies.every(e=>e.hp<=0)?next(s,'Final approach clear.'):'Choose stealth or combat from Field tools, then clear the signal approach.';
  if(!close(s,t,api,t.kind==='observe'?3:2.1))return null;
+ if(m.id==='unsent'&&ARCHIVE_STORY[t.id])return next(s,ARCHIVE_STORY[t.id]);
  if(m.id==='highline'&&HIGHLINE_STORY[t.id]){if(t.id==='highline-relay')r.enemies.forEach(e=>{e.hp=0;e.phase='disabled';});return next(s,HIGHLINE_STORY[t.id]);}
  if(t.kind==='observe')return next(s,'Patrol timing mapped from above.');
  if(t.kind==='vent')return next(s,'Service vent used. The route reconnects behind the market line.');

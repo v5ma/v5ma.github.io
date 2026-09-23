@@ -1,0 +1,42 @@
+{
+  "version": "0.18.0",
+  "revision": "currentworks-1",
+  "state": "source-tested; actual public and rendered verification pending",
+  "baselineRuntime": "9ed36aa7fc559a1000dbf7b84696cb5d40d7e892",
+  "librarySource": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "libraryTree": "86082336de4dc56c308267a914900a11e1e4f586",
+  "planCheckpoint": "5418091e244c5aca955aa4231b89f03df264bcf5",
+  "tests": {
+    "passed": 462,
+    "failed": 0,
+    "skipped": 0,
+    "localLogSHA256": "93c491d27d2750bb5041aff6cbd4165e06344d19356d8a8b4dede6aba381b701"
+  },
+  "legacyHashesPreserved": 102,
+  "localWebGL2": false,
+  "publishedRevisionVerified": false,
+  "renderedEnvironmentPassed": false,
+  "renderedArchiveJourneyPassed": false,
+  "physicalQuestTested": false,
+  "physicalXboxTested": false,
+  "physicalHandTrackingTested": false,
+  "priorFailures": [
+    {
+      "kind": "local source contract",
+      "observation": "Two-argument createDistrictView(hooks.canvas,renderer) was expected by an inherited main integration test.",
+      "resolution": "Restored the original caller signature and applied environment preferences after construction. No acceptance assertion removed."
+    },
+    {
+      "kind": "baseline public matrix",
+      "run": 35782836734,
+      "highlineJob": 106934175516,
+      "highlineConclusion": "success",
+      "openFailures": [
+        "legacy grounded suite",
+        "recovery portal suite"
+      ],
+      "note": "Some other jobs were cancelled. Prior suite failures are not closed by this source pass."
+    }
+  ],
+  "next": "Inspect the existing source/public independent Highline jobs, which now run eight-mode environment rendering and the extended actual-input archive journey. Compare public bytes; download reports and screenshots. Update this receipt and durable direction notes. Preserve all failed/cancelled observations."
+}

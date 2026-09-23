@@ -91,7 +91,7 @@ jobs:
   highline:
     needs: bytes
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -108,10 +108,14 @@ jobs:
         env:
           MAIN_BASE: https://v5ma.github.io/svgn-planet/
           HIGHLINE_OUT: published-results/highline
-        run: python svgn-planet/lantern/highline-browser.py
+        run: |
+          python svgn-planet/tests/environment-browser.py
+          python svgn-planet/lantern/highline-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lantern-live-highline
-          path: published-results/highline/
+          path: |
+            published-results/highline/
+            published-results/environment/
           retention-days: 30

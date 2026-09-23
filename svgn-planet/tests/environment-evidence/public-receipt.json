@@ -1,0 +1,12 @@
+{
+  "version": "0.18.0",
+  "revision": "currentworks-1",
+  "status": "awaiting-public-and-rendered-verification",
+  "publishedRevisionVerified": false,
+  "renderedEnvironmentPassed": false,
+  "renderedArchiveJourneyPassed": false,
+  "physicalQuestTested": false,
+  "physicalXboxTested": false,
+  "physicalHandTrackingTested": false,
+  "sourceDetails": "status.json"
+}

@@ -1,3 +1,9 @@
+# Current resume point: Currentworks / upper archive 0.18.0
+
+Read ENVIRONMENT-INTEGRATION.md, FUTURE-DIRECTION.md and tests/environment-evidence/status.json first. Pinned Water/Optics, Trees, Cloudlets and selective Toon are integrated on the existing r177 host. The Print Exchange has a real upper reading room and the four-step optional Unsent Call sequel after Highline. Local source tests pass 462; actual rendered/public and physical results remain independent. First entry prepares resources with cancellable travel; gameplay, saves, 32 m limit and all eight modes remain.
+
+The next task is inspect the actual environment and extended Highline browser artifacts, fix any shader/route issue without injected progress, and record physical owner feedback. South Cable Exchange is a future lead, not an existing district. Keep the original city, all older cases and canonical roadmap human gates intact. Check current master before any direct non-forced write. Older handoffs below are historical.
+
 # Current resume point: Highline / September 22, 2026
 
 Read FUTURE-DIRECTION.md and HIGHLINE.md before the historical handoff below. The new owner direction combines systemic city interaction, useful Arkham-style verticality and authored adventure. Highline adds a 17.2 m Print Exchange and 23.6 m Radio Tower to the integrated Lantern Ward, with a direct Play Highline button in the main game. It preserves all older cases and ledgers. The local 452-test suite passes; exact implementation SHA, public byte verification and browser results are recorded separately in tests/highline-evidence/status.json. Do not infer rendered or hardware approval from local tests. Continue on freshly reconciled master, not from an old whole-game branch.

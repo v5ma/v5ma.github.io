@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Unified Neighborhoods / Spatial Console v0.16.1. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-20.
+Current release: Unified Neighborhoods / Currentworks Highline v0.18.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-22.
 
 ## How to use this workbook
 
@@ -62,9 +62,9 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
 
 - [ ] PERF-03 / P0 / partial / Streaming and stable frame pacing
   Acceptance: No uncapped per-frame world construction. A 30-minute multi-district session must reach stable memory and geometry counts. Rendering must not silently run simulation in slow motion.
-  Next: Profile chunk creation, GPU uploads, garbage collection and low-power 30 fps pacing.
+  Next: Currentworks uses bounded pools, shared-eye LOD, pausable time and cancellable first-entry preparation. Profile sustained memory, shaders and frame pacing on physical hardware; source budgets are not device acceptance.
   Owner role: Engineering / QA. Dependencies: PERF-01.
-  Evidence: Not recorded.
+  Evidence: ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [x] SAVE-01 / P0 / verified / Preserve the existing game and save identities
   Acceptance: Original v1 slot and mission IDs remain. Old saves load; contracts, times and finishes round-trip; sibling game storage is not touched.
@@ -116,9 +116,9 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] ART-03 / P0 / partial / Human-scale architecture and materials
   Acceptance: Approve one two-story house, cafe and apartment with believable doors, windows and floor heights. Materials, trim and shadows retain quality across presets.
-  Next: Kitchen, storehouse and greenhouse now use real door openings and furnished interiors within old footprints; print/workshop/loft remain. Review measured scale and camera/character collisions before replacing graybox art.
+  Next: Highline towers and the 10.8 m upper archive are now real shared geometry. Review human-scale furnishings, facades and camera cutaways with the integrated vegetation/materials before claiming final art approval.
   Owner role: Art / animation. Dependencies: None.
-  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
+  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [ ] PLAY-01 / P1 / planned / One fully playable interior
   Acceptance: A cafe/workshop needs an accessible entrance, usable counter, collision, a meaningful activity, and a reliable exit with controller, keyboard and touch.
@@ -134,9 +134,9 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.
-  Next: Use the current objective/map card to evaluate unfamiliar-player next-step comprehension in both neighborhoods. Improve mission source, relevant entrance and return-route clarity before adding geography.
+  Next: Test first-screen Highline discovery, two-tower traversal and the new upper archive sequel with unfamiliar players. Maintain meaningful routes and return connections; obtain physical AR/VR readability feedback before expanding city extent.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
   Acceptance: Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.
@@ -206,9 +206,9 @@ Human exit gate: Explore without relying on repeated delivery templates or empty
 
 - [ ] WATER-02 / P1 / implemented / Refractive Seaglass Pool and Lantern Canal
   Acceptance: Two bounded PBR water surfaces show analytical tiled-basin refraction, depth tint, animated caustic-style light and boat/skim ripple impulses. Existing environment reflections are not live-scene mirrors. No swimming is implemented.
-  Next: Review actual shader captures in daylight, rain and blue hour; physical GPU/art approval stays open.
+  Next: Lantern Ward now uses pinned Currentworks Water/Optics driven by the real canal level and local boat observations. Check shader appearance and XR transparency; swimming, physical buoyancy and live-scene reflection remain unimplemented.
   Owner role: Design / engineering / QA. Dependencies: SAVE-01, INPUT-01.
-  Evidence: ../tests/tidewater.test.mjs
+  Evidence: ../tests/tidewater.test.mjs ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [ ] WATER-03 / P1 / implemented / Controller-first dock, recovery and water menus
   Acceptance: X works and Y explicitly boards/docks at low speed. Every water dialog supports B. Saves made in the skiff resume safely at the pier. Original riding speed and controls remain.
@@ -230,9 +230,9 @@ Human exit gate: Fresh players can describe the story and choose a next activity
 
 - [ ] DESIGN-02 / P1 / partial / Connected authored campaign
   Acceptance: Homecoming is the first optional arc. Later chapters need distinct characters, purposeful objectives, debriefs and world consequences.
-  Next: Use first-arc feedback to outline two genuinely different follow-up arcs.
+  Next: Highline and the gated Unsent Call now connect Sal, Ada, the upper reading room and a recovered sender. Review the playable story; South Cable Exchange remains a future chapter, not an implemented district.
   Owner role: Design / engineering. Dependencies: SLICE-04.
-  Evidence: Not recorded.
+  Evidence: ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [ ] DESIGN-03 / P1 / partial / Fair progression and replay
   Acceptance: Credits and cosmetics persist. Duplicate events cannot create repeated rewards. Speed and basic access never require a purchase.
@@ -290,9 +290,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ART-05 / P1 / partial / Stable lighting and reflections
   Acceptance: No camera-driven sun rotation, blown highlights, flickering depth or shimmering shadows. Tone mapping and quality presets retain intended appearance.
-  Next: Coastal Atmosphere adds user-selected daylight, golden hour, rain, after-rain and blue-hour presets with wet-road ripples, leaf light/wind and facade glow. Validate actual shaders and real hardware; live scene reflections, dynamic day/night, interiors and art approval remain open.
+  Next: Currentworks Water/Optics, Trees, Cloudlets and selective Toon now use the host r177 renderer and composed portal hooks. Inspect real eight-mode shader captures and physical stability. Analytic water reflection is not a scene or room mirror.
   Owner role: Art / animation. Dependencies: PERF-02.
-  Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json
+  Evidence: ../ATMOSPHERE.md ; evidence/v0.9.0.json ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
 
 - [ ] ART-06 / P2 / partial / Time of day and weather with purpose
   Acceptance: User-selected daylight, golden-hour, after-rain, rainy and blue-hour visual presets are implemented. A simulated clock, automatically changing weather and weather-driven gameplay remain future work. Preserve readability and real-device frame targets.

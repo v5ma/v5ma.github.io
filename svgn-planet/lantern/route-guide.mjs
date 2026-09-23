@@ -1,6 +1,7 @@
 /* Advisory wayfinding through the existing floors and openings. Never moves
  * actors, unlocks routes, changes missions or stores progress. Gold stays the
  * final objective; cyan identifies a useful next entrance or elevation change. */
+import {ARCHIVE_GUIDE} from './archive.mjs';
 import {HIGHLINE_GUIDE_POINTS} from './highline-layout.mjs';
 import {walls,floors,inside,floorHeight,canal,lineClear} from './core.mjs';
 const point=(label,x,y,z)=>({label,x,y,z});
@@ -59,7 +60,7 @@ function network(s,high){
  const key=String(!!s.gate)+'/'+s.water+'/'+high;if(networks.has(key))return networks.get(key);
  // Ordinary deliveries do not need the upper graph. Deduplicate shared stair
  // endpoints before building the high graph, keeping geometry checks unchanged.
- const points=high?[...new Map([...GUIDE_POINTS,...HIGHLINE_GUIDE_POINTS].map(p=>[[p.x,p.y,p.z].join('/'),p])).values()]:GUIDE_POINTS;
+ const points=high?[...new Map([...GUIDE_POINTS,...HIGHLINE_GUIDE_POINTS,...ARCHIVE_GUIDE].map(p=>[[p.x,p.y,p.z].join('/'),p])).values()]:GUIDE_POINTS;
  const edges=points.map(()=>[]);
  for(let i=0;i<edges.length;i++)for(let j=0;j<edges.length;j++)if(i!==j&&walkLink(s,points[i],points[j]))edges[i].push([j,dist(points[i],points[j])]);
  const result={points,edges};networks.set(key,result);return result;

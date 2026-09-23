@@ -17,7 +17,7 @@ async def main():
   await page.add_init_script(PAD)
   page.on('pageerror',lambda e:report['errors'].append(str(e)))
   async def snapshot():return await page.evaluate('NeighborhoodMissions.inspect()')
-  def ok(text):report['checks'].append(text);print('PASS',text,flush=True)
+  def ok(text):report['checks'].append(text);(OUT/'report.json').write_text(json.dumps(report,indent=2)+'\n');print('PASS',text,flush=True)
   async def frames(n=5):
    before=(await snapshot())['frames'];await page.wait_for_function('(v)=>NeighborhoodMissions.inspect().frames>=v',arg=before+n)
   async def ready():
@@ -40,10 +40,10 @@ async def main():
    }""",[x,z,y]);report.setdefault('landings',[]).append(value)
   async def route(points):
    for pt in points:await walk(*pt)
-  async def interact(stage):
+  async def interact(stage,case='highline'):
    await page.keyboard.press('KeyE');await frames(5)
-   state=(await snapshot())['ward'];assert state['campaign']['progress']['highline']==stage,state
-   ok('Physical objective reached and interacted: stage '+str(stage))
+   state=(await snapshot())['ward'];assert state['campaign']['progress'][case]==stage,state
+   ok('Reached and interacted: '+case+' stage '+str(stage))
   async def ascend(first,second,start,end):
    for i in range(start,end):
     forward=i%2==0;x=first if forward else second
@@ -74,6 +74,18 @@ async def main():
    assert state['credits']==state['city']['credits']==state['watch']['credits']==0
    await page.keyboard.press('KeyE');await frames();assert (await snapshot())['ward']['campaign']['credits']==240
    await page.screenshot(path=str(OUT/'04-homecoming.png'));ok('Homecoming records exactly 240 credits and leaves the original chapter, resident and Watch ledgers unchanged')
+   # Continue only through the real mission board, movement and interactions.
+   await page.click('#pause');await page.click('[data-mission="campaign:unsent"]');await frames()
+   await route([[-12.5,8.2],[-12.5,5.1],[-9.5,4.5,0]]);await interact(1,'unsent')
+   await route([[-9.5,5.1],[-12.5,5.1],[-12.5,-3.7,4.4],[-15,-4.5,4.4]]);await ascend(-15,-10,0,2)
+   await route([[-12.5,-5.05,10.8],[-17.4,-5.05,10.8],[-19.1,-6,10.8]]);await interact(2,'unsent')
+   await route([[-20,-5.05,10.8],[-21.5,-4.6,10.8]]);await interact(3,'unsent');await page.screenshot(path=str(OUT/'05-upper-archive.png'))
+   await route([[-20,-5.05],[-17.4,-5.05],[-12.5,-5.05]]);await descend(-15,-10,2,0)
+   await route([[-6,-3.5,4.4],[6,-3.5,4.4],[12,0,4.4]]);await interact(4,'unsent')
+   state=(await snapshot())['ward'];assert state['campaign']['credits']==360 and 'unsent' in state['campaign']['completed']
+   assert state['credits']==state['city']['credits']==state['watch']['credits']==0
+   await page.keyboard.press('KeyE');await frames();assert (await snapshot())['ward']['campaign']['credits']==360
+   ok('The Unsent Call reaches every real upper-room control and awards only 120 additional credits')
    assert not report['errors'],report['errors'];report['success']=True
   except Exception as exc:
    report.update(success=False,failure=str(exc),traceback=traceback.format_exc());print(report['traceback'],flush=True)

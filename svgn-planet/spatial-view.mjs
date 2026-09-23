@@ -33,6 +33,7 @@ export function spatialView(view,kind){
   if(shown){ // The original screen-space sky is neither per-eye geometry nor passthrough.
    world.traverse(o=>{if(o.name&&/sky/i.test(o.name))o.visible=false;});
   }
+  if(kind==='ward'&&view.updateEnvironment){const eye=new T.Vector3().setFromMatrixPosition(view.renderer.xr.getCamera().matrixWorld);view.updateEnvironment(state,{viewer:eye.toArray(),xr:true,ar:mode.ar});}
   if(kind==='ward'&&!mode.first){const cam=view.renderer.xr.getCamera();const eye=new T.Vector3().setFromMatrixPosition(cam.matrixWorld);view.cutaway(state,world.worldToLocal(eye));}
  }
  return {view,world,restore,present,setOpening(v){if(!['top','front','both'].includes(v))throw Error('At least one aperture must remain open');opening=v;},

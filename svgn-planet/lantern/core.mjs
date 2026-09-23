@@ -1,3 +1,4 @@
+import {ARCHIVE_FLOORS,ARCHIVE_WALLS,archiveDoor} from './archive.mjs';
 import {HIGHLINE_FLOORS,HIGHLINE_WALLS,HIGHLINE_MAX_Y} from './highline-layout.mjs';
 import {freshWatch,parseWatch,watchRuntime,watchAction,advanceWatch,watchBlocks} from './watch.mjs';
 import {freshCampaign,parseCampaign,campaignState,campaignRuntime,campaignAction,campaignInteract,advanceCampaign,campaignBlocks,campaignCanGlide} from './campaign.mjs';
@@ -62,7 +63,7 @@ for(const id of ['market-stall','market-north','quiet-garden']){
   {...b,id:id+'-right',x:b.x+b.w/2-t/2,w:t});
  floors.push({id:id+'-roof',x:b.x,z:b.z,w:b.w,d:b.d,y:b.h});
 }
-floors.push(...HIGHLINE_FLOORS);walls.push(...HIGHLINE_WALLS);
+floors.push(...HIGHLINE_FLOORS,...ARCHIVE_FLOORS);walls.push(...HIGHLINE_WALLS.flatMap(archiveDoor),...ARCHIVE_WALLS);
 export const places=[
  {id:'depot',name:'DEPOT',x:-12,z:15,y:0},
  {id:'arcade',name:'MARKET ARCADE',x:-20,z:-9,y:0},

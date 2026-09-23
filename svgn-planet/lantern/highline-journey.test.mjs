@@ -5,7 +5,7 @@ import {trackCampaign,campaignRuntime,campaignTarget,campaignCanGlide} from './c
 import {highlineRestored,HIGHLINE_TOWERS} from './highline-layout.mjs';
 // This journey starts fresh, writes no actor/mission/health coordinates, and uses
 // the same tick/action/tracking functions invoked by the public input adapter.
-export function playHighline({glide=false}={}){
+export function playHighline({glide=false,archive=false}={}){
  const s=fresh();let inputs=0,maxY=0;const steps=[];
  const step=(input={},n=1)=>{for(let i=0;i<n;i++){tick(s,input,1/60);inputs++;maxY=Math.max(maxY,s.y);}};
  function walk(x,z,y){for(let i=0;i<3500;i++){const dx=x-s.x,dz=z-s.z,d=Math.hypot(dx,dz);step({x:d>.12?dx/(d||1):0,z:d>.12?dz/(d||1):0,brake:d<=.12});if(d<.17&&s.speed<.03){if(y!==undefined)assert.ok(Math.abs(s.y-y)<.2,'Height at '+[x,z]+': '+s.y+' expected '+y);return;}}throw Error('Blocked '+JSON.stringify({to:[x,y,z],at:[s.x,s.y,s.z],message:s.message}));}
@@ -28,7 +28,19 @@ export function playHighline({glide=false}={}){
  interact();route([[12,-3.5],[6,-3.5],[-6,-3.5],[-12.5,-3.7],[-12.5,5.1,0],[-12.5,8.2],[-10,14,0]]);interact();
  assert.ok(s.campaign.completed.includes('highline'));assert.equal(s.campaign.credits,240);assert.equal(s.credits,0);assert.equal(s.watch.credits,0);assert.equal(s.city.credits,0);assert.equal(s.watch.stage,0);assert.equal(s.campaign.progress.flight,undefined);
  const loaded=parse(serialize(s));assert.equal(loaded.campaign.credits,240);action(s,'interact');assert.equal(s.campaign.credits,240);assert.equal(steps.length,6);
+ if(archive){
+  trackCampaign(s,'unsent');route([[-12.5,8.2],[-12.5,5.1],[-9.5,4.5,0]]);interact();
+  route([[-9.5,5.1],[-12.5,5.1],[-12.5,-3.7,4.4],[-15,-4.5,4.4]]);ascend(print,0,2);
+  route([[-12.5,-5.05,10.8],[-17.4,-5.05,10.8],[-19.1,-6,10.8]]);interact();assert.equal(s.campaign.progress.unsent,2);
+  route([[-20,-5.05,10.8],[-21.5,-4.6,10.8]]);interact();assert.match(s.message,/South Cable Exchange/);
+  route([[-20,-5.05],[-17.4,-5.05],[-12.5,-5.05]]);descend(print,2,0);
+  route([[-6,-3.5,4.4],[6,-3.5,4.4],[12,0,4.4]]);interact();
+  assert.equal(s.campaign.credits,360);assert.ok(s.campaign.completed.includes('unsent'));assert.equal(s.watch.stage,0);assert.equal(s.credits,0);
+  assert.equal(parse(serialize(s)).campaign.credits,360);action(s,'interact');assert.equal(s.campaign.credits,360);
+ }
  return {inputs,maxY,steps,credits:s.campaign.credits,glideSeconds:glide?'>2':0,physicalDevicesTested:false};
 }
 test('Fresh input-only Highline: all stairs, both towers, upper bypass and homecoming',()=>console.log(JSON.stringify(playHighline())));
 test('Fresh input-only Highline: real 23.6 m hop/glide/release return to 17.2 m roof',()=>console.log(JSON.stringify(playHighline({glide:true}))));
+
+test("Fresh input-only Highline followed by The Unsent Call visits every real archive station",()=>console.log(JSON.stringify(playHighline({archive:true}))));
