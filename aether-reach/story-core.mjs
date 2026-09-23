@@ -1,3 +1,4 @@
+import {focusedTask} from './objective-focus.mjs';
 /* Public story presentation. Only reads the existing expedition/relay/archive
  * state. Reading, replaying, or loading a chapter never grants game progress. */
 import {TASKS} from './expedition-world.mjs';
@@ -28,8 +29,8 @@ const entry=(id,title,text,notice='')=>({id,title,text,notice});
 const has=(s,id)=>s.expedition?.flags?.includes(id)===true;
 
 export function storyAssignment(s){
- const task=TASKS.find(t=>t.id===s.expedition?.tracked);
- if(task&&has(s,task.flag))return entry('assignment','Your next chapter',task.name+' is complete. '+storyPurpose(task.id)+' Open Adventures to choose another assignment. The Silent Network relay expedition also remains available.');
+ const selected=TASKS.find(t=>t.id===s.expedition?.tracked),task=focusedTask(s);
+ if(selected&&has(s,selected.flag))return entry('assignment','Your next chapter',selected.name+' is complete. '+(task?'Next suggested assignment: '+task.name+'. '+storyPurpose(task.id)+' The live map marks its destination. Open Adventures to choose a different task.':'All adventures are complete. Explore freely; the Silent Network relay expedition also remains available.'));
  if(!has(s,'dispatch-started')&&s.expedition?.tracked==='dispatch')return entry('assignment','Your first dispatch',STORY_OPENING+" Walk to Iona's noticeboard on Arrival Quay, ahead and right of your arrival point. Use it when its name appears. Your starter equipment is enough; no purchase is needed.");
  if(task)return entry('assignment','Why this assignment matters',task.name+'. '+storyPurpose(task.id)+' '+task.description+' The live map and What do I do? show the current action and destination.');
  return entry('assignment','The city needs a courier',STORY_OPENING+' Your live map marks the next destination. Open Adventures to choose a task.');

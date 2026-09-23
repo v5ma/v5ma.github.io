@@ -42,6 +42,7 @@ with sync_playwright() as pw:
  try:
   url=os.getenv('TEST_BASE_URL','http://127.0.0.1:4173')+'/aether-reach/'
   p.goto(url);p.wait_for_function('!!window.AetherReach');p.locator('#settings-button').click();p.locator('#visual-quality').select_option('low');p.locator('#sound').uncheck();p.locator('#sound').check();check(not errors,'Sound can be re-enabled without the old undefined-function error');p.locator('#settings-dialog form button').click()
+  p.locator('#start-field-guide').click();check('press E' in p.locator('#field-guide-copy').inner_text() and 'Right grip' not in p.locator('#field-guide-copy').inner_text(),'Keyboard title help uses E before any XR session');p.locator('#field-guide-back').click()
   p.locator('#presentation-button').click();p.locator('#xr-presentation').select_option('diorama-ar');p.locator('#presentation-back').click();p.locator('#enter-vr').click();p.wait_for_function('AetherReach.snapshot().devices.xr');frames(5)
   g=guide();s=snap();version=json.loads((ROOT/'aether-reach/release.json').read_text())['version']
   check(p.evaluate('AetherReach.version')==version,'Actual application is the requested Field Guide revision')

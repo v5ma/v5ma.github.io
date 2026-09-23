@@ -1,3 +1,9 @@
+# Current continuation: Field Focus 0.17.1
+
+Read FIELD-FOCUS.md and the exact release receipt before continuing. Objective reminders now use the real focused target with character-relative direction and elevation. Help uses keyboard E, the saved active gamepad use binding or Right grip in tracked XR. Completed saved tasks resolve to an unfinished presentation suggestion without save writes/rewards. The existing Bellwether upper galleries guide forward to the receiver instead of back down to the street ladder. Currentworks, story, combat, controls and all existing world geometry remain.
+
+Reviewed master 7518b8e007bb0debdd474f8ff25fbfa41dd3d69f retained the accepted 0.17.0 Aether tree. Local 381-test results are not new browser/public/hardware approval. Use the unchanged native/public/archive workflows; their actual results belong in release-receipts/aether-v0.17.1-20260922.json. Preserve all concurrent changes and the prior negative/partial evidence. Next is owner playtesting of the integrated arrival-to-Bellwether guidance, not another prototype island.
+
 # Current continuation: Currentworks City 0.17.0
 
 Read CURRENTWORKS-CITY.md and FUTURE-DIRECTION.md first. The owner requested the Prism environment library alongside the retained 0.16 story. Four pinned upstream modules decorate existing water, twelve Bellwether/Garden planters and six off-route cloud formations with one r177 renderer. No world, save, control, damage or story-progress replacement. The prior c4b9 story source completed all seven suites in run 35780975207; new native/public/archive results belong to the new exact-source receipt. Physical acceptance remains open.

@@ -43,6 +43,9 @@ with sync_playwright() as pw:
   raise AssertionError('Drive timed out '+str(target)+' at '+str(snap()['position']))
  try:
   p.goto(BASE+'/aether-reach/index.html',wait_until='domcontentloaded');p.wait_for_function('!!window.AetherReach');p.evaluate('TestPad.connect()');frames();tap(0);check(snap()['playing'],'A starts without mouse capture or pointer-lock permission')
+  tap(12);check(not snap()['paused'] and snap()['navigation']['name'] in p.locator('#crosswind-nav').inner_text(),'Objective reminder shows the actual tracked destination without opening a menu')
+  check('Bearing only' in p.locator('#crosswind-nav').inner_text(),'Objective reminder distinguishes a bearing from an obstacle-free route')
+  tap(9);choose('#pause-field-guide');check('press X' in p.locator('#field-guide-copy').inner_text() and 'Right grip' not in p.locator('#field-guide-copy').inner_text(),'Desktop controller help uses the current X interaction rather than a Quest grip');tap(1);tap(1)
   tap(9);choose('#pause-story');check(snap()['devices']['menu']=='story-dialog','Xbox Menu navigation reaches Story without a new gameplay binding')
   check('engineer-courier' in p.locator('#story-copy').inner_text(),'The opening identifies the player role inside the actual game')
   choose('#story-next-page');check('noticeboard' in p.locator('#story-copy').inner_text(),'Xbox A advances readable story text to the first task')

@@ -1,4 +1,5 @@
 /* Read-only help and real-time notices. No progression or expedition storage. */
+import {stripUsePrefix} from './objective-focus.mjs';
 import {goalGuide} from './goal-guide.mjs';
 import {BELL_TASK,bellProgress} from './bellwether-world.mjs';
 export const NOTICE_MS=2000;
@@ -27,13 +28,14 @@ export function readingPages(text,limit=260){
 export function fieldGuidance(s,near,use='Right grip'){
  const goal=goalGuide(s),p=s.p;let step='Follow the gold diamond. It marks a destination, not a route through walls.';
  if(goal?.id==='dispatch-board')step="Walk to Iona's noticeboard on Arrival Quay. When its name appears below, press "+use+" to take the dispatch. No weapon purchase is needed.";
- if(s.expedition.tracked==='dispatch'&&s.expedition.flags.includes('dispatch-started'))step='Take the dispatch west across the long stair to Bellwether Market. Use its notice office to deliver it.';
- if(s.expedition.tracked===BELL_TASK.id)step=bellProgress(s)+'. '+(s.bellwether.stage===2?'Turn the three Arcade dials to 2, 1, 3, then use Test.':s.bellwether.stage===3?'The service ascent is a walking route; rails are optional.':s.bellwether.stage===4?'Use the windbreak for shelter. The east gallery is a retreat, not a reset.':'Follow the gold destination; use the named desk or mechanism when close.');
+ if(goal?.taskId==='dispatch'&&s.expedition.flags.includes('dispatch-started'))step='Take the dispatch west across the long stair to Bellwether Market. Use its notice office to deliver it.';
+ if(goal?.taskId===BELL_TASK.id)step=bellProgress(s)+'. '+(s.bellwether.stage===2?'Turn the three Arcade dials to 2, 1, 3, then use Test.':s.bellwether.stage===3?'The service ascent is a walking route; rails are optional.':s.bellwether.stage===4?'Use the windbreak for shelter. The east gallery is a retreat, not a reset.':'Follow the gold destination; use the named desk or mechanism when close.');
+ if(!goal)step='All adventures are complete. Explore freely; the Silent Network relay expedition remains available.';
  if(p.climb)step='Left stick up/down climbs. A jumps clear. Continue to the landing before stepping away.';
  else if(p.rail)step='Left stick controls speed and braking. A releases the rail. The map still follows your real position.';
  else if(p.ride)step='Stay aboard to reach the landing. A jumps clear; the map follows this crossing.';
  else if(p.gliding)step='Left stick steers and brakes the Foldwing. Look for a landing or rail. Touch A folds it; Xbox B folds it.';
- let interaction=String(near?.label||'').replace(/^(?:X\s*\/\s*)?E\s*(?:[.:\-]|\u00b7)?\s*/i,'').replace(/^X\s*\/\s*E\s*-?\s*/i,'');
+ let interaction=stripUsePrefix(near?.label);
  if(near?.type==='rail'||near?.type==='exp-ride')interaction='';
  const locked=near?.type==='exit'&&s.relays.size<3;
  return {goal,step,interaction:locked?'Broadcast console: for later, after restoring three relays. Follow NEXT.':interaction?use+' / '+interaction:'Move closer to a named object to interact.',interactionId:near?.id||null,canInteract:!!interaction&&!locked,use};

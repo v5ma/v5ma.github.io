@@ -1,0 +1,23 @@
+# Field Focus 0.17.1
+
+This is an observation-led guidance repair within the existing story and Currentworks city, mapped to X12, V03 and R03/R04. It is not another district, new locomotion or a replacement interface. The reviewed master was 7518b8e007bb0debdd474f8ff25fbfa41dd3d69f. Its complete Aether subtree and native workflow matched the accepted 5c34a62624c103a179ed7c94dddb2fd5fbb5df3a release. Preserve newer sibling commits when integrating.
+
+## Player changes
+
+The existing objective reminder (default Xbox D-pad Up / keyboard N) now names the actual focused destination, its direction relative to the courier, distance and elevation. It no longer promises a projected route that does not exist, nor substitutes a generic relay instruction for the tracked adventure. The five-second reminder uses the same destination as the gold beacon, atlas, floor guide and journal. In XR its notice follows the existing two-second floor-message/history path. Direction is relative to the character, not the viewer's head or a free diorama camera.
+
+Desktop What do I do? uses E for keyboard and the actual saved use/reload binding for an active Xbox-compatible controller. Touch-controller XR retains Right grip; a standard controller inside XR uses its saved binding. Merely plugging in an unused controller does not replace keyboard prompts. Mixed X / E labels are normalized before showing a remapped mechanism action. The prefix parser requires an actual key separator, so ordinary names such as East gallery and Elevator landing do not lose their first letter. Ladder prompts with E / are also normalized.
+
+A completed saved task, especially Bellwether's separate reward path, no longer traps the destination marker at a finished desk. Presentation suggests the first unfinished task in the existing journal order. An unfinished task deliberately chosen by the player is never overridden. The journal marks a fallback as NEXT SUGGESTED and the story reader names it; this does not rewrite the saved tracked ID, invent completion, or repay credits. All-adventures-complete removes the stale marker and leaves free exploration and the separate Silent Network expedition available.
+
+Once the courier is on Bellwether's 12/17/22-meter maintenance galleries, the destination follows the existing authored upper walkway points toward the receiver instead of sending them back down to the street ladder. This includes the gallery recovery during the receiver encounter. The original ground-level south ladder remains a supported alternative; receiver, circuit prerequisites, enemies, six-second hold and reward are unchanged. This is a local authored route hint, not a navmesh or a promise that arbitrary off-route bearings are walkable.
+
+## Evidence and boundaries
+
+Twenty-one new isolated tests cover eight rotated bearing sectors, vertical targets, every completed task, all-complete exploration, read-only saves/events, keyboard/pad/XR bindings, mixed-prefix handling and the original walking gallery. The gallery fixture advances through ordinary model movement with the starter kit; initial fixture placement is not a browser gameplay completion claim. The first prefix test caught East becoming ast; the fixed delimiter rule passes the same assertion without weakening it.
+
+The full local suite passes 381 Node tests. Existing native controller and field-guide journeys add actual-input checks for keyboard E, Xbox X and the correct nonmodal objective reminder, retaining all old story, combat, remap, movement, graphics and save assertions. Local Chromium navigation returned ERR_BLOCKED_BY_ADMINISTRATOR; this is recorded as blocked, not passed or bypassed. The existing seven-suite native, hosted-file and source-backup workflows must validate the new exact commit. The release receipt, rather than this design document, establishes their final outcomes.
+
+All Currentworks snapshots and graphics remain unchanged. Preserve story chapters, version-1 saves, equipment/rewards, controller mappings and rearming, current-step diorama shooting, full-depth aperture, floor rotunda, hand menus, original tracked first-person VR and every sibling project. No new menu, input binding, engine, render pass or workflow is introduced. Physical Quest/Xbox appearance, comfort, performance and unfamiliar-player comprehension remain unverified.
+
+Next: play the actual arrival-to-Bellwether loop with the revised cues. Inspect small/large window legibility and controller-remapped use text before adding more content. Remaining desktop HUD crowding and longer-term character/dialogue work are not claimed fixed by this pass. Roll back only these Aether paths with a forward commit; never reset master or clear browser storage.
