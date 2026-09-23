@@ -1,28 +1,29 @@
 {
   "version": "0.29.0",
   "build": "sky-cycle-currentworks-2026.09.22",
-  "status": "public-bytes-verified-live-journeys-running",
+  "status": "published-software-verified",
   "runtime_source": "9bf2dc51ca112e780af3ae78c9ea06a9aa6b28d7",
   "library_source": "c31dd6c56a101aec7c8a890768ae1f845494b294",
-  "reviewed_master": "8174b7e793e87e45264fe3565b030ef03a17b169",
-  "source_comparison": "Only CURRENTWORKS-0.29.md differs under Sky Cycle since the tested runtime; intervening sibling work remains untouched.",
-  "scope": "Pinned Cloudlets, Islands and Toon library modules in the existing straight/curved 3D Waterwheel previews. No replacement game, engine, input or save owner.",
+  "initial_receipt": "currentworks-0.29-initial.json",
+  "durable_notes_checkpoint": "440aff9e871b8548b1604ce3c3d65e2caf1fa847",
+  "scope": "Pinned original Cloudlets 0.1.0, Islands 0.1.0 and Toon 0.1.0 modules in the existing straight/curved 3D Waterwheel previews. The original simulation, controls and saves remain authoritative.",
+  "completed_run": {"id":35805334087,"attempt":3,"status":"completed","conclusion":"success","completed_utc":"2026-09-23T04:13:02Z","note":"Successful source jobs and successful retried publication/public dependents belong to the same runtime source. Earlier failed public attempts remain recorded. Not every suite artifact was downloaded or visually reviewed during recovery."},
   "source_acceptance": {
-    "run": 35805334087,
     "game_rules": 446,
     "original_soundtrack_rules": 12,
     "source_artifact": 10727452697,
     "source_artifact_sha256": "6ef6079d097b8e90106b44e42295fd82dfb8869e1b11f50d1bf9fc11704c3644",
     "downloaded_source_identity_and_digest_verified": true,
+    "same_downloaded_source_local_rerun": {"game_passed":446,"soundtrack_passed":12,"failed":0},
     "native_currentworks": [
-      {"mode":"ar","artifact":10727824147,"sha256":"fb4d876efb409c4e6249715ce8df66713c17e3337ae59bab493443b35e158289","passed":true,"checks":23},
-      {"mode":"vr","artifact":10727599178,"sha256":"4aeca29b041e6b2201927875431ff16bcd41f41bd4eec20d8d1dc9806ddf036a","passed":true,"checks":23}
+      {"mode":"ar","artifact":10727824147,"sha256":"fb4d876efb409c4e6249715ce8df66713c17e3337ae59bab493443b35e158289","passed":true,"checks":23,"source":"9bf2dc51ca112e780af3ae78c9ea06a9aa6b28d7"},
+      {"mode":"vr","artifact":10727599178,"sha256":"4aeca29b041e6b2201927875431ff16bcd41f41bd4eec20d8d1dc9806ddf036a","passed":true,"checks":23,"source":"9bf2dc51ca112e780af3ae78c9ea06a9aa6b28d7"}
     ],
     "native_report_identities_and_digests_verified": true,
     "native_game_images_reviewed": 8,
     "independent_gpu_fixture_images_reviewed": 2,
-    "native_errors": [],
-    "scope_note": "Actual renderer, trigger-driven paper delivery, both depth lobes, reversal, pausable and quiet motion, head-independent curve/aperture, 2D cleanup, 3D rebuild, hand menus, unchanged Workshop document and protected saves. Tracking is emulated. Other source regression jobs report success; not all their artifacts have been downloaded or reviewed in this recovery."
+    "page_errors": [],
+    "console_errors": []
   },
   "publication": {
     "passed": true,
@@ -33,17 +34,40 @@
     "sha256": "743fe3db6e7ca25c7227ab3972814416cbebae5dba666f9a87b5a8d9d952f111",
     "verified_utc": "2026-09-23T03:59:39Z",
     "runtime_files": 45,
+    "polls": 1,
     "every_expected_and_actual_hash_compared_to_downloaded_source": true,
-    "direct_web_probe": "Unavailable; the downloaded hosted public-origin response hashes establish publication instead."
+    "proof": "Downloaded hosted public-origin HTTP response hashes match all 45 exact committed runtime files. Not inferred from the source manifest or version label.",
+    "direct_web_probe": "Unavailable in this recovery environment; the actual hosted public-origin response and browser reports provide the independent evidence."
   },
-  "public_journeys": {"state":"running","run":35805334087,"attempt":3,"currentworks_ar_job":107039080900,"currentworks_vr_job":107039080910,"no_pass_inferred":true},
+  "public_journeys": {
+    "passed": true,
+    "run": 35805334087,
+    "attempt": 3,
+    "checks_total": 46,
+    "jobs": [
+      {"mode":"ar","job":107039080900,"artifact":10731749390,"sha256":"9cfa75baf6a7438c4b3342b17d754d275cc69121f52715fbd972745306b64adf","passed":true,"checks":23,"origin":"https://v5ma.github.io","source":"9bf2dc51ca112e780af3ae78c9ea06a9aa6b28d7"},
+      {"mode":"vr","job":107039080910,"artifact":10732156819,"sha256":"7172d70c33738999bf64d313797d468c5438900293dcd4e883ae884577fcad86","passed":true,"checks":23,"origin":"https://v5ma.github.io","source":"9bf2dc51ca112e780af3ae78c9ea06a9aa6b28d7"}
+    ],
+    "report_source_origin_and_zip_digests_verified": true,
+    "public_game_images_reviewed": 8,
+    "public_independent_gpu_fixture_images_reviewed": 2,
+    "page_errors": [],
+    "console_errors": [],
+    "coverage": "Actual pinned library geometry and original game renderer, genuine right-trigger paper delivery through the curved market, both depth lobes, reverse travel, head-independent geometry/aperture, pausable and quiet motion, 2D resource release, clean 3D rebuild, hand menus, unchanged Workshop document, XR exit, original remap/storage fixtures and all eight campaign builders. Separate GPU fixture is identified, not substituted for gameplay.",
+    "physical_device_approval": false,
+    "complete_curved_xr_chapter_finish": false,
+    "complete_video_review": false
+  },
+  "visual_findings": "Unobstructed playing captures show mesh clouds and garden landmarks behind the actual road/porch and preserve the rider and mailbox view. Existing VR sky-backdrop edges and long controller-ray clutter still deserve a dedicated composition/device pass. AR captures contain transparency, not actual room-camera imagery. No claim of universal visibility, human comfort or physical passthrough qualification.",
   "retained_public_failures": [
     {"attempt":1,"artifact":10727494486,"sha256":"a970c817058ef0184ca4ab62dc42e6519b901ffb06b1bfe2ed9cde2d654d4964"},
-    {"attempt":2,"job":107008832431,"artifact":10728362101,"sha256":"52b8ec5b034378b73cfeaa22b258847052edb44c4b3d718e9cc9b5fa31d6d41e","matched":36,"required":45,"polls":60,"reason":"Public bytes still differed from accepted source; this failure was not relabelled as a pass."}
+    {"attempt":2,"job":107008832431,"artifact":10728362101,"sha256":"52b8ec5b034378b73cfeaa22b258847052edb44c4b3d718e9cc9b5fa31d6d41e","matched":36,"required":45,"polls":60,"downloaded_report_and_digest_verified":true,"nonmatching_files":["currentworks-environment.mjs","currentworks-core.mjs","vendor/currentworks/toon.js","vendor/currentworks/cloudlets.js","vendor/currentworks/islands.js","release.json","release-status.js","sw.js","waterwheel-preview.js"],"resolution":"Rerun only the existing failed public job after current-master publication. No game or test assertion was changed to produce the later 45-file match."}
   ],
   "preservation": {"official_campaigns":8,"physics_changed":false,"input_remap":false,"new_save_key":false,"storage_cleared":false,"workshop_non_awarding":true,"new_renderer":false,"new_loop":false,"new_framework":false,"sibling_library_modified":false,"private_hub_uploaded":false,"new_pr":false,"new_branch":false,"new_workflow":false},
   "not_included": ["Water, Fire and Trees shader ports","Grass or later Flex Surface module","Rotunda or private hub integration","New rideable islands","Completed high-to-high whip route"],
-  "entry": "Routes / Waterwheel r2 design preview / Ride curved 2.5D layout; AR / VR; enter chosen mode; Resume play. Use non-Classic material treatment.",
-  "next": "Inspect the existing public Currentworks AR/VR reports and capture review, then update RESUME-HERE.md and FUTURE-DIRECTION.md. Do not rebuild already integrated modules.",
-  "open_gates": ["Public Currentworks replay results","Physical Quest/Xbox","Actual passthrough and headset readability/comfort","Full curved XR chapter traversal","Sustained frame-time and large edited-geometry measurements"]
+  "entry": "Routes / Waterwheel r2 design preview / Ride curved 2.5D layout; AR / VR; enter chosen mode; Resume play. Choose Prismatic or Crystal+ material treatment rather than Classic.",
+  "next": "Physical Quest feedback on curved sightlines and garden/receiver distinction, then the planned optional high-to-high whip continuation with non-whip recovery. Preserve the existing lower delivery return and every current input/save contract.",
+  "future_direction": "../FUTURE-DIRECTION.md",
+  "handoff": "../RESUME-HERE.md",
+  "open_gates": ["Physical Quest/Xbox","Actual passthrough and headset readability/comfort","Full curved XR chapter traversal","Sustained frame-time and large edited-geometry measurements","VR backdrop-edge and controller-ray composition polish"]
 }
