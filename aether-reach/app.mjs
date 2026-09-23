@@ -13,7 +13,7 @@ import {ROOFS,LADDERS} from './rooftop-world.mjs';
 import {createModalHost} from './ui-navigation.mjs';
 import {cleanControllerProfile} from './controller-profile.mjs';
 import {installExpeditionUI} from './expedition-ui.mjs';
-import {expeditionSnapshot,expeditionGoal} from './expedition-core.mjs';
+import {expeditionSnapshot} from './expedition-core.mjs';
 import {TRANSIT,POSTS,TASKS} from './expedition-world.mjs';
 import {installVisualSettings} from './visual-settings.mjs';
 import {VERSION,DISTRICTS,BRIDGES,RAILS,RELAYS,RECORDS,EXTRACTION,createState,saveState,readSave,step,interact,nearby,fire,pulse,jump,reverseRail,rescue,forward,clamp,distance,pointOnRail} from './model.mjs';
@@ -74,7 +74,6 @@ function map(){const c=$('map'),g=c.getContext('2d'),w=c.width,h=c.height,points
  for(const d of DISTRICTS){g.fillStyle=state.relays.has(d.id)?'#467a70':'#2d5862';g.strokeStyle='#91b3a0';g.lineWidth=2;g.fillRect(X(d.x-d.w/2),Z(d.z-d.d/2),d.w*scale,d.d*scale);g.strokeRect(X(d.x-d.w/2),Z(d.z-d.d/2),d.w*scale,d.d*scale);g.fillStyle='#f8e6b8';g.font='bold 11px Arial';g.textAlign='center';g.fillText(d.name,X(d.x),Z(d.z+d.d/2)+20);}
  const colors=['#e1bc75','#c8996c','#89c7ba','#96b7d3','#d8d2ad'];RAILS.forEach((r,i)=>{g.strokeStyle=colors[i%colors.length];g.lineWidth=2.5;g.beginPath();r.pts.forEach((p,k)=>k?g.lineTo(X(p.x),Z(p.z)):g.moveTo(X(p.x),Z(p.z)));g.stroke();for(const p of [r.pts[0],r.pts.at(-1)]){g.fillStyle=colors[i%colors.length];g.beginPath();g.arc(X(p.x),Z(p.z),4,0,7);g.fill();}});
  for(const r of TRANSIT){g.strokeStyle='#84d7cc';g.setLineDash([4,4]);g.lineWidth=2;g.beginPath();r.points.forEach((p,i)=>i?g.lineTo(X(p[0]),Z(p[2])):g.moveTo(X(p[0]),Z(p[2])));g.stroke();g.setLineDash([]);for(const p of[r.a,r.b]){g.strokeRect(X(p.x)-4,Z(p.z)-4,8,8);}}
- const goal=expeditionGoal(state);if(goal){g.save();g.translate(X(goal.x),Z(goal.z));g.rotate(Math.PI/4);g.strokeStyle='#ffe4a0';g.lineWidth=2.5;g.strokeRect(-7,-7,14,14);g.restore();}
  for(const r of ROOFS){g.strokeStyle='#d6acfb';g.lineWidth=2;g.strokeRect(X(r.x-r.w/2),Z(r.z-r.d/2),r.w*scale,r.d*scale);g.fillStyle='#efd6ff';g.font='bold 11px Arial';g.fillText('ROOF '+r.y+'m',X(r.x),Z(r.z));}for(const r of LADDERS){const p=r.points[0];g.fillStyle='#f5c97b';g.fillText('H',X(p[0]),Z(p[2]));}
  for(const post of POSTS){g.fillStyle='#b8e0c9';g.font='bold 11px Arial';g.fillText('+',X(post.x),Z(post.z));}
  for(const r of RELAYS){g.fillStyle=state.relays.has(r.id)?'#a1efc4':'#ffdf95';g.beginPath();g.arc(X(r.x),Z(r.z),6,0,7);g.fill();}for(const r of RECORDS){g.fillStyle=state.records.has(r.id)?'#69837d':'#ddf1e1';g.fillRect(X(r.x)-3,Z(r.z)-3,6,6);}
