@@ -82,6 +82,8 @@ with sync_playwright() as pw:
   choose('#story-chapters');check(snap()['devices']['menu']=='story-index-dialog','Hand UI reaches a direct chapter index')
   check(p.locator('[data-story-id="dispatch-taken"]').count()==1 and p.locator('[data-story-id="dispatch-delivered"]').count()==0,'Only the accepted dispatch is unlocked, not its unearned delivery ending')
   choose('[data-story-id="dispatch-taken"]');check(snap()['devices']['menu']=='story-dialog' and 'IONA:' in p.locator('#story-copy').inner_text(),'Selecting an earned chapter returns to its actual readable text')
+  cw=snap()['renderer']['currentworks'];check(cw['ready'] and cw['active'] and not cw['error'],'Currentworks is prepared and active in the actual AR story journey');check(cw['xr'] and all(w['quality']=='light' for w in cw['water']),'AR uses bounded water detail with the same gameplay state');
+  before_cw=cw['time'];frames(3);check(snap()['renderer']['currentworks']['time']==before_cw,'Reading the story pauses Currentworks decorative time as well as gameplay');
   drawn=work()['panelDraws'];frames(2);check(work()['panelDraws']>drawn,'Story text panel is actually drawn in the stereo eye views, not only present in the DOM')
   capture('story-dispatch-hand-canvas.png')
   first=p.locator('#story-copy').inner_text();choose('#story-next-page');check(p.locator('#story-copy').inner_text()!=first,'Hand-operated text pagination reveals the remainder of the narrative')

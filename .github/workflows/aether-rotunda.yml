@@ -62,7 +62,7 @@ jobs:
             field-guide) python -u aether-reach/tests/field-guide-browser.py ;;
             window) python -u aether-reach/tests/window-browser.py ;;
             portal) python -u aether-reach/tests/portal-browser.py ;;
-            render) python -u aether-reach/tests/portal-render-browser.py ;;
+            render) python -u aether-reach/tests/portal-render-browser.py; python -u aether-reach/tests/currentworks-render-browser.py ;;
             grounded) python -u aether-reach/tests/grounded-browser.py ;;
             controller) python -u aether-reach/tests/controller-journey.py ;;
           esac

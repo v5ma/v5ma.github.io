@@ -1,6 +1,6 @@
 # Aether Reach: current AAA-quality production checklist
 
-Current plan: 0.16.0 A City With a Voice. Updated 2026-09-22.
+Current plan: 0.17.0 Currentworks City. Updated 2026-09-22.
 
 AAA-quality is a production target, not a certification or a percentage inferred from task counts. Software implementation, browser validation, publication, player approval and physical hardware acceptance are separate. Local board edits never publish the game.
 
@@ -329,8 +329,8 @@ Next: Retain Grounded Cast and the courier diorama instance. Authored first-pers
 ### P03 - Architectural materials and lighting
 State: In review. Priority: P1. Dependencies: P01.
 Acceptance: Consistent scale, trim/material library, wear, foliage, interior lighting and readable cover silhouettes across the slice.
-Evidence: v0.10 adds original spectral rift and cloud-light shaders without extra render passes. City-wide architectural polish remains incomplete.
-Next: Review scene consistency and measure the Balanced, Light and immersive performance budgets on real hardware.
+Evidence: v0.10 adds original spectral rift and cloud-light shaders without extra render passes. City-wide architectural polish remains incomplete. Currentworks City integrates pinned library Water, Trees, Cloudlets and Toon on the existing Aether r177 renderer; see CURRENTWORKS-CITY.md and the exact-source release receipt. Prior game collision, story and controls are unchanged.
+Next: Assess the combined arrival/Bellwether story and new decoration, including foliage sightlines, water hazard cues and aperture clipping. Physical performance and visual approval remain separate.
 
 ### P04 - Music, effects and mix acceptance
 State: In review. Priority: P0. Dependencies: W02.
@@ -372,7 +372,7 @@ Next: Maintain a defect severity register and require evidence before advancing.
 State: In review. Priority: P0. Dependencies: R01, Q03.
 Acceptance: Commit intended game files, run regression/browser checks, merge without touching unrelated games, then verify live bytes against that commit.
 Evidence: v0.12.0 is released at a6d0e27d349fc69c011a5130b7dff1b6da9f8af2 with durable receipt release-receipts/aether-v0.12.0-20260915.json. v0.13 gates include a seventh native windbreak journey and separate served-byte verification.
-Next: Read the post-merge aether-publication receipt and immutable source backup. Never equate a passing branch with live publication.
+Next: Verify 0.17.0 source/browser checks, complete served runtime hashes and versioned backup roundtrip. Maintain failures and hardware limitations in the beside-game handoff and FUTURE-DIRECTION.md.
 
 ### V01 - Bellwether place-mastery chapter replacement
 State: In review. Priority: P0. Dependencies: W01, F02, I04.

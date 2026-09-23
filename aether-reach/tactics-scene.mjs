@@ -22,5 +22,5 @@ export function tacticsScene(T,{scene,camera,part,box,label,material,movingPart}
   gauntlet.visible=!menu&&!xr&&t.learned&&t.power!=='pulse'&&!s.p.rail&&!s.p.scoped;palm.material.color.set(POWERS[t.power].color);palm.scale.setScalar(.065*(t.flash>0?1.9:1));gauntlet.rotation.x=t.flash*.6;
   for(const f of fx){if(f.ttl<=0)continue;f.ttl=Math.max(0,f.ttl-dt);f.m.visible=f.ttl>0;f.m.material.opacity=f.ttl/.25;}
  }
- return {effect,update};
+ return {effect,update,patches};
 }

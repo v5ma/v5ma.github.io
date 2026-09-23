@@ -1,3 +1,9 @@
+# Current continuation: Currentworks City 0.17.0
+
+Read CURRENTWORKS-CITY.md and FUTURE-DIRECTION.md first. The owner requested the Prism environment library alongside the retained 0.16 story. Four pinned upstream modules decorate existing water, twelve Bellwether/Garden planters and six off-route cloud formations with one r177 renderer. No world, save, control, damage or story-progress replacement. The prior c4b9 story source completed all seven suites in run 35780975207; new native/public/archive results belong to the new exact-source receipt. Physical acceptance remains open.
+
+Baseline reviewed: master c31dd6c56a101aec7c8a890768ae1f845494b294, whose Aether subtree is unchanged from c4b9c19fd1d7b7c891c68b672592aa1497e6a6dc. Preserve all concurrent sibling changes and update these beside-game continuity documents after each substantive pass.
+
 # Current continuation: A City With a Voice 0.16.0
 
 Read STORY-INTEGRATION.md first. The owner approved the public story summarized in this conversation and asked to integrate it into the existing game. The opening establishes the engineer-courier, Iona and the Registry closures. Story so far is an optional, paged reader on the existing desktop/Xbox/Touch/hand modal path. Mission purposes and real earned story updates connect the existing mechanics. Read current save flags; never grant progress for reading or replay old rewards on Continue. Retain the 0.15.2 aim repair, floor guide, full-depth window and all existing districts and controls.

@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><title>Currentworks r177 rendering fixture</title><canvas id="c"></canvas><script type="module">
+import * as T from '../vendor/three.module.js';
+import {createCurrentworks} from '../currentworks-view.mjs';import {createState} from '../model.mjs';import {PATCHES} from '../tactics-core.mjs';import {PortalMaterials,seesFragment} from '../portal-aperture.mjs';
+const checks=[],errors=[],images=[];function check(ok,label){if(!ok)throw Error(label);checks.push(label);}
+try{
+ const renderer=new T.WebGLRenderer({canvas:document.getElementById('c'),alpha:true,antialias:false,preserveDrawingBuffer:true});renderer.setSize(720,480);renderer.setClearColor(0,0);
+ renderer.debug.onShaderError=(gl,p,v,f)=>errors.push(gl.getProgramInfoLog(p)+' '+gl.getShaderInfoLog(v)+' '+gl.getShaderInfoLog(f));
+ const scene=new T.Scene(),sun=new T.DirectionalLight(0xffefd8,3.2);sun.position.set(-40,80,20);scene.add(sun,new T.HemisphereLight(0xd4f3ff,0x627565,1.6));
+ const fallback=new T.Group();scene.add(fallback);const patches=new Map(PATCHES.map(p=>[p.id,{p,mesh:new T.Mesh()}]));
+ const fx=createCurrentworks({scene,patches,foliageFallback:fallback}),s=createState(),cam=new T.PerspectiveCamera(50,1.5,.02,1000);
+ await fx.prepare(renderer,cam);check(fx.stats().ready&&!fx.stats().error,'The unmodified upstream tree warmup completes on the existing Three r177 renderer');
+ check(fx.stats().trees.warmupDraws===1,'Every tree LOD is exercised during bounded preparation');
+ const pixels=new Uint8Array(720*480*4);function snapshot(label){renderer.getContext().readPixels(0,0,720,480,renderer.getContext().RGBA,renderer.getContext().UNSIGNED_BYTE,pixels);let painted=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i])painted++;check(painted>200,label+' contains rendered pixels');images.push({label,data:renderer.domElement.toDataURL('image/png')});}
+ function render(label,eye,look,kind){cam.position.fromArray(eye);cam.lookAt(...look);s.time=3;fx.update(s,{eye:cam.position,mode:'balanced'});const n=fx.stats().drawn[kind];renderer.render(scene,cam);check(fx.stats().drawn[kind]>n,label+' uses its actual mesh/material draw');snapshot(label);}
+ render('Currentworks water',[14,6,3],[14,0,-4],'water');render('Garden willow',[52,13,-11],[50.6,8,-36.4],'trees');render('Freight cloudlets',[-38,-2,48],[-38,-12,24],'clouds');
+ const portal=new PortalMaterials(),box=new T.Matrix4().compose(new T.Vector3(14,-2,-4),new T.Quaternion(),new T.Vector3(.13,.13,.13));portal.configure(box);portal.active=true;portal.collect(scene);const inverse=box.clone().invert();
+ for(const sign of [-1,1]){const rig=new T.Group();rig.scale.setScalar(35);const eye=new T.Vector3(14+sign*.8,5,8);rig.add(cam);scene.add(rig);cam.position.copy(eye).divideScalar(35);cam.lookAt(14,0,-4);rig.updateMatrixWorld(true);cam.updateMatrixWorld(true);fx.update(s,{eye,mode:'prismatic',xr:true});renderer.render(scene,cam);snapshot('Scaled '+(sign<0?'left':'right')+' eye aperture');
+  // Pixel unprojection confirms no new module paints outside the existing ray aperture.
+  const p=new T.Vector3();let leaks=0,inside=0;for(let y=3;y<480;y+=5)for(let x=3;x<720;x+=5){if(!pixels[(y*720+x)*4+3])continue;p.set((x+.5)/720*2-1,(y+.5)/480*2-1,.99).unproject(cam);if(seesFragment(eye,p,inverse))inside++;else leaks++;}check(inside>5&&leaks===0,'All sampled colored fragments stay inside the '+(sign<0?'left':'right')+' eye aperture');scene.attach(cam);scene.remove(rig);
+ }
+ check(fx.stats().trees.lod[0]===0&&fx.stats().water.every(w=>w.quality==='light'),'XR caps the new foliage and water detail');
+ portal.dispose();fx.dispose();check(!scene.getObjectByName('Aether Currentworks environment'),'Disposal removes only the adapter scenery');check(errors.length===0,'No r177 shader or portal composition failures');
+ window.currentworksRender={passed:checks.length,checks,errors,images,scope:'Isolated real WebGL2 rendering of the game adapter and byte-pinned upstream modules on Three r177, including scaled paired eye apertures. Not gameplay or physical Quest acceptance.'};renderer.dispose();
+}catch(e){window.currentworksRender={passed:checks.length,checks,errors,error:String(e),images};}
+</script>

@@ -48,7 +48,7 @@ with sync_playwright() as pw:
   choose('#story-next-page');check('noticeboard' in p.locator('#story-copy').inner_text(),'Xbox A advances readable story text to the first task')
   choose('#story-chapters');choose('[data-story-id="city"]');check(snap()['devices']['menu']=='story-dialog' and 'Before the closed routes' in p.locator('#story-title').inner_text(),'Xbox can select a specific chapter through the shared nested menu')
   tap(1);check(snap()['devices']['menu']=='pause-dialog' and snap()['paused'],'Xbox B closes Story to its paused parent');tap(1)
-  tap(9);choose('#pause-settings');go('#fov');value=int(p.locator('#fov').input_value());tap(15);check(int(p.locator('#fov').input_value())==value+1,'D-pad adjusts settings sliders without an OS popup')
+  tap(9);choose('#pause-settings');go('#visual-currentworks');tap(0);check(not snap()['renderer']['currentworks']['active'],'Xbox can disable Currentworks without leaving the normal settings dialog');tap(0);check(snap()['renderer']['currentworks']['active'],'Xbox restores Currentworks through the same direct settings control');go('#fov');value=int(p.locator('#fov').input_value());tap(15);check(int(p.locator('#fov').input_value())==value+1,'D-pad adjusts settings sliders without an OS popup')
   go('#visual-quality');tap(14);check(p.locator('#visual-quality').input_value()=='balanced','Native select is adjusted directly by controller rather than opening a system chooser');tap(15)
   go('#controller-toggle-aim');tap(0);go('#controller-toggle-sprint');tap(0)
   choose('#settings-controller');go('#bind-fire');tap(14);check(snap()['devices']['profile']['bindings']['fire']==6 and snap()['devices']['profile']['bindings']['aim']==7,'Remapping swaps fire and aim without losing either action')
@@ -58,6 +58,7 @@ with sync_playwright() as pw:
   tap(15);check(snap()['devices']['menu']=='shop-dialog','D-pad right opens the equipment catalogue even away from shops');tap(1)
   # Checkpoint is not fabricated: walk to the actual Quay outfitter and buy.
   drive((3,7));tap(15);choose('[data-buy="carbine"][data-kind="weapon"]');check('carbine' in snap()['owned'] and snap()['credits']==220,'Controller buys an owned weapon with real credits at the real kiosk');frames();check(p.evaluate('document.activeElement.dataset.buy')=='carbine','Shop redraw preserves the focused item instead of jumping to the top');tap(1)
+  check(snap()['renderer']['currentworks']['ready'] and not snap()['renderer']['currentworks']['error'],'Currentworks prepares successfully on Aether r177 before controller play');
   drive((5,-1));tap(2);p.wait_for_function('AetherReach.snapshot().devices.menu==="expedition-dialog"')
   check('dispatch-started' in snap()['expedition']['flags'],"The controller courier accepts Iona's dispatch by reaching the real noticeboard");tap(1)
   tap(9);choose('#pause-journal');go('[data-track="roof-beacons"]');tap(0);check(snap()['expedition']['tracked']=='roof-beacons','Adventure tracking works without mouse clicks');go('[data-track="open-sky"]');check(p.locator('[data-track="open-sky"]').evaluate('(e)=>{const r=e.getBoundingClientRect(),d=e.closest("dialog").getBoundingClientRect();return r.top>=d.top&&r.bottom<=d.bottom;}'),'Focus scrolls the last journal task into view');p.screenshot(path=str(OUT/'lumen-controller-journal.png'));tap(1);tap(1)
@@ -70,6 +71,7 @@ with sync_playwright() as pw:
   credits=snap()['credits'];saved=p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')
   check('dispatch-delivered' in snap()['story']['chapterIds'],'The actual delivery unlocks its narrative aftermath')
   choose('#journal-story');choose('#story-latest');check('The message arrives' in p.locator('#story-title').inner_text(),'Latest earned chapter jumps directly to the delivery outcome')
+  check(snap()['renderer']['currentworks']['drawn']['trees']>0,'Real street travel renders the new planted trees');
   p.screenshot(path=str(OUT/'story-controller-delivery.png'));tap(1);tap(1)
   check(snap()['credits']==credits and p.evaluate('localStorage.getItem("aether-reach.expedition.v1")')==saved,'Reading the delivery cannot repeat its credit reward or change the save')
   for target in [(-92,0),(-107,0.1)]:drive(target)

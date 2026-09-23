@@ -1,0 +1,51 @@
+{
+  "sourceRepository": "v5ma/v5ma.github.io",
+  "sourceDirectory": "prism-current/modules/environment",
+  "sourceCommit": "3e33aa9cd3a3049078eeabb66b5bd96ee67e3103",
+  "reconciledMaster": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "files": {
+    "cloudlets.js": {
+      "gitBlob": "d6f4d431f1d648b44aab534aa6b36d6e341a7bda",
+      "sha256": "976dda5fff7273ef022d2f4b70753c994f02e896e8c6962238f33962833c5f51",
+      "bytes": 8574
+    },
+    "cloudlets.mjs": {
+      "gitBlob": "5871847853cb3fe7773e61eaec39d5d7d68e99ea",
+      "sha256": "6f16715d7b26dff8e38af36bc17a2522810e41fb22e6ad7f090d380703c7b782",
+      "bytes": 266
+    },
+    "toon.js": {
+      "gitBlob": "11e08ec750590dad8d0e92b97018d1789e8de4c1",
+      "sha256": "82542e064693d16b3123226a5df930be9e703b3d150ccfca7f8348719ae95b52",
+      "bytes": 2637
+    },
+    "toon.mjs": {
+      "gitBlob": "929aa7bb2ef6f526befcc49e4b9ad22dcd9b59b7",
+      "sha256": "7e869be74af7be7bb40a66c1a4c46083ed7a08bcdae20ae8d1e6b383575623bf",
+      "bytes": 211
+    },
+    "trees.js": {
+      "gitBlob": "4c4ff287382b908865e8cbc941f564c01dc16b23",
+      "sha256": "2782b0f5ab2ec456af93ac0d2e5e02e5fd4b2ffe2a0e5d98f6555f60952d4315",
+      "bytes": 18383
+    },
+    "trees.mjs": {
+      "gitBlob": "2e2a3ac3ceb6f6d6c0ead0cd578aa0ffe6d48a59",
+      "sha256": "0788af34fc5d632a28676cf389568ddcc12b00ef66815bccfa9138465ac2cd86",
+      "bytes": 258
+    },
+    "water.js": {
+      "gitBlob": "85f37fe643592f88b66d8b37c2dc4846706d6f7b",
+      "sha256": "8f2a03185a6f8de5a971016a38b1cef7372cdff85ce17a7f0ba1b37ff555093b",
+      "bytes": 24608
+    },
+    "water.mjs": {
+      "gitBlob": "dbe750438d841826231e3ac96c5981d0ba4f3bec",
+      "sha256": "b26dcb1926be35028ad8227293c6e5dc39188aa0f2fc684ebfda1f03fb174876",
+      "bytes": 267
+    }
+  },
+  "upstreamEngine": "184",
+  "hostEngine": "177",
+  "policy": "Byte-identical snapshots; no second Three, input, storage or renderer. Aether adapter owns placement and circular water mask. Shared Prism source is untouched. Update snapshots explicitly and verify again."
+}

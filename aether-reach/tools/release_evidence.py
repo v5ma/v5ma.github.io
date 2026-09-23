@@ -171,6 +171,8 @@ def main():
             raise ValueError('Artifact exceeds compressed-size limit')
         raw = subprocess.check_output(['gh', 'api', f"repos/{repo}/actions/artifacts/{selected['id']}/zip"])
         files, receipt = inspect_artifact(raw, selected, expected, head, report_name, minimum)
+        if suite == 'render' and tuple(map(int, version.split('.'))) >= (0, 17, 0):
+            inspect_artifact(raw, selected, expected, head, 'currentworks-render.json', 15)
         selections[suite] = receipt
         contents.update({suite + '/' + name: data for name, data in files.items()})
     # No evidence archive is written before every required suite validates.
