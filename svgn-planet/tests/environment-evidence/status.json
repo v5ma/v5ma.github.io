@@ -1,7 +1,11 @@
 {
   "version": "0.18.0",
   "revision": "currentworks-1",
-  "state": "source-tested; actual public and rendered verification pending",
+  "recordedDateUTC": "2026-09-23",
+  "state": "Published playtest. Exact-source graphics in all eight synthetic XR modes and complete Highline/Unsent Call journey passed. Broader/public replays and physical acceptance remain separate.",
+  "implementationCommit": "5656f520321d5b92120bf463976f2281aa8f49d3",
+  "publicationReceiptCommit": "2faf8a4a181ead0114cee0da4a1ead02657ad408",
+  "publicationDetails": "public-receipt.json",
   "baselineRuntime": "9ed36aa7fc559a1000dbf7b84696cb5d40d7e892",
   "librarySource": "c31dd6c56a101aec7c8a890768ae1f845494b294",
   "libraryTree": "86082336de4dc56c308267a914900a11e1e4f586",
@@ -10,13 +14,27 @@
     "passed": 462,
     "failed": 0,
     "skipped": 0,
-    "localLogSHA256": "93c491d27d2750bb5041aff6cbd4165e06344d19356d8a8b4dede6aba381b701"
+    "localLogSHA256": "93c491d27d2750bb5041aff6cbd4165e06344d19356d8a8b4dede6aba381b701",
+    "hostedRun": 35806168430,
+    "hostedModelJob": 107007402636,
+    "hostedModelConclusion": "success",
+    "recoveredExactSourceRetestPassed": 462
   },
   "legacyHashesPreserved": 102,
   "localWebGL2": false,
-  "publishedRevisionVerified": false,
-  "renderedEnvironmentPassed": false,
-  "renderedArchiveJourneyPassed": false,
+  "publishedRevisionVerified": true,
+  "matchingPublicRequests": 365,
+  "publicByteDifferences": 0,
+  "stablePublicSecondPass": true,
+  "renderedEnvironmentPassed": true,
+  "renderedEnvironmentChecks": 11,
+  "renderedArchiveJourneyPassed": true,
+  "renderedHighlineAndArchiveChecks": 15,
+  "renderedSourceJob": 107008114257,
+  "renderedSourceArtifact": 10728158412,
+  "renderedSourcePageErrors": 0,
+  "fullInheritedMatrixPassed": false,
+  "publicRenderedReplayPassed": false,
   "physicalQuestTested": false,
   "physicalXboxTested": false,
   "physicalHandTrackingTested": false,
@@ -31,12 +49,15 @@
       "run": 35782836734,
       "highlineJob": 106934175516,
       "highlineConclusion": "success",
-      "openFailures": [
-        "legacy grounded suite",
-        "recovery portal suite"
-      ],
-      "note": "Some other jobs were cancelled. Prior suite failures are not closed by this source pass."
+      "openFailures": ["legacy grounded suite", "recovery portal suite"],
+      "note": "Some other jobs were cancelled. Prior suite failures are not retrospectively closed by the new source graphics and story passes."
+    },
+    {
+      "kind": "publication queue",
+      "observation": "Several built-in Pages runs were superseded by concurrent sibling updates.",
+      "resolution": "The independent public verifier completed successfully. Downloaded artifact 10728502133 and separately hashed all 365 expected source/request records against the exact implementation archive. Zero differences."
     }
   ],
-  "next": "Inspect the existing source/public independent Highline jobs, which now run eight-mode environment rendering and the extended actual-input archive journey. Compare public bytes; download reports and screenshots. Update this receipt and durable direction notes. Preserve all failed/cancelled observations."
+  "currentVerification": {"sourceRun":35806168430,"consoleRun":35806168347,"publicRun":35806168381,"publicHighlineJob":107012351340},
+  "next": "Inspect remaining public replay and inherited matrix artifacts; preserve failed/cancelled outcomes. The new runtime is publicly byte-verified and its exact-source renderer/complete story tests passed. Obtain physical owner feedback on the new graphics and archive route. Then deepen systemic encounter choices and design the future South Cable Exchange chapter. Keep ENVIRONMENT-INTEGRATION.md, FUTURE-DIRECTION.md and DEVELOPMENT-HANDOFF.md current, and preserve all concurrent work with direct non-forced master writes."
 }
