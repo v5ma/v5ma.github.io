@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "module": "Currentworks FlexSurface",
+  "version": "0.1.0",
+  "moduleSourceCommit": "af9f00a15f343989a55359bd7ec63a66f498fb6a",
+  "testedSupportCommit": "8db868572caa80d8561beefab9f2e41f71814953",
+  "workflowRun": 35808550266,
+  "sourceJob": 107014971114,
+  "moduleStepResult": "success",
+  "artifact": {
+    "id": 10728357667,
+    "sha256": "4acca5a35711d3a80ec1427bb5c30c3f467840012b5c55733e691559ea069b78",
+    "downloadedAndInspected": true
+  },
+  "localModelTests": {"passed": 405, "failed": 0},
+  "ciModelStepResult": "success",
+  "threeObjectChecks": {"passed": 25, "errors": [], "revision": "184"},
+  "nativeFixture": {
+    "passed": 21,
+    "errors": [],
+    "viewport": [960, 640],
+    "renderer": "Chromium WebGL2 with software ANGLE/SwiftShader",
+    "realPointerEvents": true,
+    "framebufferPixelReadback": true,
+    "frontAndBackUVAgreement": true,
+    "sameShapeAvoidsBufferUpdates": true,
+    "imagesInspected": ["flex-front-960.png", "flex-back-960.png"],
+    "scope": "Isolated bent textured surface. Not a Prism encounter, HTML polyfill, WebXR controller/hand test, or sustained hardware performance test."
+  },
+  "sourceSha256": {
+    "flex-surface.js": "3f7ce1e9404f354e18ef51fa23a145ba1209ae868027a086e228f3acfde3bb5e",
+    "flex-surface.mjs": "203046f504df90caa83378650d54ad135e054a9b66ff8c12977f0a162355c861",
+    "tests/environment-flex-surface-browser.py": "aacb7cac0114650cdbb6a2e4d7798154db6922bf954236b6938382fbeaa236c1"
+  },
+  "mainGameIntegration": false,
+  "mainGameRuntimeChangedThisPass": false,
+  "newThirdPartyDependency": false,
+  "physicalDeviceApproved": false,
+  "fullWorkflowGreenClaimed": false,
+  "publicVerificationAtCheckpoint": "The independent game/public-file checks were still running. This source-fixture result does not claim completion of them or resolve earlier AR Tide pauses.",
+  "nextTask": "Evaluate a noncritical stationary-while-selected spatial panel or an isolated HTML settings/help prototype with explicit gesture ownership. Preserve the current Start/Resume, health, Easy gameplay and real-room visibility."
+}
