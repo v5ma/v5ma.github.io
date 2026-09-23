@@ -1,5 +1,7 @@
 # Clear Shoals / inspected native results
 
+Latest status, 2026-09-23: the one unchanged repeat is COMPLETE, not pending. Both dedicated source and public repeats failed at early frame-stall pauses. The new water is deployed and its loaded public files match. Read CLEAR-SHOALS-FINAL.md and CLEAR-SHOALS-VALIDATION.json for the final inspected receipts, preservation audit and unresolved next task. The first successful source battle and earlier failures below are retained as historical outcomes, not relabeled.
+
 Optical runtime: a3cd5dbac40d330371f78bccd842c91a061fc889. Tested source:146796cd1a6f26dcc6ed953424a2ce16a722c04e, with the same unchanged game runtime and a corrected optical-opacity test. Pages run35900176762 deployed the runtime successfully. The latest support-file checkpoint does not change any loaded script, shader, test or drawing quality.
 
 ## Focused source success
@@ -16,7 +18,7 @@ The same run's job107320211173 matched all25 loaded runtime/style/release/notice
 
 The game had paused at1.042154195s with health100, no enemies or attacks, and the unchanged rendering-stall message. The captured frame interval was375.5ms; the previous render submission took1.3ms and tick0.5ms, leaving about373.7ms unaccounted for. This does not identify the optical shader as the cause. It is nevertheless a failed full public journey. No shader/script error occurred. The standalone pixel/alpha tests and real AR opacity, quiet, health and color-switch controls had passed.
 
-An individual job retry was requested but GitHub rejected it because the parent workflow was still running. This support-file save triggers one unchanged-runtime/test attempt through the existing workflow; its later result must be recorded separately. No changed difficulty, auto-resume, reduced resolution, weakened timing safeguard or lower action count is used to obtain a pass.
+An individual job retry was requested but GitHub rejected it because the parent workflow was still running. The subsequent support-file save triggered one unchanged-runtime/test attempt through the existing workflow. Its completed failures are separately recorded in CLEAR-SHOALS-FINAL.md. No changed difficulty, auto-resume, reduced resolution, weakened timing safeguard or lower action count was used to obtain a pass.
 
 ## Earlier alpha-test correction and preserved boundaries
 
@@ -24,4 +26,4 @@ CLEAR-SHOALS-OPACITY-TRACE.md and CLEAR-SHOALS-ALPHA-RESULT.md preserve the orig
 
 The new layer modifies color, not base opacity ownership. Opacity is not a universal hard cap on accumulated overlapping fragments. Zero opacity removes the surface; AR keeps its near-viewer fade. The texture budget is two generated RGBA8 images, no additional scene-rendering pass or float targets. Caustics are reference-depth precomputed light flux, not live FFT-caustic simulation or real-room refraction.
 
-All431 local model/data tests pass. Current Color Match0.13.0, health, difficulties, late bosses, menus, audio, all old score stores and other games are preserved. Broader legacy/AR Tide/Field Guide verifier failures are not closed by this focused source success. Physical Quest, artistic approval and normal-resolution performance remain open. See the next recorded public retry and the main FUTURE-DIRECTION.md before resuming.
+All431 local model/data tests pass. Current Color Match0.13.0, health, difficulties, late bosses, menus, audio, all old score stores and other games are preserved. Broader legacy/AR Tide/Field Guide verifier failures are not closed by this focused source success. Physical Quest, artistic approval and normal-resolution performance remain open. Read the completed repeat receipt and the main FUTURE-DIRECTION.md before resuming.
