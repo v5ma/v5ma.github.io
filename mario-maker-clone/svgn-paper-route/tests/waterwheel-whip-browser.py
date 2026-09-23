@@ -21,7 +21,7 @@ def check(ok,label):
  assert ok,label
  checks.append(label);print('PASS:',label,flush=True)
 DRIVER=r'''([scenario,presentation])=>{
- const d=window.bellDriver={scenario,presentation,input:'pad',ticks:0,visits:[],hook:null,released:null,received:null,returned:null,trace:[],xrReady:false,xrDone:false};
+ const d=window.bellDriver={scenario,presentation,input:'pad',ticks:0,visits:[],hook:null,released:null,received:null,returned:null,trace:[],xrReady:false,xrDone:false,armed:false,armTicks:0};
  const original=window.pollGamepad;
  const apply=(axis,jump,whip,pause,throwPaper)=>{
   if(d.input==='xr'){
@@ -29,7 +29,12 @@ DRIVER=r'''([scenario,presentation])=>{
   }else {testPad.axes[0]=axis;for(const [i,v]of[[0,jump],[4,whip],[9,pause],[1,throwPaper]])testPad.buttons[i]={pressed:v,value:v?1:0};}
  };
  window.pollGamepad=function(...args){
-  if(RouteWorkshop.testing&&!__delivery.paused&&!__delivery.state.menu&&!won){
+  const active=RouteWorkshop.testing&&!__delivery.paused&&!__delivery.state.menu&&!won;
+  if(!active){d.armed=false;d.armTicks=0;return original.apply(this,args);}
+  // The real input owner deliberately requires neutral after a menu/session
+  // transition. Give it ordinary released samples before attempting to ride.
+  if(!d.armed){apply(0,false,false,false,false);if(++d.armTicks>=8)d.armed=true;return original.apply(this,args);}
+  if(active){
    d.ticks++;let axis=1,jump=false,whip=false,pause=false,paper=false;const p=player,id=p.track?.sky?.id;
    if(id&&!d.visits.includes(id))d.visits.push(id);
    if(!d.visits.length&&p.x>=3080&&p.onGround&&!p.track)d.jumping=true;
