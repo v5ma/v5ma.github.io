@@ -1,33 +1,45 @@
-# Prism Current / Friendly Current 0.12.2
+# Prism Current / Color Match 0.13.0 + Clear Shoals
 
-The owner's latest playtest sets the priority: a readable, forgiving first game rather than constant maximum pressure. The main index.html remains the full River Prism game, now with Easy, Normal, Hard and Ultra Hard, explicit health feedback, healing cases, slower fruit-throwing enemies and finale-only bosses. The existing Water, Fire, Trees and shaped shoreline remain. No private hub, travel portal or sibling-game work is included.
+The normal index.html is the full AR-first River Prism game. It retains Easy, Normal, Hard and Ultra Hard, readable health, healing supplies, slower fruit-throwing enemies and finale-only bosses. AR Tide supplies small tree islands, clouds and grass while leaving the real room visible. Clear Shoals now adds pebble-bed detail and refracted-light patterns to the existing water. No replacement demo, private hub, travel portal or sibling-game work is included.
 
-## Start and choose your pace
+## Enter and choose your pace
 
-Easy is the first-play default, including when old River scores exist. A valid saved difficulty preference is restored. In the screen Rotunda choose the displayed difficulty button below the chapter entry choices. In XR choose Difficulty on the Battle page. The four options are individual scene buttons; the accessible text controls have the same four choices. F2 toggles that semantic alternative. Select difficulty before starting. A paused run keeps the difficulty and record identity it started with; return to chapter selection to change it.
+Use the chapter's AR choice when supported. Screen and VR remain alternatives. Easy is the first-play default and a valid saved difficulty is restored. Select the Difficulty control before starting; a paused encounter keeps the difficulty it started with. F2 exposes the semantic text-control alternative.
 
-Easy has fewer approaching objects, longer enemy passes, slower incoming items, generous hit sizes and more healing cases. Normal increases activity but preserves forgiving fruit cuts. Hard and Ultra Hard use denser waves, faster throws, fewer supplies and directed fruit cuts. Either saber can cut in every mode; Easy and Normal accept any cut direction. This is not automatic play: move the actual blade through the target, aim lasers, block hazards and defeat the final boss. Cruise remains an optional no-health-loss setting with separate records, not a substitute for the four difficulty profiles.
+Easy has fewer approaching objects, longer enemy passes, slower throws, generous hit sizes and more healing. Normal increases activity but preserves forgiving fruit cuts. Hard and Ultra Hard use denser waves, faster throws, fewer supplies and directed cuts. Either saber can cut in every mode; Easy and Normal accept any direction. Cruise is a separate no-health-loss option with separate records, not a replacement for difficulty selection.
 
-Ducks, toy boats, propeller planes and fighter ships repeatedly throw fruit and purple blocks. They linger for 22 to 28 musical beats rather than the earlier 9 to 10 beats. The soundtrack speed is unchanged. Purple blocks can be cut, shot or shielded. There are no spawned invulnerable red missiles. Easy and Normal contain no spiked explosive bombs; Hard and Ultra Hard retain visibly spiked bombs that should be shot or shielded rather than slashed.
+Ducks, boats and aircraft repeatedly throw fruit and purple blocks. Blocks can be cut, shot or shielded. No invulnerable red missile emitter remains. Easy and Normal omit spiked explosive bombs; on harder profiles, shoot or shield those bombs rather than slash them. The original soundtrack is not accelerated to change difficulty.
 
-## Health and final encounters
+## Health, colors and finales
 
-A persistent stage-anchored HEALTH gauge below the action shows the actual number out of 100 and a thick fill bar. The controller/floor display also labels health explicitly. Low health and real damage/healing changes are named, without a full-view flashing effect. The gauge stows for the paused menu; it is not attached to the headset or pasted over the browser window.
+The stage-anchored HEALTH gauge shows the actual number out of 100 with a thick bar. Controller/floor status remains available. Damage, low health and healing are explicitly labeled; the gauge stows for the paused menu rather than covering it.
 
-Mint supply cases marked with a plus symbol restore health when cut, shot or touched. Each case works only once and cannot raise health above 100. Easy supplies five cases restoring up to 30 each; Normal three at up to 25; Hard two at up to 20; Ultra Hard one at up to 15. Missing one does not damage you. Health changes come from the simulation, not from drawing the HUD. The status textures are updated only when their contents change and are first uploaded during loading before audio.
+Mint plus-sign cases heal when cut, shot or touched, once per case and capped at 100. Easy provides five cases at up to 30 health each; Normal three at 25; Hard two at 20; Ultra Hard one at 15. Missing a case does not cause damage.
 
-Neither boss is present at chapter start. Admiral Quack or the mothership arrives at beat 152, about 69 seconds into the existing 89-second song. After a four-beat entrance the core opens. The duck flagship has a crown, paddle wheels and twin fruit mortars. Defeating the boss and finishing the track are still required to clear the chapter.
+Color Match is implemented. During tracked combat, right A changes the right saber and left X changes the left. Keys 1/2 and L3/R3 are the screen and standard-controller equivalents. A valid fruit cut with either color earns the ordinary base reward; matching the fruit's color/symbol earns an additive bonus. Readable symbols accompany colors, and badges remain visible on the larger Easy fruit. Lasers, grip shields and existing attacks are preserved.
 
-## Controls, graphics and progress
+Neither boss is present at the start. Admiral Quack or the mothership arrives at beat 152, about 69 seconds into the existing 89-second track, followed by its entrance and exposed-core phase. Both actual boss defeat and song completion remain required.
 
-Keep the established controller mappings: tracked saber swings, trigger lasers, grip shields and B/Y pause/resume. The Rotunda supports ray/trigger, thumbstick/A-X and hand-pinch menu input. Combat requires tracked controllers, not hand-only gestures. Direct B/Y start/resume in 0.12.2 no longer disappears when pressed immediately after another menu action; pointer duplicate protection and safety checks remain.
+## Spatial interface and preservation
 
-The adjustable scene pedestal, saved AR water opacity, quiet/quality settings, standard-controller and mouse controls, real session exit and same-mode paused recovery remain. Water 0.1.0, Fire 0.1.3 and Trees 0.1.3 are reusable modules under modules/environment. Trees and solid banks remain hidden in AR and Mothership. No new music or replacement demo is introduced.
+Keep the world-anchored adjustable Rotunda, visible menu rays/contact cursor, thumbstick/A-X selection and direct B/Y start/pause/resume. Hand pinches support menus; combat still requires tracked controllers. Sound and scenery changes preserve the paused encounter. Genuine tracking/visibility interruptions pause; ordinary leaning and sidestepping do not trigger the former arbitrary position rectangle.
 
-Previous River records remain untouched under prism-current.river.records.v1. New records use prism-current.river.pacing.records.v1, separated by chapter, input mode, difficulty and Arcade/Cruise. Old results are not relabeled as Easy or Ultra Hard. Classic rhythm, all five songs, lessons, Practice Lab and Floodgate Recovery remain at rhythm.html and water-mission/index.html with their old saves. Unfinished battles remain in memory across matching XR exit/re-entry, not across closing the page.
+Exit ends the XR session and leaves the encounter paused in page memory. Re-enter its matching AR/VR mode and deliberately resume. Closing or reloading the page is not a persistent unfinished-battle save.
 
-## Verification and continuation
+The full solid banks/forest remain hidden in AR. Duck Armada instead uses two compact planted islands, cloud groups and grass patches, with a saved Minimal scenery choice. Mothership retains its separate setting. AR Field Guide uses three FlexSurface cards before battle and on paused Controls; they hide during combat and never intercept input. FlexSurface is no longer merely library-only.
 
-PLAYABILITY-CHECKPOINT.md and qa/friendly-current-public.json record the exact saved/runtime and public evidence. FRIENDLY-CURRENT.md explains the balance choices. PLAYABILITY-RECOVERY.md, PLAYABILITY-XR-VERIFICATION.md and PLAYABILITY-DIRECT-RESUME.md preserve the revealed failures and focused repairs. Source/public input tests and actual physical Quest playtests are separate; successful automated completion is not proof that the difficulty is enjoyable.
+New Color Match records use prism-current.river.chromatic.records.v1, separated by chapter, input mode, difficulty and Arcade/Cruise. Previous pacing records and all older River/Classic/lesson records stay untouched. Classic rhythm, its five tracks, lessons and Practice Lab remain at rhythm.html; Floodgate Recovery remains at water-mission/index.html.
 
-Blade-color switching, color-match bonuses, richer boss phases and a gameplay explosion-radius display remain separate unfinished work. The latest easier-mode request takes precedence over adding more scenic cost. Read AGENTS.md and AAA_CHECKLIST.md, reconcile fresh master and save focused changes directly without PRs, staging branches or overwriting other games.
+## Clear Shoals and reuse
+
+The existing Water 0.1.0 is extended by Water Detail 0.1.0 and Water Optics 0.2.0. Two generated mipmapped textures add a pebble bed, micro-wave slopes, highlight filtering and precomputed refracted-light caustics. No extra scene-rendering pass, FFT runtime, external image asset or passthrough-image sample is added. Geometric waves, CPU height query, wakes, splashes and gameplay are unchanged.
+
+Saved opacity and quiet mode still control that same surface. Opacity is per-surface strength: distant projected wave overlaps can compound, a pre-existing behavior measured in CLEAR-SHOALS-ALPHA-RESULT.md. Zero opacity removes water and the existing near-viewer fade remains. Do not promise a global composited-alpha cap.
+
+Start at modules/environment/CLEAR-SHOALS.md for implementation, limitations, API, loading and disposal. CLEARWATER-NOTICE.txt retains the MIT notice for the adapted Fresnel helper. Clearwater's whole renderer and embedded imagery were not imported. Currentworks fire, trees and other reusable modules remain independent and caller-owned.
+
+## Evidence and continuation
+
+CLEAR-SHOALS-RESULT.md records exact source/public checks, screenshots and failures. The complete focused source optical/AR journey passed 26 checks; its first public counterpart matched all 25 runtime files and passed 18 checks before a frame-stall pause. This is not blanket public or physical-device approval. Later unchanged retries are recorded separately. All 431 local model tests and 19 new actual-Three optics resource checks pass.
+
+FUTURE-DIRECTION.md is the current continuation point. Older playability/module receipts retain historical evidence, not declarations about every later build. Physical Quest appearance, comfort and sustained frame rate remain open. Richer bosses, gameplay blast-radius feedback, new chapters, new music and HTML-backed settings are separate work; color switching and matching bonuses are already implemented. Write directly to fresh master, preserve concurrent changes and never clear user progress.
