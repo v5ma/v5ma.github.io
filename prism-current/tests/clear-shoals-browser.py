@@ -6,7 +6,7 @@ import base64,functools,hashlib,http.server,json,os,re,sys,threading,time,urllib
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];APP=ROOT/'prism-current';PUBLIC='--public' in sys.argv
 OUT=ROOT/'test-output/clear-shoals'/('public' if PUBLIC else 'source');OUT.mkdir(parents=True,exist_ok=True)
-checks=[];errors=[];server=None;result=None
+checks=[];errors=[];server=None;result=None;pixels=None;capDiagnostics=None
 
 def check(v,m):
     assert v,m
@@ -56,6 +56,14 @@ with sync_playwright() as pw:
         p.screenshot(path=str(OUT/'fixture-clear-shoals.png'))
         pixels=p.evaluate('''()=>{const f=fixture;let visible=0,different=0,maxAlpha=0;for(let i=0;i<f.base.length;i+=4){if(f.upgraded[i+3]>0)visible++;maxAlpha=Math.max(maxAlpha,f.upgraded[i+3]);if(Math.abs(f.base[i]-f.upgraded[i])+Math.abs(f.base[i+1]-f.upgraded[i+1])+Math.abs(f.base[i+2]-f.upgraded[i+2])>12)different++;}return {visible,different,maxAlpha};}''')
         check(pixels['visible']>10000 and pixels['different']>pixels['visible']*.15,'Real WebGL pixels show a substantial optical change over the same base-water geometry')
+        capDiagnostics=p.evaluate("""()=>{const f=fixture;const measure=(data)=>{let max=0,over=0,at=0;for(let i=3;i<data.length;i+=4){if(data[i]>205)over++;if(data[i]>max){max=data[i];at=i;}}return {max,over,at:[((at-3)/4)%960,Math.floor((at-3)/4/960)]};};
+          const result={base:measure(f.base),optical:measure(f.upgraded),uniform:f.w.uniforms.opacity.value,material:{side:f.w.material.side,forceSinglePass:f.w.material.forceSinglePass,depthWrite:f.w.material.depthWrite},clearAlpha:f.r.getClearAlpha()};
+          const side=f.w.material.side;f.w.material.side=f.T.FrontSide;f.w.material.needsUpdate=true;f.r.render(f.s,f.cam);result.frontOnly=measure(f.pixels());
+          f.w.material.side=side;f.w.material.needsUpdate=true;
+          const pos=f.cam.position.clone(),q=f.cam.quaternion.clone();f.cam.position.set(0,12,-7);f.cam.lookAt(0,0,-7);f.r.render(f.s,f.cam);result.overhead=measure(f.pixels());f.cam.position.copy(pos);f.cam.quaternion.copy(q);f.cam.updateMatrixWorld(true);f.r.render(f.s,f.cam);
+          return result;}""")
+        (OUT/'opacity-diagnostics.json').write_text(json.dumps(capDiagnostics,indent=2))
+        data=p.evaluate('fixture.r.domElement.toDataURL()');(OUT/'fixture-optical-alpha.png').write_bytes(base64.b64decode(data.split(',')[1]))
         check(pixels['maxAlpha']<=205,'Caustics and pebble shading respect the 0.8 fixture opacity cap')
         p.evaluate('fixture.r.render(fixture.s,fixture.cam)')
         check(p.evaluate('fixture.pixels().every((v,i)=>v===fixture.upgraded[i])'),'Repeated paused time produces an identical native water image')
@@ -125,7 +133,7 @@ with sync_playwright() as pw:
         except:state=None
         try:trace=p.evaluate('window.shoalTrace?.snapshot()')
         except:trace=None
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'trace':trace},indent=2))
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'trace':trace,'pixelEvidence':pixels,'opacityDiagnostics':capDiagnostics},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise
