@@ -1,0 +1,15 @@
+'use strict';
+const {test}=require('node:test'),A=require('node:assert/strict'),fs=require('node:fs');
+const G=require('../modules/environment/grass');
+const patch=()=>G.descriptors([{id:'island',seed:4,position:[-4.7,.32,-6.8],radius:.43,blades:36}])[0];
+test('Grass descriptor validation precedes resource allocation',()=>{for(const d of [[{id:'a',position:[0,NaN,0]}],[{id:'a',position:[0,0,0]},{id:'a',position:[0,0,0]}]])A.throws(()=>G.descriptors(d),TypeError);A.throws(()=>G.descriptors(Array(9).fill({})),RangeError);A.throws(()=>G.create({}),/THREE/);});
+test('Grass copies host positions and bounds all construction costs',()=>{const p=Object.freeze([0,0,0]),d=G.descriptors([Object.freeze({id:0,position:p,blades:Infinity,height:999})])[0];A.notEqual(d.position,p);A.equal(d.height,.6);A.equal(d.blades,36);A.equal(G.MAX_PATCHES,8);});
+test('Seeded grass is deterministic and independent of host state',()=>{A.deepEqual(G.data(patch()),G.data(patch()));A.notDeepEqual(G.data(patch()),G.data({...patch(),seed:5}));});
+test('Grass lower detail is a subset of the same blades, never a different layout',()=>{const hi=G.data(patch()),lo=G.data(patch(),2);A.equal(hi.blades,36);A.equal(lo.blades,18);for(let i=0;i<18;i++)A.deepEqual(lo.positions.slice(i*24,(i+1)*24),hi.positions.slice(i*48,i*48+24));});
+test('Grass geometry has finite unit normals and valid indices',()=>{const d=G.data(patch());A.equal(d.indices.length/3,216);A.ok(d.indices.every(i=>i>=0&&i<d.positions.length/3));for(let i=0;i<d.normals.length;i+=3)A.ok(Math.abs(Math.hypot(...d.normals.slice(i,i+3))-1)<1e-12);A.ok(d.positions.every(Number.isFinite));});
+test('Blade roots remain anchored and tips taper instead of rectangular cards',()=>{const d=G.data(patch());for(let i=0;i<d.blades;i++){A.equal(d.bend[i*8],0);A.equal(d.bend[i*8+1],0);A.equal(d.slope[i*8],0);A.equal(d.bend[i*8+7],1);}});
+test('Grass stays inside the authored island footprint including wind',()=>{const p=patch(),d=G.data(p);for(let i=0;i<d.positions.length;i+=3)A.ok(Math.hypot(d.positions[i],d.positions[i+2])+.07<.65);});
+test('Pausable grass wind has a bounded amplitude and zero quiet displacement',()=>{for(let t=0;t<100;t+=.07){const w=G.wind(t);A.deepEqual(w,G.wind(t));A.ok(Math.abs(w[0])<=.035&&Math.abs(w[1])<=.035*.45);}A.deepEqual(G.wind(4,true),[0,0]);A.throws(()=>G.wind(NaN),TypeError);});
+test('Normal bend uses the same derivative as geometric displacement',()=>{const d=G.data(patch()),h=d.positions[18+1],eps=1e-6;A.ok(h>0);for(let j=1;j<3;j++){const f=j/3,y=h*f,derivative=(((y+eps)/h)**2-((y-eps)/h)**2)/(2*eps);A.ok(Math.abs(derivative-d.slope[j*2])<1e-6);}});
+test('Grass owns no renderer, images, input, storage or wall clock',()=>{const s=fs.readFileSync(__dirname+'/../modules/environment/grass.js','utf8');A.doesNotMatch(s,/new T\.WebGLRenderer|new T\.Texture|new T\.DataTexture|localStorage|requestAnimationFrame|performance\.now|Date\.now|document\.|fetch\(/);});
+test('Grass ES facade reuses the original implementation',async()=>{A.equal((await import('../modules/environment/grass.mjs')).default,G);});
