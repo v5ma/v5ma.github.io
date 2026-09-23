@@ -21,7 +21,7 @@ async function runBrowser(browser,base,label){
     await page.waitForFunction(()=>window.WarLedgerAR?.ready,null,{timeout:45000});
     assert.equal(await page.evaluate(()=>document.body.dataset.release),expectedRelease);
     const info=await page.evaluate(()=>({pieces:WarLedgerAR.pieces.children.length,width:WarLedgerAR.atlas.image.width,height:WarLedgerAR.atlas.image.height,engineD:WarLedgerAR.art.make('D').userData.artType}));
-    assert.deepEqual(info,{pieces:32,width:256,height:512,engineD:'D'});
+    assert.deepEqual(info,{pieces:32,width:512,height:1024,engineD:'D'});
     async function square(s){
       const p=await page.evaluate(s=>{const a=WarLedgerAR,p=a.pieces.children.find(p=>p.userData.square===s);return p?a.projectObject(p.children[p.children.length-1]):a.projectSquare(s);},s);
       const hit=await page.evaluate(p=>WarLedgerAR.pointerPick({clientX:p.x,clientY:p.y})?.object.userData.action,p);
@@ -128,8 +128,38 @@ async function runBrowser(browser,base,label){
     assert.ok(await page.evaluate(()=>WarLedgerAR.orbitDistance)<zoomBefore);
     assert.equal(await page.evaluate(()=>WarLedgerAR.selected),null);
     await page.evaluate(()=>WarLedgerAR.fitView());
+    // Keep the saved match while changing the screen layout. The board must be
+    // materially larger, not merely inside the viewport. No XR hardware is emulated.
+    await page.setViewportSize({width:844,height:390});await page.waitForTimeout(600);
+    async function boardWidth(){return page.evaluate(()=>{const p=['a1','a8','h1','h8'].map(s=>WarLedgerAR.projectSquare(s));return Math.max(...p.map(v=>v.x))-Math.min(...p.map(v=>v.x));});}
+    const savedMatch=await page.evaluate(()=>JSON.stringify({state:WarLedgerAR.state,undo:WarLedgerAR.undoStack}));
+    if(await page.evaluate(()=>WarLedgerAR.layoutSpec.focused))await page.locator('[data-action="view"]').click();
+    await page.waitForTimeout(600);const tableWidth=await boardWidth();
+    await page.locator('[data-action="view"]').click();await page.waitForTimeout(600);
+    const closeWidth=await boardWidth();assert.ok(closeWidth>tableWidth*1.35,`Close view should enlarge landscape board: ${tableWidth} -> ${closeWidth}`);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.layoutSpec.side),true);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('warledger-chess-view-v1')),'board');
+    assert.equal(await page.evaluate(()=>JSON.stringify({state:WarLedgerAR.state,undo:WarLedgerAR.undoStack})),savedMatch);
+    await square('e2');await square('e4');await action('undo');
+    await action('options');await action('help');await action('cancel');
+    await page.screenshot({path:path.join(out,`${label}-close-landscape.png`)});
+    await page.setViewportSize({width:390,height:844});await page.waitForTimeout(600);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.layoutSpec.side),false);
+    await square('e2');await square('e4');await action('undo');
+    await page.screenshot({path:path.join(out,`${label}-close-portrait.png`)});
+    // Revisit a real page, with an actual failed texture request: the whole board
+    // must remain playable using the previously verified low-bandwidth atlas.
+    await page.route('**/assets/piece-faces-hd-2.webp',route=>route.abort());
+    await page.reload({waitUntil:'networkidle'});await page.waitForFunction(()=>window.WarLedgerAR?.ready);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.atlas.userData.quality),'fallback-64');
+    assert.equal(await page.evaluate(()=>WarLedgerAR.layoutSpec.focused),true);
+    assert.equal(await page.evaluate(()=>JSON.stringify({state:WarLedgerAR.state,undo:WarLedgerAR.undoStack})),savedMatch);
+    await square('e2');await square('e4');await action('undo');
+    await page.unroute('**/assets/piece-faces-hd-2.webp');
+    await page.reload({waitUntil:'networkidle'});await page.waitForFunction(()=>window.WarLedgerAR?.ready);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.atlas.userData.quality),'hd-128');
     assert.deepEqual(errors,[]);
-    const report={label,release:expectedRelease,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox frame polling and B cancel','XR ray routing','piece guides and markers','flip preserves tray orientation','exclusive modal targets','marker resource reuse','portrait and landscape play','synthetic two-pointer zoom']};
+    const report={label,release:expectedRelease,passed:true,landscapeBoardWidth:{table:tableWidth,board:closeWidth,ratio:closeWidth/tableWidth},realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox frame polling and B cancel','XR ray routing','piece guides and markers','flip preserves tray orientation','exclusive modal targets','marker resource reuse','portrait and landscape play','synthetic two-pointer zoom','128px original-source HD textures','larger landscape close view','view preferences preserve match and undo','portrait close-view play','HD load failure fallback and recovery']};
     fs.writeFileSync(path.join(out,`${label}-report.json`),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
   }catch(error){
     await page.screenshot({path:path.join(out,`${label}-failure.png`)}).catch(()=>{});
@@ -144,7 +174,7 @@ async function runBrowser(browser,base,label){
     await runBrowser(browser,'http://127.0.0.1:8734/','local');
     if(process.env.WL_VERIFY_LIVE==='1'){
       const base='https://v5ma.github.io/';let ready=false;
-      const files=['ar.html','warledger-ar.mjs','warledger-ui.mjs','warledger-art.mjs','warledger-session.mjs','warledger-input.mjs','warledger-engine.mjs','warledger-presentation.mjs','assets/piece-faces.webp'];
+      const files=['ar.html','warledger-ar.mjs','warledger-ui.mjs','warledger-art.mjs','warledger-session.mjs','warledger-input.mjs','warledger-engine.mjs','warledger-presentation.mjs','assets/piece-faces.webp','warledger-closeview.mjs','warledger-hd-art.mjs','assets/piece-faces-hd-manifest.json',...Array.from({length:4},(_,i)=>`assets/piece-faces-hd-${i}.webp`)];
       const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
       const expected=Object.fromEntries(files.map(f=>[f,hash(fs.readFileSync(path.join(root,'warledger-chess',f)))]));
       for(let attempt=0;attempt<100;attempt++){
@@ -154,7 +184,7 @@ async function runBrowser(browser,base,label){
         }catch{}
         await sleep(6000);
       }
-      assert.ok(ready,'All nine live runtime and artwork files must match the checked-out release byte for byte.');
+      assert.ok(ready,`All ${files.length} live runtime and artwork files must match the checked-out release byte for byte.`);
       fs.writeFileSync(path.join(out,'live-hashes.json'),JSON.stringify({release:expectedRelease,files:expected},null,2));
       await runBrowser(browser,base,'live');
     }

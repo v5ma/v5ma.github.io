@@ -5,7 +5,10 @@ import {nextPinch,gridStep,gamepadEdges} from './warledger-input.mjs';
 
 import {MODAL_MODES,actionAllowed,safeViewport,selectedDescription,createBoardMarkers} from './warledger-presentation.mjs';
 
-export const RELEASE='ar-tactical-20260922-4';
+import {boardLayout,buildPlayTray,readViewPreference,writeViewPreference} from './warledger-closeview.mjs';
+import {loadPieceAtlas} from './warledger-hd-art.mjs';
+
+export const RELEASE='ar-closeview-20260922-5';
 const scene=document.querySelector('a-scene');
 const status=document.querySelector('#status');
 const cap=s=>s[0].toUpperCase()+s.slice(1);
@@ -25,6 +28,9 @@ class LedgerAR {
     this.raycaster=new THREE.Raycaster();this.raycaster.far=4;
     this.orbitYaw=.18;this.orbitPitch=1.03;this.orbitDistance=1.12;
     this.scale=1;this.placing=false;this.surfacePosition=null;this.xrSession=null;
+    this.viewPreference=readViewPreference();this.layoutSpec=boardLayout(innerWidth,innerHeight,this.viewPreference);
+    if(this.layoutSpec.focused){this.orbitYaw=0;this.orbitPitch=1.28;}
+    this.fullHelp=document.querySelector('#help').textContent;
     this.ready=false;this.lastActivation={action:null,time:0};
     this.buildBoard();this.markers=createBoardMarkers(THREE,this.board,this.tiles);
     this.buildEnvironment();this.bind();this.render();this.fitView();
@@ -136,12 +142,19 @@ class LedgerAR {
   }
   renderUI() {
     const T=this.THREE;this.clearOwned(this.ui);this.allButtons=[];
-    const tray=new T.Group();tray.position.set(0,.013,.51);tray.rotation.x=-Math.PI/2;this.ui.add(tray);
+    const spec=boardLayout(innerWidth,innerHeight,this.viewPreference,!!this.xrSession);
+    if(spec.key!==this.layoutSpec.key&&!this.xrSession){this.orbitYaw=spec.focused?0:.18;this.orbitPitch=spec.focused?1.28:1.03;}
+    this.layoutSpec=spec;
+    // Menus temporarily fit the whole tabletop, but never change the saved view preference.
+    const compact=spec.focused&&!MODAL_MODES.has(this.mode)&&this.mode!=='gallery';
+    document.body.classList.toggle('board-focus',compact);
+    document.querySelector('#help').textContent=compact?'Select a piece, then a marked square. Drag to orbit. Pinch / wheel to zoom. V: change view.':this.fullHelp;
+    document.querySelectorAll('[data-action]').forEach(b=>{
+      b.disabled=!actionAllowed(this.mode,b.dataset.action);
+      if(b.dataset.action==='view'){b.textContent=spec.focused?'Table view':'Board view';b.setAttribute('aria-pressed',String(spec.focused));}
+    });
     const lines=this.statusLines();status.textContent=lines.join(' | ');
-    this.addPanel(tray,lines,.70,.108,0,.095);
-    const toolbar=this.placing?[['Higher','higher'],['Lower','lower'],['Cancel placement','cancel']]:[['Undo','undo'],['Market','market'],['Flip board','flip'],['Table options','options']];
-    toolbar.forEach(([label,action],i)=>this.addPanel(tray,[label],.157,.049,(i-(toolbar.length-1)/2)*.172,0,action));
-    if(this.xrSession)this.addPanel(tray,['Exit XR'],.16,.041,0,-.057,'exit');
+    const tray=buildPlayTray(this,lines);
     this.focusable=this.allButtons.slice();
     if(MODAL_MODES.has(this.mode)){
       // Hide the toolbar and remove all its hits while an exclusive panel is open.
@@ -153,9 +166,9 @@ class LedgerAR {
       if(this.mode==='options'){
         this.addPanel(menu,['Table options','Board changes do not change the match.'],.65,.075,0,.21);
         const buttons=[['Smaller','smaller'],['Larger','larger'],['Higher','higher'],['Lower','lower'],
-          ['Fit view','fit'],['Place board','place'],['All pieces','gallery'],['How to play','help'],['New game','new'],['Promotion lab','lab']];
-        buttons.forEach(([label,action],i)=>this.addPanel(menu,[label],.196,.058,(i%3-1)*.215,.122-Math.floor(i/3)*.07,action));
-        this.addPanel(menu,['Back to game'],.29,.048,.105,-.088,'cancel');
+          [this.layoutSpec.focused?'Table view':'Board view','view'],['Place board','place'],['All pieces','gallery'],['How to play','help'],['New game','new'],['Promotion lab','lab'],['Fit view','fit']];
+        buttons.forEach(([label,action],i)=>this.addPanel(menu,[label],.196,.058,(i%3-1)*.215,.122-Math.floor(i/3)*.07,action,action!=='view'||!this.xrSession));
+        this.addPanel(menu,['Back to game'],.196,.058,.215,-.088,'cancel');
       }else{
         this.addPanel(menu,['HOW TO PLAY','Select your piece, then a marked destination.','Green dot: quiet move. Coral ring: capture.','Gold ring: selected. Red ring: king in check.',
           'Checkmate or causing stalemate wins.','Making the third repeated position loses.','Captures earn bank points. Market buys promotion licenses.',
@@ -244,6 +257,11 @@ class LedgerAR {
   dispatch(action) {
     if(!actionAllowed(this.mode,action))return false;
     const [name,arg]=action.split(':');
+    if(name==='view'){
+      if(this.xrSession)return false;
+      this.viewPreference=this.layoutSpec.focused?'table':'board';writeViewPreference(this.viewPreference);
+      this.render();this.fitView();return true;
+    }
     if(name==='square')return this.square(arg);
     if(name==='buy')return this.buy(arg);
     if(name==='promote'&&this.pending)return this.commit({from:this.pending.fromSquare,to:this.pending.toSquare,promotionType:arg});
@@ -306,10 +324,11 @@ class LedgerAR {
     if(this.xrSession)return;
     const T=this.THREE,p=this.root.position;
     const horizontal=this.orbitDistance*Math.cos(this.orbitPitch);
-    this.viewer.object3D.position.set(p.x+Math.sin(this.orbitYaw)*horizontal,p.y+Math.sin(this.orbitPitch)*this.orbitDistance,p.z+Math.cos(this.orbitYaw)*horizontal);
+    const offsetX=this.layoutSpec.focused?this.layoutSpec.targetX*this.scale:0,offsetZ=this.layoutSpec.focused?this.layoutSpec.targetZ*this.scale:0;
+    this.viewer.object3D.position.set(p.x+offsetX+Math.sin(this.orbitYaw)*horizontal,p.y+Math.sin(this.orbitPitch)*this.orbitDistance,p.z+offsetZ+Math.cos(this.orbitYaw)*horizontal);
     // The A-Frame entity is a Group: lookAt aims its positive Z, unlike a Camera.
     // Rotate the rig half a turn so the child camera's negative Z faces the board.
-    this.viewer.object3D.lookAt(new T.Vector3(p.x,p.y+.04*this.scale,p.z+.10*this.scale));
+    this.viewer.object3D.lookAt(new T.Vector3(p.x+this.layoutSpec.targetX*this.scale,p.y+.04*this.scale,p.z+this.layoutSpec.targetZ*this.scale));
     this.viewer.object3D.rotateY(Math.PI);
     this.viewer.object3D.updateMatrixWorld(true);
   }
@@ -362,7 +381,7 @@ class LedgerAR {
     scene.canvas.addEventListener('pointercancel',clearPointers);window.addEventListener('blur',clearPointers);
     scene.canvas.addEventListener('wheel',e=>{if(this.xrSession)return;e.preventDefault();this.orbitDistance=clamp(this.orbitDistance+e.deltaY*.001,.5,6);this.orbit();},{passive:false});
     let resizing=false;
-    const resized=()=>{if(resizing)return;resizing=true;requestAnimationFrame(()=>{resizing=false;this.fitView();});};
+    const resized=()=>{if(resizing)return;resizing=true;requestAnimationFrame(()=>{resizing=false;this.render();this.fitView();});};
     window.addEventListener('resize',resized);
     if(window.ResizeObserver){const observer=new ResizeObserver(resized);observer.observe(document.querySelector('#desktop'));observer.observe(document.querySelector('#help'));this.layoutObserver=observer;}
     document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>this.dispatch(b.dataset.action)));
@@ -375,6 +394,7 @@ class LedgerAR {
       else if(['Enter',' '].includes(e.key)){e.preventDefault();this.selectFocus();}
       else if(e.key==='Escape')this.cancel();else if(e.key.toLowerCase()==='u'||e.key.toLowerCase()==='x')this.dispatch('undo');
       else if(e.key.toLowerCase()==='m'||e.key.toLowerCase()==='y')this.dispatch('market');
+      else if(e.key.toLowerCase()==='v')this.dispatch('view');
       else if(e.key==='F2'){e.preventDefault();this.menuNavigation=!this.menuNavigation;this.updateFocus();}
     });
     scene.addEventListener('enter-vr',()=>this.startXR());
@@ -518,6 +538,7 @@ class LedgerAR {
       if(b[5])hand==='left'?this.dispatch('undo'):this.cancel();
     }else{
       if(b[0])this.selectFocus();if(b[1])this.cancel();if(b[2])this.dispatch('undo');if(b[3])this.dispatch('market');
+      if(b[11])this.dispatch('view');
       if(b[4]||b[5])this.dispatch('flip');if(b[9]){this.menuNavigation=!this.menuNavigation;this.updateFocus();}
     }
     const axis=xr&&pad.axes.length>=4?2:0;
@@ -545,8 +566,7 @@ async function start() {
   if(!scene.hasLoaded)await new Promise(resolve=>scene.addEventListener('loaded',resolve,{once:true}));
   const T=AFRAME.THREE;
   try {
-    const atlas=await new T.TextureLoader().loadAsync(new URL(ATLAS.url,import.meta.url).href);
-    atlas.colorSpace=T.SRGBColorSpace;atlas.anisotropy=Math.min(4,scene.renderer.capabilities.getMaxAnisotropy());
+    const atlas=await loadPieceAtlas(T,scene.renderer,import.meta.url);
     const app=new LedgerAR(T,atlas);window.WarLedgerAR=app;
     AFRAME.registerComponent('warledger-loop',{tick(time){app.tick(time);}});scene.setAttribute('warledger-loop','');
   }catch(error){status.textContent=`Could not load the AR board: ${error.message}. Your save is unchanged.`;document.querySelector('#failure').hidden=false;console.error(error);}

@@ -21,7 +21,7 @@ export function actionAllowed(mode, action) {
   if(['cancel','exit','undo'].includes(name))return true;
   const allowed={
     market:['market','buy'],promotion:['buy','promote','market'],confirm:['confirm'],
-    options:['options','smaller','larger','higher','lower','flip','place','fit','gallery','help','new','lab'],
+    options:['options','smaller','larger','higher','lower','flip','place','fit','view','gallery','help','new','lab'],
     help:['help']
   };
   return allowed[mode]?.includes(name)||false;

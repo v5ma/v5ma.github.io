@@ -16,16 +16,29 @@
     body.xr #desktop,body.xr #help{display:none}#failure{position:fixed;z-index:20;inset:30% 12%;padding:24px;background:#18232b;border:1px solid #b9a075;border-radius:10px}#failure[hidden]{display:none}
     @media(max-width:540px){#desktop{flex-direction:column;gap:6px}#desktop nav{max-width:none;width:100%;justify-content:flex-start}#status{max-width:none}#help{padding:6px;font-size:10px}}
     @media(max-width:720px){#desktop{padding:8px 10px;align-items:flex-start}h1{font-size:16px}#status{font-size:11px}nav{max-width:230px}button,a{font-size:11px;min-height:34px;padding:7px 9px}#help{font-size:11px}}
+    /* Board view removes repeated header text, not the in-scene controls. */
+    body.board-focus #desktop{padding:6px 10px;gap:5px}
+    body.board-focus #status{min-height:0;-webkit-line-clamp:1;font-size:11px;margin-top:2px}
+    body.board-focus h1{font-size:14px}
+    body.board-focus #help{bottom:5px;padding:5px;font-size:10px}
+    @media(min-aspect-ratio:13/10) and (max-height:540px){
+      body.board-focus #desktop{flex-direction:row;align-items:center}
+      body.board-focus #desktop>div{max-width:27%;min-width:0}
+      body.board-focus #desktop nav{width:auto;max-width:none;flex-wrap:nowrap;gap:4px}
+      body.board-focus button,body.board-focus a{padding:6px 7px;font-size:10px;min-height:32px}
+      body.board-focus h1{font-size:11px}
+    }
+    @media(max-width:380px){body.board-focus button,body.board-focus a{padding:6px 8px;font-size:10px;min-height:32px}}
   </style>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js" onerror="document.addEventListener('DOMContentLoaded',()=>document.querySelector('#failure').hidden=false)"></script>
 </head>
-<body data-release="ar-tactical-20260922-4">
+<body data-release="ar-closeview-20260922-5">
   <header id="desktop">
     <div><h1>WAR LEDGER CHESS</h1><p id="status" role="status" aria-live="polite">Loading the illustrated tabletop...</p></div>
     <nav aria-label="Tabletop controls">
       <button id="enter-ar" disabled>Enter AR</button><button id="enter-vr" disabled>Enter VR</button>
       <button data-action="undo">Undo</button><button data-action="market">Market</button>
-      <button data-action="options">Table options</button><a href="./">2D board</a>
+      <button data-action="view" aria-pressed="false">Board view</button><button data-action="options">Table options</button><a href="./">2D board</a>
     </nav>
   </header>
   <div id="help">Click a piece, then a highlighted square. Drag to orbit; scroll or two-finger pinch to zoom. Xbox: D-pad / left stick, A select, B cancel, X undo, Y market. Progress is saved.</div>
@@ -38,6 +51,6 @@
     <a-entity hand-tracking-controls="hand:left;modelStyle:dots;modelColor:#ead5ab"></a-entity>
     <a-entity hand-tracking-controls="hand:right;modelStyle:dots;modelColor:#80d3d1"></a-entity>
   </a-scene>
-  <script type="module" src="./warledger-ar.mjs?v=ar-tactical-20260922-4"></script>
+  <script type="module" src="./warledger-ar.mjs?v=ar-closeview-20260922-5"></script>
 </body>
 </html>
