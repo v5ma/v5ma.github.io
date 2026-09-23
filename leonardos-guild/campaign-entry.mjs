@@ -3,7 +3,7 @@
 import {newState} from './model.mjs';
 import {attachFrontier,targetFrontier,stillwaterDestination} from './frontier-core.mjs';
 import {attachQuarter} from './quarter-core.mjs';
-export const PLAYTEST_BUILD='guild-currentworks-wayfinding-20260922';
+export const PLAYTEST_BUILD='guild-sling-feedback-20260922';
 export function requestedCampaign(search=''){
  return new URLSearchParams(search).get('district')==='quarter'?'quarter':'vinci';
 }

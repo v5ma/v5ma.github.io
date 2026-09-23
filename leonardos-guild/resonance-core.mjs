@@ -14,7 +14,7 @@ const dist=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 const integer=(n,max)=>Number.isInteger(n)&&n>=0&&n<=max;
 const angle=n=>Math.atan2(Math.sin(n),Math.cos(n));
 export function resonanceState(raw){
-  const c={version:1,tool:'staff',variants:{staff:0,sling:0,letters:0,lantern:0},discipline:'courier',ready:6,reserve:36,guard:100,guardTired:false,headlight:true,reload:0,fireCD:0,aim:false,aimYaw:0,lock:null,cover:null,duck:false,special:0,specialCD:0,projectiles:[],nextShot:0,supplyCD:0};
+  const c={version:1,tool:'staff',variants:{staff:0,sling:0,letters:0,lantern:0},discipline:'courier',ready:6,reserve:36,guard:100,guardTired:false,headlight:true,reload:0,fireCD:0,aim:false,aimYaw:0,lock:null,cover:null,duck:false,special:0,specialCD:0,projectiles:[],impacts:[],nextShot:0,supplyCD:0};
   if(!raw||raw.version!==1)return c;
   if(TOOLS.some(t=>t.id===raw.tool))c.tool=raw.tool;if(DISCIPLINES.some(d=>d.id===raw.discipline))c.discipline=raw.discipline;
   for(const t of TOOLS)if(integer(raw.variants?.[t.id],t.variants.length-1))c.variants[t.id]=raw.variants[t.id];
@@ -43,7 +43,7 @@ export function aimTarget(s,w,yaw,enabled=true){
   return validTargets(s,w).filter(e=>dist(e,s)<30&&Math.abs(angle(Math.atan2(e.x-s.x,e.z-s.z)-yaw))<.72&&clearShot(s,w,s,e)).sort((a,b)=>dist(a,s)-dist(b,s))[0]||null;
 }
 export function reloadSling(s){const c=s.resonance;if(c.tool!=='sling')return false;if(c.reload>0||c.ready>=6)return false;if(!c.reserve){notify(s,'Your pellet pouch is empty. Refill at Leonardo\'s workshop or buy market supplies.','resonance-empty');return false;}c.reload=c.special>0&&c.discipline==='artificer'?.5:1.35;notify(s,'Filling the ready pouch...','resonance-reload');return true;}
-export function restockResonance(s){const c=s.resonance;if(!c)return;c.reserve=36;c.ready=6;c.reload=0;c.guard=100;c.guardTired=false;c.projectiles=[];c.cover=null;c.aim=false;c.lock=null;c.duck=false;}
+export function restockResonance(s){const c=s.resonance;if(!c)return;c.reserve=36;c.ready=6;c.reload=0;c.guard=100;c.guardTired=false;c.projectiles=[];c.impacts=[];c.cover=null;c.aim=false;c.lock=null;c.duck=false;}
 export function chooseTool(s,id,variant=0){const t=TOOLS.find(t=>t.id===id);if(!t||!integer(variant,t.variants.length-1))return false;const c=s.resonance;c.tool=id;c.variants[id]=variant;c.reload=0;c.lock=null;return true;}
 export function chooseDiscipline(s,w,id){if(!DISCIPLINES.some(t=>t.id===id))return false;const c=s.resonance;if(c.special>0||validTargets(s,w).some(e=>dist(e,s)<12&&clearShot(s,w,s,e))){notify(s,'Choose a discipline in a safe place, after your active ability ends.','resonance-denied');return false;}c.discipline=id;notify(s,DISCIPLINES.find(d=>d.id===id).name+' discipline ready. Your character, commissions and equipment stay with you.','resonance-discipline');return true;}
 export function specialAbility(s){const c=s.resonance;if(c.specialCD>0||c.special>0)return false;if(s.life.focus<40){notify(s,'This ability needs 40 focus. Let it recover, or use an earned restorative service.','resonance-denied');return false;}s.life.focus-=40;c.special=7;c.specialCD=25;if(c.discipline==='artificer'){s.scan=8;s.scanCD=2;}notify(s,({courier:'Second Wind',warden:'Steadfast',artificer:'Ingenio Focus'})[c.discipline]+'!','resonance-special');return true;}
@@ -66,6 +66,26 @@ function damageTarget(s,w,t,damage,stun){
     if(!s.life.enemies.rocco){s.life.flags.rocco=true;notify(s,'Rocco yields. Present your warrant and evidence to close the investigation.','town-duel');}else notify(s,'The pellet catches Rocco.','resonance-impact',{x:t.x,z:t.z});
   }
 }
+// One heading resolver serves both release and the short direction indicator.
+// This preserves the existing camera-heading/optional-lock-on controls.
+export function slingDirection(s,w){
+ const c=s.resonance,target=c.lock?validTargets(s,w).find(t=>t.id===c.lock&&clearShot(s,w,s,t)):null;
+ return {yaw:target?Math.atan2(target.x-s.x,target.z-s.z):c.aimYaw,locked:target?.id||null};
+}
+export function slingSpace(s,w){const l=doorLocation(s,w);return [inQuarter(s)?'quarter':inBadlands(s)?'frontier':'vinci',l.level,l.room||''].join(':');}
+export function slingSight(s,w){
+ const c=s.resonance;if(s.mode!=='foot'||c?.tool!=='sling'||!c.aim)return null;
+ const {yaw,locked}=slingDirection(s,w);if(![s.x,s.z,yaw].every(Number.isFinite))return null;
+ const dx=Math.sin(yaw),dz=Math.cos(yaw);let length=0,blocked=false;
+ // A short heading aid, NOT a full-range hit prediction. Stop before nearby
+ // world collision; do not suggest that the displayed end is weapon range.
+ for(let i=1;i<=40;i++){const d=i*.1,x=s.x+dx*d,z=s.z+dz*d;if(solidPoint(s,w,x,z)){blocked=true;break;}length=d;}
+ return {kind:'direction',yaw,locked,length,blocked,x:s.x,z:s.z,endX:s.x+dx*length,endZ:s.z+dz*length,ready:c.ready>0&&c.reload<=0};
+}
+function slingImpact(s,w,p,kind){
+ const c=s.resonance;c.impacts??=[];c.impacts.push({id:p.id,kind,x:p.x,z:p.z,step:s.steps,space:slingSpace(s,w)});
+ if(c.impacts.length>8)c.impacts.shift();
+}
 export function fireTool(s,w,{attack,throwPaper,cast}={}){
   const c=s.resonance;if(s.mode!=='foot'||c.fireCD>0||c.reload>0)return false;
   if(c.tool==='staff'){const heavy=c.variants.staff===1,before=new Map(validTargets(s,w).map(t=>[t.id,t.hp]));c.fireCD=heavy?.85:.6;const result=attack?.(s,w);if(heavy&&result){s.attackCD=.85;const hit=validTargets(s,w).find(t=>t.hp<before.get(t.id));if(hit)damageTarget(s,w,hit,10,.7);}return !!result;}
@@ -73,10 +93,9 @@ export function fireTool(s,w,{attack,throwPaper,cast}={}){
   if(c.tool==='lantern'){c.fireCD=.5;return !!cast?.(s);}
   if(c.tool!=='sling')return false;
   if(!c.ready){c.fireCD=.5;notify(s,'Ready pouch empty. X reloads from your reserve.','resonance-empty');return false;}
-  const target=c.lock?validTargets(s,w).find(t=>t.id===c.lock&&clearShot(s,w,s,t)):null;
-  const yaw=target?Math.atan2(target.x-s.x,target.z-s.z):c.aimYaw;
+  const {yaw}=slingDirection(s,w);
   const f={x:Math.sin(yaw),z:Math.cos(yaw)},soft=c.variants.sling===1;
-  c.ready--;c.fireCD=.42;s.attackT=.22;c.projectiles.push({id:++c.nextShot,x:s.x,z:s.z,vx:f.x*(soft?29:37),vz:f.z*(soft?29:37),life:1.1,level:doorLocation(s,w).level,room:doorLocation(s,w).room,damage:soft?14:26,stun:soft?1.4:.4});
+  c.ready--;c.fireCD=.42;s.attackT=.22;c.projectiles.push({id:++c.nextShot,x:s.x,z:s.z,previousX:s.x,previousZ:s.z,vx:f.x*(soft?29:37),vz:f.z*(soft?29:37),life:1.1,level:doorLocation(s,w).level,room:doorLocation(s,w).room,damage:soft?14:26,stun:soft?1.4:.4});
   if(c.projectiles.length>12)c.projectiles.shift();notify(s,'Sling / '+c.ready+' ready / '+c.reserve+' reserve.','resonance-sling');return true;
 }
 export function resonanceInput(s,w,input,dt,{lockOn=true}={}){
@@ -95,15 +114,16 @@ export function resonanceInput(s,w,input,dt,{lockOn=true}={}){
   return {...input,boost:input.boost||activeSprint,guard:input.guard||guard,throttle:c.cover?(input.throttle||0)*.55:input.throttle,brake:input.brake||input.handbrake};
 }
 export function resonanceStep(s,w,input,dt,actions){
-  const c=s.resonance;if(input.fire)fireTool(s,w,actions);
+  const c=s.resonance,space=slingSpace(s,w);c.impacts=(c.impacts||[]).filter(m=>m.space===space&&s.steps-m.step>=0&&s.steps-m.step<24);if(input.fire)fireTool(s,w,actions);
   const loc=doorLocation(s,w);
   for(const p of c.projectiles){
     if(p.level!==loc.level||p.room!==loc.room&&![3,-2].includes(loc.level)){p.life=0;continue;}
+    p.previousX=p.x;p.previousZ=p.z;
     const from={x:p.x,z:p.z},to={x:p.x+p.vx*dt,z:p.z+p.vz*dt};p.life-=dt;
-    if(!clearShot(s,w,from,to)||solidPoint(s,w,to.x,to.z)){p.life=0;notify(s,'The pellet hits stone or timber.','resonance-wall',{x:to.x,z:to.z});continue;}
+    if(!clearShot(s,w,from,to)||solidPoint(s,w,to.x,to.z)){p.life=0;slingImpact(s,w,p,'wall');notify(s,'The pellet hits stone or timber.','resonance-wall',{x:to.x,z:to.z});continue;}
     p.x=to.x;p.z=to.z;
     const e=validTargets(s,w).find(e=>{const dx=to.x-from.x,dz=to.z-from.z,den=dx*dx+dz*dz,f=clamp(((e.x-from.x)*dx+(e.z-from.z)*dz)/(den||1),0,1);return dist(e,{x:from.x+dx*f,z:from.z+dz*f})<.65;});
-    if(e){p.life=0;damageTarget(s,w,e,p.damage,p.stun);}
+    if(e){p.life=0;damageTarget(s,w,e,p.damage,p.stun);slingImpact(s,w,p,'hit');}
   }
   c.projectiles=c.projectiles.filter(p=>p.life>0);
 }

@@ -1,3 +1,4 @@
+import {createSlingFeedback} from './sling-feedback.mjs';
 import {createVaultArt} from './vault-art.mjs';
 import {VAULT_WALLS,inVaultArea} from './vault-data.mjs';
 import {vaultTarget} from './vault-core.mjs';
@@ -11,7 +12,7 @@ import {createPersonRig,createActorFade} from './character-rig.mjs';
 import {animatePerson,inspectMotion} from './character-motion.mjs';
 import {createCameraSafety} from './camera-safety.mjs';
 import {FRONTIER_SITES,FRONTIER_SOLIDS,MONSTERS,CAMP,TOWN_GATE,frontierTarget,frontierHeight,TRAIL_NODES,TRAIL_EDGES} from './frontier-core.mjs';
-export function createFrontierArt({scene,camera,renderer,m,heightAt}){
+export function createFrontierArt({scene,camera,renderer,m,heightAt,world}){
  const root=new T.Group();root.name='Cinder Hollow';root.visible=false;scene.add(root);
  const townGate=new T.Group();townGate.name='Expedition gate';townGate.position.set(TOWN_GATE.x,heightAt(TOWN_GATE.x,TOWN_GATE.z),TOWN_GATE.z);scene.add(townGate);
  function arch(parent,x,y,z,text){const b=new Batch();for(const sign of[-1,1]){b.box(x+sign*3.5,y+1.8,z,1,3.6,1.2,'#808177');b.box(x+sign*3.5,y+3.6,z,1.3,.3,1.5,'#b9aa89');}b.box(x,y+4,z,8.3,.4,1,'#89765f');const masonry=b.finish(parent,m.trim,'Open region arch'),sign=label(parent,text,x,y+3,z,4.3,.85,0,'#385253');return {masonry,sign,z};}
@@ -39,7 +40,7 @@ export function createFrontierArt({scene,camera,renderer,m,heightAt}){
  const creatures=new Map(),q=new T.Quaternion();for(const def of MONSTERS){let actor;if(def.kind==='wisp'){actor={root:new T.Group()};actor.core=new T.Mesh(new T.OctahedronGeometry(.55),new T.MeshStandardMaterial({color:'#afcfc5',emissive:'#4b847c',emissiveIntensity:.5}));actor.core.position.y=1.1;actor.root.add(actor.core);}else{actor=createPersonRig(m,'bandit');const armor=new Batch();armor.box(0,.25,.23,.5,.46,.08,'#89979c');armor.ball(0,.675,.015,.135,.135,.123,'#8c969a');armor.box(0,.65,.135,.17,.04,.026,'#d3d6ab');armor.finish(actor.root.guildRig.torso,m.trim,'Hollow armor');const blade=new Batch();blade.rod([0,-.1,0],[0,.9,0],.035,'#d5d7c8');blade.rod([-.16,0,0],[.16,0,0],.03,'#ccb48b');blade.finish(actor.handSockets[1],m.trim,'Sentinel blade');if(def.kind==='warden')actor.root.scale.setScalar(1.25);}
  const tag=label(actor.root,def.name,0,2.7,0,3.1,.5,0,'#504955');const bar=new T.Mesh(new T.PlaneGeometry(1.3,.08),new T.MeshBasicMaterial({color:'#bad18b',side:T.DoubleSide}));bar.position.y=2.3;actor.root.add(bar);root.add(actor.root);creatures.set(def.id,{...actor,tag,bar});}
  const ring=new T.Mesh(new T.RingGeometry(1.2,1.32,24),new T.MeshBasicMaterial({color:'#f4dea7',side:T.DoubleSide}));ring.rotation.x=-Math.PI/2;root.add(ring);
- const pg=new T.SphereGeometry(.07,6,4),pm=new T.MeshBasicMaterial({color:'#ffebbe'}),pellets=Array.from({length:12},()=>{const p=new T.Mesh(pg,pm);p.visible=false;root.add(p);return p;});
+ const feedback=createSlingFeedback({root,world,elevation:(_s,x,z)=>frontierHeight(x,z)+1.3});
  const safety=createCameraSafety({colliders:[...FRONTIER_SOLIDS,...VAULT_WALLS].map(b=>({...b,cameraHeight:b.h})),rooms:[],gates:[],doorPaths:[]},(x,z)=>waterGround(x,z,frontierHeight(x,z)));
  let active=false,background=null,fog=null,last={},visibility=new Map();
  function deactivate(s){if(active){for(const [o,v]of visibility)o.visible=v;scene.background=background;scene.fog=fog;root.visible=false;active=false;safety.reset();}townGate.visible=!s.doors?.level&&!s.life?.inside;}
@@ -50,12 +51,12 @@ export function createFrontierArt({scene,camera,renderer,m,heightAt}){
   player.root.position.set(s.x,y+s.lift,s.z);player.root.rotation.y=s.yaw;animatePerson(player,s.time,{motion:s.lift>.005?'jump':s.doors.dodge>0?'dodge':s.resonance.reload>0?'reload':s.guarding?'guard':s.attackT>0?'strike':aim?'aim':'walk',level:10,action:s.attackT/.25,ground:(x,z)=>waterGround(x,z,frontierHeight(x,z))});fade.update(safety.inspect().distance);staff.visible=s.resonance.tool==='staff';sling.visible=s.resonance.tool==='sling';
   for(const e of s.frontier.enemies){const a=creatures.get(e.id);a.root.visible=e.hp>0;a.root.position.set(e.x,frontierHeight(e.x,e.z),e.z);a.root.rotation.y=e.yaw;if(a.core){a.core.position.y=1.1+Math.sin(s.time*2)*.15;a.core.rotation.y=s.time*.4;}else animatePerson(a,s.time,{motion:e.phase==='windup'?'guard':e.phase==='recover'?'strike':e.phase==='stagger'?'dodge':'walk',level:10,action:e.timer,ground:frontierHeight});const near=Math.hypot(s.x-e.x,s.z-e.z)<19;a.tag.visible=a.bar.visible=near;q.copy(a.root.quaternion).invert().multiply(camera.quaternion);a.tag.quaternion.copy(q);a.bar.quaternion.copy(q);a.bar.scale.x=Math.max(.01,e.hp/e.maxHP);a.bar.material.color.set(e.phase==='windup'?'#ffbd8e':'#bad18b');}
   for(const {p,g,tag}of markers){tag.visible=Math.hypot(s.x-p.x,s.z-p.z)<12;tag.quaternion.copy(camera.quaternion);g.visible=!(p.id==='water-lens'&&s.frontier.cistern.phase>=3||p.kind==='relic'&&s.frontier.relic||s.frontier.harvested.includes(p.id));}const t=vaultTarget(s)||frontierTarget(s);ring.visible=!!t;if(t)ring.position.set(t.x,frontierHeight(t.x,t.z)+.12,t.z);
-  pellets.forEach((m,i)=>{const b=s.resonance.projectiles[i];m.visible=!!b;if(b)m.position.set(b.x,frontierHeight(b.x,b.z)+1.3,b.z);});flames.forEach((f,i)=>f.scale.y=1+Math.sin(s.time*2+i)*.1);warm.visible=quality!=='low';
+  feedback.update(s);flames.forEach((f,i)=>f.scale.y=1+Math.sin(s.time*2+i)*.1);warm.visible=quality!=='low';
   // The entrance arch lies behind the arriving player. Cut it away only
   // while it would sit between that player and their follow camera.
   const gateCutaway=camera.position.z<campArch.z+.4&&s.z>campArch.z-.4&&Math.abs(s.x-CAMP.x)<5.5&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<12;
   campArch.masonry.visible=campArch.sign.visible=!gateCutaway;vault.update(s,camera);cistern.render(s,scene,camera,renderer,quality,environmentMode);renderer.render(scene,camera);
-  last={active,vault:vault.inspect(),water:cistern.inspect(),gateCutaway,name:'Cinder Hollow',monsterModels:creatures.size,liveMonsters:s.frontier.enemies.filter(e=>e.hp>0).length,trailSegments:TRAIL_EDGES.length,pointLights:warm.visible?1:0,cameraSafety:safety.inspect(),character:inspectMotion(player),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls};
+  last={active,feedback:feedback.inspect(),vault:vault.inspect(),water:cistern.inspect(),gateCutaway,name:'Cinder Hollow',monsterModels:creatures.size,liveMonsters:s.frontier.enemies.filter(e=>e.hp>0).length,trailSegments:TRAIL_EDGES.length,pointLights:warm.visible?1:0,cameraSafety:safety.inspect(),character:inspectMotion(player),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls};
  }
  return {update,deactivate,configureEnvironment:raw=>cistern.configure(raw),inspect:()=>({...last,active})};
 }

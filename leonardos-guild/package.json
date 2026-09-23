@@ -1,7 +1,7 @@
 {
   "name": "svgn-leonardos-guild",
   "private": true,
-  "version": "0.17.1",
+  "version": "0.17.2",
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 4173 --bind 127.0.0.1",

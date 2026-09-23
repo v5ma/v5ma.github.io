@@ -1,3 +1,5 @@
+Sling feedback continuation / v0.17.2: read SLING-FEEDBACK.md, release.json and the newest exact-source/public receipt first. Existing Vinci and Cinder Hollow now have a bounded real-shot direction guide, coral pellets, simulation-step trails and confirmed hit/contact marks. No aim remap, damage/economy change or new light/target. Local 539 tests and 14 design checks pass; inspect actual source/public images and hardware results separately. Retain Currentworks Water/Trees, Stillwater guidance, all chapters and v2 saves. Direct current-master writes only.
+
 Current live-playtest continuation: read CURRENTWORKS-PLAYTEST.md and the newest release receipt before the historical checkpoints below. Version 0.17.1 retains the shared water/trees and adds a Stillwater title link, correct contract/gate/map guidance and basin-facing browser captures. Local 527 tests and 14 design checks pass; exact-public and physical acceptance remain separate. Preserve all older chapters, v2 saves and current master. Direct writes only.
 
 Continue Leo's Guild / Currentworks graphical integration, v0.17.0.

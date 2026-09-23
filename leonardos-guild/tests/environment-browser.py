@@ -79,6 +79,10 @@ with sync_playwright() as p:
   settings();page.locator('#environment-motion').click();resume_settings();frames(6)
   page.screenshot(path=str(OUT/'stillwater-surface.png'));states['surface']=read()
   check(read()['render']['frontier']['water']['shaderTime']>0,'Flowing mode resumes on the host simulation clock')
+  # Choose existing equipment through the real wheel. No inventory assignment.
+  page.keyboard.press('Tab');page.wait_for_selector('#guild-wheel:not([hidden])')
+  page.locator('[data-wheel-index="1"]').click();page.locator('#wheel-confirm').click();frames(6)
+  check(read()['resonance']['tool']=='sling','The existing equipment wheel selects the sling for the feedback check')
   for mode in ['diorama-ar','first-person']:
    page.keyboard.press('p');page.wait_for_selector('#pause-dialog[open]');page.locator('#xr-pause-launcher [data-xr-entry="'+mode+'"]').click()
    page.wait_for_function('LeonardoGuild.inspect().running&&LeonardoGuild.inspect().xr.entry.frames>4')
@@ -93,6 +97,43 @@ with sync_playwright() as p:
    states[mode]={'guild':read(),'eyeColors':counts};water=read()['render']['frontier']['water']['water']
    check(water['quality']=='light' and water['xr'],mode+': water uses the bounded stereo geometry tier')
    check(abs(water['opacity']-(.85 if mode=='diorama-ar' else .86))<.001,mode+': AR opacity does not leak into VR')
+   # Controller hardware only: keep the menu rays away from controls, then
+   # use the unchanged left-aim/right-fire bindings. Scene inspection is read-only.
+   page.evaluate("__xr.replace(0,false);__xr.replace(1,false);for(const s of __xr.sources)s.orientation={x:0,y:Math.SQRT1_2,z:0,w:Math.SQRT1_2}")
+   frames(8)
+   page.evaluate('__xr.sources[0].gamepad.buttons[0]={pressed:true,value:1}')
+   page.wait_for_function('LeonardoGuild.inspect().render.frontier.feedback.guide.visible')
+   aim=read()['render']['frontier']['feedback']['guide']
+   check(aim['kind']=='direction' and aim['length']<=4 and aim['ready'],mode+': aiming shows a bounded in-world direction guide')
+   shot=page.evaluate("""()=>new Promise((resolve,reject)=>{
+    const n=LeonardoGuild.inspect().resonance.ready;let frames=0;
+    const right=__xr.sources[1];right.gamepad.buttons[0]={pressed:true,value:1};
+    function poll(){const s=LeonardoGuild.inspect();
+     if(s.resonance.ready<n){right.gamepad.buttons[0]={pressed:false,value:0};__xr.capture=null;__xr.captureNext=true;resolve(s);return;}
+     if(++frames>120){right.gamepad.buttons[0]={pressed:false,value:0};reject(Error('Tracked fire did not release a shot'));return;}
+     requestAnimationFrame(poll);
+    }requestAnimationFrame(poll);
+   })""")
+   check(shot['resonance']['projectiles'] and shot['render']['frontier']['feedback']['pellets']>0 and shot['render']['frontier']['feedback']['trails']>0,mode+': actual tracked fire produces a visible pellet and previous-step trail')
+   projectile=shot['resonance']['projectiles'][0];direction=shot['render']['frontier']['feedback']['guide']['yaw']
+   check(abs(math.atan2(math.sin(math.atan2(projectile['vx'],projectile['vz'])-direction),math.cos(math.atan2(projectile['vx'],projectile['vz'])-direction)))<.00001,mode+': shot travel and displayed direction agree')
+   page.wait_for_function('__xr.capture')
+   path=OUT/(mode+'-sling.png');path.write_bytes(base64.b64decode(page.evaluate('__xr.capture').split(',',1)[1]))
+   states[mode+'-sling']={'shot':shot,'captureState':read()}
+   image=Image.open(path).convert('RGB');w,h=image.size
+   coral=[sum(1 for r,g,b in image.crop((i*w//2,0,(i+1)*w//2,h)).getdata() if r>190 and 45<g<160 and b<105 and r>g*1.4) for i in range(2)]
+   states[mode+'-sling']['coralPixels']=coral
+   # Colour counts are diagnostic, not proof of aim, impact or visual quality.
+   page.evaluate('__xr.sources[0].gamepad.buttons[0]={pressed:false,value:0}')
+   page.wait_for_function('!LeonardoGuild.inspect().render.frontier.feedback.guide.visible')
+   check(True,mode+': releasing aim removes the guide rather than leaving a permanent overlay')
+   page.wait_for_function('LeonardoGuild.inspect().resonance.projectiles.length===0')
+   before_pause=read()['resonance']['ready'];page.keyboard.press('p');page.wait_for_function('LeonardoGuild.inspect().paused')
+   frames(10);check(read()['resonance']['ready']==before_pause,mode+': the pause interface does not fire a held trigger or spend ammunition')
+   page.evaluate('__xr.sources[1].gamepad.buttons[5]={pressed:true,value:1}')
+   page.wait_for_function('LeonardoGuild.inspect().running')
+   page.evaluate('__xr.sources[1].gamepad.buttons[5]={pressed:false,value:0}');frames(6)
+   check(read()['resonance']['ready']==before_pause,mode+': right B resumes with no stale shot')
    page.evaluate('__xr.replace(1,true)')
    spec=importlib.util.spec_from_file_location('hands',ROOT/'tests/porter-xr-pointer.py');helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
    xrframes,panel,dom,capture=helper.hand_ui(page);xrframes(6);panel('pause');xrframes(4);dom('#pause-settings');xrframes(4)

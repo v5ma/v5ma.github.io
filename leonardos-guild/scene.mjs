@@ -76,9 +76,9 @@ export function createScene(canvas,w,s,quality='high'){
  const cycles=createCycleVisuals({scene,world:root,m,bike,streetArt});
  const cityArt=createCityArt({scene,root,w,ambient,sun,sky,clouds,streetArt,camera});
  const doorsArt=createDoorsArt({scene,root,w,m,camera});
- const resonanceArt=createResonanceArt({scene,rider});
+ const resonanceArt=createResonanceArt({scene,rider,world:w});
  const quarterArt=createQuarterArt({scene,renderer,camera,rider,m});
- const frontierArt=createFrontierArt({scene,camera,renderer,m,heightAt});let frontierWas=false;
+ const frontierArt=createFrontierArt({scene,camera,renderer,m,heightAt,world:w});let frontierWas=false;
  const carCam=new T.Vector3(),look=new T.Vector3(),forward=new T.Vector3();let initialized=false,orbit=0,freeLook=0,pitch=0,distanceScale=1,renderQuality=quality,consoleYaw=s.yaw,consoleMode=false,cameraHeading=s.yaw,lastYaw=s.yaw;
  const cameraSafety=createCameraSafety(w,heightAt),actorFade=createActorFade(rider),furnitureOcclusion=createCameraOcclusion(scene);
  const shouldDraw=createFrameGate();let viewportRevision=0,currentState=s,environment=environmentOptions();
