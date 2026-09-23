@@ -62,7 +62,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [fieldwork, pilgrimage, goldwind, interface, threshold-vr, threshold-ar, sureflight, field-kit]
+        suite: [fieldwork, pilgrimage, goldwind, interface, threshold-vr, threshold-ar, sureflight, field-kit, currentworks]
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:

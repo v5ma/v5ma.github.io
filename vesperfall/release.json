@@ -25,5 +25,11 @@
     "date": "2026-09-22",
     "scope": "Finite healing and frost vials with physical grip/throw/stow/drink, Xbox and keyboard alternatives, optional supply caches and exact additive save continuation. No co-op, melee, new realm or private hub. See FIELD-KIT.md and its public evidence receipt.",
     "refinement": "Reliable Field Use / 2026-09-22: accept validated sparse-frame throws, retain accidental-drop protections, and identify visible cache supplies before reach. See FUTURE-DIRECTION.md for the continuing dungeon-adventure plan."
+  },
+  "currentworks": {
+    "name": "Living Lanterns",
+    "date": "2026-09-22",
+    "scope": "Pinned Currentworks Water, Fire and Trees in the existing renderer. Supported shallow court water, Causeway wall gardens and refuge braziers relit by actual saved relay progress. Existing controls, physical supplies, collision, five layouts and saves remain. AR keeps the actual expedition without the added opaque scenery. See LIVING-LANTERNS.md and its separate publication receipt.",
+    "limits": "No new chapter geography, carryable courier lantern, difficulty tiers, melee, co-op or sparse AR architecture is claimed. Model, native/public and physical-device acceptance remain separate."
   }
 }
