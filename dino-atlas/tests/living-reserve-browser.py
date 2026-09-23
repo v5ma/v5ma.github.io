@@ -65,7 +65,17 @@ try:
      if not page.locator('dialog[open]').count():break
      press(1)
     check(page.evaluate('g.xr.console.feedback.root.visible'),'XR floor UI remains present for the story')
-   press(3);wait('g.state.mode==="foot"');walk([[-4,54],[-4,45],[5,44]]);act(1)
+   press(3);wait('g.state.mode==="foot"');wait('g.state.guidance?.trail?.visible')
+   check(page.evaluate('g.state.guidance.trail.build')=='first-light-trail-20260922.1','The new foot-trail module is active in the actual game')
+   check(0<page.evaluate('g.state.guidance.trail.marks')<=24,'Ground guidance uses a bounded single instanced mesh')
+   press(9);before_trail=page.evaluate('JSON.stringify(g.state.guidance.trail.points)');page.wait_for_timeout(400)
+   check(page.evaluate('JSON.stringify(g.state.guidance.trail.points)')==before_trail,'The foot trail does not animate or advance progress while paused')
+   page.locator('#travel-guidance').uncheck();wait('!g.state.guidance.trail.visible')
+   check(page.evaluate('g.state.living.stage')==0,'The existing guidance switch hides the trail without changing chapter progress')
+   page.locator('#travel-guidance').check();wait('g.state.guidance.trail.visible');press(1)
+   walk([[-4,54],[-4,45],[5,44]]);wait('g.state.living.task.detail.includes("READY:")')
+   check('Talk to Mara' in page.evaluate('g.state.living.task.detail'),'Arrival copy identifies the actual ready interaction, not tool fire')
+   act(1)
    check(page.evaluate('g.state.living.stage')==1,'Meet Mara through ordinary in-reach interaction')
    walk([[0,39],[0,24],[-12,13]])
    # A shifted view is still ordinary walking; never move the animal to the test.
@@ -73,9 +83,17 @@ try:
     if page.evaluate('g.state.living.candidate==="watch"'):break
     walk([p])
    act(2);check(bool(page.evaluate('g.state.living.observation.uid')),'Observe an actually visible living resident without firing a tool')
+   wait('g.state.guidance?.trail?.visible')
+   check(page.evaluate('g.state.guidance.trail.points.some(p=>p.x===8&&p.z===14)&&g.state.guidance.trail.points.some(p=>p.x===18&&p.z===14)'), 'Suggested Ivo route follows the real north-side ramp bypass')
+   page.screenshot(path=str(OUT/(NAME+'-trail.png')))
+   if XR:
+    wait('g.xr.console.feedback.snapshot().step.includes("NEXT:")')
+    check(True,'The existing XR floor guide displays the same next-turn instruction')
    walk([[0,16],[8,14],[18,14],[24,17]]);act(3);check(True,'Reach Ivo by the real ramp-bypass route')
    walk([[31,7],[30,-7],[29,-20],[31,-23]]);act(4);act(5)
    check(page.evaluate('g.state.living.corridorRestored'),'Service record and second physical interaction restore the corridor')
+   wait('g.state.guidance?.trail?.points.some(p=>p.z===-43)')
+   check(True,'Restoring the relay reveals the usable route through the research gate')
    page.screenshot(path=str(OUT/(NAME+'-relay.png')))
    if XR:
     press(9);choose('menu-living-reserve');choose('living-origin');wait('document.getElementById("living-dialog").open');wait('g.xr.rows.length>0')
@@ -90,12 +108,13 @@ try:
    check(True,'Walk through the reopened physical gate to recover the recording')
    walk([[37,-43],[37,-34],[35,-28],[29,-20],[30,-7],[31,7],[24,17],[18,14],[8,14],[0,16],[0,39],[-4,44]]);act(7)
    check(page.evaluate('g.state.living.complete&&!g.state.living.active'),'Return to Leena completes First Light without another unrelated fetch task')
+   wait('!g.state.guidance?.trail?.visible');check(True,'Chapter completion removes the advisory trail without removing free exploration')
    press(9);choose('menu-living-reserve');check(page.locator('#living-records button').count()==7,'All seven completed conversations remain replayable')
    check(page.locator('#living-resume').is_disabled(),'Completed chapter is not restarted for a duplicate reward')
    page.screenshot(path=str(OUT/(NAME+'-journal.png')));press(1)
    page.reload(wait_until='domcontentloaded');ready();check(page.evaluate('g.state.living.complete'),'Chapter completion survives a second ordinary reload')
    check(not errors,'No captured boot, JavaScript, shader, request or HTTP errors')
-   report={'build':'living-reserve-20260922.1','base':BASE,'case':NAME,'passed':len(checks),'checks':checks,'routes':routes,'errors':errors,'physicalHardwareVerified':False,'limits':'Native software WebGL; synthetic Xbox and optional explicit XR session/head poses. No actor, mission, inventory or reward assignments. Opening chapter only, not an entire future campaign.'}
+   report={'trailBuild':'first-light-trail-20260922.1','build':'living-reserve-20260922.1','base':BASE,'case':NAME,'passed':len(checks),'checks':checks,'routes':routes,'errors':errors,'physicalHardwareVerified':False,'limits':'Native software WebGL; synthetic Xbox and optional explicit XR session/head poses. No actor, mission, inventory or reward assignments. Opening chapter only, not an entire future campaign.'}
    (OUT/(NAME+'-report.json')).write_text(json.dumps(report,indent=2))
   except Exception as e:
    diag={}

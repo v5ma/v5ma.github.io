@@ -1,3 +1,4 @@
+import {FirstLightTrail} from './first-light-trail.js';
 import {storyFocus,STORY_FOCUS_STYLE} from './story-focus.js';
 import * as T from './vendor/three.module.js';
 import {drawDistrictMap} from './tidegate-routes.js';
@@ -10,6 +11,7 @@ export class FieldNavigation{
   if(this.districtMap){this.liveMap=document.createElement('canvas');this.liveMap.id='minimap';this.liveMap.width=720;this.liveMap.height=560;this.liveMap.setAttribute('aria-label','Live Tidegate route map. White is you; gold is your current goal. Wildlife is not shown on this compact route map.');
    const button=document.createElement('button');button.id='live-map-button';button.title='Open full map';button.style.cssText='position:absolute;right:16px;bottom:110px;width:clamp(150px,24vw,260px);padding:4px;background:#173c35;border:2px solid #edcf86;pointer-events:auto';this.liveMap.style.cssText='display:block;width:100%;height:auto';button.append(this.liveMap);button.onclick=()=>travel.ctx.action('map');document.getElementById('hud').append(button);
   }
+  this.trail=new FirstLightTrail(root);
   this.group=new T.Group();this.group.name='Active destination guidance';root.add(this.group);
   const mat=new T.MeshBasicMaterial({color:0xffd34d,transparent:true,opacity:.85,depthTest:true});
   const ring=new T.Mesh(new T.TorusGeometry(2,.12,6,32),mat);ring.rotation.x=Math.PI/2;ring.position.y=.12;this.group.add(ring);
@@ -22,7 +24,7 @@ export class FieldNavigation{
  update(time=0){
   const t=this.task(),p=this.fleet.position,b=navigationBearing(p,t?.target,this.yaw());this.goal=b?{...t,bearing:b}:null;
   document.body.dataset.livingFocus=String(storyFocus(t));
-  const show=!!b&&this.travel.settings.guidance;this.group.visible=show;this.hud.hidden=!show;
+  const show=!!b&&this.travel.settings.guidance;this.trail.update(t?.route,show);this.group.visible=show;this.hud.hidden=!show;
   if(!b){this.mapText.textContent='No active destination. Choose an operation or explore.';this.updateMap();return;}
   const elevation=b.height>3?' / ABOVE':b.height< -3?' / BELOW':'',title=t.name||t.title||'Active objective';
   this.text.textContent=`${b.compass} / ${Math.round(b.distance)} m${elevation} - ${title}`;this.arrow.style.transform=`rotate(${b.relative}rad)`;
@@ -33,6 +35,7 @@ export class FieldNavigation{
  }
  updateMap(){if(this.districtMap){drawDistrictMap(this.liveMap,this.fleet.state,this.fleet.position,[]);this.paint(this.liveMap,(x,z)=>[360+x*4.7,280+(z-3)*4.7]);}}
  paint(canvas,to,small=false){
+  this.trail.paint(canvas,to,small);
   const c=canvas.getContext('2d'),g=this.goal,p=this.fleet.position;const margin=small?13:20,clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
   c.save();c.setLineDash([]);c.textAlign='center';
   if(g){const original=to(g.target.x,g.target.z),x=clamp(original[0],margin,canvas.width-margin),y=clamp(original[1],margin,canvas.height-margin),r=small?8:12;
@@ -42,5 +45,5 @@ export class FieldNavigation{
   }
   const [px,py]=to(p.x,p.z);c.translate(px,py);c.rotate(-this.yaw());c.fillStyle='#ffffff';c.strokeStyle='#123f42';c.lineWidth=3;c.beginPath();c.moveTo(0,-(small?9:13));c.lineTo(small?7:10,small?7:10);c.lineTo(0,small?3:4);c.lineTo(small?-7:-10,small?7:10);c.closePath();c.fill();c.stroke();c.restore();
  }
- snapshot(){return this.goal?{name:this.goal.name||this.goal.title,target:{...this.goal.target},...this.goal.bearing,enabled:this.travel.settings.guidance}:null;}
+ snapshot(){return this.goal?{name:this.goal.name||this.goal.title,target:{...this.goal.target},...this.goal.bearing,trail:this.trail.snapshot(),enabled:this.travel.settings.guidance}:null;}
 }

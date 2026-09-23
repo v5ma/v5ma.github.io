@@ -1,6 +1,14 @@
 # Dino Atlas future direction
 
-Last reviewed: 2026-09-22 / Currentworks integration. This is the durable campaign brief requested by the user. Update it and the current handoff after each meaningful development checkpoint so another conversation can continue without reconstructing intent from chat. Distinguish shipped source, verified public play, proposals and remaining work. Preserve historical failure evidence.
+Last reviewed: 2026-09-22 / First Light trail pass. This is the durable campaign brief requested by the user. Update it and the current handoff after each meaningful development checkpoint so another conversation can continue without reconstructing intent from chat. Distinguish shipped source, verified public play, proposals and remaining work. Preserve historical failure evidence.
+
+## Current First Light wayfinding pass
+
+FIRST-LIGHT-TRAIL.md describes build first-light-trail-20260922.1: an optional advisory foot route over the existing main gate, north-ramp bypass, relay approach and restored research passage, with static ground marks, a dashed existing-map route and state-aware next-turn/READY instructions. Keep a single actual gold destination and the original HERE interaction. Routes are not compulsory visits and own no saved progress, rewards, input or collision. Off-route, elevated and vehicle cases must not imply universal pathfinding. The existing guidance switch controls the new marks; completing or suspending the chapter removes them.
+
+All 322 local tests, 68 syntax checks and Python compilation passed before commit, including production-physics traversal fixtures. Source/native/public outcomes for this pass must be read from HANDOFF.md and verification/first-light-trail/, not inherited from Currentworks. Human comprehension and actual device acceptance remain open. This implements an onboarding improvement, not The Missing Survey, new graphics modules or a tree-occlusion fix.
+
+Currentworks publication is complete: all 83 served files and 178 public checks passed, with the separate release archived. Its historical details below remain useful; CURRENTWORKS-HANDOFF.md and verification/currentworks/publication-20260922.json contain the final baseline evidence. Preserve the new trail pass and that graphics baseline rather than redoing either in another chat.
 
 ## Current graphical integration
 
@@ -58,7 +66,7 @@ The completed First Light recovery verified the source and public archives indep
 
 ## Next bounded work and playtest
 
-First complete and review the Currentworks source/public rendering and preserved-play checks. Then establish whether a player can find Mara, understand the AI-created-creature premise, read HERE without coaching, observe a resident, discover why the reopened passage matters, and want to investigate Tidegate. Fix observed onboarding and interaction failures before building a long second chapter. Retain the existing roadmap rather than substituting this brief for unfinished acceptance obligations.
+First complete and review the First Light trail source/public journeys while retaining the verified Currentworks baseline. Then establish whether a player can find Mara, understand the AI-created-creature premise, read HERE without coaching, observe a resident, discover why the reopened passage matters, and want to investigate Tidegate. Fix observed onboarding and interaction failures before building a long second chapter. Retain the existing roadmap rather than substituting this brief for unfinished acceptance obligations.
 
 The original public relay capture contained secondary Ranch and Coast dispatch copy and generic field-kit hints beside the selected First Light task. The Currentworks pass implements a narrow selected-story/on-foot suppression rather than removing optional activities or required controls. Verify its actual displayed behavior, suspension restoration and human usefulness. The player-facing primary story goal and HERE passed the opening's automated checks; unfamiliar-player comprehension remains open.
 

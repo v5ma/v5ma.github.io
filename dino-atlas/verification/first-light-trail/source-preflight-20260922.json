@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "build": "first-light-trail-20260922.1",
+  "reviewed_master": "531870223e8374f59f0aba8c176cb5f767ca2d57",
+  "runtime_baseline": "4df8736d4db11cfe796895d07d60794f31a81745",
+  "tests": {
+    "total": 322,
+    "pass": 322,
+    "fail": 0,
+    "skipped": 0,
+    "syntax": 68,
+    "scanned": 79,
+    "python_compiles": true,
+    "workflow_matrix_retained": true
+  },
+  "physics_fixtures": {
+    "graph_edges": 21,
+    "directed_traversals": 42,
+    "sequential_actual_bay_to_all_seven_goals": true,
+    "native_browser": false
+  },
+  "initial_focused_failure": {
+    "count": 1,
+    "cause": "Test expected an off-route position (10,44) to be within 3m of the authored trail. Corrected test uses (0,44). Runtime corridor bound not changed.",
+    "original_tap_sha256": "e24c299789b34e4171c781090d1b51dc33cd4e7d2a71f64926414ebc58d418b4"
+  },
+  "edited_files": {
+    "dino-atlas/first-light-route.js": {
+      "bytes": 6711,
+      "git_blob": "327e8bdd8ba66fdd0b10485886c55259ac239e99",
+      "sha256": "725568085b8a6690d13e541d8be0d487fb22e765ad2cc54319af8254239cadc3"
+    },
+    "dino-atlas/first-light-trail.js": {
+      "bytes": 2545,
+      "git_blob": "1d191271c41735ef13b15a74e690bdb5b0c2bb5c",
+      "sha256": "f26e21cf279e47f2858b4fda000ada2625cf1e7bd8db4c1a996bcabf9993b834"
+    },
+    "dino-atlas/living-reserve.js": {
+      "bytes": 10789,
+      "git_blob": "a4b0e6e257c8a8b2a0262d5a12b875d88262ac6e",
+      "sha256": "f554d0b82a57935ddaee86e699f7a70fc27cbb58a4b9493f5ebe767b87be231b"
+    },
+    "dino-atlas/field-navigation.js": {
+      "bytes": 5912,
+      "git_blob": "1e79d7dc96f853c71fbb2c9114a6d8b0d838725e",
+      "sha256": "72ce262a11bf3d12ca7e1417ff4393ff0d1ac78f92c0d398c89c32d6e19aef4a"
+    },
+    "dino-atlas/index.html": {
+      "bytes": 18882,
+      "git_blob": "7ab915987f99fdfdb30bf31d220d33cb1a494171",
+      "sha256": "fa606cde0268b8bafce011a26317aa7fbddd4b04bbbdba1018b4d104eb6e029f"
+    },
+    "dino-atlas/tests/first-light-trail.test.mjs": {
+      "bytes": 7426,
+      "git_blob": "b1b6424e55c5517699d2600e9a6b44915845b056",
+      "sha256": "39e5c61a0350cc12ee7d2be5756cb53bd28e14a267f99cb239b62d9c0fb6e03d"
+    },
+    "dino-atlas/tests/first-light-trail-physics.test.mjs": {
+      "bytes": 2780,
+      "git_blob": "d8479552a9f18c2ca1d46d7b350e81a890da44d8",
+      "sha256": "9cf4c583fa7c99ddb99f3e03b0e0af2e15890b6d311df06601373a52aa4da65b"
+    },
+    "dino-atlas/tests/living-reserve-browser.py": {
+      "bytes": 11007,
+      "git_blob": "cecf371812e62dc51c6a2c1b2e449587c1c3555e",
+      "sha256": "5a1d17803b76977c48926368f45542ad4596da2f0b869847cabdb79d8f8aa5cd"
+    },
+    "dino-atlas/FIRST-LIGHT-TRAIL.md": {
+      "bytes": 4960,
+      "git_blob": "8319591d945e0b6c283ea5e0a8e5092dc26eaee8",
+      "sha256": "3c02a2a3d7d834f5c6d5757bb328c679cf408d567f42b7cd3b468d4714cd8576"
+    },
+    "dino-atlas/HANDOFF.md": {
+      "bytes": 5358,
+      "git_blob": "6c5dbb461a6034a1d5e59460e99775adba9f3520",
+      "sha256": "476861e4a8a4128390a308dd10b23529a1d36f4f8885da70939154e859bf87f7"
+    },
+    "dino-atlas/FUTURE-DIRECTION.md": {
+      "bytes": 15276,
+      "git_blob": "43906b236ddd2a1eae5d194769fe3620572fe48c",
+      "sha256": "d6ca03232e0e29dc1fbb36a8f8dd76719354346a27d1fa02ed647caf0a2440d2"
+    },
+    ".github/workflows/dino-spatial-console.yml": {
+      "bytes": 10440,
+      "git_blob": "18b44fdad2211b5dbda7b9f3e5dbd2659d36ffe6",
+      "sha256": "de5b82178afd614e0b48e75abe7a1952fc3ef94ac6dc9844fecac6477a42d58c"
+    }
+  },
+  "hosted_browser": "not_yet_run",
+  "public_verification": "not_yet_run",
+  "physical_hardware": false
+}

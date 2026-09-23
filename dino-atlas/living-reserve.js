@@ -1,3 +1,4 @@
+import {firstLightTask} from './first-light-route.js';
 import * as T from './vendor/three.module.js';
 import R from './vendor/rapier.mjs';
 import {makePerson} from './frontier-art.js?v=grounded1';
@@ -80,13 +81,8 @@ export class LivingReserve{
   this.observed=context.animal;this.save();this.ctx.saveWorld();this.sync();
   const lines=this.lines(c.type);this.conversation(lines,()=>{const next=CHAPTER_STEPS[this.s.stage];this.ctx.notify(next?'NEXT: '+next.name+'. '+next.detail:'First Light completed. Your corrected field atlas is saved.');});return true;
  }
- task(){
-  if(!this.s.active)return null;const step=CHAPTER_STEPS[this.s.stage];if(!step)return null;const p=this.ctx.fleet.position;
-  let target=step.target,detail=step.detail;
-  if(step.id==='recorder'&&p.z>-37){target={x:37,y:0,z:-36};detail='The research gate is open. Follow the road to it, then continue to the recorder. Keep the return route clear.';}
-  if(this.ctx.fleet.mode!=='foot'&&Math.hypot(p.x-step.target.x,p.z-step.target.z)<12)detail='Park and step out. '+step.detail;
-  return {name:'First Light / '+step.name,detail,target,done:this.s.stage,total:CHAPTER_STEPS.length,hint:detail};
- }
+ task(){return this.s.active?firstLightTask(this.s,this.context()):null;}
+
  sync(){
   this.root.visible=this.s.active||this.s.stage>0;for(const p of this.people)p.group.visible=p.id!=='mara'||this.s.stage<4;
   this.ctx.power(corridorRestored(this.s));
