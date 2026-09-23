@@ -1,0 +1,123 @@
+{
+  "project": "Aether Reach",
+  "version": "0.17.0",
+  "focus": "Currentworks City with A City With a Voice retained",
+  "recordedDateUTC": "2026-09-23",
+  "implementationCommit": "ac5fdecb2e9c078b81043c2c6c0c95719db56c77",
+  "testedSource": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+  "reconciledMaster": "8db868572caa80d8561beefab9f2e41f71814953",
+  "reconciliation": "Five subsequent commits changed only sibling files. Aether, its native workflow, root index and projects.css remain unchanged from testedSource.",
+  "library": {
+    "source": "prism-current/modules/environment",
+    "pinnedSourceCommit": "3e33aa9cd3a3049078eeabb66b5bd96ee67e3103",
+    "modules": ["Water", "Trees", "Cloudlets", "Toon"],
+    "snapshotFiles": 8,
+    "provenance": "aether-reach/vendor/currentworks/UPSTREAM.json",
+    "hostThreeRevision": "177",
+    "upstreamReferenceRevision": "184",
+    "secondRendererOrEngine": false,
+    "water": "Decorates the existing five circular tactical water patches, retains real radii and charge cues, uses eligible real impact events for cosmetic splashes and restores original distant surfaces.",
+    "trees": "Twelve existing planter centers: six Bellwether alders and six Garden willows. Original planters and gameplay collision remain.",
+    "clouds": "Six world-fixed opaque mesh cloud formations, shaded with the Toon helper and masked by the existing per-eye portal.",
+    "otherModules": "Fire, island and later library modules are not claimed as integrated in this slice. The shared Prism library is untouched."
+  },
+  "publication": {
+    "status": "verified live",
+    "source": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+    "run": 35807565806,
+    "artifact": 10728413591,
+    "artifactSha256": "bcd919d956912a4a66923367e438dfa614042cc27873e59395192bfbffac4ba6",
+    "matchedFiles": 141,
+    "downloadedReceiptVerified": true,
+    "allFilesStatus200AndMatch": true,
+    "matchesDownloadedNativeRuntimeManifests": true,
+    "initialRun": 35806445441,
+    "initialArtifact": 10728067486,
+    "initialArtifactSha256": "b61c3484d12dbf4e999bd2a2d191b904948dd446d60ab8f00020aabe08056f45",
+    "initialResult": "118 of 141 matched; thirteen new paths were not served and ten changed existing files matched the prior 0.16.0 build. Retain as a stale-publication failure, not a pass."
+  },
+  "publisherRepair": {
+    "commit": "1439d6759a94d149af26b00fc9df09db5efd35c7",
+    "workflow": ".github/workflows/pages-rescue-publish.yml",
+    "cause": "The prior fallback deployment job 106924548348 in run 35564913826 failed because multiple artifacts were named github-pages.",
+    "change": "Use a unique build-attempt artifact name and pass that successful build output to deploy. Retain current-master checkout, permissions, site contents and old artifacts. No new workflow.",
+    "successfulRun": 35807398409,
+    "buildJob": 107011174448,
+    "deployJob": 107011953376,
+    "deployedSource": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+    "artifactName": "github-pages-35807398409-1",
+    "pagesArtifact": 10728631598,
+    "deploymentCompletedUTC": "2026-09-23T01:47:59Z"
+  },
+  "native": {
+    "run": 35807565858,
+    "source": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+    "status": "partially verified; remaining suites queued or in progress",
+    "allSevenSuitesPassed": false,
+    "completedBrowserAndGPUChecks": 120,
+    "nodeTests": 360,
+    "completedArtifacts": {
+      "render": {
+        "artifact": 10728453407,
+        "sha256": "135c087774101a4836e60aeb70ae0a514da75dbb8519c9c6febd0295dfdea657",
+        "reports": {"portal-render.json": 12, "currentworks-render.json": 17}
+      },
+      "portal": {
+        "artifact": 10728109533,
+        "sha256": "39c24aeaf97e4486d187b37eaba681cbe55da846dbfb2fbadd91490a1bc6d520",
+        "reports": {"portal-browser.json": 23}
+      },
+      "window": {
+        "artifact": 10728763760,
+        "sha256": "428c1930381c9585a8236acf19023e27ad667d87150e3e63736dbe03101b1201",
+        "reports": {"window-browser.json": 68}
+      }
+    },
+    "artifactAudit": "All listed ZIP digests, tested-commit identities, empty uncommitted diffs, complete report counts, error arrays, 360-test Node logs and identical 141-file runtime manifests were independently checked after download.",
+    "visualReview": "Inspected corrected left/right equal-scale GPU captures and actual game desktop/stereo window captures. The new module shaders draw and remain within the sampled aperture. This is not physical headset visual approval.",
+    "remainingSuites": ["controller", "field-guide", "grounded", "rotunda"],
+    "remainingInstruction": "Fetch this exact run and download each remaining successful artifact. Do not infer their outcome from the older source, isolated fixtures or a working menu. Update the receipt only from actual results."
+  },
+  "fixtureCorrection": {
+    "commit": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+    "initialArtifact": 10727664820,
+    "initialArtifactSha256": "a79f57728e658294b3faee3d178124886754caf86a106db8accd9521a9893022",
+    "finding": "The isolated second-eye camera retained its previous rig scale after scene.attach. Both samples were inside the aperture, but the intended equal 35-times eye scale was not held: the old fixture used 35 then 1225.",
+    "repair": "Reset only the fixture camera local scale before each eye and assert the real world scale is 35 for each. No game camera or XR adapter changed.",
+    "correctedResult": "The new exact-source render artifact passes all 17 graphics checks, including both explicit equal-scale assertions. All 141 runtime files are unchanged from implementationCommit."
+  },
+  "local": {
+    "nodeTests": 360,
+    "backupInputTests": 6,
+    "releaseEvidenceFixtures": 14,
+    "cleanSourceBackupRestoreTests": 360,
+    "downloadedImplementationSourceReplay": {
+      "source": "ac5fdecb2e9c078b81043c2c6c0c95719db56c77",
+      "artifact": 10728003752,
+      "artifactSha256": "2b3477f7325acf9c59c23d377b488aac526a582d6a51251dd1d85bfdae7a90bf",
+      "nodeTests": 360,
+      "matchedRuntimeFiles": 141
+    },
+    "renderObjectSoakUpdates": 3000,
+    "soakScope": "Read-only scene/model fixtures, bounded resource pools and unchanged saves; not gameplay, measured device performance or browser acceptance.",
+    "browser": "Ordinary HTTP Chromium navigation was blocked by administrator policy. No local browser pass or bypass is claimed."
+  },
+  "archive": {
+    "status": "not yet verified",
+    "permanentReleaseVerified": false,
+    "tag": "aether-v0.17.0",
+    "lastTagLookup": "404",
+    "observedArchiveRun": 35808682174,
+    "note": "The permanent archive requires all exact-source native suites and matching public evidence. Current source is committed and the live files are verified, but those facts do not establish a completed versioned asset roundtrip. Preserve prior releases; never overwrite a tag."
+  },
+  "continuity": {
+    "direction": "aether-reach/FUTURE-DIRECTION.md",
+    "handoff": "aether-reach/DEVELOPMENT-HANDOFF.md",
+    "integration": "aether-reach/CURRENTWORKS-CITY.md",
+    "next": "Close the remaining software/archive gates, then use actual player observations of arrival-to-Bellwether story readability, water cues, foliage sightlines and XR scale before expanding the map."
+  },
+  "preserved": ["A City With a Voice and all fourteen existing adventure purposes", "Version-1 saves, rewards and inventory", "Weapon damage, spread and current-step window aim", "Xbox mappings and neutral-input rearming", "Tracked first-person VR and hand-menu interaction", "Floor map, rotunda, taller full-depth portal and stereo text repair", "All concurrent sibling projects"],
+  "physicalQuest3Verified": false,
+  "physicalXboxVerified": false,
+  "humanNarrativeOrVisualApproval": false
+}
