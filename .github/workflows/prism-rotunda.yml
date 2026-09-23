@@ -287,3 +287,43 @@ jobs:
           name: prism-rotunda-public-${{ github.sha }}
           path: test-output/
           retention-days: 14
+  field-guide:
+    name: AR Field Guide / ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [source, public]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: prism-current
+          persist-credentials: false
+      - name: Install native Chromium
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Guide resource ownership
+        if: matrix.target == 'source'
+        run: python prism-current/tests/field-guide-objects.py
+      - name: Actual AR guide and encounter recovery
+        env:
+          FIELD_TARGET: ${{ matrix.target }}
+        run: |
+          if [ "$FIELD_TARGET" = public ]; then
+            timeout 420 python -u prism-current/tests/field-guide-browser.py --public
+          else
+            timeout 180 python -u prism-current/tests/field-guide-browser.py
+          fi
+      - name: Record checked commit
+        if: always()
+        run: |
+          mkdir -p test-output/field-guide
+          git rev-parse HEAD > test-output/field-guide/tested-commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-field-guide-${{ matrix.target }}-${{ github.sha }}
+          path: test-output/field-guide/
+          retention-days: 14
