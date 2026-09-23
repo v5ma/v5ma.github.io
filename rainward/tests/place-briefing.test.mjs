@@ -6,8 +6,8 @@ import {createGame,checkpoint} from '../model.mjs';
 import {LEVELS} from '../world.mjs';
 import {expeditionBrief,routeOpportunities,createPlaceBriefing} from '../place-briefing.mjs';
 
-test('Every existing chapter has a briefing, only the two rebuilt chapters claim updates',()=>{
- for(const id of Object.keys(LEVELS)){const text=expeditionBrief(id);assert.ok(text.length>50);assert.equal(text.startsWith('UPDATED'),['district','terminus'].includes(id));}
+test('Every existing chapter has a briefing, only the three rebuilt chapters claim updates',()=>{
+ for(const id of Object.keys(LEVELS)){const text=expeditionBrief(id);assert.ok(text.length>50);assert.equal(text.startsWith('UPDATED'),['district','conservatory','terminus'].includes(id));}
  for(const id of ['missing','__proto__','constructor',null])assert.equal(expeditionBrief(id),null);
 });
 test('Freight passage advice follows the existing battery prerequisite and earned radio task',()=>{
@@ -17,8 +17,8 @@ test('Station advice distinguishes available dispatch release from the power-dep
  const s=createGame('terminus');assert.deepEqual(routeOpportunities(s).map(r=>r.state),['AVAILABLE TO OPEN','CLOSED']);s.puzzle.solved=true;assert.deepEqual(routeOpportunities(s).map(r=>r.state),['AVAILABLE TO OPEN','AVAILABLE TO OPEN']);s.completedTasks.push('last-dispatch','station-radio');assert.deepEqual(routeOpportunities(s).map(r=>r.state),['OPEN','OPEN']);
  const fresh=createGame('terminus');assert.equal(routeOpportunities(fresh)[1].state,'CLOSED');
 });
-test('Briefings do not mutate checkpoints or claim connections in the other five chapters',()=>{
- for(const id of Object.keys(LEVELS)){const s=createGame(id),saved=checkpoint(s),copy=JSON.stringify(s);for(let i=0;i<5;i++){expeditionBrief(id);routeOpportunities(s);}assert.equal(checkpoint(s),saved);assert.equal(JSON.stringify(s),copy);if(!['district','terminus'].includes(id))assert.deepEqual(routeOpportunities(s),[]);}
+test('Briefings do not mutate checkpoints or claim connections in the other four chapters',()=>{
+ for(const id of Object.keys(LEVELS)){const s=createGame(id),saved=checkpoint(s),copy=JSON.stringify(s);for(let i=0;i<5;i++){expeditionBrief(id);routeOpportunities(s);}assert.equal(checkpoint(s),saved);assert.equal(JSON.stringify(s),copy);if(!['district','conservatory','terminus'].includes(id))assert.deepEqual(routeOpportunities(s),[]);}
  assert.deepEqual(routeOpportunities(null),[]);assert.deepEqual(routeOpportunities({level:'unknown'}),[]);
 });
 class Element{

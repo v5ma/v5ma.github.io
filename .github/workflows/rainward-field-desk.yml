@@ -2,7 +2,7 @@ name: Rainward Field Desk and recovered motion acceptance
 on:
   push:
     branches: [master]
-    paths: ['rainward/*.mjs','rainward/index.html','rainward/release.json','rainward/tests/**','.github/workflows/rainward-field-desk.yml']
+    paths: ['rainward/*.mjs','rainward/index.html','rainward/release.json','rainward/vendor/currentworks/**','rainward/tests/**','.github/workflows/rainward-field-desk.yml']
   pull_request:
     paths: ['rainward/**','.github/workflows/rainward-field-desk.yml']
   workflow_dispatch:
@@ -27,6 +27,7 @@ jobs:
           mkdir -p test-output
           node --test rainward/tests/*.test.mjs > test-output/node-tests.txt
           node rainward/tests/reclaimed-places-preflight.mjs > test-output/reclaimed-places-model-missions.json
+          node rainward/tests/currentworks-mission.mjs > test-output/currentworks-model-mission.json
           python -m compileall -q rainward/tests
           python rainward/tools/build-production-plan.py
           git diff --exit-code -- rainward/AAA_CHECKLIST.md
@@ -171,5 +172,53 @@ jobs:
         if: always()
         with:
           name: rainward-reclaimed-places-${{ matrix.chapter }}
+          path: test-output/
+          retention-days: 14
+  currentworks:
+    needs: models
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        view: [screen, first-person, first-person-ar, diorama-vr, diorama-ar]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install native browser
+        run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Library shaders, normal-input garden mission or actual XR eye attachments
+        env:
+          XR_VIEW: ${{ matrix.view }}
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 >/tmp/rainward-currentworks-http.log 2>&1 &
+          PID=$!
+          trap 'kill $PID' EXIT
+          if [ "$XR_VIEW" = screen ]; then
+            timeout 960 python -u rainward/tests/currentworks-browser.py
+          else
+            export XR_LAYER=projection
+            if [ "$XR_VIEW" = first-person-ar ] || [ "$XR_VIEW" = diorama-vr ]; then export XR_LAYER=base; fi
+            timeout 960 python -u rainward/tests/currentworks-xr-browser.py
+          fi
+      - name: Preserve exact source, captures and failed attempts
+        if: always()
+        run: |
+          mkdir -p test-output
+          python rainward/tests/release.py
+          git rev-parse HEAD > test-output/tested-commit.txt
+          git diff > test-output/uncommitted.diff
+          tar -czf test-output/rainward-source.tgz rainward
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rainward-currentworks-${{ matrix.view }}
           path: test-output/
           retention-days: 14

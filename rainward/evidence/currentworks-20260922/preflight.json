@@ -1,0 +1,73 @@
+{
+  "baseline": "e361025f37bc19e836ee18328cb9da239d361f32",
+  "librarySource": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "notesCheckpoint": "c441dd8efd06d2fcb6e52b65c57f3cd6cf6547fa",
+  "build": "rainward-currentworks-garden-20260922",
+  "localTests": {
+    "passed": 482,
+    "failed": 0,
+    "skipped": 0,
+    "command": "node --test rainward/tests/*.test.mjs",
+    "logSHA256": "f331f9275321686b8cad4cd56670994e57d2c5e26c376aaa0b7beff294027884"
+  },
+  "continuousModelMission": {
+    "status": "won",
+    "hp": 66,
+    "stats": {
+      "melee": 0,
+      "shots": 0,
+      "alerts": 2,
+      "takedowns": 0,
+      "hits": 0,
+      "bottles": 0,
+      "escapes": 1,
+      "seconds": 128.4999999999944
+    },
+    "alive": 5,
+    "trace": [
+      {
+        "label": "catalogue opens maintenance shutter",
+        "t": 41.16666666666561,
+        "hp": 100,
+        "x": -40.065281556371346,
+        "z": -2.9997984143150465,
+        "completed": [
+          "archive-pages"
+        ]
+      },
+      {
+        "label": "used the optional return loop",
+        "t": 59.51666666666457,
+        "hp": 100,
+        "x": -16.000000000000004,
+        "z": -9.959367226704497,
+        "completed": [
+          "archive-pages"
+        ]
+      },
+      {
+        "label": "extraction",
+        "t": 128.4999999999944,
+        "hp": 66,
+        "x": -0.06531550051582455,
+        "z": -71.99999999563218,
+        "completed": [
+          "archive-pages"
+        ]
+      }
+    ]
+  },
+  "previousReclaimedModelMissions": "All six remain passing; model steering is not native input or human acceptance.",
+  "compilation": "python -m compileall -q rainward/tests passed",
+  "scope": "Local tests use real Three r177 objects and explicit renderer collaborators, not GPU execution. Complete model missions use finite earned resources and synthetic steering, not native browser or physical devices.",
+  "nativeGPU": "Pending on exact committed source; local WebGL2 unavailable. No local game screenshots credited.",
+  "physicalQuestXbox": "Not tested",
+  "upstreamFiles": "Exact four pinned Water 0.1.0 / Trees 0.1.3 bytes; source-lock.json holds hashes. No upstream or sibling edit.",
+  "retainedInitialFailures": {
+    "tests": 469,
+    "passed": 465,
+    "failed": 4,
+    "logSHA256": "71c86149af688082dfcf33d8913598ee539a743bb7f03fda2f68ee9028eed3cc",
+    "finding": "Historical protected scene hash, featured-chapter count and fixed obstacle count were stale after the intentional integration. Keep original audit; explicit scene hash repin and updated contract counts retain the checks. No gameplay assertion or failure was suppressed."
+  }
+}

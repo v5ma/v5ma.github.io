@@ -4,15 +4,16 @@ import {taskReady} from './field-tasks.mjs';
 // Read-only presentation of the real chapter and its existing optional tasks.
 // No new waypoints, gameplay hooks, storage keys, reward grants or menu actions.
 const featured=Object.freeze({
+ conservatory:{label:'02 / The Drowned Conservatory - LIVING GARDEN',text:'UPDATED / THE DROWNED CONSERVATORY. Currentworks water and seeded trees replace the old pool/card presentation. Recover the archive catalogue to release the northern maintenance shutter and return through its service court. Shallow pools, original supplies, both components and the sluice puzzle remain.'},
  district:{label:'01 / The Floodgate - RECLAIMED QUAY',text:'UPDATED / THE FLOODGATE. Explore connected pump and evacuation rooms on the western quay. Observe the transmitter from cover, choose a sheltered return or an exposed crossing, and recover after detection. The clinic and Freight Hall remain part of the same expedition.'},
  terminus:{label:'03 / Bellweather Terminus - ESCAPE ROUTES',text:'UPDATED / BELLWEATHER TERMINUS. Search the dry-record gallery and restore station services. The existing dispatch and workshop-radio tasks now open real escape routes. The signal puzzle and both mission components still matter; enemies can follow through opened doors.'}
 });
 export function expeditionBrief(id){
  if(!Object.hasOwn(LEVELS,id))return null;
- return featured[id]?.text||LEVELS[id].title+'. Explore the existing expedition, follow its field notebook, and save at a shelter. The current level redesign focuses on The Floodgate and Bellweather Terminus.';
+ return featured[id]?.text||LEVELS[id].title+'. Explore the existing expedition, follow its field notebook, and save at a shelter. The current level redesign includes The Floodgate, the Conservatory and Bellweather Terminus.';
 }
 export function routeOpportunities(state){
- const d=state&&LEVELS[state.level];if(!d?.placesRevision)return [];
+ const d=state&&LEVELS[state.level];if(!d?.placesRevision&&!d?.gardenRevision)return [];
  const completed=new Set(state.completedTasks||[]);
  const connection=(taskId,title,closed,open)=>{
   const t=d.tasks.find(t=>t.id===taskId);
@@ -20,6 +21,7 @@ export function routeOpportunities(state){
   const done=completed.has(taskId);
   return {id:taskId,title,state:done?'OPEN':taskReady(state,t)?'AVAILABLE TO OPEN':'CLOSED',text:done?open:closed};
  };
+ if(state.level==='conservatory')return [connection('archive-pages','Archive maintenance return','Recover the catalogue at the western archive desk to open its north shutter. The service court reconnects before the sluice; the usual entrances remain open.','The northern archive maintenance shutter is open. Use the service court to return toward the colonnade. This shortcut does not replace the original sluice puzzle, and pursuers can follow through the shutter.')].filter(Boolean);
  if(state.level==='district')return [
   {id:'quay-service',title:'Western quay service rooms',state:'OPEN',text:'The pump and evacuation rooms connect the western approach to the northern quay. The low sill offers observation and cover. The verge and Freight Hall approach are more exposed alternatives. Pursuers can enter the rooms; keep another exit in mind.'},
   connection('ward-radio','Freight Hall loading passage','The optional freight receiver repair can open a return to the market. It needs the clinic battery. Both original Freight Hall entrances remain usable.','The receiver has opened the west loading passage back to the market. It changes sightlines and pursuit routes too; an open passage is not a safe zone.')

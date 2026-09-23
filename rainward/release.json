@@ -1,6 +1,6 @@
 {
   "version": "0.16.4",
-  "build": "rainward-reclaimed-places-playtest-20260922",
+  "build": "rainward-currentworks-garden-20260922",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
@@ -16,6 +16,10 @@
     "Add original flood, evacuation and interrupted-repair scene details through the existing environment renderer without replacing characters or XR",
     "Retain all seven mission contracts, saves, items, patrols, task IDs and resource quantities; no required new task or forced combat",
     "Highlight the two rebuilt expeditions in the existing chapter selector, without changing Start, Continue or saved progress",
-    "Show read-only route opportunities and earned open/closed states in the existing journal; retain full task completion messages for later reading"
+    "Show read-only route opportunities and earned open/closed states in the existing journal; retain full task completion messages for later reading",
+    "Integrate exact pinned Currentworks Water 0.1.0 and Trees 0.1.3 in the Conservatory using Rainward's existing Three r177 engine, renderer and pausable clock",
+    "Replace three existing shallow pool surfaces and old card trees with bounded wave/wake shading and seeded alder/willow geometry; keep an ordinary graphics fallback setting",
+    "Open an optional archive maintenance return through the existing catalogue task without changing rewards, water depth, objectives or the sluice puzzle",
+    "Prepare graphics before gameplay, preserve reduced motion and XR clipping, and dispose library resources on chapter changes"
   ]
 }

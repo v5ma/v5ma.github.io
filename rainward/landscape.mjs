@@ -1,9 +1,10 @@
+import {buildConservatoryLoop} from './conservatory-loop.mjs';
 import {buildTerrain} from './terrain-art.mjs';
 /* Hand-built scene composition, procedural materials, original architecture.
  * All effects run in the renderer; no screenshot/backplate is used as a level. */
 import * as T from './vendor/three.module.js';
 import {CURRENT,OBSTACLES,heightAt,GRASS} from './world.mjs';
-import {rnd} from './artkit.mjs';
+import {rnd,artkit} from './artkit.mjs';
 export function skyEnvironment(scene,renderer){
  const c=document.createElement('canvas');c.width=1024;c.height=512;const g=c.getContext('2d'),grad=g.createLinearGradient(0,0,0,512);grad.addColorStop(0,'#314e63');grad.addColorStop(.42,'#9ab6b4');grad.addColorStop(.56,'#d6e0e4');grad.addColorStop(.65,'#737e78');grad.addColorStop(1,'#282f34');g.fillStyle=grad;g.fillRect(0,0,1024,512);
  for(let i=0;i<100;i++){const x=rnd(i)*1024,y=40+rnd(i+190)*190,r=18+rnd(i+800)*80;const glow=g.createRadialGradient(x,y,0,x,y,r);glow.addColorStop(0,'#f2efdf55');glow.addColorStop(1,'#f2efdf00');g.fillStyle=glow;g.fillRect(x-r,y-r,2*r,2*r);}
@@ -15,7 +16,7 @@ export function buildConservatory(scene,A){
  // Continuous terraced floor matches heightAt used by movement and perception.
  buildTerrain(scene,A);
  // Physical obstacles are always represented, and moving gates remain separate.
- for(const o of OBSTACLES){if(o.kind==='rock'||o.renderSeparately)continue;
+ for(const o of OBSTACLES){if(o.kind==='rock'||o.renderSeparately||o.gardenServiceArt)continue;
   if(o.openWhen){const gate=new T.Group();gate.position.set(o.x,o.bottom,o.z);for(let x=-5.5;x<=5.5;x+=.55){const b=mesh('box',[.18,7,.24],bronze,'metal');b.position.set(x,3.5,0);gate.add(b);}for(const y of[1,3.5,6]){const b=mesh('box',[12,.19,.3],bronze,'metal');b.position.y=y;gate.add(b);}scene.add(gate);dynamic.gates.push(gate);continue;}
   add('box',o.x,o.bottom+o.h/2,o.z,o.w,o.h,o.d,stone,o.kind==='shelf'?'wood':'stone');
   if(o.h>3){add('box',o.x,o.bottom+o.h+.1,o.z,o.w+.35,.35,o.d+.3,light,'stone');if(o.w>5)ivy(o.x,o.bottom+.4,o.z+o.d/2+.05,o.w,o.h*.6,Math.round(o.x*9));}
@@ -55,9 +56,11 @@ export function buildConservatory(scene,A){
  // Ground-cover polygons and varied branching trees break repetitive boxes.
  const leafTex=document.createElement('canvas');leafTex.width=leafTex.height=64;const lg=leafTex.getContext('2d');lg.clearRect(0,0,64,64);lg.fillStyle='#dbe5c2';for(let i=0;i<16;i++){lg.beginPath();lg.ellipse(8+rnd(i)*48,8+rnd(i+9)*48,7,3,rnd(i+22)*6,0,7);lg.fill();}const tex=new T.CanvasTexture(leafTex);tex.colorSpace=T.SRGBColorSpace;
  for(const g of GRASS)for(let i=0;i<220;i++){const x=g.x+(rnd(i+g.x)-.5)*g.w,z=g.z+(rnd(i+g.z+99)-.5)*g.d,h=.4+rnd(i)*.65;add('blade',x,heightAt(x,z)+.02,z,.24,h,1,[0x668148,0x889554,0x52713e][i%3],'grass',0,rnd(i)*6.28,.15);}
- for(let i=0;i<26;i++){const side=i%2?1:-1,x=side*(18+rnd(i)*30),z=24-rnd(i+6)*66,base=heightAt(x,z),h=6+rnd(i+9)*7;add('cyl',x,base+h/2,z,.20,h,.27,0x555441,'wood',0,0,.06);
- for(let j=0;j<9;j++){const a=j*2.4,r=1+rnd(i+j)*3;add('cyl',x+Math.sin(a)*r/2,base+h*.78,z+Math.cos(a)*r/2,.06,r*1.8,.06,0x555441,'wood',Math.cos(a),0,Math.sin(a));add('plane',x+Math.sin(a)*r,base+h+Math.sin(j)*1.2,z+Math.cos(a)*r,3.5,2.7,1,0x81985a,'leafcard',rnd(j)*.5,rnd(j+2)*6,rnd(j+3));}}
- const lm=mat(0x81985a,'leafcard');lm.map=tex;lm.alphaTest=.45;lm.side=T.DoubleSide;lm.roughness=1;
+ const legacyTrees=new T.Group();legacyTrees.name='Legacy Conservatory tree cards';legacyTrees.userData.legacyConservatoryTrees=true;const treeA=artkit(legacyTrees);scene.add(legacyTrees);
+ for(let i=0;i<26;i++){const side=i%2?1:-1,x=side*(18+rnd(i)*30),z=24-rnd(i+6)*66,base=heightAt(x,z),h=6+rnd(i+9)*7;treeA.add('cyl',x,base+h/2,z,.20,h,.27,0x555441,'wood',0,0,.06);
+ for(let j=0;j<9;j++){const a=j*2.4,r=1+rnd(i+j)*3;treeA.add('cyl',x+Math.sin(a)*r/2,base+h*.78,z+Math.cos(a)*r/2,.06,r*1.8,.06,0x555441,'wood',Math.cos(a),0,Math.sin(a));treeA.add('plane',x+Math.sin(a)*r,base+h+Math.sin(j)*1.2,z+Math.cos(a)*r,3.5,2.7,1,0x81985a,'leafcard',rnd(j)*.5,rnd(j+2)*6,rnd(j+3));}}
+ const lm=treeA.mat(0x81985a,'leafcard');lm.map=tex;lm.alphaTest=.45;lm.side=T.DoubleSide;lm.roughness=1;
+ for(const {geo,mat:m,items}of treeA.buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=false;inst.userData.windFoliage=[...treeA.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.computeBoundingSphere();legacyTrees.add(inst);}
  // Landmark and puzzle texts remain readable in the game world.
  label('THE DROWNED\nCONSERVATORY',-8,9.2,47,3.5,.8,'#3a4e43','#ddcf9d');label('ARCHIVE / WEST',-34,5,9.8,12,1.5);label('GLASSHOUSE / EAST',35,5,10.8,13,1.5);
  label('INSCRIPTION / PRESS E\nGARDEN → NORTH',-28,2.4,7.1,5.8,1.6,'#39463c','#e3d3aa');
@@ -65,8 +68,9 @@ export function buildConservatory(scene,A){
   add('box',w.x,1,w.z,1.7,2,1.6,dark);const wheel=new T.Mesh(new T.TorusGeometry(.64,.10,8,24),mat(0xc5a76a,'metal'));wheel.position.set(w.x,1.85,w.z+.86);scene.add(wheel);dynamic.wheels.push(wheel);
   for(let j=0;j<4;j++){const a=j*Math.PI/2;add('ball',w.x+Math.sin(a)*.63,1.85+Math.cos(a)*.63,w.z+.89,.07,.07,.05,0xdebc7b,'metal');}
   label(['1 · GARDEN','2 · ARCHIVE','3 · DEEP'][i],w.x,2.9,w.z+.88,2.1,.6);}
+ const service=buildConservatoryLoop(scene,A,CURRENT);
  // Baked instancing; the renderer still uses real scene objects and collisions.
  for(const {geo,mat:m,items}of buckets.values()){const inst=new T.InstancedMesh(geo,m,items.length);items.forEach((v,i)=>inst.setMatrixAt(i,v));inst.instanceMatrix.needsUpdate=true;inst.castShadow=!['grass','glass','leafcard'].some(t=>[...A.mats].find(([k,v])=>v===m)?.[0].endsWith(':'+t));inst.userData.windFoliage=geo===geos.blade||[...A.mats].some(([k,v])=>v===m&&k.endsWith(':leafcard'));inst.receiveShadow=true;inst.userData.scanBackdrop=geo===geos.rock;inst.computeBoundingSphere();scene.add(inst);}
  for(const [key,m]of A.mats)if(key.endsWith(':grass'))m.side=T.DoubleSide;
- return {update(s,dt){dynamic.gates.forEach(g=>g.position.y+=((s.puzzle?.solved?8:0)-g.position.y)*Math.min(1,dt*3));dynamic.wheels.forEach((w,i)=>w.rotation.z=-(s.puzzle?.wheels[i]||0)*Math.PI/2);for(const [i,w]of dynamic.water.entries())if(w.rotation.x)w.position.y=.16+Math.sin(s.t*.7+i)*.014;},dispose(){tex.dispose();waterMaterial.dispose();fallMat.dispose();glowMat.dispose();}};
+ return {update(s,dt){service.update(s);dynamic.gates.forEach(g=>g.position.y+=((s.puzzle?.solved?8:0)-g.position.y)*Math.min(1,dt*3));dynamic.wheels.forEach((w,i)=>w.rotation.z=-(s.puzzle?.wheels[i]||0)*Math.PI/2);for(const [i,w]of dynamic.water.entries())if(w.rotation.x)w.position.y=.16+Math.sin(s.t*.7+i)*.014;},dispose(){Object.values(treeA.geos).forEach(g=>g.dispose());for(const m of treeA.mats.values())m.dispose();tex.dispose();waterMaterial.dispose();fallMat.dispose();glowMat.dispose();}};
 }

@@ -7,7 +7,7 @@ import * as T from './vendor/three.module.js';
 export function graphicsPreset(scene,renderer){
  let environment=scene.environment;const originals=new WeakMap(),variants=new Map(),localLights=new Map(),lowMaps=new Map();let reduced=false;
  function material(original){
-  if(!original?.isMeshStandardMaterial)return original;
+  if(!original?.isMeshStandardMaterial||original.userData.currentworksNative)return original;
   if(variants.has(original)&&variants.get(original).userData.sourceVersion!==original.version){variants.get(original).dispose();variants.delete(original);}if(!variants.has(original)){
    const m=new T.MeshLambertMaterial({color:original.color,map:original.map,emissive:original.emissive,emissiveIntensity:original.emissiveIntensity,transparent:original.transparent,opacity:original.opacity,side:original.side,alphaTest:original.alphaTest,depthWrite:original.depthWrite,depthTest:original.depthTest,vertexColors:original.vertexColors,flatShading:original.flatShading});
    if(original.userData.worldSurface)reducedWorldTexturing(m,original.userData.worldSurface);
