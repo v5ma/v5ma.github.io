@@ -30,6 +30,13 @@ with sync_playwright() as pw:
           check(JSON.stringify(s)===state,'Color rendering never writes game state, health or rewards');
           const shield={active:true,center:[-.25,1.3,-.8],normal:[0,0,-1]};art.weapon(0,pose,shield,1);
           check(!left.visible&&lb.visible,'A shield still hides its saber while the selected symbol remains available');
+          for(const difficulty of C.DIFFICULTIES.ORDER){
+            art.reset();const run=C.create('duck-armada',false,difficulty);run.mode='playing';C.advance(run,8*C.BEAT+.1);art.update(run,run.time,0,true,false,true);
+            const fruit=run.entities.find(n=>n.type==='fruit'),actor=host.object3D.getObjectByName('river-actor-fruit'+fruit.id%3),icon=actor.children[1];actor.updateWorldMatrix(true,true);
+            const center=icon.getWorldPosition(new T.Vector3()),ray=new T.Raycaster(center.clone().add(new T.Vector3(0,0,1)),new T.Vector3(0,0,-1));
+            const hits=ray.intersectObject(actor,true).filter(h=>h.object===icon||h.object===actor.children[0]);
+            check(hits[0]?.object===icon,difficulty+': enlarged fruit cannot cover its own direction/color badge');
+          }
           const reference=art.stage.matrixWorld.clone();art.stage.position.set(2,.2,-1);art.stage.rotation.y=.8;art.stage.updateMatrixWorld(true);
           check(!art.stage.matrixWorld.equals(reference)&&lb.parent.parent===art.stage,'Badges follow the same recentered stage and held weapon');
           const originalWater=art.stats.water.version,originalFire=art.stats.fire.version;

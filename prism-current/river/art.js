@@ -142,7 +142,7 @@ void main(){vec3 p=normalize(v);float h=clamp(p.y,0.,1.);
    for(const o of preview)o.g.visible=(!s||s.mode==='ready')&&!space;if(!s||s.mode==='ready'){preview[0].g.rotation.y=Math.sin(time*.25)*.18;preview[0].g.position.y=.75+Math.sin(time)*.10;}
    const ids=new Set();for(const n of s?.entities||[]){if(n.dead)continue;ids.add(n.id);let o=active.get(n.id);if(!o){const kind=kindOf(s,n);o=free.get(kind)?.pop()||make(kind);actors.add(o.g);active.set(n.id,o);}o.g.visible=true;const p=C.position(s,n);if(!space&&['catapult','boat','boss'].includes(n.type))wakeBodies.push({id:n.id,x:p[0]/river.scale.x,z:p[2],radius:(n.type==='boss'?.8:.38)/river.scale.x});o.g.position.fromArray(p);o.g.rotation.y=n.type==='fruit'?Math.sin(time*1.3+n.id)*.12:Math.sin(time*.6+n.id)*.10;
     if(['fruit','block','health'].includes(n.type))o.body.scale.setScalar(n.r/.24);
-    o.icon.visible=n.type==='fruit';if(o.icon.visible){o.icon.material=glyphs[n.hand][n.dir];o.icon.scale.setScalar(n.r*1.35);o.icon.rotation.y=-o.g.rotation.y;}
+    o.icon.visible=n.type==='fruit';if(o.icon.visible){o.icon.material=glyphs[n.hand][n.dir];o.icon.position.z=n.r+.025;o.icon.scale.setScalar(n.r*1.35);o.icon.rotation.y=-o.g.rotation.y;}
     o.health.visible=n.type==='boss'||['boat','catapult','plane','fighter'].includes(n.type);o.health.scale.x=Math.max(.01,n.hp/n.maxHP)*(n.type==='boss'?3: .7);o.health.position.y=n.type==='boss'?1.5:.75;o.health.material=C.open(s,n)?handMats[0]:danger;
     if(o.core.visible)o.core.material=C.open(s,n)?handMats[0]:danger;if(o.outline.visible){o.outline.material=C.open(s,n)?handMats[0]:danger;o.outline.rotation.z=time*.4;}
    }for(const id of active.keys())if(!ids.has(id))release(id);
