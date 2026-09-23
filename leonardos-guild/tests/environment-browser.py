@@ -20,7 +20,7 @@ with sync_playwright() as p:
   page=ctx.new_page();page.set_default_timeout(65000)
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.on('console',lambda m:shader_errors.append(m.text) if m.type=='error' and any(t in m.text for t in ['WebGLProgram','Shader Error','VALIDATE_STATUS']) else None)
-  page.goto(BASE+'/leonardos-guild/?district=legacy&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
+  page.goto(BASE+'/leonardos-guild/?chapter=stillwater&quality=low',wait_until='domcontentloaded');page.wait_for_function('window.LeonardoGuild')
   read=lambda:page.evaluate('LeonardoGuild.inspect()')
   def check(ok,text):
    assert ok,text
@@ -43,10 +43,19 @@ with sync_playwright() as p:
      a=(math.atan2(dx,dz)-s['yaw']+math.pi)%(math.pi*2)-math.pi
      keys((['w'] if abs(a)<.5 else [])+(['a' if a>0 else 'd'] if abs(a)>.06 else []));frames(2)
     else:raise AssertionError('No ordinary route to '+str((x,z)))
+  def face(yaw):
+   started=time.monotonic()
+   while time.monotonic()-started<30:
+    s=read();a=(yaw-s['yaw']+math.pi)%(2*math.pi)-math.pi
+    if abs(a)<.055:keys([]);frames(18);return
+    keys(['a' if a>0 else 'd']);frames(1)
+   keys([]);raise AssertionError('Ordinary look direction did not settle')
   def settings():
    page.keyboard.press('p');page.wait_for_selector('#pause-dialog[open]');page.locator('#pause-settings').click();page.wait_for_selector('#settings-dialog[open]')
   def resume_settings():
    page.locator('#settings-close').click();page.wait_for_selector('#pause-dialog[open]');page.locator('#resume').click();page.wait_for_function('LeonardoGuild.inspect().running')
+  check(read()['frontier']['selected']=='cistern' and read()['frontier']['gateTracked'] and not read()['road']['tracking'],'Stillwater entry selects the real expedition route without forcing the Lantern Road')
+  check(read()['frontier']['accepted']==[] and read()['credits']==0,'The playtest link grants no contract completion, money or equipment')
   check(read()['render']['environment']['trees']['prepared'],'Shared tree buffers prepared with Guild r177 before starting gameplay')
   check(read()['render']['environment']['trees']['trees']==6,'Six existing Vinci tree placements use the shared library')
   page.locator('#start').click();page.wait_for_function('LeonardoGuild.inspect().running');page.keyboard.press('f');walk((0,29))
@@ -59,7 +68,10 @@ with sync_playwright() as p:
   check(read()['render']['environment']['settings']['arWaterOpacity']==.85,'AR opacity has an independent saved value')
   resume_settings();walk((0,-17));page.keyboard.press('i');page.wait_for_selector('#frontier-dialog[open]');page.locator('[data-frontier-action="enter"]').click()
   page.wait_for_function("LeonardoGuild.inspect().frontier.zone==='badlands'&&LeonardoGuild.inspect().running")
-  walk((270,16),(236.3,16));frames(8);water=read()['render']['frontier']['water']
+  walk((270,16),(236.3,16));face(0);frames(8)
+  page.keyboard.press('i');page.wait_for_selector('#frontier-dialog[open]');page.locator('[data-frontier-action="accept:cistern"]').click();page.locator('#frontier-close').click();page.wait_for_function('LeonardoGuild.inspect().running');frames(12)
+  check(read()['target']['id']=='cistern' and page.locator('#mission-title').inner_text()=='The Drowned Workshop','Accepting the real waterworks contract updates the map and mission display together')
+  water=read()['render']['frontier']['water']
   check(water['active'] and water['water']['module']=='Currentworks Water','Ordinary travel reaches the real Stillwater basin with shared water')
   check(water['passes']==0 and water['water']['renderTargets']==0,'The new water adds no reflected-scene or refraction scene pass')
   check(water['water']['quiet'] and water['shaderTime']==0,'Still mode freezes water decoration, not the physical basin')
@@ -70,11 +82,14 @@ with sync_playwright() as p:
   for mode in ['diorama-ar','first-person']:
    page.keyboard.press('p');page.wait_for_selector('#pause-dialog[open]');page.locator('#xr-pause-launcher [data-xr-entry="'+mode+'"]').click()
    page.wait_for_function('LeonardoGuild.inspect().running&&LeonardoGuild.inspect().xr.entry.frames>4')
+   # Look down toward the basin through an ordinary simulated head pose; the
+   # old west-facing landscape capture did not demonstrate visible water.
+   page.evaluate('(pitch)=>{__xr.pitch=pitch}',-.35 if mode=='first-person' else -.20);frames(8)
    page.evaluate('__xr.capture=null;__xr.captureNext=true');page.wait_for_function('__xr.capture')
    path=OUT/(mode+'-water.png');path.write_bytes(base64.b64decode(page.evaluate('__xr.capture').split(',',1)[1]))
    image=Image.open(path).convert('RGBA');w,h=image.size
    counts=[len({c[:3] for c in image.crop((i*w//2+40,60,(i+1)*w//2-40,h-60)).resize((100,100)).getdata() if c[3]>150}) for i in range(2)]
-   check(min(counts)>30,mode+': both real eye attachments draw the reached basin')
+   check(min(counts)>30,mode+': both real eye attachments are nonblank; basin coverage requires screenshot review')
    states[mode]={'guild':read(),'eyeColors':counts};water=read()['render']['frontier']['water']['water']
    check(water['quality']=='light' and water['xr'],mode+': water uses the bounded stereo geometry tier')
    check(abs(water['opacity']-(.85 if mode=='diorama-ar' else .86))<.001,mode+': AR opacity does not leak into VR')

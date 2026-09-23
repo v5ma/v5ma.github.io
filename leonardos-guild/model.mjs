@@ -2,7 +2,7 @@ import {vaultState,saveVault,vaultTarget,vaultText} from './vault-core.mjs';
 import {roadState,saveRoad,roadTarget,roadText} from './road-core.mjs';
 import {inQuarter,saveQuarter,quarterBlocked,quarterTarget,quarterText,stepQuarter,quarterRecover} from './quarter-core.mjs';
 import {deliveryIdentitySet} from './save-identities.mjs';
-import {inBadlands,safeTown,saveFrontier,frontierBlocked,frontierTarget,stepFrontier,strikeFrontier,leaveBadlands,useDressing} from './frontier-core.mjs';
+import {inBadlands,safeTown,saveFrontier,frontierBlocked,frontierTarget,frontierMission,stepFrontier,strikeFrontier,leaveBadlands,useDressing} from './frontier-core.mjs';
 import {resonanceState,saveResonance,resonanceInput,resonanceStep,restockResonance} from './resonance-core.mjs';
 import {expandDoors,freshDoors,saveDoors,doorsBlocked,doorsStep,hitDoorEnemy} from './doors-core.mjs';
 import {cityState,saveCity,cityStep} from './city-core.mjs';
@@ -12,7 +12,7 @@ import {enhanceWorld,initLife,saveLife,lifeStep,roomBlocked,roomAt,stats,hitRocc
 /* Leonardo’s Guild / first Renaissance commission. Deterministic, renderer-independent simulation.
  * Coordinates are metres; fixed-step driver calls step() at 60 Hz. All mechanisms
  * is fictional world-state interaction; no network or account APIs are used. */
-export const VERSION='0.17.0';
+export const VERSION='0.17.1';
 export const SAVE_KEY='svgn.leonardos-guild.v1';
 export const LIMITS={x:148,zMin:-26,zMax:406};
 export const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -61,7 +61,7 @@ export function activeTarget(s,w){if(inQuarter(s))return quarterTarget(s);
  if(s.mission===0){let targets=w.mailboxes.filter(b=>b.route&&!s.deliveries.has(b.id));if(!targets.length)targets=w.mailboxes.filter(b=>!s.deliveries.has(b.id));return targets.sort((a,b)=>distance(a,s)-distance(b,s))[0]||w.depot;}
  if(s.mission===1)return w.nodes[0];if(s.mission===2)return s.defeated?w.newsroom:w.bandit;return w.depot;
 }
-export function missionText(s){if(inQuarter(s))return quarterText(s);const survey=vaultText(s);if(survey)return survey;const road=roadText(s);if(road)return road;if(inBadlands(s))return {tag:'EXPEDITION / CINDER HOLLOW',title:'Three trails beyond the walls.',text:'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'};if(safeTown(s)&&s.mission===2&&!s.defeated)return {tag:'03 / THE STOLEN FOLIO',title:'A peaceful return.',text:'Vinci is safe. Speak to the folio watchman on Arno Road with X, then retrieve the folio at the archive as before.'};return [
+export function missionText(s){if(inQuarter(s))return quarterText(s);const survey=vaultText(s);if(survey)return survey;const road=roadText(s);if(road)return road;const expedition=frontierMission(s);if(expedition)return expedition;if(inBadlands(s))return {tag:'EXPEDITION / CINDER HOLLOW',title:'Three trails beyond the walls.',text:'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'};if(safeTown(s)&&s.mission===2&&!s.defeated)return {tag:'03 / THE STOLEN FOLIO',title:'A peaceful return.',text:'Vinci is safe. Speak to the folio watchman on Arno Road with X, then retrieve the folio at the archive as before.'};return [
  {tag:'01 / THE MASTER’S LETTERS',title:'An apprentice’s first ride.',text:`Leonardo needs four sealed plans delivered. ${Math.min(s.deliveries.size,4)}/4 complete. Q throws left; C throws right. Follow the gold markers.`},
  {tag:'02 / THE WATERWORKS',title:'Ingenio opens the way.',text:'Ride to the market waterwheel. X inspects mechanisms. Stop and hold H to restore the bridge. A merchant nearby trades useful supplies.'},
  {tag:'03 / THE STOLEN FOLIO',title:'A sketch worth defending.',text:s.defeated?'The guard has yielded. Reach the gold marker by the archive and press H to recover Leonardo’s folio.':'A folio thief waits by the Arno road. Dismount with F. J swings your staff; hold K to brace. You can always retreat and recover at the workshop.'},

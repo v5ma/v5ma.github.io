@@ -1,0 +1,204 @@
+TAP version 13
+# Subtest: Accepting the waterworks contract points to its actual gate and basin, not Cairn Ridge
+not ok 1 - Accepting the waterworks contract points to its actual gate and basin, not Cairn Ridge
+  ---
+  duration_ms: 3.579677
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'ridge' !== 'cistern'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cistern'
+  actual: 'ridge'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:14:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: Explicitly marking a field site from Vinci retains that destination after legal gate travel
+not ok 2 - Explicitly marking a field site from Vinci retains that destination after legal gate travel
+  ---
+  duration_ms: 0.389657
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'ridge' !== 'cistern'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cistern'
+  actual: 'ridge'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:21:93)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: An unknown destination cannot erase the selected story or manufacture a gate marker
+not ok 3 - An unknown destination cannot erase the selected story or manufacture a gate marker
+  ---
+  duration_ms: 0.271789
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:26:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Stillwater chapter entry selects only an objective and preserves the existing adventure
+not ok 4 - Stillwater chapter entry selects only an objective and preserves the existing adventure
+  ---
+  duration_ms: 1.44581
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'ridge' !== 'cistern'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cistern'
+  actual: 'ridge'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:31:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Explicit Quarter archive remains authoritative over a conflicting Stillwater chapter parameter
+ok 5 - Explicit Quarter archive remains authoritative over a conflicting Stillwater chapter parameter
+  ---
+  duration_ms: 0.313333
+  type: 'test'
+  ...
+# Subtest: The waterworks objective waits at dry controls before pointing down the now-passable ramp
+not ok 6 - The waterworks objective waits at dry controls before pointing down the now-passable ramp
+  ---
+  duration_ms: 0.577831
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:37:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'water-lens'
+    - 'cistern'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cistern'
+  actual: 'water-lens'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:40:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Refill and physical report markers follow actual saved waterworks progression
+not ok 7 - Refill and physical report markers follow actual saved waterworks progression
+  ---
+  duration_ms: 0.658082
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:44:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /refill/i. Input:
+    
+    'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Survey the ridge, orchard and court. X interacts at marked sites. Gate Camp is safe; return there to travel to Vinci. Report contracts at the town gate.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:47:57)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: A later explicit frontier choice leaves the waterworks objective without deleting its contract
+ok 8 - A later explicit frontier choice leaves the waterworks objective without deleting its contract
+  ---
+  duration_ms: 0.431029
+  type: 'test'
+  ...
+# Subtest: Completed waterworks and all earlier earned records survive the Stillwater playtest entry
+not ok 9 - Completed waterworks and all earlier earned records survive the Stillwater playtest entry
+  ---
+  duration_ms: 1.222763
+  type: 'test'
+  location: '/mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:58:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'ridge' !== 'cistern'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cistern'
+  actual: 'ridge'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/guild-live-work/source/leonardos-guild/tests/stillwater-guidance.test.mjs:61:121)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 2
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.115538

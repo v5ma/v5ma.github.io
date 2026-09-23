@@ -1,5 +1,5 @@
 import {vaultBlocked} from './vault-data.mjs';
-import {cisternState,saveCistern,cisternStep,cisternAction,poolBlocked,waterDepth} from './cistern-core.mjs';
+import {POOL,cisternStatus,cisternState,saveCistern,cisternStep,cisternAction,poolBlocked,waterDepth} from './cistern-core.mjs';
 /* Region session above the retained campaign model. No networking or payments.
  * Old model-only fixtures remain usable without installing a region session;
  * every real app session installs this adapter, including reset and old saves.
@@ -80,6 +80,7 @@ export function enterBadlands(s){
 export function leaveBadlands(s,rescued=false){
  if(!inBadlands(s)||!rescued&&(dist(s,CAMP)>7||Math.abs(s.speed)>1.7))return fail('Return to the Gate Camp to travel safely to Vinci.');
  s.frontier.zone='town';s.frontier.enemies=[];s.frontier.lastArea=null;
+ if(s.frontier.selected==='return'&&s.frontier.accepted.includes('cistern')&&!s.frontier.reported.includes('cistern')&&s.frontier.cistern.phase>=4)s.frontier.gateTracked=true;
  s.x=TOWN_GATE.x;s.z=TOWN_GATE.z+1;s.yaw=0;s.mode='foot';s.speed=s.lift=s.vy=0;s.inv=2;s.shots=[];s.attackCD=s.attackT=0;s.guarding=false;s.doors.dodge=0;s.doors.level=0;s.doors.room=null;s.life.inside=null;
  Object.assign(s.resonance,{projectiles:[],cover:null,lock:null,aim:false,reload:0,fireCD:0,special:0});
  if(rescued)s.health=capacity(s);
@@ -87,8 +88,40 @@ export function leaveBadlands(s,rescued=false){
 }
 export function useDressing(s){const f=s.frontier;if(!f||s.health>=capacity(s))return fail('Your vitality is already full.');if(f.dressings<=0)return fail('No field dressings remain. Prepare more at the town expedition gate.');f.dressings--;s.health=Math.min(capacity(s),s.health+35);return message(s,'Field dressing used. +35 vitality.');}
 export function contractComplete(s,id){const f=s.frontier;return id==='survey'?f.visited.length===3:id==='wardens'?f.defeated.length>=3:id==='folio'?f.relic:id==='cistern'?f.cistern.phase===5:false;}
-export function frontierTarget(s){const f=s.frontier;if(!f)return null;if(safeTown(s)&&f.gateTracked)return {...TOWN_GATE,name:'Expedition Gate / on foot',level:0};if(inBadlands(s)){const p=FRONTIER_SITES.find(p=>p.id===f.selected)||FRONTIER_SITES[0];return {...p,level:0};}return null;}
-export function targetFrontier(s,id){if(!s.frontier)return false;if(safeTown(s)){s.frontier.gateTracked=true;return true;}if(!FRONTIER_SITES.some(p=>p.id===id))return false;s.frontier.selected=id;return true;}
+// Markers describe the next legal action. They never move the player, grant
+// equipment or complete work; a marked destination survives the actual gate.
+export function stillwaterDestination(s){const f=s.frontier,phase=f?.cistern?.phase||0;return phase===2?'water-lens':phase>=4&&!f.reported.includes('cistern')?'return':'cistern';}
+export function frontierTarget(s){
+ const f=s.frontier;if(!f)return null;
+ if(safeTown(s)&&f.gateTracked)return {...TOWN_GATE,name:'Expedition Gate / on foot',level:0};
+ if(inBadlands(s)){
+  let id=f.selected;
+  // A submerged lens is not yet reachable while the real hydraulic surface
+  // is falling. Wait at the dry controls instead of pointing into deep water.
+  if(id==='water-lens'&&f.cistern.phase===2&&f.cistern.surface>POOL.low+.04)id='cistern';
+  const p=FRONTIER_SITES.find(p=>p.id===id)||FRONTIER_SITES[0];return {...p,level:0};
+ }
+ return null;
+}
+export function targetFrontier(s,id){
+ const f=s.frontier;
+ if(!f||!(FRONTIER_SITES.some(p=>p.id===id)||safeTown(s)&&id==='gate'))return false;
+ if(id!=='gate')f.selected=id;
+ f.gateTracked=safeTown(s);
+ // Explicitly choosing this objective dismisses competing markers, not the
+ // other chapters' quests, evidence, tool custody or earned accomplishments.
+ if(s.road)s.road.tracking=false;if(s.vault)s.vault.tracking=false;
+ return true;
+}
+export function frontierMission(s){
+ const f=s.frontier;if(!f||!inBadlands(s)&&!f.gateTracked)return null;
+ const water=['cistern','water-lens'].includes(f.selected)||f.selected==='return'&&f.accepted.includes('cistern')&&f.cistern.phase>=4&&!f.reported.includes('cistern');
+ if(!water)return null;
+ const paid=f.reported.includes('cistern'),recorded=f.accepted.includes('cistern');
+ let text=paid?'The waterworks are restored. Revisit the basin and its reading slate; the report reward is already paid.':!recorded?'Record The Drowned Workshop in Expedition Contracts or at the cistern slate. No purchase or combat is required.':cisternStatus(s);
+ if(safeTown(s))text=f.cistern.phase===5&&recorded&&!paid?'Report The Drowned Workshop at the marked expedition gate. Your repaired waterworks and recovered lens are saved.':'Dismount at the marked expedition gate, enter Cinder Hollow, then follow the Stillwater marker west from Gate Camp. '+text;
+ return {tag:'STILLWATER / THE DROWNED WORKSHOP',title:'The Drowned Workshop',text};
+}
 export function nearbyFrontier(s,w){
  if(!s.frontier||Math.abs(s.speed)>1.7)return [];
  if(inBadlands(s))return FRONTIER_SITES.filter(p=>dist(s,p)<4);
@@ -107,7 +140,7 @@ export function frontierAction(s,w,action){
  if(action==='return')return leaveBadlands(s);
  if(action==='heal')return useDressing(s);if(action==='untrack'){f.gateTracked=false;return message(s,'Expedition gate marker cleared. Your other adventure markers remain.');}
  if(action.startsWith('track:')){return targetFrontier(s,action.slice(6))?message(s,'Destination marked. Travel is always through an actual gate or path.'):fail('Unknown destination.');}
- if(action.startsWith('accept:')){const id=action.slice(7);if(!CONTRACTS.some(c=>c.id===id)||f.accepted.includes(id))return fail('That contract is already recorded.');f.accepted.push(id);return message(s,'Contract recorded: '+CONTRACTS.find(c=>c.id===id).name+'.');}
+ if(action.startsWith('accept:')){const id=action.slice(7);if(!CONTRACTS.some(c=>c.id===id)||f.accepted.includes(id))return fail('That contract is already recorded.');f.accepted.push(id);if(id==='cistern')targetFrontier(s,stillwaterDestination(s));return message(s,'Contract recorded: '+CONTRACTS.find(c=>c.id===id).name+'.');}
  if(action==='bank'){
   if(!gate)return fail('Return to the town gate to bank your field cargo.');
   if(!f.cargo.ore&&!f.cargo.resin)return fail('There is no unbanked cargo.');
@@ -123,7 +156,7 @@ export function frontierAction(s,w,action){
  }
  if(action.startsWith('report:')){
   const id=action.slice(7),c=CONTRACTS.find(c=>c.id===id);if(!gate||!c||!f.accepted.includes(id)||f.reported.includes(id)||!contractComplete(s,id))return fail('Complete the recorded objective and return on foot to the town gate.');
-  f.reported.push(id);s.credits=Math.min(10000000,s.credits+c.reward);s.life.xp=Math.min(50000,s.life.xp+c.xp);return message(s,c.name+' complete. +'+c.reward+' florins / +'+c.xp+' XP. Reward paid once.');
+  f.reported.push(id);if(id==='cistern'&&f.selected==='return'){f.gateTracked=false;f.selected='cistern';}s.credits=Math.min(10000000,s.credits+c.reward);s.life.xp=Math.min(50000,s.life.xp+c.xp);return message(s,c.name+' complete. +'+c.reward+' florins / +'+c.xp+' XP. Reward paid once.');
  }
  if(action==='parley-folio'){
   if(!near.some(p=>p.id===action)||s.mission!==2)return fail('Complete the original deliveries and waterwheel, then speak to the watchman here.');

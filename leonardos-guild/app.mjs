@@ -13,7 +13,7 @@ import {attachQuarter,inQuarter} from './quarter-core.mjs';
 import {createQuarterUI} from './quarter-ui.mjs';
 import {attachFrontier,inBadlands,safeTown} from './frontier-core.mjs';
 import {createFrontierUI} from './frontier-ui.mjs';
-function sessionState(saved=null){const s=createCampaignState(saved,location.search);if((!saved&&!new URLSearchParams(location.search).has('district'))||new URLSearchParams(location.search).get('chapter')==='lantern-road')s.road.tracking=true;if(new URLSearchParams(location.search).get('chapter')==='lantern-vault'){s.vault.tracking=true;s.road.tracking=false;}return s;}
+function sessionState(saved=null){const s=createCampaignState(saved,location.search);if((!saved&&!new URLSearchParams(location.search).has('district')&&new URLSearchParams(location.search).get('chapter')!=='stillwater')||new URLSearchParams(location.search).get('chapter')==='lantern-road')s.road.tracking=true;if(new URLSearchParams(location.search).get('chapter')==='lantern-vault'){s.vault.tracking=true;s.road.tracking=false;}return s;}
 import {createResonanceAudio} from './resonance-audio.mjs';
 import {createResonanceUI} from './resonance-ui.mjs';
 import {createQuickTools} from './quick-actions.mjs';

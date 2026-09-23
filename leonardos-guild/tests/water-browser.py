@@ -56,7 +56,11 @@ with sync_playwright() as p:
   page.keyboard.press('Enter');page.wait_for_function('LeonardoGuild.inspect().audio.context==="running"')
   press(12);select('[data-dispatch="expeditions"]');select('[data-frontier-tab="contracts"]');select('[data-frontier-action="accept:cistern"]');close()
   check(read()['frontier']['accepted']==['cistern'],'Controller records the real waterworks contract without completing older missions')
-  press(3);drive(0,-16);interact('enter');drive(270,16);drive(236.3,16);face(0)
+  check(read()['frontier']['gateTracked'] and read()['frontier']['selected']=='cistern','Accepting the waterworks points first to its real town gate')
+  press(3);drive(0,-16);interact('enter')
+  check(read()['target']['id']=='cistern','Legal travel keeps the Stillwater destination instead of Cairn Ridge')
+  drive(270,16);drive(236.3,16);face(0)
+  check(page.locator('#mission-title').inner_text()=='The Drowned Workshop','The existing mission HUD names the selected waterworks contract')
   # Use the player's real settings interface to render a higher-detail pool.
   press(9);select('#pause-settings');select('#graphics-quality',False)
   for _ in range(3):
