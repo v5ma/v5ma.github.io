@@ -29,7 +29,7 @@ with sync_playwright() as p:
    page.evaluate("TestXR.axes('left',0,1)");wait('!Vesperfall.component.dominionControls.state.xrAxesReady');page.evaluate("TestXR.axes('left',0,0)");wait('Vesperfall.component.dominionControls.state.xrAxesReady')
   button('right',0,True);button('right',0,False)
  def walk(point):
-  result=page.evaluate("""async target=>{const trace={distance:0,start:performance.now(),simStart:Vesperfall.state.time};let last=[...Vesperfall.state.p];return await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,s=g.game,p=s.p,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw));trace.distance+=Math.hypot(p[0]-last[0],p[1]-last[1],p[2]-last[2]);last=[...p];TestPad.pad.axes=[0,d>.18&&Math.abs(a)<.08?-1:0,Math.abs(a)>.025?Math.max(-1,Math.min(1,-a*5)):0,0];TestPad.button(10,true);
+  result=page.evaluate("""async target=>{const trace={distance:0,start:performance.now(),simStart:Vesperfall.state.time};let last=[...Vesperfall.state.p];return await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,s=g.game,p=s.p,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw));trace.distance+=Math.hypot(p[0]-last[0],p[1]-last[1],p[2]-last[2]);last=[...p];TestPad.pad.axes=[0,d>.18&&Math.abs(a)<.08?-1:0,Math.abs(a)>.025?-Math.sign(a)*(.18+.82*Math.min(1,Math.abs(a)*5)):0,0];TestPad.button(10,true);
    if(d<=.18||s.phase!=='playing'||performance.now()-trace.start>150000){TestPad.pad.axes=[0,0,0,0];TestPad.button(10,false);clearInterval(timer);if(d>.18)reject(Error('Walk failed '+JSON.stringify({target,p,phase:s.phase,paused:g.paused,padArmed:g.dominionControls.state.armed})));else resolve({...trace,simSeconds:s.time-trace.simStart,health:s.health,end:[...p]});}},3);});}""",point)
   observations.append({'target':point,**result});print('WALK',point,'health',result['health'],flush=True)
  def aim(target):
@@ -47,7 +47,7 @@ with sync_playwright() as p:
   # Connect while at the title. Connecting during play intentionally pauses the
   # real game; the old driver mistook that safety pause for broken movement.
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed')
-  page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
+  page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused');wait('Vesperfall.component.dominionControls.state.armed')
   check(page.evaluate('Vesperfall.component.currentworks.water.length===2&&Vesperfall.component.currentworks.forests.reduce((n,f)=>n+f.stats.trees,0)===4'),'The actual Causeway contains two water surfaces and four trees')
   check(page.evaluate('!Vesperfall.component.tidelight.root.visible'),'The previous water layer is suppressed rather than double-rendered')
   check(not any(diag()['restored']),'No refuge is credited before its actual relay is restored')

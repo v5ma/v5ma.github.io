@@ -42,6 +42,7 @@
   const k=ensure(s);if(!k.stock[type]||k.flights.length>=4)return false;
   k.stock[type]--;k.throws++;const f={id:++k.serial,type,p:[...p],v:[...v],life:8};k.flights.push(f);C.emit(s,'kit-throw',{id:f.id,kind:type,p:[...p]});return true;
  }
+ function aimedLaunch(s,type,p,direction,C){if(!finite(direction)||len(direction)<.001)return false;const v=mul(direction,8/len(direction));v[1]+=1.2;return launch(s,type,p,v,C);}
  function splash(s,f,hit,C){
   // Stay on the incident side of a wall; never apply effects through masonry.
   const speed=len(f.v),away=speed?mul(f.v,-.11/speed):[0,.1,0];const p=hit.kind==='floor'?add(hit.p,[0,.11,0]):add(hit.p,away);
@@ -83,5 +84,5 @@
   sample(p,t){if(!finite(p)||!Number.isFinite(t)){this.invalid=true;return;}const prev=this.samples.at(-1);if(prev&&(t<=prev.t||t-prev.t>.3||len(sub(p,prev.p))>Math.max(.25,(t-prev.t)*14))){this.invalid=true;return;}this.samples.push({p:[...p],t});while(this.samples.length>2&&this.samples[1].t<t-.13)this.samples.shift();}
   release(p,t){this.sample(p,t);if(this.invalid||this.samples.length<2)return null;const a=this.samples[0],b=this.samples.at(-1),span=b.t-a.t,d=sub(b.p,a.p);if(span<.035||span>.3||len(d)<.055)return null;const v=mul(d,1/span),speed=len(v);return speed>=.6&&speed<=14?v:null;}
  }
- const api=Object.freeze({TYPES,CAP,create,ensure,eligible,anchors,center,visible,hint,cacheHit,open,collect,drink,launch,step,next,restore,Motion});root.PilgrimKitModel=api;if(typeof module!=='undefined')module.exports=api;
+ const api=Object.freeze({TYPES,CAP,create,ensure,eligible,anchors,center,visible,hint,cacheHit,open,collect,drink,launch,aimedLaunch,step,next,restore,Motion});root.PilgrimKitModel=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

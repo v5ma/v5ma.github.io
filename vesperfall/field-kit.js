@@ -34,8 +34,8 @@
   }
   function viewTarget(){const p=g.head.object3D.getWorldPosition(new T.Vector3()).toArray(),d=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion())).toArray();return targetCache(p,d);}
   function say(text){g.toast(text);}
-  function flatThrow(type){if(!live())return false;g.cancel();const head=g.head.object3D.getWorldPosition(new T.Vector3()),direction=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion())),p=head.clone().addScaledVector(direction,.18),v=direction.multiplyScalar(8);v.y+=1.2;
-   if(!M.launch(g.game,type,p.toArray(),v.toArray(),C)){say('No '+(type==='mend'?'healing':'frost')+' vial, or the throw is blocked.');return false;}return true;
+  function flatThrow(type){if(!live())return false;g.cancel();const head=g.head.object3D.getWorldPosition(new T.Vector3()),direction=new T.Vector3(0,0,-1).applyQuaternion(g.head.object3D.getWorldQuaternion(new T.Quaternion())),p=head.clone().addScaledVector(direction,.18);
+   if(!M.aimedLaunch(g.game,type,p.toArray(),direction.toArray(),C)){say('No '+(type==='mend'?'healing':'frost')+' vial, or the throw is blocked.');return false;}return true;
   }
   function drink(){if(!live())return false;g.cancel();if(!M.drink(g.game,C)){say(g.game.health>=g.game.maxHealth?'Vitality is full. Healing vial retained.':'No healing vials. Look for a sealed field cache.');return false;}return true;}
   function padInput(b,edge){if(!live()||!b[4])return false;if(edge(2)){drink();return true;}if(edge(5)){flatThrow('frost');return true;}return false;}
@@ -57,7 +57,7 @@
      g.cancel();state.game=g.game;state.sources=[bow.source,hand.source];state.source=hand.source;state.armed=true;state.previous=buttons;state.held=slot.d<.19?slot.slot.kind:'cache';g.goldwind.reset();
      if(state.held==='cache'){M.collect(g.game,cache.id,hand.p,C);state.used=true;}
      else if(!M.ensure(g.game).stock[state.held]){say('That vial slot is empty. Find a field cache.');state.used=true;}
-     else{say(state.held==='mend'?'Healing vial: throw near your feet, or bring to mouth and press trigger.':'Frost flask: throw and release grip to interrupt nearby threats.');}
+     else{say(state.held==='mend'?'Healing vial: throw near your feet, or bring to mouth and press trigger.':'Frost flask: release a physical throw, or aim and press trigger.');}
     }
    }
    if(!state.held){state.previous=buttons;return oldXR(dt,head);}
@@ -69,6 +69,7 @@
    }
    if(!state.used&&state.held!=='cache'){
     motion.sample(hand.object.position.toArray(),performance.now()/1000);
+    if(edge('draw',0)&&state.held==='frost'){const d=new T.Vector3(0,0,-1).applyQuaternion(hand.q).toArray();if(M.aimedLaunch(g.game,'frost',hand.p,d,C))state.used=true;else say('Throw blocked. Frost flask retained.');}
     if(edge('draw',0)&&state.held==='mend'){if(C.len(C.sub(hand.p,head.toArray()))<.38&&!C.segmentBlocked(g.game.world,head.toArray(),hand.p,.01)){if(M.drink(g.game,C))state.used=true;else say('Vitality is full. Vial retained.');}else say('Bring the healing vial to your mouth, then press trigger.');}
    }
    const guard=g.goldwind.enabled()?($('goldwind-shield').value==='grip'?1:0):null;if(guard!==null)g.arsenal.ward(!!bow.buttons[guard],bow);
@@ -104,10 +105,10 @@
    ['Drink healing vial / '+k.stock.mend+' ready',()=>menuAction(drink)],
    ['Throw frost flask / '+k.stock.frost+' ready',()=>menuAction(()=>flatThrow('frost'))],
    ['Throw healing vial / '+k.stock.mend+' ready',()=>menuAction(()=>flatThrow('mend'))],
-   ['How to use the physical satchel',()=>g.dominionControls.notice('Two vial slots sit at the free-hand waist. Reach down and squeeze grip. Move and release to throw. A stationary release stows the vial. Healing: throw near your feet or bring to mouth and press trigger. Frost interrupts nearby enemies, never through a wall. Sealed caches can be shot open, then collected nearby. Keyboard F heals, G throws frost, T throws healing. Xbox LB+X heals; LB+RB throws frost. Supplies and opened caches are saved. Solo field kit; co-op and melee are not added in this pass.')],
+   ['How to use the physical satchel',()=>g.dominionControls.notice('Two vial slots sit at the free-hand waist. Reach down and squeeze grip. Move and release to throw, or aim a held frost flask and press trigger. A stationary release stows the vial. Healing: throw near your feet or bring to mouth and press trigger. Frost interrupts nearby enemies, never through a wall. Sealed caches can be shot open, then collected nearby. Keyboard F heals, G throws frost, T throws healing. Xbox LB+X heals; LB+RB throws frost. Courier lantern: grab its forward waist handle, trigger uses nearby mechanisms, release stows. L / Xbox LB+Up toggles the lantern. Supplies and opened caches are saved. Solo field kit; co-op and melee are not added in this pass.')],
    ['Back to equipment',()=>g.dominionControls.setScreen('equipment')],['Back to expedition',()=>g.dominionControls.setScreen('main')]
   ];}
-  const controls=document.createElement('fieldset');controls.id='fieldkit-controls';controls.className='resonance-settings';controls.innerHTML='<legend>Pilgrim field kit / physical supplies</legend><p>Reach to the two free-hand waist slots and grip a vial. Move and release to throw; release without a throw to stow. Bring a healing vial to your mouth and press trigger to drink. Shoot or grip sealed caches, then take their finite supplies. F: heal. G: throw frost. T: throw healing. Xbox LB+X: heal. LB+RB: throw frost. Goldwind arrows and disk controls are unchanged.</p><button id="fieldkit-heal">Drink healing vial / F / LB+X</button><button id="fieldkit-frost">Throw frost flask / G / LB+RB</button><button id="fieldkit-mend">Throw healing vial / T</button>';
+  const controls=document.createElement('fieldset');controls.id='fieldkit-controls';controls.className='resonance-settings';controls.innerHTML='<legend>Pilgrim field kit / physical supplies</legend><p>Reach to the two free-hand waist slots and grip a vial. Move and release to throw; held frost also has an aimed trigger throw. Release without a throw to stow. Bring a healing vial to your mouth and press trigger to drink. Shoot or grip sealed caches, then take their finite supplies. F: heal. G: throw frost. T: throw healing. Xbox LB+X: heal. LB+RB: throw frost. Goldwind arrows and disk controls are unchanged.</p><button id="fieldkit-heal">Drink healing vial / F / LB+X</button><button id="fieldkit-frost">Throw frost flask / G / LB+RB</button><button id="fieldkit-mend">Throw healing vial / T</button>';
   document.querySelector('.settings').append(controls);$('fieldkit-heal').onclick=()=>menuAction(drink);$('fieldkit-frost').onclick=()=>menuAction(()=>flatThrow('frost'));$('fieldkit-mend').onclick=()=>menuAction(()=>flatThrow('mend'));
   const oldRemove=g.remove.bind(g);g.remove=function(){clear();window.removeEventListener('keydown',key);for(const c of cached)for(const r of c.resources)r.dispose();for(const r of resources)r.dispose();for(const p of[...slots.map(s=>s.label),prompt]){p.texture.dispose();p.mesh.geometry.dispose();p.mesh.material.dispose();}scene.removeFromParent();belt.removeFromParent();controls.remove();return oldRemove();};
   return {state,slots,motion,scene,belt,prompt,rows,drink,flatThrow,padInput,targetCache,viewTarget,positionBelt};

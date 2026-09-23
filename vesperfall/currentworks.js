@@ -27,7 +27,7 @@
     const warm=new T.Scene();for(const w of water){const m=new T.Mesh(w.mesh.geometry,w.material);m.frustumCulled=false;warm.add(m);}
     const renderer=g.scene.renderer,camera=g.scene.camera;
     Promise.resolve(renderer.compileAsync?renderer.compileAsync(warm,camera,g.scene.object3D):renderer.compile(warm,camera,g.scene.object3D))
-     .then(()=>token===state.generation?Promise.all([fire.prepare(renderer,camera,g.scene.object3D),...forests.map(f=>f.prepare(renderer,camera,g.scene.object3D))]):null)
+     .then(async()=>{for(const effect of[fire,...forests]){if(token!==state.generation||state.disposed)return;await effect.prepare(renderer,camera,g.scene.object3D);}})
      .then(()=>{if(token!==state.generation||state.disposed)return;state.ready=true;state.world=null;})
      .catch(e=>{if(token!==state.generation||state.disposed)return;state.error=String(e?.message||e);release();console.warn('Living Lanterns graphics unavailable; original game retained:',state.error);})
      .finally(()=>{warm.clear();if(token===state.generation)state.loading=false;});

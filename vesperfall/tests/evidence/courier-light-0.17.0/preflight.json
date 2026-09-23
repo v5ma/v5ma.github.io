@@ -1,0 +1,44 @@
+{
+  "feature": "Courier's Light",
+  "date": "2026-09-22",
+  "reconciledSource": "7518b8e007bb0debdd474f8ff25fbfa41dd3d69f",
+  "localModels": {
+    "passed": 355,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 121210.045633
+  },
+  "objectChecks": {
+    "passed": 16,
+    "scope": "Real bundled-Three objects and fake host/input collaborators; no GPU draw."
+  },
+  "workbook": "Six sheets / 76 complete task rows / unchanged canonical snapshot validated.",
+  "publicNativeStatus": "Pending inspection; source implementation and local tests are not delivery.",
+  "physicalDeviceApproved": false,
+  "priorFailures": [
+    {
+      "run": 35816788082,
+      "suite": "currentworks",
+      "artifact": 10731944054,
+      "sha256": "ce392a883f7031d2501710dacbc4210f34f98e66039cb0ca90d07f1828bad071",
+      "finding": "padArmed false after start while driver holds sprint; corrected neutral wait and deadzone-aware turn driver."
+    },
+    {
+      "run": 35816788082,
+      "suite": "field-kit",
+      "artifact": 10731148927,
+      "sha256": "9a1172660d963d0ceb80ad74fae39d0be6ae429c5e5e266fc5dc7c78b5517b84",
+      "finding": "Sampled physical throw failed after prior passing run. No sampler threshold changes; aimed trigger fallback added separately."
+    }
+  ],
+  "preservation": {
+    "savedLayoutReaders": 5,
+    "newSaveFields": false,
+    "newRewards": false,
+    "vendorChanges": false,
+    "siblingChanges": false,
+    "newPR": false,
+    "newBranch": false,
+    "newWorkflow": false
+  }
+}
