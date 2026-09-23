@@ -1,0 +1,162 @@
+{
+  "created_utc": "2026-09-20T04:32:04.646820+00:00",
+  "plan_sha256": "92a62846773b4b6a3c0e3f060a01576179a6640248668c89aab5027592a0b225",
+  "tool_sha256": "d4e8491fb18fced5ca340cf8858dcda5bafb28d805f8f0792f463d33bed42be5",
+  "aggregate_sha256": "33fa4ab865679284992d2a3cb5b8bd66cb2616f8ef0092d0adf4f138ce90c098",
+  "compiled_sha256": "f6524b03d81ef0b20d01e5a8b58b1a3861f893f1f9fce6bad9a4718007d6731c",
+  "input_contract_sha256": "6781d4676d98c8415380048a708b486e3364dc14a65fffa82c0148ed3335af3b",
+  "input_checks_sha256": "efd9ad301dadeb4d45f23a146722ef643a70e3e1fe15e74b4ad4554724ec7ef7",
+  "row_comparisons_sha256": "57c9d7d1a94737c8fb83641e4c1bbe68b3225ce5160e9a80ac78fa4018fc30c4",
+  "groups": [
+    {
+      "cell_type": "Tm20",
+      "compiled_rows": 575,
+      "comparable_rows": 575,
+      "single_led_group_rows": 575,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 195,
+      "count_agreement_rows": 195,
+      "maximum_amplitude_abs_difference": 2.831232372051946
+    },
+    {
+      "cell_type": "Tm20-Tnt",
+      "compiled_rows": 295,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "Tm5a",
+      "compiled_rows": 646,
+      "comparable_rows": 646,
+      "single_led_group_rows": 646,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 354,
+      "count_agreement_rows": 354,
+      "maximum_amplitude_abs_difference": 1.1262841789913698
+    },
+    {
+      "cell_type": "Tm5a-TnT",
+      "compiled_rows": 505,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "Tm5b",
+      "compiled_rows": 733,
+      "comparable_rows": 733,
+      "single_led_group_rows": 733,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 367,
+      "count_agreement_rows": 367,
+      "maximum_amplitude_abs_difference": 2.515133687916635
+    },
+    {
+      "cell_type": "Tm5b-GCaMP-TNT",
+      "compiled_rows": 449,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "Tm5c",
+      "compiled_rows": 490,
+      "comparable_rows": 490,
+      "single_led_group_rows": 490,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 213,
+      "count_agreement_rows": 213,
+      "maximum_amplitude_abs_difference": 1.415857448371419
+    },
+    {
+      "cell_type": "Tm5c-Tnt",
+      "compiled_rows": 271,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "pDm8",
+      "compiled_rows": 479,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "pR7",
+      "compiled_rows": 373,
+      "comparable_rows": 373,
+      "single_led_group_rows": 373,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 190,
+      "count_agreement_rows": 190,
+      "maximum_amplitude_abs_difference": 0.4919141944162162
+    },
+    {
+      "cell_type": "pR8",
+      "compiled_rows": 367,
+      "comparable_rows": 367,
+      "single_led_group_rows": 367,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 276,
+      "count_agreement_rows": 276,
+      "maximum_amplitude_abs_difference": 0.297490182094979
+    },
+    {
+      "cell_type": "yDm8",
+      "compiled_rows": 245,
+      "comparable_rows": 0,
+      "single_led_group_rows": 0,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 0,
+      "count_agreement_rows": 0,
+      "maximum_amplitude_abs_difference": null
+    },
+    {
+      "cell_type": "yR7",
+      "compiled_rows": 241,
+      "comparable_rows": 241,
+      "single_led_group_rows": 241,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 174,
+      "count_agreement_rows": 174,
+      "maximum_amplitude_abs_difference": 0.23054680798638255
+    },
+    {
+      "cell_type": "yR8",
+      "compiled_rows": 536,
+      "comparable_rows": 536,
+      "single_led_group_rows": 536,
+      "multiple_led_group_rows": 0,
+      "amplitude_agreement_rows": 398,
+      "count_agreement_rows": 398,
+      "maximum_amplitude_abs_difference": 0.3418084662316001
+    }
+  ],
+  "compiled_rows": 6205,
+  "comparable_rows": 3961,
+  "amplitude_agreement_rows": 2167,
+  "count_agreement_rows": 2167,
+  "multiple_led_group_rows": 0,
+  "calibration_parameters_fitted": 0,
+  "animal_ids_recovered": false,
+  "noise_variance_inferred_from_intervals": false,
+  "threads": 1,
+  "elapsed_seconds": 2.313
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-19",
+  "status": "Frozen local development plan before running the new application; not an external preregistration or held-out evaluation",
+  "purpose": "Build the shared whole-episode test environment and a conventional nonoscillatory reference needed for the later SAN construction. Do not count this comparator as the SAN-specific model.",
+  "preservedRequirements": ["spectral observations rather than object labels", "target/distractor uncertainty", "internal relation used for action", "observed versus inferred continuation under occlusion", "issued commands distinct from measured body return", "familiar evidence still updates present state", "retained actuator calibration after transient state clearance", "explicit scoped revert and rescue", "adverse outcomes retained"],
+  "provenance": {
+    "environment": "Engineered one-dimensional virtual body and two stationary spectral sources. Four idealized band captures and a signed-range instrument; not a native fly eye or connectome.",
+    "controller": "Conventional task-template and motion-association controller with an explicit target-relative state; nonoscillatory comparison implementation, not PWD/NAPOT.",
+    "memory": "Exponential calibration of the command-to-body-displacement ratio; not the Huang-Luo synaptic mechanism and not metaplasticity.",
+    "taskCue": "Two learned four-band spectral templates, with one explicitly designated as the task target. No current world location, hidden object ID, gain-change flag or correct match is supplied.",
+    "sourceRequirementMap": "F08, F09, F11, F12 and F13 in SOURCE-CLAIM-AND-GENEALOGY.md; no biological parameter values inferred from that genealogy."
+  },
+  "interface": {
+    "observation": ["time", "bands", "samples"],
+    "sample": ["signed_range", "captures"],
+    "bodyReturn": ["command", "measured_displacement"],
+    "action": ["command", "sampling_mode"],
+    "evaluatorOnly": ["object identity", "world position", "actual actuator gain", "occlusion schedule", "illuminant", "correct correspondence"]
+  },
+  "configuration": {
+    "targetReflectance": [0.25, 0.45, 0.35, 0.8],
+    "otherReflectance": [0.25, 0.45, 0.35, 0.2],
+    "initialGainEstimate": 1.0,
+    "calibrationRate": 0.5,
+    "maxCommand": 0.4,
+    "desiredStandoff": 0.15,
+    "spectralDistanceTolerance": 0.04,
+    "motionAssociationTolerance": 0.22,
+    "maxInferredAgeForMovement": 5,
+    "coarseBands": [0, 1, 2],
+    "fullBands": [0, 1, 2, 3],
+    "occlusionTimes": [5, 6, 7, 8],
+    "gainChangeTime": 5,
+    "changedGain": 0.5,
+    "illuminationChangeTime": 10,
+    "uniformIlluminant": [0.65, 0.65, 0.65, 0.65],
+    "adverseColouredIlluminant": [1.3, 0.6, 1.1, 0.7],
+    "rangeNoise": 0.0,
+    "captureNoise": 0.0,
+    "targetDistanceBase": 3.5,
+    "otherDistanceBase": 3.7,
+    "steps": 24
+  },
+  "scenarios": ["visible", "occlusion", "gain_change", "occlusion_gain", "uniform_illumination_gain", "adverse_colour_shift"],
+  "seeds": [19, 31, 47, 61],
+  "policies": ["adaptive_sampling", "fixed_full", "command_as_return_ablation", "frozen_calibration_ablation"],
+  "measures": ["absolute target-relation error before the next observation", "target binding error when relation is labelled observed", "absolute command-to-return prediction error", "final target standoff error", "inferred and unresolved state counts", "number of scalar spectral captures acquired", "commands issued while target relation is unavailable or too old"],
+  "controls": ["strict interface rejects hidden fields", "world-label/order permutation leaves action sequence unchanged", "first coarse aliased observation remains unresolved", "full-band observation distinguishes the two templates", "a novel chemical illuminant may defeat this controller and must not be tuned away", "clear transient state while retaining calibration", "revert calibration to prior", "correct predeclared rescue gain 0.5 and incorrect rescue gain 1.5"],
+  "analysisBoundary": "All trials are deterministic synthetic development cases. No animal inference, confidence interval across animals, SAN advantage or universal robustness follows. The fixed-full policy is a competent same-information conventional comparator; ablations are not competitor models.",
+  "resourceLimits": {"numericThreads": 1, "maximumExecutionSeconds": 15, "backgroundWorkers": 0, "downloads": 0, "externalCodeExecution": false},
+  "preservation": "Create-only result folder; retain any failed run. Fixes require an explicit record and a new result identity, not silent result replacement."
+}

@@ -1,0 +1,7 @@
+Get-CimInstance : Access denied 
+At D:\micahone\vscode v5ma\v5ma.github.io\scripts\sit_uv\Invoke-LeanWithLease.ps1:135 char:9
++         Get-CimInstance Win32_Process -Filter "Name = 'lean.exe' OR N ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (:) [Get-CimInstance], CimException
+    + FullyQualifiedErrorId : HRESULT 0x80041003,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand
+ 

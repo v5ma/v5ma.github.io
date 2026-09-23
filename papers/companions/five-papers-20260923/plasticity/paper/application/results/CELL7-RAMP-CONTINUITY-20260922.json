@@ -1,0 +1,44 @@
+{
+  "scope": "Descriptive raw-indexed voltage-ramp comparison for one selected cell; no independent-sample inference",
+  "source_commit": "90bfae6e87da602ec3b28afe4c5a2fd0c71acec3",
+  "raw_source_sha256": {
+    "151203.txt": "E024520AAC88D358731F3B800817EECA3074763F526BC00F0875A6D054CC553D",
+    "151203_4ii.txt": "27FF674B3AACC9FCED85164458DF9C5DAF676A377026931DB8723EFB8292FADF"
+  },
+  "cell_id": 7,
+  "spatial_bin_count_per_ramp": 100,
+  "unit_after_source_ramp_scale": "mV",
+  "first_induction_before_to_after": {
+    "pearson_bin_profile_r": 0.017547902069756927,
+    "mean_second_minus_first_mV": 2.8600060000000003,
+    "rms_bin_difference_mV": 3.7150323289845,
+    "first_min_mV": -62.0679,
+    "first_max_mV": -59.5269,
+    "second_min_mV": -63.166700000000006,
+    "second_max_mV": -54.4303
+  },
+  "after_first_to_before_second": {
+    "pearson_bin_profile_r": 0.9440871707700841,
+    "mean_second_minus_first_mV": 0.6199130000000002,
+    "rms_bin_difference_mV": 1.1137758186008535,
+    "first_min_mV": -63.166700000000006,
+    "first_max_mV": -54.4303,
+    "second_min_mV": -62.6091,
+    "second_max_mV": -53.0295
+  },
+  "second_induction_before_to_after": {
+    "pearson_bin_profile_r": 0.8631768023460065,
+    "mean_second_minus_first_mV": 0.03758300000000034,
+    "rms_bin_difference_mV": 1.3701532618287635,
+    "first_min_mV": -62.6091,
+    "first_max_mV": -53.0295,
+    "second_min_mV": -61.7723,
+    "second_max_mV": -52.796
+  },
+  "limits": [
+    "Same bin index is compared across files; spatial alignment and source smoothing/baseline protocol are not reconstructed here.",
+    "The 100 bins and two inductions are repeated observations of one cell, not biological replicates; no p-value is computed.",
+    "A similar later voltage ramp is not a SAN phase reference, eligibility trace, differential-dissipation measure, or independently designed matched probe.",
+    "A profile difference is not assigned to learning, drift, noise, or induction without the source experiment's controls."
+  ]
+}

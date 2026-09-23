@@ -1,0 +1,6889 @@
+[
+  {
+    "number": 1,
+    "header": {
+      "page": 2,
+      "line": 1,
+      "text": "Flywire ID cell type pre sites total (n)pre sites identified (n)pre sites identified (%)neurons (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940638634960",
+        "type": "pDm8",
+        "total": 284,
+        "identified": 217,
+        "percentText": "76.4",
+        "neuronCountText": "31",
+        "page": 2,
+        "line": 2,
+        "raw": "720575940638634960pDm8 284 217 76.4 31"
+      },
+      {
+        "identifier": "720575940638424895",
+        "type": "yDm8",
+        "total": 462,
+        "identified": 379,
+        "percentText": "82",
+        "neuronCountText": "47",
+        "page": 2,
+        "line": 3,
+        "raw": "720575940638424895yDm8 462 379 82 47"
+      },
+      {
+        "identifier": "720575940639473998",
+        "type": "Tm5a",
+        "total": 227,
+        "identified": 152,
+        "percentText": "67",
+        "neuronCountText": "21",
+        "page": 2,
+        "line": 4,
+        "raw": "720575940639473998Tm5a 227 152 67 21"
+      },
+      {
+        "identifier": "720575940614902495",
+        "type": "Tm5a",
+        "total": 140,
+        "identified": 107,
+        "percentText": "76.4",
+        "neuronCountText": "17",
+        "page": 2,
+        "line": 5,
+        "raw": "720575940614902495Tm5a 140 107 76.4 17"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "total": 328,
+        "identified": 225,
+        "percentText": "68.6",
+        "neuronCountText": "41",
+        "page": 2,
+        "line": 6,
+        "raw": "720575940627282584Tm5b 328 225 68.6 41"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "total": 249,
+        "identified": 171,
+        "percentText": "68.7",
+        "neuronCountText": "31",
+        "page": 2,
+        "line": 7,
+        "raw": "720575940660846721Tm5b 249 171 68.7 31"
+      },
+      {
+        "identifier": "720575940619252603",
+        "type": "Tm5c",
+        "total": 240,
+        "identified": 150,
+        "percentText": "62.5",
+        "neuronCountText": "30",
+        "page": 2,
+        "line": 8,
+        "raw": "720575940619252603Tm5c 240 150 62.5 30"
+      },
+      {
+        "identifier": "720575940627314521",
+        "type": "Tm5c",
+        "total": 280,
+        "identified": 227,
+        "percentText": "81.1",
+        "neuronCountText": "27 (26)",
+        "page": 2,
+        "line": 9,
+        "raw": "720575940627314521Tm5c 280 227 81.1 27 (26)"
+      },
+      {
+        "identifier": "720575940635252890",
+        "type": "Tm20",
+        "total": 274,
+        "identified": 239,
+        "percentText": "87.2",
+        "neuronCountText": "24 (22)",
+        "page": 2,
+        "line": 10,
+        "raw": "720575940635252890Tm20 274 239 87.2 24 (22)"
+      },
+      {
+        "identifier": "720575940628559366",
+        "type": "Tm20",
+        "total": 270,
+        "identified": 217,
+        "percentText": "80.4",
+        "neuronCountText": "27",
+        "page": 2,
+        "line": 11,
+        "raw": "720575940628559366Tm20 270 217 80.4 27"
+      },
+      {
+        "identifier": "TOTAL",
+        "type": null,
+        "total": 2754,
+        "identified": 2084,
+        "percentText": "75.7",
+        "neuronCountText": "296 (293)",
+        "page": 2,
+        "line": 12,
+        "raw": "Total 2754 2084 75.7 296 (293)"
+      }
+    ],
+    "caption": {
+      "page": 2,
+      "line": 13,
+      "text": "Table 1. Quantification of presynaptic sites to seed Dm8 and Tm cells. (col.1-2) FlyWire segment id and cell type. (col. 3) Total number of presynaptic connections from all presynaptic neurons. (col. 4) Identified presynaptic sites from cells forming >2 synapses with the seed neurons. (col.5) Percentage of identified presynaptic sites vs total presynpatic sites. (col. 6) Total number of presynaptic neurons forming >2 synapses for each seed neuron. Numbers shown inside () reflect the number of neurons identified to a cell class or a cell type. When omitted all neurons have been identified to a cell class or type."
+    }
+  },
+  {
+    "number": 2,
+    "header": {
+      "page": 2,
+      "line": 14,
+      "text": "Flywire ID cell type post sites total (n) post sites identified (n)post sites identified (%)neurons (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940638634960",
+        "type": "pDm8",
+        "total": 487,
+        "identified": 286,
+        "percentText": "58.8",
+        "neuronCountText": "28 (26)",
+        "page": 2,
+        "line": 15,
+        "raw": "720575940638634960pDm8 487 286 58.8 28 (26)"
+      },
+      {
+        "identifier": "720575940638424895",
+        "type": "yDm8",
+        "total": 750,
+        "identified": 375,
+        "percentText": "50",
+        "neuronCountText": "64 (63)",
+        "page": 2,
+        "line": 16,
+        "raw": "720575940638424895yDm8 750 375 50 64 (63)"
+      },
+      {
+        "identifier": "720575940639473998",
+        "type": "Tm5a",
+        "total": 496,
+        "identified": 144,
+        "percentText": "29",
+        "neuronCountText": "16 (15)",
+        "page": 2,
+        "line": 17,
+        "raw": "720575940639473998Tm5a 496 144 29 16 (15)"
+      },
+      {
+        "identifier": "720575940614902495",
+        "type": "Tm5a",
+        "total": 386,
+        "identified": 154,
+        "percentText": "39.9",
+        "neuronCountText": "19 (15)",
+        "page": 2,
+        "line": 18,
+        "raw": "720575940614902495Tm5a 386 154 39.9 19 (15)"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "total": 563,
+        "identified": 156,
+        "percentText": "27.7",
+        "neuronCountText": "18 (15)",
+        "page": 2,
+        "line": 19,
+        "raw": "720575940627282584Tm5b 563 156 27.7 18 (15)"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "total": 542,
+        "identified": 158,
+        "percentText": "29.2",
+        "neuronCountText": "21 (19)",
+        "page": 2,
+        "line": 20,
+        "raw": "720575940660846721Tm5b 542 158 29.2 21 (19)"
+      },
+      {
+        "identifier": "720575940619252603",
+        "type": "Tm5c",
+        "total": 908,
+        "identified": 256,
+        "percentText": "27.9",
+        "neuronCountText": "29 (25)",
+        "page": 2,
+        "line": 21,
+        "raw": "720575940619252603Tm5c 908 256 27.9 29 (25)"
+      },
+      {
+        "identifier": "720575940627314521",
+        "type": "Tm5c",
+        "total": 812,
+        "identified": 218,
+        "percentText": "25.4",
+        "neuronCountText": "22 (18)",
+        "page": 2,
+        "line": 22,
+        "raw": "720575940627314521Tm5c 812 218 25.4 22 (18)"
+      },
+      {
+        "identifier": "720575940635252890",
+        "type": "Tm20",
+        "total": 620,
+        "identified": 236,
+        "percentText": "38.1",
+        "neuronCountText": "31 (24)",
+        "page": 2,
+        "line": 23,
+        "raw": "720575940635252890Tm20 620 236 38.1 31 (24)"
+      },
+      {
+        "identifier": "720575940628559366",
+        "type": "Tm20",
+        "total": 598,
+        "identified": 172,
+        "percentText": "28.8",
+        "neuronCountText": "26 (23)",
+        "page": 2,
+        "line": 24,
+        "raw": "720575940628559366Tm20 598 172 28.8 26 (23)"
+      },
+      {
+        "identifier": "TOTAL",
+        "type": null,
+        "total": 6162,
+        "identified": 2155,
+        "percentText": "35",
+        "neuronCountText": "274 (243)",
+        "page": 2,
+        "line": 25,
+        "raw": "Total 6162 2155 35 274 (243)"
+      }
+    ],
+    "caption": {
+      "page": 2,
+      "line": 26,
+      "text": "Table 2. Quantification of postsynaptic sites to seed Dm8 and Tm cells. (col.1-2) FlyWire segment id and cell type. (col. 3) Total number of postsynaptic connections from all postsynaptic neurons. (col. 4) Identified postsynaptic sites from cells forming >4 synapses with the seed neurons. (col.5) Percentage of identified postsynaptic sites vs total postsynpatic sites. (col. 6) Total number of postsynaptic neurons forming >4 synapses for each seed neuron. Numbers shown inside () reflect the number of neurons identified to a cell class or a cell type."
+    }
+  },
+  {
+    "number": 3,
+    "header": {
+      "page": 2,
+      "line": 27,
+      "text": "Flywire ID cell type pre sites (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          39
+        ],
+        "descriptiveCountSum": 39,
+        "page": 2,
+        "line": 28,
+        "raw": "720575940632586297pR7 39"
+      },
+      {
+        "identifier": "720575940615537314",
+        "type": "pR7",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 2,
+        "line": 29,
+        "raw": "720575940615537314pR7 4"
+      },
+      {
+        "identifier": "720575940612694165",
+        "type": "yR7",
+        "counts": [
+          15
+        ],
+        "descriptiveCountSum": 15,
+        "page": 2,
+        "line": 30,
+        "raw": "720575940612694165yR7 15"
+      },
+      {
+        "identifier": "720575940641088640",
+        "type": "yR7",
+        "counts": [
+          11
+        ],
+        "descriptiveCountSum": 11,
+        "page": 2,
+        "line": 31,
+        "raw": "720575940641088640yR7 11"
+      },
+      {
+        "identifier": "720575940628300090",
+        "type": "yR7",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 2,
+        "line": 32,
+        "raw": "720575940628300090yR7 4"
+      },
+      {
+        "identifier": "720575940631563515",
+        "type": "pR7",
+        "counts": [
+          2
+        ],
+        "descriptiveCountSum": 2,
+        "page": 2,
+        "line": 33,
+        "raw": "720575940631563515pR7 2"
+      },
+      {
+        "identifier": "720575940624675079",
+        "type": "pR7",
+        "counts": [
+          2
+        ],
+        "descriptiveCountSum": 2,
+        "page": 2,
+        "line": 34,
+        "raw": "720575940624675079pR7 2"
+      },
+      {
+        "identifier": "720575940618504395",
+        "type": "Mi1",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 2,
+        "line": 35,
+        "raw": "720575940618504395 Mi1 4"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 2,
+        "line": 36,
+        "raw": "720575940623904136 Mi3 6"
+      },
+      {
+        "identifier": "720575940628189457",
+        "type": "Dm",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 2,
+        "line": 37,
+        "raw": "720575940628189457 Dm 3"
+      },
+      {
+        "identifier": "720575940622692265",
+        "type": "Dm2",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 2,
+        "line": 38,
+        "raw": "720575940622692265Dm2 3"
+      },
+      {
+        "identifier": "720575940614131119",
+        "type": "Dm5",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 2,
+        "line": 39,
+        "raw": "720575940614131119Dm5 5"
+      },
+      {
+        "identifier": "720575940630969303",
+        "type": "Dm",
+        "counts": [
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 3,
+        "line": 1,
+        "raw": "720575940630969303 Dm 14"
+      },
+      {
+        "identifier": "720575940612167537",
+        "type": "yDm8",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 2,
+        "raw": "720575940612167537yDm8 3"
+      },
+      {
+        "identifier": "720575940655698849",
+        "type": "Dm9",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 3,
+        "raw": "720575940655698849Dm9 3"
+      },
+      {
+        "identifier": "720575940648106116",
+        "type": "Dm",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 3,
+        "line": 4,
+        "raw": "720575940648106116 Dm 8"
+      },
+      {
+        "identifier": "720575940622466036",
+        "type": "CB0566",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 5,
+        "raw": "720575940622466036CB0566 7"
+      },
+      {
+        "identifier": "720575940615181479",
+        "type": "Sm19",
+        "counts": [
+          18
+        ],
+        "descriptiveCountSum": 18,
+        "page": 3,
+        "line": 6,
+        "raw": "720575940615181479Sm19 18"
+      },
+      {
+        "identifier": "720575940633387181",
+        "type": "Sm19",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 7,
+        "raw": "720575940633387181Sm19 3"
+      },
+      {
+        "identifier": "720575940641982709",
+        "type": "Sm20",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 8,
+        "raw": "720575940641982709Sm20 7"
+      },
+      {
+        "identifier": "720575940615314834",
+        "type": "Sm20",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 9,
+        "raw": "720575940615314834Sm20 7"
+      },
+      {
+        "identifier": "720575940605990590",
+        "type": "Sm19",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 10,
+        "raw": "720575940605990590Sm19 7"
+      },
+      {
+        "identifier": "720575940613095282",
+        "type": "Sm20",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 3,
+        "line": 11,
+        "raw": "720575940613095282Sm20 6"
+      },
+      {
+        "identifier": "720575940618262050",
+        "type": "Sm21",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 12,
+        "raw": "720575940618262050Sm21 3"
+      },
+      {
+        "identifier": "720575940622540894",
+        "type": "Sm21",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 3,
+        "line": 13,
+        "raw": "720575940622540894Sm21 4"
+      },
+      {
+        "identifier": "720575940622315647",
+        "type": "Sm20",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 14,
+        "raw": "720575940622315647Sm20 3"
+      },
+      {
+        "identifier": "720575940627733777",
+        "type": "Sm20",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 3,
+        "line": 15,
+        "raw": "720575940627733777Sm20 6"
+      },
+      {
+        "identifier": "720575940633138771",
+        "type": "Sm20",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 3,
+        "line": 16,
+        "raw": "720575940633138771Sm20 5"
+      },
+      {
+        "identifier": "720575940617838225",
+        "type": "Sm26",
+        "counts": [
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 3,
+        "line": 17,
+        "raw": "720575940617838225Sm26 12"
+      },
+      {
+        "identifier": "720575940614418227",
+        "type": "Sm26",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 18,
+        "raw": "720575940614418227Sm26 7"
+      }
+    ],
+    "caption": {
+      "page": 3,
+      "line": 19,
+      "text": "Table 3. Quantification of pDm8 (720575940638634960) inputs."
+    }
+  },
+  {
+    "number": 4,
+    "header": {
+      "page": 3,
+      "line": 20,
+      "text": "Flywire ID cell type pre sites (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940636715998",
+        "type": "yR7",
+        "counts": [
+          35
+        ],
+        "descriptiveCountSum": 35,
+        "page": 3,
+        "line": 21,
+        "raw": "720575940636715998yR7 35"
+      },
+      {
+        "identifier": "720575940628506897",
+        "type": "yR7",
+        "counts": [
+          15
+        ],
+        "descriptiveCountSum": 15,
+        "page": 3,
+        "line": 22,
+        "raw": "720575940628506897yR7 15"
+      },
+      {
+        "identifier": "720575940660740481",
+        "type": "yR7",
+        "counts": [
+          15
+        ],
+        "descriptiveCountSum": 15,
+        "page": 3,
+        "line": 23,
+        "raw": "720575940660740481yR7 15"
+      },
+      {
+        "identifier": "720575940637440613",
+        "type": "yR7",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 3,
+        "line": 24,
+        "raw": "720575940637440613yR7 8"
+      },
+      {
+        "identifier": "720575940636942447",
+        "type": "yR7",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 3,
+        "line": 25,
+        "raw": "720575940636942447yR7 6"
+      },
+      {
+        "identifier": "720575940641088640",
+        "type": "yR7",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 26,
+        "raw": "720575940641088640yR7 3"
+      },
+      {
+        "identifier": "720575940621704942",
+        "type": "yR7",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 27,
+        "raw": "720575940621704942yR7 3"
+      },
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          15
+        ],
+        "descriptiveCountSum": 15,
+        "page": 3,
+        "line": 28,
+        "raw": "720575940632586297pR7 15"
+      },
+      {
+        "identifier": "720575940623014689",
+        "type": "pR7",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 3,
+        "line": 29,
+        "raw": "720575940623014689pR7 10"
+      },
+      {
+        "identifier": "720575940621705198",
+        "type": "pR7",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 3,
+        "line": 30,
+        "raw": "720575940621705198pR7 4"
+      },
+      {
+        "identifier": "720575940615537314",
+        "type": "pR7",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 31,
+        "raw": "720575940615537314pR7 3"
+      },
+      {
+        "identifier": "720575940631563515",
+        "type": "pR7",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 32,
+        "raw": "720575940631563515pR7 3"
+      },
+      {
+        "identifier": "720575940618562594",
+        "type": "pR7",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 33,
+        "raw": "720575940618562594pR7 3"
+      },
+      {
+        "identifier": "720575940613737330",
+        "type": "pR7",
+        "counts": [
+          13
+        ],
+        "descriptiveCountSum": 13,
+        "page": 3,
+        "line": 34,
+        "raw": "720575940613737330pR7 13"
+      },
+      {
+        "identifier": "720575940614131119",
+        "type": "Dm5",
+        "counts": [
+          18
+        ],
+        "descriptiveCountSum": 18,
+        "page": 3,
+        "line": 35,
+        "raw": "720575940614131119Dm5 18"
+      },
+      {
+        "identifier": "720575940630896379",
+        "type": "Dm5",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 3,
+        "line": 36,
+        "raw": "720575940630896379Dm5 9"
+      },
+      {
+        "identifier": "720575940630969303",
+        "type": "Dm",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 3,
+        "line": 37,
+        "raw": "720575940630969303 Dm 5"
+      },
+      {
+        "identifier": "720575940637975741",
+        "type": "Mi3",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 3,
+        "line": 38,
+        "raw": "720575940637975741 Mi3 4"
+      },
+      {
+        "identifier": "720575940648106116",
+        "type": "Dm2",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 3,
+        "line": 39,
+        "raw": "720575940648106116Dm2 10"
+      },
+      {
+        "identifier": "720575940655698849",
+        "type": "Dm9",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 3,
+        "line": 40,
+        "raw": "720575940655698849Dm9 4"
+      },
+      {
+        "identifier": "720575940621192431",
+        "type": "Dm5",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 41,
+        "raw": "720575940621192431Dm5 3"
+      },
+      {
+        "identifier": "720575940639473998",
+        "type": "Tm5a",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 42,
+        "raw": "720575940639473998Tm5a 3"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 3,
+        "line": 43,
+        "raw": "720575940623904136 Mi3 8"
+      },
+      {
+        "identifier": "720575940627112344",
+        "type": "Mi10",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 3,
+        "line": 44,
+        "raw": "720575940627112344Mi10 7"
+      },
+      {
+        "identifier": "720575940615782978",
+        "type": "Mi10",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 3,
+        "line": 45,
+        "raw": "720575940615782978Mi10 3"
+      },
+      {
+        "identifier": "720575940622466036",
+        "type": "CB0566",
+        "counts": [
+          21
+        ],
+        "descriptiveCountSum": 21,
+        "page": 3,
+        "line": 46,
+        "raw": "720575940622466036CB0566 21"
+      },
+      {
+        "identifier": "720575940628838474",
+        "type": "CB0171",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 4,
+        "line": 1,
+        "raw": "720575940628838474CB0171 8"
+      },
+      {
+        "identifier": "720575940626457893",
+        "type": "aME17b",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 4,
+        "line": 2,
+        "raw": "720575940626457893aME17b 7"
+      },
+      {
+        "identifier": "720575940621186219",
+        "type": "aMe17b",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 4,
+        "line": 3,
+        "raw": "720575940621186219aMe17b 5"
+      },
+      {
+        "identifier": "720575940625414477",
+        "type": "aMe17b",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 4,
+        "raw": "720575940625414477aMe17b 4"
+      },
+      {
+        "identifier": "720575940615181479",
+        "type": "Sm19",
+        "counts": [
+          20
+        ],
+        "descriptiveCountSum": 20,
+        "page": 4,
+        "line": 5,
+        "raw": "720575940615181479Sm19 20"
+      },
+      {
+        "identifier": "720575940633602017",
+        "type": "Sm13",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 6,
+        "raw": "720575940633602017Sm13 4"
+      },
+      {
+        "identifier": "720575940633387181",
+        "type": "Sm19",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 4,
+        "line": 7,
+        "raw": "720575940633387181Sm19 6"
+      },
+      {
+        "identifier": "720575940641982709",
+        "type": "Sm20",
+        "counts": [
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 4,
+        "line": 8,
+        "raw": "720575940641982709Sm20 12"
+      },
+      {
+        "identifier": "720575940615314834",
+        "type": "Sm20",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 4,
+        "line": 9,
+        "raw": "720575940615314834Sm20 10"
+      },
+      {
+        "identifier": "720575940628760561",
+        "type": "Sm19",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 4,
+        "line": 10,
+        "raw": "720575940628760561Sm19 9"
+      },
+      {
+        "identifier": "720575940605990590",
+        "type": "Sm19",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 4,
+        "line": 11,
+        "raw": "720575940605990590Sm19 5"
+      },
+      {
+        "identifier": "720575940624488445",
+        "type": "Sm20",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 4,
+        "line": 12,
+        "raw": "720575940624488445Sm20 6"
+      },
+      {
+        "identifier": "720575940613095282",
+        "type": "Sm20",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 4,
+        "line": 13,
+        "raw": "720575940613095282Sm20 10"
+      },
+      {
+        "identifier": "720575940634295010",
+        "type": "Sm21",
+        "counts": [
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 14,
+        "raw": "720575940634295010Sm21 3"
+      },
+      {
+        "identifier": "720575940622315647",
+        "type": "Sm20",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 15,
+        "raw": "720575940622315647Sm20 4"
+      },
+      {
+        "identifier": "720575940625259704",
+        "type": "Sm20",
+        "counts": [
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 16,
+        "raw": "720575940625259704Sm20 4"
+      },
+      {
+        "identifier": "720575940627733777",
+        "type": "Sm20",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 4,
+        "line": 17,
+        "raw": "720575940627733777Sm20 7"
+      },
+      {
+        "identifier": "720575940633138771",
+        "type": "Sm20",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 4,
+        "line": 18,
+        "raw": "720575940633138771Sm20 7"
+      },
+      {
+        "identifier": "720575940617838225",
+        "type": "Sm26",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 4,
+        "line": 19,
+        "raw": "720575940617838225Sm26 8"
+      },
+      {
+        "identifier": "720575940614418227",
+        "type": "Sm26",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 4,
+        "line": 20,
+        "raw": "720575940614418227Sm26 9"
+      }
+    ],
+    "caption": {
+      "page": 4,
+      "line": 21,
+      "text": "Table 4. Quantification of yDm8 (720575940638424895) inputs."
+    }
+  },
+  {
+    "number": 5,
+    "header": {
+      "page": 4,
+      "line": 22,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940636715998",
+        "type": "yR7",
+        "counts": [
+          29,
+          0
+        ],
+        "descriptiveCountSum": 29,
+        "page": 4,
+        "line": 23,
+        "raw": "720575940636715998yR7 29 0"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          17,
+          0
+        ],
+        "descriptiveCountSum": 17,
+        "page": 4,
+        "line": 24,
+        "raw": "720575940623904136 Mi3 17 0"
+      },
+      {
+        "identifier": "720575940620683456",
+        "type": "Mi4",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 4,
+        "line": 25,
+        "raw": "720575940620683456 Mi4 14 0"
+      },
+      {
+        "identifier": "720575940638424895",
+        "type": "yDm8",
+        "counts": [
+          13,
+          0
+        ],
+        "descriptiveCountSum": 13,
+        "page": 4,
+        "line": 26,
+        "raw": "720575940638424895yDm8 13 0"
+      },
+      {
+        "identifier": "720575940622664455",
+        "type": "Tm5a_like",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 4,
+        "line": 27,
+        "raw": "720575940622664455Tm5a_like 9 0"
+      },
+      {
+        "identifier": "720575940614087087",
+        "type": "yDm8",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 4,
+        "line": 28,
+        "raw": "720575940614087087yDm8 7 0"
+      },
+      {
+        "identifier": "720575940614902495",
+        "type": "Tm5a",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 4,
+        "line": 29,
+        "raw": "720575940614902495Tm5a 7 0"
+      },
+      {
+        "identifier": "720575940611231608",
+        "type": "Li19",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 4,
+        "line": 30,
+        "raw": "720575940611231608Li19 0 6"
+      },
+      {
+        "identifier": "720575940621687649",
+        "type": "LT58",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 4,
+        "line": 31,
+        "raw": "720575940621687649LT58 0 5"
+      },
+      {
+        "identifier": "720575940622762677",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 4,
+        "line": 32,
+        "raw": "720575940622762677 Tm 5 0"
+      },
+      {
+        "identifier": "720575940623747818",
+        "type": "Tm5c",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 4,
+        "line": 33,
+        "raw": "720575940623747818Tm5c 5 0"
+      },
+      {
+        "identifier": "720575940626457893",
+        "type": "aMe17b",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 34,
+        "raw": "720575940626457893aMe17b 4 0"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "TmY5a",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 35,
+        "raw": "720575940627946056TmY5a 4 0"
+      },
+      {
+        "identifier": "720575940632492625",
+        "type": "L3",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 36,
+        "raw": "720575940632492625 L3 4 0"
+      },
+      {
+        "identifier": "720575940618141268",
+        "type": "Tm24",
+        "counts": [
+          0,
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 37,
+        "raw": "720575940618141268Tm24 0 4"
+      },
+      {
+        "identifier": "720575940627314521",
+        "type": "Tm5c",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 4,
+        "line": 38,
+        "raw": "720575940627314521Tm5c 4 0"
+      },
+      {
+        "identifier": "720575940629248771",
+        "type": "Tm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 39,
+        "raw": "720575940629248771 Tm 3 0"
+      },
+      {
+        "identifier": "720575940616587677",
+        "type": "TmY",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 40,
+        "raw": "720575940616587677TmY 3 0"
+      },
+      {
+        "identifier": "720575940646093166",
+        "type": "L3",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 41,
+        "raw": "720575940646093166 L3 3 0"
+      },
+      {
+        "identifier": "720575940632734924",
+        "type": "Tm5b",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 42,
+        "raw": "720575940632734924Tm5b 3 0"
+      },
+      {
+        "identifier": "720575940610787118",
+        "type": "TmY20",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 4,
+        "line": 43,
+        "raw": "720575940610787118TmY20 0 3"
+      }
+    ],
+    "caption": {
+      "page": 4,
+      "line": 44,
+      "text": "Table 5. Quantification of Tm5a (720575940639473998) inputs."
+    }
+  },
+  {
+    "number": 6,
+    "header": {
+      "page": 4,
+      "line": 45,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940636942447",
+        "type": "yR7",
+        "counts": [
+          24,
+          0
+        ],
+        "descriptiveCountSum": 24,
+        "page": 5,
+        "line": 1,
+        "raw": "720575940636942447yR7 24 0"
+      },
+      {
+        "identifier": "720575940614087087",
+        "type": "yDm8",
+        "counts": [
+          26,
+          0
+        ],
+        "descriptiveCountSum": 26,
+        "page": 5,
+        "line": 2,
+        "raw": "720575940614087087yDm8 26 0"
+      },
+      {
+        "identifier": "720575940619053873",
+        "type": "Li19",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 5,
+        "line": 3,
+        "raw": "720575940619053873Li19 0 7"
+      },
+      {
+        "identifier": "720575940623040470",
+        "type": "Dm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 4,
+        "raw": "720575940623040470 Dm 6 0"
+      },
+      {
+        "identifier": "720575940626457893",
+        "type": "aMe17b",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 5,
+        "raw": "720575940626457893aMe17b 6 0"
+      },
+      {
+        "identifier": "720575940618913158",
+        "type": "Y3",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 6,
+        "raw": "720575940618913158 Y3 4 0"
+      },
+      {
+        "identifier": "720575940620474315",
+        "type": "Tm",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 7,
+        "raw": "720575940620474315 Tm 4 0"
+      },
+      {
+        "identifier": "720575940637975741",
+        "type": "Mi3",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 8,
+        "raw": "720575940637975741 Mi3 3 0"
+      },
+      {
+        "identifier": "720575940618200038",
+        "type": "LC20",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 9,
+        "raw": "720575940618200038LC20 0 3"
+      },
+      {
+        "identifier": "720575940636163832",
+        "type": "aMe17b",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 10,
+        "raw": "720575940636163832aMe17b 3 0"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 11,
+        "raw": "720575940623904136 Mi3 3 0"
+      },
+      {
+        "identifier": "720575940614686259",
+        "type": "Sm31",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 12,
+        "raw": "720575940614686259Sm31 3 0"
+      },
+      {
+        "identifier": "720575940627406650",
+        "type": "Tm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 13,
+        "raw": "720575940627406650 Tm 3 0"
+      },
+      {
+        "identifier": "720575940633589677",
+        "type": "Tm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 14,
+        "raw": "720575940633589677 Tm 3 0"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "TmY5a",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 15,
+        "raw": "720575940627946056TmY5a 3 0"
+      },
+      {
+        "identifier": "720575940616394694",
+        "type": "CB0566",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 16,
+        "raw": "720575940616394694CB0566 3 0"
+      },
+      {
+        "identifier": "720575940616587677",
+        "type": "TmY",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 5,
+        "line": 17,
+        "raw": "720575940616587677TmY 3 0"
+      }
+    ],
+    "caption": {
+      "page": 5,
+      "line": 18,
+      "text": "Table 6. Quantification of Tm5a (720575940614902495) inputs."
+    }
+  },
+  {
+    "number": 7,
+    "header": {
+      "page": 5,
+      "line": 19,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          20,
+          0
+        ],
+        "descriptiveCountSum": 20,
+        "page": 5,
+        "line": 20,
+        "raw": "720575940632586297pR7 20 0"
+      },
+      {
+        "identifier": "720575940624675079",
+        "type": "pR7",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 21,
+        "raw": "720575940624675079pR7 4 0"
+      },
+      {
+        "identifier": "720575940622269424",
+        "type": "pR8",
+        "counts": [
+          2,
+          0
+        ],
+        "descriptiveCountSum": 2,
+        "page": 5,
+        "line": 22,
+        "raw": "720575940622269424pR8 2 0"
+      },
+      {
+        "identifier": "720575940625356011",
+        "type": "yR8",
+        "counts": [
+          2,
+          0
+        ],
+        "descriptiveCountSum": 2,
+        "page": 5,
+        "line": 23,
+        "raw": "720575940625356011yR8 2 0"
+      },
+      {
+        "identifier": "720575940638634960",
+        "type": "pDm8",
+        "counts": [
+          16,
+          0
+        ],
+        "descriptiveCountSum": 16,
+        "page": 5,
+        "line": 24,
+        "raw": "720575940638634960pDm8 16 0"
+      },
+      {
+        "identifier": "720575940623113962",
+        "type": "Y3",
+        "counts": [
+          10,
+          1
+        ],
+        "descriptiveCountSum": 11,
+        "page": 5,
+        "line": 25,
+        "raw": "720575940623113962 Y3 10 1"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          11,
+          0
+        ],
+        "descriptiveCountSum": 11,
+        "page": 5,
+        "line": 26,
+        "raw": "720575940623904136 Mi3 11 0"
+      },
+      {
+        "identifier": "720575940618913158",
+        "type": "Y3",
+        "counts": [
+          4,
+          4
+        ],
+        "descriptiveCountSum": 8,
+        "page": 5,
+        "line": 27,
+        "raw": "720575940618913158 Y3 4 4"
+      },
+      {
+        "identifier": "720575940624951027",
+        "type": "pDm8",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 5,
+        "line": 28,
+        "raw": "720575940624951027pDm8 8 0"
+      },
+      {
+        "identifier": "720575940621453921",
+        "type": "Pm2",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 5,
+        "line": 29,
+        "raw": "720575940621453921Pm2 8 0"
+      },
+      {
+        "identifier": "720575940635247711",
+        "type": "Tm",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 5,
+        "line": 30,
+        "raw": "720575940635247711 Tm 7 0"
+      },
+      {
+        "identifier": "720575940639450165",
+        "type": "TmY5b",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 5,
+        "line": 31,
+        "raw": "720575940639450165TmY5b 7 0"
+      },
+      {
+        "identifier": "720575940634254562",
+        "type": "Pm2",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 5,
+        "line": 32,
+        "raw": "720575940634254562Pm2 7 0"
+      },
+      {
+        "identifier": "720575940632473391",
+        "type": "TmY5b",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 33,
+        "raw": "720575940632473391TmY5b 6 0"
+      },
+      {
+        "identifier": "720575940619305374",
+        "type": "TmY5b",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 34,
+        "raw": "720575940619305374TmY5b 6 0"
+      },
+      {
+        "identifier": "720575940622757895",
+        "type": "Mi4",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 35,
+        "raw": "720575940622757895 Mi4 6 0"
+      },
+      {
+        "identifier": "720575940627314521",
+        "type": "Tm5c",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 5,
+        "line": 36,
+        "raw": "720575940627314521Tm5c 6 0"
+      },
+      {
+        "identifier": "720575940619252603",
+        "type": "Tm5c",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 37,
+        "raw": "720575940619252603Tm5c 5 0"
+      },
+      {
+        "identifier": "720575940622508156",
+        "type": "Dm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 38,
+        "raw": "720575940622508156 Dm 5 0"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 39,
+        "raw": "720575940660846721Tm5b 5 0"
+      },
+      {
+        "identifier": "720575940626924675",
+        "type": "TmY5a",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 40,
+        "raw": "720575940626924675TmY5a 5 0"
+      },
+      {
+        "identifier": "720575940632763975",
+        "type": "Sm26",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 41,
+        "raw": "720575940632763975Sm26 5 0"
+      },
+      {
+        "identifier": "720575940633602017",
+        "type": "Sm13",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 5,
+        "line": 42,
+        "raw": "720575940633602017Sm13 5 0"
+      },
+      {
+        "identifier": "720575940636163832",
+        "type": "aMe17b",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 43,
+        "raw": "720575940636163832aMe17b 4 0"
+      },
+      {
+        "identifier": "720575940622560636",
+        "type": "Sm26",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 44,
+        "raw": "720575940622560636Sm26 4 0"
+      },
+      {
+        "identifier": "720575940615657538",
+        "type": "Mi3",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 45,
+        "raw": "720575940615657538 Mi3 4 0"
+      },
+      {
+        "identifier": "720575940648130436",
+        "type": "Dm",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 5,
+        "line": 46,
+        "raw": "720575940648130436 Dm 4 0"
+      },
+      {
+        "identifier": "720575940626012208",
+        "type": "Mi10",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 1,
+        "raw": "720575940626012208Mi10 4 0"
+      },
+      {
+        "identifier": "720575940626457893",
+        "type": "aMe17b",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 2,
+        "raw": "720575940626457893aMe17b 4 0"
+      },
+      {
+        "identifier": "720575940614620010",
+        "type": "Y3",
+        "counts": [
+          2,
+          1
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 3,
+        "raw": "720575940614620010 Y3 2 1"
+      },
+      {
+        "identifier": "720575940616578594",
+        "type": "Y3",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 4,
+        "raw": "720575940616578594 Y3 3 0"
+      },
+      {
+        "identifier": "720575940611157458",
+        "type": "TmY5b",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 5,
+        "raw": "720575940611157458TmY5b 3 0"
+      },
+      {
+        "identifier": "720575940614902495",
+        "type": "Tm5a",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 6,
+        "raw": "720575940614902495Tm5a 0 3"
+      },
+      {
+        "identifier": "720575940635684715",
+        "type": "Sm26",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 7,
+        "raw": "720575940635684715Sm26 3 0"
+      },
+      {
+        "identifier": "720575940623672856",
+        "type": "Mi4",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 8,
+        "raw": "720575940623672856 Mi4 3 0"
+      },
+      {
+        "identifier": "720575940637755701",
+        "type": "Mi4",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 9,
+        "raw": "720575940637755701 Mi4 3 0"
+      },
+      {
+        "identifier": "720575940621771248",
+        "type": "Dm3",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 10,
+        "raw": "720575940621771248Dm3 3 0"
+      },
+      {
+        "identifier": "720575940617838225",
+        "type": "Sm26",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 11,
+        "raw": "720575940617838225Sm26 3 0"
+      },
+      {
+        "identifier": "720575940629822619",
+        "type": "Sm40",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 12,
+        "raw": "720575940629822619Sm40 3 0"
+      },
+      {
+        "identifier": "720575940636604271",
+        "type": "Pm2",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 13,
+        "raw": "720575940636604271Pm2 3 0"
+      },
+      {
+        "identifier": "720575940610378104",
+        "type": "Y3",
+        "counts": [
+          2,
+          1
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 14,
+        "raw": "720575940610378104 Y3 2 1"
+      }
+    ],
+    "caption": {
+      "page": 6,
+      "line": 15,
+      "text": "Table 7. Quantification of Tm5b (720575940627282584) inputs."
+    }
+  },
+  {
+    "number": 8,
+    "header": {
+      "page": 6,
+      "line": 16,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          19,
+          0
+        ],
+        "descriptiveCountSum": 19,
+        "page": 6,
+        "line": 17,
+        "raw": "720575940632586297pR7 19 0"
+      },
+      {
+        "identifier": "720575940625479916",
+        "type": "yR8",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 6,
+        "line": 18,
+        "raw": "720575940625479916yR8 6 0"
+      },
+      {
+        "identifier": "720575940634575329",
+        "type": "pR8",
+        "counts": [
+          1,
+          0
+        ],
+        "descriptiveCountSum": 1,
+        "page": 6,
+        "line": 19,
+        "raw": "720575940634575329pR8 1 0"
+      },
+      {
+        "identifier": "720575940624951027",
+        "type": "pDm8",
+        "counts": [
+          19,
+          0
+        ],
+        "descriptiveCountSum": 19,
+        "page": 6,
+        "line": 20,
+        "raw": "720575940624951027pDm8 19 0"
+      },
+      {
+        "identifier": "720575940605362912",
+        "type": "Mi4",
+        "counts": [
+          11,
+          0
+        ],
+        "descriptiveCountSum": 11,
+        "page": 6,
+        "line": 21,
+        "raw": "720575940605362912 Mi4 11 0"
+      },
+      {
+        "identifier": "720575940618913158",
+        "type": "Y3",
+        "counts": [
+          9,
+          1
+        ],
+        "descriptiveCountSum": 10,
+        "page": 6,
+        "line": 22,
+        "raw": "720575940618913158 Y3 9 1"
+      },
+      {
+        "identifier": "720575940619252603",
+        "type": "Tm5c",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 6,
+        "line": 23,
+        "raw": "720575940619252603Tm5c 9 0"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 6,
+        "line": 24,
+        "raw": "720575940623904136 Mi3 8 0"
+      },
+      {
+        "identifier": "720575940614620010",
+        "type": "Y3",
+        "counts": [
+          5,
+          1
+        ],
+        "descriptiveCountSum": 6,
+        "page": 6,
+        "line": 25,
+        "raw": "720575940614620010 Y3 5 1"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 6,
+        "line": 26,
+        "raw": "720575940627282584Tm5b 5 0"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "TmY5a",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 6,
+        "line": 27,
+        "raw": "720575940627946056TmY5a 5 0"
+      },
+      {
+        "identifier": "720575940615011490",
+        "type": "Mi3",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 6,
+        "line": 28,
+        "raw": "720575940615011490 Mi3 5 0"
+      },
+      {
+        "identifier": "720575940614087087",
+        "type": "yDm8",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 6,
+        "line": 29,
+        "raw": "720575940614087087yDm8 5 0"
+      },
+      {
+        "identifier": "720575940626637002",
+        "type": "mALC2",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 6,
+        "line": 30,
+        "raw": "720575940626637002mALC2 0 5"
+      },
+      {
+        "identifier": "720575940616587677",
+        "type": "TmY",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 31,
+        "raw": "720575940616587677TmY 4 0"
+      },
+      {
+        "identifier": "720575940604973536",
+        "type": "T2",
+        "counts": [
+          0,
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 32,
+        "raw": "720575940604973536 T2 0 4"
+      },
+      {
+        "identifier": "720575940616578594",
+        "type": "Y3",
+        "counts": [
+          0,
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 33,
+        "raw": "720575940616578594 Y3 0 4"
+      },
+      {
+        "identifier": "720575940626968146",
+        "type": "Li19",
+        "counts": [
+          0,
+          4
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 34,
+        "raw": "720575940626968146Li19 0 4"
+      },
+      {
+        "identifier": "720575940646658083",
+        "type": "TmY5b",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 35,
+        "raw": "720575940646658083TmY5b 4 0"
+      },
+      {
+        "identifier": "720575940630163959",
+        "type": "Mi1",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 6,
+        "line": 36,
+        "raw": "720575940630163959 Mi1 4 0"
+      },
+      {
+        "identifier": "720575940632763975",
+        "type": "Sm26",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 37,
+        "raw": "720575940632763975Sm26 3 0"
+      },
+      {
+        "identifier": "720575940629465499",
+        "type": "TmY5a",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 38,
+        "raw": "720575940629465499TmY5a 3 0"
+      },
+      {
+        "identifier": "720575940622485786",
+        "type": "Tm",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 39,
+        "raw": "720575940622485786 Tm 0 3"
+      },
+      {
+        "identifier": "720575940629822619",
+        "type": "Sm40",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 40,
+        "raw": "720575940629822619Sm40 3 0"
+      },
+      {
+        "identifier": "720575940619323806",
+        "type": "Mi4",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 41,
+        "raw": "720575940619323806 Mi4 3 0"
+      },
+      {
+        "identifier": "720575940635539374",
+        "type": "Mi9",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 42,
+        "raw": "720575940635539374 Mi9 3 0"
+      },
+      {
+        "identifier": "720575940627406650",
+        "type": "Tm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 43,
+        "raw": "720575940627406650 Tm 3 0"
+      },
+      {
+        "identifier": "720575940626331184",
+        "type": "Li12",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 44,
+        "raw": "720575940626331184Li12 0 3"
+      },
+      {
+        "identifier": "720575940626634789",
+        "type": "Li",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 45,
+        "raw": "720575940626634789 Li 0 3"
+      },
+      {
+        "identifier": "720575940623353284",
+        "type": "Sm13",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 6,
+        "line": 46,
+        "raw": "720575940623353284Sm13 3 0"
+      },
+      {
+        "identifier": "720575940618431798",
+        "type": "Y3",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 1,
+        "raw": "720575940618431798 Y3 0 3"
+      }
+    ],
+    "caption": {
+      "page": 7,
+      "line": 2,
+      "text": "Table 8. Quantification of Tm5b (720575940660846721) inputs."
+    }
+  },
+  {
+    "number": 9,
+    "header": {
+      "page": 7,
+      "line": 3,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940622269424",
+        "type": "pR8",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 7,
+        "line": 4,
+        "raw": "720575940622269424pR8 6 0"
+      },
+      {
+        "identifier": "720575940615537314",
+        "type": "pR7",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 7,
+        "line": 5,
+        "raw": "720575940615537314pR7 5 0"
+      },
+      {
+        "identifier": "720575940625356011",
+        "type": "yR8",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 6,
+        "raw": "720575940625356011yR8 4 0"
+      },
+      {
+        "identifier": "720575940634575329",
+        "type": "pR8",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 7,
+        "raw": "720575940634575329pR8 4 0"
+      },
+      {
+        "identifier": "720575940625479916",
+        "type": "yR8",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 8,
+        "raw": "720575940625479916yR8 4 0"
+      },
+      {
+        "identifier": "720575940618886228",
+        "type": "yR8",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 9,
+        "raw": "720575940618886228yR8 3 0"
+      },
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          2,
+          0
+        ],
+        "descriptiveCountSum": 2,
+        "page": 7,
+        "line": 10,
+        "raw": "720575940632586297pR7 2 0"
+      },
+      {
+        "identifier": "720575940621307483",
+        "type": "aMe17a",
+        "counts": [
+          19,
+          0
+        ],
+        "descriptiveCountSum": 19,
+        "page": 7,
+        "line": 11,
+        "raw": "720575940621307483aMe17a 19 0"
+      },
+      {
+        "identifier": "720575940655090849",
+        "type": "L3",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 7,
+        "line": 12,
+        "raw": "720575940655090849 L3 10 0"
+      },
+      {
+        "identifier": "720575940615325090",
+        "type": "aMe4",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 7,
+        "line": 13,
+        "raw": "720575940615325090aMe4 10 0"
+      },
+      {
+        "identifier": "720575940636455031",
+        "type": "L3",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 7,
+        "line": 14,
+        "raw": "720575940636455031 L3 9 0"
+      },
+      {
+        "identifier": "720575940614575527",
+        "type": "L3",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 7,
+        "line": 15,
+        "raw": "720575940614575527 L3 8 0"
+      },
+      {
+        "identifier": "720575940613737874",
+        "type": "MTe50",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 7,
+        "line": 16,
+        "raw": "720575940613737874MTe50 6 0"
+      },
+      {
+        "identifier": "720575940631627595",
+        "type": "cM08b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 7,
+        "line": 17,
+        "raw": "720575940631627595cM08b 5 0"
+      },
+      {
+        "identifier": "720575940625062891",
+        "type": "Li13",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 7,
+        "line": 18,
+        "raw": "720575940625062891Li13 0 5"
+      },
+      {
+        "identifier": "720575940611040046",
+        "type": "L3",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 7,
+        "line": 19,
+        "raw": "720575940611040046 L3 5 0"
+      },
+      {
+        "identifier": "720575940609770691",
+        "type": "Mi4",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 20,
+        "raw": "720575940609770691 Mi4 4 0"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 21,
+        "raw": "720575940627282584Tm5b 4 0"
+      },
+      {
+        "identifier": "720575940636501093",
+        "type": "Tm16",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 7,
+        "line": 22,
+        "raw": "720575940636501093Tm16 4 0"
+      },
+      {
+        "identifier": "720575940615143934",
+        "type": "CB0471",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 23,
+        "raw": "720575940615143934CB0471 3 0"
+      },
+      {
+        "identifier": "720575940645690734",
+        "type": "TmY10",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 24,
+        "raw": "720575940645690734TmY10 3 0"
+      },
+      {
+        "identifier": "720575940627110147",
+        "type": "Li19",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 25,
+        "raw": "720575940627110147Li19 0 3"
+      },
+      {
+        "identifier": "720575940613428246",
+        "type": "LoP",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 26,
+        "raw": "720575940613428246LoP 0 3"
+      },
+      {
+        "identifier": "720575940626012208",
+        "type": "Mi10",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 27,
+        "raw": "720575940626012208Mi10 3 0"
+      },
+      {
+        "identifier": "720575940626175242",
+        "type": "Tm16",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 28,
+        "raw": "720575940626175242Tm16 3 0"
+      },
+      {
+        "identifier": "720575940625278652",
+        "type": "aMe4",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 29,
+        "raw": "720575940625278652aMe4 3 0"
+      },
+      {
+        "identifier": "720575940620200021",
+        "type": "Tm5b",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 30,
+        "raw": "720575940620200021Tm5b 0 3"
+      },
+      {
+        "identifier": "720575940614131119",
+        "type": "Dm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 31,
+        "raw": "720575940614131119 Dm 3 0"
+      },
+      {
+        "identifier": "720575940612877363",
+        "type": "Tm25",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 32,
+        "raw": "720575940612877363Tm25 3 0"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 7,
+        "line": 33,
+        "raw": "720575940660846721Tm5b 3 0"
+      }
+    ],
+    "caption": {
+      "page": 7,
+      "line": 34,
+      "text": "Table 9. Quantification of Tm5c (720575940619252603) inputs."
+    }
+  },
+  {
+    "number": 10,
+    "header": {
+      "page": 7,
+      "line": 35,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940625479916",
+        "type": "yR8",
+        "counts": [
+          22,
+          0
+        ],
+        "descriptiveCountSum": 22,
+        "page": 7,
+        "line": 36,
+        "raw": "720575940625479916yR8 22 0"
+      },
+      {
+        "identifier": "720575940618886228",
+        "type": "yR8",
+        "counts": [
+          21,
+          0
+        ],
+        "descriptiveCountSum": 21,
+        "page": 7,
+        "line": 37,
+        "raw": "720575940618886228yR8 21 0"
+      },
+      {
+        "identifier": "720575940636942447",
+        "type": "yR7",
+        "counts": [
+          2,
+          0
+        ],
+        "descriptiveCountSum": 2,
+        "page": 7,
+        "line": 38,
+        "raw": "720575940636942447yR7 2 0"
+      },
+      {
+        "identifier": "720575940621307483",
+        "type": "aMe17a",
+        "counts": [
+          26,
+          0
+        ],
+        "descriptiveCountSum": 26,
+        "page": 7,
+        "line": 39,
+        "raw": "720575940621307483aMe17a 26 0"
+      },
+      {
+        "identifier": "720575940632492625",
+        "type": "L3",
+        "counts": [
+          20,
+          0
+        ],
+        "descriptiveCountSum": 20,
+        "page": 7,
+        "line": 40,
+        "raw": "720575940632492625 L3 20 0"
+      },
+      {
+        "identifier": "720575940636455031",
+        "type": "L3",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 7,
+        "line": 41,
+        "raw": "720575940636455031 L3 14 0"
+      },
+      {
+        "identifier": "720575940625278652",
+        "type": "aMe4",
+        "counts": [
+          13,
+          0
+        ],
+        "descriptiveCountSum": 13,
+        "page": 7,
+        "line": 42,
+        "raw": "720575940625278652aMe4 13 0"
+      },
+      {
+        "identifier": "720575940655090849",
+        "type": "L3",
+        "counts": [
+          11,
+          0
+        ],
+        "descriptiveCountSum": 11,
+        "page": 7,
+        "line": 43,
+        "raw": "720575940655090849 L3 11 0"
+      },
+      {
+        "identifier": "720575940613789411",
+        "type": "L3",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 7,
+        "line": 44,
+        "raw": "720575940613789411 L3 10 0"
+      },
+      {
+        "identifier": "720575940618535425",
+        "type": "aMe4",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 7,
+        "line": 45,
+        "raw": "720575940618535425aMe4 10 0"
+      },
+      {
+        "identifier": "720575940614087087",
+        "type": "yDm8",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 8,
+        "line": 1,
+        "raw": "720575940614087087yDm8 9 0"
+      },
+      {
+        "identifier": "720575940620474571",
+        "type": "Mi",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 8,
+        "line": 2,
+        "raw": "720575940620474571 Mi 8 0"
+      },
+      {
+        "identifier": "720575940631424197",
+        "type": "Tm16",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 8,
+        "line": 3,
+        "raw": "720575940631424197Tm16 0 7"
+      },
+      {
+        "identifier": "720575940631009531",
+        "type": "TmY10",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 8,
+        "line": 4,
+        "raw": "720575940631009531TmY10 6 0"
+      },
+      {
+        "identifier": "720575940621453165",
+        "type": "CB0816",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 8,
+        "line": 5,
+        "raw": "720575940621453165CB0816 5 0"
+      },
+      {
+        "identifier": "720575940626084666",
+        "type": "TmY9",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 8,
+        "line": 6,
+        "raw": "720575940626084666TmY9 0 5"
+      },
+      {
+        "identifier": "720575940660477313",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 8,
+        "line": 7,
+        "raw": "720575940660477313 Tm 5 0"
+      },
+      {
+        "identifier": "720575940626270000",
+        "type": "MTe50",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 8,
+        "raw": "720575940626270000MTe50 4 0"
+      },
+      {
+        "identifier": "720575940614788519",
+        "type": "Tm",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 9,
+        "raw": "720575940614788519 Tm 4 0"
+      },
+      {
+        "identifier": "720575940618438941",
+        "type": "aMe4",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 10,
+        "raw": "720575940618438941aMe4 4 0"
+      },
+      {
+        "identifier": "720575940610028995",
+        "type": "CB0816",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 11,
+        "raw": "720575940610028995CB0816 3 0"
+      },
+      {
+        "identifier": "720575940640940496",
+        "type": "L5",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 12,
+        "raw": "720575940640940496 L5 3 0"
+      },
+      {
+        "identifier": "720575940616121503",
+        "type": "Lt56",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 13,
+        "raw": "720575940616121503Lt56 0 3"
+      },
+      {
+        "identifier": "720575940638571583",
+        "type": "Mi1",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 14,
+        "raw": "720575940638571583 Mi1 3 0"
+      },
+      {
+        "identifier": "720575940616335118",
+        "type": "unknown",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 15,
+        "raw": "720575940616335118unknown 3 0"
+      },
+      {
+        "identifier": "720575940632868177",
+        "type": "CB0816",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 16,
+        "raw": "720575940632868177CB0816 3 0"
+      },
+      {
+        "identifier": "720575940626350794",
+        "type": "Tm",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 17,
+        "raw": "720575940626350794 Tm 3 0"
+      }
+    ],
+    "caption": {
+      "page": 8,
+      "line": 18,
+      "text": "Table 10. Quantification of Tm5c (720575940627314521) inputs."
+    }
+  },
+  {
+    "number": 11,
+    "header": {
+      "page": 8,
+      "line": 19,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940622269424",
+        "type": "pR8",
+        "counts": [
+          32,
+          0
+        ],
+        "descriptiveCountSum": 32,
+        "page": 8,
+        "line": 20,
+        "raw": "720575940622269424pR8 32 0"
+      },
+      {
+        "identifier": "720575940632586297",
+        "type": "pR7",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 21,
+        "raw": "720575940632586297pR7 3 0"
+      },
+      {
+        "identifier": "720575940655090849",
+        "type": "L3",
+        "counts": [
+          51,
+          0
+        ],
+        "descriptiveCountSum": 51,
+        "page": 8,
+        "line": 22,
+        "raw": "720575940655090849 L3 51 0"
+      },
+      {
+        "identifier": "720575940622757895",
+        "type": "Mi4",
+        "counts": [
+          38,
+          0
+        ],
+        "descriptiveCountSum": 38,
+        "page": 8,
+        "line": 23,
+        "raw": "720575940622757895 Mi4 38 0"
+      },
+      {
+        "identifier": "720575940625657221",
+        "type": "Tm1",
+        "counts": [
+          16,
+          0
+        ],
+        "descriptiveCountSum": 16,
+        "page": 8,
+        "line": 24,
+        "raw": "720575940625657221Tm1 16 0"
+      },
+      {
+        "identifier": "720575940630796918",
+        "type": "L2",
+        "counts": [
+          15,
+          0
+        ],
+        "descriptiveCountSum": 15,
+        "page": 8,
+        "line": 25,
+        "raw": "720575940630796918 L2 15 0"
+      },
+      {
+        "identifier": "720575940614620010",
+        "type": "Y3",
+        "counts": [
+          6,
+          3
+        ],
+        "descriptiveCountSum": 9,
+        "page": 8,
+        "line": 26,
+        "raw": "720575940614620010 Y3 6 3"
+      },
+      {
+        "identifier": "720575940632868177",
+        "type": "CB0816",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 8,
+        "line": 27,
+        "raw": "720575940632868177CB0816 9 0"
+      },
+      {
+        "identifier": "720575940623113962",
+        "type": "Y3",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 8,
+        "line": 28,
+        "raw": "720575940623113962 Y3 7 0"
+      },
+      {
+        "identifier": "720575940607136130",
+        "type": "Dm3",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 8,
+        "line": 29,
+        "raw": "720575940607136130Dm3 6 0"
+      },
+      {
+        "identifier": "720575940626637002",
+        "type": "mALC2",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 8,
+        "line": 30,
+        "raw": "720575940626637002mALC2 0 6"
+      },
+      {
+        "identifier": "720575940631893132",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 8,
+        "line": 31,
+        "raw": "720575940631893132unknown 5 0"
+      },
+      {
+        "identifier": "720575940646691363",
+        "type": "ML1",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 32,
+        "raw": "720575940646691363ML1 4 0"
+      },
+      {
+        "identifier": "720575940605835906",
+        "type": "unknown",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 33,
+        "raw": "720575940605835906unknown 4 0"
+      },
+      {
+        "identifier": "720575940621886068",
+        "type": "Sm31",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 34,
+        "raw": "720575940621886068Sm31 4 0"
+      },
+      {
+        "identifier": "720575940632002616",
+        "type": "C3",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 35,
+        "raw": "720575940632002616 C3 4 0"
+      },
+      {
+        "identifier": "720575940628559366",
+        "type": "Tm20",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 36,
+        "raw": "720575940628559366Tm20 4 0"
+      },
+      {
+        "identifier": "720575940630281516",
+        "type": "TmY5a",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 8,
+        "line": 37,
+        "raw": "720575940630281516TmY5a 4 0"
+      },
+      {
+        "identifier": "720575940631354572",
+        "type": "T2 cell",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 38,
+        "raw": "720575940631354572T2 cell 3 0"
+      },
+      {
+        "identifier": "720575940618504395",
+        "type": "Mi1",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 39,
+        "raw": "720575940618504395 Mi1 3 0"
+      },
+      {
+        "identifier": "720575940640940496",
+        "type": "L5",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 40,
+        "raw": "720575940640940496 L5 3 0"
+      },
+      {
+        "identifier": "720575940655546017",
+        "type": "LC6",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 41,
+        "raw": "720575940655546017LC6 0 3"
+      },
+      {
+        "identifier": "720575940630394306",
+        "type": "Sm31",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 42,
+        "raw": "720575940630394306Sm31 3 0"
+      },
+      {
+        "identifier": "720575940631191926",
+        "type": "Li12",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 8,
+        "line": 43,
+        "raw": "720575940631191926Li12 0 3"
+      }
+    ],
+    "caption": {
+      "page": 8,
+      "line": 44,
+      "text": "Table 11. Quantification of Tm20 (720575940635252890) inputs."
+    }
+  },
+  {
+    "number": 12,
+    "header": {
+      "page": 8,
+      "line": 45,
+      "text": "Flywire ID cell type pre sites Me (n)pre sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940618886228",
+        "type": "yR8",
+        "counts": [
+          30,
+          0
+        ],
+        "descriptiveCountSum": 30,
+        "page": 9,
+        "line": 1,
+        "raw": "720575940618886228yR8 30 0"
+      },
+      {
+        "identifier": "720575940636715998",
+        "type": "yR7",
+        "counts": [
+          1,
+          0
+        ],
+        "descriptiveCountSum": 1,
+        "page": 9,
+        "line": 2,
+        "raw": "720575940636715998yR7 1 0"
+      },
+      {
+        "identifier": "720575940632492625",
+        "type": "L3",
+        "counts": [
+          36,
+          0
+        ],
+        "descriptiveCountSum": 36,
+        "page": 9,
+        "line": 3,
+        "raw": "720575940632492625 L3 36 0"
+      },
+      {
+        "identifier": "720575940620683456",
+        "type": "Mi4",
+        "counts": [
+          34,
+          0
+        ],
+        "descriptiveCountSum": 34,
+        "page": 9,
+        "line": 4,
+        "raw": "720575940620683456 Mi4 34 0"
+      },
+      {
+        "identifier": "720575940623664422",
+        "type": "L2",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 9,
+        "line": 5,
+        "raw": "720575940623664422 L2 14 0"
+      },
+      {
+        "identifier": "720575940632988205",
+        "type": "C3",
+        "counts": [
+          12,
+          0
+        ],
+        "descriptiveCountSum": 12,
+        "page": 9,
+        "line": 6,
+        "raw": "720575940632988205 C3 12 0"
+      },
+      {
+        "identifier": "720575940612464114",
+        "type": "Tm1",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 9,
+        "line": 7,
+        "raw": "720575940612464114Tm1 9 0"
+      },
+      {
+        "identifier": "720575940614620010",
+        "type": "Y3",
+        "counts": [
+          5,
+          2
+        ],
+        "descriptiveCountSum": 7,
+        "page": 9,
+        "line": 8,
+        "raw": "720575940614620010 Y3 5 2"
+      },
+      {
+        "identifier": "720575940632167481",
+        "type": "Tm20",
+        "counts": [
+          4,
+          3
+        ],
+        "descriptiveCountSum": 7,
+        "page": 9,
+        "line": 9,
+        "raw": "720575940632167481Tm20 4 3"
+      },
+      {
+        "identifier": "720575940631191926",
+        "type": "Li12",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 9,
+        "line": 10,
+        "raw": "720575940631191926Li12 0 6"
+      },
+      {
+        "identifier": "720575940622743209",
+        "type": "CB0816",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 9,
+        "line": 11,
+        "raw": "720575940622743209CB0816 5 0"
+      },
+      {
+        "identifier": "720575940630837551",
+        "type": "ML1",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 9,
+        "line": 12,
+        "raw": "720575940630837551ML1 5 0"
+      },
+      {
+        "identifier": "720575940638571583",
+        "type": "Mi1",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 13,
+        "raw": "720575940638571583 Mi1 4 0"
+      },
+      {
+        "identifier": "720575940640228669",
+        "type": "Sm31",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 14,
+        "raw": "720575940640228669Sm31 4 0"
+      },
+      {
+        "identifier": "720575940641642715",
+        "type": "Me4",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 15,
+        "raw": "720575940641642715Me4 4 0"
+      },
+      {
+        "identifier": "720575940635456430",
+        "type": "Sm22",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 16,
+        "raw": "720575940635456430Sm22 4 0"
+      },
+      {
+        "identifier": "720575940625547452",
+        "type": "Sm22",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 17,
+        "raw": "720575940625547452Sm22 4 0"
+      },
+      {
+        "identifier": "720575940635369663",
+        "type": "Sm22",
+        "counts": [
+          4,
+          0
+        ],
+        "descriptiveCountSum": 4,
+        "page": 9,
+        "line": 18,
+        "raw": "720575940635369663Sm22 4 0"
+      },
+      {
+        "identifier": "720575940623974122",
+        "type": "Sm22",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 19,
+        "raw": "720575940623974122Sm22 3 0"
+      },
+      {
+        "identifier": "720575940630125562",
+        "type": "LT34",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 20,
+        "raw": "720575940630125562LT34 0 3"
+      },
+      {
+        "identifier": "720575940646691363",
+        "type": "ML1",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 21,
+        "raw": "720575940646691363ML1 3 0"
+      },
+      {
+        "identifier": "720575940618712093",
+        "type": "Li12",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 22,
+        "raw": "720575940618712093Li12 0 3"
+      },
+      {
+        "identifier": "720575940624556295",
+        "type": "T2a",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 23,
+        "raw": "720575940624556295 T2a 3 0"
+      },
+      {
+        "identifier": "720575940621881328",
+        "type": "T2a",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 24,
+        "raw": "720575940621881328 T2a 3 0"
+      },
+      {
+        "identifier": "720575940623394765",
+        "type": "T1",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 25,
+        "raw": "720575940623394765 T1 3 0"
+      },
+      {
+        "identifier": "720575940623747818",
+        "type": "Tm5c",
+        "counts": [
+          0,
+          3
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 26,
+        "raw": "720575940623747818Tm5c 0 3"
+      },
+      {
+        "identifier": "720575940636274551",
+        "type": "Tm20",
+        "counts": [
+          3,
+          0
+        ],
+        "descriptiveCountSum": 3,
+        "page": 9,
+        "line": 27,
+        "raw": "720575940636274551Tm20 3 0"
+      }
+    ],
+    "caption": {
+      "page": 9,
+      "line": 28,
+      "text": "Table 12. Quantification of Tm20 (720575940628559366) inputs."
+    }
+  },
+  {
+    "number": 13,
+    "header": {
+      "page": 9,
+      "line": 29,
+      "text": "Flywire ID cell type post sites (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          34
+        ],
+        "descriptiveCountSum": 34,
+        "page": 9,
+        "line": 30,
+        "raw": "720575940627282584Tm5b 34"
+      },
+      {
+        "identifier": "720575940625193064",
+        "type": "Dm9",
+        "counts": [
+          23
+        ],
+        "descriptiveCountSum": 23,
+        "page": 9,
+        "line": 31,
+        "raw": "720575940625193064Dm9 23"
+      },
+      {
+        "identifier": "720575940617259835",
+        "type": "Dm5",
+        "counts": [
+          21
+        ],
+        "descriptiveCountSum": 21,
+        "page": 9,
+        "line": 32,
+        "raw": "720575940617259835Dm5 21"
+      },
+      {
+        "identifier": "720575940622692265",
+        "type": "Dm2",
+        "counts": [
+          18
+        ],
+        "descriptiveCountSum": 18,
+        "page": 9,
+        "line": 33,
+        "raw": "720575940622692265Dm2 18"
+      },
+      {
+        "identifier": "720575940655698849",
+        "type": "Dm9",
+        "counts": [
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 9,
+        "line": 34,
+        "raw": "720575940655698849Dm9 14"
+      },
+      {
+        "identifier": "720575940620346048",
+        "type": "TmY",
+        "counts": [
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 9,
+        "line": 35,
+        "raw": "720575940620346048TmY 14"
+      },
+      {
+        "identifier": "720575940630969303",
+        "type": "Dm4",
+        "counts": [
+          11
+        ],
+        "descriptiveCountSum": 11,
+        "page": 9,
+        "line": 36,
+        "raw": "720575940630969303Dm4 11"
+      },
+      {
+        "identifier": "720575940660477313",
+        "type": "Tm5b_like",
+        "counts": [
+          11
+        ],
+        "descriptiveCountSum": 11,
+        "page": 9,
+        "line": 37,
+        "raw": "720575940660477313Tm5b_like 11"
+      },
+      {
+        "identifier": "720575940640326717",
+        "type": "Tm",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 9,
+        "line": 38,
+        "raw": "720575940640326717 Tm 10"
+      },
+      {
+        "identifier": "720575940634164124",
+        "type": "Dm5",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 9,
+        "line": 39,
+        "raw": "720575940634164124Dm5 9"
+      },
+      {
+        "identifier": "720575940612649625",
+        "type": "Dm2",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 9,
+        "line": 40,
+        "raw": "720575940612649625Dm2 9"
+      },
+      {
+        "identifier": "720575940615520827",
+        "type": "TmY",
+        "counts": [
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 9,
+        "line": 41,
+        "raw": "720575940615520827TmY 9"
+      },
+      {
+        "identifier": "720575940626924675",
+        "type": "TmY",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 9,
+        "line": 42,
+        "raw": "720575940626924675TmY 8"
+      },
+      {
+        "identifier": "720575940619121472",
+        "type": "MC66",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 9,
+        "line": 43,
+        "raw": "720575940619121472MC66 8"
+      },
+      {
+        "identifier": "720575940614418227",
+        "type": "Sm26",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 9,
+        "line": 44,
+        "raw": "720575940614418227Sm26 8"
+      },
+      {
+        "identifier": "720575940614131119",
+        "type": "Dm7",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 9,
+        "line": 45,
+        "raw": "720575940614131119Dm7 7"
+      },
+      {
+        "identifier": "720575940614788519",
+        "type": "Tm5c",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 9,
+        "line": 46,
+        "raw": "720575940614788519Tm5c 7"
+      },
+      {
+        "identifier": "720575940626977768",
+        "type": "MC66",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 1,
+        "raw": "720575940626977768MC66 7"
+      },
+      {
+        "identifier": "720575940617838225",
+        "type": "Sm26",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 2,
+        "raw": "720575940617838225Sm26 7"
+      },
+      {
+        "identifier": "720575940646634275",
+        "type": "Tm5a_like",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 3,
+        "raw": "720575940646634275Tm5a_like 6"
+      },
+      {
+        "identifier": "720575940635081567",
+        "type": "MTe02",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 4,
+        "raw": "720575940635081567MTe02 6"
+      },
+      {
+        "identifier": "720575940641698523",
+        "type": "aMe12",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 5,
+        "raw": "720575940641698523aMe12 6"
+      },
+      {
+        "identifier": "720575940628428821",
+        "type": "Dm4",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 10,
+        "line": 6,
+        "raw": "720575940628428821Dm4 5"
+      },
+      {
+        "identifier": "720575940622757895",
+        "type": "Mi4",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 10,
+        "line": 7,
+        "raw": "720575940622757895 Mi4 5"
+      },
+      {
+        "identifier": "720575940630688256",
+        "type": "TmY",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 10,
+        "line": 8,
+        "raw": "720575940630688256TmY 5"
+      },
+      {
+        "identifier": "720575940630652124",
+        "type": "MLt2",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 10,
+        "line": 9,
+        "raw": "720575940630652124MLt2 5"
+      },
+      {
+        "identifier": null,
+        "type": "unknown",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 10,
+        "raw": "N/A unknown 7"
+      },
+      {
+        "identifier": null,
+        "type": "unknown",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 11,
+        "raw": "N/A unknown 6"
+      }
+    ],
+    "caption": {
+      "page": 10,
+      "line": 12,
+      "text": "Table 13. Quantification of pDm8 (720575940638634960) outputs."
+    }
+  },
+  {
+    "number": 14,
+    "header": {
+      "page": 10,
+      "line": 13,
+      "text": "Flywire ID cell type post sites (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940625193064",
+        "type": "Dm9",
+        "counts": [
+          22
+        ],
+        "descriptiveCountSum": 22,
+        "page": 10,
+        "line": 14,
+        "raw": "720575940625193064Dm9 22"
+      },
+      {
+        "identifier": "720575940639473998",
+        "type": "Tm5a",
+        "counts": [
+          22
+        ],
+        "descriptiveCountSum": 22,
+        "page": 10,
+        "line": 15,
+        "raw": "720575940639473998Tm5a 22"
+      },
+      {
+        "identifier": "720575940621192431",
+        "type": "Dm5",
+        "counts": [
+          21
+        ],
+        "descriptiveCountSum": 21,
+        "page": 10,
+        "line": 16,
+        "raw": "720575940621192431Dm5 21"
+      },
+      {
+        "identifier": "720575940635624696",
+        "type": "Dm4",
+        "counts": [
+          21
+        ],
+        "descriptiveCountSum": 21,
+        "page": 10,
+        "line": 17,
+        "raw": "720575940635624696Dm4 21"
+      },
+      {
+        "identifier": "720575940640334208",
+        "type": "Tm5b",
+        "counts": [
+          21
+        ],
+        "descriptiveCountSum": 21,
+        "page": 10,
+        "line": 18,
+        "raw": "720575940640334208Tm5b 21"
+      },
+      {
+        "identifier": "720575940655698849",
+        "type": "Dm9",
+        "counts": [
+          16
+        ],
+        "descriptiveCountSum": 16,
+        "page": 10,
+        "line": 19,
+        "raw": "720575940655698849Dm9 16"
+      },
+      {
+        "identifier": "720575940610288452",
+        "type": "TmY",
+        "counts": [
+          16
+        ],
+        "descriptiveCountSum": 16,
+        "page": 10,
+        "line": 20,
+        "raw": "720575940610288452TmY 16"
+      },
+      {
+        "identifier": "720575940627733777",
+        "type": "Sm20",
+        "counts": [
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 10,
+        "line": 21,
+        "raw": "720575940627733777Sm20 14"
+      },
+      {
+        "identifier": "720575940622664455",
+        "type": "Tm5a_like",
+        "counts": [
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 10,
+        "line": 22,
+        "raw": "720575940622664455Tm5a_like 12"
+      },
+      {
+        "identifier": "720575940617707494",
+        "type": "Sm20",
+        "counts": [
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 10,
+        "line": 23,
+        "raw": "720575940617707494Sm20 12"
+      },
+      {
+        "identifier": "720575940631460423",
+        "type": "MTe02",
+        "counts": [
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 10,
+        "line": 24,
+        "raw": "720575940631460423MTe02 12"
+      },
+      {
+        "identifier": "720575940631776975",
+        "type": "Dm5",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 10,
+        "line": 25,
+        "raw": "720575940631776975Dm5 10"
+      },
+      {
+        "identifier": "720575940622762677",
+        "type": "Tm",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 10,
+        "line": 26,
+        "raw": "720575940622762677 Tm 10"
+      },
+      {
+        "identifier": "720575940609837717",
+        "type": "Sm20",
+        "counts": [
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 10,
+        "line": 27,
+        "raw": "720575940609837717Sm20 10"
+      },
+      {
+        "identifier": "720575940633718623",
+        "type": "Tm5a",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 28,
+        "raw": "720575940633718623Tm5a 8"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 29,
+        "raw": "720575940623904136 Mi3 8"
+      },
+      {
+        "identifier": "720575940623406605",
+        "type": "CB0156",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 30,
+        "raw": "720575940623406605CB0156 8"
+      },
+      {
+        "identifier": "720575940631345751",
+        "type": "MC61",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 31,
+        "raw": "720575940631345751MC61 8"
+      },
+      {
+        "identifier": "720575940613095282",
+        "type": "Sm20",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 32,
+        "raw": "720575940613095282Sm20 8"
+      },
+      {
+        "identifier": "720575940586278879",
+        "type": "unknown",
+        "counts": [
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 10,
+        "line": 33,
+        "raw": "720575940586278879unknown 8"
+      },
+      {
+        "identifier": "720575940647395636",
+        "type": "MLt6",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 34,
+        "raw": "720575940647395636MLt6 7"
+      },
+      {
+        "identifier": "720575940635081567",
+        "type": "MTe02",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 35,
+        "raw": "720575940635081567MTe02 7"
+      },
+      {
+        "identifier": "720575940612387251",
+        "type": "MLt6",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 36,
+        "raw": "720575940612387251MLt6 7"
+      },
+      {
+        "identifier": "720575940632547129",
+        "type": "Sm19",
+        "counts": [
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 10,
+        "line": 37,
+        "raw": "720575940632547129Sm19 7"
+      },
+      {
+        "identifier": "720575940628838474",
+        "type": "CB0171",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 38,
+        "raw": "720575940628838474CB0171 6"
+      },
+      {
+        "identifier": "720575940625292839",
+        "type": "Sm19",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 39,
+        "raw": "720575940625292839Sm19 6"
+      },
+      {
+        "identifier": "720575940631458575",
+        "type": "Sm19",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 40,
+        "raw": "720575940631458575Sm19 6"
+      },
+      {
+        "identifier": "720575940616130975",
+        "type": "TmY",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 41,
+        "raw": "720575940616130975TmY 6"
+      },
+      {
+        "identifier": "720575940644657608",
+        "type": "MeMe_e09",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 42,
+        "raw": "720575940644657608MeMe_e09 6"
+      },
+      {
+        "identifier": "720575940629626455",
+        "type": "Tm",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 43,
+        "raw": "720575940629626455 Tm 6"
+      },
+      {
+        "identifier": "720575940621025262",
+        "type": "aMe9",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 44,
+        "raw": "720575940621025262aMe9 6"
+      },
+      {
+        "identifier": "720575940660477313",
+        "type": "Tm5b_like",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 45,
+        "raw": "720575940660477313Tm5b_like 6"
+      },
+      {
+        "identifier": "720575940620398040",
+        "type": "Tm5b",
+        "counts": [
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 10,
+        "line": 46,
+        "raw": "720575940620398040Tm5b 6"
+      },
+      {
+        "identifier": "720575940612047858",
+        "type": "Tm5c",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 1,
+        "raw": "720575940612047858Tm5c 5"
+      },
+      {
+        "identifier": "720575940634164124",
+        "type": "Dm5",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 2,
+        "raw": "720575940634164124Dm5 5"
+      },
+      {
+        "identifier": "720575940635648191",
+        "type": "Sm41",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 3,
+        "raw": "720575940635648191Sm41 5"
+      },
+      {
+        "identifier": "720575940623071256",
+        "type": "Mi15",
+        "counts": [
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 4,
+        "raw": "720575940623071256Mi15 5"
+      }
+    ],
+    "caption": {
+      "page": 11,
+      "line": 5,
+      "text": "Table 14. Quantification of yDm8 (720575940638424895) outputs."
+    }
+  },
+  {
+    "number": 15,
+    "header": {
+      "page": 11,
+      "line": 6,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940626637002",
+        "type": "mALC2",
+        "counts": [
+          0,
+          25
+        ],
+        "descriptiveCountSum": 25,
+        "page": 11,
+        "line": 7,
+        "raw": "720575940626637002mALC2 0 25"
+      },
+      {
+        "identifier": "720575940617134779",
+        "type": "unknown",
+        "counts": [
+          0,
+          18
+        ],
+        "descriptiveCountSum": 18,
+        "page": 11,
+        "line": 8,
+        "raw": "720575940617134779unknown 0 18"
+      },
+      {
+        "identifier": "720575940616109930",
+        "type": "LC10c",
+        "counts": [
+          0,
+          16
+        ],
+        "descriptiveCountSum": 16,
+        "page": 11,
+        "line": 9,
+        "raw": "720575940616109930LC10c 0 16"
+      },
+      {
+        "identifier": "720575940615579498",
+        "type": "Li1",
+        "counts": [
+          0,
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 11,
+        "line": 10,
+        "raw": "720575940615579498 Li1 0 12"
+      },
+      {
+        "identifier": "720575940615249730",
+        "type": "LC10c",
+        "counts": [
+          0,
+          11
+        ],
+        "descriptiveCountSum": 11,
+        "page": 11,
+        "line": 11,
+        "raw": "720575940615249730LC10c 0 11"
+      },
+      {
+        "identifier": "720575940618141268",
+        "type": "Tm24",
+        "counts": [
+          0,
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 11,
+        "line": 12,
+        "raw": "720575940618141268Tm24 0 8"
+      },
+      {
+        "identifier": "720575940626577490",
+        "type": "LC26",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 13,
+        "raw": "720575940626577490LC26 0 7"
+      },
+      {
+        "identifier": "720575940623406605",
+        "type": "CB0156",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 14,
+        "raw": "720575940623406605CB0156 7 0"
+      },
+      {
+        "identifier": "720575940628991682",
+        "type": "LC24",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 15,
+        "raw": "720575940628991682LC24 0 5"
+      },
+      {
+        "identifier": "720575940609078997",
+        "type": "LT87",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 16,
+        "raw": "720575940609078997LT87 0 5"
+      },
+      {
+        "identifier": "720575940608617564",
+        "type": "LPLC2",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 17,
+        "raw": "720575940608617564LPLC2 0 5"
+      },
+      {
+        "identifier": "720575940629048108",
+        "type": "Tm24",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 18,
+        "raw": "720575940629048108Tm24 0 5"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "Tm5Y",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 19,
+        "raw": "720575940627946056Tm5Y 0 5"
+      },
+      {
+        "identifier": "720575940640334208",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 20,
+        "raw": "720575940640334208 Tm 5 0"
+      },
+      {
+        "identifier": "720575940615045630",
+        "type": "Li1",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 21,
+        "raw": "720575940615045630 Li1 0 5"
+      },
+      {
+        "identifier": "720575940640228669",
+        "type": "Sm31",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 22,
+        "raw": "720575940640228669Sm31 5 0"
+      }
+    ],
+    "caption": {
+      "page": 11,
+      "line": 23,
+      "text": "Table 15. Quantification of Tm5a (720575940639473998) outputs."
+    }
+  },
+  {
+    "number": 16,
+    "header": {
+      "page": 11,
+      "line": 24,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940626637002",
+        "type": "mALC2",
+        "counts": [
+          0,
+          16
+        ],
+        "descriptiveCountSum": 16,
+        "page": 11,
+        "line": 25,
+        "raw": "720575940626637002mALC2 0 16"
+      },
+      {
+        "identifier": "720575940610786862",
+        "type": "unknown",
+        "counts": [
+          0,
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 11,
+        "line": 26,
+        "raw": "720575940610786862unknown 0 14"
+      },
+      {
+        "identifier": "720575940618200038",
+        "type": "LC20",
+        "counts": [
+          0,
+          13
+        ],
+        "descriptiveCountSum": 13,
+        "page": 11,
+        "line": 27,
+        "raw": "720575940618200038LC20 0 13"
+      },
+      {
+        "identifier": "720575940624919079",
+        "type": "LC37",
+        "counts": [
+          0,
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 11,
+        "line": 28,
+        "raw": "720575940624919079LC37 0 10"
+      },
+      {
+        "identifier": "720575940623406605",
+        "type": "CB0156",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 11,
+        "line": 29,
+        "raw": "720575940623406605CB0156 9 0"
+      },
+      {
+        "identifier": "720575940623757543",
+        "type": "LC26",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 11,
+        "line": 30,
+        "raw": "720575940623757543LC26 0 9"
+      },
+      {
+        "identifier": "720575940615522666",
+        "type": "unknown",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 11,
+        "line": 31,
+        "raw": "720575940615522666unknown 0 9"
+      },
+      {
+        "identifier": "720575940628296527",
+        "type": "Tm5b",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 11,
+        "line": 32,
+        "raw": "720575940628296527Tm5b 8 0"
+      },
+      {
+        "identifier": "720575940639473998",
+        "type": "Tm5a",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 33,
+        "raw": "720575940639473998Tm5a 7 0"
+      },
+      {
+        "identifier": "720575940633968538",
+        "type": "LC10c",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 34,
+        "raw": "720575940633968538LC10c 0 7"
+      },
+      {
+        "identifier": "720575940631148428",
+        "type": "Li2",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 35,
+        "raw": "720575940631148428 Li2 0 7"
+      },
+      {
+        "identifier": "720575940620478032",
+        "type": "unknown",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 11,
+        "line": 36,
+        "raw": "720575940620478032unknown 0 7"
+      },
+      {
+        "identifier": "720575940626350794",
+        "type": "Tm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 11,
+        "line": 37,
+        "raw": "720575940626350794 Tm 6 0"
+      },
+      {
+        "identifier": "720575940630642495",
+        "type": "Sm19",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 11,
+        "line": 38,
+        "raw": "720575940630642495Sm19 6 0"
+      },
+      {
+        "identifier": "720575940588309383",
+        "type": "unknown",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 11,
+        "line": 39,
+        "raw": "720575940588309383unknown 0 6"
+      },
+      {
+        "identifier": "720575940630589655",
+        "type": "TmY",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 40,
+        "raw": "720575940630589655TmY 0 5"
+      },
+      {
+        "identifier": "720575940621886068",
+        "type": "Sm31",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 41,
+        "raw": "720575940621886068Sm31 5 0"
+      },
+      {
+        "identifier": "720575940618141268",
+        "type": "Tm24",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 42,
+        "raw": "720575940618141268Tm24 0 5"
+      },
+      {
+        "identifier": "720575940596370762",
+        "type": "unknown",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 11,
+        "line": 43,
+        "raw": "720575940596370762unknown 0 5"
+      }
+    ],
+    "caption": {
+      "page": 11,
+      "line": 44,
+      "text": "Table 16. Quantification of Tm5a (720575940614902495) outputs."
+    }
+  },
+  {
+    "number": 17,
+    "header": {
+      "page": 12,
+      "line": 1,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940625550823",
+        "type": "Sm40",
+        "counts": [
+          22,
+          0
+        ],
+        "descriptiveCountSum": 22,
+        "page": 12,
+        "line": 2,
+        "raw": "720575940625550823Sm40 22 0"
+      },
+      {
+        "identifier": "720575940638458173",
+        "type": "LC6",
+        "counts": [
+          0,
+          20
+        ],
+        "descriptiveCountSum": 20,
+        "page": 12,
+        "line": 3,
+        "raw": "720575940638458173LC6 0 20"
+      },
+      {
+        "identifier": "720575940655546017",
+        "type": "LC6",
+        "counts": [
+          0,
+          19
+        ],
+        "descriptiveCountSum": 19,
+        "page": 12,
+        "line": 4,
+        "raw": "720575940655546017LC6 0 19"
+      },
+      {
+        "identifier": "720575940620200021",
+        "type": "Tm5b",
+        "counts": [
+          8,
+          5
+        ],
+        "descriptiveCountSum": 13,
+        "page": 12,
+        "line": 5,
+        "raw": "720575940620200021Tm5b 8 5"
+      },
+      {
+        "identifier": "720575940623904136",
+        "type": "Mi3",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 12,
+        "line": 6,
+        "raw": "720575940623904136 Mi3 9 0"
+      },
+      {
+        "identifier": "720575940628838474",
+        "type": "CB0171",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 12,
+        "line": 7,
+        "raw": "720575940628838474CB0171 8 0"
+      },
+      {
+        "identifier": "720575940614344429",
+        "type": "Sm40",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 12,
+        "line": 8,
+        "raw": "720575940614344429Sm40 7 0"
+      },
+      {
+        "identifier": "720575940631148428",
+        "type": "Li2",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 12,
+        "line": 9,
+        "raw": "720575940631148428 Li2 0 6"
+      },
+      {
+        "identifier": "720575940626264201",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 12,
+        "line": 10,
+        "raw": "720575940626264201unknown 6 0"
+      },
+      {
+        "identifier": "720575940612227441",
+        "type": "LC6",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 12,
+        "line": 11,
+        "raw": "720575940612227441LC6 0 6"
+      },
+      {
+        "identifier": "720575940643962903",
+        "type": "Tm5b",
+        "counts": [
+          4,
+          1
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 12,
+        "raw": "720575940643962903Tm5b 4 1"
+      },
+      {
+        "identifier": "720575940622540894",
+        "type": "Sm21",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 13,
+        "raw": "720575940622540894Sm21 5 0"
+      },
+      {
+        "identifier": "720575940626012208",
+        "type": "Mi10",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 14,
+        "raw": "720575940626012208Mi10 5 0"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 15,
+        "raw": "720575940660846721Tm5b 5 0"
+      },
+      {
+        "identifier": "720575940634254562",
+        "type": "Pm4",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 16,
+        "raw": "720575940634254562Pm4 5 0"
+      },
+      {
+        "identifier": "720575940593785522",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 17,
+        "raw": "720575940593785522unknown 5 0"
+      },
+      {
+        "identifier": "720575940591584450",
+        "type": "unknown",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 18,
+        "raw": "720575940591584450unknown 0 5"
+      },
+      {
+        "identifier": "720575940639893301",
+        "type": "Sm40",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 19,
+        "raw": "720575940639893301Sm40 5 0"
+      }
+    ],
+    "caption": {
+      "page": 12,
+      "line": 20,
+      "text": "Table 17. Quantification of Tm5b (720575940627282584) outputs."
+    }
+  },
+  {
+    "number": 18,
+    "header": {
+      "page": 12,
+      "line": 21,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940638458173",
+        "type": "LC6",
+        "counts": [
+          0,
+          17
+        ],
+        "descriptiveCountSum": 17,
+        "page": 12,
+        "line": 22,
+        "raw": "720575940638458173LC6 0 17"
+      },
+      {
+        "identifier": "720575940628838474",
+        "type": "CB0171",
+        "counts": [
+          11,
+          0
+        ],
+        "descriptiveCountSum": 11,
+        "page": 12,
+        "line": 23,
+        "raw": "720575940628838474CB0171 11 0"
+      },
+      {
+        "identifier": "720575940620200021",
+        "type": "Tm5b",
+        "counts": [
+          12,
+          0
+        ],
+        "descriptiveCountSum": 12,
+        "page": 12,
+        "line": 24,
+        "raw": "720575940620200021Tm5b 12 0"
+      },
+      {
+        "identifier": "720575940655546017",
+        "type": "LC6",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 12,
+        "line": 25,
+        "raw": "720575940655546017LC6 0 9"
+      },
+      {
+        "identifier": "720575940617678553",
+        "type": "Li2",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 12,
+        "line": 26,
+        "raw": "720575940617678553 Li2 0 9"
+      },
+      {
+        "identifier": "720575940620283608",
+        "type": "Li3",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 12,
+        "line": 27,
+        "raw": "720575940620283608 Li3 0 9"
+      },
+      {
+        "identifier": "720575940614344429",
+        "type": "Sm40",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 12,
+        "line": 28,
+        "raw": "720575940614344429Sm40 8 0"
+      },
+      {
+        "identifier": "720575940609770691",
+        "type": "Mi4",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 12,
+        "line": 29,
+        "raw": "720575940609770691 Mi4 8 0"
+      },
+      {
+        "identifier": "720575940621301857",
+        "type": "Li3",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 12,
+        "line": 30,
+        "raw": "720575940621301857 Li3 0 7"
+      },
+      {
+        "identifier": "720575940626012208",
+        "type": "Mi10",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 12,
+        "line": 31,
+        "raw": "720575940626012208Mi10 7 0"
+      },
+      {
+        "identifier": "720575940619252718",
+        "type": "LC17",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 12,
+        "line": 32,
+        "raw": "720575940619252718LC17 0 7"
+      },
+      {
+        "identifier": "720575940639893301",
+        "type": "Sm40",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 12,
+        "line": 33,
+        "raw": "720575940639893301Sm40 7 0"
+      },
+      {
+        "identifier": "720575940502731931",
+        "type": "unknown",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 12,
+        "line": 34,
+        "raw": "720575940502731931unknown 0 6"
+      },
+      {
+        "identifier": "720575940608610652",
+        "type": "LC17",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 12,
+        "line": 35,
+        "raw": "720575940608610652LC17 0 6"
+      },
+      {
+        "identifier": "720575940615790146",
+        "type": "unknown",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 36,
+        "raw": "720575940615790146unknown 0 5"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 37,
+        "raw": "720575940627282584Tm5b 5 0"
+      },
+      {
+        "identifier": "720575940636206558",
+        "type": "LC13",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 38,
+        "raw": "720575940636206558LC13 0 5"
+      },
+      {
+        "identifier": "720575940640370048",
+        "type": "LC10b",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 39,
+        "raw": "720575940640370048LC10b 0 5"
+      },
+      {
+        "identifier": "720575940631148428",
+        "type": "Li2",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 40,
+        "raw": "720575940631148428 Li2 0 5"
+      },
+      {
+        "identifier": "720575940628495622",
+        "type": "Li3",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 41,
+        "raw": "720575940628495622 Li3 0 5"
+      },
+      {
+        "identifier": "720575940628662377",
+        "type": "Mi10",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 12,
+        "line": 42,
+        "raw": "720575940628662377Mi10 5 0"
+      }
+    ],
+    "caption": {
+      "page": 12,
+      "line": 43,
+      "text": "Table 18. Quantification of Tm5b (720575940660846721) outputs."
+    }
+  },
+  {
+    "number": 19,
+    "header": {
+      "page": 12,
+      "line": 44,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940623777577",
+        "type": "Tm",
+        "counts": [
+          23,
+          0
+        ],
+        "descriptiveCountSum": 23,
+        "page": 12,
+        "line": 45,
+        "raw": "720575940623777577 Tm 23 0"
+      },
+      {
+        "identifier": "720575940639893301",
+        "type": "Sm40",
+        "counts": [
+          22,
+          0
+        ],
+        "descriptiveCountSum": 22,
+        "page": 13,
+        "line": 1,
+        "raw": "720575940639893301Sm40 22 0"
+      },
+      {
+        "identifier": "720575940616951586",
+        "type": "Mi15",
+        "counts": [
+          16,
+          0
+        ],
+        "descriptiveCountSum": 16,
+        "page": 13,
+        "line": 2,
+        "raw": "720575940616951586Mi15 16 0"
+      },
+      {
+        "identifier": "720575940624832008",
+        "type": "Dm",
+        "counts": [
+          16,
+          0
+        ],
+        "descriptiveCountSum": 16,
+        "page": 13,
+        "line": 3,
+        "raw": "720575940624832008 Dm 16 0"
+      },
+      {
+        "identifier": "720575940633457107",
+        "type": "Mi15",
+        "counts": [
+          13,
+          0
+        ],
+        "descriptiveCountSum": 13,
+        "page": 13,
+        "line": 4,
+        "raw": "720575940633457107Mi15 13 0"
+      },
+      {
+        "identifier": "720575940634254562",
+        "type": "Pm2",
+        "counts": [
+          12,
+          0
+        ],
+        "descriptiveCountSum": 12,
+        "page": 13,
+        "line": 5,
+        "raw": "720575940634254562Pm2 12 0"
+      },
+      {
+        "identifier": "720575940621453921",
+        "type": "Pm2",
+        "counts": [
+          11,
+          0
+        ],
+        "descriptiveCountSum": 11,
+        "page": 13,
+        "line": 6,
+        "raw": "720575940621453921Pm2 11 0"
+      },
+      {
+        "identifier": "720575940644124832",
+        "type": "Mi",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 13,
+        "line": 7,
+        "raw": "720575940644124832 Mi 10 0"
+      },
+      {
+        "identifier": "720575940620200021",
+        "type": "Tm5b",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 13,
+        "line": 8,
+        "raw": "720575940620200021Tm5b 10 0"
+      },
+      {
+        "identifier": "720575940612927385",
+        "type": "Dm12",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 13,
+        "line": 9,
+        "raw": "720575940612927385Dm12 10 0"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 13,
+        "line": 10,
+        "raw": "720575940660846721Tm5b 9 0"
+      },
+      {
+        "identifier": "720575940622692265",
+        "type": "Dm",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 13,
+        "line": 11,
+        "raw": "720575940622692265 Dm 8 0"
+      },
+      {
+        "identifier": "720575940640427904",
+        "type": "unknown",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 13,
+        "line": 12,
+        "raw": "720575940640427904unknown 8 0"
+      },
+      {
+        "identifier": "720575940612877363",
+        "type": "Tm",
+        "counts": [
+          6,
+          1
+        ],
+        "descriptiveCountSum": 7,
+        "page": 13,
+        "line": 13,
+        "raw": "720575940612877363 Tm 6 1"
+      },
+      {
+        "identifier": "720575940626350794",
+        "type": "Tm",
+        "counts": [
+          2,
+          5
+        ],
+        "descriptiveCountSum": 7,
+        "page": 13,
+        "line": 14,
+        "raw": "720575940626350794 Tm 2 5"
+      },
+      {
+        "identifier": "720575940599503195",
+        "type": "unknown",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 13,
+        "line": 15,
+        "raw": "720575940599503195unknown 7 0"
+      },
+      {
+        "identifier": "720575940621386849",
+        "type": "Tm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 16,
+        "raw": "720575940621386849 Tm 6 0"
+      },
+      {
+        "identifier": "720575940621804353",
+        "type": "Dm20",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 17,
+        "raw": "720575940621804353Dm20 6 0"
+      },
+      {
+        "identifier": "720575940633891042",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 18,
+        "raw": "720575940633891042unknown 6 0"
+      },
+      {
+        "identifier": "720575940627551631",
+        "type": "Tm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 19,
+        "raw": "720575940627551631 Tm 6 0"
+      },
+      {
+        "identifier": "720575940557718029",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 20,
+        "raw": "720575940557718029unknown 6 0"
+      },
+      {
+        "identifier": "720575940630649911",
+        "type": "Y4",
+        "counts": [
+          1,
+          5
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 21,
+        "raw": "720575940630649911 Y4 1 5"
+      },
+      {
+        "identifier": "720575940644125600",
+        "type": "Mi2",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 22,
+        "raw": "720575940644125600 Mi2 6 0"
+      },
+      {
+        "identifier": "720575940631448121",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 23,
+        "raw": "720575940631448121 Tm 5 0"
+      },
+      {
+        "identifier": "720575940628898890",
+        "type": "Mi15",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 24,
+        "raw": "720575940628898890Mi15 5 0"
+      },
+      {
+        "identifier": "720575940631148428",
+        "type": "Li2",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 25,
+        "raw": "720575940631148428 Li2 0 5"
+      },
+      {
+        "identifier": "720575940623013325",
+        "type": "T2a",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 26,
+        "raw": "720575940623013325 T2a 5 0"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 27,
+        "raw": "720575940627282584Tm5b 5 0"
+      }
+    ],
+    "caption": {
+      "page": 13,
+      "line": 28,
+      "text": "Table 19. Quantification of Tm5c (720575940619252603) outputs."
+    }
+  },
+  {
+    "number": 20,
+    "header": {
+      "page": 13,
+      "line": 29,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940623877560",
+        "type": "Tm",
+        "counts": [
+          28,
+          5
+        ],
+        "descriptiveCountSum": 33,
+        "page": 13,
+        "line": 30,
+        "raw": "720575940623877560 Tm 28 5"
+      },
+      {
+        "identifier": "720575940626350794",
+        "type": "Tm",
+        "counts": [
+          20,
+          1
+        ],
+        "descriptiveCountSum": 21,
+        "page": 13,
+        "line": 31,
+        "raw": "720575940626350794 Tm 20 1"
+      },
+      {
+        "identifier": "720575940639893301",
+        "type": "Sm40",
+        "counts": [
+          17,
+          0
+        ],
+        "descriptiveCountSum": 17,
+        "page": 13,
+        "line": 32,
+        "raw": "720575940639893301Sm40 17 0"
+      },
+      {
+        "identifier": "720575940614788519",
+        "type": "Tm",
+        "counts": [
+          15,
+          0
+        ],
+        "descriptiveCountSum": 15,
+        "page": 13,
+        "line": 33,
+        "raw": "720575940614788519 Tm 15 0"
+      },
+      {
+        "identifier": "720575940621339886",
+        "type": "Mi15",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 13,
+        "line": 34,
+        "raw": "720575940621339886Mi15 14 0"
+      },
+      {
+        "identifier": "720575940625234020",
+        "type": "Mi15",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 13,
+        "line": 35,
+        "raw": "720575940625234020Mi15 14 0"
+      },
+      {
+        "identifier": "720575940634254562",
+        "type": "Pm2",
+        "counts": [
+          12,
+          0
+        ],
+        "descriptiveCountSum": 12,
+        "page": 13,
+        "line": 36,
+        "raw": "720575940634254562Pm2 12 0"
+      },
+      {
+        "identifier": "720575940624832008",
+        "type": "Dm2",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 13,
+        "line": 37,
+        "raw": "720575940624832008Dm2 8 0"
+      },
+      {
+        "identifier": "720575940630559299",
+        "type": "Dm2",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 13,
+        "line": 38,
+        "raw": "720575940630559299Dm2 8 0"
+      },
+      {
+        "identifier": "720575940622725341",
+        "type": "Dm2",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 13,
+        "line": 39,
+        "raw": "720575940622725341Dm2 8 0"
+      },
+      {
+        "identifier": "720575940660846721",
+        "type": "Tm5b",
+        "counts": [
+          2,
+          5
+        ],
+        "descriptiveCountSum": 7,
+        "page": 13,
+        "line": 40,
+        "raw": "720575940660846721Tm5b 2 5"
+      },
+      {
+        "identifier": "720575940628898890",
+        "type": "Mi15",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 13,
+        "line": 41,
+        "raw": "720575940628898890Mi15 7 0"
+      },
+      {
+        "identifier": "720575940641897101",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 42,
+        "raw": "720575940641897101unknown 6 0"
+      },
+      {
+        "identifier": "720575940630054647",
+        "type": "Dm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 43,
+        "raw": "720575940630054647 Dm 6 0"
+      },
+      {
+        "identifier": "720575940627807492",
+        "type": "Mi4",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 44,
+        "raw": "720575940627807492 Mi4 6 0"
+      },
+      {
+        "identifier": "720575940627282584",
+        "type": "Tm5b",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 13,
+        "line": 45,
+        "raw": "720575940627282584Tm5b 6 0"
+      },
+      {
+        "identifier": "720575940633891042",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 13,
+        "line": 46,
+        "raw": "720575940633891042unknown 5 0"
+      },
+      {
+        "identifier": "720575940626997770",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 1,
+        "raw": "720575940626997770unknown 5 0"
+      },
+      {
+        "identifier": "720575940622561356",
+        "type": "Mi15",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 2,
+        "raw": "720575940622561356Mi15 5 0"
+      },
+      {
+        "identifier": "720575940626766224",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 3,
+        "raw": "720575940626766224unknown 5 0"
+      },
+      {
+        "identifier": "720575940632877004",
+        "type": "aMe5",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 4,
+        "raw": "720575940632877004aMe5 5 0"
+      },
+      {
+        "identifier": "720575940639795133",
+        "type": "mALC1",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 5,
+        "raw": "720575940639795133mALC1 0 5"
+      }
+    ],
+    "caption": {
+      "page": 14,
+      "line": 6,
+      "text": "Table 20. Quantification of Tm5c (720575940627314521) outputs."
+    }
+  },
+  {
+    "number": 21,
+    "header": {
+      "page": 14,
+      "line": 7,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940621535809",
+        "type": "LC16",
+        "counts": [
+          0,
+          17
+        ],
+        "descriptiveCountSum": 17,
+        "page": 14,
+        "line": 8,
+        "raw": "720575940621535809LC16 0 17"
+      },
+      {
+        "identifier": "720575940622664455",
+        "type": "Tm5a_like",
+        "counts": [
+          16,
+          0
+        ],
+        "descriptiveCountSum": 16,
+        "page": 14,
+        "line": 9,
+        "raw": "720575940622664455Tm5a_like 16 0"
+      },
+      {
+        "identifier": "720575940617914693",
+        "type": "LC16",
+        "counts": [
+          0,
+          14
+        ],
+        "descriptiveCountSum": 14,
+        "page": 14,
+        "line": 10,
+        "raw": "720575940617914693LC16 0 14"
+      },
+      {
+        "identifier": "720575940626924675",
+        "type": "Tm5a_like",
+        "counts": [
+          14,
+          0
+        ],
+        "descriptiveCountSum": 14,
+        "page": 14,
+        "line": 11,
+        "raw": "720575940626924675Tm5a_like 14 0"
+      },
+      {
+        "identifier": "720575940611711461",
+        "type": "LC10a",
+        "counts": [
+          0,
+          12
+        ],
+        "descriptiveCountSum": 12,
+        "page": 14,
+        "line": 12,
+        "raw": "720575940611711461LC10a 0 12"
+      },
+      {
+        "identifier": "720575940615045630",
+        "type": "Li1",
+        "counts": [
+          0,
+          10
+        ],
+        "descriptiveCountSum": 10,
+        "page": 14,
+        "line": 13,
+        "raw": "720575940615045630 Li1 0 10"
+      },
+      {
+        "identifier": "720575940610786862",
+        "type": "unknown",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 14,
+        "line": 14,
+        "raw": "720575940610786862unknown 0 9"
+      },
+      {
+        "identifier": "720575940628991682",
+        "type": "LC24",
+        "counts": [
+          0,
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 14,
+        "line": 15,
+        "raw": "720575940628991682LC24 0 8"
+      },
+      {
+        "identifier": "720575940605835906",
+        "type": "unknown",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 14,
+        "line": 16,
+        "raw": "720575940605835906unknown 8 0"
+      },
+      {
+        "identifier": "720575940615249730",
+        "type": "LC10c",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 14,
+        "line": 17,
+        "raw": "720575940615249730LC10c 0 7"
+      },
+      {
+        "identifier": "720575940613083609",
+        "type": "unknown",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 14,
+        "line": 18,
+        "raw": "720575940613083609unknown 7 0"
+      },
+      {
+        "identifier": "720575940631007183",
+        "type": "Tm",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 14,
+        "line": 19,
+        "raw": "720575940631007183 Tm 7 0"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "Tm5Ya",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 14,
+        "line": 20,
+        "raw": "720575940627946056Tm5Ya 0 7"
+      },
+      {
+        "identifier": "720575940627978152",
+        "type": "LC10c",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 14,
+        "line": 21,
+        "raw": "720575940627978152LC10c 0 7"
+      },
+      {
+        "identifier": "720575940632002616",
+        "type": "C3",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 22,
+        "raw": "720575940632002616 C3 6 0"
+      },
+      {
+        "identifier": "720575940649953913",
+        "type": "LC22",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 23,
+        "raw": "720575940649953913LC22 0 6"
+      },
+      {
+        "identifier": "720575940638733621",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 24,
+        "raw": "720575940638733621unknown 6 0"
+      },
+      {
+        "identifier": "720575940612530905",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 25,
+        "raw": "720575940612530905unknown 6 0"
+      },
+      {
+        "identifier": "720575940626605657",
+        "type": "unknown",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 26,
+        "raw": "720575940626605657unknown 6 0"
+      },
+      {
+        "identifier": "720575940635658420",
+        "type": "Tm",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 27,
+        "raw": "720575940635658420 Tm 6 0"
+      },
+      {
+        "identifier": "720575940621886068",
+        "type": "Sm31",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 28,
+        "raw": "720575940621886068Sm31 6 0"
+      },
+      {
+        "identifier": "720575940629110019",
+        "type": "Li3",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 14,
+        "line": 29,
+        "raw": "720575940629110019 Li3 0 6"
+      },
+      {
+        "identifier": "720575940628898665",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 30,
+        "raw": "720575940628898665 Tm 5 0"
+      },
+      {
+        "identifier": "720575940630281516",
+        "type": "Tm5Y",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 31,
+        "raw": "720575940630281516Tm5Y 5 0"
+      },
+      {
+        "identifier": "720575940638655972",
+        "type": "MTe08",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 32,
+        "raw": "720575940638655972MTe08 5 0"
+      },
+      {
+        "identifier": "720575940637952846",
+        "type": "LC16",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 33,
+        "raw": "720575940637952846LC16 0 5"
+      },
+      {
+        "identifier": "720575940637308528",
+        "type": "Mi9",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 34,
+        "raw": "720575940637308528 Mi9 5 0"
+      },
+      {
+        "identifier": "720575940623051725",
+        "type": "Tm",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 35,
+        "raw": "720575940623051725 Tm 5 0"
+      },
+      {
+        "identifier": "720575940613503510",
+        "type": "Sm22",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 36,
+        "raw": "720575940613503510Sm22 5 0"
+      },
+      {
+        "identifier": "720575940631893132",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 37,
+        "raw": "720575940631893132unknown 5 0"
+      },
+      {
+        "identifier": "720575940626163837",
+        "type": "MC62",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 14,
+        "line": 38,
+        "raw": "720575940626163837MC62 5 0"
+      }
+    ],
+    "caption": {
+      "page": 14,
+      "line": 39,
+      "text": "Table 21. Quantification of Tm20 (720575940635252890) outputs."
+    }
+  },
+  {
+    "number": 22,
+    "header": {
+      "page": 14,
+      "line": 40,
+      "text": "Flywire ID cell type post sites Me (n)post sites Lo (n)"
+    },
+    "rows": [
+      {
+        "identifier": "720575940632039213",
+        "type": "Tm5Ya",
+        "counts": [
+          15,
+          0
+        ],
+        "descriptiveCountSum": 15,
+        "page": 14,
+        "line": 41,
+        "raw": "720575940632039213Tm5Ya 15 0"
+      },
+      {
+        "identifier": "720575940610786862",
+        "type": "unknown",
+        "counts": [
+          0,
+          11
+        ],
+        "descriptiveCountSum": 11,
+        "page": 14,
+        "line": 42,
+        "raw": "720575940610786862unknown 0 11"
+      },
+      {
+        "identifier": "720575940628898665",
+        "type": "Tm",
+        "counts": [
+          10,
+          0
+        ],
+        "descriptiveCountSum": 10,
+        "page": 14,
+        "line": 43,
+        "raw": "720575940628898665 Tm 10 0"
+      },
+      {
+        "identifier": "720575940626163837",
+        "type": "MC62",
+        "counts": [
+          9,
+          0
+        ],
+        "descriptiveCountSum": 9,
+        "page": 14,
+        "line": 44,
+        "raw": "720575940626163837MC62 9 0"
+      },
+      {
+        "identifier": "720575940611711461",
+        "type": "LC10a",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 14,
+        "line": 45,
+        "raw": "720575940611711461LC10a 0 9"
+      },
+      {
+        "identifier": "720575940615045630",
+        "type": "Li1",
+        "counts": [
+          0,
+          9
+        ],
+        "descriptiveCountSum": 9,
+        "page": 15,
+        "line": 1,
+        "raw": "720575940615045630 Li1 0 9"
+      },
+      {
+        "identifier": "720575940611896434",
+        "type": "MI9",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 15,
+        "line": 2,
+        "raw": "720575940611896434 MI9 8 0"
+      },
+      {
+        "identifier": "720575940639841870",
+        "type": "Tm",
+        "counts": [
+          8,
+          0
+        ],
+        "descriptiveCountSum": 8,
+        "page": 15,
+        "line": 3,
+        "raw": "720575940639841870 Tm 8 0"
+      },
+      {
+        "identifier": "720575940619726507",
+        "type": "LC24",
+        "counts": [
+          0,
+          8
+        ],
+        "descriptiveCountSum": 8,
+        "page": 15,
+        "line": 4,
+        "raw": "720575940619726507LC24 0 8"
+      },
+      {
+        "identifier": "720575940628296527",
+        "type": "Tm",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 15,
+        "line": 5,
+        "raw": "720575940628296527 Tm 7 0"
+      },
+      {
+        "identifier": "720575940609666499",
+        "type": "Tm",
+        "counts": [
+          7,
+          0
+        ],
+        "descriptiveCountSum": 7,
+        "page": 15,
+        "line": 6,
+        "raw": "720575940609666499 Tm 7 0"
+      },
+      {
+        "identifier": "720575940621535809",
+        "type": "LC16",
+        "counts": [
+          0,
+          7
+        ],
+        "descriptiveCountSum": 7,
+        "page": 15,
+        "line": 7,
+        "raw": "720575940621535809LC16 0 7"
+      },
+      {
+        "identifier": "720575940625701769",
+        "type": "LC16",
+        "counts": [
+          0,
+          6
+        ],
+        "descriptiveCountSum": 6,
+        "page": 15,
+        "line": 8,
+        "raw": "720575940625701769LC16 0 6"
+      },
+      {
+        "identifier": "720575940632145720",
+        "type": "Tm13Y",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 15,
+        "line": 9,
+        "raw": "720575940632145720Tm13Y 6 0"
+      },
+      {
+        "identifier": "720575940622664455",
+        "type": "Tm5a_like",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 15,
+        "line": 10,
+        "raw": "720575940622664455Tm5a_like 6 0"
+      },
+      {
+        "identifier": "720575940623393048",
+        "type": "TmY",
+        "counts": [
+          6,
+          0
+        ],
+        "descriptiveCountSum": 6,
+        "page": 15,
+        "line": 11,
+        "raw": "720575940623393048TmY 6 0"
+      },
+      {
+        "identifier": "720575940637952846",
+        "type": "LC16",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 12,
+        "raw": "720575940637952846LC16 0 5"
+      },
+      {
+        "identifier": "720575940626248325",
+        "type": "Sm22",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 13,
+        "raw": "720575940626248325Sm22 5 0"
+      },
+      {
+        "identifier": "720575940606410439",
+        "type": "unknown",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 14,
+        "raw": "720575940606410439unknown 0 5"
+      },
+      {
+        "identifier": "720575940602874055",
+        "type": "unknown",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 15,
+        "raw": "720575940602874055unknown 5 0"
+      },
+      {
+        "identifier": "720575940628494535",
+        "type": "LC28b",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 16,
+        "raw": "720575940628494535LC28b 0 5"
+      },
+      {
+        "identifier": "720575940626378128",
+        "type": "MTe03",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 17,
+        "raw": "720575940626378128MTe03 5 0"
+      },
+      {
+        "identifier": "720575940615249730",
+        "type": "LC10c",
+        "counts": [
+          0,
+          5
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 18,
+        "raw": "720575940615249730LC10c 0 5"
+      },
+      {
+        "identifier": "720575940627946056",
+        "type": "Tm5Ya",
+        "counts": [
+          5,
+          0
+        ],
+        "descriptiveCountSum": 5,
+        "page": 15,
+        "line": 19,
+        "raw": "720575940627946056Tm5Ya 5 0"
+      }
+    ],
+    "caption": {
+      "page": 15,
+      "line": 20,
+      "text": "Table 22. Quantification of Tm20 (720575940628559366) outputs."
+    }
+  }
+]

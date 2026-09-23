@@ -1,0 +1,2828 @@
+{
+  "paper": 109,
+  "title": "Self-Aware Networks in a Connectome-Constrained Fly Brain",
+  "date": "2026-09-23",
+  "files": [
+    {
+      "path": "access/0034188489f4c177.md",
+      "bytes": 669,
+      "sha256": "6c00ec1f6a7477efb0c22945854e5fc0875a4f6e1b841111cd20f6b3f59270a6",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/0331ab963bbefd42.md",
+      "bytes": 682,
+      "sha256": "0297af31d122f1b1276217926a9c3849a76614275e0b1ae6e9c80aad05d23ecc",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/062f348c9a52c648.md",
+      "bytes": 670,
+      "sha256": "cd16eacbc7723ba47fdc9a12b35d284e835e2f483e8c2b4e03d9da9689afd516",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/06412804a7348990.md",
+      "bytes": 720,
+      "sha256": "05ae2231417377b9addd78d22b1f111a2d0e01123bb6325cc83e13818daf76b1",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/09a04a9846e2a4f5.md",
+      "bytes": 696,
+      "sha256": "235431bb91dc3842352d4bb2b2ff9c6152269d3e9283e36e80cc7814f7576772",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/0e3da0c0715785a8.md",
+      "bytes": 667,
+      "sha256": "b0c0a847acd020dc7fc5878e0a90af7b26ad7a4650ae4737ac16c69b3187e7ff",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/1614abc2e8039063.md",
+      "bytes": 676,
+      "sha256": "4f4ff34e87ae9ecb795ee4024f1b02e3f8b92de49661fdfdabc59543018deb39",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/1f49dd87f5643391.md",
+      "bytes": 675,
+      "sha256": "c8ba6361a24da4f388784564b2a96e5f0927c4797d81c203c324ca6b75f41980",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/21d617c604329eca.md",
+      "bytes": 701,
+      "sha256": "4f6ec3509d4c5188ade60d3751221d6149006fe612d2073d6cfc8562b34b425d",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/22516e72c795127b.md",
+      "bytes": 705,
+      "sha256": "243c18689ddfe5ace5045551e8976ade2817641a209268f67aac968eb85d837e",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/231b250d704baf6d.md",
+      "bytes": 686,
+      "sha256": "e776ef51d1ea1ccd4fbf627c1582a7a3bdf9f5a8ca7b845a908905f26d405f4b",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/271207795b88f439.md",
+      "bytes": 694,
+      "sha256": "d43e30386775cb1e4b80896c3e0b4d9112735be7880f88913b4cb1ee3cb5b36c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/308288fc6b0be8bd.md",
+      "bytes": 708,
+      "sha256": "13af6d5d9ae7857333ca3dde32355eeafdea627abdf909505b43f65788f3d71c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/3301ef40a1b2593e.md",
+      "bytes": 677,
+      "sha256": "6e409c135f053f46bd53400e245a357f0146c6afd79317ee2e0dc431f93aff94",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/34b8751ae6256e38.md",
+      "bytes": 666,
+      "sha256": "ebd62f445bec7601f23c45c467d3b341b04f3a633588f8339dac473bf01a0433",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/39f7828d11db4979.md",
+      "bytes": 691,
+      "sha256": "168ccf8aadce33d358c44c797f139e60545ba2b8a5a37ef63a0f186c077c41ee",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/3bee9540e02344b2.md",
+      "bytes": 684,
+      "sha256": "f3df123064e773e4300aea871ae25c28681c62dde60b6c0df70d9f7c2e321e71",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/3d5b01d25ba92a11.md",
+      "bytes": 690,
+      "sha256": "ef86077f0b919c7f68b7ba14d4b4765b79633ee1d80a41e78121cfa0d53fb8b2",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/424d59785a206f4c.md",
+      "bytes": 703,
+      "sha256": "9fe31b5b022faf8e01c56a90c1551c55820647dd64e161c9be9de39ed5bdc740",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/446889de76db71bc.md",
+      "bytes": 678,
+      "sha256": "f7b9044e22f845dcad872ef6712a848cc18f02f6399cd644e5ce52b170b60f16",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/45c3638ba8a02cc3.md",
+      "bytes": 667,
+      "sha256": "fa742f6997fdbeef936e9092395360507b80b64f3660e08819e963472d7228f9",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/4790ce665ca3d5c1.md",
+      "bytes": 672,
+      "sha256": "a2a9e19d1d97ffb7d05ddcfebc622827deaf094332abee3f8b6dca6a416ad110",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/483c002585a06372.md",
+      "bytes": 686,
+      "sha256": "57f44c9dddfa9c8b5670b513b0b9cf9df6b7e2e0dcd6b99d8bd067487e690dff",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/4f14c3b62354c368.md",
+      "bytes": 678,
+      "sha256": "ee3bc3269369282c6ebff7443ed316dd39aea7f91ac44bca808a22a4f6762a89",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/4fc5e369f95b8c34.md",
+      "bytes": 708,
+      "sha256": "9f3120be09e5682eed5ef4f1211eb42bd9e875de13625c4a46b94f3d11986532",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/504d03b5b6693410.md",
+      "bytes": 671,
+      "sha256": "3863bde6510dcf40dd777c402041010dbd2db4598b667075258c77cd8b64e733",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/51a5760223194112.md",
+      "bytes": 709,
+      "sha256": "0ed9b9106e6873c5b93db4beedb475252a029d803368743365813143e4822861",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/51c33809af174c0c.md",
+      "bytes": 668,
+      "sha256": "cbb669a0f204617986557b05e601d29916f75819721d8e0f45bda2aefa3a1097",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/53307c05c5ccc2d5.md",
+      "bytes": 681,
+      "sha256": "4908594f47565b544cc185672abc6e3da53d7b6f2d7895b0974f18bddaace371",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/553e399b2f35888f.md",
+      "bytes": 708,
+      "sha256": "1f1cebe8858e2db5462d578f1546bcb60672fb3d616e48147d26f6700eab78ba",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/5645d7ac216f6d3d.md",
+      "bytes": 710,
+      "sha256": "3d6752f355446ec7bb4b844f7d17d942229323ce7ccfa84538cdd17307b07403",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/566e81e77dd9aead.md",
+      "bytes": 682,
+      "sha256": "15e84b7d661e93ae5661c76d570ab5de089985c09216738b67e2a2f0307f98b6",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/5759994f6ac08777.md",
+      "bytes": 681,
+      "sha256": "a032f934150948de0c84dd31217bd9eb58a5f4572b07fd69ac49b1a207a79965",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/5bbde953b54784e6.md",
+      "bytes": 697,
+      "sha256": "4a0a90ddfae9ff038e4a03ad5821dcbd511d2ea042507f15a8828057490f3b98",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/5d813b167a966d1e.md",
+      "bytes": 665,
+      "sha256": "cf4d0fbd48e2418cf28bae27f2b2618bd7db2b1d591ed0853800e47fe8c158f9",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/5efb4f9293341a38.md",
+      "bytes": 693,
+      "sha256": "fb8b0d27a97f5acf0fdfd72801c996d609a78be043e7f05b880888dab48e7f3c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/60fe64e276cc19b5.md",
+      "bytes": 684,
+      "sha256": "8f31262fd9603eecb926ff34885fa1a31095a680b193617a3ec281c20f4e14ad",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/617913ba16156ab7.md",
+      "bytes": 684,
+      "sha256": "e6682d6116c5a9cc89de6103f9cda8f61264e2985262958e27165b441ec90ae3",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/61be4a796579eefc.md",
+      "bytes": 669,
+      "sha256": "0299cec785b0255792cd8390e268741a51a2b4e0bc7b9c63fe4e4a04ef128a4f",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/623f2de4086a8519.md",
+      "bytes": 694,
+      "sha256": "cf6af217d6f3aba70d6e8dbf4afd45e0e6da4a37c5a09b3611f927c874cd6fee",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/63cc220d50e61e61.md",
+      "bytes": 669,
+      "sha256": "34049d3461cd0b18e8886411a3374b0186c2ef650c49d88c46c1085cc9ccdeb8",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/6528bafd5ed2ba5f.md",
+      "bytes": 731,
+      "sha256": "3fd03340f26bc2de2ca07ac54bce1e1cb07b70b5edfd5431b11c0a62f3338e68",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/652b5b9f049f2ddf.md",
+      "bytes": 692,
+      "sha256": "0bed913afe1ddc6f2c3168683f8478d9a6293490eb3abd4c161393f4bf378e47",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/6f3433c04e3c8f1a.md",
+      "bytes": 700,
+      "sha256": "18a0640c0b28f66e9a6b84852a1ea9edf68daee38bb38186dc32d134ad57fd29",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/70bc0840391bfadd.md",
+      "bytes": 685,
+      "sha256": "d1ce1cbfe2ac071b396456eaac55b27075b243eb4ef93143f2db72d0e2b6640e",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/7459af73420308ce.md",
+      "bytes": 693,
+      "sha256": "4dd7f72fe662daaa4940c7d0f4aa9f82349bf80cdde3008feaab0fad8c5812d3",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/78eea648919e2461.md",
+      "bytes": 692,
+      "sha256": "fc6d4f2c443a5686c5caf306c45e9febdd0acb6ff6665acb38df1016fb832c7f",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/803d998b68ab9ee7.md",
+      "bytes": 707,
+      "sha256": "b42a71727f33dfd5d8157c31eab7934cf2cef5172556543cb0db9ed399f0aa83",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8389544ba12a1d22.md",
+      "bytes": 704,
+      "sha256": "8bb96cbb13d2d5af6ae979b58756eedd827a8b7c50f9d9c1d00a37b5ebc7488d",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8880ba9d34a1461a.md",
+      "bytes": 705,
+      "sha256": "3d53ea45d74db03ab34a4fd0754d18292a176d44213ee128682ac7b6cc073c73",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8981d2ec836c6428.md",
+      "bytes": 669,
+      "sha256": "dc16cad7411b820896c6317825ed550ca19faa3751be4f2383e095a6409ca6dd",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8a5ab66bfcea4d59.md",
+      "bytes": 685,
+      "sha256": "962216cf12c8d712f9b905f8b694d0d6666281f5006033eb852150f11004b3e0",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8d65e74a1f6603a3.md",
+      "bytes": 696,
+      "sha256": "83630289bcb0674f553660f46ffa393fec5cd79ed1839c190cd3128ad91f8631",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/8d99756bf85eff8f.md",
+      "bytes": 690,
+      "sha256": "f996a313570133f74bef977e2829b3c40803353dc756996ead519d2050ab1997",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/917cc7af1ca059e1.md",
+      "bytes": 681,
+      "sha256": "aab2131b8fed8240ffbf1c2e940b68044e082ad890ca8c8c050c2e231b2fe766",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/9329f9261cab9d51.md",
+      "bytes": 672,
+      "sha256": "4ae1a1608fff866b03267ce4df566960abbc7f3d6c43c580f1f4e4a037c9921f",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/953a36f7bdaa89c4.md",
+      "bytes": 697,
+      "sha256": "b13dc6fae7eb80313fba8acce6f9538d8e004db7d0d199ed45c155820f5a438e",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/9a2bf92fbef70404.md",
+      "bytes": 679,
+      "sha256": "0b51e3fb581c0b7e14764368c1f3903e7d629ce5b2e659caca09c91c36d1b001",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a2162d9b8d10ecdd.md",
+      "bytes": 669,
+      "sha256": "4cb4c0e6a6564210d1596c5e8d159597bc7c758b4a43be3406e0798a49000e28",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a2332ce2e9cf1193.md",
+      "bytes": 662,
+      "sha256": "ae2fa8569c72ee39114a8545308b31e18dcc1cd700ea52a41732956bcaa8d22f",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a362a079812496f7.md",
+      "bytes": 673,
+      "sha256": "bc76a97a4e71d47fcf4a227d0255814ca5921e9081110db0f3e681c05c8eff3b",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a38365b5e225e736.md",
+      "bytes": 671,
+      "sha256": "a25c6a88cec08a8c0b0569344571eda95996e7e5367886654d87775e7fde277c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a665798e0ad7dd52.md",
+      "bytes": 704,
+      "sha256": "f871b3d9e23c232ffb1e6044011e1e6a9186a906df3bc6397ef7bb9215f8674e",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/a6a72d36d1336ac6.md",
+      "bytes": 673,
+      "sha256": "1cdcd2384a106761e04190fae9712d50834affb7fbd2ca3a392c3428d147924a",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/aca9a23a384cb5d2.md",
+      "bytes": 737,
+      "sha256": "9fc19b146ef03f36b078f00ef37c6c89c97bc6b7ddfc36d69af36429c2074a99",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/aea9c6b9fd4cd9af.md",
+      "bytes": 682,
+      "sha256": "de37cee13b111130b801667fd6cb94bdb5e6c7c78f3dcab31a1e0bac618c2d83",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/afbd3487e7c33b5e.md",
+      "bytes": 671,
+      "sha256": "c784f9d93b8c0fafa45de26d7aad29276a5eee5b175ad3bffc05917d6c4875b1",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/b3d1aa9529edf660.md",
+      "bytes": 685,
+      "sha256": "9841e9bbe36f2d741190328ecf42fcdb790caa870bfc372460ea961a62ab0b1b",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/b404d0337c10297a.md",
+      "bytes": 702,
+      "sha256": "a2c99b43dfb794d234c14dcd39a9b96bb75ea2de5391f5bd21b48dae5bf0eaf8",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/b4efcb65fb926714.md",
+      "bytes": 681,
+      "sha256": "8ba3ef4d12dbfa4cdca22ceca936716dd628fe120c092716c5bfc86ea125b7b8",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/bd452038b00435c1.md",
+      "bytes": 705,
+      "sha256": "7f9786c07a6fcb4b95700133e3f898d978bc1e0f7b51bee2e0b2b5ea5b831fa7",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/be32ed5fc37e0db4.md",
+      "bytes": 665,
+      "sha256": "c2ce73076bdc62fc8a3d30a978a29d900160864e49b7b0dc9c5482f8d5d54ea2",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/be4022710704fb5f.md",
+      "bytes": 690,
+      "sha256": "2a75215afa6d33adc9c1e6c1ba9c97d26d72d44b83fc2a5514d498faf0727291",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/be448eeabfc80f2a.md",
+      "bytes": 722,
+      "sha256": "bed17df509c119689be49a38ab0b64fa658b1433135bf73d6b67c5ad8e657632",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/bf7a0280f753f211.md",
+      "bytes": 672,
+      "sha256": "45a2ed146dfc062342656f0077791d0e20808cb8989bfa42942df71a82dbc0dc",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/c07a42e95488e7b4.md",
+      "bytes": 677,
+      "sha256": "dcbe97759c688e853d24935e056dcb4f5c210958bb56a1c62a5d0d6cb53b140a",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/c8fe172224a3ba4f.md",
+      "bytes": 662,
+      "sha256": "2d55bf1355daf4b92713c0e95a1db70cb3e9e0007068a3c6204aac9d664a7ad1",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/c94a8bb1ac5f0d02.md",
+      "bytes": 706,
+      "sha256": "dbed593ba590d03083a7b1c1f18a3acf5b4c851838c74d039a282e7fb88ca479",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/ca18e7e244bd9ccd.md",
+      "bytes": 684,
+      "sha256": "d77910a2c9df6c5e1ff9f107ddc964376da6c4e8e885b02d3a97c11ecb98d806",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/ccead8c935c7ca57.md",
+      "bytes": 692,
+      "sha256": "d0bf53c56b5a12e651375d9957b7e3926a8c64ce871395985f27ffe568a27435",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/d1e81370a29c356e.md",
+      "bytes": 669,
+      "sha256": "8892cd2978425adb4a8042c7d08448485367c45485b3805a397397869c24a1ea",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/d6cd1e47267a53c5.md",
+      "bytes": 694,
+      "sha256": "4d48298a1c4127f7111e31232a634ea2138872df840b6cf64a893b6984a2894a",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/d9deaa54860a9fa1.md",
+      "bytes": 710,
+      "sha256": "d4555c4427689c1e9139129d983c5351c70f188b3758430693296cafc16e9f8e",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/df463653cbe0ec3d.md",
+      "bytes": 691,
+      "sha256": "e0b2d54a4af4882b00e4c0ee174951888082b9ef460c98815175e376572f8f58",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/e185cfe5b5825fe2.md",
+      "bytes": 692,
+      "sha256": "0e41ec7df0e9e72eb16092c7cdb9cf32b17c2892afd42cf4579610639be92b0c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/e1eca662d8d28977.md",
+      "bytes": 676,
+      "sha256": "f075f4ede4245bd609b20fac0b5cdd52085217742ccf0990d907ec960e574e69",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/e3b7b168360e096d.md",
+      "bytes": 682,
+      "sha256": "7239e73b1d0d3a0011dfda71fe23e9cec2112aea5b87e4394267493c9bc60633",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/e74bcc7b132aa306.md",
+      "bytes": 678,
+      "sha256": "2e2a37abb7a7e9f4607f6251988e3aa6d528d0b195433fae9741f17347ba6d3c",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/ed0d45d98e01f949.md",
+      "bytes": 689,
+      "sha256": "1e2ea7cca5340e3495ab8ee1dba8b19d3e3ac613c527e90de3981daf024b9d98",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/ee84165502003e35.md",
+      "bytes": 671,
+      "sha256": "e691944225f61b1548b5f614dcaafff13b8ff8604d95e0def2bb1f8f2e578e46",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/f62716fcd043f25e.md",
+      "bytes": 704,
+      "sha256": "e81f5498d2e32966c0c04ce375084deb25a78e46f071e78928eaeba8cb993612",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/f6d16decfa0521b3.md",
+      "bytes": 682,
+      "sha256": "e8210dd555964838d87c9fcaae2483bcf1228cf4114e7e01c56fa2499f1d204b",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/f7676405768f24ee.md",
+      "bytes": 680,
+      "sha256": "4016e971ced320d689dcf44b62ac8337ee6f6a74be2c6fb9faf66b6db3c58d9b",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/fb65c3e2e8d59f74.md",
+      "bytes": 669,
+      "sha256": "57435c7213053beaf700871f991f4c29763edd5904e13c75201f0a71a7785506",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "access/fff78c4099a29109.md",
+      "bytes": 722,
+      "sha256": "60d4018d1053021f7d5104f7a5b63f6dafd0968d9f55d680e79726ede23d06f2",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "DATA-ACCESS.md",
+      "bytes": 1167,
+      "sha256": "eb0cabbb49b4c8dfe0298ef0abeaaecd9a254f07aeb085b99df546d1cd944996",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "GPL-3.0.txt",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 1113,
+      "sha256": "e8a070e9d44e5739047d074120124ca9b8e151f1fe1813cd6f44db9ea57cdf83",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/ANALYSIS-PLAN.json",
+      "bytes": 2736,
+      "sha256": "69d68a9cb54cb021dd020fb57c0c38f17883fd5b01b5215d28a421202e463bcb",
+      "original_source_sha256": "69d68a9cb54cb021dd020fb57c0c38f17883fd5b01b5215d28a421202e463bcb",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/CIRCUIT-REPRODUCTION-CONTRACT.json",
+      "bytes": 3619,
+      "sha256": "f2a300503196e6b26407ab142ef716a310644e15e10cedcc80e62f03668a12df",
+      "original_source_sha256": "f2a300503196e6b26407ab142ef716a310644e15e10cedcc80e62f03668a12df",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/README.md",
+      "bytes": 5702,
+      "sha256": "387a26d40689d8e68b910b5851f1ba8510212452209891bd804ca9714277d037",
+      "original_source_sha256": "387a26d40689d8e68b910b5851f1ba8510212452209891bd804ca9714277d037",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/EDGE-OBSERVATIONS.json",
+      "bytes": 454771,
+      "sha256": "4be2ec32f0703ab65d3656aad8564e1f9835ff593310bd2059b2f1d7d3429bdb",
+      "original_source_sha256": "4be2ec32f0703ab65d3656aad8564e1f9835ff593310bd2059b2f1d7d3429bdb",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/EXECUTION.json",
+      "bytes": 191006,
+      "sha256": "abafa670bf532ff02db1414759a26cae9a251457f567a878012a5b97033d86c9",
+      "original_source_sha256": "abafa670bf532ff02db1414759a26cae9a251457f567a878012a5b97033d86c9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/NODE-LABEL-OBSERVATIONS.json",
+      "bytes": 148079,
+      "sha256": "232f2da74f86634b62134151edb815ed754ee3e5d3e5978a20cfff46439f5b91",
+      "original_source_sha256": "232f2da74f86634b62134151edb815ed754ee3e5d3e5978a20cfff46439f5b91",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/ROUTE-REGISTER.json",
+      "bytes": 234457,
+      "sha256": "2290ea448c6fb06e7ecaf6fc66dfc6443cae99b010fe5764067014039b3a876c",
+      "original_source_sha256": "2290ea448c6fb06e7ecaf6fc66dfc6443cae99b010fe5764067014039b3a876c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/SEED-REGISTER.json",
+      "bytes": 24151,
+      "sha256": "475fd745155530e6b88d5bc12b2b3dae184d3714a08862d0c49e7965d4db7bcb",
+      "original_source_sha256": "475fd745155530e6b88d5bc12b2b3dae184d3714a08862d0c49e7965d4db7bcb",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/SEPARATE-CHECKS.json",
+      "bytes": 121298,
+      "sha256": "d982ffb2604baed6e761e2eb964680ebfa1807260e0ff61685b38d69c2481cbc",
+      "original_source_sha256": "d982ffb2604baed6e761e2eb964680ebfa1807260e0ff61685b38d69c2481cbc",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/anatomical-register-v0/results-01/SOURCE-RECONCILIATION.json",
+      "bytes": 31114,
+      "sha256": "a55c422b7628de43433fe02ed5d202c4412b7cb128d30fe5fe83421ae07eaa7a",
+      "original_source_sha256": "a55c422b7628de43433fe02ed5d202c4412b7cb128d30fe5fe83421ae07eaa7a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/AMIN-DATA-SELECTION.md",
+      "bytes": 1713,
+      "sha256": "01d4fce6f760bad6db01a998a57f206356a94ad4e5e50bc611cb477392d5147b",
+      "original_source_sha256": "01d4fce6f760bad6db01a998a57f206356a94ad4e5e50bc611cb477392d5147b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/checks-01/CHECKS.json",
+      "bytes": 776,
+      "sha256": "411104d88e603cb3ff6790a38268c2cf1a550fc9ff0da4febf1c08b30b3030a4",
+      "original_source_sha256": "411104d88e603cb3ff6790a38268c2cf1a550fc9ff0da4febf1c08b30b3030a4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/EXACT-ANALYSIS-PLAN.md",
+      "bytes": 4306,
+      "sha256": "fa6f72e846164eb01c6b969a40173f6862e18818d5ab024a9a21e7d311410396",
+      "original_source_sha256": "fa6f72e846164eb01c6b969a40173f6862e18818d5ab024a9a21e7d311410396",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/figures-01/apl-spatial-pairs.png",
+      "bytes": 230319,
+      "sha256": "93b49716246f13983c487833409d6cd31c78474ea154e8fd10c96e458ad54c7d",
+      "original_source_sha256": "93b49716246f13983c487833409d6cd31c78474ea154e8fd10c96e458ad54c7d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/figures-01/FIGURE-RECEIPT.json",
+      "bytes": 462,
+      "sha256": "3241814fa8de06c1b4408c8ccfed5cf4677a3ebd3d40b38f1a28236ce7d4abfd",
+      "original_source_sha256": "3241814fa8de06c1b4408c8ccfed5cf4677a3ebd3d40b38f1a28236ce7d4abfd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/inspection-01/SCHEMA.json",
+      "bytes": 5910,
+      "sha256": "944edfaddd12c60d32950275d78061e12caec6a351d6613189efa84ebd75dd58",
+      "original_source_sha256": "944edfaddd12c60d32950275d78061e12caec6a351d6613189efa84ebd75dd58",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/README.md",
+      "bytes": 5851,
+      "sha256": "6ac26371a3515114cbc6cd32b8a7992f8ae81d24b9078d34558acdecf33e97d1",
+      "original_source_sha256": "6c103c458c2805a9b1631fc495dcebe034dbe7c18173bdf84ad8a2e4a4008fb7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/run-01/CLUSTER-ASSIGNMENTS.csv",
+      "bytes": 2516,
+      "sha256": "66ff2adf8d24ca8f2a943486696b2aa3786d08b2dc065a56ead178f9abf03a27",
+      "original_source_sha256": "66ff2adf8d24ca8f2a943486696b2aa3786d08b2dc065a56ead178f9abf03a27",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/run-01/PAIRS.csv",
+      "bytes": 2331,
+      "sha256": "07b7f591b4e8ab387e6f6c2dc7b3d3928cfbf4af829421548bf2ef872afa9bcc",
+      "original_source_sha256": "07b7f591b4e8ab387e6f6c2dc7b3d3928cfbf4af829421548bf2ef872afa9bcc",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/run-01/PROFILE-SUMMARIES.csv",
+      "bytes": 1863,
+      "sha256": "8e9ce5f60e363d11535060574f3e21df123b4cb8254ab48167ad5f6b487c68bd",
+      "original_source_sha256": "8e9ce5f60e363d11535060574f3e21df123b4cb8254ab48167ad5f6b487c68bd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/run-01/RESULTS.json",
+      "bytes": 10942,
+      "sha256": "6e761522e049bec19faf634fd655948808afd98af55b6ec69131ae5c577c7508",
+      "original_source_sha256": "6e761522e049bec19faf634fd655948808afd98af55b6ec69131ae5c577c7508",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/apl-receiving-data-v0/VISUAL-READBACK.md",
+      "bytes": 1038,
+      "sha256": "520c336913113f614acb3eeb8cc27698bde18b8f306e5019d33186bc73aab7d2",
+      "original_source_sha256": "520c336913113f614acb3eeb8cc27698bde18b8f306e5019d33186bc73aab7d2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/ANALYSIS-PLAN.json",
+      "bytes": 4549,
+      "sha256": "70430db6a79a0bda2f9659a20d7914f215bcaa6931ab5c5076b0f154ce8871f9",
+      "original_source_sha256": "70430db6a79a0bda2f9659a20d7914f215bcaa6931ab5c5076b0f154ce8871f9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/ARCHITECTURE-AND-INTERFACES.md",
+      "bytes": 4966,
+      "sha256": "f61a752ac4f2a779dd297042f1da6b2e82ba7d26594051087821739d7518cbd7",
+      "original_source_sha256": "f61a752ac4f2a779dd297042f1da6b2e82ba7d26594051087821739d7518cbd7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/attempt-01/INTERFACE-AUDIT-AND-REPAIR.md",
+      "bytes": 1504,
+      "sha256": "c47f04d4ba91475679fc66bb4b8e4d4e466811561b19917ec8745348caf417f1",
+      "original_source_sha256": "c47f04d4ba91475679fc66bb4b8e4d4e466811561b19917ec8745348caf417f1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/figures-01/all-scenario-results.png",
+      "bytes": 101116,
+      "sha256": "be81c086a532d30e14df807a1ea376485f4db93812650f69c415a65b5893f870",
+      "original_source_sha256": "be81c086a532d30e14df807a1ea376485f4db93812650f69c415a65b5893f870",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/figures-01/closed-loop-trace.png",
+      "bytes": 168057,
+      "sha256": "11fcab85558236af69ee78a6226b1cf4385db792a3cb18c6e270d430fdcb936e",
+      "original_source_sha256": "11fcab85558236af69ee78a6226b1cf4385db792a3cb18c6e270d430fdcb936e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/figures-01/observation-twins.png",
+      "bytes": 124720,
+      "sha256": "8916e16507c6199c252010c005cd4899ee21aafad319f37efaa2badf62c35dce",
+      "original_source_sha256": "8916e16507c6199c252010c005cd4899ee21aafad319f37efaa2badf62c35dce",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/OBSERVATION-TWIN-PLAN.json",
+      "bytes": 1524,
+      "sha256": "576b3898d3639dab50d941b9ce3cb9e4590ebd85db67b53e3463de9d090eeea2",
+      "original_source_sha256": "576b3898d3639dab50d941b9ce3cb9e4590ebd85db67b53e3463de9d090eeea2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/observation-twins-01/EPISODES.json",
+      "bytes": 69758,
+      "sha256": "27f08a71328a9f5cb17bd5c1d8c04b5c2c6d0869bea56521b95ebbd1653bf8ae",
+      "original_source_sha256": "27f08a71328a9f5cb17bd5c1d8c04b5c2c6d0869bea56521b95ebbd1653bf8ae",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/observation-twins-01/EXECUTION.json",
+      "bytes": 5558,
+      "sha256": "9d2445f5a4e6d494b0379f4b23f134d265c7788208ac597f3fb02d3ca45419af",
+      "original_source_sha256": "9d2445f5a4e6d494b0379f4b23f134d265c7788208ac597f3fb02d3ca45419af",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/PRE-RUN-REVIEW.md",
+      "bytes": 1313,
+      "sha256": "30fe0321708ca17b17bda30c0c1b9cd20bb07e52a92fbc2263919d786e7c88a1",
+      "original_source_sha256": "30fe0321708ca17b17bda30c0c1b9cd20bb07e52a92fbc2263919d786e7c88a1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/README.md",
+      "bytes": 8409,
+      "sha256": "879edf58abbc2950bd4cf1f13b21dfff80cdb57a7f2b73ad5378ce5fa7212903",
+      "original_source_sha256": "03caced4394289a17a67eae667e9a42947d80a9dbb7900f197a44bdfba4975f3",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/CONTROLS.json",
+      "bytes": 32000,
+      "sha256": "84aee36dab882dbf12ece5fe5376f2ca5243964e8466a9d297cd310c689af865",
+      "original_source_sha256": "84aee36dab882dbf12ece5fe5376f2ca5243964e8466a9d297cd310c689af865",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/EPISODES.json",
+      "bytes": 5109585,
+      "sha256": "13f87d37f42fc7a3398cb6e97bcc285d32cb1523ad6712f206635d0cd7bbfe89",
+      "original_source_sha256": "13f87d37f42fc7a3398cb6e97bcc285d32cb1523ad6712f206635d0cd7bbfe89",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/EXECUTION.json",
+      "bytes": 1611,
+      "sha256": "984ed51d831e312d006ea527042eafd1217279ab70353e8a2e9eb7fb6e5f0615",
+      "original_source_sha256": "984ed51d831e312d006ea527042eafd1217279ab70353e8a2e9eb7fb6e5f0615",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/GROUP-SUMMARY.json",
+      "bytes": 9229,
+      "sha256": "685198139b5761beba45c20543fa2cbef8f197fd92371c4d00ce223195998d68",
+      "original_source_sha256": "685198139b5761beba45c20543fa2cbef8f197fd92371c4d00ce223195998d68",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/METRICS.json",
+      "bytes": 45722,
+      "sha256": "10105429e7e9ae00998fa60d91863dbb29befc98b91233b3121b8a89028e7efa",
+      "original_source_sha256": "10105429e7e9ae00998fa60d91863dbb29befc98b91233b3121b8a89028e7efa",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/embodied-reference-v0/results-02/SEPARATE-CHECKS.json",
+      "bytes": 86746,
+      "sha256": "75133ad94e8922607b5159ee4019cf3d8d9df8ec37f67d9124476a8505eeab1b",
+      "original_source_sha256": "75133ad94e8922607b5159ee4019cf3d8d9df8ec37f67d9124476a8505eeab1b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/ANALYSIS-PLAN.json",
+      "bytes": 3116,
+      "sha256": "c0499a53fb1a711ed033abf9b31f035274b103540baace1d004906ce459c21c1",
+      "original_source_sha256": "c0499a53fb1a711ed033abf9b31f035274b103540baace1d004906ce459c21c1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/figures-01/FIVE-CELL-CONTROLS.png",
+      "bytes": 178249,
+      "sha256": "171be6c83aa5db78fa01140bef4668c88c881f65b242aa31359945045113e991",
+      "original_source_sha256": "171be6c83aa5db78fa01140bef4668c88c881f65b242aa31359945045113e991",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/figures-01/MANIFEST.json",
+      "bytes": 721,
+      "sha256": "d4ff0c0536a03798c5fe25799e5b2ad106ba81e196a6ffe04f0d36807c4df56b",
+      "original_source_sha256": "d4ff0c0536a03798c5fe25799e5b2ad106ba81e196a6ffe04f0d36807c4df56b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/figures-01/NATIVE-SINGLE-CELL-FIDELITY.png",
+      "bytes": 189705,
+      "sha256": "3f4b59928a5a9c4f8c10fd593789cb65f301cb5d1962d8fa34d22a80ec561433",
+      "original_source_sha256": "3f4b59928a5a9c4f8c10fd593789cb65f301cb5d1962d8fa34d22a80ec561433",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/figures-01/VISUAL-READBACK.md",
+      "bytes": 1192,
+      "sha256": "a947251c30a95460d61595efc32e51aabb5e9b3895e8a4a112386e417ef8c6eb",
+      "original_source_sha256": "a947251c30a95460d61595efc32e51aabb5e9b3895e8a4a112386e417ef8c6eb",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/native-audit-01/EXECUTION.json",
+      "bytes": 4081,
+      "sha256": "c8da96529f7d0974703d2d70d3491a10bde1c154a9835628f8030fdcab0fc04e",
+      "original_source_sha256": "c8da96529f7d0974703d2d70d3491a10bde1c154a9835628f8030fdcab0fc04e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/SEPARATE-CHECKS.json",
+      "bytes": 20669,
+      "sha256": "8a5ccb05c08db4ff0af5bab503ec48b8e89473dcdf96c690c8771aade345057b",
+      "original_source_sha256": "8a5ccb05c08db4ff0af5bab503ec48b8e89473dcdf96c690c8771aade345057b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/snic_weak/EXECUTION.json",
+      "bytes": 4361,
+      "sha256": "40670d7a05adfaa40795cb0749d22b53ac4726211100401304a44ac8839ab304",
+      "original_source_sha256": "40670d7a05adfaa40795cb0749d22b53ac4726211100401304a44ac8839ab304",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/snl_none/EXECUTION.json",
+      "bytes": 3982,
+      "sha256": "36880317bb01e9c5e69248d73927e05d9bbcdfe3e21b1b831a40e13ce858b49a",
+      "original_source_sha256": "36880317bb01e9c5e69248d73927e05d9bbcdfe3e21b1b831a40e13ce858b49a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/snl_strong/EXECUTION.json",
+      "bytes": 3955,
+      "sha256": "0316564ef058d42698b7ad6bcf1791b3097840d186be95c3ab49cf7c3c248928",
+      "original_source_sha256": "0316564ef058d42698b7ad6bcf1791b3097840d186be95c3ab49cf7c3c248928",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/snl_weak/EXECUTION.json",
+      "bytes": 4356,
+      "sha256": "bc5d6a5b8dd319cd2304f6e1cf8d96ac07200ea7c6650b53d9eff020ddeab416",
+      "original_source_sha256": "bc5d6a5b8dd319cd2304f6e1cf8d96ac07200ea7c6650b53d9eff020ddeab416",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/network-run-01/snl_weak_halfstep/EXECUTION.json",
+      "bytes": 4361,
+      "sha256": "f5acc64f9cc0bf7cc8a4b5f2de8e3f7cf77600650faa125ad3735f82713b5f80",
+      "original_source_sha256": "f5acc64f9cc0bf7cc8a4b5f2de8e3f7cf77600650faa125ad3735f82713b5f80",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/flight-timing-component-v0/README.md",
+      "bytes": 7307,
+      "sha256": "ac736ff2c680d5014be7b8b89254dd1ce00db71f9fe2a269aec5aa241fbab1dd",
+      "original_source_sha256": "3feeab39706d1d1e8c7cac5d1e3c643ac5385617c517f83304aae57123c9f57c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/ANALYSIS-PLAN.json",
+      "bytes": 2796,
+      "sha256": "c153a0d96d8dc92ed734c20e7426f64e2bb62787ca6e8c4b66ff503054f8c8b7",
+      "original_source_sha256": "c153a0d96d8dc92ed734c20e7426f64e2bb62787ca6e8c4b66ff503054f8c8b7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/attempt-01/FAILURE.md",
+      "bytes": 1293,
+      "sha256": "6afad8dc8847cde40cd40011b3a330443cd87828ef281878f7fcc3a3d74e09e6",
+      "original_source_sha256": "6afad8dc8847cde40cd40011b3a330443cd87828ef281878f7fcc3a3d74e09e6",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/attempt-02/FAILURE.md",
+      "bytes": 807,
+      "sha256": "91a0546706bb57f6133999e8c528cf330b70963d0b8db326833338ede1e1e37b",
+      "original_source_sha256": "91a0546706bb57f6133999e8c528cf330b70963d0b8db326833338ede1e1e37b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/figures-reviewed/coordinate-diagnostic-predictions.png",
+      "bytes": 581388,
+      "sha256": "f49b3ebb4269eea9c0a40fdb35da7fa6fa0f97788e98a210b3f1b1fc1a81cf36",
+      "original_source_sha256": "f49b3ebb4269eea9c0a40fdb35da7fa6fa0f97788e98a210b3f1b1fc1a81cf36",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/figures-reviewed/coordinate-diagnostic-r2.png",
+      "bytes": 99854,
+      "sha256": "f2b2bbc4b03358f3103488bd288bb8db50343ecec98763fa85af26192100f16f",
+      "original_source_sha256": "f2b2bbc4b03358f3103488bd288bb8db50343ecec98763fa85af26192100f16f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/README.md",
+      "bytes": 5018,
+      "sha256": "c2b879cca0fe8deeba42fc6268af19cb07093922b564c04f2b28541950a59d27",
+      "original_source_sha256": "c2b879cca0fe8deeba42fc6268af19cb07093922b564c04f2b28541950a59d27",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/results-verified/EXECUTION.json",
+      "bytes": 2315,
+      "sha256": "b1a7f1308df34e405d75523182acf04adfb01ff7ced489c0c1c375a94e2290ba",
+      "original_source_sha256": "b1a7f1308df34e405d75523182acf04adfb01ff7ced489c0c1c375a94e2290ba",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/results-verified/folds.json",
+      "bytes": 31113,
+      "sha256": "9deca686af591cfaeabc930ff3d8983aa2c57c8434f462cbdac742eb43a9d428",
+      "original_source_sha256": "9deca686af591cfaeabc930ff3d8983aa2c57c8434f462cbdac742eb43a9d428",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/results-verified/predictions.csv",
+      "bytes": 6669330,
+      "sha256": "8bdb728a339b01594bf4663e066127339939c682ebdc18db0cfd9b06bb21f944",
+      "original_source_sha256": "8bdb728a339b01594bf4663e066127339939c682ebdc18db0cfd9b06bb21f944",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/results-verified/scores.json",
+      "bytes": 20394,
+      "sha256": "f710f79f8808f66672eb71ed7a2f694422351c4196b0d258187690d16f84c239",
+      "original_source_sha256": "f710f79f8808f66672eb71ed7a2f694422351c4196b0d258187690d16f84c239",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-component-v0/TABLE-SCHEMA.json",
+      "bytes": 1671,
+      "sha256": "cf82c23c13653c5782bde2decf92c801f94d123612392b57be9645f2be67a0a4",
+      "original_source_sha256": "cf82c23c13653c5782bde2decf92c801f94d123612392b57be9645f2be67a0a4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-export-contract-v0/figures-01/count-conditioned-observation-envelopes.png",
+      "bytes": 120989,
+      "sha256": "68fcdc05d5fecf6de3c37d2307ae500434626de48cabd7cd15c48788ca1f4249",
+      "original_source_sha256": "68fcdc05d5fecf6de3c37d2307ae500434626de48cabd7cd15c48788ca1f4249",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-export-contract-v0/README.md",
+      "bytes": 3055,
+      "sha256": "dda261f04e70394483b0093f399f306db62bfc419e47c420a188839f73412b4b",
+      "original_source_sha256": "607a1f12142f3071917e94c1abafc78d3fbd4ccd19a177c5013227b32464e666",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-export-contract-v0/VISUAL-READBACK.md",
+      "bytes": 1163,
+      "sha256": "2da464de998dc42fe8704fc92d5ec6df2565b3f7b86a1a51a4f7091ba00919b4",
+      "original_source_sha256": "9e8af279d77f4b786f7ec65f72dd2a689a031d31c0957174db9de7b8b0408cda",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/checks-01/CHECKS.json",
+      "bytes": 20859,
+      "sha256": "efd9ad301dadeb4d45f23a146722ef643a70e3e1fe15e74b4ad4554724ec7ef7",
+      "original_source_sha256": "efd9ad301dadeb4d45f23a146722ef643a70e3e1fe15e74b4ad4554724ec7ef7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/figures-01/FIGURE-RECEIPT.json",
+      "bytes": 694,
+      "sha256": "b3ea0d13cd120e5f4b7bd356bc432a3a6a3f88806837130288bda2a81f58ddc1",
+      "original_source_sha256": "b3ea0d13cd120e5f4b7bd356bc432a3a6a3f88806837130288bda2a81f58ddc1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/figures-01/input-and-response-export-bridge.png",
+      "bytes": 169838,
+      "sha256": "a6b2e178122cc78d768d81a838975980bf160f4beabcf65ff31f4f3e8201bbcf",
+      "original_source_sha256": "a6b2e178122cc78d768d81a838975980bf160f4beabcf65ff31f4f3e8201bbcf",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/PLAN.md",
+      "bytes": 4555,
+      "sha256": "5cbc1aee9c27794f90071adc4346601757128a5abd9f6a96ca2ceb0e177c127e",
+      "original_source_sha256": "5cbc1aee9c27794f90071adc4346601757128a5abd9f6a96ca2ceb0e177c127e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/README.md",
+      "bytes": 4227,
+      "sha256": "66b50669db1e2b367afab0818cb3cc4bd9cf7fb208b959fda9b4ce9a8a2cffc5",
+      "original_source_sha256": "b7931d6a3c1981fc4c28398c732f77687777fc0183d8395b98e4c7e46b69900d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/response-01/RESPONSE-BRIDGE.json",
+      "bytes": 5340,
+      "sha256": "1ef984ae91ba1e673baeae92bc73eb7071164dcaa35fdfbd20ff9c2afe9060d2",
+      "original_source_sha256": "1ef984ae91ba1e673baeae92bc73eb7071164dcaa35fdfbd20ff9c2afe9060d2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/response-01/ROW-COMPARISONS.csv",
+      "bytes": 749087,
+      "sha256": "57c9d7d1a94737c8fb83641e4c1bbe68b3225ce5160e9a80ac78fa4018fc30c4",
+      "original_source_sha256": "57c9d7d1a94737c8fb83641e4c1bbe68b3225ce5160e9a80ac78fa4018fc30c4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/RESPONSE-BRIDGE-PLAN.md",
+      "bytes": 2457,
+      "sha256": "92a62846773b4b6a3c0e3f060a01576179a6640248668c89aab5027592a0b225",
+      "original_source_sha256": "92a62846773b4b6a3c0e3f060a01576179a6640248668c89aab5027592a0b225",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/response-checks-01/CHECKS.json",
+      "bytes": 1306,
+      "sha256": "78dfb6ad7e930976960b936b5820855d7c8637ba132f7688b7470b15bb903973",
+      "original_source_sha256": "78dfb6ad7e930976960b936b5820855d7c8637ba132f7688b7470b15bb903973",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/results-01/INPUT-CONTRACT.json",
+      "bytes": 44387,
+      "sha256": "6781d4676d98c8415380048a708b486e3364dc14a65fffa82c0148ed3335af3b",
+      "original_source_sha256": "6781d4676d98c8415380048a708b486e3364dc14a65fffa82c0148ed3335af3b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/score-checks-01/SCORE-CONTRACT.json",
+      "bytes": 5335,
+      "sha256": "9f66fec82a0b5b06ac56ac8a1966ddb6ab156d5e0102f0fb51049ac0a59d4a4f",
+      "original_source_sha256": "9f66fec82a0b5b06ac56ac8a1966ddb6ab156d5e0102f0fb51049ac0a59d4a4f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/STARTUP-RECEIPT.md",
+      "bytes": 487,
+      "sha256": "e51071271289c42915193d36dc0c5a137ffd23cd14bde477b20d4891183b8e3c",
+      "original_source_sha256": "e51071271289c42915193d36dc0c5a137ffd23cd14bde477b20d4891183b8e3c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-input-contract-v0/VISUAL-READBACK.md",
+      "bytes": 845,
+      "sha256": "1d2c74b056ebcc77941b2c3daa42cc8c38fbc5ed924623750fe6f4dd019e93f7",
+      "original_source_sha256": "1d2c74b056ebcc77941b2c3daa42cc8c38fbc5ed924623750fe6f4dd019e93f7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/CACHE-READBACK-PLAN.md",
+      "bytes": 1329,
+      "sha256": "004ee7662f0ad578aebc4ef8ff90a47dafdda830779d3243c9f0a091e05d665e",
+      "original_source_sha256": "004ee7662f0ad578aebc4ef8ff90a47dafdda830779d3243c9f0a091e05d665e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/checks-01/CHECKS.json",
+      "bytes": 1299,
+      "sha256": "f3558d3a8f66765287f44085838e61b1ae38c44e97b264d28b5bfa7c894d9145",
+      "original_source_sha256": "f3558d3a8f66765287f44085838e61b1ae38c44e97b264d28b5bfa7c894d9145",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/comparison-01/GROUPING-COMPARISON.json",
+      "bytes": 4461,
+      "sha256": "8d01248d2b91aef7d9bd55ee72c755b44f82f568971c131f6fb92f788387cbd6",
+      "original_source_sha256": "8d01248d2b91aef7d9bd55ee72c755b44f82f568971c131f6fb92f788387cbd6",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/comparison-01/ROW-COMPARISONS.csv",
+      "bytes": 707453,
+      "sha256": "736a07cb07d1e199f019a8d1b23ccc8d8bf7e1abf472b56854b9faa81bc67513",
+      "original_source_sha256": "736a07cb07d1e199f019a8d1b23ccc8d8bf7e1abf472b56854b9faa81bc67513",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/figures-02/observation-selection-and-adverse-transitions.png",
+      "bytes": 132222,
+      "sha256": "b6ab4708a26da947dd72571dcef9930199b0036a147dcba5be0b5ee4eb1c3a5e",
+      "original_source_sha256": "b6ab4708a26da947dd72571dcef9930199b0036a147dcba5be0b5ee4eb1c3a5e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/grouping-01/GROUPING-RECONSTRUCTION.json",
+      "bytes": 14470,
+      "sha256": "3a66f20349c760289a90f069069cedefae8ead8a3ecd65042d643a624aff96e2",
+      "original_source_sha256": "3a66f20349c760289a90f069069cedefae8ead8a3ecd65042d643a624aff96e2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/grouping-01/WINDOW-READBACK.json",
+      "bytes": 1839,
+      "sha256": "c62d408732edf14eb7f73a72cf246e9ce4cf3cf7fde211da97a8a35d20daddbe",
+      "original_source_sha256": "c62d408732edf14eb7f73a72cf246e9ce4cf3cf7fde211da97a8a35d20daddbe",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/GROUPING-RECONSTRUCTION-PLAN.md",
+      "bytes": 4885,
+      "sha256": "ec6d1bb8adecde9ca1d35094aefc7037563ee181db9fbc4e0f2f06cb1a0d7647",
+      "original_source_sha256": "ec6d1bb8adecde9ca1d35094aefc7037563ee181db9fbc4e0f2f06cb1a0d7647",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/layout-01/LAYOUT-CHECKS.json",
+      "bytes": 5993,
+      "sha256": "256d8fdbe25591551efb64734d4a02dae0a038c02198e1142a2603482b1e26fa",
+      "original_source_sha256": "256d8fdbe25591551efb64734d4a02dae0a038c02198e1142a2603482b1e26fa",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/method-checks-01/CHECKS.json",
+      "bytes": 1462,
+      "sha256": "ac4515e781dcb7d7618d3135e1c3aa87e36460feccf61666137f0a32f3f1f09f",
+      "original_source_sha256": "ac4515e781dcb7d7618d3135e1c3aa87e36460feccf61666137f0a32f3f1f09f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/PLAN.md",
+      "bytes": 2745,
+      "sha256": "8314f2e0778270ad85e74912bc27484fa624a5cc58a47635cd42854b3359c525",
+      "original_source_sha256": "8314f2e0778270ad85e74912bc27484fa624a5cc58a47635cd42854b3359c525",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/README.md",
+      "bytes": 5036,
+      "sha256": "40ec809fd9e8cf7ca86dba04702e8259c4be2e4463745d8775e3de4a6f706b18",
+      "original_source_sha256": "e502fb51fc64f9bf2c76fa19b5b05ad8f796c5cc4639c7801556a2eea80d3128",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/SOURCE-EXTENSION-01.md",
+      "bytes": 1005,
+      "sha256": "fda700e38500dd5180ec18e53de05014f39377931ed80e68c85f4ea6245f7585",
+      "original_source_sha256": "fda700e38500dd5180ec18e53de05014f39377931ed80e68c85f4ea6245f7585",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-observation-selection-v0/VISUAL-READBACK.md",
+      "bytes": 1100,
+      "sha256": "2be97c804dc37c6194c25179b7f93fdc0071603e9057771d654bc9c844736ddc",
+      "original_source_sha256": "16a9054021d2e16a529846e9026d55f5a0fec9502b4a364ca74568976188b6bb",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/checks-01/CHECKS.json",
+      "bytes": 4922,
+      "sha256": "3f1e74ec9297b0bde9c707ba7722cc4bb125397fd17fa38e41a0519332367219",
+      "original_source_sha256": "3f1e74ec9297b0bde9c707ba7722cc4bb125397fd17fa38e41a0519332367219",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/figures-02/publisher-data-coverage-and-amplitudes.png",
+      "bytes": 141340,
+      "sha256": "2e6dee4aca682be4927ceb94a2c1ea07f351832a3f7476a7ffe5ac374558a362",
+      "original_source_sha256": "2e6dee4aca682be4927ceb94a2c1ea07f351832a3f7476a7ffe5ac374558a362",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/PLAN.md",
+      "bytes": 4593,
+      "sha256": "cdd1424fd530e4d51dbef7f59964b0abdf12ea8d18577c209633cebc177fbd83",
+      "original_source_sha256": "cdd1424fd530e4d51dbef7f59964b0abdf12ea8d18577c209633cebc177fbd83",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/README.md",
+      "bytes": 7151,
+      "sha256": "7206f67c928897be2a4f1633e5fc353f384b4d838627bbc0830295b8b3df6b78",
+      "original_source_sha256": "920d408b7daf03e6673edbb84bd43e5909d15138bb206748c450443cc0786c42",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/results-01/AMPLITUDE-AGGREGATES.json",
+      "bytes": 3797571,
+      "sha256": "33fa4ab865679284992d2a3cb5b8bd66cb2616f8ef0092d0adf4f138ce90c098",
+      "original_source_sha256": "33fa4ab865679284992d2a3cb5b8bd66cb2616f8ef0092d0adf4f138ce90c098",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/results-01/PROFILE.json",
+      "bytes": 5697,
+      "sha256": "549619edc9ca1362f4e5ee39afa99b0fa548e982121f22a98d3dd38b3f8c8388",
+      "original_source_sha256": "549619edc9ca1362f4e5ee39afa99b0fa548e982121f22a98d3dd38b3f8c8388",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/hue-recording-readback-v0/VISUAL-READBACK.md",
+      "bytes": 1682,
+      "sha256": "47d9d261a24f11404cf0dbaee666962e731e8f13a132a244290c04d1a27319ea",
+      "original_source_sha256": "c940ac5f2b751fd03a673d68944bf11ef71abc2722b5d63dbe6ae16eb9cd4837",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/ANALYSIS-PLAN.json",
+      "bytes": 3032,
+      "sha256": "f900dc871507781ab465ba8587f56899599e599b7fcb863eae5054ce4debc212",
+      "original_source_sha256": "f900dc871507781ab465ba8587f56899599e599b7fcb863eae5054ce4debc212",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/ATTRIBUTION.md",
+      "bytes": 1360,
+      "sha256": "e0360bf5ff5f36ab23d6cdb108eb2ff1110a5f838801d7df67929255a3a0c37e",
+      "original_source_sha256": "e0360bf5ff5f36ab23d6cdb108eb2ff1110a5f838801d7df67929255a3a0c37e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/figures-01/attractive-odours.png",
+      "bytes": 265161,
+      "sha256": "d6442d95781eedf5f8c564cebee92789fbaa3047d16b753100a2a2674b350c65",
+      "original_source_sha256": "d6442d95781eedf5f8c564cebee92789fbaa3047d16b753100a2a2674b350c65",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/figures-01/FIGURE-MANIFEST.json",
+      "bytes": 1402,
+      "sha256": "9ea4ed0d64f78a2fe5e3fde7518adc15cb1d8d9190a4917f8f6063d17b0fb309",
+      "original_source_sha256": "9ea4ed0d64f78a2fe5e3fde7518adc15cb1d8d9190a4917f8f6063d17b0fb309",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/figures-01/repulsive-odours.png",
+      "bytes": 282701,
+      "sha256": "fd636482404431b4404f0a58cd0e95b3625f84c5ce4270b6907198c74134c960",
+      "original_source_sha256": "fd636482404431b4404f0a58cd0e95b3625f84c5ce4270b6907198c74134c960",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/figures-01/training-replay-controls.png",
+      "bytes": 65590,
+      "sha256": "11d5132a50355f9c8e284f025c6135f17466b1dbd976410944e975c48be20626",
+      "original_source_sha256": "11d5132a50355f9c8e284f025c6135f17466b1dbd976410944e975c48be20626",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/README.md",
+      "bytes": 3238,
+      "sha256": "fccdafeb670d82f5615bcbf1fb7ba58eb8d4e6a23d32e6efda2474bd242ba00a",
+      "original_source_sha256": "c0654c2929c2705647f2bf5239ca4b70ed1ea2f88e4090e2498928a5dfdd5e5f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/CHECKS.json",
+      "bytes": 5095,
+      "sha256": "1c1af5e6baa9b18eef33a57c25c24f3656347cdc61b8c11e85b96ee1651f9b1a",
+      "original_source_sha256": "1c1af5e6baa9b18eef33a57c25c24f3656347cdc61b8c11e85b96ee1651f9b1a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/EXECUTION.json",
+      "bytes": 1406,
+      "sha256": "0a80eeacbbc523265609a396a5302f4fac0efac8b8e0f0f48ab301d738e69570",
+      "original_source_sha256": "0a80eeacbbc523265609a396a5302f4fac0efac8b8e0f0f48ab301d738e69570",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/METRICS.json",
+      "bytes": 4320,
+      "sha256": "5fcf94dc1b4b4e422b0b1328d54b4f5662e14cd35959c150c33469ec57d3807a",
+      "original_source_sha256": "5fcf94dc1b4b4e422b0b1328d54b4f5662e14cd35959c150c33469ec57d3807a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/PREDICTIONS.csv",
+      "bytes": 142570,
+      "sha256": "f28c2f29acfe33e6cf276fe70835903ed1d12746fab80e584c1c0684f3a2a656",
+      "original_source_sha256": "f28c2f29acfe33e6cf276fe70835903ed1d12746fab80e584c1c0684f3a2a656",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/PROTOCOLS.json",
+      "bytes": 26919,
+      "sha256": "8b37d3541c840d33e9736f02149247ed0eeeeae708559223faa351ccb674bffe",
+      "original_source_sha256": "8b37d3541c840d33e9736f02149247ed0eeeeae708559223faa351ccb674bffe",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/RUNS.json",
+      "bytes": 588957,
+      "sha256": "5d6582a1bbffebfbaec1262320ecd543e98481be156cf509a335ee66c6b7f08d",
+      "original_source_sha256": "5d6582a1bbffebfbaec1262320ecd543e98481be156cf509a335ee66c6b7f08d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-component-v0/results-01/SEPARATE-CHECKS.json",
+      "bytes": 5691,
+      "sha256": "0e58cf35dad1bd10c6168c9ed572dcabef7154e658d1562ceccf36b2b0766b7b",
+      "original_source_sha256": "0e58cf35dad1bd10c6168c9ed572dcabef7154e658d1562ceccf36b2b0766b7b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/ANALYSIS-PLAN.json",
+      "bytes": 1649,
+      "sha256": "031c81a97f1361ea80e7a710c67b9f24cc8519a59f7beb75d8477bcfe1e79a41",
+      "original_source_sha256": "031c81a97f1361ea80e7a710c67b9f24cc8519a59f7beb75d8477bcfe1e79a41",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/README.md",
+      "bytes": 4911,
+      "sha256": "86c4c450165d9d4aeb8049e4d0246fb9d48c68316b4300a1a528526bbf6ad668",
+      "original_source_sha256": "248ce103dc5a9441b53415e7822d7175db30a4a169119c5fc62ad060eb021681",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/EXECUTION.json",
+      "bytes": 1731,
+      "sha256": "6f0f229d77cde2e725ae0392cfe39a49c6360a36095404a2dd42674833cdddaf",
+      "original_source_sha256": "6f0f229d77cde2e725ae0392cfe39a49c6360a36095404a2dd42674833cdddaf",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/OBSERVATION-READBACK.json",
+      "bytes": 6943,
+      "sha256": "d59a0b1e6c24fc67956e68155e708e8784af6155421d089f85dc04dd3de027a8",
+      "original_source_sha256": "d59a0b1e6c24fc67956e68155e708e8784af6155421d089f85dc04dd3de027a8",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/POINT-COMPARISONS.csv",
+      "bytes": 125853,
+      "sha256": "1c8f202db0196bc0056706abbaef91e932a015717599f6300da0f19a5ac68a4b",
+      "original_source_sha256": "1c8f202db0196bc0056706abbaef91e932a015717599f6300da0f19a5ac68a4b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/SEPARATE-CHECKS.json",
+      "bytes": 131313,
+      "sha256": "4d09eb69d7e87b30c1a2ac4fc9fe39a090de4fc8f197c7abc722029645ff2e9a",
+      "original_source_sha256": "4d09eb69d7e87b30c1a2ac4fc9fe39a090de4fc8f197c7abc722029645ff2e9a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/STATISTICS.json",
+      "bytes": 1989,
+      "sha256": "77c758b414e7595bc330f6a7c79c4f79a7fa5065edd85876f4428fae71991a60",
+      "original_source_sha256": "77c758b414e7595bc330f6a7c79c4f79a7fa5065edd85876f4428fae71991a60",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/memory-native-reference-v1/results-01/TRAJECTORIES.json",
+      "bytes": 674537,
+      "sha256": "414c45d49543a4d8a425e5942c6f5d2b87d28f56f4c5e8a1eeb59638c72bed4a",
+      "original_source_sha256": "414c45d49543a4d8a425e5942c6f5d2b87d28f56f4c5e8a1eeb59638c72bed4a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/ANALYSIS-PLAN.json",
+      "bytes": 7036,
+      "sha256": "c49086cbfc9783a77966720eff3707dd560ee4e8d2cd21fb4ba26378bbc06cd6",
+      "original_source_sha256": "c49086cbfc9783a77966720eff3707dd560ee4e8d2cd21fb4ba26378bbc06cd6",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/ARCHITECTURE-AND-ASSUMPTIONS.md",
+      "bytes": 7840,
+      "sha256": "045f8924bd0223e0b50a005db9356387bd85c9d692f69dde7aa23a0fb94f1fdf",
+      "original_source_sha256": "045f8924bd0223e0b50a005db9356387bd85c9d692f69dde7aa23a0fb94f1fdf",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/checks-01/CHECKS.json",
+      "bytes": 2363,
+      "sha256": "1c6345b31abbf424958f423c7756968d5a2e329a269eddd7e80554b166130f11",
+      "original_source_sha256": "1c6345b31abbf424958f423c7756968d5a2e329a269eddd7e80554b166130f11",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/checks-01/RESULTS.json",
+      "bytes": 106664,
+      "sha256": "7f48f15fd9742d8f76a8b8ebb88937555b66172c4171daf1e4f58516828c7000",
+      "original_source_sha256": "7f48f15fd9742d8f76a8b8ebb88937555b66172c4171daf1e4f58516828c7000",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/controls-01/CONTROLS.json",
+      "bytes": 9424,
+      "sha256": "ddf020eb62e9127790d46c8d09f295adef0519a799d7a32db7ea287d01435352",
+      "original_source_sha256": "ddf020eb62e9127790d46c8d09f295adef0519a799d7a32db7ea287d01435352",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/controls-01/EIGENMODES.json",
+      "bytes": 1000,
+      "sha256": "82a995d696f80e73154403168c21d88503c92fe867421eb5bd13d9e7ccafadd5",
+      "original_source_sha256": "82a995d696f80e73154403168c21d88503c92fe867421eb5bd13d9e7ccafadd5",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/familiarization-01/EXECUTION.json",
+      "bytes": 670,
+      "sha256": "63f2a45af66dd262d3921e1c5237212acffc4cfd454b65f64870ed77bece970d",
+      "original_source_sha256": "63f2a45af66dd262d3921e1c5237212acffc4cfd454b65f64870ed77bece970d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/familiarization-01/intact.json",
+      "bytes": 162187,
+      "sha256": "998517ce6900c6866cfcb8a62bd954dc1435d561ca62d88f6b5aee0e746c365a",
+      "original_source_sha256": "998517ce6900c6866cfcb8a62bd954dc1435d561ca62d88f6b5aee0e746c365a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/figures-02/MULTIVIEW-RESULTS.png",
+      "bytes": 152702,
+      "sha256": "9a5b02c3c9137cfa59ebd0ad1bb0121237c57bfb870e821e9eef1e1a38f259d5",
+      "original_source_sha256": "9a5b02c3c9137cfa59ebd0ad1bb0121237c57bfb870e821e9eef1e1a38f259d5",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/figures-02/SYSTEM-CONTEXT.png",
+      "bytes": 137908,
+      "sha256": "cfb59f24c4a9018cde2ad488c33db78530163f6330a1d6399aae9fcbf966b3b2",
+      "original_source_sha256": "cfb59f24c4a9018cde2ad488c33db78530163f6330a1d6399aae9fcbf966b3b2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/figures-02/VISUAL-READBACK.md",
+      "bytes": 1361,
+      "sha256": "d398e67641464a3ec5936cae178ea5246e679b1f00207f69afe9b6e10e88272c",
+      "original_source_sha256": "d398e67641464a3ec5936cae178ea5246e679b1f00207f69afe9b6e10e88272c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/multiview-query-v0/README.md",
+      "bytes": 6598,
+      "sha256": "c33dedd46f53ed0403c3605aa695ddfde3240862da03518220b691afc3b51f5e",
+      "original_source_sha256": "c33dedd46f53ed0403c3605aa695ddfde3240862da03518220b691afc3b51f5e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/ANALYSIS-PLAN.json",
+      "bytes": 4667,
+      "sha256": "9518867e4ee8dff7707771902308bec1a73a0e56e9e62a6d4b8d70e3c774284c",
+      "original_source_sha256": "9518867e4ee8dff7707771902308bec1a73a0e56e9e62a6d4b8d70e3c774284c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/ARCHITECTURE-AND-ASSUMPTIONS.md",
+      "bytes": 5484,
+      "sha256": "5c4e24317e82a597d7e96070b92908e896f8d0aad217f476df0a56385fcb5d6a",
+      "original_source_sha256": "8e56b267b84ceedadce5998eececbfba17775c27d4ebdee8774795d96d9fc842",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/checks-01/CHECKS.json",
+      "bytes": 2161,
+      "sha256": "a473a90288978828421d16681c549a2efe312285df94d712e680bc076f44f7ee",
+      "original_source_sha256": "a473a90288978828421d16681c549a2efe312285df94d712e680bc076f44f7ee",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/checks-01/RESULTS.json",
+      "bytes": 5999,
+      "sha256": "07d16afe616247205f5e7483277c9c86bde4a1cd1764e12f86e074666cd89587",
+      "original_source_sha256": "07d16afe616247205f5e7483277c9c86bde4a1cd1764e12f86e074666cd89587",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/controls-01/CONTROLS.json",
+      "bytes": 19198,
+      "sha256": "a4328831e8976bbe6df9abe4538ed3b368a61079ccb77670a5b195834f18b42b",
+      "original_source_sha256": "a4328831e8976bbe6df9abe4538ed3b368a61079ccb77670a5b195834f18b42b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/familiarization-01/EXECUTION.json",
+      "bytes": 694,
+      "sha256": "c93918cb8cf15f31734721721ca19f1727a70b249ff5670944e50cd25a719277",
+      "original_source_sha256": "c93918cb8cf15f31734721721ca19f1727a70b249ff5670944e50cd25a719277",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/familiarization-01/LESSON.json",
+      "bytes": 39530,
+      "sha256": "70841154a67bc23ae13165ada1bbe7871cc6d44ffcf5e4323c04638dd8b2bb8d",
+      "original_source_sha256": "70841154a67bc23ae13165ada1bbe7871cc6d44ffcf5e4323c04638dd8b2bb8d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/figures-02/OUTPUT-ACCESS-RESULTS.png",
+      "bytes": 135958,
+      "sha256": "d90656e2ec6865a94fa422855104b8efd9d5c4bc0968db785ef1835d3efb0c67",
+      "original_source_sha256": "d90656e2ec6865a94fa422855104b8efd9d5c4bc0968db785ef1835d3efb0c67",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/figures-02/OUTPUT-BOUNDARY.png",
+      "bytes": 160474,
+      "sha256": "e7fed857d9d5798742568d312e02f04e73c16db263619e7e4357c49acf619f55",
+      "original_source_sha256": "e7fed857d9d5798742568d312e02f04e73c16db263619e7e4357c49acf619f55",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/observable-receiver-v0/README.md",
+      "bytes": 5597,
+      "sha256": "668136ca1a1410553094d1c7e0b7a25c8638eb0586e229644aa709d3473f4e81",
+      "original_source_sha256": "750ebf22836be3088eb94ee31971aa53f6304ec16b72e75f9ba75e10f67a8c59",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/ANALYSIS-PLAN.json",
+      "bytes": 6184,
+      "sha256": "c2b04249da7f9b3aa2752d679ae9b43cfa5187ddb2895e7af685fc18853a5b69",
+      "original_source_sha256": "c2b04249da7f9b3aa2752d679ae9b43cfa5187ddb2895e7af685fc18853a5b69",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/ARCHITECTURE-AND-ASSUMPTIONS.md",
+      "bytes": 7661,
+      "sha256": "309fb4e2dc4ab106d1a6555e3d781dfaea9aadbc16d2b5ffdd265f5e4cf7100c",
+      "original_source_sha256": "309fb4e2dc4ab106d1a6555e3d781dfaea9aadbc16d2b5ffdd265f5e4cf7100c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/checks-01/CAUSAL-READOUT.json",
+      "bytes": 21961,
+      "sha256": "6d88d2b5261c78a2fda25a51c6a5cc334d61572cbe316fc72744df964da0270e",
+      "original_source_sha256": "6d88d2b5261c78a2fda25a51c6a5cc334d61572cbe316fc72744df964da0270e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/checks-01/CHECKS.json",
+      "bytes": 874255,
+      "sha256": "8e062ec372b0c962693a83e7f5c408c540573b094c8dbc1c2f19d113a9366afa",
+      "original_source_sha256": "8e062ec372b0c962693a83e7f5c408c540573b094c8dbc1c2f19d113a9366afa",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/checks-01/EXTRA-EPISODES.json",
+      "bytes": 201762,
+      "sha256": "9d3d34e1809cc7a7cee8bbb623af1c9475e80fe79a5526421f7bfad3309ffb0d",
+      "original_source_sha256": "9d3d34e1809cc7a7cee8bbb623af1c9475e80fe79a5526421f7bfad3309ffb0d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/figures-02/MEASURED-BRIDGE-RESULTS.png",
+      "bytes": 278558,
+      "sha256": "85a0b927c971cb3401a70f135807deaa9a6601ab2b80269bd623be72c49ea3ff",
+      "original_source_sha256": "85a0b927c971cb3401a70f135807deaa9a6601ab2b80269bd623be72c49ea3ff",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/figures-02/SYSTEM-CONTEXT.png",
+      "bytes": 164940,
+      "sha256": "9340c2f4bc9c1a3f55821613338fd942bf5bd71e4d9dcd2cf3ab8769d3a4b3a0",
+      "original_source_sha256": "9340c2f4bc9c1a3f55821613338fd942bf5bd71e4d9dcd2cf3ab8769d3a4b3a0",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/README.md",
+      "bytes": 8179,
+      "sha256": "d79d9bea0ff393fff7ead18d3a786b319acd3ea0e0c7e4a7f961d64c1ce032da",
+      "original_source_sha256": "d79d9bea0ff393fff7ead18d3a786b319acd3ea0e0c7e4a7f961d64c1ce032da",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/coordinate-twin/EPISODES.json",
+      "bytes": 2635939,
+      "sha256": "1adb172f9a40ec720147a24af0e6109b7533227213daea630c0d87e8ad1213fe",
+      "original_source_sha256": "1adb172f9a40ec720147a24af0e6109b7533227213daea630c0d87e8ad1213fe",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/coordinate-twin/EXECUTION.json",
+      "bytes": 1231,
+      "sha256": "653cf439f438ef42cf402357459a0a4c22ac724daa6cdde6f931b10fb5ae3911",
+      "original_source_sha256": "653cf439f438ef42cf402357459a0a4c22ac724daa6cdde6f931b10fb5ae3911",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-half-step/EPISODES.json",
+      "bytes": 2631876,
+      "sha256": "e06eb6e3e1d409cb859e611d35854b09cab8e0ff90e5ae13169aede859161e6c",
+      "original_source_sha256": "e06eb6e3e1d409cb859e611d35854b09cab8e0ff90e5ae13169aede859161e6c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-half-step/EXECUTION.json",
+      "bytes": 1231,
+      "sha256": "04b7d4f1a01d8918eedbce03e7b7f404e83f6ac19f0182ba018d574cf7131148",
+      "original_source_sha256": "04b7d4f1a01d8918eedbce03e7b7f404e83f6ac19f0182ba018d574cf7131148",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-high-negative/EPISODES.json",
+      "bytes": 2629889,
+      "sha256": "2a51ed59f20096a61f8d5195bb45f58dd928538b764f89f483b09d5fa1cb67fd",
+      "original_source_sha256": "2a51ed59f20096a61f8d5195bb45f58dd928538b764f89f483b09d5fa1cb67fd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-high-negative/EXECUTION.json",
+      "bytes": 1234,
+      "sha256": "130e2e9c78c578cdbed3a878ab9e92dfa99f5a52df0691993fad8e639deefc4e",
+      "original_source_sha256": "130e2e9c78c578cdbed3a878ab9e92dfa99f5a52df0691993fad8e639deefc4e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-high-positive/EPISODES.json",
+      "bytes": 2628310,
+      "sha256": "0260a199342c7b0f072987d6213ba76172c7fed26b1db7b973111c032a1c9afd",
+      "original_source_sha256": "0260a199342c7b0f072987d6213ba76172c7fed26b1db7b973111c032a1c9afd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-high-positive/EXECUTION.json",
+      "bytes": 1235,
+      "sha256": "49aa7b573a8758064a341451fbbd678d096c6da69e171d556a65f9e289885566",
+      "original_source_sha256": "49aa7b573a8758064a341451fbbd678d096c6da69e171d556a65f9e289885566",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-low-negative/EPISODES.json",
+      "bytes": 2628084,
+      "sha256": "12b325f00cd676ac48e28ef1e1a76d48d5a8f5a2078de2e0223f8036edda31d3",
+      "original_source_sha256": "12b325f00cd676ac48e28ef1e1a76d48d5a8f5a2078de2e0223f8036edda31d3",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-low-negative/EXECUTION.json",
+      "bytes": 1233,
+      "sha256": "933836511a180787a4c209a117286b31c352e73380111d695b616c2a6d5e2cc4",
+      "original_source_sha256": "933836511a180787a4c209a117286b31c352e73380111d695b616c2a6d5e2cc4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-low-positive/EPISODES.json",
+      "bytes": 2631509,
+      "sha256": "9b198824b056424bc5e1a3d32895d48ed6df55ff7e247afef00090a7135e9bcc",
+      "original_source_sha256": "9b198824b056424bc5e1a3d32895d48ed6df55ff7e247afef00090a7135e9bcc",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-low-positive/EXECUTION.json",
+      "bytes": 1234,
+      "sha256": "2cdcc0ff97e05390e48b76ffeb4e3b4c441bb5c8da247bd5d81deeb9907b4939",
+      "original_source_sha256": "2cdcc0ff97e05390e48b76ffeb4e3b4c441bb5c8da247bd5d81deeb9907b4939",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-no-coupling/EPISODES.json",
+      "bytes": 2495998,
+      "sha256": "9a975578f8a48b4c3d408af0516c49e7cfaaf14587a8225153844d30c12fbf0b",
+      "original_source_sha256": "9a975578f8a48b4c3d408af0516c49e7cfaaf14587a8225153844d30c12fbf0b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/phase-no-coupling/EXECUTION.json",
+      "bytes": 1233,
+      "sha256": "451db7f3f4a91ca833592147a1b4015eb65acf9da164c587a56c273df5abee6b",
+      "original_source_sha256": "451db7f3f4a91ca833592147a1b4015eb65acf9da164c587a56c273df5abee6b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/reference-adaptive/EPISODES.json",
+      "bytes": 761738,
+      "sha256": "1fe9c412114c4ea5ceb3008fc7ec1ef1a312ab2f0b0c2621aca43e1b81740056",
+      "original_source_sha256": "1fe9c412114c4ea5ceb3008fc7ec1ef1a312ab2f0b0c2621aca43e1b81740056",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/reference-adaptive/EXECUTION.json",
+      "bytes": 1234,
+      "sha256": "ca86136514aea4f97f9eda91351cd78459081a74f7e693f488bda301a0f2671b",
+      "original_source_sha256": "ca86136514aea4f97f9eda91351cd78459081a74f7e693f488bda301a0f2671b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/reference-full/EPISODES.json",
+      "bytes": 769698,
+      "sha256": "946cddf16a41563359db6b444df90360e52a0b9ff5a548920fe15d6dc2ca4712",
+      "original_source_sha256": "946cddf16a41563359db6b444df90360e52a0b9ff5a548920fe15d6dc2ca4712",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/phase-receiver-bridge-v0/run-01/reference-full/EXECUTION.json",
+      "bytes": 1230,
+      "sha256": "2c9f0cccdfd49d5b597dbc0d2978d877b91bfa95e37cfc8a5bccaa0a60448ca9",
+      "original_source_sha256": "2c9f0cccdfd49d5b597dbc0d2978d877b91bfa95e37cfc8a5bccaa0a60448ca9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/prisco-summary-v0/analyze.py",
+      "bytes": 7016,
+      "sha256": "63733be95391b9ac1d94bea7af396c6a5dd61b123656622c9e4b008a3e2571e9",
+      "original_source_sha256": "63733be95391b9ac1d94bea7af396c6a5dd61b123656622c9e4b008a3e2571e9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/prisco-summary-v0/README.md",
+      "bytes": 3042,
+      "sha256": "3414474469067539e395e931d7e782072c11dea43d5c26c2086e42c8d4eb33b3",
+      "original_source_sha256": "fc29081173e46b5abd3f11145e9767b86a70f0e46260b737fc81b6ee22d98b82",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/prisco-summary-v0/results/figure-5c-descriptive.png",
+      "bytes": 57547,
+      "sha256": "9b0af6ad856d4ddbd398c71a83c34c28e8ccddad49da509e7cf69ca941fcd2b4",
+      "original_source_sha256": "9b0af6ad856d4ddbd398c71a83c34c28e8ccddad49da509e7cf69ca941fcd2b4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/prisco-summary-v0/results/RESULT.json",
+      "bytes": 2809,
+      "sha256": "74c94ff45f73d6a851a7b9f7a004a1e549108bac853f654da1a51c6b030b727d",
+      "original_source_sha256": "74c94ff45f73d6a851a7b9f7a004a1e549108bac853f654da1a51c6b030b727d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/ANALYSIS-PLAN.json",
+      "bytes": 1883,
+      "sha256": "86272a04d0b9336958df2a2a84475a8b4c94d44883842cff19cb82aa5fc0785b",
+      "original_source_sha256": "86272a04d0b9336958df2a2a84475a8b4c94d44883842cff19cb82aa5fc0785b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/figures-01/INTERVENTION-AND-OBSERVATION.png",
+      "bytes": 146552,
+      "sha256": "fa2e7ce20f07506c9d7dcc3bbb61d3f888aa6756043481d5b43d4cfc1f237f7f",
+      "original_source_sha256": "fa2e7ce20f07506c9d7dcc3bbb61d3f888aa6756043481d5b43d4cfc1f237f7f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/figures-01/VISUAL-READBACK.md",
+      "bytes": 1125,
+      "sha256": "44b94670270b77aeb1daee9d0dd7c1d0a707b421ba13a5029c99667ffdee67c4",
+      "original_source_sha256": "44b94670270b77aeb1daee9d0dd7c1d0a707b421ba13a5029c99667ffdee67c4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/README.md",
+      "bytes": 3166,
+      "sha256": "75466ae2d5672caddc8e8969b068f81c0c52ff663d4be550c3d5b7dd2eadc112",
+      "original_source_sha256": "75466ae2d5672caddc8e8969b068f81c0c52ff663d4be550c3d5b7dd2eadc112",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/run-01/CHECKS.json",
+      "bytes": 3415,
+      "sha256": "fb0cd16d82f3a4beee72582d169a9866c0f127e71f6af2d3d13a8986a026977e",
+      "original_source_sha256": "fb0cd16d82f3a4beee72582d169a9866c0f127e71f6af2d3d13a8986a026977e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/run-01/TRAJECTORIES.json",
+      "bytes": 1038601,
+      "sha256": "0b4ef92f5b24a38d9dd263f98c2a13362d459189470e8f6d28f869b4510435ba",
+      "original_source_sha256": "0b4ef92f5b24a38d9dd263f98c2a13362d459189470e8f6d28f869b4510435ba",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiver-intervention-contract-v0/run-02-replay/CHECKS.json",
+      "bytes": 3415,
+      "sha256": "0d8e3d87da91a139490291cef6da9bc927af1df4548fbfe569d422302d6f9bc2",
+      "original_source_sha256": "0d8e3d87da91a139490291cef6da9bc927af1df4548fbfe569d422302d6f9bc2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiving-action-v01/PROTOCOL.md",
+      "bytes": 4023,
+      "sha256": "82a1c40efa938ce222e737d74966509d553f124ff9f69e47df8406c042a20c89",
+      "original_source_sha256": "82a1c40efa938ce222e737d74966509d553f124ff9f69e47df8406c042a20c89",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiving-action-v01/README.md",
+      "bytes": 2951,
+      "sha256": "5c3f9d8e454e01b5365405f7240819d3598b0b647472f5efcf2b39c2a2c8d86a",
+      "original_source_sha256": "5c3f9d8e454e01b5365405f7240819d3598b0b647472f5efcf2b39c2a2c8d86a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiving-action-v01/replay/RESULT.json",
+      "bytes": 1108452,
+      "sha256": "8c0b7097cb9eeccda36edb9e20b21cda2494f25ee0a1bc01dbebbec20652bd09",
+      "original_source_sha256": "8c0b7097cb9eeccda36edb9e20b21cda2494f25ee0a1bc01dbebbec20652bd09",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiving-action-v01/run/RESULT.json",
+      "bytes": 1108452,
+      "sha256": "8c0b7097cb9eeccda36edb9e20b21cda2494f25ee0a1bc01dbebbec20652bd09",
+      "original_source_sha256": "8c0b7097cb9eeccda36edb9e20b21cda2494f25ee0a1bc01dbebbec20652bd09",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/receiving-action-v01/run.py",
+      "bytes": 6463,
+      "sha256": "db733b58241f56e5a2856485b82fb4b7b56c6e8dd60c6db10140270c929b2c76",
+      "original_source_sha256": "db733b58241f56e5a2856485b82fb4b7b56c6e8dd60c6db10140270c929b2c76",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/ANALYSIS-PLAN.json",
+      "bytes": 5096,
+      "sha256": "2ce14af372244612302cd4c420e95b9e43347be5a056dcf7622efc56e596a324",
+      "original_source_sha256": "2ce14af372244612302cd4c420e95b9e43347be5a056dcf7622efc56e596a324",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/checks-01/CHECKS.json",
+      "bytes": 882,
+      "sha256": "e43132dc0924bcec8ebb4d1f715fb8d02f1fa9ff9f4bc930e5d1b0567bcac204",
+      "original_source_sha256": "e43132dc0924bcec8ebb4d1f715fb8d02f1fa9ff9f4bc930e5d1b0567bcac204",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/checks-01/RESULTS.json",
+      "bytes": 56300,
+      "sha256": "4752c45e134f7cd8da21a514429fd30dfdf374efeaa283f89ad7810343b18e55",
+      "original_source_sha256": "4752c45e134f7cd8da21a514429fd30dfdf374efeaa283f89ad7810343b18e55",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/figures-01/VISUAL-READBACK.md",
+      "bytes": 573,
+      "sha256": "20de52653c98f14a45855fc4c36a7e856ed26d6a5dbe4c9f807d0164793cc4e2",
+      "original_source_sha256": "20de52653c98f14a45855fc4c36a7e856ed26d6a5dbe4c9f807d0164793cc4e2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/figures-02/PUBLISHED-SPECTRAL-CURVES.png",
+      "bytes": 235939,
+      "sha256": "ef6c9dff05c52b06dd9501b654671c47e4144a6b5446d82d8aeb76293865420e",
+      "original_source_sha256": "ef6c9dff05c52b06dd9501b654671c47e4144a6b5446d82d8aeb76293865420e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/figures-02/SPECTRAL-CLOSED-LOOP-RESULTS.png",
+      "bytes": 139979,
+      "sha256": "d65e5311722acdec4389a7451571d37760552bd9a03c333a2177eee4d6fffda4",
+      "original_source_sha256": "d65e5311722acdec4389a7451571d37760552bd9a03c333a2177eee4d6fffda4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/figures-02/VISUAL-READBACK.md",
+      "bytes": 873,
+      "sha256": "73f06d5166fb84e0cff4b2dd298f43572d1f0af313d2052a664d1e9fb996e71b",
+      "original_source_sha256": "73f06d5166fb84e0cff4b2dd298f43572d1f0af313d2052a664d1e9fb996e71b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/model-01/MODEL.json",
+      "bytes": 2772,
+      "sha256": "ae90a19b4d5a86d1e544bd30069a29da14bbcad38aa3754f33c959a62963e8da",
+      "original_source_sha256": "ae90a19b4d5a86d1e544bd30069a29da14bbcad38aa3754f33c959a62963e8da",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/README.md",
+      "bytes": 6763,
+      "sha256": "f3c5e5069bcb31069284520f62e10845780061058d5b3b28246659ac0748a60c",
+      "original_source_sha256": "f3c5e5069bcb31069284520f62e10845780061058d5b3b28246659ac0748a60c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/run-01/spectral-coordinate/EPISODES.json",
+      "bytes": 2848827,
+      "sha256": "b1479f7a1aeaa6627f6770d0eef7b05470e273b567dc738b6e004ed0965dd111",
+      "original_source_sha256": "b1479f7a1aeaa6627f6770d0eef7b05470e273b567dc738b6e004ed0965dd111",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/run-01/spectral-no-coupling/EPISODES.json",
+      "bytes": 2840233,
+      "sha256": "f10342a3c884734b3a65331c077a32b4e4c58cc09243a736ccca5b00931a416a",
+      "original_source_sha256": "f10342a3c884734b3a65331c077a32b4e4c58cc09243a736ccca5b00931a416a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/run-01/spectral-phase/EPISODES.json",
+      "bytes": 2849309,
+      "sha256": "c307d6dd078cb2f43f4c51556a3251157ccd7083b9057c865c2cb926cea44bee",
+      "original_source_sha256": "c307d6dd078cb2f43f4c51556a3251157ccd7083b9057c865c2cb926cea44bee",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/run-01/spectral-reference-adaptive/EPISODES.json",
+      "bytes": 806573,
+      "sha256": "8673ef946dbe0c5f5ea52e8a704dc6d21be6c6e0d9dfcbf2212d76f58540d835",
+      "original_source_sha256": "8673ef946dbe0c5f5ea52e8a704dc6d21be6c6e0d9dfcbf2212d76f58540d835",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/run-01/spectral-reference-full/EPISODES.json",
+      "bytes": 828515,
+      "sha256": "c1817ffdcc42a9d0bf44d313fdb708c4571ef444d7b0b587cc5612b55e5837a0",
+      "original_source_sha256": "c1817ffdcc42a9d0bf44d313fdb708c4571ef444d7b0b587cc5612b55e5837a0",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/spectral-receiver-bridge-v0/source-extraction-01/CURVES.json",
+      "bytes": 88909,
+      "sha256": "eeb8863efa46c027166aaa52a5370d042ae6a53c455d32723ca0382facad2984",
+      "original_source_sha256": "eeb8863efa46c027166aaa52a5370d042ae6a53c455d32723ca0382facad2984",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/visual-memory-route-v0/figures-02/selective-receiving-and-return.png",
+      "bytes": 108881,
+      "sha256": "2674fe840ba0854ba5afd0caa57a1f1d6acc9818f43d61583d31c50fe448d342",
+      "original_source_sha256": "2674fe840ba0854ba5afd0caa57a1f1d6acc9818f43d61583d31c50fe448d342",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/visual-memory-route-v0/README.md",
+      "bytes": 4851,
+      "sha256": "b93b5d3a0d94539a630ce5157b27919488c4fe9ef7e238d379747ff7f40657d9",
+      "original_source_sha256": "390b7eeed72b074cb97993161bf19ae3f2fdad1982a5506211ea20cfe843c84a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/visual-memory-witness-v1/PROTOCOL.md",
+      "bytes": 5127,
+      "sha256": "ef9b224dbc8023fcd6c6d36ad533070e503ce6ee611afdd053522b8037aba337",
+      "original_source_sha256": "ef9b224dbc8023fcd6c6d36ad533070e503ce6ee611afdd053522b8037aba337",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/visual-memory-witness-v1/README.md",
+      "bytes": 5823,
+      "sha256": "d0dc86c693ea4912a6eccba9b985778c859764abb243ab2c51912a4ed2eda407",
+      "original_source_sha256": "e8c4007fe731db0d8492b55fa9ff6d9bde87b6066e6686330bb933db7c8467ea",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/application/visual-memory-witness-v1/results-v1/RESULTS.json",
+      "bytes": 32866,
+      "sha256": "c2a81e4328181601a4ab0869264afc0c81eb07b848bec74d9102961ee6e0ca3b",
+      "original_source_sha256": "c2a81e4328181601a4ab0869264afc0c81eb07b848bec74d9102961ee6e0ca3b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/drafts/PUBLIC-PREPRINT-v1.0.md",
+      "bytes": 176483,
+      "sha256": "678e76ab143b2f29476d7c8f1658069288bcf03d892f4ba87e41c4b48b711a70",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/APPLICATION-INTERFACE-MAP.md",
+      "bytes": 4702,
+      "sha256": "f035af86e907e45c9831861ea55014943a256322ad76fd153ced97ada9c13a79",
+      "original_source_sha256": "f035af86e907e45c9831861ea55014943a256322ad76fd153ced97ada9c13a79",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/ASSUMPTION-AND-CHALLENGE-READBACK.md",
+      "bytes": 4834,
+      "sha256": "1d1ff1967c8ad6fc0354db9ed3edc787408eda3a7ed9aeab5a6fba32f4aeaf9f",
+      "original_source_sha256": "1d1ff1967c8ad6fc0354db9ed3edc787408eda3a7ed9aeab5a6fba32f4aeaf9f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/AUDIT.json",
+      "bytes": 3000,
+      "sha256": "aefa3d66cb38d46a61c566c81ee96bb586a699f94edb1638c475b1aacfaad242",
+      "original_source_sha256": "aefa3d66cb38d46a61c566c81ee96bb586a699f94edb1638c475b1aacfaad242",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-01/CHECK.json",
+      "bytes": 2074,
+      "sha256": "896d054f4e7921ec0bb0acdeeb5359ebf8574a650cd6bf72d43a1c6b5bd032b9",
+      "original_source_sha256": "896d054f4e7921ec0bb0acdeeb5359ebf8574a650cd6bf72d43a1c6b5bd032b9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-02/CHECK.json",
+      "bytes": 2074,
+      "sha256": "dd6d10658713a89de0d036223a4658b92cc22112c557e3267e07d780be5ac331",
+      "original_source_sha256": "dd6d10658713a89de0d036223a4658b92cc22112c557e3267e07d780be5ac331",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-03/CHECK.json",
+      "bytes": 2157,
+      "sha256": "ff12db6cee3904913559031ed1f7aa8d0cb729be42879e16d1bb0745b67d96f9",
+      "original_source_sha256": "ff12db6cee3904913559031ed1f7aa8d0cb729be42879e16d1bb0745b67d96f9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-03/stdout.txt",
+      "bytes": 997,
+      "sha256": "883139448f984a47a1b9abafc73f5db58387fef0f8a4ae9e3bd73b2c6e7e052d",
+      "original_source_sha256": "883139448f984a47a1b9abafc73f5db58387fef0f8a4ae9e3bd73b2c6e7e052d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-04/CHECK.json",
+      "bytes": 2146,
+      "sha256": "b4dc214d7cd19bd3f910b769375f49a9aa07a49e56907c1a39285c183f862c38",
+      "original_source_sha256": "b4dc214d7cd19bd3f910b769375f49a9aa07a49e56907c1a39285c183f862c38",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/check-05/CHECK.json",
+      "bytes": 2145,
+      "sha256": "649f86602d2b901150c750bb78c261d3da47ff530b9e9d22344f03db67057bb7",
+      "original_source_sha256": "649f86602d2b901150c750bb78c261d3da47ff530b9e9d22344f03db67057bb7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/claim-signature.json",
+      "bytes": 3650,
+      "sha256": "73e4d16e5c2f5368c83015ea2b2541444cef46b043e6572df4d8e20779b39384",
+      "original_source_sha256": "73e4d16e5c2f5368c83015ea2b2541444cef46b043e6572df4d8e20779b39384",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/claim-signature.md",
+      "bytes": 1539,
+      "sha256": "2f515e00c178daea4bae6db6a2d6ba0d27d02e0e336bef0f47ac60f9b6063c86",
+      "original_source_sha256": "2f515e00c178daea4bae6db6a2d6ba0d27d02e0e336bef0f47ac60f9b6063c86",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/interface-audit-01/EXECUTION.json",
+      "bytes": 34991,
+      "sha256": "dc0e9c98f90140a7bbd15efdbf9b4da114de035d88ef1fc8d560e761facc0897",
+      "original_source_sha256": "dc0e9c98f90140a7bbd15efdbf9b4da114de035d88ef1fc8d560e761facc0897",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/interface-audit-01/FULL-STATE-REPLAYS.json",
+      "bytes": 186955,
+      "sha256": "0b305049e639423eb37af9f2387f77bcd5eceb05ed54576ecbb4b93f97820699",
+      "original_source_sha256": "0b305049e639423eb37af9f2387f77bcd5eceb05ed54576ecbb4b93f97820699",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/interface-audit-01/RESET-CONTROLS.json",
+      "bytes": 21582,
+      "sha256": "5d6e06a7b922d001641c4f19488ac89efb0704b4277977009eaac3ec59b2e3ee",
+      "original_source_sha256": "5d6e06a7b922d001641c4f19488ac89efb0704b4277977009eaac3ec59b2e3ee",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/MetricBound.lean",
+      "bytes": 818,
+      "sha256": "cd8280af77a5ae87399de41823004d6d476c38454159f6d9777117f13393763e",
+      "original_source_sha256": "cd8280af77a5ae87399de41823004d6d476c38454159f6d9777117f13393763e",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/ObservationMemory.lean",
+      "bytes": 5174,
+      "sha256": "8f90f11ae742da2b995b991a611b7994dadd6de17aa287128697f4fcb440fb90",
+      "original_source_sha256": "8f90f11ae742da2b995b991a611b7994dadd6de17aa287128697f4fcb440fb90",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/README.md",
+      "bytes": 5081,
+      "sha256": "dbd8216ca7068078750b152b0b1dcae6983445e2921ace60646b9911dc88cc1a",
+      "original_source_sha256": "dbd8216ca7068078750b152b0b1dcae6983445e2921ace60646b9911dc88cc1a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/formal/observation-memory-v01/SIGNATURE-VALIDATION.json",
+      "bytes": 482,
+      "sha256": "e4dc466b6bced25eb0f9f7878c286ecc7e8d6f2509d17c3847a7f8b9ab274cb1",
+      "original_source_sha256": "e4dc466b6bced25eb0f9f7878c286ecc7e8d6f2509d17c3847a7f8b9ab274cb1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-FOUNDATIONS.md",
+      "bytes": 6272,
+      "sha256": "36ff0611d5ee82383bf3c48ec16d56f1bd1954b699bda866b4861102703bb4b0",
+      "original_source_sha256": "871610743ea04bf44932dcaaebaee9ddf1fac9426acba8fdd863cf4784865449",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-02.md",
+      "bytes": 3132,
+      "sha256": "573684b67d3468278fc737423a785f1c1234a7a31b2f941c885ae11e3927fb57",
+      "original_source_sha256": "573684b67d3468278fc737423a785f1c1234a7a31b2f941c885ae11e3927fb57",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-03.md",
+      "bytes": 4044,
+      "sha256": "bd6e78c6deccb0589b6974e50c26f43cffce19eb6f08394c257f2e77f5fe5b2a",
+      "original_source_sha256": "bd6e78c6deccb0589b6974e50c26f43cffce19eb6f08394c257f2e77f5fe5b2a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-04.md",
+      "bytes": 5457,
+      "sha256": "b1ce14232f07efa1c6351da77920499b5b7d8b022d4dc6cc0e771160f9963836",
+      "original_source_sha256": "b1ce14232f07efa1c6351da77920499b5b7d8b022d4dc6cc0e771160f9963836",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-05.md",
+      "bytes": 3669,
+      "sha256": "8584f297a7723043cb34b14e10ec22bb79f778bba4b98861c481da7186d1e4cd",
+      "original_source_sha256": "8584f297a7723043cb34b14e10ec22bb79f778bba4b98861c481da7186d1e4cd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-06.md",
+      "bytes": 6940,
+      "sha256": "0ccc3af1c1e31da77a61aa007e6799a93baaf0d702f11c48fc56c5dfbc7d0e4a",
+      "original_source_sha256": "0ccc3af1c1e31da77a61aa007e6799a93baaf0d702f11c48fc56c5dfbc7d0e4a",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-07.md",
+      "bytes": 4618,
+      "sha256": "5eec02b1a2f789ecd666a4c38e92d333013539ea37293d8427b0708e0ed133c2",
+      "original_source_sha256": "5eec02b1a2f789ecd666a4c38e92d333013539ea37293d8427b0708e0ed133c2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-08.md",
+      "bytes": 4078,
+      "sha256": "f4ece9d4aa7d284c8becd8595dedf8a1f4a430ccc868bc9b538d91e8f7896c92",
+      "original_source_sha256": "f4ece9d4aa7d284c8becd8595dedf8a1f4a430ccc868bc9b538d91e8f7896c92",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-09.md",
+      "bytes": 7000,
+      "sha256": "f857b086bdb6b46e893591c44c652657b00cc1cd49aae962444030dd07856817",
+      "original_source_sha256": "f857b086bdb6b46e893591c44c652657b00cc1cd49aae962444030dd07856817",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-10.md",
+      "bytes": 6862,
+      "sha256": "a7ed615abd10662a15fb5b8c3abbd856d85031d6d5ebe89457c77a93ad3bd979",
+      "original_source_sha256": "a7ed615abd10662a15fb5b8c3abbd856d85031d6d5ebe89457c77a93ad3bd979",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-11.md",
+      "bytes": 3508,
+      "sha256": "fdc0565374f5e21a080cf96c81c896d8b54f8cde05c3625c884aa9609fe770b9",
+      "original_source_sha256": "fdc0565374f5e21a080cf96c81c896d8b54f8cde05c3625c884aa9609fe770b9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/MATHEMATICAL-SUPPLEMENT-12.md",
+      "bytes": 7004,
+      "sha256": "409845830e0018bc724b536ede7eeea4e9b69272f82774ed1938c968b8ef6921",
+      "original_source_sha256": "d6cd8c89a08d13f5fd58cc674ba863940e32504aa7336a955800d06768c93ec4",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/APL-LOCAL-INHIBITION-AND-RECEIVING-CONTRACT-20260920.md",
+      "bytes": 9021,
+      "sha256": "8492f723c17098add213fd4667ff0071cadcd98266e24f681581a8f1ec70306d",
+      "original_source_sha256": "2773339ec8e9b913b945508e01427348fe7f42922bc7daba31b44ad78bd6bc33",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/BOOK-EDITION-AND-MECHANISM-READBACK-20260919.md",
+      "bytes": 8762,
+      "sha256": "b60bca9503b0a1592e30906c7b28a5aa5f0e16aa619b5374efb503cdda5e049a",
+      "original_source_sha256": "de61c01756193088c330e26e8d3550d78ecaf021b1185a8783f40c81dddaf4be",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/DM9-RECEIVING-AND-MEASUREMENT-CONTRACT-20260919.md",
+      "bytes": 6988,
+      "sha256": "4462beedc48e0b4c1289d927add53f852a73f9ebce16f984b8f0a71a929656d3",
+      "original_source_sha256": "b8e49de6f9f2753bbfe2cb3df5b604d1e21950a32927ad581f975c27c089b55b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/EARLY-SAN-SOURCE-BRIDGE-20260919.md",
+      "bytes": 4756,
+      "sha256": "c0b06a54013e5824ef83118ecde37522b926c39cb51df5ef462af5caad55d51f",
+      "original_source_sha256": "e177551d10102c64a4fd69e83eee2656b796c812301cc025e83dd9e795634b44",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/FLIGHT-TIMING-SOURCE-AND-REPRODUCTION-20260919.md",
+      "bytes": 10067,
+      "sha256": "05834e9f8030c80af8a76dac4cef3cafa82f239fc878ec75f27f6db66e47365f",
+      "original_source_sha256": "eba101ef8ec74e98bb2ba8bd5b8e7fe562b3c56f986599f8f0093726ed552468",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HEATH-PRIMARY-RECOVERY-AND-TEMPORAL-BOUNDARY-20260919.md",
+      "bytes": 5067,
+      "sha256": "21c867b3c5a7508ed5d1d7bbd8287b6c34b99e0c6659e5c391a74ab75c974a8a",
+      "original_source_sha256": "b8518e6e20a5d933510890dbded9dce5cf1861802648d3b95e4169b70b164260",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-ANATOMY-AND-MODEL-BOUNDARY-20260919.md",
+      "bytes": 10421,
+      "sha256": "caf21463a90b4f9be23d71a5594d5cad2c7fec58fbaf3a5eb9c2b6850985a0cd",
+      "original_source_sha256": "a1f963cca0c1a6510ccbebbd996f8729c49809a778950344d660510a2a0fca2d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-ARCHIVE-ACCESS-AND-IDENTITY-20260919.md",
+      "bytes": 3965,
+      "sha256": "9c15782eb4ee7533e2013510dfe73c9a0c120352bc37bf0b58511433b59ebe8d",
+      "original_source_sha256": "81d3a2c0bef0c859b66f31016426a9cec541433c916f267802e1717081ffdd90",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-ARCHIVED-TRANSFORM-AND-GROUPING-AUDIT-20260919.md",
+      "bytes": 7516,
+      "sha256": "16d38744aed9284021040953b0f4b5bd0ec3afb894ec0e0f66590538a75607e4",
+      "original_source_sha256": "7b8f668ce1f44ba0c1158ca858cbd4c52b917e6461fa0682654a0ff239609e1d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-COMPONENT-SOURCE-AUDIT-20260919.md",
+      "bytes": 8278,
+      "sha256": "061a23f0fc0c31e972eaaa61fc3dc31a0b299abc6ab36a9375bd7457900135b5",
+      "original_source_sha256": "31235827d1271bef00fa74ef340df7ce0f5aadde726d8fa06ad01da3ad95e788",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-EXPORT-VERSIONS-AND-OBSERVATION-ENVELOPES-20260919.md",
+      "bytes": 7133,
+      "sha256": "849fef5b75773ead682bb005c9b9620febff5ecdf2b4a97a3e275835d086f336",
+      "original_source_sha256": "8fe72ac3e82941c7ddfcc1ca8720278da9c8796d3b7c29db0c3a89ff5e889b90",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-INPUT-RECONSTRUCTION-AND-SCORE-CONTRACT-20260919.md",
+      "bytes": 10667,
+      "sha256": "712e8adac5b7881b56e15ea0758a0434cb9850ce80a486508cce6983451a6a02",
+      "original_source_sha256": "a5afb7dd45e6bc2a4bff339187c7ddcd022ed0b9dfa63ed7c79a98429ac7bb2c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-PUBLISHER-SUPPLEMENT-AND-IDENTITY-20260919.md",
+      "bytes": 7896,
+      "sha256": "497747e09a8ebeb17286a3101413c53b8905b5cba9e250ad0a6fa5f88acdc2ee",
+      "original_source_sha256": "8b05ef3991a94f9050fa016af28105d21b3a9682301304e725b0b73cfe8f88f7",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/HUE-RECORDING-PROCESSING-AND-OBSERVATION-CONTRACT-20260919.md",
+      "bytes": 8713,
+      "sha256": "421abde4ce43e2249372d583709803191b296a298f4a605d60392b7608f2c525",
+      "original_source_sha256": "4c97bc2f9a29b1be0bb02719b377cafbc2fce3b3ee09ffa7ae6f0a3c08fbb01c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-recording-readback-01/metadata-01/TABLE-METADATA.json",
+      "bytes": 38724,
+      "sha256": "3e9df21877bc88bb5af0fd378ed3ec25c2b67ba97b04f074b2af57b2329e9cde",
+      "original_source_sha256": "3e9df21877bc88bb5af0fd378ed3ec25c2b67ba97b04f074b2af57b2329e9cde",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/ANALYSIS-PLAN.json",
+      "bytes": 2808,
+      "sha256": "98f742eb836d97622dceeaee6cf4abd7d68cfe09c74e76a92bca2b2993ad3f01",
+      "original_source_sha256": "98f742eb836d97622dceeaee6cf4abd7d68cfe09c74e76a92bca2b2993ad3f01",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/checks-01/CHECKS.json",
+      "bytes": 173611,
+      "sha256": "e81e77308e5caa8190f22dcb3a68b1cebe2b80f075621cc10a8ab76eb7454ff8",
+      "original_source_sha256": "e81e77308e5caa8190f22dcb3a68b1cebe2b80f075621cc10a8ab76eb7454ff8",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/checks-01/PROJECTION-AND-DIFFERENCES.json",
+      "bytes": 19903,
+      "sha256": "589c657d74bad897c65a4fec21d41c2c1b2db2f3681f4ffad9e33ac24f134af2",
+      "original_source_sha256": "589c657d74bad897c65a4fec21d41c2c1b2db2f3681f4ffad9e33ac24f134af2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/results-01/PUBLISHER-TABLES.json",
+      "bytes": 158434,
+      "sha256": "c9a6e4199f8a70e992c4d8a0eeafab47291fad079d3d848db7997748254e4995",
+      "original_source_sha256": "c9a6e4199f8a70e992c4d8a0eeafab47291fad079d3d848db7997748254e4995",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/results-01/RECONCILIATION.json",
+      "bytes": 23858,
+      "sha256": "0a94643cb0e72b949ae1103cbf2ac8024340b9bce9df67863d77d04234ab5d93",
+      "original_source_sha256": "0a94643cb0e72b949ae1103cbf2ac8024340b9bce9df67863d77d04234ab5d93",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/hue-supplement-readback-01/VISUAL-READBACK.md",
+      "bytes": 2934,
+      "sha256": "0c1d8b52721d2bf9b483bfd411789fcd6529bbff625800536ef227a0089ccee5",
+      "original_source_sha256": "0c1d8b52721d2bf9b483bfd411789fcd6529bbff625800536ef227a0089ccee5",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/MEMORY-COMPONENT-SOURCE-AUDIT-20260919.md",
+      "bytes": 9790,
+      "sha256": "267f5f010ec13ae80d3eaddff13185c8820c5c87da82f811da7499f11ee4f577",
+      "original_source_sha256": "34eeeb272278f5d8bf6eb0da15a21514fb9011a4ad305fea440960f299c14576",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/MULTIVIEW-QUERY-SOURCE-AND-COMPARISON-BOUNDARY-20260919.md",
+      "bytes": 2712,
+      "sha256": "195fd538663e1c45252b66c0a8c58fdea10c8c1baedb3c2805fdf57bc9158b01",
+      "original_source_sha256": "195fd538663e1c45252b66c0a8c58fdea10c8c1baedb3c2805fdf57bc9158b01",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/NATIVE-MEMORY-REFERENCE-AUDIT-20260919.md",
+      "bytes": 4051,
+      "sha256": "058c6607e86c1978f0a0a778c75b98a064f20d16c936d13981726ab0caded61b",
+      "original_source_sha256": "058c6607e86c1978f0a0a778c75b98a064f20d16c936d13981726ab0caded61b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/PHOTORECEPTOR-SOURCE-AND-TRANSFER-BOUNDARY-20260919.md",
+      "bytes": 6781,
+      "sha256": "499dce32ba41655c393e683f019a7c3679ae482ff690859918b36af69e8d3de7",
+      "original_source_sha256": "3addba9ef93985d2bc4f6d3e191ff805b7ab0ea654aae78c9614d7b57c633f39",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/RECEIVER-RELATIVE-INVARIANCE-AND-SOURCE-CONTEXT-20260919.md",
+      "bytes": 4401,
+      "sha256": "7ad5566f60545a74d19cb63833519011be9b4963dd20b607886c763397547fa6",
+      "original_source_sha256": "283710b6f6ef4f2a10c9c1923f49b180cc1a4b4c67ddca7dac26e16ce435a46d",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/SELECTIVE-RECEIVING-INTERVENTION-CONTRACT-ASTRA-20260923.md",
+      "bytes": 7772,
+      "sha256": "4ff2196219130c57ad3bff8f692171e62fc66361c63c2f1a69b4ffc6b8fcd661",
+      "original_source_sha256": "4ff2196219130c57ad3bff8f692171e62fc66361c63c2f1a69b4ffc6b8fcd661",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/research/VISUAL-MEMORY-RECEIVING-AND-VERSION-BOUNDARY-20260919.md",
+      "bytes": 8656,
+      "sha256": "cab23795933c603014bd1c5c4fddd6c0a125469c0b3c92283e90c371ad63687f",
+      "original_source_sha256": "cfcbe60791c14bb59d0c8e9f723cbc2a410fefccd0de3d435f674f9e6cbd5212",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/reviews/FIGURE-4B-4D-SUPPLEMENT-DEPENDENCY-AUDIT-20260922.md",
+      "bytes": 3246,
+      "sha256": "98cca761acfa2ee590a7b082a97ff5c4a68df94c247193b86f792fea614b3f45",
+      "original_source_sha256": "b4f075ebfb4a689086f78c4d8aeb29f3349c6abed22561729a3f4217c61865b6",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/bridge_hue_response_exports.py",
+      "bytes": 6475,
+      "sha256": "d4e8491fb18fced5ca340cf8858dcda5bafb28d805f8f0792f463d33bed42be5",
+      "original_source_sha256": "d4e8491fb18fced5ca340cf8858dcda5bafb28d805f8f0792f463d33bed42be5",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_flight_native_reference.py",
+      "bytes": 4004,
+      "sha256": "6b84d8ad3631a6fe7fc06751926d4a5c8a153d5589e412f2ba5de4c759e7c162",
+      "original_source_sha256": "6b84d8ad3631a6fe7fc06751926d4a5c8a153d5589e412f2ba5de4c759e7c162",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_flight_timing_cases.py",
+      "bytes": 11192,
+      "sha256": "7212cda3b1337af019cd902407212bfb9beb6549ea50eb9d0b714ee009c6bfc9",
+      "original_source_sha256": "7212cda3b1337af019cd902407212bfb9beb6549ea50eb9d0b714ee009c6bfc9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_hue_input_contract.py",
+      "bytes": 11712,
+      "sha256": "d1b267744bf9d30f7e7f0dbbf3416d1f1e17aca5d6c54e1935a1ffa777288c03",
+      "original_source_sha256": "d1b267744bf9d30f7e7f0dbbf3416d1f1e17aca5d6c54e1935a1ffa777288c03",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_hue_response_bridge.py",
+      "bytes": 7749,
+      "sha256": "79f7bd7ebf44b7851d5ebd7f2675acabb7a4b10eb118501905d6376c6ede4d7f",
+      "original_source_sha256": "79f7bd7ebf44b7851d5ebd7f2675acabb7a4b10eb118501905d6376c6ede4d7f",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_hue_score_contract.py",
+      "bytes": 6802,
+      "sha256": "18b496cf0af07813c0246a9fe8dbc33844972513a79f665b0e4266c5ba69839b",
+      "original_source_sha256": "18b496cf0af07813c0246a9fe8dbc33844972513a79f665b0e4266c5ba69839b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_memory_component.py",
+      "bytes": 8939,
+      "sha256": "6b6924a50e99ac0dd56f5934341fcc4bc2b5438e0d765ab0a53cdada7bce3d9c",
+      "original_source_sha256": "6b6924a50e99ac0dd56f5934341fcc4bc2b5438e0d765ab0a53cdada7bce3d9c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_multiview_query.py",
+      "bytes": 15812,
+      "sha256": "01ea0498539eaf6fd12f233b100ee32f680b7ac320123fb61f04693b0e011705",
+      "original_source_sha256": "01ea0498539eaf6fd12f233b100ee32f680b7ac320123fb61f04693b0e011705",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_observable_receiver.py",
+      "bytes": 25366,
+      "sha256": "e77f6cc72f38f7311ae835fad479a7f71e7f58aa2bf62c5f6ee05b637b9d82f9",
+      "original_source_sha256": "e77f6cc72f38f7311ae835fad479a7f71e7f58aa2bf62c5f6ee05b637b9d82f9",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_phase_receiver_bridge.py",
+      "bytes": 20009,
+      "sha256": "725366299de14086c963057909af08d89295e6c9a6b0e16bfb9422ceedd2a5c5",
+      "original_source_sha256": "725366299de14086c963057909af08d89295e6c9a6b0e16bfb9422ceedd2a5c5",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/check_spectral_receiver.py",
+      "bytes": 15221,
+      "sha256": "c661864412414c455c65efee7bde244bf024acb2d7da4e6cabf4d9891a726871",
+      "original_source_sha256": "c661864412414c455c65efee7bde244bf024acb2d7da4e6cabf4d9891a726871",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/embodied_reference.py",
+      "bytes": 13382,
+      "sha256": "6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+      "original_source_sha256": "6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/extract_spectral_source.py",
+      "bytes": 2738,
+      "sha256": "0c9f2b3d063798169efdfa656124cf861b53b153270732e8fdc8983fefebca15",
+      "original_source_sha256": "0c9f2b3d063798169efdfa656124cf861b53b153270732e8fdc8983fefebca15",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/figure_observable_receiver_v2.py",
+      "bytes": 7050,
+      "sha256": "e956fc557891d495c094e64e1f16ae411c97bef799ecbdbfd570e1d2399f6295",
+      "original_source_sha256": "e956fc557891d495c094e64e1f16ae411c97bef799ecbdbfd570e1d2399f6295",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/flight_timing_model.py",
+      "bytes": 7410,
+      "sha256": "1657583d1c327cc11e54b55a1c1996ae7e7ed46921142c6ef45afa1fd2ea2cc3",
+      "original_source_sha256": "1657583d1c327cc11e54b55a1c1996ae7e7ed46921142c6ef45afa1fd2ea2cc3",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/hue_grouping_math.py",
+      "bytes": 5705,
+      "sha256": "f90e443cde8902eafc7a782184426ab141f1650cacd8ba77f81580466173ed62",
+      "original_source_sha256": "f90e443cde8902eafc7a782184426ab141f1650cacd8ba77f81580466173ed62",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/inspect_hue_remote_archive.py",
+      "bytes": 7558,
+      "sha256": "cb6dc03b76f7191bec4b928dacf0693b79daa56d90b8693b9fe70a5311c1251c",
+      "original_source_sha256": "cb6dc03b76f7191bec4b928dacf0693b79daa56d90b8693b9fe70a5311c1251c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/multiview_query.py",
+      "bytes": 17897,
+      "sha256": "c31842ccb9711d0999337431eef245416038d1642d0d6e28716bd9d9a41ffa21",
+      "original_source_sha256": "c31842ccb9711d0999337431eef245416038d1642d0d6e28716bd9d9a41ffa21",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/observable_receiver.py",
+      "bytes": 14543,
+      "sha256": "d70b57b11e4d1b20f151a66d2959b0b1bceb575584299a0f0d7b0c18c6cfa717",
+      "original_source_sha256": "d70b57b11e4d1b20f151a66d2959b0b1bceb575584299a0f0d7b0c18c6cfa717",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/phase_receiver_bridge.py",
+      "bytes": 14605,
+      "sha256": "3d29269b064e35692de0ac8e2df479ef4d085ba37cb00f757df3a11e69832390",
+      "original_source_sha256": "3d29269b064e35692de0ac8e2df479ef4d085ba37cb00f757df3a11e69832390",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/plot_flight_timing_component.py",
+      "bytes": 5491,
+      "sha256": "2c272fd5843847b839989ab35c32f75e27331125e8710ea523a51bb92c5c5ff0",
+      "original_source_sha256": "2c272fd5843847b839989ab35c32f75e27331125e8710ea523a51bb92c5c5ff0",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/plot_memory_component.py",
+      "bytes": 5687,
+      "sha256": "99f9b3972598f9f4ef4cf0a3c585df146363aaaba284bfbf06390c27deff7c03",
+      "original_source_sha256": "99f9b3972598f9f4ef4cf0a3c585df146363aaaba284bfbf06390c27deff7c03",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/read_hue_transform_cache.py",
+      "bytes": 7547,
+      "sha256": "55a653369c80dfadfe4830c4af39fc6d4ac0f660213c23839b1cb991779af831",
+      "original_source_sha256": "55a653369c80dfadfe4830c4af39fc6d4ac0f660213c23839b1cb991779af831",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/reconstruct_hue_input_contract.py",
+      "bytes": 13228,
+      "sha256": "48105717238029c205a5e6a1d61f0aae8ee915687e96a2248987f7c35d6a6496",
+      "original_source_sha256": "48105717238029c205a5e6a1d61f0aae8ee915687e96a2248987f7c35d6a6496",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_flight_timing_case.py",
+      "bytes": 5904,
+      "sha256": "02c3616931e99eec464c00be9f0714f2381e4e39b0a3bddc97824c90143472a1",
+      "original_source_sha256": "02c3616931e99eec464c00be9f0714f2381e4e39b0a3bddc97824c90143472a1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_memory_component.py",
+      "bytes": 13759,
+      "sha256": "a43e55894e9a8f46fc62c2885448f0d68f538b3b6fd8157ad87b31ad3dda490b",
+      "original_source_sha256": "a43e55894e9a8f46fc62c2885448f0d68f538b3b6fd8157ad87b31ad3dda490b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_multiview_query.py",
+      "bytes": 4211,
+      "sha256": "245fe0d52bd026860bd43462d1ac8f799cbc151dc56b44c6ba7f9e6b0fcc9b45",
+      "original_source_sha256": "245fe0d52bd026860bd43462d1ac8f799cbc151dc56b44c6ba7f9e6b0fcc9b45",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_observable_receiver.py",
+      "bytes": 5283,
+      "sha256": "071112bb94c2008a23340efa9298cf757fda608be1c68cc6003af5ae21da895c",
+      "original_source_sha256": "071112bb94c2008a23340efa9298cf757fda608be1c68cc6003af5ae21da895c",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_phase_receiver_case.py",
+      "bytes": 3744,
+      "sha256": "87e0d3924486dd5cc471003098063df02f8ca0bbd8fbf4785db6c17a3a5e043b",
+      "original_source_sha256": "87e0d3924486dd5cc471003098063df02f8ca0bbd8fbf4785db6c17a3a5e043b",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_receiver_intervention_witness.py",
+      "bytes": 6215,
+      "sha256": "39d43d39e337ce219c0399c6046cecb3f6b5cfbcae2dcd249276f9946744c9bc",
+      "original_source_sha256": "39d43d39e337ce219c0399c6046cecb3f6b5cfbcae2dcd249276f9946744c9bc",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_receiver_intervention_witness_v1.py",
+      "bytes": 6901,
+      "sha256": "a308f047f7092878f081ea46a84c63250e8d724e7e7b29a22aba9921dca7c8fe",
+      "original_source_sha256": "a308f047f7092878f081ea46a84c63250e8d724e7e7b29a22aba9921dca7c8fe",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/run_spectral_receiver_case.py",
+      "bytes": 2675,
+      "sha256": "ce200a87f05074594b97b49e0b5c65ac790fb99250405d3dd1c3d50ad66532d1",
+      "original_source_sha256": "ce200a87f05074594b97b49e0b5c65ac790fb99250405d3dd1c3d50ad66532d1",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/spectral_receiver_bridge.py",
+      "bytes": 6893,
+      "sha256": "c5d80224a70329fbdd5483be0e4302a5f4c70f7a85193ba6a62bb420644382fd",
+      "original_source_sha256": "c5d80224a70329fbdd5483be0e4302a5f4c70f7a85193ba6a62bb420644382fd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/tools/test_observable_interface.py",
+      "bytes": 8317,
+      "sha256": "fba35bba6a0a13f5ce7f3b6504d52798f42433c86b63dd85b563567420e50ea2",
+      "original_source_sha256": "fba35bba6a0a13f5ce7f3b6504d52798f42433c86b63dd85b563567420e50ea2",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "paper/validation/GENEALOGY-EXTENSION-04.json",
+      "bytes": 13023,
+      "sha256": "b0b7d92aa8cd9f068677a022a4c900cc92250775e0328a7a2fd3b7d27f80f2dd",
+      "original_source_sha256": "b0b7d92aa8cd9f068677a022a4c900cc92250775e0328a7a2fd3b7d27f80f2dd",
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "portable_check.py",
+      "bytes": 4945,
+      "sha256": "60ab5a5a2d53f0174081a9ec5687d9ef6d9b799a1a2cef5709f5e942f5db83dc",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "README.md",
+      "bytes": 1601,
+      "sha256": "12aa9206f813ddb8b6ba56d685752bcd1cb024fd288defe2e6fcfa015b00de50",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "RELEASE-CHECK.json",
+      "bytes": 882,
+      "sha256": "4d72275c772d0fff6785b23510893b55dfb24541d9834fc0d9f3dc978d486f13",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    },
+    {
+      "path": "REPRODUCE.md",
+      "bytes": 1794,
+      "sha256": "55fb3df0dea0825118fc46423f0065c6600ce4165db1d638cd915445af0e977d",
+      "original_source_sha256": null,
+      "note": "If source/public hashes differ, Markdown routing or public release wording was adapted. Frozen algorithm code is preserved."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Earlier sensory source recovered: observation and timing boundaries
+
+## Evidence actually read
+
+Heath et al., *Current Biology* (2020), [DOI 10.1016/j.cub.2019.11.075](https://doi.org/10.1016/j.cub.2019.11.075), is now available through two official NIH routes. The [BioC receipt](../../access/afbd3487e7c33b5e.md) identifies the 139,211-byte text at SHA-256 `7532da507cce1ffa3ab4ecad00feb4ae3806ba688c44b094bb9f6089f821ff1f`. Its zero-based passages 0–133 and 200–216 were read, with truncated returns reread; references 134–199 were not substantively audited. This covers main prose, methods, six main figure legends, endmatter and highlights—not visual inspection of the figures.
+
+BioC omits displayed formulas. The [196,882-byte JATS source](../../access/3bee9540e02344b2.md), SHA-256 `990bdcb1a78755f96334f18b96a4aff2aa7e0acddd96c647349a4d473222bc98`, preserves MathML. Formulas FD12–FD15 were separately read exactly. The other thirteen displayed equations were inventoried, not independently algebra-audited here. The permission notice permits text mining/fair use; it is not a CC BY redistribution license. Keep the author-manuscript copies private unless release rights are separately established.
+
+The earlier failed Europe PMC attempt remains unchanged. A first BioC attempt was refused by the local network boundary; a permitted request then produced a blank failure without preserving its response. The code's overly strict identifier check expected `PMC6981066`, whereas the subsequently preserved BioC response uses numeric ID `6981066`. The earlier lost response cannot be certified retrospectively. A versioned, response-preserving correction now checks numeric identity and title; JATS independently confirms the DOI.
+
+The named supplementary PDF returned 404 through the ordinary route and an HTML download challenge through the article-instance route. Both receipts are preserved. No challenge was solved, no supplement was counted as read, and Table S2 values were not guessed from the article prose. The failed PDF intake is not a statement that the supplement does not exist.
+
+## Primary-source constraints
+
+Heath's pR8 rescue restored opponency under its conditions. Its GCaMP6f measurements used 15–30-Hz imaging, wavelength-dominant backgrounds and five-minute adaptation; the modeling dataset instead used a flat background. The reported amplitude window was 0.42–0.50 seconds after onset, following fluorescence processing. Circuit fits used steady state and four-fold cross-validation. The authors explicitly excluded temporal-response modeling because of indicator kinetics. Raw data and modeling code were offered on request, not deposited as an open reproduction package. [Primary article](https://pmc.ncbi.nlm.nih.gov/articles/PMC6981066/)
+
+Schnaitmann's 2024 R8 result differs; its Twitch-2C preparation and sustained optogenetic suppression are not interchangeable with the earlier study's preparation and interventions. Neither result should be silently discarded. Their disagreement is not resolved by choosing our preferred model, and neither supplies measured time constants for the new controller. See the preserved [2024 audit](DM9-RECEIVING-AND-MEASUREMENT-CONTRACT-20260919.md).
+
+## Consequence for our implementation
+
+The exact earlier model writes a photoreceptor rate vector and pooled feedback state, then removes time derivatives for fitting. Its normalized-capture/log-input model is not our normalized ERG-shaped linear kernel. The latter keeps its own engineering identity. The paper's separate fitted gains also cannot be silently replaced by equal gains while claiming reproduction. Missing supplementary weights, fitted values, raw observations and temporal calibration remain null, not default numerical choices.
+
+Our existing M1 already proves why equilibrium information alone cannot identify a clock. Recovering this source strengthens the relevance of that proof; it does not create an additional theorem. M13 identifies a different boundary: the previous application learns to invert its receiver when prior latent state is directly accessible. Biological downstream access has not been demonstrated. The next application therefore separates the physical frontend from the decoder, permits current terminal outputs and decoder-owned history, and records a latent estimate rather than reading the physical latent state. Known proposed coefficients and initialization remain explicit assumptions. This improves the software boundary, not physiological calibration.
+
+An observer's success would show that this particular reconstruction need not read a private receiver variable directly. An error after unknown initialization or a changed time constant would delimit that statement. Neither outcome can identify a unique SAN mechanism or substitute for broader multimodal reconstruction, PWD throughout NAPOT, learned regulation of plasticity, or the experience hypothesis. No author contact, raw-data analysis, independent review, publication or book change occurred.

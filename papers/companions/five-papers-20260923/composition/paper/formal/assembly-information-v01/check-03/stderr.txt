@@ -1,0 +1,7 @@
+Lean command failed with exit code 1.
+At D:\micahone\vscode v5ma\v5ma.github.io\scripts\sit_uv\Invoke-LeanWithLease.ps1:213 char:9
++         throw "Lean command failed with exit code $exitCode."
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Lean command failed with exit code 1.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Lean command failed with exit code 1.
+ 

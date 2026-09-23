@@ -1,0 +1,14 @@
+{
+  "source_sha256": "1ddf355c14c51497e5272cd97494c66756a07e503c8e01ebb19e7e060c4d3868",
+  "wrapper_sha256": "e1407d0cce6b895fb06bf3a0e6ab350cef0d320a8101faba6e357d2db1aafed1",
+  "runner_sha256": "8a52dc20e1ced66a1af5e79db7986d08077c62aaaa40b9772dec9b632750adfa",
+  "toolchain": "leanprover/lean4:v4.30.0",
+  "pinned_lean_sha256": "8132256d484b8ecc4561bec70abd1271f4c0d03badbc3bc272f6c4053af9fdbc",
+  "pinned_lake_sha256": "b01d614f13cfd9851110841de640dbf82a0f73936c55f47095bf7daa449931ac",
+  "pinned_bin_precedes_launchers": "C:\\Users\\micah\\.elan\\toolchains\\leanprover--lean4---v4.30.0\\bin",
+  "scope": "One exact external source; Check mode; no aggregate build or downloads requested",
+  "expected_external_writes": [
+    "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\formal-specs\\mathlib-hsit-tail\\.lake\\lean-compiler-schedule.json",
+    "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\formal-specs\\mathlib-hsit-tail\\.lake\\lean-compiler-lease.json"
+  ]
+}

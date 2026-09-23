@@ -1,0 +1,222 @@
+[
+  {
+    "check": "86 observed aggregate means, 58 missing",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "2-module parameter allocation roundtrip",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3-module parameter allocation roundtrip",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "fitting_script 51 events",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "fitting_script six punishment pairings",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "fitting_script twelve imaging observations",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "figure_5c_script 51 events",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "figure_5c_script six punishment pairings",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "figure_5c_script twelve imaging observations",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "2m/fitting_script/0/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/fitting_script/0/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/fitting_script/1/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/fitting_script/1/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/figure_5c_script/0/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/figure_5c_script/0/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/figure_5c_script/1/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "2m/figure_5c_script/1/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/fitting_script/0/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/fitting_script/0/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/fitting_script/1/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/fitting_script/1/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/none equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/none topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/plasticity_zero equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/plasticity_zero topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/plasticity_zero no learned weight change",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3m/figure_5c_script/0/plasticity_zero adaptation retained",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3m/figure_5c_script/1/plasticity_zero equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/plasticity_zero topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/plasticity_zero no learned weight change",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3m/figure_5c_script/1/plasticity_zero adaptation retained",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3m/figure_5c_script/0/gamma_to_DAN_removed equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/gamma_to_DAN_removed topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/gamma_to_DAN_removed equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/gamma_to_DAN_removed topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/rescue equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/rescue topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/0/rescue identical rescue",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "3m/figure_5c_script/1/rescue equation residual",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/rescue topological oracle",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "3m/figure_5c_script/1/rescue identical rescue",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "bounded elapsed time",
+    "passed": true,
+    "detail": 0.09701379999751225
+  }
+]

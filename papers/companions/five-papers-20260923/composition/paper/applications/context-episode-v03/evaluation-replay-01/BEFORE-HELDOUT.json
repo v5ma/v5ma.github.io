@@ -1,0 +1,128 @@
+{
+  "models": [
+    {
+      "seed": 1729,
+      "condition": "additive",
+      "folder": "fit-1729-additive",
+      "frozen_sha256": "76e05a6a362276776b3edfb083f779984b6b860b3fe66309cac7b0cffe654d6b",
+      "selected_sha256": "d381e8b436c26560c5d8d19268471031049f1c8ae99c8d50980015e2718a1a0b",
+      "selected_epoch": 26,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 1729,
+      "condition": "multiplicative",
+      "folder": "fit-1729-multiplicative",
+      "frozen_sha256": "1af1e14ed868c4f4f62db8d5ee505dd402f19a6949cf61255dd31e8bfca8a5eb",
+      "selected_sha256": "ae839ae413a97d5c73a3948e0daf83203e3646ad299a58973b4a7de71f0ed529",
+      "selected_epoch": 12,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 3253,
+      "condition": "additive",
+      "folder": "fit-3253-additive",
+      "frozen_sha256": "964addcc0e13cbc2a38afc55f4ff6835075a0d3e00457e8815cb7fa469558fee",
+      "selected_sha256": "b025c651b33268c633e19d51dae3596956f7faaba5d8fd5be8f51bb1d1d3c513",
+      "selected_epoch": 26,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 3253,
+      "condition": "multiplicative",
+      "folder": "fit-3253-multiplicative",
+      "frozen_sha256": "285fbe61db4fd8b09f6afdb2b94e5725a59e710f5078be54d16c640582edf4fb",
+      "selected_sha256": "2f2b6e108436f7503883cd5b71f464529363e7e0a542956dfdc209c496ff91be",
+      "selected_epoch": 27,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 7919,
+      "condition": "additive",
+      "folder": "fit-7919-additive",
+      "frozen_sha256": "ca4bd63ab2163c44300359641dd7b120875e78468c823e0d6be0733d9f3e4e76",
+      "selected_sha256": "7ff10341cd7866a56c2112ed7a7fb0e4539f3c3d05ec377170efba1e9241f4f1",
+      "selected_epoch": 15,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 7919,
+      "condition": "multiplicative",
+      "folder": "fit-7919-multiplicative",
+      "frozen_sha256": "e32bb238a367148e8eb0512d40de789ebbcdee82fddcf8864b30c0e611aa30d2",
+      "selected_sha256": "d6492e12aec3fce79ebf8da74a9d0c690338c9a0d065149d37573a465ea50e9e",
+      "selected_epoch": 29,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    }
+  ],
+  "source_hashes": {
+    "CONFIG.json": "94dc3d67fe588b16040e5c0bb0b9f4a7fa57405e91644fe02f74f94c687e820a",
+    "PROTOCOL.md": "7c76f477ad317fe61d6d937e2bc308eff78def4f7b6a22eeb9454a81a39f90e9",
+    "EVALUATION-PLAN.md": "f0f8e06143cadfd5170948f19b468aad6f6078cfc8a37a02547731bf3b55fe36",
+    "gru_core.py": "8cc58515ebb283749069e91493410b44aaf4fac21273f4ddb73b8e15ffb463d4",
+    "net.py": "df75c1145c3ccf6508a4fe6904dfb3f13e14e70b4c019370757b1f55cd6cb9c9",
+    "world.py": "ad5a0c0c1509522d330a2ebcf2bf561c32457bc61cc6eb13d9ea4b28fe895541",
+    "support.py": "8e34deacb79e0757ab7c2d1630c77e9a2e5e38df31bf16afde8e1d91f6c28292",
+    "test_study.py": "32d08a27915d9db6aa65ed08b060d512a0e36451fb64ef0aeeaf91eb1f517575",
+    "train.py": "c20090e19cd597036f911230a916c77a4cede77e8ba682fcf1d2b27eb7c90d74",
+    "evaluate.py": "2a5e02f44348a66312ba75a511d7cc7fec842ad42b7a01b84044f0534a9dbc90",
+    "TESTS-01.json": "2bd82c0f73606422cc9d3199accf93764448bb00810dc3730d4bf27d0bdbf9ec"
+  },
+  "priority": "BELOW_NORMAL_PRIORITY_CLASS",
+  "threads": 1,
+  "heldout_model_inference_started": false
+}

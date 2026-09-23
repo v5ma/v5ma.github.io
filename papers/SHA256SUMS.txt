@@ -106,3 +106,8 @@ DE3C048D891A0BF961E46A5A3D19D44F453660DAE061BB28AA03A9D208F86A1B  103 - Dialogue
 DB985B2CF8C745BF3972826765696721C88D38F9478CF3294B82C594ED4817F9  106 - Reciprocal AI-Neuroscience Translation From Biological Mechanism to Engineered Failure, Rescue, and Biological Retest.pdf
 3452FAE9EDA0F1CA09375C564CB04C351FEB74424AB16B762C5EED2004BF5D49  107 - AI Core Alignment Across Scales Human-Guided Co-Regulation in Self-Aware Artificial Networks.pdf
 44C85CB7AD4A977E67841345AB058ED4D8A44A30CA0275774D8D9F540B7D9333  108 - AI Mechanistic Interpretability and Self-Aware Networks From Neural Decoding to Causal Self-Regulation.pdf
+7F3C42EB0B6368E64F406CE525023FC6B38E7E6D5D20D975B2DD9F981D2530B6  109 - Self-Aware Networks in a Connectome-Constrained Fly Brain.pdf
+06B97DA3B474660CC77B630C0DA1E5B9A3BD79A42E80575F9F2DFCC167CF9CCA  110 - Neural Rendering Composition and Granularity Tuning State- and Task-Dependent Assembly of Multimodal Memory and Experience.pdf
+C4F6D6BC74BDAD18B1FF0FF4674EE75EE9659CA01A241A8EBF4DC96C9A01BBC7  111 - Selective Dissipation for Continual Learning Receiver-Relative Residual Trajectories and Self-Regulated Plasticity.pdf
+615BD50B41FC9B16DF5233E15B0FEC9666C688FE9663C2309CCCB9CBAEF07D32  112 - Selective Dissipation and Gated Plasticity in a History-Shaped Neural Canvas.pdf
+53188CEF3A7BE433AE60DC396458683B5D432285C828914F276416D46C56920A  113 - Temporal Ensembles in Self-Aware Networks Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience.pdf

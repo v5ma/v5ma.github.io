@@ -1,0 +1,20 @@
+{
+  "version": "context-episode-v03-20260908",
+  "conditions": ["additive", "multiplicative"],
+  "fit_seeds": [1729, 3253, 7919],
+  "hidden_size": 48,
+  "readout_size": 64,
+  "epochs": 40,
+  "batch_size": 128,
+  "learning_rate": 0.003,
+  "gradient_clip": 5.0,
+  "weight_decay": 0.00001,
+  "maximum_seconds_per_fit": 45,
+  "maximum_threads": 1,
+  "gpu": false,
+  "initial_task_seed_offset": 1409,
+  "probe_penalties": [0.01, 0.1, 1.0, 10.0],
+  "bootstrap_seed": 1607,
+  "bootstrap_repetitions": 1000,
+  "benchmark_sha256": "da8a0dff85a3be026b546914fbd43f471961a32b4d0ba9370bc93ea2b38d3192"
+}

@@ -1,0 +1,29 @@
+# BTSP cell 7: raw-pair acquisition and field-contract audit
+
+22 September 2026. This is a bounded private source audit for [Selective Dissipation and Gated Plasticity](../../access/49a39280c5acbe95.md), not a biological confirmation, independent replication or release-rights decision. It resolves the earlier [field-route note](../../access/737567cc9b978d0e.md)'s **file-acquisition and raw-header** gap for one deliberately selected cell. It does not convert one cell into an animal-level sample or close the paper's conditional causal join.
+
+## Exact custody
+
+Source: [Milstein et al.'s primary BTSP repository](https://github.com/neurosutras/BTSP) at immutable commit `90bfae6e87da602ec3b28afe4c5a2fd0c71acec3`, associated with the [eLife study](https://doi.org/10.7554/eLife.73046). The two pinned GitHub content records reported the file sizes and Git blob IDs below; locally computed Git blob SHA-1 and SHA-256 match. Six exact source files are in the private [intake folder](../../access/eb876d6b4766f878.md). The [field-audit script](../../access/ded9285ebe5c79a9.md), SHA-256 `B881C3CB455AE9ECD65DEFEF8F34A821DA0A72C3DFC310A5AAB91412E2F43484`, reads only this folder; its [machine receipt](../application/results/CELL7-FIELD-AUDIT-20260922.json), SHA-256 `66BCB2E3199FF14DC5D1F592039FF7DECAFE0C8EDCDBC67AAD862CBC844CA430`, passes **11/11** checks and an identical rerun.
+
+| File | Bytes | SHA-256 | Provider Git blob SHA-1 |
+|---|---:|---|---|
+| [`151203.txt`](https://raw.githubusercontent.com/neurosutras/BTSP/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/151203.txt) | 2,287,397 | `E024520AAC88D358731F3B800817EECA3074763F526BC00F0875A6D054CC553D` | `ACBFC4832267BB39E0E600EE841137A330AB734B` |
+| [`151203_4ii.txt`](https://raw.githubusercontent.com/neurosutras/BTSP/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/151203_4ii.txt) | 22,991,310 | `27FF674B3AACC9FCED85164458DF9C5DAF676A377026931DB8723EFB8292FADF` | `5D44DC3A4F3FCBF8DCD80DB247672A55979582F9` |
+
+The exact [first-induction legend](https://github.com/neurosutras/BTSP/blob/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/112916%20magee%20data%20legend.txt) calls `151203.txt` cell 7. The [metaplasticity legend](https://github.com/neurosutras/BTSP/blob/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/011717%20magee%20lab%20metaplasticity%20data%20legend.txt) identifies `151203_4ii.txt` as a second-induction file paired to that original cell. The pinned [YAML configuration](https://github.com/neurosutras/BTSP/blob/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/config/process_biBTSP_data_config.yaml) independently groups them under `cell 7`, induction keys `1` and `2`; the [processing code](https://github.com/neurosutras/BTSP/blob/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/process_biBTSP_data.py) treats the column indices as zero-based and reconstructs per-lap time from the configured sampling rate. Local SHA-256 for the two legends, YAML and processing code is recorded in the machine receipt.
+
+## Read-only field result
+
+| Cell 7 record | Raw table | Configured rate | Mapped induction laps | Before/after ramp fields |
+|---|---|---:|---:|---|
+| Induction 1, `151203.txt` | 14,210 rows × 23 columns | 1,000 Hz | Five position/current pairs, each equal in populated length | `rp2529` / `rp3548`, 100 populated values each |
+| Induction 2, `151203_4ii.txt` | 294,318 rows × 14 columns | 20,000 Hz | Five position/current pairs, each equal in populated length; one separately configured pre-position lap | `jt1` / `rp5480`, 100 populated values each |
+
+The field audit confirms unique headers, rectangular rows, finite numeric populated values, terminal rather than internal blank padding, mapped-pair lengths, both ramps, legends and exact source identities. The two sampling rates differ twentyfold; rows are samples within one cell, **not** independent animals. The first file also contains additional `lap4_49`–`lap4_53` and current columns not selected by this pinned configuration. The receipt lists those fields rather than quietly using or discarding them in a hypothesis test. A paired first/second induction is available; a causal effect or cross-induction time alignment is not established merely by the YAML grouping.
+
+## Claim and rights boundary
+
+This pair can support a carefully controlled demonstration of data handling and, after protocol lock, a *within-cell* analysis of position, current and before/after ramp summaries under the source authors' preprocessing choices. In particular, the first induction's *after* ramp and second induction's *before* ramp offer a candidate comparison of a later same-cell place-field state. That comparison requires declared spatial alignment, smoothing and baseline processing; 100 spatial bins are not 100 independent cells or animals. It does not itself identify an independently frozen learned-correspondence map, an oscillatory reference/PWD, a measured dendritic eligibility trace, a normalized differential-persistence course, or a separately designed input-matched later probe of receiving competence. The source's 100-point ramps and its continuous induction traces are different variables; neither should be relabeled to fill a SAN field. Population or animal-aware inference would require additional cells and explicit grouping. Strong BTSP/state/inhibition alternatives remain necessary.
+
+The GitHub repository metadata currently returns `license: null`, and no root license appeared in the inspected repository listing. Public visibility is not a redistribution license. Keep the six acquired source files private; any public companion should use citations, hashes, source URLs and fetch instructions unless an exact rights review authorizes source-byte redistribution. The original files were not edited. No provider, website or GitHub publication action was taken.

@@ -1,0 +1,38 @@
+{
+  "sourceExecution": "D:\\micahone\\vscode v5ma\\paper-development\\san-connectome-constrained-fly-brain-20260919\\application\\memory-component-v0\\results-01\\EXECUTION.json",
+  "sourceExecutionSha256": "0a80eeacbbc523265609a396a5302f4fac0efac8b8e0f0f48ab301d738e69570",
+  "scriptSha256": "99f9b3972598f9f4ef4cf0a3c585df146363aaaba284bfbf06390c27deff7c03",
+  "files": [
+    {
+      "name": "attractive-odours.png",
+      "sha256": "d6442d95781eedf5f8c564cebee92789fbaa3047d16b753100a2a2674b350c65",
+      "bytes": 265161
+    },
+    {
+      "name": "attractive-odours.svg",
+      "sha256": "e7caa512c5db92f81b24c60bf6aa0b32c561a116768a30dc2bbe830ff219745d",
+      "bytes": 157772
+    },
+    {
+      "name": "repulsive-odours.png",
+      "sha256": "fd636482404431b4404f0a58cd0e95b3625f84c5ce4270b6907198c74134c960",
+      "bytes": 282701
+    },
+    {
+      "name": "repulsive-odours.svg",
+      "sha256": "0de3a87b0197c17b1220f936feb307112d45a93262d9119a48b2afe50dd458b0",
+      "bytes": 146405
+    },
+    {
+      "name": "training-replay-controls.png",
+      "sha256": "11d5132a50355f9c8e284f025c6135f17466b1dbd976410944e975c48be20626",
+      "bytes": 65590
+    },
+    {
+      "name": "training-replay-controls.svg",
+      "sha256": "495dcf9ea522cbbd2377af11a890b0491293ca17c9619f148949636cf18b451f",
+      "bytes": 58111
+    }
+  ],
+  "visualReview": "pending"
+}

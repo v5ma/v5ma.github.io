@@ -1,0 +1,92 @@
+{
+  "complete": true,
+  "source_hashes": {
+    "PROTOCOL.md": "109630313a8b017e182ca53d6559a72e1e4286df01728d14342d6f5252059568",
+    "CONFIG.json": "b56767049cedd3c29685352566ea33105f92ad4b0c3892c2c5ea0b693670de6c",
+    "common.py": "28a300f3b818159541df1c0a096c8d5a799bfa9218bbfe32f142feeeded12b28",
+    "world.py": "6c6950819e2a7264509d979c0b6413e61867dc18be9289b2710e500845e01a31",
+    "tree.py": "cbbf517cd0b60a40cc38eaa24e94c71f384c093a85abf84f8e3bb44c0f1557a2",
+    "agent.py": "898822e7ea0e26643cdcf1d319df324fc1aa7e880233ba1bbb6ffbe8f5017a4a",
+    "test_application.py": "b2f4a867fb0660e72f894d0cf404f7a43f03abd8c9e224e203b8632ccace0a13",
+    "train.py": "a5973ad98567ed2456626b7fd6c24b61604c8cb585bb52e8d5b9cae1318310c4",
+    "evaluate.py": "ee4b159fbe31c02caab6334b60e0065873fd79f8a6aedff9dd8428c4507721d5"
+  },
+  "models": [
+    {
+      "seed": 1543,
+      "family": "paired",
+      "name": "s1543-paired.json",
+      "sha256": "84a1c364bd4dcb7e42dd450131dd5452e15efd2c384eaa6f6df5c512f4faf57e"
+    },
+    {
+      "seed": 1543,
+      "family": "single",
+      "name": "s1543-single.json",
+      "sha256": "91aa4d81edcac5a117192a8b70c0794c6412100e3303f0135b649ebd93bb0ae1"
+    },
+    {
+      "seed": 1543,
+      "family": "fine",
+      "name": "s1543-fine.json",
+      "sha256": "048593b6e284206d66ff070a4ac08720f6b7bda8753be103758d5269291a11ce"
+    },
+    {
+      "seed": 1543,
+      "family": "coarse",
+      "name": "s1543-coarse.json",
+      "sha256": "f2492addf9342c945f53ca6b415130adaa554920b69d385dfd1ab2824da9b37e"
+    },
+    {
+      "seed": 4253,
+      "family": "paired",
+      "name": "s4253-paired.json",
+      "sha256": "ab409ad6df72b88d635bc4ff8ff652a2b455a2c0f6819d7468148f70abea7912"
+    },
+    {
+      "seed": 4253,
+      "family": "single",
+      "name": "s4253-single.json",
+      "sha256": "391fbefbedd6fb7d864bcc4b98172a9c5cfe19363736181a004e420cb54cde14"
+    },
+    {
+      "seed": 4253,
+      "family": "fine",
+      "name": "s4253-fine.json",
+      "sha256": "f569d4bbf0d9e148594ea0c30da60c36a23063943cbb3ebc6ce1595b42a4600a"
+    },
+    {
+      "seed": 4253,
+      "family": "coarse",
+      "name": "s4253-coarse.json",
+      "sha256": "4f907ae1cafe53b3bfd5b6e36a6940095da51a8d1a629286af8516c1f0d409ee"
+    },
+    {
+      "seed": 8089,
+      "family": "paired",
+      "name": "s8089-paired.json",
+      "sha256": "06ad3229439cfb0446487d4aa2b69a84a196b5a00a34fc37657b5dbcd442e3c7"
+    },
+    {
+      "seed": 8089,
+      "family": "single",
+      "name": "s8089-single.json",
+      "sha256": "7f3c65204ea025ae21996c65a26e2d93af2c9ba835600b0bc8bb264c55de9891"
+    },
+    {
+      "seed": 8089,
+      "family": "fine",
+      "name": "s8089-fine.json",
+      "sha256": "7987cd7f0c8d6cf9bcdd3f0b3ccfab41a0c2326789d914780768cdb7064d7c50"
+    },
+    {
+      "seed": 8089,
+      "family": "coarse",
+      "name": "s8089-coarse.json",
+      "sha256": "9d9162556a1c919fb2a8d72fbfed75aeac0fdd97d668ddf2907390eca3bf347e"
+    }
+  ],
+  "training_data_sha256": "89c18edffd98679081a47b7cdd679cd3be29cdeeed25ca6c971374a5daf9a3d2",
+  "seconds": 1.4717566000763327,
+  "evaluation_generated": false,
+  "scope": "Twelve model families, each with eight supervised query trees; not neural or biological fits."
+}

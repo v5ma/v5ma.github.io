@@ -1,0 +1,14 @@
+{
+  "validatorSha256": "775db19bac19116822e002081ae133b646c145b05aa00404c64f878997d07515",
+  "exitCode": 0,
+  "result": {
+    "schema": "dsr.sitProofJigsawValidation.v1",
+    "generatedAt": "2026-09-19T14:22:27.1676130-07:00",
+    "leafRoot": "D:\\micahone\\vscode v5ma\\paper-development\\san-connectome-constrained-fly-brain-20260919\\formal\\observation-memory-v01",
+    "claimFiles": 1,
+    "edgeFiles": 0,
+    "errors": [],
+    "warnings": [],
+    "ok": true
+  }
+}

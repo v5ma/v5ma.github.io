@@ -1,0 +1,243 @@
+{
+  "scope": "engineered readiness/competition toy; no biological fit, emergent neural oscillation, or phenomenal test",
+  "parameters": {
+    "recovery_per_step": 0.3333333333333333,
+    "threshold": 0.6666666666666666,
+    "constant_drive": 1
+  },
+  "tests": {
+    "endogenous_selection_alternates": true,
+    "one_activity_per_step": true,
+    "no_fatigue_same_branch": true,
+    "same_event_budget_in_no_fatigue_control": true,
+    "no_competition_has_concurrency": true,
+    "blocked_branch_changes_timing": true,
+    "blocked_branch_causes_pause": true,
+    "restoration_replays_baseline": true,
+    "baseline_third_step_has_abc": true,
+    "short_trace_loses_earliest": true,
+    "nonalternating_control_also_has_abc": true,
+    "concurrent_readout_not_assigned_false_order": true
+  },
+  "passed": 12,
+  "total": 12,
+  "all_pass": true,
+  "baseline": {
+    "selected": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    "trace": [
+      {
+        "time": 0,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 1,
+        "branch": 1,
+        "symbol": "B"
+      },
+      {
+        "time": 2,
+        "branch": 2,
+        "symbol": "C"
+      },
+      {
+        "time": 3,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 4,
+        "branch": 1,
+        "symbol": "B"
+      },
+      {
+        "time": 5,
+        "branch": 2,
+        "symbol": "C"
+      }
+    ],
+    "final_readiness": [
+      0.6666666666666666,
+      0.3333333333333333,
+      0.0
+    ]
+  },
+  "no_fatigue": {
+    "selected": [
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "trace": [
+      {
+        "time": 0,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 1,
+        "branch": 0,
+        "symbol": "B"
+      },
+      {
+        "time": 2,
+        "branch": 0,
+        "symbol": "C"
+      },
+      {
+        "time": 3,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 4,
+        "branch": 0,
+        "symbol": "B"
+      },
+      {
+        "time": 5,
+        "branch": 0,
+        "symbol": "C"
+      }
+    ],
+    "final_readiness": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "no_competition": {
+    "selected": [
+      [
+        0,
+        1,
+        2
+      ],
+      [],
+      [],
+      [
+        0,
+        1,
+        2
+      ],
+      [],
+      []
+    ],
+    "trace": [
+      {
+        "time": 0,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 0,
+        "branch": 1,
+        "symbol": "A"
+      },
+      {
+        "time": 0,
+        "branch": 2,
+        "symbol": "A"
+      },
+      {
+        "time": 3,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 3,
+        "branch": 1,
+        "symbol": "A"
+      },
+      {
+        "time": 3,
+        "branch": 2,
+        "symbol": "A"
+      }
+    ],
+    "final_readiness": [
+      0.6666666666666666,
+      0.6666666666666666,
+      0.6666666666666666
+    ]
+  },
+  "blocked_branch_1": {
+    "selected": [
+      [
+        0
+      ],
+      [
+        2
+      ],
+      [],
+      [
+        0
+      ],
+      [
+        2
+      ],
+      []
+    ],
+    "trace": [
+      {
+        "time": 0,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 1,
+        "branch": 2,
+        "symbol": "B"
+      },
+      {
+        "time": 3,
+        "branch": 0,
+        "symbol": "A"
+      },
+      {
+        "time": 4,
+        "branch": 2,
+        "symbol": "B"
+      }
+    ],
+    "final_readiness": [
+      0.6666666666666666,
+      1.0,
+      0.3333333333333333
+    ]
+  }
+}

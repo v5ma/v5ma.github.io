@@ -1,0 +1,225 @@
+{
+  "checks": [
+    {
+      "check": "output hash PROTOCOLS.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "output hash RUNS.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "output hash METRICS.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "output hash PREDICTIONS.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "output hash CHECKS.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "input hash application\\memory-component-v0\\inputs\\parameters.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "input hash application\\memory-component-v0\\inputs\\observations.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "model script hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "plan hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "original workbook hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ACVvsETA exact workbook XML readback",
+      "passed": true,
+      "detail": {
+        "cellsComparedIncludingBlanks": 144
+      }
+    },
+    {
+      "check": "OCTvsBEN exact workbook XML readback",
+      "passed": true,
+      "detail": {
+        "cellsComparedIncludingBlanks": 144
+      }
+    },
+    {
+      "check": "fitting schedule exact durations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "figure schedule exact durations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "separate scalar replay 2m/fitting_script/0/none",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 2m/fitting_script/1/none",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 2m/figure_5c_script/0/none",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 2m/figure_5c_script/1/none",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 3m/fitting_script/0/none",
+      "passed": true,
+      "detail": 3.552713678800501e-15
+    },
+    {
+      "check": "separate scalar replay 3m/fitting_script/1/none",
+      "passed": true,
+      "detail": 3.552713678800501e-15
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/0/none",
+      "passed": true,
+      "detail": 7.105427357601002e-15
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/1/none",
+      "passed": true,
+      "detail": 2.842170943040401e-14
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/0/plasticity_zero",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/1/plasticity_zero",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/0/gamma_to_DAN_removed",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/1/gamma_to_DAN_removed",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/0/rescue",
+      "passed": true,
+      "detail": 7.105427357601002e-15
+    },
+    {
+      "check": "separate scalar replay 3m/figure_5c_script/1/rescue",
+      "passed": true,
+      "detail": 2.842170943040401e-14
+    },
+    {
+      "check": "recomputed score 2m/fitting_script/0/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 2m/fitting_script/1/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 2m/figure_5c_script/0/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 2m/figure_5c_script/1/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/fitting_script/0/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/fitting_script/1/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/0/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/1/none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/0/plasticity_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/1/plasticity_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/0/gamma_to_DAN_removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/1/gamma_to_DAN_removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/0/rescue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "recomputed score 3m/figure_5c_script/1/rescue",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 42,
+  "total": 42,
+  "maxSeparateStateDifference": 2.842170943040401e-14,
+  "checkerSha256": "6b6924a50e99ac0dd56f5934341fcc4bc2b5438e0d765ab0a53cdada7bce3d9c",
+  "originalModelImported": false,
+  "nativeMatlabExecuted": false,
+  "independentHumanReview": false
+}

@@ -1,0 +1,57 @@
+{
+  "scope": "One-cell same-index ramp shape after source-specified 21-point cubic wrap smoothing and baseline rule; not the full author pipeline",
+  "source_commit": "90bfae6e87da602ec3b28afe4c5a2fd0c71acec3",
+  "raw_source_sha256": {
+    "151203.txt": "E024520AAC88D358731F3B800817EECA3074763F526BC00F0875A6D054CC553D",
+    "151203_4ii.txt": "27FF674B3AACC9FCED85164458DF9C5DAF676A377026931DB8723EFB8292FADF"
+  },
+  "smoothing": {
+    "window_length": 21,
+    "polynomial_order": 3,
+    "mode": "wrap",
+    "implementation": "local polynomial least squares via numpy pseudoinverse"
+  },
+  "baseline_rule": "Mean of smoothed first-before values at or below their 10th percentile; carry to second unless the source's +/-20 mV condition fires",
+  "first_baseline_mV": -61.739518718535464,
+  "second_baseline_mV": -61.739518718535464,
+  "second_baseline_reestimated": false,
+  "before_first_to_after_first": {
+    "pearson_bin_profile_r": -0.0018469399613167676,
+    "mean_second_minus_first_mV": 2.8600060000000003,
+    "rms_bin_difference_mV": 3.6666858358378214,
+    "first_min_mV": -0.03625885583522859,
+    "first_max_mV": 1.7215543184047135,
+    "second_min_mV": -0.3287314285714231,
+    "second_max_mV": 6.794008322981355
+  },
+  "after_first_to_before_second": {
+    "pearson_bin_profile_r": 0.9803640022357456,
+    "mean_second_minus_first_mV": 0.6199130000000007,
+    "rms_bin_difference_mV": 0.888825346405756,
+    "first_min_mV": -0.3287314285714231,
+    "first_max_mV": 6.794008322981355,
+    "second_min_mV": -0.2872963190585054,
+    "second_max_mV": 7.9313769074861185
+  },
+  "before_second_to_after_second": {
+    "pearson_bin_profile_r": 0.8851080274960196,
+    "mean_second_minus_first_mV": 0.03758299999999906,
+    "rms_bin_difference_mV": 1.2373836480708176,
+    "first_min_mV": -0.2872963190585054,
+    "first_max_mV": 7.9313769074861185,
+    "second_min_mV": 0.13088834913370562,
+    "second_max_mV": 8.054368538738146
+  },
+  "checks": {
+    "coefficient_sum_one": true,
+    "constant_signal_preserved": true,
+    "all_smoothed_lengths_100": true,
+    "finite_baselines": true,
+    "wrap_smoothing_preserves_each_profile_mean": true
+  },
+  "limits": [
+    "All ramp comparisons use 100 spatial bins from one cell, without inferential statistics.",
+    "The comparison assumes stored bin index means corresponding track position across inductions; this does not validate experimental alignment.",
+    "The source's full position and temporal processing, independent-cell grouping, and SAN-specific measurements are not reconstructed."
+  ]
+}

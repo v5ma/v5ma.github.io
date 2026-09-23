@@ -1,0 +1,10 @@
+Lean schedule request: san-fly-observation-memory-check-03 -> Check D:\micahone\vscode v5ma\paper-development\san-connectome-constrained-fly-brain-20260919\formal\observation-memory-v01\ObservationMemory.lean
+Schedule form: D:\micahone\vscode v5ma\v5ma.github.io\production-canon\formal-specs\mathlib-hsit-tail\.lake\lean-compiler-schedule.json
+Waiting for Lean compiler lease: san-fly-observation-memory-check-03 -> Check D:\micahone\vscode v5ma\paper-development\san-connectome-constrained-fly-brain-20260919\formal\observation-memory-v01\ObservationMemory.lean
+'SANFly.stateAt_eq_of_history' does not depend on any axioms
+'SANFly.history_equivalence' does not depend on any axioms
+'SANFly.decoded_state_eq' does not depend on any axioms
+'SANFly.reset_preserves_learned' does not depend on any axioms
+'SANFly.reset_is_idempotent' does not depend on any axioms
+'SANFly.reset_update_commute' does not depend on any axioms
+'SANFly.reset_preserves_retained_prediction' does not depend on any axioms

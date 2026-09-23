@@ -1,0 +1,299 @@
+{
+  "status": "descriptive-reanalysis",
+  "source_sha256": "ba1d7c4dfaa2007aa3e71f668b72ee81845ea20094012f44450117a3a2165e9c",
+  "source": "sources/amin-apl-table-intake-51/elife-56954-fig7-data1-v2.xlsx",
+  "sheet": "Fig 7",
+  "selected_numeric_cells": 280,
+  "paired_records": 20,
+  "below_normal_priority": true,
+  "worker_count": 1,
+  "plan_sha256": "fa6f72e846164eb01c6b969a40173f6862e18818d5ab024a9a21e7d311410396",
+  "producer_sha256": "bcc9b1c5440c97e72aacc2df81cdad71c19b8075f589322692b6496f7815ad14",
+  "reader_sha256": "227fec9d264f0dcea8b049229a6791536f6b25d45a6be8b1c7a96ee2ce8868a2",
+  "conditions": {
+    "A2": {
+      "records": [
+        {
+          "condition": "A2",
+          "record_column": "M",
+          "cell_200": "M31",
+          "cell_260": "M34",
+          "response_200": -1.31809554944107,
+          "response_260": -0.566558603717729,
+          "contrast_260_minus_200": 0.751536945723341,
+          "equal_fit": -0.9423270765793995,
+          "equal_response_residual": 0.282403890393584
+        },
+        {
+          "condition": "A2",
+          "record_column": "N",
+          "cell_200": "N31",
+          "cell_260": "N34",
+          "response_200": -0.130492821532678,
+          "response_260": 0.0648967953433042,
+          "contrast_260_minus_200": 0.1953896168759822,
+          "equal_fit": -0.0327980130946869,
+          "equal_response_residual": 0.019088551191471553
+        },
+        {
+          "condition": "A2",
+          "record_column": "O",
+          "cell_200": "O31",
+          "cell_260": "O34",
+          "response_200": -0.491913440669809,
+          "response_260": -0.513798458059771,
+          "contrast_260_minus_200": -0.021885017389961958,
+          "equal_fit": -0.50285594936479,
+          "equal_response_residual": 0.00023947699307946867
+        },
+        {
+          "condition": "A2",
+          "record_column": "P",
+          "cell_200": "P31",
+          "cell_260": "P34",
+          "response_200": -1.18347090927253,
+          "response_260": -0.612689677718146,
+          "contrast_260_minus_200": 0.570781231554384,
+          "equal_fit": -0.898080293495338,
+          "equal_response_residual": 0.16289560714736967
+        },
+        {
+          "condition": "A2",
+          "record_column": "Q",
+          "cell_200": "Q31",
+          "cell_260": "Q34",
+          "response_200": -1.02796015292269,
+          "response_260": -0.664541731368222,
+          "contrast_260_minus_200": 0.363418421554468,
+          "equal_fit": -0.846250942145456,
+          "equal_response_residual": 0.06603647456257052
+        },
+        {
+          "condition": "A2",
+          "record_column": "R",
+          "cell_200": "R31",
+          "cell_260": "R34",
+          "response_200": -1.04235341124763,
+          "response_260": -0.454454645344666,
+          "contrast_260_minus_200": 0.587898765902964,
+          "equal_fit": -0.748404028296148,
+          "equal_response_residual": 0.17281247947511405
+        },
+        {
+          "condition": "A2",
+          "record_column": "S",
+          "cell_200": "S31",
+          "cell_260": "S34",
+          "response_200": -0.556932828434177,
+          "response_260": -0.506533721996713,
+          "contrast_260_minus_200": 0.050399106437464036,
+          "equal_fit": -0.531733275215445,
+          "equal_response_residual": 0.0012700349648474144
+        },
+        {
+          "condition": "A2",
+          "record_column": "T",
+          "cell_200": "T31",
+          "cell_260": "T34",
+          "response_200": -1.32281762788206,
+          "response_260": -0.934517485311612,
+          "contrast_260_minus_200": 0.388300142570448,
+          "equal_fit": -1.128667556596836,
+          "equal_response_residual": 0.07538850036011512
+        },
+        {
+          "condition": "A2",
+          "record_column": "U",
+          "cell_200": "U31",
+          "cell_260": "U34",
+          "response_200": -1.04889167370438,
+          "response_260": -0.569600711944134,
+          "contrast_260_minus_200": 0.4792909617602461,
+          "equal_fit": -0.809246192824257,
+          "equal_response_residual": 0.11485991301253085
+        },
+        {
+          "condition": "A2",
+          "record_column": "V",
+          "cell_200": "V31",
+          "cell_260": "V34",
+          "response_200": -0.538907202077714,
+          "response_260": 0.0464307443630189,
+          "contrast_260_minus_200": 0.5853379464407329,
+          "equal_fit": -0.24623822885734756,
+          "equal_response_residual": 0.17131025577172715
+        }
+      ],
+      "record_count": 10,
+      "published_fly_count": 9,
+      "mean_contrast": 0.3950468121430068,
+      "median_contrast": 0.43379555216534704,
+      "min_contrast": -0.021885017389961958,
+      "max_contrast": 0.751536945723341,
+      "positive": 9,
+      "negative": 1,
+      "zero": 0,
+      "leave_one_record_out_mean_range": [
+        0.35543679730074745,
+        0.4413725709800034
+      ],
+      "unknown_cluster_assignment_mean_range": [
+        0.3645278072907684,
+        0.43735678632292413
+      ],
+      "cluster_assignments": 45,
+      "equal_response_sse": 1.0663051838724098,
+      "saturated_two_value_sse": 0.0,
+      "mean_response_200": -0.8661835617184738,
+      "mean_response_260": -0.471136749575467
+    },
+    "A4": {
+      "records": [
+        {
+          "condition": "A4",
+          "record_column": "M",
+          "cell_200": "M65",
+          "cell_260": "M68",
+          "response_200": -1.31045565904885,
+          "response_260": -1.01461189518373,
+          "contrast_260_minus_200": 0.2958437638651201,
+          "equal_fit": -1.16253377711629,
+          "equal_response_residual": 0.04376176630894048
+        },
+        {
+          "condition": "A4",
+          "record_column": "N",
+          "cell_200": "N65",
+          "cell_260": "N68",
+          "response_200": -0.242675874717875,
+          "response_260": -0.142379541269292,
+          "contrast_260_minus_200": 0.10029633344858299,
+          "equal_fit": -0.19252770799358349,
+          "equal_response_residual": 0.005029677251614673
+        },
+        {
+          "condition": "A4",
+          "record_column": "O",
+          "cell_200": "O65",
+          "cell_260": "O68",
+          "response_200": -0.436323921988773,
+          "response_260": -0.222984613512627,
+          "contrast_260_minus_200": 0.21333930847614602,
+          "equal_fit": -0.3296542677507,
+          "equal_response_residual": 0.022756830270540093
+        },
+        {
+          "condition": "A4",
+          "record_column": "P",
+          "cell_200": "P65",
+          "cell_260": "P68",
+          "response_200": -1.16895161469826,
+          "response_260": -0.657053018015946,
+          "contrast_260_minus_200": 0.511898596682314,
+          "equal_fit": -0.9130023163571029,
+          "equal_response_residual": 0.13102008664266118
+        },
+        {
+          "condition": "A4",
+          "record_column": "Q",
+          "cell_200": "Q65",
+          "cell_260": "Q68",
+          "response_200": -0.723368199874463,
+          "response_260": -0.534156992920346,
+          "contrast_260_minus_200": 0.18921120695411697,
+          "equal_fit": -0.6287625963974045,
+          "equal_response_residual": 0.017900440418516843
+        },
+        {
+          "condition": "A4",
+          "record_column": "R",
+          "cell_200": "R65",
+          "cell_260": "R68",
+          "response_200": -1.51282899764506,
+          "response_260": -0.448135710925756,
+          "contrast_260_minus_200": 1.064693286719304,
+          "equal_fit": -0.980482354285408,
+          "equal_response_residual": 0.566785897392577
+        },
+        {
+          "condition": "A4",
+          "record_column": "S",
+          "cell_200": "S65",
+          "cell_260": "S68",
+          "response_200": -0.654812339461317,
+          "response_260": -0.509776629574286,
+          "contrast_260_minus_200": 0.14503570988703096,
+          "equal_fit": -0.5822944845178015,
+          "equal_response_residual": 0.010517678571217505
+        },
+        {
+          "condition": "A4",
+          "record_column": "T",
+          "cell_200": "T65",
+          "cell_260": "T68",
+          "response_200": -0.956413608486681,
+          "response_260": -0.517344484295218,
+          "contrast_260_minus_200": 0.43906912419146304,
+          "equal_fit": -0.7368790463909495,
+          "equal_response_residual": 0.0963908479091292
+        },
+        {
+          "condition": "A4",
+          "record_column": "U",
+          "cell_200": "U65",
+          "cell_260": "U68",
+          "response_200": -0.928175123126028,
+          "response_260": -0.566031016333211,
+          "contrast_260_minus_200": 0.36214410679281706,
+          "equal_fit": -0.7471030697296195,
+          "equal_response_residual": 0.06557417704238364
+        },
+        {
+          "condition": "A4",
+          "record_column": "V",
+          "cell_200": "V65",
+          "cell_260": "V68",
+          "response_200": -0.516795443854679,
+          "response_260": -0.304583894121261,
+          "contrast_260_minus_200": 0.212211549733418,
+          "equal_fit": -0.41068966898797,
+          "equal_response_residual": 0.022516870920129467
+        }
+      ],
+      "record_count": 10,
+      "published_fly_count": 9,
+      "mean_contrast": 0.3533742986750313,
+      "median_contrast": 0.25459153617063307,
+      "min_contrast": 0.10029633344858299,
+      "max_contrast": 1.064693286719304,
+      "positive": 10,
+      "negative": 0,
+      "zero": 0,
+      "leave_one_record_out_mean_range": [
+        0.274338855559001,
+        0.38149407258908113
+      ],
+      "unknown_cluster_assignment_mean_range": [
+        0.3050496716721671,
+        0.379008551675834
+      ],
+      "cluster_assignments": 45,
+      "equal_response_sse": 0.98225427272771,
+      "saturated_two_value_sse": 0.0,
+      "mean_response_200": -0.8450800782901986,
+      "mean_response_260": -0.4917057796151673
+    }
+  },
+  "limitations": [
+    "Published-result selection; not a held-out experiment.",
+    "Ten neuron records from nine flies per condition; fly identities absent.",
+    "Source units retained; original plotted maximum normalization not reproduced.",
+    "Spatially equal observed response is narrower than a common-gain circuit model.",
+    "No physiological input-port controller, phase code, or full SAN test."
+  ],
+  "artifacts": {
+    "PAIRS.csv": "07b7f591b4e8ab387e6f6c2dc7b3d3928cfbf4af829421548bf2ef872afa9bcc",
+    "PROFILE-SUMMARIES.csv": "8e9ce5f60e363d11535060574f3e21df123b4cb8254ab48167ad5f6b487c68bd",
+    "CLUSTER-ASSIGNMENTS.csv": "66ff2adf8d24ca8f2a943486696b2aa3786d08b2dc065a56ead178f9abf03a27"
+  }
+}

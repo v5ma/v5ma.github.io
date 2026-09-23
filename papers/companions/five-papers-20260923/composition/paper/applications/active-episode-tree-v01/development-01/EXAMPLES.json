@@ -1,0 +1,3477 @@
+{
+  "paired_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "paired_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "attention_equivalent_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "attention_equivalent_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "single_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "single_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "fine_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "fine_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.020833333333333332,
+          0.020833333333333332,
+          0.020833333333333332,
+          0.020833333333333332,
+          0.8541666666666666,
+          0.020833333333333332,
+          0.020833333333333332,
+          0.020833333333333332
+        ],
+        "actions": [
+          [
+            17,
+            0,
+            2
+          ],
+          [
+            21,
+            0,
+            0
+          ],
+          [
+            19,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 6,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 6,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "8": [
+            2,
+            2
+          ],
+          "10": [
+            2,
+            0
+          ],
+          "9": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 21,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "coarse_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 1,
+        "probability": [
+          0.011904761904761904,
+          0.9642857142857143,
+          0.011904761904761904,
+          0.011904761904761904
+        ],
+        "actions": [
+          [
+            22,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            6,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            16,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 5,
+          "samples": 5,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 4,
+          "readout_nodes": 5,
+          "assembly_variables": 5,
+          "assembly_value_bits": 5,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 5
+        },
+        "assembly": {
+          "11": [
+            1,
+            0
+          ],
+          "0": [
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0
+          ],
+          "1": [
+            1,
+            1
+          ],
+          "8": [
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 3,
+        "probability": [
+          0.027777777777777776,
+          0.027777777777777776,
+          0.027777777777777776,
+          0.9166666666666666
+        ],
+        "actions": [
+          [
+            12,
+            0,
+            1
+          ],
+          [
+            4,
+            1,
+            1
+          ],
+          [
+            14,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            6,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            10,
+            1,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 2,
+          "retrievals": 5,
+          "unavailable": 0,
+          "policy_nodes": 4,
+          "readout_nodes": 5,
+          "assembly_variables": 7,
+          "assembly_value_bits": 7,
+          "reference_cache_fields": 5,
+          "current_cache_fields": 2
+        },
+        "assembly": {
+          "6": [
+            1,
+            1
+          ],
+          "2": [
+            1,
+            1
+          ],
+          "7": [
+            1,
+            1
+          ],
+          "1": [
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0
+          ],
+          "0": [
+            1,
+            1
+          ],
+          "5": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 12,
+        "probability": [
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.03125,
+          0.53125,
+          0.03125,
+          0.03125,
+          0.03125
+        ],
+        "actions": [
+          [
+            18,
+            0,
+            0
+          ],
+          [
+            14,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            16,
+            0,
+            0
+          ],
+          [
+            6,
+            1,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 2,
+          "retrievals": 3,
+          "unavailable": 0,
+          "policy_nodes": 4,
+          "readout_nodes": 5,
+          "assembly_variables": 5,
+          "assembly_value_bits": 5,
+          "reference_cache_fields": 5,
+          "current_cache_fields": 4
+        },
+        "assembly": {
+          "9": [
+            1,
+            0
+          ],
+          "7": [
+            1,
+            1
+          ],
+          "0": [
+            1,
+            1
+          ],
+          "8": [
+            1,
+            0
+          ],
+          "3": [
+            1,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "coarse_success": {
+    "seed": 1543,
+    "case": 8,
+    "block": 1,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.4351286326405689,
+          0.5051226150801748,
+          0.029874376139628133,
+          0.029874376139628133
+        ],
+        "actions": [
+          [
+            22,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 1,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 2,
+          "readout_nodes": 58,
+          "assembly_variables": 1,
+          "assembly_value_bits": 1,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.03988444010416666,
+          0.10160319010416666,
+          0.03597819010416666,
+          0.060066731770833326,
+          0.06592610677083333,
+          0.06918131510416667,
+          0.07764485677083333,
+          0.05941569010416666,
+          0.05550944010416666,
+          0.0646240234375,
+          0.054207356770833326,
+          0.06006673177083333,
+          0.06527506510416667,
+          0.054207356770833326,
+          0.058113606770833326,
+          0.0782958984375
+        ],
+        "actions": [
+          [
+            0,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 143,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "full_record_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            5,
+            0,
+            2
+          ],
+          [
+            7,
+            0,
+            0
+          ],
+          [
+            9,
+            0,
+            0
+          ],
+          [
+            11,
+            0,
+            0
+          ],
+          [
+            13,
+            1,
+            2
+          ],
+          [
+            15,
+            1,
+            2
+          ],
+          [
+            17,
+            1,
+            2
+          ],
+          [
+            19,
+            1,
+            0
+          ],
+          [
+            21,
+            1,
+            0
+          ],
+          [
+            23,
+            1,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 12,
+          "samples": 6,
+          "retrievals": 6,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 12,
+          "assembly_value_bits": 24,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 6
+        },
+        "assembly": {
+          "0": [
+            2,
+            2
+          ],
+          "1": [
+            2,
+            2
+          ],
+          "2": [
+            2,
+            2
+          ],
+          "3": [
+            2,
+            0
+          ],
+          "4": [
+            2,
+            0
+          ],
+          "5": [
+            2,
+            0
+          ],
+          "6": [
+            2,
+            2
+          ],
+          "7": [
+            2,
+            2
+          ],
+          "8": [
+            2,
+            2
+          ],
+          "9": [
+            2,
+            0
+          ],
+          "10": [
+            2,
+            0
+          ],
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            5,
+            1,
+            2
+          ],
+          [
+            7,
+            1,
+            0
+          ],
+          [
+            9,
+            1,
+            0
+          ],
+          [
+            11,
+            1,
+            0
+          ],
+          [
+            13,
+            0,
+            2
+          ],
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            17,
+            0,
+            1
+          ],
+          [
+            19,
+            0,
+            1
+          ],
+          [
+            21,
+            0,
+            1
+          ],
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 12,
+          "samples": 6,
+          "retrievals": 6,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 12,
+          "assembly_value_bits": 24,
+          "reference_cache_fields": 6,
+          "current_cache_fields": 6
+        },
+        "assembly": {
+          "0": [
+            2,
+            2
+          ],
+          "1": [
+            2,
+            2
+          ],
+          "2": [
+            2,
+            2
+          ],
+          "3": [
+            2,
+            0
+          ],
+          "4": [
+            2,
+            0
+          ],
+          "5": [
+            2,
+            0
+          ],
+          "6": [
+            2,
+            2
+          ],
+          "7": [
+            2,
+            3
+          ],
+          "8": [
+            2,
+            1
+          ],
+          "9": [
+            2,
+            1
+          ],
+          "10": [
+            2,
+            1
+          ],
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            5,
+            1,
+            2
+          ],
+          [
+            7,
+            1,
+            0
+          ],
+          [
+            9,
+            1,
+            0
+          ],
+          [
+            11,
+            1,
+            0
+          ],
+          [
+            13,
+            1,
+            2
+          ],
+          [
+            15,
+            1,
+            3
+          ],
+          [
+            17,
+            1,
+            1
+          ],
+          [
+            19,
+            1,
+            1
+          ],
+          [
+            21,
+            1,
+            1
+          ],
+          [
+            23,
+            1,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 12,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 12,
+          "assembly_value_bits": 24,
+          "reference_cache_fields": 6,
+          "current_cache_fields": 6
+        },
+        "assembly": {
+          "0": [
+            2,
+            2
+          ],
+          "1": [
+            2,
+            2
+          ],
+          "2": [
+            2,
+            2
+          ],
+          "3": [
+            2,
+            0
+          ],
+          "4": [
+            2,
+            0
+          ],
+          "5": [
+            2,
+            0
+          ],
+          "6": [
+            2,
+            2
+          ],
+          "7": [
+            2,
+            3
+          ],
+          "8": [
+            2,
+            1
+          ],
+          "9": [
+            2,
+            1
+          ],
+          "10": [
+            2,
+            1
+          ],
+          "11": [
+            2,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "reset_reference_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "reset_reference_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "no_new_samples_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 3,
+        "probability": [
+          0.20312813415137573,
+          0.25781171811127546,
+          0.23437567448982513,
+          0.3046844732475237
+        ],
+        "actions": [
+          [
+            13,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 5,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 0
+        },
+        "assembly": {}
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 5,
+        "probability": [
+          0.047088973309676437,
+          0.05476196438110501,
+          0.070191651881105,
+          0.062465957436660564,
+          0.047088973309676437,
+          0.09344886341956656,
+          0.05476196438110501,
+          0.047088973309676437,
+          0.047088973309676437,
+          0.09344886341956656,
+          0.070191651881105,
+          0.070191651881105,
+          0.070191651881105,
+          0.062465957436660564,
+          0.054761964381105005,
+          0.054761964381105005
+        ],
+        "actions": [
+          [
+            15,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 21,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 0
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "no_new_samples_success": {
+    "seed": 1543,
+    "case": 8,
+    "block": 1,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.23437593648928015,
+          0.2734361469107091,
+          0.23437593648928015,
+          0.2578119801107305
+        ],
+        "actions": [
+          [
+            23,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 5,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 0
+        },
+        "assembly": {}
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 0
+        },
+        "assembly": {}
+      }
+    ]
+  },
+  "coarsen_assembly_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 1,
+        "probability": [
+          0.4596324049902386,
+          0.5365509732047449,
+          0.0019083109025081946,
+          0.0019083109025081946
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 3,
+          "assembly_variables": 1,
+          "assembly_value_bits": 1,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 3,
+        "probability": [
+          0.0017983388681508065,
+          0.0017983388681508065,
+          0.4329877028638389,
+          0.5634156193998594
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 3,
+          "assembly_variables": 1,
+          "assembly_value_bits": 1,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 9,
+        "probability": [
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.15988242503277622,
+          0.33701872157205787,
+          0.006364301365398818,
+          0.006364301365398818,
+          0.22682084219068416,
+          0.19990639481969597,
+          0.006364301365398818,
+          0.006364301365398818
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 7,
+          "assembly_variables": 2,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "coarsen_assembly_success": {
+    "seed": 1543,
+    "case": 8,
+    "block": 1,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.4596324049902386,
+          0.5365509732047449,
+          0.0019083109025081946,
+          0.0019083109025081946
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 3,
+          "assembly_variables": 1,
+          "assembly_value_bits": 1,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.4385816235504015,
+          0.557217195531201,
+          0.0021005904591988446,
+          0.0021005904591988446
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 3,
+          "assembly_variables": 1,
+          "assembly_value_bits": 1,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 5,
+        "prediction": 5,
+        "probability": [
+          0.20179641055665645,
+          0.23895187803999282,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.15243593496667268,
+          0.31997331561880743,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554,
+          0.007236871734822554
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            1
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 7,
+          "assembly_variables": 2,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            1,
+            0
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "permute_binding_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 3,
+        "probability": [
+          0.20312813415137573,
+          0.25781171811127546,
+          0.23437567448982513,
+          0.3046844732475237
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 5,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "7": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 9,
+        "probability": [
+          0.006029438768696581,
+          0.21110756376869658,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.2295871310763889,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.2656448233840812,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.006029438768696581,
+          0.22130721654647437,
+          0.006029438768696581,
+          0.006029438768696581
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 9,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "6": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "permute_binding_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      7,
+      2
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 7,
+        "target": 1,
+        "prediction": 1,
+        "probability": [
+          0.001937984496124031,
+          0.9941860465116279,
+          0.001937984496124031,
+          0.001937984496124031
+        ],
+        "actions": [
+          [
+            21,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "10": [
+            2,
+            1
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 2,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.9717741935483871,
+          0.004032258064516129,
+          0.004032258064516129,
+          0.004032258064516129,
+          0.004032258064516129,
+          0.004032258064516129,
+          0.004032258064516129,
+          0.004032258064516129
+        ],
+        "actions": [
+          [
+            20,
+            1,
+            0
+          ],
+          [
+            16,
+            0,
+            0
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 2,
+          "retrievals": 1,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            0
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      }
+    ]
+  },
+  "restore_binding_success": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      1,
+      0,
+      3
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "target": 2,
+        "prediction": 2,
+        "probability": [
+          0.002066115702479339,
+          0.002066115702479339,
+          0.993801652892562,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            13,
+            0,
+            2
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "6": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 3,
+        "target": 13,
+        "prediction": 13,
+        "probability": [
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.006944444444444444,
+          0.8958333333333334,
+          0.006944444444444444,
+          0.006944444444444444
+        ],
+        "actions": [
+          [
+            15,
+            0,
+            3
+          ],
+          [
+            19,
+            0,
+            1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 4,
+          "samples": 2,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 2,
+          "readout_nodes": 3,
+          "assembly_variables": 2,
+          "assembly_value_bits": 4,
+          "reference_cache_fields": 1,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "7": [
+            2,
+            3
+          ],
+          "9": [
+            2,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "restore_binding_failure": {
+    "seed": 1543,
+    "case": 0,
+    "block": 0,
+    "tasks": [
+      2,
+      1,
+      4
+    ],
+    "queries": [
+      {
+        "stage": 0,
+        "task": 2,
+        "target": 4,
+        "prediction": 4,
+        "probability": [
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.9763513513513513,
+          0.0033783783783783786,
+          0.0033783783783783786,
+          0.0033783783783783786
+        ],
+        "actions": [
+          [
+            20,
+            0,
+            0
+          ],
+          [
+            16,
+            0,
+            1
+          ],
+          [
+            18,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 3,
+          "samples": 3,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 3,
+          "readout_nodes": 4,
+          "assembly_variables": 3,
+          "assembly_value_bits": 3,
+          "reference_cache_fields": 0,
+          "current_cache_fields": 3
+        },
+        "assembly": {
+          "10": [
+            1,
+            0
+          ],
+          "8": [
+            1,
+            1
+          ],
+          "9": [
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "target": 0,
+        "prediction": 0,
+        "probability": [
+          0.993801652892562,
+          0.002066115702479339,
+          0.002066115702479339,
+          0.002066115702479339
+        ],
+        "actions": [
+          [
+            23,
+            0,
+            0
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 2,
+          "samples": 1,
+          "retrievals": 0,
+          "unavailable": 0,
+          "policy_nodes": 1,
+          "readout_nodes": 2,
+          "assembly_variables": 1,
+          "assembly_value_bits": 2,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {
+          "11": [
+            2,
+            0
+          ]
+        }
+      },
+      {
+        "stage": 2,
+        "task": 4,
+        "target": 8,
+        "prediction": 1,
+        "probability": [
+          0.031858378708964644,
+          0.108941712042298,
+          0.024436503708964646,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.07788110598169193,
+          0.07788110598169193,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.07013962870896465,
+          0.05470994120896465,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.05470994120896465,
+          0.0624139342645202,
+          0.0856344203756313
+        ],
+        "actions": [
+          [
+            1,
+            2,
+            -1
+          ]
+        ],
+        "counts": {
+          "sampling_bits": 0,
+          "samples": 0,
+          "retrievals": 0,
+          "unavailable": 1,
+          "policy_nodes": 1,
+          "readout_nodes": 23,
+          "assembly_variables": 0,
+          "assembly_value_bits": 0,
+          "reference_cache_fields": 3,
+          "current_cache_fields": 1
+        },
+        "assembly": {}
+      }
+    ]
+  }
+}

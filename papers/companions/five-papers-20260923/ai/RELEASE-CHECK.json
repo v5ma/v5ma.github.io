@@ -1,0 +1,24 @@
+{
+  "paper": 111,
+  "preprint_version": "1.0",
+  "portable_check": {
+    "scope": "Fresh evaluation of frozen trained receiver/gates, not retraining or biological validation",
+    "byte_identical_files": 65,
+    "passed": true
+  },
+  "pdf_checks": {
+    "pages": 16,
+    "embedded_figures": 5,
+    "reader_links_checked": 36,
+    "files": 187,
+    "bytes": 16897319,
+    "pdf_sha256": "c4f6d6bc74bdad18b1ff0ff4674ee75ee9659ca01a241a8ebf4dc96c9a01bbc7",
+    "selected_visual_pages": [
+      1,
+      4,
+      13,
+      16
+    ]
+  },
+  "visual_review": "Four selected changed pages directly inspected for each paper: title/affiliation, first/last figures and public appendix. All PDF pages passed structural/text checks; all 44 figure objects embedded. No claim of new scientific independent review."
+}

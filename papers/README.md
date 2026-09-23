@@ -1,9 +1,9 @@
-# Micah Blumberg Research Papers 1–108
+# Micah Blumberg Research Papers 1–113
 
-This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–108 as of September 5, 2026.
+This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–113 as of September 23, 2026.
 
 - Searchable catalog: [pub.svgn.io](https://pub.svgn.io/)
-- Unified OSF archive: [Papers 1–108](https://osf.io/3vsar/)
+- Unified OSF archive: [Papers 1–113](https://osf.io/3vsar/)
 - Machine-readable inventory: [`PUBLIC-PAPER-MANIFEST.json`](./PUBLIC-PAPER-MANIFEST.json)
 - Integrity list: [`SHA256SUMS.txt`](./SHA256SUMS.txt)
 
@@ -125,3 +125,14 @@ The PDFs are mirrored for public access, review, citation, and provenance. Each 
 ## Shared AI research companion
 
 [Read the applications, proofs, data, figures and reproduction guide](./companions/ai-papers-20260905/README.md). The two AI papers share this evidence; it is not two independent replications. Their unsuccessful learned-correction result and explicit research limits are retained. Base-model/runtime binaries and private source originals are excluded. See the companion's own license and notices.
+
+
+## New preprints, 23 September 2026
+
+These are preprints, not claims of peer-review acceptance. Existing selections 001–108 remain unchanged. Each new companion preserves negative and tied results, reproducibility boundaries, licensing and AI-assistance disclosure.
+
+109. [Self-Aware Networks in a Connectome-Constrained Fly Brain](./109%20-%20Self-Aware%20Networks%20in%20a%20Connectome-Constrained%20Fly%20Brain.pdf) — [Zenodo](https://zenodo.org/records/22924326) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab427cee8adcb271bebeb25) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/fly)
+110. [Neural Rendering Composition and Granularity Tuning: State- and Task-Dependent Assembly of Multimodal Memory and Experience](./110%20-%20Neural%20Rendering%20Composition%20and%20Granularity%20Tuning%20State-%20and%20Task-Dependent%20Assembly%20of%20Multimodal%20Memory%20and%20Experience.pdf) — [Zenodo](https://zenodo.org/records/22924401) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab429e62c118d2d952c9a7f) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/composition)
+111. [Selective Dissipation for Continual Learning: Receiver-Relative Residual Trajectories and Self-Regulated Plasticity](./111%20-%20Selective%20Dissipation%20for%20Continual%20Learning%20Receiver-Relative%20Residual%20Trajectories%20and%20Self-Regulated%20Plasticity.pdf) — [Zenodo](https://zenodo.org/records/22924457) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42a3812f45d94cbd32bca) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/ai)
+112. [Selective Dissipation and Gated Plasticity in a History-Shaped Neural Canvas](./112%20-%20Selective%20Dissipation%20and%20Gated%20Plasticity%20in%20a%20History-Shaped%20Neural%20Canvas.pdf) — [Zenodo](https://zenodo.org/records/22924465) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42a63809e1e0f40d329b6) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/plasticity)
+113. [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience](./113%20-%20Temporal%20Ensembles%20in%20Self-Aware%20Networks%20Dendritic%20Recovery%2C%20Phase-Structured%20Recurrence%2C%20and%20the%20Hypothesis%20of%20Temporal%20Experience.pdf) — [Zenodo](https://zenodo.org/records/22924518) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42b864711fc9593d329f6) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal)

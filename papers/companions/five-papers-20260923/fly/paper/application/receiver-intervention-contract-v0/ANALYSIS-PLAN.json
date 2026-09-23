@@ -1,0 +1,19 @@
+{
+  "identity": "receiver-intervention-non-equivalence-witness-v0",
+  "purpose": "Show why receptor-input removal, whole-cell clamping and output disconnection cannot be substituted in the next physiological receiver implementation.",
+  "status": "Prospective deterministic mathematical witness, not fitted Dm9 simulation or biological data reanalysis",
+  "units": "All states, drive and time are dimensionless engineering choices",
+  "parameters": {"c": 0.6, "h": 0.4, "e": 0.1, "delta": 0.25, "P0": 0.5, "D0": 0.5, "tauP": 1.0, "tauD": 1.4},
+  "inputs": [0.05, 0.2, 0.5],
+  "conditions": ["intact", "receptor-input-removed", "cell-clamped", "output-disconnected", "restored"],
+  "duration": 12.0,
+  "step": 0.01,
+  "independentCheckStep": 0.005,
+  "comparisonTolerance": 0.00000001,
+  "records": ["absolute-P", "absolute-D", "equilibrium-P", "equilibrium-D", "own-initial-baseline-subtracted-P", "input", "condition", "initial-state"],
+  "frozenLearning": "No learning or refitting occurs; all unmanipulated coefficients remain identical.",
+  "initialization": "Intact/receptor-removed/output-disconnected/restored start at P0,D0. Cell clamp is established before the input, starting at P0-c*delta,D0-delta.",
+  "tests": ["closed-form steady states", "matrix-exponential versus separate scalar RK4", "intact equals restored", "clamp and output-cut have distinct absolute states", "matched baseline subtraction makes their P traces identical under the stated affine assumptions", "perturbing one saved point must fail numerical comparison"],
+  "notClaimed": ["estimated receptor rates", "conductance model", "Twitch-2C observation equivalence", "recorded oscillatory phase", "full spectral opponency", "native fly action", "new connected SAN episode", "independent review"],
+  "resourceLimit": {"processes": 1, "numericalThreads": 1, "priority": "below normal", "maxSeconds": 40}
+}

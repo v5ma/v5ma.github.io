@@ -1,0 +1,97 @@
+{
+  "source": "D:\\micahone\\vscode v5ma\\paper-development\\san-connectome-constrained-fly-brain-20260919\\sources\\hue-component-intake-03\\download\\compiled_data.parquet",
+  "sourceSha256": "f6524b03d81ef0b20d01e5a8b58b1a3861f893f1f9fce6bad9a4718007d6731c",
+  "rows": 6205,
+  "schema": [
+    [
+      "rh1",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "rh3",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "rh4",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "rh5",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "rh6",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "r",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "low",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "high",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "counts",
+      "DOUBLE",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "cell_type",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ]
+  ],
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "reader": {
+    "name": "duckdb",
+    "version": "1.5.3"
+  },
+  "cpuThreads": 1,
+  "memoryLimit": "64MB",
+  "automaticExtensionLoading": false,
+  "seconds": 0.0918385999975726,
+  "inference": "Schema inventory only. No fit, biological replication or SAN confirmation."
+}

@@ -1,0 +1,36 @@
+{
+  "identity": "spectral-receiver-bridge-v0",
+  "status": "Local development specification before numerical execution; not independent preregistration or held-out testing",
+  "source": {"path":"sources/photoreceptor-spectral-intake-15/download/supplementary-data-1.xlsx","sha256":"740f8517fc0f6ce18d724d71568db08d2c58567551057a0008068f8f88de8044"},
+  "sourceScope": "Sheet 1 contains aggregate mean/SD ERG responses for seven preparation/range curves. Neither raw time series nor individual animals nor normalized individual sensitivity curves are supplied here. Mean voltage units are mV, identified from Supplementary Figure S6, page 7. Preserve all data including separate overlapping Rh1/Rh6 curves.",
+  "frontEnd": {
+    "channels":["Rh3","Rh4","Rh5","Rh6"],
+    "sourceRangeNm":[315,550],
+    "stimulusWavelengthsNm":[330,355,435,520],
+    "rowNormalization":"Divide each common-window mean curve by its own maximum over 315-550 nm. This is an engineering relative-response normalization, not the authors' individual-normalized Figure 7 and not a measured cross-receptor gain.",
+    "model":"q_i = sum_j S_ij E_j r_j / 4. S contains four exact measured-grid values from the normalized curves. Four synthetic narrowband stimulus components; linear mixing is a declared surrogate assumption, not demonstrated ERG superposition across wavelengths/intensities.",
+    "preparationBoundary":"Each source class was measured in different rescued animals at class/animal-specific isoquantal intensities near half-response. The four output coordinates are an empirical-shape surrogate, not simultaneous native photoreceptor voltages, calibrated photon catches, terminal signals, or temporal dynamics. No conversion into FlyWire-cell physiology.",
+    "stimulusConstruction":"Let v be the last right singular vector of the first three rows of S, normalized to maximum absolute component 1 and oriented so its final component is positive. Define target r=0.5+0.25v and other r=0.5-0.25v. Retain failures if full separation is inadequate; do not optimize wavelengths or thresholds after execution.",
+    "coarseReadout":"Only Rh3, Rh4, Rh5 outputs exposed; this is an engineered access mask, not a claim that a fly switches a receptor class off.",
+    "fullReadout":"All four channels exposed.",
+    "illumination":"Apply E in stimulus coordinates before S. Use the prior four-component illuminants as synthetic wavelength coefficients. Retain a deliberately wrong after-mixing calculation as a diagnostic only, never as the live observation."
+  },
+  "inherited": {
+    "bridgePlanSha256":"c2b04249da7f9b3aa2752d679ae9b43cfa5187ddb2895e7af685fc18853a5b69",
+    "bridgeCodeSha256":"3d29269b064e35692de0ac8e2df479ef4d085ba37cb00f757df3a11e69832390",
+    "referenceCodeSha256":"6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+    "episodeSelection":"Unchanged six development scenarios, four seeds and 24 steps from the earlier reference plan; 24 episodes per case. This task is constructed from these source means and is not a biological performance test.",
+    "receiver":"Unchanged hypothetical ten-node receiver, lower-count positive-unknown-sign setting, dynamics, supervised familiarization, learned readout criterion and conventional action/return calibration. Coordinate control shares the same relative dynamics. No physiological phase claim.",
+    "comparability":"Every controller receives the same empirically shaped public exemplars and permitted sensory/return fields. Existing readout metrics and thresholds remain unchanged and unequal. No superiority inference from raw performance."
+  },
+  "cases":[
+    {"id":"spectral-phase","implementation":"phase","counts":"lower","unknownSign":1},
+    {"id":"spectral-coordinate","implementation":"coordinate","counts":"lower","unknownSign":1},
+    {"id":"spectral-no-coupling","implementation":"phase","counts":"lower","unknownSign":1,"coupling":0},
+    {"id":"spectral-reference-adaptive","implementation":"reference","policy":"adaptive_sampling"},
+    {"id":"spectral-reference-full","implementation":"reference","policy":"fixed_full"}
+  ],
+  "checks":["all 342 mean/SD pairs match original Excel XML independently of openpyxl", "all seven source curves preserved separately", "no raw-animal or waveform claim", "coarse nullspace residual", "reflectance bounds", "full-channel separation reported even if inadequate", "independent matrix sums match every observation", "no hidden labels in observations", "actual return and target-binding recomputation", "coordinate action equivalence", "matched-familiarization no-coupling control", "adverse illumination and all unsuccessful results retained", "deliberate corrupted-source/observation/return/action/metric cases rejected"],
+  "resourceLimits":{"foregroundWorkers":1,"numericalThreads":1,"maximumCaseSeconds":40,"maximumCheckSeconds":45,"priority":"verified below normal","installs":0},
+  "preservation":"Create-only outputs; no changes to the prior applications. Any repair after execution gets a named receipt and new output identity. No five sealed sessions are read."
+}

@@ -1,0 +1,59 @@
+{
+  "scope": "Post-result synthetic stronger-history follow-up; not a continual-learning result",
+  "protocol_sha256": "e51323ecb1bf64d376ee2321686b5c2c23bdd2bf07ed440566c018800f788965",
+  "script_sha256": "bed03e2fdb57886b887c3b716d81ca74e9db253cf062cf21a667511d80244a88",
+  "original_result_sha256": "9ca9528102d692816646357df9fc40e1de42d23c36b4a260a89df028184cdf86",
+  "train_seed": 41329,
+  "test_seed": 90731,
+  "train_count": 2400,
+  "test_count": 800,
+  "metrics": {
+    "trajectory_original_fit": {
+      "accuracy": 0.76125,
+      "brier": 0.15369526950977946,
+      "cross_entropy": 0.47344255718340855,
+      "proposal_fraction": 0.89375,
+      "positive_rate": 0.6725
+    },
+    "equal_slot_history_interaction": {
+      "accuracy": 0.84875,
+      "brier": 0.12949809466568998,
+      "cross_entropy": 0.40873026882292984,
+      "proposal_fraction": 0.63875,
+      "positive_rate": 0.6725
+    },
+    "fixed_history_analytic": {
+      "accuracy": 0.875,
+      "brier": 0.11918344107369963,
+      "cross_entropy": 0.37797151610400337,
+      "proposal_fraction": 0.6875,
+      "positive_rate": 0.6725
+    }
+  },
+  "paired": {
+    "interaction_vs_trajectory": {
+      "both_right": 540,
+      "trajectory_only_right": 69,
+      "history_rival_only_right": 139,
+      "both_wrong": 52,
+      "prediction_disagreements": 208
+    },
+    "analytic_vs_trajectory": {
+      "both_right": 572,
+      "trajectory_only_right": 37,
+      "history_rival_only_right": 128,
+      "both_wrong": 63,
+      "prediction_disagreements": 165
+    }
+  },
+  "checks": {
+    "previous_trajectory_metrics_exact_replay": true,
+    "same_held_out_count": true,
+    "equal_fitted_feature_slots": true,
+    "paired_counts_cover_every_case": true,
+    "rivals_use_only_permitted_history_and_current_scalar": true
+  },
+  "passed": 5,
+  "total": 5,
+  "all_pass": true
+}

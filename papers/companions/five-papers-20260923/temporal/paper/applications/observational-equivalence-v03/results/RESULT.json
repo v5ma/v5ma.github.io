@@ -1,0 +1,40 @@
+{
+  "scope": "constructive passive input-output nonidentifiability on a 3-symbol, 3-step finite domain",
+  "alphabet": [
+    "A",
+    "B",
+    "C"
+  ],
+  "horizon": 3,
+  "input_cases": 27,
+  "tests": {
+    "all_27_input_sequences_match_passively": true,
+    "latent_routes_differ": true,
+    "both_models_keep_abc_order": true,
+    "both_models_distinguish_reversal": true,
+    "branch_specific_intervention_separates_these_models": true
+  },
+  "passed": 5,
+  "total": 5,
+  "all_pass": true,
+  "example": {
+    "input": "ABC",
+    "alternating_routes": [
+      0,
+      1,
+      2
+    ],
+    "one_unit_routes": [
+      0,
+      0,
+      0
+    ],
+    "passive_output": "ABC",
+    "alternating_output_with_branch_1_blocked": "AC"
+  },
+  "limits": [
+    "No equal-capacity, metabolic-cost or noise constraint is asserted.",
+    "The branch-specific block distinguishes only these stipulated implementations.",
+    "This is not evidence that either route occurs in a biological neuron."
+  ]
+}

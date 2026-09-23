@@ -1,0 +1,3301 @@
+{
+  "scope": "finite logical-position intervention equivalence, not physical branch equivalence",
+  "alphabet": [
+    "A",
+    "B",
+    "C"
+  ],
+  "horizon": 3,
+  "n_branches": 3,
+  "n_cases": 216,
+  "tests": {
+    "all_216_cases_enumerated_once": true,
+    "eight_masks": true,
+    "all_mapped_outputs_match": true,
+    "all_retained_counts_match": true,
+    "all_retained_positions_match": true,
+    "passive_outputs_preserve_inputs": true,
+    "latent_routes_differ": true,
+    "branch_one_example_ac": true,
+    "single_label_blocks_preserve_two_events": true,
+    "full_block_is_empty": true,
+    "order_survives_label_one_block": true
+  },
+  "passed": 11,
+  "total": 11,
+  "all_pass": true,
+  "cases": [
+    {
+      "input": "AAA",
+      "blocked": [],
+      "branch": "AAA",
+      "indexed": "AAA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        0
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        1
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        2
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "AAA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "AAB",
+      "blocked": [],
+      "branch": "AAB",
+      "indexed": "AAB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        0
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        1
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        2
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "AAB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "AAC",
+      "blocked": [],
+      "branch": "AAC",
+      "indexed": "AAC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        0
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        1
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        2
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "AAC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ABA",
+      "blocked": [],
+      "branch": "ABA",
+      "indexed": "ABA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        0
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        1
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        2
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ABA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ABB",
+      "blocked": [],
+      "branch": "ABB",
+      "indexed": "ABB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        0
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        1
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        2
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ABB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ABC",
+      "blocked": [],
+      "branch": "ABC",
+      "indexed": "ABC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        0
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        1
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        2
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ABC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ACA",
+      "blocked": [],
+      "branch": "ACA",
+      "indexed": "ACA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        0
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        1
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        2
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ACA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ACB",
+      "blocked": [],
+      "branch": "ACB",
+      "indexed": "ACB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        0
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        1
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        2
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ACB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "ACC",
+      "blocked": [],
+      "branch": "ACC",
+      "indexed": "ACC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        0
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        1
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        2
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "ACC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BAA",
+      "blocked": [],
+      "branch": "BAA",
+      "indexed": "BAA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        0
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        1
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        2
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BAA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BAB",
+      "blocked": [],
+      "branch": "BAB",
+      "indexed": "BAB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        0
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        1
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        2
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BAB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BAC",
+      "blocked": [],
+      "branch": "BAC",
+      "indexed": "BAC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        0
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        1
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        2
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BAC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BBA",
+      "blocked": [],
+      "branch": "BBA",
+      "indexed": "BBA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        0
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        1
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        2
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BBA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BBB",
+      "blocked": [],
+      "branch": "BBB",
+      "indexed": "BBB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        0
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        1
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        2
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BBB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BBC",
+      "blocked": [],
+      "branch": "BBC",
+      "indexed": "BBC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        0
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        1
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        2
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BBC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BCA",
+      "blocked": [],
+      "branch": "BCA",
+      "indexed": "BCA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        0
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        1
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        2
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BCA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BCB",
+      "blocked": [],
+      "branch": "BCB",
+      "indexed": "BCB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        0
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        1
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        2
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BCB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "BCC",
+      "blocked": [],
+      "branch": "BCC",
+      "indexed": "BCC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        0
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        1
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        2
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "BCC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CAA",
+      "blocked": [],
+      "branch": "CAA",
+      "indexed": "CAA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        0
+      ],
+      "branch": "AA",
+      "indexed": "AA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        1
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        2
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CAA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CAB",
+      "blocked": [],
+      "branch": "CAB",
+      "indexed": "CAB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        0
+      ],
+      "branch": "AB",
+      "indexed": "AB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        1
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        2
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CAB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CAC",
+      "blocked": [],
+      "branch": "CAC",
+      "indexed": "CAC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        0
+      ],
+      "branch": "AC",
+      "indexed": "AC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        1
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        2
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CAC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CBA",
+      "blocked": [],
+      "branch": "CBA",
+      "indexed": "CBA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        0
+      ],
+      "branch": "BA",
+      "indexed": "BA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        1
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        2
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CBA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CBB",
+      "blocked": [],
+      "branch": "CBB",
+      "indexed": "CBB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        0
+      ],
+      "branch": "BB",
+      "indexed": "BB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        1
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        2
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CBB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CBC",
+      "blocked": [],
+      "branch": "CBC",
+      "indexed": "CBC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        0
+      ],
+      "branch": "BC",
+      "indexed": "BC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        1
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        2
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CBC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CCA",
+      "blocked": [],
+      "branch": "CCA",
+      "indexed": "CCA",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        0
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        1
+      ],
+      "branch": "CA",
+      "indexed": "CA",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        2
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "A",
+      "indexed": "A",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CCA",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CCB",
+      "blocked": [],
+      "branch": "CCB",
+      "indexed": "CCB",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        0
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        1
+      ],
+      "branch": "CB",
+      "indexed": "CB",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        2
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "B",
+      "indexed": "B",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CCB",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    },
+    {
+      "input": "CCC",
+      "blocked": [],
+      "branch": "CCC",
+      "indexed": "CCC",
+      "branch_positions": [
+        0,
+        1,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        0
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        1,
+        2
+      ],
+      "indexed_positions": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        1
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        2
+      ],
+      "indexed_positions": [
+        0,
+        2
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        2
+      ],
+      "branch": "CC",
+      "indexed": "CC",
+      "branch_positions": [
+        0,
+        1
+      ],
+      "indexed_positions": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        0,
+        1
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        2
+      ],
+      "indexed_positions": [
+        2
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        0,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        1
+      ],
+      "indexed_positions": [
+        1
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        1,
+        2
+      ],
+      "branch": "C",
+      "indexed": "C",
+      "branch_positions": [
+        0
+      ],
+      "indexed_positions": [
+        0
+      ]
+    },
+    {
+      "input": "CCC",
+      "blocked": [
+        0,
+        1,
+        2
+      ],
+      "branch": "",
+      "indexed": "",
+      "branch_positions": [],
+      "indexed_positions": []
+    }
+  ],
+  "limitations": [
+    "The comparator uses an abstract indexed history; its positions are not dendrites.",
+    "Matched visible erasure does not match metabolic cost, noise or lesion side effects.",
+    "No branch recovery, content trace physiology or consciousness is tested."
+  ]
+}

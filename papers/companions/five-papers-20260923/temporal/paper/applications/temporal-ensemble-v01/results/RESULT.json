@@ -1,0 +1,134 @@
+{
+  "cases": {
+    "feasible_six_events": {
+      "branch_count": 3,
+      "branch_reuse_ready": true,
+      "effective_events": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "event_times": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "final_available_order": "ABC",
+      "full_order_available": false,
+      "recovery": 3.0,
+      "spacing": 1.0,
+      "symbols": "ABCABC",
+      "trace_lifetime": 2.0
+    },
+    "reversed_order": {
+      "branch_count": 3,
+      "branch_reuse_ready": true,
+      "effective_events": [
+        true,
+        true,
+        true
+      ],
+      "event_times": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "final_available_order": "CBA",
+      "full_order_available": true,
+      "recovery": 3.0,
+      "spacing": 1.0,
+      "symbols": "CBA",
+      "trace_lifetime": 2.0
+    },
+    "short_trace": {
+      "branch_count": 3,
+      "branch_reuse_ready": true,
+      "effective_events": [
+        true,
+        true,
+        true
+      ],
+      "event_times": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "final_available_order": "BC",
+      "full_order_available": false,
+      "recovery": 3.0,
+      "spacing": 1.0,
+      "symbols": "ABC",
+      "trace_lifetime": 1.5
+    },
+    "simultaneous": {
+      "branch_count": 3,
+      "branch_reuse_ready": true,
+      "effective_events": [
+        true,
+        true,
+        true
+      ],
+      "event_times": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "final_available_order": "AMBIGUOUS",
+      "full_order_available": false,
+      "recovery": 3.0,
+      "spacing": 1.0,
+      "symbols": "ABC",
+      "trace_lifetime": 2.0
+    },
+    "slow_recovery": {
+      "branch_count": 3,
+      "branch_reuse_ready": false,
+      "effective_events": [
+        true,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "event_times": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0
+      ],
+      "final_available_order": "",
+      "full_order_available": false,
+      "recovery": 4.0,
+      "spacing": 1.0,
+      "symbols": "ABCABC",
+      "trace_lifetime": 2.0
+    }
+  },
+  "limitations": [
+    "The model does not fit or predict biological dendritic activity.",
+    "A nonoscillatory ordered state can preserve the same information.",
+    "The witness says nothing about phenomenal experience."
+  ],
+  "model_scope": "imposed finite schedule, hard recovery and trace windows; no emergent oscillation",
+  "tests": {
+    "finite_schedule_feasible": true,
+    "necessary_window_fails_when_short": true,
+    "nonoscillatory_history_also_retains_order": true,
+    "rate_only_cannot_distinguish_reversal": true,
+    "regular_triplet_available": true,
+    "reverse_order_preserved": true,
+    "short_trace_loses_first_event": true,
+    "simultaneous_order_ambiguous": true,
+    "slow_recovery_blocks_reuse": true,
+    "zero_lifetime_rejects_positive_spacing": true
+  }
+}

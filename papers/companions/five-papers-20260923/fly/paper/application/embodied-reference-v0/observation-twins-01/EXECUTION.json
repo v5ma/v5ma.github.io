@@ -1,0 +1,201 @@
+{
+  "createdUtc": "2026-09-19T20:45:32.538412+00:00",
+  "checks": [
+    {
+      "name": "identical observation through evidence boundary, t=0",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=0",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=0",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=0",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=1",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=1",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=1",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=1",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=2",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=2",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=2",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=2",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=3",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=3",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=3",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=3",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=4",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=4",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=4",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=4",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=5",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=5",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=5",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=5",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=6",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=6",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=6",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=6",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=7",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=7",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=7",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=7",
+      "passed": true
+    },
+    {
+      "name": "identical observation through evidence boundary, t=8",
+      "passed": true
+    },
+    {
+      "name": "identical state through evidence boundary, t=8",
+      "passed": true
+    },
+    {
+      "name": "identical action through evidence boundary, t=8",
+      "passed": true
+    },
+    {
+      "name": "identical body_return through evidence boundary, t=8",
+      "passed": true
+    },
+    {
+      "name": "hidden target separation t=6",
+      "passed": true
+    },
+    {
+      "name": "half-separation error bound t=6",
+      "passed": true
+    },
+    {
+      "name": "hidden target separation t=7",
+      "passed": true
+    },
+    {
+      "name": "half-separation error bound t=7",
+      "passed": true
+    },
+    {
+      "name": "hidden target separation t=8",
+      "passed": true
+    },
+    {
+      "name": "half-separation error bound t=8",
+      "passed": true
+    },
+    {
+      "name": "new observation at t=9",
+      "passed": true
+    },
+    {
+      "name": "updated observed relation at t=9",
+      "passed": true
+    },
+    {
+      "name": "new relation affects later action",
+      "passed": true
+    },
+    {
+      "name": "bounded execution",
+      "passed": true
+    }
+  ],
+  "checksPassed": 46,
+  "checksTotal": 46,
+  "seconds": 0.0028045999933965504,
+  "firstDistinguishingObservation": 9,
+  "firstDifferentAction": 11,
+  "maximumIntervenedRelationError": 0.6000000000000003,
+  "planSha256": "576b3898d3639dab50d941b9ce3cb9e4590ebd85db67b53e3463de9d090eeea2",
+  "controllerSha256": "6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+  "scriptSha256": "813e5e713fd56f33401a672cbea4b9b55d47df919fb7e680ea558fd21cdd327b",
+  "episodesSha256": "27f08a71328a9f5cb17bd5c1d8c04b5c2c6d0869bea56521b95ebbd1653bf8ae",
+  "biologicalEvidence": false,
+  "scope": "Demonstrates the observation-interface limit and the controller's use of new evidence in two engineered worlds. It is not a SAN-specific, fly-biological or consciousness result. The point controller has no calibrated uncertainty distribution."
+}

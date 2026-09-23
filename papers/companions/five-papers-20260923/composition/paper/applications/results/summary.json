@@ -1,0 +1,71 @@
+{
+  "status": "FINITE_DIAGNOSTIC_PASS_NOT_BIOLOGICAL_VALIDATION",
+  "states": 4096,
+  "roles": 6,
+  "conditions": 48,
+  "scope": "Exact Bayes-optimal task readouts on balanced finite states; hand-declared role selector, no training, human data, PWD timing or neural dynamics. Bits count retained source coordinates, not instruction, route or computation overhead.",
+  "summary": [
+    {
+      "model": "role_conditioned_assembly",
+      "accuracy": 1.0,
+      "representation_bits": 4
+    },
+    {
+      "model": "ordinary_task_attention",
+      "accuracy": 1.0,
+      "representation_bits": 4
+    },
+    {
+      "model": "fixed_fine_pair",
+      "accuracy": 0.25,
+      "representation_bits": 4
+    },
+    {
+      "model": "fixed_gain_pair",
+      "accuracy": 0.25,
+      "representation_bits": 4
+    },
+    {
+      "model": "fixed_coarse_four",
+      "accuracy": 0.16666666666666666,
+      "representation_bits": 4
+    },
+    {
+      "model": "fixed_low_pair",
+      "accuracy": 0.10416666666666667,
+      "representation_bits": 2
+    },
+    {
+      "model": "fixed_all_fine",
+      "accuracy": 1.0,
+      "representation_bits": 12
+    },
+    {
+      "model": "stale_previous_role",
+      "accuracy": 0.1875,
+      "representation_bits": 4
+    }
+  ],
+  "tests": {
+    "attention_ties_assembly": true,
+    "injective_gain_preserves_cells_and_accuracy": true,
+    "full_representation_correct": true,
+    "fine_refines_coarse": true,
+    "swapped_binding_fixed_decoder_accuracy_quarter": true,
+    "correct_binding_rescue": true,
+    "role_partitions_incomparable": true,
+    "all_roles_balanced": true
+  },
+  "binding_swap_fixed_decoder_accuracy": 0.25,
+  "correct_binding_rescue_accuracy": 1.0,
+  "gaussian_gain_example": [
+    {
+      "gain": 1,
+      "accuracy": 0.8413447460685428
+    },
+    {
+      "gain": 2,
+      "accuracy": 0.9772498680518209
+    }
+  ]
+}

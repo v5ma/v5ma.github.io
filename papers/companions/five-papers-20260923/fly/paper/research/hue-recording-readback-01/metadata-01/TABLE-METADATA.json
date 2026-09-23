@@ -1,0 +1,1486 @@
+{
+  "timestamp_utc": "2026-09-20T03:40:38.357702+00:00",
+  "source_path": "D:\\micahone\\vscode v5ma\\paper-development\\san-connectome-constrained-fly-brain-20260919\\sources\\hue-model-data-intake-35\\Figure-3.parquet",
+  "source_sha256": "7971711b5283e674f7007c47246b542b6e4f62425c718baa38f7992088eacaf9",
+  "intake_sha256": "fb769e4fa4977983b1af28e02ebe696f0db55e8b765c5aa6b5b090a2ac7b5bb0",
+  "plan_sha256": "cdd1424fd530e4d51dbef7f59964b0abdf12ea8d18577c209633cebc177fbd83",
+  "tool_sha256": "d0ee6b11631d7e283c15d8c62419947b50397ac198cb8bf0ba34ba05a70515a3",
+  "file_metadata": {
+    "file_name": "D:\\micahone\\vscode v5ma\\paper-development\\san-connectome-constrained-fly-brain-20260919\\sources\\hue-model-data-intake-35\\Figure-3.parquet",
+    "created_by": "parquet-cpp-arrow version 12.0.0",
+    "num_rows": 1322829,
+    "num_row_groups": 1,
+    "format_version": 2,
+    "encryption_algorithm": null,
+    "footer_signing_key_metadata": null,
+    "file_size_bytes": 124714328,
+    "footer_size": 52056,
+    "column_orders": [
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())",
+      "ColumnOrder(TYPE_ORDER=TypeDefinedOrder())"
+    ]
+  },
+  "row_count": 1322829,
+  "row_group_count": 1,
+  "schema": [
+    {
+      "name": "duv",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "uv",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "violet",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "rblue",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "lime",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "orange",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "snr",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-500ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-475ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-450ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-425ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-400ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-375ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-350ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-325ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-300ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-275ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-250ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-225ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-200ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-175ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-150ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-125ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-100ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-75ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-50ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=-25ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=0ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=25ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=50ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=75ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=100ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=125ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=150ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=175ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=200ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=225ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=250ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=275ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=300ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=325ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=350ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=375ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=400ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=425ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=450ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=475ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=500ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=525ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=550ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=575ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=600ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=625ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=650ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=675ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=700ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=725ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=750ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=775ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=800ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=825ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=850ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=875ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=900ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=925ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=950ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=975ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1000ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1025ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1050ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1075ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1100ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1125ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1150ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1175ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1200ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1225ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1250ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1275ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1300ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1325ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1350ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1375ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1400ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1425ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1450ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1475ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1500ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1525ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1550ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1575ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1600ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1625ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1650ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1675ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1700ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1725ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1750ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1775ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1800ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1825ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1850ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1875ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1900ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1925ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1950ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "t=1975ms",
+      "type": "DOUBLE",
+      "nullable": "YES"
+    },
+    {
+      "name": "cell_type",
+      "type": "VARCHAR",
+      "nullable": "YES"
+    },
+    {
+      "name": "__index_level_0__",
+      "type": "BIGINT",
+      "nullable": "YES"
+    }
+  ],
+  "metadata": {
+    "pandas": {
+      "index_columns": [
+        "__index_level_0__"
+      ],
+      "column_indexes": [
+        {
+          "name": null,
+          "field_name": null,
+          "pandas_type": "unicode",
+          "numpy_type": "object",
+          "metadata": {
+            "encoding": "UTF-8"
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "duv",
+          "field_name": "duv",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "uv",
+          "field_name": "uv",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "violet",
+          "field_name": "violet",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "rblue",
+          "field_name": "rblue",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "lime",
+          "field_name": "lime",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "orange",
+          "field_name": "orange",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "snr",
+          "field_name": "snr",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-500ms",
+          "field_name": "t=-500ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-475ms",
+          "field_name": "t=-475ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-450ms",
+          "field_name": "t=-450ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-425ms",
+          "field_name": "t=-425ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-400ms",
+          "field_name": "t=-400ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-375ms",
+          "field_name": "t=-375ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-350ms",
+          "field_name": "t=-350ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-325ms",
+          "field_name": "t=-325ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-300ms",
+          "field_name": "t=-300ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-275ms",
+          "field_name": "t=-275ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-250ms",
+          "field_name": "t=-250ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-225ms",
+          "field_name": "t=-225ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-200ms",
+          "field_name": "t=-200ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-175ms",
+          "field_name": "t=-175ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-150ms",
+          "field_name": "t=-150ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-125ms",
+          "field_name": "t=-125ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-100ms",
+          "field_name": "t=-100ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-75ms",
+          "field_name": "t=-75ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-50ms",
+          "field_name": "t=-50ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=-25ms",
+          "field_name": "t=-25ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=0ms",
+          "field_name": "t=0ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=25ms",
+          "field_name": "t=25ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=50ms",
+          "field_name": "t=50ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=75ms",
+          "field_name": "t=75ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=100ms",
+          "field_name": "t=100ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=125ms",
+          "field_name": "t=125ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=150ms",
+          "field_name": "t=150ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=175ms",
+          "field_name": "t=175ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=200ms",
+          "field_name": "t=200ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=225ms",
+          "field_name": "t=225ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=250ms",
+          "field_name": "t=250ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=275ms",
+          "field_name": "t=275ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=300ms",
+          "field_name": "t=300ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=325ms",
+          "field_name": "t=325ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=350ms",
+          "field_name": "t=350ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=375ms",
+          "field_name": "t=375ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=400ms",
+          "field_name": "t=400ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=425ms",
+          "field_name": "t=425ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=450ms",
+          "field_name": "t=450ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=475ms",
+          "field_name": "t=475ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=500ms",
+          "field_name": "t=500ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=525ms",
+          "field_name": "t=525ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=550ms",
+          "field_name": "t=550ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=575ms",
+          "field_name": "t=575ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=600ms",
+          "field_name": "t=600ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=625ms",
+          "field_name": "t=625ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=650ms",
+          "field_name": "t=650ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=675ms",
+          "field_name": "t=675ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=700ms",
+          "field_name": "t=700ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=725ms",
+          "field_name": "t=725ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=750ms",
+          "field_name": "t=750ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=775ms",
+          "field_name": "t=775ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=800ms",
+          "field_name": "t=800ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=825ms",
+          "field_name": "t=825ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=850ms",
+          "field_name": "t=850ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=875ms",
+          "field_name": "t=875ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=900ms",
+          "field_name": "t=900ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=925ms",
+          "field_name": "t=925ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=950ms",
+          "field_name": "t=950ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=975ms",
+          "field_name": "t=975ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1000ms",
+          "field_name": "t=1000ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1025ms",
+          "field_name": "t=1025ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1050ms",
+          "field_name": "t=1050ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1075ms",
+          "field_name": "t=1075ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1100ms",
+          "field_name": "t=1100ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1125ms",
+          "field_name": "t=1125ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1150ms",
+          "field_name": "t=1150ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1175ms",
+          "field_name": "t=1175ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1200ms",
+          "field_name": "t=1200ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1225ms",
+          "field_name": "t=1225ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1250ms",
+          "field_name": "t=1250ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1275ms",
+          "field_name": "t=1275ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1300ms",
+          "field_name": "t=1300ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1325ms",
+          "field_name": "t=1325ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1350ms",
+          "field_name": "t=1350ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1375ms",
+          "field_name": "t=1375ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1400ms",
+          "field_name": "t=1400ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1425ms",
+          "field_name": "t=1425ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1450ms",
+          "field_name": "t=1450ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1475ms",
+          "field_name": "t=1475ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1500ms",
+          "field_name": "t=1500ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1525ms",
+          "field_name": "t=1525ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1550ms",
+          "field_name": "t=1550ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1575ms",
+          "field_name": "t=1575ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1600ms",
+          "field_name": "t=1600ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1625ms",
+          "field_name": "t=1625ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1650ms",
+          "field_name": "t=1650ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1675ms",
+          "field_name": "t=1675ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1700ms",
+          "field_name": "t=1700ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1725ms",
+          "field_name": "t=1725ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1750ms",
+          "field_name": "t=1750ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1775ms",
+          "field_name": "t=1775ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1800ms",
+          "field_name": "t=1800ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1825ms",
+          "field_name": "t=1825ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1850ms",
+          "field_name": "t=1850ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1875ms",
+          "field_name": "t=1875ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1900ms",
+          "field_name": "t=1900ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1925ms",
+          "field_name": "t=1925ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1950ms",
+          "field_name": "t=1950ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "t=1975ms",
+          "field_name": "t=1975ms",
+          "pandas_type": "float64",
+          "numpy_type": "float64",
+          "metadata": null
+        },
+        {
+          "name": "cell_type",
+          "field_name": "cell_type",
+          "pandas_type": "unicode",
+          "numpy_type": "object",
+          "metadata": null
+        },
+        {
+          "name": null,
+          "field_name": "__index_level_0__",
+          "pandas_type": "int64",
+          "numpy_type": "int64",
+          "metadata": null
+        }
+      ],
+      "creator": {
+        "library": "pyarrow",
+        "version": "12.0.0"
+      },
+      "pandas_version": "2.0.1"
+    },
+    "ARROW:schema": {
+      "bytes": 24664,
+      "sha256": "3056d3a048145deaecce755cb00e03ebb3f04ad5bca07e022f6aea2d62a5b991"
+    }
+  },
+  "row_groups": [
+    {
+      "index": 0,
+      "rows": 1322829,
+      "uncompressed_bytes": 132059231
+    }
+  ],
+  "reader": "duckdb",
+  "reader_version": "1.5.3",
+  "threads": 1,
+  "memory_limit": "64MB",
+  "package_installations": 0,
+  "initial_reader_attempt": "pyarrow absent; no table values read, no installation attempted",
+  "data_values_read": false,
+  "elapsed_seconds": 2.422
+}

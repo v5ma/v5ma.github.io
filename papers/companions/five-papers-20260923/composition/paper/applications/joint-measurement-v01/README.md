@@ -1,0 +1,13 @@
+# The joint score can be reproduced at readout
+
+[Frozen diagnostic protocol](PROTOCOL.md) · [implementation](check.py) · [512 snapshots](run/RESULT.json) · [replay](replay/RESULT.json).
+
+The exhaustive construction covers 128 relational-memory episodes and four fine/coarse × earlier/current conditions. Its E_B terms are 1, 0, 0, 0, giving J=1. Fine/earlier route answers are exact; inverse restoration is exact. All 80 incomplete-observable groups have balanced labels. There are 6,352 passing implementation assertions, and the result replays byte-identically. These counts are not independent subjects or evidence that a learned controller achieved the prospective thresholds.
+
+The important result is a control: an unchanged full-record memory with the same transformations applied only at readout produces the same entire probability/intervention signature. Its stored record hash stays unchanged. Thus J alone does not identify a change in the underlying assembly. Directly inspecting the constructed state can distinguish the implementations; inferred behavioral correctness cannot replace that measurement in biology.
+
+Formally, for any episode e, role r and declared intervention q, if the assembly model returns d(V_q(e),r), a fixed-record implementation can compute the same composition at readout. Equality holds for every e and q in the declared domain. The proof does not assert equal computation, storage, anatomical location, biological intervention access or physical mechanism. The complete-record control is storage-rich, not a 64-bit matched competitor. To claim a joint-control law, the learned study must retain the independent state/constituent measurements and fair recurrent comparison in Section 6.8.
+
+This is **not** the Section 6.8 learned experiment: constructors and decoders are hand specified, no policy is trained, and neither the proposed five seeds nor held-out background blocks are used. The management endpoint and charged learned-query optimization are not scored. The implementation places current vision and proprioception at the same time label 0, with two earlier auditory labels -3 and -2; thus four typed event records have three distinct lag labels. This makes the temporal-availability diagnostic narrower than four separately timed events. Their provided type labels are not biological modalities acquired from raw sensors. No phenomenological claim follows.
+
+C04 is advanced by a tested measurement contract and a concrete nonidentification example. Its learned joint controller, fair capacity/work comparison and biological inference remain prospective. The original broad conception of multimodal remembered, anticipated and action-usable episodes is not reduced to this finite task.

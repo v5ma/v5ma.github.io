@@ -1,0 +1,138 @@
+{
+  "modelSha256": "1657583d1c327cc11e54b55a1c1996ae7e7ed46921142c6ef45afa1fd2ea2cc3",
+  "checkerSha256": "6b84d8ad3631a6fe7fc06751926d4a5c8a153d5589e412f2ba5de4c759e7c162",
+  "planSha256": "c0499a53fb1a711ed033abf9b31f035274b103540baace1d004906ce459c21c1",
+  "cases": [
+    {
+      "regime": "SNL",
+      "nativeSamples": 20000,
+      "comparedStateValues": 60000,
+      "nativeInitialState": [
+        -60.0,
+        0.0,
+        0.0
+      ],
+      "sourceNominalInitialGates": 0.146,
+      "oneStepDefects": [
+        {
+          "substepMs": 0.1,
+          "voltageMaxDifferenceMv": 0.0018712594094942858,
+          "gateMaxDifference": 3.311012012874315e-05
+        },
+        {
+          "substepMs": 0.05,
+          "voltageMaxDifferenceMv": 0.00012303565422655538,
+          "gateMaxDifference": 1.631861083595254e-06
+        },
+        {
+          "substepMs": 0.025,
+          "voltageMaxDifferenceMv": 7.737352053283075e-06,
+          "gateMaxDifference": 9.06435544401063e-08
+        },
+        {
+          "substepMs": 0.01,
+          "voltageMaxDifferenceMv": 4.263256414560601e-14,
+          "gateMaxDifference": 2.220446049250313e-16
+        }
+      ],
+      "fullReplayDtMs": 0.01,
+      "fullReplayMaxVoltageDifferenceMv": 8.95891716368169e-09,
+      "fullReplayMaxGateDifference": 1.2939571636394476e-10,
+      "spikes": 12,
+      "spikeMaxDifferenceMs": 2.2737367544323206e-13,
+      "passedDeclaredTolerance": true,
+      "output": "SNL-NATIVE-REPLAY.npz",
+      "outputSha256": "8f09d02dd307fbc53efeb87a5940819b35fac85dbc28cef6ed91225881e8dc68",
+      "parameters": {
+        "gna": 431.2,
+        "gsb": 137.68216,
+        "gl": 8.624,
+        "zm": 3.0,
+        "vm": -33.0,
+        "zh": 5.2,
+        "vh": -39.14,
+        "rh": 0.2,
+        "gah": 0.38,
+        "zb": 1.1056,
+        "vb": -42.14,
+        "rb": 0.2,
+        "gab": 0.38,
+        "Ek": -72.0,
+        "Ena": 55.0,
+        "Ele": -60.0,
+        "Cm": 130.0,
+        "I_in": 108.75,
+        "I_gap": 0.0,
+        "cQ": 0.0392
+      }
+    },
+    {
+      "regime": "SNIC",
+      "nativeSamples": 20000,
+      "comparedStateValues": 60000,
+      "nativeInitialState": [
+        -60.0,
+        0.0,
+        0.0
+      ],
+      "sourceNominalInitialGates": 0.146,
+      "oneStepDefects": [
+        {
+          "substepMs": 0.1,
+          "voltageMaxDifferenceMv": 0.0010955408595982874,
+          "gateMaxDifference": 1.757618462061572e-05
+        },
+        {
+          "substepMs": 0.05,
+          "voltageMaxDifferenceMv": 7.196941668752288e-05,
+          "gateMaxDifference": 9.110554319846642e-07
+        },
+        {
+          "substepMs": 0.025,
+          "voltageMaxDifferenceMv": 4.525420980172612e-06,
+          "gateMaxDifference": 5.161727656410875e-08
+        },
+        {
+          "substepMs": 0.01,
+          "voltageMaxDifferenceMv": 3.552713678800501e-14,
+          "gateMaxDifference": 3.3306690738754696e-16
+        }
+      ],
+      "fullReplayDtMs": 0.01,
+      "fullReplayMaxVoltageDifferenceMv": 3.0053506350213866e-08,
+      "fullReplayMaxGateDifference": 4.128919428580957e-10,
+      "spikes": 13,
+      "spikeMaxDifferenceMs": 2.2737367544323206e-13,
+      "passedDeclaredTolerance": true,
+      "output": "SNIC-NATIVE-REPLAY.npz",
+      "outputSha256": "d87a92e4cacce90f24785c06d6652d39d61e67f2f5a9917f7a3ba10c5a623be7",
+      "parameters": {
+        "gna": 431.2,
+        "gsb": 215.6,
+        "gl": 8.624,
+        "zm": 3.0,
+        "vm": -33.0,
+        "zh": 5.2,
+        "vh": -39.14,
+        "rh": 0.2,
+        "gah": 0.38,
+        "zb": 1.1056,
+        "vb": -42.14,
+        "rb": 0.2,
+        "gab": 0.38,
+        "Ek": -72.0,
+        "Ena": 55.0,
+        "Ele": -60.0,
+        "Cm": 130.0,
+        "I_in": 175.0,
+        "I_gap": 0.0,
+        "cQ": 0.0392
+      }
+    }
+  ],
+  "externalCodeExecuted": false,
+  "biologicalDataAnalyzed": false,
+  "independentReview": false,
+  "status": "pass",
+  "seconds": 5.456816199992318
+}

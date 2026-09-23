@@ -1,0 +1,156 @@
+[
+  {
+    "key": "2m/fitting_script/0/none",
+    "modules": 2,
+    "protocol": "fitting_script",
+    "context": 0,
+    "intervention": "none",
+    "count": 36,
+    "weightedSquaredError": 52.954387311811466,
+    "standardizedRMSE": 1.2128294204486771,
+    "rmseHz": 3.635242648448481
+  },
+  {
+    "key": "2m/fitting_script/1/none",
+    "modules": 2,
+    "protocol": "fitting_script",
+    "context": 1,
+    "intervention": "none",
+    "count": 24,
+    "weightedSquaredError": 59.50584285973032,
+    "standardizedRMSE": 1.5746142763087823,
+    "rmseHz": 4.44866794036931
+  },
+  {
+    "key": "2m/figure_5c_script/0/none",
+    "modules": 2,
+    "protocol": "figure_5c_script",
+    "context": 0,
+    "intervention": "none",
+    "count": 36,
+    "weightedSquaredError": 64.95285669314633,
+    "standardizedRMSE": 1.34322225236707,
+    "rmseHz": 3.778219007362752
+  },
+  {
+    "key": "2m/figure_5c_script/1/none",
+    "modules": 2,
+    "protocol": "figure_5c_script",
+    "context": 1,
+    "intervention": "none",
+    "count": 24,
+    "weightedSquaredError": 71.10498876869993,
+    "standardizedRMSE": 1.7212518308959026,
+    "rmseHz": 5.0212605117592295
+  },
+  {
+    "key": "3m/fitting_script/0/none",
+    "modules": 3,
+    "protocol": "fitting_script",
+    "context": 0,
+    "intervention": "none",
+    "count": 52,
+    "weightedSquaredError": 74.67672700415724,
+    "standardizedRMSE": 1.1983701030675376,
+    "rmseHz": 3.275752012403748
+  },
+  {
+    "key": "3m/fitting_script/1/none",
+    "modules": 3,
+    "protocol": "fitting_script",
+    "context": 1,
+    "intervention": "none",
+    "count": 34,
+    "weightedSquaredError": 65.79173419279853,
+    "standardizedRMSE": 1.3910611078132207,
+    "rmseHz": 3.8077918402877695
+  },
+  {
+    "key": "3m/figure_5c_script/0/none",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 0,
+    "intervention": "none",
+    "count": 52,
+    "weightedSquaredError": 90.29987806710852,
+    "standardizedRMSE": 1.3177769601397513,
+    "rmseHz": 3.3859560122775028
+  },
+  {
+    "key": "3m/figure_5c_script/1/none",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 1,
+    "intervention": "none",
+    "count": 34,
+    "weightedSquaredError": 78.43004336885298,
+    "standardizedRMSE": 1.5188041287265623,
+    "rmseHz": 4.280912577514321
+  },
+  {
+    "key": "3m/figure_5c_script/0/plasticity_zero",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 0,
+    "intervention": "plasticity_zero",
+    "count": 52,
+    "weightedSquaredError": 460.1268211574919,
+    "standardizedRMSE": 2.974658419813467,
+    "rmseHz": 6.786319635239149
+  },
+  {
+    "key": "3m/figure_5c_script/1/plasticity_zero",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 1,
+    "intervention": "plasticity_zero",
+    "count": 34,
+    "weightedSquaredError": 649.0310015700804,
+    "standardizedRMSE": 4.369112851026209,
+    "rmseHz": 10.986965508275743
+  },
+  {
+    "key": "3m/figure_5c_script/0/gamma_to_DAN_removed",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 0,
+    "intervention": "gamma_to_DAN_removed",
+    "count": 52,
+    "weightedSquaredError": 427.60419568740053,
+    "standardizedRMSE": 2.8676048558637026,
+    "rmseHz": 6.717023804635553
+  },
+  {
+    "key": "3m/figure_5c_script/1/gamma_to_DAN_removed",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 1,
+    "intervention": "gamma_to_DAN_removed",
+    "count": 34,
+    "weightedSquaredError": 300.58350167686854,
+    "standardizedRMSE": 2.9733299893873624,
+    "rmseHz": 5.774969457316979
+  },
+  {
+    "key": "3m/figure_5c_script/0/rescue",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 0,
+    "intervention": "rescue",
+    "count": 52,
+    "weightedSquaredError": 90.29987806710852,
+    "standardizedRMSE": 1.3177769601397513,
+    "rmseHz": 3.3859560122775028
+  },
+  {
+    "key": "3m/figure_5c_script/1/rescue",
+    "modules": 3,
+    "protocol": "figure_5c_script",
+    "context": 1,
+    "intervention": "rescue",
+    "count": 34,
+    "weightedSquaredError": 78.43004336885298,
+    "standardizedRMSE": 1.5188041287265623,
+    "rmseHz": 4.280912577514321
+  }
+]

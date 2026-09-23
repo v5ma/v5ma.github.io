@@ -1,0 +1,1794 @@
+[
+  {
+    "cell_type": "Tm20",
+    "seed": 11,
+    "fold": 0,
+    "train": 424,
+    "test": 151,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 11,
+    "fold": 1,
+    "train": 448,
+    "test": 127,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 11,
+    "fold": 2,
+    "train": 431,
+    "test": 144,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 11,
+    "fold": 3,
+    "train": 422,
+    "test": 153,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 12,
+    "fold": 0,
+    "train": 427,
+    "test": 148,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 12,
+    "fold": 1,
+    "train": 428,
+    "test": 147,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 12,
+    "fold": 2,
+    "train": 420,
+    "test": 155,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 12,
+    "fold": 3,
+    "train": 450,
+    "test": 125,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 13,
+    "fold": 0,
+    "train": 440,
+    "test": 135,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 13,
+    "fold": 1,
+    "train": 413,
+    "test": 162,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 13,
+    "fold": 2,
+    "train": 442,
+    "test": 133,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 13,
+    "fold": 3,
+    "train": 430,
+    "test": 145,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 14,
+    "fold": 0,
+    "train": 422,
+    "test": 153,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 14,
+    "fold": 1,
+    "train": 439,
+    "test": 136,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 14,
+    "fold": 2,
+    "train": 426,
+    "test": 149,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20",
+    "seed": 14,
+    "fold": 3,
+    "train": 438,
+    "test": 137,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 11,
+    "fold": 0,
+    "train": 225,
+    "test": 70,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 11,
+    "fold": 1,
+    "train": 217,
+    "test": 78,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 11,
+    "fold": 2,
+    "train": 217,
+    "test": 78,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 11,
+    "fold": 3,
+    "train": 226,
+    "test": 69,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 12,
+    "fold": 0,
+    "train": 221,
+    "test": 74,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 12,
+    "fold": 1,
+    "train": 209,
+    "test": 86,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 12,
+    "fold": 2,
+    "train": 222,
+    "test": 73,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 12,
+    "fold": 3,
+    "train": 233,
+    "test": 62,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 13,
+    "fold": 0,
+    "train": 223,
+    "test": 72,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 13,
+    "fold": 1,
+    "train": 217,
+    "test": 78,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 13,
+    "fold": 2,
+    "train": 231,
+    "test": 64,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 13,
+    "fold": 3,
+    "train": 214,
+    "test": 81,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 14,
+    "fold": 0,
+    "train": 216,
+    "test": 79,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 14,
+    "fold": 1,
+    "train": 221,
+    "test": 74,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 14,
+    "fold": 2,
+    "train": 220,
+    "test": 75,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm20-Tnt",
+    "seed": 14,
+    "fold": 3,
+    "train": 228,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 11,
+    "fold": 0,
+    "train": 476,
+    "test": 170,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 11,
+    "fold": 1,
+    "train": 498,
+    "test": 148,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 11,
+    "fold": 2,
+    "train": 489,
+    "test": 157,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 11,
+    "fold": 3,
+    "train": 475,
+    "test": 171,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 12,
+    "fold": 0,
+    "train": 474,
+    "test": 172,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 12,
+    "fold": 1,
+    "train": 471,
+    "test": 175,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 12,
+    "fold": 2,
+    "train": 485,
+    "test": 161,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 12,
+    "fold": 3,
+    "train": 508,
+    "test": 138,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 13,
+    "fold": 0,
+    "train": 490,
+    "test": 156,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 13,
+    "fold": 1,
+    "train": 476,
+    "test": 170,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 13,
+    "fold": 2,
+    "train": 487,
+    "test": 159,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 13,
+    "fold": 3,
+    "train": 485,
+    "test": 161,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 14,
+    "fold": 0,
+    "train": 474,
+    "test": 172,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 14,
+    "fold": 1,
+    "train": 495,
+    "test": 151,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 14,
+    "fold": 2,
+    "train": 489,
+    "test": 157,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a",
+    "seed": 14,
+    "fold": 3,
+    "train": 480,
+    "test": 166,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 11,
+    "fold": 0,
+    "train": 397,
+    "test": 108,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 11,
+    "fold": 1,
+    "train": 383,
+    "test": 122,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 11,
+    "fold": 2,
+    "train": 370,
+    "test": 135,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 11,
+    "fold": 3,
+    "train": 365,
+    "test": 140,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 12,
+    "fold": 0,
+    "train": 375,
+    "test": 130,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 12,
+    "fold": 1,
+    "train": 366,
+    "test": 139,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 12,
+    "fold": 2,
+    "train": 383,
+    "test": 122,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 12,
+    "fold": 3,
+    "train": 391,
+    "test": 114,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 13,
+    "fold": 0,
+    "train": 377,
+    "test": 128,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 13,
+    "fold": 1,
+    "train": 364,
+    "test": 141,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 13,
+    "fold": 2,
+    "train": 395,
+    "test": 110,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 13,
+    "fold": 3,
+    "train": 379,
+    "test": 126,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 14,
+    "fold": 0,
+    "train": 378,
+    "test": 127,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 14,
+    "fold": 1,
+    "train": 377,
+    "test": 128,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 14,
+    "fold": 2,
+    "train": 366,
+    "test": 139,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5a-TnT",
+    "seed": 14,
+    "fold": 3,
+    "train": 394,
+    "test": 111,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 11,
+    "fold": 0,
+    "train": 538,
+    "test": 195,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 11,
+    "fold": 1,
+    "train": 553,
+    "test": 180,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 11,
+    "fold": 2,
+    "train": 558,
+    "test": 175,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 11,
+    "fold": 3,
+    "train": 550,
+    "test": 183,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 12,
+    "fold": 0,
+    "train": 539,
+    "test": 194,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 12,
+    "fold": 1,
+    "train": 551,
+    "test": 182,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 12,
+    "fold": 2,
+    "train": 538,
+    "test": 195,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 12,
+    "fold": 3,
+    "train": 571,
+    "test": 162,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 13,
+    "fold": 0,
+    "train": 579,
+    "test": 154,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 13,
+    "fold": 1,
+    "train": 517,
+    "test": 216,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 13,
+    "fold": 2,
+    "train": 560,
+    "test": 173,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 13,
+    "fold": 3,
+    "train": 543,
+    "test": 190,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 14,
+    "fold": 0,
+    "train": 552,
+    "test": 181,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 14,
+    "fold": 1,
+    "train": 549,
+    "test": 184,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 14,
+    "fold": 2,
+    "train": 555,
+    "test": 178,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b",
+    "seed": 14,
+    "fold": 3,
+    "train": 543,
+    "test": 190,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 11,
+    "fold": 0,
+    "train": 348,
+    "test": 101,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 11,
+    "fold": 1,
+    "train": 330,
+    "test": 119,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 11,
+    "fold": 2,
+    "train": 345,
+    "test": 104,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 11,
+    "fold": 3,
+    "train": 324,
+    "test": 125,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 12,
+    "fold": 0,
+    "train": 335,
+    "test": 114,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 12,
+    "fold": 1,
+    "train": 331,
+    "test": 118,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 12,
+    "fold": 2,
+    "train": 343,
+    "test": 106,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 12,
+    "fold": 3,
+    "train": 338,
+    "test": 111,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 13,
+    "fold": 0,
+    "train": 328,
+    "test": 121,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 13,
+    "fold": 1,
+    "train": 340,
+    "test": 109,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 13,
+    "fold": 2,
+    "train": 348,
+    "test": 101,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 13,
+    "fold": 3,
+    "train": 331,
+    "test": 118,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 14,
+    "fold": 0,
+    "train": 346,
+    "test": 103,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 14,
+    "fold": 1,
+    "train": 320,
+    "test": 129,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 14,
+    "fold": 2,
+    "train": 344,
+    "test": 105,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5b-GCaMP-TNT",
+    "seed": 14,
+    "fold": 3,
+    "train": 337,
+    "test": 112,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 11,
+    "fold": 0,
+    "train": 366,
+    "test": 124,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 11,
+    "fold": 1,
+    "train": 360,
+    "test": 130,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 11,
+    "fold": 2,
+    "train": 373,
+    "test": 117,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 11,
+    "fold": 3,
+    "train": 371,
+    "test": 119,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 12,
+    "fold": 0,
+    "train": 346,
+    "test": 144,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 12,
+    "fold": 1,
+    "train": 373,
+    "test": 117,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 12,
+    "fold": 2,
+    "train": 376,
+    "test": 114,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 12,
+    "fold": 3,
+    "train": 375,
+    "test": 115,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 13,
+    "fold": 0,
+    "train": 366,
+    "test": 124,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 13,
+    "fold": 1,
+    "train": 354,
+    "test": 136,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 13,
+    "fold": 2,
+    "train": 381,
+    "test": 109,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 13,
+    "fold": 3,
+    "train": 369,
+    "test": 121,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 14,
+    "fold": 0,
+    "train": 368,
+    "test": 122,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 14,
+    "fold": 1,
+    "train": 372,
+    "test": 118,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 14,
+    "fold": 2,
+    "train": 358,
+    "test": 132,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c",
+    "seed": 14,
+    "fold": 3,
+    "train": 372,
+    "test": 118,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 11,
+    "fold": 0,
+    "train": 201,
+    "test": 70,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 11,
+    "fold": 1,
+    "train": 203,
+    "test": 68,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 11,
+    "fold": 2,
+    "train": 208,
+    "test": 63,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 11,
+    "fold": 3,
+    "train": 201,
+    "test": 70,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 12,
+    "fold": 0,
+    "train": 205,
+    "test": 66,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 12,
+    "fold": 1,
+    "train": 189,
+    "test": 82,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 12,
+    "fold": 2,
+    "train": 207,
+    "test": 64,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 12,
+    "fold": 3,
+    "train": 212,
+    "test": 59,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 13,
+    "fold": 0,
+    "train": 203,
+    "test": 68,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 13,
+    "fold": 1,
+    "train": 200,
+    "test": 71,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 13,
+    "fold": 2,
+    "train": 217,
+    "test": 54,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 13,
+    "fold": 3,
+    "train": 193,
+    "test": 78,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 14,
+    "fold": 0,
+    "train": 211,
+    "test": 60,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 14,
+    "fold": 1,
+    "train": 209,
+    "test": 62,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 14,
+    "fold": 2,
+    "train": 189,
+    "test": 82,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "Tm5c-Tnt",
+    "seed": 14,
+    "fold": 3,
+    "train": 204,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 11,
+    "fold": 0,
+    "train": 355,
+    "test": 124,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 11,
+    "fold": 1,
+    "train": 359,
+    "test": 120,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 11,
+    "fold": 2,
+    "train": 367,
+    "test": 112,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 11,
+    "fold": 3,
+    "train": 356,
+    "test": 123,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 12,
+    "fold": 0,
+    "train": 329,
+    "test": 150,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 12,
+    "fold": 1,
+    "train": 358,
+    "test": 121,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 12,
+    "fold": 2,
+    "train": 376,
+    "test": 103,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 12,
+    "fold": 3,
+    "train": 374,
+    "test": 105,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 13,
+    "fold": 0,
+    "train": 346,
+    "test": 133,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 13,
+    "fold": 1,
+    "train": 345,
+    "test": 134,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 13,
+    "fold": 2,
+    "train": 370,
+    "test": 109,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 13,
+    "fold": 3,
+    "train": 376,
+    "test": 103,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 14,
+    "fold": 0,
+    "train": 367,
+    "test": 112,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 14,
+    "fold": 1,
+    "train": 356,
+    "test": 123,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 14,
+    "fold": 2,
+    "train": 364,
+    "test": 115,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pDm8",
+    "seed": 14,
+    "fold": 3,
+    "train": 350,
+    "test": 129,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 11,
+    "fold": 0,
+    "train": 278,
+    "test": 95,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 11,
+    "fold": 1,
+    "train": 288,
+    "test": 85,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 11,
+    "fold": 2,
+    "train": 278,
+    "test": 95,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 11,
+    "fold": 3,
+    "train": 275,
+    "test": 98,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 12,
+    "fold": 0,
+    "train": 257,
+    "test": 116,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 12,
+    "fold": 1,
+    "train": 277,
+    "test": 96,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 12,
+    "fold": 2,
+    "train": 287,
+    "test": 86,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 12,
+    "fold": 3,
+    "train": 298,
+    "test": 75,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 13,
+    "fold": 0,
+    "train": 276,
+    "test": 97,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 13,
+    "fold": 1,
+    "train": 274,
+    "test": 99,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 13,
+    "fold": 2,
+    "train": 285,
+    "test": 88,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 13,
+    "fold": 3,
+    "train": 284,
+    "test": 89,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 14,
+    "fold": 0,
+    "train": 298,
+    "test": 75,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 14,
+    "fold": 1,
+    "train": 282,
+    "test": 91,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 14,
+    "fold": 2,
+    "train": 281,
+    "test": 92,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR7",
+    "seed": 14,
+    "fold": 3,
+    "train": 258,
+    "test": 115,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 11,
+    "fold": 0,
+    "train": 273,
+    "test": 94,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 11,
+    "fold": 1,
+    "train": 291,
+    "test": 76,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 11,
+    "fold": 2,
+    "train": 273,
+    "test": 94,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 11,
+    "fold": 3,
+    "train": 264,
+    "test": 103,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 12,
+    "fold": 0,
+    "train": 259,
+    "test": 108,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 12,
+    "fold": 1,
+    "train": 274,
+    "test": 93,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 12,
+    "fold": 2,
+    "train": 275,
+    "test": 92,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 12,
+    "fold": 3,
+    "train": 293,
+    "test": 74,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 13,
+    "fold": 0,
+    "train": 279,
+    "test": 88,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 13,
+    "fold": 1,
+    "train": 265,
+    "test": 102,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 13,
+    "fold": 2,
+    "train": 281,
+    "test": 86,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 13,
+    "fold": 3,
+    "train": 276,
+    "test": 91,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 14,
+    "fold": 0,
+    "train": 289,
+    "test": 78,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 14,
+    "fold": 1,
+    "train": 279,
+    "test": 88,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 14,
+    "fold": 2,
+    "train": 265,
+    "test": 102,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "pR8",
+    "seed": 14,
+    "fold": 3,
+    "train": 268,
+    "test": 99,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 11,
+    "fold": 0,
+    "train": 178,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 11,
+    "fold": 1,
+    "train": 182,
+    "test": 63,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 11,
+    "fold": 2,
+    "train": 189,
+    "test": 56,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 11,
+    "fold": 3,
+    "train": 186,
+    "test": 59,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 12,
+    "fold": 0,
+    "train": 172,
+    "test": 73,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 12,
+    "fold": 1,
+    "train": 178,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 12,
+    "fold": 2,
+    "train": 192,
+    "test": 53,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 12,
+    "fold": 3,
+    "train": 193,
+    "test": 52,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 13,
+    "fold": 0,
+    "train": 180,
+    "test": 65,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 13,
+    "fold": 1,
+    "train": 178,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 13,
+    "fold": 2,
+    "train": 191,
+    "test": 54,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 13,
+    "fold": 3,
+    "train": 186,
+    "test": 59,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 14,
+    "fold": 0,
+    "train": 188,
+    "test": 57,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 14,
+    "fold": 1,
+    "train": 183,
+    "test": 62,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 14,
+    "fold": 2,
+    "train": 184,
+    "test": 61,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yDm8",
+    "seed": 14,
+    "fold": 3,
+    "train": 180,
+    "test": 65,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 11,
+    "fold": 0,
+    "train": 182,
+    "test": 59,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 11,
+    "fold": 1,
+    "train": 183,
+    "test": 58,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 11,
+    "fold": 2,
+    "train": 184,
+    "test": 57,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 11,
+    "fold": 3,
+    "train": 174,
+    "test": 67,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 12,
+    "fold": 0,
+    "train": 165,
+    "test": 76,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 12,
+    "fold": 1,
+    "train": 178,
+    "test": 63,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 12,
+    "fold": 2,
+    "train": 189,
+    "test": 52,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 12,
+    "fold": 3,
+    "train": 191,
+    "test": 50,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 13,
+    "fold": 0,
+    "train": 179,
+    "test": 62,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 13,
+    "fold": 1,
+    "train": 176,
+    "test": 65,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 13,
+    "fold": 2,
+    "train": 187,
+    "test": 54,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 13,
+    "fold": 3,
+    "train": 181,
+    "test": 60,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 14,
+    "fold": 0,
+    "train": 188,
+    "test": 53,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 14,
+    "fold": 1,
+    "train": 183,
+    "test": 58,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 14,
+    "fold": 2,
+    "train": 177,
+    "test": 64,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR7",
+    "seed": 14,
+    "fold": 3,
+    "train": 175,
+    "test": 66,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 11,
+    "fold": 0,
+    "train": 397,
+    "test": 139,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 11,
+    "fold": 1,
+    "train": 417,
+    "test": 119,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 11,
+    "fold": 2,
+    "train": 400,
+    "test": 136,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 11,
+    "fold": 3,
+    "train": 394,
+    "test": 142,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 12,
+    "fold": 0,
+    "train": 391,
+    "test": 145,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 12,
+    "fold": 1,
+    "train": 394,
+    "test": 142,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 12,
+    "fold": 2,
+    "train": 399,
+    "test": 137,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 12,
+    "fold": 3,
+    "train": 424,
+    "test": 112,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 13,
+    "fold": 0,
+    "train": 396,
+    "test": 140,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 13,
+    "fold": 1,
+    "train": 394,
+    "test": 142,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 13,
+    "fold": 2,
+    "train": 413,
+    "test": 123,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 13,
+    "fold": 3,
+    "train": 405,
+    "test": 131,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 14,
+    "fold": 0,
+    "train": 402,
+    "test": 134,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 14,
+    "fold": 1,
+    "train": 412,
+    "test": 124,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 14,
+    "fold": 2,
+    "train": 405,
+    "test": 131,
+    "sharedStimulusGroups": 0
+  },
+  {
+    "cell_type": "yR8",
+    "seed": 14,
+    "fold": 3,
+    "train": 389,
+    "test": 147,
+    "sharedStimulusGroups": 0
+  }
+]

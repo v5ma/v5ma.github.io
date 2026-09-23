@@ -1,0 +1,50 @@
+{
+  "identity": "phase-receiver-bridge-v0",
+  "date": "2026-09-19",
+  "status": "Local development plan written before execution; not independent preregistration or held-out evaluation",
+  "purpose": "Connect an explicitly proposed directed phase receiver and learned receiving readout to the existing permitted-observation/action/actual-return task. Test the boundary between a working bridge and evidence for a specifically oscillatory mechanism.",
+  "notClaims": ["recovered Christenson fitted model", "measured sensory time constants", "native fly phototransduction", "physiological signs for all edges", "complete SAN/PWD/NAPOT implementation", "experience or consciousness", "comparative biological advantage", "independent review"],
+  "sourceFiles": {
+    "seeds": {"path": "application/anatomical-register-v0/results-01/SEED-REGISTER.json", "sha256": "475fd745155530e6b88d5bc12b2b3dae184d3714a08862d0c49e7965d4db7bcb"},
+    "routes": {"path": "application/anatomical-register-v0/results-01/ROUTE-REGISTER.json", "sha256": "2290ea448c6fb06e7ecaf6fc66dfc6443cae99b010fe5764067014039b3a876c"},
+    "environment": {"path": "application/embodied-reference-v0/ANALYSIS-PLAN.json"}
+  },
+  "graphConvention": "Only reported directed routes whose two endpoints are among the ten sampled cells. Unreported/external routes are excluded by reduction, not established absent. Postsynaptic rows and presynaptic columns; absolute row normalization. Lower/upper count choices both retained. Known model-level Dm8 sign constraints are inherited as constraints; remaining signs are unknown and given two explicitly hypothetical settings, not inferred from counts.",
+  "knownSignConstraints": [{"preType":"pDm8","postType":"Tm5b","sign":1},{"preType":"yDm8","postType":"Tm5a","sign":-1}],
+  "receiver": {
+    "anchor": 1.0,
+    "driveGain": 0.8,
+    "coupling": 0.12,
+    "exposure": 4.0,
+    "dt": 0.02,
+    "phaseBound": 1.0,
+    "initialRelativePhase": 0.0,
+    "carrierRadiansPerModelUnit": 6.283185307179586,
+    "driveRows": [[1,-1,0,0],[0,1,-1,0],[0,0,1,-1],[1,0,0,-1],[1,1,-1,-1],[-1,1,1,-1],[1,-1,1,-1],[1,0,-1,0],[0,1,0,-1],[-1,-1,1,1]],
+    "driveConvention": "Each row divided by its L1 norm. Normalized captures minus uniform tonic capture on the observed bands; missing bands contribute zero difference, not a recovered missing spectrum. Mapping rows to the ten seed identities is an engineering choice, not receptor biology.",
+    "timeConvention": "Dimensionless model time. Four units per queried patch; all patch banks are initialized at the tonic reference independently. No conversion to fly milliseconds, gamma bands or the motor source model.",
+    "familiarizationIntensities": [0.6,1.0,1.4],
+    "familiarizationMasks": [[0,1,2],[0,1,2,3]],
+    "readoutToleranceFraction": 0.25,
+    "numericalEpsilon": 1e-12
+  },
+  "cases": [
+    {"id":"phase-low-positive","implementation":"phase","counts":"lower","unknownSign":1},
+    {"id":"phase-high-positive","implementation":"phase","counts":"upper","unknownSign":1},
+    {"id":"phase-low-negative","implementation":"phase","counts":"lower","unknownSign":-1},
+    {"id":"phase-high-negative","implementation":"phase","counts":"upper","unknownSign":-1},
+    {"id":"phase-no-coupling","implementation":"phase","counts":"lower","unknownSign":1,"coupling":0.0},
+    {"id":"phase-half-step","implementation":"phase","counts":"lower","unknownSign":1,"dt":0.01},
+    {"id":"coordinate-twin","implementation":"coordinate","counts":"lower","unknownSign":1},
+    {"id":"reference-adaptive","implementation":"reference","policy":"adaptive_sampling"},
+    {"id":"reference-full","implementation":"reference","policy":"fixed_full"}
+  ],
+  "episodeSelection": "Reuse exactly the six scenarios and four seeds of the earlier reference plan: 24 episodes per case, 24 steps per episode. No new held-out claim.",
+  "learningBoundary": "The same two public task exemplars are supplied during cued familiarization, never evaluator identity/location/gain. Complex population readout weights are learned by averaging three exposures per mask and cue, then frozen. Body calibration retains the earlier conventional rule. This is supervised exemplar learning, not emergent class discovery or the full SAN memory hierarchy.",
+  "primaryMeasures": ["target binding error for observed states", "final standoff error", "freshly observed/inferred/unresolved steps", "spectral captures", "actual-versus-predicted return error", "learned readout separation", "maximum relative phase", "encoder solves and RK4 steps", "wall time"],
+  "decisiveControls": ["same observations and familiarization information as the conventional template baseline", "coordinate twin obeying identical relative-phase equations without an absolute oscillator", "lower and upper disputed anatomical counts", "two hypothetical unknown-sign assignments", "coupling removal", "half integration step", "flatten differential before the learned readout", "erase/swap/restore learned receiving weights", "clear episode state while preserving learned weights and actuator calibration", "hidden-label and sample-order permutation", "complete state allowlist", "common carrier rotation invariance", "saved-event independent metric recomputation and deliberate corruption detection"],
+  "predictedIdentificationLimit": "Because the readout uses only relative phase and the equation has no independent absolute-time forcing, the nonoscillatory coordinate twin should match. Such a match is a substantive non-identification result, not proof that biological oscillations never matter or that SAN is equivalent to this restricted model.",
+  "tolerances": {"coordinateAction":1e-10,"halfStepPhase":1e-7,"independentEulerPhase":0.001,"savedMetric":1e-10},
+  "resourceLimits": {"numericalThreads":1,"foregroundWorkers":1,"maximumCaseSeconds":40,"maximumCheckSeconds":45,"priority":"verified below normal","downloads":0,"installs":0},
+  "preservation": "Create-only case folders. Retain all conditions, failures and adverse outcomes. No parameter optimization, best-case selection or edits to previous evidence. Any code repair after execution requires a named error receipt and new output identity."
+}

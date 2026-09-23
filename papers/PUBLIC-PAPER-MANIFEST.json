@@ -1,8 +1,8 @@
 {
   "schema": "svgn.public-github-paper-mirror.v1",
-  "count": 108,
-  "total_pdf_bytes": 113639926,
-  "selection": "Current public PDF for each of Papers 1-108 as of 2026-09-05; preceding 106 PDF selections unchanged.",
+  "count": 113,
+  "total_pdf_bytes": 121036405,
+  "selection": "Current selected public PDFs for Papers 1-113 as of 2026-09-23; preceding 108 PDF selections unchanged.",
   "catalog": "https://pub.svgn.io/",
   "osf_archive": "https://osf.io/3vsar/",
   "source_manifest_sha256": "F2348070349D8DAABADE6B4A48DB18CA63B10453D61F99A2864F06AF22B9AC76",
@@ -1092,7 +1092,73 @@
       "version": "1.0",
       "verified": true,
       "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/ai-papers-20260905"
+    },
+    {
+      "number": 109,
+      "title": "Self-Aware Networks in a Connectome-Constrained Fly Brain",
+      "filename": "109 - Self-Aware Networks in a Connectome-Constrained Fly Brain.pdf",
+      "bytes": 3655629,
+      "sha256": "7F3C42EB0B6368E64F406CE525023FC6B38E7E6D5D20D975B2DD9F981D2530B6",
+      "zenodo": "https://zenodo.org/records/22924326",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ab427cee8adcb271bebeb25",
+      "osf_download": "https://osf.io/download/6ab427cee8adcb271bebeb25/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/fly"
+    },
+    {
+      "number": 110,
+      "title": "Neural Rendering Composition and Granularity Tuning: State- and Task-Dependent Assembly of Multimodal Memory and Experience",
+      "filename": "110 - Neural Rendering Composition and Granularity Tuning State- and Task-Dependent Assembly of Multimodal Memory and Experience.pdf",
+      "bytes": 2283190,
+      "sha256": "06B97DA3B474660CC77B630C0DA1E5B9A3BD79A42E80575F9F2DFCC167CF9CCA",
+      "zenodo": "https://zenodo.org/records/22924401",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ab429e62c118d2d952c9a7f",
+      "osf_download": "https://osf.io/download/6ab429e62c118d2d952c9a7f/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/composition"
+    },
+    {
+      "number": 111,
+      "title": "Selective Dissipation for Continual Learning: Receiver-Relative Residual Trajectories and Self-Regulated Plasticity",
+      "filename": "111 - Selective Dissipation for Continual Learning Receiver-Relative Residual Trajectories and Self-Regulated Plasticity.pdf",
+      "bytes": 643407,
+      "sha256": "C4F6D6BC74BDAD18B1FF0FF4674EE75EE9659CA01A241A8EBF4DC96C9A01BBC7",
+      "zenodo": "https://zenodo.org/records/22924457",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ab42a3812f45d94cbd32bca",
+      "osf_download": "https://osf.io/download/6ab42a3812f45d94cbd32bca/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/ai"
+    },
+    {
+      "number": 112,
+      "title": "Selective Dissipation and Gated Plasticity in a History-Shaped Neural Canvas",
+      "filename": "112 - Selective Dissipation and Gated Plasticity in a History-Shaped Neural Canvas.pdf",
+      "bytes": 316618,
+      "sha256": "615BD50B41FC9B16DF5233E15B0FEC9666C688FE9663C2309CCCB9CBAEF07D32",
+      "zenodo": "https://zenodo.org/records/22924465",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ab42a63809e1e0f40d329b6",
+      "osf_download": "https://osf.io/download/6ab42a63809e1e0f40d329b6/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/plasticity"
+    },
+    {
+      "number": 113,
+      "title": "Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience",
+      "filename": "113 - Temporal Ensembles in Self-Aware Networks Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience.pdf",
+      "bytes": 497635,
+      "sha256": "53188CEF3A7BE433AE60DC396458683B5D432285C828914F276416D46C56920A",
+      "zenodo": "https://zenodo.org/records/22924518",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ab42b864711fc9593d329f6",
+      "osf_download": "https://osf.io/download/6ab42b864711fc9593d329f6/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal"
     }
   ],
-  "shared_companion": "companions/ai-papers-20260905/README.md"
+  "shared_companion": "companions/ai-papers-20260905/README.md",
+  "five_paper_release": "companions/five-papers-20260923"
 }
