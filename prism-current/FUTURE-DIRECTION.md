@@ -18,9 +18,13 @@ Water 0.1.0, Fire 0.1.3, Trees 0.1.3, Toon 0.1.0, Cloudlets 0.1.0, Islands 0.1.0
 
 ## Current saved work
 
-This first recovery checkpoint saves original Grass 0.1.0, its script/ES facade and data tests before loading it in the game. It is not yet the visible island-grass integration. The intended next checkpoint adds two tiny grounded patches to the existing islands, follows the current saved scenery/quiet controls and near-viewer hiding, and prepares the real grass buffers before audio. Keep the runtime change small: two patches, 36 selected blades and 216 triangles total in XR, with one shared material and no textures. Do not grow a full forest or a wall of grass across the action.
+Grass0.1.0 was saved independently at a2192a50 and integrated as AR Tide0.1.1 at760e6f0d06adf7858c41f6a0c691f7c1034d1e85. Two small patches follow the island planting positions, saved minimal-scenery setting, quiet clock and near-viewer hiding. They select36 blades and216 triangles total in XR. The current index loads grass and the adapter; do not rebuild them as missing work. Toon, Cloudlets, Islands and Water Optics are also already integrated through river/ar-islands.js, superseding their earlier library-only notes.
 
-The complete local model suite passes 387 tests (376 recovered plus 11 new); the isolated Grass object suite passes 18 checks using bundled Three r184. The object-test source will be saved with the integration checkpoint. These are not GPU or physical headset tests. Local WebGL2 is unavailable. The actual source/public integrated AR test must run after wiring the module, and its outcome must be recorded below before any claim of full acceptance.
+The recovered source artifact10727738832 for run35804846139 was downloaded and verified with SHA-2563f831e8951f45ad947e652b2ab23b7c037b369afc10ec86c6832c4d1c4561026. Its AR Tide test passed18 preceding checks before a rendering-stall pause at36.32197s; the tracked-health test paused at19.91127s. The separate public artifact10727557830, SHA-25607f7e06a1fb49b1e1ae65a0ac4f2a7d33551b8e3e5c882d9f4c178c42b7a1e89, failed its145-file match on index.html,release.json andriver/ar-islands.js and did not run its AR playthrough. These are inspected historical outcomes, not a new direct fetch of the currently served game. Preserve them and check later exact receipts before claiming a fully accepted grass release.
+
+The new spatial-UI reference pass starts from that runtime and changes no loaded game script. Source checkpointaf9f00a15f343989a55359bd7ec63a66f498fb6a adds original FlexSurface0.1.0, its ES facade, twelve pure/data tests and a durable module checkpoint. It is library-only, not a curved replacement Rotunda or a new banner visible in the game. It uses the same updated CPU triangles for rendering and picking, with a readable back and bounded local pull. See modules/environment/FLEX-SURFACE.md andUI-EFFECTS-CHECKPOINT.md for native fixture results and limits.
+
+The complete local model suite passes405 tests after six additional registry checks (387 recovered,12 new surface tests,6 new module-index cases). The surface object suite passes25 real Three.js resource/ray observations. No physical headset test is implied. Exact native standalone rendering is separately checked by the existing read-only workflow. Neither module/object success nor its standalone picture closes Friendly Current's remaining frame-pause and playability issues.
 
 ## Evidence recovered from the interrupted AR Tide pass
 
@@ -43,6 +47,14 @@ Outstanding gameplay commitments are direct per-hand blade-color switching, a co
 The supplied Abyssal Ocean repository describes a multi-cascade spectral ocean, foam, reflections and underwater postprocessing. Treat it as visual/method inspiration, not a ready-made AR replacement renderer or a measured Quest performance result. The infinite-liquid-glass site exposed a loading shell in this review, not enough implementation to identify its exact shader. Keep our transparent AR, existing engine, optional opacity and bounded effects. No wholesale renderer import or opaque scene is authorized.
 
 Disney cloud licensing, commercial Grassworks restrictions, toon/cel versus splat distinctions and other references are in modules/environment/AR-REFERENCE-REVIEW.md. Current grass and other newly authored source do not copy commercial assets or algorithms from inaccessible source. Keep code and asset provenance explicit. Do not publish the full multi-game brief, private WebXR SaaS interface, credentials, fonts or unrelated files.
+
+## New UI, glass and lighting references
+
+The latest source review is modules/environment/REFERENCE-REVIEW-SPATIAL-UI.md. It covers r3f-webgpu-perf, Saurow folding, Liquid Fabric, SSGI, use-gesture, a candidate WebGPU glass project, and repalash/three-html-render. Preserve which exact links were accessible and which claims came only from the supplied description. No third-party implementation or license is assumed from a social-media announcement.
+
+Near-term direction: reliable deformable surfaces first, then a deliberately isolated HTML-backed settings/help prototype and explicit gesture ownership. The geometry module alone supplies neither browser text input nor controller/pinch dispatch. Do not replace the working Start/Resume controls or bend a selected target beneath a held ray just for animation. Keep health readable and paused state intact.
+
+The performance reference estimates CPU/GPU shares; use real bounded frame/callback observations instead of treating that split as GPU diagnosis. Existing tests/frame-trace.js already does this, so do not add a duplicate hidden animation loop. Native GPU timestamps, when unavailable, must remain unavailable rather than fabricated. SSGI and multi-pass glass remain separate backend/performance experiments, not automatic replacements for the current WebGL2 renderer. Passthrough is not automatically scene color/depth available to either effect. All adoption requires per-eye, alpha, input and named-device review.
 
 ## Resume protocol
 

@@ -33,6 +33,19 @@ jobs:
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
+      - name: Reusable flexible-surface resources and native picking
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          python prism-current/tests/environment-flex-surface-objects.py
+          timeout 90 python prism-current/tests/environment-flex-surface-browser.py
+      - name: Preserve isolated surface evidence without waiting for game replays
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prism-flex-surface-${{ github.sha }}
+          path: test-output/flex-surface/
+          retention-days: 14
       - name: AR Tide source scenery and full Easy journey
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         env:
