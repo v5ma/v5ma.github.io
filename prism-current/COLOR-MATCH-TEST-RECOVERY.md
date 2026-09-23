@@ -1,0 +1,11 @@
+# Color Match / first native trace and capture-order correction
+
+Runtime 5b9ee851cba47e831862ba10c6bd5285576cbbd7 remains unchanged. This checkpoint changes only the test producer and this evidence note, not gameplay, rendering, scores, quality or the 0.35-second safeguard.
+
+Run35828452115 source job107075299017 passed the original20-check Field Guide journey and19 resource checks. Color Match passed nine checks, including real per-hand changes, held-button suppression, visible palette agreement, a wrong-color base cut and a matching bonus cut. It then timed out waiting for pause after screenshot/canvas-capture work followed by B. The first capture already shows the rising menu, and the final snapshot is playing with a prior Rendering stalled message. This is consistent with a stall before the command and B resuming rather than pausing. The exact frame-gap cause was not measured; it is not a proven physical-device diagnosis or full native success.
+
+Artifact10735848306 was downloaded and verified against SHA-256 c69a9b7c17ce2ce18c8fa8bff18dfdfa61b101df41276d9f4324a1b4118dc5fb. Its failure and captures are retained. No script/shader errors were captured. Public acceptance is not assumed.
+
+The producer now requires both actual color strokes to finish while still playing before any capture. It uses the same tracked B pause, verifies paused state, and only then captures the scene/status. An added assertion checks that capture cannot change paused progress; before/after button phases are logged. All sound, color retention, no-shot leakage, real late-boss completion, separate records and session-exit requirements remain. No automatic resume, state assignment, reduced successful-action count, lower resolution or bypass is added. The capture is named actual-ar-paused-after-color-strokes.png, not represented as uninterrupted combat.
+
+All423 local model/integration tests still pass. Corrected source/public results must be inspected independently through the existing workflow. The initial non-fast-forward update rejection published nothing; the same two-file change was reconciled onto fresh c26a9fb3, preserving the intervening chess commit. No runtime or sibling file changes.

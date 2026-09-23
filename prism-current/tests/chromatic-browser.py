@@ -6,7 +6,7 @@ import base64,functools,hashlib,http.server,json,os,re,sys,threading,urllib.requ
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2];APP=ROOT/'prism-current';PUBLIC='--public' in sys.argv
 OUT=ROOT/'test-output/field-guide/chromatic'/('public' if PUBLIC else 'source');OUT.mkdir(parents=True,exist_ok=True)
-checks=[];errors=[];server=None
+checks=[];errors=[];observations=[];server=None
 old='{"duck-armada/ar/easy/arcade":{"score":12345,"wins":2}}'
 def check(value,message):
     assert value,message
@@ -42,7 +42,9 @@ with sync_playwright() as pw:
         def frames():
             p.evaluate('''async()=>{const s=TestXR.state.session;const frame=()=>new Promise((r,j)=>{const timer=setTimeout(()=>j(Error('XR frame timeout')),8000);s.requestAnimationFrame(()=>{clearTimeout(timer);r();});});await frame();await frame();}''')
         def button(hand,index):
+            observations.append({'input':'button','hand':hand,'index':index,'before':snap()['phase'],'time':snap()['time']})
             for down in [False,True,False]:p.evaluate('([h,i,v])=>TestXR.button(h,i,v)',[hand,index,down]);frames()
+            observations[-1]['after']=snap()['phase']
         def choose(i):
             p.wait_for_function('River.snapshot().rotunda.open&&River.snapshot().rotunda.progress>=1');p.evaluate('TestXR.select("left",false)');frames();p.wait_for_timeout(140)
             p.evaluate('''i=>{const T=AFRAME.THREE,m=AFRAME.scenes[0].object3D.getObjectByName('river-xr-menu'),r=RiverRotunda.RECTS[i];m.updateWorldMatrix(true,false);TestXR.point('left',new T.Vector3(((r.x+r.w/2)/1200-.5)*1.68,(.5-(r.y+r.h/2)/814)*1.14,0).applyMatrix4(m.matrixWorld).toArray());}''',i)
@@ -77,9 +79,15 @@ with sync_playwright() as pw:
         p.evaluate('startChromatic("match")');p.wait_for_function('River.snapshot().result.colorMatches>0',timeout=22000);p.evaluate('stopChromatic()');frames()
         match=p.evaluate('AFRAME.scenes[0].components["river-game"].state.events.findLast(e=>e.type==="destroy"&&e.kind==="fruit"&&e.matched)')
         check(match['bonusPoints']>0 and match['points']==match['basePoints']+match['bonusPoints'],'A real matching stroke adds explicit bonus points to the base')
-        p.screenshot(path=str(OUT/'actual-ar-color-stroke.png'))
+        # Screen capture can stall software rendering; never perform that work
+        # before the deliberate pause or let B accidentally resume a stalled run.
+        # No automatic recovery is allowed: an unexpected pre-input pause fails.
+        check(snap()['phase']=='playing','Both color strokes complete before any capture or unsolicited pause')
+        p.evaluate('TestXR.away()');button('right',5);p.wait_for_function('River.snapshot().phase==="paused"');before=snap()
+        p.screenshot(path=str(OUT/'actual-ar-paused-after-color-strokes.png'))
         data=p.evaluate('AFRAME.scenes[0].object3D.getObjectByName("prism-controller-status").material.map.image.toDataURL()');(OUT/'actual-color-health-hud.png').write_bytes(base64.b64decode(data.split(',')[1]))
-        p.evaluate('TestXR.away()');button('right',5);p.wait_for_function('River.snapshot().phase==="paused"');before=snap();choose(10);choose(0)
+        check(snap()['result']==before['result'] and snap()['time']==before['time'],'Capturing paused scene and status leaves the real encounter untouched')
+        choose(10);choose(0)
         check(snap()['result']==before['result'] and snap()['time']==before['time'] and snap()['bladeColors']==before['bladeColors'],'Sound adjustment preserves paused points, health, clock and selected colors')
         p.evaluate('TestXR.away()');button('right',4)
         check(snap()['phase']=='paused' and snap()['bladeColors']==before['bladeColors'],'A still confirms menu controls while paused; it does not change a blade color')
@@ -97,12 +105,12 @@ with sync_playwright() as pw:
         choose(8);choose(3);p.wait_for_function('!River.snapshot().immersive')
         check(True,'Exit ends the actual XR session without closing the page')
         check(not errors,'No captured script or shader errors in this tracked AR journey')
-        (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'mismatch':mismatch,'match':match,'result':result,'errors':errors,'scope':'Actual game and tracked input in the existing strict XR emulator. Real completed Easy AR battle, not a physical headset or sustained performance certification.'},indent=2))
+        (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'mismatch':mismatch,'match':match,'result':result,'errors':errors,'inputObservations':observations,'scope':'Actual game and tracked input in the existing strict XR emulator. Real completed Easy AR battle, not a physical headset or sustained performance certification.'},indent=2))
         c.close()
     except Exception as e:
         try:state=p.evaluate('window.River?.snapshot()')
         except:state=None
-        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state},indent=2))
+        (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'inputObservations':observations},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
         raise
