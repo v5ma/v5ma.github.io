@@ -119,6 +119,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           python svgn-planet/tests/check-http-ready.py
+          python svgn-planet/tests/field-ready-browser.py
           python svgn-planet/tests/environment-browser.py
           python svgn-planet/lantern/highline-browser.py
       - uses: actions/upload-artifact@v4
@@ -128,5 +129,6 @@ jobs:
           path: |
             highline-results/
             environment-results/
+            field-ready-results/
             server.log
           retention-days: 30

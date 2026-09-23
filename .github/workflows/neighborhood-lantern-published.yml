@@ -109,6 +109,7 @@ jobs:
           MAIN_BASE: https://v5ma.github.io/svgn-planet/
           HIGHLINE_OUT: published-results/highline
         run: |
+          python svgn-planet/tests/field-ready-browser.py
           python svgn-planet/tests/environment-browser.py
           python svgn-planet/lantern/highline-browser.py
       - uses: actions/upload-artifact@v4
@@ -118,4 +119,5 @@ jobs:
           path: |
             published-results/highline/
             published-results/environment/
+            published-results/field-ready/
           retention-days: 30

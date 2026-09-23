@@ -1,8 +1,8 @@
 {
-  "version": "0.18.0",
-  "revision": "currentworks-1",
+  "version": "0.18.1",
+  "revision": "field-ready-1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods / Currentworks Highline",
+  "edition": "Unified Neighborhoods / Currentworks Field Ready",
   "date": "2026-09-22",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
@@ -10,11 +10,15 @@
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "tests/environment-evidence/public-receipt.json",
-  "status": "Currentworks and Unsent Call implemented and locally tested. Consult ENVIRONMENT-INTEGRATION.md and the current publication receipt for observed rendered/public results.",
-  "runtimeCheckpoint": "ENVIRONMENT-INTEGRATION.md",
+  "publicationEvidence": "tests/field-ready-evidence/public-receipt.json",
+  "status": "Field Ready source tested; check the current receipt for observed publication and browser results.",
+  "runtimeCheckpoint": "PLAY-READY.md",
   "sourceAcceptanceRuns": [],
   "changes": [
+    "Header Map, Controls and Recenter act on Lantern Ward while it owns play; scene dragging rotates the ward without changing the original city camera.",
+    "Adventure entry previews the real next saved task, offers The Unsent Call after Highline, waits for initial assets, and saves the selected case immediately.",
+    "Desktop and touch HUD show the same supported route cue as XR, correct input-specific hints, separate objective/control areas and honest district save status.",
+    "Escape/P cancels scenery preparation before generic Resume; stale cancelled preparation failures cannot reclaim the interface.",
     "Pinned Currentworks water, water optics, seeded trees, cloudlets and selective Toon materials reuse the existing Three r177 renderer; Prism is not modified.",
     "Connected upper archive reading room and optional The Unsent Call follow-up after Highline, with four physical interactions and an exactly-once 120-credit reward.",
     "First-screen Highline launch, cancellable scenery preparation, and saved environment detail, reduced-motion and tree/cloud controls.",
@@ -46,18 +50,18 @@
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "sourceTests": "462 local source/input/Three-object tests passed, no failures or skips. Hosted and rendered results remain separate in tests/environment-evidence/status.json.",
+    "sourceTests": "477 local model, input, save, control-routing and Three-object tests passed; browser/public acceptance is separate.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "localModelTestsPassed": 462,
+    "localModelTestsPassed": 477,
     "localModelTestsFailed": 0
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
   "campaignCases": 7,
   "campaignRewardTotal": 1310,
-  "previousPublicationEvidence": "../release-receipts/neighborhood-missions-unified-0.16.0.json",
+  "previousPublicationEvidence": "tests/environment-evidence/public-receipt.json",
   "unportedBranchFeatures": [
     "Signal City cars, scout drone and Waterfront File: current-adapter rewrite required",
     "Tideglass indoor depth swimming and its three missions: current-adapter rewrite required"

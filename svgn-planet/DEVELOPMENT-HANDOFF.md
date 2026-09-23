@@ -1,3 +1,9 @@
+# Current resume point: Field Ready / 0.18.1
+
+Read PLAY-READY.md, FUTURE-DIRECTION.md and tests/field-ready-evidence/public-receipt.json first. Main-header Map/Controls/Recenter and scene drag now target the active ward; the adventure button follows saved Highline/archive stage, waits for assets and saves explicit selection. Desktop route hints match XR and the district save line is no longer borrowed from the original city. Escape/P cancels pending preparation safely. Currentworks, geometry, campaign/reward rules and native XR remain unchanged.
+
+477 local tests pass; source-browser, public-byte, live-rendered and physical results are distinct gates. Inspect the existing Highline jobs, which run the new play-path test before all retained graphics/story checks. Preserve all prior failures and current-master sibling work. Do not create a branch/PR or introduce another publisher. Next design work remains systemic archive choices followed by the not-yet-built South Cable Exchange.
+
 # Current resume point: Currentworks / upper archive 0.18.0
 
 Read ENVIRONMENT-INTEGRATION.md, FUTURE-DIRECTION.md and tests/environment-evidence/status.json first. Pinned Water/Optics, Trees, Cloudlets and selective Toon are integrated on the existing r177 host. The Print Exchange has a real upper reading room and the four-step optional Unsent Call sequel after Highline. Local source tests pass 462; actual rendered/public and physical results remain independent. First entry prepares resources with cancellable travel; gameplay, saves, 32 m limit and all eight modes remain.

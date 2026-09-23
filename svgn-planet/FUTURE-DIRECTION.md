@@ -2,6 +2,12 @@
 
 Owner decision, September 22, 2026: make the Watch Dogs 2 / Uncharted / Batman Arkham direction playable, including genuinely taller buildings. Keep these notes beside the game and update them at implementation, verification and handoff checkpoints so another chat can resume. This document records design intent, not proof that every feature exists.
 
+## Field Ready / 0.18.1
+
+The live-play request continues with control and entry repairs, not another new demo. PLAY-READY.md describes district-correct header actions, ward camera dragging/recentering, state-aware Highline/Unsent Call launch, immediate selected-case saving, cancellation safety and matching desktop/XR route cues. Currentworks, both new story arcs, all older missions, save identities and eight XR modes remain.
+
+The local suite passes 477 tests. Read tests/field-ready-evidence/public-receipt.json for actual rendered/public outcomes. Physical Quest/Xbox/hand, comfort, sustained performance and human readability approval remain open. Keep next priorities on reliable player controls and meaningful systemic archive choices before adding the South Cable Exchange district; that district remains unimplemented.
+
 ## Currentworks and upper archive / 0.18.0
 
 Current request adds the owner's Prism environment library to the playable Highline direction. ENVIRONMENT-INTEGRATION.md records the pinned modules, r177/r184 compatibility boundary, settings, first-entry preparation and actual limits. The main district now uses Water/Optics, Trees and Cloudlets plus selective Toon materials. No new renderer, sibling-game runtime dependency or opaque AR world is introduced. Fire and Islands remain unintegrated in Neighborhood Missions.

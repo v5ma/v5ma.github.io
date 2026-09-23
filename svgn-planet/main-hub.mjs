@@ -1,3 +1,5 @@
+import {adventureEntry} from './adventure-entry.mjs';
+import {installFieldControls,fieldControlHint} from './field-controls.mjs';
 import {installEnvironmentControls} from './environment/controls.mjs';
 import {vehicleControlCaption} from './vehicle-trigger.mjs';
 import {focusMissionList} from './native-menu-focus.mjs';
@@ -18,14 +20,14 @@ import {watchRuntime,watchState,watchInspect} from './lantern/watch.mjs';
 import {campaignState,campaignCanGlide,campaignInspect} from './lantern/campaign.mjs';
 import {padState} from './controller.mjs';
 import {xrInput} from './xr-input.mjs';
-const VERSION='0.18.0',HUB_KEY='svgn.neighborhood-hub.v1';
+const VERSION='0.18.1',HUB_KEY='svgn.neighborhood-hub.v1';
 export function createMainHub(hooks){
  const $=id=>document.getElementById(id),cityView=hooks.view,renderer=cityView.renderer,citySpatial=spatialView(cityView,'city');
- let travelGeneration=0,wardReady=false;
+ let travelGeneration=0,wardReady=false,wardSaveStatus='Progress saves on this device';
  let ward=null,wardView=null,wardSpatial=null,wardActive=false,blocked=false,yaw=0,last=0,saveTime=0,frames=0,transfers=0,error='',pending=null,stopped=false,noticeRevision=0;
  let store;try{store=localStorage;}catch{store={getItem(){throw Error('Storage unavailable');},setItem(){throw Error('Storage unavailable');}};}
  function message(text){noticeRevision++;if(wardActive&&ward){ward.message=text;ward.messageTime=9;}else{hooks.state().toast=text;hooks.state().toastT=9;}$('toast').textContent=text;$('toast').classList.add('visible');}
- function persistWard(){if(!ward)return true;if(blocked){message('District save needs recovery. Export your run before changing district.');return false;}const r=save(ward,store);if(!r.ok){blocked=true;message(r.error);}return r.ok;}
+ function persistWard(){if(!ward)return true;if(blocked){message('District save needs recovery. Export your run before changing district.');return false;}const r=save(ward,store);if(!r.ok){blocked=true;wardSaveStatus='Save blocked: '+r.error;message(r.error);}else wardSaveStatus='Lantern Ward progress saved on this device';return r.ok;}
  function close(){for(const d of document.querySelectorAll('dialog[open]'))d.close();pending=null;$('ward-confirm').hidden=true;hooks.setPaused(false);xr.clear();}
  function open(id){hooks.setPaused(true);hooks.clear();for(const d of document.querySelectorAll('dialog[open]'))d.close();const d=$(id);d.showModal();(d.querySelector('[data-pad-default]')||d.querySelector('button'))?.focus();}
  function focusMissions(){focusMissionList($('ward-missions'),$('ward-resume'));}
@@ -43,10 +45,10 @@ export function createMainHub(hooks){
   else{if(hooks.persistCity()===false){message('Original city save could not be retained. Resolve save recovery before travelling.');return false;}citySpatial.end();}
   hooks.ensureStarted();hooks.setPaused(true);hooks.clear();
   try{if(next==='lantern'){ensureWard();if(!wardReady){open('ward-loading');await wardView.prepareEnvironment();if(travelToken!==travelGeneration)return false;wardReady=true;}error='';wardActive=true;controlContext.ward=true;if(mission)message(trackStory(ward,mission));}else{wardActive=false;controlContext.ward=controlContext.combat=controlContext.canGlide=false;}
-   document.body.classList.toggle('in-lantern',wardActive);$('ward-map-shortcut').hidden=!wardActive;$('district-name').textContent=wardActive?'LANTERN WARD':'MAIN NEIGHBORHOODS';transfers++;last=0;saveTime=0;
+   document.body.classList.toggle('in-lantern',wardActive);$('ward-map-shortcut').hidden=!wardActive;$('district-name').textContent=wardActive?'LANTERN WARD':'MAIN NEIGHBORHOODS';$('view').textContent=wardActive?'Recenter camera':'Street view';$('view').title=wardActive?'Drag the scene or use the right stick to look; C or right-stick click recenters':'Change camera: RB or V';$('touch-interact').textContent=wardActive?'Interact':'Deliver';transfers++;last=0;saveTime=0;refreshAdventureEntry();
    try{store.setItem(HUB_KEY,JSON.stringify({v:1,district:next}));}catch{}
-   xr.retarget();if(xr.active)renderer.shadowMap.enabled=false;close();message(wardActive&&mission?missionGoal(ward):wardActive?'Lantern Ward. Resident stories, Night Watch and the original delivery loop are on your Missions board.':'Returned to your original city position and progress.');hooks.changed();return true;
-  }catch(e){error=String(e.message||e);for(const d of document.querySelectorAll('dialog[open]'))d.close();message('District travel could not finish: '+error);hooks.pause();return false;}
+   xr.retarget();if(xr.active)renderer.shadowMap.enabled=false;if(wardActive&&!blocked)persistWard();close();message(wardActive&&mission?missionGoal(ward):wardActive?'Lantern Ward. Resident stories, Night Watch and the original delivery loop are on your Missions board.':'Returned to your original city position and progress.');hooks.changed();return true;
+  }catch(e){if(travelToken!==travelGeneration)return false;error=String(e.message||e);for(const d of document.querySelectorAll('dialog[open]'))d.close();message('District travel could not finish: '+error);hooks.pause();return false;}
  }
  function field(name,ray){if(!wardActive)return hooks.command(name);if(!ray&&['strike','pulse','tool'].includes(name))ray={origin:{x:ward.x,y:ward.y+1.3,z:ward.z},direction:{x:-Math.sin(yaw),y:0,z:-Math.cos(yaw)}};action(ward,name,ray);persistWard();}
  function command(code,ray){const map={KeyE:'interact',KeyQ:'throw',KeyF:'ride',Space:'hop',KeyG:'bell',KeyV:'camera',KeyM:'map',KeyJ:'jobs',KeyH:'help',KeyC:'recenter',KeyL:'scan',KeyZ:'strike',KeyT:'tool-cycle',KeyU:'campaign-route',KeyR:'grapple'};const name=map[code]||code;
@@ -86,10 +88,11 @@ export function createMainHub(hooks){
  // field() already translates per-district commands.
  const buttons=[];function modeButtons(parent,suffix){for(const mode of MODES){const b=document.createElement('button');b.id='xr-'+mode+suffix;b.dataset.xrMode=mode;b.textContent=modeLabel(mode);b.onclick=()=>{hooks.ensureStarted();xr.enter(mode);};parent.append(b);buttons.push(b);}}
  modeButtons($('xr-mode-options'),'');const launch=document.createElement('section');launch.className='hub-districts';launch.innerHTML='<p>One game: the original city, Lantern Ward, resident stories and Night Watch.</p><button id="enter-ward">Enter Lantern Ward district</button><div id="xr-launch-options" class="xr-grid"></div>'; $('welcome').append(launch);modeButtons($('xr-launch-options'),'-launch');
- $('enter-ward').onclick=()=>switchDistrict('lantern');
- const highline=document.createElement('button');highline.id='play-highline';highline.textContent='Play Highline / taller rooftop adventure';highline.onclick=()=>switchDistrict('lantern','campaign:highline');highline.className='primary';$('welcome').querySelector('label[for=vehicle]').before(highline);
- const highlineHint=document.createElement('p');highlineHint.className='hint';highlineHint.textContent='Taller rooftops, the new Currentworks canal and trees, and an upper archive mystery. Original city and saves remain available below.';highline.after(highlineHint);
- const highlinePause=highline.cloneNode(true);highlinePause.id='visit-highline';highlinePause.onclick=highline.onclick;$('pause-dialog').prepend(highlinePause);
+ $('enter-ward').disabled=true;$('enter-ward').onclick=()=>switchDistrict('lantern');
+ const highline=document.createElement('button');highline.id='play-highline';highline.textContent='Play Highline / taller rooftop adventure';highline.disabled=true;highline.onclick=()=>{const r=ward?{state:ward,blocked}:load(store);return switchDistrict('lantern',adventureEntry(r.state,r.blocked).mission);};highline.className='primary';$('welcome').querySelector('label[for=vehicle]').before(highline);
+ const highlineHint=document.createElement('p');highlineHint.id='highline-next-step';highlineHint.className='hint';highline.after(highlineHint);
+ function refreshAdventureEntry(){const r=ward?{state:ward,blocked}:load(store),plan=adventureEntry(r.state,r.blocked);highline.textContent=plan.title;highlineHint.textContent=plan.detail;const pauseLaunch=$('visit-highline');if(pauseLaunch)pauseLaunch.textContent=plan.title;}refreshAdventureEntry();
+ const highlinePause=highline.cloneNode(true);highlinePause.id='visit-highline';highlinePause.disabled=false;highlinePause.onclick=highline.onclick;$('pause-dialog').prepend(highlinePause);
  const cityButtons=document.createElement('div');cityButtons.innerHTML='<button id="visit-ward">Lantern Ward / resident missions</button><button id="visit-watch">Night Watch investigation</button><button id="main-xr-modes">AR / VR views</button>'; $('pause-dialog').prepend(cityButtons);
  $('visit-ward').onclick=()=>switchDistrict('lantern');$('visit-watch').onclick=()=>switchDistrict('lantern','watch');$('main-xr-modes').onclick=()=>open('xr-mode-dialog');
  const headerButton=document.createElement('button');headerButton.id='main-xr';headerButton.textContent='AR / VR';headerButton.onclick=()=>open('xr-mode-dialog');document.querySelector('header nav').append(headerButton);
@@ -102,6 +105,7 @@ export function createMainHub(hooks){
  const mapViewButton=document.createElement('button');mapViewButton.id='main-show-map';mapViewButton.textContent='View city map';$('map-close').after(mapViewButton);
  mapViewButton.onclick=()=>{const source=$('map'),dest=$('main-map-canvas');dest.width=source.width;dest.height=source.height;dest.getContext('2d').drawImage(source,0,0);open('main-map-view');};$('main-map-back').onclick=()=>open('map-dialog');
 
+ installFieldControls({document,window,canvas:hooks.canvas,active:()=>wardActive,paused:()=>!hooks.playing(),inXR:()=>xr.active,map:openMap,help:()=>wardMenu(),recenter:()=>command('recenter'),orbit:d=>{yaw+=d;},cancelTravel:()=>$('ward-loading-cancel').click()});
  $('ward-mission-list').onclick=focusMissions;
  $('ward-city').onclick=()=>switchDistrict('city');$('ward-resume').onclick=close;$('ward-map-open').onclick=$('ward-map-button').onclick=openMap;$('ward-map-back').onclick=wardMenu;
  $('ward-xr').onclick=()=>open('xr-mode-dialog');$('ward-controls').onclick=$('xr-controls').onclick=()=>open('xr-controls-dialog');
@@ -115,7 +119,7 @@ export function createMainHub(hooks){
  $('ward-keep').onclick=()=>{pending=null;$('ward-confirm').hidden=true;$('ward-resume').focus();};$('ward-replace').onclick=()=>{const fn=pending;pending=null;fn?.();};
  for(const id of ['ward-menu','ward-map-dialog','main-map-view','xr-mode-dialog','xr-controls-dialog'])$(id).addEventListener('cancel',e=>{e.preventDefault();if(pending)$('ward-keep').click();else wardActive?close():hooks.resume();});
  for(const b of buttons)b.disabled=true;
- cityView.artReady.then(()=>{for(const b of buttons)b.disabled=false;});
+ cityView.artReady.then(()=>{for(const b of buttons)b.disabled=false;highline.disabled=false;$('enter-ward').disabled=false;refreshAdventureEntry();});
  // A controller action is dispatched by the original poller. This hook only adds
  // domain-specific actions; existing A/X/Y/trigger mappings remain intact.
  function tickWard(now,frame){
@@ -129,7 +133,7 @@ export function createMainHub(hooks){
    for(let t=dt;t>1e-7;t-=1/60)tick(ward,input,Math.min(t,1/60));if(ward.time-saveTime>5){persistWard();saveTime=ward.time;}
   }
   wardView.update(ward,dt,{mode:'third',yaw,started:true});if(xr.active)xr.present();else renderer.render(wardView.scene,wardView.camera);
-  if(frames%6===0){$('district-name').textContent='LANTERN WARD';$('objective-title').textContent=missionGoal(ward);const n=navigation(ward,yaw);$('objective-text').textContent=Math.ceil(n.distance)+' m / '+n.level+' / Map shows your selected objective';$('waypoint-arrow').style.transform='rotate('+n.angle+'rad)';$('toast').textContent=ward.messageTime>0?ward.message:'';$('context').textContent='X interact | A hop | Y mount | D-pad down missions';drawMap($('ward-mini'),ward,true);}
+  if(frames%6===0){$('district-name').textContent='LANTERN WARD';const field=wardFieldStatus(ward,yaw),n=navigation(ward,yaw);$('objective-title').textContent=field.goal;$('objective-text').textContent=field.detail;$('save-status').textContent=blocked?'Save needs recovery; original data retained':wardSaveStatus;$('waypoint-arrow').style.transform='rotate('+n.angle+'rad)';$('toast').textContent=ward.messageTime>0?ward.message:'';$('toast').classList.toggle('visible',ward.messageTime>0);$('context').textContent=fieldControlHint({ride:ward.ride,gamepad:padState.connected,touch:document.body.classList.contains('touch'),combat:controlContext.combat,canGlide:campaignCanGlide(ward)});drawMap($('ward-mini'),ward,true);}
  }
  Object.defineProperty(window,'NeighborhoodMissions',{value:Object.freeze({inspect:()=>({version:VERSION,district:wardActive?'lantern':'city',transfers,frames,rendererCount:1,sessionPreservedAcrossDistricts:true,ward:ward?JSON.parse(JSON.stringify(ward)):null,watch:ward?watchInspect(ward):null,campaign:ward?campaignInspect(ward):null,environment:wardView?.inspect().environment||null,preparing:!wardReady&&!!wardView,blocked,failed:!!error,error,paused:!hooks.playing(),xr:xr.inspect(),modes:[...MODES],spatial:(wardActive?wardSpatial:citySpatial).inspect()}),panel:()=>xr.panelPose()})});
  return {xr,get wardActive(){return wardActive;},persist:persistWard,command,switchDistrict,wardMenu,frameWard:tickWard,openMap,

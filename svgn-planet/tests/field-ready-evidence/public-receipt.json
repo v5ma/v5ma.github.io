@@ -1,0 +1,20 @@
+{
+  "version": "0.18.1",
+  "revision": "field-ready-1",
+  "status": "source-tested; publication and rendered acceptance pending",
+  "reviewedMaster": "8174b7e793e87e45264fe3565b030ef03a17b169",
+  "baselineRuntime": "5656f520321d5b92120bf463976f2281aa8f49d3",
+  "localTests": {
+    "passed": 477,
+    "failed": 0,
+    "skipped": 0,
+    "logSHA256": "9934b45fe07cf9fbe162e33e31705a5d8f48dd204364cbe1090266c9f82cc9ab"
+  },
+  "frozenLegacyHashesPreserved": 102,
+  "localWebGL2": false,
+  "publishedRevisionVerified": false,
+  "renderedPlayPathPassed": false,
+  "physicalDevicesTested": false,
+  "priorFailure": "Explicit listener capture options replaced boolean flags after the first local listener cleanup test failed. Assertion retained.",
+  "next": "Inspect actual source/public Highline job artifacts and exact public bytes. Update this receipt without manufacturing a test pass; continue from PLAY-READY.md."
+}

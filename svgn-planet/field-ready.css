@@ -1,0 +1,17 @@
+/* Ward-only readability. The original city's presentation is unchanged. */
+body.in-lantern:not(.in-xr) #objective{width:min(440px,calc(100vw - 44px));bottom:92px}
+body.in-lantern:not(.in-xr) #context{bottom:28px;max-width:calc(100vw - 32px);width:max-content;white-space:normal;line-height:1.5;border-radius:9px;text-align:center}
+body.in-lantern footer .keyboard-hint,body.in-lantern footer .gamepad-hint,body.in-lantern #controller-status{display:none}
+#ward-map-shortcut{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+#ward-mini{border:1px solid #adc9c6;border-radius:8px}
+#play-highline{width:100%;text-align:left}
+#highline-next-step{margin:6px 0 12px}
+@media(max-width:520px){
+ body.in-lantern:not(.in-xr) #ward-map-shortcut{top:106px;right:10px}
+ body.in-lantern:not(.in-xr) #ward-mini{width:110px;height:95px}
+ body.in-lantern:not(.in-xr) #ward-map-open{min-height:34px;font-size:11px}
+ body.in-lantern:not(.in-xr) #objective{left:10px;bottom:76px;max-width:calc(100vw - 20px);width:calc(100vw - 20px)}
+ body.in-lantern.touch:not(.in-xr) #objective{bottom:170px}
+ body.in-lantern:not(.in-xr) #context{font-size:10px;bottom:10px}
+ body.in-lantern.touch:not(.in-xr) #context{bottom:137px;max-height:32px;overflow:hidden}
+}
