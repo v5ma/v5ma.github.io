@@ -1,0 +1,21 @@
+{
+  "application":"Neighborhood Missions",
+  "revision":"currentworks-1",
+  "state":"locally implemented and tested; atomic runtime publication still pending",
+  "tests":{"passed":462,"failed":0,"skipped":0},
+  "baseline":"9ed36aa7fc559a1000dbf7b84696cb5d40d7e892",
+  "librarySource":"c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "planCheckpoint":"5418091e244c5aca955aa4231b89f03df264bcf5",
+  "uploadedObjects":{
+    "adapterAndArchiveTree":"c1843a739fefd4ca85c1d0fe06eb06998f95ddd4",
+    "district-view.mjs":"003c9eb1c68bd80122eaef6af9bed67b95d2405e",
+    "main-hub.mjs":"cd63ef25d91c1f6a2a2457bec10fa438b572f377",
+    "core.mjs":"e9bd43f888490d0726380c5db7ec4d0f8a1d7da4",
+    "campaign.mjs":"cd98643c5748f278ccda6a620f8bea0535d13675"
+  },
+  "scope":"Pinned Water/Optics, Trees, Cloudlets and selective Toon with an upper archive room and the Unsent Call sequel. Host r177 retained; no Fire or Islands integration.",
+  "localWebGL2":false,
+  "renderedApproval":false,
+  "newRuntimePublished":false,
+  "next":"Finish exact source/test/docs uploads, compare every blob to the local tested files, build a scoped direct-master commit on a freshly reconciled head without force. Then inspect existing source/public renderer workflows and save actual results. See ENVIRONMENT-INTEGRATION.md and FUTURE-DIRECTION.md."
+}
