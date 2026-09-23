@@ -1,3 +1,14 @@
+---
+title: "From Exodus to Temple: competing chronologies"
+slug: "exodus-to-temple-competing-chronologies"
+summary: "Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction."
+topic: "Ancient texts & origins"
+status: "Developed article"
+updated: "2026-09-06"
+---
+
+# From Exodus to Temple: competing chronologies
+
 ## Begin with the history being reconstructed
 
 The earlier-Exodus reconstruction asks whether the departure tradition preserves a political reversal and environmental catastrophe near the end of Hyksos power rather than the setting usually supplied by a later Egyptian place-name. Its explanatory ambition is a sequence, not an isolated date: a population acquires standing, loses protection during a change of rule, experiences coercion and disaster, and departs. [[moses-volcano-and-exodus-chronology|The Moses investigation]] develops that sequence. Here I compare it with ancient intervals between departure and sanctuary.
@@ -66,6 +77,53 @@ The proposed connection to [[jesus-teacher-of-righteousness-hypothesis|the Teach
 
 The connection to [[apocalyptic-repair-theology|repair]] concerns a community locating itself within an inherited account of deliverance and disruption, then asking what restoration requires. This is a constructive comparison, not a claim that every ancient text contains the complete later theory. The [[museum-trails|museum trails]] connect a source, its interval, the competing reconstruction and the argument between them.
 
-## Hyksos and Avaris: the completed deep-research report
 
-The [completed Hyksos/Avaris deep-research report](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#chronology-and-the-political-landscape) connects the proposed Moses windows to competing Egyptian chronologies and distinguishes Exodus 7:7's age of eighty from the forty-plus-forty division in Acts 7. Its scenario dates are hypothesis inputs, not independent Egyptian dates for Moses. The report preserves its own discussion of the 480-year difficulty; the longer Josephus intervals and alternative endpoints examined in this article remain intact. Compare both records without treating the report as a replacement for this chronology experiment. Its [candidate tables](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#prosopography-who-actually-fits) show how a changed chronology changes the proposed identifications.
+## Source conversations
+
+[[parthians-and-medes-meaning|Parthians and Medes meaning]] is the archived discussion dated 2025-10-25 (UTC export metadata).
+
+[[daniel-and-teacher-of-righteousness|Daniel and Teacher of Righteousness]] is the archived discussion dated 2025-10-19 (UTC export metadata).
+
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
+
+## External sources and access notes
+
+[1 Kings 6, World English Bible](https://ebible.org/engwebp/1KI06.htm)
+
+Primary translated chapter consulted: verses 1 and 37-38 distinguish the 480th-year foundation from completion. Public-domain translation; no critical manuscript collation. Consulted 2026-09-05.
+
+[Kings III 6, Brenton Septuagint translation](https://ebible.org/eng-Brenton/1KI06.htm)
+
+Primary translated chapter consulted: 440th-year notice and the foundation/completion additions. Records this translation, not a claim about every Greek witness. Public-domain translation. Consulted 2026-09-05.
+
+[Josephus, Antiquities 8.3.1, Whiston translation](https://penelope.uchicago.edu/josephus/ant-8.html)
+
+Primary translated passage consulted for the 592-year departure-to-foundation interval. Modern editorial bracketed dates are not treated as Josephus's BCE dates. Consulted 2026-09-05.
+
+[Josephus, Antiquities 20.10.1, Whiston translation](https://penelope.uchicago.edu/josephus/ant-20.html)
+
+Primary translated succession paragraph consulted for 612 years from departure to Solomon's Temple. Equating that endpoint to the foundation is a separately stated assumption. Consulted 2026-09-05.
+
+[Josephus, Antiquities 10.8.5, Whiston translation](https://penelope.uchicago.edu/josephus/ant-10.html)
+
+Primary translated paragraph consulted for 470 years, six months and ten days from construction to destruction and 1062 years with the same added units from Exodus. Calculator uses whole-year components only. Consulted 2026-09-05.
+
+[Josephus, Against Apion 1.14-16, Whiston translation](https://penelope.uchicago.edu/josephus/apion-1.html)
+
+Primary translated sections consulted. A quotation attributed to Manetho and Josephus's interpretation are dependent stages, not two independent eyewitnesses. Consulted 2026-09-05.
+
+[Exodus 12, World English Bible](https://ebible.org/engwebp/EXO12.htm)
+
+Primary translated chapter consulted, especially verse 40. Its 430 years are assigned to residence in Egypt. Public-domain text. Consulted 2026-09-05.
+
+[Exodus 12, Brenton Septuagint translation](https://ebible.org/eng-Brenton/EXO12.htm)
+
+Primary translated verse 40 consulted: Egypt and Canaan share the stated 430 years. This is a scope difference, not a different number. Public-domain text. Consulted 2026-09-05.
+
+[Judges 11, World English Bible](https://ebible.org/engwebp/JDG11.htm)
+
+Primary translated verse 26 consulted. The 300 years occur in Jephthah's narrated territorial claim, not an independently dated archaeological layer. Consulted 2026-09-05.
+
+[Daniel 9, World English Bible](https://ebible.org/engwebp/DAN09.htm)
+
+Primary translated chapter consulted, especially verses 2, 15, 17 and 24-27. Exodus, sanctuary, desolation and restoration remain separate from any proposed absolute-year calculation. Consulted 2026-09-05.

@@ -47,6 +47,10 @@ The next substantial advance would be a passage-by-passage dossier identifying w
 
 Linked in this way, Moses, Midian, El and later traditions become parts of an investigation into religious transmission. The connection is a reason to read across the articles, not permission to flatten them into a single chronology or an already proven genealogy.
 
+## Hyksos and Avaris: the completed deep-research report
+
+The [Hyksos, Avaris and Moses prosopography report](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html) supplies the completed companion investigation of an eastern-Delta court setting before the proposed Midian interval. Its [royal-household and candidate review](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#prosopography-who-actually-fits) keeps attested titles, disputed dates and hypothetical adoption separate. The [chronological windows](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#chronology-and-the-political-landscape) do not constitute Egyptian evidence for a named candidate's eastern exile or for transmission of Yahweh worship. That distinction connects the report to this article's transmission question without presenting the Kenite phase as newly demonstrated.
+
 
 ## Source conversations
 

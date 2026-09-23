@@ -77,6 +77,10 @@ The proposed connection to [[jesus-teacher-of-righteousness-hypothesis|the Teach
 
 The connection to [[apocalyptic-repair-theology|repair]] concerns a community locating itself within an inherited account of deliverance and disruption, then asking what restoration requires. This is a constructive comparison, not a claim that every ancient text contains the complete later theory. The [[museum-trails|museum trails]] connect a source, its interval, the competing reconstruction and the argument between them.
 
+## Hyksos and Avaris: the completed deep-research report
+
+The [completed Hyksos/Avaris deep-research report](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#chronology-and-the-political-landscape) connects the proposed Moses windows to competing Egyptian chronologies and distinguishes Exodus 7:7's age of eighty from the forty-plus-forty division in Acts 7. Its scenario dates are hypothesis inputs, not independent Egyptian dates for Moses. The report preserves its own discussion of the 480-year difficulty; the longer Josephus intervals and alternative endpoints examined in this article remain intact. Compare both records without treating the report as a replacement for this chronology experiment. Its [candidate tables](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#prosopography-who-actually-fits) show how a changed chronology changes the proposed identifications.
+
 
 ## Source conversations
 

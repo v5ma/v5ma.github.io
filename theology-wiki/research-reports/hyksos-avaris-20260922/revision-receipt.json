@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-09-22",
+  "base_commit": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "scope": "Three linked articles and their narration/transcript derivatives, plus any pinned episode citation-hash derivatives. Episode spoken content, recording bytes and all previous revision receipts remain unchanged.",
+  "files": {
+    "content/developed/exodus-to-temple-competing-chronologies.md": {
+      "before": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
+      "after": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
+    },
+    "content/developed/kenite-hypothesis-and-yahweh-origins.md": {
+      "before": "ae859149d4dc330b5e6d4cf827cd24fa08615868a2dffba7edb3289d2b5c5bed",
+      "after": "9d760f92c363794dadeb871dbcc6da0f2fa96d6a27817a76286f17138d5da042"
+    },
+    "content/developed/moses-volcano-and-exodus-chronology.md": {
+      "before": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589",
+      "after": "eae7530ad7e620b8a5b8aab1195cf7372ce67b89901ab6cdf056ec10e6b0ce5a"
+    },
+    "data/listening/exodus-to-temple-competing-chronologies.json": {
+      "before": "1866a7c392a338bfb88fb751a016e2a45ecf8e422e64bb8ca02c2d62715a144e",
+      "after": "f44c4d9449842e5aca357154d3745167eea7d04a9cfd93aeaff28e06aed7d1ec"
+    },
+    "data/listening/kenite-hypothesis-and-yahweh-origins.json": {
+      "before": "5de25ffa79eefb223b2a0062bd148bfae764a739a2d437ad531b70a067592e2d",
+      "after": "b3340ac66b73e36aab2dc04e843f70a41d3a509bf3b8fb8874ceef658ee59c07"
+    },
+    "data/listening/moses-volcano-and-exodus-chronology.json": {
+      "before": "f0b0bbf3d1499a0995cbe0aaff9e01e725cf5d981f43e5f56b99df7a2ecee2b1",
+      "after": "ad1e624916417f1c6cf06ba92680ab9dc05cc07c46dd4dbd8a718ec8a4583022"
+    },
+    "products/transcripts/exodus-to-temple-competing-chronologies.txt": {
+      "before": "61c279da96347d05fd5f1762fbfc076ef81cdaf3f716e19385cb463232fe4090",
+      "after": "8dd13f93d174d0ed8f51ea0bfec05fe567a984d71fd39e6020ef75fb50f410d3"
+    },
+    "products/transcripts/kenite-hypothesis-and-yahweh-origins.txt": {
+      "before": "65d1c88b01b88aee02d22d786dc71363df84be957852c38e83bb40ae66b58af3",
+      "after": "0e96adeaa16b6a875afd6d3fc121caf396c894ae1e8a45a94aa5eb1056f1f38d"
+    },
+    "products/transcripts/moses-volcano-and-exodus-chronology.txt": {
+      "before": "40edf189c8379828ee41245ae58bf6aa9697c77b2fb82438a37f41c92b10c1b6",
+      "after": "ac4b7d0c522053210e9ed0eba8c519117550db1a2b6aacaea3df1bbbd10c2668"
+    }
+  }
+}

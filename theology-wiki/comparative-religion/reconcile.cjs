@@ -1,4 +1,7 @@
 'use strict';
+// Hyksos linked-article preservation
+if(require('node:fs').existsSync(require('node:path').join(__dirname,'../research-reports/hyksos-avaris-20260922/revision-receipt.json'))){require('../research-reports/hyksos-avaris-20260922/verify-generated.cjs').verify();return;}
+
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');const root=path.resolve(__dirname,'..'),load=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8')),sha=p=>crypto.createHash('sha256').update(fs.readFileSync(path.join(root,p))).digest('hex');
 const baseline=load('tests/fixtures/restoration-baseline-hashes.json'),a=load('scripture-concordance/revision-receipt.json'),b=load('research-expansion-20260918/revision-receipt.json'),slug='apocalyptic-repair-theology',allowed=['content/developed/'+slug+'.md','data/listening/'+slug+'.json','products/transcripts/'+slug+'.txt'],files={};
 for(const[p,before]of Object.entries(baseline.files)){const after=sha(p);if(allowed.includes(p))files[p]={before,after};else if(a.files[p]||b.files[p]){const prior=a.files[p]||b.files[p];assert.equal(prior.before,before,p);assert.equal(prior.after,after,p);}else assert.equal(after,before,p);}

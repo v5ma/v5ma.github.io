@@ -43,6 +43,10 @@ Even a secure eruption date would not independently establish an Exodus. The cau
 
 [[el-in-ancient-egypt|El in Ancient Egypt]] concerns another bridge between Egyptian evidence and religious history. [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]] addresses the authority of later traditions. I connect these inquiries while retaining their different periods and evidence: a causal reconstruction gains strength from tested intermediate links, not from resemblance alone.
 
+## Hyksos and Avaris: the completed deep-research report
+
+The [full Hyksos, Avaris and Moses prosopography report](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html) preserves the completed September 22, 2026 investigation of the eastern Delta population, royal households, named candidates and the Seqenenre constraint. Its [chronology section](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#chronology-and-the-political-landscape) examines the later pre-Ahmose departure variant; that is not the same causal order as the conquest-first reconstruction retained above. Its support for the Avaris social setting is distinguished from identification of Moses or a foster mother. The report does not independently settle the Thera or Tempest Stela dispute. Read its [Seqenenre analysis](/theology-wiki/research-reports/hyksos-avaris-20260922/index.html#seqenenre-is-a-remarkable-constraint-on-the-sea-of-reeds-theory) alongside the preserved ordering questions, rather than silently replacing one version with another.
+
 
 ## Source conversations
 
