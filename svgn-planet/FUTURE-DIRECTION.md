@@ -2,6 +2,14 @@
 
 Owner decision, September 22, 2026: make the Watch Dogs 2 / Uncharted / Batman Arkham direction playable, including genuinely taller buildings. Keep these notes beside the game and update them at implementation, verification and handoff checkpoints so another chat can resume. This document records design intent, not proof that every feature exists.
 
+## Open Channel / 0.19.0
+
+The next bounded systemic archive encounter is implemented: Open Channel follows The Unsent Call, using an uplink power budget, a workshop reserve-cell detour and a shorter reversible public-light diversion. A live numerical diagram and actual lamp-material response show the consequence. Acknowledgement restores service; Sal records the chosen route and awards 140 credits once. Read OPEN-CHANNEL.md and tests/open-channel-evidence/public-receipt.json for source, rendered, public and physical evidence separately.
+
+The initial local suite passes 491 tests, including fresh input-only completion of both solutions and all previous regressions. Existing source/public Highline browser journeys are extended; no new workflow, renderer, input map or world layout is introduced. Old saves, Currentworks, the original city, previous cases and eight spatial modes remain. The third rooftop case is available through the existing adventure launch after the first two. Updating the completed-two-arcs entry expectation is an intentional new continuation, not a reset or reward shortcut.
+
+Next design questions are whether the route tradeoff is legible, whether the archive diagram is readable in physical XR, and whether the reserve detour is worth its travel. The South Cable Exchange is still not built. Obtain player feedback before expanding geography; do not call a model test or synthetic headset a human quality approval.
+
 ## Field Ready / 0.18.1
 
 The live-play request continues with control and entry repairs, not another new demo. PLAY-READY.md describes district-correct header actions, ward camera dragging/recentering, state-aware Highline/Unsent Call launch, immediate selected-case saving, cancellation safety and matching desktop/XR route cues. Currentworks, both new story arcs, all older missions, save identities and eight XR modes remain.

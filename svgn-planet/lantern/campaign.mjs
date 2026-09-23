@@ -1,8 +1,9 @@
+import {CHANNEL_CASE,freshRouting,parseRouting,channelTarget,channelInteraction,channelStory} from './open-channel.mjs';
 import {ARCHIVE_CASE,ARCHIVE_STORY} from './archive.mjs';
 import {watchState,watchAction} from './watch.mjs';
 import {highlineKit,highlineRestored,HIGHLINE_STORY} from './highline-layout.mjs';
 
-export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260,highline:240,unsent:120});
+export const CAMPAIGN_REWARDS=Object.freeze({flight:150,predator:180,interiors:160,freeflow:200,finale:260,highline:240,unsent:120,channel:140});
 export const CAMPAIGN_SYSTEMS=Object.freeze([
  {id:'highline-call',label:'Highline maintenance call',cases:Object.freeze(['highline']),x:-5.5,y:10.8,z:-5.05,effect:'distract',radius:12,target:Object.freeze({x:4,y:10.8,z:-5.05})},
  {id:'market-speaker',label:'Market speaker loop',cases:Object.freeze(['predator','finale']),x:-20.5,y:0,z:-4.2,effect:'distract',radius:9,target:Object.freeze({x:-20.5,y:0,z:-2.7})},
@@ -37,10 +38,10 @@ export const CAMPAIGN_CASES=Object.freeze([
   point('highline-relay','Restore the rooftop repeater / Radio Tower 23.6 m',15,23.6,-5.05,'relay'),
   point('highline-recording','Collect Sal\'s recording / old loading loft 4.4 m',12,4.4,0),
   point('highline-home','Bring the recording to Mara / depot',-10,0,14)]},
- ARCHIVE_CASE
+ ARCHIVE_CASE, CHANNEL_CASE
 ]);
 
-export const freshCampaign=()=>({v:1,active:null,progress:{},completed:[],credits:0,route:'stealth'});
+export const freshCampaign=()=>({v:1,active:null,progress:{},completed:[],credits:0,route:'stealth',routing:freshRouting()});
 export function parseCampaign(raw){
  if(raw==null)return freshCampaign();
  if(!raw||raw.v!==1||!Array.isArray(raw.completed)||!raw.progress||typeof raw.progress!=='object'||Array.isArray(raw.progress)||!['stealth','combat'].includes(raw.route))throw Error('Unsupported Night Watch campaign save. Existing progress retained.');
@@ -48,14 +49,15 @@ export function parseCampaign(raw){
  const progress={};for(const [id,n] of Object.entries(raw.progress)){const c=CAMPAIGN_CASES.find(x=>x.id===id);if(!c||!Number.isInteger(n)||n<0||n>c.steps.length)throw Error('Invalid campaign stage.');progress[id]=n;}
  for(const c of CAMPAIGN_CASES)if((progress[c.id]===c.steps.length)!==completed.includes(c.id))throw Error('Inconsistent campaign completion.');
  const credits=completed.reduce((n,id)=>n+CAMPAIGN_REWARDS[id],0);if(raw.credits!==credits||raw.active&&completed.includes(raw.active))throw Error('Invalid campaign credit ledger.');
- return {v:1,active:raw.active,progress,completed,credits,route:raw.route};
+ if((raw.active==='channel'||Object.hasOwn(progress,'channel'))&&!completed.includes('unsent'))throw Error('Open Channel requires the recovered original call.');
+ return {v:1,active:raw.active,progress,completed,credits,route:raw.route,routing:parseRouting(raw.routing,progress.channel||0)};
 }
 export const campaignState=s=>s.campaign||(s.campaign=freshCampaign());
 export function campaignAvailable(s,id){const i=CAMPAIGN_CASES.findIndex(c=>c.id===id);if(i<0)return false;if(id==='highline')return true;if(i===0)return watchState(s).stage===4;return campaignState(s).completed.includes(CAMPAIGN_CASES[i-1].id);}
 export function campaignCanGlide(s){const c=campaignState(s);return highlineKit(s)||c.completed.includes('flight')||(c.active==='flight'&&(c.progress.flight||0)>=2);}
 export function campaignOptions(s){const c=campaignState(s);return CAMPAIGN_CASES.filter(m=>campaignAvailable(s,m.id)||c.completed.includes(m.id)||c.active===m.id).map(m=>({id:'campaign:'+m.id,title:m.title+(c.completed.includes(m.id)?' / complete':''),detail:m.summary,disabled:c.completed.includes(m.id),active:c.active===m.id,stage:c.progress[m.id]||0}));}
 export function trackCampaign(s,id){id=id.replace(/^campaign:/,'');const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===id);if(!m||!campaignAvailable(s,id)||c.completed.includes(id))return 'That case is not available yet.';c.active=id;if(c.progress[id]==null)c.progress[id]=0;if(s.city)s.city.active=null;if(s.watch)s.watch.tracking=false;return 'Tracking '+m.title+'. '+campaignTarget(s).label+'.';}
-export function campaignTarget(s){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active);if(!m)return null;const n=c.progress[m.id]||0,step=m.steps[n];if(!step)return null;if(m.id==='finale'&&step.id==='finale-choice'&&c.route==='combat')return {...step,label:'Reach the final signal through the receiving-court combat route',x:6,y:0,z:8,kind:'campaign',caseId:m.id};return {...step,kind:'campaign',caseId:m.id};}
+export function campaignTarget(s){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active);if(!m)return null;const n=c.progress[m.id]||0,step=m.steps[n];if(!step)return null;if(m.id==='channel'&&n===1)return {...step,...channelTarget(s),id:step.id,kind:'campaign',caseId:m.id};if(m.id==='finale'&&step.id==='finale-choice'&&c.route==='combat')return {...step,label:'Reach the final signal through the receiving-court combat route',x:6,y:0,z:8,kind:'campaign',caseId:m.id};return {...step,kind:'campaign',caseId:m.id};}
 export function campaignGoal(s){const t=campaignTarget(s);return t?CAMPAIGN_CASES.find(c=>c.id===t.caseId).title+': '+t.label:'';}
 
 const sessions=new WeakMap();
@@ -107,6 +109,7 @@ function useSystem(s,m,r,node,api){
 function completeCase(s,m){const c=campaignState(s);if(!c.completed.includes(m.id)){c.completed.push(m.id);c.credits+=m.reward;}c.progress[m.id]=m.steps.length;c.active=null;return m.title+' complete. +'+m.reward+' Watch campaign credits.';}
 function next(s,text){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active);c.progress[m.id]=(c.progress[m.id]||0)+1;return c.progress[m.id]>=m.steps.length?text+' '+completeCase(s,m):text+' Next: '+campaignTarget(s).label+'.';}
 export function campaignInteract(s,api){const c=campaignState(s),m=CAMPAIGN_CASES.find(x=>x.id===c.active),t=campaignTarget(s);if(!m||!t)return null;const r=campaignRuntime(s);t.kind=m.steps[c.progress[m.id]||0].kind;
+ if(m.id==='channel'){if((c.progress.channel||0)===1){const result=channelInteraction(s,api);return result?(result.advance?next(s,result.text):result.text):null;}if(close(s,t,api,1.8))return next(s,channelStory(s,t.id));return null;}
  if(t.kind==='combat'||t.kind==='clear')return r.enemies.every(e=>e.hp<=0)?next(s,'Area secure.'):'Threats remain. Keep moving, counter blue cues, or break sight.';
  if(t.kind==='land')return r.glideLanded&&close(s,t,api,4)?next(s,'Glide route proven.'):'Hop from the print-terrace rail toward the marked arcade landing. Release the cape above it, then return by the print-shop stairs.';
  if(t.kind==='choice')return c.route==='stealth'&&r.enemies.every(e=>e.hp<=0)||c.route==='combat'&&r.enemies.every(e=>e.hp<=0)?next(s,'Final approach clear.'):'Choose stealth or combat from Field tools, then clear the signal approach.';

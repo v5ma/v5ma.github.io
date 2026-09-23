@@ -19,8 +19,8 @@ test('After Highline the entry offers the archive; selecting it grants no reward
 test('Mid-archive continue retains stage, coordinates and separate ledgers across actual serialization',()=>{
  const s=completed();trackStory(s,'campaign:unsent');s.campaign.progress.unsent=2;const before=serialize(s),plan=adventureEntry(parse(before));assert.match(plan.title,/Continue Archive/);assert.match(plan.detail,/service log/);assert.deepEqual(serialize(s),before);
 });
-test('Completed arcs offer exploration, not an invalid replay or repeated credit award',()=>{
- const s=completed();s.campaign.progress.unsent=4;s.campaign.completed.push('unsent');s.campaign.credits=360;const before=JSON.stringify(s),plan=adventureEntry(s);assert.equal(plan.mission,null);assert.match(plan.title,/Explore Highline/);assert.equal(JSON.stringify(s),before);
+test('Completing the original two arcs offers Open Channel without resetting them or repeating credits',()=>{
+ const s=completed();s.campaign.progress.unsent=4;s.campaign.completed.push('unsent');s.campaign.credits=360;const before=JSON.stringify(s),plan=adventureEntry(s);assert.equal(plan.mission,'campaign:channel');assert.match(plan.title,/Play Open Channel/);assert.equal(JSON.stringify(s),before);
 });
 test('Recovery state never turns unknown saved progress into a fresh adventure selection',()=>{const p=adventureEntry(fresh(),true);assert.equal(p.mission,null);assert.match(p.title,/save recovery/);});
 

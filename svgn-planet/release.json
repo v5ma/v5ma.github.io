@@ -1,8 +1,8 @@
 {
-  "version": "0.18.1",
-  "revision": "field-ready-1",
+  "version": "0.19.0",
+  "revision": "open-channel-1",
   "name": "Neighborhood Missions",
-  "edition": "Unified Neighborhoods / Currentworks Field Ready",
+  "edition": "Unified Neighborhoods / Open Channel",
   "date": "2026-09-22",
   "entry": "index.html",
   "lanternRecoveryEntry": "lantern-ward.html",
@@ -10,11 +10,13 @@
   "legacyEntry": "legacy.html",
   "legacyRelease": "legacy-release.json",
   "legacyLayout": "legacy-layout.json",
-  "publicationEvidence": "tests/field-ready-evidence/public-receipt.json",
-  "status": "Field Ready source tested; check the current receipt for observed publication and browser results.",
-  "runtimeCheckpoint": "PLAY-READY.md",
+  "publicationEvidence": "tests/open-channel-evidence/public-receipt.json",
+  "status": "Open Channel source checkpoint. Inspect its current evidence for actual publication and rendered results.",
+  "runtimeCheckpoint": "OPEN-CHANNEL.md",
   "sourceAcceptanceRuns": [],
   "changes": [
+    "Open Channel is a saved, optional four-step reply mission after The Unsent Call, with reversible reserve-power and temporary public-light diversion routes.",
+    "Diegetic live circuit diagram, truthful capacity feedback and visible street-light response. Both routes award 140 credits exactly once; acknowledgement restores public service.",
     "Header Map, Controls and Recenter act on Lantern Ward while it owns play; scene dragging rotates the ward without changing the original city camera.",
     "Adventure entry previews the real next saved task, offers The Unsent Call after Highline, waits for initial assets, and saves the selected case immediately.",
     "Desktop and touch HUD show the same supported route cue as XR, correct input-specific hints, separate objective/control areas and honest district save status.",
@@ -46,21 +48,21 @@
   "saveContracts": {
     "original": "svgn.paper-delivery-3d.v1",
     "lantern": "svgn.lantern-ward.v1 / lantern-ward-01 / layout 1",
-    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180, the old campaign 950 and optional Highline 240 retain their separate contracts. Highline uses an additive ID in the existing campaign ledger.",
+    "ledgerSeparation": "Original city, chapter 600, resident stories, Watch 180, the old campaign 950 and optional Highline 240 retain their separate contracts. Highline uses an additive ID in the existing campaign ledger. Open Channel adds 140 campaign credits without changing any earlier reward.",
     "presentation": "svgn.neighborhood-spatial-console.v1"
   },
   "validation": {
-    "sourceTests": "477 local model, input, save, control-routing and Three-object tests passed; browser/public acceptance is separate.",
+    "sourceTests": "491 local source/model/Three-object checks pass. Rendered and public results are recorded separately in tests/open-channel-evidence/public-receipt.json.",
     "physicalQuest3Tested": false,
     "physicalXboxTested": false,
     "hardwarePerformanceCertified": false,
     "humanLevelApproval": false,
-    "localModelTestsPassed": 477,
-    "localModelTestsFailed": 0
+    "localModelTestsFailed": 0,
+    "localModelTestsPassed": 491
   },
   "quality": "Authored playable graybox and original action campaign; not finished AAA art, an Arkham-length commercial campaign, or a city-wide finished interior overhaul.",
-  "campaignCases": 7,
-  "campaignRewardTotal": 1310,
+  "campaignCases": 8,
+  "campaignRewardTotal": 1450,
   "previousPublicationEvidence": "tests/environment-evidence/public-receipt.json",
   "unportedBranchFeatures": [
     "Signal City cars, scout drone and Waterfront File: current-adapter rewrite required",

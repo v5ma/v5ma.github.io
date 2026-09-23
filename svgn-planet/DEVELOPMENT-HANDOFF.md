@@ -1,3 +1,11 @@
+# Current resume point: Open Channel / 0.19.0
+
+Read OPEN-CHANNEL.md, FUTURE-DIRECTION.md and tests/open-channel-evidence/public-receipt.json. The optional third rooftop case adds two real power-routing solutions using existing workshop/archive space, a live circuit diagram, visible street-light diversion, safe reversible switches and exactly-once 140 credits. The numerical HUD is shared with XR; no head-locked menu or new controller binding is added. The camera tooltip no longer incorrectly promises that on-foot action right-stick click recenters rather than cycling tools.
+
+491 local tests pass, with both complete input-only routing outcomes. The actual browser journey extends the old arcs with denied send, Xbox switches, actual bulb response, stereo AR/ray Resume, a real circuit reload and completed reserve route. Direct-route native completion, physical hardware, broader matrices and human approval stay separate unless the current receipt proves them. Preserve the initial tested criteria and failed traces. Baseline live Field Ready/graphics/archive results have now been downloaded and confirmed successful; no unrelated suite is retroactively cleared.
+
+After verifying this release, obtain player feedback on the two-route choice, reserve travel cost and diagram readability. South Cable Exchange remains future work. Preserve the new channel/routing save fields during any rollback; older parsers reject them. Use reconciled direct-master writes without PRs, new publishers or sibling edits.
+
 # Current resume point: Field Ready / 0.18.1
 
 Read PLAY-READY.md, FUTURE-DIRECTION.md and tests/field-ready-evidence/public-receipt.json first. Main-header Map/Controls/Recenter and scene drag now target the active ward; the adventure button follows saved Highline/archive stage, waits for assets and saves explicit selection. Desktop route hints match XR and the district save line is no longer borrowed from the original city. Escape/P cancels pending preparation safely. Currentworks, geometry, campaign/reward rules and native XR remain unchanged.

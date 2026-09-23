@@ -2,7 +2,7 @@
 
 This is the canonical production checklist, not a declaration of AAA quality. Build one exceptional authored neighborhood with measured performance before expanding scope again.
 
-Current release: Unified Neighborhoods / Currentworks Highline v0.18.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-22.
+Current release: Unified Neighborhoods / Open Channel v0.19.0. Focus: M0 foundations and M1 vertical slice. Updated 2026-09-23.
 
 ## How to use this workbook
 
@@ -68,9 +68,9 @@ Human exit gate: Approve a 10-minute high-speed route on a named desktop and phy
 
 - [x] SAVE-01 / P0 / verified / Preserve the existing game and save identities
   Acceptance: Original v1 slot and mission IDs remain. Old saves load; contracts, times and finishes round-trip; sibling game storage is not touched.
-  Next: Test additive Homecoming fields and interrupted-write recovery.
+  Next: Open Channel adds validated circuit switches and an exactly-once 140-credit case while retaining old saves and IDs. Both complete input-only route journeys and old regressions pass; retain actual-device and interruption/recovery checks.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json
+  Evidence: ../tests/coastal.test.mjs ; https://github.com/v5ma/v5ma.github.io/actions/runs/34667786481 ; evidence/v0.8.0.json ; ../OPEN-CHANNEL.md ; ../tests/open-channel-evidence/public-receipt.json
 
 - [x] SAVE-02 / P0 / verified / Recoverable save transactions
   Acceptance: Recoverable original-city transactions and separate validated district/campaign ledgers retain historical save identities. Destructive replacement requires explicit confirmation.
@@ -134,9 +134,9 @@ Human exit gate: Approve one street, hero character, vehicle, interior and a com
 
 - [ ] LEVEL-01 / P0 / needs-playtest / Authored Lantern Ward replacement chapter
   Acceptance: Lantern Ward is integrated into the original city as a same-renderer district. Its street, roof and canal connections support resident work, investigation, cape traversal, stealth and two-level combat.
-  Next: Test first-screen Highline discovery, two-tower traversal and the new upper archive sequel with unfamiliar players. Maintain meaningful routes and return connections; obtain physical AR/VR readability feedback before expanding city extent.
+  Next: Playtest the reserve-cell detour versus the shorter archive feeder diversion, with visible street-light response, reversible switches and physical acknowledgement. Do not expand map size before unfamiliar-player and physical XR feedback.
   Owner role: Level design / Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
+  Evidence: ../lantern/README.md ; ../lantern/acceptance.json ; evidence/lantern-0.12.0/candidate.json ; evidence/lantern-0.12.0/published.json ; ../lantern/WORKING-QUAY.md ; evidence/working-quay-0.12.1/candidate.json ; ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../lantern/NIGHT-WATCH.md ; evidence/night-watch-0.14.0/local-acceptance.json ; ../lantern/CAMPAIGN.md ; ../lantern/campaign.test.mjs ; ../lantern/xr-embodiment.test.mjs ; ../UNIFIED-NEIGHBORHOODS.md ; ../../../release-receipts/neighborhood-missions-unified-0.16.0.json ; ../SPATIAL-CONSOLE.md ; ../console-browser.py ; ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json ; ../OPEN-CHANNEL.md ; ../tests/open-channel-evidence/public-receipt.json
 
 - [ ] XR-02 / P0 / needs-playtest / Player-centered perspective portal and native first-person VR/AR
   Acceptance: Both districts expose eight actual-geometry first/third-person and first/third-person diorama AR/VR views. The room-fixed portal follows the player; no flat theater substitutes for a spatial mode.
@@ -230,9 +230,9 @@ Human exit gate: Fresh players can describe the story and choose a next activity
 
 - [ ] DESIGN-02 / P1 / partial / Connected authored campaign
   Acceptance: Homecoming is the first optional arc. Later chapters need distinct characters, purposeful objectives, debriefs and world consequences.
-  Next: Highline and the gated Unsent Call now connect Sal, Ada, the upper reading room and a recovered sender. Review the playable story; South Cable Exchange remains a future chapter, not an implemented district.
+  Next: Open Channel now answers the recovered operator using two physical power-routing solutions in the existing ward. Review the new choice, circuit feedback and stored route consequence; South Cable Exchange still needs to be built.
   Owner role: Design / engineering. Dependencies: SLICE-04.
-  Evidence: ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json
+  Evidence: ../ENVIRONMENT-INTEGRATION.md ; ../tests/environment-evidence/status.json ; ../OPEN-CHANNEL.md ; ../tests/open-channel-evidence/public-receipt.json
 
 - [ ] DESIGN-03 / P1 / partial / Fair progression and replay
   Acceptance: Credits and cosmetics persist. Duplicate events cannot create repeated rewards. Speed and basic access never require a purchase.
@@ -314,9 +314,9 @@ Human exit gate: Approve actual gameplay reference shots, controller sessions an
 
 - [ ] ACCESS-03 / P1 / partial / Readable and comfortable presentation
   Acceptance: Text scales without clipping; objectives are not color-only; speed effects can be reduced; long panels scroll by controller. Screen narration is not implemented.
-  Next: Verify persistent minimap, large mission map, gold world target, distance and upstairs/lower-floor cues. Review phone clipping and real-headset text size. Do not rely on color alone.
+  Next: The Open Channel circuit diagram and shared HUD report numerical supply, public-light state and alternative routes without color-only rules or timers. Test readability in real headsets and on narrow screens.
   Owner role: Engineering / QA. Dependencies: None.
-  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json
+  Evidence: ../lantern/LIVING-PORTAL.md ; evidence/living-portal-0.13.0/candidate.json ; ../OPEN-CHANNEL.md ; ../tests/open-channel-evidence/public-receipt.json
 
 - [x] SHADER-01 / P1 / verified / Coastal Atmosphere shader pack
   Acceptance: All five visual presets compile on pinned r177; controller settings persist; off/reduced-motion/low modes work; wet shaders are stable around the planet; no physics changes or unbounded rain allocation. Record actual browser and shader results, not a concept mockup.

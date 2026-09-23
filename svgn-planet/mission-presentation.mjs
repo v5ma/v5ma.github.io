@@ -1,3 +1,4 @@
+import {channelStatus} from './lantern/open-channel.mjs';
 /* Presentation derived from the existing mission state. Previews run on a copy;
  * they never accept a mission, advance a stage or credit the real player. */
 import {highlineKit} from './lantern/highline-layout.mjs';
@@ -21,6 +22,6 @@ export function wardFieldStatus(state,yaw=0){
  const campaignKit=highlineKit(state)||watch.stage===4||campaign.completed.length>0;
  const tool=campaignKit?campaignRuntime(state).selected:watch.stage>=1?runtime.tool:'no field kit';
  const status=watch.tracking&&runtime.knockedOut?missionGoal(state):nav.target?nav.label:missionGoal(state);
- return {goal:status,detail:nav.target?Math.ceil(nav.distance)+' m / '+nav.level+' / '+(nav.guide?.hint||''):'Choose an available resident story',
+ return {goal:status,detail:(campaign.active==='channel'?channelStatus(state).summary+' ':'')+(nav.target?Math.ceil(nav.distance)+' m / '+nav.level+' / '+(nav.guide?.hint||''):'Choose an available resident story'),
   equipment:state.ride+' / '+tool,health:watch.tracking?runtime.health:null};
 }

@@ -1,0 +1,30 @@
+{
+  "application": "Neighborhood Missions",
+  "version": "0.19.0",
+  "revision": "open-channel-1",
+  "status": "source-tested; rendered and public verification pending",
+  "baselineRuntime": "11ee033f4a9f86a4291d537cb324c20d0d428454",
+  "reviewedMaster": "7518b8e007bb0debdd474f8ff25fbfa41dd3d69f",
+  "planningCheckpoint": "eae41a85b5212ca3c5b6f56efcae206fb6e2a63d",
+  "localTests": {
+    "passed": 491,
+    "failed": 0,
+    "skipped": 0,
+    "logSHA256": "256897d3e1c19c2fa80054d99fb85896f1bfd66c7d109f087853704bfad9f02b"
+  },
+  "frozenLegacyHashesPreserved": 102,
+  "localWebGL2": false,
+  "publishedRevisionVerified": false,
+  "renderedChannelJourneyPassed": false,
+  "physicalDevicesTested": false,
+  "baselinePublicArtifact": {
+    "id": 10732860550,
+    "sha256": "cef30f9aa5a94f77e9c521d3b442952128fafa6bb97f9835bc8a95e4ffa933bf",
+    "fieldReadyChecks": 7,
+    "environmentChecks": 11,
+    "oldStoryChecks": 15,
+    "success": true
+  },
+  "scope": "Both channel solutions pass complete fresh input-only model journeys. The extended actual browser route reverses a diversion and then commits the reserve solution. Exact-source, live bytes and physical results are separate.",
+  "next": "Read existing Highline source/public jobs and download their reports. Preserve failures and update this receipt before ending the session; do not call pending jobs passed."
+}

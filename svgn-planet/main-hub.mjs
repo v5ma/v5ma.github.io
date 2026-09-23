@@ -20,7 +20,7 @@ import {watchRuntime,watchState,watchInspect} from './lantern/watch.mjs';
 import {campaignState,campaignCanGlide,campaignInspect} from './lantern/campaign.mjs';
 import {padState} from './controller.mjs';
 import {xrInput} from './xr-input.mjs';
-const VERSION='0.18.1',HUB_KEY='svgn.neighborhood-hub.v1';
+const VERSION='0.19.0',HUB_KEY='svgn.neighborhood-hub.v1';
 export function createMainHub(hooks){
  const $=id=>document.getElementById(id),cityView=hooks.view,renderer=cityView.renderer,citySpatial=spatialView(cityView,'city');
  let travelGeneration=0,wardReady=false,wardSaveStatus='Progress saves on this device';
@@ -45,7 +45,7 @@ export function createMainHub(hooks){
   else{if(hooks.persistCity()===false){message('Original city save could not be retained. Resolve save recovery before travelling.');return false;}citySpatial.end();}
   hooks.ensureStarted();hooks.setPaused(true);hooks.clear();
   try{if(next==='lantern'){ensureWard();if(!wardReady){open('ward-loading');await wardView.prepareEnvironment();if(travelToken!==travelGeneration)return false;wardReady=true;}error='';wardActive=true;controlContext.ward=true;if(mission)message(trackStory(ward,mission));}else{wardActive=false;controlContext.ward=controlContext.combat=controlContext.canGlide=false;}
-   document.body.classList.toggle('in-lantern',wardActive);$('ward-map-shortcut').hidden=!wardActive;$('district-name').textContent=wardActive?'LANTERN WARD':'MAIN NEIGHBORHOODS';$('view').textContent=wardActive?'Recenter camera':'Street view';$('view').title=wardActive?'Drag the scene or use the right stick to look; C or right-stick click recenters':'Change camera: RB or V';$('touch-interact').textContent=wardActive?'Interact':'Deliver';transfers++;last=0;saveTime=0;refreshAdventureEntry();
+   document.body.classList.toggle('in-lantern',wardActive);$('ward-map-shortcut').hidden=!wardActive;$('district-name').textContent=wardActive?'LANTERN WARD':'MAIN NEIGHBORHOODS';$('view').textContent=wardActive?'Recenter camera':'Street view';$('view').title=wardActive?'Drag the scene or use the right stick to look; C or this button recenters; right-stick click cycles tools during on-foot action':'Change camera: RB or V';$('touch-interact').textContent=wardActive?'Interact':'Deliver';transfers++;last=0;saveTime=0;refreshAdventureEntry();
    try{store.setItem(HUB_KEY,JSON.stringify({v:1,district:next}));}catch{}
    xr.retarget();if(xr.active)renderer.shadowMap.enabled=false;if(wardActive&&!blocked)persistWard();close();message(wardActive&&mission?missionGoal(ward):wardActive?'Lantern Ward. Resident stories, Night Watch and the original delivery loop are on your Missions board.':'Returned to your original city position and progress.');hooks.changed();return true;
   }catch(e){if(travelToken!==travelGeneration)return false;error=String(e.message||e);for(const d of document.querySelectorAll('dialog[open]'))d.close();message('District travel could not finish: '+error);hooks.pause();return false;}
@@ -135,7 +135,7 @@ export function createMainHub(hooks){
   wardView.update(ward,dt,{mode:'third',yaw,started:true});if(xr.active)xr.present();else renderer.render(wardView.scene,wardView.camera);
   if(frames%6===0){$('district-name').textContent='LANTERN WARD';const field=wardFieldStatus(ward,yaw),n=navigation(ward,yaw);$('objective-title').textContent=field.goal;$('objective-text').textContent=field.detail;$('save-status').textContent=blocked?'Save needs recovery; original data retained':wardSaveStatus;$('waypoint-arrow').style.transform='rotate('+n.angle+'rad)';$('toast').textContent=ward.messageTime>0?ward.message:'';$('toast').classList.toggle('visible',ward.messageTime>0);$('context').textContent=fieldControlHint({ride:ward.ride,gamepad:padState.connected,touch:document.body.classList.contains('touch'),combat:controlContext.combat,canGlide:campaignCanGlide(ward)});drawMap($('ward-mini'),ward,true);}
  }
- Object.defineProperty(window,'NeighborhoodMissions',{value:Object.freeze({inspect:()=>({version:VERSION,district:wardActive?'lantern':'city',transfers,frames,rendererCount:1,sessionPreservedAcrossDistricts:true,ward:ward?JSON.parse(JSON.stringify(ward)):null,watch:ward?watchInspect(ward):null,campaign:ward?campaignInspect(ward):null,environment:wardView?.inspect().environment||null,preparing:!wardReady&&!!wardView,blocked,failed:!!error,error,paused:!hooks.playing(),xr:xr.inspect(),modes:[...MODES],spatial:(wardActive?wardSpatial:citySpatial).inspect()}),panel:()=>xr.panelPose()})});
+ Object.defineProperty(window,'NeighborhoodMissions',{value:Object.freeze({inspect:()=>({version:VERSION,district:wardActive?'lantern':'city',transfers,frames,rendererCount:1,sessionPreservedAcrossDistricts:true,ward:ward?JSON.parse(JSON.stringify(ward)):null,watch:ward?watchInspect(ward):null,campaign:ward?campaignInspect(ward):null,channel:wardView?.inspect().channel||null,environment:wardView?.inspect().environment||null,preparing:!wardReady&&!!wardView,blocked,failed:!!error,error,paused:!hooks.playing(),xr:xr.inspect(),modes:[...MODES],spatial:(wardActive?wardSpatial:citySpatial).inspect()}),panel:()=>xr.panelPose()})});
  return {xr,get wardActive(){return wardActive;},persist:persistWard,command,switchDistrict,wardMenu,frameWard:tickWard,openMap,
   prepareCity(){citySpatial.restore();}};
 }
