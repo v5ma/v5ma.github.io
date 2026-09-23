@@ -1,10 +1,10 @@
 {
-  "version": "0.29.0",
-  "build": "sky-cycle-currentworks-2026.09.22",
+  "version": "0.30.0",
+  "build": "sky-cycle-mill-bell-2026.09.22",
   "date": "2026-09-22",
   "changes": [
-    "Currentworks Cloudlets, Islands and Toon integrated into the curved Waterwheel preview using the existing renderer",
-    "Garden landmarks and opaque mesh clouds share the authored depth sweep, with conservative detail and no scenery ray targets",
-    "Preserve original controls, physics, official campaigns and saves; Classic, 2D and Workshop return release new graphics"
+    "Optional Mill Bell whip anchor links the existing high crescent to the postal gallery",
+    "New full and curved previews include clear relay instructions while retaining the original no-whip express and lower delivery road",
+    "Existing campaigns, old documents, all seven rail curves, physics, saves, controller remaps and Currentworks graphics are preserved"
   ]
 }

@@ -129,7 +129,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Independent 45-file public runtime hash match
+      - name: Independent 46-file public runtime hash match
         env:
           ARTIFACT_DIR: /tmp/route-public
         run: python mario-maker-clone/svgn-paper-route/tests/xr-workspace-published.py
@@ -272,5 +272,68 @@ jobs:
         with:
           name: currentworks-live-${{ matrix.mode }}-${{ github.sha }}-${{ github.run_attempt }}
           path: /tmp/currentworks-live/
+          retention-days: 30
+          if-no-files-found: error
+
+  mill-bell:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {grip: forgiving, case: standard, view: screen}
+          - {grip: precision, case: standard, view: screen}
+          - {grip: forgiving, case: early, view: screen}
+          - {grip: forgiving, case: late, view: screen}
+          - {grip: forgiving, case: standard, view: ar}
+          - {grip: forgiving, case: standard, view: vr}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Real Mill Bell transfer, recovery, finish and save continuity
+        env:
+          LINK_GRIP: ${{ matrix.grip }}
+          LINK_CASE: ${{ matrix.case }}
+          LINK_VIEW: ${{ matrix.view }}
+          ARTIFACT_DIR: /tmp/mill-bell
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-whip-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bell-${{ matrix.grip }}-${{ matrix.case }}-${{ matrix.view }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/mill-bell/
+          retention-days: 30
+          if-no-files-found: error
+  live-bell:
+    needs: published
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        view: [ar, vr]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Public tracked-grip Mill Bell transfer and genuine depot finish
+        env:
+          LINK_VIEW: ${{ matrix.view }}
+          TEST_ORIGIN: https://v5ma.github.io
+          ARTIFACT_DIR: /tmp/bell-live
+        run: python mario-maker-clone/svgn-paper-route/tests/waterwheel-whip-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bell-live-${{ matrix.view }}-${{ github.sha }}-${{ github.run_attempt }}
+          path: /tmp/bell-live/
           retention-days: 30
           if-no-files-found: error

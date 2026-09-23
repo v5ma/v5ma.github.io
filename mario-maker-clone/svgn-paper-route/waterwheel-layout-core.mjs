@@ -1,6 +1,7 @@
 /* Original Waterwheel r2 authoring candidate. Builds documents, never player state.
  * Preview is isolated by the existing Workshop; no campaign layout is replaced. */
 import {FORK} from './waterwheel-fork-core.mjs';
+import {withMillBell} from './waterwheel-whip-core.mjs';
 export const ID='canal-choices';
 export const REVISION=2;
 export const RECORD_ID='canal-choices-r2';
@@ -75,7 +76,7 @@ export function groundRow(tx){
  if(tx>=151&&tx<162)return 58;
  return 60;
 }
-export function build(T,{groundOnly=false}={}){
+function buildBase(T,{groundOnly=false}={}){
  for(const name of ['STEEL','START','GOAL','MAILBOX','CHECK','SHIELD','BLOOP','GEAR'])if(!Number.isInteger(T?.[name]))throw new TypeError('Missing tile '+name);
  const width=256,height=70,ground=60,cells=new Uint8Array(width*height),put=(x,y,id)=>{if(x<0||x>=width||y<0||y>=height)throw new RangeError('Tile outside authored bounds');cells[y*width+x]=id;};
  for(let x=0;x<width;x++)for(let y=groundRow(x);y<height;y++)put(x,y,T.STEEL);
@@ -99,6 +100,10 @@ export function build(T,{groundOnly=false}={}){
   waterwheel:{revision:REVISION,preview:true,groundOnly,plannedRecordID:RECORD_ID,landmark:{x:7930,y:1880,radius:190},transfers:TRANSFERS.map(x=>({...x})),deliveries:DELIVERIES.map(x=>({...x})),fork:groundOnly?null:{...FORK,decisionRemaining:[...FORK.decisionRemaining]}}};
  if(!groundOnly)gp.skyNetwork={version:1,sectors:REGIONS.map((r,i)=>({id:'ww-sector-'+i,name:r.name,x:r.x*36,y:1180,w:1250,h:1000})),links:TRANSFERS.filter(x=>x.from!=='road').map(x=>({from:x.from,to:x.to,type:'unqualified-authoring-candidate'})),mainIDs:['ww-runway','ww-crescent','ww-gallery','ww-finish'],pegCount:0,groundOptional:true};
  return {id:ID,name:'Waterwheel Boulevard / r2 preview',district:'WATERWHEEL / AUTHORING PREVIEW',description:'South Quay, Parcel Market, Service Bridge, Express Junction, Millworkers Court and Wheelhouse Depot. The ground road is complete; sky connections are candidates, not certified routes.',tip:'Ride the promenade. B or C throws a paper near a mailbox. Sky detours stay optional; preview saves no campaign progress.',difficulty:'WORKSHOP PREVIEW',music:'canal',theme:'hills',width,height,ground,cells,ct,boxes,mail:boxes.map(p=>p.x),roadBoxes,goal:{x:251,y:60},kind:'ground',quota:0,par:250,stages:0,minTransfers:0,requiredGrapples:0,gp};
+}
+export function build(T,options={}){
+ const document=buildBase(T,options);
+ return options.whipLink&&!options.groundOnly?withMillBell(document,T.PEG):document;
 }
 export function recordKey(id,revision){
  if(typeof id!=='string'||!/^[a-z0-9][a-z0-9-]{0,63}$/.test(id)||!Number.isSafeInteger(revision)||revision<1||revision>99)throw new TypeError('Invalid layout identity');

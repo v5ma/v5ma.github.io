@@ -1,5 +1,6 @@
 /* Original scene geometry and 2D wayfinding. No physics or score writes. */
 import {FORK,FORK_SIGNS,brakeMarks} from './waterwheel-fork-core.mjs';
+import {visibleMillBell} from './waterwheel-whip-core.mjs';
 let markSource=null,markCache=[];
 function marksFor(course){if(course!==markSource){markSource=course;markCache=brakeMarks(course?.ct?.find(p=>p.sky?.id===FORK.launch)||[]);}return markCache;}
 const SIGNS=[
@@ -28,6 +29,18 @@ export function populate({course,root,metal,far,sign}){
   for(const m of MARKS)metal.rod([m.x,-m.y-12,-20],[m.x,-m.y-12,20],3,'#f8cf77');
   for(const c of FORK_SIGNS){const o=sign(c.title+'\n'+c.detail,c.x,-c.y,-90,c.w,c.h);if(o){o.name='Waterwheel fork: '+c.title;o.userData.waterwheelForkCue=true;}}
  }
+ const bell=visibleMillBell(course);
+ if(bell){
+  const {x:bx,y:by}=bell.peg;root.userData.waterwheelWhip={id:bell.id,peg:bell.peg.id,receiver:bell.to};
+  const board=sign('MILL BELL / OPTIONAL WHIP\nHOLD WHIP, RELEASE UP-RIGHT\nOR KEEP SPEED FOR GALLERY',bx,-by+145,-96,286,84);
+  if(board){board.name='Waterwheel Mill Bell instruction';board.userData.waterwheelCue=true;}
+  // The stock physical peg and chain remain the action target. A small bell cap
+  // and receiving pennant identify its role without inventing collision surfaces.
+  metal.rod([bx,-by+25,-28],[bx,-by+69,-28],3,'#d8b779');
+  metal.ell(bx,-by+40,-20,18,22,9,'#c99555');
+  metal.rod([5540,-1500,-52],[5540,-1570,-52],3,'#d8b779');
+  metal.tri([5540,-1500,-52],[5583,-1514,-52],[5540,-1528,-52],'#87e4d0');
+ }
  sign('WATERWHEEL / R2 PREVIEW\nNO CAMPAIGN AWARDS',220,-1910,-150,285,64);
 }
 export function draw2D(g,camX,camY,width,height){
@@ -44,6 +57,15 @@ export function draw2D(g,camX,camY,width,height){
   const MARKS=marksFor(window.__sky?.state.data);
   g.strokeStyle='#f8cf77';g.lineWidth=5;for(const m of MARKS){g.beginPath();g.moveTo(m.x-5,m.y-8);g.lineTo(m.x+5,m.y-3);g.stroke();}
   for(const c of FORK_SIGNS){if(c.x+c.w/2<camX||c.x-c.w/2>camX+width)continue;g.fillStyle='#173c46';g.fillRect(c.x-c.w/2,c.y-c.h/2,c.w,c.h);g.fillStyle='#f8cf77';g.textAlign='center';g.font='bold 15px system-ui';g.fillText(c.title,c.x,c.y-8,c.w-16);g.fillStyle='#ecf0d9';g.font='12px system-ui';g.fillText(c.detail,c.x,c.y+16,c.w-16);}
+ }
+ const bell=visibleMillBell(window.__sky?.state.data);
+ if(bell){
+  const {x:bx,y:by}=bell.peg;
+  if(bx>camX-170&&bx<camX+width+170){
+   g.fillStyle='#173c46';g.fillRect(bx-143,by-186,286,78);g.textAlign='center';g.fillStyle='#f8cf77';g.font='bold 14px system-ui';g.fillText('MILL BELL / OPTIONAL WHIP',bx,by-166);
+   g.fillStyle='#ecf0d9';g.font='12px system-ui';g.fillText('HOLD WHIP, RELEASE UP-RIGHT',bx,by-143);g.fillText('OR KEEP SPEED FOR GALLERY',bx,by-123);
+   g.strokeStyle='#d8b779';g.lineWidth=3;g.beginPath();g.moveTo(bx,by-25);g.lineTo(bx,by-69);g.stroke();
+  }
  }
  g.restore();
 }
