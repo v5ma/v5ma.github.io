@@ -43,7 +43,7 @@ export function createFrontierArt({scene,camera,renderer,m,heightAt}){
  const safety=createCameraSafety({colliders:[...FRONTIER_SOLIDS,...VAULT_WALLS].map(b=>({...b,cameraHeight:b.h})),rooms:[],gates:[],doorPaths:[]},(x,z)=>waterGround(x,z,frontierHeight(x,z)));
  let active=false,background=null,fog=null,last={},visibility=new Map();
  function deactivate(s){if(active){for(const [o,v]of visibility)o.visible=v;scene.background=background;scene.fog=fog;root.visible=false;active=false;safety.reset();}townGate.visible=!s.doors?.level&&!s.life?.inside;}
- function update(s,dt,{yaw=s.yaw,pitch=0,distance=1,snap=false,quality='high'}={}){
+ function update(s,dt,{yaw=s.yaw,pitch=0,distance=1,snap=false,quality='high',environmentMode={}}={}){
   if(!active){active=true;visibility.clear();for(const o of scene.children)if(o!==root){visibility.set(o,o.visible);o.visible=false;}background=scene.background;fog=scene.fog;scene.background=new T.Color('#39475e');scene.fog=new T.Fog('#6a7891',55,185);root.visible=true;safety.reset();}
   const y=waterGround(s.x,s.z,frontierHeight(s.x,s.z)),aim=s.resonance.aim,follow=(aim?2.7:7)*distance,anchor={x:s.x,y:y+1.45+s.lift,z:s.z},wanted={x:s.x-Math.sin(yaw)*follow,y:y+(aim?2.15:4.1)+pitch+s.lift,z:s.z-Math.cos(yaw)*follow};
   if(aim){wanted.x-=Math.cos(yaw)*.45;wanted.z+=Math.sin(yaw)*.45;}const p=safety.update(anchor,wanted,{level:0,dt,snap});camera.position.set(p.x,p.y,p.z);camera.lookAt(s.x+Math.sin(yaw)*(aim?12:3),y+1.35+s.lift,s.z+Math.cos(yaw)*(aim?12:3));camera.fov=T.MathUtils.lerp(camera.fov,aim?49:59,Math.min(1,dt*5));camera.updateProjectionMatrix();
@@ -54,8 +54,8 @@ export function createFrontierArt({scene,camera,renderer,m,heightAt}){
   // The entrance arch lies behind the arriving player. Cut it away only
   // while it would sit between that player and their follow camera.
   const gateCutaway=camera.position.z<campArch.z+.4&&s.z>campArch.z-.4&&Math.abs(s.x-CAMP.x)<5.5&&Math.hypot(s.x-CAMP.x,s.z-CAMP.z)<12;
-  campArch.masonry.visible=campArch.sign.visible=!gateCutaway;vault.update(s,camera);cistern.render(s,scene,camera,renderer,quality);renderer.render(scene,camera);
+  campArch.masonry.visible=campArch.sign.visible=!gateCutaway;vault.update(s,camera);cistern.render(s,scene,camera,renderer,quality,environmentMode);renderer.render(scene,camera);
   last={active,vault:vault.inspect(),water:cistern.inspect(),gateCutaway,name:'Cinder Hollow',monsterModels:creatures.size,liveMonsters:s.frontier.enemies.filter(e=>e.hp>0).length,trailSegments:TRAIL_EDGES.length,pointLights:warm.visible?1:0,cameraSafety:safety.inspect(),character:inspectMotion(player),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls};
  }
- return {update,deactivate,inspect:()=>({...last,active})};
+ return {update,deactivate,configureEnvironment:raw=>cistern.configure(raw),inspect:()=>({...last,active})};
 }

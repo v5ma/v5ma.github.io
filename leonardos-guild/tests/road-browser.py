@@ -69,7 +69,7 @@ with sync_playwright() as p:
   check(read()['road']['items'].get('tonic')==1 and read()['credits']==10,'Actual merchant purchases and the displayed recipe produce one tonic')
   page.locator('#road-tab-pack').click();page.screenshot(path=str(OUT/'inventory.png'))
   check('Sealed survey parcel' in page.locator('#road-dialog').inner_text(),'Inventory distinguishes the protected quest parcel from consumed trade materials')
-  page.locator('#road-close').click();destination(-10.8,61);confirm_story(1);confirm_story(2)
+  page.locator('#road-close').click();page.wait_for_function('LeonardoGuild.inspect().running');destination(-10.8,61);confirm_story(1);confirm_story(2)
   check(read()['target']['id']=='glass','Identifying the chart updates the live objective marker to the glassworks')
   destination(10.8,98);confirm_story(3);destination(0,-17);confirm_story(4)
   check(read()['render']['road']['lit'],'Installing the actual lens visibly changes the scene lantern')

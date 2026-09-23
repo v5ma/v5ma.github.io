@@ -175,3 +175,7 @@ Dependencies: beta sign-off and final rights/security review.
 Each new release must name the task IDs it advances, the exact narrow scope, tests actually run, remaining human/hardware checks, merge commit and successful public verification. Never mark an entire phase complete because one slice or one automated test passed. The pending phase-7 targets are product-release gates, not a claim that the current browser build has never been deployed.
 
 The previous next-upgrade sequence was Living Stories playtest, C01-C03 sample, then W01-W02. The sample and first water/region slices have since shipped; the current NEXT queue above supersedes that stale ordering without declaring the unfinished animation, routing or bespoke-house goals complete. Historical task text and release-stage counts remain in UPGRADE-CHECKLIST.md. Do not rerun old integration scripts or re-merge recovered branches over current master.
+
+Currentworks graphical integration / v0.17.0.
+
+P01/P02/P04/P06 and NEXT01/NEXT02/F03 continue through shared Water/Trees on the existing r177 renderer, a bounded six-tree replacement, the actual Stillwater basin, saved motion/AR-opacity settings and contextual survey tool hints. CURRENTWORKS-INTEGRATION.md defines changed graphics acceptance and retained gameplay checks. Local 518 tests and 14 design contracts pass; source/public real-WebGL journeys and physical-device approval remain separate. This does not mark the full roadmap items complete or replace their criteria.

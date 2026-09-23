@@ -6,6 +6,10 @@ ROOT=Path(__file__).resolve().parents[1]
 sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
 files=[p for p in ROOT.iterdir() if p.is_file() and p.suffix in {'.html','.js','.mjs','.css','.json','.svg'}]
 expected={str(p.relative_to(ROOT.parent)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
+for name,digest in json.loads((ROOT/'environment-library.json').read_text())['files'].items():
+ actual=hashlib.sha256((ROOT.parent/name).read_bytes()).hexdigest()
+ assert actual==digest, 'Shared environment dependency changed: '+name
+ expected[name]=digest
 found={}
 def check(item):
  name,digest=item

@@ -1,0 +1,13 @@
+{
+  "build": "guild-currentworks-20260922",
+  "version": "0.17.0",
+  "baselineTests": 499,
+  "sourceTests": 518,
+  "designTests": 14,
+  "newTests": 19,
+  "localBrowser": "ERR_BLOCKED_BY_ADMINISTRATOR before navigation; no bypass attempted",
+  "sourceBrowser": "not yet run",
+  "publicBrowser": "not yet run",
+  "physicalQuest": false,
+  "physicalXbox": false
+}

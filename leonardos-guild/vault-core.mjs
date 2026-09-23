@@ -41,7 +41,20 @@ export function vaultText(s){
 export function vaultHint(s){
  if(atVaultGuild(s)&&s.vault?.tracking&&!s.road?.tracking)return 'INTERACT / Leonardo: Lantern Vault survey';
  const n=nearVaultNode(s);if(!n)return '';
- return n.name+' / G or I; Xbox X; XR right B: '+n.hint;
+ return n.name+' / G or I; Xbox X; XR right B: '+vaultInstrumentHint(s.vault,n);
+}
+export function vaultInstrumentHint(v,n){
+ if(!v?.accepted)return 'Borrow the free survey tools at the bench first.';
+ if(n.id==='emitter')return v.lens==='emitter'?'Lens installed. Interact to retrieve it; the light will switch off.':v.tool==='lens'?'Inspection lens ready. Interact to focus the beam.':'Select the inspection lens in Survey tools, then fit this socket.';
+ if(n.id==='shutter'||n.id==='service'){
+  if(v.weight===n.id)return 'Counterweight installed. Interact to retrieve your one weight.';
+  if(v.weight!=='pack')return 'Your one counterweight is at the '+v.weight+' socket. Retrieve it there first.';
+  return v.tool==='weight'?'Counterweight ready. Interact to open the '+(n.id==='service'?'maintenance gate.':'shutter.'):'Select the counterweight in Survey tools before using this socket.';
+ }
+ if(n.id==='mirror')return 'Reflector: '+MIRROR_DIRECTIONS[v.mirror]+'. Interact to turn it one quarter-turn. '+(opticalOpen(v)?'Records gate open.':'Watch the beam and receiver.');
+ if(n.id==='record'&&v.record)return 'Plans protected in your satchel. Use the inside latch, then report to Leonardo.';
+ if(n.id==='latch'&&v.shortcut)return 'Both return gates are already unlatched. Tools remain recoverable.';
+ return n.hint;
 }
 function plan(s,action){
  const v=structuredClone(vaultState(s.vault));let credits=s.credits,text='';

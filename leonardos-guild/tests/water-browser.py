@@ -67,7 +67,7 @@ with sync_playwright() as p:
   if read()['paused']:press(1)
   page.wait_for_function('LeonardoGuild.inspect().running');frames(12)
   check(read()['render']['frontier']['water']['active'],'The actual nearby cistern activates its rendering pass')
-  check(read()['render']['frontier']['water']['passes']==1 and read()['render']['frontier']['water']['size']==768,'High quality uses one bounded scene-refraction target, not a pasted image')
+  check(read()['render']['frontier']['water']['passes']==0 and read()['render']['frontier']['water']['water']['module']=='Currentworks Water','Shared Currentworks surface uses no extra scene pass or reflection target')
   capture('filled-cistern')
   interact('water:read');check(read()['frontier']['cistern']['phase']==1,'X at the dry platform reads the real hydraulic slate')
   # Water, not an invisible unchanging wall, determines the ramp's usable depth.

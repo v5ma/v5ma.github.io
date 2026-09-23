@@ -39,8 +39,8 @@ jobs:
           mkdir -p startup-evidence
           git rev-parse HEAD > startup-evidence/tested-commit.txt
           git diff --stat > startup-evidence/uncommitted-diff.txt
-          git ls-files -z leonardos-guild | xargs -0 sha256sum > startup-evidence/source-hashes.txt
-          git ls-files -z leonardos-guild | tar --null -T - -czf startup-evidence/source.tgz
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild | xargs -0 sha256sum > startup-evidence/source-hashes.txt
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild | tar --null -T - -czf startup-evidence/source.tgz
           cp /tmp/guild-startup-server.log startup-evidence/ 2>/dev/null || true
           test ! -s startup-evidence/uncommitted-diff.txt
       - uses: actions/upload-artifact@v4
@@ -87,8 +87,8 @@ jobs:
           mkdir -p compositor-evidence
           git rev-parse HEAD > compositor-evidence/tested-commit.txt
           git diff --stat > compositor-evidence/uncommitted-diff.txt
-          git ls-files -z leonardos-guild .github/workflows/guild-compositor.yml | xargs -0 sha256sum > compositor-evidence/source-hashes.txt
-          git ls-files -z leonardos-guild .github/workflows/guild-compositor.yml | tar --null -T - -czf compositor-evidence/source.tgz
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild .github/workflows/guild-compositor.yml | xargs -0 sha256sum > compositor-evidence/source-hashes.txt
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild .github/workflows/guild-compositor.yml | tar --null -T - -czf compositor-evidence/source.tgz
           cp /tmp/guild-server.log compositor-evidence/ 2>/dev/null || true
           test ! -s compositor-evidence/uncommitted-diff.txt
       - uses: actions/upload-artifact@v4
@@ -161,7 +161,7 @@ jobs:
           mkdir -p lantern-road-evidence
           git rev-parse HEAD > lantern-road-evidence/commit.txt
           git diff --stat > lantern-road-evidence/uncommitted-diff.txt
-          git ls-files -z leonardos-guild vesperfall/index.html | xargs -0 sha256sum > lantern-road-evidence/source-hashes.txt
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild vesperfall/index.html | xargs -0 sha256sum > lantern-road-evidence/source-hashes.txt
           cp /tmp/lantern-road-server.log lantern-road-evidence/ 2>/dev/null || true
           test ! -s lantern-road-evidence/uncommitted-diff.txt
       - uses: actions/upload-artifact@v4
@@ -213,7 +213,7 @@ jobs:
           mkdir -p vault-evidence
           git rev-parse HEAD > vault-evidence/commit.txt
           git diff --stat > vault-evidence/uncommitted-diff.txt
-          git ls-files -z leonardos-guild | xargs -0 sha256sum > vault-evidence/source-hashes.txt
+          git ls-files -z prism-current/modules/environment/water.js prism-current/modules/environment/water.mjs prism-current/modules/environment/trees.js prism-current/modules/environment/trees.mjs leonardos-guild | xargs -0 sha256sum > vault-evidence/source-hashes.txt
           cp /tmp/vault-server.log vault-evidence/ 2>/dev/null || true
           test ! -s vault-evidence/uncommitted-diff.txt
       - uses: actions/upload-artifact@v4
@@ -224,3 +224,57 @@ jobs:
             vault-evidence/
             desk-public-source.json
             leonardos-guild/vault-${{ matrix.site }}-output/
+
+  currentworks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - site: source
+            base: http://127.0.0.1:4173
+          - site: public
+            base: https://v5ma.github.io
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm --prefix leonardos-guild test
+      - run: |
+          python -m pip install playwright==1.57.0 Pillow==11.3.0
+          python -m playwright install --with-deps chromium
+      - name: Start ordinary source server
+        run: python -m http.server 4173 --bind 127.0.0.1 >/tmp/environment-server.log 2>&1 &
+      - name: Verify exact public game and shared environment dependencies
+        if: matrix.site == 'public'
+        run: python -u leonardos-guild/tests/verify-desk-public.py
+      - name: Walk to the environment, use graphics settings, enter and exit both XR views
+        env:
+          TEST_BASE_URL: ${{ matrix.base }}
+        run: python -u leonardos-guild/tests/environment-browser.py
+      - name: Complete the original hydraulic puzzle and report its reward
+        if: ${{ !cancelled() }}
+        env:
+          TEST_BASE_URL: ${{ matrix.base }}
+        run: python -u leonardos-guild/tests/water-browser.py
+      - name: Preserve source identity and unsuccessful traces
+        if: always()
+        run: |
+          mkdir -p environment-evidence
+          git rev-parse HEAD > environment-evidence/commit.txt
+          git diff --stat > environment-evidence/uncommitted-diff.txt
+          git ls-files -z leonardos-guild prism-current/modules/environment | xargs -0 sha256sum > environment-evidence/source-hashes.txt
+          test ! -s environment-evidence/uncommitted-diff.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guild-currentworks-${{ matrix.site }}
+          path: |
+            environment-evidence/
+            desk-public-source.json
+            leonardos-guild/environment-${{ matrix.site }}-output/
+            leonardos-guild/water-output/

@@ -1,3 +1,7 @@
+Continue Leo's Guild / Currentworks graphical integration, v0.17.0.
+
+Read CURRENTWORKS-INTEGRATION.md, environment-library.json, release.json and the latest exact-source/public evidence first. Shared water now serves Stillwater and six existing Vinci tree placements use shared procedural geometry, on the unchanged r177 renderer. Separate saved motion/AR-opacity controls and state-aware survey hints continue the established roadmap. Fire/Toon/Cloudlets/Grass remain separate future integrations. Preserve failed browser traces and all original quests, save v2, input, scene-desk and optional Vesperfall boundaries. Verify actual fresh source/public results; 518 local tests and 14 design checks are not GPU or physical Quest approval.
+
 Continue Leo's Guild / Playable Lantern Vault survey, v0.16.0.
 
 Read LANTERN-VAULT.md, release.json and the newest release-receipts/leonardos-guild-lantern-vault-* record first. The original eight-space roofless survey wing is now implemented in Cinder Hollow, east of Gate Camp: free loaned tools, optical and maintenance alternatives, protected plans, a persistent return latch and a once-only town report with a Map House exhibit. Start with Play Lantern Vault survey or ?chapter=lantern-vault. This is not the planned guardian, upper-storey expansion, procedural generator or MMO. Physical Quest and current browser/public evidence remain separate gates.

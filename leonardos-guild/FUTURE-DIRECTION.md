@@ -98,3 +98,7 @@ Preserve svgn.leonardos-guild.v1 and outer version 2, stable reward IDs, Quarter
 September 22 playable survey checkpoint.
 
 LANTERN-VAULT.md now records an implemented first subset of the dungeon adaptation: eight connected single-elevation spaces in the existing frontier, inspection-lens and counterweight custody, a visible optical mechanism, a maintenance alternative, an inside return latch and a Map House consequence. Its two ordinary-movement model routes complete without combat, purchased gear or assigned progression. The proposed upper gallery, guardian, new bestiary, procedural variation, mastery gear and multiplayer are not implemented by this release. Keep the original town and independent Vesperfall expedition. Prioritize human understanding and hardware playability, then extend this authored loop rather than replacing it.
+
+September 22, 2026 / Currentworks library integration.
+
+The owner explicitly requested the shared Prism graphical library in addition to the established adventure work. CURRENTWORKS-INTEGRATION.md records the bounded Water/Trees implementation, r177 compatibility boundary, existing-basin and six-tree scope, graphics settings, state-aware survey hints, retained regression repair, evidence gates and next integration opportunities. Fire, Toon, Cloudlets and Grass require their own measured integration; do not silently expand scope or claim physical approval. Keep the planned story/guardian/verticality and trustworthy economy work in this document; graphics do not replace that direction.
