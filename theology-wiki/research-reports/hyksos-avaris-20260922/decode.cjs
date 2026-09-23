@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const encoded=[1,2,3,4].map(n=>fs.readFileSync(path.join(__dirname,'payload-'+String(n).padStart(2,'0')+'.b64'),'utf8').trim()).join('');
+assert.equal(encoded.length,21756,'Report transfer length mismatch');
+const bytes=zlib.brotliDecompressSync(Buffer.from(encoded,'base64'),{maxOutputLength:100000});
+assert.equal(sha(bytes),'e52494d3785e9c9a7640549c762884322f994cbe37bbccf277300cba36ca9945','Exact supplied report export mismatch');
+const report=JSON.parse(bytes);
+assert.equal(sha(Buffer.from(report.body)),'6e1b48f16d20d74eba348c288b280583a23768373356831a50a8ba40a70f096c');
+assert.equal(report.citations.length,68);assert.equal(report.sources.length,26);
+assert.deepEqual(Object.keys(report),['schema_version','title','archived_on','provenance','original_body_sha256','body','citations','sources']);
+fs.writeFileSync(path.join(__dirname,'report-source.json'),bytes);
+fs.writeFileSync(path.join(__dirname,'report-original.md'),report.body);
+console.log(JSON.stringify({original_body_sha256:report.original_body_sha256,report_bytes:Buffer.byteLength(report.body),citation_placements:report.citations.length,source_records:report.sources.length,private_activity_exported:false}));
