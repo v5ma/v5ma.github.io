@@ -1,0 +1,12 @@
+name: Theology Hyksos report integration (completed)
+# Runs 35803399062 and 35803538722 passed report fidelity and all 159 principal Wiki tests.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  completed:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The report and main-article links are integrated. This one-shot writer is retired.'

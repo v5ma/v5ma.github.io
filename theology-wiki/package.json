@@ -1,0 +1,6 @@
+{
+  "name": "theology-wiki-source-tools",
+  "private": true,
+  "type": "commonjs",
+  "description": "Scope the existing Theology UMD .js helpers to CommonJS for its .cjs build and tests. Browser scripts and the repository's Cloudflare module package remain unchanged."
+}

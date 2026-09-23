@@ -1,0 +1,14 @@
+{
+  "counting-the-departure": {
+    "path": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/counting-the-departure.json",
+    "sha256": "92901efe0a344ce343c2398d91b1ee7782a9f59de969bdaf7f108b34c4444167",
+    "base_commit": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+    "kind": "episode"
+  },
+  "exodus-to-temple-competing-chronologies": {
+    "path": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/exodus-to-temple-competing-chronologies.md",
+    "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
+    "base_commit": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+    "kind": "article"
+  }
+}

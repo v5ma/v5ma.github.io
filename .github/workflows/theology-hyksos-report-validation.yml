@@ -1,0 +1,77 @@
+name: Validate Theology Hyksos report and linked articles
+on:
+  pull_request:
+    paths:
+      - 'theology-wiki/research-reports/hyksos-avaris-20260922/**'
+      - 'theology-wiki/editorial/authorial-articles/moses-volcano-and-exodus-chronology.md'
+      - 'theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md'
+      - 'theology-wiki/editorial/authorial-articles/kenite-hypothesis-and-yahweh-origins.md'
+      - 'theology-wiki/package.json'
+      - 'theology-wiki/tools/products.cjs'
+      - '.github/workflows/theology-hyksos-report-validation.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'theology-wiki/research-reports/hyksos-avaris-20260922/**'
+      - 'theology-wiki/editorial/authorial-articles/moses-volcano-and-exodus-chronology.md'
+      - 'theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md'
+      - 'theology-wiki/editorial/authorial-articles/kenite-hypothesis-and-yahweh-origins.md'
+      - 'theology-wiki/package.json'
+      - 'theology-wiki/tools/products.cjs'
+      - '.github/workflows/theology-hyksos-report-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install renderer and read exact preservation baseline
+        run: |
+          git fetch --no-tags --depth=1 origin c31dd6c56a101aec7c8a890768ae1f845494b294
+          python -m pip install mistune==3.2.1
+      - name: Rebuild without changing source, verify original report and main Wiki
+        run: |
+          set -o pipefail
+          mkdir -p theology-test-output/hyksos
+          node theology-wiki/research-reports/hyksos-avaris-20260922/decode.cjs
+          python theology-wiki/research-reports/hyksos-avaris-20260922/render.py
+          node theology-wiki/research-reports/hyksos-avaris-20260922/integrate.cjs
+          node theology-wiki/research-reports/hyksos-avaris-20260922/prepare.cjs
+          node theology-wiki/tools/build.cjs
+          node theology-wiki/research-reports/hyksos-avaris-20260922/verify-generated.cjs --write
+          git diff --exit-code -- theology-wiki/
+          python theology-wiki/research-reports/hyksos-avaris-20260922/test_report.py 2>&1 | tee theology-test-output/hyksos/report-tests.log
+          node --test theology-wiki/tests/research.test.cjs 2>&1 | tee theology-test-output/hyksos/main-tests.log
+      - name: Install actual browser
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Navigate report, citations and all three principal article links
+        run: python theology-wiki/research-reports/hyksos-avaris-20260922/browser_checks.py --report theology-test-output/hyksos/browser.json --screenshots theology-test-output/hyksos/native
+      - name: Check actual public source and linked-article bytes
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/research-reports/hyksos-avaris-20260922/hosted_checks.py --report theology-test-output/hyksos/hosted-content.json
+      - name: Repeat reciprocal navigation on the public site
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: python theology-wiki/research-reports/hyksos-avaris-20260922/browser_checks.py --origin https://v5ma.github.io --report theology-test-output/hyksos/hosted-browser.json --screenshots theology-test-output/hyksos/hosted
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-hyksos-publication-evidence
+          path: |
+            theology-test-output/hyksos/
+            theology-wiki/research-reports/hyksos-avaris-20260922/
+          if-no-files-found: error

@@ -280,13 +280,13 @@
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
+          "sha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
         },
         {
           "slug": "moses-volcano-and-exodus-chronology",
           "title": "Moses, the volcano and Exodus chronology",
           "path": "content/developed/moses-volcano-and-exodus-chronology.md",
-          "sha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589"
+          "sha256": "eae7530ad7e620b8a5b8aab1195cf7372ce67b89901ab6cdf056ec10e6b0ce5a"
         }
       ],
       "script": "products/episodes/counting-the-departure.txt",
@@ -539,7 +539,7 @@
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3"
+          "sha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
         }
       ],
       "script": "products/episodes/objections-in-the-museum.txt",
@@ -570,13 +570,13 @@
         "id": "counting-the-departure",
         "kind": "episode",
         "title": "Counting the departure: why one date is not the whole history",
-        "status": "Synthetic production draft; author and pronunciation review pending",
+        "status": "Synthetic production draft; author and pronunciation review pending; archived recording of the earlier source version; new report links are not narrated",
         "voice": "Kokoro 0.9.4 / af_heart",
         "sourceSha256": "92901efe0a344ce343c2398d91b1ee7782a9f59de969bdaf7f108b34c4444167",
         "spokenSha256": "83273f02ee233ca8ac1b546ce176337ead1f8970960097b09cd9f10223b6ad07",
         "durationSeconds": 161.775,
         "segments": 10,
-        "scope": "Short editorial episode; full argument linked separately.",
+        "scope": "Short editorial episode; full argument linked separately. The exact recorded source is preserved separately from the updated article.",
         "files": [
           {
             "role": "audio",
@@ -614,19 +614,21 @@
             "bytes": 47081,
             "sha256": "1c8050c177499ffe9892bfe5dcb11ebc4e67a94b60301221e88934238bf469dc"
           }
-        ]
+        ],
+        "sourceSnapshot": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/counting-the-departure.json",
+        "currentSourceSha256": "5dd86aec1019fa1fc25717e4b4784c87285056e73732771c28d60d19decdb406"
       },
       {
         "id": "exodus-to-temple-competing-chronologies",
         "kind": "article",
         "title": "From Exodus to Temple: competing chronologies",
-        "status": "Synthetic production draft; author and pronunciation review pending",
+        "status": "Synthetic production draft; author and pronunciation review pending; archived recording of the earlier source version; new report links are not narrated",
         "voice": "Kokoro 0.9.4 / af_heart",
         "sourceSha256": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
         "spokenSha256": "7f26e30ed4545e861ad5369a2c094e2f0715d391cf2676439cf61766e96dca8a",
         "durationSeconds": 788.23,
         "segments": 37,
-        "scope": "Complete main article including headings; separately labeled source/visual notes are excluded from this recording.",
+        "scope": "Complete main article including headings; separately labeled source/visual notes are excluded from this recording. The exact recorded source is preserved separately from the updated article.",
         "files": [
           {
             "role": "audio",
@@ -652,7 +654,9 @@
             "bytes": 11867,
             "sha256": "6b4303c65f9c790b3659d646cf9927a8f8caa5ab5a1527e8cf062ebe120ae674"
           }
-        ]
+        ],
+        "sourceSnapshot": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/exodus-to-temple-competing-chronologies.md",
+        "currentSourceSha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
       }
     ]
   }

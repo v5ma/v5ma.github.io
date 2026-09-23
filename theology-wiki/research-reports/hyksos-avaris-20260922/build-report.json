@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-09-22",
+  "title": "Hyksos Avaris and the Moses Prosopography: A Second Intermediate Period Investigation",
+  "original_body_sha256": "6e1b48f16d20d74eba348c288b280583a23768373356831a50a8ba40a70f096c",
+  "counts": {
+    "citation_placements": 68,
+    "source_records": 26,
+    "tables": 9,
+    "main_sections": 6
+  },
+  "headings": [
+    {
+      "id": "hyksos-avaris-and-the-moses-prosopography-a-second-intermediate-period-investigation",
+      "level": 1,
+      "text": "Hyksos Avaris and the Moses Prosopography: A Second Intermediate Period Investigation"
+    },
+    {
+      "id": "executive-summary",
+      "level": 2,
+      "text": "Executive summary"
+    },
+    {
+      "id": "chronology-and-the-political-landscape",
+      "level": 2,
+      "text": "Chronology and the political landscape"
+    },
+    {
+      "id": "the-chronology-the-hypothesis-actually-requires",
+      "level": 3,
+      "text": "The chronology the hypothesis actually requires"
+    },
+    {
+      "id": "avaris-chronology-is-not-settled-to-the-decade",
+      "level": 3,
+      "text": "Avaris chronology is not settled to the decade"
+    },
+    {
+      "id": "political-sequence-relevant-to-the-hypothesis",
+      "level": 3,
+      "text": "Political sequence relevant to the hypothesis"
+    },
+    {
+      "id": "avaris-archaeology-and-the-levantine-elite",
+      "level": 2,
+      "text": "Avaris archaeology and the Levantine elite"
+    },
+    {
+      "id": "what-the-archaeology-actually-establishes",
+      "level": 3,
+      "text": "What the archaeology actually establishes"
+    },
+    {
+      "id": "why-levantine-elite-is-stronger-than-israelite-elite",
+      "level": 3,
+      "text": "Why “Levantine elite” is stronger than “Israelite elite”"
+    },
+    {
+      "id": "funerary-evidence-is-particularly-revealing",
+      "level": 3,
+      "text": "Funerary evidence is particularly revealing"
+    },
+    {
+      "id": "prosopography-who-actually-fits",
+      "level": 2,
+      "text": "Prosopography: who actually fits?"
+    },
+    {
+      "id": "hyksos-and-theban-rulers-and-princes",
+      "level": 3,
+      "text": "Hyksos and Theban rulers and princes"
+    },
+    {
+      "id": "the-royal-women",
+      "level": 3,
+      "text": "The royal women"
+    },
+    {
+      "id": "officials-as-controls",
+      "level": 3,
+      "text": "Officials as controls"
+    },
+    {
+      "id": "texts-synchronisms-and-what-the-sources-can-actually-bear",
+      "level": 2,
+      "text": "Texts, synchronisms and what the sources can actually bear"
+    },
+    {
+      "id": "contemporary-egyptian-evidence-is-strongest",
+      "level": 3,
+      "text": "Contemporary Egyptian evidence is strongest"
+    },
+    {
+      "id": "seqenenre-is-a-remarkable-constraint-on-the-sea-of-reeds-theory",
+      "level": 3,
+      "text": "Seqenenre is a remarkable constraint on the Sea-of-Reeds theory"
+    },
+    {
+      "id": "manetho-and-josephus-preserve-an-extraordinary-late-memorybut-a-late-memory",
+      "level": 3,
+      "text": "Manetho and Josephus preserve an extraordinary late memory—but a late memory"
+    },
+    {
+      "id": "the-biblical-chronology-introduces-a-real-cost",
+      "level": 3,
+      "text": "The biblical chronology introduces a real cost"
+    },
+    {
+      "id": "assessment-and-research-program",
+      "level": 2,
+      "text": "Assessment and research program"
+    },
+    {
+      "id": "candidate-matrix-against-the-moses-profile",
+      "level": 3,
+      "text": "Candidate matrix against the Moses profile"
+    },
+    {
+      "id": "overall-evaluation",
+      "level": 3,
+      "text": "Overall evaluation"
+    },
+    {
+      "id": "the-six-highest-value-next-investigations",
+      "level": 3,
+      "text": "The six highest-value next investigations"
+    }
+  ],
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "8015ffab40e878f0df04da93b4b05bd0837776f41790558cbce447d51e9961e7"
+    },
+    {
+      "path": "report.md",
+      "sha256": "a5e24e9b54e77a8e8ea6002b0dccfdf033c5594eb97c46ac1fe813e172a3529e"
+    },
+    {
+      "path": "report-original.md",
+      "sha256": "6e1b48f16d20d74eba348c288b280583a23768373356831a50a8ba40a70f096c"
+    },
+    {
+      "path": "report-source.json",
+      "sha256": "e52494d3785e9c9a7640549c762884322f994cbe37bbccf277300cba36ca9945"
+    },
+    {
+      "path": "citation-map.json",
+      "sha256": "6551e875097d3d7b466342e1ebff0d6dd7d27ace88c1a36009a1459154df7529"
+    },
+    {
+      "path": "report.css",
+      "sha256": "75f18a519316ac20c133c8d9f3c3edb561cded6cf3585dd2958b954e99a9e7f8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "27f0888f2e0b7aba057cc7b3b02df5d602b4dd8d38a8b25ff8616cb77b7bafe5"
+    }
+  ]
+}

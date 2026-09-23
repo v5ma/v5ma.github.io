@@ -3,7 +3,7 @@
   "slug": "moses-volcano-and-exodus-chronology",
   "title": "Moses, the volcano and Exodus chronology",
   "source": "content/developed/moses-volcano-and-exodus-chronology.md",
-  "sourceSha256": "10f5e3d6ba44545bb971245bd060b1937bb1fa5292f907afb8c2eb7c3f291589",
+  "sourceSha256": "eae7530ad7e620b8a5b8aab1195cf7372ce67b89901ab6cdf056ec10e6b0ce5a",
   "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
@@ -116,78 +116,96 @@
     },
     {
       "id": "segment-0019",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Source conversations"
+      "section": "Hyksos and Avaris: the completed deep-research report",
+      "notes": false,
+      "text": "Hyksos and Avaris: the completed deep-research report"
     },
     {
       "id": "segment-0020",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Moses dating debate is the archived discussion dated 2025-08-17 (UTC export metadata)."
+      "section": "Hyksos and Avaris: the completed deep-research report",
+      "notes": false,
+      "text": "The full Hyksos, Avaris and Moses prosopography report preserves the completed September 22, 2026 investigation of the eastern Delta population, royal households, named candidates and the Seqenenre constraint. Its chronology section examines the later pre-Ahmose departure variant; that is not the same causal order as the conquest-first reconstruction retained above. Its support for the Avaris social setting is distinguished from identification of Moses or a foster mother. The report does not independently settle the Thera or Tempest Stela"
     },
     {
       "id": "segment-0021",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Parthians and Medes meaning is the archived discussion dated 2025-10-25 (UTC export metadata)."
+      "section": "Hyksos and Avaris: the completed deep-research report",
+      "notes": false,
+      "text": "dispute. Read its Seqenenre analysis alongside the preserved ordering questions, rather than silently replacing one version with another."
     },
     {
       "id": "segment-0022",
       "section": "Source conversations",
       "notes": true,
-      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
+      "text": "Source conversations"
     },
     {
       "id": "segment-0023",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "External sources and access notes"
+      "text": "Moses dating debate is the archived discussion dated 2025-08-17 (UTC export metadata)."
     },
     {
       "id": "segment-0024",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "University of Chicago, World's oldest weather report could revise Bronze Age chronology (2014)"
+      "text": "Parthians and Medes meaning is the archived discussion dated 2025-10-25 (UTC export metadata)."
     },
     {
       "id": "segment-0025",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "Institutional account of Robert Ritner and Nadine Moeller's Tempest Stela research; consulted in full. A proposed connection, not a settled date for an Exodus. Consulted 2026-09-04."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0026",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Hendrik J. Bruins and Johannes van der Plicht, The Minoan Thera eruption predates Pharaoh Ahmose (2025)"
+      "text": "External sources and access notes"
     },
     {
       "id": "segment-0027",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Open research paper: abstract and methodological discussion consulted. Multiple Egyptian objects are compared with Thera-context dates; authors conclude Thera predates Ahmose. This edition does not independently reanalyse the numerical dataset. Consulted 2026-09-04."
+      "text": "University of Chicago, World's oldest weather report could revise Bronze Age chronology (2014)"
     },
     {
       "id": "segment-0028",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Exodus 19, World English Bible"
+      "text": "Institutional account of Robert Ritner and Nadine Moeller's Tempest Stela research; consulted in full. A proposed connection, not a settled date for an Exodus. Consulted 2026-09-04."
     },
     {
       "id": "segment-0029",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Primary text: smoke, fire, trembling and the Sinai revelation; text description is distinct from a geological identification. Consulted 2026-09-04."
+      "text": "Hendrik J. Bruins and Johannes van der Plicht, The Minoan Thera eruption predates Pharaoh Ahmose (2025)"
     },
     {
       "id": "segment-0030",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Jacob E. Dunn, A God of Volcanoes: Did Yahwism Take Root in Volcanic Ashes? (2014)"
+      "text": "Open research paper: abstract and methodological discussion consulted. Multiple Egyptian objects are compared with Thera-context dates; authors conclude Thera predates Ahmose. This edition does not independently reanalyse the numerical dataset. Consulted 2026-09-04."
     },
     {
       "id": "segment-0031",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Exodus 19, World English Bible"
+    },
+    {
+      "id": "segment-0032",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Primary text: smoke, fire, trembling and the Sinai revelation; text description is distinct from a geological identification. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0033",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Jacob E. Dunn, A God of Volcanoes: Did Yahwism Take Root in Volcanic Ashes? (2014)"
+    },
+    {
+      "id": "segment-0034",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Research abstract consulted, not the access-restricted full article. It combines a southern Midian setting with a volcanic reading of Sinai-Horeb; its existence is not proof of the identification. Consulted 2026-09-04."
