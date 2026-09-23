@@ -1,0 +1,9 @@
+# Rainward / Tactical Throws running checkpoint
+
+Planning checkpoint, September 23 UTC. Source inspected at master 7518b8e007bb0debdd474f8ff25fbfa41dd3d69f; latest Rainward runtime remains 0dbfb7a, with Currentworks completion notes in 6813cc9. This document is not a claim of implemented or published runtime changes.
+
+This bounded pass targets reliable smoke/bottle use around cover and clear aim-only world-space feedback. Inspection found that throwSmoke rejects a solid full-range endpoint before trying a nearer legal landing, while projectile art draws an independent arc unrelated to collision. The intended repair shares one bounded trajectory between prediction, resource-consuming actions and rendered flight. Preserve original ranges, finite quantities, recipes, action inputs, all seven levels, Currentworks graphics, character assets and checkpoint schemas. No persistent floating menu, new required task, enemy nerf or free resource grant.
+
+The separately failed Floodgate browser replay remains failed. Its captured state was already dead with a smoke remaining; do not claim that a throw fix alone resolves that timing/resource failure. Keep the previous receipt and failed trace. Test tool behavior separately from full living-enemy mission completion.
+
+Before publication, require focused geometry/action tests, the full existing source suite, actual browser throws from earned supplies, visible preview/flight agreement and input/save recovery. Synthetic controller/XR, local Three-object checks, actual browser rendering and physical Quest/Xbox are different evidence classes. Re-read master before a non-forced direct update. Record completed checks, exact commits, publication receipt and next bounded task in this file and FUTURE-DIRECTION.md. Do not create a staging branch or new temporary workflow.
