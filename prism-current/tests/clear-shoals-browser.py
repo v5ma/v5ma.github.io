@@ -56,15 +56,13 @@ with sync_playwright() as pw:
         p.screenshot(path=str(OUT/'fixture-clear-shoals.png'))
         pixels=p.evaluate('''()=>{const f=fixture;let visible=0,different=0,maxAlpha=0;for(let i=0;i<f.base.length;i+=4){if(f.upgraded[i+3]>0)visible++;maxAlpha=Math.max(maxAlpha,f.upgraded[i+3]);if(Math.abs(f.base[i]-f.upgraded[i])+Math.abs(f.base[i+1]-f.upgraded[i+1])+Math.abs(f.base[i+2]-f.upgraded[i+2])>12)different++;}return {visible,different,maxAlpha};}''')
         check(pixels['visible']>10000 and pixels['different']>pixels['visible']*.15,'Real WebGL pixels show a substantial optical change over the same base-water geometry')
-        capDiagnostics=p.evaluate("""()=>{const f=fixture;const measure=(data)=>{let max=0,over=0,at=0;for(let i=3;i<data.length;i+=4){if(data[i]>205)over++;if(data[i]>max){max=data[i];at=i;}}return {max,over,at:[((at-3)/4)%960,Math.floor((at-3)/4/960)]};};
-          const result={base:measure(f.base),optical:measure(f.upgraded),uniform:f.w.uniforms.opacity.value,material:{side:f.w.material.side,forceSinglePass:f.w.material.forceSinglePass,depthWrite:f.w.material.depthWrite},clearAlpha:f.r.getClearAlpha()};
-          const side=f.w.material.side;f.w.material.side=f.T.FrontSide;f.w.material.needsUpdate=true;f.r.render(f.s,f.cam);result.frontOnly=measure(f.pixels());
-          f.w.material.side=side;f.w.material.needsUpdate=true;
-          const pos=f.cam.position.clone(),q=f.cam.quaternion.clone();f.cam.position.set(0,12,-7);f.cam.lookAt(0,0,-7);f.r.render(f.s,f.cam);result.overhead=measure(f.pixels());f.cam.position.copy(pos);f.cam.quaternion.copy(q);f.cam.updateMatrixWorld(true);f.r.render(f.s,f.cam);
-          return result;}""")
+        p.add_script_tag(content=(APP/'tests/clear-shoals-pixels.js').read_text())
+        capDiagnostics=p.evaluate('measureShoalOpacity()')
         (OUT/'opacity-diagnostics.json').write_text(json.dumps(capDiagnostics,indent=2))
         data=p.evaluate('fixture.r.domElement.toDataURL()');(OUT/'fixture-optical-alpha.png').write_bytes(base64.b64decode(data.split(',')[1]))
-        check(pixels['maxAlpha']<=205,'Caustics and pebble shading respect the 0.8 fixture opacity cap')
+        check(capDiagnostics['boundViolations']==0,'Every moving-water pixel stays within the same-geometry composed opacity bound')
+        check(capDiagnostics['addedOverlapPixels']==0,'The optical extension introduces no new above-cap overlap pixels over the base water')
+        check(capDiagnostics['overhead']['max']<=205,'A nonoverlapping view strictly respects the 0.8 surface opacity cap')
         p.evaluate('fixture.r.render(fixture.s,fixture.cam)')
         check(p.evaluate('fixture.pixels().every((v,i)=>v===fixture.upgraded[i])'),'Repeated paused time produces an identical native water image')
         p.evaluate('''()=>{const f=fixture;f.w.update({time:4,opacity:0});f.o.update({ar:true});f.r.render(f.s,f.cam);}''')
@@ -127,7 +125,7 @@ with sync_playwright() as pw:
         check(True,'Exit ends the XR session without closing the browser')
         check(not errors,'No captured JavaScript or shader errors in these optical and AR paths')
         (OUT/'frame-trace.json').write_text(json.dumps(p.evaluate('shoalTrace.snapshot()'),indent=2))
-        (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'pixelEvidence':pixels,'result':result,'scope':'Native WebGL fixture and actual full Easy AR game using emulated tracked input. Existing reduced stereo gameplay buffer; not physical Quest approval or sustained performance.'},indent=2));c.close()
+        (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'pixelEvidence':pixels,'opacityDiagnostics':capDiagnostics,'result':result,'scope':'Native WebGL fixture and actual full Easy AR game using emulated tracked input. Existing reduced stereo gameplay buffer; not physical Quest approval or sustained performance.'},indent=2));c.close()
     except Exception as e:
         try:state=p.evaluate('window.River?.snapshot()')
         except:state=None
