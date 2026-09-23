@@ -1,0 +1,36 @@
+{
+  "source": "16a3e092f2a94314428e3e52e623f03f29958f22",
+  "workflow": 35805646206,
+  "screen": {
+    "job": 107007628441,
+    "artifact": 10728295766,
+    "archiveSHA256": "aa10f5c3d52acf89e2371fc7be2df9ec912df864f06c510c2c3745cc5383bc79",
+    "passedChecksBeforeFailure": 18,
+    "status": "failed-full-mission",
+    "error": "Page.evaluate: Error: Stopped {\"p\":{\"x\":9.890602444868458,\"z\":-66.20700707072776,\"hp\":0},\"target\":{\"x\":10,\"z\":-67},\"mode\":\"dead\"}",
+    "state": {"health":0,"stamina":8.266666666669117,"medkits":0,"smoke":0,"seconds":155.93333333334957,"shots":0,"livingEnemies":5,"completedTasks":["archive-pages"],"taken":["ruins-supplies","archive-lens","glass-core"]},
+    "scriptErrors": [],
+    "graphicsErrors": [],
+    "verifiedBeforeFailure": "Real r177 water/tree shader preparation, balanced and reduced rendering, pause, reduced motion, fallback settings, saved-byte preservation, original puzzle, catalogue shutter, maintenance route and both mission components.",
+    "diagnosis": "The synthetic Classic/legacy route skipped both existing nearby supply caches and crossed the north guard's exposed side after exhausting medkits and smoke. This is a real failed mission, not a shader failure and not a pass.",
+    "correction": "Use ordinary interactions to collect the existing archive salvage and glasshouse cloth, craft one extra medkit and a second smoke from those finite materials, and take the western sanctuary approach. No game runtime, geometry, rewards, enemy rules, movement settings or checkpoint semantics change. The original model route remains selectable with scavenge:false."
+  },
+  "firstPersonAR": {
+    "job": 107007628469,
+    "artifact": 10728500435,
+    "archiveSHA256": "202a42999b4aae8234fa4916db447ba892ae22ce04e1a90eb1508eb5cce2e8fc",
+    "passedChecks": 12,
+    "scriptErrors": [],
+    "graphicsErrors": [],
+    "scope": "Actual r177 HTTP/WebGL and base-layer eye attachments with artificial tracked controllers. Library preparation, both-eye scene pixels and transparency, bounded detail, pause, graphics settings and XR exit pass. Not a full XR mission or physical headset acceptance."
+  },
+  "sourceInspection": "Both downloaded archives passed CRC and recorded SHA-256 checks. All 26 submitted Rainward code, vendor, test and evidence files matched the exact source archive before the test-only correction.",
+  "correctedModelPreflight": [
+    {"decisionDelay":0.25,"status":"won","health":66,"livingEnemies":5},
+    {"decisionDelay":0.5,"status":"won","health":83,"livingEnemies":5},
+    {"decisionDelay":1,"status":"won","health":85,"livingEnemies":5}
+  ],
+  "originalModelTimingLimit": {"scavenge":false,"decisionDelay":1,"status":"dead","finding":"The older exposed route is timing-sensitive; retain this failed diagnostic rather than implying guaranteed survival."},
+  "correctedNativeMission": "Pending; model preflight is not native browser acceptance.",
+  "physicalQuestXbox": "Not tested"
+}
