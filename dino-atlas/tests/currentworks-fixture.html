@@ -13,8 +13,8 @@ const camera=new T.PerspectiveCamera(50,1.5,.1,600),settings={low:false,reduced:
 window.fixtureErrors=[];renderer.debug.onShaderError=(gl,p,vs,fs)=>fixtureErrors.push(gl.getProgramInfoLog(p)+' '+gl.getShaderInfoLog(vs)+' '+gl.getShaderInfoLog(fs));
 window.drawCurrentworks=({view='pond',quiet=false,classic=false,mask=false}={})=>{
  settings.reduced=quiet;fx.update(.1,{preset:classic?'classic':'balanced',water:true,wind:true});
- let target=new T.Vector3(-27,.15,-32);if(view==='trees'&&fx.descriptors.length){const p=fx.descriptors[0].position;target.set(p[0],4,p[2]);}if(view==='lagoon')target.set(-164,.15,-155);
- camera.position.copy(target).add(view==='lagoon'?new T.Vector3(10,35,60):view==='trees'?new T.Vector3(13,7,16):new T.Vector3(11,13,20));camera.lookAt(target);camera.updateMatrixWorld(true);
+ let target=new T.Vector3(-27,.15,-32);if(view==='trees'&&fx.descriptors.length){const d=fx.descriptors[0],p=d.position;target.set(p[0],d.height*.55,p[2]);}if(view==='lagoon')target.set(-164,.15,-155);
+ camera.position.copy(target).add(view==='lagoon'?new T.Vector3(10,35,60):view==='trees'?new T.Vector3(6,3,8):new T.Vector3(0,38,.01));camera.lookAt(target);camera.updateMatrixWorld(true);
  if(mask){portal.collect(fx.root);portal.configure(target,0,{width:12,height:12,depth:12});}portal.active=mask;
  fx.prepare(camera);renderer.render(scene,camera);const gl=renderer.getContext();gl.finish();
  const pixels=new Uint8Array(960*640*4);gl.readPixels(0,0,960,640,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let changed=0,hash=2166136261;for(let i=0;i<pixels.length;i+=16){hash=Math.imul(hash^pixels[i],16777619);if(pixels[i]>15&&pixels[i+3]>0)changed++;}

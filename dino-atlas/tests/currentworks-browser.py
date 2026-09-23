@@ -23,7 +23,7 @@ try:
   try:
    page.goto(BASE+'tests/currentworks-fixture.html',wait_until='domcontentloaded',timeout=90000);page.wait_for_function('window.fixtureReady',timeout=120000)
    for name,params in [('pond',{}),('trees',{'view':'trees'}),('lagoon',{'view':'lagoon'}),('quiet',{'quiet':True}),('portal',{'mask':True}),('classic',{'classic':True})]:
-    r=page.evaluate('(p)=>drawCurrentworks(p)',params);captures.append(r);check(r['glError']==0 and not r['errors'],name+' real GPU shader draw has no errors');check(r['changed']>1000,name+' produces visible rendered pixels');page.screenshot(path=str(OUT/('fixture-'+name+'.png')))
+    r=page.evaluate('(p)=>drawCurrentworks(p)',params);captures.append(r);check(r['glError']==0 and not r['errors'],name+' real GPU shader draw has no errors');check(r['changed']>1000,name+' produces visible rendered pixels');page.locator('#view').screenshot(path=str(OUT/('fixture-'+name+'.png')))
    check(captures[0]['hash']!=captures[-1]['hash'],'Currentworks and Classic produce different rendered pond images')
    check(captures[0]['state']['engine']=='177','The integration uses Dino r177, not a second engine')
    check(len(captures[0]['state']['treeIds'])>=4,'Detailed central-grove replacements exist')
@@ -38,6 +38,9 @@ try:
    check(not page.locator('#ranch-status').is_visible(),'First Light hides unrelated Ranch and Coast dispatch copy')
    check(page.locator('#field-kit').is_visible() and page.locator('#minimap').is_visible(),'The tool shortcuts and live map remain accessible')
    page.locator('#board-button').click();page.wait_for_function('__dinoRanger.state.mode==="foot"')
+   # Mode changes in the input handler; the existing HUD paints on its own cadence.
+   # Wait for that actual UI frame, then keep the strict visibility assertion.
+   page.wait_for_function('document.body.dataset.mode==="foot"',timeout=15000)
    check(not page.locator('#field-utility-status').is_visible(),'On-foot story play hides only the unrelated mounted-rig hint')
    check(page.locator('#interact-button').is_visible() and page.locator('#reload-button').is_visible(),'Interaction and reload controls are retained')
    page.screenshot(path=str(OUT/'first-light-focus.png'))

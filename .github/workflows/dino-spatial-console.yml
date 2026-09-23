@@ -124,6 +124,10 @@ jobs:
     needs: model
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [screen, xr, graphics]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -136,13 +140,16 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Play First Light with real movement, dialogue and saved return
         run: |
-          python dino-atlas/tests/living-reserve-browser.py
-          LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
-          python dino-atlas/tests/currentworks-browser.py
+          case '${{ matrix.case }}' in
+            screen) python dino-atlas/tests/living-reserve-browser.py ;;
+            xr) LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py ;;
+            graphics) python dino-atlas/tests/currentworks-browser.py ;;
+            *) exit 1 ;;
+          esac
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dino-spatial-story-${{ github.run_id }}
+          name: dino-spatial-story-${{ matrix.case }}-${{ github.run_id }}
           path: |
             living-evidence/
             currentworks-evidence/
@@ -152,6 +159,10 @@ jobs:
     if: always() && github.ref == 'refs/heads/master' && needs.model.result == 'success' && needs.browser.result == 'success' && needs.entry.result == 'success' && needs.story.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        slice: [story-screen, story-xr, graphics-ui]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -194,18 +205,23 @@ jobs:
         env:
           DINO_TEST_BASE: https://v5ma.github.io/dino-atlas/
         run: |
-          python dino-atlas/tests/living-reserve-browser.py
-          LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
-          python dino-atlas/tests/currentworks-browser.py
-          SPATIAL_SCENE=classic python dino-atlas/tests/field-feedback-browser.py
-          SPATIAL_SCENE=tidegate python dino-atlas/tests/field-feedback-browser.py
-          SPATIAL_SCENE=classic python dino-atlas/tests/spatial-console-browser.py
-          SPATIAL_SCENE=tidegate python dino-atlas/tests/spatial-console-browser.py
-          PORTAL_SCENE=classic python dino-atlas/tests/portal-game-browser.py
+          case '${{ matrix.slice }}' in
+            story-screen) python dino-atlas/tests/living-reserve-browser.py ;;
+            story-xr) LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py ;;
+            graphics-ui)
+              python dino-atlas/tests/currentworks-browser.py
+              SPATIAL_SCENE=classic python dino-atlas/tests/field-feedback-browser.py
+              SPATIAL_SCENE=tidegate python dino-atlas/tests/field-feedback-browser.py
+              SPATIAL_SCENE=classic python dino-atlas/tests/spatial-console-browser.py
+              SPATIAL_SCENE=tidegate python dino-atlas/tests/spatial-console-browser.py
+              PORTAL_SCENE=classic python dino-atlas/tests/portal-game-browser.py
+              ;;
+            *) exit 1 ;;
+          esac
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dino-spatial-published-${{ github.run_id }}
+          name: dino-spatial-published-${{ matrix.slice }}-${{ github.run_id }}
           path: |
             living-evidence/
             currentworks-evidence/
