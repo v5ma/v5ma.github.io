@@ -1,6 +1,6 @@
 {
   "version": "0.16.4",
-  "build": "rainward-currentworks-garden-20260922",
+  "build": "rainward-tactical-throws-20260923",
   "stage": "expanded survival-stealth prototype",
   "xr": "experimental-first-person-vr-ar-and-character-centered-world-portals",
   "multiplayer": false,
@@ -20,6 +20,9 @@
     "Integrate exact pinned Currentworks Water 0.1.0 and Trees 0.1.3 in the Conservatory using Rainward's existing Three r177 engine, renderer and pausable clock",
     "Replace three existing shallow pool surfaces and old card trees with bounded wave/wake shading and seeded alder/willow geometry; keep an ordinary graphics fallback setting",
     "Open an optional archive maintenance return through the existing catalogue task without changing rewards, water depth, objectives or the sluice puzzle",
-    "Prepare graphics before gameplay, preserve reduced motion and XR clipping, and dispose library resources on chapter changes"
+    "Prepare graphics before gameplay, preserve reduced motion and XR clipping, and dispose library resources on chapter changes",
+    "Unify bottle and smoke prediction, launch and visible flight on one bounded collision-checked lob path",
+    "Shorten blocked landings and use lower indoor arcs; reject impossible throws without consuming supplies",
+    "Show an aim-only world-space tool arc and landing ring, including a non-color-only unavailable marker; keep existing controls and all seven chapters"
   ]
 }

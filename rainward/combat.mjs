@@ -1,9 +1,9 @@
+import {launchThrowable} from './throw-path.mjs';
 import {authorizedMuzzle} from './xr-shot.mjs';
 import {weapon} from './armory.mjs';
 import {heightAt,START,BOUNDS,OBSTACLES,ITEMS,SHELTERS,EXIT,PATROLS,HEIGHT,RAD,clamp,dist,inside,solidAt,rayBox,rayTerrain,obstruction,coverAt,findPath} from './world.mjs';
 import {forward,emit,hint,noise} from './state.mjs';
-export function bottle(s,yaw){const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||!p.bottles||p.craft||p.healing||p.melee)return false;const f=forward(yaw),target={x:clamp(p.x+f.x*11,BOUNDS.x0+1,BOUNDS.x1-1),y:heightAt(p.x+f.x*11,p.z+f.z*11)+.4,z:clamp(p.z+f.z*11,BOUNDS.z0+1,BOUNDS.z1-1)},a={x:p.x,y:heightAt(p.x,p.z)+1,z:p.z},hit=obstruction(a,target);
- if(hit){const range=Math.max(.6,hit.t-.6);target.x=p.x+f.x*range;target.z=p.z+f.z*range;}p.bottles--;s.projectiles.push({x:p.x,z:p.z,to:target,life:.65,total:.65});s.stats.bottles++;emit(s,'throw',{x:p.x,z:p.z,to:target});return true;}
+export function bottle(s,yaw){const plan=launchThrowable(s,yaw,'bottle');if(!plan.valid){hint(s,plan.reason);return false;}s.stats.bottles++;emit(s,'throw',{x:s.player.x,z:s.player.z,to:plan.path.to});return true;}
 export function fire(s,direction,trackedOrigin){const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||p.reload||p.shotCD||p.craft||p.healing||p.melee)return false;if(!p.mag){hint(s,'Empty. Reload or find ammunition.');return false;}
  const muzzle=trackedOrigin===undefined?undefined:authorizedMuzzle(s,trackedOrigin);if(trackedOrigin!==undefined&&!muzzle)return false;
  const spec=weapon(p);const len=Math.hypot(direction.x,direction.y,direction.z);if(!Number.isFinite(len)||len<.001)return false;const d={x:direction.x/len,y:direction.y/len,z:direction.z/len},o=muzzle||{x:p.x,y:heightAt(p.x,p.z)+HEIGHT[p.stance]*.82,z:p.z};if(p.survival){const spread=.001+(p.speed||0)*.003+(p.bloom||0),a=s.serial*2.399;d.x+=Math.cos(a)*spread;d.y+=Math.sin(a)*spread;const norm=Math.hypot(d.x,d.y,d.z);d.x/=norm;d.y/=norm;d.z/=norm;p.bloom=Math.min(.022,(p.bloom||0)+.008);}p.mag--;p.shotCD=spec.cooldown;s.stats.shots++;noise(s,p.x,p.z,26,'shot');let nearest=60,victim=null;

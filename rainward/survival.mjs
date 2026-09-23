@@ -1,3 +1,4 @@
+import {launchThrowable} from './throw-path.mjs';
 /* Original non-graphic game actions; range, sightline and finite resources. */
 import {HEIGHT,RAD,OBSTACLES,dist,solidAt,heightAt,obstruction,clamp} from './world.mjs';
 import {emit,hint,forward,noise,RECIPES} from './state.mjs';
@@ -17,4 +18,4 @@ export function updateSurvival(s,input,dt){const p=s.player;
  if(p.healing){const a=p.healing;if(s.status!=='playing'||!input.healHeld||p.hp<a.hp){cancelAction(s);return;}a.left-=dt;if(a.total-a.left>=a.next){a.next+=.7;emit(s,'heal-progress');}if(a.left<=0){p.hp=clamp(p.hp+55,0,100);p.healing=null;emit(s,'heal');hint(s,'Bandage secured. Health restored.');}}
  if(p.craft?.hold){const a=p.craft;if(s.status!=='playing'||!input.craftHeld||p.hp<a.hp){cancelAction(s);return;}a.left-=dt;if(RECIPES[a.item].time-a.left>=a.next){a.next+=.6;emit(s,'craft-progress');}if(a.left<=0){const item=a.item;p[item]++;p.craft=null;emit(s,'crafted',{item});hint(s,'Item assembled. Release A before crafting another.');}}
 }
-export function throwSmoke(s,yaw){const p=s.player;if(s.status!=='playing'||p.waterMode==='swim'||!p.smoke||p.craft||p.healing||p.melee)return false;const f=forward(yaw),target={x:p.x+f.x*8,z:p.z+f.z*8};if(solidAt(target.x,target.z,.1,.1)){hint(s,'Throw landing is blocked.');return false;}const from={x:p.x,y:heightAt(p.x,p.z)+1,z:p.z},to={...target,y:heightAt(target.x,target.z)+.3},hit=obstruction(from,to);if(hit){target.x=p.x+f.x*Math.max(.5,hit.t-.5);target.z=p.z+f.z*Math.max(.5,hit.t-.5);}p.smoke--;s.projectiles.push({x:p.x,z:p.z,to:target,kind:'smoke',life:.65,total:.65});emit(s,'throw',{x:p.x,z:p.z,to:target});return true;}
+export function throwSmoke(s,yaw){const plan=launchThrowable(s,yaw,'smoke');if(!plan.valid){hint(s,plan.reason);return false;}emit(s,'throw',{x:s.player.x,z:s.player.z,to:plan.path.to});return true;}
