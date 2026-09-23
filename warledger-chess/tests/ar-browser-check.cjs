@@ -28,7 +28,10 @@ async function runBrowser(browser,base,label){
       assert.equal(hit,`square:${s}`,`Visible mouse target must resolve to ${s}`);
       await page.mouse.click(p.x,p.y);await page.waitForTimeout(200);
     }
-    async function action(a){const p=await page.evaluate(a=>WarLedgerAR.projectAction(a),a);await page.mouse.click(p.x,p.y);await page.waitForTimeout(200);}
+    async function action(a){
+      const exists=await page.evaluate(a=>WarLedgerAR.targets.some(t=>t.userData.action===a),a);
+      if(!exists&&['gallery','new','lab','help','smaller','larger','fit','place'].includes(a))await action('options');
+      const p=await page.evaluate(a=>WarLedgerAR.projectAction(a),a);await page.mouse.click(p.x,p.y);await page.waitForTimeout(200);}
     const facing=await page.evaluate(()=>{const a=WarLedgerAR,c=a.scene.camera,p=a.root.getWorldPosition(new a.THREE.Vector3()),d=c.getWorldDirection(new a.THREE.Vector3()),o=c.getWorldPosition(new a.THREE.Vector3());return d.dot(p.sub(o).normalize());});
     assert.ok(facing>.9,'Camera must face the tabletop, not the back of the A-Frame rig.');
     await square('e2');assert.equal(await page.evaluate(()=>WarLedgerAR.selected),'e2');
@@ -77,8 +80,56 @@ async function runBrowser(browser,base,label){
     await press(3);assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'market');await press(1);assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'play');
     async function ray(s){await page.evaluate(s=>{const a=WarLedgerAR,t=a.tiles.find(t=>t.userData.square===s),p=t.getWorldPosition(new a.THREE.Vector3());a.selectRay(p.clone().add(new a.THREE.Vector3(0,.5,0)),new a.THREE.Vector3(0,-1,0));},s);await page.waitForTimeout(200);}
     await ray('e7');await ray('e5');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[3][4]?.side),'black');
+    // Tactical/readability regression pass. All controls below are exercised through the rendered UI.
+    await page.evaluate(()=>WarLedgerAR.loadScenario('standard'));
+    await square('e2');
+    assert.match(await page.locator('#status').textContent(),/Pawn on e2.*2 legal moves/);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.markers.markers.find(m=>m.square==='e4').parts.move.visible),true);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.markers.markers.find(m=>m.square==='e2').parts.selected.visible),true);
+    await page.keyboard.press('Escape');
+    const trayBefore=await page.evaluate(()=>{const v=WarLedgerAR.allButtons[0].getWorldPosition(new WarLedgerAR.THREE.Vector3());return v.toArray();});
+    await action('flip');
+    assert.deepEqual(await page.evaluate(()=>WarLedgerAR.allButtons[0].getWorldPosition(new WarLedgerAR.THREE.Vector3()).toArray()),trayBefore);
+    await action('flip');
+    await action('options');
+    assert.equal(await page.evaluate(()=>WarLedgerAR.targets.some(t=>t.userData.action?.startsWith('square:'))),false);
+    const stable=await page.evaluate(()=>JSON.stringify(WarLedgerAR.state));
+    await page.evaluate(()=>WarLedgerAR.dispatch('square:e2'));
+    assert.equal(await page.evaluate(()=>JSON.stringify(WarLedgerAR.state)),stable);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.selected),null);
+    await action('help');assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'help');
+    await action('cancel');assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'play');
+    const markerCount=await page.evaluate(()=>WarLedgerAR.markers.group.children.length);
+    for(let i=0;i<4;i++){await action('market');await action('cancel');}
+    assert.equal(await page.evaluate(()=>WarLedgerAR.markers.group.children.length),markerCount);
+    for(const [width,height,name] of [[390,844,'portrait'],[844,390,'landscape']]){
+      await page.setViewportSize({width,height});await page.waitForTimeout(600);
+      const framed=await page.evaluate(()=>{
+        const a=WarLedgerAR,top=document.querySelector('#desktop').getBoundingClientRect().bottom,bottom=document.querySelector('#help').getBoundingClientRect().top;
+        return ['a1','h1','a8','h8'].map(s=>{const p=a.projectSquare(s);return {s,...p,inFrame:p.x>0&&p.x<innerWidth&&p.y>top&&p.y<bottom};});
+      });
+      assert.ok(framed.every(p=>p.inFrame),`Board must remain inside usable ${name} screen: ${JSON.stringify(framed)}`);
+      await square('e2');await square('e4');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[4][4]?.type),'P');
+      await action('undo');
+      await page.screenshot({path:path.join(out,`${label}-${name}.png`)});
+    }
+    await page.setViewportSize({width:1440,height:1000});await page.waitForTimeout(500);
+    await page.screenshot({path:path.join(out,`${label}-tactical.png`)});
+    // Synthetic multi-pointer gesture: the real pointer listeners receive the gesture, not direct zoom calls.
+    const zoomBefore=await page.evaluate(()=>WarLedgerAR.orbitDistance);
+    await page.evaluate(()=>{
+      const canvas=WarLedgerAR.scene.canvas;
+      // Synthetic IDs cannot own pointer capture; that browser API is irrelevant to this input-routing check.
+      const capture=canvas.setPointerCapture;canvas.setPointerCapture=()=>{};
+      const emit=(type,id,x)=>canvas.dispatchEvent(new PointerEvent(type,{pointerId:id,clientX:x,clientY:400,button:0,bubbles:true}));
+      emit('pointerdown',10,600);emit('pointerdown',11,700);emit('pointermove',11,760);
+      emit('pointerup',11,760);emit('pointerup',10,600);canvas.setPointerCapture=capture;
+    });
+    assert.ok(await page.evaluate(()=>WarLedgerAR.orbitDistance)<zoomBefore);
+    assert.equal(await page.evaluate(()=>WarLedgerAR.selected),null);
+    await page.evaluate(()=>WarLedgerAR.fitView());
     assert.deepEqual(errors,[]);
-    const report={label,release:expectedRelease,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox frame polling and B cancel','XR ray routing']};
+    const report={label,release:expectedRelease,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox frame polling and B cancel','XR ray routing','piece guides and markers','flip preserves tray orientation','exclusive modal targets','marker resource reuse','portrait and landscape play','synthetic two-pointer zoom']};
     fs.writeFileSync(path.join(out,`${label}-report.json`),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
   }catch(error){
     await page.screenshot({path:path.join(out,`${label}-failure.png`)}).catch(()=>{});
@@ -93,7 +144,7 @@ async function runBrowser(browser,base,label){
     await runBrowser(browser,'http://127.0.0.1:8734/','local');
     if(process.env.WL_VERIFY_LIVE==='1'){
       const base='https://v5ma.github.io/';let ready=false;
-      const files=['ar.html','warledger-ar.mjs','warledger-ui.mjs','warledger-art.mjs','warledger-session.mjs','warledger-input.mjs','warledger-engine.mjs','assets/piece-faces.webp'];
+      const files=['ar.html','warledger-ar.mjs','warledger-ui.mjs','warledger-art.mjs','warledger-session.mjs','warledger-input.mjs','warledger-engine.mjs','warledger-presentation.mjs','assets/piece-faces.webp'];
       const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
       const expected=Object.fromEntries(files.map(f=>[f,hash(fs.readFileSync(path.join(root,'warledger-chess',f)))]));
       for(let attempt=0;attempt<100;attempt++){
@@ -103,7 +154,7 @@ async function runBrowser(browser,base,label){
         }catch{}
         await sleep(6000);
       }
-      assert.ok(ready,'All eight live runtime and artwork files must match the checked-out release byte for byte.');
+      assert.ok(ready,'All nine live runtime and artwork files must match the checked-out release byte for byte.');
       fs.writeFileSync(path.join(out,'live-hashes.json'),JSON.stringify({release:expectedRelease,files:expected},null,2));
       await runBrowser(browser,base,'live');
     }

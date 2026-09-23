@@ -3,7 +3,9 @@ import {loadSession,saveSession} from './warledger-session.mjs';
 import {ATLAS,ART_TYPES,ART_NAMES,createArtFactory} from './warledger-art.mjs';
 import {nextPinch,gridStep,gamepadEdges} from './warledger-input.mjs';
 
-export const RELEASE='ar-blocks-20260922-3';
+import {MODAL_MODES,actionAllowed,safeViewport,selectedDescription,createBoardMarkers} from './warledger-presentation.mjs';
+
+export const RELEASE='ar-tactical-20260922-4';
 const scene=document.querySelector('a-scene');
 const status=document.querySelector('#status');
 const cap=s=>s[0].toUpperCase()+s.slice(1);
@@ -24,7 +26,8 @@ class LedgerAR {
     this.orbitYaw=.18;this.orbitPitch=1.03;this.orbitDistance=1.12;
     this.scale=1;this.placing=false;this.surfacePosition=null;this.xrSession=null;
     this.ready=false;this.lastActivation={action:null,time:0};
-    this.buildBoard();this.buildEnvironment();this.bind();this.render();this.orbit();
+    this.buildBoard();this.markers=createBoardMarkers(THREE,this.board,this.tiles);
+    this.buildEnvironment();this.bind();this.render();this.fitView();
     this.ready=true;this.probeXR();
   }
   box(w,h,d,color,x,y,z,parent=this.board) {
@@ -113,24 +116,56 @@ class LedgerAR {
         const label=this.panel([ART_NAMES[i]],.15,.035);label.position.set(x,.008,z+.068);label.rotation.x=-Math.PI/2;this.gallery.add(label);
       });
     }
+    const checked=!this.state.gameOver&&isKingInCheck(this.state,this.state.sideToMove);
+    const checkedSquare=checked?this.tiles.find((tile,i)=>{const p=this.state.board[Math.floor(i/8)][i%8];return p?.type==='K'&&p.side===this.state.sideToMove;})?.userData.square:null;
+    this.markers.update({selected:this.selected,targets,lastMove:this.state.lastMove,checkedSquare});
     this.renderUI();this.updateFocus();this.root.updateMatrixWorld(true);
+    if(this.layoutMode!==this.mode){this.layoutMode=this.mode;if(this.ready&&!this.xrSession)this.fitView();}
     if(!saveSession(this.state,this.undoStack)&&!this.saveWarning){this.saveWarning=true;status.textContent+=' Saving is unavailable in this browser.';}
   }
   statusLines() {
     const check=!this.state.gameOver&&isKingInCheck(this.state,this.state.sideToMove);
     const heading=this.state.gameOver?`${cap(this.state.gameOver.winner)} victory`: `${cap(this.state.sideToMove)} to move${check?' - CHECK':''}`;
     const ledgers=`Bank: White ${this.state.bank.white} / Black ${this.state.bank.black}   |   Score: ${this.state.battleScore.white} / ${this.state.battleScore.black}`;
-    const detail=this.notice||this.state.gameOver?.message||(this.selected?`${this.selected}: choose a highlighted destination.`:'Select a piece. Trigger or pinch selects; B cancels.');
+    const detail=this.notice||this.state.gameOver?.message||(this.selected?selectedDescription(this.state,this.selected,this.legalMoves,PIECES):'Select a piece. Dots = moves; rings = captures. B / Escape cancels.');
+    if(this.selected&&!this.notice&&!this.state.gameOver){
+      const split=detail.indexOf('. ');
+      if(split>=0)return [heading,ledgers,detail.slice(0,split+1),detail.slice(split+2)];
+    }
     return [heading,ledgers,detail];
   }
   renderUI() {
     const T=this.THREE;this.clearOwned(this.ui);this.allButtons=[];
     const tray=new T.Group();tray.position.set(0,.013,.51);tray.rotation.x=-Math.PI/2;this.ui.add(tray);
     const lines=this.statusLines();status.textContent=lines.join(' | ');
-    this.addPanel(tray,lines,.70,.085,0,.09);
-    const toolbar=[['Undo','undo'],['Market','market'],['Smaller','smaller'],['Larger','larger'],['Flip','flip'],['Place','place'],['New game','new'],['Promo lab','lab'],[this.mode==='gallery'?'Play board':'All pieces','gallery'],['Higher','higher'],['Lower','lower'],['Exit XR','exit']];
-    toolbar.forEach(([label,action],i)=>this.addPanel(tray,[label],.109,.041,(i%6-2.5)*.118,-Math.floor(i/6)*.05,action,action!=='exit'||!!this.xrSession));
+    this.addPanel(tray,lines,.70,.108,0,.095);
+    const toolbar=this.placing?[['Higher','higher'],['Lower','lower'],['Cancel placement','cancel']]:[['Undo','undo'],['Market','market'],['Flip board','flip'],['Table options','options']];
+    toolbar.forEach(([label,action],i)=>this.addPanel(tray,[label],.157,.049,(i-(toolbar.length-1)/2)*.172,0,action));
+    if(this.xrSession)this.addPanel(tray,['Exit XR'],.16,.041,0,-.057,'exit');
     this.focusable=this.allButtons.slice();
+    if(MODAL_MODES.has(this.mode)){
+      // Hide the toolbar and remove all its hits while an exclusive panel is open.
+      tray.children.filter(o=>o.userData.action).forEach(o=>{o.visible=false;});
+      this.targets=[];this.allButtons=[];this.focusable=[];
+    }
+    if(this.mode==='options'||this.mode==='help') {
+      const menu=new T.Group();menu.position.set(0,.27,.055);menu.rotation.x=-Math.PI*.25;this.ui.add(menu);
+      if(this.mode==='options'){
+        this.addPanel(menu,['Table options','Board changes do not change the match.'],.65,.075,0,.21);
+        const buttons=[['Smaller','smaller'],['Larger','larger'],['Higher','higher'],['Lower','lower'],
+          ['Fit view','fit'],['Place board','place'],['All pieces','gallery'],['How to play','help'],['New game','new'],['Promotion lab','lab']];
+        buttons.forEach(([label,action],i)=>this.addPanel(menu,[label],.196,.058,(i%3-1)*.215,.122-Math.floor(i/3)*.07,action));
+        this.addPanel(menu,['Back to game'],.29,.048,.105,-.088,'cancel');
+      }else{
+        this.addPanel(menu,['HOW TO PLAY','Select your piece, then a marked destination.','Green dot: quiet move. Coral ring: capture.','Gold ring: selected. Red ring: king in check.',
+          'Checkmate or causing stalemate wins.','Making the third repeated position loses.','Captures earn bank points. Market buys promotion licenses.',
+          'Quest: trigger / pinch selects; B cancels; X market; Y undo.',
+          'Xbox: D-pad / stick; A selects; B cancels; X undo; Y market.',
+          'Desktop: click to play; drag to orbit; wheel / two-finger pinch zoom.'],.72,.33,0,.115);
+        this.addPanel(menu,['Back to game'],.30,.05,0,-.10,'cancel');
+      }
+      this.focusable=this.allButtons.slice();this.menuNavigation=true;
+    }
     if(['market','promotion','confirm'].includes(this.mode)) {
       const menu=new T.Group();menu.position.set(0,.32,.04);menu.rotation.x=-Math.PI*.25;this.ui.add(menu);
       const start=this.allButtons.length;
@@ -153,6 +188,10 @@ class LedgerAR {
         this.addPanel(menu,[this.mode==='market'&&this.pending?'Back to promotion':'Cancel'],.32,.047,0,-.095,'cancel');
       }
       this.focusable=this.allButtons.slice(start);this.menuNavigation=true;
+    }
+    if(this.mode==='gallery'){
+      this.addPanel(tray,['Return to match'],.25,.048,0,-.06,'gallery');
+      this.focusable=this.allButtons.slice();
     }
     if(this.placing){
       const hint=this.panel(['PLACEMENT MODE','Look at a surface, or aim at the current table height.','Trigger / pinch places. B cancels. Higher / Lower adjusts height.'],.70,.11);
@@ -203,7 +242,7 @@ class LedgerAR {
     this.selected=null;this.pending=null;this.mode='play';this.placing=false;this.reticle.visible=false;this.menuNavigation=false;this.notice='';this.render();
   }
   dispatch(action) {
-    if(!action)return;
+    if(!actionAllowed(this.mode,action))return false;
     const [name,arg]=action.split(':');
     if(name==='square')return this.square(arg);
     if(name==='buy')return this.buy(arg);
@@ -213,16 +252,19 @@ class LedgerAR {
       if(this.pending||this.placing)return this.cancel();
       if(this.undoStack.length){this.state=this.undoStack.pop();this.selected=null;this.notice='Last action undone.';}else this.notice='Nothing to undo.';
       this.mode='play';this.menuNavigation=false;
-    } else if(name==='market') {this.mode=this.mode==='market'?(this.pending?'promotion':'play'):'market';this.focusIndex=0;}
+    } else if(name==='options'||name==='help'){this.mode=this.mode===name?'play':name;this.focusIndex=0;this.menuNavigation=this.mode!=='play';}
+    else if(name==='fit'){this.fitView();this.notice='View fitted to your screen.';}
+    else if(name==='market') {this.mode=this.mode==='market'?(this.pending?'promotion':'play'):'market';this.focusIndex=0;}
     else if(name==='gallery') {this.pending=null;this.selected=null;this.mode=this.mode==='gallery'?'play':'gallery';this.menuNavigation=false;this.notice=this.mode==='gallery'?'Ten playable types. Dragon is artwork only, not a new rule.':'';}
     else if(name==='new'||name==='lab'){this.confirmScenario=name==='lab'?'promotionLab':'standard';this.mode='confirm';this.focusIndex=0;}
     else if(name==='confirm')return this.loadScenario(this.confirmScenario);
-    else if(name==='smaller'||name==='larger'){this.scale=clamp(this.scale+(name==='larger'?.15:-.15),.65,1.6);this.root.scale.setScalar(this.scale);this.notice=`Board width: ${Math.round(.724*this.scale*100)} cm.`;}
+    else if(name==='smaller'||name==='larger'){this.scale=clamp(this.scale+(name==='larger'?.15:-.15),.65,1.6);this.root.scale.setScalar(this.scale);if(!this.xrSession)this.fitView();this.notice=`Board width: ${Math.round(.724*this.scale*100)} cm.`;}
     else if(name==='higher'||name==='lower'){this.root.position.y=clamp(this.root.position.y+(name==='higher'?.05:-.05),.15,1.6);}
-    else if(name==='flip'){this.root.rotation.y+=Math.PI;}
+    else if(name==='flip'){this.board.rotation.y+=Math.PI;this.pieces.rotation.y=this.board.rotation.y;this.notice='Board flipped. The controls stay facing you.';}
     else if(name==='place'){
+      this.mode='play';this.menuNavigation=false;
       if(this.xrSession){this.placing=!this.placing;this.selected=null;this.notice=this.placing?'Positioning the board. Trigger or pinch to confirm.':'';}
-      else{this.root.position.set(0,.72,0);this.root.rotation.y=0;this.orbitYaw=.18;this.notice='Board recentered. Drag to orbit; use Higher / Lower for table height.';}
+      else{this.root.position.set(0,.72,0);this.root.rotation.y=0;this.orbitYaw=.18;this.fitView();this.notice='Board recentered. Drag to orbit; use Higher / Lower for table height.';}
     } else if(name==='exit'){if(this.xrSession)this.scene.exitVR();return;}
     this.render();if(!this.xrSession)this.orbit();
   }
@@ -232,6 +274,34 @@ class LedgerAR {
     this.lastActivation={action,time:now};this.dispatch(action);
     try{source?.gamepad?.hapticActuators?.[0]?.pulse(.22,30);}catch{}
   }
+  fitView() {
+    if(this.xrSession||!scene.camera)return;
+    const rect=scene.canvas.getBoundingClientRect();
+    const top=Math.max(0,document.querySelector('#desktop').getBoundingClientRect().bottom-rect.top);
+    const bottom=Math.max(0,rect.bottom-document.querySelector('#help').getBoundingClientRect().top);
+    const area=safeViewport(rect.width,rect.height,top+8,bottom+8);
+    scene.camera.setViewOffset(area.width,area.height,0,area.offsetY,area.width,area.height);
+    this.orbitDistance=.8*this.scale;
+    // Fit the board and actual visible panels, not an oversized imaginary box above the tray.
+    const T=this.THREE,points=[];
+    for(const x of [-.37,.37])for(const y of [-.04,.12])for(const z of [-.37,.37])points.push(new T.Vector3(x,y,z));
+    this.root.updateMatrixWorld(true);
+    const inverse=new T.Matrix4().copy(this.root.matrixWorld).invert();
+    this.ui.traverseVisible(o=>{const a=o.geometry?.attributes.position;if(!a)return;const m=new T.Matrix4().multiplyMatrices(inverse,o.matrixWorld);for(let i=0;i<a.count;i++)points.push(new T.Vector3().fromBufferAttribute(a,i).applyMatrix4(m));});
+    const fits=distance=>{
+      this.orbitDistance=distance;this.orbit();this.root.updateMatrixWorld(true);scene.camera.updateMatrixWorld(true);
+      return points.every(point=>{
+        const p=point.clone().applyMatrix4(this.root.matrixWorld).project(scene.camera);
+        const px=(p.x+1)*area.width/2,py=(1-p.y)*area.height/2;
+        return p.z>-1&&p.z<1&&Math.abs(px-area.centerX)<=area.halfWidth&&Math.abs(py-area.centerY)<=area.halfHeight;
+      });
+    };
+    let low=.35*this.scale,high=1.5*this.scale;
+    while(!fits(high)&&high<24)high*=1.5;
+    for(let i=0;i<16;i++){const mid=(low+high)/2;if(fits(mid))high=mid;else low=mid;}
+    this.orbitDistance=high*1.025;
+    this.orbit();
+  }
   orbit() {
     if(this.xrSession)return;
     const T=this.THREE,p=this.root.position;
@@ -239,7 +309,7 @@ class LedgerAR {
     this.viewer.object3D.position.set(p.x+Math.sin(this.orbitYaw)*horizontal,p.y+Math.sin(this.orbitPitch)*this.orbitDistance,p.z+Math.cos(this.orbitYaw)*horizontal);
     // The A-Frame entity is a Group: lookAt aims its positive Z, unlike a Camera.
     // Rotate the rig half a turn so the child camera's negative Z faces the board.
-    this.viewer.object3D.lookAt(new T.Vector3(p.x,p.y+.02,p.z+.10));
+    this.viewer.object3D.lookAt(new T.Vector3(p.x,p.y+.04*this.scale,p.z+.10*this.scale));
     this.viewer.object3D.rotateY(Math.PI);
     this.viewer.object3D.updateMatrixWorld(true);
   }
@@ -264,20 +334,37 @@ class LedgerAR {
     return this.resolveHit(this.raycaster.intersectObjects(this.targets,false));
   }
   bind() {
-    let drag=null;
-    scene.canvas.addEventListener('pointerdown',e=>{if(this.xrSession||e.button!==0)return;drag={x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};scene.canvas.setPointerCapture(e.pointerId);});
+    let drag=null,pinch=null;const pointers=new Map();
+    const distance=()=>{const p=[...pointers.values()];return p.length<2?0:Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);};
+    scene.canvas.style.touchAction='none';
+    scene.canvas.addEventListener('pointerdown',e=>{
+      if(this.xrSession||e.button!==0)return;
+      pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});scene.canvas.setPointerCapture(e.pointerId);
+      if(pointers.size>1){pinch={distance:distance(),zoom:this.orbitDistance};drag=null;return;}
+      drag={id:e.pointerId,x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};
+    });
     scene.canvas.addEventListener('pointermove',e=>{
       if(this.xrSession)return;
-      if(drag){
+      if(pointers.has(e.pointerId))pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(pinch){const d=distance();if(d>10){this.orbitDistance=clamp(pinch.zoom*pinch.distance/d,.5,6);this.orbit();}return;}
+      if(drag&&drag.id===e.pointerId){
         const dx=e.clientX-drag.lastX,dy=e.clientY-drag.lastY;
         drag.moved=drag.moved||Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7;
         if(drag.moved){this.orbitYaw-=dx*.007;this.orbitPitch=clamp(this.orbitPitch+dy*.005,.18,1.42);this.orbit();}
         drag.lastX=e.clientX;drag.lastY=e.clientY;
       }else scene.canvas.style.cursor=this.pointerPick(e)?'pointer':'grab';
     });
-    scene.canvas.addEventListener('pointerup',e=>{if(!this.xrSession&&drag&&!drag.moved){const hit=this.pointerPick(e);if(hit)this.activate(hit.object.userData.action);}drag=null;});
-    scene.canvas.addEventListener('pointercancel',()=>{drag=null;});
-    scene.canvas.addEventListener('wheel',e=>{if(this.xrSession)return;e.preventDefault();this.orbitDistance=clamp(this.orbitDistance+e.deltaY*.001,.60,2.5);this.orbit();},{passive:false});
+    scene.canvas.addEventListener('pointerup',e=>{
+      if(!this.xrSession&&!pinch&&drag?.id===e.pointerId&&!drag.moved){const hit=this.pointerPick(e);if(hit)this.activate(hit.object.userData.action);}
+      pointers.delete(e.pointerId);drag=null;if(!pointers.size)pinch=null;
+    });
+    const clearPointers=()=>{drag=null;pinch=null;pointers.clear();};
+    scene.canvas.addEventListener('pointercancel',clearPointers);window.addEventListener('blur',clearPointers);
+    scene.canvas.addEventListener('wheel',e=>{if(this.xrSession)return;e.preventDefault();this.orbitDistance=clamp(this.orbitDistance+e.deltaY*.001,.5,6);this.orbit();},{passive:false});
+    let resizing=false;
+    const resized=()=>{if(resizing)return;resizing=true;requestAnimationFrame(()=>{resizing=false;this.fitView();});};
+    window.addEventListener('resize',resized);
+    if(window.ResizeObserver){const observer=new ResizeObserver(resized);observer.observe(document.querySelector('#desktop'));observer.observe(document.querySelector('#help'));this.layoutObserver=observer;}
     document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>this.dispatch(b.dataset.action)));
     document.querySelector('#enter-ar').addEventListener('click',()=>this.enter('ar'));
     document.querySelector('#enter-vr').addEventListener('click',()=>this.enter('vr'));
@@ -307,7 +394,7 @@ class LedgerAR {
   }
   startXR() {
     const session=scene.renderer.xr.getSession();if(!session||session===this.xrSession)return;
-    this.xrSession=session;this.needsRecenter=true;this.viewer.object3D.position.set(0,0,0);this.viewer.object3D.quaternion.identity();
+    this.xrSession=session;scene.camera.clearViewOffset();this.needsRecenter=true;this.viewer.object3D.position.set(0,0,0);this.viewer.object3D.quaternion.identity();
     const ar=scene.is('ar-mode');this.floor.visible=!ar;scene.object3D.background=ar?null:new this.THREE.Color(0x172126);scene.renderer.setClearColor(0x172126,ar?0:1);
     document.body.classList.add('xr');this.notice='Trigger or pinch selects. Right B cancels. Left X opens the market; Y undoes.';
     this.onXRSelect=e=>{
@@ -332,7 +419,7 @@ class LedgerAR {
     this.xrInputs.forEach(rec=>{rec.line.removeFromParent();rec.line.geometry.dispose();rec.line.material.dispose();rec.grip.removeFromParent();rec.grip.geometry.dispose();rec.grip.material.dispose();});
     this.xrInputs.clear();this.inputStates.clear();document.body.classList.remove('xr');
     this.floor.visible=true;scene.object3D.background=new this.THREE.Color(0x172126);scene.renderer.setClearColor(0x172126,1);
-    this.root.position.set(0,.72,0);this.root.rotation.y=0;this.notice='Returned to the 3D board. The same game is still active.';this.render();this.orbit();requestAnimationFrame(()=>this.orbit());
+    this.root.position.set(0,.72,0);this.root.rotation.y=0;this.notice='Returned to the 3D board. The same game is still active.';this.render();this.fitView();requestAnimationFrame(()=>this.fitView());
   }
   sourceRay(frame,source) {
     const ref=scene.renderer.xr.getReferenceSpace();if(!frame||!ref)return null;
@@ -342,7 +429,7 @@ class LedgerAR {
   }
   selectRay(origin,direction,source=null,frame=null) {
     const hit=this.pick(origin,direction),action=hit?.object.userData.action;
-    if(this.placing&&!['higher','lower','place','exit'].includes(action))this.place(origin,direction,frame);
+    if(this.placing&&!['higher','lower','place','exit','cancel'].includes(action))this.place(origin,direction,frame);
     else if(action)this.activate(action,source);
     return action||null;
   }
@@ -380,7 +467,7 @@ class LedgerAR {
     }
     this.reticle.visible=false;
     const live=new Set(this.xrSession.inputSources);
-    for(const [source,rec] of this.xrInputs){rec.line.visible=false;rec.grip.visible=false;if(!live.has(source))rec.pinch=false;}
+    for(const [source,rec] of this.xrInputs){rec.line.visible=false;rec.grip.visible=false;if(!live.has(source)){rec.pinch=false;rec.armed=false;}}
     for(const source of this.xrSession.inputSources) {
       let rec=this.xrInputs.get(source);
       if(!rec){
@@ -389,7 +476,7 @@ class LedgerAR {
         const grip=new T.Mesh(new T.BoxGeometry(.019,.035,.035),new T.MeshBasicMaterial({color}));scene.object3D.add(grip);
         rec={line,grip,pinch:false,handJoints:false,armed:false};this.xrInputs.set(source,rec);
       }
-      const ray=this.sourceRay(frame,source);if(!ray)continue;
+      const ray=this.sourceRay(frame,source);if(!ray){rec.armed=false;rec.pinch=false;continue;}
       const hit=this.pick(ray.origin,ray.direction);
       let end=hit?.point||ray.origin.clone().addScaledVector(ray.direction,1.4);
       if(this.placing){const point=this.placementPoint(ray.origin,ray.direction);if(point){this.reticle.position.copy(point);this.reticle.position.y+=.003;this.reticle.visible=true;end=point;}}
@@ -404,17 +491,17 @@ class LedgerAR {
           const distance=Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);if(distance>.03)rec.armed=true;
           const result=nextPinch(rec.pinch,distance);rec.pinch=result.latched;
           if(result.pressed&&rec.armed)this.selectRay(ray.origin,ray.direction,source,frame);
-        }else rec.pinch=false;
+        }else{rec.pinch=false;rec.armed=false;}
       }
       if(source.gamepad)this.pollPad(source.gamepad,source,time,true,source.handedness);
     }
   }
   navigate(dx,dy) {
     this.focusEnabled=true;
-    if(this.menuNavigation||['market','promotion','confirm'].includes(this.mode)) {
+    if(this.menuNavigation||MODAL_MODES.has(this.mode)) {
       this.menuNavigation=true;const n=this.focusable.length;if(n)this.focusIndex=(this.focusIndex+dx+dy+n)%n;
     } else {
-      const flip=Math.cos(this.root.rotation.y-(this.xrSession?this.viewYaw||0:this.orbitYaw))<0?-1:1;
+      const flip=Math.cos(this.root.rotation.y+this.board.rotation.y-(this.xrSession?this.viewYaw||0:this.orbitYaw))<0?-1:1;
       this.focusSquare=gridStep(this.focusSquare,dx*flip,dy*flip);
     }
     this.updateFocus();
