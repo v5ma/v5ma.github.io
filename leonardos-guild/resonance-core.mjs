@@ -123,7 +123,11 @@ export function resonanceStep(s,w,input,dt,actions){
     if(!clearShot(s,w,from,to)||solidPoint(s,w,to.x,to.z)){p.life=0;slingImpact(s,w,p,'wall');notify(s,'The pellet hits stone or timber.','resonance-wall',{x:to.x,z:to.z});continue;}
     p.x=to.x;p.z=to.z;
     const e=validTargets(s,w).find(e=>{const dx=to.x-from.x,dz=to.z-from.z,den=dx*dx+dz*dz,f=clamp(((e.x-from.x)*dx+(e.z-from.z)*dz)/(den||1),0,1);return dist(e,{x:from.x+dx*f,z:from.z+dz*f})<.65;});
-    if(e){p.life=0;damageTarget(s,w,e,p.damage,p.stun);slingImpact(s,w,p,'hit');}
+    if(e){p.life=0;const before=e.hp;damageTarget(s,w,e,p.damage,p.stun);
+      // Camp protection and other rejected damage are not successful hits.
+      const after=e.actor?.hp??(e.kind==='guard'?s.banditHP:s.life.enemies.rocco);
+      if(after<before)slingImpact(s,w,p,'hit');
+    }
   }
   c.projectiles=c.projectiles.filter(p=>p.life>0);
 }

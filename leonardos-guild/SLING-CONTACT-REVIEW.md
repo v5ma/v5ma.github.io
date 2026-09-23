@@ -1,0 +1,9 @@
+Sling feedback contact review / September 22, 2026 (Pacific).
+
+This supplements SLING-FEEDBACK.md and its initial 539-test checkpoint. The final local suite now passes 542 tests and all 14 design checks, including three extra damage-confirmation fixtures. Source, public-browser and physical Quest evidence remain separate; inspect the latest release-receipts record before claiming deployment or complete browser acceptance.
+
+Review of initial commit fffdbf585c2924009b2799f13db1ea726787cc7b found that a projectile contact could append a hit diamond even when the original camp protection rejected damage. This did not injure protected actors or award loot, but it was misleading feedback. Two explicit CPU fixtures reproduce it with the shooter or target inside the protected camp; a third verifies that an ordinary unprotected field hit still confirms exactly once. The original two failures and corrected full test logs are preserved in the delivery evidence.
+
+The corrected core checks that target vitality actually decreased after the existing damage reducer before appending a hit mark. It changes no camp rule, target eligibility, damage amount, projectile speed, impact collision, reward, ammo, control or save. A direction arrow remains only a heading aid, not a promise that a protected target can be damaged.
+
+All earlier Currentworks water/trees, Stillwater guidance, original Vinci, Lantern Road/Vault, optional Quarter and Vesperfall handoff remain. The existing environment browser journey and publisher still verify this source. The next physical playtest should compare aim direction, actual projectile, contact marker, pause/resume and real XR exit without resetting an adventure. Physical controller alignment, freeze reports, audio comfort and sustained performance are not closed by these fixtures. Continue from current master and the newest receipt, preserving concurrent sibling work; no PR, temporary branch, new workflow or engine migration.
