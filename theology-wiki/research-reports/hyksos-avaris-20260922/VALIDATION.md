@@ -1,0 +1,7 @@
+The original report and all citation metadata were recovered from the completed supplied research export. Only final report text and source metadata were selected; private activity and other conversation material are excluded. Four source checkpoints were committed before build work.
+
+Initial runner 35803013678 verified the exact exported JSON and original body SHA-256, restored 68 citation placements and 26 source records, and rendered all nine report tables. It then stopped before publishing generated files because the existing main Wiki builder could not load C.safeSourceFile. No complete run success is claimed.
+
+The inspected repository root package.json sets type=module for Cloudflare, while the existing Theology research-core.js is a browser-compatible CommonJS/UMD helper without ES-module exports. A new theology-wiki/package.json limits CommonJS scope to the Wiki's existing .js helpers. It does not alter the repository root package, Cloudflare configuration or browser code. This narrow compatibility correction is required to regenerate the actual linked principal articles rather than leaving their source-only changes unpublished.
+
+The next run must verify the complete integration and preservation. Rendering and UI checks establish source fidelity and publication behavior, not historical proof of the report's interpretations. The report's chronological variants and limitations remain exactly in its source text.
