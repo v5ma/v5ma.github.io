@@ -1,10 +1,11 @@
+import {storyFocus,STORY_FOCUS_STYLE} from './story-focus.js';
 import * as T from './vendor/three.module.js';
 import {drawDistrictMap} from './tidegate-routes.js';
 import {navigationBearing} from './active-controls.js';
 // Guidance indicates a destination, not a path through walls or a mandatory itinerary.
 export class FieldNavigation{
  constructor({root,travel,fleet,task,yaw}){
-  Object.assign(this,{travel,fleet,task,yaw});this.goal=null;travel.navigation=this;
+  Object.assign(this,{travel,fleet,task,yaw});const style=document.createElement('style');style.textContent=STORY_FOCUS_STYLE;document.head.append(style);this.goal=null;travel.navigation=this;
   this.liveMap=document.getElementById('minimap');this.districtMap=!this.liveMap;
   if(this.districtMap){this.liveMap=document.createElement('canvas');this.liveMap.id='minimap';this.liveMap.width=720;this.liveMap.height=560;this.liveMap.setAttribute('aria-label','Live Tidegate route map. White is you; gold is your current goal. Wildlife is not shown on this compact route map.');
    const button=document.createElement('button');button.id='live-map-button';button.title='Open full map';button.style.cssText='position:absolute;right:16px;bottom:110px;width:clamp(150px,24vw,260px);padding:4px;background:#173c35;border:2px solid #edcf86;pointer-events:auto';this.liveMap.style.cssText='display:block;width:100%;height:auto';button.append(this.liveMap);button.onclick=()=>travel.ctx.action('map');document.getElementById('hud').append(button);
@@ -20,6 +21,7 @@ export class FieldNavigation{
  }
  update(time=0){
   const t=this.task(),p=this.fleet.position,b=navigationBearing(p,t?.target,this.yaw());this.goal=b?{...t,bearing:b}:null;
+  document.body.dataset.livingFocus=String(storyFocus(t));
   const show=!!b&&this.travel.settings.guidance;this.group.visible=show;this.hud.hidden=!show;
   if(!b){this.mapText.textContent='No active destination. Choose an operation or explore.';this.updateMap();return;}
   const elevation=b.height>3?' / ABOVE':b.height< -3?' / BELOW':'',title=t.name||t.title||'Active objective';

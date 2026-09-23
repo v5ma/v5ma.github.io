@@ -42,7 +42,7 @@ jobs:
           import hashlib,json,subprocess
           paths=subprocess.check_output(['git','ls-files','dino-atlas'],text=True).splitlines()
           files=[p for p in paths if not p.startswith(('dino-atlas/tests/','dino-atlas/verification/','dino-atlas/scripts/')) and Path(p).suffix in ('.js','.mjs','.wasm','.html','.css','.png','.jpg','.webp','.glb','.ogg','.mp3')]
-          m={'build':'living-reserve-20260922.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
+          m={'build':'currentworks-reserve-20260922.1','commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}}
           Path('spatial-evidence/manifest.json').write_text(json.dumps(m,indent=2))
           PY
       - uses: actions/upload-artifact@v4
@@ -138,11 +138,14 @@ jobs:
         run: |
           python dino-atlas/tests/living-reserve-browser.py
           LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
+          python dino-atlas/tests/currentworks-browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: dino-spatial-story-${{ github.run_id }}
-          path: living-evidence/
+          path: |
+            living-evidence/
+            currentworks-evidence/
           retention-days: 30
   published:
     needs: [model, browser, entry, story]
@@ -193,6 +196,7 @@ jobs:
         run: |
           python dino-atlas/tests/living-reserve-browser.py
           LIVING_XR=1 python dino-atlas/tests/living-reserve-browser.py
+          python dino-atlas/tests/currentworks-browser.py
           SPATIAL_SCENE=classic python dino-atlas/tests/field-feedback-browser.py
           SPATIAL_SCENE=tidegate python dino-atlas/tests/field-feedback-browser.py
           SPATIAL_SCENE=classic python dino-atlas/tests/spatial-console-browser.py
@@ -204,6 +208,7 @@ jobs:
           name: dino-spatial-published-${{ github.run_id }}
           path: |
             living-evidence/
+            currentworks-evidence/
             feedback-evidence/
             spatial-evidence/
             portal-evidence/
@@ -228,7 +233,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view dino-living-reserve-20260922.1 >/dev/null 2>&1; then
+          if ! gh release view dino-currentworks-20260922.1 >/dev/null 2>&1; then
             tar -czf dino-spatial-console-evidence.tgz -C evidence .
-            gh release create dino-living-reserve-20260922.1 --target '${{ github.sha }}' --title 'Dino Atlas: The Living Reserve / First Light' --prerelease --notes-file dino-atlas/LIVING-RESERVE.md dino-spatial-console-evidence.tgz
+            gh release create dino-currentworks-20260922.1 --target '${{ github.sha }}' --title 'Dino Atlas: Currentworks / Living Reserve visuals' --prerelease --notes-file dino-atlas/CURRENTWORKS.md dino-spatial-console-evidence.tgz
           fi

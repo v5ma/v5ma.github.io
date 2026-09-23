@@ -1,3 +1,4 @@
+import {CurrentworksReserve} from './currentworks-reserve.js';
 import * as T from './vendor/three.module.js';
 import {OPTICS_BUILD,CoastalMaterials,CoastalBloom,readOptics,saveOptics,effectivePreset} from './coastal-shaders.js?v=coastal1';
 const $=id=>document.getElementById(id);
@@ -20,14 +21,14 @@ export class CoastalLight{
   // Reuse existing event sources; no second gameplay/physics or musical director.
   const world=ctx.ranchWorld;this.originalHorn=world.horn;this.originalShot=world.shot;
   world.horn=(p,reduced)=>{this.originalHorn(p,reduced);if(!reduced)this.fx.impact(p,.5);};
-  world.shot=(kind,a,b,targets)=>{this.originalShot(kind,a,b,targets);if(kind==='water')this.fx.impact(b,.18);};
+  world.shot=(kind,a,b,targets)=>{this.originalShot(kind,a,b,targets);if(kind==='water'){this.fx.impact(b,.18);this.environment?.splash(b);}};
   this.priorError=ctx.renderer.debug.onShaderError;
   ctx.renderer.debug.onShaderError=(...args)=>{this.failed=true;this.errorCount++;this.priorError?.(...args);const [gl,program,vs,fs]=args;console.error('Coastal Light shader rejected; restoring Classic materials.',gl.getProgramInfoLog(program),gl.getShaderInfoLog(vs),gl.getShaderInfoLog(fs));};
-  this.installUI();this.apply();
+  this.environment=new CurrentworksReserve(ctx);this.installUI();this.apply();
  }
  installUI(){
   document.querySelector('#menu-dialog .menu-grid')?.insertAdjacentHTML('afterbegin','<button id="menu-coastal-light">Coastal Light / shaders</button>');
-  document.body.insertAdjacentHTML('beforeend',`<dialog id="coastal-light-dialog" aria-labelledby="coastal-light-title"><p class="eyebrow">MATERIALS / LIGHT / MOTION</p><h2 id="coastal-light-title">Coastal Light.</h2><p>Sunlit turquoise shallows, moving water highlights, canopy wind and luminous research pulses. At dusk, your boat leaves a cyan bioluminescent wake.</p><button class="primary" id="coastal-close">Return to the reserve / B</button><div class="settings"><label>Shader preset <select id="coastal-preset"><option value="classic">Classic / original materials</option><option value="balanced">Balanced / materials only</option><option value="cinematic">Cinematic / soft bloom</option></select></label><label><input type="checkbox" id="coastal-water">Water, foam and boat wakes</label><label><input type="checkbox" id="coastal-wind">Canopy breeze</label><label><input type="checkbox" id="coastal-energy">Luminous sonic / gravity effects</label><label>Bloom intensity <input id="coastal-bloom" type="range" min="0" max="0.8" step="0.05"><output id="coastal-bloom-value"></output></label></div><p id="coastal-status" role="status"></p><p><b>Where to see it.</b> Sail from Wetland Dock into the ocean or start the coastal race in Dispatch. Drive through the Visitor Sonic Gate beyond the first junction. The forest moves around the existing roads. During Storm Response, the roads acquire patchy wet highlights.</p><p><b>Your settings stay in charge.</b> Dusk is in the main menu. Reduced Motion freezes shader time and removes wind, wakes and new expanding shells. Cinematic falls back to Balanced on Low graphics or without floating-point render-target support. It adds soft bloom, not ray-traced reflections or extra gameplay damage.</p><p class="pad-help">D-pad navigates. A selects or toggles. Left/right changes the focused value. B closes. X remains reload in the world. All earlier missions, saves and controls are preserved.</p></dialog>`);
+  document.body.insertAdjacentHTML('beforeend',`<dialog id="coastal-light-dialog" aria-labelledby="coastal-light-title"><p class="eyebrow">MATERIALS / LIGHT / MOTION</p><h2 id="coastal-light-title">Coastal Light.</h2><p>Currentworks pond and wetland water, detailed alder/palm/willow trees, moving highlights and luminous research pulses. At dusk, your boat leaves a cyan bioluminescent wake.</p><button class="primary" id="coastal-close">Return to the reserve / B</button><div class="settings"><label>Shader preset <select id="coastal-preset"><option value="classic">Classic / original materials</option><option value="balanced">Balanced / materials only</option><option value="cinematic">Cinematic / soft bloom</option></select></label><label><input type="checkbox" id="coastal-water">Water, foam and boat wakes</label><label><input type="checkbox" id="coastal-wind">Canopy breeze</label><label><input type="checkbox" id="coastal-energy">Luminous sonic / gravity effects</label><label>Bloom intensity <input id="coastal-bloom" type="range" min="0" max="0.8" step="0.05"><output id="coastal-bloom-value"></output></label></div><p id="coastal-status" role="status"></p><p><b>New graphics.</b> Look for detailed trees along the central reserve trails and ripple detail at the woodland pond northwest of the entrance. Wetland lagoons use the same pinned Prism water library. Original ocean and pool rendering remain. Trees and water follow Reduced Motion, Low graphics and the existing Classic fallback. No physics or save changes.</p><p><b>Where to see it.</b> Sail from Wetland Dock into the ocean or start the coastal race in Dispatch. Drive through the Visitor Sonic Gate beyond the first junction. The forest moves around the existing roads. During Storm Response, the roads acquire patchy wet highlights.</p><p><b>Your settings stay in charge.</b> Dusk is in the main menu. Reduced Motion freezes shader time and removes wind, wakes and new expanding shells. Cinematic falls back to Balanced on Low graphics or without floating-point render-target support. It adds soft bloom, not ray-traced reflections or extra gameplay damage.</p><p class="pad-help">D-pad navigates. A selects or toggles. Left/right changes the focused value. B closes. X remains reload in the world. All earlier missions, saves and controls are preserved.</p></dialog>`);
   $('menu-coastal-light').onclick=()=>this.open();$('coastal-close').onclick=()=>this.ctx.close();
   $('coastal-light-dialog').addEventListener('cancel',e=>{e.preventDefault();this.ctx.close();});$('coastal-light-dialog').addEventListener('close',()=>this.ctx.input.clear());
   $('coastal-preset').value=this.s.preset;$('coastal-preset').onchange=e=>{this.s.preset=e.target.value;this.failed=false;this.apply();this.save();};
@@ -41,7 +42,7 @@ export class CoastalLight{
   $('coastal-bloom-value').textContent=this.s.bloom.toFixed(2);
   $('coastal-status').textContent=this.failed?'A shader failed on this device. Classic is active; all gameplay remains available.':this.s.preset!==preset?`Requested ${this.s.preset}; ${preset} is active because ${low?'Low graphics is selected':'floating-point rendering is unavailable'}.`:`Active preset: ${preset}. ${preset==='cinematic'?'Three extra full-screen passes.':'No extra full-screen passes.'}`;
  }
- apply(){const effective=this.failed?'classic':effectivePreset(this.s,this.ctx.settings.low,this.bloom.available);this.fx.apply(this.s,effective);if(effective!=='cinematic')this.bloom.release();this.current=effective;this.status();}
+ apply(){const effective=this.failed?'classic':effectivePreset(this.s,this.ctx.settings.low,this.bloom.available);this.fx.apply(this.s,effective);if(effective!=='cinematic')this.bloom.release();this.current=effective;this.environment?.update(0,{...this.s,preset:effective});this.status();}
  burst(p,type){
   if(!p||![p.x,p.z].every(Number.isFinite)||this.current==='classic'||!this.s.energy||this.ctx.settings.reduced)return;
   this.events++;const o=this.shells[this.shellCursor++%5];o.age=0;o.life=type==='gravity'?2.5:1.35;o.radius=type==='gravity'?17:12;
@@ -49,6 +50,7 @@ export class CoastalLight{
  }
  update(dt){
   const {fleet,settings,director}=this.ctx;const effective=this.failed?'classic':effectivePreset(this.s,settings.low,this.bloom.available);if(effective!==this.current)this.apply();
+  this.environment.update(dt,{...this.s,preset:effective});
   const boat=fleet.vehicles.find(v=>v.type==='boat');const p=boat?.drive.position;
   this.fx.update(dt,{night:settings.night,storm:director?.stormMix||0,reduced:settings.reduced,boat:p?{x:p.x,z:p.z,speed:Math.abs(boat.drive.speed)}:null});
   const step=Number.isFinite(dt)?Math.max(0,Math.min(.1,dt)):0;
@@ -57,10 +59,10 @@ export class CoastalLight{
   }
  }
  render(scene,camera){
-  const r=this.ctx.renderer;
+  const r=this.ctx.renderer;this.environment.prepare(camera);
   if(this.current==='cinematic'&&!this.failed){try{this.bloom.render(scene,camera,this.s.bloom);return;}catch(error){this.failed=true;this.errorCount++;this.apply();this.ctx.notify('Cinematic rendering fell back to Classic. Your game continues.');console.warn('Coastal Light fallback',error);}}
   r.render(scene,camera);
  }
- snapshot(){return {build:OPTICS_BUILD,requested:this.s.preset,effective:this.current,settings:{...this.s},reduced:this.ctx.settings.reduced,failed:this.failed,shaderErrors:this.errorCount,...this.fx.snapshot(),post:this.bloom.snapshot(),shells:this.shells.filter(o=>o.mesh.visible).length,events:this.events};}
- dispose(){window.removeEventListener('dino-spectacle',this.event);this.ctx.ranchWorld.horn=this.originalHorn;this.ctx.ranchWorld.shot=this.originalShot;this.ctx.renderer.debug.onShaderError=this.priorError;this.fx.dispose();this.bloom.dispose();for(const o of this.shells){o.mesh.removeFromParent();o.mesh.material.dispose();}this.geo.dispose();}
+ snapshot(){return {build:OPTICS_BUILD,requested:this.s.preset,effective:this.current,settings:{...this.s},currentworks:this.environment.snapshot(),reduced:this.ctx.settings.reduced,failed:this.failed,shaderErrors:this.errorCount,...this.fx.snapshot(),post:this.bloom.snapshot(),shells:this.shells.filter(o=>o.mesh.visible).length,events:this.events};}
+ dispose(){this.environment.dispose();window.removeEventListener('dino-spectacle',this.event);this.ctx.ranchWorld.horn=this.originalHorn;this.ctx.ranchWorld.shot=this.originalShot;this.ctx.renderer.debug.onShaderError=this.priorError;this.fx.dispose();this.bloom.dispose();for(const o of this.shells){o.mesh.removeFromParent();o.mesh.material.dispose();}this.geo.dispose();}
 }

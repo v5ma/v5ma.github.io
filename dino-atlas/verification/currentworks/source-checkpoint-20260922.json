@@ -1,0 +1,18 @@
+{
+  "build": "currentworks-reserve-20260922.1",
+  "base_master": "c31dd6c56a101aec7c8a890768ae1f845494b294",
+  "retained_runtime_source": "6f1e4bdcae98dd4b4e81e43dd8e039d93b7a303f",
+  "engine": "Three.js r177; unchanged",
+  "modules": {"water": "0.1.0", "trees": "0.1.3", "fire": "not integrated"},
+  "local_model_tests": {"passed": 305, "failed": 0, "skipped": 0, "retained": 297, "new": 8},
+  "source_checker": {"passed": true, "syntaxFiles": 66, "conflictScannedFiles": 77},
+  "python_runner_compiles": true,
+  "local_native_browser": {"result": "blocked before gameplay", "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:4173/dino-atlas/index.html?test=1", "policy_bypassed": false},
+  "hosted_source": "pending; inspect existing workflow",
+  "public_runtime_match": "pending",
+  "public_gameplay": "pending",
+  "physicalHardwareVerified": false,
+  "save_or_physics_changes": false,
+  "new_campaign_chapter": false,
+  "scope": "Three bounded Classic water surfaces; selected existing central tree positions; First Light competing-copy suppression; pinned modules, tests and existing read-only workflow only."
+}

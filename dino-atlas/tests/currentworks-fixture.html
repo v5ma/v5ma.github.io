@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Dino Currentworks / explicit graphics fixture</title><style>body{margin:0;background:#142e29}canvas{display:block}</style><canvas id="view"></canvas><script type="module">
+import * as T from '../vendor/three.module.js';
+import {initPhysics,ParkPhysics} from '../ranger-physics.js';
+import {buildPark} from '../ranger-world.js';
+import {buildFrontier} from '../frontier-world-expanded.js';
+import {buildRanchWorld} from '../ranch-world.js';
+import {emptyFrontier} from '../frontier-data.js';
+import {CurrentworksReserve} from '../currentworks-reserve.js';
+import {PortalMaterials} from '../diorama-portal.js';
+await initPhysics();const renderer=new T.WebGLRenderer({canvas:document.getElementById('view'),antialias:true,alpha:true});renderer.setSize(960,640);renderer.toneMapping=T.ACESFilmicToneMapping;renderer.outputColorSpace=T.SRGBColorSpace;
+const scene=new T.Scene(),physics=new ParkPhysics();buildPark(scene,physics);buildFrontier(scene,physics,emptyFrontier());buildRanchWorld(scene,physics);
+const camera=new T.PerspectiveCamera(50,1.5,.1,600),settings={low:false,reduced:false,night:false},ctx={scene,renderer,settings,fleet:{position:{x:-27,y:1,z:-17},vehicles:[]}},fx=new CurrentworksReserve(ctx),portal=new PortalMaterials();
+window.fixtureErrors=[];renderer.debug.onShaderError=(gl,p,vs,fs)=>fixtureErrors.push(gl.getProgramInfoLog(p)+' '+gl.getShaderInfoLog(vs)+' '+gl.getShaderInfoLog(fs));
+window.drawCurrentworks=({view='pond',quiet=false,classic=false,mask=false}={})=>{
+ settings.reduced=quiet;fx.update(.1,{preset:classic?'classic':'balanced',water:true,wind:true});
+ let target=new T.Vector3(-27,.15,-32);if(view==='trees'&&fx.descriptors.length){const p=fx.descriptors[0].position;target.set(p[0],4,p[2]);}if(view==='lagoon')target.set(-164,.15,-155);
+ camera.position.copy(target).add(view==='lagoon'?new T.Vector3(10,35,60):view==='trees'?new T.Vector3(13,7,16):new T.Vector3(11,13,20));camera.lookAt(target);camera.updateMatrixWorld(true);
+ if(mask){portal.collect(fx.root);portal.configure(target,0,{width:12,height:12,depth:12});}portal.active=mask;
+ fx.prepare(camera);renderer.render(scene,camera);const gl=renderer.getContext();gl.finish();
+ const pixels=new Uint8Array(960*640*4);gl.readPixels(0,0,960,640,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let changed=0,hash=2166136261;for(let i=0;i<pixels.length;i+=16){hash=Math.imul(hash^pixels[i],16777619);if(pixels[i]>15&&pixels[i+3]>0)changed++;}
+ return {state:fx.snapshot(),errors:[...fixtureErrors],glError:gl.getError(),changed,hash:hash>>>0,mask,view,quiet,classic,calls:renderer.info.render.calls,triangles:renderer.info.render.triangles};
+};window.fixtureReady=true;
+</script></html>
