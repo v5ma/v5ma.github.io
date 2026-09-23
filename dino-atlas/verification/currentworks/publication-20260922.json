@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "build": "currentworks-reserve-20260922.1",
+  "runtime_commit": "4df8736d4db11cfe796895d07d60794f31a81745",
+  "validation_commit": "4a96b327eaebb0464d79888d6dd2b680abb9624e",
+  "public_url": "https://v5ma.github.io/dino-atlas/",
+  "workflow_run": 35807536633,
+  "final_workflow_attempt": 2,
+  "source_and_all_public_jobs": "success",
+  "release_job": {"id": 107040641120, "result": "success"},
+  "public_runtime": {
+    "files": 83,
+    "all_match": true,
+    "canonical_files_map_sha256": "02c771f1f603842ae0de3d79610c98bb05dbfdae05ee3a23cb0a0786aea6b293",
+    "canonicalization": "SHA256 of UTF-8 json.dumps(files, sort_keys=True, separators=(comma,colon))",
+    "independent_archive_and_manifest_comparison": true
+  },
+  "independent_local_rerun": {
+    "tests": 305, "passed": 305, "failures": 0, "skipped": 0,
+    "syntax_files": 66, "scanned_files": 77, "physical_hardware_tested": false
+  },
+  "public_story": {
+    "screen": {
+      "artifact_id": 10729709161, "passed": 16, "errors": [],
+      "sha256": "d322ed56aee6a777cc2beb35654f7a9a77cb32f61494955061ec8369650cd23f"
+    },
+    "xr_mock": {
+      "artifact_id": 10729469352, "passed": 18, "errors": [],
+      "sha256": "00086b631dd47686bd414a0196f21e781aaa2a3dfab8a2fc01c92d4efe07e399"
+    }
+  },
+  "public_graphics_and_retained_ui": {
+    "job": 107038601663,
+    "workflow_attempt": 2,
+    "artifact_id": 10732013010,
+    "artifact_sha256": "148947c236560026f4d9f5abc2b9832174aaafbf11b5dc88442f3b47f5f78ea8",
+    "runtime_files_matched": 83,
+    "reports": {
+      "currentworks-evidence/report.json": {
+        "passed": 26, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "e05a91c58a8cf0edb47dc8a06a9cc176d63759df4ab46cdcdd7ecf8f6091c999"
+      },
+      "feedback-evidence/classic-report.json": {
+        "passed": 22, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "7ef77e6a206f34fc3a09dff6dd1c0f05c710150370af9c8f1659102e924f3340"
+      },
+      "feedback-evidence/tidegate-report.json": {
+        "passed": 22, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "2b86a54c0be8ded9fd00977d26e1ca1509b0ebbb2f5b8605b91aad011444a439"
+      },
+      "spatial-evidence/classic-report.json": {
+        "passed": 30, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "47fe1b8e099094fa0ab85e4f3697329a81e5d432f9c4080f0a6aaf8cb51e7260"
+      },
+      "spatial-evidence/tidegate-report.json": {
+        "passed": 29, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "056a8fe8bdaf046bf644f8d40bb6a42dfb399179f21883cb34c8c42d205d8f9b"
+      },
+      "portal-evidence/classic-report.json": {
+        "passed": 15, "errors": [], "base": "https://v5ma.github.io/dino-atlas/",
+        "report_sha256": "af6cfffe01ee2ee9d57885f3a56a7bbd213e17dfee189baa24073e3fcaf50d22"
+      }
+    },
+    "passed": 144,
+    "runtime_and_tests_changed_for_retry": false
+  },
+  "total_public_assertions_passed": 178,
+  "captured_public_errors": [],
+  "preservation": {
+    "prior_files": 77, "current_files": 83,
+    "changed_original": ["dino-atlas/coastal-light.js", "dino-atlas/field-navigation.js"],
+    "added": [
+      "dino-atlas/currentworks-reserve.js", "dino-atlas/story-focus.js",
+      "dino-atlas/vendor/currentworks/trees.js", "dino-atlas/vendor/currentworks/trees.mjs",
+      "dino-atlas/vendor/currentworks/water.js", "dino-atlas/vendor/currentworks/water.mjs"
+    ],
+    "unchanged_original": 75
+  },
+  "earlier_failures": "See public-first-attempt-20260922.json and first-native-attempt-20260922.json. The successful final public retry changed neither runtime nor tests. Preserve the first short-lived-message timeout; a runtime repair is not claimed.",
+  "release": {
+    "tag": "dino-currentworks-20260922.1", "id": 394291877,
+    "target_commitish": "4a96b327eaebb0464d79888d6dd2b680abb9624e",
+    "published_at": "2026-09-23T04:07:30Z",
+    "asset_id": 582922659, "asset_name": "dino-spatial-console-evidence.tgz",
+    "asset_bytes": 17587835,
+    "github_reported_sha256": "6a0e80870c5f196b8f71acadea9117957601cda500de108a8ade1df5ac9a4d57",
+    "release_asset_independently_downloaded": false,
+    "note": "Release existence and uploaded asset metadata verified separately from the downloaded source/public evidence archives."
+  },
+  "limits": {
+    "physical_hardware_verified": false, "local_public_browser_claimed": false,
+    "human_visual_onboarding_approval": false, "tree_fixture_foreground_occlusion_remains": true,
+    "new_story_chapter": false, "additional_library_modules_beyond_water_and_trees": false
+  }
+}
