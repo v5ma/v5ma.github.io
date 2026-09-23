@@ -2,7 +2,26 @@
   "schema_version": 1,
   "archived_on": "2026-09-22",
   "base_commit": "c31dd6c56a101aec7c8a890768ae1f845494b294",
-  "scope": "Three linked articles and their narration/transcript derivatives, plus any pinned episode citation-hash derivatives. Episode spoken content, recording bytes and all previous revision receipts remain unchanged.",
+  "scope": "Three linked articles and their narration/transcript derivatives. Episode spoken content, recording bytes and all previous revision receipts remain unchanged. Base-version pins allow subsequent checks in shallow checkouts.",
+  "prior_receipt_hashes": {
+    "scripture-concordance/revision-receipt.json": "e2eeed4355115831673217451808c47ddc6cce49c67f5d4f45722d5621bfc7f5",
+    "research-expansion-20260918/revision-receipt.json": "7c5e77b4754aa87828395faeed4e9a1f3bd100dd2202d0b748660c079cbc5880",
+    "comparative-religion/revision-receipt.json": "efd024fe57bd3a9853aba4da5371b1dba6bebf1683faa52dd6d94e473bea9ac5"
+  },
+  "episode_content_hashes": {
+    "counting-the-departure": {
+      "metadata_without_source_hashes": "08c89699fb58c1fe355751793e6effe29648b374bde885bae640c32af71f43e7",
+      "transcript_without_source_hashes": "a1338c3274e9719917599c6c39c3ec3e1c5c4d4263fae855d7da9d872d07d9ef"
+    },
+    "teacher-copy-community": {
+      "metadata_without_source_hashes": "34120a72aa8b2cb050f2968e38ffcafc452edf08af51ad0fdac44d7cf3281171",
+      "transcript_without_source_hashes": "70e01311afac7e57d50bf05b119a9ef4b0cd0cbcc49ec8da671de3526b50f63c"
+    },
+    "objections-in-the-museum": {
+      "metadata_without_source_hashes": "8f354159d6a25ffc33e53906a24d94ca67021e517130a3549804d4439d02fe6f",
+      "transcript_without_source_hashes": "df5a4079e60370db13679efe2a06af3586358d48b2497b357d54a393eebfac95"
+    }
+  },
   "files": {
     "content/developed/exodus-to-temple-competing-chronologies.md": {
       "before": "53431a7652ebd1dc686f5dbf9be2c88504c0bd57b0656e3a75fb2c0d8abf24f3",
