@@ -112,3 +112,8 @@ with sync_playwright() as pw:
     finally:
         browser.close()
         if server:server.shutdown()
+
+# Keep the original guide checks intact and follow with the full AR scoring pass.
+# Its report stays inside the existing job's independently archived artifact.
+import subprocess
+subprocess.run([sys.executable,str(APP/'tests/chromatic-browser.py')]+(['--public'] if PUBLIC else []),check=True)

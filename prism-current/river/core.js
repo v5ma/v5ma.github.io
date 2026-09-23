@@ -2,7 +2,9 @@
    Pure gameplay module. No renderer, storage, clock mutation, or remote service. */
 (function(root){'use strict';
  const D=typeof module!=='undefined'&&module.exports?require('./difficulty'):root.PrismDifficulty;
- const BPM=132,BEAT=60/BPM,DURATION=196*BEAT,BOSS_BEAT=152,KEY='prism-current.river.pacing.records.v1',LEGACY_KEY='prism-current.river.records.v1';
+ const BPM=132,BEAT=60/BPM,DURATION=196*BEAT,BOSS_BEAT=152,KEY='prism-current.river.chromatic.records.v1',PACING_KEY='prism-current.river.pacing.records.v1',LEGACY_KEY='prism-current.river.records.v1';
+ const PALETTES=Object.freeze([Object.freeze({name:'MINT',symbol:'O',color:0x73ffd7,css:'#73ffd7'}),Object.freeze({name:'ROSE',symbol:'<>',color:0xff99c0,css:'#ff99c0'})]);
+ const MATCH_BONUS=40;
  const DIRS=[[0,-1],[0,1],[-1,0],[1,0],[-.707,-.707],[.707,-.707],[-.707,.707],[.707,.707]];
  const PHASES=[{name:'Duck Armada',cue:'Slice the fruit. Shoot the catapult ducks before they fire.',level:-.18,beat:0},{name:'Toyboat Rapids',cue:'Cut or shoot the purple blocks. Mint health boxes restore HEALTH.',level:.22,beat:64},{name:'High Tide Airshow',cue:'Planes launch fruit and blocks. Cut, shoot or shield the blocks.',level:.64,beat:112},{name:'Admiral Quack',cue:'Admiral Quack arrives! Shoot the glowing engine after his entrance.',level:.38,beat:152}];
  const SPACE=[{name:'First Contact',cue:'Triggers fire saber lasers. Shoot the small ships.',level:-.18,beat:0},{name:'Interceptor Swarm',cue:'Escorts toss fruit and cuttable blocks. Cut, shoot or shield them.',level:.22,beat:64},{name:'Final Approach',cue:'Gather health supplies. The mothership arrives in the final phrase.',level:.64,beat:112},{name:'Mothership Core',cue:'The glowing core is open. Keep shooting, slicing and shielding.',level:.38,beat:152}];
@@ -33,7 +35,7 @@
  }
  function create(chapter='duck-armada',cruise=false,difficulty='easy'){
   difficulty=D.normalize(difficulty);
-  const s={chapter,cruise,time:0,mode:'ready',duration:DURATION,health:100,maxHealth:100,score:0,combo:0,bestCombo:0,entities:[],timeline:plan(chapter,difficulty),cursor:0,nextId:1,eventId:0,events:[],bossDefeated:false,lastShot:[-10,-10],lastSlice:[-10,-10],stats:{slices:0,shots:0,shotHits:0,blocks:0,reflects:0,dodges:0,misses:0,damage:0,bossDamage:0,pickups:0,healed:0,cutBlocks:0},body:[0,1.45,0]};
+  const s={chapter,cruise,time:0,mode:'ready',duration:DURATION,health:100,maxHealth:100,score:0,combo:0,bestCombo:0,bladeColors:[0,1],entities:[],timeline:plan(chapter,difficulty),cursor:0,nextId:1,eventId:0,events:[],bossDefeated:false,lastShot:[-10,-10],lastSlice:[-10,-10],stats:{slices:0,shots:0,shotHits:0,blocks:0,reflects:0,dodges:0,misses:0,damage:0,bossDamage:0,pickups:0,healed:0,cutBlocks:0,colorMatches:0,colorBonus:0},body:[0,1.45,0]};
   // Menu preferences cannot relabel the encounter or the record it earns.
   Object.defineProperty(s,'difficulty',{value:difficulty,enumerable:true});
   return s;
@@ -50,28 +52,40 @@
   const f=clamp(age/n.life,0,1);return [n.x+Math.sin(age*.70+n.id)*.18,n.y+Math.sin(age*.9)*.07,-13+f*9];
  }
  function open(s,n){return n.type!=='boss'||s.time>=n.at+4*BEAT;}
- function reward(s,value){s.combo++;s.bestCombo=Math.max(s.bestCombo,s.combo);s.score+=Math.round(value*(1+Math.min(3,Math.floor(s.combo/8))*.25));}
- function kill(s,n,reason,p){if(n.dead)return;n.dead=true;if(n.type==='boss')s.bossDefeated=true;reward(s,n.type==='boss'?2500:n.type==='fruit'?120:180);emit(s,'destroy',{entity:n.id,kind:n.type,position:p,reason,hand:n.hand||0,dir:n.dir||0});}
+ function cycleColor(s,hand){
+  if(!s||s.mode!=='playing'||![0,1].includes(hand)||!Array.isArray(s.bladeColors))return false;
+  s.bladeColors[hand]=1-s.bladeColors[hand];emit(s,'blade-color',{hand,color:s.bladeColors[hand]});return true;
+ }
+ function reward(s,value){s.combo++;s.bestCombo=Math.max(s.bestCombo,s.combo);const points=Math.round(value*(1+Math.min(3,Math.floor(s.combo/8))*.25));s.score+=points;return points;}
+ function kill(s,n,reason,p,hand){if(n.dead)return;n.dead=true;if(n.type==='boss')s.bossDefeated=true;
+  const base=n.type==='boss'?2500:n.type==='fruit'?120:180;
+  const matched=n.type==='fruit'&&reason==='slice'&&[0,1].includes(hand)&&s.bladeColors[hand]===(n.hand||0);
+  // Award the exact previous base formula once, then an additive optional bonus.
+  // A mismatch never invalidates a good cut or reduces its original reward.
+  const basePoints=reward(s,base),bonusPoints=matched?Math.round(MATCH_BONUS*(1+Math.min(3,Math.floor(s.combo/8))*.25)):0;
+  s.score+=bonusPoints;if(matched){s.stats.colorMatches++;s.stats.colorBonus+=bonusPoints;}
+  emit(s,'destroy',{entity:n.id,kind:n.type,position:p,reason,hand:hand??n.hand??0,dir:n.dir||0,matched,basePoints,bonusPoints,points:basePoints+bonusPoints});
+ }
  function heal(s,n,reason,p){
   if(n.dead)return false;n.dead=true;const amount=Math.min(n.heal||D.get(s.difficulty).heal,Math.max(0,(s.maxHealth||100)-s.health));
   s.health+=amount;s.stats.pickups++;s.stats.healed+=amount;reward(s,50);emit(s,'heal',{entity:n.id,position:p,amount,health:s.health,reason});return true;
  }
  function hurt(s,amount,p){s.combo=0;s.stats.damage+=amount;if(!s.cruise)s.health=Math.max(0,s.health-amount);emit(s,'damage',{position:p,amount});if(s.health===0){s.mode='failed';emit(s,'end');}}
- function damage(s,n,amount,reason,p){if(n.type==='health')return heal(s,n,reason,p);if(!open(s,n)){emit(s,'armored',{position:p});return false;}n.hp-=amount;if(n.type==='boss')s.stats.bossDamage+=amount;if(n.hp<=0)kill(s,n,reason,p);else emit(s,'hit',{position:p,kind:n.type});return true;}
+ function damage(s,n,amount,reason,p,hand){if(n.type==='health')return heal(s,n,reason,p);if(!open(s,n)){emit(s,'armored',{position:p});return false;}n.hp-=amount;if(n.type==='boss')s.stats.bossDamage+=amount;if(n.hp<=0)kill(s,n,reason,p,hand);else emit(s,'hit',{position:p,kind:n.type});return true;}
  function shoot(s,hand,origin,direction){if(s.mode!=='playing'||![0,1].includes(hand)||!valid(origin)||!valid(direction)||s.time-s.lastShot[hand]<.18||length(direction)<.1)return false;
   s.lastShot[hand]=s.time;s.stats.shots++;const d=norm(direction);let target=null,best=40;
   for(const n of s.entities){if(n.dead||n.type==='return')continue;const r=raySphere(origin,d,position(s,n),n.r);if(r<best){best=r;target=n;}}
   emit(s,'laser',{hand,start:origin.slice(),end:add(origin,scale(d,best))});
-  if(target){if(damage(s,target,1,'laser',position(s,target)))s.stats.shotHits++;return true;}return false;
+  if(target){if(damage(s,target,1,'laser',position(s,target),hand))s.stats.shotHits++;return true;}return false;
  }
  function slice(s,hand,prior,pose,t0,t1){if(s.mode!=='playing'||![0,1].includes(hand)||!prior||!pose||![prior.a,prior.b,pose.a,pose.b].every(valid)||!Number.isFinite(t0)||!Number.isFinite(t1)||t1<=t0||t1-t0>.12)return 0;
   const movement=sub(pose.b,prior.b),speed=length(movement)/(t1-t0);if(speed<.45||speed>22)return 0;let count=0;
   for(const n of s.entities){if(s.mode!=='playing')break;if(n.dead||!['fruit','block','health','bomb','bolt'].includes(n.type))continue;const p=position(s,n),d=Math.min(segment(p,prior.a,pose.a),segment(p,prior.b,pose.b),segment(p,pose.a,pose.b),segment(p,prior.a,prior.b));if(d>n.r+.08)continue;
    if(n.type==='bomb'){n.dead=true;hurt(s,8,p);emit(s,'badcut',{position:p});continue;}
    if(n.type==='health'){heal(s,n,'slice',p);count++;continue;}
-   if(n.type==='block'||n.type==='bolt'){s.stats.cutBlocks++;s.stats.slices++;kill(s,n,'slice',p);count++;continue;}
+   if(n.type==='block'||n.type==='bolt'){s.stats.cutBlocks++;s.stats.slices++;kill(s,n,'slice',p,hand);count++;continue;}
    const dir=DIRS[n.dir]||DIRS[0],flat=Math.hypot(movement[0],movement[1]);if(D.get(s.difficulty).directionRequired&&(flat<.01||(movement[0]*dir[0]+movement[1]*dir[1])/flat<.25)){emit(s,'wrongcut',{position:p});continue;}
-   s.stats.slices++;kill(s,n,'slice',p);count++;
+   s.stats.slices++;kill(s,n,'slice',p,hand);count++;
   }return count;
  }
  function shieldHit(s,n,a,b,shields){for(const h of shields||[]){if(!h.active||!valid(h.center)||!valid(h.normal)||segment(h.center,a,b)>.50+n.r||dot(sub(b,a),h.normal)>=0)continue;
@@ -105,5 +119,5 @@
  }
  function result(s){return {chapter:s.chapter,difficulty:s.difficulty,score:s.score,combo:s.bestCombo,health:s.health,bossDefeated:s.bossDefeated,complete:s.mode==='complete',...s.stats};}
  function records(text){const clean={};try{const d=JSON.parse(text);for(const [k,v]of Object.entries(d||{}))if(/^(duck-armada|mothership)\/(desktop|gamepad|vr|ar)\/(easy|normal|hard|ultra-hard)\/(arcade|cruise)$/.test(k)&&v&&Number.isSafeInteger(v.score)&&v.score>=0&&Number.isSafeInteger(v.wins)&&v.wins>=1)clean[k]={score:v.score,wins:v.wins};}catch{}return clean;}
- const api={BPM,BEAT,DURATION,BOSS_BEAT,KEY,LEGACY_KEY,DIFFICULTIES:D,DIRS,PHASES,SPACE,phase,water,plan,create,advance,position,shoot,slice,result,records,open,segment,raySphere};root.RiverCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={BPM,BEAT,DURATION,BOSS_BEAT,KEY,PACING_KEY,LEGACY_KEY,PALETTES,MATCH_BONUS,cycleColor,DIFFICULTIES:D,DIRS,PHASES,SPACE,phase,water,plan,create,advance,position,shoot,slice,result,records,open,segment,raySphere};root.RiverCore=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

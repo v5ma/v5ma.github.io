@@ -7,7 +7,7 @@
  const VERSION='0.1.0',WIDTH=512,HEIGHT=384;
  function cards(profile){
   return [
-   {id:'fruit',title:'FRUIT',verb:'SWING TO CUT',detail:'Either saber earns points',note:profile.directionRequired?'Follow the fruit arrows':'Any cut direction',color:'#b8f378'},
+   {id:'fruit',title:'FRUIT',verb:'SWING TO CUT',detail:'Either saber: base reward',note:profile.directionRequired?'Follow the fruit arrows':'Any cut direction',color:'#b8f378'},
    {id:'block',title:'PURPLE BLOCK',verb:'CUT / SHOOT / SHIELD',detail:'Triggers fire your lasers',note:'Grips raise your shields',color:'#cfb2ff'},
    {id:'health',title:'MINT HEALTH +',verb:'CUT / SHOOT / TOUCH',detail:'Restore up to '+profile.heal+' HEALTH',note:'Maximum health is 100',color:'#90ffdb'}
   ];
@@ -33,7 +33,7 @@
   c.restore();c.fillStyle=card.color;c.font='800 26px system-ui';c.fillText(card.verb,WIDTH/2,227);
   c.fillStyle='#ffffff';c.font='25px system-ui';c.fillText(card.detail,WIDTH/2,279);
   c.fillStyle='#c7e4e7';c.font='23px system-ui';c.fillText(card.note,WIDTH/2,323);
-  c.textAlign='left';
+  if(card.id==='fruit'){c.fillStyle='#effffb';c.font='19px system-ui';c.fillText('X / A: color. Match badge: bonus.',WIDTH/2,360);}c.textAlign='left';
  }
  function attach(g,dock){
   if(dock.fieldGuide)return dock;

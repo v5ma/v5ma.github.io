@@ -2,12 +2,13 @@
    invisible button meshes. Native select events and polled inputs share a latch.
    Grip shields / trigger lasers are unchanged. No forced gameplay head motion. */
 (function(root){'use strict';
- const VERSION='0.12.2',WIDTH=1200,HEIGHT=814;
+ const VERSION='0.13.0',WIDTH=1200,HEIGHT=814;
  const RECTS=Object.freeze(Array.from({length:8},(_,i)=>Object.freeze({x:i%2?631:56,y:306+Math.floor(i/2)*122,w:513,h:90})));
  const list=value=>Array.from(value||[]);
  function actionAtUV(u,v){if(!Number.isFinite(u)||!Number.isFinite(v))return -1;const x=u*WIDTH,y=(1-v)*HEIGHT;return RECTS.findIndex(r=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);}
  function navigate(index,dx,dy){const col=index%2,row=Math.floor(index/2);return ((row+dy+4)%4)*2+Math.max(0,Math.min(1,col+dx));}
  function stick(gamepad){const a=list(gamepad?.axes),offset=a.length>=4?2:0,x=Number(a[offset])||0,y=Number(a[offset+1])||0;if(Math.max(Math.abs(x),Math.abs(y))<.55)return [0,0];return Math.abs(x)>Math.abs(y)?[Math.sign(x),0]:[0,Math.sign(y)];}
+ function colorEdge(phase,old,buttons,tracked=true){return phase==='playing'&&tracked&&!!old?.playing&&!!old?.tracked&&!!buttons?.[4]&&!old.btn?.[4];}
  function controllerHands(input){return new Set(list(input).filter(s=>s.gripSpace&&!s.hand&&['left','right'].includes(s.handedness)).map(s=>s.handedness));}
  function install(g){const T=g.T,scene=g.el,stage=g.art.stage,prior=new Map(),sources={},menu=g.art.panel(1.68,1.14),hud=g.art.panel(1.75,.28),ray=new T.Raycaster();
   let session=null,referenceSpace=null,calibrated=false,viewer=null,missing=null,centeredOnce=false,lastPaint=0,lastText='',focus=0,focusMode='pointer',lastPhase='',lastAction=-Infinity,actions=0,tracked=new Set();
@@ -66,9 +67,9 @@
     if(!src.hand&&pose&&!pose.emulatedPosition&&['left','right'].includes(src.handedness)){
      tracked.add(src.handedness);sources[h]=src;const m=new T.Matrix4().fromArray(pose.transform.matrix),a=stage.worldToLocal(scene.object3D.localToWorld(new T.Vector3(0,0,-.08).applyMatrix4(m))),b=stage.worldToLocal(scene.object3D.localToWorld(new T.Vector3(0,0,-.78).applyMatrix4(m))),normal=b.clone().sub(a).normalize();
      if(!down)fireArmed[h]=true;
-     output.hands[h]={pose:{a:a.toArray(),b:b.toArray()},gripQuaternion:new T.Quaternion().setFromRotationMatrix(new T.Matrix4().copy(stage.matrixWorld).invert().multiply(scene.object3D.matrixWorld).multiply(m)).toArray(),origin:b.toArray(),direction:normal.toArray(),fire:!!btn[0]&&fireArmed[h],shield:{active:!!btn[1],center:a.clone().addScaledVector(normal,.32).toArray(),normal:normal.toArray(),raised,hand:h}};
+     output.hands[h]={pose:{a:a.toArray(),b:b.toArray()},gripQuaternion:new T.Quaternion().setFromRotationMatrix(new T.Matrix4().copy(stage.matrixWorld).invert().multiply(scene.object3D.matrixWorld).multiply(m)).toArray(),origin:b.toArray(),direction:normal.toArray(),swapColor:colorEdge(g.phase,old,btn),fire:!!btn[0]&&fireArmed[h],shield:{active:!!btn[1],center:a.clone().addScaledVector(normal,.32).toArray(),normal:normal.toArray(),raised,hand:h}};
     }else{fireArmed[h]=false;g.previous[h]=null;}
-    prior.set(src,{btn,primary:down||event,raised,dir,repeatAt});
+    prior.set(src,{btn,primary:down||event,raised,dir,repeatAt,playing:g.phase==='playing',tracked:!src.hand&&!!pose&&!pose.emulatedPosition});
    }
    // One action per frame. A new B/Y edge is an explicit command, not a duplicate
    // pointer click: do not discard it behind the previous menu action debounce.
@@ -83,5 +84,5 @@
   function haptic(h){try{sources[h]?.gamepad?.hapticActuators?.[0]?.pulse(.18,40)?.catch?.(()=>{});}catch{}}
   return {collect,recenter,haptic,enter,activate:action,get session(){return session},get calibrated(){return calibrated},get diagnostics(){return {version:VERSION,rotunda:dock?.diagnostics,menuPage:dock?.diagnostics?.page,menuVisible:menu.mesh.visible,focus,focusMode,hover:[...hover],actions,inputCount:list(session?.inputSources).length,trackedControllers:tracked.size};},dispose(){detach();scene.removeEventListener('enter-vr',entered);scene.removeEventListener('exit-vr',exited);dock?.dispose();clear();for(const r of [...rays,...cursors]){r.removeFromParent();r.geometry.dispose();r.material.dispose();}}};
  }
- const api={VERSION,RECTS,actionAtUV,navigate,stick,controllerHands,install};root.RiverXR=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
+ const api={VERSION,RECTS,actionAtUV,navigate,stick,colorEdge,controllerHands,install};root.RiverXR=Object.freeze(api);if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
