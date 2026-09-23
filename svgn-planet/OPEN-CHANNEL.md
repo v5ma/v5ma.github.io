@@ -1,0 +1,13 @@
+# Open Channel / active development checkpoint
+
+Owner request: another improvement pass on the live Neighborhood Missions game. Baseline runtime is 11ee033f4a9f86a4291d537cb324c20d0d428454; current-master review at 7518b8e007bb0debdd474f8ff25fbfa41dd3d69f found only concurrent sibling changes and the existing Field Ready receipt. The prior live artifact 10732860550 was downloaded and inspected: Field Ready 7 checks, Currentworks 11 checks, and Highline/Unsent Call 15 checks succeeded with no reported page errors. This does not close unrelated inherited or physical-device gates.
+
+Hypothesis: a legible power budget and two physical solutions can make the existing upper archive feel like a systems encounter rather than another destination marker. This maps to existing DESIGN-02, LEVEL-01, ACCESS-03 and SAVE-01; no city expansion is required.
+
+Bounded change in progress: add Archive: Open Channel after The Unsent Call. The uplink needs 3 units. Main supply has 4, and public lighting uses 2. Borrow a reserve cell on the workshop floor to add 2 without interrupting lighting, or take the shorter upper-room route and divert the public-light feeder. Both deliver the same message and award 140 credits exactly once. The live circuit diagram shows available power and light state. Switches are reversible before transmission. The acknowledgement releases the transfer and restores public service. Wrong attempts explain the deficit, never erase progress, hurt residents or create a timer. Switching to another mission suspends the lighting effect safely.
+
+All controls use ordinary interaction with real reach and wall visibility checks. The existing floor/controller HUD and all eight XR modes remain; no new renderer, modal hacking interface, scene replacement, layout rewrite or input remap. Preserve Currentworks, prior mission stages/rewards, original saves, 32 m height boundary and frozen legacy files. South Cable Exchange remains a story lead, not an implemented district.
+
+Planned evidence: complete source suite, labelled circuit/save fixtures, input-only journeys through both solutions after the existing arcs, exact-source/public browser evidence using real movement and controls, and independent public-byte verification. Never assign actor position or progress to manufacture a journey. GPU/physical success must not be inferred from source tests. Work is not yet published by this planning checkpoint.
+
+Continue from current master and current code, not an old source snapshot. Update this note, FUTURE-DIRECTION.md and DEVELOPMENT-HANDOFF.md with final implementation, tests, failures and the next task. Direct non-forced master writes only; preserve concurrent work and reuse existing verification/publishing workflows.
