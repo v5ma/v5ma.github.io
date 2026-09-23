@@ -1,0 +1,68 @@
+{
+  "project": "Aether Reach",
+  "version": "0.17.1",
+  "focus": "Field Focus",
+  "status": "Implemented directly on master; exact-source native, publication and archive verification pending",
+  "initialReviewedMaster": "7518b8e007bb0debdd474f8ff25fbfa41dd3d69f",
+  "acceptedBaselineSource": "5c34a62624c103a179ed7c94dddb2fd5fbb5df3a",
+  "implementationCommit": "06c277f4b20e2ff6e45cfff5eeeda6209cc4e8b9",
+  "keyboardDocumentationCorrection": "f16378842c9b241601f6ec2d134f236926cad332",
+  "landingCorrectionAndTestedSource": "dc1e5c1fdcf5b57532030eb1ec999a38dd50930f",
+  "changes": [
+    "One read-only focused-task resolver for beacon, atlas, floor guide, story and journal",
+    "Xbox D-pad Up reminder names the actual destination, character-relative direction, distance and elevation",
+    "Keyboard E, active saved gamepad use binding and tracked XR Right grip are identified correctly",
+    "Completed saved adventures suggest unfinished work without writing progress or repeating rewards",
+    "Existing Bellwether gallery, final stair landing and roof connector guide toward the receiver"
+  ],
+  "keyboardBoundary": "N retains the existing Field rig binding; M opens the atlas. The older duplicate N navigation branch is pre-empted by Field rig. No keyboard-N reminder or silent remapping is claimed.",
+  "local": {
+    "nodeTests": 385,
+    "newRegressionTests": 25,
+    "backupInputTests": 6,
+    "releaseEvidenceFixtures": 14,
+    "runtimeFiles": 143,
+    "cleanSourceRestoreTests": 385,
+    "cleanSourceRestoreFiles": 283,
+    "localArchiveSource": "2572d4a2f6444af677b921fa10a1c143c866f65c",
+    "localArchiveSha256": "7aa7886fa4606fbf0b72cf95eddfef87740cec8e8ac828474d4fb21ee340cb93",
+    "archiveBoundary": "This local snapshot is not the permanent GitHub release or a full repository mirror.",
+    "browser": "Normal local HTTP Chromium navigation was blocked by administrator policy. Direct public HTTP fetch was unavailable due to DNS resolution failure. Neither is a browser acceptance pass or bypass."
+  },
+  "preservedFindings": {
+    "prefixParser": "Initial test stripped E from East gallery. The corrected actual-key delimiter requirement passes the unchanged assertion.",
+    "galleryLanding": "The first target-following fixture switched to the receiver at 26 meters and stalled near x=-99.89, y=27.5, z=-6. Retaining the landing and roof connector targets fixes the observed route.",
+    "landingRetest": "Four tests use 0.05, 0.1, 0.2 and 0.5-second decisions in both stage 3 and stage 4. All eight reach receiver range with zero rescues and unchanged stage/credits.",
+    "fixtureBoundary": "Initial gallery placement and absent enemies make these isolated model fixtures, not hostile mission or browser completion evidence. Ground-level guidance intentionally retains the south ladder alternative."
+  },
+  "native": {
+    "run": 35827436570,
+    "source": "dc1e5c1fdcf5b57532030eb1ec999a38dd50930f",
+    "status": "queued at checkpoint",
+    "allSevenSuitesPassed": false,
+    "supersededRuns": [35826736263, 35827062705],
+    "note": "Superseded runs are not evidence for the corrected final source. Download exact successful artifacts and check their source, empty diff, full runtime manifest and complete error-free reports."
+  },
+  "publication": {
+    "run": 35827436578,
+    "source": "dc1e5c1fdcf5b57532030eb1ec999a38dd50930f",
+    "status": "queued at checkpoint",
+    "verifiedLive": false,
+    "expectedFiles": 143
+  },
+  "archive": {
+    "tag": "aether-v0.17.1",
+    "status": "not yet verified",
+    "permanentReleaseVerified": false
+  },
+  "continuity": {
+    "direction": "aether-reach/FUTURE-DIRECTION.md",
+    "handoff": "aether-reach/DEVELOPMENT-HANDOFF.md",
+    "integration": "aether-reach/FIELD-FOCUS.md",
+    "next": "Close exact-source native, public and archive gates, then observe the actual arrival-to-Bellwether experience before expanding content. Desktop HUD crowding and richer character dialogue remain future work."
+  },
+  "preserved": ["Currentworks graphics and source pins", "A City With a Voice and all existing adventures", "Version-1 saves and rewards", "Existing control mappings and neutral rearming", "Current-step window aim and original tracked first-person VR", "Full-depth diorama, floor guide and hand menus", "Every concurrent sibling project"],
+  "physicalQuest3Verified": false,
+  "physicalXboxVerified": false,
+  "humanQualityApproval": false
+}
