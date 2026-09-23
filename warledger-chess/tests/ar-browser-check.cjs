@@ -53,15 +53,23 @@ async function runBrowser(browser,base,label){
     await page.evaluate(()=>{
       window.testPad={id:'Xbox test',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};
       Object.defineProperty(navigator,'getGamepads',{configurable:true,value:()=>[window.testPad]});
-      window.testFrames=0;const tick=WarLedgerAR.tick.bind(WarLedgerAR);WarLedgerAR.tick=time=>{testFrames++;tick(time);};
+      window.testFrames=0;window.testPendingButton=null;window.testPressSerial=0;window.testConsumedSerial=0;
+      const tick=WarLedgerAR.tick.bind(WarLedgerAR);
+      WarLedgerAR.tick=time=>{
+        testFrames++;tick(time);
+        // Simulate a single-frame press, releasing only after the unmodified game has read it.
+        // Fixed wall-clock pulses either vanish or auto-repeat under slow software WebGL.
+        const b=window.testPendingButton;
+        if(b!==null&&WarLedgerAR.inputStates.get('gamepad-0')?.buttons[b]===true){
+          testPad.buttons[b]={pressed:false,value:0};testPendingButton=null;testConsumedSerial=testPressSerial;
+        }
+      };
     });
     assert.equal(await page.evaluate(()=>navigator.getGamepads()[0]===testPad),true);
     async function press(b){
-      await page.evaluate(b=>testPad.buttons[b]={pressed:true,value:1},b);
-      // A fixed 150 ms pulse can disappear between software-rendered frames.
-      // Require the actual A-Frame loop to observe both edges; never call pollPad manually.
-      await page.waitForFunction(b=>WarLedgerAR.inputStates.get('gamepad-0')?.buttons[b]===true,b,{timeout:8000});
-      await page.evaluate(b=>testPad.buttons[b]={pressed:false,value:0},b);
+      const serial=await page.evaluate(b=>{testPendingButton=b;testPad.buttons[b]={pressed:true,value:1};return ++testPressSerial;},b);
+      // Require actual A-Frame frames. Never invoke tick or pollPad from the test.
+      await page.waitForFunction(serial=>testConsumedSerial===serial,serial,{timeout:8000});
       await page.waitForFunction(b=>WarLedgerAR.inputStates.get('gamepad-0')?.buttons[b]===false,b,{timeout:8000});
     }
     await press(15);assert.equal(await page.evaluate(()=>WarLedgerAR.focusSquare),'f2');await press(14);await press(0);
