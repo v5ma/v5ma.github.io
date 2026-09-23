@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "source": "0dbfb7a99bcd8d10e4478aa864cde1cb1a573a8a",
+  "runtimeIntegrationCommit": "16a3e092f2a94314428e3e52e623f03f29958f22",
+  "build": "rainward-currentworks-garden-20260922",
+  "version": "0.16.4",
+  "recoveryDateUTC": "2026-09-23",
+  "masterReviewed": "8174b7e793e87e45264fe3565b030ef03a17b169",
+  "reconciliation": "The six commits from source to reviewed master change no Rainward paths. This completion commit changes documentation and the evidence summary only, not the verified game or release identifier.",
+  "publication": {
+    "status": "verified-live",
+    "run": 35807625946,
+    "artifact": 10728558378,
+    "archiveSHA256": "8e321484d3b5e32bdb97c60a85bdda6bbf07c0aed385da7ca24260a274f6a1c4",
+    "receiptSHA256": "62c31f02c414d3d8abb5e722c642dfe12d8d109e41cfef6b1acd0e07b13dc3ae",
+    "manifestSHA256": "5d8689bbef5f3b21197806c7c7b7a17b4fe39b0d69720e858dfdab49d607970a",
+    "files": 199,
+    "matching": 199,
+    "http200": 199,
+    "verification": "Downloaded archive digest matches GitHub. All receipt/manifest paths, HTTP statuses and SHA-256 values checked against the downloaded exact-source tree; zero mismatches. Subsequent notes do not change runtime bytes.",
+    "keyRuntimeFiles": {
+      "rainward/place-briefing.mjs": "4313bc0a9323fd68e526bf66497c5e74dc1b03aa3d55aea0766ab31a072c4f74",
+      "rainward/release.json": "cbb4b94c5ba45fc1e7bcc0b9045caf884ccd4b5083c7cf7a684fb9968e5bac29",
+      "rainward/conservatory-loop.mjs": "24364ecad9999be42b9236f22ea415a30670a72d8295ed2e85aa20401a288ab9",
+      "rainward/currentworks-environment.mjs": "4b5200ef5b395a7450ad8cd05dda8c52d31c3f1d6474b1d15d57ce2e3e10b54b",
+      "rainward/scene.mjs": "1658f5b10ab7347b36b948c20b1eb1b516561a27d39667500e68e61cda4802be",
+      "rainward/index.html": "7381c0e43a7a3bdf8dd3150a8c31fe822e190a4db4709a43d9c5cfe60ef24c07",
+      "rainward/app.mjs": "9b0f16190a9e90f019f659d381a449eeacc472f868543f77583cec4549be1d87",
+      "rainward/vendor/currentworks/water.mjs": "b26dcb1926be35028ad8227293c6e5dc39188aa0f2fc684ebfda1f03fb174876",
+      "rainward/vendor/currentworks/trees.js": "2782b0f5ab2ec456af93ac0d2e5e02e5fd4b2ffe2a0e5d98f6555f60952d4315",
+      "rainward/vendor/currentworks/water.js": "8f2a03185a6f8de5a971016a38b1cef7372cdff85ce17a7f0ba1b37ff555093b",
+      "rainward/vendor/currentworks/source-lock.json": "3f8f50779f0b6f0851ab7ff52c9114b28a7008ae9929b5f4d0621feb6234cd4e",
+      "rainward/vendor/currentworks/PROVENANCE.md": "2360674f2fd2dd7f5d80776400d616b24190e09c9388692717bcee8e931ca5ce",
+      "rainward/vendor/currentworks/trees.mjs": "0788af34fc5d632a28676cf389568ddcc12b00ef66815bccfa9138465ac2cd86"
+    }
+  },
+  "models": {
+    "run": 35807625914,
+    "artifact": 10728846475,
+    "archiveSHA256": "d3e64eac4a3826aaf69d6f1f42f93bdbd834dcd6e62d7c33f194aa2025501e1e",
+    "tests": 482,
+    "pass": 482,
+    "fail": 0,
+    "skipped": 0,
+    "independentLocalReplay": "node --test rainward/tests/*.test.mjs",
+    "localReplaySHA256": "b12dbb46bff965addc1635fe116ba27dd55b4239866262a9c8c1b04b10f39e1a"
+  },
+  "conservatoryBrowser": {
+    "run": 35807625914,
+    "job": 107012225431,
+    "artifact": 10728509206,
+    "archiveSHA256": "8d377672ea9e32bd04ce759b47bc3f17c82f682275405aa1c25d818e3e7fb71a",
+    "reportSHA256": "730a072428a9fa7f7a1cd7ea3561e1bc199168bd7ca687b2db3ed8cdfc6138ed",
+    "passedChecks": 25,
+    "errors": [],
+    "consoleErrors": [],
+    "checks": [
+      "Existing chapters and the new expedition are selectable",
+      "The second expedition starts on a real elevated terrace",
+      "The actual r177 game prepares the r184-origin library without replacing its engine",
+      "Three existing pools and five planter trees use the reusable library after loading preparation",
+      "Pause freezes the graphics clock along with gameplay",
+      "The normal graphics setting restores the legacy environment",
+      "Changing environmental graphics does not rewrite campaign saves",
+      "Reduced decorative motion reaches the actual library water and trees",
+      "Balanced quality draws real geometry and shaders in the game",
+      "Reduced graphics selects bounded light water and retains library shader hooks",
+      "The Rootback patrol moves through its authored path instead of starting embedded in a pillar",
+      "The new location renders real 3D geometry, not a backdrop screenshot",
+      "The unsolved gate genuinely blocks the northern route",
+      "Three physical wheel interactions solve the clue and raise the actual gate",
+      "The pre-existing archive satchel supplies earned salvage for the later crossing",
+      "The original catalogue interaction opens the physical north archive exit",
+      "The western archive contains a recoverable lens guarded by a distinct creature",
+      "Ordinary movement uses the new maintenance return with original enemies alive",
+      "Existing glasshouse cloth and archive salvage craft one more finite medkit",
+      "The separate glasshouse contains the second actual objective",
+      "One crafted smoke remains reserved for the northern commitment",
+      "The revised full route keeps all original enemies alive and requires no forced kills",
+      "The complete live chapter finishes only after both objectives and the gate puzzle",
+      "Reload restores the earlier second-chapter checkpoint and solved physical gate",
+      "No uncaught game or graphics errors in the integrated library mission"
+    ],
+    "scope": "Actual HTTP/WebGL with ordinary Classic keyboard/menu actions and legacy movement, read-only route guidance; no gameplay-state assignments. Initial supply kit plus existing archive/glasshouse caches fund three medkits and two smoke screens. The prior north-approach death is retained. Full PBR/shadow arrival and Light travel both use the library; not physical-device or performance certification."
+  },
+  "currentworksXR": {
+    "run": 35807625914,
+    "status": "All four mode jobs completed successfully",
+    "jobs": {
+      "first-person": 107012225420,
+      "first-person-ar": 107012225355,
+      "diorama-vr": 107012225438,
+      "diorama-ar": 107012225419
+    },
+    "downloadedDioramaAR": {
+      "artifact": 10729173389,
+      "archiveSHA256": "ebbbb3e40ac0616387f804cdca533c79092fe50d220b5ce8de8d5ac7ead04189",
+      "passedChecks": 12,
+      "reportSHA256": "03bad94686ef7f3b02bb4a559ba3ccc6cf81ec895bb068fb694b71c77f576402"
+    },
+    "scope": "Actual browser/WebGL external eye attachments with synthetic tracked controllers. Mode checks include library preparation, Light budget, pause, graphics fallback, save preservation and XR exit. Not complete XR campaigns or physical Quest testing."
+  },
+  "otherChecks": {
+    "fieldDeskControllerModes": "All four jobs passed on this source",
+    "fieldDeskHandTrackingJob": 107012225530,
+    "fieldDeskHandTracking": "Passed synthetic AR menu/hand journey; not a complete garden hand-tracked campaign",
+    "motionJob": 107012225397,
+    "motion": "Passed retained-body fixture",
+    "terminusJob": 107012225340,
+    "terminus": "Passed ordinary-input browser mission"
+  },
+  "retainedFailure": {
+    "run": 35807625914,
+    "job": 107012225416,
+    "artifact": 10729326217,
+    "archiveSHA256": "4c563bc3baa8e0f1a104f3ad6e3ec1d9f706238e0d101c9f49633a725a188df9",
+    "reportSHA256": "238d4d8a133a42ea0a8ce80f30c880de31542c0c3418feb67bf252d9d27a5bf8",
+    "finding": "The separate Floodgate replay reached the existing freight aisle and timed out waiting to deploy smoke. Captured state was dead at x=16.00000106544324,z=-24.011946134614107, with smoke=1 and medkit=0. No captured script or graphics errors. It remains a failed mission, not proof the full suite passed. Currentworks is inactive in this chapter.",
+    "nextAction": "Diagnose the ordinary-input resource/timing path before modifying difficulty or the level. Preserve the prior passing and failed traces."
+  },
+  "openAcceptance": [
+    "Physical Quest 3 and Xbox/Bluetooth",
+    "Actual hand tracking through the upgraded Conservatory campaign",
+    "Sustained device frame time, thermal behaviour and comfort",
+    "Independent human visual and route-comprehension review",
+    "Floodgate ordinary-input replay reliability"
+  ],
+  "scope": "Three Conservatory shallow pools, five seeded planter trees and the catalogue-opened archive maintenance return. Preserve all seven expeditions, old/current checkpoints, earned resources, original puzzle/objectives, controls, XR, characters and prior Reclaimed Places. Fire, Toon, Cloudlets and other library modules are not integrated by this release."
+}

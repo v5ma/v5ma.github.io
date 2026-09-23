@@ -33,3 +33,12 @@ Fire 0.1.3, Toon and Cloudlets are not installed in this pass. Volumetric fire n
 Read this file, FUTURE-DIRECTION.md, DEVELOPMENT-HANDOFF.md, the current master and the latest evidence before editing. Reconcile concurrent work and write directly to master without force, unnecessary PRs or new temporary workflows. Update these notes at meaningful implementation and verification checkpoints.
 
 Next review: actual Conservatory arrival/pool/maintenance views, alternate-route comprehension, matched collision silhouettes and graphics toggling on a real Quest. Extend to another chapter only after that bounded result. Interior audio, stronger enemy tactics, weapon handling, remaining traversal contacts and the other chapter briefs remain separate roadmap work. Physical Quest/Xbox, sustained frame-time/thermal performance and human art/pacing approval remain open.
+
+
+## Delivery verified after interrupted session
+
+Runtime integration commit: 16a3e092f2a94314428e3e52e623f03f29958f22. Exact tested/published source: 0dbfb7a99bcd8d10e4478aa864cde1cb1a573a8a. Publication run 35807625946 succeeded; its downloaded receipt and source archive agree on all 199 public files. See evidence/currentworks-20260922/delivery-verification.json for checked digests, completed jobs and the remaining failure.
+
+All 482 model/source tests, the full Conservatory mission's 25 checks, four Currentworks XR mode jobs, the five inherited controller/hand menu jobs and the retained-body motion job passed. This does not turn the whole acceptance workflow green: its separate Floodgate replay died in the freight aisle and remains failed. The garden mission used finite earned/scavenged resources and preserved every original enemy, rather than changing game state to pass. Physical hardware and human quality gates remain open.
+
+The completion update only repairs stale handoff text and preserves evidence. It does not alter the verified environment runtime, save format, graphics defaults or build identifier. To play the graphical update, open rainward/?chapter=conservatory and use normal Start or the existing chapter checkpoint. Do not clear browser storage. Keep Currentworks garden water and trees enabled; Reduced Graphics chooses the existing Light budget, and disabling Currentworks restores legacy visuals.
