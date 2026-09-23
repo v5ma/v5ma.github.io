@@ -1,0 +1,50 @@
+{
+  "feature": "Living Lanterns / Currentworks",
+  "version": "0.17.0",
+  "recordedAt": "2026-09-23T01:38:12Z",
+  "runtimeCommit": "02af20b92d01efa13973b492e11ca65ab8ee2454",
+  "manifestDigest": "b216f481961c47a98f25aa3eb6702a7084418b7eb80bdca3a0d4efbf8b013fb1",
+  "runtimeManifestFiles": 130,
+  "status": "source-verified-public-deployment-and-native-acceptance-pending",
+  "all_match": false,
+  "source": {
+    "localTests": {"passed": 345, "failed": 0, "skipped": 0, "durationMs": 139887.616026},
+    "hostedTests": {"passed": 345, "failed": 0, "skipped": 0, "durationMs": 85373.818291},
+    "newTests": 23,
+    "workbook": "PASS: unchanged six-sheet workbook, 76 complete task rows, live summary formula values and canonical JSON hash match.",
+    "syntaxAndSourceChecks": "Passed on the hosted source job before its later publication check failed.",
+    "run": 35805804556,
+    "attempt": 1,
+    "job": 107006262335,
+    "artifact": 10728210701,
+    "artifactDigest": "sha256:c8fc3ce94cfe78a8f3c078ebe39d92b7441d76a404996023308c34f22331b36e"
+  },
+  "publication": {
+    "firstInspection": "119 of 130 public files matched. Pages still served the earlier index/release/handoffs; the seven new files returned 404. This is not successful publication and does not establish a graphics failure.",
+    "independentRun": 35805804512,
+    "independentArtifact": 10727063780,
+    "independentArtifactDigest": "sha256:f5543051a934298127c6b1b344eafc624020ae853719ff70351f5ef4a38faccf",
+    "mainRun": 35805804556,
+    "mainArtifact": 10728210701,
+    "pagesObservation": "The exact-commit Pages build succeeded but its queued deployment was superseded by later sibling commits. The later combined-site Pages run below also built successfully; deployment and status jobs were still queued when inspected. Later repository commits must be reconciled rather than overwritten.",
+    "observedPagesRun": 35806444674,
+    "observedPagesCommit": "ac5fdecb2e9c078b81043c2c6c0c95719db56c77",
+    "observedBuildJob": 107008269324,
+    "observedDeployJob": 107008917464,
+    "observedDeployStatus": "queued"
+  },
+  "native": {
+    "status": "not-yet-accepted",
+    "local": "Chromium navigation was blocked before load. No local rendered playthrough is counted and the restriction was not bypassed.",
+    "hostedAttempt1": "Browser matrix skipped because public bytes had not matched. This includes the new Currentworks journey and the existing physical-field-kit journey.",
+    "retry": "Re-ran the failed Fieldwork jobs through the GitHub Actions API without changing source, input assertions or publication gates.",
+    "retryRun": 35805804556,
+    "retryAttempt": 2,
+    "retrySourceJob": 107009411065,
+    "retryObservedStatus": "queued"
+  },
+  "hardware": "Physical Quest 3/Xbox, appearance, comfort and sustained-performance acceptance remain open. Generated input and isolated lifecycle collaborators are not physical-device approval.",
+  "nextAction": "Inspect the latest Pages deployment containing runtimeCommit, then inspect Fieldwork run 35805804556 and its currentworks/field-kit reports and screenshots. Retry failed publication jobs only against unchanged Vesperfall bytes; preserve original failure artifacts. Update this receipt with observed outcomes rather than assuming queued work succeeded. Do not recreate the completed Water/Fire/Trees integration.",
+  "nextGameplay": "Confirm dependable physical supplies, then develop the multi-use carryable courier lantern and consequential refuge objective. Expanded chapter geography requires a new immutable layout identity. Four difficulty tiers, melee, sparse occluding AR architecture and co-op are not delivered by this pass.",
+  "receiptScope": "Evidence-only addition. No runtime, shader, control, save, collision, sibling-game or workflow changes. The CI skip marker prevents an evidence-only push from replacing the existing runtime-verification attempt; it does not claim acceptance. All statuses are timestamped observations, not future guarantees."
+}
