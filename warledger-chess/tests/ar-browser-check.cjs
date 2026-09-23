@@ -50,19 +50,31 @@ async function runBrowser(browser,base,label){
     assert.equal(await page.evaluate(()=>WarLedgerAR.state.licenses.white.D),1);await action('undo');assert.equal(await page.evaluate(()=>WarLedgerAR.state.bank.white),10);
     await action('new');assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'confirm');await action('cancel');assert.equal(await page.evaluate(()=>WarLedgerAR.state.bank.white),10);
     await action('new');await action('confirm');assert.equal(await page.evaluate(()=>WarLedgerAR.pieces.children.length),32);
-    await page.evaluate(()=>{window.testPad={id:'Xbox test',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};navigator.getGamepads=()=>[window.testPad];});
-    async function press(b){await page.evaluate(b=>testPad.buttons[b]={pressed:true,value:1},b);await page.waitForTimeout(150);await page.evaluate(b=>testPad.buttons[b]={pressed:false,value:0},b);await page.waitForTimeout(150);}
+    await page.evaluate(()=>{
+      window.testPad={id:'Xbox test',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:17},()=>({pressed:false,value:0}))};
+      Object.defineProperty(navigator,'getGamepads',{configurable:true,value:()=>[window.testPad]});
+      window.testFrames=0;const tick=WarLedgerAR.tick.bind(WarLedgerAR);WarLedgerAR.tick=time=>{testFrames++;tick(time);};
+    });
+    assert.equal(await page.evaluate(()=>navigator.getGamepads()[0]===testPad),true);
+    async function press(b){
+      await page.evaluate(b=>testPad.buttons[b]={pressed:true,value:1},b);
+      // A fixed 150 ms pulse can disappear between software-rendered frames.
+      // Require the actual A-Frame loop to observe both edges; never call pollPad manually.
+      await page.waitForFunction(b=>WarLedgerAR.inputStates.get('gamepad-0')?.buttons[b]===true,b,{timeout:8000});
+      await page.evaluate(b=>testPad.buttons[b]={pressed:false,value:0},b);
+      await page.waitForFunction(b=>WarLedgerAR.inputStates.get('gamepad-0')?.buttons[b]===false,b,{timeout:8000});
+    }
     await press(15);assert.equal(await page.evaluate(()=>WarLedgerAR.focusSquare),'f2');await press(14);await press(0);
     assert.equal(await page.evaluate(()=>WarLedgerAR.selected),'e2');await press(12);await press(12);await press(0);assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[4][4]?.side),'white');
     await press(3);assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'market');await press(1);assert.equal(await page.evaluate(()=>WarLedgerAR.mode),'play');
     async function ray(s){await page.evaluate(s=>{const a=WarLedgerAR,t=a.tiles.find(t=>t.userData.square===s),p=t.getWorldPosition(new a.THREE.Vector3());a.selectRay(p.clone().add(new a.THREE.Vector3(0,.5,0)),new a.THREE.Vector3(0,-1,0));},s);await page.waitForTimeout(200);}
     await ray('e7');await ray('e5');assert.equal(await page.evaluate(()=>WarLedgerAR.state.board[3][4]?.side),'black');
     assert.deepEqual(errors,[]);
-    const report={label,release:expectedRelease,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox polling and B cancel','XR ray routing']};
+    const report={label,release:expectedRelease,passed:true,realBrowser:'Chromium WebGL (software rendering)',physicalQuestTested:false,xrInput:'simulated ray; no immersive hardware session',checks:['camera faces tabletop','texture decode','32 cuboid pieces','white and black mouse moves','world-space market/cancel','11-art gallery','occluded promotion target','licensed Chancellor promotion','2D/AR shared save and undo','reset confirmation','Xbox frame polling and B cancel','XR ray routing']};
     fs.writeFileSync(path.join(out,`${label}-report.json`),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
   }catch(error){
     await page.screenshot({path:path.join(out,`${label}-failure.png`)}).catch(()=>{});
-    const state=await page.evaluate(()=>window.WarLedgerAR?{selected:WarLedgerAR.selected,mode:WarLedgerAR.mode,focus:WarLedgerAR.focusSquare,board:WarLedgerAR.state.board}:null).catch(()=>null);
+    const state=await page.evaluate(()=>window.WarLedgerAR?{selected:WarLedgerAR.selected,mode:WarLedgerAR.mode,focus:WarLedgerAR.focusSquare,board:WarLedgerAR.state.board,frames:window.testFrames,scenePlaying:WarLedgerAR.scene.isPlaying,componentPlaying:WarLedgerAR.scene.components['warledger-loop']?.isPlaying,componentOrder:WarLedgerAR.scene.componentOrder,pads:Array.from(WarLedgerAR.inputStates.entries()),time:WarLedgerAR.scene.time}:null).catch(()=>null);
     fs.writeFileSync(path.join(out,`${label}-errors.json`),JSON.stringify({message:error.message,stack:error.stack,errors,state},null,2));throw error;
   }finally{await context.close();}
 }
