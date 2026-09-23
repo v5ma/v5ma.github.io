@@ -3,7 +3,7 @@ import {loadSession,saveSession} from './warledger-session.mjs';
 import {ATLAS,ART_TYPES,ART_NAMES,createArtFactory} from './warledger-art.mjs';
 import {nextPinch,gridStep,gamepadEdges} from './warledger-input.mjs';
 
-export const RELEASE='ar-blocks-20260922-2';
+export const RELEASE='ar-blocks-20260922-3';
 const scene=document.querySelector('a-scene');
 const status=document.querySelector('#status');
 const cap=s=>s[0].toUpperCase()+s.slice(1);
@@ -21,7 +21,7 @@ class LedgerAR {
     this.board=new THREE.Group();this.root.add(this.board);this.tiles=[];
     this.targets=[];this.inputStates=new Map();this.xrInputs=new Map();
     this.raycaster=new THREE.Raycaster();this.raycaster.far=4;
-    this.orbitYaw=.18;this.orbitPitch=.65;this.orbitDistance=1.25;
+    this.orbitYaw=.18;this.orbitPitch=1.03;this.orbitDistance=1.12;
     this.scale=1;this.placing=false;this.surfacePosition=null;this.xrSession=null;
     this.ready=false;this.lastActivation={action:null,time:0};
     this.buildBoard();this.buildEnvironment();this.bind();this.render();this.orbit();
@@ -125,7 +125,7 @@ class LedgerAR {
   }
   renderUI() {
     const T=this.THREE;this.clearOwned(this.ui);this.allButtons=[];
-    const tray=new T.Group();tray.position.set(0,.155,.50);tray.rotation.x=-Math.PI*.31;this.ui.add(tray);
+    const tray=new T.Group();tray.position.set(0,.013,.51);tray.rotation.x=-Math.PI/2;this.ui.add(tray);
     const lines=this.statusLines();status.textContent=lines.join(' | ');
     this.addPanel(tray,lines,.70,.085,0,.09);
     const toolbar=[['Undo','undo'],['Market','market'],['Smaller','smaller'],['Larger','larger'],['Flip','flip'],['Place','place'],['New game','new'],['Promo lab','lab'],[this.mode==='gallery'?'Play board':'All pieces','gallery'],['Higher','higher'],['Lower','lower'],['Exit XR','exit']];
@@ -245,13 +245,23 @@ class LedgerAR {
   }
   pick(origin,direction) {
     this.root.updateMatrixWorld(true);this.raycaster.set(origin,direction);
-    return this.raycaster.intersectObjects(this.targets,false)[0]||null;
+    return this.resolveHit(this.raycaster.intersectObjects(this.targets,false));
+  }
+  resolveHit(hits) {
+    const nearest=hits[0];
+    // The selected block may hide the destination immediately behind it.
+    // Prefer its legal board-square hit, but never click through menus or other pieces.
+    if(this.mode==='play'&&this.selected&&nearest?.object.userData.action===`square:${this.selected}`) {
+      const destination=hits.find(hit=>this.tiles.includes(hit.object)&&this.legalMoves.some(move=>move.fromSquare===this.selected&&move.toSquare===hit.object.userData.square));
+      if(destination)return destination;
+    }
+    return nearest||null;
   }
   pointerPick(event) {
     const rect=scene.canvas.getBoundingClientRect(),T=this.THREE;
     const uv=new T.Vector2((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);
     this.root.updateMatrixWorld(true);scene.camera.updateMatrixWorld(true);this.raycaster.setFromCamera(uv,scene.camera);
-    return this.raycaster.intersectObjects(this.targets,false)[0]||null;
+    return this.resolveHit(this.raycaster.intersectObjects(this.targets,false));
   }
   bind() {
     let drag=null;
