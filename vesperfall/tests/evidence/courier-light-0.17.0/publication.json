@@ -1,0 +1,67 @@
+{
+  "feature": "Courier's Light",
+  "version": "0.17.0",
+  "recordedAt": "2026-09-23T06:53:00Z",
+  "runtimeCommit": "7e15a5baac99627ded347dfdb8b7cb7268602af7",
+  "status": "source-verified-committed-to-master-publication-and-native-acceptance-pending",
+  "all_match": false,
+  "playUrl": "https://v5ma.github.io/vesperfall/",
+  "manifestDigest": "b638a403fb6e7d5fc5fd70e5dc98e8524fa000c48d6174e009bee69edcb96ba8",
+  "manifestFiles": 133,
+  "source": {
+    "localModels": {"passed":355,"failed":0,"skipped":0,"durationMs":121210.045633},
+    "hostedModels": {"passed":355,"failed":0,"skipped":0,"durationMs":103229.71856},
+    "objectChecks": {"passed":16,"scope":"Real bundled-Three objects and fake host/input collaborators; no GPU draw or physical device."},
+    "workbook": "PASS: unchanged six-sheet workbook, 76 complete task rows, live summary formula values and canonical JSON hash.",
+    "run": 35827206915,
+    "sourceArtifact": 10735732115,
+    "artifactSha256": "7f18060f7ba7b0758b32bb20574b449408b9938d9c89dfc7f2f67bd6551c139c",
+    "artifactDownloadedAndDigestVerified": true,
+    "artifactSourceRevision": "7e15a5baac99627ded347dfdb8b7cb7268602af7",
+    "artifactInspection": "Read source-manifest.json, model.tap, workbook.log and dominions-publication.json. Model success did not override the failed public-byte gate."
+  },
+  "initialPublicFailure": {
+    "matched":122,
+    "required":133,
+    "missing404":["vesperfall/courier-lantern.js","vesperfall/courier-lantern-model.js","vesperfall/COURIERS-LIGHT.md"],
+    "stale200":["vesperfall/DEVELOPMENT-HANDOFF.md","vesperfall/FUTURE-DIRECTION.md","vesperfall/release.json","vesperfall/field-kit-model.js","vesperfall/index.html","vesperfall/field-kit.js","vesperfall/dominion-controls.js","vesperfall/currentworks.js"],
+    "meaning":"The new runtime was not yet fully served. This is a publication failure, not a completed browser journey or proof of a shader failure."
+  },
+  "expectedRuntimeSha256": {
+    "vesperfall/index.html":"6742ac92cabb6d1b1f6b8870d826c9918ca9a7a402c73bd5cf9af03af7b4ec73",
+    "vesperfall/courier-lantern.js":"2d6a966012f99be0b29ed2fea3cfa397e98209b17917500803e680066d47b21a",
+    "vesperfall/field-kit.js":"5d7f92895c571bee073a00018f4ababd1cd809313ee2352dcac92f143a56a3f8",
+    "vesperfall/currentworks.js":"fa3fcedd5b4f444f83370a6a37276eecb3d7fac6acca77fb065404a7981a8a64",
+    "vesperfall/release.json":"41123a8fba05ed488e4fc3e92df98e2253970a2ad8cea6da37b3553c44df7d65"
+  },
+  "deployment": {
+    "existingCurrentMasterPublisherRun":35827763197,
+    "publisherNudgeCommit":"a80382b19b7d1fdbe18aaa30ae4f23b88d21be58",
+    "scope":"Added only a Vesperfall runtime hash-reporting line to the existing publisher; retained current-master checkout and every sibling hash, unique artifact policy and existing deployment jobs. No new publisher or source-writing workflow.",
+    "latestObservedBuildJob":107075626588,
+    "latestObservedBuildConclusion":"success",
+    "latestObservedDeployJob":107076038956,
+    "latestObservedDeployStatus":"queued",
+    "latestObservedAutomaticPagesRun":35828451358,
+    "latestObservedAutomaticPagesSource":"5b9ee851cba47e831862ba10c6bd5285576cbbd7",
+    "latestObservedAutomaticBuildJob":107075303159,
+    "latestObservedAutomaticBuildStatus":"queued",
+    "limitation":"Prior Pages attempts were cancelled or superseded during concurrent master updates. Build success alone does not establish deployment. No old site snapshot was force-published over newer sibling work."
+  },
+  "native": {
+    "status":"not-yet-accepted",
+    "initialBrowserMatrix":"Skipped because public bytes had not matched.",
+    "retryRun":35827206915,
+    "latestObservedSourceJob":107075050648,
+    "latestObservedSourceStatus":"queued",
+    "retryAction":"Re-ran the failed jobs through the authorized GitHub Actions API without changing the runtime or weakening assertions.",
+    "localLimitation":"Local Chromium lacks usable WebGL2 and native HTTP navigation is restricted; no workaround is counted as native rendering. The web fetch of the public page also failed.",
+    "newJourney":"The existing read-only Fieldwork matrix includes courier-lantern, retaining all earlier suites. It exercises ordinary start, L/LB+Up, tracked grab/stow, aimed frost physics, real gallery movement, original winch interaction, save/reload and AR/hand cancellation. It has not yet produced an inspected passing report."
+  },
+  "preservedFailures":"See preflight.json for the prior Currentworks neutral/deadzone driver failure and intermittent sampled physical-flask throw. The aimed trigger fallback does not establish that physical throwing is fully accepted. No sampler tolerances were relaxed.",
+  "physicalDeviceApproved":false,
+  "openGates":["All 133 public hashes match","New courier WebGL/input journey","All relevant regression journeys","Physical Quest/Xbox handling","Comfort and sustained-performance measurements"],
+  "nextAction":"Inspect the current publisher/automatic Pages and Fieldwork run. Download and hash-check completed source/browser artifacts, retain failures, compare actual public response bytes and inspect screenshots. Update this receipt only with observed results. Do not recreate the courier lantern or overlay the obsolete Lanternwake ZIP. Reconcile fresh master before every write.",
+  "continuation":"FUTURE-DIRECTION.md and DEVELOPMENT-HANDOFF.md already describe this pass and its remaining gameplay work. Carryable-tool guidance and existing nearby operation are implemented; thrown/dropped lantern simulation, a new consequential refuge quest, larger versioned chapters, difficulty tiers, melee and co-op remain distinct unfinished goals.",
+  "receiptScope":"Evidence-only file beside the game. No runtime, save, shader, reward, sibling or workflow edit. Queued/running statuses are timestamped observations, never future guarantees."
+}
