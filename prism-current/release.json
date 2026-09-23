@@ -4,7 +4,7 @@
   "date": "2026-09-22",
   "engine": "A-Frame 1.8.0",
   "edition": "River Prism / Friendly Current",
-  "scope": "Four difficulty profiles, Easy first-play default, slower fruit-launching enemies, cuttable/shootable blocks instead of red missiles, one-time healing boxes, readable scene health bar and late-only boss entrances. Existing graphics and old scores preserved; new records are difficulty-specific. Status textures update only when their contents change and are uploaded during loading before the soundtrack. Direct B/Y start/resume is no longer discarded by a preceding pointer-action debounce; native selection latches and controller/visibility checks remain. AR Tide adds an intentional two-island/two-cloud Duck Armada AR setting, a saved minimal-scenery option, and reversible water-optics refinement without changing gameplay or the headset camera.",
+  "scope": "Four difficulty profiles, Easy first-play default, slower fruit-launching enemies, cuttable/shootable blocks instead of red missiles, one-time healing boxes, readable scene health bar and late-only boss entrances. Existing graphics and old scores preserved; new records are difficulty-specific. Status textures update only when their contents change and are uploaded during loading before the soundtrack. Direct B/Y start/resume is no longer discarded by a preceding pointer-action debounce; native selection latches and controller/visibility checks remain. AR Tide adds an intentional two-island/two-cloud Duck Armada AR setting, a saved minimal-scenery option, and reversible water-optics refinement without changing gameplay or the headset camera. AR Tide 0.1.1 adds two small grounded grass patches using shared clock-driven wind and prebuilt XR detail, without changing scores, difficulty, controls or audio.",
   "checklist": "AAA_CHECKLIST.md",
   "mission": "water-mission/index.html",
   "classic": "rhythm.html",
@@ -17,10 +17,12 @@
     "trees": "Currentworks Trees 0.1.3",
     "treesEntry": "modules/environment/trees.js",
     "passNumber": 4,
-    "arScene": "AR Tide 0.1.0",
+    "arScene": "AR Tide 0.1.1",
     "waterOptics": "Currentworks Water Optics 0.1.0",
     "islands": "Currentworks Islands 0.1.0",
     "cloudlets": "Currentworks Cloudlets 0.1.0",
-    "toon": "Currentworks Toon 0.1.0"
+    "toon": "Currentworks Toon 0.1.0",
+    "grass": "Currentworks Grass 0.1.0",
+    "grassEntry": "modules/environment/grass.js"
   }
 }
