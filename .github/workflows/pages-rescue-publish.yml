@@ -11,13 +11,15 @@ concurrency:
   group: pages-rescue-publish
   cancel-in-progress: true
 # Publish current master, never an older game snapshot; retain all sibling work.
-# Retry on Linux after the macOS build remained unassigned; no source rollback.
+# Each build attempt gets a distinct artifact; deploy-only retries reuse the
+# exact successful build output. Preserve older artifacts rather than deleting them.
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     outputs:
       source: ${{ steps.source.outputs.sha }}
+      artifact: ${{ steps.source.outputs.artifact }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,12 +30,14 @@ jobs:
         id: source
         run: |
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "artifact=github-pages-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD
           shasum -a 256 dino-atlas/spatial-console.js dino-atlas/classic-xr.css dino-atlas/tidegate.css
           shasum -a 256 leonardos-guild/campaign-entry.mjs leonardos-guild/field-status.mjs leonardos-guild/xr-field-desk.mjs leonardos-guild/release.json
           shasum -a 256 svgn-planet/main-hub.mjs svgn-planet/unified-xr.mjs svgn-planet/native-menu-focus.mjs svgn-planet/release.json
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: ${{ steps.source.outputs.artifact }}
           path: .
   deploy:
     needs: build
@@ -50,3 +54,5 @@ jobs:
       - name: Deploy current master
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          artifact_name: ${{ needs.build.outputs.artifact }}
