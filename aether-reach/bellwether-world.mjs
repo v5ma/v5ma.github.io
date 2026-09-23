@@ -24,7 +24,7 @@ export const BELL_STAGES=Object.freeze(['Find the dispatch desk','Stop the stree
 /* Follow the existing walking gallery once the player has reached it. These
  * are authored route points, not a navmesh or a claim of obstacle-free travel. */
 export function bellGalleryGoal(p){
- if(p.y<11||p.y>=26)return null;
+ if(p.y<11||p.y>28||(p.y>=27.4&&p.x<=-102))return null;
  const points=BELL_ROUTES.find(r=>r.id==='upper').points;
  let best=null;
  for(let i=0;i<points.length-1;i++){
