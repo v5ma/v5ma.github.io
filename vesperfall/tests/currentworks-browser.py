@@ -30,7 +30,7 @@ with sync_playwright() as p:
   button('right',0,True);button('right',0,False)
  def walk(point):
   result=page.evaluate("""async target=>{const trace={distance:0,start:performance.now(),simStart:Vesperfall.state.time};let last=[...Vesperfall.state.p];return await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,s=g.game,p=s.p,dx=target[0]-p[0],dz=target[2]-p[2],d=Math.hypot(dx,dz),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw));trace.distance+=Math.hypot(p[0]-last[0],p[1]-last[1],p[2]-last[2]);last=[...p];TestPad.pad.axes=[0,d>.18&&Math.abs(a)<.08?-1:0,Math.abs(a)>.025?Math.max(-1,Math.min(1,-a*5)):0,0];TestPad.button(10,true);
-   if(d<=.18||s.phase!=='playing'||performance.now()-trace.start>150000){TestPad.pad.axes=[0,0,0,0];TestPad.button(10,false);clearInterval(timer);if(d>.18)reject(Error('Walk failed '+JSON.stringify({target,p,phase:s.phase})));else resolve({...trace,simSeconds:s.time-trace.simStart,health:s.health,end:[...p]});}},3);});}""",point)
+   if(d<=.18||s.phase!=='playing'||performance.now()-trace.start>150000){TestPad.pad.axes=[0,0,0,0];TestPad.button(10,false);clearInterval(timer);if(d>.18)reject(Error('Walk failed '+JSON.stringify({target,p,phase:s.phase,paused:g.paused,padArmed:g.dominionControls.state.armed})));else resolve({...trace,simSeconds:s.time-trace.simStart,health:s.health,end:[...p]});}},3);});}""",point)
   observations.append({'target':point,**result});print('WALK',point,'health',result['health'],flush=True)
  def aim(target):
   result=page.evaluate("""async target=>{const start=performance.now();return await new Promise((resolve,reject)=>{const timer=setInterval(()=>{const g=Vesperfall.component,p=g.game.head,dx=target[0]-p[0],dz=target[2]-p[2],dy=target[1]-p[1],h=Math.hypot(dx,dz),v=36,disc=v**4-9.8*(9.8*h*h+2*dy*v*v),pitch=Math.atan((v*v-Math.sqrt(Math.max(0,disc)))/(9.8*h)),yaw=Math.atan2(-dx,-dz),a=Math.atan2(Math.sin(yaw-g.yaw),Math.cos(yaw-g.yaw)),q=pitch-g.pitch;
@@ -44,8 +44,10 @@ with sync_playwright() as p:
   wait('window.Vesperfall?.component.currentworks&&(Vesperfall.component.currentworks.state.ready||Vesperfall.component.currentworks.state.error)')
   check(diag()['ready'],'All three Currentworks modules finish actual renderer preparation')
   check(page.evaluate('AFRAME.THREE.REVISION==="184"&&AFRAME.scenes.length===1'),'The existing r184 renderer remains the only game engine')
-  page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
+  # Connect while at the title. Connecting during play intentionally pauses the
+  # real game; the old driver mistook that safety pause for broken movement.
   page.evaluate('TestPad.enabled=true');wait('Vesperfall.component.dominionControls.state.armed')
+  page.locator('#start').click();wait('Vesperfall.component.running&&!Vesperfall.component.paused')
   check(page.evaluate('Vesperfall.component.currentworks.water.length===2&&Vesperfall.component.currentworks.forests.reduce((n,f)=>n+f.stats.trees,0)===4'),'The actual Causeway contains two water surfaces and four trees')
   check(page.evaluate('!Vesperfall.component.tidelight.root.visible'),'The previous water layer is suppressed rather than double-rendered')
   check(not any(diag()['restored']),'No refuge is credited before its actual relay is restored')
@@ -60,7 +62,11 @@ with sync_playwright() as p:
   wait('Vesperfall.component.currentworks.state.restored[0]')
   check(page.evaluate('Vesperfall.state.targets.has(0)&&Vesperfall.component.currentworks.fire.stats.emitters===1'),'A real signal shot relights exactly its refuge brazier')
   walk(m['front']);aim([m['x']-m['side']*11.8,2.5,m['z']+11.4]);page.screenshot(path=str(OUT/'refuge-relit.png'))
-  page.evaluate('TestPad.enabled=false');page.locator('a-scene canvas').focus();page.keyboard.press('KeyP');wait('Vesperfall.component.paused')
+  # Pause with the controller before disconnecting. Do not toggle KeyP after
+  # disconnect, since the host already pauses on controller loss.
+  page.evaluate('TestPad.button(9,true)');wait('Vesperfall.component.paused')
+  page.evaluate('TestPad.button(9,false)');wait('!Vesperfall.component.dominionControls.state.prev[9]')
+  page.evaluate('TestPad.enabled=false');wait('Vesperfall.component.dominionControls.state.pad===null')
   frozen=diag();page.wait_for_timeout(350);after=diag()
   check([x['time'] for x in frozen['water']]==[x['time'] for x in after['water']] and frozen['fire']['time']==after['fire']['time'] and [x['time'] for x in frozen['trees']]==[x['time'] for x in after['trees']],'Pause freezes water, fire and tree simulation times')
   page.locator('#save-expedition').click()
