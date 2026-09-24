@@ -40,7 +40,10 @@ export function createCurrentworks({scene,patches,foliageFallback}){
    // Compile Aether's water and cloud material variants with its own lights.
    // Actual buffers are exercised by the ordinary title/game render.
    const old=root.visible;root.visible=true;
-   try{if(renderer.compileAsync)await renderer.compileAsync(scene,camera);else renderer.compile(scene,camera);}
+   // The sky/art loaders can replace and dispose unrelated host materials
+   // while r177 compileAsync polls programs. Own only this group's material
+   // set; the third argument still supplies the real city lights/environment.
+   try{if(renderer.compileAsync)await renderer.compileAsync(root,camera,scene);else renderer.compile(root,camera,scene);}
    finally{root.visible=old;}
    if(!disposed){ready=true;root.visible=enabled;}
   }catch(e){error=String(e?.message||e);restore();}

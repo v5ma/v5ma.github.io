@@ -8,7 +8,23 @@ try{
  const scene=new T.Scene(),sun=new T.DirectionalLight(0xffefd8,3.2);sun.position.set(-40,80,20);scene.add(sun,new T.HemisphereLight(0xd4f3ff,0x627565,1.6));
  const fallback=new T.Group();scene.add(fallback);const patches=new Map(PATCHES.map(p=>[p.id,{p,mesh:new T.Mesh()}]));
  const fx=createCurrentworks({scene,patches,foliageFallback:fallback}),s=createState(),cam=new T.PerspectiveCamera(50,1.5,.02,1000);
- await fx.prepare(renderer,cam);check(fx.stats().ready&&!fx.stats().error,'The unmodified upstream tree warmup completes on the existing Three r177 renderer');
+ // Regression: unrelated async artwork may replace its material during preparation.
+ const sky=new T.Mesh(new T.BoxGeometry(.1,.1,.1),new T.MeshBasicMaterial());scene.add(sky);
+ renderer.compile(sky,cam,scene);
+ const compileAsync=renderer.compileAsync.bind(renderer);let skyReplaced=false;
+ renderer.compileAsync=(object,camera,target)=>{
+  if(object===scene||object.name==='Aether Currentworks environment'){
+   check(object!==scene&&target===scene,'Preparation compiles only owned scenery with the real host lighting');
+   const pending=compileAsync(object,camera,target);
+   queueMicrotask(()=>{const old=sky.material;sky.material=new T.MeshBasicMaterial();old.dispose();skyReplaced=true;});
+   return pending;
+  }
+  return compileAsync(object,camera,target);
+ };
+ await fx.prepare(renderer,cam);renderer.compileAsync=compileAsync;
+ check(skyReplaced&&fx.stats().ready&&!fx.stats().error,'A real host-material replacement during preparation does not stall startup');
+ scene.remove(sky);sky.geometry.dispose();sky.material.dispose();
+ check(fx.stats().ready&&!fx.stats().error,'The unmodified upstream tree warmup completes on the existing Three r177 renderer');
  check(fx.stats().trees.warmupDraws===1,'Every tree LOD is exercised during bounded preparation');
  const pixels=new Uint8Array(720*480*4);function snapshot(label){renderer.getContext().readPixels(0,0,720,480,renderer.getContext().RGBA,renderer.getContext().UNSIGNED_BYTE,pixels);let painted=0;for(let i=3;i<pixels.length;i+=4)if(pixels[i])painted++;check(painted>200,label+' contains rendered pixels');images.push({label,data:renderer.domElement.toDataURL('image/png')});}
  function render(label,eye,look,kind){cam.position.fromArray(eye);cam.lookAt(...look);s.time=3;fx.update(s,{eye:cam.position,mode:'balanced'});const n=fx.stats().drawn[kind];renderer.render(scene,cam);check(fx.stats().drawn[kind]>n,label+' uses its actual mesh/material draw');snapshot(label);}
