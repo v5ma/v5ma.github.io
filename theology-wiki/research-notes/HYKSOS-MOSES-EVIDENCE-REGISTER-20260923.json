@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "saved_at": "2026-09-23",
+  "purpose": "Resume Hyksos/Second Intermediate Period Moses research without promoting hypotheses to facts.",
+  "tiers": {
+    "secure": [
+      "Avaris had a large Levantine-derived population and later a Hyksos ruling dynasty.",
+      "Seqenenre Tao died violently in the anti-Hyksos conflict and his mummy preserves lethal weapon trauma.",
+      "Kamose fought Apepi and Ahmose I ultimately reconquered Avaris.",
+      "1 Chronicles 7:20-23 contains Ephraimite deaths involving men of Gath, Ephraim's mourning, and Beriah's birth.",
+      "Exodus 13:17 gives avoidance of the Philistine road because of war.",
+      "Ezekiel 37 contains both the dry-bones vision and the Judah/Joseph-Ephraim two-stick sign.",
+      "Brooklyn Papyrus 35.1446 documents household dependents including many West Semitic names in the relevant broad pre-New-Kingdom social world."
+    ],
+    "plausible_background": [
+      "A Levantine-origin child could plausibly have been raised in an Egyptianized elite Avaris household.",
+      "An otherwise unattested Hyksos royal daughter in the required generation is plausible given poor preservation of the royal family.",
+      "Egyptian-looking names in the Moses/Levitical tradition can preserve Egyptian cultural memory, but do not by themselves identify an Egyptian office or class.",
+      "Avaris's political transition may be relevant background for the Exodus motif of a new regime fearing an internally numerous population."
+    ],
+    "suggestive": [
+      "Late Manetho/Josephus Hyksos-expulsion traditions structurally resemble parts of an Exodus constellation and show an ancient Jewish Hyksos-Israel association.",
+      "Later Jewish traditions about Ephraimites leaving Egypt prematurely may preserve an independent interpretive memory worth tracing.",
+      "Seqenenre's real violent death in the relevant war horizon makes him a testable pursuer candidate, but his weapon injuries require a battle model rather than simple drowning.",
+      "Shasu-yhw inscriptions are relevant to a southern Yahweh/Seir-Midian/Kenite inquiry but do not identify the Shasu as Exodus Israelites."
+    ],
+    "unsupported_or_low": [
+      "Yanassi was Moses.",
+      "Tati, Tani, Ziwat or Herit was Moses's foster mother.",
+      "Seqenenre was the Exodus pharaoh.",
+      "Ephraimites were the Hyksos chariot corps or military backbone.",
+      "Ephraimite troops defected from Avaris during Ahmose's conquest.",
+      "Ahmose enslaved Hebrews specifically because of an Ephraimite defection.",
+      "The Gath casualties of 1 Chronicles occurred around 1550 BCE or left bones visible on Moses's later route.",
+      "Ezekiel's dry bones are literally the Gath Ephraimite dead.",
+      "Levites were an Egyptian priestly intelligence service.",
+      "Senenmut was Moses in the end-Hyksos chronology."
+    ]
+  },
+  "chronology": {
+    "moses_birth_working": "c. 1660-1630 BCE; near 1635 BCE if confrontation is near Seqenenre's death and Exodus 7:7 age 80 is applied",
+    "court_window": "c. 1655-1610 BCE",
+    "flight_strict_acts_model": "c. 1620-1590 BCE",
+    "return_confrontation": "c. 1580-1550 BCE",
+    "seqenenre_horizon": "mid-1550s BCE",
+    "note": "Acts 7 supplies the 40+40 staging; Exodus itself supplies age 80 at confrontation."
+  },
+  "next_tests": [
+    "Primary/philological audit of Brooklyn Papyrus names.",
+    "Source-history of premature Ephraim Exodus traditions and their earliest dates.",
+    "Direct Tell el-Dab'a publications on Avaris conquest, abandonment, continuity and early Dynasty 18 reuse.",
+    "Primary-text audit of Ahmose son of Ibana and Kamose stelae against modern military reconstruction.",
+    "Early Hyksos royal-woman prosopography and evidence for court fostering/adoption.",
+    "Explicit treatment of 1 Kings 6:1 480-year tension and Tell el-Dab'a radiocarbon chronology."
+  ]
+}
