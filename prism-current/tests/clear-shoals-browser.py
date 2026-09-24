@@ -93,6 +93,7 @@ with sync_playwright() as pw:
         p.wait_for_function('window.River?.snapshot().ready&&River.snapshot().rotunda.progress>=1&&!document.getElementById("enter-ar").disabled')
         p.add_script_tag(content=(APP/'tests/frame-trace.js').read_text());p.add_script_tag(content=(APP/'tests/playability-xr-driver.js').read_text())
         p.evaluate("window.shoalTrace=RiverFrameTrace.install(AFRAME.scenes[0].components['river-game'])")
+        p.add_script_tag(content=(APP/'tests/render-completion-probe.js').read_text());p.evaluate('window.gpuProbe=RenderCompletionProbe.install(AFRAME.scenes[0])')
         xy=p.evaluate('''()=>{const T=AFRAME.THREE,s=AFRAME.scenes[0],m=s.object3D.getObjectByName('river-xr-menu'),r=RiverRotunda.RECTS[0];m.updateWorldMatrix(true,false);const v=new T.Vector3(((r.x+r.w/2)/1200-.5)*1.68,(.5-(r.y+r.h/2)/814)*1.14,0).applyMatrix4(m.matrixWorld).project(s.camera),b=document.getElementById('scene-wrap').getBoundingClientRect();return [b.x+(v.x*.5+.5)*b.width,b.y+(-v.y*.5+.5)*b.height];}''')
         p.mouse.click(*xy);p.wait_for_function('River.snapshot().immersive&&River.snapshot().calibrated&&River.snapshot().rotunda.progress>=1')
         def snap():return p.evaluate('River.snapshot()')
@@ -138,6 +139,7 @@ with sync_playwright() as pw:
         choose(8);choose(3);p.wait_for_function('!River.snapshot().immersive')
         check(True,'Exit ends the XR session without closing the browser')
         check(not errors,'No captured JavaScript or shader errors in these optical and AR paths')
+        (OUT/'gpu-completion.json').write_text(json.dumps(p.evaluate('gpuProbe.snapshot()'),indent=2))
         (OUT/'frame-trace.json').write_text(json.dumps(p.evaluate('shoalTrace.snapshot()'),indent=2))
         (OUT/'report.json').write_text(json.dumps({'passed':len(checks),'checks':checks,'errors':errors,'pixelEvidence':pixels,'opacityDiagnostics':capDiagnostics,'result':result,'scope':'Native WebGL fixture and actual full Easy AR game using emulated tracked input. Existing reduced stereo gameplay buffer; not physical Quest approval or sustained performance.'},indent=2));c.close()
     except Exception as e:
@@ -145,6 +147,12 @@ with sync_playwright() as pw:
         except:state=None
         try:trace=p.evaluate('window.shoalTrace?.snapshot()')
         except:trace=None
+        try:
+            gpu=p.evaluate('window.gpuProbe?.snapshot()');p.evaluate('window.gpuProbe?.dispose()')
+            (OUT/'gpu-completion.json').write_text(json.dumps(gpu,indent=2))
+            completion=p.evaluate('window.RenderCompletionProbe?.pausedVariants(AFRAME.scenes[0])')
+            (OUT/'paused-render-completion.json').write_text(json.dumps(completion,indent=2))
+        except Exception as diagnostic_error:(OUT/'completion-error.txt').write_text(str(diagnostic_error))
         (OUT/'failure.json').write_text(json.dumps({'error':str(e),'checks':checks,'errors':errors,'state':state,'trace':trace,'pixelEvidence':pixels,'opacityDiagnostics':capDiagnostics},indent=2))
         try:p.screenshot(path=str(OUT/'failure.png'))
         except:pass
