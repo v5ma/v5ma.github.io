@@ -1,11 +1,11 @@
-/* Currentworks Trees 0.1.3. Original seeded geometry and host-clock wind.
+/* Currentworks Trees 0.2.0. Original seeded geometry and host-clock wind.
  * Supply the existing THREE namespace; no renderer, clock, DOM, input or storage.
  * All roots and geometry are FOREST-GROUP-LOCAL. No collision or gameplay owner.
  * Skeleton is generated once, all three detail meshes are built before playing.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.3',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
+ const VERSION='0.2.0',SCHEMA=1,MAX_TREES=24,TAU=Math.PI*2;
  const PRESETS=Object.freeze(['palm','alder','willow']);
  const DETAIL=Object.freeze([
   Object.freeze({name:'near',radial:8,pathStride:1,leafStride:1,leafScale:1}),
@@ -145,7 +145,7 @@
     shader.vertexShader=shader.vertexShader.replace('#include <beginnormal_vertex>','#include <beginnormal_vertex>\nobjectNormal.y-=cwBend().y*dot(objectNormal.xz,cwDirection);');
     shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\ntransformed.xz+=cwDirection*cwBend().x;vCWUv=uv;');
     shader.fragmentShader='varying vec2 vCWUv;\n'+shader.fragmentShader;
-    shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+(leaves?'float vein=exp(-abs(vCWUv.x-.5)*65.);diffuseColor.rgb*=.90+.10*vCWUv.y;diffuseColor.rgb+=vec3(.025,.033,.009)*vein;':'float ridge=.5+.5*sin(vCWUv.x*88.+sin(vCWUv.y*8.)*.55);diffuseColor.rgb*=.76+.24*ridge;'));
+    shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+(leaves?'float vein=exp(-abs(vCWUv.x-.5)*65.);float edge=pow(clamp(abs(vCWUv.x-.5)*2.,0.,1.),1.35);float tip=smoothstep(.35,1.,vCWUv.y);diffuseColor.rgb*=.92+.10*tip-.08*edge;diffuseColor.rgb+=vec3(.025,.034,.009)*vein+vec3(.010,.016,.004)*(1.-edge)*tip;':'float ridge=.5+.5*sin(vCWUv.x*88.+sin(vCWUv.y*8.)*.55);float fine=.5+.5*sin(vCWUv.x*173.+vCWUv.y*13.);diffuseColor.rgb*=.69+.22*ridge+.09*fine;'));
    };
    m.customProgramCacheKey=()=>VERSION+(leaves?'/leaf':'/wood');materials.push(m);return m;
   }

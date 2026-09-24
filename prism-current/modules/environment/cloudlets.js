@@ -1,11 +1,11 @@
-/* Currentworks Cloudlets 0.1.0. Original seeded mesh-cloud clusters.
+/* Currentworks Cloudlets 0.2.0. Original seeded mesh-cloud clusters.
  * These are opaque stylized lobes, NOT VDB, raymarched clouds or Gaussian splats.
  * Geometry and motion are GROUP-LOCAL; viewer observations are WORLD-SPACE.
  * No engine import, camera control, scene background, input or game-state owner.
  */
 (function(root){
   'use strict';
-  const VERSION='0.1.0',MAX_CLOUDS=8,LOBES=7;
+  const VERSION='0.2.0',MAX_CLOUDS=8,LOBES=7;
   const LEVELS=Object.freeze([Object.freeze([16,10]),Object.freeze([12,8]),Object.freeze([8,5])]);
   const validVector=v=>Array.isArray(v)&&v.length===3&&v.every(Number.isFinite);
   const validId=id=>typeof id==='string'&&id.length>0&&id.length<=96||Number.isSafeInteger(id);
@@ -46,6 +46,13 @@
     if(quiet)return [0,0,0];const phase=(d.seed%997)/997*Math.PI*2;
     return [Math.sin(time*.17+phase)*d.drift,Math.sin(time*.23+phase)*d.bob,Math.cos(time*.13+phase)*d.drift*.35];
   }
+  // Directional vertex tint adds shape without transparency, textures or another pass.
+  // Input normal is unit local-space; output remains bounded linear RGB.
+  function shade(normal,h){
+    h=clamp(h,0,1);const key=clamp(normal[0]*-.31+normal[1]*.87+normal[2]*.38,-1,1)*.5+.5;
+    const amount=.69+.20*h+.11*key,base=[.60,.69,.82],top=[1,.98,.91];
+    return base.map((v,i)=>clamp((v+(top[i]-v)*h)*amount,0,1));
+  }
   function create(T,options={}){
     if(!T?.BufferGeometry||!T?.MeshLambertMaterial||!T?.SphereGeometry)throw new TypeError('Supply the existing compatible THREE namespace.');
     if(!options||typeof options!=='object'||Array.isArray(options))throw new TypeError('Cloudlet options must be an object.');
@@ -65,7 +72,7 @@
           v.fromBufferAttribute(pos,i);v.set(v.x*l.scale[0]+l.center[0],v.y*l.scale[1]+l.center[1],v.z*l.scale[2]+l.center[2]);p.push(v.x,v.y,v.z);
           normal.fromBufferAttribute(norm,i).set(norm.getX(i)/l.scale[0],norm.getY(i)/l.scale[1],norm.getZ(i)/l.scale[2]).normalize();n.push(normal.x,normal.y,normal.z);
           const h=clamp((v.y-bounds.min[1])/(bounds.max[1]-bounds.min[1]),0,1);
-          colors.push(.55+.45*h,.65+.35*h,.78+.22*h);
+          colors.push(...shade([normal.x,normal.y,normal.z],h));
         }
         for(const index of source.index.array)indices.push(start+index);
       }
@@ -104,6 +111,6 @@
         selectedTriangles:disposed||!visible?0:nodes.reduce((s,n)=>s+(n.m.visible?n.m.geometry.index.count/3:0),0),
         levels:nodes.map(n=>n.level),textures:0,renderTargets:0};}});
   }
-  const api=Object.freeze({VERSION,MAX_CLOUDS,LOBES,LEVELS,seedFor,descriptors,shape,extent,level,offset,create});
+  const api=Object.freeze({VERSION,MAX_CLOUDS,LOBES,LEVELS,seedFor,descriptors,shape,extent,level,offset,shade,create});
   if(typeof module!=='undefined'&&module.exports)module.exports=api;root.SVGNCloudlets=api;
 })(globalThis);

@@ -20,6 +20,11 @@ test('Cloud descriptor budget and invalid coordinates are checked before allocat
  for(const v of [[{id:'a',position:[0,NaN,0]}],[{id:'a',position:[0,0]}],[{id:'',position:[0,0,0]}],[{id:'a',position:[0,0,0]},{id:'a',position:[1,0,0]}]])assert.throws(()=>Cloud.descriptors(v),TypeError);
  assert.throws(()=>Cloud.create({}),/THREE/);
 });
+test('Cloud 0.2 directional tint is bounded and distinguishes crown from underside',()=>{
+ assert.equal(Cloud.VERSION,'0.2.0');const top=Cloud.shade([0,1,0],1),bottom=Cloud.shade([0,-1,0],0);
+ assert.ok(top.every(Number.isFinite)&&bottom.every(Number.isFinite));assert.ok(top.every(v=>v>=0&&v<=1)&&bottom.every(v=>v>=0&&v<=1));
+ assert.ok(top.reduce((a,b)=>a+b,0)>bottom.reduce((a,b)=>a+b,0));
+});
 test('Cloud generation is seeded, varied and fixed at seven lobes',()=>{
  const x=Cloud.shape(4,.6);assert.deepEqual(x,Cloud.shape(4,.6));assert.notDeepEqual(x,Cloud.shape(5,.6));assert.equal(x.length,7);
  for(const l of x){assert.equal(l.center.length,3);assert.ok(l.scale.every(v=>v>0&&Number.isFinite(v)));}

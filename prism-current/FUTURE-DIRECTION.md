@@ -53,3 +53,9 @@ Modules accept the existing Three.js namespace, documented coordinates and expli
 AR-REFERENCE-REVIEW.md covers Disney's separately licensed cloud data, Grassworks restrictions, toon/cel versus splats, low-poly geometry and incomplete demo access. REFERENCE-REVIEW-SPATIAL-UI.md covers performance estimates, folding, SSGI, gestures, glass and HTML-in-canvas. LIQUID-GLASS-REFERENCE.md records the later author-grounded review, superseding the earlier inaccessible-shell finding. GlassCard and isolated HTML-backed settings/help remain proposals. Keep HEALTH and Start/Resume stable; do not animate selected targets away from held rays.
 
 Commits, served hashes, native input, artistic quality and physical-device approval are distinct. Preserve failed artifacts and historical receipts. Save actual evidence and the next task here, not only in chat. No portals, full multi-game brief, credentials, font files or private SaaS UI belong in this public game.
+
+## AR scenery shading checkpoint / abb53562d34b
+
+Currentworks Cloudlets 0.2.0 and Trees 0.2.0 refine the existing AR islands without increasing geometry count or adding textures/render targets. Cloud vertices now carry a bounded directional crown/underside tint so the seven-lobe forms read with more volume under existing lighting. Trees keep their existing geometry/LOD/wind but enrich bark with a second procedural ridge scale and foliage with edge/tip/vein variation. The change is decorative only: no targets, health, scores, input, camera, collisions, saves, water geometry or difficulty rules are changed.
+
+Acceptance remains separate. Existing startup frame-gap evidence and physical Quest approval are still open; do not interpret prettier scenery as resolution of those issues. Next visual work should come from owner AR feedback before adding geometry or full-screen effects.

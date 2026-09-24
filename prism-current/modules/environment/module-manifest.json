@@ -31,8 +31,8 @@
       "compatibility": "The output-policy warmup is pinned to Three r184; revalidate when upgrading or changing renderer/context."
     },
     "trees": {
-      "status": "implemented-and-publicly-verified",
-      "version": "0.1.3",
+      "status": "implemented-and-integrated-current-acceptance-open",
+      "version": "0.2.0",
       "script": "trees.js",
       "module": "trees.mjs",
       "global": "SVGNTrees",
@@ -64,7 +64,7 @@
     },
     "cloudlets": {
       "status": "implemented-and-integrated-current-acceptance-open",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "script": "cloudlets.js",
       "module": "cloudlets.mjs",
       "global": "SVGNCloudlets",
@@ -158,5 +158,6 @@
   "direction": "../../AR-FIRST.md",
   "currentHostRuntime": "a3cd5dbac40d330371f78bccd842c91a061fc889",
   "currentHostVersion": "0.13.0",
-  "currentVerification": "CLEAR-SHOALS-RESULT.md"
+  "currentVerification": "CLEAR-SHOALS-RESULT.md",
+  "currentGraphicsPass": "AR scenery shading / geometry-neutral cloud and foliage refinement"
 }
