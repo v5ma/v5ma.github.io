@@ -1,0 +1,15 @@
+# Evidence checkpoint: recovered sources and chronological controls
+
+The audit has recovered several real scholarly and institutional witnesses. This is a checkpoint, not a final identification of Moses or the Exodus.
+
+K. A. Kitchen's 1956 article on Brooklyn Papyrus 35.1446 is available in a publisher-licensed excerpt at https://www.galaxie.com/article/tynbul02-1-01 . It distinguishes an older Theban labor/prison register from a later Dynasty XIII household list and reports 79 servants, 45 of them Asiatics. Other catalogue descriptions report 95 overall; these counts must not be silently harmonized. The manuscript and Northwest Semitic servitude background are real; the video's claim of nine specifically Hebrew persons is not established by name resemblance. Kitchen's proposed Joseph date is his historical interpretation, not a date written in the papyrus. The Brooklyn Museum page has not loaded successfully during this pass.
+
+The Met's Brickmakers, Tomb of Rekhmire record (https://www.metmuseum.org/art/collection/search/544649) identifies a modern facsimile of an ancient Dynasty XVIII scene from the reigns of Thutmose III and early Amenhotep II. Flora Brooke Anthony's firsthand iconographic analysis identifies foreign captives making bricks for Amun at Thebes (https://www.thetorah.com/article/levantines-in-15th-and-14th-century-egyptian-art). This is a strong labor analogy, but later than the user's pre-Ahmose departure window.
+
+The Centro di Egittologia Francesco Ballerini's account of Amenhotep II distinguishes a Year 3 Syrian campaign from Year 7 and Year 9 campaigns (https://www.cefb.it/en/amenhotepii-en/). The Elephantine/Amada inscriptions must not be conflated with the Memphis/Karnak campaign accounts. A claimed lack of later campaigns does not by itself document an army drowned in pursuit or a raid to replace escaped Hebrews.
+
+Titus Kennedy's 2019 peer-reviewed Soleb study is fully accessible at https://escholarship.org/content/qt07x6659z/qt07x6659z.pdf . It documents actual inscriptions, distinguishes the Soleb and Amara West witnesses, and argues for a Yahweh-worshipping Israelite identification. Faried Adrom and Matthias Mueller's 2017 chapter, available as an author-uploaded full text at https://www.researchgate.net/publication/318675278_The_Tetragrammaton_in_Egyptian_Sources_-_Facts_and_Fiction , treats the ethnic and geographical inferences as unresolved. Their competing arguments belong beside the actual artifact, not in place of it. Neither inscription supplies the name Moses or a forty-year itinerary.
+
+The attached Ephraim narrative puts Moses's birth after Ahmose's capture of Avaris and subsequent enslavement. The user's preferred Seqenenre/pre-Ahmose variant requires Moses already to be about eighty before that capture. These are competing sequences. They cannot be treated as one uninterrupted reconstruction without changing a major premise.
+
+The next checkpoint will complete the Ipuwer witness, the Ephraim/Gath rabbinic reception, the actual Avaris battle inscription, and the resulting dated evidence ledger. Original Wiki article bodies and earlier research reports remain unchanged.
