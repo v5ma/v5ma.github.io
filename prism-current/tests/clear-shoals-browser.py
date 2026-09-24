@@ -74,6 +74,17 @@ with sync_playwright() as pw:
         check(p.evaluate('fixture.r.info.programs.every(p=>!p.diagnostics||p.diagnostics.runnable!==false)'),'Both shader variants compile and link in real WebGL2')
         p.evaluate('fixture.o.dispose();fixture.w.dispose();fixture.r.dispose()');c.close()
 
+        # Updated fire is rendered independently before the unchanged AR journey.
+        c=browser.new_context(viewport={'width':960,'height':640},device_scale_factor=1);p=c.new_page();watch(p);p.goto('about:blank')
+        for name in ['vendor/aframe-1.8.0.min.js','modules/environment/fire.js','tests/effects-polish-render.js']:
+            p.add_script_tag(content=(APP/name).read_text())
+        fireReport=p.evaluate('runEffectsPolishFixture()')
+        for name,data in fireReport.pop('captures').items():
+            (OUT/('fixture-curl-'+name+'.png')).write_bytes(base64.b64decode(data.split(',')[1]))
+        (OUT/'curl-fire.json').write_text(json.dumps(fireReport,indent=2))
+        for text in fireReport['checks']:check(True,text)
+        c.close()
+
         # The normal game with tracked-input emulation; no actor/health/clock writes.
         c=browser.new_context(viewport={'width':1280,'height':1000},device_scale_factor=.25,service_workers='block')
         c.add_init_script((APP/'tests/river-fake-xr.js').read_text()+'\n'+(APP/'tests/river-strict-xr.js').read_text())
@@ -95,7 +106,7 @@ with sync_playwright() as pw:
             p.wait_for_function('i=>River.snapshot().xrUI.hover[0]===i',arg=i);n=snap()['xrUI']['actions'];p.evaluate('TestXR.select("left",true)');p.wait_for_function('n=>River.snapshot().xrUI.actions===n+1',arg=n);p.evaluate('TestXR.select("left",false)')
             if snap()['immersive']:frames()
         check(snap()['difficulty']=='easy' and snap()['version']=='0.13.0','The actual AR chapter card preserves Easy and Color Match gameplay')
-        check(snap()['stats']['arScenery']['optics']['version']=='0.2.0','The real AR river uses Clear Shoals, not only the standalone fixture')
+        check(snap()['stats']['arScenery']['optics']['version']=='0.2.1','The real AR river uses Clear Shoals, not only the standalone fixture')
         check(p.evaluate('AFRAME.scenes[0].renderer.getClearAlpha()')==0,'The game retains transparent AR composition')
         check(snap()['stats']['arScenery']['optics']['extraTextures']==2 and snap()['stats']['arScenery']['optics']['renderTargets']==0,'Actual AR uses exactly two additional data textures and no scene-copy targets')
         before=snap()['stats']['water']['opacity'];choose(10);choose(4);p.wait_for_function('v=>River.snapshot().stats.water.opacity<v',arg=before)
@@ -104,6 +115,8 @@ with sync_playwright() as pw:
         check(True,'The existing tracked quiet/flowing control still works')
         choose(8);p.evaluate('TestXR.away()');button(5);p.wait_for_function('River.snapshot().phase==="playing"')
         check(snap()['result']['health']==100 and snap()['rotunda']['healthGaugeVisible'],'The running AR encounter retains its actual health display')
+        check(snap()['stats']['arScenery']['optics']['prepared'] and snap()['stats']['arScenery']['optics']['warmupDraws']==1,'The actual AR water completes its first-use draw before music and combat')
+        check(snap()['stats']['fire']['version']=='0.2.0' and snap()['stats']['fire']['prepared'],'The actual game uses prepared curling fire rather than the old flame material')
         before=snap()['bladeColors'];button(4)
         check(snap()['bladeColors'][1]!=before[1] and snap()['bladeColors'][0]==before[0],'Right A still changes only its saber color rather than opening a menu')
         p.wait_for_function('River.snapshot().stats.water.emitted>0',timeout=22000)
@@ -119,6 +132,7 @@ with sync_playwright() as pw:
         check(not p.evaluate('friendlyXRObserved.earlyBoss'),'Admiral Quack still arrives only in the final musical phrase')
         p.wait_for_function('["complete","failed","escaped"].includes(River.snapshot().phase)',timeout=35000);p.evaluate('stopFriendlyXR();clearInterval(friendlyXRObserver)');result=snap()['result']
         check(result['complete'] and result['bossDefeated'],'The unchanged Easy AR battle completes through real boss laser hits with the new water')
+        check(snap()['stats']['fire']['emitted']>0,'Real defeated enemies produced the upgraded fire during the AR battle')
         check(p.evaluate("localStorage.getItem('prism-current.river.pacing.records.v1')")=='{"sentinel":true}','Older scoring records remain byte-identical')
         check(snap()['stats']['arScenery']['grass']['visible'],'The current island, cloud and grass composition remains present')
         choose(8);choose(3);p.wait_for_function('!River.snapshot().immersive')

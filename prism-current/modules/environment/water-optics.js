@@ -1,9 +1,9 @@
-/* Currentworks Water Optics 0.2.0 / Clear Shoals.
+/* Currentworks Water Optics 0.2.1 / Clear Shoals.
  * Reversible Water 0.1.0 extension. No scene-copy, float targets or renderer.
  * See CLEARWATER-NOTICE.txt for the adapted Fresnel helper and attribution.
  */
 (function(root){'use strict';
- const VERSION='0.2.0';
+ const VERSION='0.2.1';
  const D=typeof module!=='undefined'&&module.exports?require('./water-detail'):root.SVGNWaterDetail;
  function patch(source,pairs){for(const [from,to] of pairs){if(source.split(from).length!==2)throw new Error('Unsupported water shader revision: '+from.slice(0,45));source=source.replace(from,to);}return source;}
  function attach(T,material){
@@ -94,12 +94,55 @@
    waterPebbles:{value:texture(D.pebbles(),256,'Currentworks / original pebble bed')},causticShift:{value:new T.Vector2(...generated.shift)}};}
   catch(e){for(const t of owned)t.dispose();throw e;}
   Object.assign(material.uniforms,additions);material.vertexShader=vertex;material.fragmentShader=source;
-  material.userData.currentworksOptics=VERSION;material.needsUpdate=true;let disposed=false;
+  material.userData.currentworksOptics=VERSION;material.needsUpdate=true;let disposed=false,prepared=false,pending=null,warmupDraws=0;
   function update(frame={}){if(disposed||!frame||typeof frame!=='object'||Array.isArray(frame))return false;uniform.value.w=frame.ar===true?1:0;return true;}
+  // Exercise the actual water buffers/material during cancellable loading.
+  // Nothing here advances the host clock or exposes a synthetic gameplay event.
+  function warm(renderer,mesh,scene){
+   if(!renderer.isWebGLRenderer)return; // Explicitly labeled test collaborators.
+   const target=new T.WebGLRenderTarget(24,24,{depthBuffer:true,stencilBuffer:false});
+   const scratch=new T.Scene(),cam=new T.PerspectiveCamera(55,1,.01,1000),proxy=new T.Mesh(mesh.geometry,material);
+   const vp=renderer.getViewport(new T.Vector4()),sc=renderer.getScissor(new T.Vector4());
+   const before={target:renderer.getRenderTarget(),face:renderer.getActiveCubeFace(),mip:renderer.getActiveMipmapLevel(),xr:renderer.xr.enabled,autoClear:renderer.autoClear,scissor:renderer.getScissorTest()};
+   target.isXRRenderTarget=!before.target||before.target.isXRRenderTarget===true;
+   target.texture.colorSpace=target.isXRRenderTarget?(before.target?.texture.colorSpace||renderer.outputColorSpace):T.ColorManagement.workingColorSpace;
+   scratch.fog=scene?.fog||null;scratch.environment=scene?.environment||null;
+   scene?.traverseVisible?.(o=>{if(o.isLight)scratch.add(o.clone(false));});
+   proxy.frustumCulled=false;scratch.add(proxy);
+   // Compute bounds on a temporary Box3, not by changing the caller's geometry.
+   const bounds=new T.Box3().setFromBufferAttribute(mesh.geometry.attributes.position),center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3());
+   const height=Math.max(size.x,size.z,2);
+   cam.position.set(center.x,center.y+height,center.z+height*.20);cam.lookAt(center);
+   const originalOpacity=material.uniforms.opacity.value,originalAR=uniform.value.w;
+   try{
+    // Representative fragments are warmed even when the saved room opacity is zero.
+    material.uniforms.opacity.value=.38;uniform.value.w=0;
+    renderer.xr.enabled=false;renderer.autoClear=true;renderer.setRenderTarget(target);renderer.setScissorTest(false);
+    renderer.render(scratch,cam);renderer.getContext().finish();warmupDraws++;
+   }finally{
+    material.uniforms.opacity.value=originalOpacity;uniform.value.w=originalAR;material.uniformsNeedUpdate=true;scratch.clear();
+    renderer.setRenderTarget(before.target,before.face,before.mip);renderer.setViewport(vp);renderer.setScissor(sc);renderer.setScissorTest(before.scissor);
+    renderer.autoClear=before.autoClear;renderer.xr.enabled=before.xr;target.dispose();
+   }
+  }
+  function prepare(renderer,camera,scene,mesh){
+   if(disposed)return Promise.resolve();
+   if(!mesh?.isMesh||mesh.material!==material||!mesh.geometry?.attributes.position)return Promise.reject(new TypeError('Optical preparation needs its existing water mesh.'));
+   if(prepared)return Promise.resolve();if(pending)return pending;
+   pending=Promise.resolve().then(async()=>{
+    if(disposed)return;
+    renderer.initTexture?.(material.uniforms.waterNoise.value);for(const t of owned)renderer.initTexture?.(t);
+    // A detached proxy avoids exposing or reparenting the live water surface.
+    const proxy=new T.Mesh(mesh.geometry,material),group=new T.Group();group.add(proxy);
+    try{if(renderer.compileAsync)await renderer.compileAsync(group,camera,scene);else renderer.compile(group,camera,scene);}
+    finally{group.clear();}
+    if(disposed)return;warm(renderer,mesh,scene);prepared=true;
+   }).finally(()=>{pending=null;});return pending;
+  }
   function dispose(){if(disposed)return;disposed=true;material.fragmentShader=old;material.vertexShader=oldVertex;
    for(const key of Object.keys(additions))delete material.uniforms[key];for(const t of owned)t.dispose();
    delete material.userData.currentworksOptics;material.needsUpdate=true;}
-  return Object.freeze({update,dispose,get stats(){return {module:'Currentworks Water Optics',version:VERSION,ar:uniform.value.w===1,disposed,
+  return Object.freeze({update,prepare,dispose,get stats(){return {module:'Currentworks Water Optics',version:VERSION,ar:uniform.value.w===1,disposed,prepared,warmupDraws,
    renderTargets:0,extraTextures:disposed?0:2,dataBytes:disposed?0:327680,caustics:'precomputed-refracted-flux',meanBakedFlux:generated.meanFlux};}});
  }
  const api=Object.freeze({VERSION,attach});if(typeof module!=='undefined'&&module.exports)module.exports=api;root.SVGNWaterOptics=api;

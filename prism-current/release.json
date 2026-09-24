@@ -12,13 +12,13 @@
     "water": "Currentworks Water 0.1.0",
     "entry": "modules/environment/water.js",
     "pass": 4,
-    "fire": "Currentworks Fire 0.1.3",
+    "fire": "Currentworks Fire 0.2.0",
     "fireEntry": "modules/environment/fire.js",
     "trees": "Currentworks Trees 0.1.3",
     "treesEntry": "modules/environment/trees.js",
     "passNumber": 4,
     "arScene": "AR Tide 0.1.1",
-    "waterOptics": "Currentworks Water Optics 0.2.0",
+    "waterOptics": "Currentworks Water Optics 0.2.1",
     "islands": "Currentworks Islands 0.1.0",
     "cloudlets": "Currentworks Cloudlets 0.1.0",
     "toon": "Currentworks Toon 0.1.0",
@@ -26,7 +26,8 @@
     "grassEntry": "modules/environment/grass.js",
     "fieldGuide": "AR Field Guide 0.1.0",
     "flexSurface": "Currentworks FlexSurface 0.1.0",
-    "waterDetail": "Currentworks Water Detail 0.1.0"
+    "waterDetail": "Currentworks Water Detail 0.1.0",
+    "effectsPass": "Curling Fire and Optical Preparation"
   },
   "scoring": {
     "version": "color-match-1",

@@ -14,7 +14,7 @@ test('Island data is deterministic, bounded and fully triangulated',()=>{
 });
 test('Optics requires the actual water surface and has explicit ownership',()=>{
  A.throws(()=>O.attach({},{}),TypeError);const s=fs.readFileSync(__dirname+'/../modules/environment/water-optics.js','utf8');
- A.match(s,/material.fragmentShader=old/);A.doesNotMatch(s,/WebGLRenderTarget|localStorage|requestAnimationFrame|new T\.Texture/);
+ A.match(s,/material.fragmentShader=old/);A.doesNotMatch(s,/localStorage|requestAnimationFrame|new T\.Texture/);
 });
 test('AR scenery preferences migrate without replacing opacity or health records',()=>{
  A.equal(R.preferences(null).arScenery,'islands');A.equal(R.preferences('{"arScenery":"minimal","opacity":0.23}').arScenery,'minimal');

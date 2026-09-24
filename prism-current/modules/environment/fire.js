@@ -1,11 +1,11 @@
-/* Currentworks Fire 0.1.3. Original WebGL2 volume effects, caller-owned THREE.
+/* Currentworks Fire 0.2.0. Original WebGL2 volume effects, caller-owned THREE.
  * No renderer, DOM, input, clock, storage or gameplay ownership. All emitter
  * coordinates are GROUP-LOCAL. Visual radius is NEVER a damage radius.
  * See FIRE.md for budgets, clipping limits, reuse and reduced-motion behavior.
  */
 (function(root){
  'use strict';
- const VERSION='0.1.3',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
+ const VERSION='0.2.0',CAPACITY=6,MAX_EMITTERS=2,PARTICLES=128;
  const QUALITY=Object.freeze({light:Object.freeze({volumes:2,steps:12,sparks:32}),balanced:Object.freeze({volumes:3,steps:20,sparks:64}),cinematic:Object.freeze({volumes:6,steps:32,sparks:128})});
  const finite=Number.isFinite,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  const num=(n,d,a,b)=>finite(n)?clamp(n,a,b):d;
@@ -21,6 +21,33 @@
   function sample(g,x,y,z){const n=g.n,fx=x*n/size,fy=y*n/size,fz=z*n/size,ix=Math.floor(fx),iy=Math.floor(fy),iz=Math.floor(fz),u=smooth(0,1,fx-ix),v=smooth(0,1,fy-iy),w=smooth(0,1,fz-iz);let sum=0;
    for(let a=0;a<2;a++)for(let b=0;b<2;b++)for(let c=0;c<2;c++)sum+=g.data[(((iz+c)%n)*n+(iy+b)%n)*n+(ix+a)%n]*(a?u:1-u)*(b?v:1-v)*(c?w:1-w);return sum;}
   const data=new Uint8Array(size**3);for(let z=0;z<size;z++)for(let y=0;y<size;y++)for(let x=0;x<size;x++)data[(z*size+y)*size+x]=Math.round(255*grids.reduce((a,g,i)=>a+sample(g,x,y,z)*[.53,.30,.17][i],0));return data;
+ }
+ /** RGB stores a periodic, globally scaled discrete curl; A retains density.
+  * A single RGBA8 volume replaces the scalar volume. No extra texture lookup.
+  * This warps decorative density; it is NOT a fluid or combustion simulation.
+  */
+ function flowData(size=32,seed=2731){
+  const density=noiseData(size,seed),curl=new Float32Array(size**3*3),result=new Uint8Array(size**3*4);
+  const wrap=n=>(n+size)%size;
+  const value=(x,y,z)=>density[(wrap(z)*size+wrap(y))*size+wrap(x)]/255;
+  // Cyclic permutations are periodic vector potentials; central differences
+  // commute, so their discrete curl is divergence-free before byte rounding.
+  const ax=(x,y,z)=>value(y+5,z+11,x+3);
+  const ay=(x,y,z)=>value(z+13,x+7,y+2);
+  const az=(x,y,z)=>value(x+3,z+9,y+7);
+  let largest=1e-6;
+  for(let z=0;z<size;z++)for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+   const i=((z*size+y)*size+x)*3;
+   curl[i]=(az(x,y+1,z)-az(x,y-1,z)-ay(x,y,z+1)+ay(x,y,z-1))*.5;
+   curl[i+1]=(ax(x,y,z+1)-ax(x,y,z-1)-az(x+1,y,z)+az(x-1,y,z))*.5;
+   curl[i+2]=(ay(x+1,y,z)-ay(x-1,y,z)-ax(x,y+1,z)+ax(x,y-1,z))*.5;
+   largest=Math.max(largest,Math.abs(curl[i]),Math.abs(curl[i+1]),Math.abs(curl[i+2]));
+  }
+  for(let i=0;i<density.length;i++){
+   for(let k=0;k<3;k++)result[i*4+k]=Math.round(127.5+127.5*curl[i*3+k]/largest);
+   result[i*4+3]=density[i];
+  }
+  return result;
  }
  /** Pure, bounded observations. Repeated time is pause, not a request to advance. */
  class Pool{
@@ -49,26 +76,36 @@
  uniform mat4 localToView,fireProjection;
  uniform float clock,age,fade,power,seed,steps,mode,quiet;
  varying vec3 localPoint;
- float field(vec3 p){return texture(fireNoise,p).r;}
+ // Two lookups per sample, as before. The first supplies both density and
+ // curling flow, avoiding a repeated sine-wave silhouette along the plume.
  vec2 flame(vec3 p){
-  vec3 q=p;float n,t=clock;
-  q.x+=sin(p.y*6.1-t*3.7+seed)*.17;q.z+=cos(p.y*5.7-t*3.1+seed)*.16;
-  n=field(q*.72+vec3(seed,-t*.38,0.))*.55+field(q*vec3(2.8,1.15,2.8)+vec3(0.,-t*.83,seed))*.45;
-  n=clamp((n-.5)*3.2+.5,0.,1.);
+  float t=clock,jet=step(.5,mode)*(1.-step(1.5,mode));
+  vec4 broad=texture(fireNoise,p*.63+vec3(seed,-t*.19,seed*.37));
+  vec3 curl=(broad.rgb-.5)*2.;
+  vec3 q=p+curl*mix(.36,.43,jet);
+  float lift=(1.-jet)*smoothstep(.28,1.35,age)*.27;
+  q.y-=lift;
+  vec4 fine=texture(fireNoise,q*vec3(2.35,1.45,2.35)+vec3(seed*.19,-t*.57,seed));
+  float n=clamp(((broad.a*.52+fine.a*.48)-.5)*3.2+.5,0.,1.);
   float shape,heat;
-  if(mode>.5&&mode<1.5){
-   float y=clamp((p.y+.95)/1.9,0.,1.);float radius=.15+.48*pow(y,.65);
-   shape=radius-length(q.xz)+(n-.5)*.65;
-   heat=clamp(1.06-y*.48-length(q.xz)*.88+(n-.5)*.22,0.,1.);
+  if(jet>.5){
+   float y=clamp((p.y+.95)/1.9,0.,1.);
+   float radius=(.13+.50*pow(y,.68))*(1.-.42*smoothstep(.55,1.,y));
+   shape=radius-length(q.xz)+(n-.5)*.56;
+   heat=clamp(1.10-y*.56-length(q.xz)*.78+(n-.5)*.22,0.,1.);
   }else{
-   float expansion=.19+.42*(1.-exp(-age*10.));
-   float r=length(q*vec3(1.,mode>1.5?1.40:.91,1.));
+   float expansion=.18+.43*(1.-exp(-age*9.));
+   // Cooling material rises and stretches within the SAME bounded proxy.
+   // It clears the lower portion instead of leaving a uniformly shrinking ball.
+   float stretch=mix(.94,.72,smoothstep(.35,1.25,age));
+   float r=length(q*vec3(1.,mode>1.5?1.40:stretch,1.));
    shape=expansion-r+(n-.48)*.62;
-   heat=clamp(1.12-age*.65+(n-.5)*.45-r*.95,0.,1.);
+   heat=clamp(1.18-age*.68+(n-.5)*.42-r*.87-max(0.,q.y)*.13,0.,1.);
   }
   float edge=1.-smoothstep(.79,.99,max(max(abs(p.x),abs(p.y)),abs(p.z)));
-  float d=smoothstep(-.08,.12,shape)*smoothstep(.18,.68,n)*edge*fade*power;
-  if(mode>.5&&mode<1.5)d*=1.-smoothstep(.22+.5*n,.98,p.y);
+  float breakup=mix(.18,.29,smoothstep(.55,1.5,age)*(1.-jet));
+  float d=smoothstep(-.08,.12,shape)*smoothstep(breakup,.69,n)*edge*fade*power;
+  if(jet>.5)d*=1.-smoothstep(.28+.38*n,.98,p.y);
   return vec2(d,heat);
  }
  void main(){
@@ -113,7 +150,7 @@
   if(!input||typeof input!=='object')input={};
   const pool=new Pool(),group=new T.Group();group.name='Currentworks Fire';
   let disposed=false,quality=Object.hasOwn(QUALITY,input.quality)?input.quality:'balanced',prepared=false,preparing=null,activeVolumes=0,activeSparks=0,lit=0,warmupDraws=0;
-  const noise=new T.Data3DTexture(noiseData(32,Number.isSafeInteger(input.seed)?input.seed:2731),32,32,32);noise.name='Currentworks generated fire density';noise.format=T.RedFormat;noise.type=T.UnsignedByteType;noise.minFilter=noise.magFilter=T.LinearFilter;noise.wrapS=noise.wrapT=noise.wrapR=T.RepeatWrapping;noise.unpackAlignment=1;noise.colorSpace=T.NoColorSpace;noise.needsUpdate=true;
+  const noise=new T.Data3DTexture(flowData(32,Number.isSafeInteger(input.seed)?input.seed:2731),32,32,32);noise.name='Currentworks curling flow and fire density';noise.format=T.RGBAFormat;noise.type=T.UnsignedByteType;noise.minFilter=noise.magFilter=T.LinearFilter;noise.wrapS=noise.wrapT=noise.wrapR=T.RepeatWrapping;noise.unpackAlignment=1;noise.colorSpace=T.NoColorSpace;noise.needsUpdate=true;
   const box=new T.BoxGeometry(2,2,2),axis=new T.Vector3(0,1,0),inverse=new T.Matrix4(),eye=new T.Vector3(),dir=new T.Vector3();
   const volumes=Array.from({length:CAPACITY},(_,i)=>{const uniforms={fireNoise:{value:noise},eyeLocal:{value:new T.Vector3()},localToView:{value:new T.Matrix4()},fireProjection:{value:new T.Matrix4()},clock:{value:0},age:{value:0},fade:{value:0},power:{value:0},seed:{value:0},steps:{value:20},mode:{value:0},quiet:{value:0}};
    const material=new T.ShaderMaterial({name:'Currentworks Fire '+VERSION,uniforms,vertexShader,fragmentShader,side:T.BackSide,transparent:true,depthTest:true,depthWrite:false,toneMapped:true});
@@ -204,8 +241,8 @@
    return preparing;
   }
   function dispose(){if(disposed)return;disposed=true;activeVolumes=activeSparks=lit=0;group.removeFromParent();pool.clear(true);for(const m of volumes)m.material.dispose();box.dispose();noise.dispose();particleGeometry.dispose();sparkMaterial.dispose();for(const l of lights)l.dispose();}
-  return Object.freeze({group,update,emit,emitter,stop,reset,prepare,dispose,get stats(){return {module:'Currentworks Fire',version:VERSION,time:pool.time,quiet:pool.quiet,xr:pool.xr,quality,visible:pool.visible,emitted:pool.emitted,activeVolumes,activeSparks,capacity:CAPACITY,sparkCapacity:PARTICLES,emitters:pool.slots.filter(s=>s.active&&s.emitter!==null).length,lights:lit,prepared,warmupDraws,disposed,renderTargets:0};}});
+  return Object.freeze({group,update,emit,emitter,stop,reset,prepare,dispose,get stats(){return {module:'Currentworks Fire',version:VERSION,time:pool.time,quiet:pool.quiet,xr:pool.xr,quality,visible:pool.visible,emitted:pool.emitted,activeVolumes,activeSparks,capacity:CAPACITY,sparkCapacity:PARTICLES,emitters:pool.slots.filter(s=>s.active&&s.emitter!==null).length,lights:lit,prepared,warmupDraws,disposed,renderTargets:0,textureCount:disposed?0:1,textureBytes:disposed?0:131072,textureSamplesPerStep:2};}});
  }
- const api=Object.freeze({VERSION,CAPACITY,MAX_EMITTERS,PARTICLES,QUALITY,limits,noiseData,Pool,create,shaders:Object.freeze({vertexShader,fragmentShader,sparkVertex,sparkFragment})});
+ const api=Object.freeze({VERSION,CAPACITY,MAX_EMITTERS,PARTICLES,QUALITY,limits,noiseData,flowData,Pool,create,shaders:Object.freeze({vertexShader,fragmentShader,sparkVertex,sparkFragment})});
  if(typeof module!=='undefined'&&module.exports)module.exports=api;root.SVGNFire=api;
 })(globalThis);

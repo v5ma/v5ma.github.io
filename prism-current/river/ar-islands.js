@@ -13,7 +13,7 @@
  ]);
  function install(T,scene,art){
   const objects=[],style=root.SVGNToon.create(T,{bands:[.34,.58,.8,1]}),scenery=new T.Group();scenery.name='prism-ar-archipelago';art.stage.add(scenery);
-  let islands,forest,clouds,grass,optics,disposed=false,ready=false,pending=null,currentMode='islands',shown=false;
+  let islands,forest,clouds,grass,optics,water,disposed=false,ready=false,pending=null,currentMode='islands',shown=false;
   const cameraEye=new T.Vector3(),worldEye=new T.Vector3(),viewer=[0,1.65,0];
   try{
    islands=root.SVGNIslands.create(T,{islands:ISLANDS,material:style.material({vertexColors:true,color:0xffffff})});objects.push(islands);scenery.add(islands.group);
@@ -25,7 +25,7 @@
    // Slightly bury roots in the domed turf; no collider or gameplay state.
    grass=root.SVGNGrass.create(T,{patches:ISLANDS.map((d,i)=>{const p=islands.socket(d.id);p[1]-=.018;return {id:d.id+'-grass',position:p,seed:311+i*417,radius:i?.46:.43,height:i?.19:.18,blades:36};}),windStrength:.025});
    objects.push(grass);scenery.add(grass.group);grass.update({xr:true,quality:'light',quiet:true});
-   const water=art.stage.getObjectByName('Currentworks Water / local-space surface');
+   water=art.stage.getObjectByName('Currentworks Water / local-space surface');
    if(!water)throw Error('AR islands require the current River water.');optics=root.SVGNWaterOptics.attach(T,water.material);
   }catch(e){for(const o of objects)o.dispose();style.dispose();scenery.removeFromParent();throw e;}
   scenery.visible=false;
@@ -73,7 +73,8 @@
     clouds.update({time:0,quiet:true,xr:true,visible:true});
     grass.update({time:0,quiet:true,xr:true,quality:'light',visible:true});
     await renderer.compileAsync?.(scenery,camera,scene.object3D);if(disposed)return;
-    warm(renderer,camera);ready=true;
+    warm(renderer,camera);
+    await optics.prepare(renderer,camera,scene.object3D,water);if(disposed)return;ready=true;
    }).finally(()=>{pending=null;});return pending;
   };
   art.reset=function(){if(disposed)return;reset.call(art);forest.reset();clouds.reset();grass.reset();};

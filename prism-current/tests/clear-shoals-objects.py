@@ -14,7 +14,7 @@ with sync_playwright() as p:
  const water=SVGNWater.create(T),vertex=water.material.vertexShader,fragment=water.material.fragmentShader,originalUniforms=Object.keys(water.uniforms).sort();
  const base=water.mesh.geometry,waterTexture=water.uniforms.waterNoise.value,opacity=water.uniforms.opacity.value;
  const optics=SVGNWaterOptics.attach(T,water.material);
- check(optics.stats.version==='0.2.0'&&water.stats.version==='0.1.0','Existing water receives the new optics without a second water mesh');
+ check(optics.stats.version==='0.2.1'&&water.stats.version==='0.1.0','Existing water receives the new optics without a second water mesh');
  check(water.mesh.geometry===base&&water.uniforms.waterNoise.value===waterTexture,'Macro geometry, original data and CPU height query are preserved');
  check(optics.stats.extraTextures===2&&optics.stats.dataBytes===327680&&optics.stats.renderTargets===0,'Optical resources obey the declared fixed two-texture budget');
  const textures=[water.uniforms.waterDetail.value,water.uniforms.waterPebbles.value];
@@ -53,3 +53,7 @@ with sync_playwright() as p:
         assert not errors,errors
         (OUT/'objects.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
     finally:b.close()
+
+# The updated module's bounded loading and fire resources are separate observations.
+import subprocess
+subprocess.run([__import__('sys').executable,str(ROOT/'prism-current/tests/effects-polish-objects.py')],check=True)
