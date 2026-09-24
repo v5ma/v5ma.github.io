@@ -22,4 +22,4 @@ test('Prism bank foliage stays outside the 7m-wide action corridor even at peak 
 
 test('Vertex wind reads shared amplitudes instead of recalculating trigonometry per vertex',()=>{const s=fs.readFileSync(__dirname+'/../modules/environment/trees.js','utf8'),shader=s.split('const windGLSL=`')[1].split('`;')[0];A.match(shader,/cwAmplitude\[int\(cwTree/);A.doesNotMatch(shader,/sin\(|cos\(/);});
 
-test('Tree 0.2 foliage and bark enrich shading without adding texture or render-target ownership',()=>{const s=fs.readFileSync(__dirname+'/../modules/environment/trees.js','utf8');A.match(s,/float edge=pow/);A.match(s,/float fine=/);A.doesNotMatch(s,/new T\.Texture|new T\.WebGLRenderTarget/);});
+test('Tree 0.2 foliage and bark enrich shading without adding runtime texture or persistent-target ownership',()=>{const s=fs.readFileSync(__dirname+'/../modules/environment/trees.js','utf8');A.match(s,/float edge=pow/);A.match(s,/float fine=/);A.doesNotMatch(s,/new T\.Texture|new T\.DataTexture|sampler2D|sampler3D/);A.match(s,/renderTargets:0/);A.match(s,/rt\.dispose\(\)/);});
