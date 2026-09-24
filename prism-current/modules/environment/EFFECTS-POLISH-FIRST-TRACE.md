@@ -1,0 +1,9 @@
+# Effects polish / first native trace
+
+Runtime 201ec2c159d9c457e49d2453947b2cef84e60d61 is saved directly on master. Run35954591831's source artifact10790350328 was downloaded and verified against SHA-2566243f5a9dcd0cdd38cd228ef0eff6d9e40acd58ad520455709101d4ec693ad80. Its source archive matches all locally edited runtime/tests; only the previously finalized historical Clear Shoals docs differ from the earlier extraction baseline.
+
+The optics object19 and new preparation/fire object36 checks passed. All nine original isolated water pixel/alpha requirements passed with the same235407 changed color pixels and zero added overlap violations. The new fire fixture passed preparation, visible warm pixels and exact paused repeatability, then failed its new summed-RGB cooling check. The saved late-stage image shows a larger, partially transparent gray plume with a red center; no shader or script errors were recorded. The AR journey had not yet started in this focused job. The failure is not labeled a passing run.
+
+The original test compared the total RGB sum over the whole expanding silhouette. That sum conflates coverage growth with brightness and is not a reliable measure of cooling. The correction instead compares alpha-weighted mean displayed pixel luma while still requiring visible smoke, a warm initial burst, actual image evolution, all other modes and exact pause behavior. It retains total sums as diagnostic values and exposes partial metrics for a failed step. This is a display-space comparison, not a physical energy or radiance measurement.
+
+No flame code, density data, budgets, water shader, host controls, game state, quality, resolution or timing safeguard changes in this correction. The new native and AR results must still be inspected, including source/public startup behavior. Existing gameplay failures remain open; this local test correction does not establish that the new optical preparation resolved them.
