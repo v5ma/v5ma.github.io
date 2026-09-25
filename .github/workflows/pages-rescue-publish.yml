@@ -10,7 +10,8 @@ permissions:
 concurrency:
   group: pages-rescue-publish
   cancel-in-progress: true
-# Publish current master, never an older game snapshot; retain all sibling work.
+# Publish current master, never an older snapshot. Since 2026-09-25 (Micah's decision) this site hosts only the
+# Theology Wiki: the games moved to superinformationtheory.com/games; everything else stays in git history.
 # Each build attempt gets a distinct artifact; deploy-only retries reuse the
 # exact successful build output. Preserve older artifacts rather than deleting them.
 jobs:
@@ -32,10 +33,8 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "artifact=github-pages-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD
-          shasum -a 256 dino-atlas/spatial-console.js dino-atlas/classic-xr.css dino-atlas/tidegate.css
-          shasum -a 256 leonardos-guild/campaign-entry.mjs leonardos-guild/field-status.mjs leonardos-guild/xr-field-desk.mjs leonardos-guild/release.json
-          shasum -a 256 svgn-planet/main-hub.mjs svgn-planet/unified-xr.mjs svgn-planet/native-menu-focus.mjs svgn-planet/release.json
-          shasum -a 256 vesperfall/index.html vesperfall/courier-lantern.js vesperfall/field-kit.js vesperfall/currentworks.js vesperfall/release.json
+          shasum -a 256 index.html 404.html agent-wiki-theology-route.html
+          shasum -a 256 theology-wiki/index.html theology-wiki/san-reader.html theology-sources/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           name: ${{ steps.source.outputs.artifact }}

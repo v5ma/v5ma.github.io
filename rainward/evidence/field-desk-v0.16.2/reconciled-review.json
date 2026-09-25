@@ -1,8 +1,0 @@
-{
-  "status": "source reconciliation before final acceptance",
-  "common_parent": "215f5fe465a607c4e1e7b2f3e7df7065c6f09acf",
-  "existing_branch_head": "5c893f6281c5065d742dda459524f6544458b119",
-  "additional_review_commit": "ad43073ce318dd9076d9671b8231bd0a0df3da12",
-  "resolution": "Preserve the existing read-only workflow with one prerequisite model job, the removed transport scripts and the shared placement/document-input correction. Add the separately reviewed named objective heading, position-only reset preserving comfort choices, three focused tests and stronger native reading/placement assertions. Updated handoff reports both the staged 414 checks and the local 417-check review. No branch or master reset was used.",
-  "release": "Exact-source PR214 acceptance, normal merge and served-file verification remain required."
-}

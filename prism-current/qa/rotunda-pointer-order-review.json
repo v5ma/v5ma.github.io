@@ -1,9 +1,0 @@
-{
-  "version": "0.11.0",
-  "scope": "Source-review correction before final publication",
-  "finding": "The raised menu's transparent draw order could cover earlier opaque pointer lines and cursor spheres despite correct ray hits.",
-  "repair": "Render menu pointers and intersection cursors as opacity-1 transparent-pass objects after the panel, with depth testing and writes disabled. Raycasts, actions and gameplay poses are unchanged.",
-  "model_test": "tests/rotunda-pointers.test.cjs",
-  "native_test": "tests/rotunda-browser.py exercises all transformed AR/VR controls and captures the actual menu view. Final clean-source and public conclusions belong in PR #205.",
-  "physical_acceptance": "OPEN: actual Quest contrast/readability is for the owner playtest."
-}

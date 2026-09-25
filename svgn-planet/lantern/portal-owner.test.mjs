@@ -1,9 +1,0 @@
-import {test} from 'node:test';
-import assert from 'node:assert/strict';
-import * as T from '../vendor/three.module.js';
-import {PortalMaterials,createPortalFrame} from './portal.mjs';
-function compile(m){const s={uniforms:{},vertexShader:'void main(){gl_Position=vec4(0.);}',fragmentShader:'void main(){gl_FragColor=vec4(1.);}'};m.onBeforeCompile(s,{});return s;}
-test('A shared-renderer district material receives exactly one portal shader wrapper',()=>{const a=new PortalMaterials(),b=new PortalMaterials(),m=new T.MeshStandardMaterial();a.attach(m);b.attach(m);b.attach(m);const s=compile(m);for(const key of ['wardVertex','wardFragment'])assert.equal((s[key==='wardVertex'?'vertexShader':'fragmentShader'].match(new RegExp('void '+key+'\\(','g'))||[]).length,1);assert.equal(a.entries.size,0);assert.equal(b.entries.size,1);assert.equal(s.uniforms.wardPortalEnabled,b.uniforms.wardPortalEnabled);});
-test('Repeated portal ownership changes preserve the original material hook and cache key',()=>{const a=new PortalMaterials(),b=new PortalMaterials(),m=new T.MeshBasicMaterial();let calls=0;m.onBeforeCompile=s=>{calls++;s.uniforms.original={value:42};};m.customProgramCacheKey=()=> 'original';for(let i=0;i<20;i++)(i%2?a:b).attach(m);const s=compile(m);assert.equal(calls,1);assert.equal(s.uniforms.original.value,42);assert.equal(m.customProgramCacheKey().split('|').length,2);assert.equal((s.vertexShader.match(/uniform float wardPortalEnabled/g)||[]).length,1);});
-test('Inactive former owner cannot disable the integrated aperture',()=>{const a=new PortalMaterials(),b=new PortalMaterials(),m=new T.MeshBasicMaterial();a.attach(m);b.attach(m);b.active=true;a.active=false;assert.equal(compile(m).uniforms.wardPortalEnabled.value,1);});
-test('Portal frame is explicitly marked as presentation, never nested district geometry',()=>{const p=createPortalFrame(new T.Scene(),new PortalMaterials());assert.equal(p.group.userData.portalPresentation,true);});

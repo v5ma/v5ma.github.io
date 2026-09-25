@@ -1,8 +1,0 @@
-{
-  "source": "5bb879e6533903a63e8d70ffc6f94eba77318b87",
-  "reason": "Only district.mjs is intentionally revised among the historical motion audit frozen files. The new authored quay is rendered through this pre-existing environment hook; characters, movement, weapons, XR and licensed assets are not modified. Retain the original audit unedited.",
-  "auditSHA256": "3c9fe67bc063ff57477b92edf1b08756e03119007e523a544e5fe5ccf10eeeb2",
-  "file": "district.mjs",
-  "before": "ba5ec6d37163ed70a96dcf03cd18173624965123560bcf644e065153016e99e8",
-  "after": "fc96b35c58a4c89abd98d7eb25499c9f44573f5883718e4123f8150e81be38ab"
-}

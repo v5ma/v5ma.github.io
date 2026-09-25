@@ -1,3 +1,0 @@
-/* Stable accomplishment identities are independent of replacement geometry. */
-export const LEGACY_DELIVERY_IDS=Object.freeze(["mail-0", "mail-1", "mail-2", "mail-3", "mail-4", "mail-5", "mail-6", "mail-7", "mail-8", "mail-9", "mail-10", "mail-11", "mail-12", "mail-13", "mail-14", "mail-15", "mail-16", "mail-17", "mail-18", "mail-19", "mail-20", "mail-21", "mail-22", "mail-23", "mail-24", "mail-25", "mail-26", "mail-27", "mail-28", "mail-29", "mail-30", "mail-31", "mail-32", "mail-33", "mail-34", "mail-35", "mail-36", "mail-37", "mail-38", "mail-39", "mail-40", "mail-41", "mail-42", "mail-43", "mail-44"]);
-export function deliveryIdentitySet(world){return new Set([...LEGACY_DELIVERY_IDS,...world.mailboxes.map(v=>v.id)]);}

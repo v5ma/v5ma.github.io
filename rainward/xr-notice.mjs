@@ -1,9 +1,0 @@
-import * as T from './vendor/three.module.js';
-import {readingPages} from './xr-reading.mjs';
-/* Two-second floor notice: feedback stays out of the player's forward view. */
-export function createXRNotice(){
- const canvas=document.createElement('canvas');canvas.width=896;canvas.height=224;const ctx=canvas.getContext('2d'),texture=new T.CanvasTexture(canvas);texture.colorSpace=T.SRGBColorSpace;
- const mesh=new T.Mesh(new T.PlaneGeometry(1.12,.28),new T.MeshBasicMaterial({map:texture,transparent:true,depthTest:false,depthWrite:false,toneMapped:false,side:T.DoubleSide}));mesh.renderOrder=10005;mesh.visible=false;let until=0,text='';const Y=new T.Vector3(0,1,0),X=new T.Vector3(1,0,0);
- function show(value,head){if(!value||!head)return;text=String(value);ctx.fillStyle='#13232add';ctx.fillRect(0,0,896,224);ctx.fillStyle='#f2e5bd';ctx.font='bold 22px sans-serif';ctx.fillText('FIELD MESSAGE',22,34);ctx.fillStyle='#fff';ctx.font='25px sans-serif';const pages=readingPages(text,56,4);pages[0].forEach((line,i)=>ctx.fillText(line,22,76+i*32));if(pages.length>1){ctx.font='19px sans-serif';ctx.fillText('Full text: MENU / LAST FIELD MESSAGE',22,212);}texture.needsUpdate=true;const f=new T.Vector3(0,0,-1).applyQuaternion(head.orientation);f.y=0;if(f.lengthSq()<.001)f.set(0,0,-1);f.normalize();const yaw=Math.atan2(-f.x,-f.z),offset=new T.Vector3(0,.035,-.88).applyAxisAngle(Y,yaw);mesh.position.set(head.position.x+offset.x,.035,head.position.z+offset.z);mesh.quaternion.setFromAxisAngle(Y,yaw).multiply(new T.Quaternion().setFromAxisAngle(X,-Math.PI/2));until=performance.now()+2000;mesh.visible=true;}
- return {mesh,show,update(playing){mesh.visible=playing&&performance.now()<until;},clear(){until=0;mesh.visible=false;},stats:()=>({visible:mesh.visible,text,remainingMs:Math.max(0,until-performance.now()),placement:'floor'}),dispose(){mesh.removeFromParent();mesh.geometry.dispose();mesh.material.dispose();texture.dispose();}};
-}

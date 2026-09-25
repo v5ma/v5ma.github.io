@@ -1,9 +1,0 @@
-# Current continuation: Field Focus reload repair 0.17.2
-
-Read FIELD-FOCUS.md and the latest exact release receipt first. Recovery completed the unchanged 0.17.1 controller journey after its original theatre-climb timeout. All seven source suites then passed 281 checks, 143 hosted files matched, and the versioned backup was created. A separate actual-HTTPS field-guide run then exposed a reload/startup error after 52 completed checks: r177 compileAsync polled a disposed unrelated sky material and never completed startup.
-
-The repair compiles only the Currentworks-owned group and uses the existing city as targetScene for lights/environment. Do not alter the vendored renderer or shared library, stop loading the sky, weaken tests, or compile the whole asynchronously changing host scene. Two controlled real-Three lifecycle fixtures fail before this correction and pass after it. The GPU fixture also retains every prior draw/aperture assertion and exercises unrelated material replacement during preparation. Local model count is 388; exact-source browser/public/archive results must be recorded separately. Keep the original timeout and live reload failure. Physical performance, Quest/Xbox and human approval remain open.
-
-Preserve Field Focus directions, prompt remaps, gallery route, all story and Currentworks content, saves and sibling projects. Version 0.17.1 and its release assets remain historical; never overwrite their tag. Continue direct master updates only.
-
-Historical handoffs through 0.17.1 are preserved verbatim in history/DEVELOPMENT-HANDOFF-through-0.17.1.md, copied from source 42b90d0e0e4c96157a9b99dd2f76f6122239e606. They are context, not instructions to restore old runtimes or restart superseded transfer jobs. Read INTEGRATION-AUDIT.md and FUTURE-DIRECTION.md before wider work.

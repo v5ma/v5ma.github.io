@@ -1,9 +1,0 @@
-{
-  "reason": "Explicit Currentworks integration changes scene composition, preparation host and Conservatory renderer only. Keep immutable historical source audit and Reclaimed Places repin. All protected character, movement, weapon and asset bytes remain unchanged.",
-  "files": {
-    "scene.mjs": {
-      "before": "a23d492c9c06b34678ee6ea7e521f7c4255b8dbd178b7fdf8229763414022162",
-      "after": "1658f5b10ab7347b36b948c20b1eb1b516561a27d39667500e68e61cda4802be"
-    }
-  }
-}

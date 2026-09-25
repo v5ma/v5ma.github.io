@@ -1,7 +1,0 @@
-{
-  "checks_passed": 3602,
-  "checks_total": 3602,
-  "byte_identical_replay": true,
-  "result_sha256": "2d60579b49f54a27005e6eecc9c915873db2d7efc1ee2ce3e91b4aac0d8a9f85",
-  "scope": "Independent direct-kernel reconstruction and finite local-state interventions, not biological validation"
-}

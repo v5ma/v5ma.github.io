@@ -1,9 +1,0 @@
-{
-  "sourcePackage": "Neighborhood_Missions_Night_Watch_0.14.0_Local_Candidate.zip",
-  "localCommit": "8c2d52adfc21b28bfd2ea56a0f979897542434c8",
-  "originalModelLogSHA256": "93f6708b9a6a8a41170b1ca2eee823441afc37294ec94c87e56b3089d944b90e",
-  "tests": 270,
-  "passes": 270,
-  "failures": 0,
-  "note": "Original raw local TAP is preserved in the package, not relabeled as a remote result. New raw CI logs are retained in their Actions artifacts."
-}

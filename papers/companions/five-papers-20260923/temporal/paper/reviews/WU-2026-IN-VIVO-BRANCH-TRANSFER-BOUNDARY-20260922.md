@@ -1,9 +1,0 @@
-# Wu et al. 2026: in-vivo dendrite-resolved transfer boundary
-
-22 September 2026. Targeted current-primary-literature check for the Temporal Ensembles manuscript. Source: [authors' Janelia publication record and abstract](https://www.janelia.org/publication/a-dendrite-resolved-in-vivo-transfer-function-from-spike-patterns-to-dendritic-ca2), linking the [bioRxiv preprint DOI](https://doi.org/10.64898/2026.01.18.700189). The preprint is not represented as peer-reviewed. Its full methods were not retrieved in this pass; this is an abstract-level comparator, not reproduction or a complete source audit.
-
-Wu, Lee, Park and colleagues report simultaneous voltage and calcium imaging across dendritic arbors of CA2 pyramidal neurons in behaving mice. Their abstract says calcium activation is hierarchical and dominated by back-propagating action potentials; complex spikes reach farther into distal dendrites, sometimes branch-selectively; and dendrite-restricted voltage/calcium co-activation without a concurrent somatic event is rare. A biophysics-inspired model predicts local calcium from local voltage waveforms.
-
-**Consequence for the proposed three-branch image:** branch-selective effects can occur, but a branch should not be treated as an autonomous drummer by default. A temporal-ensemble experiment must record somatic output and back-propagation alongside branch-local activity, and distinguish genuine independent branch events from one somatic event with different local transfer. This source does not measure the content-bearing trace or recovery constant in our schedule theorem, identify a three-branch alternation, or test cellular experience. CA2 in-vivo results must not be conflated with Park et al.'s CA1-slice stimulation regime.
-
-The original abstract's quantitative and methods details should be checked in the complete preprint before a final numerical or causal use. No parameter was imported into the toy model from this paper.

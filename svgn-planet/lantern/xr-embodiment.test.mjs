@@ -1,3 +1,0 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {holsterZone,capeGesture} from './xr-embodiment.mjs';
-test('Chest, hip and forearm zones are spatial and mutually useful',()=>{assert.equal(holsterZone([0,-.2,-.2]),'grapple');assert.equal(holsterZone([.6,-.3,-.2]),'smoke');assert.equal(holsterZone([.4,0,-.2]),'pulse');assert.equal(holsterZone([0,1,0]),null);});
-test('Cape requires both grips, low hands and deliberate spread',()=>{assert.equal(capeGesture([[-.4,-.4,-.1],[.4,-.4,-.1]],[true,true]),true);assert.equal(capeGesture([[-.2,-.4,-.1],[.2,-.4,-.1]],[true,true]),false);assert.equal(capeGesture([[-.4,.1,-.1],[.4,-.4,-.1]],[true,true]),false);assert.equal(capeGesture([[-.4,-.4,-.1],[.4,-.4,-.1]],[true,false]),false);});
