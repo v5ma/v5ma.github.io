@@ -15,3 +15,7 @@ The four payload files encode only report-source.json, not the private research 
 ## Subsequent artifact and chronology audit
 
 The [Exodus artifact audit](../exodus-artifact-audit/REPORT.md) checks the later-supplied Brooklyn Papyrus, Rekhmire, Ipuwer, Amenhotep II and Shasu-yhw claims and the uploaded Ephraim/Ahmos narrative. It supplies [source-specific access notes](../exodus-artifact-audit/SOURCES.md), preserves genuine rabbinic Ephraim interpretations, and distinguishes those from an unverified identification of Ephraim with Avaris's chariot command. It also qualifies the difference between observed Seqenenre injuries and reconstructed circumstances of death. This is an additive reassessment, not an alteration of the archived report. Its pre-Ahmose and post-conquest chronologies remain separate, and its proposed 1585 BCE Ephraim date is explicitly conditional arithmetic rather than an Egyptian attestation.
+
+## Competing eighteenth-dynasty chronology
+
+A later [Senenmut, Hatshepsut and Amenhotep II audit](../senenmut-amenhotep-ii-competing-chronology-20260928/REPORT.md) now carries the literal-480-year / fifteenth-century Exodus model as a genuine competing reconstruction. It preserves this archived report's Avaris findings and does not silently replace its chronology. The newer audit separates secure Senenmut family and royal-household evidence from proposed Moses correspondences, distinguishes Manetho/Josephus's ambiguous Amenophis tradition from an identification with Amenhotep II, and states the principal evidentiary costs of both models.
