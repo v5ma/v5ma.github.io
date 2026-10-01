@@ -1,0 +1,194 @@
+{
+  "all_pass": true,
+  "checks": {
+    "2701-1.25_different_write_provenance": true,
+    "2701-1.25_event_count": true,
+    "2701-1.25_prediction_equivalence": true,
+    "2701-1.25_state_equivalence": true,
+    "2701-2.0_different_write_provenance": true,
+    "2701-2.0_event_count": true,
+    "2701-2.0_prediction_equivalence": true,
+    "2701-2.0_state_equivalence": true,
+    "2702-1.25_different_write_provenance": true,
+    "2702-1.25_event_count": true,
+    "2702-1.25_prediction_equivalence": true,
+    "2702-1.25_state_equivalence": true,
+    "2702-2.0_different_write_provenance": true,
+    "2702-2.0_event_count": true,
+    "2702-2.0_prediction_equivalence": true,
+    "2702-2.0_state_equivalence": true,
+    "2703-1.25_different_write_provenance": true,
+    "2703-1.25_event_count": true,
+    "2703-1.25_prediction_equivalence": true,
+    "2703-1.25_state_equivalence": true,
+    "2703-2.0_different_write_provenance": true,
+    "2703-2.0_event_count": true,
+    "2703-2.0_prediction_equivalence": true,
+    "2703-2.0_state_equivalence": true,
+    "2704-1.25_different_write_provenance": true,
+    "2704-1.25_event_count": true,
+    "2704-1.25_prediction_equivalence": true,
+    "2704-1.25_state_equivalence": true,
+    "2704-2.0_different_write_provenance": true,
+    "2704-2.0_event_count": true,
+    "2704-2.0_prediction_equivalence": true,
+    "2704-2.0_state_equivalence": true,
+    "noiseless_0.75_improves": true,
+    "noiseless_1.25_improves": true,
+    "noiseless_2.0_improves": true
+  },
+  "noiseless_examples": {
+    "0.75": {
+      "initial_error": 1.0,
+      "next_error": 0.0030851747516449975,
+      "next_prediction": 0.944455650587616
+    },
+    "1.25": {
+      "initial_error": 1.0,
+      "next_error": 0.1893123991134149,
+      "next_prediction": 0.5648995528462251
+    },
+    "2.0": {
+      "initial_error": 1.0,
+      "next_error": 0.5701478263862036,
+      "next_prediction": 0.24491866240370913
+    }
+  },
+  "passed": 35,
+  "protocol_sha256": "ef38fc35302306c9b3ea9a6a300e065524634d46bb4fce6841b39668440833d6",
+  "scope": "Finite numerical illustration of an analytic observational-equivalence countermodel; no SAN or continual-learning validation",
+  "script_sha256": "4ae6f92966871e5673ae64f88473f079716bb078c9fc7e6dd978072ec9c16817",
+  "seeds": [
+    2701,
+    2702,
+    2703,
+    2704
+  ],
+  "sigmas": [
+    1.25,
+    2.0
+  ],
+  "streams": {
+    "2701-1.25": {
+      "events": 12,
+      "final_route_log_odds": -2.2872050495125897,
+      "final_writer_weight": -0.815623616878931,
+      "max_prediction_gap": 1.6653345369377348e-15,
+      "max_state_gap": 1.6653345369377348e-15,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "93f2680cbab06e464a2a879149bce25b2f537c48ec349761e8e8b76a16b7510f",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2701-2.0": {
+      "events": 12,
+      "final_route_log_odds": -1.4295031559453681,
+      "final_writer_weight": -0.61364777980794,
+      "max_prediction_gap": 2.7755575615628914e-17,
+      "max_state_gap": 2.7755575615628914e-17,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "71f68476c3324fefd406365122deff935c3247cbeefffd6c8cc30ea80bbd22e4",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2702-1.25": {
+      "events": 12,
+      "final_route_log_odds": -7.572576544540042,
+      "final_writer_weight": -0.9989717979629882,
+      "max_prediction_gap": 4.9960036108132044e-15,
+      "max_state_gap": 7.66053886991358e-15,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "d1ae705cc0a853ca140d0e8641399d4a20ddfe3080339f67bc2fe24e1d62aee4",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2702-2.0": {
+      "events": 12,
+      "final_route_log_odds": -3.532860340337528,
+      "final_writer_weight": -0.9432168454875646,
+      "max_prediction_gap": 9.992007221626409e-16,
+      "max_state_gap": 1.1102230246251565e-15,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "12a117fa913dfb5b976adfd549b1cbcee44d47c761d775526dcb8da6dbc669c8",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2703-1.25": {
+      "events": 12,
+      "final_route_log_odds": 1.483546218388959,
+      "final_writer_weight": 0.6302152372463565,
+      "max_prediction_gap": 2.220446049250313e-16,
+      "max_state_gap": 2.220446049250313e-16,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "1715b775110ec0282b7462b2468a9b834075af84d4ef189d7fad362de72c8cd1",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2703-2.0": {
+      "events": 12,
+      "final_route_log_odds": 0.9272163864931001,
+      "final_writer_weight": 0.4330204191512676,
+      "max_prediction_gap": 4.440892098500626e-16,
+      "max_state_gap": 4.440892098500626e-16,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "d62113c6b6c820a596455fcb06cf1c4fad45fee7ffd59d0780b9134ff5c68dd9",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2704-1.25": {
+      "events": 12,
+      "final_route_log_odds": -4.652931634441716,
+      "final_writer_weight": -0.9811128391459015,
+      "max_prediction_gap": 2.220446049250313e-16,
+      "max_state_gap": 1.6653345369377348e-15,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "8ef3536ded12a6d156f5bbedae2b489c45377ba87a8b1b33645325c813f42180",
+      "writer_scalar_parameter_writes": 12
+    },
+    "2704-2.0": {
+      "events": 12,
+      "final_route_log_odds": -1.7080822715260737,
+      "final_writer_weight": -0.6931747611335908,
+      "max_prediction_gap": 3.3306690738754696e-16,
+      "max_state_gap": 1.2212453270876722e-15,
+      "route_expert_coefficients": [
+        1.0,
+        -1.0
+      ],
+      "route_expert_parameter_writes": 0,
+      "route_posterior_state_updates": 12,
+      "stream_sha256": "2d1a153144d48afc96f2b8b76c53c0afe5e4f15d29ab07cf0de8590197f12bdc",
+      "writer_scalar_parameter_writes": 12
+    }
+  },
+  "total": 35
+}

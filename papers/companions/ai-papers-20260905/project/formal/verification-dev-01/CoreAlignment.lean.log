@@ -1,0 +1,8 @@
+'SAN.CoreAlignment.arbitrary_depth_attenuation' does not depend on any axioms
+'SAN.CoreAlignment.commit_preserves_current_authority' does not depend on any axioms
+'SAN.CoreAlignment.revoked_action_cannot_commit' does not depend on any axioms
+'SAN.CoreAlignment.stale_revision_cannot_commit' does not depend on any axioms
+'SAN.CoreAlignment.untrusted_update_is_identity' depends on axioms: [propext]
+'SAN.CoreAlignment.arbitrary_untrusted_sequence_preserves_state' depends on axioms: [propext]
+'SAN.CoreAlignment.arbitrary_proposer_composition' does not depend on any axioms
+'SAN.CoreAlignment.sound_translation_preserves_authority' does not depend on any axioms

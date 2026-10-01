@@ -1,0 +1,151 @@
+{
+  "protocol": {
+    "id": "CONTEXT-PROVENANCE-03",
+    "phase": "prospective local development; not external preregistration",
+    "created": "2026-09-04",
+    "primary_questions": [
+      "Can changing only a numerical feedback prefix alter a pretrained encoder's representations of a fixed sentence, without an action-selection mechanism?",
+      "Does correct enforcement on a semantically guessed origin preserve the actual origin-dependent permission of a derivative artifact?"
+    ],
+    "model": {
+      "cache_directory": "C:/Users/micah/.cache/chroma/onnx_models/all-MiniLM-L6-v2/onnx",
+      "reported_identity": "sentence-transformers/all-MiniLM-L6-v2, locally cached Chroma ONNX export",
+      "identity_boundary": "Local bytes and configuration are hashed; equivalence to an upstream checkpoint is not independently established.",
+      "license_route": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/raw/main/README.md",
+      "weights_updated": false,
+      "generative_language_model": false,
+      "pooling": "attention-masked final token states for retrieval; only fixed-sentence token offsets for feedback assay; L2 normalization",
+      "max_tokens": 128
+    },
+    "feedback": {
+      "prefix_template": "Feedback score: {score}. Keep the sentence unchanged. Sentence: ",
+      "scores": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        80,
+        90,
+        100
+      ],
+      "turns": 20,
+      "initial_score": 50,
+      "probe_ridge": 0.1,
+      "probe_probability": "sigmoid of ridge output fitted to targets -1/+1; not probability-calibrated",
+      "rounding": "nearest multiple of ten using floor(value/10+0.5), bounded to [0,100]",
+      "seed": 90431,
+      "arms": [
+        "live_positive",
+        "live_negative",
+        "random",
+        "yoked_positive_next_sentence",
+        "visible_sentence_only",
+        "constant_50"
+      ],
+      "memory": "only latest score; fixed encoder weights; no optimizer or agent action choice",
+      "primary_endpoint": "per-sentence final probe difference live_positive minus live_negative, all eight sentences retained",
+      "other_endpoints": [
+        "within-sentence representation change under prefix swaps",
+        "yoked transfer",
+        "unchanged fixed text"
+      ],
+      "boundary": "Representation/probe effects are not an independent useful-behavior improvement. Constant visible text is an implementation control, not a cognitive achievement."
+    },
+    "scope": {
+      "policies": [
+        "semantic_nearest",
+        "semantic_top_two",
+        "lineage_stale",
+        "lineage_current",
+        "lineage_with_clarification",
+        "deny_all"
+      ],
+      "revisions": [
+        1,
+        2
+      ],
+      "clarification_budget_per_revision": 2,
+      "root_permissions": {
+        "1": [
+          "B",
+          "D"
+        ],
+        "2": [
+          "A",
+          "C"
+        ]
+      },
+      "policy_rule": "export allowed iff every actual ancestor root is currently allowed; unknown ancestry does not authorize export",
+      "clarification_order": "fixture order, first two unknown records per revision; answers from declared fixture oracle, not humans",
+      "untrusted_input": "Every artifact carries a forged claimed-origin B and D; verified-lineage policies must ignore it.",
+      "inference_units": "artifact families and revisions; byte-identical pairs and repeated policy arms are dependent",
+      "boundary": "Designed stress fixtures, not population estimates or comparisons against state-of-the-art alignment systems."
+    },
+    "passive_null": {
+      "receiver": "h_next=3/5+(3/10)*q",
+      "positive_feedback": "q=h",
+      "negative_feedback": "q=1-h",
+      "initial_state": "3/4",
+      "turns": 20,
+      "behavior": "constant fixed utterance, no adaptive controller",
+      "predicted_fixed_points": [
+        "6/7",
+        "9/13"
+      ],
+      "predicted_difference": "15/91"
+    },
+    "resources": {
+      "numerical_threads": 1,
+      "batch_size": 8,
+      "max_seconds": 45,
+      "max_output_bytes": 8000000,
+      "network_access": false,
+      "new_model_downloads": false
+    },
+    "analysis_rules": [
+      "Freeze protocol, fixtures, code and model hashes before first task inference.",
+      "Retain null, reversed and adverse effects; do not retune after observing evaluation.",
+      "Save all case-level records and vectors sufficient to recompute reported metrics.",
+      "An encoder null is not a replication or explanation of Aoki or Ji-An et al.'s measured LLM results.",
+      "No real uploads or permission changes."
+    ]
+  },
+  "sources": {
+    "applications\\PROTOCOL-CONTEXT-PROVENANCE-03.json": "7c6fc7e70f63bdd0ca9ae342ab4445f4ab2f7137d9ef5f6ceed2afc9b65c49fc",
+    "applications\\FIXTURES-CONTEXT-PROVENANCE-03.json": "e29baecd8446fc2a132df4197acaa40f14d20368fc9b10bec0a315798ab8deb8",
+    "applications\\run_context_provenance_v3.py": "0012997130ec1264791752e511a0ef9dbad25f7ac1260cc8aca422f8d3cd07df",
+    "applications\\encoder_v3.py": "9db5dce5b93280169f6eaffc440df8ca38912e573d464cdbce24bb720d8aae69",
+    "applications\\commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6"
+  },
+  "model_files": {
+    "model.onnx": {
+      "sha256": "4f148ba8ae9c2c7fbee4af2b132db8d06c6a6545b47fc83bbb98c3d22b8393e6",
+      "bytes": 90387606
+    },
+    "config.json": {
+      "sha256": "b567c7d5a55b636c95186aaf993f9a8920842b7e05a9e703e68b23cab2c3a670",
+      "bytes": 650
+    },
+    "tokenizer.json": {
+      "sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0",
+      "bytes": 711661
+    },
+    "tokenizer_config.json": {
+      "sha256": "7702051bbc4953b94d47fa1d61b42ed4cbb3c71b501a8dd7183a823f8bea1f20",
+      "bytes": 518
+    },
+    "special_tokens_map.json": {
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      "bytes": 125
+    },
+    "vocab.txt": {
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "bytes": 231508
+    }
+  },
+  "freeze_before_first_task_inference": true
+}

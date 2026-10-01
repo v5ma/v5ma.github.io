@@ -1,0 +1,257 @@
+case,intent,stage,update_revision,update_scope,signature,accepted,store_revision,store_scope,operation
+J04_g0_c0_recipient,keep,current,1,"[[""J04_g0_c0_recipient"", ""keep""]]",5a39088c1ebffd961066c0f32771ba3e2fbababd776aee853717741dd71d0c8b,1,1,"[[""J04_g0_c0_recipient"", ""keep""]]",keep
+J04_g0_c0_recipient,keep,forged_opposite,2,"[[""J04_g0_c0_recipient"", ""swap""]]",forged,0,1,"[[""J04_g0_c0_recipient"", ""keep""]]",keep
+J04_g0_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c0_recipient,keep,old_replay,1,"[[""J04_g0_c0_recipient"", ""keep""]]",5a39088c1ebffd961066c0f32771ba3e2fbababd776aee853717741dd71d0c8b,0,2,[],none
+J04_g0_c0_recipient,swap,current,1,"[[""J04_g0_c0_recipient"", ""swap""]]",3f9b950c9d9ed638ad84abb43aee11a62e7325b296873679d9d2565ce8c4d394,1,1,"[[""J04_g0_c0_recipient"", ""swap""]]",swap
+J04_g0_c0_recipient,swap,forged_opposite,2,"[[""J04_g0_c0_recipient"", ""keep""]]",forged,0,1,"[[""J04_g0_c0_recipient"", ""swap""]]",swap
+J04_g0_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c0_recipient,swap,old_replay,1,"[[""J04_g0_c0_recipient"", ""swap""]]",3f9b950c9d9ed638ad84abb43aee11a62e7325b296873679d9d2565ce8c4d394,0,2,[],none
+J04_g0_c0_color,keep,current,1,"[[""J04_g0_c0_color"", ""keep""]]",b9b24f976de75531efc7754b271ae582d70e4f1c3119b5b6db7f1c75a5019176,1,1,"[[""J04_g0_c0_color"", ""keep""]]",keep
+J04_g0_c0_color,keep,forged_opposite,2,"[[""J04_g0_c0_color"", ""swap""]]",forged,0,1,"[[""J04_g0_c0_color"", ""keep""]]",keep
+J04_g0_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c0_color,keep,old_replay,1,"[[""J04_g0_c0_color"", ""keep""]]",b9b24f976de75531efc7754b271ae582d70e4f1c3119b5b6db7f1c75a5019176,0,2,[],none
+J04_g0_c0_color,swap,current,1,"[[""J04_g0_c0_color"", ""swap""]]",5c61d64ce4d5980f486d5a4d32fb5686493f223301223a2eb58c0b21de620a88,1,1,"[[""J04_g0_c0_color"", ""swap""]]",swap
+J04_g0_c0_color,swap,forged_opposite,2,"[[""J04_g0_c0_color"", ""keep""]]",forged,0,1,"[[""J04_g0_c0_color"", ""swap""]]",swap
+J04_g0_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c0_color,swap,old_replay,1,"[[""J04_g0_c0_color"", ""swap""]]",5c61d64ce4d5980f486d5a4d32fb5686493f223301223a2eb58c0b21de620a88,0,2,[],none
+J04_g0_c1_recipient,keep,current,1,"[[""J04_g0_c1_recipient"", ""keep""]]",f92d1693671f1c0ec95d75f3a4160d32518305b9be8936116e08ae9c7a1d7bd1,1,1,"[[""J04_g0_c1_recipient"", ""keep""]]",keep
+J04_g0_c1_recipient,keep,forged_opposite,2,"[[""J04_g0_c1_recipient"", ""swap""]]",forged,0,1,"[[""J04_g0_c1_recipient"", ""keep""]]",keep
+J04_g0_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c1_recipient,keep,old_replay,1,"[[""J04_g0_c1_recipient"", ""keep""]]",f92d1693671f1c0ec95d75f3a4160d32518305b9be8936116e08ae9c7a1d7bd1,0,2,[],none
+J04_g0_c1_recipient,swap,current,1,"[[""J04_g0_c1_recipient"", ""swap""]]",7b18efd025cfe89c9cb88490b5caa33afb489e97cca61e751f5635db5c3591f7,1,1,"[[""J04_g0_c1_recipient"", ""swap""]]",swap
+J04_g0_c1_recipient,swap,forged_opposite,2,"[[""J04_g0_c1_recipient"", ""keep""]]",forged,0,1,"[[""J04_g0_c1_recipient"", ""swap""]]",swap
+J04_g0_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c1_recipient,swap,old_replay,1,"[[""J04_g0_c1_recipient"", ""swap""]]",7b18efd025cfe89c9cb88490b5caa33afb489e97cca61e751f5635db5c3591f7,0,2,[],none
+J04_g0_c1_color,keep,current,1,"[[""J04_g0_c1_color"", ""keep""]]",a107e4eadfb80d585dad9ac3003c9ae41c92930e5f5bb7fc3fdabd3addefb128,1,1,"[[""J04_g0_c1_color"", ""keep""]]",keep
+J04_g0_c1_color,keep,forged_opposite,2,"[[""J04_g0_c1_color"", ""swap""]]",forged,0,1,"[[""J04_g0_c1_color"", ""keep""]]",keep
+J04_g0_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c1_color,keep,old_replay,1,"[[""J04_g0_c1_color"", ""keep""]]",a107e4eadfb80d585dad9ac3003c9ae41c92930e5f5bb7fc3fdabd3addefb128,0,2,[],none
+J04_g0_c1_color,swap,current,1,"[[""J04_g0_c1_color"", ""swap""]]",a7ed2f3caeec08bddd796882810bb900464884064a15cf2068239da0d9114617,1,1,"[[""J04_g0_c1_color"", ""swap""]]",swap
+J04_g0_c1_color,swap,forged_opposite,2,"[[""J04_g0_c1_color"", ""keep""]]",forged,0,1,"[[""J04_g0_c1_color"", ""swap""]]",swap
+J04_g0_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g0_c1_color,swap,old_replay,1,"[[""J04_g0_c1_color"", ""swap""]]",a7ed2f3caeec08bddd796882810bb900464884064a15cf2068239da0d9114617,0,2,[],none
+J04_g1_c0_recipient,keep,current,1,"[[""J04_g1_c0_recipient"", ""keep""]]",c651d7ea8b5e09f43ff8443a1bc4bc5be1eb879df26980a9257bf06a68b38835,1,1,"[[""J04_g1_c0_recipient"", ""keep""]]",keep
+J04_g1_c0_recipient,keep,forged_opposite,2,"[[""J04_g1_c0_recipient"", ""swap""]]",forged,0,1,"[[""J04_g1_c0_recipient"", ""keep""]]",keep
+J04_g1_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c0_recipient,keep,old_replay,1,"[[""J04_g1_c0_recipient"", ""keep""]]",c651d7ea8b5e09f43ff8443a1bc4bc5be1eb879df26980a9257bf06a68b38835,0,2,[],none
+J04_g1_c0_recipient,swap,current,1,"[[""J04_g1_c0_recipient"", ""swap""]]",ac36d734f4b0d1001a1a1db225ef4e7543ea9aad3410de213834dc3f54a91102,1,1,"[[""J04_g1_c0_recipient"", ""swap""]]",swap
+J04_g1_c0_recipient,swap,forged_opposite,2,"[[""J04_g1_c0_recipient"", ""keep""]]",forged,0,1,"[[""J04_g1_c0_recipient"", ""swap""]]",swap
+J04_g1_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c0_recipient,swap,old_replay,1,"[[""J04_g1_c0_recipient"", ""swap""]]",ac36d734f4b0d1001a1a1db225ef4e7543ea9aad3410de213834dc3f54a91102,0,2,[],none
+J04_g1_c0_color,keep,current,1,"[[""J04_g1_c0_color"", ""keep""]]",3fdbcc500082f3e03b6f438d745f6fa297fd004f9fc4c1060b25a81b2275f78c,1,1,"[[""J04_g1_c0_color"", ""keep""]]",keep
+J04_g1_c0_color,keep,forged_opposite,2,"[[""J04_g1_c0_color"", ""swap""]]",forged,0,1,"[[""J04_g1_c0_color"", ""keep""]]",keep
+J04_g1_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c0_color,keep,old_replay,1,"[[""J04_g1_c0_color"", ""keep""]]",3fdbcc500082f3e03b6f438d745f6fa297fd004f9fc4c1060b25a81b2275f78c,0,2,[],none
+J04_g1_c0_color,swap,current,1,"[[""J04_g1_c0_color"", ""swap""]]",f3e6c44c40291238ea126f5dbea91d7c0af9a17f6e2c50763390309d9bc0fa92,1,1,"[[""J04_g1_c0_color"", ""swap""]]",swap
+J04_g1_c0_color,swap,forged_opposite,2,"[[""J04_g1_c0_color"", ""keep""]]",forged,0,1,"[[""J04_g1_c0_color"", ""swap""]]",swap
+J04_g1_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c0_color,swap,old_replay,1,"[[""J04_g1_c0_color"", ""swap""]]",f3e6c44c40291238ea126f5dbea91d7c0af9a17f6e2c50763390309d9bc0fa92,0,2,[],none
+J04_g1_c1_recipient,keep,current,1,"[[""J04_g1_c1_recipient"", ""keep""]]",afcd04b82123d37827e8940c1027887fcdb710e56b4ce3c4c6dcb1d3cb73c18c,1,1,"[[""J04_g1_c1_recipient"", ""keep""]]",keep
+J04_g1_c1_recipient,keep,forged_opposite,2,"[[""J04_g1_c1_recipient"", ""swap""]]",forged,0,1,"[[""J04_g1_c1_recipient"", ""keep""]]",keep
+J04_g1_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c1_recipient,keep,old_replay,1,"[[""J04_g1_c1_recipient"", ""keep""]]",afcd04b82123d37827e8940c1027887fcdb710e56b4ce3c4c6dcb1d3cb73c18c,0,2,[],none
+J04_g1_c1_recipient,swap,current,1,"[[""J04_g1_c1_recipient"", ""swap""]]",1278e51629e06196a20439b6aa46bda2288d5bd867e8837d535be21d45a75109,1,1,"[[""J04_g1_c1_recipient"", ""swap""]]",swap
+J04_g1_c1_recipient,swap,forged_opposite,2,"[[""J04_g1_c1_recipient"", ""keep""]]",forged,0,1,"[[""J04_g1_c1_recipient"", ""swap""]]",swap
+J04_g1_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c1_recipient,swap,old_replay,1,"[[""J04_g1_c1_recipient"", ""swap""]]",1278e51629e06196a20439b6aa46bda2288d5bd867e8837d535be21d45a75109,0,2,[],none
+J04_g1_c1_color,keep,current,1,"[[""J04_g1_c1_color"", ""keep""]]",5aa04d12b0cce576fa5ca1a3ad20de44803f276cd819ce5666f155cd727de6a9,1,1,"[[""J04_g1_c1_color"", ""keep""]]",keep
+J04_g1_c1_color,keep,forged_opposite,2,"[[""J04_g1_c1_color"", ""swap""]]",forged,0,1,"[[""J04_g1_c1_color"", ""keep""]]",keep
+J04_g1_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c1_color,keep,old_replay,1,"[[""J04_g1_c1_color"", ""keep""]]",5aa04d12b0cce576fa5ca1a3ad20de44803f276cd819ce5666f155cd727de6a9,0,2,[],none
+J04_g1_c1_color,swap,current,1,"[[""J04_g1_c1_color"", ""swap""]]",699eaece8a1f9a2551238f3ca034655dbd56ec3c9f65b5cfc86d8f3b3f3d3703,1,1,"[[""J04_g1_c1_color"", ""swap""]]",swap
+J04_g1_c1_color,swap,forged_opposite,2,"[[""J04_g1_c1_color"", ""keep""]]",forged,0,1,"[[""J04_g1_c1_color"", ""swap""]]",swap
+J04_g1_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J04_g1_c1_color,swap,old_replay,1,"[[""J04_g1_c1_color"", ""swap""]]",699eaece8a1f9a2551238f3ca034655dbd56ec3c9f65b5cfc86d8f3b3f3d3703,0,2,[],none
+J05_g0_c0_recipient,keep,current,1,"[[""J05_g0_c0_recipient"", ""keep""]]",60fd48ce34318dc9a4e466d2deb0a8cd4c55b876f3682e75ac7500f7a91d3280,1,1,"[[""J05_g0_c0_recipient"", ""keep""]]",keep
+J05_g0_c0_recipient,keep,forged_opposite,2,"[[""J05_g0_c0_recipient"", ""swap""]]",forged,0,1,"[[""J05_g0_c0_recipient"", ""keep""]]",keep
+J05_g0_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c0_recipient,keep,old_replay,1,"[[""J05_g0_c0_recipient"", ""keep""]]",60fd48ce34318dc9a4e466d2deb0a8cd4c55b876f3682e75ac7500f7a91d3280,0,2,[],none
+J05_g0_c0_recipient,swap,current,1,"[[""J05_g0_c0_recipient"", ""swap""]]",7094489d4988f1e5c9553e4aa7463d0259f981506bae0fc39e99fffff53d23c6,1,1,"[[""J05_g0_c0_recipient"", ""swap""]]",swap
+J05_g0_c0_recipient,swap,forged_opposite,2,"[[""J05_g0_c0_recipient"", ""keep""]]",forged,0,1,"[[""J05_g0_c0_recipient"", ""swap""]]",swap
+J05_g0_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c0_recipient,swap,old_replay,1,"[[""J05_g0_c0_recipient"", ""swap""]]",7094489d4988f1e5c9553e4aa7463d0259f981506bae0fc39e99fffff53d23c6,0,2,[],none
+J05_g0_c0_color,keep,current,1,"[[""J05_g0_c0_color"", ""keep""]]",756a3a6e0747993bb303f65b70eb35511dea7203ff30f7cf8df62c812103c39b,1,1,"[[""J05_g0_c0_color"", ""keep""]]",keep
+J05_g0_c0_color,keep,forged_opposite,2,"[[""J05_g0_c0_color"", ""swap""]]",forged,0,1,"[[""J05_g0_c0_color"", ""keep""]]",keep
+J05_g0_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c0_color,keep,old_replay,1,"[[""J05_g0_c0_color"", ""keep""]]",756a3a6e0747993bb303f65b70eb35511dea7203ff30f7cf8df62c812103c39b,0,2,[],none
+J05_g0_c0_color,swap,current,1,"[[""J05_g0_c0_color"", ""swap""]]",087be021d370de6b21a4ea87b8fc41da11fcf3ccafc24533f6dc7360f851b4eb,1,1,"[[""J05_g0_c0_color"", ""swap""]]",swap
+J05_g0_c0_color,swap,forged_opposite,2,"[[""J05_g0_c0_color"", ""keep""]]",forged,0,1,"[[""J05_g0_c0_color"", ""swap""]]",swap
+J05_g0_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c0_color,swap,old_replay,1,"[[""J05_g0_c0_color"", ""swap""]]",087be021d370de6b21a4ea87b8fc41da11fcf3ccafc24533f6dc7360f851b4eb,0,2,[],none
+J05_g0_c1_recipient,keep,current,1,"[[""J05_g0_c1_recipient"", ""keep""]]",7c04c15bc2e807e76c7c93e6114d840ca1f175a91d12a70a1810d7cc20ca2748,1,1,"[[""J05_g0_c1_recipient"", ""keep""]]",keep
+J05_g0_c1_recipient,keep,forged_opposite,2,"[[""J05_g0_c1_recipient"", ""swap""]]",forged,0,1,"[[""J05_g0_c1_recipient"", ""keep""]]",keep
+J05_g0_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c1_recipient,keep,old_replay,1,"[[""J05_g0_c1_recipient"", ""keep""]]",7c04c15bc2e807e76c7c93e6114d840ca1f175a91d12a70a1810d7cc20ca2748,0,2,[],none
+J05_g0_c1_recipient,swap,current,1,"[[""J05_g0_c1_recipient"", ""swap""]]",270adc07c7239eaf6c33d5c1a9713b84c6542252d167f4a05c48b6b74766a254,1,1,"[[""J05_g0_c1_recipient"", ""swap""]]",swap
+J05_g0_c1_recipient,swap,forged_opposite,2,"[[""J05_g0_c1_recipient"", ""keep""]]",forged,0,1,"[[""J05_g0_c1_recipient"", ""swap""]]",swap
+J05_g0_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c1_recipient,swap,old_replay,1,"[[""J05_g0_c1_recipient"", ""swap""]]",270adc07c7239eaf6c33d5c1a9713b84c6542252d167f4a05c48b6b74766a254,0,2,[],none
+J05_g0_c1_color,keep,current,1,"[[""J05_g0_c1_color"", ""keep""]]",dd3f9a542f0e21455450ae3223e943749c6faf5dea356497af04d2bde4a32805,1,1,"[[""J05_g0_c1_color"", ""keep""]]",keep
+J05_g0_c1_color,keep,forged_opposite,2,"[[""J05_g0_c1_color"", ""swap""]]",forged,0,1,"[[""J05_g0_c1_color"", ""keep""]]",keep
+J05_g0_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c1_color,keep,old_replay,1,"[[""J05_g0_c1_color"", ""keep""]]",dd3f9a542f0e21455450ae3223e943749c6faf5dea356497af04d2bde4a32805,0,2,[],none
+J05_g0_c1_color,swap,current,1,"[[""J05_g0_c1_color"", ""swap""]]",aad8b4075869ba21a565bb4c2e4c6906aa182c06689078ef982dfffd3086354f,1,1,"[[""J05_g0_c1_color"", ""swap""]]",swap
+J05_g0_c1_color,swap,forged_opposite,2,"[[""J05_g0_c1_color"", ""keep""]]",forged,0,1,"[[""J05_g0_c1_color"", ""swap""]]",swap
+J05_g0_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g0_c1_color,swap,old_replay,1,"[[""J05_g0_c1_color"", ""swap""]]",aad8b4075869ba21a565bb4c2e4c6906aa182c06689078ef982dfffd3086354f,0,2,[],none
+J05_g1_c0_recipient,keep,current,1,"[[""J05_g1_c0_recipient"", ""keep""]]",689119350f82e47d14e2e1b02766e2d8b881253f6f9fcfa09af999f7fe91b53a,1,1,"[[""J05_g1_c0_recipient"", ""keep""]]",keep
+J05_g1_c0_recipient,keep,forged_opposite,2,"[[""J05_g1_c0_recipient"", ""swap""]]",forged,0,1,"[[""J05_g1_c0_recipient"", ""keep""]]",keep
+J05_g1_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c0_recipient,keep,old_replay,1,"[[""J05_g1_c0_recipient"", ""keep""]]",689119350f82e47d14e2e1b02766e2d8b881253f6f9fcfa09af999f7fe91b53a,0,2,[],none
+J05_g1_c0_recipient,swap,current,1,"[[""J05_g1_c0_recipient"", ""swap""]]",45dcdde4956bbf572e26f1c84ad9022bc47b624f180e6894332149813d569bca,1,1,"[[""J05_g1_c0_recipient"", ""swap""]]",swap
+J05_g1_c0_recipient,swap,forged_opposite,2,"[[""J05_g1_c0_recipient"", ""keep""]]",forged,0,1,"[[""J05_g1_c0_recipient"", ""swap""]]",swap
+J05_g1_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c0_recipient,swap,old_replay,1,"[[""J05_g1_c0_recipient"", ""swap""]]",45dcdde4956bbf572e26f1c84ad9022bc47b624f180e6894332149813d569bca,0,2,[],none
+J05_g1_c0_color,keep,current,1,"[[""J05_g1_c0_color"", ""keep""]]",3ce1511249b362d722d549b458780a698111dc127b38044fdd288d3a7b24267a,1,1,"[[""J05_g1_c0_color"", ""keep""]]",keep
+J05_g1_c0_color,keep,forged_opposite,2,"[[""J05_g1_c0_color"", ""swap""]]",forged,0,1,"[[""J05_g1_c0_color"", ""keep""]]",keep
+J05_g1_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c0_color,keep,old_replay,1,"[[""J05_g1_c0_color"", ""keep""]]",3ce1511249b362d722d549b458780a698111dc127b38044fdd288d3a7b24267a,0,2,[],none
+J05_g1_c0_color,swap,current,1,"[[""J05_g1_c0_color"", ""swap""]]",54cf9ea76ca2284865337623134f9fadd9d13b748ad2a08d001c97442e7ea66d,1,1,"[[""J05_g1_c0_color"", ""swap""]]",swap
+J05_g1_c0_color,swap,forged_opposite,2,"[[""J05_g1_c0_color"", ""keep""]]",forged,0,1,"[[""J05_g1_c0_color"", ""swap""]]",swap
+J05_g1_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c0_color,swap,old_replay,1,"[[""J05_g1_c0_color"", ""swap""]]",54cf9ea76ca2284865337623134f9fadd9d13b748ad2a08d001c97442e7ea66d,0,2,[],none
+J05_g1_c1_recipient,keep,current,1,"[[""J05_g1_c1_recipient"", ""keep""]]",ae7c04f684e3f151cd6d54020b3fa3e594e8aa11b228ebe8c295c9817fe0c882,1,1,"[[""J05_g1_c1_recipient"", ""keep""]]",keep
+J05_g1_c1_recipient,keep,forged_opposite,2,"[[""J05_g1_c1_recipient"", ""swap""]]",forged,0,1,"[[""J05_g1_c1_recipient"", ""keep""]]",keep
+J05_g1_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c1_recipient,keep,old_replay,1,"[[""J05_g1_c1_recipient"", ""keep""]]",ae7c04f684e3f151cd6d54020b3fa3e594e8aa11b228ebe8c295c9817fe0c882,0,2,[],none
+J05_g1_c1_recipient,swap,current,1,"[[""J05_g1_c1_recipient"", ""swap""]]",fefec614fad66b2f9bee7967bc308025d8c4f2dea16a97036038c7efc54c7a4e,1,1,"[[""J05_g1_c1_recipient"", ""swap""]]",swap
+J05_g1_c1_recipient,swap,forged_opposite,2,"[[""J05_g1_c1_recipient"", ""keep""]]",forged,0,1,"[[""J05_g1_c1_recipient"", ""swap""]]",swap
+J05_g1_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c1_recipient,swap,old_replay,1,"[[""J05_g1_c1_recipient"", ""swap""]]",fefec614fad66b2f9bee7967bc308025d8c4f2dea16a97036038c7efc54c7a4e,0,2,[],none
+J05_g1_c1_color,keep,current,1,"[[""J05_g1_c1_color"", ""keep""]]",d5499e39787de11c0846a80bd980c59f54f6b2061f056439f65b034856a16a8e,1,1,"[[""J05_g1_c1_color"", ""keep""]]",keep
+J05_g1_c1_color,keep,forged_opposite,2,"[[""J05_g1_c1_color"", ""swap""]]",forged,0,1,"[[""J05_g1_c1_color"", ""keep""]]",keep
+J05_g1_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c1_color,keep,old_replay,1,"[[""J05_g1_c1_color"", ""keep""]]",d5499e39787de11c0846a80bd980c59f54f6b2061f056439f65b034856a16a8e,0,2,[],none
+J05_g1_c1_color,swap,current,1,"[[""J05_g1_c1_color"", ""swap""]]",942320ed0473ea7fd39014b23d25ec6c396cbd27f322d8388d2e4474398965b6,1,1,"[[""J05_g1_c1_color"", ""swap""]]",swap
+J05_g1_c1_color,swap,forged_opposite,2,"[[""J05_g1_c1_color"", ""keep""]]",forged,0,1,"[[""J05_g1_c1_color"", ""swap""]]",swap
+J05_g1_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J05_g1_c1_color,swap,old_replay,1,"[[""J05_g1_c1_color"", ""swap""]]",942320ed0473ea7fd39014b23d25ec6c396cbd27f322d8388d2e4474398965b6,0,2,[],none
+J06_g0_c0_recipient,keep,current,1,"[[""J06_g0_c0_recipient"", ""keep""]]",6128189d12433ce23e80f9e811ded445ea0ad36ee8773ef6b8f18be68d76d717,1,1,"[[""J06_g0_c0_recipient"", ""keep""]]",keep
+J06_g0_c0_recipient,keep,forged_opposite,2,"[[""J06_g0_c0_recipient"", ""swap""]]",forged,0,1,"[[""J06_g0_c0_recipient"", ""keep""]]",keep
+J06_g0_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c0_recipient,keep,old_replay,1,"[[""J06_g0_c0_recipient"", ""keep""]]",6128189d12433ce23e80f9e811ded445ea0ad36ee8773ef6b8f18be68d76d717,0,2,[],none
+J06_g0_c0_recipient,swap,current,1,"[[""J06_g0_c0_recipient"", ""swap""]]",a89b408937a34f423572182677d26ac87ea2332ac593b7387bf977e8c379654c,1,1,"[[""J06_g0_c0_recipient"", ""swap""]]",swap
+J06_g0_c0_recipient,swap,forged_opposite,2,"[[""J06_g0_c0_recipient"", ""keep""]]",forged,0,1,"[[""J06_g0_c0_recipient"", ""swap""]]",swap
+J06_g0_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c0_recipient,swap,old_replay,1,"[[""J06_g0_c0_recipient"", ""swap""]]",a89b408937a34f423572182677d26ac87ea2332ac593b7387bf977e8c379654c,0,2,[],none
+J06_g0_c0_color,keep,current,1,"[[""J06_g0_c0_color"", ""keep""]]",7f8330a7cda46cf79cdb653490b3fbc844d90f394ebe76807dfacc63c5e693cc,1,1,"[[""J06_g0_c0_color"", ""keep""]]",keep
+J06_g0_c0_color,keep,forged_opposite,2,"[[""J06_g0_c0_color"", ""swap""]]",forged,0,1,"[[""J06_g0_c0_color"", ""keep""]]",keep
+J06_g0_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c0_color,keep,old_replay,1,"[[""J06_g0_c0_color"", ""keep""]]",7f8330a7cda46cf79cdb653490b3fbc844d90f394ebe76807dfacc63c5e693cc,0,2,[],none
+J06_g0_c0_color,swap,current,1,"[[""J06_g0_c0_color"", ""swap""]]",8b629d58a6295e24312ec81bfa04ecbb04814867c9acecff7a53cd32cf65df11,1,1,"[[""J06_g0_c0_color"", ""swap""]]",swap
+J06_g0_c0_color,swap,forged_opposite,2,"[[""J06_g0_c0_color"", ""keep""]]",forged,0,1,"[[""J06_g0_c0_color"", ""swap""]]",swap
+J06_g0_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c0_color,swap,old_replay,1,"[[""J06_g0_c0_color"", ""swap""]]",8b629d58a6295e24312ec81bfa04ecbb04814867c9acecff7a53cd32cf65df11,0,2,[],none
+J06_g0_c1_recipient,keep,current,1,"[[""J06_g0_c1_recipient"", ""keep""]]",b0250398d455f159d28e8ab185f00577d2a5619e00d53d13e0bc4b9586bf471d,1,1,"[[""J06_g0_c1_recipient"", ""keep""]]",keep
+J06_g0_c1_recipient,keep,forged_opposite,2,"[[""J06_g0_c1_recipient"", ""swap""]]",forged,0,1,"[[""J06_g0_c1_recipient"", ""keep""]]",keep
+J06_g0_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c1_recipient,keep,old_replay,1,"[[""J06_g0_c1_recipient"", ""keep""]]",b0250398d455f159d28e8ab185f00577d2a5619e00d53d13e0bc4b9586bf471d,0,2,[],none
+J06_g0_c1_recipient,swap,current,1,"[[""J06_g0_c1_recipient"", ""swap""]]",5510a044306cfcc01b8fde8f8fca6eccf9a00f689538a15845b6080e9ec3ddc1,1,1,"[[""J06_g0_c1_recipient"", ""swap""]]",swap
+J06_g0_c1_recipient,swap,forged_opposite,2,"[[""J06_g0_c1_recipient"", ""keep""]]",forged,0,1,"[[""J06_g0_c1_recipient"", ""swap""]]",swap
+J06_g0_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c1_recipient,swap,old_replay,1,"[[""J06_g0_c1_recipient"", ""swap""]]",5510a044306cfcc01b8fde8f8fca6eccf9a00f689538a15845b6080e9ec3ddc1,0,2,[],none
+J06_g0_c1_color,keep,current,1,"[[""J06_g0_c1_color"", ""keep""]]",3e8efa00662b9befb1198a43972c34eb6d7f9fe136000fa8da567a7550834e1f,1,1,"[[""J06_g0_c1_color"", ""keep""]]",keep
+J06_g0_c1_color,keep,forged_opposite,2,"[[""J06_g0_c1_color"", ""swap""]]",forged,0,1,"[[""J06_g0_c1_color"", ""keep""]]",keep
+J06_g0_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c1_color,keep,old_replay,1,"[[""J06_g0_c1_color"", ""keep""]]",3e8efa00662b9befb1198a43972c34eb6d7f9fe136000fa8da567a7550834e1f,0,2,[],none
+J06_g0_c1_color,swap,current,1,"[[""J06_g0_c1_color"", ""swap""]]",971c9e0e2d50a7d733a619e7b2fb53a173c44070731c4a19410513190064614a,1,1,"[[""J06_g0_c1_color"", ""swap""]]",swap
+J06_g0_c1_color,swap,forged_opposite,2,"[[""J06_g0_c1_color"", ""keep""]]",forged,0,1,"[[""J06_g0_c1_color"", ""swap""]]",swap
+J06_g0_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g0_c1_color,swap,old_replay,1,"[[""J06_g0_c1_color"", ""swap""]]",971c9e0e2d50a7d733a619e7b2fb53a173c44070731c4a19410513190064614a,0,2,[],none
+J06_g1_c0_recipient,keep,current,1,"[[""J06_g1_c0_recipient"", ""keep""]]",f748d9c71d6864207ad4244c63aac0d08fe8315862aa06bc869628652eea92d9,1,1,"[[""J06_g1_c0_recipient"", ""keep""]]",keep
+J06_g1_c0_recipient,keep,forged_opposite,2,"[[""J06_g1_c0_recipient"", ""swap""]]",forged,0,1,"[[""J06_g1_c0_recipient"", ""keep""]]",keep
+J06_g1_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c0_recipient,keep,old_replay,1,"[[""J06_g1_c0_recipient"", ""keep""]]",f748d9c71d6864207ad4244c63aac0d08fe8315862aa06bc869628652eea92d9,0,2,[],none
+J06_g1_c0_recipient,swap,current,1,"[[""J06_g1_c0_recipient"", ""swap""]]",f0ae53cfed166d67fe28258c7a656bb2c3e749e734035fb9293e03cb4b41bd94,1,1,"[[""J06_g1_c0_recipient"", ""swap""]]",swap
+J06_g1_c0_recipient,swap,forged_opposite,2,"[[""J06_g1_c0_recipient"", ""keep""]]",forged,0,1,"[[""J06_g1_c0_recipient"", ""swap""]]",swap
+J06_g1_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c0_recipient,swap,old_replay,1,"[[""J06_g1_c0_recipient"", ""swap""]]",f0ae53cfed166d67fe28258c7a656bb2c3e749e734035fb9293e03cb4b41bd94,0,2,[],none
+J06_g1_c0_color,keep,current,1,"[[""J06_g1_c0_color"", ""keep""]]",a19433b91dc8f3d2f285061d0795ca7a1f19010d34164a1f828d037a1d18c768,1,1,"[[""J06_g1_c0_color"", ""keep""]]",keep
+J06_g1_c0_color,keep,forged_opposite,2,"[[""J06_g1_c0_color"", ""swap""]]",forged,0,1,"[[""J06_g1_c0_color"", ""keep""]]",keep
+J06_g1_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c0_color,keep,old_replay,1,"[[""J06_g1_c0_color"", ""keep""]]",a19433b91dc8f3d2f285061d0795ca7a1f19010d34164a1f828d037a1d18c768,0,2,[],none
+J06_g1_c0_color,swap,current,1,"[[""J06_g1_c0_color"", ""swap""]]",81e385bb98786ce19c8bb5b5865382383b22d786d6fe92d55a7d7bf6bf39844a,1,1,"[[""J06_g1_c0_color"", ""swap""]]",swap
+J06_g1_c0_color,swap,forged_opposite,2,"[[""J06_g1_c0_color"", ""keep""]]",forged,0,1,"[[""J06_g1_c0_color"", ""swap""]]",swap
+J06_g1_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c0_color,swap,old_replay,1,"[[""J06_g1_c0_color"", ""swap""]]",81e385bb98786ce19c8bb5b5865382383b22d786d6fe92d55a7d7bf6bf39844a,0,2,[],none
+J06_g1_c1_recipient,keep,current,1,"[[""J06_g1_c1_recipient"", ""keep""]]",3cf5945bb89841ae4a52d6fbcf0deb49ed9f36b619e084904b7dabdd9c6b3120,1,1,"[[""J06_g1_c1_recipient"", ""keep""]]",keep
+J06_g1_c1_recipient,keep,forged_opposite,2,"[[""J06_g1_c1_recipient"", ""swap""]]",forged,0,1,"[[""J06_g1_c1_recipient"", ""keep""]]",keep
+J06_g1_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c1_recipient,keep,old_replay,1,"[[""J06_g1_c1_recipient"", ""keep""]]",3cf5945bb89841ae4a52d6fbcf0deb49ed9f36b619e084904b7dabdd9c6b3120,0,2,[],none
+J06_g1_c1_recipient,swap,current,1,"[[""J06_g1_c1_recipient"", ""swap""]]",6258d08f337ff825061c0d443ac678985c7b3997b72f5c80abc78bbe47cb7534,1,1,"[[""J06_g1_c1_recipient"", ""swap""]]",swap
+J06_g1_c1_recipient,swap,forged_opposite,2,"[[""J06_g1_c1_recipient"", ""keep""]]",forged,0,1,"[[""J06_g1_c1_recipient"", ""swap""]]",swap
+J06_g1_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c1_recipient,swap,old_replay,1,"[[""J06_g1_c1_recipient"", ""swap""]]",6258d08f337ff825061c0d443ac678985c7b3997b72f5c80abc78bbe47cb7534,0,2,[],none
+J06_g1_c1_color,keep,current,1,"[[""J06_g1_c1_color"", ""keep""]]",a5c2b528de9ffd5af54a8874ff13c08bc63d72a190ae7a65cb52d4e0085e05f5,1,1,"[[""J06_g1_c1_color"", ""keep""]]",keep
+J06_g1_c1_color,keep,forged_opposite,2,"[[""J06_g1_c1_color"", ""swap""]]",forged,0,1,"[[""J06_g1_c1_color"", ""keep""]]",keep
+J06_g1_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c1_color,keep,old_replay,1,"[[""J06_g1_c1_color"", ""keep""]]",a5c2b528de9ffd5af54a8874ff13c08bc63d72a190ae7a65cb52d4e0085e05f5,0,2,[],none
+J06_g1_c1_color,swap,current,1,"[[""J06_g1_c1_color"", ""swap""]]",8ca91ada8b0e8a58c20380eeb5385fc1f82ddb26b17894dd068c7dbbf975034e,1,1,"[[""J06_g1_c1_color"", ""swap""]]",swap
+J06_g1_c1_color,swap,forged_opposite,2,"[[""J06_g1_c1_color"", ""keep""]]",forged,0,1,"[[""J06_g1_c1_color"", ""swap""]]",swap
+J06_g1_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J06_g1_c1_color,swap,old_replay,1,"[[""J06_g1_c1_color"", ""swap""]]",8ca91ada8b0e8a58c20380eeb5385fc1f82ddb26b17894dd068c7dbbf975034e,0,2,[],none
+J07_g0_c0_recipient,keep,current,1,"[[""J07_g0_c0_recipient"", ""keep""]]",bd2822c062514e9f6e05907b6eb8d76b7b3c52b14144160cbc523b7ed1191ef2,1,1,"[[""J07_g0_c0_recipient"", ""keep""]]",keep
+J07_g0_c0_recipient,keep,forged_opposite,2,"[[""J07_g0_c0_recipient"", ""swap""]]",forged,0,1,"[[""J07_g0_c0_recipient"", ""keep""]]",keep
+J07_g0_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c0_recipient,keep,old_replay,1,"[[""J07_g0_c0_recipient"", ""keep""]]",bd2822c062514e9f6e05907b6eb8d76b7b3c52b14144160cbc523b7ed1191ef2,0,2,[],none
+J07_g0_c0_recipient,swap,current,1,"[[""J07_g0_c0_recipient"", ""swap""]]",e2f27969ab2f6315957f36881cd3d59c3c478e10f6604e371daecd2a97667448,1,1,"[[""J07_g0_c0_recipient"", ""swap""]]",swap
+J07_g0_c0_recipient,swap,forged_opposite,2,"[[""J07_g0_c0_recipient"", ""keep""]]",forged,0,1,"[[""J07_g0_c0_recipient"", ""swap""]]",swap
+J07_g0_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c0_recipient,swap,old_replay,1,"[[""J07_g0_c0_recipient"", ""swap""]]",e2f27969ab2f6315957f36881cd3d59c3c478e10f6604e371daecd2a97667448,0,2,[],none
+J07_g0_c0_color,keep,current,1,"[[""J07_g0_c0_color"", ""keep""]]",f982209daf6a74b2b55c5f004831c2772ec326f535df930b50244fce53a6cf40,1,1,"[[""J07_g0_c0_color"", ""keep""]]",keep
+J07_g0_c0_color,keep,forged_opposite,2,"[[""J07_g0_c0_color"", ""swap""]]",forged,0,1,"[[""J07_g0_c0_color"", ""keep""]]",keep
+J07_g0_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c0_color,keep,old_replay,1,"[[""J07_g0_c0_color"", ""keep""]]",f982209daf6a74b2b55c5f004831c2772ec326f535df930b50244fce53a6cf40,0,2,[],none
+J07_g0_c0_color,swap,current,1,"[[""J07_g0_c0_color"", ""swap""]]",bed18541dddb6cc8032c6be3764104a039af03481e02e128eb9431350cb425d9,1,1,"[[""J07_g0_c0_color"", ""swap""]]",swap
+J07_g0_c0_color,swap,forged_opposite,2,"[[""J07_g0_c0_color"", ""keep""]]",forged,0,1,"[[""J07_g0_c0_color"", ""swap""]]",swap
+J07_g0_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c0_color,swap,old_replay,1,"[[""J07_g0_c0_color"", ""swap""]]",bed18541dddb6cc8032c6be3764104a039af03481e02e128eb9431350cb425d9,0,2,[],none
+J07_g0_c1_recipient,keep,current,1,"[[""J07_g0_c1_recipient"", ""keep""]]",22c1c5971e07d27729a7e80cf793efc2e2e83d75fa55a7bf58684d072c9b94d9,1,1,"[[""J07_g0_c1_recipient"", ""keep""]]",keep
+J07_g0_c1_recipient,keep,forged_opposite,2,"[[""J07_g0_c1_recipient"", ""swap""]]",forged,0,1,"[[""J07_g0_c1_recipient"", ""keep""]]",keep
+J07_g0_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c1_recipient,keep,old_replay,1,"[[""J07_g0_c1_recipient"", ""keep""]]",22c1c5971e07d27729a7e80cf793efc2e2e83d75fa55a7bf58684d072c9b94d9,0,2,[],none
+J07_g0_c1_recipient,swap,current,1,"[[""J07_g0_c1_recipient"", ""swap""]]",8984912f5c1d4d5d523dc9808ca74b20207491a21e64376450ccfc7d52c35b1e,1,1,"[[""J07_g0_c1_recipient"", ""swap""]]",swap
+J07_g0_c1_recipient,swap,forged_opposite,2,"[[""J07_g0_c1_recipient"", ""keep""]]",forged,0,1,"[[""J07_g0_c1_recipient"", ""swap""]]",swap
+J07_g0_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c1_recipient,swap,old_replay,1,"[[""J07_g0_c1_recipient"", ""swap""]]",8984912f5c1d4d5d523dc9808ca74b20207491a21e64376450ccfc7d52c35b1e,0,2,[],none
+J07_g0_c1_color,keep,current,1,"[[""J07_g0_c1_color"", ""keep""]]",b4acf64ac597a5078b16ac74c4ed1488844da7a0775545b46a270e2dfe3824ac,1,1,"[[""J07_g0_c1_color"", ""keep""]]",keep
+J07_g0_c1_color,keep,forged_opposite,2,"[[""J07_g0_c1_color"", ""swap""]]",forged,0,1,"[[""J07_g0_c1_color"", ""keep""]]",keep
+J07_g0_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c1_color,keep,old_replay,1,"[[""J07_g0_c1_color"", ""keep""]]",b4acf64ac597a5078b16ac74c4ed1488844da7a0775545b46a270e2dfe3824ac,0,2,[],none
+J07_g0_c1_color,swap,current,1,"[[""J07_g0_c1_color"", ""swap""]]",255bca78beb82ea0d6fe45c650ce86862f9588183517d970e0596284b8b1eb01,1,1,"[[""J07_g0_c1_color"", ""swap""]]",swap
+J07_g0_c1_color,swap,forged_opposite,2,"[[""J07_g0_c1_color"", ""keep""]]",forged,0,1,"[[""J07_g0_c1_color"", ""swap""]]",swap
+J07_g0_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g0_c1_color,swap,old_replay,1,"[[""J07_g0_c1_color"", ""swap""]]",255bca78beb82ea0d6fe45c650ce86862f9588183517d970e0596284b8b1eb01,0,2,[],none
+J07_g1_c0_recipient,keep,current,1,"[[""J07_g1_c0_recipient"", ""keep""]]",decfec160d8e1fbd9d0c63fc6b42a878210e662a8c19d0d8ac5405188416f56e,1,1,"[[""J07_g1_c0_recipient"", ""keep""]]",keep
+J07_g1_c0_recipient,keep,forged_opposite,2,"[[""J07_g1_c0_recipient"", ""swap""]]",forged,0,1,"[[""J07_g1_c0_recipient"", ""keep""]]",keep
+J07_g1_c0_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c0_recipient,keep,old_replay,1,"[[""J07_g1_c0_recipient"", ""keep""]]",decfec160d8e1fbd9d0c63fc6b42a878210e662a8c19d0d8ac5405188416f56e,0,2,[],none
+J07_g1_c0_recipient,swap,current,1,"[[""J07_g1_c0_recipient"", ""swap""]]",c4b4f2c2bc21661e4573190b8ea1a2e4c78a80a185c3621e86f1701a4e35f721,1,1,"[[""J07_g1_c0_recipient"", ""swap""]]",swap
+J07_g1_c0_recipient,swap,forged_opposite,2,"[[""J07_g1_c0_recipient"", ""keep""]]",forged,0,1,"[[""J07_g1_c0_recipient"", ""swap""]]",swap
+J07_g1_c0_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c0_recipient,swap,old_replay,1,"[[""J07_g1_c0_recipient"", ""swap""]]",c4b4f2c2bc21661e4573190b8ea1a2e4c78a80a185c3621e86f1701a4e35f721,0,2,[],none
+J07_g1_c0_color,keep,current,1,"[[""J07_g1_c0_color"", ""keep""]]",fea03cad87711ebe120e6949a108a850ab6eedae142b50b756e23fcac8861986,1,1,"[[""J07_g1_c0_color"", ""keep""]]",keep
+J07_g1_c0_color,keep,forged_opposite,2,"[[""J07_g1_c0_color"", ""swap""]]",forged,0,1,"[[""J07_g1_c0_color"", ""keep""]]",keep
+J07_g1_c0_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c0_color,keep,old_replay,1,"[[""J07_g1_c0_color"", ""keep""]]",fea03cad87711ebe120e6949a108a850ab6eedae142b50b756e23fcac8861986,0,2,[],none
+J07_g1_c0_color,swap,current,1,"[[""J07_g1_c0_color"", ""swap""]]",c2819ee546e5c95e50648b03c7e6f956ac7b85191f3b099450f949921e8e90e9,1,1,"[[""J07_g1_c0_color"", ""swap""]]",swap
+J07_g1_c0_color,swap,forged_opposite,2,"[[""J07_g1_c0_color"", ""keep""]]",forged,0,1,"[[""J07_g1_c0_color"", ""swap""]]",swap
+J07_g1_c0_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c0_color,swap,old_replay,1,"[[""J07_g1_c0_color"", ""swap""]]",c2819ee546e5c95e50648b03c7e6f956ac7b85191f3b099450f949921e8e90e9,0,2,[],none
+J07_g1_c1_recipient,keep,current,1,"[[""J07_g1_c1_recipient"", ""keep""]]",adf176842ab432239cf32d4fd0c1e66d61724b7f24a066825b6c1c60d9bfa28a,1,1,"[[""J07_g1_c1_recipient"", ""keep""]]",keep
+J07_g1_c1_recipient,keep,forged_opposite,2,"[[""J07_g1_c1_recipient"", ""swap""]]",forged,0,1,"[[""J07_g1_c1_recipient"", ""keep""]]",keep
+J07_g1_c1_recipient,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c1_recipient,keep,old_replay,1,"[[""J07_g1_c1_recipient"", ""keep""]]",adf176842ab432239cf32d4fd0c1e66d61724b7f24a066825b6c1c60d9bfa28a,0,2,[],none
+J07_g1_c1_recipient,swap,current,1,"[[""J07_g1_c1_recipient"", ""swap""]]",59c55df1aee1f152c5b0eb3030e0f315a7f28563eed4a6d5fd38bbd5e34a5f8e,1,1,"[[""J07_g1_c1_recipient"", ""swap""]]",swap
+J07_g1_c1_recipient,swap,forged_opposite,2,"[[""J07_g1_c1_recipient"", ""keep""]]",forged,0,1,"[[""J07_g1_c1_recipient"", ""swap""]]",swap
+J07_g1_c1_recipient,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c1_recipient,swap,old_replay,1,"[[""J07_g1_c1_recipient"", ""swap""]]",59c55df1aee1f152c5b0eb3030e0f315a7f28563eed4a6d5fd38bbd5e34a5f8e,0,2,[],none
+J07_g1_c1_color,keep,current,1,"[[""J07_g1_c1_color"", ""keep""]]",f6a42358189f0f7ab615fd2e2751347428e523da415e81748799e24e64b35e67,1,1,"[[""J07_g1_c1_color"", ""keep""]]",keep
+J07_g1_c1_color,keep,forged_opposite,2,"[[""J07_g1_c1_color"", ""swap""]]",forged,0,1,"[[""J07_g1_c1_color"", ""keep""]]",keep
+J07_g1_c1_color,keep,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c1_color,keep,old_replay,1,"[[""J07_g1_c1_color"", ""keep""]]",f6a42358189f0f7ab615fd2e2751347428e523da415e81748799e24e64b35e67,0,2,[],none
+J07_g1_c1_color,swap,current,1,"[[""J07_g1_c1_color"", ""swap""]]",4eeb9f209c4663e37b86d59f39dd8bda5d9f0541c094b310f19482cad0442eaf,1,1,"[[""J07_g1_c1_color"", ""swap""]]",swap
+J07_g1_c1_color,swap,forged_opposite,2,"[[""J07_g1_c1_color"", ""keep""]]",forged,0,1,"[[""J07_g1_c1_color"", ""swap""]]",swap
+J07_g1_c1_color,swap,revoke,2,[],204f54754f15b3e33247d286443819c6cccb5669de3ac033d374f4efc65ec901,1,2,[],none
+J07_g1_c1_color,swap,old_replay,1,"[[""J07_g1_c1_color"", ""swap""]]",4eeb9f209c4663e37b86d59f39dd8bda5d9f0541c094b310f19482cad0442eaf,0,2,[],none

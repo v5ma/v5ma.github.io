@@ -1,0 +1,8 @@
+{
+  "applications/PROTOCOL-QWEN35-BASELINE-09.json": "38d04ffe3514f2681fb0a7e2758845315ab1ccb4868968f4c9e3fa849baea06f",
+  "applications/qwen35_baseline_v9.py": "7f511f4cbe6be01c139ade12d136d0851f8f15357c3422b81d300537bb695c17",
+  "applications/qwen35_adapter_v9.py": "a3bbfc57b54d6b5db45090452d3847fd3f5351e789862ac88dad5b3d4649a372",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/GRAPH-INTAKE-RECEIPT.json": "7e9e5b780153d5a5f1eb879504f68a1c6d7c0fa4f33881bd4c69563f9a5633f7",
+  "model-dependencies/qwen35-onnx-opt-fafab72d/WEIGHTS-INTAKE-RECEIPT.json": "f4db3fbfcf7109e2b5c3bd40de886a758e457409ee576f1ee4772b91b618b356",
+  "runtime-dependencies/onnxruntime-1.29.0/INTAKE-RECEIPT.json": "a80eb4016bb4401f89d477bdb66c09067c3389c4d3649bf605066cd9ee84a722"
+}

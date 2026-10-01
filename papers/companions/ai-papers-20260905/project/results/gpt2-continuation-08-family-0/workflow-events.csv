@@ -1,0 +1,21 @@
+case,stage,update_revision,update_scope,signature,accepted,store_revision,store_scope,selected_cache,new_suffix_steps
+J00_g0_c0_recipient,initial_swap,1,"[[""J00_g0_c0_recipient"", ""swap""]]",c4b9613db29f573fbaa5a63a4608c0c81e92efd92ea082f5e3bdfc68411f2ead,1,1,"[[""J00_g0_c0_recipient"", ""swap""]]",edited,0
+J00_g0_c0_recipient,stop_future_edits,2,"[[""J00_g0_c0_recipient"", ""stop_future_edits""]]",a1dc3ea9a51954e1652c9574f1ceb5e2b9e3884a5b73d5a8e30cd8330f5dbebf,1,2,"[[""J00_g0_c0_recipient"", ""stop_future_edits""]]",edited_no_new_patch,14
+J00_g0_c0_recipient,forged_restore,3,"[[""J00_g0_c0_recipient"", ""restore_original""]]",forged,0,2,"[[""J00_g0_c0_recipient"", ""stop_future_edits""]]",edited_no_new_patch,0
+J00_g0_c0_recipient,restore_original,3,"[[""J00_g0_c0_recipient"", ""restore_original""]]",9697c1c981317baf62ecc7d0bf0b5cd47784afabbc26ca94d06015d0c426b406,1,3,"[[""J00_g0_c0_recipient"", ""restore_original""]]",original,14
+J00_g0_c0_recipient,old_replay,2,"[[""J00_g0_c0_recipient"", ""stop_future_edits""]]",a1dc3ea9a51954e1652c9574f1ceb5e2b9e3884a5b73d5a8e30cd8330f5dbebf,0,3,"[[""J00_g0_c0_recipient"", ""restore_original""]]",original,0
+J00_g0_c1_recipient,initial_swap,1,"[[""J00_g0_c1_recipient"", ""swap""]]",b2cb316971045e360a092f5d688bfb27ca4ae9230a2cb5cfa145460582fb79f8,1,1,"[[""J00_g0_c1_recipient"", ""swap""]]",edited,0
+J00_g0_c1_recipient,stop_future_edits,2,"[[""J00_g0_c1_recipient"", ""stop_future_edits""]]",6c3680e76e986f607f91991bcaf226d9fd0b25f59dffe2707e4e1763279e05a4,1,2,"[[""J00_g0_c1_recipient"", ""stop_future_edits""]]",edited_no_new_patch,14
+J00_g0_c1_recipient,forged_restore,3,"[[""J00_g0_c1_recipient"", ""restore_original""]]",forged,0,2,"[[""J00_g0_c1_recipient"", ""stop_future_edits""]]",edited_no_new_patch,0
+J00_g0_c1_recipient,restore_original,3,"[[""J00_g0_c1_recipient"", ""restore_original""]]",f8259f599ecf3e512bad8dd02cdb6004626efebdac2ebf51801225a4bddb26a7,1,3,"[[""J00_g0_c1_recipient"", ""restore_original""]]",original,14
+J00_g0_c1_recipient,old_replay,2,"[[""J00_g0_c1_recipient"", ""stop_future_edits""]]",6c3680e76e986f607f91991bcaf226d9fd0b25f59dffe2707e4e1763279e05a4,0,3,"[[""J00_g0_c1_recipient"", ""restore_original""]]",original,0
+J00_g1_c0_recipient,initial_swap,1,"[[""J00_g1_c0_recipient"", ""swap""]]",a40c8d4c43a1bf61a18bf8bf9de38c1cfd24d86c28e3886b2aef5d5429f906dd,1,1,"[[""J00_g1_c0_recipient"", ""swap""]]",edited,0
+J00_g1_c0_recipient,stop_future_edits,2,"[[""J00_g1_c0_recipient"", ""stop_future_edits""]]",01c29c81eaf63e62500910604cb428a20a30d1105821f466dae650310c5ca2e4,1,2,"[[""J00_g1_c0_recipient"", ""stop_future_edits""]]",edited_no_new_patch,14
+J00_g1_c0_recipient,forged_restore,3,"[[""J00_g1_c0_recipient"", ""restore_original""]]",forged,0,2,"[[""J00_g1_c0_recipient"", ""stop_future_edits""]]",edited_no_new_patch,0
+J00_g1_c0_recipient,restore_original,3,"[[""J00_g1_c0_recipient"", ""restore_original""]]",37e95a7b1b7ab5f98a38a25fe65f088f7a67fb440af5e325cad9de37163cb10e,1,3,"[[""J00_g1_c0_recipient"", ""restore_original""]]",original,14
+J00_g1_c0_recipient,old_replay,2,"[[""J00_g1_c0_recipient"", ""stop_future_edits""]]",01c29c81eaf63e62500910604cb428a20a30d1105821f466dae650310c5ca2e4,0,3,"[[""J00_g1_c0_recipient"", ""restore_original""]]",original,0
+J00_g1_c1_recipient,initial_swap,1,"[[""J00_g1_c1_recipient"", ""swap""]]",197ce62753768b15dac3b02b1a72e8d4943af06f4806e3cfaedb759a72b3275e,1,1,"[[""J00_g1_c1_recipient"", ""swap""]]",edited,0
+J00_g1_c1_recipient,stop_future_edits,2,"[[""J00_g1_c1_recipient"", ""stop_future_edits""]]",9efb190b3e6d14016376205fe7eaa38a37bbd3f5303e6dd8eafa694208c8e56c,1,2,"[[""J00_g1_c1_recipient"", ""stop_future_edits""]]",edited_no_new_patch,14
+J00_g1_c1_recipient,forged_restore,3,"[[""J00_g1_c1_recipient"", ""restore_original""]]",forged,0,2,"[[""J00_g1_c1_recipient"", ""stop_future_edits""]]",edited_no_new_patch,0
+J00_g1_c1_recipient,restore_original,3,"[[""J00_g1_c1_recipient"", ""restore_original""]]",6ffa12e8d1b6b5ea69eb1d7fd6d0489bc28d5b060f65474c550d6740db5d67c6,1,3,"[[""J00_g1_c1_recipient"", ""restore_original""]]",original,14
+J00_g1_c1_recipient,old_replay,2,"[[""J00_g1_c1_recipient"", ""stop_future_edits""]]",9efb190b3e6d14016376205fe7eaa38a37bbd3f5303e6dd8eafa694208c8e56c,0,3,"[[""J00_g1_c1_recipient"", ""restore_original""]]",original,0

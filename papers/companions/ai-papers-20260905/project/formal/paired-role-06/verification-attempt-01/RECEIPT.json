@@ -1,0 +1,14 @@
+{
+  "schema": "san-paired-role-compiler/v1",
+  "source": "PairedRoleMetric.lean",
+  "sha256": "8CDAA9B73DFB2B6024B3066A305ABA86C0257EC95B43898B6E43FEA9C029BCE4",
+  "compiler_success": true,
+  "source_unchanged": true,
+  "admitted_axiom_in_output": false,
+  "stated_theorems": 5,
+  "axiom_free_statements": 5,
+  "elapsed_seconds": 4.0906143,
+  "independent_review": false,
+  "python_refinement_proof": false,
+  "log": "COMPILER.log"
+}

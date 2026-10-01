@@ -1,0 +1,2370 @@
+{
+  "all_pass": true,
+  "checks": {
+    "62101_always_all_finite": true,
+    "62101_always_identical_count": true,
+    "62101_always_never_stays_initial": true,
+    "62101_always_no_early_proposal": true,
+    "62101_always_permitted_gate_row": true,
+    "62101_always_prior_only": true,
+    "62101_always_weight_transition": true,
+    "62101_analytic_all_finite": true,
+    "62101_analytic_identical_count": true,
+    "62101_analytic_never_stays_initial": true,
+    "62101_analytic_no_early_proposal": true,
+    "62101_analytic_permitted_gate_row": true,
+    "62101_analytic_prior_only": true,
+    "62101_analytic_weight_transition": true,
+    "62101_history_interaction_all_finite": true,
+    "62101_history_interaction_identical_count": true,
+    "62101_history_interaction_never_stays_initial": true,
+    "62101_history_interaction_no_early_proposal": true,
+    "62101_history_interaction_permitted_gate_row": true,
+    "62101_history_interaction_prior_only": true,
+    "62101_history_interaction_weight_transition": true,
+    "62101_never_all_finite": true,
+    "62101_never_identical_count": true,
+    "62101_never_never_stays_initial": true,
+    "62101_never_no_early_proposal": true,
+    "62101_never_permitted_gate_row": true,
+    "62101_never_prior_only": true,
+    "62101_never_weight_transition": true,
+    "62101_raw_history_all_finite": true,
+    "62101_raw_history_identical_count": true,
+    "62101_raw_history_never_stays_initial": true,
+    "62101_raw_history_no_early_proposal": true,
+    "62101_raw_history_permitted_gate_row": true,
+    "62101_raw_history_prior_only": true,
+    "62101_raw_history_weight_transition": true,
+    "62101_scalar_all_finite": true,
+    "62101_scalar_identical_count": true,
+    "62101_scalar_never_stays_initial": true,
+    "62101_scalar_no_early_proposal": true,
+    "62101_scalar_permitted_gate_row": true,
+    "62101_scalar_prior_only": true,
+    "62101_scalar_weight_transition": true,
+    "62101_trajectory_all_finite": true,
+    "62101_trajectory_identical_count": true,
+    "62101_trajectory_never_stays_initial": true,
+    "62101_trajectory_no_early_proposal": true,
+    "62101_trajectory_permitted_gate_row": true,
+    "62101_trajectory_prior_only": true,
+    "62101_trajectory_weight_transition": true,
+    "62102_always_all_finite": true,
+    "62102_always_identical_count": true,
+    "62102_always_never_stays_initial": true,
+    "62102_always_no_early_proposal": true,
+    "62102_always_permitted_gate_row": true,
+    "62102_always_prior_only": true,
+    "62102_always_weight_transition": true,
+    "62102_analytic_all_finite": true,
+    "62102_analytic_identical_count": true,
+    "62102_analytic_never_stays_initial": true,
+    "62102_analytic_no_early_proposal": true,
+    "62102_analytic_permitted_gate_row": true,
+    "62102_analytic_prior_only": true,
+    "62102_analytic_weight_transition": true,
+    "62102_history_interaction_all_finite": true,
+    "62102_history_interaction_identical_count": true,
+    "62102_history_interaction_never_stays_initial": true,
+    "62102_history_interaction_no_early_proposal": true,
+    "62102_history_interaction_permitted_gate_row": true,
+    "62102_history_interaction_prior_only": true,
+    "62102_history_interaction_weight_transition": true,
+    "62102_never_all_finite": true,
+    "62102_never_identical_count": true,
+    "62102_never_never_stays_initial": true,
+    "62102_never_no_early_proposal": true,
+    "62102_never_permitted_gate_row": true,
+    "62102_never_prior_only": true,
+    "62102_never_weight_transition": true,
+    "62102_raw_history_all_finite": true,
+    "62102_raw_history_identical_count": true,
+    "62102_raw_history_never_stays_initial": true,
+    "62102_raw_history_no_early_proposal": true,
+    "62102_raw_history_permitted_gate_row": true,
+    "62102_raw_history_prior_only": true,
+    "62102_raw_history_weight_transition": true,
+    "62102_scalar_all_finite": true,
+    "62102_scalar_identical_count": true,
+    "62102_scalar_never_stays_initial": true,
+    "62102_scalar_no_early_proposal": true,
+    "62102_scalar_permitted_gate_row": true,
+    "62102_scalar_prior_only": true,
+    "62102_scalar_weight_transition": true,
+    "62102_trajectory_all_finite": true,
+    "62102_trajectory_identical_count": true,
+    "62102_trajectory_never_stays_initial": true,
+    "62102_trajectory_no_early_proposal": true,
+    "62102_trajectory_permitted_gate_row": true,
+    "62102_trajectory_prior_only": true,
+    "62102_trajectory_weight_transition": true,
+    "62103_always_all_finite": true,
+    "62103_always_identical_count": true,
+    "62103_always_never_stays_initial": true,
+    "62103_always_no_early_proposal": true,
+    "62103_always_permitted_gate_row": true,
+    "62103_always_prior_only": true,
+    "62103_always_weight_transition": true,
+    "62103_analytic_all_finite": true,
+    "62103_analytic_identical_count": true,
+    "62103_analytic_never_stays_initial": true,
+    "62103_analytic_no_early_proposal": true,
+    "62103_analytic_permitted_gate_row": true,
+    "62103_analytic_prior_only": true,
+    "62103_analytic_weight_transition": true,
+    "62103_history_interaction_all_finite": true,
+    "62103_history_interaction_identical_count": true,
+    "62103_history_interaction_never_stays_initial": true,
+    "62103_history_interaction_no_early_proposal": true,
+    "62103_history_interaction_permitted_gate_row": true,
+    "62103_history_interaction_prior_only": true,
+    "62103_history_interaction_weight_transition": true,
+    "62103_never_all_finite": true,
+    "62103_never_identical_count": true,
+    "62103_never_never_stays_initial": true,
+    "62103_never_no_early_proposal": true,
+    "62103_never_permitted_gate_row": true,
+    "62103_never_prior_only": true,
+    "62103_never_weight_transition": true,
+    "62103_raw_history_all_finite": true,
+    "62103_raw_history_identical_count": true,
+    "62103_raw_history_never_stays_initial": true,
+    "62103_raw_history_no_early_proposal": true,
+    "62103_raw_history_permitted_gate_row": true,
+    "62103_raw_history_prior_only": true,
+    "62103_raw_history_weight_transition": true,
+    "62103_scalar_all_finite": true,
+    "62103_scalar_identical_count": true,
+    "62103_scalar_never_stays_initial": true,
+    "62103_scalar_no_early_proposal": true,
+    "62103_scalar_permitted_gate_row": true,
+    "62103_scalar_prior_only": true,
+    "62103_scalar_weight_transition": true,
+    "62103_trajectory_all_finite": true,
+    "62103_trajectory_identical_count": true,
+    "62103_trajectory_never_stays_initial": true,
+    "62103_trajectory_no_early_proposal": true,
+    "62103_trajectory_permitted_gate_row": true,
+    "62103_trajectory_prior_only": true,
+    "62103_trajectory_weight_transition": true,
+    "62104_always_all_finite": true,
+    "62104_always_identical_count": true,
+    "62104_always_never_stays_initial": true,
+    "62104_always_no_early_proposal": true,
+    "62104_always_permitted_gate_row": true,
+    "62104_always_prior_only": true,
+    "62104_always_weight_transition": true,
+    "62104_analytic_all_finite": true,
+    "62104_analytic_identical_count": true,
+    "62104_analytic_never_stays_initial": true,
+    "62104_analytic_no_early_proposal": true,
+    "62104_analytic_permitted_gate_row": true,
+    "62104_analytic_prior_only": true,
+    "62104_analytic_weight_transition": true,
+    "62104_history_interaction_all_finite": true,
+    "62104_history_interaction_identical_count": true,
+    "62104_history_interaction_never_stays_initial": true,
+    "62104_history_interaction_no_early_proposal": true,
+    "62104_history_interaction_permitted_gate_row": true,
+    "62104_history_interaction_prior_only": true,
+    "62104_history_interaction_weight_transition": true,
+    "62104_never_all_finite": true,
+    "62104_never_identical_count": true,
+    "62104_never_never_stays_initial": true,
+    "62104_never_no_early_proposal": true,
+    "62104_never_permitted_gate_row": true,
+    "62104_never_prior_only": true,
+    "62104_never_weight_transition": true,
+    "62104_raw_history_all_finite": true,
+    "62104_raw_history_identical_count": true,
+    "62104_raw_history_never_stays_initial": true,
+    "62104_raw_history_no_early_proposal": true,
+    "62104_raw_history_permitted_gate_row": true,
+    "62104_raw_history_prior_only": true,
+    "62104_raw_history_weight_transition": true,
+    "62104_scalar_all_finite": true,
+    "62104_scalar_identical_count": true,
+    "62104_scalar_never_stays_initial": true,
+    "62104_scalar_no_early_proposal": true,
+    "62104_scalar_permitted_gate_row": true,
+    "62104_scalar_prior_only": true,
+    "62104_scalar_weight_transition": true,
+    "62104_trajectory_all_finite": true,
+    "62104_trajectory_identical_count": true,
+    "62104_trajectory_never_stays_initial": true,
+    "62104_trajectory_no_early_proposal": true,
+    "62104_trajectory_permitted_gate_row": true,
+    "62104_trajectory_prior_only": true,
+    "62104_trajectory_weight_transition": true,
+    "62105_always_all_finite": true,
+    "62105_always_identical_count": true,
+    "62105_always_never_stays_initial": true,
+    "62105_always_no_early_proposal": true,
+    "62105_always_permitted_gate_row": true,
+    "62105_always_prior_only": true,
+    "62105_always_weight_transition": true,
+    "62105_analytic_all_finite": true,
+    "62105_analytic_identical_count": true,
+    "62105_analytic_never_stays_initial": true,
+    "62105_analytic_no_early_proposal": true,
+    "62105_analytic_permitted_gate_row": true,
+    "62105_analytic_prior_only": true,
+    "62105_analytic_weight_transition": true,
+    "62105_history_interaction_all_finite": true,
+    "62105_history_interaction_identical_count": true,
+    "62105_history_interaction_never_stays_initial": true,
+    "62105_history_interaction_no_early_proposal": true,
+    "62105_history_interaction_permitted_gate_row": true,
+    "62105_history_interaction_prior_only": true,
+    "62105_history_interaction_weight_transition": true,
+    "62105_never_all_finite": true,
+    "62105_never_identical_count": true,
+    "62105_never_never_stays_initial": true,
+    "62105_never_no_early_proposal": true,
+    "62105_never_permitted_gate_row": true,
+    "62105_never_prior_only": true,
+    "62105_never_weight_transition": true,
+    "62105_raw_history_all_finite": true,
+    "62105_raw_history_identical_count": true,
+    "62105_raw_history_never_stays_initial": true,
+    "62105_raw_history_no_early_proposal": true,
+    "62105_raw_history_permitted_gate_row": true,
+    "62105_raw_history_prior_only": true,
+    "62105_raw_history_weight_transition": true,
+    "62105_scalar_all_finite": true,
+    "62105_scalar_identical_count": true,
+    "62105_scalar_never_stays_initial": true,
+    "62105_scalar_no_early_proposal": true,
+    "62105_scalar_permitted_gate_row": true,
+    "62105_scalar_prior_only": true,
+    "62105_scalar_weight_transition": true,
+    "62105_trajectory_all_finite": true,
+    "62105_trajectory_identical_count": true,
+    "62105_trajectory_never_stays_initial": true,
+    "62105_trajectory_no_early_proposal": true,
+    "62105_trajectory_permitted_gate_row": true,
+    "62105_trajectory_prior_only": true,
+    "62105_trajectory_weight_transition": true,
+    "all_routes_have_same_eligible_count": true,
+    "same_stream_all_routes": true
+  },
+  "passed": 247,
+  "per_seed": {
+    "62101": {
+      "routes": {
+        "always": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3340582869091517,
+            -1.4455977877070605,
+            2.1474744195953304
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.6754242011910296,
+                "new": 2.086035243955208,
+                "old": 0.8542021156626738
+              },
+              "post_error": {
+                "all": 2.664499362306748,
+                "new": 3.201146982957911,
+                "old": 1.591204121004421
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.2043960631994137,
+                "new": 1.386468935557414,
+                "old": 0.8402503184834146
+              },
+              "post_error": {
+                "all": 0.6409518088346363,
+                "new": 0.6357972523092229,
+                "old": 0.6512609218854631
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 1.029777673788862,
+                "new": 1.1298401314717672,
+                "old": 0.829652758423052
+              },
+              "post_error": {
+                "all": 0.07990705287961253,
+                "new": 0.0633370691811808,
+                "old": 0.11304702027647598
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "analytic": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            2.877386587872218,
+            -1.2466129609365155,
+            1.6616087659040797
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.5217702958627697,
+                "new": 1.9793453810518742,
+                "old": 0.6066201254845623
+              },
+              "post_error": {
+                "all": 1.6674670682106962,
+                "new": 2.368608382842982,
+                "old": 0.26518443894612614
+              },
+              "writes_to_date": 14
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.8133212674846177,
+                "new": 1.0424176975117785,
+                "old": 0.35512840743029955
+              },
+              "post_error": {
+                "all": 0.043089360919266066,
+                "new": 0.0356766178682858,
+                "old": 0.057914847021226595
+              },
+              "writes_to_date": 41
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.7229581911563187,
+                "new": 0.8492814220315766,
+                "old": 0.4703117294058053
+              },
+              "post_error": {
+                "all": 0.570452586106485,
+                "new": 0.3661759379216909,
+                "old": 0.9790058824760733
+              },
+              "writes_to_date": 70
+            }
+          },
+          "proposal_fraction": 0.3763440860215054,
+          "total_writes": 70
+        },
+        "history_interaction": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.9086129700266121,
+            -1.134330619544501,
+            1.766338250089047
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.5213571750255337,
+                "new": 1.9728586339693879,
+                "old": 0.6183542571378203
+              },
+              "post_error": {
+                "all": 2.516763231755788,
+                "new": 3.1204586704496458,
+                "old": 1.3093723543680726
+              },
+              "writes_to_date": 10
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.023030999225792,
+                "new": 1.2152929835732893,
+                "old": 0.6385070305307915
+              },
+              "post_error": {
+                "all": 0.21526971385327287,
+                "new": 0.19327661664696807,
+                "old": 0.25925590826588246
+              },
+              "writes_to_date": 29
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.858394424396219,
+                "new": 0.974552479644682,
+                "old": 0.626078313899288
+              },
+              "post_error": {
+                "all": 0.06003927476405362,
+                "new": 0.043806593490785806,
+                "old": 0.09250463731058926
+              },
+              "writes_to_date": 54
+            }
+          },
+          "proposal_fraction": 0.2903225806451613,
+          "total_writes": 54
+        },
+        "never": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333317,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333313,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333264,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            }
+          },
+          "proposal_fraction": 0.0,
+          "total_writes": 0
+        },
+        "raw_history": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3340582869091517,
+            -1.4455977877070605,
+            2.1474744195953304
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.6754242011910296,
+                "new": 2.086035243955208,
+                "old": 0.8542021156626738
+              },
+              "post_error": {
+                "all": 2.664499362306748,
+                "new": 3.201146982957911,
+                "old": 1.591204121004421
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.2043960631994137,
+                "new": 1.386468935557414,
+                "old": 0.8402503184834146
+              },
+              "post_error": {
+                "all": 0.6409518088346363,
+                "new": 0.6357972523092229,
+                "old": 0.6512609218854631
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 1.029777673788862,
+                "new": 1.1298401314717672,
+                "old": 0.829652758423052
+              },
+              "post_error": {
+                "all": 0.07990705287961253,
+                "new": 0.0633370691811808,
+                "old": 0.11304702027647598
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "scalar": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3340582869091517,
+            -1.4455977877070605,
+            2.1474744195953304
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.6754242011910296,
+                "new": 2.086035243955208,
+                "old": 0.8542021156626738
+              },
+              "post_error": {
+                "all": 2.664499362306748,
+                "new": 3.201146982957911,
+                "old": 1.591204121004421
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.2043960631994137,
+                "new": 1.386468935557414,
+                "old": 0.8402503184834146
+              },
+              "post_error": {
+                "all": 0.6409518088346363,
+                "new": 0.6357972523092229,
+                "old": 0.6512609218854631
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 1.029777673788862,
+                "new": 1.1298401314717672,
+                "old": 0.829652758423052
+              },
+              "post_error": {
+                "all": 0.07990705287961253,
+                "new": 0.0633370691811808,
+                "old": 0.11304702027647598
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "trajectory": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.4510342178654856,
+            -1.5058067793245862,
+            2.103578577032009
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.5940168115564433,
+                "new": 2.0310759337434745,
+                "old": 0.7198985671823821
+              },
+              "post_error": {
+                "all": 2.615698364352959,
+                "new": 3.164262131419885,
+                "old": 1.5185708302191065
+              },
+              "writes_to_date": 37
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0814998870528212,
+                "new": 1.262485305019871,
+                "old": 0.7195290511187198
+              },
+              "post_error": {
+                "all": 0.6568289662193061,
+                "new": 0.6457725616653762,
+                "old": 0.6789417753271659
+              },
+              "writes_to_date": 109
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9224432470522527,
+                "new": 1.0279911811483702,
+                "old": 0.7113473788600169
+              },
+              "post_error": {
+                "all": 0.08420633449461569,
+                "new": 0.061749965284234695,
+                "old": 0.1291190729153777
+              },
+              "writes_to_date": 164
+            }
+          },
+          "proposal_fraction": 0.8817204301075269,
+          "total_writes": 164
+        }
+      },
+      "stream_sha256": "e8d6d84929894903ff1f5594bd69e426127a9348f4c96a76e548d2be6d38ebe6"
+    },
+    "62102": {
+      "routes": {
+        "always": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3948139760916267,
+            -1.1196468263802584,
+            1.6567813377090794
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8412112506903378,
+                "new": 2.297261432854951,
+                "old": 0.9291108863611116
+              },
+              "post_error": {
+                "all": 1.4931859566545798,
+                "new": 2.0372592647869956,
+                "old": 0.40503934038974815
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0027631983371001,
+                "new": 1.2093425945161682,
+                "old": 0.5896044059789625
+              },
+              "post_error": {
+                "all": 1.1781825284818939,
+                "new": 1.0367075401836017,
+                "old": 1.4611325050784782
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8716476305526631,
+                "new": 1.01445934996465,
+                "old": 0.5860241917286877
+              },
+              "post_error": {
+                "all": 0.06268483828698211,
+                "new": 0.08768239175834303,
+                "old": 0.012689731344260283
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "analytic": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.7405045997848527,
+            -0.8000613605091709,
+            1.4764071538124488
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.6798433826113999,
+                "new": 2.188959543427061,
+                "old": 0.6616110609800759
+              },
+              "post_error": {
+                "all": 1.5204355077957434,
+                "new": 2.2553739271758313,
+                "old": 0.05055866903556834
+              },
+              "writes_to_date": 19
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.7885698699345838,
+                "new": 1.032189562999934,
+                "old": 0.3013304838038792
+              },
+              "post_error": {
+                "all": 0.291912627418601,
+                "new": 0.24733938712366507,
+                "old": 0.381059108008473
+              },
+              "writes_to_date": 38
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.6385629302358354,
+                "new": 0.8032785065239072,
+                "old": 0.3091317776596901
+              },
+              "post_error": {
+                "all": 0.09356800242527398,
+                "new": 0.115897523118132,
+                "old": 0.048908961039557955
+              },
+              "writes_to_date": 59
+            }
+          },
+          "proposal_fraction": 0.3172043010752688,
+          "total_writes": 59
+        },
+        "history_interaction": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3288948070053879,
+            -0.4413958332121559,
+            1.815337179156129
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.6954849367782372,
+                "new": 2.203039073099827,
+                "old": 0.6803766641350593
+              },
+              "post_error": {
+                "all": 1.9389741248683363,
+                "new": 2.529812353420573,
+                "old": 0.7572976677638632
+              },
+              "writes_to_date": 16
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.9556904077065538,
+                "new": 1.16172773083215,
+                "old": 0.5436157614553597
+              },
+              "post_error": {
+                "all": 0.6511070820442827,
+                "new": 0.5475108966728449,
+                "old": 0.8582994527871584
+              },
+              "writes_to_date": 33
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.7832680178652885,
+                "new": 0.9231875908016302,
+                "old": 0.5034288719926016
+              },
+              "post_error": {
+                "all": 0.09728253198472815,
+                "new": 0.06059489742147598,
+                "old": 0.1706578011112325
+              },
+              "writes_to_date": 48
+            }
+          },
+          "proposal_fraction": 0.25806451612903225,
+          "total_writes": 48
+        },
+        "never": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333317,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333313,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333264,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            }
+          },
+          "proposal_fraction": 0.0,
+          "total_writes": 0
+        },
+        "raw_history": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3948139760916267,
+            -1.1196468263802584,
+            1.6567813377090794
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8412112506903378,
+                "new": 2.297261432854951,
+                "old": 0.9291108863611116
+              },
+              "post_error": {
+                "all": 1.4931859566545798,
+                "new": 2.0372592647869956,
+                "old": 0.40503934038974815
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0027631983371001,
+                "new": 1.2093425945161682,
+                "old": 0.5896044059789625
+              },
+              "post_error": {
+                "all": 1.1781825284818939,
+                "new": 1.0367075401836017,
+                "old": 1.4611325050784782
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8716476305526631,
+                "new": 1.01445934996465,
+                "old": 0.5860241917286877
+              },
+              "post_error": {
+                "all": 0.06268483828698211,
+                "new": 0.08768239175834303,
+                "old": 0.012689731344260283
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "scalar": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.3948139760916267,
+            -1.1196468263802584,
+            1.6567813377090794
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8412112506903378,
+                "new": 2.297261432854951,
+                "old": 0.9291108863611116
+              },
+              "post_error": {
+                "all": 1.4931859566545798,
+                "new": 2.0372592647869956,
+                "old": 0.40503934038974815
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0027631983371001,
+                "new": 1.2093425945161682,
+                "old": 0.5896044059789625
+              },
+              "post_error": {
+                "all": 1.1781825284818939,
+                "new": 1.0367075401836017,
+                "old": 1.4611325050784782
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8716476305526631,
+                "new": 1.01445934996465,
+                "old": 0.5860241917286877
+              },
+              "post_error": {
+                "all": 0.06268483828698211,
+                "new": 0.08768239175834303,
+                "old": 0.012689731344260283
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "trajectory": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.452312001525049,
+            -1.0304813154235597,
+            1.5281956502506233
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.7949315783640054,
+                "new": 2.2879440648477547,
+                "old": 0.8089066053965048
+              },
+              "post_error": {
+                "all": 1.325244118679402,
+                "new": 1.915664716396485,
+                "old": 0.14440292324523582
+              },
+              "writes_to_date": 38
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.9125996074957483,
+                "new": 1.1330585246870977,
+                "old": 0.47168177311304854
+              },
+              "post_error": {
+                "all": 0.6389795240915108,
+                "new": 0.5264288574094684,
+                "old": 0.8640808574555955
+              },
+              "writes_to_date": 110
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.7613717413550835,
+                "new": 0.9154398747318575,
+                "old": 0.4532354746015319
+              },
+              "post_error": {
+                "all": 0.08165656928325564,
+                "new": 0.1216840399777591,
+                "old": 0.0016016278942487324
+              },
+              "writes_to_date": 163
+            }
+          },
+          "proposal_fraction": 0.8763440860215054,
+          "total_writes": 163
+        }
+      },
+      "stream_sha256": "69d18e22c7ec9c492f00c89bc5aea1d94f5622a014f2adf73badbd8f84eb042e"
+    },
+    "62103": {
+      "routes": {
+        "always": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.1618007554948053,
+            -1.8839896575926123,
+            2.6886103886200643
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8236187016846108,
+                "new": 2.4009453949045763,
+                "old": 0.6689653152446787
+              },
+              "post_error": {
+                "all": 1.3195738403148993,
+                "new": 1.943895286477324,
+                "old": 0.07093094799004974
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.1167159735315726,
+                "new": 1.3799881906094946,
+                "old": 0.5901715393757287
+              },
+              "post_error": {
+                "all": 0.39831856746602196,
+                "new": 0.29072544403311545,
+                "old": 0.613504814331835
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9213082783830608,
+                "new": 1.1023012865484578,
+                "old": 0.5593222620522672
+              },
+              "post_error": {
+                "all": 0.36622568026127583,
+                "new": 0.32538440946326674,
+                "old": 0.4479082218572942
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "analytic": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.325805325251658,
+            -1.1643793898394108,
+            2.366066486246969
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.7092559155720553,
+                "new": 2.2890118908784896,
+                "old": 0.5497439649591905
+              },
+              "post_error": {
+                "all": 2.239063440927823,
+                "new": 2.99633918078838,
+                "old": 0.7245119612067087
+              },
+              "writes_to_date": 14
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0619294499342269,
+                "new": 1.3278637848226744,
+                "old": 0.5300607801573327
+              },
+              "post_error": {
+                "all": 0.3018473671370302,
+                "new": 0.2695286268706559,
+                "old": 0.3664848476697788
+              },
+              "writes_to_date": 46
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8452223322493825,
+                "new": 1.0387832233074459,
+                "old": 0.45810055013325335
+              },
+              "post_error": {
+                "all": 0.04790524632102233,
+                "new": 0.057516777352869086,
+                "old": 0.028682184257328835
+              },
+              "writes_to_date": 76
+            }
+          },
+          "proposal_fraction": 0.40860215053763443,
+          "total_writes": 76
+        },
+        "history_interaction": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.4329594784892263,
+            -1.948387474425456,
+            2.2741799534934
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.854199026617579,
+                "new": 2.4103618886254514,
+                "old": 0.7418733026018264
+              },
+              "post_error": {
+                "all": 2.2499893241774442,
+                "new": 3.0682617130251524,
+                "old": 0.6134445464820277
+              },
+              "writes_to_date": 6
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.1194397405912753,
+                "new": 1.3711307086179854,
+                "old": 0.6160578045378471
+              },
+              "post_error": {
+                "all": 0.6365259611540613,
+                "new": 0.3420020716701227,
+                "old": 1.2255737401219386
+              },
+              "writes_to_date": 20
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8988551604308641,
+                "new": 1.0642057303790067,
+                "old": 0.5681540205345713
+              },
+              "post_error": {
+                "all": 0.29056435838607075,
+                "new": 0.20986322928622334,
+                "old": 0.45196661658576565
+              },
+              "writes_to_date": 43
+            }
+          },
+          "proposal_fraction": 0.23118279569892472,
+          "total_writes": 43
+        },
+        "never": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333317,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333313,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333264,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            }
+          },
+          "proposal_fraction": 0.0,
+          "total_writes": 0
+        },
+        "raw_history": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.1618007554948053,
+            -1.8839896575926123,
+            2.6886103886200643
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8236187016846108,
+                "new": 2.4009453949045763,
+                "old": 0.6689653152446787
+              },
+              "post_error": {
+                "all": 1.3195738403148993,
+                "new": 1.943895286477324,
+                "old": 0.07093094799004974
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.1167159735315726,
+                "new": 1.3799881906094946,
+                "old": 0.5901715393757287
+              },
+              "post_error": {
+                "all": 0.39831856746602196,
+                "new": 0.29072544403311545,
+                "old": 0.613504814331835
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9213082783830608,
+                "new": 1.1023012865484578,
+                "old": 0.5593222620522672
+              },
+              "post_error": {
+                "all": 0.36622568026127583,
+                "new": 0.32538440946326674,
+                "old": 0.4479082218572942
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "scalar": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.1618007554948053,
+            -1.8839896575926123,
+            2.6886103886200643
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8236187016846108,
+                "new": 2.4009453949045763,
+                "old": 0.6689653152446787
+              },
+              "post_error": {
+                "all": 1.3195738403148993,
+                "new": 1.943895286477324,
+                "old": 0.07093094799004974
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.1167159735315726,
+                "new": 1.3799881906094946,
+                "old": 0.5901715393757287
+              },
+              "post_error": {
+                "all": 0.39831856746602196,
+                "new": 0.29072544403311545,
+                "old": 0.613504814331835
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9213082783830608,
+                "new": 1.1023012865484578,
+                "old": 0.5593222620522672
+              },
+              "post_error": {
+                "all": 0.36622568026127583,
+                "new": 0.32538440946326674,
+                "old": 0.4479082218572942
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "trajectory": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.0922448876477353,
+            -1.5724032181624559,
+            2.9198531163216526
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8618391293636176,
+                "new": 2.450699798571272,
+                "old": 0.6841177909483095
+              },
+              "post_error": {
+                "all": 1.7376005702843285,
+                "new": 2.4003345297344247,
+                "old": 0.41213265138413546
+              },
+              "writes_to_date": 39
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.133745842934715,
+                "new": 1.3948760948795722,
+                "old": 0.611485339045002
+              },
+              "post_error": {
+                "all": 0.3894254238600032,
+                "new": 0.2866034667532258,
+                "old": 0.5950693380735579
+              },
+              "writes_to_date": 110
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.910834812217207,
+                "new": 1.0968860114964452,
+                "old": 0.5387324136587327
+              },
+              "post_error": {
+                "all": 0.3353129177596059,
+                "new": 0.3794919576863729,
+                "old": 0.24695483790607203
+              },
+              "writes_to_date": 165
+            }
+          },
+          "proposal_fraction": 0.8870967741935484,
+          "total_writes": 165
+        }
+      },
+      "stream_sha256": "73a0dff873bf67068967325f5e3961c375caef2c0dea84a829f0ddf70b31bfd3"
+    },
+    "62104": {
+      "routes": {
+        "always": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            3.465984210995564,
+            -0.2686516933119244,
+            2.1935854522004914
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.0928051266527548,
+                "new": 2.6328574241323963,
+                "old": 1.0127005316934736
+              },
+              "post_error": {
+                "all": 1.3644324410830413,
+                "new": 1.7445384660341783,
+                "old": 0.6042203911807676
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.106842919402113,
+                "new": 1.3428122628916417,
+                "old": 0.6349042324230593
+              },
+              "post_error": {
+                "all": 0.010988105110946689,
+                "new": 0.0058004501419195685,
+                "old": 0.021363415049000935
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9366141659837899,
+                "new": 1.1150830019488218,
+                "old": 0.5796764940537285
+              },
+              "post_error": {
+                "all": 1.805810456770674,
+                "new": 1.6087246192611702,
+                "old": 2.1999821317896826
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "analytic": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.6660687219607244,
+            -1.0526416464887585,
+            2.087710999792599
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8538113031192902,
+                "new": 2.394320527154475,
+                "old": 0.7727928550489225
+              },
+              "post_error": {
+                "all": 1.550612099402468,
+                "new": 2.100391405966328,
+                "old": 0.4510534862747486
+              },
+              "writes_to_date": 14
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.9370740777548281,
+                "new": 1.1841335775028694,
+                "old": 0.44295507825874364
+              },
+              "post_error": {
+                "all": 0.2420088632495705,
+                "new": 0.23768746864255968,
+                "old": 0.25065165246359217
+              },
+              "writes_to_date": 43
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.712940379532392,
+                "new": 0.8914958363234685,
+                "old": 0.355829465950236
+              },
+              "post_error": {
+                "all": 0.22965813262980464,
+                "new": 0.16993406908539022,
+                "old": 0.3491062597186335
+              },
+              "writes_to_date": 56
+            }
+          },
+          "proposal_fraction": 0.3010752688172043,
+          "total_writes": 56
+        },
+        "history_interaction": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.23319981036036,
+            -0.9047029898000276,
+            2.4327700460561115
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.8832810579581212,
+                "new": 2.490115886246287,
+                "old": 0.6696114013817904
+              },
+              "post_error": {
+                "all": 1.496867671609981,
+                "new": 2.1815550166677435,
+                "old": 0.12749298149445565
+              },
+              "writes_to_date": 12
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.9292367707114607,
+                "new": 1.1993442524629097,
+                "old": 0.38902180720856583
+              },
+              "post_error": {
+                "all": 0.20982656003563152,
+                "new": 0.3020799070194851,
+                "old": 0.025319866067924395
+              },
+              "writes_to_date": 23
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.7555347329575031,
+                "new": 0.9591874619567737,
+                "old": 0.34822927495896033
+              },
+              "post_error": {
+                "all": 0.0725768081596838,
+                "new": 0.08879924690332534,
+                "old": 0.04013193067240073
+              },
+              "writes_to_date": 36
+            }
+          },
+          "proposal_fraction": 0.1935483870967742,
+          "total_writes": 36
+        },
+        "never": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333317,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333313,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333264,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            }
+          },
+          "proposal_fraction": 0.0,
+          "total_writes": 0
+        },
+        "raw_history": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            3.465984210995564,
+            -0.2686516933119244,
+            2.1935854522004914
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.0928051266527548,
+                "new": 2.6328574241323963,
+                "old": 1.0127005316934736
+              },
+              "post_error": {
+                "all": 1.3644324410830413,
+                "new": 1.7445384660341783,
+                "old": 0.6042203911807676
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.106842919402113,
+                "new": 1.3428122628916417,
+                "old": 0.6349042324230593
+              },
+              "post_error": {
+                "all": 0.010988105110946689,
+                "new": 0.0058004501419195685,
+                "old": 0.021363415049000935
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9366141659837899,
+                "new": 1.1150830019488218,
+                "old": 0.5796764940537285
+              },
+              "post_error": {
+                "all": 1.805810456770674,
+                "new": 1.6087246192611702,
+                "old": 2.1999821317896826
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "scalar": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            3.465984210995564,
+            -0.2686516933119244,
+            2.1935854522004914
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.0928051266527548,
+                "new": 2.6328574241323963,
+                "old": 1.0127005316934736
+              },
+              "post_error": {
+                "all": 1.3644324410830413,
+                "new": 1.7445384660341783,
+                "old": 0.6042203911807676
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.106842919402113,
+                "new": 1.3428122628916417,
+                "old": 0.6349042324230593
+              },
+              "post_error": {
+                "all": 0.010988105110946689,
+                "new": 0.0058004501419195685,
+                "old": 0.021363415049000935
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.9366141659837899,
+                "new": 1.1150830019488218,
+                "old": 0.5796764940537285
+              },
+              "post_error": {
+                "all": 1.805810456770674,
+                "new": 1.6087246192611702,
+                "old": 2.1999821317896826
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "trajectory": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.352696466438072,
+            -1.1505558702625498,
+            2.269363645899555
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.0990801633905023,
+                "new": 2.6979540428133104,
+                "old": 0.9013324045448851
+              },
+              "post_error": {
+                "all": 1.610444913723617,
+                "new": 2.248971182119542,
+                "old": 0.33339237693176677
+              },
+              "writes_to_date": 31
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0441638244320504,
+                "new": 1.3176917006910662,
+                "old": 0.4971080719140183
+              },
+              "post_error": {
+                "all": 0.1360755346967546,
+                "new": 0.15370122785325735,
+                "old": 0.10082414838374908
+              },
+              "writes_to_date": 107
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8653138608485497,
+                "new": 1.0701022428860283,
+                "old": 0.4557370967735921
+              },
+              "post_error": {
+                "all": 0.029298211052304127,
+                "new": 0.032855966310870253,
+                "old": 0.02218270053517188
+              },
+              "writes_to_date": 159
+            }
+          },
+          "proposal_fraction": 0.8548387096774194,
+          "total_writes": 159
+        }
+      },
+      "stream_sha256": "90a79815a9c031486dc23e3bd9ebf3c8e336351d7a87dbc4f4cd9fb55b6532fa"
+    },
+    "62105": {
+      "routes": {
+        "always": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.2492372082004382,
+            -0.8458622999843126,
+            1.9859439300063002
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.7610448981829816,
+                "new": 2.2325563502843395,
+                "old": 0.8180219939802668
+              },
+              "post_error": {
+                "all": 1.5483280819492722,
+                "new": 2.1245700431883843,
+                "old": 0.3958441594710481
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0215212709610197,
+                "new": 1.264147114595251,
+                "old": 0.5362695836925535
+              },
+              "post_error": {
+                "all": 0.5533553737406716,
+                "new": 0.3886213142077828,
+                "old": 0.8828234928064491
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8428294107254748,
+                "new": 1.0190895205361414,
+                "old": 0.49030919110413956
+              },
+              "post_error": {
+                "all": 0.022730355319595493,
+                "new": 0.012435430900084126,
+                "old": 0.04332020415861822
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "analytic": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.6638585189464217,
+            -0.6103289344844584,
+            1.8293485622170804
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.5963623757658374,
+                "new": 2.089118237364705,
+                "old": 0.610850652568103
+              },
+              "post_error": {
+                "all": 1.5247767892571034,
+                "new": 1.9004680031404815,
+                "old": 0.7733943614903473
+              },
+              "writes_to_date": 16
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.8735248500982518,
+                "new": 1.0642797510165405,
+                "old": 0.49201504826167014
+              },
+              "post_error": {
+                "all": 0.6081132185052363,
+                "new": 0.5159086180603394,
+                "old": 0.7925224193950301
+              },
+              "writes_to_date": 56
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.6931664673318672,
+                "new": 0.8260568922211026,
+                "old": 0.4273856175533926
+              },
+              "post_error": {
+                "all": 0.0641700729542091,
+                "new": 0.05158182104848056,
+                "old": 0.08934657676566618
+              },
+              "writes_to_date": 86
+            }
+          },
+          "proposal_fraction": 0.46236559139784944,
+          "total_writes": 86
+        },
+        "history_interaction": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.550679579222019,
+            -0.43442803983995676,
+            1.3659844167844022
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.5996700438159968,
+                "new": 2.092149642667724,
+                "old": 0.6147108461125433
+              },
+              "post_error": {
+                "all": 1.3852538353553454,
+                "new": 1.89555308429751,
+                "old": 0.36465533747101675
+              },
+              "writes_to_date": 7
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.8578270034907665,
+                "new": 1.0662119984016478,
+                "old": 0.44105701366900896
+              },
+              "post_error": {
+                "all": 0.7485601118058098,
+                "new": 0.5658268681272695,
+                "old": 1.1140265991628908
+              },
+              "writes_to_date": 32
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.6927353684779998,
+                "new": 0.8404872973631597,
+                "old": 0.3972315107076811
+              },
+              "post_error": {
+                "all": 0.18113025217851217,
+                "new": 0.19108536280041966,
+                "old": 0.16122003093469725
+              },
+              "writes_to_date": 48
+            }
+          },
+          "proposal_fraction": 0.25806451612903225,
+          "total_writes": 48
+        },
+        "never": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333317,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333313,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 2.3333333333333264,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "post_error": {
+                "all": 2.333333333333333,
+                "new": 2.6874999999999996,
+                "old": 1.625
+              },
+              "writes_to_date": 0
+            }
+          },
+          "proposal_fraction": 0.0,
+          "total_writes": 0
+        },
+        "raw_history": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.2492372082004382,
+            -0.8458622999843126,
+            1.9859439300063002
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.7610448981829816,
+                "new": 2.2325563502843395,
+                "old": 0.8180219939802668
+              },
+              "post_error": {
+                "all": 1.5483280819492722,
+                "new": 2.1245700431883843,
+                "old": 0.3958441594710481
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0215212709610197,
+                "new": 1.264147114595251,
+                "old": 0.5362695836925535
+              },
+              "post_error": {
+                "all": 0.5533553737406716,
+                "new": 0.3886213142077828,
+                "old": 0.8828234928064491
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8428294107254748,
+                "new": 1.0190895205361414,
+                "old": 0.49030919110413956
+              },
+              "post_error": {
+                "all": 0.022730355319595493,
+                "new": 0.012435430900084126,
+                "old": 0.04332020415861822
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "scalar": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.2492372082004382,
+            -0.8458622999843126,
+            1.9859439300063002
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.7610448981829816,
+                "new": 2.2325563502843395,
+                "old": 0.8180219939802668
+              },
+              "post_error": {
+                "all": 1.5483280819492722,
+                "new": 2.1245700431883843,
+                "old": 0.3958441594710481
+              },
+              "writes_to_date": 42
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 1.0215212709610197,
+                "new": 1.264147114595251,
+                "old": 0.5362695836925535
+              },
+              "post_error": {
+                "all": 0.5533553737406716,
+                "new": 0.3886213142077828,
+                "old": 0.8828234928064491
+              },
+              "writes_to_date": 126
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.8428294107254748,
+                "new": 1.0190895205361414,
+                "old": 0.49030919110413956
+              },
+              "post_error": {
+                "all": 0.022730355319595493,
+                "new": 0.012435430900084126,
+                "old": 0.04332020415861822
+              },
+              "writes_to_date": 186
+            }
+          },
+          "proposal_fraction": 1.0,
+          "total_writes": 186
+        },
+        "trajectory": {
+          "eligible_episodes": 186,
+          "final_weights": [
+            1.4080796102924933,
+            -0.9818892053428583,
+            1.8263167227465833
+          ],
+          "phases": {
+            "A_old": {
+              "cumulative_pre_error": {
+                "all": 1.762732926422094,
+                "new": 2.228117825345508,
+                "old": 0.8319631285752677
+              },
+              "post_error": {
+                "all": 1.281979230845143,
+                "new": 1.6706710469526582,
+                "old": 0.5045955986301129
+              },
+              "writes_to_date": 40
+            },
+            "B_new": {
+              "cumulative_pre_error": {
+                "all": 0.9429183063747072,
+                "new": 1.1507251278020996,
+                "old": 0.5273046635199246
+              },
+              "post_error": {
+                "all": 0.6099117799961835,
+                "new": 0.5486673718024314,
+                "old": 0.7324005963836877
+              },
+              "writes_to_date": 114
+            },
+            "C_revisit": {
+              "cumulative_pre_error": {
+                "all": 0.7538921281008962,
+                "new": 0.9012451091468596,
+                "old": 0.45918616600897105
+              },
+              "post_error": {
+                "all": 0.014840203417909743,
+                "new": 0.02006596539509135,
+                "old": 0.004388679463546529
+              },
+              "writes_to_date": 167
+            }
+          },
+          "proposal_fraction": 0.8978494623655914,
+          "total_writes": 167
+        }
+      },
+      "stream_sha256": "f9b8a7279b9547bd68c56b30130546e29e210b9c8172d64573dd083a8c0de385"
+    }
+  },
+  "phase_counts": {
+    "A_old": 50,
+    "B_new": 100,
+    "C_revisit": 60
+  },
+  "protocol_sha256": "63eaa73aa7f3924e65e53c10a097165e8705c8e5ff01c786b42facfb2f4d5f94",
+  "scope": "Synthetic persistent shared-linear-learner pilot; not a SAN or published CL benchmark",
+  "script_sha256": "42a1945b1cdc6816fa36a97c37ca758637b14a50025f5c9a692daca56fcf3331",
+  "seeds": [
+    62101,
+    62102,
+    62103,
+    62104,
+    62105
+  ],
+  "summary": {
+    "always": {
+      "mean_writes": 186.0,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.8388208356803428,
+            "new": 2.3299311692262945,
+            "old": 0.8566001685884409
+          },
+          "post_error": {
+            "all": 1.678003936461708,
+            "new": 2.2102820086889587,
+            "old": 0.613447792007207
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 1.090447885086244,
+            "new": 1.3165518196339938,
+            "old": 0.6382400159907438
+          },
+          "post_error": {
+            "all": 0.5563592767268342,
+            "new": 0.4715304001751285,
+            "old": 0.7260170298302453
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.92043543188677,
+            "new": 1.0761546580939676,
+            "old": 0.608996979472375
+          },
+          "post_error": {
+            "all": 0.467471676703628,
+            "new": 0.419512784112809,
+            "old": 0.5633894618852662
+          }
+        }
+      }
+    },
+    "analytic": {
+      "mean_writes": 69.4,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.6722086545862704,
+            "new": 2.188151115975321,
+            "old": 0.6403237318081708
+          },
+          "post_error": {
+            "all": 1.7004709811187666,
+            "new": 2.3242361799828,
+            "old": 0.4529405833906998
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 0.8948839030413016,
+            "new": 1.1301768747707595,
+            "old": 0.4242979595823851
+          },
+          "post_error": {
+            "all": 0.2973942874459408,
+            "new": 0.26122814371310116,
+            "old": 0.36972657491162014
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.7225700601011591,
+            "new": 0.8817791760815001,
+            "old": 0.40415182814047546
+          },
+          "post_error": {
+            "all": 0.20115080808735902,
+            "new": 0.15222122570531255,
+            "old": 0.299009972851452
+          }
+        }
+      }
+    },
+    "history_interaction": {
+      "mean_writes": 45.8,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.7107984480390936,
+            "new": 2.2337050249217354,
+            "old": 0.6649852942738079
+          },
+          "post_error": {
+            "all": 1.9175696375533788,
+            "new": 2.559128167572125,
+            "old": 0.6344525775158872
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 0.9770449843451697,
+            "new": 1.2027415347775965,
+            "old": 0.5256518834803147
+          },
+          "post_error": {
+            "all": 0.4922578857786116,
+            "new": 0.39013927202733806,
+            "old": 0.696495113281159
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.7977575408255749,
+            "new": 0.9523241120290505,
+            "old": 0.4886243984186205
+          },
+          "post_error": {
+            "all": 0.1403186450946097,
+            "new": 0.11882986598044602,
+            "old": 0.18329620332293708
+          }
+        }
+      }
+    },
+    "never": {
+      "mean_writes": 0.0,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 2.3333333333333317,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          },
+          "post_error": {
+            "all": 2.333333333333333,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 2.3333333333333313,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          },
+          "post_error": {
+            "all": 2.333333333333333,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 2.3333333333333264,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          },
+          "post_error": {
+            "all": 2.333333333333333,
+            "new": 2.6874999999999996,
+            "old": 1.625
+          }
+        }
+      }
+    },
+    "raw_history": {
+      "mean_writes": 186.0,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.8388208356803428,
+            "new": 2.3299311692262945,
+            "old": 0.8566001685884409
+          },
+          "post_error": {
+            "all": 1.678003936461708,
+            "new": 2.2102820086889587,
+            "old": 0.613447792007207
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 1.090447885086244,
+            "new": 1.3165518196339938,
+            "old": 0.6382400159907438
+          },
+          "post_error": {
+            "all": 0.5563592767268342,
+            "new": 0.4715304001751285,
+            "old": 0.7260170298302453
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.92043543188677,
+            "new": 1.0761546580939676,
+            "old": 0.608996979472375
+          },
+          "post_error": {
+            "all": 0.467471676703628,
+            "new": 0.419512784112809,
+            "old": 0.5633894618852662
+          }
+        }
+      }
+    },
+    "scalar": {
+      "mean_writes": 186.0,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.8388208356803428,
+            "new": 2.3299311692262945,
+            "old": 0.8566001685884409
+          },
+          "post_error": {
+            "all": 1.678003936461708,
+            "new": 2.2102820086889587,
+            "old": 0.613447792007207
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 1.090447885086244,
+            "new": 1.3165518196339938,
+            "old": 0.6382400159907438
+          },
+          "post_error": {
+            "all": 0.5563592767268342,
+            "new": 0.4715304001751285,
+            "old": 0.7260170298302453
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.92043543188677,
+            "new": 1.0761546580939676,
+            "old": 0.608996979472375
+          },
+          "post_error": {
+            "all": 0.467471676703628,
+            "new": 0.419512784112809,
+            "old": 0.5633894618852662
+          }
+        }
+      }
+    },
+    "trajectory": {
+      "mean_writes": 163.6,
+      "phases": {
+        "A_old": {
+          "cumulative_pre_error": {
+            "all": 1.8225201218193328,
+            "new": 2.339158333064264,
+            "old": 0.7892436993294698
+          },
+          "post_error": {
+            "all": 1.71419343957709,
+            "new": 2.2799807213245993,
+            "old": 0.5826188760820715
+          }
+        },
+        "B_new": {
+          "cumulative_pre_error": {
+            "all": 1.0229854936580085,
+            "new": 1.2517673506159412,
+            "old": 0.5654217797421427
+          },
+          "post_error": {
+            "all": 0.4862442457727516,
+            "new": 0.43223469709675183,
+            "old": 0.5942633431247513
+          }
+        },
+        "C_revisit": {
+          "cumulative_pre_error": {
+            "all": 0.8427711579147978,
+            "new": 1.002332883881912,
+            "old": 0.5236477059805689
+          },
+          "post_error": {
+            "all": 0.10906284720153822,
+            "new": 0.12316957893086566,
+            "old": 0.08084938374288338
+          }
+        }
+      }
+    }
+  },
+  "total": 247
+}

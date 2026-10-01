@@ -1,0 +1,194 @@
+[
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "original",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "original",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 6
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 7
+  },
+  {
+    "arm": "linear_ridge",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 6
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 7
+  },
+  {
+    "arm": "rbf_ridge",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 3
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 3
+  },
+  {
+    "arm": "yoked_ridge",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 1
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "slot_swap",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "oracle_kv",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "full_donor",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 12
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-0",
+    "n": 12,
+    "swapped_correct": 6
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-0/pair-1",
+    "n": 12,
+    "swapped_correct": 5
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-0",
+    "n": 12,
+    "swapped_correct": 6
+  },
+  {
+    "arm": "text_instruction",
+    "family": "test/context-1/pair-1",
+    "n": 12,
+    "swapped_correct": 4
+  }
+]

@@ -1,0 +1,992 @@
+{
+  "status": "DIAGNOSTICS_ONLY_VISUAL_REVIEW_REQUIRED",
+  "papers": [
+    {
+      "paper": "core-alignment",
+      "pdf": "output/pdf/ai-core-alignment-across-scales.pdf",
+      "pdf_sha256": "3452fae9eda0f1ca09375c564cb04c351feb74424ab16b762c5eed2004bf5d49",
+      "pages": 15,
+      "words_markdown": 5208,
+      "numbered_equations": 12,
+      "references": 24,
+      "source_genealogy_paragraphs_verbatim": 4,
+      "tex_layout_warnings": [],
+      "forbidden_text_hits": [],
+      "dominant_fonts": [
+        {
+          "font": "MTEBNL+TimesNewRomanPSMT",
+          "size": 10.91,
+          "characters": 29271
+        },
+        {
+          "font": "MTEBNL+TimesNewRomanPSMT",
+          "size": 9.96,
+          "characters": 1466
+        },
+        {
+          "font": "FXLPSN+TimesNewRomanPS-BoldMT",
+          "size": 11.96,
+          "characters": 363
+        },
+        {
+          "font": "FXLPSN+TimesNewRomanPS-BoldMT",
+          "size": 14.35,
+          "characters": 345
+        },
+        {
+          "font": "PVOHKZ+CMMI10",
+          "size": 10.91,
+          "characters": 190
+        },
+        {
+          "font": "LFADFI+CMR10",
+          "size": 10.91,
+          "characters": 145
+        },
+        {
+          "font": "RYPFJX+TimesNewRomanPS-ItalicMT",
+          "size": 10.91,
+          "characters": 134
+        },
+        {
+          "font": "MTEBNL+TimesNewRomanPSMT",
+          "size": 7.97,
+          "characters": 65
+        },
+        {
+          "font": "FIIOHJ+CMMI8",
+          "size": 7.97,
+          "characters": 50
+        },
+        {
+          "font": "CCMCFY+LMMono10-Regular",
+          "size": 9.96,
+          "characters": 29
+        },
+        {
+          "font": "FXLPSN+TimesNewRomanPS-BoldMT",
+          "size": 17.22,
+          "characters": 28
+        },
+        {
+          "font": "FXLPSN+TimesNewRomanPS-BoldMT",
+          "size": 9.96,
+          "characters": 28
+        }
+      ],
+      "page_diagnostics": [
+        {
+          "page": 1,
+          "characters": 2460,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-01.png"
+        },
+        {
+          "page": 2,
+          "characters": 3255,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.68,
+              "x1": 541.41
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            },
+            {
+              "text": ".",
+              "x0": 539.26,
+              "x1": 541.99
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-02.png"
+        },
+        {
+          "page": 3,
+          "characters": 2521,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.19,
+              "x1": 541.83
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-03.png"
+        },
+        {
+          "page": 4,
+          "characters": 2191,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": ".",
+              "x0": 539.24,
+              "x1": 541.96
+            },
+            {
+              "text": ".",
+              "x0": 539.22,
+              "x1": 541.95
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-04.png"
+        },
+        {
+          "page": 5,
+          "characters": 284,
+          "outside_horizontal_body_margin": [],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/ca/page-05.png"
+        },
+        {
+          "page": 6,
+          "characters": 3000,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ":",
+              "x0": 538.55,
+              "x1": 541.58
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.86
+            },
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-06.png"
+        },
+        {
+          "page": 7,
+          "characters": 3466,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ".",
+              "x0": 539.22,
+              "x1": 541.94
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.87
+            },
+            {
+              "text": ".",
+              "x0": 539.24,
+              "x1": 541.96
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.87
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-07.png"
+        },
+        {
+          "page": 8,
+          "characters": 272,
+          "outside_horizontal_body_margin": [],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/ca/page-08.png"
+        },
+        {
+          "page": 9,
+          "characters": 2745,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ".",
+              "x0": 539.24,
+              "x1": 541.96
+            },
+            {
+              "text": ",",
+              "x0": 538.64,
+              "x1": 541.36
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.87
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-09.png"
+        },
+        {
+          "page": 10,
+          "characters": 2276,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-10.png"
+        },
+        {
+          "page": 11,
+          "characters": 214,
+          "outside_horizontal_body_margin": [],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/ca/page-11.png"
+        },
+        {
+          "page": 12,
+          "characters": 2575,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ".",
+              "x0": 539.26,
+              "x1": 541.99
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-12.png"
+        },
+        {
+          "page": 13,
+          "characters": 3150,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.22,
+              "x1": 541.85
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.97
+            },
+            {
+              "text": ".",
+              "x0": 539.27,
+              "x1": 542.0
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-13.png"
+        },
+        {
+          "page": 14,
+          "characters": 2568,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ".",
+              "x0": 539.27,
+              "x1": 542.0
+            },
+            {
+              "text": ".",
+              "x0": 539.21,
+              "x1": 541.94
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.97
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ",",
+              "x0": 538.67,
+              "x1": 541.4
+            },
+            {
+              "text": "1",
+              "x0": 66.95,
+              "x1": 72.4
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ":",
+              "x0": 538.54,
+              "x1": 541.57
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-14.png"
+        },
+        {
+          "page": 15,
+          "characters": 1219,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ".",
+              "x0": 539.26,
+              "x1": 541.99
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/ca/page-15.png"
+        }
+      ],
+      "pdf_metadata": {
+        "Creator": "LaTeX with hyperref",
+        "Title": "AI Core Alignment Across Scales: Human-Guided Co-Regulation in Self-Aware Artificial Networks",
+        "Author": "Micah Blumberg",
+        "Producer": "MiKTeX-dvipdfmx (20231124)",
+        "CreationDate": "D:20260905031551-07'00'"
+      }
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "pdf": "output/pdf/ai-mechanistic-interpretability-and-self-aware-networks.pdf",
+      "pdf_sha256": "44c85cb7ad4a977e67841345ab058ed4d8a44a30ca0275774d8d9f540b7d9333",
+      "pages": 17,
+      "words_markdown": 6195,
+      "numbered_equations": 14,
+      "references": 25,
+      "source_genealogy_paragraphs_verbatim": 4,
+      "tex_layout_warnings": [],
+      "forbidden_text_hits": [],
+      "dominant_fonts": [
+        {
+          "font": "DSQWIZ+TimesNewRomanPSMT",
+          "size": 10.91,
+          "characters": 34435
+        },
+        {
+          "font": "DSQWIZ+TimesNewRomanPSMT",
+          "size": 9.96,
+          "characters": 1508
+        },
+        {
+          "font": "TJKYOY+TimesNewRomanPS-BoldMT",
+          "size": 11.96,
+          "characters": 720
+        },
+        {
+          "font": "TJKYOY+TimesNewRomanPS-BoldMT",
+          "size": 14.35,
+          "characters": 467
+        },
+        {
+          "font": "KGPWBL+CMMI10",
+          "size": 10.91,
+          "characters": 207
+        },
+        {
+          "font": "IGPSDX+TimesNewRomanPS-ItalicMT",
+          "size": 10.91,
+          "characters": 190
+        },
+        {
+          "font": "GEQESF+CMR10",
+          "size": 10.91,
+          "characters": 167
+        },
+        {
+          "font": "COOHZH+LMMono10-Regular",
+          "size": 10.91,
+          "characters": 120
+        },
+        {
+          "font": "BWWSVM+CMMI8",
+          "size": 7.97,
+          "characters": 56
+        },
+        {
+          "font": "TJKYOY+TimesNewRomanPS-BoldMT",
+          "size": 17.22,
+          "characters": 51
+        },
+        {
+          "font": "WKMOFI+CMSY10",
+          "size": 10.91,
+          "characters": 36
+        },
+        {
+          "font": "COOHZH+LMMono10-Regular",
+          "size": 9.96,
+          "characters": 29
+        }
+      ],
+      "page_diagnostics": [
+        {
+          "page": 1,
+          "characters": 2654,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-01.png"
+        },
+        {
+          "page": 2,
+          "characters": 3172,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": "”",
+              "x0": 536.66,
+              "x1": 541.51
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.87
+            },
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-02.png"
+        },
+        {
+          "page": 3,
+          "characters": 2750,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.87
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": ",",
+              "x0": 538.66,
+              "x1": 541.39
+            },
+            {
+              "text": "-",
+              "x0": 538.2,
+              "x1": 541.83
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-03.png"
+        },
+        {
+          "page": 4,
+          "characters": 2045,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "”",
+              "x0": 536.63,
+              "x1": 541.47
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-04.png"
+        },
+        {
+          "page": 5,
+          "characters": 3079,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.98
+            },
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.87
+            },
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-05.png"
+        },
+        {
+          "page": 6,
+          "characters": 2853,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.67,
+              "x1": 541.4
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.97
+            },
+            {
+              "text": ",",
+              "x0": 538.67,
+              "x1": 541.4
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-06.png"
+        },
+        {
+          "page": 7,
+          "characters": 2913,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": "-",
+              "x0": 538.23,
+              "x1": 541.87
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-07.png"
+        },
+        {
+          "page": 8,
+          "characters": 246,
+          "outside_horizontal_body_margin": [],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/mi/page-08.png"
+        },
+        {
+          "page": 9,
+          "characters": 239,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.87
+            }
+          ],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/mi/page-09.png"
+        },
+        {
+          "page": 10,
+          "characters": 2654,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.25,
+              "x1": 541.89
+            },
+            {
+              "text": ".",
+              "x0": 539.18,
+              "x1": 541.91
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-10.png"
+        },
+        {
+          "page": 11,
+          "characters": 2731,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.97
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-11.png"
+        },
+        {
+          "page": 12,
+          "characters": 242,
+          "outside_horizontal_body_margin": [],
+          "image_instances": 1,
+          "page_render": "tmp/pdfs/mi/page-12.png"
+        },
+        {
+          "page": 13,
+          "characters": 2446,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.98
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            },
+            {
+              "text": ",",
+              "x0": 538.68,
+              "x1": 541.41
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-13.png"
+        },
+        {
+          "page": 14,
+          "characters": 2387,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-14.png"
+        },
+        {
+          "page": 15,
+          "characters": 3112,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.88
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": ",",
+              "x0": 538.68,
+              "x1": 541.41
+            },
+            {
+              "text": ",",
+              "x0": 538.68,
+              "x1": 541.41
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-15.png"
+        },
+        {
+          "page": 16,
+          "characters": 2770,
+          "outside_horizontal_body_margin": [
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": ",",
+              "x0": 538.69,
+              "x1": 541.42
+            },
+            {
+              "text": ",",
+              "x0": 538.7,
+              "x1": 541.43
+            },
+            {
+              "text": ".",
+              "x0": 539.25,
+              "x1": 541.97
+            },
+            {
+              "text": ".",
+              "x0": 539.26,
+              "x1": 541.99
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": "1",
+              "x0": 66.95,
+              "x1": 72.4
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-16.png"
+        },
+        {
+          "page": 17,
+          "characters": 1812,
+          "outside_horizontal_body_margin": [
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ".",
+              "x0": 539.23,
+              "x1": 541.95
+            },
+            {
+              "text": "-",
+              "x0": 538.24,
+              "x1": 541.87
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "1",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": ":",
+              "x0": 538.54,
+              "x1": 541.57
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            },
+            {
+              "text": "2",
+              "x0": 66.55,
+              "x1": 72.0
+            }
+          ],
+          "image_instances": 0,
+          "page_render": "tmp/pdfs/mi/page-17.png"
+        }
+      ],
+      "pdf_metadata": {
+        "Creator": "LaTeX with hyperref",
+        "Title": "AI Mechanistic Interpretability and Self-Aware Networks: From Neural Decoding to Causal Self-Regulation",
+        "Author": "Micah Blumberg",
+        "Producer": "MiKTeX-dvipdfmx (20231124)",
+        "CreationDate": "D:20260905031555-07'00'"
+      }
+    }
+  ]
+}

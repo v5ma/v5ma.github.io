@@ -1,0 +1,13 @@
+{
+  "status": "RENDERED_AWAITING_SCREEN_REVIEW",
+  "generator_sha256": "be45f40fd69c9dcf92b8c6b523c8f38662fdfe386e1027df2549f087e4120661",
+  "source_metrics_sha256": "fec1fc9b8dfd1022b0748cefd89a64edc88f6fb9fb47a7310894aa3b7ee6a32b",
+  "source_groups_sha256": "979f35080ebc5eb79ee52fff9fbf47f4f83fc2703578a70b8ea45c24d2c06c09",
+  "image_sha256": "e7280c2f553151faa4dcfd985c235befbecba7894e1e7463272bea941950e03c",
+  "pixels": [
+    1360,
+    1760
+  ],
+  "new_pdf": false,
+  "all_page_review": false
+}

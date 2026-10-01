@@ -1,0 +1,27 @@
+{
+  "schema": "san-proof-claim-signatures/v1",
+  "review_class": "authoring-agent proof construction and compiler audit",
+  "independent_review": "NOT_PERFORMED",
+  "claims": [
+    {
+      "id": "CA-FORMAL-01",
+      "model": "Policies as action predicates; list-based conjunction attenuation; authenticated monotonically versioned state",
+      "provides": ["arbitrary-depth root-scope containment", "current-authority and current-version admission", "revocation rejection", "untrusted-sequence state preservation", "arbitrary proposer composition", "conditional semantic translation"],
+      "requires": ["trusted authentication classification", "complete mediation", "atomic current-state read", "correct action identifiers", "sound semantic map where assumed"],
+      "source": "CoreAlignment.lean",
+      "statements": 8,
+      "compiler_receipt": "verification-dev-01/RECEIPT.json",
+      "forbidden_overclaims": ["solved ethical alignment", "unconditional superintelligence control", "cryptographic security of a public HMAC key", "proof of Python refinement or concurrent deployment"]
+    },
+    {
+      "id": "MI-FORMAL-01",
+      "model": "Two finite structural causal functions; Boolean receiver; finite deterministic feedback interaction",
+      "provides": ["observational-equivalence counterexample", "interventional separation", "context-free decoder impossibility for the stated gate", "same feedback-policy transcript equivalence"],
+      "requires": ["specified observational support", "specified intervention", "identical feedback policies and environment for equivalence", "finite interaction horizon"],
+      "source": "ReceiverRelativeInterpretability.lean",
+      "statements": 7,
+      "compiler_receipt": "verification-dev-01/RECEIPT.json",
+      "forbidden_overclaims": ["all real models have this gate", "general impossibility of intrinsic introspection", "proof of consciousness", "clinical efficacy", "novelty of basic causal non-identification"]
+    }
+  ]
+}

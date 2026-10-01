@@ -1,0 +1,16 @@
+{
+  "source_hashes": {
+    "PROTOCOL.md": "109630313a8b017e182ca53d6559a72e1e4286df01728d14342d6f5252059568",
+    "CONFIG.json": "b56767049cedd3c29685352566ea33105f92ad4b0c3892c2c5ea0b693670de6c",
+    "common.py": "28a300f3b818159541df1c0a096c8d5a799bfa9218bbfe32f142feeeded12b28",
+    "world.py": "6c6950819e2a7264509d979c0b6413e61867dc18be9289b2710e500845e01a31",
+    "tree.py": "cbbf517cd0b60a40cc38eaa24e94c71f384c093a85abf84f8e3bb44c0f1557a2",
+    "agent.py": "898822e7ea0e26643cdcf1d319df324fc1aa7e880233ba1bbb6ffbe8f5017a4a",
+    "test_application.py": "b2f4a867fb0660e72f894d0cf404f7a43f03abd8c9e224e203b8632ccace0a13",
+    "train.py": "a5973ad98567ed2456626b7fd6c24b61604c8cb585bb52e8d5b9cae1318310c4",
+    "evaluate.py": "ee4b159fbe31c02caab6334b60e0065873fd79f8a6aedff9dd8428c4507721d5"
+  },
+  "tests_sha256": "0f7940d1a006f2910e9c2e423c10203585002ddfb4eda0f346aaa156920963a4",
+  "evaluation_generated": false,
+  "stage": "before fitting"
+}

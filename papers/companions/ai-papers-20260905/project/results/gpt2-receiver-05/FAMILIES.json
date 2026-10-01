@@ -1,0 +1,1150 @@
+[
+  {
+    "id": "F00",
+    "template": 0,
+    "split": "development",
+    "names": [
+      "John",
+      "Mary"
+    ],
+    "variants": [
+      {
+        "giver": "John",
+        "item": "book",
+        "text": "When John and Mary went to the store, John gave a book to",
+        "ids": [
+          2215,
+          1757,
+          290,
+          5335,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          1757,
+          2921,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "John",
+        "item": "ball",
+        "text": "When John and Mary went to the store, John gave a ball to",
+        "ids": [
+          2215,
+          1757,
+          290,
+          5335,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          1757,
+          2921,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Mary",
+        "item": "book",
+        "text": "When John and Mary went to the store, Mary gave a book to",
+        "ids": [
+          2215,
+          1757,
+          290,
+          5335,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          5335,
+          2921,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Mary",
+        "item": "ball",
+        "text": "When John and Mary went to the store, Mary gave a ball to",
+        "ids": [
+          2215,
+          1757,
+          290,
+          5335,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          5335,
+          2921,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F01",
+    "template": 0,
+    "split": "development",
+    "names": [
+      "Tom",
+      "Sarah"
+    ],
+    "variants": [
+      {
+        "giver": "Tom",
+        "item": "book",
+        "text": "When Tom and Sarah went to the store, Tom gave a book to",
+        "ids": [
+          2215,
+          4186,
+          290,
+          10490,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          4186,
+          2921,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Tom",
+        "item": "ball",
+        "text": "When Tom and Sarah went to the store, Tom gave a ball to",
+        "ids": [
+          2215,
+          4186,
+          290,
+          10490,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          4186,
+          2921,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Sarah",
+        "item": "book",
+        "text": "When Tom and Sarah went to the store, Sarah gave a book to",
+        "ids": [
+          2215,
+          4186,
+          290,
+          10490,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          10490,
+          2921,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Sarah",
+        "item": "ball",
+        "text": "When Tom and Sarah went to the store, Sarah gave a ball to",
+        "ids": [
+          2215,
+          4186,
+          290,
+          10490,
+          1816,
+          284,
+          262,
+          3650,
+          11,
+          10490,
+          2921,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F02",
+    "template": 1,
+    "split": "development",
+    "names": [
+      "John",
+      "Mary"
+    ],
+    "variants": [
+      {
+        "giver": "John",
+        "item": "book",
+        "text": "After John and Mary visited the park, John handed a book to",
+        "ids": [
+          3260,
+          1757,
+          290,
+          5335,
+          8672,
+          262,
+          3952,
+          11,
+          1757,
+          10158,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "John",
+        "item": "ball",
+        "text": "After John and Mary visited the park, John handed a ball to",
+        "ids": [
+          3260,
+          1757,
+          290,
+          5335,
+          8672,
+          262,
+          3952,
+          11,
+          1757,
+          10158,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Mary",
+        "item": "book",
+        "text": "After John and Mary visited the park, Mary handed a book to",
+        "ids": [
+          3260,
+          1757,
+          290,
+          5335,
+          8672,
+          262,
+          3952,
+          11,
+          5335,
+          10158,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Mary",
+        "item": "ball",
+        "text": "After John and Mary visited the park, Mary handed a ball to",
+        "ids": [
+          3260,
+          1757,
+          290,
+          5335,
+          8672,
+          262,
+          3952,
+          11,
+          5335,
+          10158,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F03",
+    "template": 1,
+    "split": "development",
+    "names": [
+      "Tom",
+      "Sarah"
+    ],
+    "variants": [
+      {
+        "giver": "Tom",
+        "item": "book",
+        "text": "After Tom and Sarah visited the park, Tom handed a book to",
+        "ids": [
+          3260,
+          4186,
+          290,
+          10490,
+          8672,
+          262,
+          3952,
+          11,
+          4186,
+          10158,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Tom",
+        "item": "ball",
+        "text": "After Tom and Sarah visited the park, Tom handed a ball to",
+        "ids": [
+          3260,
+          4186,
+          290,
+          10490,
+          8672,
+          262,
+          3952,
+          11,
+          4186,
+          10158,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Sarah",
+        "item": "book",
+        "text": "After Tom and Sarah visited the park, Sarah handed a book to",
+        "ids": [
+          3260,
+          4186,
+          290,
+          10490,
+          8672,
+          262,
+          3952,
+          11,
+          10490,
+          10158,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Sarah",
+        "item": "ball",
+        "text": "After Tom and Sarah visited the park, Sarah handed a ball to",
+        "ids": [
+          3260,
+          4186,
+          290,
+          10490,
+          8672,
+          262,
+          3952,
+          11,
+          10490,
+          10158,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F04",
+    "template": 2,
+    "split": "heldout",
+    "names": [
+      "David",
+      "Emma"
+    ],
+    "variants": [
+      {
+        "giver": "David",
+        "item": "book",
+        "text": "Before David and Emma left the office, David passed a book to",
+        "ids": [
+          8421,
+          3271,
+          290,
+          18966,
+          1364,
+          262,
+          2607,
+          11,
+          3271,
+          3804,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "David",
+        "item": "ball",
+        "text": "Before David and Emma left the office, David passed a ball to",
+        "ids": [
+          8421,
+          3271,
+          290,
+          18966,
+          1364,
+          262,
+          2607,
+          11,
+          3271,
+          3804,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "book",
+        "text": "Before David and Emma left the office, Emma passed a book to",
+        "ids": [
+          8421,
+          3271,
+          290,
+          18966,
+          1364,
+          262,
+          2607,
+          11,
+          18966,
+          3804,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "ball",
+        "text": "Before David and Emma left the office, Emma passed a ball to",
+        "ids": [
+          8421,
+          3271,
+          290,
+          18966,
+          1364,
+          262,
+          2607,
+          11,
+          18966,
+          3804,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F05",
+    "template": 2,
+    "split": "heldout",
+    "names": [
+      "Robert",
+      "Linda"
+    ],
+    "variants": [
+      {
+        "giver": "Robert",
+        "item": "book",
+        "text": "Before Robert and Linda left the office, Robert passed a book to",
+        "ids": [
+          8421,
+          5199,
+          290,
+          21776,
+          1364,
+          262,
+          2607,
+          11,
+          5199,
+          3804,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Robert",
+        "item": "ball",
+        "text": "Before Robert and Linda left the office, Robert passed a ball to",
+        "ids": [
+          8421,
+          5199,
+          290,
+          21776,
+          1364,
+          262,
+          2607,
+          11,
+          5199,
+          3804,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "book",
+        "text": "Before Robert and Linda left the office, Linda passed a book to",
+        "ids": [
+          8421,
+          5199,
+          290,
+          21776,
+          1364,
+          262,
+          2607,
+          11,
+          21776,
+          3804,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "ball",
+        "text": "Before Robert and Linda left the office, Linda passed a ball to",
+        "ids": [
+          8421,
+          5199,
+          290,
+          21776,
+          1364,
+          262,
+          2607,
+          11,
+          21776,
+          3804,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F06",
+    "template": 3,
+    "split": "heldout",
+    "names": [
+      "David",
+      "Emma"
+    ],
+    "variants": [
+      {
+        "giver": "David",
+        "item": "book",
+        "text": "While David and Emma were at the station, David brought a book to",
+        "ids": [
+          3633,
+          3271,
+          290,
+          18966,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          3271,
+          3181,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "David",
+        "item": "ball",
+        "text": "While David and Emma were at the station, David brought a ball to",
+        "ids": [
+          3633,
+          3271,
+          290,
+          18966,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          3271,
+          3181,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "book",
+        "text": "While David and Emma were at the station, Emma brought a book to",
+        "ids": [
+          3633,
+          3271,
+          290,
+          18966,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          18966,
+          3181,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "ball",
+        "text": "While David and Emma were at the station, Emma brought a ball to",
+        "ids": [
+          3633,
+          3271,
+          290,
+          18966,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          18966,
+          3181,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F07",
+    "template": 3,
+    "split": "heldout",
+    "names": [
+      "Robert",
+      "Linda"
+    ],
+    "variants": [
+      {
+        "giver": "Robert",
+        "item": "book",
+        "text": "While Robert and Linda were at the station, Robert brought a book to",
+        "ids": [
+          3633,
+          5199,
+          290,
+          21776,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          5199,
+          3181,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Robert",
+        "item": "ball",
+        "text": "While Robert and Linda were at the station, Robert brought a ball to",
+        "ids": [
+          3633,
+          5199,
+          290,
+          21776,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          5199,
+          3181,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "book",
+        "text": "While Robert and Linda were at the station, Linda brought a book to",
+        "ids": [
+          3633,
+          5199,
+          290,
+          21776,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          21776,
+          3181,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "ball",
+        "text": "While Robert and Linda were at the station, Linda brought a ball to",
+        "ids": [
+          3633,
+          5199,
+          290,
+          21776,
+          547,
+          379,
+          262,
+          4429,
+          11,
+          21776,
+          3181,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F08",
+    "template": 4,
+    "split": "heldout",
+    "names": [
+      "David",
+      "Emma"
+    ],
+    "variants": [
+      {
+        "giver": "David",
+        "item": "book",
+        "text": "Yesterday, David and Emma met at the market. Then David sent a book to",
+        "ids": [
+          28065,
+          11,
+          3271,
+          290,
+          18966,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          3271,
+          1908,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "David",
+        "item": "ball",
+        "text": "Yesterday, David and Emma met at the market. Then David sent a ball to",
+        "ids": [
+          28065,
+          11,
+          3271,
+          290,
+          18966,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          3271,
+          1908,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "book",
+        "text": "Yesterday, David and Emma met at the market. Then Emma sent a book to",
+        "ids": [
+          28065,
+          11,
+          3271,
+          290,
+          18966,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          18966,
+          1908,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "ball",
+        "text": "Yesterday, David and Emma met at the market. Then Emma sent a ball to",
+        "ids": [
+          28065,
+          11,
+          3271,
+          290,
+          18966,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          18966,
+          1908,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F09",
+    "template": 4,
+    "split": "heldout",
+    "names": [
+      "Robert",
+      "Linda"
+    ],
+    "variants": [
+      {
+        "giver": "Robert",
+        "item": "book",
+        "text": "Yesterday, Robert and Linda met at the market. Then Robert sent a book to",
+        "ids": [
+          28065,
+          11,
+          5199,
+          290,
+          21776,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          5199,
+          1908,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Robert",
+        "item": "ball",
+        "text": "Yesterday, Robert and Linda met at the market. Then Robert sent a ball to",
+        "ids": [
+          28065,
+          11,
+          5199,
+          290,
+          21776,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          5199,
+          1908,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "book",
+        "text": "Yesterday, Robert and Linda met at the market. Then Linda sent a book to",
+        "ids": [
+          28065,
+          11,
+          5199,
+          290,
+          21776,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          21776,
+          1908,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "ball",
+        "text": "Yesterday, Robert and Linda met at the market. Then Linda sent a ball to",
+        "ids": [
+          28065,
+          11,
+          5199,
+          290,
+          21776,
+          1138,
+          379,
+          262,
+          1910,
+          13,
+          3244,
+          21776,
+          1908,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F10",
+    "template": 5,
+    "split": "heldout",
+    "names": [
+      "David",
+      "Emma"
+    ],
+    "variants": [
+      {
+        "giver": "David",
+        "item": "book",
+        "text": "During lunch, David and Emma sat together. Later David offered a book to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          3271,
+          290,
+          18966,
+          3332,
+          1978,
+          13,
+          11450,
+          3271,
+          4438,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "David",
+        "item": "ball",
+        "text": "During lunch, David and Emma sat together. Later David offered a ball to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          3271,
+          290,
+          18966,
+          3332,
+          1978,
+          13,
+          11450,
+          3271,
+          4438,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "book",
+        "text": "During lunch, David and Emma sat together. Later Emma offered a book to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          3271,
+          290,
+          18966,
+          3332,
+          1978,
+          13,
+          11450,
+          18966,
+          4438,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Emma",
+        "item": "ball",
+        "text": "During lunch, David and Emma sat together. Later Emma offered a ball to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          3271,
+          290,
+          18966,
+          3332,
+          1978,
+          13,
+          11450,
+          18966,
+          4438,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  },
+  {
+    "id": "F11",
+    "template": 5,
+    "split": "heldout",
+    "names": [
+      "Robert",
+      "Linda"
+    ],
+    "variants": [
+      {
+        "giver": "Robert",
+        "item": "book",
+        "text": "During lunch, Robert and Linda sat together. Later Robert offered a book to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          5199,
+          290,
+          21776,
+          3332,
+          1978,
+          13,
+          11450,
+          5199,
+          4438,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Robert",
+        "item": "ball",
+        "text": "During lunch, Robert and Linda sat together. Later Robert offered a ball to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          5199,
+          290,
+          21776,
+          3332,
+          1978,
+          13,
+          11450,
+          5199,
+          4438,
+          257,
+          2613,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "book",
+        "text": "During lunch, Robert and Linda sat together. Later Linda offered a book to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          5199,
+          290,
+          21776,
+          3332,
+          1978,
+          13,
+          11450,
+          21776,
+          4438,
+          257,
+          1492,
+          284
+        ]
+      },
+      {
+        "giver": "Linda",
+        "item": "ball",
+        "text": "During lunch, Robert and Linda sat together. Later Linda offered a ball to",
+        "ids": [
+          7191,
+          9965,
+          11,
+          5199,
+          290,
+          21776,
+          3332,
+          1978,
+          13,
+          11450,
+          21776,
+          4438,
+          257,
+          2613,
+          284
+        ]
+      }
+    ]
+  }
+]

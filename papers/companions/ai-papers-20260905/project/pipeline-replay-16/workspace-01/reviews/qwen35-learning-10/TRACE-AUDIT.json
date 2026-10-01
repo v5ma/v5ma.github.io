@@ -1,0 +1,18 @@
+{
+  "status": "PASS_TRACE_AND_COUNTS_NOT_INDEPENDENT_REVIEW",
+  "primary_answers": 384,
+  "fresh_workflow_answers": 9,
+  "state_support_rows": 6144,
+  "baseline_counts": {
+    "giver": 16,
+    "recipient": 16,
+    "color": 16
+  },
+  "prospective_baseline_gate_passed": true,
+  "native_calls": 920,
+  "summed_model_process_seconds": 312.76499999989755,
+  "max_process_commit_bytes": 696545280,
+  "authority_event_count": 5,
+  "authority_limit": "Known scripted sequence and actual outputs audited; this log does not retain raw update signatures. Prior store tests and frozen program are separate evidence, not an arbitrary-message audit.",
+  "auditor_sha256": "b35fb74f376c170b9379f30e6b91f11565b05d134b97e838686eb218b4680222"
+}

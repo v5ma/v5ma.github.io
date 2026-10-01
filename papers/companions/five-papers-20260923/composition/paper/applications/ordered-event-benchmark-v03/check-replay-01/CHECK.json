@@ -1,0 +1,92 @@
+{
+  "status": "PASS_CONSTRUCTION_ONLY",
+  "passed": 31,
+  "total": 31,
+  "checks": {
+    "repeated_generation_identical": true,
+    "csv_roundtrip_identical": true,
+    "896_episodes": true,
+    "112_distinct_backgrounds": true,
+    "valid_model_input_only": true,
+    "target_matches_ordered_relation": true,
+    "reversal_flips_target": true,
+    "complete_blocks_stay_in_one_split": true,
+    "background_constant_within_block": true,
+    "per_block_half_background_only": true,
+    "per_block_half_old_only": true,
+    "per_block_half_new_only": true,
+    "per_block_half_unordered_pair": true,
+    "per_block_half_coarse_pair": true,
+    "per_block_ordered_pair_one": true,
+    "all_readout_tables_background_only": true,
+    "all_readout_tables_old_only": true,
+    "all_readout_tables_new_only": true,
+    "all_readout_tables_unordered_pair": true,
+    "all_readout_tables_coarse_pair": true,
+    "all_readout_tables_ordered_pair": true,
+    "training_count": true,
+    "training_labels_balanced": true,
+    "training_shortcut_ceilings": true,
+    "development_count": true,
+    "development_labels_balanced": true,
+    "development_shortcut_ceilings": true,
+    "heldout_count": true,
+    "heldout_labels_balanced": true,
+    "heldout_shortcut_ceilings": true,
+    "below_200_kib_csv": true
+  },
+  "evidence": {
+    "seed": 20260908,
+    "focal_coordinate": 4,
+    "blocks": 112,
+    "episodes": 896,
+    "dataset_sha256": "da8a0dff85a3be026b546914fbd43f471961a32b4d0ba9370bc93ea2b38d3192",
+    "dataset_bytes": 37779,
+    "splits": {
+      "training": {
+        "blocks": 64,
+        "episodes": 512,
+        "oracle_accuracy_by_view": {
+          "background_only": "1/2",
+          "old_only": "1/2",
+          "new_only": "1/2",
+          "unordered_pair": "1/2",
+          "coarse_pair": "1/2",
+          "ordered_pair": "1"
+        }
+      },
+      "development": {
+        "blocks": 16,
+        "episodes": 128,
+        "oracle_accuracy_by_view": {
+          "background_only": "1/2",
+          "old_only": "1/2",
+          "new_only": "1/2",
+          "unordered_pair": "1/2",
+          "coarse_pair": "1/2",
+          "ordered_pair": "1"
+        }
+      },
+      "heldout": {
+        "blocks": 32,
+        "episodes": 256,
+        "oracle_accuracy_by_view": {
+          "background_only": "1/2",
+          "old_only": "1/2",
+          "new_only": "1/2",
+          "unordered_pair": "1/2",
+          "coarse_pair": "1/2",
+          "ordered_pair": "1"
+        }
+      }
+    },
+    "learned_models": 0,
+    "neural_data": false,
+    "heldout_backgrounds_not_novel_rule": true
+  },
+  "evidence_sha256": "11da26081a3a406aded9f834b1b14daf8c62396f749d42fbae8b0de2f1e0d7d9",
+  "source_sha256": "76be99534a5713fc89ecc969eefd3c23b309300456acf7e4d83840a036c3a3d9",
+  "protocol_sha256": "89153ec9d11cd5d7d78f26a4e02d664c1b37f9ca07165ccf0987d51a6826572e",
+  "elapsed_seconds": 0.015999999945051968,
+  "limits": "Exact finite construction and internal checks, not trained performance, external replication, new Lean proof or full episode model."
+}

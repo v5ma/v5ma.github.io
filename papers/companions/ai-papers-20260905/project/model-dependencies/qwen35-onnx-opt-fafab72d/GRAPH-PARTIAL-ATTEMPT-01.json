@@ -1,0 +1,13 @@
+{
+  "phase": "graph",
+  "status": "PARTIAL_HTTP_429_BEFORE_CONFIG_BODY",
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/README.md",
+      "bytes": 51189,
+      "sha256": "5609d7da4fb160524da94601ab01676e78345fe890daf8a62699f04f85c07b0e"
+    }
+  ],
+  "recovery": "One bounded retry with explicit download query after an HTTP 200 check. Reuse only this exact verified completed file; no weights fetched."
+}

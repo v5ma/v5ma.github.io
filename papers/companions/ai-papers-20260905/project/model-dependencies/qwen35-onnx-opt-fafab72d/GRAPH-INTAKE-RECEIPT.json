@@ -1,0 +1,76 @@
+{
+  "phase": "graph",
+  "status": "DOWNLOADED_HASHED_NOT_INFERENCE",
+  "plan_sha256": "564e74e858f53b07ffefba0fdd54acdb4cd1587ced9a303bb33aa1a84aac3b4f",
+  "script_sha256": "c24531fa227604c56a6a0df55670f1a349b5781b3e128f348d9b30df042dff26",
+  "files": [
+    {
+      "path": "README.md",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/README.md",
+      "bytes": 51189,
+      "sha256": "5609d7da4fb160524da94601ab01676e78345fe890daf8a62699f04f85c07b0e",
+      "seconds": 0,
+      "reused_verified_partial": true
+    },
+    {
+      "path": "config.json",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/config.json",
+      "bytes": 2849,
+      "sha256": "36fed6a902ccd06ef19a452bd5a0750bd88fe347d06ab75ef515615bac5b296d",
+      "seconds": 0.5149999999557622
+    },
+    {
+      "path": "generation_config.json",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/generation_config.json",
+      "bytes": 248,
+      "sha256": "dc0cbe66543f310896469b7b1448af792f403293a1080baaf04d586c57b23e48",
+      "seconds": 0.4850000000442378
+    },
+    {
+      "path": "chat_template.jinja",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/chat_template.jinja",
+      "bytes": 7755,
+      "sha256": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+      "seconds": 0.5470000000204891
+    },
+    {
+      "path": "tokenizer_config.json",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/tokenizer_config.json",
+      "bytes": 9161,
+      "sha256": "fccbff64ebe09343aa2171028657f5b038db96fb4f657609bc76743eddfa3b9d",
+      "seconds": 0.375
+    },
+    {
+      "path": "tokenizer.json",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/tokenizer.json",
+      "bytes": 19226111,
+      "sha256": "89da80cc6689bef4d90cc1028249436975ffb0814618f1d93c65310e05801a9b",
+      "seconds": 1.625
+    },
+    {
+      "path": "onnx/decoder_model_merged_q4.onnx",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/onnx/decoder_model_merged_q4.onnx",
+      "bytes": 576621,
+      "sha256": "7390858c80a67275d8cb81fb70f66a24d3b86fe333057c1312de09c184a2d41b",
+      "seconds": 1.202999999979511
+    },
+    {
+      "path": "onnx/embed_tokens_q4.onnx",
+      "url": "https://huggingface.co/onnx-community/Qwen3.5-0.8B-ONNX-OPT/resolve/fafab72d87a9e6be3925b38caf48286d2838f2d0/onnx/embed_tokens_q4.onnx",
+      "bytes": 857,
+      "sha256": "8773dcf4858f855bfce13def4356ca17e0bc516a477154496b6ffb6dd6d084dc",
+      "seconds": 0.5630000000237487
+    },
+    {
+      "path": "upstream-LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/LICENSE",
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "seconds": 0.21899999998277053
+    }
+  ],
+  "bytes": 19886335,
+  "elapsed_seconds": 5.546999999962281,
+  "vision_downloaded": false,
+  "model_inference_executed": false
+}

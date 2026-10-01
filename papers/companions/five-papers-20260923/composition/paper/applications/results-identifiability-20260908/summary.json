@@ -1,0 +1,160 @@
+{
+  "status": "PASS_EXACT_IDENTIFIABILITY_COUNTEREXAMPLE",
+  "started_utc": "2026-09-08T22:04:39.971684+00:00",
+  "finished_utc": "2026-09-08T22:04:39.975685+00:00",
+  "elapsed_seconds": 0.0041313000256195664,
+  "code_sha256": "dc0e08999737d7f27e8420943a64707d2835d5ce1fba6d5893c758f1a3732744",
+  "protocol_sha256": "8aad2d66e300d089ddf6ec3ab461f5a39db3e8546dac869e9435b93592952c70",
+  "states": 8,
+  "roles": [
+    0,
+    1
+  ],
+  "horizon": 3,
+  "paired_trajectories": 4096,
+  "paired_step_comparisons": 12288,
+  "primary_mismatches": 0,
+  "frozen_probe_conditions": [
+    {
+      "role": 0,
+      "encoder": "selective",
+      "probe": "primary",
+      "target_coordinate": 0,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 2
+    },
+    {
+      "role": 0,
+      "encoder": "selective",
+      "probe": "other_role",
+      "target_coordinate": 1,
+      "accuracy": 0.5,
+      "exact_fraction": "1/2",
+      "attainable_codes": 2
+    },
+    {
+      "role": 0,
+      "encoder": "selective",
+      "probe": "unused",
+      "target_coordinate": 2,
+      "accuracy": 0.5,
+      "exact_fraction": "1/2",
+      "attainable_codes": 2
+    },
+    {
+      "role": 0,
+      "encoder": "full",
+      "probe": "primary",
+      "target_coordinate": 0,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    },
+    {
+      "role": 0,
+      "encoder": "full",
+      "probe": "other_role",
+      "target_coordinate": 1,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    },
+    {
+      "role": 0,
+      "encoder": "full",
+      "probe": "unused",
+      "target_coordinate": 2,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    },
+    {
+      "role": 1,
+      "encoder": "selective",
+      "probe": "primary",
+      "target_coordinate": 1,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 2
+    },
+    {
+      "role": 1,
+      "encoder": "selective",
+      "probe": "other_role",
+      "target_coordinate": 0,
+      "accuracy": 0.5,
+      "exact_fraction": "1/2",
+      "attainable_codes": 2
+    },
+    {
+      "role": 1,
+      "encoder": "selective",
+      "probe": "unused",
+      "target_coordinate": 2,
+      "accuracy": 0.5,
+      "exact_fraction": "1/2",
+      "attainable_codes": 2
+    },
+    {
+      "role": 1,
+      "encoder": "full",
+      "probe": "primary",
+      "target_coordinate": 1,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    },
+    {
+      "role": 1,
+      "encoder": "full",
+      "probe": "other_role",
+      "target_coordinate": 0,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    },
+    {
+      "role": 1,
+      "encoder": "full",
+      "probe": "unused",
+      "target_coordinate": 2,
+      "accuracy": 1.0,
+      "exact_fraction": "1",
+      "attainable_codes": 8
+    }
+  ],
+  "checks": {
+    "complete_trajectory_count": true,
+    "all_primary_behavior_identical_and_correct": true,
+    "frozen_0_selective_primary": true,
+    "frozen_0_selective_other_role": true,
+    "frozen_0_selective_unused": true,
+    "frozen_0_full_primary": true,
+    "frozen_0_full_other_role": true,
+    "frozen_0_full_unused": true,
+    "frozen_1_selective_primary": true,
+    "frozen_1_selective_other_role": true,
+    "frozen_1_selective_unused": true,
+    "frozen_1_full_primary": true,
+    "frozen_1_full_other_role": true,
+    "frozen_1_full_unused": true,
+    "invertible_recoding_primary_behavior": true,
+    "invertible_recoding_singleton_fibers": true,
+    "different_representation_fibers_despite_primary_tie": true
+  },
+  "checks_passed": 17,
+  "checks_total": 17,
+  "preserved_draft_1_sha256": {
+    "drafts/DRAFT-01-20260908.md": "77394606e7443132f8a53321574c149ccebc874ccfa7e6ee82289e6a41ff3a92",
+    "output/pdf/composition-granularity-draft-01.pdf": "ef5ac6539a98c46ed3bce2de0e7e8145b7cc548386a883961ec86e7f3e1d5aef",
+    "applications/assembly_fixture.py": "2ec1af4fbe15196c7086573436f581b943bd6d960a8f5beeaf43be87a7dfc2df",
+    "applications/results/summary.json": "e752d363b53c76ac07929c4981c1ab37756e8b377897810bc27114711359f369",
+    "applications/results/conditions.csv": "0ed747a797c59d3d37c5f61210a9e695511bf30a3215796ab27e2bd7a9c5c12c",
+    "figures/architecture.png": "07e0bda10fcab7af23d19dd2515e86dddb64f25aba2c563460dcd71596b4683c",
+    "figures/results.png": "03d6601d5ab89fae35783c725a18771a49e18cfa4ac8cd402d6eeb2f2dbe7693",
+    "reviews/VALIDATION.json": "dd234b5c8ea4996149bf4afe200e16ea6d901003be1ebe5c4541b64a51657c79",
+    "reviews/DRAFT-01-REVIEW.md": "c6caa7500b5b94e05cc1dac14e8bd96caf6a82bb6b7267aff6924cbb04e51093"
+  },
+  "scope": "Analytically designed, exhaustive finite diagnostic. No learning, biological measurements, statistical sampling, or distinctive SAN advantage."
+}

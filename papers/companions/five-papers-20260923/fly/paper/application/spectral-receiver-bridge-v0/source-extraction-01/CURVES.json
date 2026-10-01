@@ -1,0 +1,3511 @@
+{
+  "source": {
+    "path": "sources/photoreceptor-spectral-intake-15/download/supplementary-data-1.xlsx",
+    "sha256": "740f8517fc0f6ce18d724d71568db08d2c58567551057a0008068f8f88de8044"
+  },
+  "sheet": "Sheet 1",
+  "curves": [
+    {
+      "id": "Rh1-low",
+      "receptor": "Rh1",
+      "wavelengthRangeNm": [
+        315,
+        550
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 315,
+          "meanMv": 2.49595192455136,
+          "sdMv": 0.564563638641969,
+          "cells": {
+            "wavelength": "D3",
+            "mean": "E3",
+            "sd": "F3"
+          }
+        },
+        {
+          "wavelengthNm": 320,
+          "meanMv": 2.86486711160337,
+          "sdMv": 0.602694749289453,
+          "cells": {
+            "wavelength": "D4",
+            "mean": "E4",
+            "sd": "F4"
+          }
+        },
+        {
+          "wavelengthNm": 325,
+          "meanMv": 3.2639866042126,
+          "sdMv": 0.650184500264692,
+          "cells": {
+            "wavelength": "D5",
+            "mean": "E5",
+            "sd": "F5"
+          }
+        },
+        {
+          "wavelengthNm": 330,
+          "meanMv": 3.55427999478341,
+          "sdMv": 0.706053951905566,
+          "cells": {
+            "wavelength": "D6",
+            "mean": "E6",
+            "sd": "F6"
+          }
+        },
+        {
+          "wavelengthNm": 335,
+          "meanMv": 3.71451792050739,
+          "sdMv": 0.72275528672609,
+          "cells": {
+            "wavelength": "D7",
+            "mean": "E7",
+            "sd": "F7"
+          }
+        },
+        {
+          "wavelengthNm": 340,
+          "meanMv": 3.70157746144029,
+          "sdMv": 0.765233638942736,
+          "cells": {
+            "wavelength": "D8",
+            "mean": "E8",
+            "sd": "F8"
+          }
+        },
+        {
+          "wavelengthNm": 345,
+          "meanMv": 3.80521908202503,
+          "sdMv": 0.729696137969929,
+          "cells": {
+            "wavelength": "D9",
+            "mean": "E9",
+            "sd": "F9"
+          }
+        },
+        {
+          "wavelengthNm": 350,
+          "meanMv": 3.89835831785079,
+          "sdMv": 0.721754673132935,
+          "cells": {
+            "wavelength": "D10",
+            "mean": "E10",
+            "sd": "F10"
+          }
+        },
+        {
+          "wavelengthNm": 355,
+          "meanMv": 3.93216108457188,
+          "sdMv": 0.670094003352801,
+          "cells": {
+            "wavelength": "D11",
+            "mean": "E11",
+            "sd": "F11"
+          }
+        },
+        {
+          "wavelengthNm": 360,
+          "meanMv": 3.77767941288192,
+          "sdMv": 0.720354990933237,
+          "cells": {
+            "wavelength": "D12",
+            "mean": "E12",
+            "sd": "F12"
+          }
+        },
+        {
+          "wavelengthNm": 365,
+          "meanMv": 3.759487101041,
+          "sdMv": 0.758611270585876,
+          "cells": {
+            "wavelength": "D13",
+            "mean": "E13",
+            "sd": "F13"
+          }
+        },
+        {
+          "wavelengthNm": 370,
+          "meanMv": 3.82289391890708,
+          "sdMv": 0.776129056780046,
+          "cells": {
+            "wavelength": "D14",
+            "mean": "E14",
+            "sd": "F14"
+          }
+        },
+        {
+          "wavelengthNm": 375,
+          "meanMv": 3.76444714113377,
+          "sdMv": 0.798459678165755,
+          "cells": {
+            "wavelength": "D15",
+            "mean": "E15",
+            "sd": "F15"
+          }
+        },
+        {
+          "wavelengthNm": 380,
+          "meanMv": 3.26664830232203,
+          "sdMv": 0.699593795785555,
+          "cells": {
+            "wavelength": "D16",
+            "mean": "E16",
+            "sd": "F16"
+          }
+        },
+        {
+          "wavelengthNm": 385,
+          "meanMv": 2.63115343199852,
+          "sdMv": 0.563069013506704,
+          "cells": {
+            "wavelength": "D17",
+            "mean": "E17",
+            "sd": "F17"
+          }
+        },
+        {
+          "wavelengthNm": 390,
+          "meanMv": 2.16284097120701,
+          "sdMv": 0.485780816705024,
+          "cells": {
+            "wavelength": "D18",
+            "mean": "E18",
+            "sd": "F18"
+          }
+        },
+        {
+          "wavelengthNm": 395,
+          "meanMv": 2.0209265914842,
+          "sdMv": 0.453040935700112,
+          "cells": {
+            "wavelength": "D19",
+            "mean": "E19",
+            "sd": "F19"
+          }
+        },
+        {
+          "wavelengthNm": 400,
+          "meanMv": 2.02334204102855,
+          "sdMv": 0.485520402181172,
+          "cells": {
+            "wavelength": "D20",
+            "mean": "E20",
+            "sd": "F20"
+          }
+        },
+        {
+          "wavelengthNm": 405,
+          "meanMv": 2.09718527321145,
+          "sdMv": 0.484250991511504,
+          "cells": {
+            "wavelength": "D21",
+            "mean": "E21",
+            "sd": "F21"
+          }
+        },
+        {
+          "wavelengthNm": 410,
+          "meanMv": 2.14206654785075,
+          "sdMv": 0.48805244497515,
+          "cells": {
+            "wavelength": "D22",
+            "mean": "E22",
+            "sd": "F22"
+          }
+        },
+        {
+          "wavelengthNm": 415,
+          "meanMv": 2.20599891883685,
+          "sdMv": 0.507518898964257,
+          "cells": {
+            "wavelength": "D23",
+            "mean": "E23",
+            "sd": "F23"
+          }
+        },
+        {
+          "wavelengthNm": 420,
+          "meanMv": 2.25508966981681,
+          "sdMv": 0.548200538234059,
+          "cells": {
+            "wavelength": "D24",
+            "mean": "E24",
+            "sd": "F24"
+          }
+        },
+        {
+          "wavelengthNm": 425,
+          "meanMv": 2.3408747567699,
+          "sdMv": 0.539012315133506,
+          "cells": {
+            "wavelength": "D25",
+            "mean": "E25",
+            "sd": "F25"
+          }
+        },
+        {
+          "wavelengthNm": 430,
+          "meanMv": 2.39562489202872,
+          "sdMv": 0.530199323897335,
+          "cells": {
+            "wavelength": "D26",
+            "mean": "E26",
+            "sd": "F26"
+          }
+        },
+        {
+          "wavelengthNm": 435,
+          "meanMv": 2.4303795272486,
+          "sdMv": 0.489923321633323,
+          "cells": {
+            "wavelength": "D27",
+            "mean": "E27",
+            "sd": "F27"
+          }
+        },
+        {
+          "wavelengthNm": 440,
+          "meanMv": 2.41099187633494,
+          "sdMv": 0.516330873465881,
+          "cells": {
+            "wavelength": "D28",
+            "mean": "E28",
+            "sd": "F28"
+          }
+        },
+        {
+          "wavelengthNm": 445,
+          "meanMv": 2.4615571512316,
+          "sdMv": 0.538516407815156,
+          "cells": {
+            "wavelength": "D29",
+            "mean": "E29",
+            "sd": "F29"
+          }
+        },
+        {
+          "wavelengthNm": 450,
+          "meanMv": 2.54423557815669,
+          "sdMv": 0.539365118678463,
+          "cells": {
+            "wavelength": "D30",
+            "mean": "E30",
+            "sd": "F30"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 2.67353050796193,
+          "sdMv": 0.561302047622623,
+          "cells": {
+            "wavelength": "D31",
+            "mean": "E31",
+            "sd": "F31"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 2.73372854939388,
+          "sdMv": 0.544026930208538,
+          "cells": {
+            "wavelength": "D32",
+            "mean": "E32",
+            "sd": "F32"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 2.73176664057414,
+          "sdMv": 0.512844331966936,
+          "cells": {
+            "wavelength": "D33",
+            "mean": "E33",
+            "sd": "F33"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 2.69857240831561,
+          "sdMv": 0.505102145054966,
+          "cells": {
+            "wavelength": "D34",
+            "mean": "E34",
+            "sd": "F34"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 2.69210959622612,
+          "sdMv": 0.495866418561842,
+          "cells": {
+            "wavelength": "D35",
+            "mean": "E35",
+            "sd": "F35"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 2.73320617355118,
+          "sdMv": 0.51150986763031,
+          "cells": {
+            "wavelength": "D36",
+            "mean": "E36",
+            "sd": "F36"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 2.79985971171056,
+          "sdMv": 0.499200138227603,
+          "cells": {
+            "wavelength": "D37",
+            "mean": "E37",
+            "sd": "F37"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 2.81397849876443,
+          "sdMv": 0.505529693673196,
+          "cells": {
+            "wavelength": "D38",
+            "mean": "E38",
+            "sd": "F38"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 2.78636333869238,
+          "sdMv": 0.513964324811129,
+          "cells": {
+            "wavelength": "D39",
+            "mean": "E39",
+            "sd": "F39"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 2.68338194772642,
+          "sdMv": 0.500918709199852,
+          "cells": {
+            "wavelength": "D40",
+            "mean": "E40",
+            "sd": "F40"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 2.61834596437119,
+          "sdMv": 0.484643219097501,
+          "cells": {
+            "wavelength": "D41",
+            "mean": "E41",
+            "sd": "F41"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 2.50608351204406,
+          "sdMv": 0.504710821434476,
+          "cells": {
+            "wavelength": "D42",
+            "mean": "E42",
+            "sd": "F42"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 2.4021664323482,
+          "sdMv": 0.475491491532443,
+          "cells": {
+            "wavelength": "D43",
+            "mean": "E43",
+            "sd": "F43"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 2.24202652303053,
+          "sdMv": 0.471325813790141,
+          "cells": {
+            "wavelength": "D44",
+            "mean": "E44",
+            "sd": "F44"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 2.10778773725046,
+          "sdMv": 0.435037108823948,
+          "cells": {
+            "wavelength": "D45",
+            "mean": "E45",
+            "sd": "F45"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 1.95952587059275,
+          "sdMv": 0.437827265231887,
+          "cells": {
+            "wavelength": "D46",
+            "mean": "E46",
+            "sd": "F46"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 1.8084236220844,
+          "sdMv": 0.411583908909599,
+          "cells": {
+            "wavelength": "D47",
+            "mean": "E47",
+            "sd": "F47"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 1.62467458538127,
+          "sdMv": 0.388357418459064,
+          "cells": {
+            "wavelength": "D48",
+            "mean": "E48",
+            "sd": "F48"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 1.48337340885486,
+          "sdMv": 0.368411796799639,
+          "cells": {
+            "wavelength": "D49",
+            "mean": "E49",
+            "sd": "F49"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 1.34515391091638,
+          "sdMv": 0.362596109843347,
+          "cells": {
+            "wavelength": "D50",
+            "mean": "E50",
+            "sd": "F50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh3-low",
+      "receptor": "Rh3",
+      "wavelengthRangeNm": [
+        315,
+        550
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 315,
+          "meanMv": 0.879302483725837,
+          "sdMv": 0.163967053014449,
+          "cells": {
+            "wavelength": "D3",
+            "mean": "G3",
+            "sd": "H3"
+          }
+        },
+        {
+          "wavelengthNm": 320,
+          "meanMv": 0.966332718064948,
+          "sdMv": 0.150116755324584,
+          "cells": {
+            "wavelength": "D4",
+            "mean": "G4",
+            "sd": "H4"
+          }
+        },
+        {
+          "wavelengthNm": 325,
+          "meanMv": 1.0155330872674,
+          "sdMv": 0.125273013576265,
+          "cells": {
+            "wavelength": "D5",
+            "mean": "G5",
+            "sd": "H5"
+          }
+        },
+        {
+          "wavelengthNm": 330,
+          "meanMv": 1.05346828875241,
+          "sdMv": 0.126615824586133,
+          "cells": {
+            "wavelength": "D6",
+            "mean": "G6",
+            "sd": "H6"
+          }
+        },
+        {
+          "wavelengthNm": 335,
+          "meanMv": 1.03357388436178,
+          "sdMv": 0.127521072375586,
+          "cells": {
+            "wavelength": "D7",
+            "mean": "G7",
+            "sd": "H7"
+          }
+        },
+        {
+          "wavelengthNm": 340,
+          "meanMv": 1.014477781744,
+          "sdMv": 0.148527244195106,
+          "cells": {
+            "wavelength": "D8",
+            "mean": "G8",
+            "sd": "H8"
+          }
+        },
+        {
+          "wavelengthNm": 345,
+          "meanMv": 0.992578443775645,
+          "sdMv": 0.15013359114187,
+          "cells": {
+            "wavelength": "D9",
+            "mean": "G9",
+            "sd": "H9"
+          }
+        },
+        {
+          "wavelengthNm": 350,
+          "meanMv": 0.963249914807999,
+          "sdMv": 0.145836376940069,
+          "cells": {
+            "wavelength": "D10",
+            "mean": "G10",
+            "sd": "H10"
+          }
+        },
+        {
+          "wavelengthNm": 355,
+          "meanMv": 0.939014908238164,
+          "sdMv": 0.128116844894335,
+          "cells": {
+            "wavelength": "D11",
+            "mean": "G11",
+            "sd": "H11"
+          }
+        },
+        {
+          "wavelengthNm": 360,
+          "meanMv": 0.904039822023039,
+          "sdMv": 0.129482139946044,
+          "cells": {
+            "wavelength": "D12",
+            "mean": "G12",
+            "sd": "H12"
+          }
+        },
+        {
+          "wavelengthNm": 365,
+          "meanMv": 0.874326263959678,
+          "sdMv": 0.124495093922194,
+          "cells": {
+            "wavelength": "D13",
+            "mean": "G13",
+            "sd": "H13"
+          }
+        },
+        {
+          "wavelengthNm": 370,
+          "meanMv": 0.81865998721849,
+          "sdMv": 0.125440960677472,
+          "cells": {
+            "wavelength": "D14",
+            "mean": "G14",
+            "sd": "H14"
+          }
+        },
+        {
+          "wavelengthNm": 375,
+          "meanMv": 0.76191089738542,
+          "sdMv": 0.120321668288173,
+          "cells": {
+            "wavelength": "D15",
+            "mean": "G15",
+            "sd": "H15"
+          }
+        },
+        {
+          "wavelengthNm": 380,
+          "meanMv": 0.68607956181592,
+          "sdMv": 0.118678068493858,
+          "cells": {
+            "wavelength": "D16",
+            "mean": "G16",
+            "sd": "H16"
+          }
+        },
+        {
+          "wavelengthNm": 385,
+          "meanMv": 0.622204572255636,
+          "sdMv": 0.114856061424667,
+          "cells": {
+            "wavelength": "D17",
+            "mean": "G17",
+            "sd": "H17"
+          }
+        },
+        {
+          "wavelengthNm": 390,
+          "meanMv": 0.511124748179784,
+          "sdMv": 0.102445165556301,
+          "cells": {
+            "wavelength": "D18",
+            "mean": "G18",
+            "sd": "H18"
+          }
+        },
+        {
+          "wavelengthNm": 395,
+          "meanMv": 0.411052268411454,
+          "sdMv": 0.0846431026137454,
+          "cells": {
+            "wavelength": "D19",
+            "mean": "G19",
+            "sd": "H19"
+          }
+        },
+        {
+          "wavelengthNm": 400,
+          "meanMv": 0.30310558097072,
+          "sdMv": 0.0680118060830941,
+          "cells": {
+            "wavelength": "D20",
+            "mean": "G20",
+            "sd": "H20"
+          }
+        },
+        {
+          "wavelengthNm": 405,
+          "meanMv": 0.230834988447758,
+          "sdMv": 0.0468114330591057,
+          "cells": {
+            "wavelength": "D21",
+            "mean": "G21",
+            "sd": "H21"
+          }
+        },
+        {
+          "wavelengthNm": 410,
+          "meanMv": 0.168453098223329,
+          "sdMv": 0.0374608352533842,
+          "cells": {
+            "wavelength": "D22",
+            "mean": "G22",
+            "sd": "H22"
+          }
+        },
+        {
+          "wavelengthNm": 415,
+          "meanMv": 0.124594358474885,
+          "sdMv": 0.0368540114750192,
+          "cells": {
+            "wavelength": "D23",
+            "mean": "G23",
+            "sd": "H23"
+          }
+        },
+        {
+          "wavelengthNm": 420,
+          "meanMv": 0.0921856277206477,
+          "sdMv": 0.0388791484342508,
+          "cells": {
+            "wavelength": "D24",
+            "mean": "G24",
+            "sd": "H24"
+          }
+        },
+        {
+          "wavelengthNm": 425,
+          "meanMv": 0.0716284174568373,
+          "sdMv": 0.0347737654085126,
+          "cells": {
+            "wavelength": "D25",
+            "mean": "G25",
+            "sd": "H25"
+          }
+        },
+        {
+          "wavelengthNm": 430,
+          "meanMv": 0.0542223630571303,
+          "sdMv": 0.0175355503023553,
+          "cells": {
+            "wavelength": "D26",
+            "mean": "G26",
+            "sd": "H26"
+          }
+        },
+        {
+          "wavelengthNm": 435,
+          "meanMv": 0.0486556231807154,
+          "sdMv": 0.0168910895122643,
+          "cells": {
+            "wavelength": "D27",
+            "mean": "G27",
+            "sd": "H27"
+          }
+        },
+        {
+          "wavelengthNm": 440,
+          "meanMv": 0.0455650244581778,
+          "sdMv": 0.0126230108565079,
+          "cells": {
+            "wavelength": "D28",
+            "mean": "G28",
+            "sd": "H28"
+          }
+        },
+        {
+          "wavelengthNm": 445,
+          "meanMv": 0.0507978983971872,
+          "sdMv": 0.0123358109342679,
+          "cells": {
+            "wavelength": "D29",
+            "mean": "G29",
+            "sd": "H29"
+          }
+        },
+        {
+          "wavelengthNm": 450,
+          "meanMv": 0.0495428773922607,
+          "sdMv": 0.0207610939233739,
+          "cells": {
+            "wavelength": "D30",
+            "mean": "G30",
+            "sd": "H30"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 0.0492263977452962,
+          "sdMv": 0.0138531174016736,
+          "cells": {
+            "wavelength": "D31",
+            "mean": "G31",
+            "sd": "H31"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 0.044589101961252,
+          "sdMv": 0.0109055950831541,
+          "cells": {
+            "wavelength": "D32",
+            "mean": "G32",
+            "sd": "H32"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 0.0512116910985495,
+          "sdMv": 0.0328652176507284,
+          "cells": {
+            "wavelength": "D33",
+            "mean": "G33",
+            "sd": "H33"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 0.0511835380953493,
+          "sdMv": 0.0256973007064706,
+          "cells": {
+            "wavelength": "D34",
+            "mean": "G34",
+            "sd": "H34"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 0.053084489405628,
+          "sdMv": 0.0260276237403788,
+          "cells": {
+            "wavelength": "D35",
+            "mean": "G35",
+            "sd": "H35"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 0.0408834851625953,
+          "sdMv": 0.0115079368001893,
+          "cells": {
+            "wavelength": "D36",
+            "mean": "G36",
+            "sd": "H36"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 0.0436903888233261,
+          "sdMv": 0.0114234138904243,
+          "cells": {
+            "wavelength": "D37",
+            "mean": "G37",
+            "sd": "H37"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 0.0410539474847602,
+          "sdMv": 0.00939108689938837,
+          "cells": {
+            "wavelength": "D38",
+            "mean": "G38",
+            "sd": "H38"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 0.0460263341528162,
+          "sdMv": 0.00872384072195374,
+          "cells": {
+            "wavelength": "D39",
+            "mean": "G39",
+            "sd": "H39"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 0.0426784920080666,
+          "sdMv": 0.0069016814824567,
+          "cells": {
+            "wavelength": "D40",
+            "mean": "G40",
+            "sd": "H40"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 0.0388912006661955,
+          "sdMv": 0.00888308018194469,
+          "cells": {
+            "wavelength": "D41",
+            "mean": "G41",
+            "sd": "H41"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 0.0396505110555029,
+          "sdMv": 0.0146550931201732,
+          "cells": {
+            "wavelength": "D42",
+            "mean": "G42",
+            "sd": "H42"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 0.0462050788216643,
+          "sdMv": 0.0222772856528861,
+          "cells": {
+            "wavelength": "D43",
+            "mean": "G43",
+            "sd": "H43"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 0.045948908593199,
+          "sdMv": 0.0250978303028035,
+          "cells": {
+            "wavelength": "D44",
+            "mean": "G44",
+            "sd": "H44"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 0.0492903569037455,
+          "sdMv": 0.0252386183276883,
+          "cells": {
+            "wavelength": "D45",
+            "mean": "G45",
+            "sd": "H45"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 0.0414076523138293,
+          "sdMv": 0.014748195985236,
+          "cells": {
+            "wavelength": "D46",
+            "mean": "G46",
+            "sd": "H46"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 0.0463581565895292,
+          "sdMv": 0.0169123468809373,
+          "cells": {
+            "wavelength": "D47",
+            "mean": "G47",
+            "sd": "H47"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 0.0395997387505004,
+          "sdMv": 0.0170620420215896,
+          "cells": {
+            "wavelength": "D48",
+            "mean": "G48",
+            "sd": "H48"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 0.0409321270980431,
+          "sdMv": 0.0117628337252467,
+          "cells": {
+            "wavelength": "D49",
+            "mean": "G49",
+            "sd": "H49"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 0.0385099086314196,
+          "sdMv": 0.0115476743051451,
+          "cells": {
+            "wavelength": "D50",
+            "mean": "G50",
+            "sd": "H50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh4-low",
+      "receptor": "Rh4",
+      "wavelengthRangeNm": [
+        315,
+        550
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 315,
+          "meanMv": 0.421611554146139,
+          "sdMv": 0.0827946476307952,
+          "cells": {
+            "wavelength": "D3",
+            "mean": "I3",
+            "sd": "J3"
+          }
+        },
+        {
+          "wavelengthNm": 320,
+          "meanMv": 0.456672279276835,
+          "sdMv": 0.110411592218796,
+          "cells": {
+            "wavelength": "D4",
+            "mean": "I4",
+            "sd": "J4"
+          }
+        },
+        {
+          "wavelengthNm": 325,
+          "meanMv": 0.475477695403272,
+          "sdMv": 0.116645091989148,
+          "cells": {
+            "wavelength": "D5",
+            "mean": "I5",
+            "sd": "J5"
+          }
+        },
+        {
+          "wavelengthNm": 330,
+          "meanMv": 0.493652506576557,
+          "sdMv": 0.120320321802876,
+          "cells": {
+            "wavelength": "D6",
+            "mean": "I6",
+            "sd": "J6"
+          }
+        },
+        {
+          "wavelengthNm": 335,
+          "meanMv": 0.496566540541218,
+          "sdMv": 0.101476725875227,
+          "cells": {
+            "wavelength": "D7",
+            "mean": "I7",
+            "sd": "J7"
+          }
+        },
+        {
+          "wavelengthNm": 340,
+          "meanMv": 0.509192404817006,
+          "sdMv": 0.110598861129525,
+          "cells": {
+            "wavelength": "D8",
+            "mean": "I8",
+            "sd": "J8"
+          }
+        },
+        {
+          "wavelengthNm": 345,
+          "meanMv": 0.519159616609842,
+          "sdMv": 0.10299508217735,
+          "cells": {
+            "wavelength": "D9",
+            "mean": "I9",
+            "sd": "J9"
+          }
+        },
+        {
+          "wavelengthNm": 350,
+          "meanMv": 0.528453732828228,
+          "sdMv": 0.103727808013451,
+          "cells": {
+            "wavelength": "D10",
+            "mean": "I10",
+            "sd": "J10"
+          }
+        },
+        {
+          "wavelengthNm": 355,
+          "meanMv": 0.526497999622094,
+          "sdMv": 0.0840950405841335,
+          "cells": {
+            "wavelength": "D11",
+            "mean": "I11",
+            "sd": "J11"
+          }
+        },
+        {
+          "wavelengthNm": 360,
+          "meanMv": 0.52808012586687,
+          "sdMv": 0.0824078178086165,
+          "cells": {
+            "wavelength": "D12",
+            "mean": "I12",
+            "sd": "J12"
+          }
+        },
+        {
+          "wavelengthNm": 365,
+          "meanMv": 0.520109230988425,
+          "sdMv": 0.0889270118139883,
+          "cells": {
+            "wavelength": "D13",
+            "mean": "I13",
+            "sd": "J13"
+          }
+        },
+        {
+          "wavelengthNm": 370,
+          "meanMv": 0.510119656034435,
+          "sdMv": 0.0918811244282138,
+          "cells": {
+            "wavelength": "D14",
+            "mean": "I14",
+            "sd": "J14"
+          }
+        },
+        {
+          "wavelengthNm": 375,
+          "meanMv": 0.495907717466335,
+          "sdMv": 0.100217110273081,
+          "cells": {
+            "wavelength": "D15",
+            "mean": "I15",
+            "sd": "J15"
+          }
+        },
+        {
+          "wavelengthNm": 380,
+          "meanMv": 0.484238944354787,
+          "sdMv": 0.0971966705404085,
+          "cells": {
+            "wavelength": "D16",
+            "mean": "I16",
+            "sd": "J16"
+          }
+        },
+        {
+          "wavelengthNm": 385,
+          "meanMv": 0.469731118328009,
+          "sdMv": 0.0976105530500812,
+          "cells": {
+            "wavelength": "D17",
+            "mean": "I17",
+            "sd": "J17"
+          }
+        },
+        {
+          "wavelengthNm": 390,
+          "meanMv": 0.431554887785643,
+          "sdMv": 0.0794586975618975,
+          "cells": {
+            "wavelength": "D18",
+            "mean": "I18",
+            "sd": "J18"
+          }
+        },
+        {
+          "wavelengthNm": 395,
+          "meanMv": 0.390207308493699,
+          "sdMv": 0.0752526622915681,
+          "cells": {
+            "wavelength": "D19",
+            "mean": "I19",
+            "sd": "J19"
+          }
+        },
+        {
+          "wavelengthNm": 400,
+          "meanMv": 0.341538899370135,
+          "sdMv": 0.072343967753211,
+          "cells": {
+            "wavelength": "D20",
+            "mean": "I20",
+            "sd": "J20"
+          }
+        },
+        {
+          "wavelengthNm": 405,
+          "meanMv": 0.296847230959243,
+          "sdMv": 0.0694761252827604,
+          "cells": {
+            "wavelength": "D21",
+            "mean": "I21",
+            "sd": "J21"
+          }
+        },
+        {
+          "wavelengthNm": 410,
+          "meanMv": 0.255381819510306,
+          "sdMv": 0.0584003025172414,
+          "cells": {
+            "wavelength": "D22",
+            "mean": "I22",
+            "sd": "J22"
+          }
+        },
+        {
+          "wavelengthNm": 415,
+          "meanMv": 0.219706252379629,
+          "sdMv": 0.0543947402034175,
+          "cells": {
+            "wavelength": "D23",
+            "mean": "I23",
+            "sd": "J23"
+          }
+        },
+        {
+          "wavelengthNm": 420,
+          "meanMv": 0.185558927351932,
+          "sdMv": 0.0464671032791345,
+          "cells": {
+            "wavelength": "D24",
+            "mean": "I24",
+            "sd": "J24"
+          }
+        },
+        {
+          "wavelengthNm": 425,
+          "meanMv": 0.144944233192985,
+          "sdMv": 0.0425445454526472,
+          "cells": {
+            "wavelength": "D25",
+            "mean": "I25",
+            "sd": "J25"
+          }
+        },
+        {
+          "wavelengthNm": 430,
+          "meanMv": 0.113641712782418,
+          "sdMv": 0.0346145366743059,
+          "cells": {
+            "wavelength": "D26",
+            "mean": "I26",
+            "sd": "J26"
+          }
+        },
+        {
+          "wavelengthNm": 435,
+          "meanMv": 0.0977188150341335,
+          "sdMv": 0.0358943634331727,
+          "cells": {
+            "wavelength": "D27",
+            "mean": "I27",
+            "sd": "J27"
+          }
+        },
+        {
+          "wavelengthNm": 440,
+          "meanMv": 0.0862892251982408,
+          "sdMv": 0.0328500437059202,
+          "cells": {
+            "wavelength": "D28",
+            "mean": "I28",
+            "sd": "J28"
+          }
+        },
+        {
+          "wavelengthNm": 445,
+          "meanMv": 0.075538835883797,
+          "sdMv": 0.0318249289952871,
+          "cells": {
+            "wavelength": "D29",
+            "mean": "I29",
+            "sd": "J29"
+          }
+        },
+        {
+          "wavelengthNm": 450,
+          "meanMv": 0.0663906313782916,
+          "sdMv": 0.0242411186450029,
+          "cells": {
+            "wavelength": "D30",
+            "mean": "I30",
+            "sd": "J30"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 0.0644033791683731,
+          "sdMv": 0.0219284113163301,
+          "cells": {
+            "wavelength": "D31",
+            "mean": "I31",
+            "sd": "J31"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 0.062425526712176,
+          "sdMv": 0.0177441498501636,
+          "cells": {
+            "wavelength": "D32",
+            "mean": "I32",
+            "sd": "J32"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 0.0609469551920429,
+          "sdMv": 0.0215858357379381,
+          "cells": {
+            "wavelength": "D33",
+            "mean": "I33",
+            "sd": "J33"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 0.0592785709534639,
+          "sdMv": 0.0224746179594531,
+          "cells": {
+            "wavelength": "D34",
+            "mean": "I34",
+            "sd": "J34"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 0.0558190191040106,
+          "sdMv": 0.0246901842980766,
+          "cells": {
+            "wavelength": "D35",
+            "mean": "I35",
+            "sd": "J35"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 0.0539953833343004,
+          "sdMv": 0.0207758483928308,
+          "cells": {
+            "wavelength": "D36",
+            "mean": "I36",
+            "sd": "J36"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 0.0571888383877975,
+          "sdMv": 0.00953135251701047,
+          "cells": {
+            "wavelength": "D37",
+            "mean": "I37",
+            "sd": "J37"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 0.053902797866047,
+          "sdMv": 0.00768657828303936,
+          "cells": {
+            "wavelength": "D38",
+            "mean": "I38",
+            "sd": "J38"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 0.0508612336569583,
+          "sdMv": 0.019102477941166,
+          "cells": {
+            "wavelength": "D39",
+            "mean": "I39",
+            "sd": "J39"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 0.0427527546295378,
+          "sdMv": 0.0177426310371149,
+          "cells": {
+            "wavelength": "D40",
+            "mean": "I40",
+            "sd": "J40"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 0.0452227482878329,
+          "sdMv": 0.0189283911689298,
+          "cells": {
+            "wavelength": "D41",
+            "mean": "I41",
+            "sd": "J41"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 0.0441398102442515,
+          "sdMv": 0.0106278741907153,
+          "cells": {
+            "wavelength": "D42",
+            "mean": "I42",
+            "sd": "J42"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 0.0431060326075638,
+          "sdMv": 0.00998973428682866,
+          "cells": {
+            "wavelength": "D43",
+            "mean": "I43",
+            "sd": "J43"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 0.0418795994464204,
+          "sdMv": 0.00589079126966957,
+          "cells": {
+            "wavelength": "D44",
+            "mean": "I44",
+            "sd": "J44"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 0.0383383624724685,
+          "sdMv": 0.0148823814786881,
+          "cells": {
+            "wavelength": "D45",
+            "mean": "I45",
+            "sd": "J45"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 0.0412198020700295,
+          "sdMv": 0.0156254478666442,
+          "cells": {
+            "wavelength": "D46",
+            "mean": "I46",
+            "sd": "J46"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 0.041317682601017,
+          "sdMv": 0.0144068751108918,
+          "cells": {
+            "wavelength": "D47",
+            "mean": "I47",
+            "sd": "J47"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 0.0481183747258083,
+          "sdMv": 0.0105047410971037,
+          "cells": {
+            "wavelength": "D48",
+            "mean": "I48",
+            "sd": "J48"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 0.0423710602022722,
+          "sdMv": 0.00337134475658304,
+          "cells": {
+            "wavelength": "D49",
+            "mean": "I49",
+            "sd": "J49"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 0.0384942423861245,
+          "sdMv": 0.0192393658185696,
+          "cells": {
+            "wavelength": "D50",
+            "mean": "I50",
+            "sd": "J50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh5-low",
+      "receptor": "Rh5",
+      "wavelengthRangeNm": [
+        315,
+        550
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 315,
+          "meanMv": 0.263403078950134,
+          "sdMv": 0.097828230107808,
+          "cells": {
+            "wavelength": "D3",
+            "mean": "K3",
+            "sd": "L3"
+          }
+        },
+        {
+          "wavelengthNm": 320,
+          "meanMv": 0.290072895757788,
+          "sdMv": 0.0821490303521399,
+          "cells": {
+            "wavelength": "D4",
+            "mean": "K4",
+            "sd": "L4"
+          }
+        },
+        {
+          "wavelengthNm": 325,
+          "meanMv": 0.303631564907042,
+          "sdMv": 0.0854706113609469,
+          "cells": {
+            "wavelength": "D5",
+            "mean": "K5",
+            "sd": "L5"
+          }
+        },
+        {
+          "wavelengthNm": 330,
+          "meanMv": 0.29497959321636,
+          "sdMv": 0.0879676443707627,
+          "cells": {
+            "wavelength": "D6",
+            "mean": "K6",
+            "sd": "L6"
+          }
+        },
+        {
+          "wavelengthNm": 335,
+          "meanMv": 0.285656092625768,
+          "sdMv": 0.0963039334682431,
+          "cells": {
+            "wavelength": "D7",
+            "mean": "K7",
+            "sd": "L7"
+          }
+        },
+        {
+          "wavelengthNm": 340,
+          "meanMv": 0.279391497622553,
+          "sdMv": 0.0992269207943051,
+          "cells": {
+            "wavelength": "D8",
+            "mean": "K8",
+            "sd": "L8"
+          }
+        },
+        {
+          "wavelengthNm": 345,
+          "meanMv": 0.286770493334988,
+          "sdMv": 0.0981460820548688,
+          "cells": {
+            "wavelength": "D9",
+            "mean": "K9",
+            "sd": "L9"
+          }
+        },
+        {
+          "wavelengthNm": 350,
+          "meanMv": 0.292786655280582,
+          "sdMv": 0.086145911448262,
+          "cells": {
+            "wavelength": "D10",
+            "mean": "K10",
+            "sd": "L10"
+          }
+        },
+        {
+          "wavelengthNm": 355,
+          "meanMv": 0.297077377647667,
+          "sdMv": 0.0800370616501155,
+          "cells": {
+            "wavelength": "D11",
+            "mean": "K11",
+            "sd": "L11"
+          }
+        },
+        {
+          "wavelengthNm": 360,
+          "meanMv": 0.30249865032172,
+          "sdMv": 0.0892838477800169,
+          "cells": {
+            "wavelength": "D12",
+            "mean": "K12",
+            "sd": "L12"
+          }
+        },
+        {
+          "wavelengthNm": 365,
+          "meanMv": 0.309730872257915,
+          "sdMv": 0.110328819717686,
+          "cells": {
+            "wavelength": "D13",
+            "mean": "K13",
+            "sd": "L13"
+          }
+        },
+        {
+          "wavelengthNm": 370,
+          "meanMv": 0.327695803258907,
+          "sdMv": 0.109194748470818,
+          "cells": {
+            "wavelength": "D14",
+            "mean": "K14",
+            "sd": "L14"
+          }
+        },
+        {
+          "wavelengthNm": 375,
+          "meanMv": 0.346670173794146,
+          "sdMv": 0.122896188701577,
+          "cells": {
+            "wavelength": "D15",
+            "mean": "K15",
+            "sd": "L15"
+          }
+        },
+        {
+          "wavelengthNm": 380,
+          "meanMv": 0.373058913789946,
+          "sdMv": 0.115626990486057,
+          "cells": {
+            "wavelength": "D16",
+            "mean": "K16",
+            "sd": "L16"
+          }
+        },
+        {
+          "wavelengthNm": 385,
+          "meanMv": 0.403974087731139,
+          "sdMv": 0.113856488986677,
+          "cells": {
+            "wavelength": "D17",
+            "mean": "K17",
+            "sd": "L17"
+          }
+        },
+        {
+          "wavelengthNm": 390,
+          "meanMv": 0.428471936929676,
+          "sdMv": 0.112654114654308,
+          "cells": {
+            "wavelength": "D18",
+            "mean": "K18",
+            "sd": "L18"
+          }
+        },
+        {
+          "wavelengthNm": 395,
+          "meanMv": 0.467564931002347,
+          "sdMv": 0.114230083977199,
+          "cells": {
+            "wavelength": "D19",
+            "mean": "K19",
+            "sd": "L19"
+          }
+        },
+        {
+          "wavelengthNm": 400,
+          "meanMv": 0.494642786197745,
+          "sdMv": 0.119885380574133,
+          "cells": {
+            "wavelength": "D20",
+            "mean": "K20",
+            "sd": "L20"
+          }
+        },
+        {
+          "wavelengthNm": 405,
+          "meanMv": 0.525913043071316,
+          "sdMv": 0.11220153811681,
+          "cells": {
+            "wavelength": "D21",
+            "mean": "K21",
+            "sd": "L21"
+          }
+        },
+        {
+          "wavelengthNm": 410,
+          "meanMv": 0.531804675330122,
+          "sdMv": 0.119865765282232,
+          "cells": {
+            "wavelength": "D22",
+            "mean": "K22",
+            "sd": "L22"
+          }
+        },
+        {
+          "wavelengthNm": 415,
+          "meanMv": 0.541571687636065,
+          "sdMv": 0.129347003600026,
+          "cells": {
+            "wavelength": "D23",
+            "mean": "K23",
+            "sd": "L23"
+          }
+        },
+        {
+          "wavelengthNm": 420,
+          "meanMv": 0.543157212630092,
+          "sdMv": 0.133628761502174,
+          "cells": {
+            "wavelength": "D24",
+            "mean": "K24",
+            "sd": "L24"
+          }
+        },
+        {
+          "wavelengthNm": 425,
+          "meanMv": 0.54863698962579,
+          "sdMv": 0.133708968777591,
+          "cells": {
+            "wavelength": "D25",
+            "mean": "K25",
+            "sd": "L25"
+          }
+        },
+        {
+          "wavelengthNm": 430,
+          "meanMv": 0.555857329962679,
+          "sdMv": 0.134790669005299,
+          "cells": {
+            "wavelength": "D26",
+            "mean": "K26",
+            "sd": "L26"
+          }
+        },
+        {
+          "wavelengthNm": 435,
+          "meanMv": 0.560821610556816,
+          "sdMv": 0.138542285443746,
+          "cells": {
+            "wavelength": "D27",
+            "mean": "K27",
+            "sd": "L27"
+          }
+        },
+        {
+          "wavelengthNm": 440,
+          "meanMv": 0.552809282589419,
+          "sdMv": 0.136773195563899,
+          "cells": {
+            "wavelength": "D28",
+            "mean": "K28",
+            "sd": "L28"
+          }
+        },
+        {
+          "wavelengthNm": 445,
+          "meanMv": 0.545423871695833,
+          "sdMv": 0.137225581844861,
+          "cells": {
+            "wavelength": "D29",
+            "mean": "K29",
+            "sd": "L29"
+          }
+        },
+        {
+          "wavelengthNm": 450,
+          "meanMv": 0.537997036258126,
+          "sdMv": 0.131656442253766,
+          "cells": {
+            "wavelength": "D30",
+            "mean": "K30",
+            "sd": "L30"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 0.537837482124569,
+          "sdMv": 0.136591059934452,
+          "cells": {
+            "wavelength": "D31",
+            "mean": "K31",
+            "sd": "L31"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 0.526926096171156,
+          "sdMv": 0.138565020519469,
+          "cells": {
+            "wavelength": "D32",
+            "mean": "K32",
+            "sd": "L32"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 0.502768139761272,
+          "sdMv": 0.136573394088831,
+          "cells": {
+            "wavelength": "D33",
+            "mean": "K33",
+            "sd": "L33"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 0.475811741115926,
+          "sdMv": 0.119834135423954,
+          "cells": {
+            "wavelength": "D34",
+            "mean": "K34",
+            "sd": "L34"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 0.437182895720343,
+          "sdMv": 0.106887074359492,
+          "cells": {
+            "wavelength": "D35",
+            "mean": "K35",
+            "sd": "L35"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 0.402521532775328,
+          "sdMv": 0.0912643958356748,
+          "cells": {
+            "wavelength": "D36",
+            "mean": "K36",
+            "sd": "L36"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 0.35754697860554,
+          "sdMv": 0.0901266759835655,
+          "cells": {
+            "wavelength": "D37",
+            "mean": "K37",
+            "sd": "L37"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 0.311670753532789,
+          "sdMv": 0.0939587955157506,
+          "cells": {
+            "wavelength": "D38",
+            "mean": "K38",
+            "sd": "L38"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 0.270603983941398,
+          "sdMv": 0.0899504781613539,
+          "cells": {
+            "wavelength": "D39",
+            "mean": "K39",
+            "sd": "L39"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 0.232785825076336,
+          "sdMv": 0.08382962228083,
+          "cells": {
+            "wavelength": "D40",
+            "mean": "K40",
+            "sd": "L40"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 0.203815576709438,
+          "sdMv": 0.0649895367705103,
+          "cells": {
+            "wavelength": "D41",
+            "mean": "K41",
+            "sd": "L41"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 0.169055457125981,
+          "sdMv": 0.0603935909396487,
+          "cells": {
+            "wavelength": "D42",
+            "mean": "K42",
+            "sd": "L42"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 0.153670811505305,
+          "sdMv": 0.0544262128661334,
+          "cells": {
+            "wavelength": "D43",
+            "mean": "K43",
+            "sd": "L43"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 0.134837354754654,
+          "sdMv": 0.0565968830165061,
+          "cells": {
+            "wavelength": "D44",
+            "mean": "K44",
+            "sd": "L44"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 0.133980030938142,
+          "sdMv": 0.0481156063824664,
+          "cells": {
+            "wavelength": "D45",
+            "mean": "K45",
+            "sd": "L45"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 0.111123951163102,
+          "sdMv": 0.0393319697123048,
+          "cells": {
+            "wavelength": "D46",
+            "mean": "K46",
+            "sd": "L46"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 0.103076517956428,
+          "sdMv": 0.0294847340710294,
+          "cells": {
+            "wavelength": "D47",
+            "mean": "K47",
+            "sd": "L47"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 0.0930918606839985,
+          "sdMv": 0.0372742641015679,
+          "cells": {
+            "wavelength": "D48",
+            "mean": "K48",
+            "sd": "L48"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 0.090806013760116,
+          "sdMv": 0.038871989420846,
+          "cells": {
+            "wavelength": "D49",
+            "mean": "K49",
+            "sd": "L49"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 0.0821558658569368,
+          "sdMv": 0.0411686798207737,
+          "cells": {
+            "wavelength": "D50",
+            "mean": "K50",
+            "sd": "L50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh6-low",
+      "receptor": "Rh6",
+      "wavelengthRangeNm": [
+        315,
+        550
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 315,
+          "meanMv": 1.02767780226153,
+          "sdMv": 0.261105696949121,
+          "cells": {
+            "wavelength": "D3",
+            "mean": "M3",
+            "sd": "N3"
+          }
+        },
+        {
+          "wavelengthNm": 320,
+          "meanMv": 1.06529893604709,
+          "sdMv": 0.247417092197702,
+          "cells": {
+            "wavelength": "D4",
+            "mean": "M4",
+            "sd": "N4"
+          }
+        },
+        {
+          "wavelengthNm": 325,
+          "meanMv": 1.11117713977045,
+          "sdMv": 0.257059283585706,
+          "cells": {
+            "wavelength": "D5",
+            "mean": "M5",
+            "sd": "N5"
+          }
+        },
+        {
+          "wavelengthNm": 330,
+          "meanMv": 1.15094006452435,
+          "sdMv": 0.253938637619004,
+          "cells": {
+            "wavelength": "D6",
+            "mean": "M6",
+            "sd": "N6"
+          }
+        },
+        {
+          "wavelengthNm": 335,
+          "meanMv": 1.17886434334492,
+          "sdMv": 0.317772781604578,
+          "cells": {
+            "wavelength": "D7",
+            "mean": "M7",
+            "sd": "N7"
+          }
+        },
+        {
+          "wavelengthNm": 340,
+          "meanMv": 1.17840291188947,
+          "sdMv": 0.349947967332763,
+          "cells": {
+            "wavelength": "D8",
+            "mean": "M8",
+            "sd": "N8"
+          }
+        },
+        {
+          "wavelengthNm": 345,
+          "meanMv": 1.18594098673605,
+          "sdMv": 0.356331895218352,
+          "cells": {
+            "wavelength": "D9",
+            "mean": "M9",
+            "sd": "N9"
+          }
+        },
+        {
+          "wavelengthNm": 350,
+          "meanMv": 1.19693940982876,
+          "sdMv": 0.301339137881717,
+          "cells": {
+            "wavelength": "D10",
+            "mean": "M10",
+            "sd": "N10"
+          }
+        },
+        {
+          "wavelengthNm": 355,
+          "meanMv": 1.20363563872138,
+          "sdMv": 0.282073156446268,
+          "cells": {
+            "wavelength": "D11",
+            "mean": "M11",
+            "sd": "N11"
+          }
+        },
+        {
+          "wavelengthNm": 360,
+          "meanMv": 1.22998745396452,
+          "sdMv": 0.289739152164302,
+          "cells": {
+            "wavelength": "D12",
+            "mean": "M12",
+            "sd": "N12"
+          }
+        },
+        {
+          "wavelengthNm": 365,
+          "meanMv": 1.21267331020831,
+          "sdMv": 0.307057085364045,
+          "cells": {
+            "wavelength": "D13",
+            "mean": "M13",
+            "sd": "N13"
+          }
+        },
+        {
+          "wavelengthNm": 370,
+          "meanMv": 1.21220527514191,
+          "sdMv": 0.31632768974267,
+          "cells": {
+            "wavelength": "D14",
+            "mean": "M14",
+            "sd": "N14"
+          }
+        },
+        {
+          "wavelengthNm": 375,
+          "meanMv": 1.20408591240406,
+          "sdMv": 0.320346669454629,
+          "cells": {
+            "wavelength": "D15",
+            "mean": "M15",
+            "sd": "N15"
+          }
+        },
+        {
+          "wavelengthNm": 380,
+          "meanMv": 1.19734286717369,
+          "sdMv": 0.306234385805625,
+          "cells": {
+            "wavelength": "D16",
+            "mean": "M16",
+            "sd": "N16"
+          }
+        },
+        {
+          "wavelengthNm": 385,
+          "meanMv": 1.2058610022517,
+          "sdMv": 0.29437001246255,
+          "cells": {
+            "wavelength": "D17",
+            "mean": "M17",
+            "sd": "N17"
+          }
+        },
+        {
+          "wavelengthNm": 390,
+          "meanMv": 1.18143866808878,
+          "sdMv": 0.270953484626962,
+          "cells": {
+            "wavelength": "D18",
+            "mean": "M18",
+            "sd": "N18"
+          }
+        },
+        {
+          "wavelengthNm": 395,
+          "meanMv": 1.18385278557364,
+          "sdMv": 0.280218376110779,
+          "cells": {
+            "wavelength": "D19",
+            "mean": "M19",
+            "sd": "N19"
+          }
+        },
+        {
+          "wavelengthNm": 400,
+          "meanMv": 1.17685900354768,
+          "sdMv": 0.262644921398106,
+          "cells": {
+            "wavelength": "D20",
+            "mean": "M20",
+            "sd": "N20"
+          }
+        },
+        {
+          "wavelengthNm": 405,
+          "meanMv": 1.18655525785406,
+          "sdMv": 0.25132015316706,
+          "cells": {
+            "wavelength": "D21",
+            "mean": "M21",
+            "sd": "N21"
+          }
+        },
+        {
+          "wavelengthNm": 410,
+          "meanMv": 1.18789168259351,
+          "sdMv": 0.232478499856318,
+          "cells": {
+            "wavelength": "D22",
+            "mean": "M22",
+            "sd": "N22"
+          }
+        },
+        {
+          "wavelengthNm": 415,
+          "meanMv": 1.18949040838619,
+          "sdMv": 0.24714089227164,
+          "cells": {
+            "wavelength": "D23",
+            "mean": "M23",
+            "sd": "N23"
+          }
+        },
+        {
+          "wavelengthNm": 420,
+          "meanMv": 1.20544048918216,
+          "sdMv": 0.27358879760482,
+          "cells": {
+            "wavelength": "D24",
+            "mean": "M24",
+            "sd": "N24"
+          }
+        },
+        {
+          "wavelengthNm": 425,
+          "meanMv": 1.23240443728989,
+          "sdMv": 0.274758347799865,
+          "cells": {
+            "wavelength": "D25",
+            "mean": "M25",
+            "sd": "N25"
+          }
+        },
+        {
+          "wavelengthNm": 430,
+          "meanMv": 1.26354867061356,
+          "sdMv": 0.269928036268154,
+          "cells": {
+            "wavelength": "D26",
+            "mean": "M26",
+            "sd": "N26"
+          }
+        },
+        {
+          "wavelengthNm": 435,
+          "meanMv": 1.29160346269748,
+          "sdMv": 0.255130246868529,
+          "cells": {
+            "wavelength": "D27",
+            "mean": "M27",
+            "sd": "N27"
+          }
+        },
+        {
+          "wavelengthNm": 440,
+          "meanMv": 1.32010159247962,
+          "sdMv": 0.253529675025295,
+          "cells": {
+            "wavelength": "D28",
+            "mean": "M28",
+            "sd": "N28"
+          }
+        },
+        {
+          "wavelengthNm": 445,
+          "meanMv": 1.34390631886472,
+          "sdMv": 0.255376793270609,
+          "cells": {
+            "wavelength": "D29",
+            "mean": "M29",
+            "sd": "N29"
+          }
+        },
+        {
+          "wavelengthNm": 450,
+          "meanMv": 1.38462944159632,
+          "sdMv": 0.262001792810085,
+          "cells": {
+            "wavelength": "D30",
+            "mean": "M30",
+            "sd": "N30"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 1.43864356069392,
+          "sdMv": 0.263753353819835,
+          "cells": {
+            "wavelength": "D31",
+            "mean": "M31",
+            "sd": "N31"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 1.49947157555904,
+          "sdMv": 0.262241976769495,
+          "cells": {
+            "wavelength": "D32",
+            "mean": "M32",
+            "sd": "N32"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 1.56874657473782,
+          "sdMv": 0.242125675952223,
+          "cells": {
+            "wavelength": "D33",
+            "mean": "M33",
+            "sd": "N33"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 1.61057620919097,
+          "sdMv": 0.250738959416348,
+          "cells": {
+            "wavelength": "D34",
+            "mean": "M34",
+            "sd": "N34"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 1.65295619397662,
+          "sdMv": 0.256411848214126,
+          "cells": {
+            "wavelength": "D35",
+            "mean": "M35",
+            "sd": "N35"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 1.67522032185057,
+          "sdMv": 0.270282830048353,
+          "cells": {
+            "wavelength": "D36",
+            "mean": "M36",
+            "sd": "N36"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 1.71704727264805,
+          "sdMv": 0.282624128556753,
+          "cells": {
+            "wavelength": "D37",
+            "mean": "M37",
+            "sd": "N37"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 1.75756766208211,
+          "sdMv": 0.268865695445723,
+          "cells": {
+            "wavelength": "D38",
+            "mean": "M38",
+            "sd": "N38"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 1.79592274187224,
+          "sdMv": 0.268258943870157,
+          "cells": {
+            "wavelength": "D39",
+            "mean": "M39",
+            "sd": "N39"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 1.82168960452228,
+          "sdMv": 0.250792832595312,
+          "cells": {
+            "wavelength": "D40",
+            "mean": "M40",
+            "sd": "N40"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 1.87453251134795,
+          "sdMv": 0.251165697980621,
+          "cells": {
+            "wavelength": "D41",
+            "mean": "M41",
+            "sd": "N41"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 1.90246205165604,
+          "sdMv": 0.256769953348347,
+          "cells": {
+            "wavelength": "D42",
+            "mean": "M42",
+            "sd": "N42"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 1.92721275665466,
+          "sdMv": 0.265217635405808,
+          "cells": {
+            "wavelength": "D43",
+            "mean": "M43",
+            "sd": "N43"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 1.9297090238365,
+          "sdMv": 0.304429582946128,
+          "cells": {
+            "wavelength": "D44",
+            "mean": "M44",
+            "sd": "N44"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 1.95922352960354,
+          "sdMv": 0.312980868524215,
+          "cells": {
+            "wavelength": "D45",
+            "mean": "M45",
+            "sd": "N45"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 1.97833331340055,
+          "sdMv": 0.336182034286132,
+          "cells": {
+            "wavelength": "D46",
+            "mean": "M46",
+            "sd": "N46"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 1.98333927875815,
+          "sdMv": 0.31390999758408,
+          "cells": {
+            "wavelength": "D47",
+            "mean": "M47",
+            "sd": "N47"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 1.97242011183764,
+          "sdMv": 0.313432093778087,
+          "cells": {
+            "wavelength": "D48",
+            "mean": "M48",
+            "sd": "N48"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 1.99289386460312,
+          "sdMv": 0.317578884282239,
+          "cells": {
+            "wavelength": "D49",
+            "mean": "M49",
+            "sd": "N49"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 2.01260411114265,
+          "sdMv": 0.344303453257662,
+          "cells": {
+            "wavelength": "D50",
+            "mean": "M50",
+            "sd": "N50"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh1-high",
+      "receptor": "Rh1",
+      "wavelengthRangeNm": [
+        450,
+        700
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 450,
+          "meanMv": 4.50555381487865,
+          "sdMv": 1.3047229812565,
+          "cells": {
+            "wavelength": "O3",
+            "mean": "P3",
+            "sd": "Q3"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 4.59503973972429,
+          "sdMv": 1.27526634417585,
+          "cells": {
+            "wavelength": "O4",
+            "mean": "P4",
+            "sd": "Q4"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 4.65988513013744,
+          "sdMv": 1.29394426836826,
+          "cells": {
+            "wavelength": "O5",
+            "mean": "P5",
+            "sd": "Q5"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 4.71858620047379,
+          "sdMv": 1.31732796897615,
+          "cells": {
+            "wavelength": "O6",
+            "mean": "P6",
+            "sd": "Q6"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 4.71880523910548,
+          "sdMv": 1.34968738784213,
+          "cells": {
+            "wavelength": "O7",
+            "mean": "P7",
+            "sd": "Q7"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 4.85397220579454,
+          "sdMv": 1.41736667781415,
+          "cells": {
+            "wavelength": "O8",
+            "mean": "P8",
+            "sd": "Q8"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 4.87721978249897,
+          "sdMv": 1.41508970820021,
+          "cells": {
+            "wavelength": "O9",
+            "mean": "P9",
+            "sd": "Q9"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 4.9769352871957,
+          "sdMv": 1.44635586610918,
+          "cells": {
+            "wavelength": "O10",
+            "mean": "P10",
+            "sd": "Q10"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 4.87077120722531,
+          "sdMv": 1.43183842490446,
+          "cells": {
+            "wavelength": "O11",
+            "mean": "P11",
+            "sd": "Q11"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 4.85765882309777,
+          "sdMv": 1.43615187952803,
+          "cells": {
+            "wavelength": "O12",
+            "mean": "P12",
+            "sd": "Q12"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 4.77121308832327,
+          "sdMv": 1.44660973715044,
+          "cells": {
+            "wavelength": "O13",
+            "mean": "P13",
+            "sd": "Q13"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 4.70128326345722,
+          "sdMv": 1.41500173123734,
+          "cells": {
+            "wavelength": "O14",
+            "mean": "P14",
+            "sd": "Q14"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 4.62609140113602,
+          "sdMv": 1.41974682170976,
+          "cells": {
+            "wavelength": "O15",
+            "mean": "P15",
+            "sd": "Q15"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 4.48196502227832,
+          "sdMv": 1.36345173817055,
+          "cells": {
+            "wavelength": "O16",
+            "mean": "P16",
+            "sd": "Q16"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 4.38077405318687,
+          "sdMv": 1.31461295403133,
+          "cells": {
+            "wavelength": "O17",
+            "mean": "P17",
+            "sd": "Q17"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 4.17118234749559,
+          "sdMv": 1.2515206550853,
+          "cells": {
+            "wavelength": "O18",
+            "mean": "P18",
+            "sd": "Q18"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 3.91616093581489,
+          "sdMv": 1.21038147528484,
+          "cells": {
+            "wavelength": "O19",
+            "mean": "P19",
+            "sd": "Q19"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 3.58507155250604,
+          "sdMv": 1.19752069757781,
+          "cells": {
+            "wavelength": "O20",
+            "mean": "P20",
+            "sd": "Q20"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 3.31313538159854,
+          "sdMv": 1.18139203526811,
+          "cells": {
+            "wavelength": "O21",
+            "mean": "P21",
+            "sd": "Q21"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 3.11411655529879,
+          "sdMv": 1.18391930436968,
+          "cells": {
+            "wavelength": "O22",
+            "mean": "P22",
+            "sd": "Q22"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 3.01439683346725,
+          "sdMv": 1.22057745709896,
+          "cells": {
+            "wavelength": "O23",
+            "mean": "P23",
+            "sd": "Q23"
+          }
+        },
+        {
+          "wavelengthNm": 555,
+          "meanMv": 2.91392753960307,
+          "sdMv": 1.20666949983929,
+          "cells": {
+            "wavelength": "O24",
+            "mean": "P24",
+            "sd": "Q24"
+          }
+        },
+        {
+          "wavelengthNm": 560,
+          "meanMv": 2.96996007811533,
+          "sdMv": 1.29422788413444,
+          "cells": {
+            "wavelength": "O25",
+            "mean": "P25",
+            "sd": "Q25"
+          }
+        },
+        {
+          "wavelengthNm": 565,
+          "meanMv": 2.96991430965216,
+          "sdMv": 1.30711807129125,
+          "cells": {
+            "wavelength": "O26",
+            "mean": "P26",
+            "sd": "Q26"
+          }
+        },
+        {
+          "wavelengthNm": 570,
+          "meanMv": 3.07397341290342,
+          "sdMv": 1.40620797369399,
+          "cells": {
+            "wavelength": "O27",
+            "mean": "P27",
+            "sd": "Q27"
+          }
+        },
+        {
+          "wavelengthNm": 575,
+          "meanMv": 3.06723609656418,
+          "sdMv": 1.45264897193665,
+          "cells": {
+            "wavelength": "O28",
+            "mean": "P28",
+            "sd": "Q28"
+          }
+        },
+        {
+          "wavelengthNm": 580,
+          "meanMv": 3.04744388350751,
+          "sdMv": 1.49103588156878,
+          "cells": {
+            "wavelength": "O29",
+            "mean": "P29",
+            "sd": "Q29"
+          }
+        },
+        {
+          "wavelengthNm": 585,
+          "meanMv": 2.92451023174215,
+          "sdMv": 1.49654685331138,
+          "cells": {
+            "wavelength": "O30",
+            "mean": "P30",
+            "sd": "Q30"
+          }
+        },
+        {
+          "wavelengthNm": 590,
+          "meanMv": 2.78841865681451,
+          "sdMv": 1.48951657684823,
+          "cells": {
+            "wavelength": "O31",
+            "mean": "P31",
+            "sd": "Q31"
+          }
+        },
+        {
+          "wavelengthNm": 595,
+          "meanMv": 2.65686983195723,
+          "sdMv": 1.49718429805486,
+          "cells": {
+            "wavelength": "O32",
+            "mean": "P32",
+            "sd": "Q32"
+          }
+        },
+        {
+          "wavelengthNm": 600,
+          "meanMv": 2.49319864538303,
+          "sdMv": 1.4696195252963,
+          "cells": {
+            "wavelength": "O33",
+            "mean": "P33",
+            "sd": "Q33"
+          }
+        },
+        {
+          "wavelengthNm": 605,
+          "meanMv": 2.28049482548407,
+          "sdMv": 1.43827468302124,
+          "cells": {
+            "wavelength": "O34",
+            "mean": "P34",
+            "sd": "Q34"
+          }
+        },
+        {
+          "wavelengthNm": 610,
+          "meanMv": 2.01582552844831,
+          "sdMv": 1.41633274411291,
+          "cells": {
+            "wavelength": "O35",
+            "mean": "P35",
+            "sd": "Q35"
+          }
+        },
+        {
+          "wavelengthNm": 615,
+          "meanMv": 1.74320189619971,
+          "sdMv": 1.39518644972363,
+          "cells": {
+            "wavelength": "O36",
+            "mean": "P36",
+            "sd": "Q36"
+          }
+        },
+        {
+          "wavelengthNm": 620,
+          "meanMv": 1.46362965698236,
+          "sdMv": 1.32230283538551,
+          "cells": {
+            "wavelength": "O37",
+            "mean": "P37",
+            "sd": "Q37"
+          }
+        },
+        {
+          "wavelengthNm": 625,
+          "meanMv": 1.2309704225061,
+          "sdMv": 1.25503365751949,
+          "cells": {
+            "wavelength": "O38",
+            "mean": "P38",
+            "sd": "Q38"
+          }
+        },
+        {
+          "wavelengthNm": 630,
+          "meanMv": 1.03069171349896,
+          "sdMv": 1.1776958689733,
+          "cells": {
+            "wavelength": "O39",
+            "mean": "P39",
+            "sd": "Q39"
+          }
+        },
+        {
+          "wavelengthNm": 635,
+          "meanMv": 0.830411214276585,
+          "sdMv": 1.09484614180303,
+          "cells": {
+            "wavelength": "O40",
+            "mean": "P40",
+            "sd": "Q40"
+          }
+        },
+        {
+          "wavelengthNm": 640,
+          "meanMv": 0.675851854639025,
+          "sdMv": 0.905415146870497,
+          "cells": {
+            "wavelength": "O41",
+            "mean": "P41",
+            "sd": "Q41"
+          }
+        },
+        {
+          "wavelengthNm": 645,
+          "meanMv": 0.598517231044272,
+          "sdMv": 0.759451719447416,
+          "cells": {
+            "wavelength": "O42",
+            "mean": "P42",
+            "sd": "Q42"
+          }
+        },
+        {
+          "wavelengthNm": 650,
+          "meanMv": 0.552220214893298,
+          "sdMv": 0.555808003182772,
+          "cells": {
+            "wavelength": "O43",
+            "mean": "P43",
+            "sd": "Q43"
+          }
+        },
+        {
+          "wavelengthNm": 655,
+          "meanMv": 0.50379249849483,
+          "sdMv": 0.443229285070892,
+          "cells": {
+            "wavelength": "O44",
+            "mean": "P44",
+            "sd": "Q44"
+          }
+        },
+        {
+          "wavelengthNm": 660,
+          "meanMv": 0.395145428920332,
+          "sdMv": 0.279090691253769,
+          "cells": {
+            "wavelength": "O45",
+            "mean": "P45",
+            "sd": "Q45"
+          }
+        },
+        {
+          "wavelengthNm": 665,
+          "meanMv": 0.312000027251645,
+          "sdMv": 0.165814374263012,
+          "cells": {
+            "wavelength": "O46",
+            "mean": "P46",
+            "sd": "Q46"
+          }
+        },
+        {
+          "wavelengthNm": 670,
+          "meanMv": 0.23504543661899,
+          "sdMv": 0.106945024738321,
+          "cells": {
+            "wavelength": "O47",
+            "mean": "P47",
+            "sd": "Q47"
+          }
+        },
+        {
+          "wavelengthNm": 675,
+          "meanMv": 0.188268155598925,
+          "sdMv": 0.0829820694079614,
+          "cells": {
+            "wavelength": "O48",
+            "mean": "P48",
+            "sd": "Q48"
+          }
+        },
+        {
+          "wavelengthNm": 680,
+          "meanMv": 0.189457708600411,
+          "sdMv": 0.0626353193155252,
+          "cells": {
+            "wavelength": "O49",
+            "mean": "P49",
+            "sd": "Q49"
+          }
+        },
+        {
+          "wavelengthNm": 685,
+          "meanMv": 0.166333615649809,
+          "sdMv": 0.0778624067136374,
+          "cells": {
+            "wavelength": "O50",
+            "mean": "P50",
+            "sd": "Q50"
+          }
+        },
+        {
+          "wavelengthNm": 690,
+          "meanMv": 0.175609900569479,
+          "sdMv": 0.0944859543099937,
+          "cells": {
+            "wavelength": "O51",
+            "mean": "P51",
+            "sd": "Q51"
+          }
+        },
+        {
+          "wavelengthNm": 695,
+          "meanMv": 0.184514493963783,
+          "sdMv": 0.0872372143330111,
+          "cells": {
+            "wavelength": "O52",
+            "mean": "P52",
+            "sd": "Q52"
+          }
+        },
+        {
+          "wavelengthNm": 700,
+          "meanMv": 0.238726011819047,
+          "sdMv": 0.104252351068768,
+          "cells": {
+            "wavelength": "O53",
+            "mean": "P53",
+            "sd": "Q53"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Rh6-high",
+      "receptor": "Rh6",
+      "wavelengthRangeNm": [
+        450,
+        700
+      ],
+      "reportedAnimalsPerCurve": 6,
+      "points": [
+        {
+          "wavelengthNm": 450,
+          "meanMv": 0.980709553954951,
+          "sdMv": 0.254550788843812,
+          "cells": {
+            "wavelength": "O3",
+            "mean": "R3",
+            "sd": "S3"
+          }
+        },
+        {
+          "wavelengthNm": 455,
+          "meanMv": 1.01187121908374,
+          "sdMv": 0.285900895741764,
+          "cells": {
+            "wavelength": "O4",
+            "mean": "R4",
+            "sd": "S4"
+          }
+        },
+        {
+          "wavelengthNm": 460,
+          "meanMv": 1.05073928088834,
+          "sdMv": 0.307948603025042,
+          "cells": {
+            "wavelength": "O5",
+            "mean": "R5",
+            "sd": "S5"
+          }
+        },
+        {
+          "wavelengthNm": 465,
+          "meanMv": 1.08482676536582,
+          "sdMv": 0.301246963330101,
+          "cells": {
+            "wavelength": "O6",
+            "mean": "R6",
+            "sd": "S6"
+          }
+        },
+        {
+          "wavelengthNm": 470,
+          "meanMv": 1.12560663508951,
+          "sdMv": 0.292271699755575,
+          "cells": {
+            "wavelength": "O7",
+            "mean": "R7",
+            "sd": "S7"
+          }
+        },
+        {
+          "wavelengthNm": 475,
+          "meanMv": 1.16734112950597,
+          "sdMv": 0.298946036869774,
+          "cells": {
+            "wavelength": "O8",
+            "mean": "R8",
+            "sd": "S8"
+          }
+        },
+        {
+          "wavelengthNm": 480,
+          "meanMv": 1.21787501234396,
+          "sdMv": 0.305594338346901,
+          "cells": {
+            "wavelength": "O9",
+            "mean": "R9",
+            "sd": "S9"
+          }
+        },
+        {
+          "wavelengthNm": 485,
+          "meanMv": 1.2310677219571,
+          "sdMv": 0.307705142643301,
+          "cells": {
+            "wavelength": "O10",
+            "mean": "R10",
+            "sd": "S10"
+          }
+        },
+        {
+          "wavelengthNm": 490,
+          "meanMv": 1.23980781988828,
+          "sdMv": 0.297217594030718,
+          "cells": {
+            "wavelength": "O11",
+            "mean": "R11",
+            "sd": "S11"
+          }
+        },
+        {
+          "wavelengthNm": 495,
+          "meanMv": 1.27374151555492,
+          "sdMv": 0.300117392636582,
+          "cells": {
+            "wavelength": "O12",
+            "mean": "R12",
+            "sd": "S12"
+          }
+        },
+        {
+          "wavelengthNm": 500,
+          "meanMv": 1.32350664846081,
+          "sdMv": 0.298056813597428,
+          "cells": {
+            "wavelength": "O13",
+            "mean": "R13",
+            "sd": "S13"
+          }
+        },
+        {
+          "wavelengthNm": 505,
+          "meanMv": 1.37972339098928,
+          "sdMv": 0.293416728468682,
+          "cells": {
+            "wavelength": "O14",
+            "mean": "R14",
+            "sd": "S14"
+          }
+        },
+        {
+          "wavelengthNm": 510,
+          "meanMv": 1.40825008990945,
+          "sdMv": 0.322684255828422,
+          "cells": {
+            "wavelength": "O15",
+            "mean": "R15",
+            "sd": "S15"
+          }
+        },
+        {
+          "wavelengthNm": 515,
+          "meanMv": 1.43836267590633,
+          "sdMv": 0.353064473082588,
+          "cells": {
+            "wavelength": "O16",
+            "mean": "R16",
+            "sd": "S16"
+          }
+        },
+        {
+          "wavelengthNm": 520,
+          "meanMv": 1.45657686378939,
+          "sdMv": 0.36163902691484,
+          "cells": {
+            "wavelength": "O17",
+            "mean": "R17",
+            "sd": "S17"
+          }
+        },
+        {
+          "wavelengthNm": 525,
+          "meanMv": 1.46133752197932,
+          "sdMv": 0.355285020096934,
+          "cells": {
+            "wavelength": "O18",
+            "mean": "R18",
+            "sd": "S18"
+          }
+        },
+        {
+          "wavelengthNm": 530,
+          "meanMv": 1.46593325037634,
+          "sdMv": 0.33876007845767,
+          "cells": {
+            "wavelength": "O19",
+            "mean": "R19",
+            "sd": "S19"
+          }
+        },
+        {
+          "wavelengthNm": 535,
+          "meanMv": 1.46843486266237,
+          "sdMv": 0.358720617997995,
+          "cells": {
+            "wavelength": "O20",
+            "mean": "R20",
+            "sd": "S20"
+          }
+        },
+        {
+          "wavelengthNm": 540,
+          "meanMv": 1.48877972889748,
+          "sdMv": 0.374227998084716,
+          "cells": {
+            "wavelength": "O21",
+            "mean": "R21",
+            "sd": "S21"
+          }
+        },
+        {
+          "wavelengthNm": 545,
+          "meanMv": 1.5389744904037,
+          "sdMv": 0.389755806726028,
+          "cells": {
+            "wavelength": "O22",
+            "mean": "R22",
+            "sd": "S22"
+          }
+        },
+        {
+          "wavelengthNm": 550,
+          "meanMv": 1.58826624677208,
+          "sdMv": 0.40037093358044,
+          "cells": {
+            "wavelength": "O23",
+            "mean": "R23",
+            "sd": "S23"
+          }
+        },
+        {
+          "wavelengthNm": 555,
+          "meanMv": 1.66094672607596,
+          "sdMv": 0.413304764051544,
+          "cells": {
+            "wavelength": "O24",
+            "mean": "R24",
+            "sd": "S24"
+          }
+        },
+        {
+          "wavelengthNm": 560,
+          "meanMv": 1.75959450974362,
+          "sdMv": 0.465277070571726,
+          "cells": {
+            "wavelength": "O25",
+            "mean": "R25",
+            "sd": "S25"
+          }
+        },
+        {
+          "wavelengthNm": 565,
+          "meanMv": 1.87347886692961,
+          "sdMv": 0.495565615731718,
+          "cells": {
+            "wavelength": "O26",
+            "mean": "R26",
+            "sd": "S26"
+          }
+        },
+        {
+          "wavelengthNm": 570,
+          "meanMv": 1.98101687830469,
+          "sdMv": 0.521408027798736,
+          "cells": {
+            "wavelength": "O27",
+            "mean": "R27",
+            "sd": "S27"
+          }
+        },
+        {
+          "wavelengthNm": 575,
+          "meanMv": 2.04898388181326,
+          "sdMv": 0.513419260638656,
+          "cells": {
+            "wavelength": "O28",
+            "mean": "R28",
+            "sd": "S28"
+          }
+        },
+        {
+          "wavelengthNm": 580,
+          "meanMv": 2.13417740532891,
+          "sdMv": 0.519225008522948,
+          "cells": {
+            "wavelength": "O29",
+            "mean": "R29",
+            "sd": "S29"
+          }
+        },
+        {
+          "wavelengthNm": 585,
+          "meanMv": 2.20536469615645,
+          "sdMv": 0.510778368258893,
+          "cells": {
+            "wavelength": "O30",
+            "mean": "R30",
+            "sd": "S30"
+          }
+        },
+        {
+          "wavelengthNm": 590,
+          "meanMv": 2.2563647781646,
+          "sdMv": 0.511287436873495,
+          "cells": {
+            "wavelength": "O31",
+            "mean": "R31",
+            "sd": "S31"
+          }
+        },
+        {
+          "wavelengthNm": 595,
+          "meanMv": 2.27329139548848,
+          "sdMv": 0.514856698937625,
+          "cells": {
+            "wavelength": "O32",
+            "mean": "R32",
+            "sd": "S32"
+          }
+        },
+        {
+          "wavelengthNm": 600,
+          "meanMv": 2.28053064129195,
+          "sdMv": 0.517168273318362,
+          "cells": {
+            "wavelength": "O33",
+            "mean": "R33",
+            "sd": "S33"
+          }
+        },
+        {
+          "wavelengthNm": 605,
+          "meanMv": 2.27865061001384,
+          "sdMv": 0.516393379074415,
+          "cells": {
+            "wavelength": "O34",
+            "mean": "R34",
+            "sd": "S34"
+          }
+        },
+        {
+          "wavelengthNm": 610,
+          "meanMv": 2.2708388074743,
+          "sdMv": 0.49427543140778,
+          "cells": {
+            "wavelength": "O35",
+            "mean": "R35",
+            "sd": "S35"
+          }
+        },
+        {
+          "wavelengthNm": 615,
+          "meanMv": 2.25120629453629,
+          "sdMv": 0.478107331931358,
+          "cells": {
+            "wavelength": "O36",
+            "mean": "R36",
+            "sd": "S36"
+          }
+        },
+        {
+          "wavelengthNm": 620,
+          "meanMv": 2.20618220718656,
+          "sdMv": 0.42090159054946,
+          "cells": {
+            "wavelength": "O37",
+            "mean": "R37",
+            "sd": "S37"
+          }
+        },
+        {
+          "wavelengthNm": 625,
+          "meanMv": 2.13619155552091,
+          "sdMv": 0.400003346406513,
+          "cells": {
+            "wavelength": "O38",
+            "mean": "R38",
+            "sd": "S38"
+          }
+        },
+        {
+          "wavelengthNm": 630,
+          "meanMv": 2.04841167432883,
+          "sdMv": 0.374080996791361,
+          "cells": {
+            "wavelength": "O39",
+            "mean": "R39",
+            "sd": "S39"
+          }
+        },
+        {
+          "wavelengthNm": 635,
+          "meanMv": 1.95486123920168,
+          "sdMv": 0.385846826016221,
+          "cells": {
+            "wavelength": "O40",
+            "mean": "R40",
+            "sd": "S40"
+          }
+        },
+        {
+          "wavelengthNm": 640,
+          "meanMv": 1.80900391865385,
+          "sdMv": 0.363729590397947,
+          "cells": {
+            "wavelength": "O41",
+            "mean": "R41",
+            "sd": "S41"
+          }
+        },
+        {
+          "wavelengthNm": 645,
+          "meanMv": 1.6388447201138,
+          "sdMv": 0.352674193431974,
+          "cells": {
+            "wavelength": "O42",
+            "mean": "R42",
+            "sd": "S42"
+          }
+        },
+        {
+          "wavelengthNm": 650,
+          "meanMv": 1.44606102524735,
+          "sdMv": 0.337590849710933,
+          "cells": {
+            "wavelength": "O43",
+            "mean": "R43",
+            "sd": "S43"
+          }
+        },
+        {
+          "wavelengthNm": 655,
+          "meanMv": 1.25211711786131,
+          "sdMv": 0.324522848360154,
+          "cells": {
+            "wavelength": "O44",
+            "mean": "R44",
+            "sd": "S44"
+          }
+        },
+        {
+          "wavelengthNm": 660,
+          "meanMv": 1.03841314695545,
+          "sdMv": 0.300077563503511,
+          "cells": {
+            "wavelength": "O45",
+            "mean": "R45",
+            "sd": "S45"
+          }
+        },
+        {
+          "wavelengthNm": 665,
+          "meanMv": 0.826946060211778,
+          "sdMv": 0.272446938617182,
+          "cells": {
+            "wavelength": "O46",
+            "mean": "R46",
+            "sd": "S46"
+          }
+        },
+        {
+          "wavelengthNm": 670,
+          "meanMv": 0.672603384760634,
+          "sdMv": 0.250503632883299,
+          "cells": {
+            "wavelength": "O47",
+            "mean": "R47",
+            "sd": "S47"
+          }
+        },
+        {
+          "wavelengthNm": 675,
+          "meanMv": 0.527235070240324,
+          "sdMv": 0.229092291606606,
+          "cells": {
+            "wavelength": "O48",
+            "mean": "R48",
+            "sd": "S48"
+          }
+        },
+        {
+          "wavelengthNm": 680,
+          "meanMv": 0.426803186963206,
+          "sdMv": 0.195587863925418,
+          "cells": {
+            "wavelength": "O49",
+            "mean": "R49",
+            "sd": "S49"
+          }
+        },
+        {
+          "wavelengthNm": 685,
+          "meanMv": 0.318860140556157,
+          "sdMv": 0.147241020255315,
+          "cells": {
+            "wavelength": "O50",
+            "mean": "R50",
+            "sd": "S50"
+          }
+        },
+        {
+          "wavelengthNm": 690,
+          "meanMv": 0.258256656462779,
+          "sdMv": 0.117042433658792,
+          "cells": {
+            "wavelength": "O51",
+            "mean": "R51",
+            "sd": "S51"
+          }
+        },
+        {
+          "wavelengthNm": 695,
+          "meanMv": 0.226331555094497,
+          "sdMv": 0.0939756681512642,
+          "cells": {
+            "wavelength": "O52",
+            "mean": "R52",
+            "sd": "S52"
+          }
+        },
+        {
+          "wavelengthNm": 700,
+          "meanMv": 0.22376015532865,
+          "sdMv": 0.0858684486452825,
+          "cells": {
+            "wavelength": "O53",
+            "mean": "R53",
+            "sd": "S53"
+          }
+        }
+      ]
+    }
+  ],
+  "unitsSource": "Supplementary Figure S6, PDF page 7: photoreceptor response (mV)",
+  "dataLevel": "published processed curve means and between-animal SD, not raw individual traces",
+  "rawAnimalRecordsAvailable": false,
+  "sourceFormulasEvaluated": false,
+  "extractorSha256": "0c9f2b3d063798169efdfa656124cf861b53b153270732e8fdc8983fefebca15"
+}

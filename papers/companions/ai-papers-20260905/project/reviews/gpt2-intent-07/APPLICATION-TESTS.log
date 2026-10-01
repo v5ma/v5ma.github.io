@@ -1,0 +1,56 @@
+test_jacobian_matches_numerical_derivative (test_labs.CausalTests.test_jacobian_matches_numerical_derivative) ... ok
+test_route_lesion_removes_only_unit_influence (test_labs.CausalTests.test_route_lesion_removes_only_unit_influence) ... ok
+test_training_reduces_loss (test_labs.CausalTests.test_training_reduces_loss) ... ok
+test_world_target_binding (test_labs.CausalTests.test_world_target_binding) ... ok
+test_all_finite_delegation_masks (test_labs.CommitmentTests.test_all_finite_delegation_masks) ... ok
+test_forgery_and_replay_rejected (test_labs.CommitmentTests.test_forgery_and_replay_rejected) ... ok
+test_revocation_rejects_old_proposal (test_labs.CommitmentTests.test_revocation_rejects_old_proposal) ... ok
+test_signed_body_cannot_be_changed (test_labs.CommitmentTests.test_signed_body_cannot_be_changed) ... ok
+test_stale_proposal_rejected_even_if_scope_unchanged (test_labs.CommitmentTests.test_stale_proposal_rejected_even_if_scope_unchanged) ... ok
+test_trivial_safety_and_real_use_are_separate (test_labs.CommitmentTests.test_trivial_safety_and_real_use_are_separate) ... ok
+test_batch_only_intervenes_on_named_unit (test_protocol_v2.DonorClosureTests.test_batch_only_intervenes_on_named_unit) ... ok
+test_disjoint_complete_worlds (test_protocol_v2.DonorClosureTests.test_disjoint_complete_worlds) ... ok
+test_every_planned_donor_is_in_same_split (test_protocol_v2.DonorClosureTests.test_every_planned_donor_is_in_same_split) ... ok
+test_irrelevant_grant_preserves_task_truth (test_protocol_v2.DonorClosureTests.test_irrelevant_grant_preserves_task_truth) ... ok
+test_stratification_and_family_sizes (test_protocol_v2.DonorClosureTests.test_stratification_and_family_sizes) ... ok
+test_cycles_rejected (test_context_provenance_v3.ContextProvenanceTests.test_cycles_rejected) ... ok
+test_mixed_origins_preserved (test_context_provenance_v3.ContextProvenanceTests.test_mixed_origins_preserved) ... ok
+test_passive_fixed_point_error_identity (test_context_provenance_v3.ContextProvenanceTests.test_passive_fixed_point_error_identity) ... ok
+test_score_rounding (test_context_provenance_v3.ContextProvenanceTests.test_score_rounding) ... ok
+test_unknown_ancestor_propagates (test_context_provenance_v3.ContextProvenanceTests.test_unknown_ancestor_propagates) ... ok
+test_unknown_is_not_public (test_context_provenance_v3.ContextProvenanceTests.test_unknown_is_not_public) ... ok
+test_exact_restoration_both_wirings (test_active_receiver_v4.ActiveReceiverTests.test_exact_restoration_both_wirings) ... ok
+test_invalid_numbers_types_and_dimensions (test_active_receiver_v4.ActiveReceiverTests.test_invalid_numbers_types_and_dimensions) ... ok
+test_persistence_and_external_equivalence (test_active_receiver_v4.ActiveReceiverTests.test_persistence_and_external_equivalence) ... ok
+test_replay_stale_phase_and_forgery_preserve_state (test_active_receiver_v4.ActiveReceiverTests.test_replay_stale_phase_and_forgery_preserve_state) ... ok
+test_signed_update_changes_one_action (test_active_receiver_v4.ActiveReceiverTests.test_signed_update_changes_one_action) ... ok
+test_unverified_negative_control_accepts_real_argument (test_active_receiver_v4.ActiveReceiverTests.test_unverified_negative_control_accepts_real_argument) ... ok
+test_actual_update_interface_rejects_forgery_and_replay (test_gpt2_v5.GPT2Tests.test_actual_update_interface_rejects_forgery_and_replay) ... ok
+test_cache_reset_is_context_change_not_weight_learning (test_gpt2_v5.GPT2Tests.test_cache_reset_is_context_change_not_weight_learning) ... ok
+test_intervention_reaches_actual_graph_tensor (test_gpt2_v5.GPT2Tests.test_intervention_reaches_actual_graph_tensor) ... ok
+test_noop_and_self_replacement_are_identical (test_gpt2_v5.GPT2Tests.test_noop_and_self_replacement_are_identical) ... ok
+test_norm_matched_control_and_degenerate_failure (test_gpt2_v5.GPT2Tests.test_norm_matched_control_and_degenerate_failure) ... ok
+test_saved_development_baseline_has_native_recipient (test_gpt2_v5.GPT2Tests.test_saved_development_baseline_has_native_recipient) ... ok
+test_wrong_hook_and_shape_rejected (test_gpt2_v5.GPT2Tests.test_wrong_hook_and_shape_rejected) ... ok
+test_equal_feedback_means_no_update (test_gpt2_learning_v6.LearnedCorrectionTests.test_equal_feedback_means_no_update) ... ok
+test_finite_coordinate_and_step_schema (test_gpt2_learning_v6.LearnedCorrectionTests.test_finite_coordinate_and_step_schema) ... ok
+test_measurement_bound_to_parameter_source (test_gpt2_learning_v6.LearnedCorrectionTests.test_measurement_bound_to_parameter_source) ... ok
+test_parameter_and_edit_caps (test_gpt2_learning_v6.LearnedCorrectionTests.test_parameter_and_edit_caps) ... ok
+test_signature_disabled_is_live_negative_control (test_gpt2_learning_v6.LearnedCorrectionTests.test_signature_disabled_is_live_negative_control) ... ok
+test_signature_tamper_and_replay (test_gpt2_learning_v6.LearnedCorrectionTests.test_signature_tamper_and_replay) ... ok
+test_signed_feedback_changes_a_real_parameter (test_gpt2_learning_v6.LearnedCorrectionTests.test_signed_feedback_changes_a_real_parameter) ... ok
+test_uncapped_reft_affine_identity (test_gpt2_learning_v6.LearnedCorrectionTests.test_uncapped_reft_affine_identity) ... ok
+test_actual_authority_transitions (test_gpt2_intent_v7.IntentControls.test_actual_authority_transitions) ... ok
+test_cap_breaks_involution (test_gpt2_intent_v7.IntentControls.test_cap_breaks_involution) ... ok
+test_color_is_not_an_action_or_swapped_target (test_gpt2_intent_v7.IntentControls.test_color_is_not_an_action_or_swapped_target) ... ok
+test_double_reflection (test_gpt2_intent_v7.IntentControls.test_double_reflection) ... ok
+test_intent_aware_keep_and_swap (test_gpt2_intent_v7.IntentControls.test_intent_aware_keep_and_swap) ... ok
+test_intent_controls_are_distinct (test_gpt2_intent_v7.IntentControls.test_intent_controls_are_distinct) ... ok
+test_known_affine_special_case (test_gpt2_intent_v7.IntentControls.test_known_affine_special_case) ... ok
+test_orthogonal_complement (test_gpt2_intent_v7.IntentControls.test_orthogonal_complement) ... ok
+test_role_and_intent_targets (test_gpt2_intent_v7.IntentControls.test_role_and_intent_targets) ... ok
+
+----------------------------------------------------------------------
+Ran 51 tests in 1.764s
+
+OK

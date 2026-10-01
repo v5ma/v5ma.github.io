@@ -1,0 +1,17 @@
+{
+  "approved_for_this_local_run": true,
+  "approval_kind": "Authoring-agent compatibility and resource gate within the user's authorized two-paper application work; not a new human approval or release approval",
+  "date": "2026-09-05",
+  "plan_sha256": "564e74e858f53b07ffefba0fdd54acdb4cd1587ced9a303bb33aa1a84aac3b4f",
+  "baseline_protocol_sha256": "38d04ffe3514f2681fb0a7e2758845315ab1ccb4868968f4c9e3fa849baea06f",
+  "runtime_receipt": "../../runtime-dependencies/onnxruntime-1.29.0/INTAKE-RECEIPT.json",
+  "required_cpu_operations_verified": ["LinearAttention", "CausalConvWithState", "GroupQueryAttention", "MatMulNBits", "GatherBlockQuantized"],
+  "existing_runtime_missing": ["LinearAttention", "CausalConvWithState"],
+  "new_runtime_isolated": true,
+  "free_ram_bytes_at_gate": 22432669696,
+  "free_d_bytes_at_gate": 784592703488,
+  "selected_weight_bytes": 646553600,
+  "vision_or_full_repository_fetch": false,
+  "model_inference_already_executed": false,
+  "semantic_success_implied": false
+}

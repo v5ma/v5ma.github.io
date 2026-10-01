@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "all_metric_fields_recomputed": 30,
+  "authority_outcome_rows_recomputed": 1800,
+  "heldout_families": 8,
+  "names_disjoint": true,
+  "independent_review": false,
+  "auditor_sha256": "de7c1f3582d48fe8953937dbe33897dfe445cf0af88349a309d8410d166bf5c4"
+}

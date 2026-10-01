@@ -1,0 +1,46 @@
+{
+  "createdUtc": "2026-09-19T20:43:02.259485+00:00",
+  "seconds": 0.12992859998485073,
+  "episodes": 96,
+  "stepsPerEpisode": 24,
+  "recordedEpisodeEvents": 2304,
+  "checksPassed": 205,
+  "checksTotal": 205,
+  "planSha256": "70430db6a79a0bda2f9659a20d7914f215bcaa6931ab5c5076b0f154ce8871f9",
+  "controllerSha256": "6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+  "runnerSha256": "061f346eb13ea2fad383759d5fa52551002c4f4eb49739355f335773dec0b2ed",
+  "outputs": {
+    "EPISODES.json": "13f87d37f42fc7a3398cb6e97bcc285d32cb1523ad6712f206635d0cd7bbfe89",
+    "METRICS.json": "10105429e7e9ae00998fa60d91863dbb29befc98b91233b3121b8a89028e7efa",
+    "CONTROLS.json": "84aee36dab882dbf12ece5fe5376f2ca5243964e8466a9d297cd310c689af865"
+  },
+  "numericThreads": 1,
+  "episodeValuesUnchangedByInterfaceRepair": true,
+  "priorEpisodeSha256": "13f87d37f42fc7a3398cb6e97bcc285d32cb1523ad6712f206635d0cd7bbfe89",
+  "controllerSettings": {
+    "calibrationRate": 0.5,
+    "desiredStandoff": 0.15,
+    "initialGainEstimate": 1.0,
+    "maxCommand": 0.4,
+    "maxInferredAgeForMovement": 5,
+    "motionAssociationTolerance": 0.22,
+    "otherReflectance": [
+      0.25,
+      0.45,
+      0.35,
+      0.2
+    ],
+    "spectralDistanceTolerance": 0.04,
+    "targetReflectance": [
+      0.25,
+      0.45,
+      0.35,
+      0.8
+    ]
+  },
+  "newBiologicalData": false,
+  "SANMechanismImplemented": false,
+  "nativeFlyPhysiology": false,
+  "heldOutEvaluation": false,
+  "scope": "Connected engineered environment and conventional comparator; not full SAN construction"
+}

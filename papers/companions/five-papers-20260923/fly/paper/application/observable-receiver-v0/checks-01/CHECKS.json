@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "assertionCallsIncludingExpectedMutationFailures": 126048,
+  "mainEpisodes": 144,
+  "mainEvents": 3456,
+  "scalarOutputOnlyEvents": 2304,
+  "exactPreservedReferenceEvents": 1152,
+  "detectedMutations": [
+    {
+      "mutation": "hidden-latent-field",
+      "rejectedBy": "terminal sample allowlist"
+    },
+    {
+      "mutation": "false-terminal",
+      "rejectedBy": "physical output crosses interface"
+    },
+    {
+      "mutation": "silent-observer-reset",
+      "rejectedBy": "observer prior continuity"
+    },
+    {
+      "mutation": "false-estimated-state",
+      "rejectedBy": "complete reconstructed decision state"
+    },
+    {
+      "mutation": "unobserved-view",
+      "rejectedBy": "view actually acquired, not prediction"
+    },
+    {
+      "mutation": "invented-decoding",
+      "rejectedBy": "decoded values, including zero-drive absence"
+    },
+    {
+      "mutation": "false-query",
+      "rejectedBy": "selected movement and information query"
+    },
+    {
+      "mutation": "false-body-return",
+      "rejectedBy": "actual body return"
+    }
+  ],
+  "caseReceipts": {
+    "prior-state-reference": "b5273f0b4767b98212a8d9360eba0a6cd8ba8cda4048a0f3593440ab911609c4",
+    "direct-learned-reference": "dcb08a49bcb53ebc1ccf20e02fc85243b3d113416815aef37ac113807f3837a8",
+    "current-output-only": "a1a7e56ded1221aa4d4db30766a32f0ba2bc639abfe6959652646dd5595b3a55",
+    "output-history-observer": "6d24a6c9a24c90bb1b1db56593392020259c6248eea6ee00d3a469c6e5a1511b",
+    "observer-unknown-initial-state": "3c7c48ca978b156373e4d538d73cc634d999156a0f052a72b312e1c76dcc9cb3",
+    "observer-time-constant-mismatch": "d8f0f5e49e98409584d922012e117294b6d2816c8de88496148360ff7467e0d9"
+  },
+  "checkerSha256": "e77f6cc72f38f7311ae835fad479a7f71e7f58aa2bf62c5f6ee05b637b9d82f9",
+  "scalarHelperSha256": "01ea0498539eaf6fd12f233b100ee32f680b7ac320123fb61f04693b0e011705",
+  "resultsSha256": "07d16afe616247205f5e7483277c9c86bde4a1cd1764e12f86e074666cd89587",
+  "seconds": 1.6610881999949925,
+  "priority": "BELOW_NORMAL_PRIORITY_CLASS, verified",
+  "independentReview": false
+}

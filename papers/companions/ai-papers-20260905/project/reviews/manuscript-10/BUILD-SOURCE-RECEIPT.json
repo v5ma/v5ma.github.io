@@ -1,0 +1,25 @@
+{
+  "approved_donor": "D:\\micahone\\vscode v5ma\\paper-development\\super-evolution-theory-vnext-20260809\\tools\\build_final_preprint_tex.py",
+  "donor_sha256": "55192ca3ac202e0832747503bd3eaa0dd078e0449a2d537f935f370a5214e7f1",
+  "papers": [
+    {
+      "source": "core-alignment\\drafts\\DRAFT-10-20260905.md",
+      "source_sha256": "a5467793ff6add986eb9075d968e0ca82764762dea508d853391cbc9916ba958",
+      "tex": "output\\tex\\core-alignment.tex",
+      "tex_sha256": "120a831cb9b3d016462ea2e4ed2f3d55c5c11f077f28bbcbe3dc4696ee419d2a",
+      "words": 5208
+    },
+    {
+      "source": "mechanistic-interpretability\\drafts\\DRAFT-10-20260905.md",
+      "source_sha256": "85965df683c8f03e2272784a8fb325cad237f5bfc12ea71ef77841ba267c8315",
+      "tex": "output\\tex\\mechanistic-interpretability.tex",
+      "tex_sha256": "0cc9a4bbc2c191510fc0c4e8f46824440f48ba4a3906b2c6385c091397c76940",
+      "words": 6195
+    }
+  ],
+  "figure": {
+    "path": "figures\\manuscript-10\\authority-system-context.png",
+    "sha256": "b9ecd83982e12ddc65d07459a1b233255384bad7170560012276f879bbdcb07f"
+  },
+  "scope": "TeX and diagram generation only; PDF compile and visual acceptance are separate"
+}

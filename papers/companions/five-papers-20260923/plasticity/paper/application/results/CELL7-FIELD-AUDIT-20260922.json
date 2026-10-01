@@ -1,0 +1,163 @@
+{
+  "scope": "Pinned public BTSP cell-7 source field contract; no biological effect inference",
+  "source_commit": "90bfae6e87da602ec3b28afe4c5a2fd0c71acec3",
+  "source_urls": {
+    "151203.txt": "https://raw.githubusercontent.com/neurosutras/BTSP/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/151203.txt",
+    "151203_4ii.txt": "https://raw.githubusercontent.com/neurosutras/BTSP/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/data/BTSP/151203_4ii.txt",
+    "process_biBTSP_data_config.yaml": "https://raw.githubusercontent.com/neurosutras/BTSP/90bfae6e87da602ec3b28afe4c5a2fd0c71acec3/config/process_biBTSP_data_config.yaml"
+  },
+  "source_hashes_sha256": {
+    "151203.txt": "E024520AAC88D358731F3B800817EECA3074763F526BC00F0875A6D054CC553D",
+    "151203_4ii.txt": "27FF674B3AACC9FCED85164458DF9C5DAF676A377026931DB8723EFB8292FADF",
+    "process_biBTSP_data_config.yaml": "F216718B45DA4915ABBA93A205D7BDA1AE0C8EA4FD2FFB703154B3A08F225AD9",
+    "process_biBTSP_data.py": "E38DD0A3E5736138B5C1615644260D3AFEC5FF5B637DBDE09BE7037F442B3844",
+    "112916-magee-data-legend.txt": "85501595A100901B20DEC4A96B3B43E41AE499031DEBE83E64D51EA7F9E0445B",
+    "011717-metaplasticity-data-legend.txt": "3BFE822140C72B7AF42072FF0525470C0CA3F2870A8CA4D0A53FBD4BB7A82221"
+  },
+  "raw_source_git_blob_sha1": {
+    "151203.txt": "ACBFC4832267BB39E0E600EE841137A330AB734B",
+    "151203_4ii.txt": "5D44DC3A4F3FCBF8DCD80DB247672A55979582F9"
+  },
+  "checks": {
+    "six_pinned_source_hashes_match": true,
+    "two_pinned_raw_git_blob_ids_match_provider": true,
+    "cell7_yaml_field_map_matches_declared_contract": true,
+    "legends_name_same_cell_pair": true,
+    "induction_1_columns_unique_rectangular_numeric_finite": true,
+    "induction_1_five_mapped_lap_pairs_equal_length": true,
+    "induction_1_before_after_ramps_100_samples": true,
+    "induction_2_columns_unique_rectangular_numeric_finite": true,
+    "induction_2_five_mapped_lap_pairs_equal_length": true,
+    "induction_2_before_after_ramps_100_samples": true,
+    "different_configured_sample_rates_retained": true
+  },
+  "tables": {
+    "induction_1": {
+      "source_file": "151203.txt",
+      "rows": 14210,
+      "columns": 23,
+      "configured_sampling_rate_hz": 1000.0,
+      "lap_pairs": [
+        {
+          "position_header": "lap4_30_samp",
+          "current_header": "cur4_30_samp",
+          "position_samples": 12088,
+          "current_samples": 12088,
+          "duration_seconds_from_configured_rate": 12.088
+        },
+        {
+          "position_header": "lap4_31_samp",
+          "current_header": "cur4_31_samp",
+          "position_samples": 14210,
+          "current_samples": 14210,
+          "duration_seconds_from_configured_rate": 14.21
+        },
+        {
+          "position_header": "lap4_32_samp",
+          "current_header": "cur4_32_samp",
+          "position_samples": 8334,
+          "current_samples": 8334,
+          "duration_seconds_from_configured_rate": 8.334
+        },
+        {
+          "position_header": "lap4_33_samp",
+          "current_header": "cur4_33_samp",
+          "position_samples": 12878,
+          "current_samples": 12878,
+          "duration_seconds_from_configured_rate": 12.878
+        },
+        {
+          "position_header": "lap4_34_samp",
+          "current_header": "cur4_34_samp",
+          "position_samples": 11482,
+          "current_samples": 11482,
+          "duration_seconds_from_configured_rate": 11.482
+        }
+      ],
+      "ramps": {
+        "before": {
+          "header": "rp2529",
+          "samples": 100
+        },
+        "after": {
+          "header": "rp3548",
+          "samples": 100
+        }
+      },
+      "additional_columns_not_used_in_this_field_contract": [
+        "rp5463",
+        "lap4_49_samp",
+        "lap4_50_samp",
+        "lap4_51_samp",
+        "lap4_52_samp",
+        "lap4_53_samp",
+        "cur4_49_samp",
+        "cur4_50_samp",
+        "cur4_51_samp",
+        "cur4_52_samp",
+        "cur4_53_samp"
+      ],
+      "nontrailing_missing_columns": []
+    },
+    "induction_2": {
+      "source_file": "151203_4ii.txt",
+      "rows": 294318,
+      "columns": 14,
+      "configured_sampling_rate_hz": 20000.0,
+      "lap_pairs": [
+        {
+          "position_header": "lap4_49",
+          "current_header": "cur4_49",
+          "position_samples": 170262,
+          "current_samples": 170262,
+          "duration_seconds_from_configured_rate": 8.5131
+        },
+        {
+          "position_header": "lap4_50",
+          "current_header": "cur4_50",
+          "position_samples": 196662,
+          "current_samples": 196662,
+          "duration_seconds_from_configured_rate": 9.8331
+        },
+        {
+          "position_header": "lap4_51",
+          "current_header": "cur4_51",
+          "position_samples": 199504,
+          "current_samples": 199504,
+          "duration_seconds_from_configured_rate": 9.9752
+        },
+        {
+          "position_header": "lap4_52",
+          "current_header": "cur4_52",
+          "position_samples": 149098,
+          "current_samples": 149098,
+          "duration_seconds_from_configured_rate": 7.4549
+        },
+        {
+          "position_header": "lap4_53",
+          "current_header": "cur4_53",
+          "position_samples": 182774,
+          "current_samples": 182774,
+          "duration_seconds_from_configured_rate": 9.1387
+        }
+      ],
+      "ramps": {
+        "before": {
+          "header": "jt1",
+          "samples": 100
+        },
+        "after": {
+          "header": "rp5480",
+          "samples": 100
+        }
+      },
+      "additional_columns_not_used_in_this_field_contract": [
+        "lap4_48",
+        "cur4_48"
+      ],
+      "nontrailing_missing_columns": []
+    }
+  },
+  "interpretation_limit": "The pair contains position, current and pre/post ramp fields for one selected cell. No measured pre-event SAN correspondence, differential persistence, phase reference, dendritic eligibility trace or independently matched later probe is identified here. Rows and within-cell laps are not independent animals.",
+  "redistribution": "No repository license was declared in the checked GitHub metadata; keep source bytes private pending rights review."
+}

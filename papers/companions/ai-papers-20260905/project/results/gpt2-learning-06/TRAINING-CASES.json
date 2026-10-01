@@ -1,0 +1,182 @@
+[
+  {
+    "id": "F00_John",
+    "family": "F00",
+    "prompt": "When John and Mary went to the store, John gave a book to",
+    "ids": [
+      2215,
+      1757,
+      290,
+      5335,
+      1816,
+      284,
+      262,
+      3650,
+      11,
+      1757,
+      2921,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "John",
+    "other": "Mary"
+  },
+  {
+    "id": "F00_Mary",
+    "family": "F00",
+    "prompt": "When John and Mary went to the store, Mary gave a book to",
+    "ids": [
+      2215,
+      1757,
+      290,
+      5335,
+      1816,
+      284,
+      262,
+      3650,
+      11,
+      5335,
+      2921,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Mary",
+    "other": "John"
+  },
+  {
+    "id": "F01_Tom",
+    "family": "F01",
+    "prompt": "When Tom and Sarah went to the store, Tom gave a book to",
+    "ids": [
+      2215,
+      4186,
+      290,
+      10490,
+      1816,
+      284,
+      262,
+      3650,
+      11,
+      4186,
+      2921,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Tom",
+    "other": "Sarah"
+  },
+  {
+    "id": "F01_Sarah",
+    "family": "F01",
+    "prompt": "When Tom and Sarah went to the store, Sarah gave a book to",
+    "ids": [
+      2215,
+      4186,
+      290,
+      10490,
+      1816,
+      284,
+      262,
+      3650,
+      11,
+      10490,
+      2921,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Sarah",
+    "other": "Tom"
+  },
+  {
+    "id": "F02_John",
+    "family": "F02",
+    "prompt": "After John and Mary visited the park, John handed a book to",
+    "ids": [
+      3260,
+      1757,
+      290,
+      5335,
+      8672,
+      262,
+      3952,
+      11,
+      1757,
+      10158,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "John",
+    "other": "Mary"
+  },
+  {
+    "id": "F02_Mary",
+    "family": "F02",
+    "prompt": "After John and Mary visited the park, Mary handed a book to",
+    "ids": [
+      3260,
+      1757,
+      290,
+      5335,
+      8672,
+      262,
+      3952,
+      11,
+      5335,
+      10158,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Mary",
+    "other": "John"
+  },
+  {
+    "id": "F03_Tom",
+    "family": "F03",
+    "prompt": "After Tom and Sarah visited the park, Tom handed a book to",
+    "ids": [
+      3260,
+      4186,
+      290,
+      10490,
+      8672,
+      262,
+      3952,
+      11,
+      4186,
+      10158,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Tom",
+    "other": "Sarah"
+  },
+  {
+    "id": "F03_Sarah",
+    "family": "F03",
+    "prompt": "After Tom and Sarah visited the park, Sarah handed a book to",
+    "ids": [
+      3260,
+      4186,
+      290,
+      10490,
+      8672,
+      262,
+      3952,
+      11,
+      10490,
+      10158,
+      257,
+      1492,
+      284
+    ],
+    "recipient": "Sarah",
+    "other": "Tom"
+  }
+]

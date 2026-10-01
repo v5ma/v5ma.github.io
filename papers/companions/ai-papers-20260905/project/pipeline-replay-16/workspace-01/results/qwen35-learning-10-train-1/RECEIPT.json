@@ -1,0 +1,37 @@
+{
+  "status": "TRAINING_FEATURES_COLLECTED_NOT_TESTED",
+  "batch": 1,
+  "case_ids": [
+    "train/context-0/pair-1/black/0",
+    "train/context-0/pair-1/black/1",
+    "train/context-0/pair-1/white/0",
+    "train/context-0/pair-1/white/1"
+  ],
+  "prepared_receipt_sha256": "743eea56b4bc9e57cc507389f33e655d67655d3e3fb83f07e5a638f814b96c75",
+  "native_calls": 28,
+  "tokens": 352,
+  "answers": 12,
+  "resource": {
+    "elapsed_seconds": 12.062000000034459,
+    "initial": {
+      "available_ram_bytes": 17864781824,
+      "process_commit_bytes": 39452672,
+      "peak_process_commit_bytes": 39825408,
+      "working_set_bytes": 60440576
+    },
+    "final": {
+      "available_ram_bytes": 17206714368,
+      "process_commit_bytes": 519475200,
+      "peak_process_commit_bytes": 570609664,
+      "working_set_bytes": 650125312
+    },
+    "peak_commit_bytes": 570609664,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "files": {
+    "ANSWERS.json": "fae02c8060a033ce2369451c58a967a5be886fd6c78c992182c9d8de98330c11",
+    "PREFIXES.json": "0443c2e38d50b2e662eb72403707583a3adb921c8a6cda3bc5750c2d97c80302",
+    "WINDOWS.npy": "99ef32db591893540ccbb1b4c5c82bbddd989f3b5fa5d5a66c9cace2e8b2d1dd"
+  }
+}

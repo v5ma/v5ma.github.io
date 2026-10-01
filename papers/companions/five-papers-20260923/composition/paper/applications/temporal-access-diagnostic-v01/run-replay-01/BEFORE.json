@@ -1,0 +1,128 @@
+{
+  "source_hashes": {
+    "CONFIG.json": "22262393833983f2527c38d0a4921fa2d0dfb7b5d37e18dd78cef7873fe9ac6f",
+    "PROTOCOL.md": "ac7445ed912cdfec536951d91b901ad2af244a579f0b260b6c5c96309cf74c2d",
+    "probes.py": "d44c11e40cd672447a2977c2aa290cb5148475af27bb28b0748bfd5f54773818",
+    "test_diagnostic.py": "c4e86bbcdb0151ec7c133e3ce465c1bd188b8058958daded1e5cda6c7f5268b1",
+    "run_diagnostic.py": "3051ab0b7650a4b18ba17c115480ff7a62f9f7a78d6f4117e2f8fb29688d9117",
+    "TESTS-02.json": "b04065782f33ac1d493dae457345f0bcd4065d9bc742438eca394d924ec1abd4"
+  },
+  "models": [
+    {
+      "seed": 1729,
+      "condition": "additive",
+      "folder": "fit-1729-additive",
+      "frozen_sha256": "76e05a6a362276776b3edfb083f779984b6b860b3fe66309cac7b0cffe654d6b",
+      "selected_sha256": "d381e8b436c26560c5d8d19268471031049f1c8ae99c8d50980015e2718a1a0b",
+      "selected_epoch": 26,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 1729,
+      "condition": "multiplicative",
+      "folder": "fit-1729-multiplicative",
+      "frozen_sha256": "1af1e14ed868c4f4f62db8d5ee505dd402f19a6949cf61255dd31e8bfca8a5eb",
+      "selected_sha256": "ae839ae413a97d5c73a3948e0daf83203e3646ad299a58973b4a7de71f0ed529",
+      "selected_epoch": 12,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 3253,
+      "condition": "additive",
+      "folder": "fit-3253-additive",
+      "frozen_sha256": "964addcc0e13cbc2a38afc55f4ff6835075a0d3e00457e8815cb7fa469558fee",
+      "selected_sha256": "b025c651b33268c633e19d51dae3596956f7faaba5d8fd5be8f51bb1d1d3c513",
+      "selected_epoch": 26,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 3253,
+      "condition": "multiplicative",
+      "folder": "fit-3253-multiplicative",
+      "frozen_sha256": "285fbe61db4fd8b09f6afdb2b94e5725a59e710f5078be54d16c640582edf4fb",
+      "selected_sha256": "2f2b6e108436f7503883cd5b71f464529363e7e0a542956dfdc209c496ff91be",
+      "selected_epoch": 27,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 7919,
+      "condition": "additive",
+      "folder": "fit-7919-additive",
+      "frozen_sha256": "ca4bd63ab2163c44300359641dd7b120875e78468c823e0d6be0733d9f3e4e76",
+      "selected_sha256": "7ff10341cd7866a56c2112ed7a7fb0e4539f3c3d05ec377170efba1e9241f4f1",
+      "selected_epoch": 15,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    },
+    {
+      "seed": 7919,
+      "condition": "multiplicative",
+      "folder": "fit-7919-multiplicative",
+      "frozen_sha256": "e32bb238a367148e8eb0512d40de789ebbcdee82fddcf8864b30c0e611aa30d2",
+      "selected_sha256": "d6492e12aec3fce79ebf8da74a9d0c690338c9a0d065149d37573a465ea50e9e",
+      "selected_epoch": 29,
+      "train": {
+        "sha256": "6fefd345aa60ca4f5b52cb92b6029e84414c2de3d91a7d854689d9b2ea092d2a",
+        "episodes": 3072,
+        "blocks": 64
+      },
+      "dev": {
+        "sha256": "14577ed985525359b8b1418f9e268b2b8c7dc92800ec038867c7b5edc68aab13",
+        "episodes": 768,
+        "blocks": 16
+      }
+    }
+  ],
+  "splits": [
+    "training",
+    "development"
+  ],
+  "new_heldout_inference": false,
+  "priority": "BELOW_NORMAL_PRIORITY_CLASS",
+  "threads": 1,
+  "scope": "Post-hoc development diagnosis; not a new generalization result."
+}

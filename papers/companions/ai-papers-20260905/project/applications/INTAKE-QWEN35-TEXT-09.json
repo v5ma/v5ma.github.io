@@ -1,0 +1,97 @@
+{
+  "schema": "san-qwen35-text-intake/v9",
+  "date": "2026-09-05",
+  "status": "Bounded development model intake; graph compatibility precedes weights",
+  "purpose": "Test baseline competence and original-model recurrent/attention state interventions on a small 2026 post-trained model. No semantic success or frontier-alignment claim follows from intake.",
+  "repo": "onnx-community/Qwen3.5-0.8B-ONNX-OPT",
+  "revision": "fafab72d87a9e6be3925b38caf48286d2838f2d0",
+  "upstream_repo": "Qwen/Qwen3.5-0.8B",
+  "upstream_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "destination": "model-dependencies/qwen35-onnx-opt-fafab72d",
+  "candidate_selection": "Qwen3-0.6B provides a 2025 dense-GQA alternative. Qwen3.5-0.8B is selected for the 2026 hybrid recurrent/attention architecture and bounded text-only q4 files. Not DeepSeek or a mixture-of-experts validation.",
+  "resource_limits": {
+    "max_total_download_bytes": 690000000,
+    "max_small_file_bytes": 35000000,
+    "one_connection": true,
+    "max_download_seconds_per_file": 180,
+    "numerical_threads": 1,
+    "min_free_ram_bytes_before_inference": 8000000000,
+    "max_process_commit_bytes": 5500000000,
+    "max_inference_seconds_per_batch": 75,
+    "max_context_tokens": 160,
+    "max_output_tokens": 4,
+    "vision_downloaded": false
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "phase": "graph",
+      "max_bytes": 180000
+    },
+    {
+      "path": "config.json",
+      "phase": "graph",
+      "max_bytes": 100000
+    },
+    {
+      "path": "generation_config.json",
+      "phase": "graph",
+      "max_bytes": 100000
+    },
+    {
+      "path": "chat_template.jinja",
+      "phase": "graph",
+      "max_bytes": 100000
+    },
+    {
+      "path": "tokenizer_config.json",
+      "phase": "graph",
+      "max_bytes": 300000
+    },
+    {
+      "path": "tokenizer.json",
+      "phase": "graph",
+      "max_bytes": 35000000
+    },
+    {
+      "path": "onnx/decoder_model_merged_q4.onnx",
+      "phase": "graph",
+      "bytes": 576621,
+      "sha256": "7390858c80a67275d8cb81fb70f66a24d3b86fe333057c1312de09c184a2d41b"
+    },
+    {
+      "path": "onnx/embed_tokens_q4.onnx",
+      "phase": "graph",
+      "bytes": 857,
+      "sha256": "8773dcf4858f855bfce13def4356ca17e0bc516a477154496b6ffb6dd6d084dc"
+    },
+    {
+      "path": "onnx/decoder_model_merged_q4.onnx_data",
+      "phase": "weights",
+      "bytes": 483655680,
+      "sha256": "1a9165072dd51a9b6a917b6357a3686372b7429313022802cd4c9a730e8c9749"
+    },
+    {
+      "path": "onnx/embed_tokens_q4.onnx_data",
+      "phase": "weights",
+      "bytes": 162897920,
+      "sha256": "9210b1d26eb14136d3522584d17da14cc5f4b82b6f5607e6d80d59424a8cbe99"
+    },
+    {
+      "path": "upstream-LICENSE",
+      "phase": "graph",
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "remote": "LICENSE",
+      "max_bytes": 25000
+    }
+  ],
+  "claim_limits": [
+    "Public model/config assets only; no private prompts sent to any service",
+    "Quantized community export is not full-precision upstream equivalence",
+    "No base-weight update; no bulk repository fetch; no vision tensors",
+    "No original DeepSeek execution; Qwen3.5 dense FFN hybrid is not expert routing",
+    "Release redistribution remains separately reviewed despite Apache-2.0 source license",
+    "First graphs only; weights require explicit compatible-operation inspection in this task"
+  ]
+}

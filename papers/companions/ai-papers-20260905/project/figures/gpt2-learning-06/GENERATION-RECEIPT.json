@@ -1,0 +1,13 @@
+{
+  "status": "GENERATED",
+  "visually_inspected": false,
+  "sources_and_outputs": {
+    "results\\gpt2-learning-eval-06\\metrics.csv": "c22b7fe881cf90e030af4295abcdeb24cb7acf161bbd85da2198c8e3ae257d66",
+    "reviews\\gpt2-learning-06\\ROLE-PAIR-SUMMARY.csv": "4c7021465e0f56f8ce152725e978bda5f14c2232ae9376edd8a51e3717cfbe6d",
+    "applications\\figures_gpt2_learning_v6.py": "02f2816c1087ae6282f7c2be0ce0fc5b1ff9d99361fa530da34a319a5bbe2bb1",
+    "figures\\gpt2-learning-06\\paired-role-results.png": "7370ffb150e2fa6f34f58662a3b0daa3ac45752a20f546683ff96d0e5cec2353",
+    "figures\\gpt2-learning-06\\learning-authority-results.png": "b7cdaea37efff6ed7437a294bad4e2f2b1eb373f4f8921100e2cc4de09194b97"
+  },
+  "post_hoc_panel_labeled": true,
+  "independent_models": 1
+}

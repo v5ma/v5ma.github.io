@@ -1,0 +1,32 @@
+{
+  "status": "PASS_NATIVE_RECONSTRUCTION",
+  "case_index": 5,
+  "case": "library-pair-1/green/1",
+  "answer_rows_recomputed": 18,
+  "prefix_outputs_recomputed": 2,
+  "all_first_logits_byte_identical": true,
+  "all_generated_token_sequences_identical": true,
+  "all_prefix_states_byte_identical": true,
+  "native_decoder_calls": 50,
+  "resource": {
+    "elapsed_seconds": 13.829000000027008,
+    "initial": {
+      "available_ram_bytes": 22007828480,
+      "process_commit_bytes": 34238464,
+      "peak_process_commit_bytes": 34238464,
+      "working_set_bytes": 56311808
+    },
+    "final": {
+      "available_ram_bytes": 21408591872,
+      "process_commit_bytes": 557850624,
+      "peak_process_commit_bytes": 583778304,
+      "working_set_bytes": 688427008
+    },
+    "peak_commit_bytes": 583778304,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "auditor_sha256": "0bc3073480258c5ff3a879a781b8f8afa6df1e63a5d4602f05a059b69c2592db",
+  "shared_adapter_sha256": "a3bbfc57b54d6b5db45090452d3847fd3f5351e789862ac88dad5b3d4649a372",
+  "scope": "Different interchange/generation loop; same native graph, adapter, environment and authoring agent. Not independent review or cross-runtime equivalence."
+}

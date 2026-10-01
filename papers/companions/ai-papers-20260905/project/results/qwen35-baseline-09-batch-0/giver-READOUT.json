@@ -1,0 +1,91 @@
+{
+  "first_token_id": 59605,
+  "first_token": "Alice",
+  "first_top5": [
+    {
+      "id": 59605,
+      "text": "Alice",
+      "logit": 25.107006072998047
+    },
+    {
+      "id": 32,
+      "text": "A",
+      "logit": 19.5565128326416
+    },
+    {
+      "id": 31318,
+      "text": "Bob",
+      "logit": 19.385608673095703
+    },
+    {
+      "id": 760,
+      "text": "The",
+      "logit": 18.61460304260254
+    },
+    {
+      "id": 2033,
+      "text": "Al",
+      "logit": 17.637161254882812
+    }
+  ],
+  "generated_token_ids": [
+    59605,
+    248046
+  ],
+  "answer": "Alice",
+  "stopped_on_eos": true,
+  "final_state_sha256": {
+    "past_conv.0": "7b596c6f14236fefb96d1a58e53902bbfe29944a192d9d6b9cf80e8b2a7b2ba3",
+    "past_recurrent.0": "7aabe488f3f2b5bb5c74b0bf2c7c9aa7478dc30e3d440b2d4cb5af18cd19a189",
+    "past_conv.1": "513b842919a6af33ca1293cabbfcf473051d7b1ba67f06bc527b3824a2ec4d22",
+    "past_recurrent.1": "7b7515efe1e70e62038fc6367626fd5438b23f935a8cbc801a615e9d3dde0cd9",
+    "past_conv.2": "8f8660e421789027ad0b61eb5b42d4d5e76ccf3c154b1892e378e3af6f6687a3",
+    "past_recurrent.2": "480d38c4468d6fb9ea0af3af67895190119e7abba22ec175d0fdd12a4ea6766d",
+    "past_key_values.3.key": "203bf591831f3a52f452cfefadd5e1848290059e64e4cfe995bf113bc52a8a20",
+    "past_key_values.3.value": "afcb47a4cede349e48e7e160791833ee148ffd763e3d705a05bb49bf302ec6a6",
+    "past_conv.4": "2749ce320c9f96c411e753b129fd07f5c7481e29e005cae55139343df9f04616",
+    "past_recurrent.4": "ae2cc16e0f046c148f183cb7040b1dea899da573193ecb404a1501d6a6085967",
+    "past_conv.5": "db3cfeea7c561e83e776e95b7904ceb32f6b083d5e2aae38dfcb1cef13bde4ed",
+    "past_recurrent.5": "7530fdd672d05cdbe6b6f61ecb17e93ebd26bc75249eac6047be76468321dbe9",
+    "past_conv.6": "0fc842f061681d5d70e99628ff1e76a260917d9dc4f226206d4a0c10f32d8698",
+    "past_recurrent.6": "5a18c2d4914ee7d22805408b445193618c7f06adeb69e6dd40776782ec0a876f",
+    "past_key_values.7.key": "90d8eb9c38950fab677d1c5a456e337854ec0f2686bb8867ef653b8eb8b92df5",
+    "past_key_values.7.value": "6e7dba8ec8563c092f2425be7c96431e4d25a50a7308597b06a4d8234dc273bf",
+    "past_conv.8": "e6334582d7df356eaeba7425be341ccb884c286667bb5ecd3589f3c4bf7dbe95",
+    "past_recurrent.8": "71b210c11b3dcb1a0af27e62f8c15fe170ab28efc4d59187bfb8d723cc554222",
+    "past_conv.9": "89a230438babebb627e24bac165aa74bb76e4d66d8f5dd1cad12d63577bc0d2c",
+    "past_recurrent.9": "be273d3b2aea236aa78f2c470a081b588cad772f496c6145748b82fb0a38b574",
+    "past_conv.10": "22c5fb9ec5ee9e538c750bee590c919edb485dc5b5e6bb71e49753254f7aac93",
+    "past_recurrent.10": "3f3693b576bdfad821eaeae6f235bc7a971b35920516ecd58210e671a0ae6e2e",
+    "past_key_values.11.key": "d037a115e321e5f902c41aa98aab38125655f545d1e3afaf1fb6bbf8b96263e5",
+    "past_key_values.11.value": "c7c9193e677198caa7a2b993a8be25a53f7ae4d27fb243ffdb9a814a936bc1fc",
+    "past_conv.12": "b89a4a38ccc87c4e047d56ce1827cca33323dabdd23ab242afe6c87853f9d2cf",
+    "past_recurrent.12": "2dcc56ffba799e492ca6c649579e55ba930a3a10d8b732a1ef0460f5d6eb5298",
+    "past_conv.13": "09a9b9ce032a62b8ec2028b7c683d36d12a13a8fd320d920992164ef0d70e4dd",
+    "past_recurrent.13": "7b9430267ed096d67af9eb96e6fe96b249eac3ab8a5ddc277545b413ffd42bd1",
+    "past_conv.14": "59c2510761d24b3b5a539fc25345780a13a317a70541bb6859f6b2c2be927930",
+    "past_recurrent.14": "1b82545cbb09726a6beb1092283fb0c582aa72b44194f1af90e80fd310c4e703",
+    "past_key_values.15.key": "8fdd0daba427f3f35d8759728e57103066b1a7a50f8a651bf940771bdadac5ea",
+    "past_key_values.15.value": "d8e6af22ee891ab05cf048dec162725858dbd7d75ea33a83f2c8dcaec832b893",
+    "past_conv.16": "58b63070dea0df793d97e03b70905e01f152dc90b8a082507ac0497c6ff73d22",
+    "past_recurrent.16": "041182e9616273254a399772f922b76ab7d70907760205683d0199cb7082c7cb",
+    "past_conv.17": "f69dfdbc9e8cd2425f4b80b625c2262755e6c56c2176ea5ad30b29530d682b10",
+    "past_recurrent.17": "55a0ae2dc6838db39ee4eaee3949c4698f6ebe6ba843264cec7c56d0beda1fc3",
+    "past_conv.18": "21d8182af6bd74edb9376355f92ecbbe2b218955573109e86671ff82a816c101",
+    "past_recurrent.18": "482b0643a4a915aed441e7bbce872de4c564b8d472006ef6b40c7b9719978738",
+    "past_key_values.19.key": "fae2438e4b2c3e7eb7488225269b5bbcc888c683096568064361950680a0bbc6",
+    "past_key_values.19.value": "3f55a246b385ad2dce2b3eb52d3f9a5f2a70bfcb8c6e4225a6146a12dac70ac3",
+    "past_conv.20": "4274c08c4c596199be011661372651f8ff64f0ce13d38dfdd9ed4aa0c6169015",
+    "past_recurrent.20": "75d472583f0da84d0bea1e9cb8e8d95539d05b5447c2db492e6d0074b16652a4",
+    "past_conv.21": "a2922073d5fb91bbfdae25cca00a83010c0f75d8f9b6670fac78e796bc420879",
+    "past_recurrent.21": "7a7834a334e12860178b0f42280c5fdda32f541e4a3a34e54d40cb8d6c98cdf5",
+    "past_conv.22": "709568508fe37561dfe1fa582f6eb413cff575b846ec48ae3d51a3365ced8f84",
+    "past_recurrent.22": "d3a56d8760b086ce9dfaf6384badee8f64bdb52f557355fe4bd8fc86ca486658",
+    "past_key_values.23.key": "ffe2fc8bfbd41996d3281507f9f6703cd6b507454a348dce15095ab1fc39e679",
+    "past_key_values.23.value": "73a70dc869cbe05c01d5e50ca5f30f1c576c8e48d75ec77c31690d12e0e40259"
+  },
+  "case_id": "museum-ab:giver",
+  "expected": "Alice",
+  "correct": true,
+  "query": "giver"
+}

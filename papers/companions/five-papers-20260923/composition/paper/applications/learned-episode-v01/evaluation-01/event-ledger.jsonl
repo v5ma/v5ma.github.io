@@ -1,0 +1,12 @@
+{"event":"calibration","seed":1903,"n":12,"training_state_hash":"5856750eada36d280d6f1663d1f7c7527fc781c986d94b6dba59c583a3434a9a"}
+{"event":"training_complete","seed":1903,"plan_episode_evaluations":80000,"training_pair_hash":"d6eaf92811981a71f9d8865bfca971f16a42ae64c23fec1798bf4425e0713722"}
+{"event":"parameters_frozen","seed":1903,"sha256":"1da4a0dd8b47a58e4ec765c104bbdae9e4e7c2934838a1e6eaeed710efdbdf21"}
+{"event":"first_evaluation_access","seed":1903,"split":"evaluation","sequence_sha256":"583679e9afd59f57170447ae126dc2b307b0bc59be7ef3c5379d667858453c32","loaded_parameter_sha256":"1da4a0dd8b47a58e4ec765c104bbdae9e4e7c2934838a1e6eaeed710efdbdf21"}
+{"event":"calibration","seed":4099,"n":12,"training_state_hash":"7f4b48b82caa7af8c73c7c4ff679d2b51929179b3c59cac5384c85cc94c1f546"}
+{"event":"training_complete","seed":4099,"plan_episode_evaluations":80000,"training_pair_hash":"a7c1f93d06da6fd5c0a32b7bb2bb38e13cb9e9dfa71ccd1a41558a83a39af534"}
+{"event":"parameters_frozen","seed":4099,"sha256":"4fa678b9f64fc84c381265921b7a66ea8632f1c1133f5253cdb320eab9d9c973"}
+{"event":"first_evaluation_access","seed":4099,"split":"evaluation","sequence_sha256":"6ad3a6a0ea6b5ce636186620a88b5a76dd68cc9b7cfd0f059aa2e6ed69f32b04","loaded_parameter_sha256":"4fa678b9f64fc84c381265921b7a66ea8632f1c1133f5253cdb320eab9d9c973"}
+{"event":"calibration","seed":8713,"n":12,"training_state_hash":"1a7c192fde32674f363591d8e4c4b00351d704724b1d5fd9e5d1ab5c4d1e11d3"}
+{"event":"training_complete","seed":8713,"plan_episode_evaluations":80000,"training_pair_hash":"9ecf88e80ed9b97794579c017c33e09eb43fd1bd369b7ecf04067e86e3e93545"}
+{"event":"parameters_frozen","seed":8713,"sha256":"0f23378b808c90a1f5422de4b119934bff12b05631bdaf611498e505eee36e43"}
+{"event":"first_evaluation_access","seed":8713,"split":"evaluation","sequence_sha256":"d35dff4044ee5bfb55872bea31b93be5f95f82250eb018c23a55747b36166fad","loaded_parameter_sha256":"0f23378b808c90a1f5422de4b119934bff12b05631bdaf611498e505eee36e43"}

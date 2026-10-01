@@ -1,0 +1,21 @@
+{
+  "status": "EXECUTED_NOT_INDEPENDENTLY_REVIEWED",
+  "batch": 1,
+  "families": [
+    "J04",
+    "J05",
+    "J06",
+    "J07"
+  ],
+  "base_prompts": 32,
+  "original_model_measurements": 256,
+  "cue_arm_outcomes": 768,
+  "request_events": 256,
+  "decoder_steps": 816,
+  "elapsed_seconds": 35.32799999997951,
+  "parameter_updates": 0,
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "textual_readouts_reuse_executed_opposite_prompt": true,
+  "numerical_threads": 1,
+  "base_weights_changed": false
+}

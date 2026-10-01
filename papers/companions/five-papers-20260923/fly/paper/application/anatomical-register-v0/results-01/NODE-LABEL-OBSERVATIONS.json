@@ -1,0 +1,6077 @@
+[
+  {
+    "identifier": "720575940502731931",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940557718029",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940586278879",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940588309383",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940591584450",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940593785522",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940596370762",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940599503195",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940602874055",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940604973536",
+    "labels": [
+      "T2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940605362912",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940605835906",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 15,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940605990590",
+    "labels": [
+      "Mti3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 23,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 38,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940606410439",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940607136130",
+    "labels": [
+      "Dm3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940608610652",
+    "labels": [
+      "LC17"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC17",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940608617564",
+    "labels": [
+      "LPLC2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LPLC2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940609078997",
+    "labels": [
+      "LT87"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LT87",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940609666499",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940609770691",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940609837717",
+    "labels": [
+      "Mti"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940610028995",
+    "labels": [
+      "Me.Me.M1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940610288452",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940610378104",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 42,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940610786862",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940610787118",
+    "labels": [
+      "TmY20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY20",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940611040046",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940611157458",
+    "labels": [
+      "TmY5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 33,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940611231608",
+    "labels": [
+      "Li19"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li19",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940611711461",
+    "labels": [
+      "LC10a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC10a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940611896434",
+    "labels": [
+      "MI9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MI9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612047858",
+    "labels": [
+      "Tm5c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 35,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612167537",
+    "labels": [
+      "yDm8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612227441",
+    "labels": [
+      "LC6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612387251",
+    "labels": [
+      "Me.Lo"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Lo",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612464114",
+    "labels": [
+      "Tm1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612530905",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612649625",
+    "labels": [
+      "Dm2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612694165",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612877363",
+    "labels": [
+      "Tm",
+      "Tm25"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm25",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 30,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940612927385",
+    "labels": [
+      "Dm12"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm12",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613083609",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613095282",
+    "labels": [
+      "Mti",
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 24,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 40,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613428246",
+    "labels": [
+      "LoP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LoP",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613503510",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 30,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613737330",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613737874",
+    "labels": [
+      "MeM4M6.PLP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MeM4M6.PLP",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940613789411",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614087087",
+    "labels": [
+      "yDm8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614131119",
+    "labels": [
+      "Dm",
+      "Dm5",
+      "Dm7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 13,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 29,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm7",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614344429",
+    "labels": [
+      "Mti_M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614418227",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 31,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 47,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614575527",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614620010",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 31,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614686259",
+    "labels": [
+      "Mti_M6_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614788519",
+    "labels": [
+      "Tm",
+      "Tm5c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 20,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940614902495",
+    "labels": [
+      "Tm5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 5,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 34,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615011490",
+    "labels": [
+      "Mi3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615045630",
+    "labels": [
+      "Li1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li1",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li1",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li1",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615143934",
+    "labels": [
+      "CB0471"
+    ],
+    "observations": [
+      {
+        "typeRaw": "CB0471",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615181479",
+    "labels": [
+      "Mti3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 32,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615249730",
+    "labels": [
+      "LC10c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615314834",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 22,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 36,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615325090",
+    "labels": [
+      "aMe4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615520827",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615522666",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615537314",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615579498",
+    "labels": [
+      "Li1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li1",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615657538",
+    "labels": [
+      "Mi3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615782978",
+    "labels": [
+      "Mi10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940615790146",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616109930",
+    "labels": [
+      "LC10c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616121503",
+    "labels": [
+      "Lt56"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Lt56",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616130975",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 29,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616335118",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616394694",
+    "labels": [
+      "CB0566"
+    ],
+    "observations": [
+      {
+        "typeRaw": "CB0566",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616578594",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 32,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616587677",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940616951586",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617134779",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617259835",
+    "labels": [
+      "Dm5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617678553",
+    "labels": [
+      "Li2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617707494",
+    "labels": [
+      "Mti"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617838225",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 30,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 46,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 39,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940617914693",
+    "labels": [
+      "LC16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618141268",
+    "labels": [
+      "Tm24"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm24",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618200038",
+    "labels": [
+      "LC20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC20",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC20",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618262050",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618431798",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 32,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618438941",
+    "labels": [
+      "aMe4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618504395",
+    "labels": [
+      "Mi1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618535425",
+    "labels": [
+      "aMe4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618562594",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618712093",
+    "labels": [
+      "Li12"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li12",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618886228",
+    "labels": [
+      "yR8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940618913158",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619053873",
+    "labels": [
+      "Li19"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li19",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619121472",
+    "labels": [
+      "MC66"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MC66",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619252603",
+    "labels": [
+      "Tm5c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 8,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619252718",
+    "labels": [
+      "LC17"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC17",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619305374",
+    "labels": [
+      "TmY5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619323806",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940619726507",
+    "labels": [
+      "LC24"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620200021",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 28,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 4,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620283608",
+    "labels": [
+      "Li3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620346048",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620398040",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 34,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620474315",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620474571",
+    "labels": [
+      "Mi"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620478032",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940620683456",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 4,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621025262",
+    "labels": [
+      "Me.PLP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.PLP",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 32,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621186219",
+    "labels": [
+      "aMe17b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 30,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621192431",
+    "labels": [
+      "Dm5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 22,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621301857",
+    "labels": [
+      "Li3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621307483",
+    "labels": [
+      "aMe17a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe17a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe17a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621339886",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621386849",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621453165",
+    "labels": [
+      "Me.Me.M1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621453921",
+    "labels": [
+      "Pm2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621535809",
+    "labels": [
+      "LC16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621687649",
+    "labels": [
+      "Me.Lo.VPN"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Lo.VPN",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621704942",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621705198",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621771248",
+    "labels": [
+      "Dm3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 38,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621804353",
+    "labels": [
+      "Dm20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm20",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621881328",
+    "labels": [
+      "T2a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T2a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940621886068",
+    "labels": [
+      "Mti_M6_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622269424",
+    "labels": [
+      "pR8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 4,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622315647",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 27,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 42,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622466036",
+    "labels": [
+      "CB0566"
+    ],
+    "observations": [
+      {
+        "typeRaw": "CB0566",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0566",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622485786",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622508156",
+    "labels": [
+      "Dm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622540894",
+    "labels": [
+      "Mti2",
+      "Mti_M6_narrow"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 26,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_narrow",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622560636",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622561356",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622664455",
+    "labels": [
+      "Tm5a_like"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622692265",
+    "labels": [
+      "Dm",
+      "Dm2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622725341",
+    "labels": [
+      "Mi"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622743209",
+    "labels": [
+      "Me.Me.M1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622757895",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940622762677",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623013325",
+    "labels": [
+      "T2a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T2a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623014689",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623040470",
+    "labels": [
+      "Dm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623051725",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 29,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623071256",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 38,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623113962",
+    "labels": [
+      "Y3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Y3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623353284",
+    "labels": [
+      "Mti_M6_narrow"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_narrow",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 31,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623393048",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623394765",
+    "labels": [
+      "T1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623406605",
+    "labels": [
+      "CB0156"
+    ],
+    "observations": [
+      {
+        "typeRaw": "CB0156",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0156",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0156",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623664422",
+    "labels": [
+      "L2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623672856",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 36,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623747818",
+    "labels": [
+      "Tm5c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623757543",
+    "labels": [
+      "LC26"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC26",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623777577",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623877560",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623904136",
+    "labels": [
+      "Mi3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 24,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940623974122",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624488445",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 39,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624556295",
+    "labels": [
+      "T2a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T2a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624675079",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624832008",
+    "labels": [
+      "Dm",
+      "Mi"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624919079",
+    "labels": [
+      "LC37"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC37",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940624951027",
+    "labels": [
+      "pDm8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625062891",
+    "labels": [
+      "Li13"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li13",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625193064",
+    "labels": [
+      "Dm9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625234020",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625259704",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 43,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625278652",
+    "labels": [
+      "aMe4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 27,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625292839",
+    "labels": [
+      "Mti.M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti.M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625356011",
+    "labels": [
+      "yR8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625414477",
+    "labels": [
+      "aMe17b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 31,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625479916",
+    "labels": [
+      "yR8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625547452",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625657221",
+    "labels": [
+      "Tm1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940625701769",
+    "labels": [
+      "LC16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626012208",
+    "labels": [
+      "Mi10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 29,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 25,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626084666",
+    "labels": [
+      "TmY9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY9",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626163837",
+    "labels": [
+      "MC62"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MC62",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 32,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "MC62",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626175242",
+    "labels": [
+      "Tm16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm16",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626248325",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626264201",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626270000",
+    "labels": [
+      "Me.Me.M4M6.PLP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M4M6.PLP",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626331184",
+    "labels": [
+      "Li12"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li12",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 29,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626350794",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 28,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626378128",
+    "labels": [
+      "Me.VPN"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.VPN",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626457893",
+    "labels": [
+      "aME17b",
+      "aMe17b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aME17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 29,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 13,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 30,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626577490",
+    "labels": [
+      "LC26"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC26",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626605657",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626634789",
+    "labels": [
+      "Li"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 30,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626637002",
+    "labels": [
+      "mALC2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "mALC2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 15,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "mALC2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "mALC2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "mALC2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626766224",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626924675",
+    "labels": [
+      "Tm5a_like",
+      "TmY",
+      "TmY5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 22,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626968146",
+    "labels": [
+      "Li19"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li19",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626977768",
+    "labels": [
+      "MC66"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MC66",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940626997770",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627110147",
+    "labels": [
+      "Li19"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li19",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627112344",
+    "labels": [
+      "Mi10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627282584",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 6,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 29,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627314521",
+    "labels": [
+      "Tm5c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 9,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5c",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627406650",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627551631",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627733777",
+    "labels": [
+      "Mti",
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 28,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 44,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627807492",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627946056",
+    "labels": [
+      "Tm5Y",
+      "Tm5Ya",
+      "TmY5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5Y",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5Ya",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5Ya",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940627978152",
+    "labels": [
+      "LC10c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628189457",
+    "labels": [
+      "Dm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628230417",
+    "labels": [
+      "Mti_M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628296527",
+    "labels": [
+      "Tm",
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628300090",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628428821",
+    "labels": [
+      "Dm4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628494535",
+    "labels": [
+      "Lo.VPN"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Lo.VPN",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628495622",
+    "labels": [
+      "Li3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628506897",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628559366",
+    "labels": [
+      "Tm20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm20",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 11,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm20",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628662377",
+    "labels": [
+      "Mi10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi10",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628760561",
+    "labels": [
+      "Mti3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 37,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628838474",
+    "labels": [
+      "CB0171"
+    ],
+    "observations": [
+      {
+        "typeRaw": "CB0171",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 28,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0171",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 26,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0171",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "CB0171",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628898665",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 24,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628898890",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 26,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940628991682",
+    "labels": [
+      "LC24"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629048108",
+    "labels": [
+      "Tm24"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm24",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629110019",
+    "labels": [
+      "Li3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629248771",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629465499",
+    "labels": [
+      "TmY5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629626455",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 31,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940629822619",
+    "labels": [
+      "Mti_M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 40,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630054647",
+    "labels": [
+      "Dm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630125562",
+    "labels": [
+      "LT34"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LT34",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630163959",
+    "labels": [
+      "Mi1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630281516",
+    "labels": [
+      "Tm5Y",
+      "TmY5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5Y",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630394306",
+    "labels": [
+      "Mti_M6_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630559299",
+    "labels": [
+      "Mi"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630589655",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630642495",
+    "labels": [
+      "Mti"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630649911",
+    "labels": [
+      "Y4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Y4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630652124",
+    "labels": [
+      "ML"
+    ],
+    "observations": [
+      {
+        "typeRaw": "ML",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630688256",
+    "labels": [
+      "TmY"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630796918",
+    "labels": [
+      "L2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630837551",
+    "labels": [
+      "ML1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "ML1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630896379",
+    "labels": [
+      "Dm5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940630969303",
+    "labels": [
+      "Dm",
+      "Dm4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631007183",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631009531",
+    "labels": [
+      "TmY10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631148428",
+    "labels": [
+      "Li2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 20,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631191926",
+    "labels": [
+      "Li12"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Li12",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 25,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Li12",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631345751",
+    "labels": [
+      "MC61"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MC61",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631354572",
+    "labels": [
+      "T2 cell"
+    ],
+    "observations": [
+      {
+        "typeRaw": "T2 cell",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631424197",
+    "labels": [
+      "Tm16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm16",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631448121",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631458575",
+    "labels": [
+      "Mti.M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti.M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631460423",
+    "labels": [
+      "Me.PLP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.PLP",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631563515",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631627595",
+    "labels": [
+      "MeM6.centrifugal.VPN"
+    ],
+    "observations": [
+      {
+        "typeRaw": "MeM6.centrifugal.VPN",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631776975",
+    "labels": [
+      "Dm5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940631893132",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 13,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 31,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632002616",
+    "labels": [
+      "C3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "C3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "C3",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632039213",
+    "labels": [
+      "Tm5Ya"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5Ya",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632145720",
+    "labels": [
+      "Tm13Y"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm13Y",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632167481",
+    "labels": [
+      "Tm20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm20",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632473391",
+    "labels": [
+      "TmY5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632492625",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 15,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632547129",
+    "labels": [
+      "Mti"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632586297",
+    "labels": [
+      "pR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 8,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632734924",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632763975",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 23,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632868177",
+    "labels": [
+      "Me.Me.M1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 27,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Me.Me.M1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632877004",
+    "labels": [
+      "aMe5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940632988205",
+    "labels": [
+      "C3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "C3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633138771",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 29,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 45,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633387181",
+    "labels": [
+      "Mti3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 20,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 34,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633457107",
+    "labels": [
+      "Mi15"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi15",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633589677",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633602017",
+    "labels": [
+      "Mti",
+      "Mti_M6_narrow"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 33,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_narrow",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633718623",
+    "labels": [
+      "Tm5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633891042",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 20,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940633968538",
+    "labels": [
+      "LC10c"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10c",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 11,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940634164124",
+    "labels": [
+      "Dm5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm5",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 36,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940634254562",
+    "labels": [
+      "Pm2",
+      "Pm4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Pm4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 7,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 8,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940634295010",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 41,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940634575329",
+    "labels": [
+      "pR8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 4,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "pR8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635081567",
+    "labels": [
+      "Me.PLP"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.PLP",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 22,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Me.PLP",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635247711",
+    "labels": [
+      "Tm "
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm ",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635252890",
+    "labels": [
+      "Tm20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm20",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 10,
+        "role": "seed"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635369663",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635456430",
+    "labels": [
+      "Mti_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635539374",
+    "labels": [
+      "Mi9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi9",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 27,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635624696",
+    "labels": [
+      "Dm4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm4",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635648191",
+    "labels": [
+      "Mti"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 37,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635658420",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940635684715",
+    "labels": [
+      "Mti_M6_M4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 35,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636163832",
+    "labels": [
+      "aMe17b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 11,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "aMe17b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 25,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636206558",
+    "labels": [
+      "LC13"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC13",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636274551",
+    "labels": [
+      "Tm20"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm20",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636455031",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636501093",
+    "labels": [
+      "Tm16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm16",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636604271",
+    "labels": [
+      "Pm2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Pm2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 41,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636715998",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 3,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940636942447",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 2,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940637308528",
+    "labels": [
+      "Mi9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940637440613",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940637755701",
+    "labels": [
+      "Mi4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 37,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940637952846",
+    "labels": [
+      "LC16"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 27,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC16",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940637975741",
+    "labels": [
+      "Mi3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940614902495.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638424895",
+    "labels": [
+      "yDm8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 3,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "yDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638458173",
+    "labels": [
+      "LC6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 2,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638571583",
+    "labels": [
+      "Mi1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 25,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mi1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638634960",
+    "labels": [
+      "pDm8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "pDm8",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 2,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "pDm8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 6,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638655972",
+    "labels": [
+      "Me.M8.VPN"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.M8.VPN",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 26,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940638733621",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 18,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940639450165",
+    "labels": [
+      "TmY5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 13,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940639473998",
+    "labels": [
+      "Tm5a"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 4,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 23,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5a",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940614902495.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940639795133",
+    "labels": [
+      "mALC1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "mALC1",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940639841870",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940628559366.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940639893301",
+    "labels": [
+      "Mt_M6",
+      "Mti_M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 19,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 13,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mt_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 3,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mt_M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640228669",
+    "labels": [
+      "Mti_M6_M8"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 15,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti_M6_M8",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640326717",
+    "labels": [
+      "Tm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 10,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640334208",
+    "labels": [
+      "Tm",
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5a_720575940639473998.csv",
+        "line": 15,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640370048",
+    "labels": [
+      "LC10b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC10b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 19,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640427904",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940640940496",
+    "labels": [
+      "L5"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 23,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L5",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940641088640",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 5,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940641642715",
+    "labels": [
+      "Me4"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me4",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 16,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940641698523",
+    "labels": [
+      "aMe12"
+    ],
+    "observations": [
+      {
+        "typeRaw": "aMe12",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 23,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940641897101",
+    "labels": [
+      "unknown"
+    ],
+    "observations": [
+      {
+        "typeRaw": "unknown",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 14,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940641982709",
+    "labels": [
+      "Mti2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 21,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Mti2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 35,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940643962903",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940644124832",
+    "labels": [
+      "Mi"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 9,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940644125600",
+    "labels": [
+      "Mi2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Mi2",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 24,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940644657608",
+    "labels": [
+      "Me.Me.M6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Me.M6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 30,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940645690734",
+    "labels": [
+      "TmY10"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY10",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940646093166",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5a_720575940639473998.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940646634275",
+    "labels": [
+      "Tm5a_like"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5a_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 21,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940646658083",
+    "labels": [
+      "TmY5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "TmY5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940660846721.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940646691363",
+    "labels": [
+      "ML1"
+    ],
+    "observations": [
+      {
+        "typeRaw": "ML1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 14,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "ML1",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940628559366.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940647395636",
+    "labels": [
+      "Me.Lo"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Me.Lo",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 22,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940648106116",
+    "labels": [
+      "Dm",
+      "Dm2"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 17,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm2",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 20,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940648130436",
+    "labels": [
+      "Dm"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 28,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940649953913",
+    "labels": [
+      "LC22"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC22",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm20_720575940635252890.csv",
+        "line": 17,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940655090849",
+    "labels": [
+      "L3"
+    ],
+    "observations": [
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 10,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "L3",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940655546017",
+    "labels": [
+      "LC6"
+    ],
+    "observations": [
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm20_720575940635252890.csv",
+        "line": 23,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 4,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "LC6",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940660846721.csv",
+        "line": 5,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940655698849",
+    "labels": [
+      "Dm9"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_pDm8_720575940638634960.csv",
+        "line": 16,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 21,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 6,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Dm9",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 7,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940660477313",
+    "labels": [
+      "Tm",
+      "Tm5b_like"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940627314521.csv",
+        "line": 18,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_pDm8_720575940638634960.csv",
+        "line": 9,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b_like",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_yDm8_720575940638424895.csv",
+        "line": 33,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940660740481",
+    "labels": [
+      "yR7"
+    ],
+    "observations": [
+      {
+        "typeRaw": "yR7",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_yDm8_720575940638424895.csv",
+        "line": 4,
+        "role": "partner"
+      }
+    ]
+  },
+  {
+    "identifier": "720575940660846721",
+    "labels": [
+      "Tm5b"
+    ],
+    "observations": [
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-09\\download\\inputs_seed_neurons.csv",
+        "line": 7,
+        "role": "seed"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5b_720575940627282584.csv",
+        "line": 21,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-10\\download\\inputs_tm5c_720575940619252603.csv",
+        "line": 31,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5b_720575940627282584.csv",
+        "line": 15,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940619252603.csv",
+        "line": 12,
+        "role": "partner"
+      },
+      {
+        "typeRaw": "Tm5b",
+        "source": "sources\\hue-anatomy-intake-11\\download\\outputs_tm5c_720575940627314521.csv",
+        "line": 12,
+        "role": "partner"
+      }
+    ]
+  }
+]

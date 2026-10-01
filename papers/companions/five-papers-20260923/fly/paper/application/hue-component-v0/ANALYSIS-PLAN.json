@@ -1,0 +1,18 @@
+{
+  "status":"Amendment 1 frozen before any response fit or score inspection. Initial raw-capture plan stopped at negative-input validation and is preserved in attempt-01.",
+  "scope":"Coordinate-level diagnostic on a published aggregate-response export. Exact transformation lineage is unresolved. Not an equation-faithful reproduction, fitted recurrent-circuit reproduction, or new experiment.",
+  "sourceSha256":"f6524b03d81ef0b20d01e5a8b58b1a3861f893f1f9fce6bad9a4718007d6731c",
+  "features":["rh3","rh4","rh5","rh6"],
+  "response":"r",
+  "weight":"counts",
+  "transform":"None. Use the four supplied signed coordinates unchanged. Do not take a second logarithm or clip them. Do not assign physical units to their fitted coefficients.",
+  "models":["four-coordinate linear without intercept", "equal-coordinate-sum linear without intercept"],
+  "fitting":"Ordinary weighted least squares, weights counts, separately for every supplied cell_type.",
+  "partition":"Four folds, four repetitions with seed labels 11,12,13,14. SHA256(seed + colon + compact JSON of supplied four-coordinate vector rounded to 10 decimal places), first 8 digest bytes as big-endian integer modulo 4. Identical declared stimulus groups share a fold across cell types. This differs from the authors' RepeatedKFold partition. Near-neighbor stimuli need not be in one fold; this is interpolation, not distribution-shift testing.",
+  "metrics":["count-weighted ordinary R-squared of out-of-fold predictions per repetition", "count-weighted RMSE per repetition", "mean and min/max over four repetitions, not confidence intervals"],
+  "inclusion":"All 6205 rows and all 14 cell labels if their inputs/response/weights are finite and counts positive. Supplied signed coordinates are allowed. Fail rather than silently drop invalid rows. Mutant labels fitted separately, not predicted by intervention.",
+  "forbiddenInferences":["independent animal replication", "raw-recording reanalysis", "noise-corrected published Figure 3 replication", "fitted 12-unit recurrence reproduced", "phase or time-constant estimation", "SAN confirmation", "consciousness measurement"],
+  "inheritedPreprocessing":"The public table is pooled and normalized before this split. Thus these are within-table diagnostics, not untouched experimental holdouts; animal/session/trial generalization cannot be established.",
+  "comparativeBoundary":"Only linear diagnostic versus nested equal-coordinate-sum control. The control is not certified as physical luminance until encoding lineage is established. Original nonlinear, recurrent and other competent alternatives remain mandatory before SAN advantage claims.",
+  "resources":{"cpuThreads":1,"duckdbMemoryLimit":"64MB","maxAnalysisSeconds":15,"noNewPackages":true,"noExternalCodeExecution":true}
+}

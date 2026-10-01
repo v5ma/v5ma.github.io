@@ -1,0 +1,12 @@
+{
+  "schema":"san-context-provenance-claim-signatures/v1",
+  "status":"compiler_checked_awaiting_independent_review",
+  "source":"PassiveFeedbackAndScope.lean",
+  "compiler_receipt":"verification-context-03-attempt-04/RECEIPT.json",
+  "independent_review":false,
+  "claims":[
+    {"id":"MI-FORMAL-02","statements":8,"model":"Rational passive receiver h_next=3/5+(3/10)q; two external feedback maps; constant visible output","provides":["fixed points and nonzero separation","general affine finite-horizon error identity","positive and negative feedback error formulas","bounded receiver range","same visible output at separated states"],"requires":["the stated affine dynamics","externally supplied feedback rule","no claim of adaptive policy learning"],"axioms":["propext","Classical.choice","Quot.sound"],"forbidden_overclaims":["explains the measured Aoki or Ji-An mechanisms","all feedback-assisted control is passive","generative LLM replication","useful behavioral transfer","consciousness or biological effect"]},
+    {"id":"CA-FORMAL-02","statements":3,"model":"Deterministic decisions from observations; complete source/combine ancestry tree under current root authority","provides":["identical evidence with different required permissions precludes a universally correct observation-only decision","derivative permission requires every origin","current revocation of any origin blocks its derivatives"],"requires":["same available evidence in the indistinguishable histories","correct complete ancestry for the tree theorems","current authority","modeled export policy and no bypass"],"axioms":{"evidence_impossibility":[],"tree_and_revocation":["propext","Quot.sound"]},"forbidden_overclaims":["semantic learning is useless","new information-flow calculus","proof of Python graph refinement or signatures","solved human values","secure deployment with incomplete provenance"]}
+  ],
+  "application_bridge":"Exact rational arithmetic checks 42 null rows; independent topological recount checks the fixture graph. These are finite executable correspondences, not formal code refinement."
+}

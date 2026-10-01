@@ -1,0 +1,28 @@
+test_all_hybrid_state_groups (test_qwen35_v9.QwenStateTests.test_all_hybrid_state_groups) ... ok
+test_all_native_outputs_route_once (test_qwen35_v9.QwenStateTests.test_all_native_outputs_route_once) ... ok
+test_balanced_opposite_roles (test_qwen35_v9.QwenStateTests.test_balanced_opposite_roles) ... ok
+test_generation_eos_includes_message_and_text_end (test_qwen35_v9.QwenStateTests.test_generation_eos_includes_message_and_text_end) ... ok
+test_memory_measurement_is_own_process (test_qwen35_v9.QwenStateTests.test_memory_measurement_is_own_process) ... ok
+test_original_config_matches_state_partition (test_qwen35_v9.QwenStateTests.test_original_config_matches_state_partition) ... ok
+test_restricted_template (test_qwen35_v9.QwenStateTests.test_restricted_template) ... ok
+test_template_rejects_control_delimiters (test_qwen35_v9.QwenStateTests.test_template_rejects_control_delimiters) ... ok
+test_tokenized_fixture_bounds (test_qwen35_v9.QwenStateTests.test_tokenized_fixture_bounds) ... ok
+test_authority_rejects_forgery_and_replay_without_relabeling_state (test_qwen35_hybrid_v9.HybridTests.test_authority_rejects_forgery_and_replay_without_relabeling_state) ... ok
+test_every_arm_retains_or_replaces_exact_objects (test_qwen35_hybrid_v9.HybridTests.test_every_arm_retains_or_replaces_exact_objects) ... ok
+test_every_state_assigned_one_group (test_qwen35_hybrid_v9.HybridTests.test_every_state_assigned_one_group) ... ok
+test_kv_restoration_is_not_complete_restoration (test_qwen35_hybrid_v9.HybridTests.test_kv_restoration_is_not_complete_restoration) ... ok
+test_prespecified_casefold_and_preserved_exact_case (test_qwen35_hybrid_v9.HybridTests.test_prespecified_casefold_and_preserved_exact_case) ... ok
+test_wrong_object_scope_rejected (test_qwen35_hybrid_v9.HybridTests.test_wrong_object_scope_rejected) ... ok
+test_cap_applies_to_all_learners (test_qwen35_learning_v10.LearningTests.test_cap_applies_to_all_learners) ... ok
+test_fixed_splits_and_counts (test_qwen35_learning_v10.LearningTests.test_fixed_splits_and_counts) ... ok
+test_kernel_distance (test_qwen35_learning_v10.LearningTests.test_kernel_distance) ... ok
+test_policy_receives_no_donor_case_query_or_target (test_qwen35_learning_v10.LearningTests.test_policy_receives_no_donor_case_query_or_target) ... ok
+test_protocol_adequacy_and_output_rules_predeclared (test_qwen35_learning_v10.LearningTests.test_protocol_adequacy_and_output_rules_predeclared) ... ok
+test_same_query_free_prefix_and_role_positions (test_qwen35_learning_v10.LearningTests.test_same_query_free_prefix_and_role_positions) ... ok
+test_slot_roundtrip_and_unmodified_state (test_qwen35_learning_v10.LearningTests.test_slot_roundtrip_and_unmodified_state) ... ok
+test_two_kernels_and_label_control (test_qwen35_learning_v10.LearningTests.test_two_kernels_and_label_control) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 3.184s
+
+OK

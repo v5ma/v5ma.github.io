@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-19",
+  "status": "Post-benchmark development challenge, fixed before twin runs; not a held-out benchmark",
+  "question": "Can the controller distinguish two physical states while their permitted observation and body-return histories are identical? Does it update and later act differently once distinguishing evidence returns?",
+  "baseline": "Unchanged results-02 adaptive_sampling controller and configuration; scenario occlusion_gain, seed 19",
+  "intervention": {"time": 6, "hiddenTargetDisplacement": 0.6, "notifyController": false},
+  "expectedObservationBoundary": "Target hidden at times 5,6,7,8 by the existing plan; the displacement becomes observable at time 9",
+  "checks": ["identical controller observations and actions through time 8", "identical measured body return through time 8", "different true target relation during times 6,7,8", "same inferred relation during the indistinguishable interval", "the worst of the two absolute relation errors is at least half the hidden displacement", "new sensory data and the internal relation differ at time 9", "an ensuing action differs by the end of the episode"],
+  "claimBoundary": "Demonstrates the observation-interface limit and the controller's use of new evidence in two engineered worlds. It is not a SAN-specific, fly-biological or consciousness result. The point controller has no calibrated uncertainty distribution.",
+  "resourceLimits": {"episodes": 2, "stepsPerEpisode": 24, "maximumExecutionSeconds": 5, "numericThreads": 1}
+}

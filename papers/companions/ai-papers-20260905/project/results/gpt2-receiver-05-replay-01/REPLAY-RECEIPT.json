@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "artifacts": {
+    "INPUT-FREEZE.json": {
+      "source": "fb438c8c22be4aaea1840553a02bf4395e156e703056b68b0ddb189ef2a6bc3e",
+      "replay": "fb438c8c22be4aaea1840553a02bf4395e156e703056b68b0ddb189ef2a6bc3e"
+    },
+    "FAMILIES.json": {
+      "source": "fcf191aa5d8dab086704f935ed72bd479b167ac728d7a45f903cd50e1ad092fd",
+      "replay": "fcf191aa5d8dab086704f935ed72bd479b167ac728d7a45f903cd50e1ad092fd"
+    },
+    "intervention-events.csv": {
+      "source": "cd1cf643e737968974c89e4dbd230684b653d1dc985e245fd8e42695f0e18646",
+      "replay": "cd1cf643e737968974c89e4dbd230684b653d1dc985e245fd8e42695f0e18646"
+    },
+    "authority-events.csv": {
+      "source": "0541cc6606ce7c61a9e543e4e6830a7e1dfe98a7828f06665fb1b7777b6d6969",
+      "replay": "0541cc6606ce7c61a9e543e4e6830a7e1dfe98a7828f06665fb1b7777b6d6969"
+    },
+    "hook-states.npz": {
+      "source": "e91a977eb0b6e381a67c2caf6b8542a0982330ef92f3b895193a58d89ba2184f",
+      "replay": "e91a977eb0b6e381a67c2caf6b8542a0982330ef92f3b895193a58d89ba2184f"
+    },
+    "metrics.csv": {
+      "source": "ae64548220785090a09625116abe9d15bb82c603cfdb92c476a4efdd79dada8d",
+      "replay": "ae64548220785090a09625116abe9d15bb82c603cfdb92c476a4efdd79dada8d"
+    }
+  },
+  "matched_artifacts": 6,
+  "same_model_machine_and_runtime": true,
+  "independent_replication": false,
+  "wrapper_sha256": "4f2291935537e0f0bcd4f6b417071e24e9dce0e87166834111aa98b685c932c4"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PREPARED_BEFORE_MODEL_INFERENCE",
+  "fixtures_sha256": "46b57e77e6484389465b91209a9754d634f0a3c209a83a9a88372a3a61632288",
+  "input_freeze_sha256": "a0ba6c01d10a588552dd3f5e20c022464dc118be0dee6032d9ef39241cf33d4c",
+  "cases": 12,
+  "min_tokens": 56,
+  "max_tokens": 57,
+  "model_inference": false
+}

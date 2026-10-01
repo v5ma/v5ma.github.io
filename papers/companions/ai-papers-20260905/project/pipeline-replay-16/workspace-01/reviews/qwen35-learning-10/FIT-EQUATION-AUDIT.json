@@ -1,0 +1,23 @@
+{
+  "status": "PASS_SEPARATE_EQUATION_CHECK_NOT_INDEPENDENT_REVIEW",
+  "training_rows": 24,
+  "features": 55296,
+  "equation_max_abs_residuals": {
+    "linear": 1.4727108421652702e-13,
+    "rbf": 5.1514348342607263e-14,
+    "yoked": 1.0828671292983927e-11
+  },
+  "raw_mean_delta_norm": 0.0,
+  "test_outcomes_used": false,
+  "native_calls": 0,
+  "training_receipts": {
+    "results/qwen35-learning-10-train-0/RECEIPT.json": "8c94b110f360afd2d6bac8b102124041dbcce1fbb6c217b341101c178391bbaf",
+    "results/qwen35-learning-10-train-1/RECEIPT.json": "c723ee3615db2b47fa6fb78b96857bdb53968bcd1e6b6a2cda4cbc5f1036a3f8",
+    "results/qwen35-learning-10-train-2/RECEIPT.json": "26a357620d103e5635cc29e121af2a7f5cf08699938502f39c42c4337b5e0830",
+    "results/qwen35-learning-10-train-3/RECEIPT.json": "9e121037f2b522bea01ec10df5cd81a3317d7fc3fb72e86c530459cfa8eb6a44",
+    "results/qwen35-learning-10-train-4/RECEIPT.json": "f26e358cc6f30da55647122558a56323ab994b969c99119265e69842e6406317",
+    "results/qwen35-learning-10-train-5/RECEIPT.json": "a115a041ddecb2082738f8b7aefc746e24ba486abff70b3ffc4ff30730a84bf6"
+  },
+  "fit_receipt_sha256": "509f0bf1bea2a79feacc4754903219b7ea2f0d98b664816b68181daec07938e7",
+  "auditor_sha256": "b35fb74f376c170b9379f30e6b91f11565b05d134b97e838686eb218b4680222"
+}

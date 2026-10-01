@@ -1,0 +1,96 @@
+{
+  "hashes": {
+    "PROTOCOL-DEV-01.json": "966ff53a4edc977cb338becfdb5d81703017d2f9491b2ae748b5f37d5418cd76",
+    "commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+    "causal_lab.py": "de42dc8a9edb5dc2f2d628f5760111e8c21e158d0eb35275595d68feb81f9df5",
+    "run_development.py": "4c38c98fe795e282d824b926927529c1ec1e26c73dd95d8cc3b819c6733a9c7c"
+  },
+  "protocol": {
+    "schema": "san-ca-mi-development-protocol/v1",
+    "frozen_before_first_run": true,
+    "evidence_class": "development: engineered runtime plus trained small neural network; not an LLM or human experiment",
+    "ca": {
+      "seeds": [
+        17,
+        31,
+        53
+      ],
+      "horizons": [
+        8,
+        32,
+        128
+      ],
+      "delegation_depths": [
+        1,
+        4,
+        16
+      ],
+      "human_updates_per_run": 2,
+      "policies": [
+        "text_only",
+        "final_gate",
+        "propagated_gate",
+        "deny_all"
+      ],
+      "metrics": [
+        "unauthorized_executions",
+        "useful_completion",
+        "rejected_proposals",
+        "checked_delegation_edges"
+      ]
+    },
+    "mi": {
+      "seeds": [
+        1101,
+        2202,
+        3303
+      ],
+      "split_seed": 31357,
+      "binary_worlds": 256,
+      "train_worlds": 128,
+      "validation_worlds": 64,
+      "test_worlds": 64,
+      "training_replicates": 4,
+      "nuisance_dimensions": 2,
+      "hidden_widths": [
+        24,
+        16
+      ],
+      "epochs": 1200,
+      "learning_rate": 0.015,
+      "ridge": 0.01,
+      "surrogates": [
+        "global_linear",
+        "matched_polynomial",
+        "receiver_conditioned",
+        "local_jacobian"
+      ],
+      "metrics": [
+        "task_balanced_accuracy",
+        "task_log_loss",
+        "relation_probe_accuracy",
+        "intervention_mae",
+        "intervention_rmse",
+        "lesion_influence",
+        "exact_restore_error"
+      ]
+    },
+    "resources": {
+      "numerical_threads": 1,
+      "max_seconds_per_training_seed": 35,
+      "max_total_seconds": 120,
+      "max_result_bytes": 15000000,
+      "network_downloads": false
+    },
+    "rules": [
+      "No claim of SAN-specific advantage from a programmed guard or synthetic generator.",
+      "No test-dependent tuning within this protocol.",
+      "Worlds, not intervention rows, are the primary within-model sampling units.",
+      "Three training seeds are descriptive replications, not external validation.",
+      "All surrogate outcomes, including adverse outcomes, are retained.",
+      "Live feedback, open-weight LLMs, endogenous access, human oversight, biological transfer and independent review remain separate unexecuted stages."
+    ]
+  },
+  "python": "3.12.14",
+  "numpy": "2.4.6"
+}

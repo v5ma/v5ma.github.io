@@ -1,0 +1,168 @@
+{
+  "case": {
+    "name": "snic_weak",
+    "regime": "SNIC",
+    "gap": "source_homogeneous",
+    "dtMs": 0.1
+  },
+  "planSha256": "c0499a53fb1a711ed033abf9b31f035274b103540baace1d004906ce459c21c1",
+  "modelSha256": "1657583d1c327cc11e54b55a1c1996ae7e7ed46921142c6ef45afa1fd2ea2cc3",
+  "runnerSha256": "02c3616931e99eec464c00be9f0714f2381e4e39b0a3bddc97824c90143472a1",
+  "nativeAuditSha256": "c8da96529f7d0974703d2d70d3491a10bde1c154a9835628f8030fdcab0fc04e",
+  "evidenceClass": "published reduced-model development replay, not biological data",
+  "coupledNativeTraceComparison": false,
+  "independentReview": false,
+  "numpyVersion": "2.4.6",
+  "pythonVersion": "3.12.14",
+  "workers": 1,
+  "threadEnvironment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "belowNormalPriorityVerified": true,
+  "parameters": {
+    "gna": 431.2,
+    "gsb": 215.6,
+    "gl": 8.624,
+    "zm": 3.0,
+    "vm": -33.0,
+    "zh": 5.2,
+    "vh": -39.14,
+    "rh": 0.2,
+    "gah": 0.38,
+    "zb": 1.1056,
+    "vb": -42.14,
+    "rb": 0.2,
+    "gab": 0.38,
+    "Ek": -72.0,
+    "Ena": 55.0,
+    "Ele": -60.0,
+    "Cm": 130.0,
+    "I_in": 175.0,
+    "I_gap": 0.0,
+    "cQ": 0.0392
+  },
+  "initialState": [
+    [
+      -45.78952710541751,
+      -47.11228773025527,
+      -47.33214903968289,
+      -46.870164917233815,
+      -46.52978170547542
+    ],
+    [
+      0.20094407019041158,
+      0.1638912610166194,
+      0.15782958635037547,
+      0.17062601246939654,
+      0.1801618198354275
+    ],
+    [
+      0.45873390576843337,
+      0.4459587154624383,
+      0.4435851996346135,
+      0.44848434775056556,
+      0.4518866204091822
+    ]
+  ],
+  "initialSelection": {
+    "nativeCycleSamples": 1524,
+    "selectedCycleIndices": [
+      1372,
+      914,
+      762,
+      1067,
+      1219
+    ],
+    "bracketingSpikesMs": [
+      1824.0299999999997,
+      1976.4499999999998
+    ]
+  },
+  "gapStrengthNs": 0.043499999686087025,
+  "gapMatrixNs": [
+    [
+      0.0,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025
+    ],
+    [
+      0.043499999686087025,
+      0.0,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025
+    ],
+    [
+      0.043499999686087025,
+      0.043499999686087025,
+      0.0,
+      0.043499999686087025,
+      0.043499999686087025
+    ],
+    [
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.0,
+      0.043499999686087025
+    ],
+    [
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.043499999686087025,
+      0.0
+    ]
+  ],
+  "sourceHashes": {
+    "sources/flight-timing-model-03/download/cfg-Berger_SNIC.json": "d406367ed5b97ecff390c2b2d4719f00d09f9dd2ba89ac38e28b70db65b25a2b",
+    "sources/flight-timing-reference-04/download/StMs-initial_SNIC_StM.npy": "0d58f8822b07b07be3fc6b1784f95feefeeb51c469b6cf3a896a2a784bbfc786",
+    "sources/flight-timing-reference-04/download/SpMs-initial_SNIC_SpM.npy": "6a8d73dd44d69987986f47af412a38db1cb3872e469b4c16427c1dfbf396efa8",
+    "sources/flight-timing-reference-04/download/cfg-ggap_hom.npy": "cc98c895954955a52ea8684a03a323f5d7e20c35c1e555c785c4b75a983453cc"
+  },
+  "status": "pass",
+  "metrics": {
+    "status": "measured",
+    "phaseSamples": 2913,
+    "phaseWindowMs": [
+      2000.0,
+      4912.0
+    ],
+    "splayness": 0.00040518140286704973,
+    "meanFirstHarmonicOrder": 0.9999987961125135,
+    "medianLateFrequenciesHz": [
+      6.5616797900262425,
+      6.5616797900262425,
+      6.5616797900262425,
+      6.5616797900262425,
+      6.5616797900262425
+    ],
+    "spikeCounts": [
+      33,
+      33,
+      33,
+      33,
+      33
+    ]
+  },
+  "computeSeconds": 6.103457499993965,
+  "samples": 5001,
+  "stateValues": 75015,
+  "sampledVoltageRangeMv": [
+    -51.76053271633527,
+    0.2817283800444881
+  ],
+  "sampledGateRange": [
+    0.0732292659698234,
+    0.9907597553013704
+  ],
+  "artifacts": {
+    "STATES-AND-PHASES.npz": "ca4a76042517cb272b5ff7d0fba5c42db123235eacaa7a0c78c6ee8efd67852e",
+    "SPIKES.json": "f0f110f2a828434d93b8a474bb254090f5ec3d80cd47e3685f1648532c962653"
+  },
+  "seconds": 6.167999900004361
+}

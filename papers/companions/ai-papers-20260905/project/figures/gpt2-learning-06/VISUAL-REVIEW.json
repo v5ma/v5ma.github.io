@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "reviewer": "authoring agent",
+  "independent_review": false,
+  "all_page_pdf_review": false,
+  "figures": {
+    "paired-role-results.png": "7370ffb150e2fa6f34f58662a3b0daa3ac45752a20f546683ff96d0e5cec2353",
+    "learning-authority-results.png": "b7cdaea37efff6ed7437a294bad4e2f2b1eb373f4f8921100e2cc4de09194b97"
+  },
+  "checks": ["Rendered images opened", "Counts and denominators agree with data", "No clipping or overlap", "Post-hoc panel explicitly labeled", "No executed prohibited action implied"]
+}

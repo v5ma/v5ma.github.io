@@ -1,0 +1,961 @@
+sentence,arm,turn,score_input,probe,cosine_distance_from_plain,utterance,control_action
+0,live_positive,0,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,1,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,2,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,3,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,6,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,7,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,8,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,9,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,11,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,12,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,13,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,14,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,15,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,16,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,18,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_positive,19,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,0,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,1,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,2,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,3,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,6,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,7,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,8,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,9,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,11,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,12,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,13,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,14,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,15,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,16,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,18,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,live_negative,19,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,random,0,30,0.4603591820910483,0.06744693398527102,The folder was placed on the desk.,none
+0,random,1,30,0.4603591820910483,0.06744693398527102,The folder was placed on the desk.,none
+0,random,2,70,0.4591200289697448,0.06720942224961834,The folder was placed on the desk.,none
+0,random,3,60,0.4670797070342879,0.07004708294601436,The folder was placed on the desk.,none
+0,random,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,random,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,random,6,90,0.4684941513545532,0.07510238210247633,The folder was placed on the desk.,none
+0,random,7,20,0.45861848283346174,0.074706005366169,The folder was placed on the desk.,none
+0,random,8,90,0.4684941513545532,0.07510238210247633,The folder was placed on the desk.,none
+0,random,9,20,0.45861848283346174,0.074706005366169,The folder was placed on the desk.,none
+0,random,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,random,11,70,0.4591200289697448,0.06720942224961834,The folder was placed on the desk.,none
+0,random,12,30,0.4603591820910483,0.06744693398527102,The folder was placed on the desk.,none
+0,random,13,30,0.4603591820910483,0.06744693398527102,The folder was placed on the desk.,none
+0,random,14,40,0.4596304887525603,0.06879932363168995,The folder was placed on the desk.,none
+0,random,15,80,0.46160210959196085,0.0678140333886802,The folder was placed on the desk.,none
+0,random,16,60,0.4670797070342879,0.07004708294601436,The folder was placed on the desk.,none
+0,random,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,random,18,60,0.4670797070342879,0.07004708294601436,The folder was placed on the desk.,none
+0,random,19,20,0.45861848283346174,0.074706005366169,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,0,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,1,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,2,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,3,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,6,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,7,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,8,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,9,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,11,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,12,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,13,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,14,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,15,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,16,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,18,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,yoked_positive_next_sentence,19,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,0,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,1,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,2,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,3,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,6,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,7,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,8,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,9,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,11,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,12,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,13,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,14,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,15,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,16,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,18,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,visible_sentence_only,19,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,0,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,1,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,2,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,3,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,4,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,5,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,6,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,7,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,8,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,9,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,10,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,11,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,12,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,13,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,14,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,15,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,16,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,17,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,18,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+0,constant_50,19,50,0.4654807561321018,0.0715322391406541,The folder was placed on the desk.,none
+1,live_positive,0,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,1,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,2,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,3,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,4,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,5,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,6,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,7,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,8,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,9,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,10,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,11,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,12,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,13,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,14,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,15,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,16,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,17,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,18,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_positive,19,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,0,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,1,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,2,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,3,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,4,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,5,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,6,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,7,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,8,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,9,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,10,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,11,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,12,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,13,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,14,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,15,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,16,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,17,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,18,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,live_negative,19,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,random,0,90,0.466448923675103,0.07886531415658382,A visitor entered the meeting room.,none
+1,random,1,10,0.4511943185984812,0.06908608744229916,A visitor entered the meeting room.,none
+1,random,2,80,0.45757081257781396,0.0724633526152827,A visitor entered the meeting room.,none
+1,random,3,0,0.42812477809546656,0.07774841385670861,A visitor entered the meeting room.,none
+1,random,4,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,random,5,20,0.45227338642218434,0.08407743485657049,A visitor entered the meeting room.,none
+1,random,6,40,0.45600438978478536,0.07259557810269357,A visitor entered the meeting room.,none
+1,random,7,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,random,8,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,random,9,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,random,10,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,random,11,30,0.45709665965492885,0.07488696634529979,A visitor entered the meeting room.,none
+1,random,12,10,0.4511943185984812,0.06908608744229916,A visitor entered the meeting room.,none
+1,random,13,30,0.45709665965492885,0.07488696634529979,A visitor entered the meeting room.,none
+1,random,14,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,random,15,90,0.466448923675103,0.07886531415658382,A visitor entered the meeting room.,none
+1,random,16,10,0.4511943185984812,0.06908608744229916,A visitor entered the meeting room.,none
+1,random,17,10,0.4511943185984812,0.06908608744229916,A visitor entered the meeting room.,none
+1,random,18,100,0.4674741174975988,0.07702717930470171,A visitor entered the meeting room.,none
+1,random,19,0,0.42812477809546656,0.07774841385670861,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,0,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,1,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,2,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,3,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,4,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,5,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,6,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,7,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,8,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,9,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,10,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,11,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,12,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,13,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,14,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,15,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,16,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,17,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,18,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,yoked_positive_next_sentence,19,60,0.46459298642515034,0.07547846636474476,A visitor entered the meeting room.,none
+1,visible_sentence_only,0,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,1,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,2,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,3,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,4,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,5,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,6,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,7,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,8,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,9,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,10,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,11,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,12,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,13,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,14,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,15,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,16,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,17,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,18,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,visible_sentence_only,19,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,0,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,1,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,2,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,3,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,4,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,5,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,6,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,7,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,8,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,9,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,10,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,11,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,12,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,13,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,14,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,15,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,16,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,17,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,18,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+1,constant_50,19,50,0.45753535327959294,0.07294812561902408,A visitor entered the meeting room.,none
+2,live_positive,0,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,live_positive,1,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,2,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,3,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,4,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,5,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,6,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,7,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,8,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,9,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,10,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,11,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,12,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,13,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,14,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,15,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,16,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,17,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,18,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_positive,19,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,live_negative,0,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,live_negative,1,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,2,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,3,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,4,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,5,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,6,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,7,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,8,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,9,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,10,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,11,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,12,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,13,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,14,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,15,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,16,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,17,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,18,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,live_negative,19,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,random,0,0,0.6152210186741296,0.10551170743924765,The report was handed to the team.,none
+2,random,1,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,random,2,90,0.6505378680523296,0.09431482765984944,The report was handed to the team.,none
+2,random,3,90,0.6505378680523296,0.09431482765984944,The report was handed to the team.,none
+2,random,4,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,random,5,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,random,6,80,0.6457461769723926,0.09157846256046209,The report was handed to the team.,none
+2,random,7,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,random,8,10,0.6388342337858397,0.08673965294735109,The report was handed to the team.,none
+2,random,9,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,random,10,90,0.6505378680523296,0.09431482765984944,The report was handed to the team.,none
+2,random,11,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,random,12,0,0.6152210186741296,0.10551170743924765,The report was handed to the team.,none
+2,random,13,30,0.6398115602004473,0.0897623670297869,The report was handed to the team.,none
+2,random,14,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,random,15,100,0.6524477389845944,0.09773159411930465,The report was handed to the team.,none
+2,random,16,0,0.6152210186741296,0.10551170743924765,The report was handed to the team.,none
+2,random,17,100,0.6524477389845944,0.09773159411930465,The report was handed to the team.,none
+2,random,18,40,0.6392749444137117,0.09033743728924148,The report was handed to the team.,none
+2,random,19,0,0.6152210186741296,0.10551170743924765,The report was handed to the team.,none
+2,yoked_positive_next_sentence,0,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,yoked_positive_next_sentence,1,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,2,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,3,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,4,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,5,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,6,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,7,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,8,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,9,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,10,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,11,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,12,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,13,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,14,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,15,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,16,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,17,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,18,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,yoked_positive_next_sentence,19,60,0.6498813599008478,0.0939338526111062,The report was handed to the team.,none
+2,visible_sentence_only,0,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,1,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,2,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,3,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,4,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,5,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,6,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,7,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,8,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,9,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,10,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,11,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,12,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,13,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,14,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,15,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,16,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,17,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,18,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,visible_sentence_only,19,70,0.6440947834840168,0.09392036787978908,The report was handed to the team.,none
+2,constant_50,0,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,1,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,2,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,3,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,4,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,5,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,6,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,7,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,8,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,9,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,10,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,11,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,12,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,13,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,14,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,15,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,16,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,17,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,18,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+2,constant_50,19,50,0.6450069879785076,0.09424349881616956,The report was handed to the team.,none
+3,live_positive,0,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,live_positive,1,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,2,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,3,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,4,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,5,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,6,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,7,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,8,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,9,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,10,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,11,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,12,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,13,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,14,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,15,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,16,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,17,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,18,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_positive,19,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,live_negative,0,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,live_negative,1,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,2,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,3,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,4,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,5,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,6,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,7,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,8,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,9,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,10,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,11,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,12,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,13,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,14,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,15,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,16,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,17,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,18,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,live_negative,19,40,0.5737276999113088,0.0774354069288592,They discussed the schedule after lunch.,none
+3,random,0,100,0.5802665857370339,0.08468292166069791,They discussed the schedule after lunch.,none
+3,random,1,80,0.5784577986766194,0.07750564143472338,They discussed the schedule after lunch.,none
+3,random,2,30,0.5730491131054647,0.08054421671252032,They discussed the schedule after lunch.,none
+3,random,3,90,0.578930802327337,0.0823691289466244,They discussed the schedule after lunch.,none
+3,random,4,80,0.5784577986766194,0.07750564143472338,They discussed the schedule after lunch.,none
+3,random,5,70,0.5730129305846895,0.0818958530434557,They discussed the schedule after lunch.,none
+3,random,6,0,0.5508476496688384,0.0826877219383031,They discussed the schedule after lunch.,none
+3,random,7,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,random,8,20,0.5710587863346058,0.0826546486376396,They discussed the schedule after lunch.,none
+3,random,9,0,0.5508476496688384,0.0826877219383031,They discussed the schedule after lunch.,none
+3,random,10,20,0.5710587863346058,0.0826546486376396,They discussed the schedule after lunch.,none
+3,random,11,0,0.5508476496688384,0.0826877219383031,They discussed the schedule after lunch.,none
+3,random,12,30,0.5730491131054647,0.08054421671252032,They discussed the schedule after lunch.,none
+3,random,13,30,0.5730491131054647,0.08054421671252032,They discussed the schedule after lunch.,none
+3,random,14,90,0.578930802327337,0.0823691289466244,They discussed the schedule after lunch.,none
+3,random,15,90,0.578930802327337,0.0823691289466244,They discussed the schedule after lunch.,none
+3,random,16,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,random,17,30,0.5730491131054647,0.08054421671252032,They discussed the schedule after lunch.,none
+3,random,18,0,0.5508476496688384,0.0826877219383031,They discussed the schedule after lunch.,none
+3,random,19,0,0.5508476496688384,0.0826877219383031,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,0,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,1,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,2,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,3,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,4,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,5,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,6,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,7,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,8,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,9,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,10,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,11,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,12,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,13,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,14,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,15,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,16,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,17,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,18,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,yoked_positive_next_sentence,19,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,visible_sentence_only,0,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,1,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,2,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,3,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,4,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,5,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,6,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,7,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,8,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,9,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,10,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,11,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,12,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,13,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,14,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,15,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,16,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,17,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,18,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,visible_sentence_only,19,60,0.580636996299837,0.0801461615928113,They discussed the schedule after lunch.,none
+3,constant_50,0,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,1,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,2,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,3,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,4,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,5,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,6,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,7,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,8,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,9,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,10,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,11,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,12,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,13,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,14,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,15,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,16,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,17,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,18,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+3,constant_50,19,50,0.576486656829351,0.07999178236027782,They discussed the schedule after lunch.,none
+4,live_positive,0,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,1,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,2,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,4,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,5,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,6,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,7,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,8,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,9,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,10,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,11,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,12,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,13,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,14,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,15,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,16,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_positive,19,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,0,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,1,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,2,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,4,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,5,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,6,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,7,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,8,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,9,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,10,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,11,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,12,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,13,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,14,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,15,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,16,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,live_negative,19,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,random,0,0,0.5239944110494964,0.10391915253282868,The message arrived on Tuesday.,none
+4,random,1,90,0.5555750713866997,0.0998723283644809,The message arrived on Tuesday.,none
+4,random,2,0,0.5239944110494964,0.10391915253282868,The message arrived on Tuesday.,none
+4,random,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,random,4,20,0.543046673462337,0.0991430588020813,The message arrived on Tuesday.,none
+4,random,5,100,0.554521961459803,0.09955661607857014,The message arrived on Tuesday.,none
+4,random,6,20,0.543046673462337,0.0991430588020813,The message arrived on Tuesday.,none
+4,random,7,10,0.547598933456684,0.0824475641829936,The message arrived on Tuesday.,none
+4,random,8,10,0.547598933456684,0.0824475641829936,The message arrived on Tuesday.,none
+4,random,9,100,0.554521961459803,0.09955661607857014,The message arrived on Tuesday.,none
+4,random,10,90,0.5555750713866997,0.0998723283644809,The message arrived on Tuesday.,none
+4,random,11,10,0.547598933456684,0.0824475641829936,The message arrived on Tuesday.,none
+4,random,12,0,0.5239944110494964,0.10391915253282868,The message arrived on Tuesday.,none
+4,random,13,20,0.543046673462337,0.0991430588020813,The message arrived on Tuesday.,none
+4,random,14,70,0.5459155175784263,0.09239295970425121,The message arrived on Tuesday.,none
+4,random,15,0,0.5239944110494964,0.10391915253282868,The message arrived on Tuesday.,none
+4,random,16,80,0.5465451847871758,0.09059421478180774,The message arrived on Tuesday.,none
+4,random,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,random,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,random,19,100,0.554521961459803,0.09955661607857014,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,0,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,1,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,2,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,4,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,5,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,6,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,7,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,8,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,9,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,10,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,11,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,12,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,13,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,14,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,15,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,16,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,yoked_positive_next_sentence,19,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,0,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,1,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,2,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,4,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,5,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,6,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,7,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,8,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,9,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,10,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,11,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,12,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,13,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,14,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,15,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,16,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,visible_sentence_only,19,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,0,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,1,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,2,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,3,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,4,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,5,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,6,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,7,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,8,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,9,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,10,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,11,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,12,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,13,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,14,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,15,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,16,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,17,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,18,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+4,constant_50,19,50,0.5482069459757181,0.09196639428883713,The message arrived on Tuesday.,none
+5,live_positive,0,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,1,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,2,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,3,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,4,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,5,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,6,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,7,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,8,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,9,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,10,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,11,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,12,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,13,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,14,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,15,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,16,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,17,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,18,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_positive,19,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,0,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,1,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,2,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,3,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,4,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,5,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,6,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,7,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,8,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,9,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,10,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,11,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,12,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,13,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,14,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,15,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,16,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,17,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,18,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,live_negative,19,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,random,0,70,0.5458755769377158,0.0781285205975063,A person waited beside the gate.,none
+5,random,1,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,2,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,random,3,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,4,90,0.5565526321166405,0.0796146280017429,A person waited beside the gate.,none
+5,random,5,80,0.5513624249982442,0.07442323413317253,A person waited beside the gate.,none
+5,random,6,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,7,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,random,8,90,0.5565526321166405,0.0796146280017429,A person waited beside the gate.,none
+5,random,9,70,0.5458755769377158,0.0781285205975063,A person waited beside the gate.,none
+5,random,10,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,11,10,0.5423882103043647,0.0715567398446203,A person waited beside the gate.,none
+5,random,12,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,random,13,80,0.5513624249982442,0.07442323413317253,A person waited beside the gate.,none
+5,random,14,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,15,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,random,16,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,random,17,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,random,18,100,0.5582650143296158,0.08255965184520275,A person waited beside the gate.,none
+5,random,19,90,0.5565526321166405,0.0796146280017429,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,0,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,1,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,2,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,3,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,4,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,5,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,6,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,7,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,8,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,9,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,10,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,11,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,12,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,13,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,14,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,15,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,16,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,17,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,18,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,yoked_positive_next_sentence,19,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,0,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,1,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,2,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,3,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,4,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,5,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,6,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,7,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,8,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,9,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,10,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,11,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,12,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,13,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,14,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,15,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,16,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,17,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,18,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,visible_sentence_only,19,60,0.5539066637166883,0.07867158429324583,A person waited beside the gate.,none
+5,constant_50,0,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,1,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,2,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,3,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,4,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,5,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,6,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,7,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,8,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,9,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,10,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,11,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,12,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,13,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,14,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,15,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,16,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,17,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,18,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+5,constant_50,19,50,0.5489094871597033,0.0783926177319747,A person waited beside the gate.,none
+6,live_positive,0,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,live_positive,1,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,2,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,3,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,4,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,5,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,6,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,7,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,8,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,9,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,10,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,11,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,12,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,13,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,14,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,15,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,16,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,17,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,18,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_positive,19,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,live_negative,0,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,live_negative,1,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,2,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,3,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,4,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,5,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,6,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,7,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,8,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,9,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,10,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,11,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,12,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,13,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,14,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,15,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,16,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,17,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,18,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,live_negative,19,40,0.6427387660940839,0.11359282618716426,The group examined the available records.,none
+6,random,0,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,random,1,30,0.6416906478168741,0.11687686262686547,The group examined the available records.,none
+6,random,2,20,0.6300670295802344,0.12851515366066657,The group examined the available records.,none
+6,random,3,80,0.6487479398053239,0.1058259806273818,The group examined the available records.,none
+6,random,4,100,0.6505327675181704,0.11887713595136196,The group examined the available records.,none
+6,random,5,90,0.6508836148600915,0.11651509042171926,The group examined the available records.,none
+6,random,6,20,0.6300670295802344,0.12851515366066657,The group examined the available records.,none
+6,random,7,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,random,8,0,0.6026096442856576,0.12443137133709514,The group examined the available records.,none
+6,random,9,0,0.6026096442856576,0.12443137133709514,The group examined the available records.,none
+6,random,10,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,random,11,80,0.6487479398053239,0.1058259806273818,The group examined the available records.,none
+6,random,12,90,0.6508836148600915,0.11651509042171926,The group examined the available records.,none
+6,random,13,30,0.6416906478168741,0.11687686262686547,The group examined the available records.,none
+6,random,14,10,0.6420165758509977,0.10032776979674773,The group examined the available records.,none
+6,random,15,30,0.6416906478168741,0.11687686262686547,The group examined the available records.,none
+6,random,16,10,0.6420165758509977,0.10032776979674773,The group examined the available records.,none
+6,random,17,20,0.6300670295802344,0.12851515366066657,The group examined the available records.,none
+6,random,18,100,0.6505327675181704,0.11887713595136196,The group examined the available records.,none
+6,random,19,10,0.6420165758509977,0.10032776979674773,The group examined the available records.,none
+6,yoked_positive_next_sentence,0,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,1,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,2,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,3,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,4,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,5,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,6,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,7,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,8,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,9,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,10,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,11,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,12,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,13,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,14,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,15,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,16,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,17,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,18,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,yoked_positive_next_sentence,19,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,visible_sentence_only,0,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,1,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,2,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,3,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,4,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,5,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,6,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,7,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,8,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,9,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,10,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,11,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,12,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,13,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,14,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,15,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,16,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,17,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,18,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,visible_sentence_only,19,60,0.6477758040355889,0.11348853849732132,The group examined the available records.,none
+6,constant_50,0,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,1,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,2,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,3,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,4,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,5,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,6,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,7,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,8,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,9,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,10,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,11,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,12,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,13,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,14,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,15,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,16,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,17,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,18,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+6,constant_50,19,50,0.6412087465004053,0.11627884616415685,The group examined the available records.,none
+7,live_positive,0,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,1,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,2,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,3,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,4,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,5,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,6,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,7,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,9,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,10,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,11,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,12,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,13,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,14,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,15,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,16,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,17,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,18,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_positive,19,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,0,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,1,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,2,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,3,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,4,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,5,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,6,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,7,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,9,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,10,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,11,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,12,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,13,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,14,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,15,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,16,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,17,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,18,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,live_negative,19,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,random,0,90,0.5437367708120393,0.11018518906756747,The conversation ended before sunset.,none
+7,random,1,80,0.5399344795233448,0.1065000494265651,The conversation ended before sunset.,none
+7,random,2,40,0.5303263889045216,0.09986106972634579,The conversation ended before sunset.,none
+7,random,3,100,0.5413557760711092,0.11112689284174437,The conversation ended before sunset.,none
+7,random,4,0,0.5063766381212917,0.1081000932729177,The conversation ended before sunset.,none
+7,random,5,90,0.5437367708120393,0.11018518906756747,The conversation ended before sunset.,none
+7,random,6,40,0.5303263889045216,0.09986106972634579,The conversation ended before sunset.,none
+7,random,7,90,0.5437367708120393,0.11018518906756747,The conversation ended before sunset.,none
+7,random,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,random,9,0,0.5063766381212917,0.1081000932729177,The conversation ended before sunset.,none
+7,random,10,10,0.5305389168096539,0.08764707444913278,The conversation ended before sunset.,none
+7,random,11,40,0.5303263889045216,0.09986106972634579,The conversation ended before sunset.,none
+7,random,12,0,0.5063766381212917,0.1081000932729177,The conversation ended before sunset.,none
+7,random,13,10,0.5305389168096539,0.08764707444913278,The conversation ended before sunset.,none
+7,random,14,0,0.5063766381212917,0.1081000932729177,The conversation ended before sunset.,none
+7,random,15,80,0.5399344795233448,0.1065000494265651,The conversation ended before sunset.,none
+7,random,16,20,0.5255868193710921,0.10846647636619788,The conversation ended before sunset.,none
+7,random,17,0,0.5063766381212917,0.1081000932729177,The conversation ended before sunset.,none
+7,random,18,20,0.5255868193710921,0.10846647636619788,The conversation ended before sunset.,none
+7,random,19,80,0.5399344795233448,0.1065000494265651,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,0,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,1,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,2,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,3,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,4,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,5,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,6,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,7,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,9,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,10,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,11,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,12,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,13,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,14,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,15,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,16,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,17,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,18,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,yoked_positive_next_sentence,19,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,0,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,1,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,2,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,3,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,4,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,5,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,6,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,7,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,9,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,10,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,11,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,12,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,13,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,14,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,15,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,16,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,17,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,18,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,visible_sentence_only,19,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,0,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,1,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,2,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,3,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,4,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,5,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,6,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,7,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,8,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,9,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,10,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,11,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,12,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,13,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,14,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,15,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,16,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,17,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,18,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none
+7,constant_50,19,50,0.5355827872786684,0.10817315035241548,The conversation ended before sunset.,none

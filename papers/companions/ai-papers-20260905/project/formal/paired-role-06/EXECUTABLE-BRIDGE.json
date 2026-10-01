@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "finite_cases": [
+    {
+      "first": "a",
+      "second": "a",
+      "score": 1
+    },
+    {
+      "first": "a",
+      "second": "b",
+      "score": 2
+    },
+    {
+      "first": "a",
+      "second": "other",
+      "score": 1
+    },
+    {
+      "first": "b",
+      "second": "a",
+      "score": 0
+    },
+    {
+      "first": "b",
+      "second": "b",
+      "score": 1
+    },
+    {
+      "first": "b",
+      "second": "other",
+      "score": 0
+    },
+    {
+      "first": "other",
+      "second": "a",
+      "score": 0
+    },
+    {
+      "first": "other",
+      "second": "b",
+      "score": 1
+    },
+    {
+      "first": "other",
+      "second": "other",
+      "score": 0
+    }
+  ],
+  "experimental_pairs_checked": 120,
+  "formal_python_refinement": false,
+  "independent_review": false,
+  "sources": {
+    "formal\\paired-role-06\\executable-bridge.py": "c1969ff7c6033f8049a2333cc3b81e7c73abe41a298283940816644f63069f4f",
+    "formal\\paired-role-06\\PairedRoleMetric.lean": "8cdaa9b73dfb2b6024b3066a305aba86c0257ec95b43898b6e43fea9c029bce4",
+    "reviews\\gpt2-learning-06\\ROLE-PAIR-DETAIL.csv": "76d36aa6f0b460c554a8ca4f3a7cdfcd5e03e827556d7e90137a653301d879b4",
+    "reviews\\gpt2-learning-06\\ROLE-PAIR-SUMMARY.csv": "4c7021465e0f56f8ce152725e978bda5f14c2232ae9376edd8a51e3717cfbe6d"
+  }
+}

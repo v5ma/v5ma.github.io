@@ -1,0 +1,37 @@
+{
+  "status": "EXECUTED_PROSPECTIVE_TRANSFER_NOT_INDEPENDENTLY_REVIEWED",
+  "case_index": 11,
+  "case": "garden-pair-0/yellow/1",
+  "family": "garden-pair-0",
+  "answer_readouts": 18,
+  "fresh_workflow_answers": 0,
+  "authority_events": 0,
+  "native_decoder_calls": 44,
+  "processed_tokens": 366,
+  "prefix_readouts": 2,
+  "all_supplied_states_unmutated": true,
+  "resource": {
+    "elapsed_seconds": 13.969000000040978,
+    "initial": {
+      "available_ram_bytes": 22066470912,
+      "process_commit_bytes": 35282944,
+      "peak_process_commit_bytes": 35282944,
+      "working_set_bytes": 56512512
+    },
+    "final": {
+      "available_ram_bytes": 21434384384,
+      "process_commit_bytes": 540663808,
+      "peak_process_commit_bytes": 587735040,
+      "working_set_bytes": 672256000
+    },
+    "peak_commit_bytes": 587735040,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "files": {
+    "ANSWERS.json": "30335d922778db741f3ebaa9f5d4e7cbd86b3b25f3758ee9923cc30fd4c34dc1",
+    "INPUT-FREEZE.json": "7a34199e3bc63cece6432aca52ca3d98644333146e963e59a5aff73b92bb555c",
+    "PREFIX-STATE.json": "2504a0f4c663ee9bfe638157916836eddcca3ef73cdef81277f91dce00356a20",
+    "STATE-SUPPORT.json": "b2dc3d4f7d6a41eb0d47c4040180c81b7f25d713752deff4fc1eb6c0e7c455a0"
+  }
+}

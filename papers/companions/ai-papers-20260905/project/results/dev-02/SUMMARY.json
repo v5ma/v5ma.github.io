@@ -1,0 +1,12 @@
+{
+  "execution": "PASS",
+  "scientific_promotion": "DEVELOPMENT_ONLY",
+  "donor_closed": true,
+  "trained_models": 3,
+  "metric_rows": 72,
+  "patch_rows": 18432,
+  "family_metric_rows": 1152,
+  "seconds": 1.827999999979511,
+  "bytes_before_summary": 3538744,
+  "limits": "No external review, independent confirmatory sample, LLMs, humans, feedback-regulation or biological transfer."
+}

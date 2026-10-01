@@ -1,0 +1,322 @@
+[
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 0,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 0,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 2,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 2,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 3,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 3,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 5,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-attractive.fig",
+    "cell": 5,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 0,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 0,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 2,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 2,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 3,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 3,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 5,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-2modules-repulsive.fig",
+    "cell": 5,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 0,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 0,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 1,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 1,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 2,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 2,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 3,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 3,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 4,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 4,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 5,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-attractive.fig",
+    "cell": 5,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 0,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 0,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 1,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 1,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 2,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 2,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 3,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 3,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 4,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 4,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 5,
+    "odor": 0,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  },
+  {
+    "file": "april-3modules-repulsive.fig",
+    "cell": 5,
+    "odor": 1,
+    "meanMatches": true,
+    "lowerSemMatches": true,
+    "upperSemMatches": true
+  }
+]

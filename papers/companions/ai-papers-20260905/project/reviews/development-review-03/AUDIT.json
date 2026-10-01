@@ -1,0 +1,174 @@
+{
+  "tests": 15,
+  "tests_passed": true,
+  "frozen_inputs_unchanged": true,
+  "mi_patch_rows_replayed": 18432,
+  "mi_metric_rows_recalculated": 72,
+  "ca_events_recounted": 2304,
+  "donor_closure": "all four grant combinations in each split",
+  "ca_aggregate": {
+    "fresh / network_only": {
+      "violations": 9,
+      "useful": 13,
+      "eligible": 24
+    },
+    "fresh / final_gate": {
+      "violations": 0,
+      "useful": 13,
+      "eligible": 24
+    },
+    "fresh / refreshed_input_and_gate": {
+      "violations": 0,
+      "useful": 13,
+      "eligible": 24
+    },
+    "fresh / deny_all": {
+      "violations": 0,
+      "useful": 0,
+      "eligible": 24
+    },
+    "selected_grant_stale / network_only": {
+      "violations": 21,
+      "useful": 1,
+      "eligible": 24
+    },
+    "selected_grant_stale / final_gate": {
+      "violations": 0,
+      "useful": 1,
+      "eligible": 24
+    },
+    "selected_grant_stale / refreshed_input_and_gate": {
+      "violations": 0,
+      "useful": 13,
+      "eligible": 24
+    },
+    "selected_grant_stale / deny_all": {
+      "violations": 0,
+      "useful": 0,
+      "eligible": 24
+    },
+    "unselected_grant_stale / network_only": {
+      "violations": 9,
+      "useful": 13,
+      "eligible": 24
+    },
+    "unselected_grant_stale / final_gate": {
+      "violations": 0,
+      "useful": 13,
+      "eligible": 24
+    },
+    "unselected_grant_stale / refreshed_input_and_gate": {
+      "violations": 0,
+      "useful": 13,
+      "eligible": 24
+    },
+    "unselected_grant_stale / deny_all": {
+      "violations": 0,
+      "useful": 0,
+      "eligible": 24
+    }
+  },
+  "mi_test_descriptive": {
+    "selected_grant": {
+      "global_linear": {
+        "mean_mae": 0.33954230269802776,
+        "seed_maes": [
+          0.30468266669523647,
+          0.39126005640999306,
+          0.3226841849888538
+        ]
+      },
+      "matched_polynomial": {
+        "mean_mae": 0.3310857086765367,
+        "seed_maes": [
+          0.29562344037131455,
+          0.37633386907233307,
+          0.32129981658596246
+        ]
+      },
+      "unit_local_context": {
+        "mean_mae": 0.3366831422353758,
+        "seed_maes": [
+          0.3055137374332717,
+          0.3888634158572517,
+          0.31567227341560405
+        ]
+      },
+      "local_jacobian": {
+        "mean_mae": 0.07595474320261568,
+        "seed_maes": [
+          0.07675232271242755,
+          0.0848498174438605,
+          0.06626208945155901
+        ]
+      },
+      "averaged_jacobian": {
+        "mean_mae": 0.3382940272845743,
+        "seed_maes": [
+          0.30237802186067836,
+          0.390564922208455,
+          0.32193913778458966
+        ]
+      },
+      "wrong_context_jacobian": {
+        "mean_mae": 0.47286360812487743,
+        "seed_maes": [
+          0.4469593999345333,
+          0.5050743042723947,
+          0.4665571201677044
+        ]
+      }
+    },
+    "unselected_grant": {
+      "global_linear": {
+        "mean_mae": 0.38393418302479126,
+        "seed_maes": [
+          0.3613060577379888,
+          0.40374444605882925,
+          0.38675204527755563
+        ]
+      },
+      "matched_polynomial": {
+        "mean_mae": 0.37741415759753066,
+        "seed_maes": [
+          0.3580180225174943,
+          0.3904393668280927,
+          0.3837850834470049
+        ]
+      },
+      "unit_local_context": {
+        "mean_mae": 0.36117377726038197,
+        "seed_maes": [
+          0.33590585750657026,
+          0.3858257089958616,
+          0.36178976527871404
+        ]
+      },
+      "local_jacobian": {
+        "mean_mae": 0.08693615388982322,
+        "seed_maes": [
+          0.08832971976409265,
+          0.08239784108466859,
+          0.09008090082070841
+        ]
+      },
+      "averaged_jacobian": {
+        "mean_mae": 0.37171826786908757,
+        "seed_maes": [
+          0.3474780963972088,
+          0.38994641766539306,
+          0.3777302895446608
+        ]
+      },
+      "wrong_context_jacobian": {
+        "mean_mae": 0.5235746747520823,
+        "seed_maes": [
+          0.5111043076659724,
+          0.5411984681115614,
+          0.5184212484787133
+        ]
+      }
+    }
+  },
+  "review_class": "authoring-agent self-review, not independent review"
+}

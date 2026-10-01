@@ -1,0 +1,8 @@
+{
+  "execution": "PASS",
+  "python_parity_cases": 576,
+  "max_absolute_logit_error": 7.105427357601002e-15,
+  "authority_cases": 3,
+  "browser_visual_and_interaction_test": "NOT_PERFORMED",
+  "scope": "Numerical engine parity, not browser or security deployment proof."
+}

@@ -1,0 +1,9 @@
+# Development baseline and prospective scoring decision
+
+The frozen baseline generated twelve complete answers. All eight giver/recipient answers matched exactly. The four color outputs were `Red`, `Red`, `Blue`, `Blue`, whereas the exact targets were lower-case. The originally specified score is therefore **8/12 overall, 4/4 giver, 4/4 recipient, 0/4 color**. Its declared gate did **not** pass. No prompt, protocol, result or frozen adapter is changed to erase this outcome.
+
+An explicitly post-hoc capitalization-insensitive diagnostic is 12/12. This identifies an answer-format mismatch, not a failed role/attribute relation. It is not a substituted confirmatory score. For the separately frozen next transfer assay, predeclare `answer.strip().casefold() == target.casefold()` and also retain the exact-case score. No punctuation cleanup, aliases, restricted-name decoder or selected-case exclusion will be introduced. Use entirely new names, settings and colors, and report their unedited baseline in full before interpreting intervention outcomes. This is a disclosed development-driven protocol change, not passage of the original baseline gate.
+
+Native full-prefix versus split-prefix execution passed on the first development prompt: maximum absolute logit error 0, all 48 hybrid-state tensor errors 0, identical native top token. This is one consistency fixture, not upstream full-precision equivalence or all-context numerical proof.
+
+The smoke test used three actual decoder calls. The four baseline batches used 26 additional decoder calls for twelve answers. Each batch ran on one numerical thread in 4.64–4.84 seconds; smoke took 3.52 seconds. Maximum process commit among these five processes was 562,860,032 bytes. The small model and isolated runtime remain on D:, without a shared runtime upgrade, vision weights or public upload.

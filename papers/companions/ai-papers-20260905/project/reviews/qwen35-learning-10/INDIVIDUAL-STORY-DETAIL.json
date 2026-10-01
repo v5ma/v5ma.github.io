@@ -1,0 +1,898 @@
+[
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "original",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "linear_ridge",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "rbf_ridge",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "yoked_ridge",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "slot_swap",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "oracle_kv",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "full_donor",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": true,
+    "all_three_swapped": true,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-0/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-0/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-0/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-0/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-0/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": true
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-1/purple/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-1/purple/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-1/orange/0",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  },
+  {
+    "arm": "text_instruction",
+    "case": "test/context-1/pair-1/orange/1",
+    "both_reversed_roles": false,
+    "all_three_swapped": false,
+    "same_name_in_both_roles": false
+  }
+]

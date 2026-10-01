@@ -1,0 +1,105 @@
+{
+  "status": "COMPLETE_BOUNDED_RESEARCH_TRANCHE_NOT_FINAL_PAPERS",
+  "training_prefixes": 24,
+  "heldout_prefixes": 16,
+  "training_answers": 72,
+  "training_correct": 72,
+  "unedited_test_answers": 48,
+  "unedited_test_correct": 48,
+  "primary_test_answers": 384,
+  "fresh_workflow_answers": 9,
+  "authority_events": 5,
+  "all_reconstructed_answers": 465,
+  "exact_reconstructed_training_windows": 24,
+  "native_audit_batches": 22,
+  "original_native_calls": 1096,
+  "reconstruction_native_calls": 1096,
+  "original_training_calls": 176,
+  "original_test_and_workflow_calls": 920,
+  "test_state_support_rows": 6144,
+  "application_tests": 84,
+  "new_model_editor_fits": 3,
+  "base_weights_changed": false,
+  "new_models_downloaded": false,
+  "existing_lean_statements": 31,
+  "new_lean_statements": 0,
+  "new_prose_math_obligations": true,
+  "new_figures_screen_reviewed": 1,
+  "total_screen_reviewed_figures": 16,
+  "max_original_model_process_commit": 694616064,
+  "all_original_model_process_seconds": 380.38899999985006,
+  "all_native_reconstruction_process_seconds": 374.48700000013923,
+  "all_numerical_threads": 1,
+  "stored_model_bytes": 42912216,
+  "same_agent_separate_code_not_independent": true,
+  "full_pipeline_replay": false,
+  "arbitrary_message_signature_audit": false,
+  "independent_review": false,
+  "manuscript_versions": [
+    9,
+    9
+  ],
+  "tenth_manuscripts_complete": false,
+  "pdf_created": false,
+  "browser_ui_acceptance": false,
+  "publication": false,
+  "individual_story_summary": [
+    {
+      "arm": "original",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "linear_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    },
+    {
+      "arm": "rbf_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    },
+    {
+      "arm": "yoked_ridge",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "slot_swap",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "oracle_kv",
+      "both_reversed_roles": 16,
+      "complete_stories": 16,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "full_donor",
+      "both_reversed_roles": 16,
+      "complete_stories": 16,
+      "same_name_stories": 0,
+      "n": 16
+    },
+    {
+      "arm": "text_instruction",
+      "both_reversed_roles": 0,
+      "complete_stories": 0,
+      "same_name_stories": 5,
+      "n": 16
+    }
+  ],
+  "completion_script_sha256": "ff8c7c6c15def668ade40544c03f135f643ac24b07177f6afa5fc7d0f8070f1c"
+}

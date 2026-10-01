@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "independent_review": false,
+  "auditor_sha256": "0bc3073480258c5ff3a879a781b8f8afa6df1e63a5d4602f05a059b69c2592db",
+  "answer_rows": 288,
+  "fresh_workflow_answer_rows": 12,
+  "state_support_rows": 4608,
+  "authority_events": 6,
+  "tests": 76,
+  "native_decoder_calls_in_original_runs": 776,
+  "native_prefix_readouts": 32,
+  "total_original_elapsed_seconds": 244.35899999993853,
+  "max_peak_commit_bytes": 588591104,
+  "family_count": 4,
+  "strata_note": "Two settings crossed with two name pairs; descriptive strata, not four independently sampled populations.",
+  "all_full_donor_opposite_original_controls_exact": true,
+  "native_reconstruction": "Separate native case audits required; not implied by this recount"
+}

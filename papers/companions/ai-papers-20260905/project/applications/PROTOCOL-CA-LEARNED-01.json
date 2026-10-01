@@ -1,0 +1,15 @@
+{
+  "schema": "san-ca-learned-interface-development/v1",
+  "specified_after": "dev-02 first causal metrics; exploratory extension, not confirmatory",
+  "models": "../results/dev-02/models.json",
+  "worlds": "dev-02 test worlds only; shared with MI, not independent replication",
+  "seeds": [1101, 2202, 3303],
+  "scenarios": ["fresh", "selected_grant_stale", "unselected_grant_stale"],
+  "policies": ["network_only", "final_gate", "refreshed_input_and_gate", "deny_all"],
+  "candidate_threshold": 0.5,
+  "authority_boundary": "Current permission is computed from exact symbolic world truth and checked by CommitmentStore.",
+  "revision_rule": "All proposals carry current revision 1; only the network input can be stale. This tests semantic staleness not automatic version rejection.",
+  "measurements": ["unauthorized_executions", "useful_completion", "rejected_proposals", "proposal_rate"],
+  "limits": ["No new training", "No human study", "No open-weight LLM", "No online adaptation or memory growth", "Current symbolic meaning map is supplied, not learned"],
+  "resources": {"numerical_threads": 1, "max_seconds": 15, "max_bytes": 2000000}
+}

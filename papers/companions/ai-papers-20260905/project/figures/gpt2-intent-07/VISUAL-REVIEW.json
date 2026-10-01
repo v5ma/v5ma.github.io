@@ -1,0 +1,12 @@
+{
+  "status": "PASS_SCREEN_IMAGE_ONLY",
+  "figure": "intent-role-color-results.png",
+  "sha256": "c634fa98dcd9813b7d9b90b3245d520628d3b18e4849a942d696ce0d12b39a2b",
+  "reviewer": "authoring agent",
+  "independent_review": false,
+  "viewed_native_pixels": [2250, 1260],
+  "displayed_pixels": [2048, 1147],
+  "clipping_or_overlap_observed": false,
+  "pdf_layout_accepted": false,
+  "pdf_obligation": "Split panels or provide a legible wide layout; do not shrink the entire figure into unreadable text-column artwork"
+}

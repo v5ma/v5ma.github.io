@@ -1,0 +1,1 @@
+{"attack_events":1752,"conditions":84,"evaluation_events":33792,"feedback_events":7200,"independent_review":false,"matched_external_state_exact":true,"numerical_threads":1,"numpy":"2.4.6","output_bytes":9063109,"persisted_state_exact":true,"seconds":2.0320000000065193,"sources_unchanged":true,"status":"PASS","transformers_tested":false}

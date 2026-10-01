@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "scope": "Two named Draft 6/Draft 7 manuscripts",
+  "independent_review": false,
+  "reviewer": "authoring agent and exact paragraph checks",
+  "records": [
+    {
+      "paper": "core-alignment",
+      "old_sha256": "03a475c0ec964744122de840cb43516b24a2b11d25b89e39b91098d3f604af13",
+      "new_sha256": "4b8975a4109e3e3e8c13280d318aac2d85a7a82d45326e526d8c6460397ad28b",
+      "old_paragraphs": 147,
+      "retained_exact_paragraphs": 144,
+      "changed_paragraphs": [
+        {
+          "starts_with": "September 4, 2026 \u00b7 Draft 6",
+          "reason": "Current version label updated; frozen Draft 6 retained.",
+          "old_line": 8,
+          "old_paragraph_sha256": "bbab1d5adb319a0a399776e3f9aa04969a08ae6dbb56c6987f9104dd916c350f"
+        },
+        {
+          "starts_with": "How can a limited human contribution",
+          "reason": "Abstract rewritten to report prospective results and their exact scope; earlier evidence retained in body.",
+          "old_line": 12,
+          "old_paragraph_sha256": "8b576ecf670b57ecf0e89b349f85a5632b68892d33c8806ee3998b00dd22272d"
+        },
+        {
+          "starts_with": "The most useful next test is not merely",
+          "reason": "Future-tense test recommendation updated to reference completed subsection 6.9; clarification remains open.",
+          "old_line": 281,
+          "old_paragraph_sha256": "141fe9a34f24901f2a8824037a42cd6ba7b558a1e30c404bb202108751f0c132"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "new_words_including_references": 7739,
+      "numbered_equations": 10
+    },
+    {
+      "paper": "mechanistic-interpretability",
+      "old_sha256": "bde3c59df3d9b6b311c073b2bac3d5b0f7b7b3ded0ffc587985d7136b88f23bc",
+      "new_sha256": "1f218eeadfc1f405b2e1f22fac62d230327c2547891d3fef0857ceb362824c69",
+      "old_paragraphs": 160,
+      "retained_exact_paragraphs": 156,
+      "changed_paragraphs": [
+        {
+          "starts_with": "September 4, 2026 \u00b7 Draft 6",
+          "reason": "Current version label updated; frozen Draft 6 retained.",
+          "old_line": 8,
+          "old_paragraph_sha256": "bbab1d5adb319a0a399776e3f9aa04969a08ae6dbb56c6987f9104dd916c350f"
+        },
+        {
+          "starts_with": "Decoding a state, identifying its causal use",
+          "reason": "Abstract rewritten to report prospective results and their exact scope; earlier evidence retained in body.",
+          "old_line": 12,
+          "old_paragraph_sha256": "107d9dab5e3969bd5773df725924ea3d3158a2e6baa8e6d729ed1832db881f6e"
+        },
+        {
+          "starts_with": "The next experiment must vary correction intent",
+          "reason": "Future-tense recommendation now points to completed subsection 6.8; matched methods remain open.",
+          "old_line": 321,
+          "old_paragraph_sha256": "71b85736775b3c9f5c976c853ecad704dc8414b08d2fa3f109f4a5b8b58d8399"
+        },
+        {
+          "starts_with": "The passive assay has implemented live",
+          "reason": "Next-test summary now acknowledges executed varied-intent assay; further transfer obligations remain.",
+          "old_line": 339,
+          "old_paragraph_sha256": "d037be42de758bf564517ced9f7d0215115a23b2075f5bae628882dd217907ca"
+        }
+      ],
+      "source_section_verbatim": true,
+      "all_other_original_paragraphs_retained": true,
+      "new_words_including_references": 8662,
+      "numbered_equations": 14
+    }
+  ],
+  "script_sha256": "67a2cc65b713fcc032b90660a5e2211f05918fbbb59e1d0cfd4e683195ec7533"
+}

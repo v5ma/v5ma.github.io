@@ -1,0 +1,12 @@
+{
+  "status": "POST-HOC_BASELINE_ADEQUACY_DIAGNOSTIC",
+  "unaltered_native_correct": {
+    "initial_recipient": 24,
+    "later_giver": 0,
+    "later_color": 21
+  },
+  "denominator_per_query": 32,
+  "interpretation": "A zero native giver baseline cannot discriminate failure to preserve a semantic operation from failure to answer this wording. Keep all outcomes; do not use joint zero scores as an intervention-specific failure verdict.",
+  "zero_native_giver_baseline": true,
+  "independent_review": false
+}

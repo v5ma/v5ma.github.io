@@ -1,0 +1,37 @@
+{
+  "status": "EXECUTED_FROZEN_HELDOUT_DEVELOPMENT",
+  "case_index": 2,
+  "case": "test/context-0/pair-0/orange/0",
+  "family": "test/context-0/pair-0",
+  "prepared_receipt_sha256": "743eea56b4bc9e57cc507389f33e655d67655d3e3fb83f07e5a638f814b96c75",
+  "fit_receipt_sha256": "5fd6bb53c4748d9980d2fd8a326b91fabe19d22d8b7052af09ed70c3b5ee89c2",
+  "primary_answers": 24,
+  "fresh_workflow_answers": 0,
+  "authority_events": 0,
+  "native_calls": 58,
+  "processed_tokens": 520,
+  "resource": {
+    "elapsed_seconds": 18.905999999959022,
+    "initial": {
+      "available_ram_bytes": 21700657152,
+      "process_commit_bytes": 36241408,
+      "peak_process_commit_bytes": 36241408,
+      "working_set_bytes": 57577472
+    },
+    "final": {
+      "available_ram_bytes": 21014073344,
+      "process_commit_bytes": 646389760,
+      "peak_process_commit_bytes": 693665792,
+      "working_set_bytes": 744660992
+    },
+    "peak_commit_bytes": 693665792,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "files": {
+    "ANSWERS.json": "cbc6b7615f9473c046e6387dbd359ea6d431e3d2e4f4e7865baed281b8cebc28",
+    "ORACLE-CONTROLS.json": "46eb3278721a584a61bd5f28001f0743d1cc1d5e1f0bd8fa5c2a4461ba1860c5",
+    "POLICY-COMMITMENT.json": "8d46cfe6d0820f9ffa3ac25b0ccac1f105e35ef15b179058b82fd6ba3798b4f9",
+    "STATE-SUPPORT.json": "ed9e5b36bdb30264b01fc458a51d591fc7a31914dfeff3d08407151417cc2c46"
+  }
+}

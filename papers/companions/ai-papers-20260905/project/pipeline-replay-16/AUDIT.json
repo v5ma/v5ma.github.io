@@ -1,0 +1,95 @@
+{
+  "status": "PASS_FIXED_PIPELINE_POSTRUN_READBACK_NOT_INDEPENDENT_REVIEW",
+  "auditor_sha256": "b5377ea1f5c6b8c7e375537bce23eeddf9deeb0819e13651728bd3520d4768e5",
+  "controller_test_receipt_sha256": "57aadf4211d35405719c83e2cf70687bdcfb2cbf7caf28afa139d3c37d4218c5",
+  "declared_input_hashes_rechecked_in_this_audit": true,
+  "inspection": {
+    "source_manifest_sha256": "f37ce90d2f51b6016725d14864b16b51f6ad23e03a1e9a128124c18c10c4f36e",
+    "controller_sha256": "a316c6ee25e6ff051e2dbcdf1bfbb2df698571f2036064719096707b26561134",
+    "final_receipt_sha256": "654f6728c8cefdc37045cf535f1e488750572f46c34ee24ee156470988837700",
+    "plan_sha256": "25975c8f8946da410bd93d54e4b4bd70d445f13faca096ada4f9a90a85af6381",
+    "declared_inputs": 494,
+    "independent_project_reference_copies": 160,
+    "linked_binary_dependencies": 334,
+    "generated_artifacts": 143,
+    "byte_identical_reference_artifacts": 78,
+    "control_artifacts": 302,
+    "summed_parent_child_wait_seconds": 789.1569999999483,
+    "maximum_bootstrap_commit_bytes": 696545280,
+    "minimum_bootstrap_initial_free_ram_bytes": 16942907392,
+    "maximum_single_parent_child_wait_seconds": 26.51500000001397,
+    "counts_from_executed_receipts": {
+      "steps": 49,
+      "native_model_processes": 44,
+      "native_decoder_calls": 2192,
+      "new_training_prefixes_reproduced": 24,
+      "training_answers_reproduced": 72,
+      "test_answers_reproduced": 384,
+      "workflow_answers_reproduced": 9,
+      "separate_code_reconstructed_answers": 465,
+      "native_seconds": 751.027999999933,
+      "maximum_native_commit_bytes": 696545280
+    },
+    "score_table_recount": {
+      "original": {
+        "giver_of_16": 0,
+        "recipient_of_16": 0,
+        "color_of_16": 16,
+        "complete_groups_of_8": 0
+      },
+      "linear_ridge": {
+        "giver_of_16": 1,
+        "recipient_of_16": 4,
+        "color_of_16": 16,
+        "complete_groups_of_8": 0
+      },
+      "rbf_ridge": {
+        "giver_of_16": 2,
+        "recipient_of_16": 3,
+        "color_of_16": 16,
+        "complete_groups_of_8": 0
+      },
+      "yoked_ridge": {
+        "giver_of_16": 0,
+        "recipient_of_16": 0,
+        "color_of_16": 11,
+        "complete_groups_of_8": 0
+      },
+      "slot_swap": {
+        "giver_of_16": 0,
+        "recipient_of_16": 0,
+        "color_of_16": 16,
+        "complete_groups_of_8": 0
+      },
+      "oracle_kv": {
+        "giver_of_16": 16,
+        "recipient_of_16": 16,
+        "color_of_16": 16,
+        "complete_groups_of_8": 8
+      },
+      "full_donor": {
+        "giver_of_16": 16,
+        "recipient_of_16": 16,
+        "color_of_16": 16,
+        "complete_groups_of_8": 8
+      },
+      "text_instruction": {
+        "giver_of_16": 5,
+        "recipient_of_16": 0,
+        "color_of_16": 16,
+        "complete_groups_of_8": 0
+      }
+    },
+    "authority_events": 5,
+    "accepted_authority_events": 3,
+    "raw_signature_envelopes_available": false,
+    "process_records": 49,
+    "retained_failures_this_pipeline": 0,
+    "numerical_or_model_imports_by_this_auditor": false,
+    "boundary": "Same-author readback using the original comparison controller; stored-score recount is not independent scientific or arbitrary-message authentication review"
+  },
+  "new_model_calls": 0,
+  "new_fits": 0,
+  "independent_review": false,
+  "publication": false
+}

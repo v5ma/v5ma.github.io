@@ -1,0 +1,10 @@
+{
+  "final_streams_opened": false,
+  "fitted_sha256": "a6271ee5519b8f1a17b6bcf51888302e8a0f8b7a867e45a4205efda8fe91ca43",
+  "source_hashes": {
+    "concept": "c418f964e9818b9f72ef83268cae73325fea5fd49a723ef4553c2745c38ca8b8",
+    "experiment": "87303b0e1ca5abf257a728f7e41dd5b997f68d953cdcdf9593446173c350bf37",
+    "math": "eb21bc304975d0e75bb7edae9c9ae575b34022ae6b91c0d8d1a471d23699df97",
+    "protocol": "d428f9b8e7564e42c4cff845771846e18d9a403c7bbc350eb4e2cf357fb2b4b6"
+  }
+}

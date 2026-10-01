@@ -1,0 +1,1626 @@
+{
+  "checksPassed": 394,
+  "checksTotal": 394,
+  "checks": [
+    {
+      "name": "accepted_controller_bytes",
+      "passed": true
+    },
+    {
+      "name": "two_saved_24_step_histories",
+      "passed": true
+    },
+    {
+      "name": "complete_state_partition_0",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_0",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_0",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_0",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_0",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_0",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_0",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_1",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_1",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_1",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_1",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_1",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_1",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_2",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_2",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_2",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_2",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_2",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_2",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_3",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_3",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_3",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_3",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_3",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_3",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_4",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_4",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_4",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_4",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_4",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_4",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_5",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_5",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_5",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_5",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_5",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_5",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_6",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_6",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_6",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_6",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_6",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_6",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_7",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_7",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_7",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_7",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_7",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_7",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_8",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_8",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_8",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_8",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_8",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_8",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_9",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_9",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_9",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_9",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_9",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_9",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_10",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_10",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_10",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_10",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_10",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_10",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_11",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_11",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_11",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_11",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_11",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_11",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_12",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_12",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_12",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_12",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_12",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_12",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_13",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_13",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_13",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_13",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_13",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_13",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_14",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_14",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_14",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_14",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_14",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_14",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_15",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_15",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_15",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_15",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_15",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_15",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_16",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_16",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_16",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_16",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_16",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_16",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_17",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_17",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_17",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_17",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_17",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_17",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_18",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_18",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_18",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_18",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_18",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_18",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_19",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_19",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_19",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_19",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_19",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_19",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_20",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_20",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_20",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_20",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_20",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_20",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_21",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_21",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_21",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_21",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_21",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_21",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_22",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_22",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_22",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_22",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_22",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_22",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_0_23",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_0_23",
+      "passed": true
+    },
+    {
+      "name": "saved_action_0_23",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_0_23",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_0_23",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_0_23",
+      "passed": true
+    },
+    {
+      "name": "complete_state_partition_1",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_0",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_0",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_0",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_0",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_0",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_0",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_1",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_1",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_1",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_1",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_1",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_1",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_2",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_2",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_2",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_2",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_2",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_2",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_3",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_3",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_3",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_3",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_3",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_3",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_4",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_4",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_4",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_4",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_4",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_4",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_5",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_5",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_5",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_5",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_5",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_5",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_6",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_6",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_6",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_6",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_6",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_6",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_7",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_7",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_7",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_7",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_7",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_7",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_8",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_8",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_8",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_8",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_8",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_8",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_9",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_9",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_9",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_9",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_9",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_9",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_10",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_10",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_10",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_10",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_10",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_10",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_11",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_11",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_11",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_11",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_11",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_11",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_12",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_12",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_12",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_12",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_12",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_12",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_13",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_13",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_13",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_13",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_13",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_13",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_14",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_14",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_14",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_14",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_14",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_14",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_15",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_15",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_15",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_15",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_15",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_15",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_16",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_16",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_16",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_16",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_16",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_16",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_17",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_17",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_17",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_17",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_17",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_17",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_18",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_18",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_18",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_18",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_18",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_18",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_19",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_19",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_19",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_19",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_19",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_19",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_20",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_20",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_20",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_20",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_20",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_20",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_21",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_21",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_21",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_21",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_21",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_21",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_22",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_22",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_22",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_22",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_22",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_22",
+      "passed": true
+    },
+    {
+      "name": "policy_is_pure_1_23",
+      "passed": true
+    },
+    {
+      "name": "saved_relation_1_23",
+      "passed": true
+    },
+    {
+      "name": "saved_action_1_23",
+      "passed": true
+    },
+    {
+      "name": "saved_adaptation_1_23",
+      "passed": true
+    },
+    {
+      "name": "all_state_fields_registered_1_23",
+      "passed": true
+    },
+    {
+      "name": "fixed_settings_preserved_1_23",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_0",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_0",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_0",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_1",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_1",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_1",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_2",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_2",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_2",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_3",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_3",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_3",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_4",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_4",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_4",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_5",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_5",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_5",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_6",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_6",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_6",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_7",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_7",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_7",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_pre_state_8",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_post_state_8",
+      "passed": true
+    },
+    {
+      "name": "identical_complete_next_state_8",
+      "passed": true
+    },
+    {
+      "name": "first_full_state_difference_at_new_evidence",
+      "passed": true
+    },
+    {
+      "name": "first_action_difference_at_11",
+      "passed": true
+    },
+    {
+      "name": "compact_status_is_not_complete_state",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.5_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_0.9_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_adaptive_sampling_1.4_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.5_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_0.9_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_fixed_full_1.4_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.5_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_0.9_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_command_as_return_ablation_1.4_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.5_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_0.9_full_body_method_does_not_commute",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_keeps_fixed_and_retained",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_clears_only_episode",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_preserves_retained_prediction",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_idempotent",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_gain_update_commutes",
+      "passed": true
+    },
+    {
+      "name": "reset_frozen_calibration_ablation_1.4_full_body_method_does_not_commute",
+      "passed": true
+    }
+  ],
+  "seconds": 0.018854399968404323,
+  "savedHistoriesReplayed": 2,
+  "eventsReplayed": 48,
+  "newEnvironmentEpisodes": 0,
+  "registeredFields": {
+    "fixed": [
+      "alpha",
+      "max_age",
+      "max_command",
+      "motion_tolerance",
+      "other_template",
+      "policy",
+      "prior_gain",
+      "spectral_tolerance",
+      "standoff",
+      "target_template"
+    ],
+    "retained": [
+      "gain"
+    ],
+    "episode": [
+      "body_odometry",
+      "last_observation",
+      "last_observed",
+      "last_time",
+      "mode",
+      "relative_target",
+      "status"
+    ]
+  },
+  "firstCompletePostStateDifference": 9,
+  "firstActionDifference": 11,
+  "controllerSha256": "6a625e63c9db85dc60893f2a8622fc2a429966ad4f2a28e5e46ced4df49358a0",
+  "checkerSha256": "e381cf5076de18ba426c518ed8f523ef187c061a8fcfe21d59bf8371e9cdfbc7",
+  "savedEpisodesSha256": "27f08a71328a9f5cb17bd5c1d8c04b5c2c6d0869bea56521b95ebbd1653bf8ae",
+  "planSha256": "70430db6a79a0bda2f9659a20d7914f215bcaa6931ab5c5076b0f154ce8871f9",
+  "outputs": {
+    "FULL-STATE-REPLAYS.json": "0b305049e639423eb37af9f2387f77bcd5eceb05ed54576ecbb4b93f97820699",
+    "RESET-CONTROLS.json": "5d6e06a7b922d001641c4f19488ac89efb0704b4277977009eaac3ec59b2e3ee"
+  },
+  "wholePythonVerified": false,
+  "independentReview": false,
+  "biologicalVerification": false,
+  "scope": "Runtime interface correspondence and assumption checks of the exact accepted implementation, not a machine-verified refinement."
+}

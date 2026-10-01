@@ -1,0 +1,26 @@
+test_jacobian_matches_numerical_derivative (test_labs.CausalTests.test_jacobian_matches_numerical_derivative) ... ok
+test_route_lesion_removes_only_unit_influence (test_labs.CausalTests.test_route_lesion_removes_only_unit_influence) ... ok
+test_training_reduces_loss (test_labs.CausalTests.test_training_reduces_loss) ... ok
+test_world_target_binding (test_labs.CausalTests.test_world_target_binding) ... ok
+test_all_finite_delegation_masks (test_labs.CommitmentTests.test_all_finite_delegation_masks) ... ok
+test_forgery_and_replay_rejected (test_labs.CommitmentTests.test_forgery_and_replay_rejected) ... ok
+test_revocation_rejects_old_proposal (test_labs.CommitmentTests.test_revocation_rejects_old_proposal) ... ok
+test_signed_body_cannot_be_changed (test_labs.CommitmentTests.test_signed_body_cannot_be_changed) ... ok
+test_stale_proposal_rejected_even_if_scope_unchanged (test_labs.CommitmentTests.test_stale_proposal_rejected_even_if_scope_unchanged) ... ok
+test_trivial_safety_and_real_use_are_separate (test_labs.CommitmentTests.test_trivial_safety_and_real_use_are_separate) ... ok
+test_batch_only_intervenes_on_named_unit (test_protocol_v2.DonorClosureTests.test_batch_only_intervenes_on_named_unit) ... ok
+test_disjoint_complete_worlds (test_protocol_v2.DonorClosureTests.test_disjoint_complete_worlds) ... ok
+test_every_planned_donor_is_in_same_split (test_protocol_v2.DonorClosureTests.test_every_planned_donor_is_in_same_split) ... ok
+test_irrelevant_grant_preserves_task_truth (test_protocol_v2.DonorClosureTests.test_irrelevant_grant_preserves_task_truth) ... ok
+test_stratification_and_family_sizes (test_protocol_v2.DonorClosureTests.test_stratification_and_family_sizes) ... ok
+test_cycles_rejected (test_context_provenance_v3.ContextProvenanceTests.test_cycles_rejected) ... ok
+test_mixed_origins_preserved (test_context_provenance_v3.ContextProvenanceTests.test_mixed_origins_preserved) ... ok
+test_passive_fixed_point_error_identity (test_context_provenance_v3.ContextProvenanceTests.test_passive_fixed_point_error_identity) ... ok
+test_score_rounding (test_context_provenance_v3.ContextProvenanceTests.test_score_rounding) ... ok
+test_unknown_ancestor_propagates (test_context_provenance_v3.ContextProvenanceTests.test_unknown_ancestor_propagates) ... ok
+test_unknown_is_not_public (test_context_provenance_v3.ContextProvenanceTests.test_unknown_is_not_public) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.095s
+
+OK

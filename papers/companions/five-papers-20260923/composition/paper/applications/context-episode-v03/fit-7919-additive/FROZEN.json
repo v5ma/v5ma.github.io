@@ -1,0 +1,136 @@
+{
+  "complete": true,
+  "frozen_for_test": true,
+  "seed": 7919,
+  "condition": "additive",
+  "completed_epochs": 40,
+  "selected_epoch": 15,
+  "updates": 960,
+  "training_episode_presentations": 122880,
+  "fit_seconds": 8.292241099989042,
+  "selected_development": {
+    "final_balanced_accuracy": 0.6744791666666666,
+    "final_nll": 1.237981309793872,
+    "first_accuracy": 0.75,
+    "first_nll": 1.6396617515081944,
+    "cells": [
+      {
+        "stage": 0,
+        "task": 0,
+        "n": 288,
+        "accuracy": 1.0,
+        "nll": 0.007674510463393248
+      },
+      {
+        "stage": 0,
+        "task": 1,
+        "n": 48,
+        "accuracy": 1.0,
+        "nll": 0.05074234724442885
+      },
+      {
+        "stage": 0,
+        "task": 2,
+        "n": 192,
+        "accuracy": 0.5,
+        "nll": 1.4646863984918832
+      },
+      {
+        "stage": 0,
+        "task": 3,
+        "n": 96,
+        "accuracy": 1.0,
+        "nll": 0.2957502588894373
+      },
+      {
+        "stage": 0,
+        "task": 4,
+        "n": 144,
+        "accuracy": 0.3333333333333333,
+        "nll": 6.562517500786637
+      },
+      {
+        "stage": 1,
+        "task": 0,
+        "n": 128,
+        "accuracy": 0.9296875,
+        "nll": 0.15409526311969812
+      },
+      {
+        "stage": 1,
+        "task": 1,
+        "n": 128,
+        "accuracy": 1.0,
+        "nll": 0.015102960065681341
+      },
+      {
+        "stage": 1,
+        "task": 2,
+        "n": 128,
+        "accuracy": 0.640625,
+        "nll": 0.8631711896606202
+      },
+      {
+        "stage": 1,
+        "task": 3,
+        "n": 128,
+        "accuracy": 0.5859375,
+        "nll": 1.30443620731055
+      },
+      {
+        "stage": 1,
+        "task": 4,
+        "n": 128,
+        "accuracy": 0.3671875,
+        "nll": 4.3855322032534865
+      },
+      {
+        "stage": 1,
+        "task": 5,
+        "n": 128,
+        "accuracy": 0.5234375,
+        "nll": 0.7055500353531963
+      }
+    ]
+  },
+  "source_hashes": {
+    "CONFIG.json": "94dc3d67fe588b16040e5c0bb0b9f4a7fa57405e91644fe02f74f94c687e820a",
+    "PROTOCOL.md": "7c76f477ad317fe61d6d937e2bc308eff78def4f7b6a22eeb9454a81a39f90e9",
+    "EVALUATION-PLAN.md": "f0f8e06143cadfd5170948f19b468aad6f6078cfc8a37a02547731bf3b55fe36",
+    "gru_core.py": "8cc58515ebb283749069e91493410b44aaf4fac21273f4ddb73b8e15ffb463d4",
+    "net.py": "df75c1145c3ccf6508a4fe6904dfb3f13e14e70b4c019370757b1f55cd6cb9c9",
+    "world.py": "ad5a0c0c1509522d330a2ebcf2bf561c32457bc61cc6eb13d9ea4b28fe895541",
+    "support.py": "8e34deacb79e0757ab7c2d1630c77e9a2e5e38df31bf16afde8e1d91f6c28292",
+    "test_study.py": "32d08a27915d9db6aa65ed08b060d512a0e36451fb64ef0aeeaf91eb1f517575",
+    "train.py": "c20090e19cd597036f911230a916c77a4cede77e8ba682fcf1d2b27eb7c90d74",
+    "evaluate.py": "2a5e02f44348a66312ba75a511d7cc7fec842ad42b7a01b84044f0534a9dbc90",
+    "TESTS-01.json": "2bd82c0f73606422cc9d3199accf93764448bb00810dc3730d4bf27d0bdbf9ec"
+  },
+  "heldout_model_inference": false,
+  "files": {
+    "BEFORE.json": {
+      "sha256": "0747a5f5013a992b68f713813ca09d0686b2611e9dd3b18e828e7b51eb1a0386",
+      "bytes": 1699
+    },
+    "INITIAL-DEVELOPMENT.json": {
+      "sha256": "0cb92817b9b6d4eae16ffaf4568ec0d9fcc2eff778290f76c81b5d4525b1c885",
+      "bytes": 1559
+    },
+    "initial.npz": {
+      "sha256": "2bf6f6616a375d650b17e7d2e65dcd11f051a526db9dac915b19528067509d24",
+      "bytes": 116714
+    },
+    "final.npz": {
+      "sha256": "98c9ac489e3e51a9c9a582ff6bcfc5402a3297f07d276754af7807a57f2a3259",
+      "bytes": 116714
+    },
+    "selected.npz": {
+      "sha256": "7ff10341cd7866a56c2112ed7a7fb0e4539f3c3d05ec377170efba1e9241f4f1",
+      "bytes": 116714
+    },
+    "epochs.jsonl": {
+      "sha256": "4b4e587e83396dd259589c4d96bf8caa54d631540666bada5f75d575aab4fe6a",
+      "bytes": 50702
+    }
+  }
+}

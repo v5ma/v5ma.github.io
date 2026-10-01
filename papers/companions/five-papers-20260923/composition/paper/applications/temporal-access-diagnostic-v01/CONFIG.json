@@ -1,0 +1,16 @@
+{
+  "version": "temporal-access-diagnostic-v01-20260908",
+  "probe_seeds": [2718, 3141],
+  "hidden": 32,
+  "epochs": 160,
+  "learning_rate": 0.01,
+  "gradient_clip": 5.0,
+  "weight_decay": 0.00001,
+  "penalties": [0.01, 0.1, 1.0, 10.0],
+  "label_control_seed": 911,
+  "maximum_seconds_per_fit": 5.0,
+  "maximum_seconds_total": 60.0,
+  "threads": 1,
+  "splits": ["training", "development"],
+  "views": ["raw_pair", "earlier", "final", "both"]
+}

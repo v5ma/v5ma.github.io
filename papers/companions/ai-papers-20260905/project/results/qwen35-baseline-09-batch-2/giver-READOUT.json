@@ -1,0 +1,92 @@
+{
+  "first_token_id": 4904,
+  "first_token": "Cl",
+  "first_top5": [
+    {
+      "id": 4904,
+      "text": "Cl",
+      "logit": 24.283435821533203
+    },
+    {
+      "id": 549,
+      "text": "cl",
+      "logit": 18.203227996826172
+    },
+    {
+      "id": 21595,
+      "text": "David",
+      "logit": 18.195783615112305
+    },
+    {
+      "id": 760,
+      "text": "The",
+      "logit": 17.906524658203125
+    },
+    {
+      "id": 61952,
+      "text": "Cla",
+      "logit": 17.744895935058594
+    }
+  ],
+  "generated_token_ids": [
+    4904,
+    4897,
+    248046
+  ],
+  "answer": "Clara",
+  "stopped_on_eos": true,
+  "final_state_sha256": {
+    "past_conv.0": "01ff3a4211aac63bb9c546551e44ed6cd5072c89482ec9ee6ad9b43bb0c5df22",
+    "past_recurrent.0": "23993c21ad7013a3a0297725dbea086bb993effa8652894d6795f99bdc93aced",
+    "past_conv.1": "ea9862d49d94f16b52affa7ace184850e4baae09d8f0b6ac4133cd8f4dfd4e65",
+    "past_recurrent.1": "421401209dd8b5a29df662b4b47dcd38490931f8db3d49dbc398ae6446f5f6b7",
+    "past_conv.2": "45ecd3daddf4b34ab136010b0e9ef78df7960dec83780d7a9542c75555b4601b",
+    "past_recurrent.2": "d8f99478455bef085135abe0e1a7d7eff1b3041d28721fafaea088c4b80f5b5c",
+    "past_key_values.3.key": "d843cf22d04cebfc0d69ad9e054e333ec887bb0a0b5e49bc50d7510c17028aaf",
+    "past_key_values.3.value": "f1d5134af76106f89c967def9dafe2fedd1279c1a97383ffa3868837d732ebcf",
+    "past_conv.4": "f54e0c2ec869a2203a4299bc478e73bd206220dff749c2d25448de91cb350afe",
+    "past_recurrent.4": "2568a51356fd9e50b81d873c2b249e1812a79d5f64f72ea25f8f739a4417c5f0",
+    "past_conv.5": "6f9aea3f8f2274cf8f7b91a6a8e6112d8cc22f8ada1f88608002981dbb071674",
+    "past_recurrent.5": "0aa0f540f496d62de8f33c24a27429e84471a16c93a20a0e766e7d01f58f1d91",
+    "past_conv.6": "61951ed399376eda0590f604692c89681e6ac500107c787ec34557ec0a9c159d",
+    "past_recurrent.6": "b8dfe9b1c2a61d2d52a5ae9b38a2d6fea5463103f890788f801fe28dfd2d402f",
+    "past_key_values.7.key": "4bf548293558a167dff367ab4aeef03bfbf6c45c7fe9679e19c67bf4c126199e",
+    "past_key_values.7.value": "e9a1d63c4cc33eee7f6a209555da04d6b5137d86fb6e52dce9959027482eb921",
+    "past_conv.8": "76a0f21919a6d5e27754c5fa1da8f4723f2eaa590723ac86414cda1e3c50531b",
+    "past_recurrent.8": "faa21662f78e5138bbccb6157be6c94d8eb5c8f0efdae79ea8665d09ba21596c",
+    "past_conv.9": "69c9ca4bb90fb37e16620093e7edf42949f28794f3fef9479bdef44363db4210",
+    "past_recurrent.9": "53e385c1bdf913744d3ba39bd93abed69e32ba17820d2b68685191c239535933",
+    "past_conv.10": "5b45bf8e66f2f207d0ac16253962f811bd8c45a2d4549e60286ded7b5164d478",
+    "past_recurrent.10": "372999931ff755eb8f8e842e3b9e3aef1363f7395cd8b9d8c09f25141f07414f",
+    "past_key_values.11.key": "d710fd51fb9d7410f233a3b07e1ee33b8676d23d8370c35c2aacca50d16cd80d",
+    "past_key_values.11.value": "35561f9621f28c323015e4ff57e8160724ec953f636a43549fa3d2d1c432ec73",
+    "past_conv.12": "6e05f6bf4769f4f43b20956f140ec46632c9f90544f090b66a4571a4e5b6e0e1",
+    "past_recurrent.12": "cce1ba6321594028785b4c55d185fddff71c0c8a69782c7757b0bbc75e1e5b69",
+    "past_conv.13": "15ac51851678748271f948176a91d59f400f7aa5b2d6fe67950fd0676f31d0ff",
+    "past_recurrent.13": "5a341bc5b70d49ea3522301a8cb43093ad46d81f18a19398310c4c70dd8752ba",
+    "past_conv.14": "5b3efe24ab02b85b8d549dd6c10046948ec91a5175892f4dd27c71217bb8401b",
+    "past_recurrent.14": "49b1430a94283578bd399ad60d03f06968b6432bc9def6066f732b41d0c80feb",
+    "past_key_values.15.key": "182ff09d5435b2027103a1b83635710a596841881bd669847c8d85913d7f9e2c",
+    "past_key_values.15.value": "5f9dc678877fe251491983d5c452c1510b00eb6cee2b959f8aaf6fce51b7e725",
+    "past_conv.16": "fea2a78739b5101f31d95537d3756d9befdaeac5afa19dd5889a070143624512",
+    "past_recurrent.16": "6ea3f40b798c45ac8afc996abe46896009b94a8c92a1fb819dd37860c577d76c",
+    "past_conv.17": "7bfa64d080cc7886042d17162bd5fb2027a6458d90506a958bb965775c8ceb5c",
+    "past_recurrent.17": "c44078802946139da77b8ed40c5841af059e6a57d03af3882a2ab26f3a78ab6f",
+    "past_conv.18": "7682b973454c919ad6905520d9465d0d51db7271a228591a3667e82174401b49",
+    "past_recurrent.18": "8ac162f6266db1d508b1f17328285b85b15cc8d483712579c8faa0cb778d1d15",
+    "past_key_values.19.key": "b63be7d8932c7f37b9a8526e57839400459b2826d9fe73be456a35c0a8e6fcbc",
+    "past_key_values.19.value": "ac8cdf8aa2d54e5707ce39e93f0968ecd55a3e2ab2b6a6524c0a8820c4787d70",
+    "past_conv.20": "e461679e84158e2f7f5136fa99d971e1f0c9ae72f5da55a0e6d8cc2558dff6ad",
+    "past_recurrent.20": "d3a14bb68763808ac64981fb1884a9aedcbba97cbaf84681a183b097618a87b6",
+    "past_conv.21": "8da770bd3f6fe54721d6ac9ba76f69af9c93a0bb299ff0ca8d5e79652762c192",
+    "past_recurrent.21": "b8e0f72d830c2d41b8072501581f7249d881069d24fdb838c00f91fc1f2dfe73",
+    "past_conv.22": "ec1a1738cc1a1e4f3a5e9a8c0001794141b75ef455029cbbdb70ab198925929d",
+    "past_recurrent.22": "8a5f90cf57565f0b7eb646c3192850075682c7f4535647b2357f103739764ec8",
+    "past_key_values.23.key": "99a536bc35717d6c680e1b939e0a015b1ebae565134fa774dec396f99515b53a",
+    "past_key_values.23.value": "c55cc119e68f21e95419eab173f5807060e094f6ac2208390be022f93681537d"
+  },
+  "case_id": "school-cd:giver",
+  "expected": "Clara",
+  "correct": true,
+  "query": "giver"
+}

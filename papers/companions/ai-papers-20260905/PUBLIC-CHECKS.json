@@ -1,0 +1,253 @@
+{
+  "status": "PASS",
+  "selected_input_files": 937,
+  "source_manifest_sha256": "585c0acfc907fd8bff172289d2f96115d3e77a4757986d44c374cb33b54af0c2",
+  "unchanged_copy_count": 919,
+  "transformations": [
+    {
+      "path": "project/output/tex/core-alignment.tex",
+      "source_sha256": "120a831cb9b3d016462ea2e4ed2f3d55c5c11f077f28bbcbe3dc4696ee419d2a",
+      "distribution_sha256": "ec0f86a3a265922fcf179392081a5927a2a6aad4411440de42b46d853d470f3d",
+      "change": "Only three absolute figure paths made relative; original PDF unchanged"
+    },
+    {
+      "path": "project/output/tex/mechanistic-interpretability.tex",
+      "source_sha256": "0cc9a4bbc2c191510fc0c4e8f46824440f48ba4a3906b2c6385c091397c76940",
+      "distribution_sha256": "457714a4bfc124a231452e4e4a697bc9ebb688cb4452f0689d69c4ff30662f56",
+      "change": "Only three absolute figure paths made relative; original PDF unchanged"
+    },
+    {
+      "path": "project/review-app/current-10/index.html",
+      "source_sha256": "0f05c56d484219457193581ce5f176c86e3988ab746401ef6d76beb1df05375d",
+      "distribution_sha256": "a4742fcb95c5cbc25b06454f2736dde064177b810add60991b0b652e720ea596",
+      "change": "Public release navigation/status; scientific data and behavior unchanged"
+    },
+    {
+      "path": "project/review-app/index.html",
+      "source_sha256": "7fa8c8077b1eebc9b8bb807a183e20a7e8ac427e7f06583333b1178831516cf2",
+      "distribution_sha256": "63c5eda3732d963c0ea6a33644eb8b349a82bd4466c6204b05a15544b8675133",
+      "change": "Historical-stage notice and public front-door link; scientific behavior unchanged"
+    }
+  ],
+  "critical_navigation_missing": 0,
+  "local_link_occurrences_checked": 1317,
+  "dynamic_evidence_routes_checked": 20,
+  "historical_omitted_routes": 8,
+  "machine_location_review": [
+    {
+      "path": "project/applications/PROTOCOL-CONTEXT-PROVENANCE-03.json",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/formal/verification-context-03-attempt-02/PassiveFeedbackAndScope.lean.log",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/results/context-provenance-03-replay-01/INPUT-FREEZE.json",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/results/context-provenance-03/INPUT-FREEZE.json",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/reviews/manuscript-10/BUILD-SOURCE-RECEIPT.json",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/runtime-dependencies/onnxruntime-1.29.0/INTAKE-RECEIPT.json",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    },
+    {
+      "path": "project/sources/METHODS-AND-RESOURCE-REVIEW-03.md",
+      "disposition": "Reviewed inert historical model-installation/compiler path; retained unchanged for hash ancestry"
+    }
+  ],
+  "private_source_originals_copied": false,
+  "public_source_identity_matches": 10,
+  "saved_answer_check": {
+    "status": "PASS",
+    "scope": "Saved-byte and whole-answer arithmetic audit, not native inference or independent review",
+    "files_verified": 41,
+    "saved_answers_checked": 672,
+    "new_model_runs": 0,
+    "new_lean_statements": 0,
+    "corruption_rejection_tests": [
+      "duplicate_answer",
+      "missing_answer",
+      "wrong_correctness_flag",
+      "wrong_target",
+      "changed_answer",
+      "wrong_denominator",
+      "wrong_aggregate",
+      "wrong_group_success",
+      "missing_group",
+      "wrong_family",
+      "broken_opposite",
+      "wrong_eos_flag",
+      "reject_path_12",
+      "reject_path_13",
+      "reject_path_14"
+    ],
+    "studies": [
+      {
+        "study": "learned",
+        "cases": 16,
+        "saved_answers": 384,
+        "ordinary_correct": 48,
+        "ordinary_denominator": 48,
+        "groups_per_arm": 8,
+        "table": [
+          {
+            "arm": "original",
+            "giver": 0,
+            "recipient": 0,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "linear_ridge",
+            "giver": 1,
+            "recipient": 4,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 5
+          },
+          {
+            "arm": "rbf_ridge",
+            "giver": 2,
+            "recipient": 3,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 5
+          },
+          {
+            "arm": "yoked_ridge",
+            "giver": 0,
+            "recipient": 0,
+            "color": 11,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "slot_swap",
+            "giver": 0,
+            "recipient": 0,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "oracle_kv",
+            "giver": 16,
+            "recipient": 16,
+            "color": 16,
+            "complete_groups": 8,
+            "both_roles_correct_stories": 16,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "full_donor",
+            "giver": 16,
+            "recipient": 16,
+            "color": 16,
+            "complete_groups": 8,
+            "both_roles_correct_stories": 16,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "text_instruction",
+            "giver": 5,
+            "recipient": 0,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 5
+          }
+        ]
+      },
+      {
+        "study": "transfer",
+        "cases": 16,
+        "saved_answers": 288,
+        "ordinary_correct": 48,
+        "ordinary_denominator": 48,
+        "groups_per_arm": 8,
+        "table": [
+          {
+            "arm": "original",
+            "giver": 0,
+            "recipient": 0,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "full_donor",
+            "giver": 16,
+            "recipient": 16,
+            "color": 16,
+            "complete_groups": 8,
+            "both_roles_correct_stories": 16,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "conv_donor",
+            "giver": 0,
+            "recipient": 0,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 0
+          },
+          {
+            "arm": "recurrent_donor",
+            "giver": 0,
+            "recipient": 2,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 2
+          },
+          {
+            "arm": "kv_donor",
+            "giver": 16,
+            "recipient": 15,
+            "color": 16,
+            "complete_groups": 7,
+            "both_roles_correct_stories": 15,
+            "same_name_stories": 1
+          },
+          {
+            "arm": "conv_recurrent_donor",
+            "giver": 0,
+            "recipient": 1,
+            "color": 16,
+            "complete_groups": 0,
+            "both_roles_correct_stories": 0,
+            "same_name_stories": 1
+          }
+        ]
+      }
+    ]
+  },
+  "native_plan_input_closure": {
+    "files": 494,
+    "steps": 49,
+    "source_manifest_sha256": "f37ce90d2f51b6016725d14864b16b51f6ad23e03a1e9a128124c18c10c4f36e",
+    "new_execution": false,
+    "note": "Plan only against existing exact dependencies; original full execution is supplement 16"
+  },
+  "PDFs_modified": false,
+  "new_model_runs": 0,
+  "new_compiler_jobs": 0,
+  "review_type": "Authoring-agent public-package check, not independent scientific review",
+  "rights": "CC BY 4.0 original prose/figures/docs/data; no software reuse license granted pending separate author choice"
+}

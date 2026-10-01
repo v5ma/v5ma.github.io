@@ -1,0 +1,5 @@
+'PairedRoleMetric.constant_named_score' does not depend on any axioms
+'PairedRoleMetric.same_choice_at_most_one' does not depend on any axioms
+'PairedRoleMetric.perfect_iff' does not depend on any axioms
+'PairedRoleMetric.different_choices_not_sufficient' does not depend on any axioms
+'PairedRoleMetric.accuracy_gain_without_pair_recovery' does not depend on any axioms

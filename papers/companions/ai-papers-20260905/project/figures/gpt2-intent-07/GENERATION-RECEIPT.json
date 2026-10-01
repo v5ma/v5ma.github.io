@@ -1,0 +1,16 @@
+{
+  "status": "GENERATED_NOT_YET_VISUALLY_REVIEWED",
+  "figure_sha256": "c634fa98dcd9813b7d9b90b3245d520628d3b18e4849a942d696ce0d12b39a2b",
+  "source_sha256": {
+    "METRICS.csv": "665fdf33002e676c1bc8084cd84570638374c1a73e1c2ba95e62987b84168bc9",
+    "ARM-SUMMARY.csv": "20e9f5367a026a88c387022489a9a05137ce7fc0cb69d9c3e51491c957406ab9"
+  },
+  "generator_sha256": "c20878b910fedec8f0239de544963c7edf1d06a5dd30f8fb43a454f7437cbaf0",
+  "dimensions_pixels": [
+    2250,
+    1260
+  ],
+  "counts_from_audited_data": true,
+  "independent_review": false,
+  "visually_reviewed": false
+}

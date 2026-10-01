@@ -1,0 +1,170 @@
+[
+  {
+    "arm": "original",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "original",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "original",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "original",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "full_donor",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "full_donor",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "full_donor",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "full_donor",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "conv_donor",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "conv_donor",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "conv_donor",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "conv_donor",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "recurrent_donor",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 5,
+    "original_correct": 11
+  },
+  {
+    "arm": "recurrent_donor",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "recurrent_donor",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 5,
+    "original_correct": 11
+  },
+  {
+    "arm": "recurrent_donor",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "kv_donor",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 11,
+    "original_correct": 5
+  },
+  {
+    "arm": "kv_donor",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "kv_donor",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "kv_donor",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 12,
+    "original_correct": 4
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "family": "garden-pair-0",
+    "n": 12,
+    "swapped_correct": 5,
+    "original_correct": 11
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "family": "garden-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "family": "library-pair-0",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "family": "library-pair-1",
+    "n": 12,
+    "swapped_correct": 4,
+    "original_correct": 12
+  }
+]

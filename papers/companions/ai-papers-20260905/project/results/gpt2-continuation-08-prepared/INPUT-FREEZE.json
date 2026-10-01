@@ -1,0 +1,15 @@
+{
+  "applications/PROTOCOL-GPT2-CONTINUATION-08.json": "92adb58943f0a3af18e32c5f9750e887a4c453485648f7bb607062b30725e3b4",
+  "applications/gpt2_continuation_v8.py": "8dc0a8855402abc74dd67338933e320cc4a069beaf6c63cca46e1f9403e9fd75",
+  "applications/test_gpt2_continuation_v8.py": "fb31272bf3cc56424871159757c0c76c88c63907cccd6b3361c8f370b26dc5c0",
+  "applications/gpt2_adapter_v5.py": "979b366adf26aee0c06d579b4c735f86f0b673e2ecec22eb177c4eb662a2bc11",
+  "applications/gpt2_learning_v6.py": "3a285fae7a25a43f1f1bb21d3016b6fa2bdef584f1c316356eef3734dee1e96e",
+  "applications/gpt2_intent_v7.py": "df29903005f42d5ec6ee81c625c5eda89c3340158e243aba977442ac01771392",
+  "applications/gpt2_receiver_v5.py": "3830de8df97d48467d51d88de7ff4e32cb3b49745c1096c2f70bc59e2be84b3a",
+  "applications/commitment_lab.py": "d3424a21676567ff58e0c6002f3154b00ac33085c0f205fe38551df183ab51a6",
+  "results/gpt2-learning-06/basis.npz": "b310c5bda2c59d3f1f284e367cd39d27c37ee3a798ace13a1c59b452d92f0496",
+  "results/gpt2-learning-06/learned-parameters.npz": "fc6242f0980c2c352de8981764dccf997047eb5871f71547f50649e1bb4e4e95",
+  "results/gpt2-intent-07-prepared/FAMILIES.json": "6021ecaac40cec7427f3234343cdb9573a366b0704cb3c1759a0d7e3983ccb4f",
+  "results/gpt2-intent-07-part-0/measurements.csv": "e2b328fc2add57a1f259c91302a9ea65e703caeb1cc4ec027240be2d6e445d9b",
+  "results/gpt2-intent-07-part-1/measurements.csv": "f6ac8b47ee6f2f53295048cd002d34dad9885f7f6e363982ee58dc6e3625592d"
+}

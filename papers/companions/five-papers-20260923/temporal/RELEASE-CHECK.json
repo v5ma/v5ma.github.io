@@ -1,0 +1,32 @@
+{
+  "paper": 113,
+  "preprint_version": "1.0",
+  "portable_check": {
+    "scope": "Fresh full finite diagnostic, not a new independent experiment",
+    "passed": true,
+    "summary": {
+      "case_count": 720,
+      "sequential_correct": 576,
+      "sequential_total": 576,
+      "simultaneous_ambiguous": 144,
+      "simultaneous_total": 144,
+      "ownership_correct": 720,
+      "max_aggregate_error": 2.220446049250313e-16
+    }
+  },
+  "pdf_checks": {
+    "pages": 13,
+    "embedded_figures": 2,
+    "reader_links_checked": 20,
+    "files": 48,
+    "bytes": 2381092,
+    "pdf_sha256": "53188cef3a7be433ae60dc396458683b5d432285c828914f276416d46c56920a",
+    "selected_visual_pages": [
+      1,
+      7,
+      9,
+      13
+    ]
+  },
+  "visual_review": "Four selected changed pages directly inspected for each paper: title/affiliation, first/last figures and public appendix. All PDF pages passed structural/text checks; all 44 figure objects embedded. No claim of new scientific independent review."
+}

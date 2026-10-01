@@ -1,0 +1,23 @@
+{
+  "date":"2026-09-19",
+  "stage":"Development reproduction of a published reduced motor timing component, not a SAN or held-out biological test",
+  "primaryDOI":"10.1038/s41586-023-06099-0",
+  "codeRecord":"https://zenodo.org/records/7740678",
+  "sourceConfiguration":"Author Berger_SNL and Berger_SNIC JSON files; numeric initial traces and coupling arrays from the same archive",
+  "localUnits":{"voltage":"mV","time":"ms","conductance":"nS","current":"pA","capacitance":"pF","gates":"dimensionless"},
+  "sourceStateOrder":["v","h","b"],
+  "nativeStorageOrder":["time in seconds","v in volts","b","h"],
+  "nativeAudit":{"oneStepSubstepsMs":[0.1,0.05,0.025,0.01],"purpose":"Identify numerical consistency with saved native samples without fitting physiological parameters","fullReplayMs":2000,"fullReplayDtMs":0.01,"recordMs":0.1,"maxVoltageDifferenceMv":0.000001,"maxGateDifference":0.0000001},
+  "network":{"neurons":5,"durationMs":5000,"defaultDtMs":0.1,"recordMs":1.0,"phaseFractions":[0.9,0.6,0.5,0.7,0.8],"initialization":"Exact last-interspike native reference selection used by source Figure 3B, separately for SNL and SNIC","spikeThresholdMv":-10,"spikeRefractoryMs":10,"stateNotFrozenDuringRefractory":true,"gapConvention":"Gap current is evaluated at the start of a step and held for its intrinsic RK4 stages, reflecting the source's separately summed synaptic variable; coupled Brian output is not available for exact comparison"},
+  "cases":[
+    {"name":"snl_weak","regime":"SNL","gap":"source_homogeneous","dtMs":0.1},
+    {"name":"snl_none","regime":"SNL","gap":"zero","dtMs":0.1},
+    {"name":"snl_strong","regime":"SNL","gap":"3_nS","dtMs":0.1},
+    {"name":"snic_weak","regime":"SNIC","gap":"source_homogeneous","dtMs":0.1},
+    {"name":"snl_weak_halfstep","regime":"SNL","gap":"source_homogeneous","dtMs":0.05}
+  ],
+  "measurements":{"phaseDefinition":"Linear interpolation between consecutive declared spikes, only where all five phases exist","analysisWindowMs":[2000,5000],"splayness":"1-sqrt(mean(N/(N-1)*sum((ordered circular gaps-1/N)^2)))","firstHarmonicOrder":"mean(abs(mean(exp(2*pi*i*phase))))","include":"Every planned case, finite-state/gate checks, frequency, all spike times and observed numerical differences","convergenceToleranceSplayness":0.025},
+  "comparisons":{"weakVsNone":"Same intrinsic parameters and initial phase selection; removes electrical coupling","weakVsStrong":"Same intrinsic parameters and phase selection; changes gap strength","SNLvsSNIC":"Published parameter regimes change both Shab conductance and input current, not a channel-only intervention"},
+  "resources":{"workers":1,"numericalThreads":1,"maximumSecondsPerProcess":45,"noNewPackageInstallation":true,"noBrianExecution":true,"noWholeConnectome":true},
+  "boundaries":["Native initialization curves are author model outputs, not animal voltage recordings","No biological fit or new coefficient optimization","No sensory/perceptual phase assignment from motor circuitry","No new evidence of SAN rendering or consciousness","No author code or pickle executed","No independent scientific review"]
+}

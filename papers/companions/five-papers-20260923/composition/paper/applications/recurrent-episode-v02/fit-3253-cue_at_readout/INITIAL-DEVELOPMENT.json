@@ -1,0 +1,88 @@
+{
+  "accuracy": 0.015625,
+  "nll": 2.9229607582188706,
+  "balanced_accuracy": 0.014518971224853577,
+  "balanced_nll": 2.9171059678630753,
+  "cells": [
+    {
+      "stage": 0,
+      "task": 0,
+      "n": 130,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 2.9493995143359477
+    },
+    {
+      "stage": 0,
+      "task": 1,
+      "n": 130,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 3.046522835865458
+    },
+    {
+      "stage": 0,
+      "task": 2,
+      "n": 127,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 2.986791789666557
+    },
+    {
+      "stage": 0,
+      "task": 3,
+      "n": 125,
+      "correct": 10,
+      "accuracy": 0.08,
+      "nll": 2.7691411243437023
+    },
+    {
+      "stage": 1,
+      "task": 0,
+      "n": 77,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 2.880439774604301
+    },
+    {
+      "stage": 1,
+      "task": 1,
+      "n": 77,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 2.9560012982481982
+    },
+    {
+      "stage": 1,
+      "task": 2,
+      "n": 77,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 2.8810223223926545
+    },
+    {
+      "stage": 1,
+      "task": 3,
+      "n": 77,
+      "correct": 2,
+      "accuracy": 0.025974025974025976,
+      "nll": 2.8258220932116958
+    },
+    {
+      "stage": 1,
+      "task": 4,
+      "n": 102,
+      "correct": 4,
+      "accuracy": 0.0392156862745098,
+      "nll": 2.8488825870285437
+    },
+    {
+      "stage": 1,
+      "task": 5,
+      "n": 102,
+      "correct": 0,
+      "accuracy": 0.0,
+      "nll": 3.0270363389336907
+    }
+  ]
+}

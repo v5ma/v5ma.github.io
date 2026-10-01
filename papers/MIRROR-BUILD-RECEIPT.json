@@ -1,0 +1,19 @@
+{
+  "schema": "svgn.public-github-paper-mirror.build-receipt.v1",
+  "status": "PASS",
+  "public_repository": "https://github.com/v5ma/v5ma.github.io",
+  "target_folder": "papers/",
+  "base_commit": "e6949849fa80f5f1d25ea5151b8b1a0f7860b5bd",
+  "pdf_count": 106,
+  "total_pdf_bytes": 112350604,
+  "source_manifest_sha256": "49AE0AF24F50261537CF78703E20822479710CA1BA74B1F5F272AC9DBDA5E28A",
+  "checksum_list_sha256": "60501DE90BFFC6FAA9BCCB699B71AC8BC38C2A59034345EE8AF9AAC498795F03",
+  "non_pdf_files": [
+    ".gitattributes",
+    "MIRROR-BUILD-RECEIPT.json",
+    "PUBLIC-PAPER-MANIFEST.json",
+    "README.md",
+    "SHA256SUMS.txt"
+  ],
+  "excluded": "All private sources, drafts, proofs, review packets, credentials, and local source paths."
+}

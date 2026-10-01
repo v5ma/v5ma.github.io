@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "root_rows_with_reuse_checked": 320,
+  "native_continuations_checked": 640,
+  "actual_workflow_continuations_checked": 16,
+  "actual_roots_including_workflow": 228,
+  "cache_support_rows_checked": 4608,
+  "workflow_events_reconstructed": 20,
+  "tests": 61,
+  "metric_rows": 30,
+  "paired_rows": 480,
+  "contract_rows": 160,
+  "execution_seconds": 234.0779999999795,
+  "decoder_steps": 5252,
+  "independent_review": false,
+  "auditor_sha256": "a9f57d3e91fe6f446ff7f50b83afca6f3d42c8cbe9a1fbd5036f4591561f1207"
+}

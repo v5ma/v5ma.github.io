@@ -1,0 +1,200 @@
+[
+  {
+    "arm": "original",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.0,
+    "different_full_logit_hash": 0
+  },
+  {
+    "arm": "original",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.0,
+    "different_full_logit_hash": 0
+  },
+  {
+    "arm": "original",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.0,
+    "different_full_logit_hash": 0
+  },
+  {
+    "arm": "full_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 16,
+    "mean_max_abs_logit_change": 5.473985433578491,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "full_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 16,
+    "mean_max_abs_logit_change": 4.529022753238678,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "full_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.9734047874808311,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.11308902502059937,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.08651591464877129,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.08118421956896782,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "recurrent_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.9980403184890747,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "recurrent_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 14,
+    "swapped_correct": 2,
+    "exact_case_original": 14,
+    "exact_case_swapped": 2,
+    "mean_max_abs_logit_change": 0.7683290094137192,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "recurrent_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.5969831086695194,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "kv_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 0,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 16,
+    "mean_max_abs_logit_change": 4.98395162820816,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "kv_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 1,
+    "swapped_correct": 15,
+    "exact_case_original": 1,
+    "exact_case_swapped": 15,
+    "mean_max_abs_logit_change": 4.08368644118309,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "kv_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.4787532724440098,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "query": "giver",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 0,
+    "exact_case_original": 16,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 1.0032181143760681,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "query": "recipient",
+    "n": 16,
+    "original_correct": 15,
+    "swapped_correct": 1,
+    "exact_case_original": 15,
+    "exact_case_swapped": 1,
+    "mean_max_abs_logit_change": 0.7651205286383629,
+    "different_full_logit_hash": 16
+  },
+  {
+    "arm": "conv_recurrent_donor",
+    "query": "color",
+    "n": 16,
+    "original_correct": 16,
+    "swapped_correct": 16,
+    "exact_case_original": 0,
+    "exact_case_swapped": 0,
+    "mean_max_abs_logit_change": 0.609832052141428,
+    "different_full_logit_hash": 16
+  }
+]

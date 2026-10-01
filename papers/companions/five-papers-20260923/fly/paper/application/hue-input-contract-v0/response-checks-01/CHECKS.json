@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-09-20T04:33:43.366779+00:00",
+  "passed": true,
+  "report_sha256": "1ef984ae91ba1e673baeae92bc73eb7071164dcaa35fdfbd20ff9c2afe9060d2",
+  "row_comparisons_sha256": "57c9d7d1a94737c8fb83641e4c1bbe68b3225ce5160e9a80ac78fa4018fc30c4",
+  "checker_sha256": "79f7bd7ebf44b7851d5ebd7f2675acabb7a4b10eb118501905d6376c6ede4d7f",
+  "source_rows_checked": 6205,
+  "comparable_rows_checked": 3961,
+  "amplitude_agreement_rows": 2167,
+  "amplitude_disagreement_rows": 1794,
+  "amplitude_and_count_agreement_select_identical_rows": true,
+  "derived_count_greater_than_compiled": 1794,
+  "derived_count_less_than_compiled": 0,
+  "largest_abs_amplitude_difference": 2.831232372051946,
+  "largest_agreeing_abs_amplitude_difference": 1.9984014443252818e-15,
+  "corruptions": [
+    {
+      "case": "amplitude change",
+      "rejected": true
+    },
+    {
+      "case": "count change",
+      "rejected": true
+    },
+    {
+      "case": "invented type",
+      "rejected": true
+    },
+    {
+      "case": "erased candidate identity",
+      "rejected": true
+    },
+    {
+      "case": "false agreement",
+      "rejected": true
+    }
+  ],
+  "same_agent_separate_implementation": true,
+  "independent_human_review": false,
+  "threads": 1,
+  "elapsed_seconds": 0.5
+}

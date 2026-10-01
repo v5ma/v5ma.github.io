@@ -1,0 +1,21 @@
+{
+  "status": "EXECUTED_NOT_INDEPENDENTLY_REVIEWED",
+  "family_index": 6,
+  "family": "J06",
+  "root_prompts": 4,
+  "actual_root_readouts_including_workflow": 28,
+  "reported_root_rows_with_reuse": 40,
+  "actual_continuation_readouts": 80,
+  "actual_workflow_continuation_readouts": 0,
+  "workflow_events": 0,
+  "cache_support_rows": 576,
+  "decoder_steps": 640,
+  "elapsed_seconds": 29.82800000003772,
+  "numerical_threads": 1,
+  "parameter_updates": 0,
+  "model_sha256": "f65bfa5c0d033ca3db23ece03d34c12d87ea2e7b3007b8944e4a9122ee64e029",
+  "all_root_readouts_match_prior_data": true,
+  "baseline_and_replacement_cache_controls_pass": true,
+  "no_generated_answer_fed_back": true,
+  "full_cache_tensors_saved": false
+}

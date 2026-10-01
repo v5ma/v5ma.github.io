@@ -1,0 +1,41 @@
+{
+  "source_sha256": "1ddf355c14c51497e5272cd97494c66756a07e503c8e01ebb19e7e060c4d3868",
+  "wrapper_sha256": "e1407d0cce6b895fb06bf3a0e6ab350cef0d320a8101faba6e357d2db1aafed1",
+  "runner_sha256": "8a52dc20e1ced66a1af5e79db7986d08077c62aaaa40b9772dec9b632750adfa",
+  "toolchain": "leanprover/lean4:v4.30.0",
+  "pinned_lean_sha256": "8132256d484b8ecc4561bec70abd1271f4c0d03badbc3bc272f6c4053af9fdbc",
+  "pinned_lake_sha256": "b01d614f13cfd9851110841de640dbf82a0f73936c55f47095bf7daa449931ac",
+  "pinned_bin_precedes_launchers": "C:\\Users\\micah\\.elan\\toolchains\\leanprover--lean4---v4.30.0\\bin",
+  "scope": "One exact external source; Check mode; no aggregate build or downloads requested",
+  "expected_external_writes": [
+    "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\formal-specs\\mathlib-hsit-tail\\.lake\\lean-compiler-schedule.json",
+    "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\formal-specs\\mathlib-hsit-tail\\.lake\\lean-compiler-lease.json"
+  ],
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "D:\\micahone\\vscode v5ma\\v5ma.github.io\\scripts\\sit_uv\\Invoke-LeanWithLease.ps1",
+    "-Mode",
+    "Check",
+    "-Target",
+    "D:\\micahone\\vscode v5ma\\paper-development\\san-neural-rendering-composition-granularity-tuning-20260908\\formal\\assembly-information-v01\\AssemblyInformation.lean",
+    "-Owner",
+    "nrct-assembly-information-check-04",
+    "-WaitSeconds",
+    "8",
+    "-EstimatedMinutes",
+    "1"
+  ],
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 3.8002615000586957,
+  "source_unchanged": true,
+  "stdout_sha256": "31af1cc8dc2c08bdec6f1ed7772f671a757024a4f892be14564dbcc0e67427f9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "independent_review": false,
+  "biological_verification": false
+}

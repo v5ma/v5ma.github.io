@@ -1,0 +1,26 @@
+{
+  "date":"2026-09-19",
+  "purpose":"Register the exact small sensory source graph before assigning dynamical or fitted weights",
+  "stage":"Development source audit, specified after human reading of the source rows; not preregistered or held out",
+  "sourceCommit":"91cf92581d2abaea72b96a994d69ed6d83ae05f9",
+  "inputs":["sources/hue-anatomy-intake-09/download/inputs_seed_neurons.csv","sources/hue-anatomy-intake-09/download/outputs_seed_neurons.csv","sources/hue-anatomy-intake-10/SOURCES.json","sources/hue-anatomy-intake-11/SOURCES.json"],
+  "reading":"All 22 CSVs, primary article Sec7, Sec28 and Sec35; current scope not every article section",
+  "specimen":{"species":"Drosophila melanogaster","sex":"female","dataset":"Adult brain EM dataset of Zheng et al., as used by Christenson et al. 2024","identifierSystem":"Author-reported FlyWire IDs","materializationRelease":null,"releaseBoundary":"The source article and these CSVs do not pin a FlyWire materialization version; do not silently substitute a current release"},
+  "rules":[
+    "Preserve IDs as strings; no floating point conversion",
+    "Use exact per-file column mapping and preserve raw headers and rows",
+    "Input files describe partner-to-seed observations; output files describe seed-to-partner observations",
+    "Retain count columns and compartments separately; their sum is an explicit descriptive calculation",
+    "Blank partner IDs remain unidentified observations and must not merge into a shared biological node",
+    "Repeated ordered-ID pairs are observations of a route, not additive new synapses",
+    "Disagreeing input/output counts remain separate; do not average or choose one silently",
+    "A missing route in thresholded incomplete tables is unreported, not a proved anatomical zero",
+    "Keep publication text, repository summary rows and detailed-row sums separately",
+    "Do not infer synaptic sign, fitted strength, time constants or phase from counts",
+    "Do not equate ten sampled cells with the paper's twelve model populations"
+  ],
+  "declaredColumnException":{"outputs_tm5b_720575940627282584.csv":"Header names Cell type and Indentifier are reversed relative to all displayed row values. Parse first column as identifier and second as label while preserving the exact raw row and header."},
+  "resources":{"workers":1,"downloadsDuringAnalysis":0,"maximumSeconds":10,"maximumInputs":22},
+  "outputs":["SEED-REGISTER.json","EDGE-OBSERVATIONS.json","ROUTE-REGISTER.json","NODE-LABEL-OBSERVATIONS.json","SOURCE-RECONCILIATION.json","EXECUTION.json"],
+  "notClaimed":["reproduction of fitted hue circuit","new biological measurement","complete connectome","SAN-specific mechanism implemented","independent scientific review"]
+}

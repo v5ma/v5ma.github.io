@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "all_declared_evaluation_files_hash_verified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_recorded_numeric_results_replay_exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prediction_archive_byte_identical_on_replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "probe_parameter_archive_byte_identical_on_replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "heldout_scene_ids_independently_decoded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_4096_heldout_query_targets_independently_recomputed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "challenge_changes_exactly_both_channels_of_one_entity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "id_scenes_never_in_training_pool",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "challenge_old_scenes_never_in_training_pool",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_main_output_accuracy_and_log_losses_recomputed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_480_task_stage_cells_recomputed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "98304_query_condition_rows_accounted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "future_scene_and_switch_interventions_do_not_change_first_query",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_probe_accuracy_cells_and_selection_recomputed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_six_frozen_models_unchanged_after_inference",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "count": 15,
+  "passed_count": 15,
+  "evidence_boundary": "assistant-authored internal audit, not independent review",
+  "summary_sha256": "e5a9ea347c5f578ae2665a3493db571feda1e856e97eebd143cd92d2c1f111f8",
+  "audit_source_sha256": "988ce76d7a90f955af94ee7266a69ddb1daa4413b7e97ed96f5583ec387a0800"
+}

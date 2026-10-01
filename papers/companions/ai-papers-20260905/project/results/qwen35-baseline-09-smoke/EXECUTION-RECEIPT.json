@@ -1,0 +1,30 @@
+{
+  "status": "PASS_SMOKE_ONLY",
+  "mode": "smoke",
+  "batch": null,
+  "resource": {
+    "elapsed_seconds": 3.5160000000032596,
+    "initial": {
+      "available_ram_bytes": 22211391488,
+      "process_commit_bytes": 33808384,
+      "peak_process_commit_bytes": 33808384,
+      "working_set_bytes": 55783424
+    },
+    "final": {
+      "available_ram_bytes": 21584375808,
+      "process_commit_bytes": 560848896,
+      "peak_process_commit_bytes": 562860032,
+      "working_set_bytes": 691920896
+    },
+    "peak_commit_bytes": 562860032,
+    "numerical_threads": 1,
+    "resource_guard": "Own-process one-second watchdog"
+  },
+  "native_decoder_calls": 3,
+  "processed_tokens": 112,
+  "source_hashes_unchanged": true,
+  "files": {
+    "INPUT-FREEZE.json": "a0ba6c01d10a588552dd3f5e20c022464dc118be0dee6032d9ef39241cf33d4c",
+    "SMOKE.json": "7b3482b1bedaecc39c4eb7cdec2bcda27522756cea1b365adfd34051acf45e08"
+  }
+}

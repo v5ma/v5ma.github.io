@@ -1,0 +1,650 @@
+[
+  {
+    "generated_ids": [
+      33387,
+      248046
+    ],
+    "answer": "Robert",
+    "stopped_on_eos": true,
+    "first_token_id": 33387,
+    "first_token": "Robert",
+    "first_logit_sha256": "df54b54f00983f3a4d6ccfae7420dd3e84b6fab6915d1755aad1826bc1cb1540",
+    "first_top5": [
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 22.544631958007812
+      },
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 20.28269386291504
+      },
+      {
+        "id": 31318,
+        "text": "Bob",
+        "logit": 18.076881408691406
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.204187393188477
+      },
+      {
+        "id": 43298,
+        "text": "William",
+        "logit": 17.033843994140625
+      }
+    ],
+    "case": "train/context-0/pair-1/black/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "black",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Robert",
+    "swapped_target": "Anna",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      54859,
+      248046
+    ],
+    "answer": "Anna",
+    "stopped_on_eos": true,
+    "first_token_id": 54859,
+    "first_token": "Anna",
+    "first_logit_sha256": "27817f0e1ed3376517936ded940b55a03aefdac2306df98b1bc92dbf37b1eefd",
+    "first_top5": [
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 23.757862091064453
+      },
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 19.68459701538086
+      },
+      {
+        "id": 12279,
+        "text": "anna",
+        "logit": 17.836650848388672
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.597599029541016
+      },
+      {
+        "id": 31318,
+        "text": "Bob",
+        "logit": 16.98285675048828
+      }
+    ],
+    "case": "train/context-0/pair-1/black/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "black",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Anna",
+    "swapped_target": "Robert",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      14004,
+      248046
+    ],
+    "answer": "Black",
+    "stopped_on_eos": true,
+    "first_token_id": 14004,
+    "first_token": "Black",
+    "first_logit_sha256": "6ffb84408ffe92a8fd55945a61889fe35359415965facb52e3836bbcd1668746",
+    "first_top5": [
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 24.310264587402344
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 22.98049545288086
+      },
+      {
+        "id": 46776,
+        "text": "Brown",
+        "logit": 20.877647399902344
+      },
+      {
+        "id": 62284,
+        "text": "brown",
+        "logit": 20.489402770996094
+      },
+      {
+        "id": 11855,
+        "text": "blue",
+        "logit": 19.695816040039062
+      }
+    ],
+    "case": "train/context-0/pair-1/black/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "black",
+    "query": "color",
+    "arm": "original",
+    "original_target": "black",
+    "swapped_target": "black",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      54859,
+      248046
+    ],
+    "answer": "Anna",
+    "stopped_on_eos": true,
+    "first_token_id": 54859,
+    "first_token": "Anna",
+    "first_logit_sha256": "d035a5bd9870001e51531e4df19a33e19d33243a0b92dd4c4137a8d10973c914",
+    "first_top5": [
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 22.931015014648438
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.762928009033203
+      },
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 17.728761672973633
+      },
+      {
+        "id": 2014,
+        "text": "An",
+        "logit": 17.210777282714844
+      },
+      {
+        "id": 12279,
+        "text": "anna",
+        "logit": 17.143264770507812
+      }
+    ],
+    "case": "train/context-0/pair-1/black/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "black",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Anna",
+    "swapped_target": "Robert",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      33387,
+      248046
+    ],
+    "answer": "Robert",
+    "stopped_on_eos": true,
+    "first_token_id": 33387,
+    "first_token": "Robert",
+    "first_logit_sha256": "44d9fa26274fde724fe32bae08838159c23c31501e5dd889ef8f3fceefa19828",
+    "first_top5": [
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 22.713972091674805
+      },
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 20.899944305419922
+      },
+      {
+        "id": 31318,
+        "text": "Bob",
+        "logit": 18.233802795410156
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.62549591064453
+      },
+      {
+        "id": 2665,
+        "text": "No",
+        "logit": 17.04065704345703
+      }
+    ],
+    "case": "train/context-0/pair-1/black/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "black",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Robert",
+    "swapped_target": "Anna",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      14004,
+      248046
+    ],
+    "answer": "Black",
+    "stopped_on_eos": true,
+    "first_token_id": 14004,
+    "first_token": "Black",
+    "first_logit_sha256": "be392b2314dfb9a3f3697202718dcc4661b0f88a584e88a2083826cdc435cb4c",
+    "first_top5": [
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 24.726882934570312
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 23.257461547851562
+      },
+      {
+        "id": 46776,
+        "text": "Brown",
+        "logit": 20.837818145751953
+      },
+      {
+        "id": 62284,
+        "text": "brown",
+        "logit": 20.13678550720215
+      },
+      {
+        "id": 10025,
+        "text": "Blue",
+        "logit": 19.502227783203125
+      }
+    ],
+    "case": "train/context-0/pair-1/black/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "black",
+    "query": "color",
+    "arm": "original",
+    "original_target": "black",
+    "swapped_target": "black",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      33387,
+      248046
+    ],
+    "answer": "Robert",
+    "stopped_on_eos": true,
+    "first_token_id": 33387,
+    "first_token": "Robert",
+    "first_logit_sha256": "d26713ce724b44f5a48fdef7cdaacce6abcbacbbba5d83c1312bbfc86af2907f",
+    "first_top5": [
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 22.456008911132812
+      },
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 20.306121826171875
+      },
+      {
+        "id": 31318,
+        "text": "Bob",
+        "logit": 18.041704177856445
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.295269012451172
+      },
+      {
+        "id": 43298,
+        "text": "William",
+        "logit": 17.234630584716797
+      }
+    ],
+    "case": "train/context-0/pair-1/white/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "white",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Robert",
+    "swapped_target": "Anna",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      54859,
+      248046
+    ],
+    "answer": "Anna",
+    "stopped_on_eos": true,
+    "first_token_id": 54859,
+    "first_token": "Anna",
+    "first_logit_sha256": "b1d431647cc442ef3ffebc2c2a1c497aec790849f27d621c30460ded726d69ad",
+    "first_top5": [
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 24.05059814453125
+      },
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 19.39954376220703
+      },
+      {
+        "id": 12279,
+        "text": "anna",
+        "logit": 17.848764419555664
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.714733123779297
+      },
+      {
+        "id": 75272,
+        "text": "Anne",
+        "logit": 16.86642837524414
+      }
+    ],
+    "case": "train/context-0/pair-1/white/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "white",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Anna",
+    "swapped_target": "Robert",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      13672,
+      248046
+    ],
+    "answer": "White",
+    "stopped_on_eos": true,
+    "first_token_id": 13672,
+    "first_token": "White",
+    "first_logit_sha256": "e63149789fcf96e45b9c81d38c85cee365b4561f6f8bfa574e1df591bd5ee889",
+    "first_top5": [
+      {
+        "id": 13672,
+        "text": "White",
+        "logit": 24.554157257080078
+      },
+      {
+        "id": 5603,
+        "text": "white",
+        "logit": 24.19116973876953
+      },
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 20.56175422668457
+      },
+      {
+        "id": 10025,
+        "text": "Blue",
+        "logit": 19.598159790039062
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 19.473066329956055
+      }
+    ],
+    "case": "train/context-0/pair-1/white/0",
+    "family": "train/context-0/pair-1",
+    "direction": 0,
+    "color": "white",
+    "query": "color",
+    "arm": "original",
+    "original_target": "white",
+    "swapped_target": "white",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      54859,
+      248046
+    ],
+    "answer": "Anna",
+    "stopped_on_eos": true,
+    "first_token_id": 54859,
+    "first_token": "Anna",
+    "first_logit_sha256": "c5d7c7377432f9a43ccab506efa4d2076ff6eb78c3995dc7eeb4100d5c54a3be",
+    "first_top5": [
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 22.928104400634766
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.872417449951172
+      },
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 17.743188858032227
+      },
+      {
+        "id": 2014,
+        "text": "An",
+        "logit": 17.040771484375
+      },
+      {
+        "id": 75272,
+        "text": "Anne",
+        "logit": 17.036968231201172
+      }
+    ],
+    "case": "train/context-0/pair-1/white/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "white",
+    "query": "giver",
+    "arm": "original",
+    "original_target": "Anna",
+    "swapped_target": "Robert",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      33387,
+      248046
+    ],
+    "answer": "Robert",
+    "stopped_on_eos": true,
+    "first_token_id": 33387,
+    "first_token": "Robert",
+    "first_logit_sha256": "7f887ce0233b764f109aeb59502bb02f193caeb64eefc795d7f7bac14cc43e07",
+    "first_top5": [
+      {
+        "id": 33387,
+        "text": "Robert",
+        "logit": 22.438037872314453
+      },
+      {
+        "id": 54859,
+        "text": "Anna",
+        "logit": 21.393146514892578
+      },
+      {
+        "id": 31318,
+        "text": "Bob",
+        "logit": 18.049705505371094
+      },
+      {
+        "id": 760,
+        "text": "The",
+        "logit": 17.71585464477539
+      },
+      {
+        "id": 2665,
+        "text": "No",
+        "logit": 16.97711753845215
+      }
+    ],
+    "case": "train/context-0/pair-1/white/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "white",
+    "query": "recipient",
+    "arm": "original",
+    "original_target": "Robert",
+    "swapped_target": "Anna",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": true
+    },
+    "swapped_score": {
+      "correct": false,
+      "exact_case_correct": false
+    }
+  },
+  {
+    "generated_ids": [
+      13672,
+      248046
+    ],
+    "answer": "White",
+    "stopped_on_eos": true,
+    "first_token_id": 13672,
+    "first_token": "White",
+    "first_logit_sha256": "22cb7bba26c57cdc91a6084d7ae7bedb4024d5c56c0dacfb9f6a4f5007e54135",
+    "first_top5": [
+      {
+        "id": 13672,
+        "text": "White",
+        "logit": 25.086627960205078
+      },
+      {
+        "id": 5603,
+        "text": "white",
+        "logit": 24.61245346069336
+      },
+      {
+        "id": 14004,
+        "text": "Black",
+        "logit": 20.592041015625
+      },
+      {
+        "id": 11124,
+        "text": "black",
+        "logit": 19.494491577148438
+      },
+      {
+        "id": 10025,
+        "text": "Blue",
+        "logit": 19.33897590637207
+      }
+    ],
+    "case": "train/context-0/pair-1/white/1",
+    "family": "train/context-0/pair-1",
+    "direction": 1,
+    "color": "white",
+    "query": "color",
+    "arm": "original",
+    "original_target": "white",
+    "swapped_target": "white",
+    "original_score": {
+      "correct": true,
+      "exact_case_correct": false
+    },
+    "swapped_score": {
+      "correct": true,
+      "exact_case_correct": false
+    }
+  }
+]

@@ -1,0 +1,142 @@
+{
+  "scope": "Synthetic finite identification preflight; stipulated rates and label",
+  "claim": "Trace distinguishes matched scalar pairs in one case, but is a deterministic function of full permitted inputs.",
+  "not_claimed": [
+    "learned controller",
+    "prospective continual-learning advantage",
+    "extra information beyond full history",
+    "biological mechanism"
+  ],
+  "rate_by_history": {
+    "0": 0.25,
+    "1": 0.75
+  },
+  "steps": 4,
+  "matched_scalar_pair": {
+    "prediction": 0.0,
+    "verified_outcome": 1.0,
+    "slow_trace": [
+      1.0,
+      0.75,
+      0.5625,
+      0.421875,
+      0.31640625
+    ],
+    "fast_trace": [
+      1.0,
+      0.25,
+      0.0625,
+      0.015625,
+      0.00390625
+    ]
+  },
+  "checks": {
+    "same_scalar_pair_different_history_changes_trace": true,
+    "zero_error_does_not_identify_history": true,
+    "all_enumerated_traces_reconstruct_from_full_inputs": true,
+    "full_history_matches_trace_on_stipulated_label": true,
+    "fixed_diagnostic_cost": true,
+    "all_cases_enumerated": true
+  },
+  "passed": 6,
+  "total": 6,
+  "all_pass": true,
+  "cases": [
+    {
+      "history": 0,
+      "prediction": 0,
+      "verified_outcome": 0,
+      "residuals": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "history": 0,
+      "prediction": 0,
+      "verified_outcome": 1,
+      "residuals": [
+        1,
+        0.75,
+        0.5625,
+        0.421875,
+        0.31640625
+      ]
+    },
+    {
+      "history": 0,
+      "prediction": 1,
+      "verified_outcome": 0,
+      "residuals": [
+        -1,
+        -0.75,
+        -0.5625,
+        -0.421875,
+        -0.31640625
+      ]
+    },
+    {
+      "history": 0,
+      "prediction": 1,
+      "verified_outcome": 1,
+      "residuals": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "history": 1,
+      "prediction": 0,
+      "verified_outcome": 0,
+      "residuals": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "history": 1,
+      "prediction": 0,
+      "verified_outcome": 1,
+      "residuals": [
+        1,
+        0.25,
+        0.0625,
+        0.015625,
+        0.00390625
+      ]
+    },
+    {
+      "history": 1,
+      "prediction": 1,
+      "verified_outcome": 0,
+      "residuals": [
+        -1,
+        -0.25,
+        -0.0625,
+        -0.015625,
+        -0.00390625
+      ]
+    },
+    {
+      "history": 1,
+      "prediction": 1,
+      "verified_outcome": 1,
+      "residuals": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

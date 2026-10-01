@@ -1,0 +1,69 @@
+{
+  "date": "2026-09-19",
+  "status": "source_specification_not_fitted_reproduction",
+  "article": {
+    "doi": "10.1038/s41593-024-01640-4",
+    "xml": "sources/hue-model-intake-02/download/christenson-2024.xml",
+    "sha256": "5ae837f2d0d95cf015f2886256eb0ea41a1b12bba0628ec03fdf40ca6e2cbe42",
+    "locators": ["Sec28", "Sec7/Fig4", "Sec35", "Sec13"]
+  },
+  "sourceCommit": "91cf92581d2abaea72b96a994d69ed6d83ae05f9",
+  "populationOrder": ["pR7", "yR7", "pR8", "yR8", "Dm9", "pDm8", "yDm8", "Tm5a", "Tm5b", "Tm5c", "pTm20", "yTm20"],
+  "anatomicalSeedCount": 10,
+  "seedToPopulationAggregation": null,
+  "anatomicalMaterializationRelease": null,
+  "fixedPointEquation": "y_a = f_a(g_a (sum_b w_ab y_b + sum_mu j_a_mu X_mu + p_a x0))",
+  "articleMatrixConvention": "w_ab is influence from b to a; generic author engine uses the transposed pre-by-post convention",
+  "normalization": "sum_b abs(w_ab) + sum_mu j_a_mu = 1 for each a; do not include p_a in this expression without a source change",
+  "weightSources": ["Reported anatomy", "Additional Heath et al. photoreceptor circuitry", "Direct and disynaptic Tm aggregation", "Prior-work sign constraints", "Optimized effective Tm recurrence signs", "Two fitted Dm8 interactions"],
+  "freeParameterFamilies": [
+    {"name": "nonlinearity_gamma", "count": 11, "constraint": "Dm9 gamma fixed to 0", "fittedValues": null},
+    {"name": "gain", "count": 8, "constraint": "four photoreceptors share one gain; two Dm8 populations share one gain", "fittedValues": null},
+    {"name": "receptor_input", "count": 1, "constraint": "shared diagonal input weight into four photoreceptors", "fittedValues": null},
+    {"name": "nonchromatic_input", "count": 7, "constraint": "two Dm8 populations and five Tm populations", "fittedValues": null},
+    {"name": "Dm8_interactions", "count": 2, "constraint": "not reconstructed; fitted interactions", "fittedValues": null}
+  ],
+  "freeContinuousParameterCount": 29,
+  "finalNormalizedSignedW": null,
+  "finalOptimizedTmSigns": null,
+  "exactExportPreprocessing": null,
+  "exactFittedCallConfiguration": null,
+  "pooledTm20Readout": {"pTm20": {"numerator": 1, "denominator": 3}, "yTm20": {"numerator": 2, "denominator": 3}},
+  "TeNT": {
+    "operation": "block outgoing influence, preserve receiving inputs and recorded state",
+    "observationRefit": ["offset", "gain"],
+    "freeParametersPerPerturbedTmPopulation": 2,
+    "zeroRefitPrediction": false,
+    "genericEngineNormalizesAfterBlocking": true,
+    "fittedInterventionCallRecovered": false
+  },
+  "fitting": {
+    "target": "steady-state response amplitude",
+    "equilibriumMethod": "Anderson acceleration",
+    "statedToleranceLessThan": 0.0001,
+    "gradientMethod": "implicit differentiation",
+    "stages": ["photoreceptor-Dm9", "Dm8", "Tm"],
+    "batchSize": 64,
+    "maximumEpochsPerStage": 100,
+    "learningRate": 0.001,
+    "lossSource": "Article equation 9; not automatically centered Pearson correlation or ordinary R-squared",
+    "randomWeightNullFitsReported": 10000,
+    "randomWeightNullFitsRunHere": 0
+  },
+  "temporalBoundary": {
+    "timeConstants": null,
+    "synapticDelays": null,
+    "oscillatoryReference": null,
+    "directPhaseAssay": false,
+    "calciumAcquisitionHz": [15, 30],
+    "localExport": "pooled amplitudes; no animal/session/trial time-series identity"
+  },
+  "claimGates": {
+    "anatomicalSourceRegisterBuilt": true,
+    "publishedFittedHueModelReproduced": false,
+    "temporallyValidatedCircuit": false,
+    "SANSpecificJoinedApplication": false,
+    "independentScientificReview": false,
+    "newBiologicalMeasurement": false
+  }
+}

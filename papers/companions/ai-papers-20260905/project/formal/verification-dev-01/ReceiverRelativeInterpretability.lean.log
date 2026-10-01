@@ -1,0 +1,7 @@
+'SAN.Interpretability.observational_equivalence' does not depend on any axioms
+'SAN.Interpretability.intervention_separates' does not depend on any axioms
+'SAN.Interpretability.observational_agreement_does_not_entail_causal_agreement' does not depend on any axioms
+'SAN.Interpretability.closed_receiver_erases_signal' does not depend on any axioms
+'SAN.Interpretability.open_receiver_preserves_signal' does not depend on any axioms
+'SAN.Interpretability.no_universal_signal_only_decoder' does not depend on any axioms
+'SAN.Interpretability.identical_transcript_policies_have_identical_feedback' does not depend on any axioms
