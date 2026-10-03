@@ -1,66 +1,43 @@
 name: Theology provenance review
 on:
   push:
-    branches: [theology/public-corpus-and-god-bridge-2026-10-03]
+    branches: [master, theology/public-corpus-and-god-bridge-2026-10-03]
+    paths: ['theology-wiki/**', 'theology-sources/**', 'scripts/cloudflare-theology-build.mjs', '.github/workflows/theology-provenance-review.yml']
+  pull_request:
+    branches: [master]
+    paths: ['theology-wiki/**', 'theology-sources/**', 'scripts/cloudflare-theology-build.mjs', '.github/workflows/theology-provenance-review.yml']
+  workflow_run:
+    workflows: ['Publish the Theology Wiki to Cloudflare (wiki.onlyonedevil.com)']
+    types: [completed]
 permissions:
-  contents: write
+  contents: read
 concurrency:
-  group: theology-provenance-review
+  group: theology-provenance-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  integrate:
+  verify:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: theology/public-corpus-and-god-bridge-2026-10-03
-          fetch-depth: 2
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply exact reviewed inputs on the named review branch only
-        run: |
-          test "$GITHUB_REF_NAME" = 'theology/public-corpus-and-god-bridge-2026-10-03'
-          git fetch origin 9e5fd3f205015c84b0973061f0aec54ef81dd794 --depth=1
-          python - <<'PY'
-          from pathlib import Path
-          import base64,gzip,hashlib,json,subprocess
-          parts=sorted(Path('theology-wiki/tools').glob('publication-transfer-??.b64'))
-          assert len(parts)==10
-          encoded=''.join(p.read_text().strip() for p in parts)
-          encoded=encoded.replace('XnbqySoVgbr','XnbqyQoVgbr')
-          raw=base64.b64decode(encoded,validate=True)
-          assert hashlib.sha256(raw).hexdigest()=='cd16256e14b8027ee99b28428ef52e17a31de7c74e1774a5e9ef8966b3f43342','Transfer digest mismatch'
-          data=json.loads(gzip.decompress(raw))
-          assert data['schema']==1 and data['baseline']=='9e5fd3f205015c84b0973061f0aec54ef81dd794'
-          allowed={'theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md','theology-wiki/editorial/publication.json','theology-wiki/tools/publication.cjs','theology-wiki/assets/js/publication-tools.js','theology-wiki/assets/css/publication.css','theology-wiki/assets/js/research-tools.js','theology-wiki/tools/build.cjs','theology-wiki/PUBLICATION-HISTORY.md','theology-wiki/README.md','theology-wiki/tests/publication.test.cjs','theology-wiki/tests/publication_browser.py','theology-wiki/tests/research.test.cjs','theology-wiki/tests/foundations.test.cjs','theology-wiki/tests/restoration.test.cjs','theology-wiki/tests/computational.test.cjs','theology-wiki/tests/products.test.cjs','theology-wiki/tests/browser.py','theology-wiki/tests/products_checks.py','theology-wiki/tests/restoration_checks.py','scripts/cloudflare-theology-build.mjs'}
-          assert {r['path'] for r in data['files']}==allowed and len(data['files'])==len(allowed)
-          for r in data['files']:
-            p=Path(r['path'])
-            actual=hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
-            assert actual==r['before'],r['path']
-          patch=Path('/tmp/theology-publication.patch');patch.write_text(data['patch'])
-          subprocess.run(['git','apply','--check',str(patch)],check=True)
-          subprocess.run(['git','apply',str(patch)],check=True)
-          for r in data['files']:
-            assert hashlib.sha256(Path(r['path']).read_bytes()).hexdigest()==r['after'],r['path']
-          for p in parts:p.unlink()
-          print('All 20 reviewed source changes transferred with matching SHA-256 digests.')
-          PY
-      - name: Integrate reader pages and commit their actual source version
-        run: |
-          node theology-wiki/tools/publication.cjs
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A -- theology-wiki scripts/cloudflare-theology-build.mjs
-          git commit -m 'Integrate computational God bridge, reader pages and publication history tools'
-          SOURCE_REVISION=$(git rev-parse HEAD)
-          echo "SOURCE_REVISION=$SOURCE_REVISION" >> "$GITHUB_ENV"
-          node theology-wiki/tools/publication.cjs --snapshot "$SOURCE_REVISION"
-      - name: Verify preservation and reader data
+      - name: Verify the public corpus and reader data without writing repository files
         run: |
           mkdir -p publication-test-output
+          node theology-wiki/tools/publication.cjs --check | tee publication-test-output/corpus-check.json
+          node --test theology-wiki/tests/research.test.cjs > publication-test-output/node-tests.log 2>&1 || { cat publication-test-output/node-tests.log; exit 1; }
+          tail -12 publication-test-output/node-tests.log
+          if find theology-wiki -name 'publication-transfer-*.b64' | grep -q .; then echo 'Temporary transfer file remains'; exit 1; fi
+          git diff --exit-code
+      - name: Verify original source preservation
+        run: |
+          git fetch origin 9e5fd3f205015c84b0973061f0aec54ef81dd794 --depth=1
           python - <<'PY'
           import subprocess,json
           from pathlib import Path
@@ -70,47 +47,54 @@ jobs:
           for item in subprocess.check_output(['git','ls-tree','-r',base],text=True).splitlines():
             info,p=item.split('\t',1)
             if not any(p.startswith(x) for x in prefixes):continue
-            before=info.split()[2]
             assert Path(p).is_file(),p
-            after=subprocess.check_output(['git','hash-object',p],text=True).strip()
-            assert before==after,'Original changed: '+p
+            assert info.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
             checked.append(p)
           Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked},indent=2)+'\n')
-          print('Preserved',len(checked),'pre-existing source, conversation, manuscript, media and planning files.')
+          print('Verified',len(checked),'unchanged original files.')
           PY
-          node theology-wiki/tools/publication.cjs --check | tee publication-test-output/corpus-check.json
-          node --test theology-wiki/tests/research.test.cjs > publication-test-output/node-tests.log 2>&1 || { cat publication-test-output/node-tests.log; exit 1; }
-          tail -12 publication-test-output/node-tests.log
-      - name: Install native browser test dependencies
+      - name: Build the actual Cloudflare distribution
+        run: node scripts/cloudflare-theology-build.mjs cf-validation
+      - name: Install native browser dependencies
         run: |
           python -m pip install 'playwright==1.57.0'
           python -m playwright install --with-deps chromium
-      - name: Exercise the real reader over HTTP at desktop and mobile sizes
+      - name: Exercise the real reader on desktop and mobile
         run: |
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-server.log 2>&1 &
           python theology-wiki/tests/publication_browser.py
-      - name: Publish only the tested backup to the review branch
+      - name: Compare the published files with this exact deployment revision
+        if: github.event_name == 'workflow_run'
         run: |
-          test "$GITHUB_REF_NAME" = 'theology/public-corpus-and-god-bridge-2026-10-03'
-          git add -- theology-wiki/public-corpus theology-wiki/data/page-index.json
-          git commit -m 'Preserve 438 Theology reader pages in a hash-checked public Markdown corpus'
-          git push origin HEAD:theology/public-corpus-and-god-bridge-2026-10-03
-          git diff --stat 9e5fd3f205015c84b0973061f0aec54ef81dd794 HEAD > publication-test-output/changes.txt
-      - name: Package inspected outputs
-        if: always()
-        run: |
-          mkdir -p publication-test-output
           python - <<'PY'
           from pathlib import Path
-          import subprocess,zipfile
-          base='9e5fd3f205015c84b0973061f0aec54ef81dd794'
-          names=set(subprocess.check_output(['git','diff','--name-only',base],text=True).splitlines())
-          names.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
-          with zipfile.ZipFile('publication-test-output/reviewed-files.zip','w',zipfile.ZIP_DEFLATED) as z:
-            for name in sorted(names):
-              p=Path(name)
-              if p.is_file() and (name.startswith('theology-wiki/') or name=='scripts/cloudflare-theology-build.mjs') and p.suffix in {'.md','.json','.csv','.js','.cjs','.html','.css','.py','.mjs'}:z.write(p,name)
+          import hashlib,json,time,urllib.request,subprocess
+          revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          paths=['theology-wiki/data/page-index.json','theology-wiki/public-corpus/snapshot.json','theology-wiki/public-corpus/page-index.json','theology-wiki/assets/js/publication-tools.js','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/css/publication.css']
+          for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge','cosmic-thought-and-transcendence','publication-history']:
+            paths += ['theology-wiki/content/developed/'+slug+'.md','theology-wiki/public-corpus/pages/'+slug+'.md']
+          checked=[]
+          for p in paths:
+            expected=hashlib.sha256(Path(p).read_bytes()).hexdigest()
+            for attempt in range(6):
+              try:
+                url='https://wiki.onlyonedevil.com/'+p+'?revision='+revision
+                with urllib.request.urlopen(url,timeout=30) as response:data=response.read()
+                actual=hashlib.sha256(data).hexdigest()
+                assert actual==expected,'Hosted bytes differ: '+p
+                checked.append({'path':p,'sha256':actual});break
+              except Exception:
+                if attempt==5:raise
+                time.sleep(3)
+          Path('publication-test-output/hosted-bytes.json').write_text(json.dumps({'deploymentRevision':revision,'origin':'https://wiki.onlyonedevil.com','matchedFiles':checked},indent=2)+'\n')
+          print('Matched',len(checked),'actual hosted files to the deployed checkout.')
           PY
+      - name: Verify the live interactive Wiki after publication
+        if: github.event_name == 'workflow_run'
+        env:
+          THEOLOGY_READER_URL: https://wiki.onlyonedevil.com/theology-wiki/san-reader
+          PUBLICATION_TEST_OUTPUT: publication-test-output/hosted
+        run: python theology-wiki/tests/publication_browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
