@@ -1,8 +1,8 @@
 name: Publish the Theology Wiki to Cloudflare (wiki.onlyonedevil.com)
-# Since 2026-09-25 (Micah's decision) the Theology Wiki's public home is https://wiki.onlyonedevil.com
-# (Cloudflare Pages project "theology-wiki"). This repo becomes private, so GitHub Pages stops.
-# Needs two repository secrets that Micah adds himself: CLOUDFLARE_API_TOKEN (a token with
-# "Cloudflare Pages: Edit" on his account) and CLOUDFLARE_ACCOUNT_ID. Without them the job skips the upload.
+# The Theology Wiki's configured public home is https://wiki.onlyonedevil.com
+# (Cloudflare Pages project "theology-wiki"). The public GitHub Markdown backup is retained separately.
+# Needs two repository secrets: CLOUDFLARE_API_TOKEN (Cloudflare Pages: Edit)
+# and CLOUDFLARE_ACCOUNT_ID. Missing credentials fail explicitly; a build is not a deployment.
 on:
   push:
     branches: [master]
@@ -40,8 +40,8 @@ jobs:
         working-directory: cf-build
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "::notice::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID are not set; built but not uploaded."
-            exit 0
+            echo "::error::Cloudflare publication is blocked: CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID are not set. The site built successfully but was NOT uploaded."
+            exit 1
           fi
           npx --yes wrangler@4 pages deploy public --project-name theology-wiki --branch main \
             --commit-hash "$GITHUB_SHA" --commit-message "Theology Wiki from master $GITHUB_SHA"
