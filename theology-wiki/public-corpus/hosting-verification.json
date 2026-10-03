@@ -1,0 +1,40 @@
+{
+  "schema": "theology-public-hosting-verification/v1",
+  "sourceRevision": "b02dfb0f2e78a7e829ba3b6abdd50db2fa6f3551",
+  "comparedDeploymentRevision": "43351c1cee30ed198125c543f61300f17e54ca44",
+  "mergeVerifiedAt": "2026-10-03T22:37:41Z",
+  "mergeVerificationApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/43351c1cee30ed198125c543f61300f17e54ca44",
+  "verifiedReader": "https://v5ma.github.io/theology-wiki/san-reader.html",
+  "bridge": "https://v5ma.github.io/theology-wiki/san-reader.html?page=computational-god-capabilities-bridge",
+  "newDiscussion": "https://v5ma.github.io/theology-wiki/san-reader.html?page=computational-god-consciousness-and-theodicy",
+  "publicationGuide": "https://v5ma.github.io/theology-wiki/san-reader.html?page=publication-history",
+  "githubPages": {
+    "httpStatus": 200,
+    "nativeBrowserChecksPassed": 22,
+    "uncaughtBrowserErrors": [],
+    "hostedFilesMatchingCommittedBytes": 14,
+    "indexedReaderPages": 438,
+    "desktopAndMobileScreenshotsInspected": true
+  },
+  "cloudflare": {
+    "configuredReader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
+    "currentEditionVerified": false,
+    "browserHttpStatus": 200,
+    "browserFinding": "The expected publication panel was not observed; the current-edition reader test timed out.",
+    "uploadFinding": "Run 37159086915 built the site but skipped upload because CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID were unavailable to the workflow.",
+    "publisherCorrectionCommit": "33d7d7d4ecc99c201455cf571f57bdb23158af74",
+    "correction": "The publisher now fails explicitly when credentials are missing instead of reporting a successful skipped upload. No credentials, account permissions or hosting settings were changed."
+  },
+  "workflowRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/37159319944",
+  "artifactId": 11286901447,
+  "artifactSha256": "74163259c179da448512a044fb3030eb43768318df33e4a976b1ea0634e87582",
+  "artifactCreatedAt": "2026-10-03T22:43:10Z",
+  "evidenceSha256": {
+    "results.json": "1a663d387644a0df1f418376d705dce8ad2cdfe0fdc8f3d47992a3bade5455ff",
+    "github-pages/report.json": "78fcc7b1f4d7fdf7ed1cf7c1119d121725b16cc34ae61be586a07f9962e61eeb",
+    "github-pages/bridge-desktop.png": "dd086ede470b6acffacb684f9fd28d120e92745d2296e50fe98195d96e3bf8fc",
+    "github-pages/bridge-mobile.png": "9f9f8ba5bd0ce1f784da4d0ae0e480eac22433e5c1966f6c3e266e4f01eb9af5",
+    "cloudflare/browser.log": "5c3266b10a2f4b155be4ed2c4c747b84a973f4ee04a1f4c4ff724f72a8ed938a"
+  },
+  "scope": "Actual public HTTP browser and byte checks on the two origins are reported separately. A successful GitHub Pages check is not presented as successful Cloudflare publication. The artifact has limited retention; this summary and hashes remain in Git history."
+}
