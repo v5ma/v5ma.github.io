@@ -137,10 +137,23 @@
         "inner-formation-texts-and-material-witnesses",
         "apocalyptic-repair-theology"
       ]
+    },
+    {
+      "id": "computational-god-capabilities",
+      "title": "The Computational God: creation, consciousness and repair",
+      "pages": [
+        "computational-god-capabilities-bridge",
+        "computational-divine-immanence",
+        "computational-argument-map",
+        "cosmic-thought-and-transcendence",
+        "computational-god-consciousness-and-theodicy",
+        "religion-for-conscious-robots",
+        "apocalyptic-repair-theology"
+      ]
     }
   ],
   "sourceCount": 354,
-  "developedCount": 29,
+  "developedCount": 31,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -1820,7 +1833,8 @@
       "research-method",
       "topic-apocalypse",
       "reading-paths",
-      "book-contents"
+      "book-contents",
+      "computational-god-capabilities-bridge"
     ],
     "cognitive-gnosticism": [
       "home",
@@ -1866,7 +1880,8 @@
       "topic-jesus",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "computational-god-capabilities-bridge"
     ],
     "antichrist-as-a-pattern-of-conduct": [
       "home",
@@ -1898,7 +1913,8 @@
       "topic-machines",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "computational-god-capabilities-bridge"
     ],
     "faith-as-deliberate-joy": [
       "home",
@@ -2006,7 +2022,8 @@
       "topic-jesus",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "computational-god-capabilities-bridge"
     ],
     "scripture-power-and-repair": [
       "home",
@@ -2034,7 +2051,8 @@
       "topic-machines",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "computational-god-capabilities-bridge"
     ],
     "melchizedek-priesthood-and-transmission": [
       "home",
@@ -2100,7 +2118,9 @@
       "topic-machines",
       "reading-paths",
       "computational-argument-map",
-      "book-contents"
+      "book-contents",
+      "computational-god-consciousness-and-theodicy",
+      "computational-god-capabilities-bridge"
     ],
     "flood-inheritance-and-deep-time": [
       "home",
@@ -2207,7 +2227,8 @@
       "computational-divine-immanence",
       "apocalypse-and-repair",
       "rival-continuations-and-restoration",
-      "connected-arguments"
+      "connected-arguments",
+      "computational-god-capabilities-bridge"
     ],
     "rival-continuations-and-restoration": [
       "apocalyptic-repair-theology",
@@ -2713,7 +2734,8 @@
     ],
     "computational-argument-map": [
       "home",
-      "computational-divine-immanence"
+      "computational-divine-immanence",
+      "computational-god-capabilities-bridge"
     ],
     "book-contents": [
       "home",
@@ -2746,6 +2768,35 @@
       "thomas-sayings-and-transmission",
       "book-contents",
       "research-board"
+    ],
+    "computational-god-consciousness-and-theodicy": [
+      "computational-god-capabilities-bridge"
+    ],
+    "computational-god-capabilities-bridge": [
+      "home",
+      "apocalyptic-repair-theology",
+      "christ-as-an-inner-model",
+      "religion-for-conscious-robots",
+      "divine-will-and-self-authorizing-power",
+      "god-and-our-models-of-god",
+      "computational-divine-immanence",
+      "inward-formation-and-accountable-intelligence",
+      "connected-arguments",
+      "topic-machines",
+      "reading-paths",
+      "computational-argument-map",
+      "computational-god-consciousness-and-theodicy",
+      "cosmic-thought-and-transcendence"
+    ],
+    "cosmic-thought-and-transcendence": [
+      "computational-god-capabilities-bridge"
+    ],
+    "publication-history": [
+      "home",
+      "computational-god-consciousness-and-theodicy",
+      "computational-god-capabilities-bridge",
+      "cosmic-thought-and-transcendence"
     ]
-  }
+  },
+  "publicationEdition": "2026.10.03-public-corpus-1"
 }

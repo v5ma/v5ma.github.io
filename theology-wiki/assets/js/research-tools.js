@@ -93,6 +93,7 @@ async function onPage(p){
  window.TheologyPauline?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyProducts?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyBridges?.enhance(p);if(ticket!==renderTicket)return;
+ window.TheologyPublication?.enhance(p);
  announce((p.title||p.slug)+' loaded.');
 }
 function renderCatalogue(){

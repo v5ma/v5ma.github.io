@@ -1,0 +1,114 @@
+---
+title: "Theology Wiki"
+slug: "home"
+summary: "Explore original questions, developed arguments and 354 source conversations."
+topic: "Wider conversations"
+status: "Library home"
+updated: "2026-09-04"
+---
+
+# Theology Wiki
+
+Theology asks what we inherit, whom we trust, how a mind changes and what repair demands. This library develops my inquiries through source-linked arguments and preserved conversations.
+
+## Begin with an argument
+
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.
+
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
+
+## Read, listen and explore
+
+[[listening-room|Listen to full articles]], explore [[production-studio|the audio and video studio]], or follow [[product-pathways|the connected product pathways]].
+
+## Find your way through the inquiry
+
+[[connected-arguments|The book argument map]] connects five bridge essays, seventeen chapter handoffs and an explicit research agenda.
+
+[[research-roadmap|The shared research roadmap and Excel checklist]] records deliverables, dependencies and evidence. [[source-coverage|Source coverage]] identifies which conversations have recorded article links. [[book-contents|The proposed book contents]] connects seventeen chapter routes across five parts. [[parallel-timelines|Parallel timelines]] keep alternative versions separate, and [[research-board|the research board]] tracks concrete remaining tasks. [[guide-to-the-inquiry|A guide to the inquiry]] connects inheritance, authority, inward transformation and repair. [[reading-paths|Reading paths]] offer eight longer routes, and the [[glossary|glossary]] explains the collection's terms.
+
+## All developed articles
+
+[[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
+
+[[ukraine-russia-forecast-record|Ukraine, Russia and the forecast record]]: Dated forecasts and the AI-scarcity-access hypothesis, with 2027 recovery and disruption pathways, fuel-card scope, food affordability, digital-money distinctions and accountable decision systems.
+
+[[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
+
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
+
+[[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
+
+[[kenite-hypothesis-and-yahweh-origins|The Kenite hypothesis and Yahweh's southern origins]]: How the proposed transmission of Yahweh worship through southern communities relates to Moses, Midian and a separate volcanic interpretation.
+
+[[apocalyptic-repair-theology|Apocalyptic Repair Theology]]: Repair as ethical action, with Jewish adversarial traditions, Maimonides, a shared revelatory-transformative repertoire and a source-critical comparative religion series.
+
+[[cognitive-gnosticism|Cognitive Gnosticism]]: An inquiry into spiritual ideas through a model of how minds represent, interpret and change themselves.
+
+[[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
+
+[[antichrist-as-a-pattern-of-conduct|Antichrist as a pattern of conduct]]: Conduct, typology, recurring forms and historical reception, with distinctions among individuals, public personae, institutions and claimed final fulfillment.
+
+[[religion-for-conscious-robots|Religion for conscious robots]]: A proposal for religious education aimed at aligning conscious machines with humanity, grounded in the theology of coherence.
+
+[[faith-as-deliberate-joy|Faith as deliberate joy]]: Faith is described as an activity of returning to an inner orientation, not only as assent to a proposition.
+
+[[gnosticism-and-temple-trauma|Gnosticism and the Temple-trauma hypothesis]]: A proposed historical test: did the emotional character of different religious texts change with distance from the destruction of the Temple?
+
+[[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: The comparison asks how a shared scriptural inheritance can coexist with different canons, sacred places and judgments about authority.
+
+[[sacred-inheritance-and-rival-continuations|Sacred inheritance and rival continuations]]: How communities preserve, transform and contest a shared inheritance, and why historical continuity is not the same question as moral faithfulness.
+
+[[tor-thomas-and-gnostic-transmission|The Teacher, Thomas and Gnostic transmission]]: A connected reconstruction spanning successive teachers, Thomas, Qumran interpretation, Egyptian preservation and later Gnostic thought, with the different source versions kept visible.
+
+[[divine-will-and-self-authorizing-power|Divine will and self-authorizing power]]: Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction.
+
+[[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
+
+[[god-and-our-models-of-god|God and our models of God]]: An account of mental representations need not reduce God to an image. The distinction clarifies purpose, coherence, correction and the responsibilities of religious teaching.
+
+[[melchizedek-priesthood-and-transmission|Melchizedek: priesthood, release and transmission]]: A passage-level comparison of Genesis, Psalm 110, 11Q13, Hebrews and Nag Hammadi, preserving the distinction between a shared role and a demonstrated historical carrier.
+
+[[exodus-to-temple-competing-chronologies|From Exodus to Temple: competing chronologies]]: Read the rival ancient counts, inspect their endpoints, and change explicit anchor assumptions without replacing the earlier-Exodus reconstruction.
+
+[[manuscripts-movements-and-survival|Manuscripts, movements and survival]]: A work, its surviving copy, successor leadership and a proposed institutional genealogy need connected but different evidence.
+
+[[inner-formation-texts-and-material-witnesses|Inner formation: texts, communities and material witnesses]]: Connect inward covenant, community discipline, Sabbath liturgy, Pauline formation, P46 and Dura without collapsing a text, its witness and its interpretation.
+
+[[computational-divine-immanence|Computational Divine Immanence]]: A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.
+
+[[flood-inheritance-and-deep-time|Flood inheritance and deep time]]: A narrative-transformation conjecture linking Mesopotamian flood traditions, Genesis and inherited religious identity while separating work, witness and event dates.
+
+[[daniel-jubilee-and-the-teachers-time|Daniel, jubilee and the Teacher's time]]: The counted history, competing Teacher chronologies and authority to proclaim release are examined without merging an appearance, a death and a restoration.
+
+[[onias-egypt-and-priestly-continuity|Onias, Egypt and priestly continuity]]: A proposed Egyptian-Judean branch network is developed through sanctuary, successor family, royal service, cooperation, households and closure.
+
+[[james-and-contested-succession|James and contested succession]]: A Jamesian succession model joins transmitted knowledge, kinship, priestly imagery and contested authority while preserving the stronger earlier-founder reconstruction.
+
+[[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]: Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.
+
+## Explore a subject
+
+[[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
+
+[[topic-apocalypse|Apocalypse, power & repair]]: Theology of domination, prophetic warning and collective restoration.
+
+[[topic-origins|Ancient texts & origins]]: Manuscripts, Temple history, divine names and the dating of ideas.
+
+[[topic-jesus|Jesus, ethics & authority]]: The teachings of Jesus, moral judgment and the authority of institutions.
+
+[[topic-practice|Faith & spiritual practice]]: Prayer, attention, deliberate joy and interpretations of spiritual experience.
+
+[[topic-machines|God, minds & machines]]: Cognitive models, information, conscious machines and religious education.
+
+[[topic-traditions|Traditions in conversation]]: Shared inheritance, competing interpretations and differences that matter.
+
+[[topic-context|Wider conversations]]: Contextual discussions, cultural references and research leads in the source archive.
+
+## Sources and research tools
+
+[[computational-argument-map|The computational theology argument map]] connects the new sources and ten research questions. [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
+
+29 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

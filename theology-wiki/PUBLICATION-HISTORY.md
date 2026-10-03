@@ -10,7 +10,7 @@ This guide explains how an external reader can inspect a Theology Wiki article's
 
 [The article's continuing file history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/research-notes/computational-god-consciousness-and-theodicy.md) and the linked pull-request records show later publication or revision activity. A subsequent verified merge can attest to the tree containing the article without changing this initial commit's unsigned status. A merge date is not automatically the first date a draft appeared on a public branch.
 
-This addition is a GitHub-readable research page. It does not modify the existing interactive reader's route catalogue, full-text search, narration, article counts, or archival-source files. Do not describe it as a completed main-reader integration merely because its source is in the repository.
+At its initial save, this was a GitHub-readable research page rather than an integrated reader entry. The subsequent public-corpus edition integrates it into reader navigation, search, connected arguments, and device-reading text. The first saved source and its earlier commit remain available unchanged. The reader integration has its own later Git history.
 
 ## Inspect any existing article
 
@@ -55,3 +55,18 @@ GitHub, [Getting permanent links to files](https://docs.github.com/en/repositori
 GitHub, [About commit signature verification](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification), explains persistent verification records, verified_at, repository-network scope, and the distinction between signing and other commit metadata.
 
 Git, [git-commit documentation](https://git-scm.com/docs/git-commit), documents the date option and author/committer environment variables. These support the distinction between a Git date and an independently recorded service event.
+
+
+## Time-stamped public Markdown backup
+
+The [public corpus](https://github.com/v5ma/v5ma.github.io/tree/master/theology-wiki/public-corpus) is explicitly maintained as a time-stamped public backup of Micah Blumberg's Theology Wiki for citation, preservation, version comparison, and future attribution questions. Its [snapshot metadata](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/snapshot.json), [page index](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/page-index.json), and [SHA-256 manifest](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/manifest-sha256.csv) identify the exact source revision and file bytes. A supplementary source manifest covers Markdown studies outside the interactive reader as well.
+
+Each indexed reader page has a public Markdown backup. Article copies retain their exact source bytes. Conversation projections include the complete already-public conversation with normalized line endings and an introductory label; the original transcript and its own hash remain separately available. Original authors, top-level speakers, quoted works, and AI-assisted prose retain their recorded attribution. Inclusion is not a blanket claim of original authorship over quotations or prior scholarship.
+
+The live reader exposes links to its Markdown on GitHub, file history, exact snapshot source version, and Markdown backup. An optional browser check compares the served reader Markdown with its archived SHA-256 value. These links make an outside comparison practical without requiring trust in an editorial date printed on the page.
+
+Snapshot dates concern preservation events and recorded source revisions. Earlier articles retain their own histories. A later bridge or new formulation does not inherit the date of an earlier related argument. A hash establishes which bytes are being compared; it does not establish when those bytes first became public. Platform records and independently dated captures address that separate question.
+
+## Computational theology reading bridge
+
+The [Computational God capabilities bridge](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=computational-god-capabilities-bridge) connects the necessary-ground argument, divine immanence, cosmic thought, logic, alternative conscious implementations, finite agency, and repair. It leads back to the original connected essays rather than replacing them. The earlier cosmic-thought manuscript and the initial consciousness-and-theodicy research note remain unchanged in their original repository paths.

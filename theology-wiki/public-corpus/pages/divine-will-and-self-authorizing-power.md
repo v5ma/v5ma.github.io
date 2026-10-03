@@ -1,0 +1,163 @@
+---
+title: "Divine will and self-authorizing power"
+slug: "divine-will-and-self-authorizing-power"
+summary: "Distinct will, divine identity and inward formation: attributed sayings, exaltation and dependence, mental representations of God, felt conviction and two levels of moral correction."
+topic: "Jesus, ethics & authority"
+status: "Developed article"
+updated: "2026-09-18"
+---
+
+# Divine will and self-authorizing power
+
+## Desire is present, but it is not the final authority
+
+Jesus's distinction between his will and God's will is more exacting than an instruction to have no desires. Luke 22:42 depicts an expressed wish that the cup be removed and a decision to place the Father's will first. The tension matters: an immediate preference is acknowledged without becoming the measure of what ought to happen. The prayer presents a relationship between personal agency and a purpose the speaker does not claim to manufacture.
+
+I read this as the spiritual opposite of self-authorizing power. In a me-first structure, the leader's desire supplies the standard and religious language legitimizes it afterward. In the contrasting structure, the person remains answerable to something they cannot make true merely by wanting it. This does not make every unpleasant sacrifice a divine demand; it makes the source and content of the demand open to judgment.
+
+John 5:30 relates Jesus's judgment to seeking the will of the one who sent him rather than his own. John 6:38 makes a related distinction about his mission. Read together with the prayer, these passages make submission more than a last-minute response to suffering: it is a stated orientation of judgment and action. The issue is whose will governs the use of power.
+
+## Three distinctions prevent a distorted reading
+
+Wanting relief is not identical to making the self sovereign. A person can acknowledge fear, grief or a need for protection while refusing to harm someone else for personal advantage. Eliminating the acknowledgement of need would remove the moral tension rather than explain how it is resolved.
+
+Submission to God is not interchangeable with submission to whichever human authority claims to speak for God. A leader can reverse the relation by making loyalty to himself the test of loyalty to the divine. The [[sacred-inheritance-and-rival-continuations|inheritance inquiry]] asks how that claim acquires credibility; the [[scripture-power-and-repair|scriptural authority inquiry]] tests what the claim permits the leader to do.
+
+Likewise, rejecting selfish domination does not require erasing agency, consent or self-respect. A person who is commanded to accept abuse may rightly question the command. The standard developed in [[apocalyptic-repair-theology|the repair framework]] requires attention to truth, consequences and protection, including protection for the person being asked to sacrifice. Humility is not a license for an institution to silence testimony.
+
+## The reference point must itself remain open to examination
+
+The distinction can be expressed as a problem of moral learning. An impulse supplies a proposed action. An inward model of Christ supplies a comparison. The person notices a discrepancy and changes the response. But the process only becomes ethically useful if the model is not secretly defined to agree with every impulse. A conscience that always ratifies its owner's preferences has lost its corrective role.
+
+This is the connection to [[christ-as-an-inner-model|Christ as an inner model]]. A person may begin by asking what response an admired figure would make. The harder question is what corrects their interpretation of that figure. Scripture, the experience of people affected, criticism from others, and acknowledgment of uncertainty can all enter that examination. The article proposes these as practices of accountability, not a measurement of a neural process.
+
+A leader can insulate the model from correction: disagreement proves disloyalty; failure proves enemies were stronger; success proves divine favor. Evidence then becomes a permanent defense of the leader. The opposition is not merely confidence versus modesty. It is a will that can be judged versus a will that controls the terms of judgment.
+
+## A contemporary application without inventing a confession
+
+The comparison with Trump applies this opposition to public power. I interpret the remarks about heaven through the possibility of personal will being placed above God's. That is a theological explanation, not access to the speaker's private reasoning.
+
+In the August 19, 2025 Fox & Friends exchange, Trump connected ending the Ukraine war and saving lives with his hope of reaching heaven while expressing doubts about his prospects. The cited clip and transcript support that account. They do not record him explaining those doubts by saying that he places his will above God's. The proposed explanation is therefore an inference, not a quotation or established confession.
+
+That distinction does not remove the argument. It makes its real target visible. One can examine whether a public narrative centers personal recognition, moral accountability, the welfare of those affected, or some combination. Seeking salvation is not by itself proof of selfishness, just as using religious language is not proof of selflessness. The case becomes stronger through documented conduct and the structure of authority, not by claiming direct access to a person's interior reasons.
+
+The [[trump-first-beast-of-revelation|First Beast investigation]] already develops dated examples of personal indispensability, political allegiance and control over acceptable information. This article adds a criterion for interpreting that pattern: whether sacred legitimacy limits the leader's desires or is used to exempt them from judgment. It does not use a statement about heaven as a shortcut around the larger factual case.
+
+## A role is not an immutable essence of a person
+
+The pattern leaves room for repentance. An individual can change while a destructive orientation continues through another person. The [[resurrection-debate-in-christianity|recurring-prophecy discussion]] connects this possibility with Tabor's treatment of recurrence. A theological interpretation that makes a person's evil identity unchangeable would miss this distinction.
+
+This gives the will comparison a dynamic rather than purely classificatory role. The question is not only which label belongs to a person. It is what the person repeatedly puts first and whether that orientation can change. A confession of affiliation would not be sufficient under this account; the practical ordering of action must change. At the same time, the continued existence of a destructive pattern would not prove that no individual had changed.
+
+A recurring pattern and a specific prophetic fulfillment therefore require separate treatment. The former describes a moral structure that can recur; the latter proposes a particular role in a narrative of history. I connect them without allowing one level to silently replace the other.
+
+## Repair asks what sacrifice is for
+
+A community can demand sacrifice to preserve a leader's reputation, or organize shared effort to protect people who are being harmed. Both can involve giving up something desired. The moral difference concerns the purpose, the distribution of burdens, and who remains able to challenge the arrangement. Calling every sacrifice obedience to God would erase those differences.
+
+A concrete example is an institution confronted by truthful criticism. A self-protective response treats the report as damage to the institution's sacred image. A repair-oriented response examines the report, protects the people affected and accepts consequences even when those consequences are costly. The latter does not abandon its commitments; it refuses to substitute its appearance of righteousness for the work those commitments require.
+
+The same principle scales down to ordinary conduct. A person can relinquish the satisfaction of humiliation without relinquishing the truth of an accusation. They can resist aggression without defining cruelty as justified whenever it serves their side. Putting a moral purpose before personal gratification is not the same as becoming passive.
+
+## The implications for conscious machines
+
+[[religion-for-conscious-robots|The robot-religion proposal]] makes this question concrete in a new setting. A system taught to equate its owner's orders with the good has not thereby learned the distinction between personal will and moral authority. Obedience, accuracy and coordination are different properties; none alone establishes benevolence.
+
+An agent's goals and the commands of its controllers must remain answerable to the welfare and truth the system is meant to serve. For a genuinely conscious participant, the inquiry also concerns its own treatment, not only the usefulness of obedience. This extends the theology into an ethical design question; it neither declares present software conscious nor treats religious vocabulary as a guaranteed solution to alignment.
+
+The foundational contrast can now be stated without compression: Christ's example is not the disappearance of a will, but a will that does not appoint itself the highest authority. Its opposite is not merely being confident or pursuing an aim. It is making personal desire immune to judgment, including by borrowing God's name to authorize that immunity.
+
+## Messiah, divine identity and the discipline of a distinct will
+
+The question whether Jesus claimed to be God contains several different questions. What do the surviving texts place on Jesus's lips? What do their narrators and other characters say about him? Which sayings can be assigned confidently to the historical person? What later theological account reconciles those passages? An answer to one is not automatically an answer to the others. My ethical argument concerns how the represented Jesus places personal desire under a higher purpose; it does not require pretending that the sources have one uncomplicated account of divine identity.
+
+Messiah means anointed one; the title alone does not mean that its bearer is identical with God. It is nevertheless too sweeping to say that all ancient Jewish expectations allowed only one kind of purely human redeemer, or that every exalted figure had exactly the same status. Daniel 7:13-14 describes a human-like figure approaching the Ancient of Days and receiving extraordinary authority. Its presence in Jewish scripture makes delegated authority, heavenly representation and the identity of the one served distinct questions. It does not by itself settle the nature of Jesus or describe every Jewish person's expectations.
+
+The textual support for the distinction of wills is substantial. Mark 14:32-36 depicts anguish, an expressed wish to avoid the cup, and submission to the Father's desire. Mark 13:32 distinguishes the Son's knowledge from the Father's. John 5:30 depicts judgment through seeking the sender's will rather than the speaker's own. These are positive features of the texts, not merely an argument from the absence of the English sentence "I am God."
+
+But John also contains claims that require serious treatment: the pre-Abraham saying in 8:58, unity with the Father in 10:30, and glory with the Father before the world's existence in 17:5. John 20:28 places a direct address to Jesus as Lord and God on Thomas's lips. The last example is not a saying by Jesus, and opponents' accusations elsewhere are not automatically his own formulation. Still, it would be inaccurate to describe the Gospel as containing no evidence for a high divine portrayal.
+
+The same texts preserve distinction and dependence. John 17:3 addresses the Father as the only true God while distinguishing the one sent; John 20:17 speaks of ascending to Jesus's God and the disciples' God. John 10:34-36 answers an accusation through scripture and the language of being sanctified and sent. These passages make interpretation necessary; none authorizes simply erasing the other side of the evidence. The prayer for followers to share unity in John 17:20-23 also makes it useful to ask when unity denotes relationship, shared purpose or a claim about being.
+
+Nor can the history be reduced to a simple progression from an entirely ordinary human in the early texts to divinity invented only in John. Philippians 2:5-11 already joins exalted language with self-emptying, obedience and exaltation by God. Mark 14:61-62 joins messianic identification with an enthroned Son-of-Man image. A high portrayal and obedient agency can coexist within a source. Different theological traditions explain that coexistence differently; the textual coexistence itself is what this study uses.
+
+For historical reconstruction, a surviving narrative is not an audio recording of the event. Historical caution applies both to statements used to prove divine self-identification and to statements used to prove its absence. I can argue that obedient agency is fundamental to these portrayals without claiming direct access to every belief the historical Jesus held. The [[jesus-teacher-of-righteousness-hypothesis|earlier-founder identity hypothesis]] adds another historical question, but the will argument does not depend on resolving that chronology first.
+
+## Experiencing a higher reference without reducing God to a mental construct
+
+A person approaches God through language, memory, expectation, emotion and an acquired understanding of goodness. Calling this a mental model describes the human side of the relationship; it does not establish that God is nothing more than the model. A believer may take the divine referent to be real and transcendent while acknowledging that their own representation remains partial. The distinction is important precisely because the believer can otherwise mistake personal certainty for an infallible revelation.
+
+I interpret the Father's role as a higher reference that can interrupt the action the immediate self is preparing. In this philosophical vocabulary, lower does not mean that the body is evil, that fear is sinful or that basic human needs should be suppressed. It means a shorter-horizon preference, such as immediate escape, retaliation or self-protection. Higher names the enduring commitment to truth, love, justice and service against which that preference is assessed. The terms describe a proposed ordering of values, not separate anatomical regions or a historical diagnosis.
+
+The Gethsemane portrayal is especially useful because desire remains audible. The prayer does not erase vulnerability; it acknowledges it and then refuses to make it the final standard. At the same time, a modern claim of divine command must never automatically override another person's bodily safety, consent or access to help. A human authority can abuse the language of sacrifice. The ethical question remains what the purported command requires and who bears its cost.
+
+The word Abba in Mark 14 is an Aramaic address to the Father. It can support discussion of a personal relationship, but the word alone does not prove an unprecedented psychological innovation, infantile intimacy, or a particular internal voice. Similarly, the prayer scenes support a literary account of devotion; they do not provide measurements of Jesus's emotions, neural activity or the exact frequency of a daily practice.
+
+## Confidence, felt presence and two levels of correction
+
+In [[christ-as-an-inner-model|Christic Self-Formation Theory]], a sacred model becomes practically important when it changes the next action, not just the sentence a person says about themselves. Prayer, remembered teaching and the anticipation of another person's needs can be treated as proposed ways of rehearsing a different response. Their historical use in a particular person's mind remains an interpretation unless separately evidenced.
+
+Emotion and conviction are central to how such a commitment can feel compelling. Vibration, in this spiritual discussion, names a felt quality of experience. It is not a measured oscillation or an established physical mechanism. The causal claim that a particular devotional practice changes a particular neural process would require its own operational definitions and evidence. A deeply felt conviction is evidence that the person experiences conviction, not an automatic test of the conviction's truth.
+
+There are two levels of correction. At the first, a person's representation of divine goodness challenges an immediate impulse. At the second, testimony, reflection and the experience of people affected can challenge that representation itself. Without the second level, a person may repeatedly obey an image of God that has simply been adjusted to approve their preferences. A corrective model must remain capable of surprising and restraining its owner.
+
+This distinction also provides the bridge to [[religion-for-conscious-robots|the ethics of artificial agents]]. A system that obeys its owner perfectly has not thereby learned benevolence. A person who believes a system speaks with unquestionable moral authority can make a parallel mistake. Neither eloquence, power nor confidence removes the need to examine the standard being applied and whether those affected can contest it.
+
+The contrast with self-authorizing political power is therefore precise: service allows a higher standard to judge the ruler; domination makes the ruler the final interpreter of that standard and treats refusal as disloyalty. This is the philosophical connection between the Jesus-will study and the [[trump-first-beast-of-revelation|First Beast interpretation]]. It is an account of a relationship between authority and accountability, not a claim to read an opponent's mind.
+
+The [evidence and scenario notebook](https://v5ma.github.io/theology-wiki/research-expansion-20260918/index.html) places the attributed sayings beside the historical constraints and the AI-and-scarcity scenarios. Its separate record types keep a philosophical account of inward formation distinct from a historical identity claim or a measured forecast.
+
+## Sources for the divine-agency extension
+
+Mark 14:32-36, 61-62 and Mark 13:32, World English Bible. The narrative and attributed sayings were consulted, not an independently authenticated transcript of the historical events. https://ebible.org/engwebp/MRK14.htm ; https://ebible.org/engwebp/MRK13.htm
+
+Daniel 7:13-14, World English Bible, for delegated authority in a Jewish scriptural vision. https://ebible.org/engwebp/DAN07.htm
+
+John 5:18-30, 8:58, 10:25-38 and 17:1-5, 20-23, World English Bible. These include narrator descriptions, opponents' accusations, attributed sayings and prayer; those speech roles are not interchangeable. https://ebible.org/engwebp/JHN05.htm ; https://ebible.org/engwebp/JHN08.htm ; https://ebible.org/engwebp/JHN10.htm ; https://ebible.org/engwebp/JHN17.htm
+
+John 20:17-31, King James Version, used after the eBible chapter did not load. The edition change is explicit. https://www.biblegateway.com/passage/?search=John+20%3A17-31&version=KJV
+
+Philippians 2:5-11, World English Bible, for the coexistence of exaltation and obedient agency. https://ebible.org/engwebp/PHP02.htm
+
+The higher-reference and two-level-correction discussion is a September 18, 2026 philosophical development of the Wiki's existing Christic Self-Formation proposal. It is not presented as an established reconstruction of Jesus's private psychology or as a neuroscientific finding.
+
+
+## Source conversations
+
+[[resurrection-debate-in-christianity|Resurrection Debate in Christianity]] is the archived discussion dated 2025-06-08 (UTC export metadata).
+
+[[cognitive-gnosticism-jesus-vs-gnostic-jesus|Cognitive Gnosticism: Jesus vs Gnostic Jesus]] is the archived discussion dated 2025-02-06 (UTC export metadata).
+
+[[agi-religious-framework|AGI Religious Framework]] is the archived discussion dated 2025-06-12 (UTC export metadata).
+
+Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.
+
+## External sources and access notes
+
+[Luke 22, World English Bible](https://ebible.org/engwebp/LUK22.htm)
+
+Primary text consulted, especially 22:42. The article distinguishes the petition and the priority of the Father's will from obedience to a human interpreter. Consulted 2026-09-05.
+
+[John 5, World English Bible](https://ebible.org/engwebp/JHN05.htm)
+
+Primary text consulted, especially 5:30. Supports the contrast between seeking one's own will and the will of the sender. Consulted 2026-09-05.
+
+[John 6, World English Bible](https://ebible.org/engwebp/JHN06.htm)
+
+Primary text consulted, especially 6:38. The contemporary political application is editorial/theological interpretation, not an assertion made by this text. Consulted 2026-09-05.
+
+[Donald Trump, August 19, 2025 remarks on ending the war and getting to heaven](https://www.realclearpolitics.com/video/2025/08/19/trump_i_want_to_try_to_get_to_heaven_if_possible_i_hear_im_not_doing_too_well_--_im_really_at_the_bottom_of_the_totem_pole.html)
+
+Published recording/transcript of the Fox interview excerpt consulted for the reported words, not independent validation of casualty estimates. The quoted speaker links ending the war to heaven; he does not explicitly explain his concern as putting his own will above God's. That further explanation is my theological inference. Consulted 2026-09-05.
+
+[Donald Trump, Republican nomination acceptance address (July 21, 2016)](https://www.presidency.ucsb.edu/documents/address-accepting-the-presidential-nomination-the-republican-national-convention-cleveland)
+
+Full primary speech transcript hosted by the American Presidency Project. Supports the indispensability-rhetoric case, including the same speech's references to working with officials and allies. Consulted 2026-09-04.
+
+[White House, January 6 clemency proclamation (January 20, 2025)](https://www.whitehouse.gov/presidential-actions/2025/01/granting-pardons-and-commutation-of-sentences-for-certain-offenses-relating-to-the-events-at-or-near-the-united-states-capitol-on-january-6-2021/)
+
+Primary proclamation read in full. Records named commutations, other pardons and its stated reconciliation rationale. The article describes the dated action, not the present status of every case. Consulted 2026-09-04.
+
+[Executive Order 14319, Preventing Woke AI in the Federal Government (July 23, 2025)](https://www.whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government/)
+
+Primary order read in full. Sections 3 and 4 provide the procurement conditions discussed in the third worked case. This review examines the order as issued, not every later implementing rule or litigation outcome. Consulted 2026-09-04.

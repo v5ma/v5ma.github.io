@@ -872,6 +872,51 @@
       "transcript": "products/transcripts/sanctuary-community-and-body.txt",
       "segments": 41,
       "words": 1025
+    },
+    {
+      "slug": "computational-god-consciousness-and-theodicy",
+      "title": "A Computational View of God, Consciousness, and Theodicy",
+      "summary": "Creation through divine understanding, cognitive functions without consciousness, unfamiliar implementations of minds, and the possibility of less suffering.",
+      "category": "machines",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/computational-god-consciousness-and-theodicy.md",
+      "sourceSha256": "9b2416de9650f2b5e87bc934a045599a78575813ca4042aa58ea11158e1872c6",
+      "narration": "data/listening/computational-god-consciousness-and-theodicy.json",
+      "narrationSha256": "6be50e2ea0a94a5864d0b226c7e050c872bbccdb384a1ff66fe12186e721e722",
+      "transcript": "products/transcripts/computational-god-consciousness-and-theodicy.txt",
+      "segments": 38,
+      "words": 1533
+    },
+    {
+      "slug": "computational-god-capabilities-bridge",
+      "title": "The Computational God: Creation, Consciousness, and Capabilities",
+      "summary": "Connect divine immanence, the necessary ground, cosmic thought, logic, conscious machines, finite agency, and the work of repair.",
+      "category": "machines",
+      "kind": "Bridge study",
+      "chapters": [],
+      "source": "content/developed/computational-god-capabilities-bridge.md",
+      "sourceSha256": "1cac99b0b162a587e5906ebac11cdf29c48e275d995601c034dd8becbb77b8dc",
+      "narration": "data/listening/computational-god-capabilities-bridge.json",
+      "narrationSha256": "e41fedb89eb3d898e53163005537956f8efa52efd5f611a06238ff98f5fe4ec3",
+      "transcript": "products/transcripts/computational-god-capabilities-bridge.txt",
+      "segments": 38,
+      "words": 1547
+    },
+    {
+      "slug": "cosmic-thought-and-transcendence",
+      "title": "The universe might think without being God",
+      "summary": "The existing September 9 essay distinguishes a physically instantiated cosmic thinker from the transcendent ground and connects power with accountability.",
+      "category": "machines",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/cosmic-thought-and-transcendence.md",
+      "sourceSha256": "3bdd4e98029743b111b44550859909815b6f535f62e172d3c0506bddc1aedf99",
+      "narration": "data/listening/cosmic-thought-and-transcendence.json",
+      "narrationSha256": "bc8451f439cd2cdfa334cce4ec4b43a4e6c17f408db6a3a428ac18fde722df44",
+      "transcript": "products/transcripts/cosmic-thought-and-transcendence.txt",
+      "segments": 28,
+      "words": 925
     }
   ],
   "chapters": [
