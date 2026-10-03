@@ -1,0 +1,33 @@
+name: Theology provenance review
+on:
+  push:
+    branches: [theology/public-corpus-and-god-bridge-2026-10-03]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export public text inputs for local review
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          roots=['theology-wiki','theology-sources','scripts','.github']
+          allowed={'.md','.cjs','.js','.json','.html','.css','.py','.txt','.yml','.yaml','.mjs','.csv'}
+          with zipfile.ZipFile('theology-public-text-review.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for root in roots:
+              for p in sorted(Path(root).rglob('*')):
+                if p.is_file() and p.suffix in allowed:
+                  z.write(p,str(p))
+          print('Exported existing public text only; no repository content modified.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: theology-public-text-review
+          path: theology-public-text-review.zip
+          retention-days: 7
