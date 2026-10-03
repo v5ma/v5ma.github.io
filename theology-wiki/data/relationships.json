@@ -1488,6 +1488,181 @@
       "type": "source",
       "why": "The article develops an argument from AI re-dates Dead Sea Scrolls. Read the original speakers separately from the editorial prose.",
       "origin": "Article source reference"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "computational-divine-immanence",
+      "type": "conceptual connection",
+      "why": "Connects the generative-ground account to divine capabilities and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-divine-immanence",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Connects the generative-ground account to divine capabilities and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "computational-argument-map",
+      "type": "conceptual connection",
+      "why": "Connects necessary ground, agency, world selection, and the proposed intellective ground.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-argument-map",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Connects necessary ground, agency, world selection, and the proposed intellective ground.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "god-and-our-models-of-god",
+      "type": "conceptual connection",
+      "why": "Distinguishes the proposed divine reality from finite representations of it.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "god-and-our-models-of-god",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Distinguishes the proposed divine reality from finite representations of it.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "cosmic-thought-and-transcendence",
+      "type": "conceptual connection",
+      "why": "Keeps the existing distinction between cosmic cognition and the ground alongside the newer creation proposal.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "cosmic-thought-and-transcendence",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Keeps the existing distinction between cosmic cognition and the ground alongside the newer creation proposal.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "computational-god-consciousness-and-theodicy",
+      "type": "conceptual connection",
+      "why": "Develops the supplied exchange about logic, conscious implementations, and suffering.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-consciousness-and-theodicy",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Develops the supplied exchange about logic, conscious implementations, and suffering.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "religion-for-conscious-robots",
+      "type": "conceptual connection",
+      "why": "Extends the consciousness question to unfamiliar minds and their moral relationships.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "religion-for-conscious-robots",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Extends the consciousness question to unfamiliar minds and their moral relationships.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "christ-as-an-inner-model",
+      "type": "conceptual connection",
+      "why": "Relates changes in understanding to the conduct of finite agents.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "christ-as-an-inner-model",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Relates changes in understanding to the conduct of finite agents.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "inward-formation-and-accountable-intelligence",
+      "type": "conceptual connection",
+      "why": "Connects intelligence, formative models, and answerable action.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "inward-formation-and-accountable-intelligence",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Connects intelligence, formative models, and answerable action.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "divine-will-and-self-authorizing-power",
+      "type": "conceptual connection",
+      "why": "Distinguishes creative power from an agent's claim to ultimate authority.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "divine-will-and-self-authorizing-power",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Distinguishes creative power from an agent's claim to ultimate authority.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "computational-god-capabilities-bridge",
+      "to": "apocalyptic-repair-theology",
+      "type": "conceptual connection",
+      "why": "Connects alternative implementations and reduced suffering to practical repair.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "apocalyptic-repair-theology",
+      "to": "computational-god-capabilities-bridge",
+      "type": "connecting study",
+      "why": "The bridge explains how this argument relates to creation, consciousness, and divine capabilities. Connects alternative implementations and reduced suffering to practical repair.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "home",
+      "to": "computational-god-capabilities-bridge",
+      "type": "reading route",
+      "why": "A connected route through computational theology and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "topic-machines",
+      "to": "computational-god-capabilities-bridge",
+      "type": "reading route",
+      "why": "A connected route through computational theology and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "reading-paths",
+      "to": "computational-god-capabilities-bridge",
+      "type": "reading route",
+      "why": "A connected route through computational theology and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "connected-arguments",
+      "to": "computational-god-capabilities-bridge",
+      "type": "reading route",
+      "why": "A connected route through computational theology and possible minds.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "home",
+      "to": "publication-history",
+      "type": "public preservation",
+      "why": "Inspect the public backup, version links, and recorded dates.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
     }
   ],
   "anchors": [

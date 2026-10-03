@@ -1,10 +1,21 @@
-# Theology Wiki: Publication History and Verifiable Versions
+---
+title: "Publication history and time-stamped public backup"
+slug: "publication-history"
+summary: "Inspect GitHub Markdown, exact versions, revision history, file hashes, and the public preservation record for every reader page."
+topic: "Research context"
+status: "Navigator"
+updated: "2026-10-03"
+reader_integrated: "2026-10-03"
+canonical_source: "PUBLICATION-HISTORY.md"
+---
+
+# Publication history and time-stamped public backup
 
 This guide explains how an external reader can inspect a Theology Wiki article's text, revision history, and recorded dates without relying only on a date printed inside the article. It also records concrete examples already present in the public repository. The guide was added on October 3, 2026; older dates below belong to the older records, not to this guide.
 
 ## Open the new discussion
 
-[A Computational View of God, Consciousness, and Theodicy](research-notes/computational-god-consciousness-and-theodicy.md) develops Micah Blumberg's supplied discussion about divine creation, logical possibility, cognitive performance, conscious experience, and alternative implementations of minds.
+[A Computational View of God, Consciousness, and Theodicy](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/research-notes/computational-god-consciousness-and-theodicy.md) develops Micah Blumberg's supplied discussion about divine creation, logical possibility, cognitive performance, conscious experience, and alternative implementations of minds.
 
 [The exact first saved text](https://github.com/v5ma/v5ma.github.io/blob/0b136a42c13f06741c5bdc6d65a7ed64f2b364db/theology-wiki/research-notes/computational-god-consciousness-and-theodicy.md) is pinned to commit 0b136a42c13f06741c5bdc6d65a7ed64f2b364db. [The commit record](https://github.com/v5ma/v5ma.github.io/commit/0b136a42c13f06741c5bdc6d65a7ed64f2b364db) records October 3, 2026 at 22:03:29 UTC, or 3:03:29 p.m. Pacific Daylight Time. This initial contents-API commit is unsigned. Its date is correctly described as a Git commit date, not as a verified signature timestamp.
 

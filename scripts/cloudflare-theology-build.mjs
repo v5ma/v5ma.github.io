@@ -8,6 +8,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { createRequire } from 'node:module';
+// Refuse to deploy reader sources that no longer match their public backup.
+const require = createRequire(import.meta.url);
+require('../theology-wiki/tools/publication.cjs').check(path.resolve('theology-wiki'));
+
 
 const root = process.cwd();
 const out = path.resolve(process.argv[2] || 'cf-build');

@@ -49,7 +49,7 @@ def run_restoration_checks(page, ctx, open_page, check, OUT, BASE):
         page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=item)
         check('Full bridge listening verifies its exact source: '+item,'hashes match' in page.locator('#listen-version').inner_text() and page.locator('.listen-paragraph').count()>15)
     page.locator('#listen-kind').select_option('');page.locator('#listen-search').fill('');page.locator('#listen-chapter').select_option('')
-    check('Clearing filters restores all thirty-four complete studies',page.locator('#listen-article option').count()==34)
+    check('Clearing filters restores all thirty-seven complete studies',page.locator('#listen-article option').count()==37)
     page.locator('#product-workspace').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'restoration-listening-mobile.png'))
     page.set_viewport_size({'width':1440,'height':1000})
     open_page(page,'connected-arguments');page.wait_for_selector('#connected-workspace[data-ready="true"]')

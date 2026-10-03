@@ -45,7 +45,7 @@ with sync_playwright() as tool:
     page.on('pageerror', lambda e: ERRORS.append(str(e)))
     try:
         open_page(page)
-        check('Native HTTP reader loads 434 indexed pages', page.evaluate('TheologyReader.pages().length') == 434)
+        check('Native HTTP reader loads 438 indexed pages', page.evaluate('TheologyReader.pages().length') == 438)
         check('Home prioritizes three flagship arguments', page.locator('.depth-featured .research-card').count() == 3)
         check('Homepage describes 354 original source conversations', '354' in page.locator('.depth-home-footer').inner_text())
         check('Eight subject collections are accessible in the sidebar', page.locator('.research-topic-link').count() == 8)

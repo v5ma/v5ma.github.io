@@ -56,7 +56,9 @@
       "connections",
       "forecast-ledger",
       "image-collection",
-      "research-method"
+      "research-method",
+      "computational-god-capabilities-bridge",
+      "publication-history"
     ],
     "17th-century-christian-zionism": [
       "topic-jesus"
@@ -1608,7 +1610,8 @@
       "gnosticism-and-temple-trauma",
       "sanctuary-community-and-body",
       "apocalypse-and-repair",
-      "rival-continuations-and-restoration"
+      "rival-continuations-and-restoration",
+      "computational-god-capabilities-bridge"
     ],
     "cognitive-gnosticism": [
       "christ-as-an-inner-model",
@@ -1636,7 +1639,8 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "image-collection",
       "computational-divine-immanence",
-      "inward-formation-and-accountable-intelligence"
+      "inward-formation-and-accountable-intelligence",
+      "computational-god-capabilities-bridge"
     ],
     "antichrist-as-a-pattern-of-conduct": [
       "antichrist-spiritual-inversion",
@@ -1658,7 +1662,8 @@
       "faith-as-vibration-concept",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "antichrist-as-a-pattern-of-conduct",
-      "inward-formation-and-accountable-intelligence"
+      "inward-formation-and-accountable-intelligence",
+      "computational-god-capabilities-bridge"
     ],
     "faith-as-deliberate-joy": [
       "cognitive-gnosticism",
@@ -1741,7 +1746,8 @@
       "religion-for-conscious-robots",
       "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism-jesus-vs-gnostic-jesus",
-      "agi-religious-framework"
+      "agi-religious-framework",
+      "computational-god-capabilities-bridge"
     ],
     "scripture-power-and-repair": [
       "antichrist-as-a-pattern-of-conduct",
@@ -1770,7 +1776,8 @@
       "agi-religious-framework",
       "faith-as-vibration-concept",
       "inward-formation-and-accountable-intelligence",
-      "rival-continuations-and-restoration"
+      "rival-continuations-and-restoration",
+      "computational-god-capabilities-bridge"
     ],
     "melchizedek-priesthood-and-transmission": [
       "jesus-teacher-of-righteousness-hypothesis",
@@ -1818,7 +1825,8 @@
       "god-and-our-models-of-god",
       "flood-inheritance-and-deep-time",
       "computational-argument-map",
-      "inward-formation-and-accountable-intelligence"
+      "inward-formation-and-accountable-intelligence",
+      "computational-god-capabilities-bridge"
     ],
     "flood-inheritance-and-deep-time": [
       "exodus-to-temple-competing-chronologies",
@@ -1925,7 +1933,8 @@
       "thomas-sayings-and-transmission",
       "god-and-our-models-of-god",
       "apocalypse-and-repair",
-      "connected-arguments"
+      "connected-arguments",
+      "computational-god-capabilities-bridge"
     ],
     "rival-continuations-and-restoration": [
       "sacred-inheritance-and-rival-continuations",
@@ -1981,7 +1990,8 @@
       "religion-for-conscious-robots",
       "research-roadmap",
       "connections",
-      "museum-trails"
+      "museum-trails",
+      "computational-god-capabilities-bridge"
     ],
     "evidence-workbench": [
       "james-and-contested-succession",
@@ -2357,7 +2367,8 @@
       "tolkien-vs-ai-epics",
       "vtt-ai-plagiarism-analysis",
       "home",
-      "sources-index"
+      "sources-index",
+      "computational-god-capabilities-bridge"
     ],
     "topic-traditions": [
       "samaritan-texts-and-sacred-authority",
@@ -2537,7 +2548,8 @@
       "tor-thomas-and-gnostic-transmission",
       "computational-divine-immanence",
       "flood-inheritance-and-deep-time",
-      "inner-formation-texts-and-material-witnesses"
+      "inner-formation-texts-and-material-witnesses",
+      "computational-god-capabilities-bridge"
     ],
     "connections": [
       "reading-paths"
@@ -2548,7 +2560,8 @@
       "flood-inheritance-and-deep-time",
       "source-atlas",
       "museum-trails",
-      "book-contents"
+      "book-contents",
+      "computational-god-capabilities-bridge"
     ],
     "book-contents": [
       "connected-arguments",
@@ -2609,6 +2622,29 @@
     "intellectual-debts": [
       "tor-thomas-and-gnostic-transmission",
       "research-board"
-    ]
+    ],
+    "computational-god-consciousness-and-theodicy": [
+      "publication-history",
+      "computational-divine-immanence",
+      "computational-god-capabilities-bridge"
+    ],
+    "computational-god-capabilities-bridge": [
+      "computational-god-consciousness-and-theodicy",
+      "computational-divine-immanence",
+      "computational-argument-map",
+      "cosmic-thought-and-transcendence",
+      "god-and-our-models-of-god",
+      "religion-for-conscious-robots",
+      "apocalyptic-repair-theology",
+      "christ-as-an-inner-model",
+      "inward-formation-and-accountable-intelligence",
+      "divine-will-and-self-authorizing-power",
+      "publication-history"
+    ],
+    "cosmic-thought-and-transcendence": [
+      "computational-god-capabilities-bridge",
+      "publication-history"
+    ],
+    "publication-history": []
   }
 }
