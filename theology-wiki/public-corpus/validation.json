@@ -1,0 +1,29 @@
+{
+  "schema": "theology-public-corpus-validation/v1",
+  "scope": "Source consistency, original-file preservation and actual HTTP reader behavior before publication; not a historical-priority or legal determination.",
+  "baselineRevision": "9e5fd3f205015c84b0973061f0aec54ef81dd794",
+  "sourceRevision": "b02dfb0f2e78a7e829ba3b6abdd50db2fa6f3551",
+  "workflowRun": "https://github.com/v5ma/v5ma.github.io/actions/runs/37158633375",
+  "workflowHeadRevision": "c2fd1f8c21b224cb7fc1f8958e6abdabba75d74e",
+  "artifactId": 11286552114,
+  "artifactSha256": "501ac7d7831e3d0f753e7a83d56e59f1788b72869f2088fcadad496ea638a3f9",
+  "nodeTestsPassed": 159,
+  "nodeTestsFailed": 0,
+  "nativeHttpBrowserChecksPassed": 22,
+  "uncaughtBrowserErrors": [],
+  "verifiedReaderPages": 438,
+  "verifiedOriginalTranscripts": 354,
+  "verifiedMarkdownSources": 558,
+  "unchangedPreExistingSourceAndRelatedFiles": 842,
+  "viewports": [{"width":1440,"height":1000},{"width":390,"height":844}],
+  "evidenceHashes": {
+    "report.json": "92c0af388eec33e5e326388981ea6b5128b2789f1c97fbd69405bfb414a2a338",
+    "node-tests.log": "0fd4700bba403f79b71a4e5ca269a1d6bf0872b56bb16d4ff57dd79a161700f4",
+    "preservation.json": "a617b7faffce30d2f3a0d39a7b12ae7bc2bc308c0b865c049ece268612ea9031",
+    "bridge-desktop.png": "dd086ede470b6acffacb684f9fd28d120e92745d2296e50fe98195d96e3bf8fc",
+    "bridge-mobile.png": "9f9f8ba5bd0ce1f784da4d0ae0e480eac22433e5c1966f6c3e266e4f01eb9af5"
+  },
+  "review": "Desktop and mobile screenshots inspected. These checks use a real localhost HTTP origin in GitHub Actions, not set_content or a mocked reader.",
+  "publication": "Actual public-origin verification is a separate read-only workflow after the Cloudflare publisher completes. This receipt does not claim that subsequent result.",
+  "artifactRetention": "The workflow artifact has limited retention; this receipt and its hashes remain in Git history. The public corpus is stored in repository files, not only in an expiring workflow artifact."
+}
