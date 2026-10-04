@@ -140,7 +140,7 @@
     },
     {
       "id": "computational-god-capabilities",
-      "title": "The Computational God: creation, consciousness and repair",
+      "title": "Computational-God conjectures: creation, consciousness and repair",
       "pages": [
         "computational-god-capabilities-bridge",
         "computational-divine-immanence",
@@ -2735,6 +2735,7 @@
     "computational-argument-map": [
       "home",
       "computational-divine-immanence",
+      "computational-god-consciousness-and-theodicy",
       "computational-god-capabilities-bridge"
     ],
     "book-contents": [
@@ -2798,5 +2799,5 @@
       "cosmic-thought-and-transcendence"
     ]
   },
-  "publicationEdition": "2026.10.03-public-corpus-1"
+  "publicationEdition": "2026.10.03-public-corpus-2-conjecture"
 }

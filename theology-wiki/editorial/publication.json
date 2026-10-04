@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.03-public-corpus-1",
+  "version": "2026.10.03-public-corpus-2-conjecture",
   "editionDate": "2026-10-03",
   "owner": "Micah Blumberg",
   "repository": "v5ma/v5ma.github.io",
@@ -9,21 +9,23 @@
   "pages": [
     {
       "slug": "computational-god-consciousness-and-theodicy",
-      "title": "A Computational View of God, Consciousness, and Theodicy",
-      "source": "research-notes/computational-god-consciousness-and-theodicy.md",
+      "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
+      "source": "editorial/publication-articles/computational-god-consciousness-and-theodicy.md",
       "kind": "Developed article",
       "category": "machines",
       "updated": "2026-10-03",
-      "summary": "Creation through divine understanding, cognitive functions without consciousness, unfamiliar implementations of minds, and the possibility of less suffering."
+      "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",
+      "claimType": "Conditional philosophical conjecture"
     },
     {
       "slug": "computational-god-capabilities-bridge",
-      "title": "The Computational God: Creation, Consciousness, and Capabilities",
+      "title": "A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities",
       "source": "editorial/publication-articles/computational-god-capabilities-bridge.md",
       "kind": "Bridge study",
       "category": "machines",
       "updated": "2026-10-03",
-      "summary": "Connect divine immanence, the necessary ground, cosmic thought, logic, conscious machines, finite agency, and the work of repair."
+      "summary": "Explore what could follow if the assumptions behind computational reality, divine immanence, and conscious organization are correct; connect the papers, news articles, and related conjectures.",
+      "claimType": "Conditional philosophical conjecture"
     },
     {
       "slug": "cosmic-thought-and-transcendence",
@@ -32,7 +34,8 @@
       "kind": "Developed article",
       "category": "machines",
       "updated": "2026-09-09",
-      "summary": "The existing September 9 essay distinguishes a physically instantiated cosmic thinker from the transcendent ground and connects power with accountability."
+      "summary": "The existing September 9 essay distinguishes a physically instantiated cosmic thinker from the transcendent ground and connects power with accountability.",
+      "claimType": "Conditional philosophical conjecture"
     },
     {
       "slug": "publication-history",
@@ -55,5 +58,16 @@
     "inward-formation-and-accountable-intelligence": "Connects intelligence, formative models, and answerable action.",
     "divine-will-and-self-authorizing-power": "Distinguishes creative power from an agent's claim to ultimate authority.",
     "apocalyptic-repair-theology": "Connects alternative implementations and reduced suffering to practical repair."
+  },
+  "conditionalScope": {
+    "clarified": "2026-10-03",
+    "statement": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
+    "pages": [
+      "computational-god-consciousness-and-theodicy",
+      "computational-god-capabilities-bridge",
+      "computational-divine-immanence",
+      "computational-argument-map",
+      "cosmic-thought-and-transcendence"
+    ]
   }
 }

@@ -2,7 +2,7 @@
 
 Public backup of the complete source conversation. Export speaker labels and embedded quotations retain their original attribution. The original bytes are available at the link below; this Markdown projection normalizes line endings. The snapshot source date is not the date of every turn.
 
-[Read the original text at this exact revision](https://github.com/v5ma/v5ma.github.io/blob/b02dfb0f2e78a7e829ba3b6abdd50db2fa6f3551/theology-sources/chats/gpt2026dragon115_Marvel_Crisis_Equivalent.txt). [Open the interactive reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=marvel-crisis-equivalent).
+[Read the original text at this exact revision](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-sources/chats/gpt2026dragon115_Marvel_Crisis_Equivalent.txt). [Open the interactive reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=marvel-crisis-equivalent).
 
 Title: Marvel Crisis Equivalent
 Date: 1722221417.77023

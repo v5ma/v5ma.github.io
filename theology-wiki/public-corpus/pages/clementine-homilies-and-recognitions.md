@@ -2,7 +2,7 @@
 
 Public backup of the complete source conversation. Export speaker labels and embedded quotations retain their original attribution. The original bytes are available at the link below; this Markdown projection normalizes line endings. The snapshot source date is not the date of every turn.
 
-[Read the original text at this exact revision](https://github.com/v5ma/v5ma.github.io/blob/b02dfb0f2e78a7e829ba3b6abdd50db2fa6f3551/theology-sources/chats/gpt2026dragon1555_Clementine_Homilies_and_Recognitions.txt). [Open the interactive reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=clementine-homilies-and-recognitions).
+[Read the original text at this exact revision](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-sources/chats/gpt2026dragon1555_Clementine_Homilies_and_Recognitions.txt). [Open the interactive reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=clementine-homilies-and-recognitions).
 
 Title: Clementine Homilies and Recognitions
 Date: 1747981934.260555

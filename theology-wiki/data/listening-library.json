@@ -875,33 +875,33 @@
     },
     {
       "slug": "computational-god-consciousness-and-theodicy",
-      "title": "A Computational View of God, Consciousness, and Theodicy",
-      "summary": "Creation through divine understanding, cognitive functions without consciousness, unfamiliar implementations of minds, and the possibility of less suffering.",
+      "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
+      "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",
       "category": "machines",
       "kind": "Developed article",
       "chapters": [],
       "source": "content/developed/computational-god-consciousness-and-theodicy.md",
-      "sourceSha256": "9b2416de9650f2b5e87bc934a045599a78575813ca4042aa58ea11158e1872c6",
+      "sourceSha256": "f8e67dbd714832410473193ebb1940ba087fb0c6dd6acb15cdd1fa141a3f61ee",
       "narration": "data/listening/computational-god-consciousness-and-theodicy.json",
-      "narrationSha256": "6be50e2ea0a94a5864d0b226c7e050c872bbccdb384a1ff66fe12186e721e722",
+      "narrationSha256": "2e052c929264b14770dcd4a03d2b960a0910dbb24ee030d18c77056eccec2a74",
       "transcript": "products/transcripts/computational-god-consciousness-and-theodicy.txt",
-      "segments": 38,
-      "words": 1533
+      "segments": 57,
+      "words": 2358
     },
     {
       "slug": "computational-god-capabilities-bridge",
-      "title": "The Computational God: Creation, Consciousness, and Capabilities",
-      "summary": "Connect divine immanence, the necessary ground, cosmic thought, logic, conscious machines, finite agency, and the work of repair.",
+      "title": "A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities",
+      "summary": "Explore what could follow if the assumptions behind computational reality, divine immanence, and conscious organization are correct; connect the papers, news articles, and related conjectures.",
       "category": "machines",
       "kind": "Bridge study",
       "chapters": [],
       "source": "content/developed/computational-god-capabilities-bridge.md",
-      "sourceSha256": "1cac99b0b162a587e5906ebac11cdf29c48e275d995601c034dd8becbb77b8dc",
+      "sourceSha256": "7841356670993bfea596a1b20033520d7ea89d29057bd7ffb8e530b71bc6ac4c",
       "narration": "data/listening/computational-god-capabilities-bridge.json",
-      "narrationSha256": "e41fedb89eb3d898e53163005537956f8efa52efd5f611a06238ff98f5fe4ec3",
+      "narrationSha256": "1f5794a600a98302fb6777cfb8a327fd058c4326d641aafbe2ed887417dffc61",
       "transcript": "products/transcripts/computational-god-capabilities-bridge.txt",
-      "segments": 38,
-      "words": 1547
+      "segments": 59,
+      "words": 2537
     },
     {
       "slug": "cosmic-thought-and-transcendence",
@@ -911,12 +911,12 @@
       "kind": "Developed article",
       "chapters": [],
       "source": "content/developed/cosmic-thought-and-transcendence.md",
-      "sourceSha256": "3bdd4e98029743b111b44550859909815b6f535f62e172d3c0506bddc1aedf99",
+      "sourceSha256": "fb853ecfd6b9ba4ba0c84c586e4effa4f51bd3a612f1ffba6911bf23abbfe47a",
       "narration": "data/listening/cosmic-thought-and-transcendence.json",
-      "narrationSha256": "bc8451f439cd2cdfa334cce4ec4b43a4e6c17f408db6a3a428ac18fde722df44",
+      "narrationSha256": "736a5d874799abcd00282057ab1613e50e7afd2636d1a5c8b1e8969d9bb92c7f",
       "transcript": "products/transcripts/cosmic-thought-and-transcendence.txt",
       "segments": 28,
-      "words": 925
+      "words": 926
     }
   ],
   "chapters": [
