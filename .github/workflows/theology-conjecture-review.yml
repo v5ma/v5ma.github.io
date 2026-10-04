@@ -11,20 +11,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Extract the selected public paper texts
+      - name: Export the selected public papers
         run: |
           mkdir -p conjecture-review
           python - <<'PY'
           from pathlib import Path
-          import shutil, subprocess, json, hashlib
+          import shutil, json, hashlib
           records=[]
           for number in ['002','013','041','046','047']:
               files=list(Path('papers').glob(number+' - *.pdf'))
               assert len(files)==1,files
               src=files[0]
-              dst=Path('conjecture-review')/src.name
-              shutil.copyfile(src,dst)
-              subprocess.run(['pdftotext','-layout',str(src),str(dst.with_suffix('.txt'))],check=True)
+              shutil.copyfile(src,Path('conjecture-review')/src.name)
               records.append({'path':str(src),'sha256':hashlib.sha256(src.read_bytes()).hexdigest()})
           Path('conjecture-review/papers.json').write_text(json.dumps(records,indent=2)+'\n')
           PY
