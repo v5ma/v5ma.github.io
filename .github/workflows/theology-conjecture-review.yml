@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply exact reviewed corrections and remove the temporary writer
+      - name: Apply reviewed corrections and preserve the complete opening clarification
         run: |
           python - <<'PY'
           import json,gzip,base64,hashlib
@@ -43,6 +43,12 @@ jobs:
               for start,end,replacement in reversed(r['splices']):text=text[:start]+replacement+text[end:]
               assert hashlib.sha256(text.encode()).hexdigest()==r['new_sha256'],p
               p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+          for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge']:
+              p=Path('theology-wiki/editorial/publication-articles')/(slug+'.md')
+              text=p.read_text()
+              old='This is a conditional conjecture: one possible account of reality if its underlying assumptions and proposed connections are correct. I do not know for sure.'
+              assert text.count(old)==1,p
+              p.write_text(text.replace(old,old.replace('. I do not know for sure.','.\n\nI do not know for sure.')))
           for p in files:p.unlink()
           Path('.github/workflows/theology-conjecture-review.yml').unlink()
           PY
@@ -96,14 +102,20 @@ jobs:
                   expect(page.locator('#conjecture-scope')).to_contain_text('does not know for sure')
                   expect(page.locator('#conjecture-scope')).to_contain_text('required belief')
                   results.append(slug)
+              for slug in ['computational-god-capabilities-bridge','computational-god-consciousness-and-theodicy']:
+                  page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page='+slug)
+                  expect(page.locator('#article-summary')).to_contain_text('conditional conjecture')
+                  expect(page.locator('#article-body')).to_contain_text('I do not know for sure.')
+                  expect(page.locator('#article-body')).to_contain_text('not advising readers')
+                  expect(page.locator('#conjecture-scope')).to_be_visible()
               page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page=computational-god-capabilities-bridge')
               expect(page.locator('#article-body')).to_contain_text('I do not know for sure.')
-              expect(page.locator('#conjecture-scope')).to_be_visible()
               page.screenshot(path='conjecture-validation/conditional-desktop.png')
               page.set_viewport_size({'width':390,'height':844})
               assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1')
               page.screenshot(path='conjecture-validation/conditional-mobile.png')
               page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page=publication-history')
+              expect(page.locator('#article-body')).to_contain_text('GitHub')
               expect(page.locator('#conjecture-scope')).to_have_count(0)
               assert not errors,errors
               browser.close()
