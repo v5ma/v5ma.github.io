@@ -1,0 +1,35 @@
+name: Theology conditional conjecture review
+on:
+  push:
+    branches: [theology/conditional-conjecture-framing-2026-10-03]
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Extract the selected public paper texts
+        run: |
+          mkdir -p conjecture-review
+          python - <<'PY'
+          from pathlib import Path
+          import shutil, subprocess, json, hashlib
+          records=[]
+          for number in ['002','013','041','046','047']:
+              files=list(Path('papers').glob(number+' - *.pdf'))
+              assert len(files)==1,files
+              src=files[0]
+              dst=Path('conjecture-review')/src.name
+              shutil.copyfile(src,dst)
+              subprocess.run(['pdftotext','-layout',str(src),str(dst.with_suffix('.txt'))],check=True)
+              records.append({'path':str(src),'sha256':hashlib.sha256(src.read_bytes()).hexdigest()})
+          Path('conjecture-review/papers.json').write_text(json.dumps(records,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: theology-conjecture-source-review
+          path: conjecture-review
+          retention-days: 7
