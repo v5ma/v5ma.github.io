@@ -3,31 +3,141 @@ on:
   push:
     branches: [theology/conditional-conjecture-framing-2026-10-03]
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: theology-conjecture-edit
+  cancel-in-progress: true
 jobs:
-  sources:
+  revise:
+    if: github.ref == 'refs/heads/theology/conditional-conjecture-framing-2026-10-03'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
-      - name: Export the selected public papers
+          ref: theology/conditional-conjecture-framing-2026-10-03
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply the exact reviewed changes and remove temporary transfer files
         run: |
-          mkdir -p conjecture-review
           python - <<'PY'
+          import json,gzip,base64,hashlib
           from pathlib import Path
-          import shutil, json, hashlib
-          records=[]
-          for number in ['002','013','041','046','047']:
-              files=list(Path('papers').glob(number+' - *.pdf'))
-              assert len(files)==1,files
-              src=files[0]
-              shutil.copyfile(src,Path('conjecture-review')/src.name)
-              records.append({'path':str(src),'sha256':hashlib.sha256(src.read_bytes()).hexdigest()})
-          Path('conjecture-review/papers.json').write_text(json.dumps(records,indent=2)+'\n')
+          files=[Path('theology-wiki/tools/conjecture-transfer-'+str(i)+'.b64') for i in [1,2]]
+          data=''.join(p.read_text().strip() for p in files)
+          assert hashlib.sha256(data.encode()).hexdigest()=='e53421be4f33cf2af1912c8234e42bccdc34d98aff8de33745255ed03713323b','Transfer integrity mismatch'
+          ops=json.loads(gzip.decompress(base64.b64decode(data)))
+          assert len(ops)==7
+          for r in ops:
+              p=Path(r['path'])
+              assert str(p).startswith('theology-wiki/') and not p.is_absolute() and '..' not in p.parts and not p.is_symlink()
+              donor=Path(r['donor']) if r.get('donor') else p
+              if r['old_sha256'] is None:
+                  assert not p.exists(),p
+                  text=''
+              else:
+                  text=donor.read_text()
+                  assert hashlib.sha256(text.encode()).hexdigest()==r['old_sha256'],'Input changed: '+str(donor)
+                  if r.get('donor'):assert not p.exists(),p
+              for start,end,replacement in reversed(r['splices']):text=text[:start]+replacement+text[end:]
+              assert hashlib.sha256(text.encode()).hexdigest()==r['new_sha256'],'Output mismatch: '+str(p)
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_text(text)
+          for p in files:p.unlink()
+          Path('.github/workflows/theology-conjecture-review.yml').unlink()
+          PY
+      - name: Commit actual source version, then rebuild its public backup
+        run: |
+          node theology-wiki/tools/publication.cjs
+          node --check theology-wiki/assets/js/publication-tools.js
+          git config user.name 'Micah Blumberg'
+          git config user.email '60057241+v5ma@users.noreply.github.com'
+          git add -- theology-wiki .github/workflows/theology-conjecture-review.yml
+          git commit -m 'Clarify computational theology as an explicitly conditional conjecture and connect its research sources'
+          SOURCE_REF=$(git rev-parse HEAD)
+          mkdir -p conjecture-validation
+          echo "$SOURCE_REF" > conjecture-validation/source-revision.txt
+          node theology-wiki/tools/publication.cjs --snapshot "$SOURCE_REF"
+          node theology-wiki/tools/publication.cjs --check > conjecture-validation/corpus.json
+      - name: Verify source data, conditional scope and preservation
+        run: |
+          node --test theology-wiki/tests/research.test.cjs theology-wiki/tests/conjecture.test.cjs > conjecture-validation/tests.log 2>&1 || { tail -100 conjecture-validation/tests.log; exit 1; }
+          tail -12 conjecture-validation/tests.log
+          git fetch origin 51ccd4fce33e35454477a82cafa110e24ed42028 --depth=1
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          base='51ccd4fce33e35454477a82cafa110e24ed42028'
+          prefixes=['theology-sources/','papers/','theology-wiki/editorial/authorial-articles/','theology-wiki/research-notes/','theology-wiki/authority/manuscripts/','theology-wiki/products/media/','theology-wiki/planning/']
+          rows=[]
+          for line in subprocess.check_output(['git','ls-tree','-r',base],text=True).splitlines():
+              meta,p=line.split('\t',1)
+              if any(p.startswith(x) for x in prefixes):
+                  assert Path(p).is_file(),p
+                  assert meta.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
+                  rows.append(p)
+          Path('conjecture-validation/preservation.json').write_text(json.dumps({'baseline':base,'unchanged':len(rows),'paths':rows},indent=2))
+          print('Preserved',len(rows),'original files')
+          PY
+      - name: Install native browser
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps chromium
+      - name: Test the reader and the visible author clarification
+        run: |
+          python -m http.server 4174 --bind 127.0.0.1 >/tmp/theology-conjecture-http.log 2>&1 &
+          PUBLICATION_TEST_OUTPUT=conjecture-validation/reader python theology-wiki/tests/publication_browser.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          cfg=json.loads(Path('theology-wiki/editorial/publication.json').read_text())
+          results=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page(viewport={'width':1440,'height':1000})
+              errors=[]
+              page.on('pageerror',lambda e:errors.append(str(e)))
+              for slug in cfg['conditionalScope']['pages']:
+                  page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page='+slug)
+                  panel=page.locator('#conjecture-scope')
+                  panel.wait_for(state='visible')
+                  assert 'does not know for sure' in panel.inner_text()
+                  assert 'required belief' in panel.inner_text()
+                  results.append(slug)
+              page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page=computational-god-capabilities-bridge')
+              page.locator('#conjecture-scope').wait_for(state='visible')
+              assert 'I do not know for sure.' in page.locator('#article-body').inner_text()
+              page.screenshot(path='conjecture-validation/conditional-desktop.png')
+              page.set_viewport_size({'width':390,'height':844})
+              assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1')
+              page.screenshot(path='conjecture-validation/conditional-mobile.png')
+              page.goto('http://127.0.0.1:4174/theology-wiki/san-reader.html?page=publication-history')
+              page.wait_for_timeout(800)
+              assert page.locator('#conjecture-scope').count()==0,'Unrelated page mislabeled'
+              assert not errors,errors
+              browser.close()
+          Path('conjecture-validation/scope.json').write_text(json.dumps({'visibleConditionalPages':results,'errors':errors,'mobileOverflow':False},indent=2))
+          PY
+      - name: Publish only the tested correction to the review branch
+        run: |
+          node theology-wiki/tools/publication.cjs --check
+          git add -- theology-wiki
+          git commit -m 'Refresh hash-checked public backups and exact-version links for the author clarification'
+          git push origin HEAD:theology/conditional-conjecture-framing-2026-10-03
+          git rev-parse HEAD > conjecture-validation/tested-head.txt
+          python - <<'PY'
+          import zipfile
+          from pathlib import Path
+          with zipfile.ZipFile('conjecture-validation/corrected-files.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for f in Path('theology-wiki').rglob('*'):
+                  if f.is_file() and f.suffix in {'.md','.json','.cjs','.js','.html','.css','.txt','.csv'} and '__pycache__' not in f.parts:z.write(f)
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: theology-conjecture-source-review
-          path: conjecture-review
-          retention-days: 7
+          name: theology-conjecture-validation
+          path: conjecture-validation
+          retention-days: 14
