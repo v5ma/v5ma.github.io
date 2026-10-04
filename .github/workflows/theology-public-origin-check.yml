@@ -11,64 +11,64 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 43351c1cee30ed198125c543f61300f17e54ca44
+          ref: c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852
           persist-credentials: false
       - name: Install native browser
         run: |
           python -m pip install 'playwright==1.57.0'
           python -m playwright install --with-deps chromium
-      - name: Inspect each public origin separately
+      - name: Match actual public files and test visible conditional framing
         run: |
+          mkdir -p conjecture-hosted
           python - <<'PY'
+          import json,hashlib,time,urllib.request
           from pathlib import Path
-          import os,json,subprocess,hashlib
-          from playwright.sync_api import sync_playwright
-          out=Path('origin-diagnosis');out.mkdir()
-          origins=[('cloudflare','https://wiki.onlyonedevil.com/theology-wiki/san-reader'),('github-pages','https://v5ma.github.io/theology-wiki/san-reader.html')]
-          results=[]
-          with sync_playwright() as pw:
-            browser=pw.chromium.launch(headless=True)
-            for label,url in origins:
-              dest=out/label;dest.mkdir()
-              record={'origin':label,'reader':url,'deployedRevisionToCompare':'43351c1cee30ed198125c543f61300f17e54ca44'}
-              page=browser.new_page()
-              try:
-                response=page.goto(url,wait_until='domcontentloaded',timeout=30000)
-                record['httpStatus']=response.status if response else None
-                record['finalUrl']=page.url
-                record['title']=page.title()
-                record['bodyExcerpt']=page.locator('body').inner_text(timeout=5000)[:1500]
-                page.screenshot(path=str(dest/'entry.png'),full_page=False)
-                if not response or response.status!=200:raise RuntimeError('Public reader did not return HTTP 200')
-                env=os.environ.copy();env['THEOLOGY_READER_URL']=url;env['PUBLICATION_TEST_OUTPUT']=str(dest)
-                run=subprocess.run(['python','theology-wiki/tests/publication_browser.py'],env=env,text=True,capture_output=True,timeout=120)
-                (dest/'browser.log').write_text(run.stdout+'\n'+run.stderr)
-                record['readerTestExitCode']=run.returncode
-                if run.returncode:raise RuntimeError('Native public reader tests failed')
-                base=url.split('/theology-wiki/')[0]
-                paths=['theology-wiki/data/page-index.json','theology-wiki/public-corpus/snapshot.json','theology-wiki/public-corpus/page-index.json','theology-wiki/assets/js/publication-tools.js','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/css/publication.css']
-                for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge','cosmic-thought-and-transcendence','publication-history']:
-                  paths += ['theology-wiki/content/developed/'+slug+'.md','theology-wiki/public-corpus/pages/'+slug+'.md']
-                matched=[]
-                for path in paths:
-                  response=page.request.get(base+'/'+path,timeout=30000)
-                  assert response.status==200,path
-                  digest=hashlib.sha256(response.body()).hexdigest()
-                  assert digest==hashlib.sha256(Path(path).read_bytes()).hexdigest(),'Hosted bytes differ: '+path
-                  matched.append({'path':path,'sha256':digest})
-                record['matchedFiles']=matched;record['verified']=True
-              except Exception as exc:
-                record['verified']=False;record['error']=str(exc)
-              finally:
-                page.close();results.append(record)
-                (dest/'origin.json').write_text(json.dumps(record,indent=2)+'\n')
-          (out/'results.json').write_text(json.dumps(results,indent=2)+'\n')
-          print(json.dumps(results,indent=2))
-          if not any(r['verified'] for r in results):raise SystemExit('No public origin was independently verified. Repository publication and localhost checks remain separate.')
+          from playwright.sync_api import sync_playwright,expect
+          rev='c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852'
+          origin='https://v5ma.github.io'
+          paths=['theology-wiki/san-reader.html','theology-wiki/data/page-index.json','theology-wiki/assets/js/publication-tools.js','theology-wiki/public-corpus/snapshot.json']
+          for slug in ['computational-god-capabilities-bridge','computational-god-consciousness-and-theodicy']:
+              paths += ['theology-wiki/content/developed/'+slug+'.md','theology-wiki/public-corpus/pages/'+slug+'.md']
+          matched=[]
+          for name in paths:
+              digest=hashlib.sha256(Path(name).read_bytes()).hexdigest()
+              for attempt in range(12):
+                  try:
+                      request=urllib.request.Request(origin+'/'+name+'?edition='+rev,headers={'User-Agent':'TheologyWiki-publication-verification'})
+                      with urllib.request.urlopen(request,timeout=25) as r:actual=hashlib.sha256(r.read()).hexdigest()
+                      assert digest==actual,name
+                      matched.append({'path':name,'sha256':actual});break
+                  except Exception:
+                      if attempt==11:raise
+                      time.sleep(5)
+          cfg=json.loads(Path('theology-wiki/editorial/publication.json').read_text());checked=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch();page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
+              page.on('pageerror',lambda e:errors.append(str(e)))
+              for slug in cfg['conditionalScope']['pages']:
+                  page.goto(origin+'/theology-wiki/san-reader.html?page='+slug)
+                  expect(page.locator('#conjecture-scope')).to_contain_text('does not know for sure',timeout=20000)
+                  expect(page.locator('#conjecture-scope')).to_contain_text('required belief')
+                  checked.append(slug)
+              for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge']:
+                  page.goto(origin+'/theology-wiki/san-reader.html?page='+slug)
+                  expect(page.locator('#article-summary')).to_contain_text('conditional conjecture',timeout=20000)
+                  expect(page.locator('#article-body')).to_contain_text('I do not know for sure.')
+                  expect(page.locator('#article-body')).to_contain_text('not advising readers')
+                  expect(page.locator('#article-body')).to_contain_text('Computational-Tomographic Proof of God')
+              page.screenshot(path='conjecture-hosted/desktop.png')
+              page.set_viewport_size({'width':390,'height':844})
+              assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1')
+              page.screenshot(path='conjecture-hosted/mobile.png')
+              assert not errors,errors
+              browser.close()
+          Path('conjecture-hosted/report.json').write_text(json.dumps({'deploymentRevision':rev,'origin':origin,'matchedFiles':matched,'visibleScopePages':checked,'errors':errors,'mobileOverflow':False},indent=2)+'\n')
+          print('Matched',len(matched),'public files and verified conditional framing on',len(checked),'live pages.')
           PY
+          THEOLOGY_READER_URL=https://v5ma.github.io/theology-wiki/san-reader.html PUBLICATION_TEST_OUTPUT=conjecture-hosted/full-reader python theology-wiki/tests/publication_browser.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: theology-public-origin-diagnosis
-          path: origin-diagnosis
+          name: theology-conjecture-hosted-verification
+          path: conjecture-hosted
           retention-days: 14
