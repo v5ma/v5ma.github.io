@@ -62,4 +62,4 @@ Full online translation read. Its distinction among perfect Father, intermediate
 
 ## Connect the argument
 
-[[computational-god-capabilities-bridge|The Computational God: Creation, Consciousness, and Capabilities]] connects this study to divine immanence, the necessary-ground argument, possible minds, and repair. [[publication-history|Publication history]] distinguishes the source edition from this reader integration.
+[[computational-god-capabilities-bridge|A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities]] connects this study to divine immanence, the necessary-ground argument, possible minds, and repair. [[publication-history|Publication history]] distinguishes the source edition from this reader integration.

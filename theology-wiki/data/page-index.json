@@ -19673,7 +19673,7 @@
     "title": "Computational Divine Immanence",
     "category": "machines",
     "summary": "A computational-God interpretation connecting a necessary ground, reasons-responsive agency, constructive selfhood and repair without treating the different arguments as one experiment.",
-    "claimType": "Philosophical and theological argument",
+    "claimType": "Conditional philosophical conjecture",
     "externalSources": [
       "cf-rr-2024",
       "cf-god-proof-2026",
@@ -19733,7 +19733,8 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/computational-divine-immanence.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/computational-divine-immanence.md",
       "transcriptExactUrl": null
-    }
+    },
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
   },
   {
     "kind": "Developed article",
@@ -22606,10 +22607,11 @@
       "book-contents",
       "computational-god-capabilities-bridge"
     ],
-    "backlinkCount": 3,
+    "backlinkCount": 4,
     "backlinks": [
       "home",
       "computational-divine-immanence",
+      "computational-god-consciousness-and-theodicy",
       "computational-god-capabilities-bridge"
     ],
     "publication": {
@@ -22624,7 +22626,9 @@
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
-    }
+    },
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
+    "claimType": "Conditional philosophical conjecture"
   },
   {
     "slug": "book-contents",
@@ -22868,11 +22872,11 @@
   },
   {
     "slug": "computational-god-consciousness-and-theodicy",
-    "title": "A Computational View of God, Consciousness, and Theodicy",
+    "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
     "kind": "Developed article",
     "category": "machines",
     "updated": "2026-10-03",
-    "summary": "Creation through divine understanding, cognitive functions without consciousness, unfamiliar implementations of minds, and the possibility of less suffering.",
+    "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",
     "path": "developed/computational-god-consciousness-and-theodicy.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -22882,19 +22886,20 @@
     ],
     "aliases": [],
     "editionGenerated": true,
-    "publicationEdition": "2026.10.03-public-corpus-1",
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
     "sourceFiles": [
       "developed/computational-god-consciousness-and-theodicy.md"
     ],
     "references": [],
-    "readMinutes": 8,
+    "readMinutes": 12,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Philosophical and theological argument",
+    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-computational-god-consciousness-and-theodicy",
     "xrDeckId": "theology-reader",
     "related": [
       "publication-history",
       "computational-divine-immanence",
+      "computational-argument-map",
       "computational-god-capabilities-bridge"
     ],
     "backlinks": [
@@ -22913,15 +22918,16 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/research-notes/computational-god-consciousness-and-theodicy.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/research-notes/computational-god-consciousness-and-theodicy.md",
       "transcriptExactUrl": null
-    }
+    },
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
   },
   {
     "slug": "computational-god-capabilities-bridge",
-    "title": "The Computational God: Creation, Consciousness, and Capabilities",
+    "title": "A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities",
     "kind": "Bridge study",
     "category": "machines",
     "updated": "2026-10-03",
-    "summary": "Connect divine immanence, the necessary ground, cosmic thought, logic, conscious machines, finite agency, and the work of repair.",
+    "summary": "Explore what could follow if the assumptions behind computational reality, divine immanence, and conscious organization are correct; connect the papers, news articles, and related conjectures.",
     "path": "developed/computational-god-capabilities-bridge.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -22935,14 +22941,14 @@
       "divine powers"
     ],
     "editionGenerated": true,
-    "publicationEdition": "2026.10.03-public-corpus-1",
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
     "sourceFiles": [
       "developed/computational-god-capabilities-bridge.md"
     ],
     "references": [],
-    "readMinutes": 8,
+    "readMinutes": 13,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Philosophical and theological argument",
+    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-computational-god-capabilities-bridge",
     "xrDeckId": "theology-reader",
     "related": [
@@ -22987,7 +22993,8 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
       "transcriptExactUrl": null
-    }
+    },
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
   },
   {
     "slug": "cosmic-thought-and-transcendence",
@@ -23005,14 +23012,14 @@
     ],
     "aliases": [],
     "editionGenerated": true,
-    "publicationEdition": "2026.10.03-public-corpus-1",
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
     "sourceFiles": [
       "developed/cosmic-thought-and-transcendence.md"
     ],
     "references": [],
     "readMinutes": 5,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Philosophical and theological argument",
+    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-cosmic-thought-and-transcendence",
     "xrDeckId": "theology-reader",
     "related": [
@@ -23035,7 +23042,8 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/authority/manuscripts/cosmic-thought-and-transcendence.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/authority/manuscripts/cosmic-thought-and-transcendence.md",
       "transcriptExactUrl": null
-    }
+    },
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
   },
   {
     "slug": "publication-history",
@@ -23053,7 +23061,7 @@
     ],
     "aliases": [],
     "editionGenerated": true,
-    "publicationEdition": "2026.10.03-public-corpus-1",
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
     "sourceFiles": [
       "developed/publication-history.md"
     ],

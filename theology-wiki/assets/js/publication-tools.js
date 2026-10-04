@@ -8,6 +8,8 @@ function internal(label,slug){const a=link(label,local(slug));a.dataset.page=slu
 function enhance(page){
  if(current()?.slug!==page.slug)return;
  document.getElementById('publication-record')?.remove();
+ document.getElementById('conjecture-scope')?.remove();
+ if(page.authorialScope){const section=document.createElement('section');section.id='conjecture-scope';section.className='publication-record';section.setAttribute('aria-label','Author clarification: conditional conjecture');const label=document.createElement('p');label.className='publication-label';label.textContent='Conditional conjecture, not a prescribed belief';const text=document.createElement('p');text.textContent=page.authorialScope;section.append(label,text);document.getElementById('article-body')?.before(section);}
  const proof=page.publication,host=document.getElementById('research-actions')||document.querySelector('.article-header');
  if(proof&&host){
   const panel=document.createElement('section');panel.id='publication-record';panel.className='publication-record';panel.setAttribute('aria-label','Publication history and exact versions');
@@ -32,14 +34,14 @@ function enhance(page){
   details.append(button,status);panel.append(details);host.after(panel);
  }
  const strip=document.querySelector('.wiki-family-strip');
- if(strip&&!document.getElementById('publication-nav')){const nav=document.createElement('span');nav.id='publication-nav';nav.className='publication-nav';nav.append(internal('Computational God','computational-god-capabilities-bridge'),internal('Public backup','publication-history'));strip.append(nav);}
+ if(strip&&!document.getElementById('publication-nav')){const nav=document.createElement('span');nav.id='publication-nav';nav.className='publication-nav';nav.append(internal('Computational-God conjectures','computational-god-capabilities-bridge'),internal('Public backup','publication-history'));strip.append(nav);}
  if(page.slug==='home'){
   const body=document.getElementById('article-body');body?.querySelector('#publication-home')?.remove();
-  const section=document.createElement('section');section.id='publication-home';section.className='publication-home';const heading=document.createElement('h2');heading.textContent='Creation, consciousness, and a verifiable record';
-  const text=document.createElement('p');text.textContent='Follow the new bridge through computational theology, or inspect the time-stamped public Markdown backup behind the reader.';
-  const nav=document.createElement('nav');nav.append(internal('Connect the computational-God arguments','computational-god-capabilities-bridge'),internal('Read the consciousness and theodicy discussion','computational-god-consciousness-and-theodicy'),internal('Inspect publication history and the public backup','publication-history'));section.append(heading,text,nav);body?.append(section);
+  const section=document.createElement('section');section.id='publication-home';section.className='publication-home';const heading=document.createElement('h2');heading.textContent='Conjectures about creation and consciousness, with a verifiable record';
+  const text=document.createElement('p');text.textContent='Explore one possible view, conditional on the assumptions explained in the linked research papers and news articles, or inspect the time-stamped public Markdown backup.';
+  const nav=document.createElement('nav');nav.append(internal('Explore the computational-God conjecture','computational-god-capabilities-bridge'),internal('Read the consciousness and theodicy discussion','computational-god-consciousness-and-theodicy'),internal('Inspect publication history and the public backup','publication-history'));section.append(heading,text,nav);body?.append(section);
  }
 }
-window.addEventListener('theology:loading',()=>document.getElementById('publication-record')?.remove());
+window.addEventListener('theology:loading',()=>{document.getElementById('publication-record')?.remove();document.getElementById('conjecture-scope')?.remove();});
 window.TheologyPublication={enhance};
 })();

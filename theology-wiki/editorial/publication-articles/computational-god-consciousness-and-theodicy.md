@@ -1,14 +1,3 @@
----
-title: "A Conditional Computational View of God, Consciousness, and Theodicy"
-slug: "computational-god-consciousness-and-theodicy"
-summary: "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief."
-topic: "God, minds & machines"
-status: "Developed article"
-updated: "2026-10-03"
-reader_integrated: "2026-10-03"
-canonical_source: "editorial/publication-articles/computational-god-consciousness-and-theodicy.md"
----
-
 # A Conditional Computational View of God, Consciousness, and Theodicy
 
 This is a conditional conjecture: one possible account of reality if its underlying assumptions and proposed connections are correct.
@@ -108,8 +97,3 @@ Micah Blumberg, [The Architecture of Reality: Forging the Four Pillars of Super 
 Micah Blumberg, [I Presented My Research to Karl Friston on April 8th 2025](https://www.svgn.io/wiki/svgn/articles/2025-06-02-i-presented-my-research-to-karl-friston-on-april-8th-2025-now-you-can-watch-the-presen-svgn-164978272), SVGN, displayed June 2, 2025. The full article text was read for the proposed SAN/NAPOT, signal-dissipation, QGTCD, Super Dark Time, and SIT connections. The embedded video was not reviewed in this pass. This is the author's explanation of the research, not a newly claimed endorsement by the audience. The God paper identifies it in its introduction and reference 2.
 
 The [source-review record](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-source-review-20261003.json) records the five paper hashes, reading scopes, article links, and the author's current clarification. The earlier discussion note remains preserved at its original path and Git revision; this reader edition carries the clarification without backdating it.
-
-
-## Connect the argument
-
-[[computational-god-capabilities-bridge|A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities]] connects this study to divine immanence, the necessary-ground argument, possible minds, and repair. [[publication-history|Publication history]] distinguishes the source edition from this reader integration.

@@ -1,0 +1,47 @@
+{
+  "schema": "theology-author-conjecture-source-review/v1",
+  "editionDate": "2026-10-03",
+  "author": "Micah Blumberg",
+  "authorClarification": "I'm saying it could be this way, if other assumptions and ideas are correct, I don't know for sure",
+  "interpretation": "A conditional conjecture, not a declaration of certain knowledge or a prescribed belief.",
+  "reviewScope": "The God paper abstract, introduction, sections 4-7, revision conditions, conclusion, and premise map were reviewed; other PDFs were inspected at abstract and opening-scope level. Companion code, datasets and embedded videos were not run or reviewed.",
+  "papers": [
+    {
+      "path": "papers/002 - Super Information Theory Coherence, Time Density, Informational Dissipation, and Gravity.pdf",
+      "sha256": "5ffa4cabd5d4d4758dce28a235f34ec3c1b2a68ac26cba27614a77bc20523c98"
+    },
+    {
+      "path": "papers/013 - Self-Aware Networks A Falsifiable Theory-and-Methods Framework for Phase-Gradient Routing and Recurrent Oscillatory Reconstruction.pdf",
+      "sha256": "b451807da8ac480698a2d291ad801443131d87ccc5924233a48b05eb40c22c41"
+    },
+    {
+      "path": "papers/041 - SIT, Holography, and the AdSCFT Translation Split.pdf",
+      "sha256": "d5833c16b84ed66753c4629da273668f994cee527cf289a01cead3eb9163cbcc"
+    },
+    {
+      "path": "papers/046 - Tomographic Coherence-Based Neural Rendering.pdf",
+      "sha256": "665c2d9345bfcf63886ea7323dd7bab340195578db0057896a1f140e80d34830"
+    },
+    {
+      "path": "papers/047 - A Computational-Tomographic Proof of God.pdf",
+      "sha256": "b51c965f58ddffd0c2a6a91611227474cce00d83b769cdc03886f54c978e0391"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Reframing Reality: How a Computational Universe Bridges Science, Spirituality, and Atheism",
+      "url": "https://www.svgn.io/p/reframing-reality-how-a-computational",
+      "scope": "Full current webpage read."
+    },
+    {
+      "title": "I Presented My Research to Karl Friston on April 8th 2025",
+      "url": "https://www.svgn.io/wiki/svgn/articles/2025-06-02-i-presented-my-research-to-karl-friston-on-april-8th-2025-now-you-can-watch-the-presen-svgn-164978272",
+      "scope": "Full article text read; embedded video not reviewed."
+    },
+    {
+      "title": "The Architecture of Reality: Forging the Four Pillars of Super Information Theory",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/4869a88898871dd98aff7a41b620438f82a6ee3a/QGTCD-SIT.md",
+      "scope": "Opening article text read in the public GitHub mirror, displaying August 2, 2025; God paper reference 3 separately identifies the SVGN edition as August 3, 2025. Direct SVGN article fetch did not succeed."
+    }
+  ]
+}

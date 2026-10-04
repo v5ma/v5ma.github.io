@@ -1,238 +1,352 @@
 {
   "schema": "theology-narration/v1",
   "slug": "computational-god-consciousness-and-theodicy",
-  "title": "A Computational View of God, Consciousness, and Theodicy",
+  "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
   "source": "content/developed/computational-god-consciousness-and-theodicy.md",
-  "sourceSha256": "9b2416de9650f2b5e87bc934a045599a78575813ca4042aa58ea11158e1872c6",
+  "sourceSha256": "f8e67dbd714832410473193ebb1940ba087fb0c6dd6acb15cdd1fa141a3f61ee",
   "policy": "Full source-matched reading text. Device speech only; no recorded voice or audio file is claimed.",
   "segments": [
     {
       "id": "segment-0001",
-      "section": "A Computational View of God, Consciousness, and Theodicy",
+      "section": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "notes": false,
-      "text": "A Computational View of God, Consciousness, and Theodicy"
+      "text": "A Conditional Computational View of God, Consciousness, and Theodicy"
     },
     {
       "id": "segment-0002",
-      "section": "A Computational View of God, Consciousness, and Theodicy",
+      "section": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "notes": false,
-      "text": "Micah Blumberg's proposal, developed from the supplied discussion with AI assistance. Editorial edition: October 3, 2026. This is a new research page, not a retroactive revision of the earlier Computational Divine Immanence essay."
+      "text": "This is a conditional conjecture: one possible account of reality if its underlying assumptions and proposed connections are correct."
     },
     {
       "id": "segment-0003",
-      "section": "A Computational View of God, Consciousness, and Theodicy",
+      "section": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "notes": false,
-      "text": "Verify this page's GitHub history. Read the publication-verification guide. Read Computational Divine Immanence."
+      "text": "I do not know for sure. I am exploring what could follow from those assumptions, not advising readers that this is established truth or something they must believe."
     },
     {
       "id": "segment-0004",
-      "section": "Creation as an intelligible process",
+      "section": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "notes": false,
-      "text": "Creation as an intelligible process"
+      "text": "This AI-assisted exposition was revised on October 3, 2026 to preserve Micah Blumberg's explicit statement of uncertainty. His clarification was: \"I'm saying it could be this way, if other assumptions and ideas are correct, I don't know for sure\". The existing research papers and news articles supply the reasoning behind the conjecture; this page is not a replacement for them."
     },
     {
       "id": "segment-0005",
-      "section": "Creation as an intelligible process",
+      "section": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "notes": false,
-      "text": "My computational view of God begins with the possibility that the cosmos is intelligible to its creator in a way that it is not yet intelligible to human beings. God's creative power would work through divine consciousness: what God understands and intends could become the world that exists. The proposal is not that a human imagination can ordinarily create external objects merely by picturing them. It is that divine cognition could have a generative relationship to reality itself."
+      "text": "Verify this page's GitHub history. Read the publication-verification guide. Read Computational Divine Immanence."
     },
     {
       "id": "segment-0006",
       "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "In the supplied exchange, I described God's mind as understanding the whole cosmos as a mathematical equation. Human beings would possess incomplete models of that reality. An event could therefore appear illogical to us because we do not understand its governing structure, while remaining completely intelligible from the creator's perspective. Apparent violations of our expectations and genuine contradictions are different things."
+      "text": "Creation as an intelligible process"
     },
     {
       "id": "segment-0007",
       "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "This offers a way to connect computational theology with the question of omnipotence. A limitation within one created world need not be a limitation on the process that generates worlds. A particular law may govern what inhabitants can do without exhausting the possibilities available to a creator. The constructive question is which constraints define this universe and which define coherent possibilities at all."
+      "text": "My computational view of God begins with the possibility that the cosmos is intelligible to its creator in a way that it is not yet intelligible to human beings. If a conscious generative ground exists and has the proposed capabilities, its creative power could work through understanding and intention: what it understands and intends could become the world that exists. The proposal is not that a human imagination can ordinarily create external objects merely by picturing them. It is that divine cognition could have a generative relationship to"
     },
     {
       "id": "segment-0008",
       "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "Aquinas provides a relevant historical comparison in Summa Theologiae I, question 25, article 3. He distinguishes what is possible relative to a created power from what is possible absolutely, and treats contradictory descriptions as failing to specify something that can be done. This is a point of comparison, not an identification of his theology with a modern computational model."
+      "text": "reality itself."
     },
     {
       "id": "segment-0009",
-      "section": "Consciousness is not determined by outward appearance",
+      "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "Consciousness is not determined by outward appearance"
+      "text": "In the supplied exchange, I considered the possibility of God's mind understanding the whole cosmos as a mathematical equation. This is a way of describing the conjecture's proposed intelligibility, not a report that I know such a mind exists or know its capabilities. Human beings would possess incomplete models of that reality. An event could therefore appear illogical to us because we do not understand its governing structure, while remaining completely intelligible from the creator's perspective. Apparent violations of our expectations and"
     },
     {
       "id": "segment-0010",
-      "section": "Consciousness is not determined by outward appearance",
+      "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "My answers to the rock and humanlike-machine examples turn on the difference between what a system looks like and what is happening within it. A computational code embedded in the cosmos could evolve something that is effectively a rock on the outside while supporting a conscious process on the inside. The exterior would not settle the question of its interior experience."
+      "text": "genuine contradictions are different things."
     },
     {
       "id": "segment-0011",
-      "section": "Consciousness is not determined by outward appearance",
+      "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "Conversely, the same broad conception allows consideration of a system that acts like a human without having human subjective experience. The proposal is that outward cognitive performance and consciousness need not be assumed identical merely because the performance is convincing. Whether a particular implementation realizes consciousness is a question about its organization, not simply its ability to present familiar responses."
+      "text": "Under those assumptions, this offers a way to connect computational theology with the question of omnipotence. A limitation within one created world need not be a limitation on the process that generates worlds. A particular law may govern what inhabitants can do without exhausting the possibilities available to a creator. The constructive question is which constraints define this universe and which define coherent possibilities at all."
     },
     {
       "id": "segment-0012",
-      "section": "Consciousness is not determined by outward appearance",
+      "section": "Creation as an intelligible process",
       "notes": false,
-      "text": "In the supplied exchange, I explicitly stated that I consider cognitive functions without consciousness logically possible. That is my proposed position in this discussion. The article preserves it as a philosophical claim rather than substituting the stronger premise that every physical detail of a human brain is duplicated. A differently implemented behavioral counterpart is the example I gave."
+      "text": "Aquinas provides a relevant historical comparison in Summa Theologiae I, question 25, article 3. He distinguishes what is possible relative to a created power from what is possible absolutely, and treats contradictory descriptions as failing to specify something that can be done. This is a point of comparison, not an identification of his theology with a modern computational model."
     },
     {
       "id": "segment-0013",
       "section": "Consciousness is not determined by outward appearance",
       "notes": false,
-      "text": "The same precision makes the rock example useful. Something with an unremarkable exterior and a conscious interior need not be internally inert. The thought experiment invites investigation of hidden organization and unfamiliar substrates. It need not presume that appearance reveals the absence of all information processing."
+      "text": "Consciousness is not determined by outward appearance"
     },
     {
       "id": "segment-0014",
-      "section": "Functional organization and the implementation of experience",
+      "section": "Consciousness is not determined by outward appearance",
       "notes": false,
-      "text": "Functional organization and the implementation of experience"
+      "text": "My answers to the rock and humanlike-machine examples turn on the difference between what a system looks like and what is happening within it. A computational code embedded in the cosmos could evolve something that is effectively a rock on the outside while supporting a conscious process on the inside. The exterior would not settle the question of its interior experience."
     },
     {
       "id": "segment-0015",
-      "section": "Functional organization and the implementation of experience",
+      "section": "Consciousness is not determined by outward appearance",
       "notes": false,
-      "text": "The discussion with the account identified in the supplied material as jessicat, @jessicata, raises a further question: what would follow if some cognitive organization necessarily constituted consciousness? Analytic functionalism characterizes mental states through their causal roles, including relations among inputs, internal states, and behavior. It is not merely a test of whether a system can produce persuasive sentences."
+      "text": "Conversely, the same broad conception allows consideration of a system that acts like a human without having human subjective experience. The proposal is that outward cognitive performance and consciousness need not be assumed identical merely because the performance is convincing. Whether a particular implementation realizes consciousness is a question about its organization, not simply its ability to present familiar responses."
     },
     {
       "id": "segment-0016",
-      "section": "Functional organization and the implementation of experience",
+      "section": "Consciousness is not determined by outward appearance",
       "notes": false,
-      "text": "The computational proposal developed here asks which kinds of internal organization matter. A system can perform a task through one implementation while another system performs it differently. The investigation should specify whether it concerns an externally measured ability, a detailed causal organization, or a complete physical implementation. That specification tells us what has actually been held constant."
+      "text": "In the supplied exchange, I proposed that cognitive functions without consciousness could be logically possible. Read in light of my clarification, that is a conjectural position to investigate, not a certainty I claim to have established. The article preserves it as a philosophical claim rather than substituting the stronger premise that every physical detail of a human brain is duplicated. A differently implemented behavioral counterpart is the example I gave."
     },
     {
       "id": "segment-0017",
-      "section": "Functional organization and the implementation of experience",
+      "section": "Consciousness is not determined by outward appearance",
       "notes": false,
-      "text": "The connection to Self Aware Networks is the search for an account of experience in the dynamics of a system, rather than in a label attached to its outputs. The earlier Theology Wiki essay already connects the computational-God proposal to Self Aware Networks and Tomographic Coherence-Based Neural Rendering. This new discussion adds the explicit question of how an account of consciousness could constrain, or leave open, different possible creations."
+      "text": "The same precision makes the rock example useful. Something with an unremarkable exterior and a conscious interior need not be internally inert. The thought experiment invites investigation of hidden organization and unfamiliar substrates. It need not presume that appearance reveals the absence of all information processing."
     },
     {
       "id": "segment-0018",
       "section": "Functional organization and the implementation of experience",
       "notes": false,
-      "text": "David Chalmers's organizational-invariance discussion supplies a useful comparison. His argument distinguishes a dependence under the laws of our world from a claim of logical or metaphysical necessity. Consequently, establishing a relationship in one universe would not by itself answer every question about possible universes. This distinction helps identify what kind of conclusion a consciousness theory would need to support in a theological argument."
+      "text": "Functional organization and the implementation of experience"
     },
     {
       "id": "segment-0019",
-      "section": "Theodicy and alternative ways of creating minds",
+      "section": "Functional organization and the implementation of experience",
       "notes": false,
-      "text": "Theodicy and alternative ways of creating minds"
+      "text": "The discussion with the account identified in the supplied material as jessicat, @jessicata, raises a further question: what would follow if some cognitive organization necessarily constituted consciousness? Analytic functionalism characterizes mental states through their causal roles, including relations among inputs, internal states, and behavior. It is not merely a test of whether a system can produce persuasive sentences."
     },
     {
       "id": "segment-0020",
-      "section": "Theodicy and alternative ways of creating minds",
+      "section": "Functional organization and the implementation of experience",
       "notes": false,
-      "text": "The following extension was developed in the ensuing AI-assisted discussion. It is not a quotation from my original social-media replies."
+      "text": "The computational proposal developed here asks which kinds of internal organization matter. A system can perform a task through one implementation while another system performs it differently. The investigation should specify whether it concerns an externally measured ability, a detailed causal organization, or a complete physical implementation. That specification tells us what has actually been held constant."
     },
     {
       "id": "segment-0021",
-      "section": "Theodicy and alternative ways of creating minds",
+      "section": "Functional organization and the implementation of experience",
       "notes": false,
-      "text": "Theodicy asks how suffering and evil can be understood in relation to God. A connection between cognitive organization and consciousness could be relevant to that question without settling it. Even supposing that a particular organization necessarily involves experience, a further question remains about whether its valuable functions require unpleasant experience, and whether they require the particular intensity or duration of suffering encountered in this world."
+      "text": "The connection to Self Aware Networks is the search for an account of experience in the dynamics of a system, rather than in a label attached to its outputs. The earlier Theology Wiki essay already connects the computational-God proposal to Self Aware Networks and Tomographic Coherence-Based Neural Rendering. This new discussion adds the explicit question of how an account of consciousness could constrain, or leave open, different possible creations."
     },
     {
       "id": "segment-0022",
-      "section": "Theodicy and alternative ways of creating minds",
+      "section": "Functional organization and the implementation of experience",
       "notes": false,
-      "text": "Consider an agent that detects damage, remembers hazards, protects itself, and learns. We can ask whether those capacities could be realized through an alternative architecture with less suffering. That is a question about possible implementations. It differs from specifying a particular painful experience and asking for that same unpleasant experience to be non-unpleasant in the same respect."
+      "text": "David Chalmers's organizational-invariance discussion supplies a useful comparison. His argument distinguishes a dependence under the laws of our world from a claim of logical or metaphysical necessity. Consequently, establishing a relationship in one universe would not by itself answer every question about possible universes. This distinction helps identify what kind of conclusion a consciousness theory would need to support in a theological argument."
     },
     {
       "id": "segment-0023",
       "section": "Theodicy and alternative ways of creating minds",
       "notes": false,
-      "text": "The constructive research direction is to identify which dependencies are necessary and which reflect the architecture through which a mind developed. It joins a theological question about possible creations to a scientific and philosophical question about how minds work. A life containing suffering might still contain substantial value, but deciding that it is good overall introduces ethical premises in addition to a theory of consciousness."
+      "text": "Theodicy and alternative ways of creating minds"
     },
     {
       "id": "segment-0024",
+      "section": "Theodicy and alternative ways of creating minds",
+      "notes": false,
+      "text": "The following extension was developed in the ensuing AI-assisted discussion. It is not a quotation from my original social-media replies."
+    },
+    {
+      "id": "segment-0025",
+      "section": "Theodicy and alternative ways of creating minds",
+      "notes": false,
+      "text": "Theodicy asks how suffering and evil can be understood in relation to God. A connection between cognitive organization and consciousness could be relevant to that question without settling it. Even supposing that a particular organization necessarily involves experience, a further question remains about whether its valuable functions require unpleasant experience, and whether they require the particular intensity or duration of suffering encountered in this world."
+    },
+    {
+      "id": "segment-0026",
+      "section": "Theodicy and alternative ways of creating minds",
+      "notes": false,
+      "text": "Consider an agent that detects damage, remembers hazards, protects itself, and learns. We can ask whether those capacities could be realized through an alternative architecture with less suffering. That is a question about possible implementations. It differs from specifying a particular painful experience and asking for that same unpleasant experience to be non-unpleasant in the same respect."
+    },
+    {
+      "id": "segment-0027",
+      "section": "Theodicy and alternative ways of creating minds",
+      "notes": false,
+      "text": "The constructive research direction is to identify which dependencies are necessary and which reflect the architecture through which a mind developed. It joins a theological question about possible creations to a scientific and philosophical question about how minds work. A life containing suffering might still contain substantial value, but deciding that it is good overall introduces ethical premises in addition to a theory of consciousness."
+    },
+    {
+      "id": "segment-0028",
       "section": "Humanlike AI and first-person experience",
       "notes": false,
       "text": "Humanlike AI and first-person experience"
     },
     {
-      "id": "segment-0025",
+      "id": "segment-0029",
       "section": "Humanlike AI and first-person experience",
       "notes": false,
-      "text": "In my original reply, I used ChatGPT as an example of the direction in which increasingly humanlike performance might develop without consciousness. This page records that assessment as part of my position. It does not treat conversational behavior as an independent test that establishes either the presence or the absence of consciousness in a particular system."
+      "text": "In my original reply, I used ChatGPT as an example of the direction in which increasingly humanlike performance might develop without consciousness. This page records that assessment as a conjectural example, not a settled verdict on the system. It does not treat conversational behavior as an independent test that establishes either the presence or the absence of consciousness in a particular system."
     },
     {
-      "id": "segment-0026",
+      "id": "segment-0030",
       "section": "Humanlike AI and first-person experience",
       "notes": false,
       "text": "The supplied exchange also raised altered states and religious experience as possible sources of personal insight. Those belong to the first-person side of this inquiry: what a person experiences and how that experience changes their understanding. This page is a philosophical exposition, not a substance-use guide or a reproduction of dosing suggestions."
     },
     {
-      "id": "segment-0027",
+      "id": "segment-0031",
       "section": "The joined proposal",
       "notes": false,
       "text": "The joined proposal"
     },
     {
-      "id": "segment-0028",
+      "id": "segment-0032",
       "section": "The joined proposal",
       "notes": false,
-      "text": "The central proposal is that reality can be computationally intelligible without consciousness being reduced to outward performance. A creator could understand the generative structure of the cosmos completely while finite minds understand only parts of it. Conscious processes might then occur in unfamiliar forms, and familiar performances might arise from different internal organizations."
+      "text": "The central conjecture is that reality could be computationally intelligible without consciousness being reduced to outward performance, if the proposed relationships between computation, organization, and experience are correct. A creator could understand the generative structure of the cosmos completely while finite minds understand only parts of it. Conscious processes might then occur in unfamiliar forms, and familiar performances might arise from different internal organizations."
     },
     {
-      "id": "segment-0029",
+      "id": "segment-0033",
       "section": "The joined proposal",
       "notes": false,
       "text": "This connects three questions: what a coherent creation could be, what makes a system conscious, and what forms of experience different implementations require. The purpose is to develop that connection as a research program rather than assume that the limits of present human understanding are the limits of divine possibility."
     },
     {
-      "id": "segment-0030",
+      "id": "segment-0034",
+      "section": "The mathematical and scientific reasoning behind the conjecture",
+      "notes": false,
+      "text": "The mathematical and scientific reasoning behind the conjecture"
+    },
+    {
+      "id": "segment-0035",
+      "section": "The mathematical and scientific reasoning behind the conjecture",
+      "notes": false,
+      "text": "A Computational-Tomographic Proof of God develops the formal philosophical argument behind this possibility. Its conditional sequence considers a contingent totality and a restricted Principle of Sufficient Reason, then separately considers reasons-responsive agency, an intellective ground, and modal assumptions. The bridge from a necessary ground to a conscious creator is part of the argument to examine, not something established merely by using the word God. The paper and the argument map make those dependencies inspectable."
+    },
+    {
+      "id": "segment-0036",
+      "section": "The mathematical and scientific reasoning behind the conjecture",
+      "notes": false,
+      "text": "Tomographic Coherence-Based Neural Rendering develops the proposed connection between physical organization, recurrent reconstruction, and experience. The Self-Aware Networks framework and Super Information Theory provide related mechanistic and mathematical research. Their role here is to explain how the conjecture was motivated and what its proposed mechanisms would be. The broader theological interpretation adds assumptions beyond the individual scientific models."
+    },
+    {
+      "id": "segment-0037",
+      "section": "The mathematical and scientific reasoning behind the conjecture",
+      "notes": false,
+      "text": "The SVGN article Reframing Reality: How a Computational Universe Bridges Science, Spirituality, and Atheism presents the earlier exploratory route through computational reality, wave-based descriptions, and possible theological interpretations. The Architecture of Reality: Forging the Four Pillars of Super Information Theory develops the physical-model background. Together these writings show that the proposal has a reasoning history, while the present statement remains conditional: if the relevant ideas and connections are right, this could be"
+    },
+    {
+      "id": "segment-0038",
+      "section": "The mathematical and scientific reasoning behind the conjecture",
+      "notes": false,
+      "text": "one way reality works."
+    },
+    {
+      "id": "segment-0039",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "Sources, attribution, and chronology"
     },
     {
-      "id": "segment-0031",
+      "id": "segment-0040",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "The immediate source is the exchange pasted by Micah Blumberg in the current conversation, followed by the AI-assisted discussion. The pasted material attributes questions to jessicat, @jessicata, and replies to Death Star Robot, @DeathStarRobot. Original post permalinks and absolute posting times were not supplied. Relative labels such as 7h and 1m are not converted into publication dates. This is an exposition, not a complete verbatim transcript; the separate theodicy extension is identified above."
     },
     {
-      "id": "segment-0032",
+      "id": "segment-0041",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "The earlier related essay is Computational Divine Immanence at its September 6, 2026 commit. Its earlier date belongs to that earlier text, not automatically to every sentence in this new page."
     },
     {
-      "id": "segment-0033",
+      "id": "segment-0042",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "Thomas Aquinas, Summa Theologiae I, question 25, article 3. The online English translation was consulted for the distinction between relative and absolute possibility and the treatment of contradiction. It is a historical comparison, not evidence that Aquinas proposed computational theology."
     },
     {
-      "id": "segment-0034",
+      "id": "segment-0043",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "Janet Levin, Functionalism, Stanford Encyclopedia of Philosophy. The overview and analytic-functionalism discussion were consulted for the description of causal roles. This is background on the position under discussion, not a claim that it has resolved consciousness."
     },
     {
-      "id": "segment-0035",
+      "id": "segment-0044",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "David J. Chalmers, Absent Qualia, Fading Qualia, Dancing Qualia. The author's online paper was consulted for organizational invariance and its distinction between natural and logical necessity. The comparison does not identify his overall position with Blumberg's."
     },
     {
-      "id": "segment-0036",
+      "id": "segment-0045",
       "section": "Sources, attribution, and chronology",
       "notes": false,
       "text": "The editorial date at the top is a document label. The linked Git history records revisions, and the publication-verification guide explains how to inspect GitHub's own verification timestamps and exact-version links. No earlier date is assigned to this newly written edition."
     },
     {
-      "id": "segment-0037",
+      "id": "segment-0046",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Author publications and reading scope"
+    },
+    {
+      "id": "segment-0047",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, A Computational-Tomographic Proof of God, Paper 047. Publication record. The conditional argument is discussed in the earlier source and connection register, including sections 4-7 and the finite-model witness in section 7.1. The title is the author's publication title, not an instruction to treat every premise as established. The exact public PDF was retrieved and its abstract, introduction, sections 4-7, revision conditions, conclusion, and premise map were reviewed for this revision. Its abstract explicitly presents a"
+    },
+    {
+      "id": "segment-0048",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "conditional argument; sections 6-7 identify the ground-renderer and modal assumptions. The companion code was not rerun for this editorial correction."
+    },
+    {
+      "id": "segment-0049",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, Tomographic Coherence-Based Neural Rendering, Paper 046, and Self-Aware Networks, Paper 013. The exact public PDFs were retrieved; their abstracts and opening scope statements were read. TCNR distinguishes a prospective neural protocol from its conceptual extensions. SAN defines a receiver-relative phase-difference mechanism and reconstruction framework. Those are the scientific foundations being connected here, rather than being silently equated with the theological conjecture."
+    },
+    {
+      "id": "segment-0050",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity, Paper 002, and SIT, Holography, and the AdS/CFT Translation Split, Paper 041. These identify the physics research and translation questions behind the proposed computational account. The exact public PDFs and their abstracts and opening scope statements were read. SIT describes a conditional measurement-to-field-to-metric research program. Paper 041 reports a conditional extremal-surface displacement calculation in a regulated AdS3 model."
+    },
+    {
+      "id": "segment-0051",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "These are examples of the mathematical reasoning behind the research, not claims that a calculation establishes a creator. The current paper catalogue preserves its selected versions."
+    },
+    {
+      "id": "segment-0052",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, Reframing Reality: How a Computational Universe Bridges Science, Spirituality, and Atheism, displayed December 3, 2024. Current full webpage consulted for its explicit hypothetical framing and conceptual development. The imagined responses from named writers are part of that dialogue, not newly claimed endorsements."
+    },
+    {
+      "id": "segment-0053",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, The Architecture of Reality: Forging the Four Pillars of Super Information Theory, public SAN repository text. The opening article text was consulted; it displays August 2, 2025. This link identifies that particular archived text rather than assigning its wording to another edition or publication date."
+    },
+    {
+      "id": "segment-0054",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "Micah Blumberg, I Presented My Research to Karl Friston on April 8th 2025, SVGN, displayed June 2, 2025. The full article text was read for the proposed SAN/NAPOT, signal-dissipation, QGTCD, Super Dark Time, and SIT connections. The embedded video was not reviewed in this pass. This is the author's explanation of the research, not a newly claimed endorsement by the audience. The God paper identifies it in its introduction and reference 2."
+    },
+    {
+      "id": "segment-0055",
+      "section": "Author publications and reading scope",
+      "notes": false,
+      "text": "The source-review record records the five paper hashes, reading scopes, article links, and the author's current clarification. The earlier discussion note remains preserved at its original path and Git revision; this reader edition carries the clarification without backdating it."
+    },
+    {
+      "id": "segment-0056",
       "section": "Connect the argument",
       "notes": false,
       "text": "Connect the argument"
     },
     {
-      "id": "segment-0038",
+      "id": "segment-0057",
       "section": "Connect the argument",
       "notes": false,
-      "text": "The Computational God: Creation, Consciousness, and Capabilities connects this study to divine immanence, the necessary-ground argument, possible minds, and repair. Publication history distinguishes the source edition from this reader integration."
+      "text": "A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities connects this study to divine immanence, the necessary-ground argument, possible minds, and repair. Publication history distinguishes the source edition from this reader integration."
     }
   ]
 }
