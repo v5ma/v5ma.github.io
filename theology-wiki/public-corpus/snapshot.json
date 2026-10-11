@@ -9,10 +9,10 @@
   "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
   "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
   "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
-  "indexedPages": 438,
+  "indexedPages": 439,
   "sourceConversations": 354,
-  "markdownSources": 559,
-  "indexSha256": "b762b6a580a6657a88d992f0b4171fae262391750b748bad9a0e5506174f1356",
+  "markdownSources": 562,
+  "indexSha256": "7b2ad3ce6d62923068e165a09d45cad9ab3bcce5fdc1557742f089e722e7e9ee",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
   "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
   "amendments": [
@@ -29,5 +29,27 @@
       ]
     }
   ],
-  "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions."
+  "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions.",
+  "additions": [
+    {
+      "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "pages": [
+        "living-jesus-thomas-john-and-synoptics"
+      ],
+      "navigationPages": [
+        "home",
+        "topic-jesus"
+      ],
+      "markdownSources": [
+        "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+        "theology-wiki/content/developed/topic-jesus.md",
+        "theology-wiki/content/home.md",
+        "theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+        "theology-wiki/research-reports/gospel-comparisons-20261011/claim-audit.md"
+      ]
+    }
+  ],
+  "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."
 }

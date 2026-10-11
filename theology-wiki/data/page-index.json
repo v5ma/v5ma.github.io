@@ -94,12 +94,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/home.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/home.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/home.md",
       "sourcePath": "theology-wiki/content/home.md",
-      "sha256": "9e6460b7cd163471437b2aa4d75cfad09d42bcd0c97d80aa451cb70d6afb9a5f",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
@@ -20282,7 +20282,20 @@
     "backlinks": [
       "home",
       "topic-jesus"
-    ]
+    ],
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/living-jesus-thomas-john-and-synoptics.md",
+      "sourcePath": "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "sha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+      "transcriptExactUrl": null
+    }
   },
   {
     "slug": "contested-memories-of-catastrophe",
@@ -21929,12 +21942,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/topic-jesus.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-jesus.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/topic-jesus.md",
       "sourcePath": "theology-wiki/content/developed/topic-jesus.md",
-      "sha256": "e5dcad41386711c30fd9235b878cf7480bc5bb5f347d670784f4d6716dee94e7",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null

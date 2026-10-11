@@ -1,0 +1,27 @@
+{
+  "schema": "theology-gospel-addition/v1",
+  "baseline": "22dd281d9296e5ca5794a8cd83c3dde47147337f",
+  "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+  "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+  "article": {
+    "slug": "living-jesus-thomas-john-and-synoptics",
+    "canonical": "theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+    "canonicalSha256": "0201dd59dd9d2bd32b107a5ace05a266fdb8bf7ea172bd2bdb8f6034b952259d",
+    "source": "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+    "sourceSha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a"
+  },
+  "navigation": {
+    "theology-wiki/content/home.md": {
+      "slug": "home",
+      "before": "9e6460b7cd163471437b2aa4d75cfad09d42bcd0c97d80aa451cb70d6afb9a5f",
+      "after": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d"
+    },
+    "theology-wiki/content/developed/topic-jesus.md": {
+      "slug": "topic-jesus",
+      "before": "e5dcad41386711c30fd9235b878cf7480bc5bb5f347d670784f4d6716dee94e7",
+      "after": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949"
+    }
+  },
+  "preservedExistingPageRecords": 436,
+  "scope": "One new developed article; only home and Jesus-topic navigation records are updated. All original chats and existing article bodies are unchanged."
+}
