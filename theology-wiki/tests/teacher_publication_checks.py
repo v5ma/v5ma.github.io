@@ -16,7 +16,12 @@ ARTICLE = f'theology-wiki/content/developed/{SLUG}.md'
 PROJECTION = f'theology-wiki/public-corpus/pages/{SLUG}.md'
 NARRATION = f'theology-wiki/data/listening/{SLUG}.json'
 INDEX = 'theology-wiki/data/page-index.json'
-PHRASES = ['one founder, several generations of memory', '34 candidate parallels',
+PHRASES = ['First inquiry: compare Jesus with the Teacher before introducing Thomas',
+           'Second inquiry: Thomas and the Teacher as a distinct transmission problem',
+           'Third inquiry: what connecting Jesus, Thomas, and the Teacher would add',
+           'Fourth inquiry: the Yahad common economy as a possible carrier',
+           'Fifth inquiry: later Gnostic receptions of the economic inheritance',
+           'one founder, several generations of memory', '34 candidate parallels',
            'ten diagnostic non-equivalences',
            'The proposed Judea–Egypt route and its successor generations',
            'Daniel, the Damascus Document, and the clocks within the model']
@@ -28,7 +33,7 @@ def main():
     report = {'origin': ORIGIN, 'commit': REVISION, 'files': {}, 'targets': {}, 'passed': False}
     digest = lambda data: hashlib.sha256(data).hexdigest()
     targets = set(re.findall(r'\[\[([^\]|#]+)', (ROOT / f'theology-wiki/editorial/authorial-articles/{SLUG}.md').read_text()))
-    assert len(targets) == 20, targets
+    assert len(targets) == 21, targets
     try:
         with sync_playwright() as tool:
             options = {'headless': True}
@@ -73,7 +78,7 @@ def main():
                 browser.close()
     finally:
         (OUT / f'teacher-{mode}.json').write_text(json.dumps(report, indent=2) + '\n')
-    print('PASS Teacher source, backup, listening, rendered argument and 20 linked targets:', ORIGIN)
+    print('PASS Teacher source, backup, listening, rendered argument and 21 linked targets:', ORIGIN)
 
 
 if __name__ == '__main__':

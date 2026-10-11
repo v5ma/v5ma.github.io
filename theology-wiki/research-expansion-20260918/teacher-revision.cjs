@@ -7,6 +7,7 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const slug = 'jesus-teacher-of-righteousness-hypothesis';
 const revision = require('./teacher-revision-20261011.json');
+const repair = require('../teacher-repair-20261011/revision.cjs');
 const hash = b => crypto.createHash('sha256').update(b).digest('hex');
 const blob = b => crypto.createHash('sha1').update('blob ' + b.length + '\0').update(b).digest('hex');
 const read = (base, p) => fs.readFileSync(path.join(base, p));
@@ -38,7 +39,7 @@ function verifyCanonical(base = root) {
   const original = historical.subarray(extra.length);
   assert.equal(original.length, row.original_bytes);
   assert.equal(blob(original), row.original_git_blob, 'Original canonical body changed');
-  assert.equal(hash(read(base, revision.canonical.path)), revision.canonical.sha256, 'Approved Teacher canonical changed');
+  repair.verifyCanonical(base);
   const article = load(base, 'editorial/authorial.json').articles.find(a => a.slug === slug);
   assert.equal(article.updated, revision.revision_date, 'Approved Teacher date changed');
   return historical;
@@ -54,10 +55,9 @@ function applyDerivativeRevision(expected, base = root) {
     const row = revision.files[p];
     assert.equal(row.before, prior.files[p].after, 'Teacher revision must chain from the historical receipt: ' + p);
     assert.equal(expected[p], row.before, 'Unexpected prior derivative version: ' + p);
-    assert.equal(hash(read(base, p)), row.after, 'Approved Teacher derivative changed: ' + p);
-    updated[p] = row.after;
+    updated[p] = repair.derivativeHash(p, row.after, base);
   }
   return updated;
 }
 
-module.exports = { slug, revision, verifyCanonical, applyDerivativeRevision };
+module.exports = { slug, revision, repair: repair.revision, verifyCanonical, applyDerivativeRevision };

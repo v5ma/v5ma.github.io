@@ -12,6 +12,8 @@ const prior = require('../research-expansion-20260918/revision-receipt.json');
 const expected = Object.fromEntries(Object.entries(prior.files).map(([p, v]) => [p, v.after]));
 const hash = b => crypto.createHash('sha256').update(b).digest('hex');
 const essential = [R.revision.canonical.path, R.revision.historical_canonical.path,
+  R.repair.historical_canonical.path, R.repair.prior_revision_receipt.path,
+  'teacher-repair-20261011/revision.cjs', 'teacher-repair-20261011/revision.json',
   R.revision.prior_revision_receipt.path, 'research-expansion-20260918/integration-receipt.json',
   'research-expansion-20260918/teacher-identity.md', 'editorial/authorial.json', ...Object.keys(R.revision.files)];
 
@@ -25,10 +27,10 @@ function fixture(t, files = essential) {
   return base;
 }
 
-test('PR 230 preserves the original Teacher body and September 18 integrated edition', () => {
+test('Teacher revisions preserve the original body, September 18 edition and PR 230 source', () => {
   assert.equal(R.verifyCanonical().length, 19969);
   const actual = R.applyDerivativeRevision(expected);
-  for (const p of Object.keys(expected)) assert.equal(actual[p], R.revision.files[p]?.after || expected[p]);
+  for (const p of Object.keys(expected)) assert.equal(actual[p], R.repair.files[p]?.after || expected[p]);
   assert.deepEqual(Object.keys(actual), Object.keys(expected));
   assert.equal(R.applyDerivativeRevision({ ...expected, 'unrelated-original.md': 'untouched' })['unrelated-original.md'], 'untouched');
 });
@@ -40,7 +42,7 @@ test('the Teacher revision rejects an unexpected predecessor rather than silentl
   assert.throws(() => R.applyDerivativeRevision(missing), /Unexpected prior derivative version/);
 });
 
-for (const p of essential.filter(p => p !== 'editorial/authorial.json')) {
+for (const p of essential.filter(p => !['editorial/authorial.json', 'teacher-repair-20261011/revision.cjs'].includes(p))) {
   test('Teacher preservation rejects modified bytes: ' + p, t => {
     const base = fixture(t);
     fs.appendFileSync(path.join(base, p), '\nUnexpected change\n');

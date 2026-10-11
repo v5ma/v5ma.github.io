@@ -13,7 +13,7 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 ## Start with a developed argument
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions.
 
 [[christ-as-an-inner-model|Christic Self-Formation Theory: Christ as an inner model]]: How an inward Christ model participates in constructing the self, changing choice and correcting both conduct and its standard.
 

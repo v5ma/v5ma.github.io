@@ -34,7 +34,10 @@ def main():
             check('Full argument rendered',len(page.locator('#article-body').inner_text().split())>2000)
             links=set(page.locator('#article-body a[data-page]').evaluate_all('(a)=>a.map(x=>x.dataset.page)'))
             check('All canonical wiki links rendered',targets<=links)
-            check('Exact source history visible',page.locator('#publication-record a',has_text='Exact source version').is_visible())
+            # Publication history is installed after later asynchronous enhancements.
+            source_history=page.locator('#publication-record a',has_text='Exact source version')
+            source_history.wait_for(state='visible')
+            check('Exact source history visible',source_history.is_visible())
             page.screenshot(path=str(OUT/'gospel-desktop.png'),full_page=True)
             navigate('home');check('Homepage discovery',page.locator(f'#article-body a[data-page="{SLUG}"]').count()>0)
             navigate('topic-jesus');check('Subject discovery',page.locator(f'#article-body a[data-page="{SLUG}"]').count()>0)
