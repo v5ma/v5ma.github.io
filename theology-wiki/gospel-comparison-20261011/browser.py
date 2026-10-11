@@ -49,7 +49,11 @@ def main():
             page.locator('#listen-load').click()
             page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=SLUG)
             expected_hash=hashlib.sha256((ROOT/f'theology-wiki/content/developed/{SLUG}.md').read_bytes()).hexdigest()
-            check('Selected Gospel listening text verifies its source hash',page.locator('#listen-hash').inner_text()==expected_hash)
+            page.locator('#product-workspace details:has(#listen-hash) > summary').click()
+            page.locator('#listen-hash').wait_for(state='visible')
+            actual_hash=page.locator('#listen-hash').text_content().strip()
+            report['listeningSourceHash']={'expected':expected_hash,'actual':actual_hash}
+            check('Selected Gospel listening text verifies its source hash; expected '+expected_hash+'; actual '+repr(actual_hash),actual_hash==expected_hash)
             navigate(SLUG);page.set_viewport_size({'width':390,'height':844})
             check('Mobile has no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+2'))
             page.screenshot(path=str(OUT/'gospel-mobile.png'),full_page=True)
