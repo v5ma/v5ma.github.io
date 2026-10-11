@@ -10,7 +10,8 @@ function verify(){
  assert.deepEqual(Object.keys(prior.files).sort(),paths(['trump-first-beast-of-revelation','antichrist-as-a-pattern-of-conduct']));
  assert.deepEqual(Object.keys(current.files).sort(),paths(manifest.articles.map(a=>a.slug)));
  assert.equal(current.edition_date,'2026-09-18');
- for(const[p,before]of Object.entries(baseline.files)){assert.ok(!(prior.files[p]&&current.files[p]));const update=current.files[p]||prior.files[p];if(update)assert.equal(update.before,before,p);assert.equal(digest(p),update?update.after:before,p);}
+ const active=require('./teacher-revision.cjs').applyDerivativeRevision(Object.fromEntries(Object.entries({...prior.files,...current.files}).map(([p,v])=>[p,v.after])));
+ for(const[p,before]of Object.entries(baseline.files)){assert.ok(!(prior.files[p]&&current.files[p]));const update=current.files[p]||prior.files[p];if(update)assert.equal(update.before,before,p);assert.equal(digest(p),active[p]||before,p);}
  for(const p of [...Object.keys(prior.files),...Object.keys(current.files)])assert.ok(Object.hasOwn(baseline.files,p),p);
  return {unchangedBaseline:baseline.baseline,priorDeclared:6,newDeclared:9};
 }

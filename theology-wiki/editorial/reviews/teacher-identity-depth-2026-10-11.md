@@ -1,6 +1,6 @@
 # Teacher identity article: depth-restoration review
 
-Review-only expansion based on master c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852. This is an editorial draft, not a publication-ready site rebuild.
+Review-only expansion based on master c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852. The initial save was an editorial draft. Publication has since been requested and remains gated on the integration and validation described below.
 
 ## Scope
 
@@ -29,10 +29,18 @@ The available verified source bundle is a subset of the repository. The full sit
 
 Search postings, graph/backlinks, page-index reading time/date, listening JSON and transcripts, product derivatives, public-corpus manifests/indexes, and any affected recorded-media freshness checks still need an authorized full-checkout rebuild and validation. Existing recordings were not regenerated and their hashes were not changed to imply freshness. The generated target in this review is intentionally limited to the article itself and its matching public Markdown projection.
 
-Keep this pull request in draft. Review the prose, then complete derivative rebuilding and aggregate validation before any merge or deployment. No publication is authorized by this review save.
+Keep this pull request in draft until derivative rebuilding and aggregate validation pass. The subsequent publication request authorizes merging this reviewed expansion and checking the deployed result; it does not authorize bypassing failed checks.
 
 ## Research boundaries
 
 The argument remains a conjecture with distinct identity, transmission, and shared-milieu alternatives. The 34 candidate parallels and ten counterexamples in the public September archive were AI-generated; their earlier confidence/Bayesian scores are not evidential results. Newly restored prose is edited exposition, not an ancient translation or verbatim recovered user quotation.
 
 The four checked public archive snapshots document 2025 development. Additional recovered reports of September 2026 conversations were not promoted into the public chronology without matching public anchors; the existing September 18, 2026 formulation is retained with its original attribution.
+
+## Integration continuation
+
+After the initial save, the argument was refined to keep development history and exported message numbers in a separate end section. The body remains direct, theory-centered exposition.
+
+The production product builder regenerated the Teacher listening document and transcript. A narrowly scoped preservation receipt chains the revised article to its prior approved edition while retaining the exact historical canonical fixture and all original receipt checks. A bounded publication-amendment command checks committed Git bytes before refreshing only the changed article and its provenance records, leaving the complete conversation archive unchanged. Nineteen focused article, preservation, and publication-amendment tests pass locally. Full-checkout CI verification is pending.
+
+The full builder now uses the existing Theology-local reader source instead of the retired shared-shell path. Its generated adapter was checked byte-for-byte against the currently published adapter, including the existing disabled routes. The read-only CI job exposes bounded compressed text differences for review without granting write permissions or masking failed checks.

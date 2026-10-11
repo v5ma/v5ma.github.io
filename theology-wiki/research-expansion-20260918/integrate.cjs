@@ -3,22 +3,25 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..'),manifest=require('./manifest.json');
 const blob=b=>crypto.createHash('sha1').update('blob '+b.length+'\0').update(b).digest('hex');
+const teacherRevision=require('./teacher-revision.cjs');
 const records=[];
 for(const row of manifest.articles){
  const p=path.join(root,'editorial/authorial-articles',row.slug+'.md'),current=fs.readFileSync(p),extra=fs.readFileSync(path.join(__dirname,row.supplement));
- let original=current;
- if(row.position==='prepend'&&current.subarray(0,extra.length).equals(extra))original=current.subarray(extra.length);
- if(row.position==='append'&&current.length>=extra.length&&current.subarray(current.length-extra.length).equals(extra))original=current.subarray(0,current.length-extra.length);
+ // Validate the exact historical edition without overwriting the approved PR #230 revision.
+ const historical=row.slug===teacherRevision.slug?teacherRevision.verifyCanonical():current;
+ let original=historical;
+ if(row.position==='prepend'&&historical.subarray(0,extra.length).equals(extra))original=historical.subarray(extra.length);
+ if(row.position==='append'&&historical.length>=extra.length&&historical.subarray(historical.length-extra.length).equals(extra))original=historical.subarray(0,historical.length-extra.length);
  if(blob(original)!==row.original_git_blob)throw Error('Original canonical body changed: '+row.slug);
  const combined=row.position==='prepend'?Buffer.concat([extra,original]):Buffer.concat([original,extra]);
- if(!current.equals(combined))fs.writeFileSync(p,combined);
+ if(row.slug!==teacherRevision.slug&&!current.equals(combined))fs.writeFileSync(p,combined);
  records.push({slug:row.slug,position:row.position,original_git_blob:row.original_git_blob,original_bytes:original.length,supplement:row.supplement,supplement_bytes:extra.length,integrated_git_blob:blob(combined)});
 }
 const metadata=path.join(root,'editorial/authorial.json'),meta=JSON.parse(fs.readFileSync(metadata));
 if(meta.updated>manifest.edition_date)throw Error('A newer authorial edition requires reconciliation before integration.');
 const activeVersion=fs.existsSync(path.join(root,'comparative-religion/manifest.json'))?require('../comparative-religion/manifest.json').version:manifest.version;
 meta.version=activeVersion;meta.updated=manifest.edition_date;
-for(const row of manifest.articles){const article=meta.articles.find(a=>a.slug===row.slug);if(!article)throw Error('Missing article metadata');article.summary=row.summary;article.updated=manifest.edition_date;}
+for(const row of manifest.articles){const article=meta.articles.find(a=>a.slug===row.slug);if(!article)throw Error('Missing article metadata');if(row.slug===teacherRevision.slug)continue;article.summary=row.summary;article.updated=manifest.edition_date;}
 const teacher=meta.articles.find(a=>a.slug==='jesus-teacher-of-righteousness-hypothesis');
 teacher.aliases=[...new Set([...(teacher.aliases||[]),'Earlier-Founder Jesus-Teacher Identity Hypothesis'])];
 fs.writeFileSync(metadata,JSON.stringify(meta,null,2)+'\n');
