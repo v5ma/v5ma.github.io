@@ -33,7 +33,8 @@ jobs:
           node --check theology-wiki/assets/js/theology-reader.js
           node --test theology-wiki/tests/research.test.cjs
           node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs
-          git diff --exit-code -- theology-wiki scripts/prepare-interactive-site.py
+          git diff --stat -- theology-wiki scripts/prepare-interactive-site.py
+          git diff --quiet -- theology-wiki scripts/prepare-interactive-site.py
       - name: Report bounded generated text differences for review
         if: always() && github.event_name == 'pull_request'
         run: |
