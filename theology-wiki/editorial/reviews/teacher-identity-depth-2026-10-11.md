@@ -23,13 +23,17 @@ Run the focused checks with:
 
     node --test theology-wiki/tests/teacher-depth.test.cjs
 
-## Not completed; required before publication
+## Full-checkout integration
 
-The available verified source bundle is a subset of the repository. The full site builder, aggregate Node suite, browser tests, and publication checks were not run locally. Passing the focused tests is not a full-site pass.
+The production builder has now run in GitHub Actions against the complete repository. Its article, search postings, graph/backlinks, reader indexes, listening document/transcript and public-corpus manifests are committed outputs. The public-corpus amendment changes only this article's record; all 437 other records remain identical. Recorded media were not regenerated or relabeled as fresh.
 
-Search postings, graph/backlinks, page-index reading time/date, listening JSON and transcripts, product derivatives, public-corpus manifests/indexes, and any affected recorded-media freshness checks still need an authorized full-checkout rebuild and validation. Existing recordings were not regenerated and their hashes were not changed to imply freshness. The generated target in this review is intentionally limited to the article itself and its matching public Markdown projection.
+The complete aggregate Node suite passed all 159 tests in source-edition run 38172139964. The additional article, preservation and publication-amendment suites passed all 20 tests. Reader integration restores all 438 recorded publication proofs without redating archived material. That run identified a final JSON property-order/search rebuild difference; the exact full-builder output is included in this continuation, and final deterministic/browser checks remain the merge gate.
 
-Keep this pull request in draft until derivative rebuilding and aggregate validation pass. The subsequent publication request authorizes merging this reviewed expansion and checking the deployed result; it does not authorize bypassing failed checks.
+The original-source checks remain strict. An exact revision receipt permits the approved Teacher edition while retaining the historical canonical fixture and before/after chain. Unrelated source files and original conversation archives remain immutable.
+
+Egyptian Seed has a separately documented pre-existing receipt mismatch: master run 36946320933 and PR run 38172139957 both regenerate the same historical generator pointer. It is not repaired or represented as passing by this article change. Cloudflare deployment also previously lacked required credentials; normal GitHub Pages deployment is verified separately after merge.
+
+Final check and publication receipts are recorded on the pull request. No failing check is skipped or redefined as a pass.
 
 ## Research boundaries
 
@@ -41,6 +45,6 @@ The four checked public archive snapshots document 2025 development. Additional 
 
 After the initial save, the argument was refined to keep development history and exported message numbers in a separate end section. The body remains direct, theory-centered exposition.
 
-The production product builder regenerated the Teacher listening document and transcript. A narrowly scoped preservation receipt chains the revised article to its prior approved edition while retaining the exact historical canonical fixture and all original receipt checks. A bounded publication-amendment command checks committed Git bytes before refreshing only the changed article and its provenance records, leaving the complete conversation archive unchanged. Nineteen focused article, preservation, and publication-amendment tests pass locally. Full-checkout CI verification is pending.
+The production product builder regenerated the Teacher listening document and transcript. A narrowly scoped preservation receipt chains the revised article to its prior approved edition while retaining the exact historical canonical fixture and all original receipt checks. A bounded publication-amendment command checks committed Git bytes before refreshing only the changed article and its provenance records, leaving the complete conversation archive unchanged. Twenty focused article, preservation, and publication-amendment tests pass locally and in the full-checkout CI run cited above.
 
 The full builder now uses the existing Theology-local reader source instead of the retired shared-shell path. Its generated adapter was checked byte-for-byte against the currently published adapter, including the existing disabled routes. The read-only CI job exposes bounded compressed text differences for review without granting write permissions or masking failed checks.

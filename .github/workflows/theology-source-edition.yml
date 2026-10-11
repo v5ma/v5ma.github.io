@@ -67,6 +67,7 @@ jobs:
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/teacher_publication_checks.py
           python theology-wiki/tests/browser.py
       - name: Verify actual hosted content after master publication
         if: github.ref == 'refs/heads/master'
@@ -77,6 +78,8 @@ jobs:
           from pathlib import Path
           import hashlib,json,os,time,urllib.request
           files=['theology-wiki/san-reader.html','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/js/theology-reader.js','theology-wiki/data/build-report.json']
+          slug='jesus-teacher-of-righteousness-hypothesis'
+          files += [f'theology-wiki/content/developed/{slug}.md',f'theology-wiki/public-corpus/pages/{slug}.md',f'theology-wiki/data/listening/{slug}.json','theology-wiki/data/page-index.json']
           expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
           observed={}
           for attempt in range(36):
@@ -94,6 +97,7 @@ jobs:
           assert all(item['matches_commit'] for item in observed.values()),observed
           print('Hosted reader HTML, scripts and build report match the published commit.')
           PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/teacher_publication_checks.py
           SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/browser.py
       - name: Record source identity and review files
         if: always()

@@ -22921,16 +22921,6 @@
     "xrRoomId": "theology-computational-god-consciousness-and-theodicy",
     "xrDeckId": "theology-reader",
     "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
-    "related": [
-      "publication-history",
-      "computational-divine-immanence",
-      "computational-argument-map",
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinks": [
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinkCount": 1,
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-consciousness-and-theodicy.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-consciousness-and-theodicy.md",
@@ -22943,7 +22933,17 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-consciousness-and-theodicy.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-consciousness-and-theodicy.md",
       "transcriptExactUrl": null
-    }
+    },
+    "related": [
+      "publication-history",
+      "computational-divine-immanence",
+      "computational-argument-map",
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinks": [
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinkCount": 1
   },
   {
     "slug": "computational-god-capabilities-bridge",
@@ -22976,6 +22976,19 @@
     "xrRoomId": "theology-computational-god-capabilities-bridge",
     "xrDeckId": "theology-reader",
     "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/computational-god-capabilities-bridge.md",
+      "sourcePath": "theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "sha256": "7841356670993bfea596a1b20033520d7ea89d29057bd7ffb8e530b71bc6ac4c",
+      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
+      "transcriptExactUrl": null
+    },
     "related": [
       "computational-god-consciousness-and-theodicy",
       "computational-divine-immanence",
@@ -23005,20 +23018,7 @@
       "computational-god-consciousness-and-theodicy",
       "cosmic-thought-and-transcendence"
     ],
-    "backlinkCount": 14,
-    "publication": {
-      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/computational-god-capabilities-bridge.md",
-      "sourcePath": "theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "sha256": "7841356670993bfea596a1b20033520d7ea89d29057bd7ffb8e530b71bc6ac4c",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
-      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
-      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
-      "transcriptExactUrl": null
-    }
+    "backlinkCount": 14
   },
   {
     "slug": "cosmic-thought-and-transcendence",
@@ -23047,14 +23047,6 @@
     "xrRoomId": "theology-cosmic-thought-and-transcendence",
     "xrDeckId": "theology-reader",
     "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
-    "related": [
-      "computational-god-capabilities-bridge",
-      "publication-history"
-    ],
-    "backlinks": [
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinkCount": 1,
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/cosmic-thought-and-transcendence.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/cosmic-thought-and-transcendence.md",
@@ -23067,7 +23059,15 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/authority/manuscripts/cosmic-thought-and-transcendence.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/authority/manuscripts/cosmic-thought-and-transcendence.md",
       "transcriptExactUrl": null
-    }
+    },
+    "related": [
+      "computational-god-capabilities-bridge",
+      "publication-history"
+    ],
+    "backlinks": [
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinkCount": 1
   },
   {
     "slug": "publication-history",
@@ -23095,14 +23095,6 @@
     "claimType": "Publication and preservation guide",
     "xrRoomId": "theology-publication-history",
     "xrDeckId": "theology-reader",
-    "related": [],
-    "backlinks": [
-      "home",
-      "computational-god-consciousness-and-theodicy",
-      "computational-god-capabilities-bridge",
-      "cosmic-thought-and-transcendence"
-    ],
-    "backlinkCount": 4,
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/publication-history.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/publication-history.md",
@@ -23115,6 +23107,14 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/PUBLICATION-HISTORY.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/PUBLICATION-HISTORY.md",
       "transcriptExactUrl": null
-    }
+    },
+    "related": [],
+    "backlinks": [
+      "home",
+      "computational-god-consciousness-and-theodicy",
+      "computational-god-capabilities-bridge",
+      "cosmic-thought-and-transcendence"
+    ],
+    "backlinkCount": 4
   }
 ]
