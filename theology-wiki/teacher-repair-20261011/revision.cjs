@@ -6,7 +6,7 @@ const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const blob=b=>crypto.createHash('sha1').update('blob '+b.length+'\0').update(b).digest('hex');
 const read=(base,p)=>fs.readFileSync(path.join(base,p));
 function verifyCanonical(base=root){
- assert.equal(hash(read(base,'teacher-repair-20261011/revision.json')),'162ba73c262ab76b6e2db73cf723d35023eb5162459ddec067f2c3bd6c5457bd','Reviewed Teacher repair receipt changed');
+ assert.equal(hash(read(base,'teacher-repair-20261011/revision.json')),'62d555d1f65870e44220fa24b858e94f8cd75acd0dbaa815d6cc9a362a734b90','Reviewed Teacher repair receipt changed');
  assert.equal(revision.schema_version,1);assert.equal(revision.slug,'jesus-teacher-of-righteousness-hypothesis');
  assert.equal(revision.review_base_commit,'70bf669b241ae51fbca864742dfd086b79f662bf');
  assert.equal(revision.prior_revision_receipt.path,'research-expansion-20260918/teacher-revision-20261011.json');
@@ -19,7 +19,7 @@ function verifyCanonical(base=root){
  const historical=read(base,revision.historical_canonical.path);
  assert.equal(blob(historical),revision.historical_canonical.git_blob,'PR 230 canonical snapshot changed');
  assert.equal(hash(historical),revision.canonical.before,'PR 230 canonical hash changed');
- assert.equal(revision.canonical.after,'2fa7d2abcf2d733401abedb4c17202696ecf91dee4feedb544d28dff655b2548');
+ assert.equal(revision.canonical.after,'e8534bdf8b7c48568e84637dc59b7fe2db6f3f14d7c2c2f65e31faa01fbd05df');
  assert.equal(hash(read(base,revision.canonical.path)),revision.canonical.after,'Reviewed Teacher repair changed');
  const meta=JSON.parse(read(base,'editorial/authorial.json')).articles.find(a=>a.slug===revision.slug);
  assert.equal(meta.updated,revision.metadata.updated,'Approved Teacher date changed');

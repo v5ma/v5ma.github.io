@@ -27,3 +27,5 @@ test('Five-inquiry summary follows the Teacher article into reading and listenin
  for(const word of ['First inquiry:','Second inquiry:','Third inquiry:','Fourth inquiry:','Fifth inquiry:'])assert(spoken.includes(word),word);
  assert.equal(narration.sourceSha256,R.hash(read('content/developed/'+slug+'.md')));
 });
+
+require('./semantic.test.cjs');

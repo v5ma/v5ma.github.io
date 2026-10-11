@@ -17,7 +17,7 @@
   "canonical": {
     "path": "editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
     "before": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
-    "after": "2fa7d2abcf2d733401abedb4c17202696ecf91dee4feedb544d28dff655b2548"
+    "after": "e8534bdf8b7c48568e84637dc59b7fe2db6f3f14d7c2c2f65e31faa01fbd05df"
   },
   "metadata": {
     "updated": "2026-10-11",
@@ -27,15 +27,15 @@
   "files": {
     "content/developed/jesus-teacher-of-righteousness-hypothesis.md": {
       "before": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
-      "after": "a13d9900302e07c36dffc8e1ae6994740f18d64322ae56714f0e2733bf01287f"
+      "after": "b14a0f69bf8d4db2611705f65ab741c459ab1cc8113355d3c971f8508a5e2e6d"
     },
     "data/listening/jesus-teacher-of-righteousness-hypothesis.json": {
       "before": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8",
-      "after": "34ba5b4a6dd933710593b412bce5c3664c6cc69bd5f2b51cdc39c434b021dfc1"
+      "after": "596f8045fccca7c187ef692e2ade37bef44448bc27338a834c4f323b4077a116"
     },
     "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt": {
       "before": "7a53e03c62c9afeed7df8d78756d77262a4c9ff161a7d674569271c5ac1cde80",
-      "after": "3f0a39197e2b088d9a7fb88eb2d072987732848d440493f65c9c277552c61f4a"
+      "after": "beb4ae92b09f04d24d3989856c99eeed5306aef609f59876d2a8054c4146efd7"
     }
   },
   "navigation": {
