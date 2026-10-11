@@ -28,11 +28,12 @@ jobs:
         run: |
           git cat-file -e "$REVIEW_SOURCE_REF^{commit}" || git fetch origin "$REVIEW_SOURCE_REF" --depth=1
           node theology-wiki/tools/build.cjs
+          node theology-wiki/gospel-comparison-20261011/publication.cjs "$REVIEW_SOURCE_REF"
           node theology-wiki/tools/publication.cjs --amend "$REVIEW_SOURCE_REF" jesus-teacher-of-righteousness-hypothesis
           node --check theology-wiki/assets/js/research-tools.js
           node --check theology-wiki/assets/js/theology-reader.js
           node --test theology-wiki/tests/research.test.cjs
-          node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs
+          node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs theology-wiki/gospel-comparison-20261011/publication.test.cjs
           git diff --stat -- theology-wiki scripts/prepare-interactive-site.py
           git diff --quiet -- theology-wiki scripts/prepare-interactive-site.py
       - name: Report bounded generated text differences for review
@@ -40,7 +41,9 @@ jobs:
         run: |
           node <<'JS'
           const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto'),zlib=require('node:zlib');
-          const paths=cp.execFileSync('git',['diff','--name-only','--','theology-wiki'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const tracked=cp.execFileSync('git',['diff','--name-only','--','theology-wiki'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const added=cp.execFileSync('git',['ls-files','--others','--exclude-standard','--','theology-wiki'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const paths=[...new Set([...tracked,...added])].sort();
           const files=[];let bytes=0;
           for(const path of paths){
             if(!/^theology-wiki\/[a-zA-Z0-9_./-]+\.(?:json|md|txt|html|js|css|csv|cjs)$/.test(path)||!fs.existsSync(path)){console.log('Not exported:',path);continue;}
@@ -67,6 +70,7 @@ jobs:
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
+          python theology-wiki/gospel-comparison-20261011/browser.py
           python theology-wiki/tests/teacher_publication_checks.py
           python theology-wiki/tests/browser.py
       - name: Verify actual hosted content after master publication

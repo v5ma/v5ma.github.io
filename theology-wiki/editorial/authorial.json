@@ -676,6 +676,33 @@
       "claimType": "Historical conjecture and passage-level interpretation",
       "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
       "art": ""
+    },
+    {
+      "slug": "living-jesus-thomas-john-and-synoptics",
+      "title": "The Living Jesus in Thomas, John and the Synoptic Gospels",
+      "summary": "Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.",
+      "sourceIds": [],
+      "externalSources": [
+        "gospel-20261011-inventory",
+        "gospel-20261011-thomas",
+        "gospel-20261011-john5",
+        "gospel-20261011-matthew22",
+        "gospel-20261011-koester",
+        "gospel-20261011-deconick",
+        "gospel-20261011-goodacre",
+        "gospel-20261011-greek"
+      ],
+      "aliases": [
+        "Living Jesus Thomas John Synoptic Gospels",
+        "Thomas 52 dead prophets God of the living",
+        "Gospel of Thomas reconciliation"
+      ],
+      "category": "jesus",
+      "kind": "Developed article",
+      "updated": "2026-10-11",
+      "claimType": "Comparative textual interpretation and historical inquiry",
+      "attribution": "Authorial working edition developed with AI assistance for the October 2026 Gospel comparison. This is current interpretive synthesis, not a newly recovered historical conversation or verbatim quotation. Ancient passages, scholarly arguments and constructive interpretations retain their distinct attribution.",
+      "art": ""
     }
   ],
   "references": [
@@ -1063,6 +1090,62 @@
       "url": "https://ebible.org/engwebp/1CO11.htm",
       "scope": "Primary chapter consulted for the meal divisions, received supper tradition and treatment of people without food. Its application to Christic self-formation is a constructive interpretation, not a claim of ancient neuroscience.",
       "accessed": "2026-09-06"
+    },
+    {
+      "id": "gospel-20261011-inventory",
+      "title": "Christopher W. Skinner: Gospel of Thomas, NASSCAL e-Clavis",
+      "url": "https://www.nasscal.com/e-clavis-christian-apocrypha/gospel-of-thomas/",
+      "scope": "Specialist manuscript inventory and research overview. Surviving-copy dates are not assigned as composition dates, and disputed relationships are not presented as consensus.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-thomas",
+      "title": "Gospel of Thomas, translated by Mark M. Mattison",
+      "url": "https://www.gospels.net/thomas/",
+      "scope": "Full modern translation of the surviving Coptic sayings, consulted for passage comparison. This is translation access, not direct manuscript collation or a recovered transcript of Jesus.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-john5",
+      "title": "John 5:39–47, NRSVUE",
+      "url": "https://www.biblegateway.com/passage/?search=John+5%3A39-47&version=NRSVUE",
+      "scope": "Primary passage in modern translation: scripture as testimony, coming to Jesus for life, and the continuing appeal to Moses. The comparative inference is distinguished from demonstrated literary dependence.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-matthew22",
+      "title": "Matthew 22, USCCB Bible",
+      "url": "https://bible.usccb.org/bible/matthew/22",
+      "scope": "Primary chapter and institutional explanatory notes, consulted for the distinct tax, resurrection, commandment and David/Messiah controversies. The episodes are not collapsed into one dispute.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-koester",
+      "title": "Helmut Koester and Elaine Pagels: interviews on the Gospel of Thomas",
+      "url": "https://www.pbs.org/wgbh/pages/frontline/shows/religion/story/thomas.html",
+      "scope": "The scholars’ own published interviews about Thomas and early Jesus tradition. Their historical arguments are attributed positions, not proof of first-century composition or a statement of consensus.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-deconick",
+      "title": "April DeConick: What Is a Kernel Thomas?",
+      "url": "https://forbiddengospels.blogspot.com/2007/05/what-is-kernel-thomas.html",
+      "scope": "DeConick’s explanation of her own early-kernel and communal-accrual model. The account is treated as a scholarly reconstruction rather than a sequence of securely excavated literary layers.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-goodacre",
+      "title": "Mark Goodacre: Response to DeConick",
+      "url": "https://ntweblog.blogspot.com/2007/02/response-to-deconick.html",
+      "scope": "Goodacre’s own response on Thomas and the Synoptics, including the discussion allowing other oral traditions. Dependence and survival of some older tradition are kept distinct.",
+      "accessed": "2026-10-11"
+    },
+    {
+      "id": "gospel-20261011-greek",
+      "title": "Andrew Bernhard: Greek fragments of the Gospel of Thomas",
+      "url": "https://www.agraphos.com/thomas/greek/",
+      "scope": "Greek-witness editions and translations based on facsimiles, consulted for the different placement of the wood-and-stone material in P.Oxy.1. This is published edition access, not new manuscript collation.",
+      "accessed": "2026-10-11"
     }
   ]
 }
