@@ -881,12 +881,12 @@
       "kind": "Developed article",
       "chapters": [],
       "source": "content/developed/living-jesus-thomas-john-and-synoptics.md",
-      "sourceSha256": "4f9248649f04f694fdc1a7b9bb197801881806ba27c311cc0e05127442c7113b",
+      "sourceSha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a",
       "narration": "data/listening/living-jesus-thomas-john-and-synoptics.json",
-      "narrationSha256": "e265b003ccab692d083661b7ddcb9a6feca6449c226701571fc4b2e75f104fb9",
+      "narrationSha256": "ac9c703588d737214bac58c886b30f030febf73f3878a6704d53d18bb69699c3",
       "transcript": "products/transcripts/living-jesus-thomas-john-and-synoptics.txt",
       "segments": 97,
-      "words": 3783
+      "words": 3791
     },
     {
       "slug": "computational-god-consciousness-and-theodicy",
