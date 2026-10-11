@@ -26,6 +26,18 @@ function integrate(root=path.resolve(__dirname,'..')){
   if(prior)Object.assign(prior,row);else{pages.push(row);by.set(row.slug,row);}
  }
  for(const slug of cfg.conditionalScope?.pages||[]){const p=by.get(slug);if(!p)throw Error('Unknown conjecture-scope page '+slug);p.authorialScope=cfg.conditionalScope.statement;p.claimType='Conditional philosophical conjecture';}
+ // The main builder reconstructs generated rows. Restore their recorded proof from
+ // the corpus, without treating a rebuild or changed working text as publication.
+ if(fs.existsSync(path.join(root,'public-corpus/page-index.json'))){
+  const saved=json('public-corpus/page-index.json'),meta=json('public-corpus/snapshot.json');
+  if(hash(read('public-corpus/page-index.json'))!==meta.indexSha256)throw Error('Corpus index mismatch during reader integration');
+  const records=new Map(saved.map(r=>[r.slug,r]));if(records.size!==saved.length)throw Error('Duplicate corpus record');
+  for(const p of pages){
+   const r=records.get(p.slug);if(!r)continue;
+   if(!safe(p.path)||r.sourcePath!=='theology-wiki/content/'+p.path)throw Error('Recorded publication path mismatch '+p.slug);
+   p.publication={sourceUrl:r.sourceUrl,historyUrl:r.sourceHistoryUrl,exactUrl:r.exactSourceUrl,archiveUrl:r.archiveUrl,sourcePath:r.sourcePath,sha256:r.sourceSha256,revision:r.sourceRevision,sourceCommitterDate:r.sourceCommitterDate,canonicalSourceUrl:r.canonicalSourceUrl||null,canonicalHistoryUrl:r.canonicalHistoryUrl||null,transcriptExactUrl:r.transcriptExactUrl||null};
+  }
+ }
  const relations=json('data/relationships.json');relations.edges=relations.edges.filter(e=>e.origin!==ORIGIN);
  const bridge='computational-god-capabilities-bridge';
  for(const [slug,why] of Object.entries(cfg.bridgeConnections)){

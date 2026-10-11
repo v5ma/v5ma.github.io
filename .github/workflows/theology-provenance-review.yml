@@ -29,6 +29,7 @@ jobs:
           node-version: '22'
       - name: Verify the public corpus and reader data without writing repository files
         run: |
+          set -o pipefail
           mkdir -p publication-test-output
           node theology-wiki/tools/publication.cjs --check | tee publication-test-output/corpus-check.json
           node --test theology-wiki/tests/research.test.cjs > publication-test-output/node-tests.log 2>&1 || { cat publication-test-output/node-tests.log; exit 1; }
@@ -38,20 +39,41 @@ jobs:
       - name: Verify original source preservation
         run: |
           git fetch origin 9e5fd3f205015c84b0973061f0aec54ef81dd794 --depth=1
+          node - <<'JS'
+          const revision=require('./theology-wiki/research-expansion-20260918/teacher-revision.cjs');
+          const prior=require('./theology-wiki/research-expansion-20260918/revision-receipt.json');
+          revision.applyDerivativeRevision(Object.fromEntries(Object.entries(prior.files).map(([p,v])=>[p,v.after])));
+          JS
           python - <<'PY'
-          import subprocess,json
+          import subprocess,json,hashlib
           from pathlib import Path
           base='9e5fd3f205015c84b0973061f0aec54ef81dd794'
           prefixes=['theology-sources/','theology-wiki/content/','theology-wiki/editorial/authorial-articles/','theology-wiki/research-notes/','theology-wiki/authority/manuscripts/','theology-wiki/products/media/','theology-wiki/planning/']
-          checked=[]
+          receipt=json.loads(Path('theology-wiki/research-expansion-20260918/teacher-revision-20261011.json').read_text())
+          canonical='theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md'
+          developed='theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md'
+          assert canonical=='theology-wiki/'+receipt['canonical']['path']
+          approved={canonical:receipt['canonical']['sha256'],developed:receipt['files'][developed.removeprefix('theology-wiki/')]['after']}
+          checked=[];revised=[]
           for item in subprocess.check_output(['git','ls-tree','-r',base],text=True).splitlines():
             info,p=item.split('\t',1)
             if not any(p.startswith(x) for x in prefixes):continue
             assert Path(p).is_file(),p
-            assert info.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
-            checked.append(p)
-          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked},indent=2)+'\n')
-          print('Verified',len(checked),'unchanged original files.')
+            if p in approved:
+              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==approved[p],'Unapproved Teacher revision: '+p
+              if p==canonical:
+                archived='theology-wiki/'+receipt['historical_canonical']['path']
+                assert info.split()[2]==receipt['historical_canonical']['git_blob']==subprocess.check_output(['git','hash-object',archived],text=True).strip(),'Historical canonical changed'
+              else:
+                prior=subprocess.check_output(['git','show',base+':'+p])
+                assert hashlib.sha256(prior).hexdigest()==receipt['files'][p.removeprefix('theology-wiki/')]['before'],'Unexpected Teacher baseline'
+              revised.append(p)
+            else:
+              assert info.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
+              checked.append(p)
+          assert sorted(revised)==sorted(approved),'Both approved Teacher paths must exist in the original baseline'
+          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved}},indent=2)+'\n')
+          print('Verified',len(checked),'unchanged original files and exactly two approved Teacher revision paths.')
           PY
       - name: Build the actual Cloudflare distribution
         run: node scripts/cloudflare-theology-build.mjs cf-validation

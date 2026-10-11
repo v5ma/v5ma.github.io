@@ -12,7 +12,22 @@
   "indexedPages": 438,
   "sourceConversations": 354,
   "markdownSources": 559,
-  "indexSha256": "a109a3a94e60bd89a913c08ca94f687ed94b1ca1d9a8260e447dc153fdd2b29d",
+  "indexSha256": "b762b6a580a6657a88d992f0b4171fae262391750b748bad9a0e5506174f1356",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
-  "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed."
+  "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
+  "amendments": [
+    {
+      "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+      "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "markdownSources": [
+        "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+      ]
+    }
+  ],
+  "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions."
 }

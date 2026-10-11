@@ -41,3 +41,24 @@ test('Amendments reject conversations, unsafe slugs and incomplete commit identi
  const pages=json('data/page-index.json');pages[0].sourceFile='original-public-conversation.txt';write('data/page-index.json',pages);
  const before=outputs.map(f=>P.hash(read(f)));assert.throws(()=>P.amendArticle(root,ref,'teacher'),/non-conversation article/);assert.deepEqual(outputs.map(f=>P.hash(read(f))),before);
 }));
+test('Reader integration restores recorded provenance without redating rebuilt or changed articles',()=>fixture(({root,write,read,json,commit})=>{
+ const saved=json('data/page-index.json').map(p=>({slug:p.slug,publication:p.publication}));
+ const corpusFiles=outputs.filter(p=>p.startsWith('public-corpus/')),before=corpusFiles.map(p=>P.hash(read(p)));
+ write('editorial/publication.json',{...json('editorial/publication.json'),version:'fixture',bridgeConnections:{}});
+ write('data/page-index.json',json('data/page-index.json').map(p=>{delete p.publication;p.editionGenerated=true;return p;}));
+ write('content/developed/teacher.md','# teacher\n\nChanged article awaiting verified amendment.\n');
+ write('editorial/authorial-articles/teacher.md','# teacher\n\nChanged canonical argument.\n');
+ write('data/relationships.json',{edges:[]});write('data/graph.json',{related:{teacher:[],unrelated:[]}});
+ write('data/research.json',{paths:[]});write('data/search.json',{ids:['teacher','unrelated'],postings:{}});
+ write('data/listening-library.json',{articles:[]});write('data/build-report.json',{});
+ for(const name of ['san-reader.html','index.html'])write(name,'<html><head></head><body></body></html>\n');
+ for(const file of ['assets/js/publication-tools.js','assets/css/publication.css','assets/js/research-tools.js'])write(file,'/* fixture */\n');
+ P.integrate(root);
+ assert.deepEqual(json('data/page-index.json').map(p=>({slug:p.slug,publication:p.publication})),saved);
+ assert.notEqual(json('data/page-index.json')[0].publication.sha256,P.hash(read('content/developed/teacher.md')));
+ assert.deepEqual(corpusFiles.map(p=>P.hash(read(p))),before);
+ const once=P.hash(read('data/page-index.json'));P.integrate(root);assert.equal(P.hash(read('data/page-index.json')),once);
+ const ref=commit();P.amendArticle(root,ref,'teacher');P.integrate(root);
+ const rebuilt=json('data/page-index.json');assert.equal(rebuilt[0].publication.revision,ref);assert.equal(rebuilt[0].publication.sha256,P.hash(read('content/developed/teacher.md')));assert.deepEqual(rebuilt[1].publication,saved[1].publication);
+ assert.equal(P.check(root).verifiedPages,2);
+}));
