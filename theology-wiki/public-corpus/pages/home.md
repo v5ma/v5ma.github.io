@@ -17,7 +17,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[trump-first-beast-of-revelation|Trump and the First Beast of Revelation]]: The attributed First Beast interpretation with dated cases, Butler reception, shared imagery and a source-linked 148-passage concordance.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions.
 
 ## Read, listen and explore
 
@@ -37,7 +37,7 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[el-in-ancient-egypt|El in Ancient Egypt]]: A focused investigation of Aper-El/Abdiel and what a divine name can establish about contact, worship and religious identity.
 
-[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.
+[[jesus-teacher-of-righteousness-hypothesis|Jesus as the Teacher of Righteousness]]: The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions.
 
 [[moses-volcano-and-exodus-chronology|Moses, the volcano and Exodus chronology]]: A disaster-and-departure reconstruction, the Ahmose dating objection, and the distinction between Thera in Egypt and a volcanic Sinai.
 

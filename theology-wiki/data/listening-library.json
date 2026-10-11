@@ -158,7 +158,7 @@
     {
       "slug": "jesus-teacher-of-righteousness-hypothesis",
       "title": "Jesus as the Teacher of Righteousness",
-      "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
+      "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions.",
       "category": "jesus",
       "kind": "Developed article",
       "chapters": [
@@ -169,12 +169,12 @@
         }
       ],
       "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sourceSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "sourceSha256": "a13d9900302e07c36dffc8e1ae6994740f18d64322ae56714f0e2733bf01287f",
       "narration": "data/listening/jesus-teacher-of-righteousness-hypothesis.json",
-      "narrationSha256": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8",
+      "narrationSha256": "34ba5b4a6dd933710593b412bce5c3664c6cc69bd5f2b51cdc39c434b021dfc1",
       "transcript": "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt",
-      "segments": 178,
-      "words": 7242
+      "segments": 220,
+      "words": 8993
     },
     {
       "slug": "daniel-jubilee-and-the-teachers-time",
