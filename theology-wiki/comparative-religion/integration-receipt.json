@@ -13,12 +13,12 @@
     {
       "path": "research-expansion-20260918/integrate.cjs",
       "before_sha256": "641f9171f09fb4a650338af9847ba4d466872787fe6b19b6978fd0c3b6edc389",
-      "after_sha256": "0f6367c0d7cfe2af93db3329bdb65bc9406f38d5f1acae3a5ea2430cc22cec22"
+      "after_sha256": "b6811508b8cc3482d51c734e459b8d0752cd22cf09dad60e5af1694579fda635"
     },
     {
       "path": "research-expansion-20260918/verify-preservation.cjs",
       "before_sha256": "6f9ed50283aa11303bbfb05720c23419fe38970e09ca9fad8b7b7e7ac07c7006",
-      "after_sha256": "feebf9842264e09809ff43a4954e7090b353141e6f73ed1ee1d36b4872d8543f"
+      "after_sha256": "2489921db1633545ad90baa2f06b0e3449f3d64440e23989add56d14f7fe9afc"
     },
     {
       "path": "research-expansion-20260918/reconcile.cjs",
@@ -28,7 +28,7 @@
     {
       "path": "research-expansion-20260918/expansion.test.cjs",
       "before_sha256": "923d5d178f3c893bb932720b20ce57686d87d35db37e9580c5181122d65ec082",
-      "after_sha256": "fe09eb0008e53c84b9a07c087fff1569d94862ffe4fbcaca681bdd2d78abfab2"
+      "after_sha256": "692f2f958fb1aed5b156ca4d1a0955d42c0e5f9cb366aa7cb672bcb173277439"
     }
   ],
   "scope": "Original main article preserved as exact prefix. Earlier three-article tooling checks the new bounded receipt rather than downgrading metadata; previous receipt bytes remain unchanged."

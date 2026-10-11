@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "revision_date": "2026-10-11",
+  "slug": "jesus-teacher-of-righteousness-hypothesis",
+  "pull_request": "https://github.com/v5ma/v5ma.github.io/pull/230",
+  "review_base_commit": "28e24049f2310d8c0027c04a2424c9491040c330",
+  "scope": "The approved Teacher article expansion and exactly its three generated article/listening/transcript derivatives. Historical receipts, archived conversations, other articles, episode spoken content and recording bytes remain unchanged.",
+  "historical_canonical": {
+    "path": "tests/fixtures/teacher-canonical-before-20261011.md",
+    "source_commit": "c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852",
+    "git_blob": "8250a4017dae7fb5e79228831e7d5b73f55b347f"
+  },
+  "canonical": {
+    "path": "editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+    "sha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6"
+  },
+  "prior_revision_receipt": {
+    "path": "research-expansion-20260918/revision-receipt.json",
+    "sha256": "7c5e77b4754aa87828395faeed4e9a1f3bd100dd2202d0b748660c079cbc5880"
+  },
+  "files": {
+    "content/developed/jesus-teacher-of-righteousness-hypothesis.md": {
+      "before": "807bd09d76d3b5af105772d4641573e30b36e635ec047f87b02d4a660128fe0d",
+      "after": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45"
+    },
+    "data/listening/jesus-teacher-of-righteousness-hypothesis.json": {
+      "before": "0d60c63436305225515e5ca63de992ad5c6efca0e807a1079cb46d3162ee4584",
+      "after": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8"
+    },
+    "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt": {
+      "before": "e48ad3829611c633576fcb5307f7328d57d022294a826e6eb882587073e7e126",
+      "after": "7a53e03c62c9afeed7df8d78756d77262a4c9ff161a7d674569271c5ac1cde80"
+    }
+  }
+}

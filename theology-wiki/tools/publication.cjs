@@ -26,6 +26,18 @@ function integrate(root=path.resolve(__dirname,'..')){
   if(prior)Object.assign(prior,row);else{pages.push(row);by.set(row.slug,row);}
  }
  for(const slug of cfg.conditionalScope?.pages||[]){const p=by.get(slug);if(!p)throw Error('Unknown conjecture-scope page '+slug);p.authorialScope=cfg.conditionalScope.statement;p.claimType='Conditional philosophical conjecture';}
+ // The main builder reconstructs generated rows. Restore their recorded proof from
+ // the corpus, without treating a rebuild or changed working text as publication.
+ if(fs.existsSync(path.join(root,'public-corpus/page-index.json'))){
+  const saved=json('public-corpus/page-index.json'),meta=json('public-corpus/snapshot.json');
+  if(hash(read('public-corpus/page-index.json'))!==meta.indexSha256)throw Error('Corpus index mismatch during reader integration');
+  const records=new Map(saved.map(r=>[r.slug,r]));if(records.size!==saved.length)throw Error('Duplicate corpus record');
+  for(const p of pages){
+   const r=records.get(p.slug);if(!r)continue;
+   if(!safe(p.path)||r.sourcePath!=='theology-wiki/content/'+p.path)throw Error('Recorded publication path mismatch '+p.slug);
+   p.publication={sourceUrl:r.sourceUrl,historyUrl:r.sourceHistoryUrl,exactUrl:r.exactSourceUrl,archiveUrl:r.archiveUrl,sourcePath:r.sourcePath,sha256:r.sourceSha256,revision:r.sourceRevision,sourceCommitterDate:r.sourceCommitterDate,canonicalSourceUrl:r.canonicalSourceUrl||null,canonicalHistoryUrl:r.canonicalHistoryUrl||null,transcriptExactUrl:r.transcriptExactUrl||null};
+  }
+ }
  const relations=json('data/relationships.json');relations.edges=relations.edges.filter(e=>e.origin!==ORIGIN);
  const bridge='computational-god-capabilities-bridge';
  for(const [slug,why] of Object.entries(cfg.bridgeConnections)){
@@ -108,6 +120,63 @@ function snapshot(root,ref){
  write('public-corpus/README.md','# Theology Wiki: Time-stamped Public Backup\n\nThis public Markdown corpus preserves Micah Blumberg\'s Theology Wiki for citation, version comparison, and examination of publication history, including future attribution or plagiarism disputes. Original sources, quoted material, AI replies, and AI-assisted authorial developments retain their stated authorship. It is a preservation record, not a declaration that every quoted idea originated here.\n\nThe corpus contains '+records.length+' indexed reader pages, including full Markdown projections of '+meta.sourceConversations+' already-public source conversations. The source manifest also records '+supplement.length+' Markdown files, including supplementary studies outside the main reader. Nothing was taken from a private repository.\n\n[Open the live reader]('+cfg.reader+'). [Read the publication-verification guide](../PUBLICATION-HISTORY.md). [Browse the page index](page-index.json). [Verify file hashes](manifest-sha256.csv). [Inspect snapshot metadata](snapshot.json). [Inspect all Markdown source hashes](source-manifest.json).\n\nThe snapshot is based on [source revision '+ref+']('+base+'/commit/'+ref+'), whose Git committer date is '+date+'. This is not a newly assigned original-publication date. GitHub\'s separately recorded verification and pull-request events can be inspected through the guide. The [corpus history]('+meta.corpusHistoryUrl+') records later backups. No backdating, external archive capture, or legal priority certification is claimed.\n\nArticle files are byte-identical copies of their reader Markdown at the recorded revision. Conversation projections preserve the complete public transcript with line-ending normalization; exact raw transcript links and hashes are included in the index. Previous source files and their Git histories remain in place.\n\nTo cite an exact source version, use the commit-specific link in the index rather than only a moving master-branch link. To retain a copy independently of this hosting service, download or clone the public repository and retain the manifest with the files.\n\n## Browse the backed-up pages\n\n'+records.map(r=>'['+r.title.replace(/[\[\]]/g,'')+'](pages/'+r.slug+'.md) - [Live reader]('+r.readerUrl+') - [Source history]('+r.sourceHistoryUrl+') - [Exact source]('+r.exactSourceUrl+').').join('\n\n')+'\n');
  write('data/page-index.json',pages);return meta;
 }
+// Preserve unrelated exact-version records when one already-published article is revised.
+// This is a bounded amendment, not a newly dated snapshot of the complete source archive.
+function amend(root,ref,slugs){
+ const {read,json,write}=io(root),cfg=json('editorial/publication.json'),site=path.dirname(root);
+ if(!/^[a-f0-9]{40}$/.test(ref||''))throw Error('A full committed source revision is required');
+ if(!Array.isArray(slugs)||!slugs.length||new Set(slugs).size!==slugs.length||slugs.some(s=>!/^[a-z0-9-]+$/.test(s)))throw Error('Explicit unique article slugs are required');
+ const git=args=>cp.execFileSync('git',['-C',site,...args],{maxBuffer:100*1024*1024});
+ const date=git(['show','-s','--format=%cI',ref]).toString().trim(),base='https://github.com/'+cfg.repository;
+ const records=json('public-corpus/page-index.json'),meta=json('public-corpus/snapshot.json'),pages=json('data/page-index.json'),supplement=json('public-corpus/source-manifest.json');
+ if(hash(read('public-corpus/page-index.json'))!==meta.indexSha256)throw Error('Corpus index mismatch before amendment');
+ if(records.length!==pages.length||new Set(records.map(r=>r.slug)).size!==pages.length)throw Error('Corpus coverage mismatch before amendment');
+ const outputs=[],sourcePaths=new Set(),changedSlugs=[];
+ function committed(source){
+  if(!safe(source)||!source.startsWith('theology-wiki/')||source.startsWith('theology-wiki/public-corpus/')||!source.endsWith('.md'))throw Error('Unsafe amendment source '+source);
+  const local=path.join(site,source);if(fs.lstatSync(local).isSymbolicLink())throw Error('Symlink amendment source '+source);
+  const bytes=fs.readFileSync(local);if(!git(['show',ref+':'+source]).equals(bytes))throw Error('Commit the source first: '+source);return bytes;
+ }
+ // Validate every selected input before writing any output.
+ for(const slug of slugs){
+  const p=pages.find(p=>p.slug===slug),r=records.find(r=>r.slug===slug);
+  if(!p||!r||p.sourceFile||r.transcriptSourcePath||!['Developed article','Bridge study'].includes(p.kind))throw Error('Amendment requires an existing non-conversation article: '+slug);
+  const source='theology-wiki/content/'+p.path;
+  if(!safe(p.path)||r.sourcePath!==source||r.archivePath!=='public-corpus/pages/'+slug+'.md')throw Error('Article path mismatch '+slug);
+  const bytes=committed(source),canonical=r.canonicalSourcePath?committed(r.canonicalSourcePath):null;
+  const sources=[source,...(r.canonicalSourcePath?[r.canonicalSourcePath]:[])];
+  for(const s of sources)if(!supplement.some(x=>x.path===s))throw Error('Missing supplementary source record '+s);
+  if(r.sourceSha256===hash(bytes)&&r.archiveSha256===hash(bytes)&&p.publication?.sha256===hash(bytes)&&(!canonical||r.canonicalSha256===hash(canonical))&&sources.every(s=>supplement.find(x=>x.path===s).sha256===hash(s===source?bytes:canonical))&&hash(read(r.archivePath))===hash(bytes))continue;
+  sourcePaths.add(source);changedSlugs.push(slug);
+  Object.assign(r,{sourceSha256:hash(bytes),sourceBytes:bytes.length,archiveSha256:hash(bytes),archiveBytes:bytes.length,sourceRevision:ref,sourceCommitterDate:date,exactSourceUrl:base+'/blob/'+ref+'/'+encoded(source)});
+  if(canonical){r.canonicalSha256=hash(canonical);sourcePaths.add(r.canonicalSourcePath);}
+  p.publication={...p.publication,sourceUrl:r.sourceUrl,historyUrl:r.sourceHistoryUrl,exactUrl:r.exactSourceUrl,archiveUrl:r.archiveUrl,sourcePath:source,sha256:r.sourceSha256,revision:ref,sourceCommitterDate:date,canonicalSourceUrl:r.canonicalSourceUrl||null,canonicalHistoryUrl:r.canonicalHistoryUrl||null,transcriptExactUrl:null};
+  outputs.push([r.archivePath,bytes.toString('utf8')]);
+ }
+ if(!changedSlugs.length)return {amendedPages:0,amendedMarkdownSources:0,sourceRevision:ref,baselineRevision:meta.sourceRevision,preservedPages:records.length};
+ for(const source of [...sourcePaths].sort()){
+  const item=supplement.find(r=>r.path===source);if(!item)throw Error('Missing supplementary source record '+source);
+  const bytes=committed(source);Object.assign(item,{bytes:bytes.length,sha256:hash(bytes),exactUrl:base+'/blob/'+ref+'/'+encoded(source)});
+ }
+ const amendments=meta.amendments||[],existing=amendments.find(a=>a.sourceRevision===ref);
+ const entry={sourceRevision:ref,sourceCommitterDate:date,sourceCommitUrl:base+'/commit/'+ref,pages:[...new Set([...(existing?.pages||[]),...changedSlugs])].sort(),markdownSources:[...new Set([...(existing?.markdownSources||[]),...sourcePaths])].sort()};
+ if(existing)Object.assign(existing,entry);else amendments.push(entry);
+ meta.amendments=amendments;
+ meta.amendmentScope='The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions.';
+ meta.indexSha256=hash(JSON.stringify(records,null,2)+'\n');
+ const quote=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
+ outputs.push(['public-corpus/page-index.json',records],['public-corpus/source-manifest.json',supplement],['public-corpus/snapshot.json',meta],['data/page-index.json',pages]);
+ outputs.push(['public-corpus/manifest-sha256.csv','slug,archive_path,archive_sha256,archive_bytes,reader_source_path,reader_source_sha256,transcript_sha256\n'+records.map(r=>[r.slug,r.archivePath,r.archiveSha256,r.archiveBytes,r.sourcePath,r.sourceSha256,r.transcriptSha256||''].map(quote).join(',')).join('\n')+'\n']);
+ let guide=read('public-corpus/README.md');
+ for(const slug of changedSlugs){const r=records.find(r=>r.slug===slug);const re=new RegExp('https://github\\.com/'+cfg.repository.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'/blob/[a-f0-9]{40}/'+encoded(r.sourcePath).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');guide=guide.replace(re,r.exactSourceUrl);}
+ const section='<!-- bounded-article-amendments -->\n## Article amendments\n\nThe full snapshot revision above remains the baseline. Only the articles and Markdown sources listed below were amended; all other exact-version records and complete source-conversation projections retain their earlier revisions. These Git dates do not establish first publication or independent timestamp certification.\n\n'+amendments.map(a=>'- ['+a.sourceRevision+']('+a.sourceCommitUrl+'), Git committer date '+a.sourceCommitterDate+': '+a.pages.map(s=>'['+s+'](pages/'+s+'.md)').join(', ')+'.').join('\n')+'\n\n<!-- /bounded-article-amendments -->\n\n';
+ const prior=/<!-- bounded-article-amendments -->[\s\S]*?<!-- \/bounded-article-amendments -->\n*/;
+ if(prior.test(guide))guide=guide.replace(prior,section);else if(guide.includes('## Browse the backed-up pages'))guide=guide.replace('## Browse the backed-up pages',section+'## Browse the backed-up pages');else throw Error('Missing public corpus guide insertion point');
+ outputs.push(['public-corpus/README.md',guide]);
+ for(const [p,value] of outputs)write(p,value);
+ return {amendedPages:changedSlugs.length,amendedMarkdownSources:sourcePaths.size,sourceRevision:ref,baselineRevision:meta.sourceRevision,preservedPages:records.length-changedSlugs.length};
+}
+function amendArticle(root,ref,slug){return amend(root,ref,[slug]);}
 function check(root=path.resolve(__dirname,'..')){
  const {json}=io(root),site=path.dirname(root),records=json('public-corpus/page-index.json'),meta=json('public-corpus/snapshot.json'),pages=json('data/page-index.json');
  if(hash(fs.readFileSync(path.join(root,'public-corpus/page-index.json')))!==meta.indexSha256)throw Error('Corpus index mismatch');
@@ -116,5 +185,5 @@ function check(root=path.resolve(__dirname,'..')){
  for(const r of json('public-corpus/source-manifest.json'))if(hash(fs.readFileSync(path.join(site,r.path)))!==r.sha256)throw Error('Supplementary source mismatch '+r.path);
  return {verifiedPages:records.length,verifiedTranscripts:meta.sourceConversations,verifiedMarkdownSources:meta.markdownSources,sourceRevision:meta.sourceRevision};
 }
-if(require.main===module){try{const root=path.resolve(__dirname,'..'),args=process.argv.slice(2);console.log(JSON.stringify(args[0]==='--snapshot'?snapshot(root,args[1]):args[0]==='--check'?check(root):integrate(root),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
-module.exports={integrate,snapshot,check,hash};
+if(require.main===module){try{const root=path.resolve(__dirname,'..'),args=process.argv.slice(2);console.log(JSON.stringify(args[0]==='--snapshot'?snapshot(root,args[1]):args[0]==='--amend'?amend(root,args[1],args.slice(2)):args[0]==='--check'?check(root):integrate(root),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
+module.exports={integrate,snapshot,amend,amendArticle,check,hash};

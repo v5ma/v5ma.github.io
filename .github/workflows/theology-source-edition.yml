@@ -23,12 +23,39 @@ jobs:
         with:
           node-version: '22'
       - name: Verify deterministic build and original source integrity
+        env:
+          REVIEW_SOURCE_REF: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
+          git cat-file -e "$REVIEW_SOURCE_REF^{commit}" || git fetch origin "$REVIEW_SOURCE_REF" --depth=1
           node theology-wiki/tools/build.cjs
+          node theology-wiki/tools/publication.cjs --amend "$REVIEW_SOURCE_REF" jesus-teacher-of-righteousness-hypothesis
           node --check theology-wiki/assets/js/research-tools.js
           node --check theology-wiki/assets/js/theology-reader.js
           node --test theology-wiki/tests/research.test.cjs
-          git diff --exit-code -- theology-wiki scripts/prepare-interactive-site.py
+          node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs
+          git diff --stat -- theology-wiki scripts/prepare-interactive-site.py
+          git diff --quiet -- theology-wiki scripts/prepare-interactive-site.py
+      - name: Report bounded generated text differences for review
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto'),zlib=require('node:zlib');
+          const paths=cp.execFileSync('git',['diff','--name-only','--','theology-wiki'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          const files=[];let bytes=0;
+          for(const path of paths){
+            if(!/^theology-wiki\/[a-zA-Z0-9_./-]+\.(?:json|md|txt|html|js|css|csv|cjs)$/.test(path)||!fs.existsSync(path)){console.log('Not exported:',path);continue;}
+            const data=fs.readFileSync(path);bytes+=data.length;
+            if(data.length>12*1024*1024||bytes>32*1024*1024)throw Error('Review output exceeds bounded text limit');
+            files.push({path,sha256:crypto.createHash('sha256').update(data).digest('hex'),content:data.toString('utf8')});
+          }
+          const payload=Buffer.from(JSON.stringify({head:process.env.GITHUB_SHA,files}));
+          const compressed=zlib.gzipSync(payload);if(compressed.length>4*1024*1024)throw Error('Compressed review output exceeds limit');
+          const encoded=compressed.toString('base64');
+          console.log('THEOLOGY_REVIEW_DELTA_BEGIN '+crypto.createHash('sha256').update(compressed).digest('hex'));
+          for(let i=0;i<encoded.length;i+=8192)console.log('THEOLOGY_REVIEW_DELTA '+encoded.slice(i,i+8192));
+          console.log('THEOLOGY_REVIEW_DELTA_END');
+          console.log(JSON.stringify({generatedTextFiles:files.length,uncompressedBytes:payload.length,compressedBytes:compressed.length,paths:files.map(f=>f.path)}));
+          JS
       - name: Install browser and image tooling
         run: |
           python -m pip install --quiet playwright==1.57.0 Pillow==11.3.0
@@ -40,6 +67,7 @@ jobs:
           python -m http.server 4174 --bind 127.0.0.1 > /tmp/theology-http.log 2>&1 &
           SERVER=$!
           trap 'kill $SERVER' EXIT
+          python theology-wiki/tests/teacher_publication_checks.py
           python theology-wiki/tests/browser.py
       - name: Verify actual hosted content after master publication
         if: github.ref == 'refs/heads/master'
@@ -50,6 +78,8 @@ jobs:
           from pathlib import Path
           import hashlib,json,os,time,urllib.request
           files=['theology-wiki/san-reader.html','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/js/theology-reader.js','theology-wiki/data/build-report.json']
+          slug='jesus-teacher-of-righteousness-hypothesis'
+          files += [f'theology-wiki/content/developed/{slug}.md',f'theology-wiki/public-corpus/pages/{slug}.md',f'theology-wiki/data/listening/{slug}.json','theology-wiki/data/page-index.json']
           expected={p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in files}
           observed={}
           for attempt in range(36):
@@ -67,6 +97,7 @@ jobs:
           assert all(item['matches_commit'] for item in observed.values()),observed
           print('Hosted reader HTML, scripts and build report match the published commit.')
           PY
+          SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/teacher_publication_checks.py
           SITE_ORIGIN=https://v5ma.github.io python theology-wiki/tests/browser.py
       - name: Record source identity and review files
         if: always()

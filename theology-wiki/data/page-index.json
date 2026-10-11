@@ -7564,9 +7564,10 @@
     "date": "2025-09-25",
     "turnCount": 25,
     "primaryExcerpt": "Yes, Herod was historically the Roman-appointed King of Judea from 37 BCE until his death in 4 BCE, a period known as the Herodian Kingdom. He was a powerful ruler, responsible for large-scale building projects like the Temple in Jerusalem and the fortress of Herodium, though he is also infamously remembered in Christian tradition for the Massacre of the Innocents. \r\n\r\nThe first Messiah from 150 BCE was probably the real Jesus Joshua Jeshua.\r\n\r\nThe convention idea is that Jesus was a baby when Herod died or really 4 years after Herod died Jesus is thought to have been born in 00 right?, that would be before Jesus made Christianity, so the conventional timeline that Jesus died in 30 AD just doesn't make sense if Herod was persecuting Christians decades before that.",
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-origins"
     ],
     "aliases": [],
@@ -17722,7 +17723,7 @@
     ],
     "art": "",
     "kind": "Developed article",
-    "updated": "2026-09-18",
+    "updated": "2026-10-11",
     "attribution": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation.",
     "featured": true,
     "aliases": [
@@ -17773,18 +17774,30 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 16,
+    "readMinutes": 38,
     "related": [
       "kenite-hypothesis-and-yahweh-origins",
-      "christ-as-an-inner-model",
-      "ai-re-dates-dead-sea-scrolls",
+      "tor-thomas-and-gnostic-transmission",
+      "james-and-contested-succession",
+      "thomas-sayings-and-transmission",
+      "onias-egypt-and-priestly-continuity",
       "gnosticism-and-temple-trauma",
+      "manuscripts-movements-and-survival",
+      "research-method",
+      "christ-as-an-inner-model",
       "cognitive-gnosticism",
+      "sanctuary-community-and-body",
+      "scripture-power-and-repair",
+      "melchizedek-priesthood-and-transmission",
+      "daniel-jubilee-and-the-teachers-time",
+      "apocalyptic-repair-theology",
       "teacher-of-righteousness-vs-gnostic-jesus",
-      "pilate-life-timeline",
+      "herod-timeline-clarification",
       "daniel-and-teacher-of-righteousness",
-      "samaritan-texts-and-sacred-authority",
-      "daniel-jubilee-and-the-teachers-time"
+      "ai-re-dates-dead-sea-scrolls",
+      "argument-challenges",
+      "pilate-life-timeline",
+      "samaritan-texts-and-sacred-authority"
     ],
     "backlinkCount": 21,
     "backlinks": [
@@ -17813,12 +17826,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md",
       "sourcePath": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sha256": "807bd09d76d3b5af105772d4641573e30b36e635ec047f87b02d4a660128fe0d",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "sha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "revision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+      "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
       "transcriptExactUrl": null
@@ -18068,11 +18081,12 @@
       "rival-continuations-and-restoration",
       "computational-god-capabilities-bridge"
     ],
-    "backlinkCount": 26,
+    "backlinkCount": 27,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
       "ukraine-russia-forecast-record",
+      "jesus-teacher-of-righteousness-hypothesis",
       "antichrist-as-a-pattern-of-conduct",
       "religion-for-conscious-robots",
       "faith-as-deliberate-joy",
@@ -18987,9 +19001,10 @@
       "thomas-sayings-and-transmission",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 22,
+    "backlinkCount": 23,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism",
       "christ-as-an-inner-model",
       "sacred-inheritance-and-rival-continuations",
@@ -19187,9 +19202,10 @@
       "samaritan-texts-and-sacred-authority",
       "apocalypse-and-repair"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 13,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "sacred-inheritance-and-rival-continuations",
       "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
@@ -19371,9 +19387,10 @@
       "research-roadmap",
       "ai-re-dates-dead-sea-scrolls"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 13,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "manuscripts-movements-and-survival",
       "inner-formation-texts-and-material-witnesses",
@@ -19544,9 +19561,10 @@
       "jewish-apocalyptic-repair-timeline",
       "sacred-inheritance-and-rival-continuations"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 13,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
@@ -19721,6 +19739,7 @@
       "computational-god-consciousness-and-theodicy",
       "computational-god-capabilities-bridge"
     ],
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-divine-immanence.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-divine-immanence.md",
@@ -19733,8 +19752,7 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/computational-divine-immanence.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/computational-divine-immanence.md",
       "transcriptExactUrl": null
-    },
-    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
+    }
   },
   {
     "kind": "Developed article",
@@ -19953,9 +19971,10 @@
       "james-and-contested-succession",
       "sanctuary-community-and-body"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 13,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "daniel-jubilee-and-the-teachers-time",
       "james-and-contested-succession",
@@ -20070,9 +20089,10 @@
       "jesus-and-biblical-figures",
       "sanctuary-community-and-body"
     ],
-    "backlinkCount": 10,
+    "backlinkCount": 11,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
       "sanctuary-community-and-body",
@@ -20169,9 +20189,10 @@
       "jesus-and-biblical-figures",
       "ai-re-dates-dead-sea-scrolls"
     ],
-    "backlinkCount": 11,
+    "backlinkCount": 12,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "james-and-contested-succession",
       "sanctuary-community-and-body",
@@ -20321,8 +20342,9 @@
       "connected-arguments",
       "samaritan-texts-and-sacred-authority"
     ],
-    "backlinkCount": 9,
+    "backlinkCount": 10,
     "backlinks": [
+      "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "samaritan-texts-and-sacred-authority",
       "inner-formation-texts-and-material-witnesses",
@@ -20944,8 +20966,9 @@
       "jesus-teacher-of-righteousness-hypothesis",
       "source-atlas"
     ],
-    "backlinkCount": 3,
+    "backlinkCount": 4,
     "backlinks": [
+      "jesus-teacher-of-righteousness-hypothesis",
       "exodus-to-temple-competing-chronologies",
       "manuscripts-movements-and-survival",
       "source-atlas"
@@ -21304,9 +21327,10 @@
       "gnosticism-and-temple-trauma",
       "religion-for-conscious-robots"
     ],
-    "backlinkCount": 7,
+    "backlinkCount": 8,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "cognitive-gnosticism",
       "gnosticism-and-temple-trauma",
       "samaritan-texts-and-sacred-authority",
@@ -22614,6 +22638,8 @@
       "computational-god-consciousness-and-theodicy",
       "computational-god-capabilities-bridge"
     ],
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
+    "claimType": "Conditional philosophical conjecture",
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-argument-map.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-argument-map.md",
@@ -22626,9 +22652,7 @@
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
-    },
-    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
-    "claimType": "Conditional philosophical conjecture"
+    }
   },
   {
     "slug": "book-contents",
@@ -22877,6 +22901,7 @@
     "category": "machines",
     "updated": "2026-10-03",
     "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",
+    "claimType": "Conditional philosophical conjecture",
     "path": "developed/computational-god-consciousness-and-theodicy.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -22893,19 +22918,9 @@
     "references": [],
     "readMinutes": 12,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-computational-god-consciousness-and-theodicy",
     "xrDeckId": "theology-reader",
-    "related": [
-      "publication-history",
-      "computational-divine-immanence",
-      "computational-argument-map",
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinks": [
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinkCount": 1,
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-consciousness-and-theodicy.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-consciousness-and-theodicy.md",
@@ -22919,7 +22934,16 @@
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-consciousness-and-theodicy.md",
       "transcriptExactUrl": null
     },
-    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
+    "related": [
+      "publication-history",
+      "computational-divine-immanence",
+      "computational-argument-map",
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinks": [
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinkCount": 1
   },
   {
     "slug": "computational-god-capabilities-bridge",
@@ -22928,6 +22952,7 @@
     "category": "machines",
     "updated": "2026-10-03",
     "summary": "Explore what could follow if the assumptions behind computational reality, divine immanence, and conscious organization are correct; connect the papers, news articles, and related conjectures.",
+    "claimType": "Conditional philosophical conjecture",
     "path": "developed/computational-god-capabilities-bridge.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -22948,9 +22973,22 @@
     "references": [],
     "readMinutes": 13,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-computational-god-capabilities-bridge",
     "xrDeckId": "theology-reader",
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/computational-god-capabilities-bridge.md",
+      "sourcePath": "theology-wiki/content/developed/computational-god-capabilities-bridge.md",
+      "sha256": "7841356670993bfea596a1b20033520d7ea89d29057bd7ffb8e530b71bc6ac4c",
+      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
+      "transcriptExactUrl": null
+    },
     "related": [
       "computational-god-consciousness-and-theodicy",
       "computational-divine-immanence",
@@ -22980,21 +23018,7 @@
       "computational-god-consciousness-and-theodicy",
       "cosmic-thought-and-transcendence"
     ],
-    "backlinkCount": 14,
-    "publication": {
-      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/computational-god-capabilities-bridge.md",
-      "sourcePath": "theology-wiki/content/developed/computational-god-capabilities-bridge.md",
-      "sha256": "7841356670993bfea596a1b20033520d7ea89d29057bd7ffb8e530b71bc6ac4c",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
-      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
-      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/computational-god-capabilities-bridge.md",
-      "transcriptExactUrl": null
-    },
-    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
+    "backlinkCount": 14
   },
   {
     "slug": "cosmic-thought-and-transcendence",
@@ -23003,6 +23027,7 @@
     "category": "machines",
     "updated": "2026-09-09",
     "summary": "The existing September 9 essay distinguishes a physically instantiated cosmic thinker from the transcendent ground and connects power with accountability.",
+    "claimType": "Conditional philosophical conjecture",
     "path": "developed/cosmic-thought-and-transcendence.md",
     "topic": "God, minds & machines",
     "tags": [
@@ -23019,17 +23044,9 @@
     "references": [],
     "readMinutes": 5,
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
-    "claimType": "Conditional philosophical conjecture",
     "xrRoomId": "theology-cosmic-thought-and-transcendence",
     "xrDeckId": "theology-reader",
-    "related": [
-      "computational-god-capabilities-bridge",
-      "publication-history"
-    ],
-    "backlinks": [
-      "computational-god-capabilities-bridge"
-    ],
-    "backlinkCount": 1,
+    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends.",
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/cosmic-thought-and-transcendence.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/cosmic-thought-and-transcendence.md",
@@ -23043,7 +23060,14 @@
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/authority/manuscripts/cosmic-thought-and-transcendence.md",
       "transcriptExactUrl": null
     },
-    "authorialScope": "Micah Blumberg is exploring a conditional conjecture: this could describe reality if the underlying assumptions and proposed connections are correct. He does not know for sure and is not asking readers to accept it as established truth or a required belief. The linked papers and articles explain the reasoning and the assumptions on which it depends."
+    "related": [
+      "computational-god-capabilities-bridge",
+      "publication-history"
+    ],
+    "backlinks": [
+      "computational-god-capabilities-bridge"
+    ],
+    "backlinkCount": 1
   },
   {
     "slug": "publication-history",
@@ -23071,14 +23095,6 @@
     "claimType": "Publication and preservation guide",
     "xrRoomId": "theology-publication-history",
     "xrDeckId": "theology-reader",
-    "related": [],
-    "backlinks": [
-      "home",
-      "computational-god-consciousness-and-theodicy",
-      "computational-god-capabilities-bridge",
-      "cosmic-thought-and-transcendence"
-    ],
-    "backlinkCount": 4,
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/publication-history.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/publication-history.md",
@@ -23091,6 +23107,14 @@
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/PUBLICATION-HISTORY.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/PUBLICATION-HISTORY.md",
       "transcriptExactUrl": null
-    }
+    },
+    "related": [],
+    "backlinks": [
+      "home",
+      "computational-god-consciousness-and-theodicy",
+      "computational-god-capabilities-bridge",
+      "cosmic-thought-and-transcendence"
+    ],
+    "backlinkCount": 4
   }
 ]
