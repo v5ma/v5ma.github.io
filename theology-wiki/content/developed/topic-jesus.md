@@ -21,6 +21,8 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 [[scripture-power-and-repair|Scripture, power and the work of repair]]: The Samuel/Micah inquiry examines moral differences within inherited scripture, including mixed cases that complicate an easy division into good and bad figures.
 
+[[living-jesus-thomas-john-and-synoptics|The Living Jesus in Thomas, John and the Synoptic Gospels]]: Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.
+
 ## Browse the source discussions
 
 These 34 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

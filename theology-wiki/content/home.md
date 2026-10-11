@@ -89,6 +89,8 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[thomas-sayings-and-transmission|Thomas, sayings and transformed understanding]]: Compare communal succession, interpretive transformation, Greek witnesses and material carriers without collapsing the work, its copies and its proposed inheritance.
 
+[[living-jesus-thomas-john-and-synoptics|The Living Jesus in Thomas, John and the Synoptic Gospels]]: Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.
+
 ## Explore a subject
 
 [[topic-gnosis|Gnosticism & awakening]]: Divine sparks, inner models, archons and the work of changing a mind.
@@ -111,4 +113,4 @@ Theology asks what we inherit, whom we trust, how a mind changes and what repair
 
 [[computational-argument-map|The computational theology argument map]] connects the new sources and ten research questions. [[sources-index|The conversation archive]] preserves 354 original chats. [[connections|Explained relationships]] describe why selected pages belong together. [[forecast-ledger|The forecast register]] distinguishes dated predictions, interpretation updates and recovery leads. [[image-collection|Image credits]] and the [[research-method|editorial method]] keep attribution and evidence visible.
 
-29 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.
+30 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.

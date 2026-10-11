@@ -8,7 +8,7 @@ That is the constructive possibility explored here. A compatible reading does no
 
 A successful reconciliation answers the second question. It may remove an objection to the third, but it cannot replace its evidence. Conversely, a late surviving manuscript does not prove that every saying in it was newly invented when that manuscript was copied. The distinction between a surviving witness and the age of its contents matters throughout [[manuscripts-movements-and-survival|the history of manuscripts and movements]].
 
-Thomas survives complete in a fourth-century Coptic manuscript, alongside earlier Greek fragments. Its conventional division contains 114 sayings. The date of the collection's composition, its layers, its relationship to the canonical Gospels and the adequacy of the label “Gnostic” remain disputed. Christopher Skinner's scholarly reference survey explicitly reports the absence of widespread agreement on these questions. A flat description such as “a second-century Gnostic reversal of Jesus” settles several controversies before examining the evidence.[1]
+Thomas survives complete in a fourth-century Coptic manuscript, alongside earlier Greek fragments. Its conventional division contains 114 sayings. The date of the collection's composition, its possible development over time, its relationship to the canonical Gospels and the adequacy of the label “Gnostic” remain disputed. Christopher Skinner's scholarly reference survey explicitly reports the absence of widespread agreement on these questions. A flat description such as “a second-century Gnostic reversal of Jesus” settles several controversies before examining the evidence.[1]
 
 ## Moses and Jonah belong to a larger scriptural conversation
 
@@ -32,7 +32,7 @@ Thomas is different in literary form: a sayings collection rather than a continu
 
 ## The living Jesus and the dead prophets
 
-The prologue identifies the speaker as the Living Jesus and connects the interpretation of his sayings with overcoming death. This makes recognition and lived understanding central to the collection. It does not explicitly state that Jesus never died, could not die, or had no need of resurrection. Those are larger theological conclusions that cannot be obtained simply from the title “living” or from the absence of a passion narrative.[7]
+The prologue identifies the speaker as the Living Jesus; saying 1 connects the interpretation of his sayings with overcoming death. This makes recognition and lived understanding central to the collection. It does not explicitly state that Jesus never died, could not die, or had no need of resurrection. Those are larger theological conclusions that cannot be obtained simply from the title “living” or from the absence of a passion narrative.[7]
 
 Thomas 52 begins with disciples asserting that twenty-four prophets in Israel spoke about Jesus. His response contrasts the living person before them with the dead about whom they are speaking. The dialogue does not explicitly say that the prophets were fraudulent, that their God was evil, or that nobody survives death. Its rebuke addresses the disciples' attention: the living speaker is being neglected in favor of an appeal to past witnesses.[8]
 
@@ -68,7 +68,7 @@ The compatible lens is participation now alongside fulfillment still to come. Th
 
 Thomas 101 holds together demanding language about both hating and loving parents. Luke 14:26 also uses hate language; Matthew 10:37 expresses the demand through loving relatives more than Jesus. Those canonical parallels support a reading in which discipleship reorders loyalties rather than authorizing abuse.[14]
 
-Thomas' fuller saying also distinguishes a mother associated with ordinary life from a true mother who gives life; part of the wording is damaged or reconstructed in translations. That final clause matters. Reading the paradox through two kinds of belonging is defensible. Claiming that the saying explicitly explains every parent as a vessel of the same divine spark goes beyond its words. An ethical reading can reject cruelty without pretending that its entire metaphysics has been reconstructed.[14]
+Thomas' fuller saying also contrasts a damaged statement about Jesus' mother with a true mother who gives life; translations reconstruct the damaged wording differently. That final clause matters. Reading the paradox through two kinds of belonging is defensible. Claiming that the saying explicitly explains every parent as a vessel of the same divine spark goes beyond its words. An ethical reading can reject cruelty without pretending that its entire metaphysics has been reconstructed.[14]
 
 ### Fasting, prayer and almsgiving
 
@@ -114,12 +114,12 @@ The constructive theological proposal can stand without those extra historical c
 
 The dead-prophets objection does not force a contradiction between Thomas 52 and the Synoptic resurrection debate. Canonical texts themselves distinguish biological death, spiritual death and life in relation to God. John provides an especially close analogy for the difference between scriptural testimony and the living reality it identifies. Thomas' other sayings preserve enough Jewish and Synoptic connections to make a theory of total historical severance untenable.
 
-Some further reconciliations are plausible but require more assumptions. Ritual practice, the scope of resurrection and the metaphysics of light should remain open inquiries. The result is a more precise foundation for understanding Thomas as a possible participant in early Jesus tradition: neither a guaranteed transcript of Jesus nor a text disqualified by a contradiction that disappears when its terms are carefully distinguished.
+Some further reconciliations are plausible but require more assumptions. Ritual practice, the scope of resurrection and the metaphysics of light should remain open inquiries. The result is a more precise foundation for understanding Thomas as a possible participant in early Jesus tradition: neither a guaranteed transcript of Jesus nor a text disqualified by an alleged contradiction that need not arise when its terms are carefully distinguished.
 
 ## Sources and further reading
 
 1. Christopher W. Skinner, [Gospel of Thomas, NASSCAL e-Clavis](https://www.nasscal.com/e-clavis-christian-apocrypha/gospel-of-thomas/), manuscript inventory and research overview. Consulted 11 October 2026. Manuscript dates are distinguished from composition dates.
-2. [Matthew 4](https://bible.usccb.org/bible/matthew/4), especially 4:1–11; [Luke 9](https://bible.usccb.org/bible/luke/9), especially 9:28–36. The new-Exodus comparison is an interpretation of these narrative features.
+2. [Matthew 2:13–15](https://www.biblegateway.com/passage/?search=Matthew%202%3A13-15&version=NRSVUE); [Matthew 5](https://bible.usccb.org/bible/matthew/5), 5:1–2; [Matthew 4](https://bible.usccb.org/bible/matthew/4), especially 4:1–11; [Luke 9](https://bible.usccb.org/bible/luke/9), especially 9:28–36. The new-Exodus comparison is an interpretation of these narrative features.
 3. [Matthew 12](https://bible.usccb.org/bible/matthew/12), 12:38–42; [Luke 11](https://bible.usccb.org/bible/luke/11), 11:29–32; [Mark 8](https://bible.usccb.org/bible/mark/8), 8:11–13.
 4. Matthew 12:3–4, 42 (source 3); [Luke 4](https://bible.usccb.org/bible/luke/4), 4:16–30; [1 Corinthians 15](https://bible.usccb.org/bible/1corinthians/15), 15:45–49. For the Isaac comparison, compare Genesis 22 with John 19:17 rather than representing an inference as an explicit speech.
 5. [John 1](https://bible.usccb.org/bible/john/1), 1:14; [John 2](https://bible.usccb.org/bible/john/2), 2:19–22; [John 3](https://bible.usccb.org/bible/john/3), 3:14; [John 6](https://bible.usccb.org/bible/john/6), especially 6:31–35.
