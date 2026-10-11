@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "revision_date": "2026-10-11",
+  "slug": "jesus-teacher-of-righteousness-hypothesis",
+  "review_base_commit": "70bf669b241ae51fbca864742dfd086b79f662bf",
+  "scope": "Review-only structural repair of the existing Teacher identity hypothesis. Exactly one canonical article, its three reader/listening/transcript derivatives and two generated summary entries are amended. Original archives, September receipts, PR 230 receipt and the Gospel addition receipt remain unchanged.",
+  "prior_revision_receipt": {
+    "path": "research-expansion-20260918/teacher-revision-20261011.json",
+    "sha256": "cfe4472be8c85b4de1f59a0c1629a4a270359b59cb27a1ac454c9947aa5c8a33"
+  },
+  "historical_canonical": {
+    "path": "tests/fixtures/teacher-canonical-before-structure-20261011.md",
+    "source_commit": "70bf669b241ae51fbca864742dfd086b79f662bf",
+    "git_blob": "74a6ec271fa0dc2606bf2a13c3fc58d167fb7752",
+    "sha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6"
+  },
+  "canonical": {
+    "path": "editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+    "before": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+    "after": "e8534bdf8b7c48568e84637dc59b7fe2db6f3f14d7c2c2f65e31faa01fbd05df"
+  },
+  "metadata": {
+    "updated": "2026-10-11",
+    "summary_before": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
+    "summary_after": "The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions."
+  },
+  "files": {
+    "content/developed/jesus-teacher-of-righteousness-hypothesis.md": {
+      "before": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "after": "b14a0f69bf8d4db2611705f65ab741c459ab1cc8113355d3c971f8508a5e2e6d"
+    },
+    "data/listening/jesus-teacher-of-righteousness-hypothesis.json": {
+      "before": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8",
+      "after": "596f8045fccca7c187ef692e2ade37bef44448bc27338a834c4f323b4077a116"
+    },
+    "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt": {
+      "before": "7a53e03c62c9afeed7df8d78756d77262a4c9ff161a7d674569271c5ac1cde80",
+      "after": "beb4ae92b09f04d24d3989856c99eeed5306aef609f59876d2a8054c4146efd7"
+    }
+  },
+  "navigation": {
+    "theology-wiki/content/home.md": {
+      "slug": "home",
+      "before": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+      "after": "65ebd1c5c5acb5d8dea4e9b9f162d2ce8bb9906aebc7d9506a57188e9c00d546"
+    },
+    "theology-wiki/content/developed/topic-jesus.md": {
+      "slug": "topic-jesus",
+      "before": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+      "after": "cc1e4b04c27c2ba663af8c9c846c8d27949481cc03fdeb58ce6aefe59c12467f"
+    }
+  }
+}

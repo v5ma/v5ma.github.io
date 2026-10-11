@@ -28,12 +28,13 @@ jobs:
         run: |
           git cat-file -e "$REVIEW_SOURCE_REF^{commit}" || git fetch origin "$REVIEW_SOURCE_REF" --depth=1
           node theology-wiki/tools/build.cjs
+          node theology-wiki/teacher-repair-20261011/publication.cjs "$REVIEW_SOURCE_REF"
           node theology-wiki/gospel-comparison-20261011/publication.cjs "$REVIEW_SOURCE_REF"
           node theology-wiki/tools/publication.cjs --amend "$REVIEW_SOURCE_REF" jesus-teacher-of-righteousness-hypothesis
           node --check theology-wiki/assets/js/research-tools.js
           node --check theology-wiki/assets/js/theology-reader.js
           node --test theology-wiki/tests/research.test.cjs
-          node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs theology-wiki/gospel-comparison-20261011/publication.test.cjs
+          node --test theology-wiki/tests/teacher-depth.test.cjs theology-wiki/tests/teacher-preservation.test.cjs theology-wiki/tests/publication-amendment.test.cjs theology-wiki/gospel-comparison-20261011/publication.test.cjs theology-wiki/teacher-repair-20261011/publication.test.cjs
           git diff --stat -- theology-wiki scripts/prepare-interactive-site.py
           git diff --quiet -- theology-wiki scripts/prepare-interactive-site.py
       - name: Report bounded generated text differences for review

@@ -43,3 +43,5 @@ test('Public source anchors retain revision and speaker attribution without priv
  assert(!forbidden.test(canonical));
  for(const [old,replacement] of Object.entries(presentation))assert.equal(canonical.split(old).join(replacement),canonical);
 });
+
+require('../teacher-repair-20261011/structure.test.cjs');

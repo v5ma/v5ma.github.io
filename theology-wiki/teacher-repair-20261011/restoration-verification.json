@@ -1,0 +1,62 @@
+[
+  {
+    "id": "R1",
+    "gap_type": "preexisting source-to-article omission, not PR232 regression",
+    "priority": "core",
+    "insert_after": "## Worked comparison: Galatians and the names of leaders (after the existing three paragraphs)",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L533-L540",
+    "prose": "My reason for proposing a longer history is more specific than the observation that a community existed before Paul. In the archived argument, I question how comfortably an already established movement, a period of persecution, Paul's changed allegiance, and his eventual contact with its leaders fit into the short sequence I was then using between a death around 30 CE and activity beginning around 37 CE. An earlier founder would give the conflicts and institutional development a longer history. That is an explanatory reason to investigate the model. The seven-year window is part of that working reconstruction, however, and Galatians does not specify the minimum time needed for all those developments. The comparison therefore needs a dated sequence of events before it can establish that one chronology fits better than another. [The chronological rationale](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L533-L540) remains part of the case rather than disappearing behind the later kinship objection.",
+    "restored": true,
+    "candidate_line": 165
+  },
+  {
+    "id": "R2",
+    "gap_type": "preexisting source-to-article omission, not PR232 regression",
+    "priority": "core",
+    "insert_after": "Working chronology paragraph beginning 'The proposed death of the Teacher is 88 BCE'",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/daniel-and-teacher-of-righteousness.md#L401-L409",
+    "prose": "The proposed death also has an event-level explanation in my source argument. I conjecture that Pharisees facing persecution might have disclosed the Teacher's identity or whereabouts to a Hasmonean ruler who also threatened his community. In that scenario, the Teacher's execution would become part of an older memory of betrayal and persecution. I then ask whether later Gospel stories preserve portions of that memory while filling gaps in an inherited oral account and placing it in a newer setting. This is the proposed mechanism connecting the earlier death to the later biography; the source does not establish that this betrayal occurred or that the Teacher was crucified. A recognizable correspondence in participants, actions, and transmission would give the proposal more substance than a shared story of persecution. [The betrayal and oral-reconstruction proposal](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/daniel-and-teacher-of-righteousness.md#L401-L409) should be tested in that explicit form.",
+    "restored": true,
+    "candidate_line": 111
+  },
+  {
+    "id": "R3",
+    "gap_type": "preexisting source-to-article omission, not PR232 regression",
+    "priority": "core",
+    "insert_after": "External chronology paragraph beginning 'Tacitus, Annals 15.44'",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L930-L931",
+    "prose": "One branch of my reconstruction offers a more specific reply to that chronological anchor: the Christus reported as executed under Pilate could have been a different person whose designation later became connected with the earlier founder's memory. This differs from proposing that Tacitus merely inherited an incorrect date for the same individual. The [distinct-Christus branch](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L930-L931) therefore has its own burden: evidence of two people or memory streams, and evidence explaining their conflation. The difference between the names or designations Jesus and Christus does not by itself establish that there were two individuals. Keeping the branch explicit allows the reply to be assessed instead of treating the Pilate reference as a refutation that every version of the model answers in the same way.",
+    "restored": true,
+    "candidate_line": 181
+  },
+  {
+    "id": "R4",
+    "gap_type": "preexisting source-to-article omission, not PR232 regression",
+    "priority": "core",
+    "insert_after": "Fifth inquiry opening paragraph, before Epiphanes example",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L540-L554",
+    "prose": "The reception hypothesis is also about which branch of a movement preserves its earlier perspective. In my [archived reconstruction](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L540-L554), communities associated with James retain a Zadokite inheritance, while Paul adapts what he has learned for Greeks and non-Zadokite Jews. I propose that some later Gnostic writings preserve the former communities' perspective on that divergence, including an inheritance of light-and-darkness language and conflict with hostile powers that changes form after the Temple's destruction. This supplies a reason to examine James, succession, and later Gnostic texts together. It remains a proposed relationship among particular communities and texts: neither a uniform Gnostic response to Paul nor a complete absence of dualistic language in Paul has been established by the comparison. The task is to identify which texts preserve the proposed branch, how their teaching differs from Paul's, and whether those differences trace a historical relationship.",
+    "restored": true,
+    "candidate_line": 289
+  },
+  {
+    "id": "R5",
+    "gap_type": "preexisting partial compression of source methodology",
+    "priority": "recommended to preserve affirmative rationale",
+    "insert_after": "Second inquiry paragraph beginning 'The comparison should ask what a passage does'",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L469-L474",
+    "prose": "The affirmative reasoning behind the functional comparison is that teachings may retain a distinctive organization even when later writers change their words. If the same limited set of interpretive mappings explains who teaches, who may understand, what conduct follows, how a community is formed, and how its opponents are represented across many specific passages, that coherent pattern could favor a connected inheritance. This is why I asked for both equivalences and non-equivalences, and eventually for more than thirty candidate comparisons. The archived threshold proposals and AI-generated scores do not establish a numerical result here; the underlying question is whether a consistent mapping explains an unusual pattern better than common sources, independent development, or a collection of unrelated resemblances. [The proposed comparison method](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L469-L474) is part of the constructive argument.",
+    "restored": true,
+    "candidate_line": 193
+  },
+  {
+    "id": "R6",
+    "gap_type": "preexisting source example omitted from transformation rationale",
+    "priority": "optional concise restoration",
+    "insert_after": "Judea–Egypt section paragraph beginning 'The model’s strongest eventual evidence' or equivalent Temple-trauma paragraph",
+    "source": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L489-L491",
+    "prose": "My proposed comparison includes the anger I read in writings associated with Ezra after the Temple's destruction: I ask whether later criticism of a false creator transforms a related experience of loss into a cosmic accusation. The reference to Ezra identifies a textual comparison to investigate; it does not independently date a Gnostic work or identify its community. [The original emotional comparison](https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/ai-re-dates-dead-sea-scrolls.md#L489-L491) keeps the proposed transformation concrete.",
+    "restored": true,
+    "candidate_line": 101
+  }
+]

@@ -94,12 +94,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/home.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/64e3e956fd0f7cfb9aa331df6baf81bf7894339e/theology-wiki/content/home.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/home.md",
       "sourcePath": "theology-wiki/content/home.md",
-      "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
-      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
-      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "sha256": "65ebd1c5c5acb5d8dea4e9b9f162d2ce8bb9906aebc7d9506a57188e9c00d546",
+      "revision": "64e3e956fd0f7cfb9aa331df6baf81bf7894339e",
+      "sourceCommitterDate": "2026-10-11T16:40:28-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
@@ -17712,7 +17712,7 @@
     "slug": "jesus-teacher-of-righteousness-hypothesis",
     "title": "Jesus as the Teacher of Righteousness",
     "category": "jesus",
-    "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis: a distinct personal-identification proposal, competing transmission models, Pauline and external chronology, and evidence that would change the comparison.",
+    "summary": "The Earlier-Founder Jesus-Teacher Identity Hypothesis, tested through five staged inquiries: Jesus and the Teacher; Thomas and the Teacher; all three together; the Yahad common economy and James; and later Gnostic receptions.",
     "claimType": "Author hypothesis",
     "externalSources": [
       "habakkuk",
@@ -17775,23 +17775,24 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 38,
+    "readMinutes": 53,
     "related": [
       "kenite-hypothesis-and-yahweh-origins",
       "tor-thomas-and-gnostic-transmission",
       "james-and-contested-succession",
-      "thomas-sayings-and-transmission",
+      "manuscripts-movements-and-survival",
+      "christ-as-an-inner-model",
       "onias-egypt-and-priestly-continuity",
       "gnosticism-and-temple-trauma",
-      "manuscripts-movements-and-survival",
-      "research-method",
-      "christ-as-an-inner-model",
+      "daniel-jubilee-and-the-teachers-time",
+      "melchizedek-priesthood-and-transmission",
       "cognitive-gnosticism",
+      "thomas-sayings-and-transmission",
+      "research-method",
       "sanctuary-community-and-body",
       "scripture-power-and-repair",
-      "melchizedek-priesthood-and-transmission",
-      "daniel-jubilee-and-the-teachers-time",
       "apocalyptic-repair-theology",
+      "living-jesus-thomas-john-and-synoptics",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "herod-timeline-clarification",
       "daniel-and-teacher-of-righteousness",
@@ -17828,12 +17829,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5e5e65334fc923c02197bf116f52f890aabc9996/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md",
       "sourcePath": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
-      "revision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
-      "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+      "sha256": "b14a0f69bf8d4db2611705f65ab741c459ab1cc8113355d3c971f8508a5e2e6d",
+      "revision": "5e5e65334fc923c02197bf116f52f890aabc9996",
+      "sourceCommitterDate": "2026-10-11T16:56:24-07:00",
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
       "transcriptExactUrl": null
@@ -20278,9 +20279,10 @@
       "james-and-contested-succession",
       "christ-as-an-inner-model"
     ],
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "topic-jesus"
     ],
     "publication": {
@@ -21942,12 +21944,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/topic-jesus.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/64e3e956fd0f7cfb9aa331df6baf81bf7894339e/theology-wiki/content/developed/topic-jesus.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/topic-jesus.md",
       "sourcePath": "theology-wiki/content/developed/topic-jesus.md",
-      "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
-      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
-      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "sha256": "cc1e4b04c27c2ba663af8c9c846c8d27949481cc03fdeb58ce6aefe59c12467f",
+      "revision": "64e3e956fd0f7cfb9aa331df6baf81bf7894339e",
+      "sourceCommitterDate": "2026-10-11T16:40:28-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null

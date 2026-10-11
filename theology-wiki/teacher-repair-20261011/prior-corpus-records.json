@@ -1,0 +1,40 @@
+{
+  "baseRevision": "70bf669b241ae51fbca864742dfd086b79f662bf",
+  "pageRecord": {
+    "slug": "jesus-teacher-of-righteousness-hypothesis",
+    "title": "Jesus as the Teacher of Righteousness",
+    "kind": "Developed article",
+    "category": "jesus",
+    "sourcePath": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+    "sourceSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+    "sourceBytes": 57860,
+    "archivePath": "public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md",
+    "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis",
+    "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+    "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+    "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+    "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+    "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+    "canonicalSourcePath": "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+    "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+    "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+    "canonicalSha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+    "archiveSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+    "archiveBytes": 57860,
+    "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md"
+  },
+  "markdownSources": [
+    {
+      "path": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+      "bytes": 57860,
+      "sha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md"
+    },
+    {
+      "path": "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+      "bytes": 54727,
+      "sha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+    }
+  ]
+}

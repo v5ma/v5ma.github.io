@@ -1,0 +1,442 @@
+[
+  {
+    "id": "T01",
+    "source_line": 7191,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7191",
+    "source_candidate": "Esoteric “mystery” pedagogy: salvation/authorization via decoding revealed sayings",
+    "assessment": "retained, narrowed",
+    "semantic_disposition": "Hidden-instruction subsection preserves interpretation/life and Teacher mysteries; uses Thomas 13 rather than source 62 and does not attribute all hymns to Teacher.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T02",
+    "source_line": 7192,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7192",
+    "source_candidate": "Interpretation‑as‑soteriology (hermēneia/pesher)",
+    "assessment": "retained, merged",
+    "semantic_disposition": "Interpretation-as-life is retained in same subsection; no spurious extra independent item for largely same evidence.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T03",
+    "source_line": 7193,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7193",
+    "source_candidate": "Elect identity & separation",
+    "assessment": "partly represented",
+    "semantic_disposition": "Community boundaries/admission retained, but Thomas 49 solitary/elect comparison not developed.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T04",
+    "source_line": 7194,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7194",
+    "source_candidate": "Light/Dark dualism",
+    "assessment": "retained with disanalogy",
+    "semantic_disposition": "Thomas 50/77 and 1QS moral dualism developed; exact John 12/1QM version not repeated.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T05",
+    "source_line": 7195,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7195",
+    "source_candidate": "Seek → find → transformative knowledge path",
+    "assessment": "not developed",
+    "semantic_disposition": "Thomas 2 multi-stage seek/find/disturbed/marvel/reign/rest has no worked counterpart; remains in linked candidate dossier.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T06",
+    "source_line": 7196,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7196",
+    "source_candidate": "Kingdom present/hidden‑in‑plain‑sight",
+    "assessment": "retained with different comparison",
+    "semantic_disposition": "Thomas 3/113 present kingdom retained; direct CD new-covenant equivalence replaced by differentiated restoration/Jubilee analysis.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T07",
+    "source_line": 7197,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7197",
+    "source_candidate": "The Poor as programmatic identity",
+    "assessment": "retained with correction",
+    "semantic_disposition": "Poverty is central, but a specific Ebionim membership identity is not treated as established by Thomas 54.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T08",
+    "source_line": 7198,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7198",
+    "source_candidate": "Persecution ethos",
+    "assessment": "partly represented",
+    "semantic_disposition": "Persecuted founder/community motif central; Thomas 68–69 and 1QHa pairing not developed separately.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T09",
+    "source_line": 7199,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7199",
+    "source_candidate": "Sabbath boundary discipline",
+    "assessment": "partly represented",
+    "semantic_disposition": "Sabbath comparison uses specific CD laws/Gospel controls; Thomas 27 boundary discipline itself not developed.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T10",
+    "source_line": 7200,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7200",
+    "source_candidate": "Ascetic separation / “fast from the world”",
+    "assessment": "not developed",
+    "semantic_disposition": "Thomas 27/42 ascetic separation and DSS desert life not worked as a discrete comparison.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T11",
+    "source_line": 7201,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7201",
+    "source_candidate": "Rival interpreters block access",
+    "assessment": "partly represented",
+    "semantic_disposition": "Rival authority/opponents retained; Thomas 39 keys and 4QpNah Seekers pairing not developed.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T12",
+    "source_line": 7202,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7202",
+    "source_candidate": "Messianic banquet ↔ banquet/wedding feast",
+    "assessment": "not developed",
+    "semantic_disposition": "Common ordered meal retained, but1QSa messianic banquet versus Gospel feast parables is a different undeveloped example.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T13",
+    "source_line": 7203,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7203",
+    "source_candidate": "“New covenant” community",
+    "assessment": "not developed",
+    "semantic_disposition": "CD new covenant and supper covenant wording is not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T14",
+    "source_line": 7204,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7204",
+    "source_candidate": "Wilderness/sojourner identity",
+    "assessment": "not developed",
+    "semantic_disposition": "Thomas 42 passersby/wilderness/sojourner identity is not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T15",
+    "source_line": 7205,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7205",
+    "source_candidate": "Two Ways / Narrow path",
+    "assessment": "partly represented",
+    "semantic_disposition": "1QS Two Spirits is discussed, but Matthew 7 narrow-way comparison is not developed.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T16",
+    "source_line": 7206,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7206",
+    "source_candidate": "Hidden revealed to the lowly",
+    "assessment": "not developed",
+    "semantic_disposition": "Matthew 11 revelation to little children versus mysteries to humble is not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T17",
+    "source_line": 7207,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7207",
+    "source_candidate": "Keys/door imagery controlling access",
+    "assessment": "partly represented",
+    "semantic_disposition": "Admission/authority retained but Thomas 39 access metaphor is not worked; avoid counting same keys passage twice.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T18",
+    "source_line": 7208,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7208",
+    "source_candidate": "Conceal / reveal dynamic",
+    "assessment": "partly represented",
+    "semantic_disposition": "Conceal/reveal function retained in hidden instruction; Thomas 5/33 specific comparison not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T19",
+    "source_line": 7209,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7209",
+    "source_candidate": "Community property / wealth renunciation",
+    "assessment": "expanded, qualified",
+    "semantic_disposition": "Yahad staged property, Jesus economic calls, Thomas economics/James and Acts sharing developed; no claim all are identical admission systems.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T20",
+    "source_line": 7210,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7210",
+    "source_candidate": "Temple critique / replacement",
+    "assessment": "expanded, qualified",
+    "semantic_disposition": "Temple legitimacy, Jesus body-temple and institutions developed; distinct purposes and narrative layers retained.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T21",
+    "source_line": 7211,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7211",
+    "source_candidate": "Divorce/polygamy restriction (stringency)",
+    "assessment": "not developed",
+    "semantic_disposition": "Marriage/divorce/polygamy stringency comparison not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T22",
+    "source_line": 7212,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7212",
+    "source_candidate": "Beatitudes form",
+    "assessment": "retained, corrected",
+    "semantic_disposition": "4Q525 wisdom/Torah beatitude form distinguished from Thomas 54 blessing of poor.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T23",
+    "source_line": 7213,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7213",
+    "source_candidate": "“Sons of Light” identity",
+    "assessment": "partly represented",
+    "semantic_disposition": "Light identity function retained but John 12 sons-of-light label not separately tested; largely overlaps T04.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T24",
+    "source_line": 7214,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7214",
+    "source_candidate": "Exorcistic/anti‑demonic outlook",
+    "assessment": "not developed",
+    "semantic_disposition": "Exorcism versus 4Q510–511 apotropaic songs not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T25",
+    "source_line": 7215,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7215",
+    "source_candidate": "Purity as inward reality (translator: “inner purity” over ritual sufficiency)",
+    "assessment": "retained with different loci",
+    "semantic_disposition": "Inner/external purity contrast developed via Thomas 6/14 and 1QS; original Thomas 22/cup pairing not separately worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T26",
+    "source_line": 7216,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7216",
+    "source_candidate": "“Seek and you will find” soteriology",
+    "assessment": "not developed",
+    "semantic_disposition": "Seek/find epistemology not developed; overlaps T05 and requires independence control.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T27",
+    "source_line": 7217,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7217",
+    "source_candidate": "Hidden treasure / pearl pattern (value concealed)",
+    "assessment": "not developed",
+    "semantic_disposition": "Treasure/pearl concealed wisdom comparison not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T28",
+    "source_line": 7218,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7218",
+    "source_candidate": "Parabolic/sayings teaching mode",
+    "assessment": "retained as methodological relationship",
+    "semantic_disposition": "Sayings versus prophetic commentary literary forms explicitly compared and distinguished; no automatic equivalent teaching-form inference.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T29",
+    "source_line": 7219,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7219",
+    "source_candidate": "“Do not cast pearls before swine” (restricting sacred knowledge)",
+    "assessment": "partly represented",
+    "semantic_disposition": "Restricted private instruction present in Thomas 13; explicit pearls/swine–initiate secrecy pairing not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T30",
+    "source_line": 7220,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7220",
+    "source_candidate": "Jubilee/Release proclamation",
+    "assessment": "partly represented",
+    "semantic_disposition": "11Q13 release/Jubilee developed; Luke 4 Isaiah61 pairing not worked directly.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T31",
+    "source_line": 7221,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7221",
+    "source_candidate": "Blessed the pure/lowly",
+    "assessment": "partly represented",
+    "semantic_disposition": "Beatitudes/purity/poverty treated, but exact pure/lowly election pairing not worked separately.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T32",
+    "source_line": 7222,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7222",
+    "source_candidate": "Communal discipline & graded penalties",
+    "assessment": "partly represented",
+    "semantic_disposition": "Graded communal correction discussed in1QS; Matthew 18 binding/loosing pairing not worked and “identical governance” not adopted.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T33",
+    "source_line": 7223,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7223",
+    "source_candidate": "Imminent eschatology",
+    "assessment": "retained as counter-comparison",
+    "semantic_disposition": "Expected restoration and Thomas present recognition deliberately differentiated; blanket shared imminence not asserted.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "T34",
+    "source_line": 7224,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7224",
+    "source_candidate": "Woe‑oracle polemic",
+    "assessment": "not developed",
+    "semantic_disposition": "Woe-oracle form comparison not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D01",
+    "source_line": 7234,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7234",
+    "source_candidate": "Love enemies vs hate Sons of Darkness",
+    "assessment": "retained",
+    "semantic_disposition": "Enemy-love versus sectarian opposition explicitly kept as counterexample, requiring context.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D02",
+    "source_line": 7235,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7235",
+    "source_candidate": "No oaths at all vs entry oath mandatory",
+    "assessment": "retained",
+    "semantic_disposition": "Gospel prohibition versus 1QS admission oath explicitly retained.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D03",
+    "source_line": 7236,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7236",
+    "source_candidate": "Render to Caesar vs sectarian anti‑regime posture",
+    "assessment": "not developed",
+    "semantic_disposition": "Render to Caesar versus sectarian regime opposition not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D04",
+    "source_line": 7237,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7237",
+    "source_candidate": "Circumcision relativized",
+    "assessment": "not developed",
+    "semantic_disposition": "Thomas 53 spiritual circumcision versus DSS boundary not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D05",
+    "source_line": 7238,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7238",
+    "source_candidate": "Fasting/alms relativized",
+    "assessment": "retained",
+    "semantic_disposition": "Thomas 6/14 fasting/prayer/alms and 1QS discipline discussed with action/consequence distinctions;104 not separately used.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D06",
+    "source_line": 7239,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7239",
+    "source_candidate": "Peacemakers vs holy war",
+    "assessment": "not developed",
+    "semantic_disposition": "Peacemakers versus 1QM holy war not worked as explicit comparison.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D07",
+    "source_line": 7240,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7240",
+    "source_candidate": "Temple universalism hints vs sect separation",
+    "assessment": "partly represented",
+    "semantic_disposition": "Outsider boundaries and sanctuary purposes examined, but house of prayer for nations contrast not explicit.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D08",
+    "source_line": 7241,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7241",
+    "source_candidate": "Mercy over sacrifice (red‑letter Hos 6:6 quotation) vs ritual strictness",
+    "assessment": "partly represented",
+    "semantic_disposition": "Sabbath relief versus strict practice examined, but Hosea 6:6 mercy/sacrifice pairing not explicit.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D09",
+    "source_line": 7242,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7242",
+    "source_candidate": "Unlimited forgiveness vs graded exclusion",
+    "assessment": "not developed",
+    "semantic_disposition": "Unlimited forgiveness versus fixed1QS penalties not worked.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  },
+  {
+    "id": "D10",
+    "source_line": 7243,
+    "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/public-corpus/pages/herod-timeline-clarification.md#L7243",
+    "source_candidate": "Interiorization over externals (strong form) vs ritual centrality",
+    "assessment": "retained",
+    "semantic_disposition": "Internal condition versus binding ritual strongly preserved; inner purity cannot erase practical disagreement.",
+    "provenance": "AI-generated candidate in response to author request; not established ancient equivalence",
+    "revision_class": "Already selective in published230; not a232 deletion"
+  }
+]

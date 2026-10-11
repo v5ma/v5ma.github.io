@@ -18,12 +18,14 @@ To cite an exact source version, use the commit-specific link in the index rathe
 The full snapshot revision above remains the baseline. Only the articles and Markdown sources listed below were amended; all other exact-version records and complete source-conversation projections retain their earlier revisions. These Git dates do not establish first publication or independent timestamp certification.
 
 - [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
+- [64e3e956fd0f7cfb9aa331df6baf81bf7894339e](https://github.com/v5ma/v5ma.github.io/commit/64e3e956fd0f7cfb9aa331df6baf81bf7894339e), Git committer date 2026-10-11T16:40:28-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
+- [5e5e65334fc923c02197bf116f52f890aabc9996](https://github.com/v5ma/v5ma.github.io/commit/5e5e65334fc923c02197bf116f52f890aabc9996), Git committer date 2026-10-11T16:56:24-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
 
 <!-- /bounded-article-amendments -->
 
 ## Browse the backed-up pages
 
-[Theology Wiki](pages/home.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=home) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md).
+[Theology Wiki](pages/home.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=home) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/64e3e956fd0f7cfb9aa331df6baf81bf7894339e/theology-wiki/content/home.md).
 
 [17th Century Christian Zionism](pages/17th-century-christian-zionism.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=17th-century-christian-zionism) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/sources/17th-century-christian-zionism.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/sources/17th-century-christian-zionism.md).
 
@@ -769,7 +771,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [El in Ancient Egypt](pages/el-in-ancient-egypt.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=el-in-ancient-egypt) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/el-in-ancient-egypt.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/el-in-ancient-egypt.md).
 
-[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
+[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5e5e65334fc923c02197bf116f52f890aabc9996/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
 
 [Moses, the volcano and Exodus chronology](pages/moses-volcano-and-exodus-chronology.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=moses-volcano-and-exodus-chronology) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md).
 
@@ -865,7 +867,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [Ancient texts & origins](pages/topic-origins.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-origins) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-origins.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-origins.md).
 
-[Jesus, ethics & authority](pages/topic-jesus.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-jesus) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md).
+[Jesus, ethics & authority](pages/topic-jesus.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-jesus) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/64e3e956fd0f7cfb9aa331df6baf81bf7894339e/theology-wiki/content/developed/topic-jesus.md).
 
 [Faith & spiritual practice](pages/topic-practice.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-practice) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-practice.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-practice.md).
 
@@ -906,3 +908,9 @@ The collection now includes 439 reader pages. The original full-snapshot revisio
 
 [Exact article source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md). [Canonical source](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md).
 <!-- /gospel-comparison-addition -->
+
+<!-- teacher-structure-navigation-amendment -->
+## Teacher article navigation amendment
+
+The Teacher article summary in the home and Jesus-topic pages was revised at [source revision 64e3e956fd0f7cfb9aa331df6baf81bf7894339e](https://github.com/v5ma/v5ma.github.io/commit/64e3e956fd0f7cfb9aa331df6baf81bf7894339e), Git committer date 2026-10-11T16:40:28-07:00. The original snapshot, Gospel addition receipt and all unrelated page histories remain unchanged. The article has its own bounded amendment above.
+<!-- /teacher-structure-navigation-amendment -->
