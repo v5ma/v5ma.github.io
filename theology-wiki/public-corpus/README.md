@@ -19,6 +19,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 - [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
 - [64e3e956fd0f7cfb9aa331df6baf81bf7894339e](https://github.com/v5ma/v5ma.github.io/commit/64e3e956fd0f7cfb9aa331df6baf81bf7894339e), Git committer date 2026-10-11T16:40:28-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
+- [5e5e65334fc923c02197bf116f52f890aabc9996](https://github.com/v5ma/v5ma.github.io/commit/5e5e65334fc923c02197bf116f52f890aabc9996), Git committer date 2026-10-11T16:56:24-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
 
 <!-- /bounded-article-amendments -->
 
@@ -770,7 +771,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [El in Ancient Egypt](pages/el-in-ancient-egypt.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=el-in-ancient-egypt) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/el-in-ancient-egypt.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/el-in-ancient-egypt.md).
 
-[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/64e3e956fd0f7cfb9aa331df6baf81bf7894339e/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
+[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5e5e65334fc923c02197bf116f52f890aabc9996/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
 
 [Moses, the volcano and Exodus chronology](pages/moses-volcano-and-exodus-chronology.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=moses-volcano-and-exodus-chronology) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md).
 

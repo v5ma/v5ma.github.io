@@ -29,3 +29,5 @@ test('Five-inquiry summary follows the Teacher article into reading and listenin
 });
 
 require('./semantic.test.cjs');
+
+require('./ledger.test.cjs');

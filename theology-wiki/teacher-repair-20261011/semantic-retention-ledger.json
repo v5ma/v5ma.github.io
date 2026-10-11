@@ -1,0 +1,1881 @@
+{
+  "scope": "Canonical c6e2b09, published PR230, current PR232 candidate; audit of semantic content not historical truth. Source-archive omissions assessed separately.",
+  "snapshots": {
+    "pre230": {
+      "path": "theology-wiki/tests/fixtures/teacher-canonical-before-20261011.md",
+      "sha256": "d53fa0c299710fc528928ff7e9136757124d42efe1b6b37fff3f51a64ab2c98c",
+      "bytes": 19969,
+      "source_url": "https://github.com/v5ma/v5ma.github.io/blob/c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+    },
+    "published230": {
+      "path": "theology-wiki/tests/fixtures/teacher-canonical-before-structure-20261011.md",
+      "sha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+      "bytes": 54727,
+      "source_url": "https://github.com/v5ma/v5ma.github.io/blob/70bf669b241ae51fbca864742dfd086b79f662bf/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+    },
+    "candidate232": {
+      "path": "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+      "sha256": "e8534bdf8b7c48568e84637dc59b7fe2db6f3f14d7c2c2f65e31faa01fbd05df",
+      "bytes": 76925,
+      "source_url": "https://github.com/v5ma/v5ma.github.io/blob/5e5e65334fc923c02197bf116f52f890aabc9996/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+    }
+  },
+  "rows": [
+    {
+      "id": "S01",
+      "kind": "strong claim",
+      "semantic_content": "Jesus and Teacher refer at origin to one historical individual, not merely influence or similar teachings.",
+      "pre230": {
+        "line": 3,
+        "anchor": "It proposes that the teacher remembered as Jesus"
+      },
+      "published230": {
+        "line": 3,
+        "anchor": "It proposes that the teacher remembered as Jesus"
+      },
+      "candidate232": {
+        "line": 5,
+        "anchor": "It proposes that the teacher remembered as Jesus"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S02",
+      "kind": "mechanism and qualification",
+      "semantic_content": "Community and teaching survive multiple generations; later biography locates founder in first century; roughly 150 years is proposed, not measured.",
+      "pre230": {
+        "line": 3,
+        "anchor": "In this reconstruction, an earlier teacher"
+      },
+      "published230": {
+        "line": 3,
+        "anchor": "In this reconstruction, an earlier teacher"
+      },
+      "candidate232": {
+        "line": 5,
+        "anchor": "In this reconstruction, an earlier teacher"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S03",
+      "kind": "scope",
+      "semantic_content": "Independent hypothesis has its own statement, assumptions, alternatives, and evidence requirements; investigation need not become belief.",
+      "pre230": {
+        "line": 5,
+        "anchor": "I want the possibility investigated"
+      },
+      "published230": {
+        "line": 5,
+        "anchor": "I want the possibility investigated"
+      },
+      "candidate232": {
+        "line": 7,
+        "anchor": "I want the possibility investigated"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S04",
+      "kind": "authorial stance correction",
+      "semantic_content": "Old immunity/probability wording is superseded by current user statement: examined rebuttals have not convincingly excluded the possibility; each examined rebuttal had gaps.",
+      "pre230": {
+        "line": 5,
+        "anchor": "I regard it as worth testing"
+      },
+      "published230": {
+        "line": 5,
+        "anchor": "I regard it as worth testing"
+      },
+      "candidate232": {
+        "line": 7,
+        "anchor": "In the historical evidence I have examined so far"
+      },
+      "assessment": "superseded by user correction",
+      "reason": "This is an intentional, authorized semantic correction, not loss to restore. Do not restore the immunity strawman or turn self-reported investigation into a completed universal refutation catalogue."
+    },
+    {
+      "id": "S05",
+      "kind": "analogy and limit",
+      "semantic_content": "Kenite analogy is origins/transmission inquiry from incomplete records; does not transfer scholarly support, priority, consensus, or truth.",
+      "pre230": {
+        "line": 7,
+        "anchor": "The comparison with the [[kenite-hypothesis"
+      },
+      "published230": {
+        "line": 7,
+        "anchor": "The comparison with the [[kenite-hypothesis"
+      },
+      "candidate232": {
+        "line": 9,
+        "anchor": "The comparison with the [[kenite-hypothesis"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S06",
+      "kind": "affirmative rationale",
+      "semantic_content": "Conjunction of authoritative interpretation, scripture, covenant conduct, opposition and judgment motivates comparing lives and memories rather than shared Jewish vocabulary alone.",
+      "pre230": {
+        "line": 11,
+        "anchor": "The attraction is a conjunction of roles"
+      },
+      "published230": {
+        "line": 25,
+        "anchor": "The attraction is a conjunction of roles"
+      },
+      "candidate232": {
+        "line": 53,
+        "anchor": "The attraction is a conjunction of roles"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S07",
+      "kind": "attribution control",
+      "semantic_content": "Schiffman warns against attributing all Qumran teaching to one Teacher; title may cover multiple leaders; passage/speaker/title/memory must be distinguished.",
+      "pre230": {
+        "line": 13,
+        "anchor": "That comparison must be made with the Teacher material"
+      },
+      "published230": {
+        "line": 27,
+        "anchor": "That comparison must be made with the Teacher material"
+      },
+      "candidate232": {
+        "line": 55,
+        "anchor": "That comparison must be made with the Teacher material"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S08",
+      "kind": "negative inference control",
+      "semantic_content": "Teacher being unnamed is not evidence that missing name was Jesus.",
+      "pre230": {
+        "line": 13,
+        "anchor": "An unidentified Teacher is not"
+      },
+      "published230": {
+        "line": 27,
+        "anchor": "An unidentified Teacher is not"
+      },
+      "candidate232": {
+        "line": 55,
+        "anchor": "An unidentified Teacher is not"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S09",
+      "kind": "material example",
+      "semantic_content": "4Q271 late-first-century-BCE copy and later Cairo witnesses establish transmission, not identity; copy, composition, lifetime differ.",
+      "pre230": {
+        "line": 15,
+        "anchor": "The Library of Congress's Damascus Document"
+      },
+      "published230": {
+        "line": 29,
+        "anchor": "The Library of Congress's Damascus Document"
+      },
+      "candidate232": {
+        "line": 57,
+        "anchor": "The Library of Congress's Damascus Document"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S10",
+      "kind": "hypothesis branches",
+      "semantic_content": "Identity, transmission to distinct later Jesus, shared milieu, and compositional multi-teacher portrait remain separate alternatives.",
+      "pre230": {
+        "line": 19,
+        "anchor": "The identity model proposes"
+      },
+      "published230": {
+        "line": 33,
+        "anchor": "The identity model proposes"
+      },
+      "candidate232": {
+        "line": 61,
+        "anchor": "The identity model proposes"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S11",
+      "kind": "discrimination",
+      "semantic_content": "Early parallel may support transmission without identity; named chain may discriminate; shared scripture may account for similarities without direct dependence.",
+      "pre230": {
+        "line": 21,
+        "anchor": "These are not interchangeable levels of success"
+      },
+      "published230": {
+        "line": 35,
+        "anchor": "These are not interchangeable levels of success"
+      },
+      "candidate232": {
+        "line": 63,
+        "anchor": "These are not interchangeable levels of success"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S12",
+      "kind": "countercomparisons",
+      "semantic_content": "Legal practice, assigned office, healing, boundaries, suffering and vindication need comparison; unusual attested cluster outweighs composite Qumran biography.",
+      "pre230": {
+        "line": 23,
+        "anchor": "Calling the portraits almost identical"
+      },
+      "published230": {
+        "line": 37,
+        "anchor": "Calling the portraits almost identical"
+      },
+      "candidate232": {
+        "line": 65,
+        "anchor": "Calling the portraits almost identical"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S13",
+      "kind": "Paul objection and reply",
+      "semantic_content": "Galatians 1 visit to Cephas/James presupposes an earlier community but namesake succession must explain Lord-brother relationship.",
+      "pre230": {
+        "line": 27,
+        "anchor": "Galatians 1:18-19 says Paul"
+      },
+      "published230": {
+        "line": 173,
+        "anchor": "Galatians 1:18-19 says Paul"
+      },
+      "candidate232": {
+        "line": 149,
+        "anchor": "Galatians 1:18-19 says Paul"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S14",
+      "kind": "philological control",
+      "semantic_content": "1 Corinthians 9:5 distinguishes Lord's brothers from apostles and Cephas; generic believer-brother use alone does not explain grouping.",
+      "pre230": {
+        "line": 29,
+        "anchor": "First Corinthians 9:5 adds"
+      },
+      "published230": {
+        "line": 175,
+        "anchor": "First Corinthians 9:5 adds"
+      },
+      "candidate232": {
+        "line": 151,
+        "anchor": "First Corinthians 9:5 adds"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S15",
+      "kind": "witness objection and branch",
+      "semantic_content": "1 Corinthians 15 death/burial/resurrection received sequence and living appearance witnesses require explanation; later visions of earlier founder are one additional proposal.",
+      "pre230": {
+        "line": 31,
+        "anchor": "First Corinthians 15:3-8 combines"
+      },
+      "published230": {
+        "line": 177,
+        "anchor": "First Corinthians 15:3-8 combines"
+      },
+      "candidate232": {
+        "line": 153,
+        "anchor": "First Corinthians 15:3-8 combines"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S16",
+      "kind": "qualification",
+      "semantic_content": "Paul lacks complete calendar biography but supplies positive constraints; calculation remains visible.",
+      "pre230": {
+        "line": 33,
+        "anchor": "None of these passages gives"
+      },
+      "published230": {
+        "line": 179,
+        "anchor": "None of these passages gives"
+      },
+      "candidate232": {
+        "line": 155,
+        "anchor": "None of these passages gives"
+      },
+      "assessment": "retained",
+      "reason": "Only “preceding” removed after reordering; no semantic loss."
+    },
+    {
+      "id": "S17",
+      "kind": "external objection",
+      "semantic_content": "Josephus Antiquities 20.200 locates James execution at Festus→Albinus transition; separate from Antiquities 18 Testimonium; editing concerns do not transfer automatically.",
+      "pre230": {
+        "line": 37,
+        "anchor": "Josephus, Antiquities 20.200"
+      },
+      "published230": {
+        "line": 199,
+        "anchor": "Josephus, Antiquities 20.200"
+      },
+      "candidate232": {
+        "line": 177,
+        "anchor": "Josephus, Antiquities 20.200"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S18",
+      "kind": "external objection and qualification",
+      "semantic_content": "Tacitus locates Christus under Tiberius/Pilate; later non-eyewitness with undisclosed source chain; neither lateness disproves nor Roman authorship proves official-record independence.",
+      "pre230": {
+        "line": 39,
+        "anchor": "Tacitus, Annals 15.44"
+      },
+      "published230": {
+        "line": 201,
+        "anchor": "Tacitus, Annals 15.44"
+      },
+      "candidate232": {
+        "line": 179,
+        "anchor": "Tacitus, Annals 15.44"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S19",
+      "kind": "objection method",
+      "semantic_content": "Independence, inherited accounts, variants, seams and specific transmission must be investigated; general distortion possibility does not establish a particular distortion.",
+      "pre230": {
+        "line": 41,
+        "anchor": "The inquiry should ask which witnesses"
+      },
+      "published230": {
+        "line": 203,
+        "anchor": "The inquiry should ask which witnesses"
+      },
+      "candidate232": {
+        "line": 183,
+        "anchor": "The inquiry should ask which witnesses"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S20",
+      "kind": "possible positive tests",
+      "semantic_content": "Name/title link, distinctive sayings sequence with traceable history, or later insertion of first-century anchor could favor identity; generic persecution/judgment discriminates less.",
+      "pre230": {
+        "line": 45,
+        "anchor": "Evidence favoring the identity hypothesis"
+      },
+      "published230": {
+        "line": 207,
+        "anchor": "Evidence favoring the identity hypothesis"
+      },
+      "candidate232": {
+        "line": 299,
+        "anchor": "Evidence favoring the identity hypothesis"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S21",
+      "kind": "possible contrary tests",
+      "semantic_content": "Incompatible life, independently corroborated kinship chain or manuscript conflict could count against defined variant; auxiliary namesakes/interpolations need independent reason.",
+      "pre230": {
+        "line": 47,
+        "anchor": "Evidence against a defined early-founder variant"
+      },
+      "published230": {
+        "line": 209,
+        "anchor": "Evidence against a defined early-founder variant"
+      },
+      "candidate232": {
+        "line": 301,
+        "anchor": "Evidence against a defined early-founder variant"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S22",
+      "kind": "explanatory-cost comparison",
+      "semantic_content": "One displaced founder has fewer founders but potentially more assumptions about names/chronology/succession/editing; two teachers in shared tradition may be cheaper.",
+      "pre230": {
+        "line": 49,
+        "anchor": "The comparative question is therefore"
+      },
+      "published230": {
+        "line": 211,
+        "anchor": "The comparative question is therefore"
+      },
+      "candidate232": {
+        "line": 303,
+        "anchor": "The comparative question is therefore"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S23",
+      "kind": "conclusion and independence",
+      "semantic_content": "Strong identity remains inquiry; historical investigation independent of psychological value and contemporary politics; constructive case and examined objections both visible.",
+      "pre230": {
+        "line": 51,
+        "anchor": "My position is to preserve the strong identity hypothesis"
+      },
+      "published230": {
+        "line": 213,
+        "anchor": "My position is to preserve the strong identity hypothesis"
+      },
+      "candidate232": {
+        "line": 305,
+        "anchor": "My position is that the strong identity hypothesis"
+      },
+      "assessment": "superseded by user correction",
+      "reason": "Old framing about absence of disproof is deliberately replaced with current stance. Psychological/political independence and notebook link remain."
+    },
+    {
+      "id": "S24",
+      "kind": "source provenance",
+      "semantic_content": "Schiffman discussion is consulted translation-based study, not fresh transcription; listed primary translations remain identified.",
+      "pre230": {
+        "line": 55,
+        "anchor": "Lawrence H. Schiffman, Teacher of Righteousness"
+      },
+      "published230": {
+        "line": 251,
+        "anchor": "Lawrence H. Schiffman, Teacher of Righteousness"
+      },
+      "candidate232": {
+        "line": 343,
+        "anchor": "Lawrence H. Schiffman, Teacher of Righteousness"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S25",
+      "kind": "source provenance",
+      "semantic_content": "September 18 2026 formulation is later authorial AI-assisted text; no backdated terminology; failed Museum load not newly successful retrieval.",
+      "pre230": {
+        "line": 65,
+        "anchor": "This is a September 18, 2026 authorial working formulation"
+      },
+      "published230": null,
+      "candidate232": {
+        "line": 353,
+        "anchor": "The original hypothesis statement was a September 18"
+      },
+      "assessment": "retained with provenance update",
+      "reason": "Rewritten to distinguish original formulation and October 11 expansion; provenance remains accurate. Stale “retained below” elsewhere should become “used here”."
+    },
+    {
+      "id": "S26",
+      "kind": "strong institutional mechanism",
+      "semantic_content": "Earlier Zadokite teacher becomes source of Jesus tradition; later narrative relocation; Paul meets continuing community rather than original generation.",
+      "pre230": {
+        "line": 69,
+        "anchor": "The Teacher of Righteousness hypothesis proposes"
+      },
+      "published230": {
+        "line": 101,
+        "anchor": "The Teacher of Righteousness hypothesis proposes"
+      },
+      "candidate232": {
+        "line": 79,
+        "anchor": "The Teacher of Righteousness hypothesis proposes"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S27",
+      "kind": "source sequence and succession",
+      "semantic_content": "AI-redates contributions combine earlier teacher, James succession, later namesakes, sayings versus post-Temple layers; generations bridge gap, not century-old companions.",
+      "pre230": {
+        "line": 71,
+        "anchor": "The fullest statement used here is"
+      },
+      "published230": {
+        "line": 231,
+        "anchor": "The fullest statement used here is"
+      },
+      "candidate232": {
+        "line": 323,
+        "anchor": "The fullest statement used here is"
+      },
+      "assessment": "retained with corrected locator",
+      "reason": "24/26 are verified all-speaker blocks, not author-turn indices; correction preserves attribution."
+    },
+    {
+      "id": "S28",
+      "kind": "transcript preservation",
+      "semantic_content": "Original transcript including numerical/historical claims unchanged while article marks dates as proposal and separately corrects arithmetic.",
+      "pre230": {
+        "line": 73,
+        "anchor": "The reconstruction below preserves those commitments"
+      },
+      "published230": null,
+      "candidate232": {
+        "line": 309,
+        "anchor": "The public archive preserves an evolving argument"
+      },
+      "assessment": "semantically retained across sections",
+      "reason": "Sentence replaced, but content survives in chronology, source-history opening and source access notes. Explicit original sentence may be restored for easy audit; no inference that original numerical claims were overwritten."
+    },
+    {
+      "id": "S29",
+      "kind": "chronology premise",
+      "semantic_content": "167 BCE Onias III/John identification is source premise, not verified identification or death date.",
+      "pre230": {
+        "line": 77,
+        "anchor": "The proposed sequence begins with 167 BCE"
+      },
+      "published230": {
+        "line": 123,
+        "anchor": "The proposed sequence begins with 167 BCE"
+      },
+      "candidate232": {
+        "line": 105,
+        "anchor": "The proposed sequence begins with 167 BCE"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S30",
+      "kind": "dependent inference",
+      "semantic_content": "147 BCE appearance depends on proposed anchor plus 20 years; not independent measurement.",
+      "pre230": {
+        "line": 79,
+        "anchor": "The next proposed point is 147 BCE"
+      },
+      "published230": {
+        "line": 125,
+        "anchor": "The next proposed point is 147 BCE"
+      },
+      "candidate232": {
+        "line": 107,
+        "anchor": "The next proposed point is 147 BCE"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S31",
+      "kind": "chronology and succession",
+      "semantic_content": "88 BCE Teacher death then James succession; sayings attributed to Jesus; community, not immortal founder, carries movement.",
+      "pre230": {
+        "line": 81,
+        "anchor": "The proposed death of the Teacher is 88 BCE"
+      },
+      "published230": {
+        "line": 127,
+        "anchor": "The proposed death of the Teacher is 88 BCE"
+      },
+      "candidate232": {
+        "line": 109,
+        "anchor": "The proposed death of the Teacher is 88 BCE"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S32",
+      "kind": "chronology and qualification",
+      "semantic_content": "Paul 37–50 CE and later Peter/James descendants/namesakes are source working dates; Galatians relative intervals do not supply entire calendar range.",
+      "pre230": {
+        "line": 83,
+        "anchor": "The conversation places Paul's activity"
+      },
+      "published230": {
+        "line": 129,
+        "anchor": "The conversation places Paul's activity"
+      },
+      "candidate232": {
+        "line": 113,
+        "anchor": "The conversation places Paul's activity"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S33",
+      "kind": "layer distinction",
+      "semantic_content": "Post-70 Gnostic rage and earlier sayings inheritance are separate layers that need not share composition date.",
+      "pre230": {
+        "line": 85,
+        "anchor": "The post-70 CE stage concerns"
+      },
+      "published230": {
+        "line": 131,
+        "anchor": "The post-70 CE stage concerns"
+      },
+      "candidate232": {
+        "line": 115,
+        "anchor": "The post-70 CE stage concerns"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S34",
+      "kind": "calculation",
+      "semantic_content": "No year zero; 88 BCE→37 CE=124; →50 CE=137; 133 corresponds to 46 CE.",
+      "pre230": {
+        "line": 89,
+        "anchor": "There is no year zero"
+      },
+      "published230": {
+        "line": 135,
+        "anchor": "There is no year zero"
+      },
+      "candidate232": {
+        "line": 119,
+        "anchor": "There is no year zero"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S35",
+      "kind": "calculation inference limit",
+      "semantic_content": "Correction sharpens transmission interval without deciding identity; successor interpretation needs evidence applying to passages.",
+      "pre230": {
+        "line": 91,
+        "anchor": "That correction does not decide"
+      },
+      "published230": {
+        "line": 137,
+        "anchor": "That correction does not decide"
+      },
+      "candidate232": {
+        "line": 121,
+        "anchor": "That correction does not decide"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S36",
+      "kind": "Galatians worked sequence",
+      "semantic_content": "Persecution/revelation/Arabia/Damascus/three-year visit and fourteen-year visit establish relationships and sequence, not community founding year.",
+      "pre230": {
+        "line": 95,
+        "anchor": "Galatians 1:13-24 describes"
+      },
+      "published230": {
+        "line": 183,
+        "anchor": "Galatians 1:13-24 describes"
+      },
+      "candidate232": {
+        "line": 159,
+        "anchor": "Galatians 1:13-24 describes"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S37",
+      "kind": "opening and residual objection",
+      "semantic_content": "Community predates conversion; this need not mean only a few years; Lord-brother kinship remains more specific constraint.",
+      "pre230": {
+        "line": 97,
+        "anchor": "This leaves a real opening for the continuity question"
+      },
+      "published230": {
+        "line": 185,
+        "anchor": "This leaves a real opening for the continuity question"
+      },
+      "candidate232": {
+        "line": 161,
+        "anchor": "This leaves a real opening for the continuity question"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S38",
+      "kind": "office/person distinction",
+      "semantic_content": "Long-lived community does not identify founder; repeated title can show office continuity without same person.",
+      "pre230": {
+        "line": 99,
+        "anchor": "A long-lived community can therefore"
+      },
+      "published230": {
+        "line": 187,
+        "anchor": "A long-lived community can therefore"
+      },
+      "candidate232": {
+        "line": 163,
+        "anchor": "A long-lived community can therefore"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S39",
+      "kind": "living witnesses",
+      "semantic_content": "Five hundred many still alive gives ordinary reading living-memory constraint.",
+      "pre230": {
+        "line": 103,
+        "anchor": "First Corinthians 15:3-8 presents"
+      },
+      "published230": {
+        "line": 191,
+        "anchor": "First Corinthians 15:3-8 presents"
+      },
+      "candidate232": {
+        "line": 169,
+        "anchor": "First Corinthians 15:3-8 presents"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S40",
+      "kind": "reply branches",
+      "semantic_content": "Later revelation, reused names, or later textual shaping address different parts; each requires appropriate evidence.",
+      "pre230": {
+        "line": 105,
+        "anchor": "An earlier-Teacher reconstruction cannot address"
+      },
+      "published230": {
+        "line": 193,
+        "anchor": "An earlier-Teacher reconstruction cannot address"
+      },
+      "candidate232": {
+        "line": 171,
+        "anchor": "An earlier-Teacher reconstruction cannot address"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S41",
+      "kind": "three evidence levels",
+      "semantic_content": "Community survival, saying transmission, and witnesses still alive are different evidentiary tasks.",
+      "pre230": {
+        "line": 107,
+        "anchor": "This gives the inquiry a concrete discriminating point"
+      },
+      "published230": {
+        "line": 195,
+        "anchor": "This gives the inquiry a concrete discriminating point"
+      },
+      "candidate232": {
+        "line": 173,
+        "anchor": "This gives the inquiry a concrete discriminating point"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S42",
+      "kind": "interpretive-office comparison",
+      "semantic_content": "Museum leaves Teacher/Wicked Priest/Man of Lies identities open; Lim identifies prophecy interpretation and fidelity at judgment as Teacher role.",
+      "pre230": {
+        "line": 111,
+        "anchor": "The Israel Museum's description"
+      },
+      "published230": {
+        "line": 157,
+        "anchor": "The Israel Museum's description"
+      },
+      "candidate232": {
+        "line": 69,
+        "anchor": "The Israel Museum's description"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S43",
+      "kind": "affirmative interpretive rationale",
+      "semantic_content": "Community receives worldview from authoritative interpreter and organizes conduct by fidelity; not just goodness/persecution.",
+      "pre230": {
+        "line": 113,
+        "anchor": "That role provides a focused comparison"
+      },
+      "published230": {
+        "line": 159,
+        "anchor": "That role provides a focused comparison"
+      },
+      "candidate232": {
+        "line": 71,
+        "anchor": "That role provides a focused comparison"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S44",
+      "kind": "institutional alternative/source limit",
+      "semantic_content": "Lim distinguishes sectarian interpreter from deposed Hasmonean high priest; article uses abstract/Museum, not new 1QpHab translation or full commentary.",
+      "pre230": {
+        "line": 115,
+        "anchor": "There is also an important alternative in Lim"
+      },
+      "published230": {
+        "line": 161,
+        "anchor": "There is also an important alternative in Lim"
+      },
+      "candidate232": {
+        "line": 73,
+        "anchor": "There is also an important alternative in Lim"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S45",
+      "kind": "manuscript dating scope",
+      "semantic_content": "2025 Enoch radiocarbon plus writing style estimates copies; earlier manuscripts expand circulation window without identifying person/death/relocation.",
+      "pre230": {
+        "line": 119,
+        "anchor": "The 2025 Enoch study"
+      },
+      "published230": {
+        "line": 165,
+        "anchor": "The 2025 Enoch study"
+      },
+      "candidate232": {
+        "line": 141,
+        "anchor": "The 2025 Enoch study"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S46",
+      "kind": "date layers",
+      "semantic_content": "Material/copying/composition/narrated events distinct; older tradition/event may underlie later manuscript.",
+      "pre230": {
+        "line": 121,
+        "anchor": "Material, copying, composition"
+      },
+      "published230": {
+        "line": 167,
+        "anchor": "Material, copying, composition"
+      },
+      "candidate232": {
+        "line": 143,
+        "anchor": "Material, copying, composition"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S47",
+      "kind": "application relationship",
+      "semantic_content": "Temple-trauma layer study and psychological transformation distinct; identity not prerequisite to inward-model function.",
+      "pre230": {
+        "line": 123,
+        "anchor": "[[gnosticism-and-temple-trauma|The Temple-trauma hypothesis]] can use"
+      },
+      "published230": {
+        "line": 169,
+        "anchor": "[[gnosticism-and-temple-trauma|The Temple-trauma hypothesis]] can use"
+      },
+      "candidate232": {
+        "line": 145,
+        "anchor": "[[gnosticism-and-temple-trauma|The Temple-trauma hypothesis]] can use"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S48",
+      "kind": "affirmative integrated case",
+      "semantic_content": "Dead teacher can leave appointments/sayings/life retellings; founder identity and people Paul encounters are different questions.",
+      "pre230": null,
+      "published230": {
+        "line": 11,
+        "anchor": "The proposal begins with a concrete historical possibility"
+      },
+      "candidate232": {
+        "line": 29,
+        "anchor": "The proposal begins with a concrete historical possibility"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S49",
+      "kind": "explanatory conjunction",
+      "semantic_content": "Disciplined community, hidden meaning plus conduct, conflict, surviving sayings and catastrophe combine; transmission, succession and relocated biography are connected tests.",
+      "pre230": null,
+      "published230": {
+        "line": 13,
+        "anchor": "The attraction of this reconstruction is its attempt"
+      },
+      "candidate232": {
+        "line": 31,
+        "anchor": "The attraction of this reconstruction is its attempt"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S50",
+      "kind": "Thomas rationale",
+      "semantic_content": "Sayings collection permits teaching independent of continuous biography; unusual sequence could trace route; early layer in later collection requires dating/source work.",
+      "pre230": null,
+      "published230": {
+        "line": 15,
+        "anchor": "Thomas matters to this case"
+      },
+      "candidate232": {
+        "line": 187,
+        "anchor": "Thomas matters to this case"
+      },
+      "assessment": "retained",
+      "reason": "Moved verbatim into Thomas inquiry after parent restoration; argument fully preserved."
+    },
+    {
+      "id": "S51",
+      "kind": "Egypt catastrophe rationale",
+      "semantic_content": "Judean priestly conflict/Egypt institution/dispersal and reunion carry tradition; sanctuary loss may generate cosmic reinterpretation distinct from older sayings.",
+      "pre230": null,
+      "published230": {
+        "line": 17,
+        "anchor": "The institutional part supplies a proposed carrier"
+      },
+      "candidate232": {
+        "line": 85,
+        "anchor": "The institutional part supplies a proposed carrier"
+      },
+      "assessment": "retained",
+      "reason": "Moved verbatim into Judea–Egypt section; not weakened after restoration."
+    },
+    {
+      "id": "S52",
+      "kind": "connected research questions",
+      "semantic_content": "Founder/sayings/institution/succession/catastrophe/relocation jointly assessed; ask what persists, person vs office, newer setting for old material.",
+      "pre230": null,
+      "published230": {
+        "line": 19,
+        "anchor": "This is the affirmative case I want assessed"
+      },
+      "candidate232": {
+        "line": 35,
+        "anchor": "This is the affirmative case I want assessed"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S53",
+      "kind": "independence among supports",
+      "semantic_content": "Independent dates and awkward competing details strengthen case; Egyptian sanctuary cannot lend certainty to founder without supported link.",
+      "pre230": null,
+      "published230": {
+        "line": 21,
+        "anchor": "The case becomes stronger if independently dated evidence"
+      },
+      "candidate232": {
+        "line": 37,
+        "anchor": "The case becomes stronger if independently dated evidence"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S54",
+      "kind": "comparison method",
+      "semantic_content": "Function matters beyond words across Hebrew/Greek/Coptic; translations can manufacture resemblance; exact passages/alternatives needed.",
+      "pre230": null,
+      "published230": {
+        "line": 41,
+        "anchor": "The comparison should ask what a passage does"
+      },
+      "candidate232": {
+        "line": 191,
+        "anchor": "The comparison should ask what a passage does"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S55",
+      "kind": "source method limits",
+      "semantic_content": "Selected examples are paraphrases, not fresh translations or complete collation; canonical material labeled apart from Thomas.",
+      "pre230": null,
+      "published230": {
+        "line": 43,
+        "anchor": "The following examples are selected tests"
+      },
+      "candidate232": {
+        "line": 195,
+        "anchor": "The following examples are selected tests"
+      },
+      "assessment": "retained",
+      "reason": "Sabbath/Temple controls named explicitly in candidate; no loss of original canonical/Thomas distinction."
+    },
+    {
+      "id": "S56",
+      "kind": "hidden instruction example",
+      "semantic_content": "Thomas 1 interpretation/life and13 private disclosure compare with 1QpHab VII mystery interpretation; community access mediated by teacher.",
+      "pre230": null,
+      "published230": {
+        "line": 47,
+        "anchor": "Thomas 1 connects finding"
+      },
+      "candidate232": {
+        "line": 199,
+        "anchor": "Thomas 1 connects finding"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S57",
+      "kind": "hidden instruction difference/application",
+      "semantic_content": "Disclosure scenes differ from prophetic commentary; hidden knowledge alone insufficient for dependence; internalized teacher psychological application distinct.",
+      "pre230": null,
+      "published230": {
+        "line": 49,
+        "anchor": "This is one reason to compare a teacher's remembered role"
+      },
+      "candidate232": {
+        "line": 201,
+        "anchor": "This is one reason to compare a teacher's remembered role"
+      },
+      "assessment": "retained",
+      "reason": "Original psychological rationale restored with explicit separate-purpose transition."
+    },
+    {
+      "id": "S58",
+      "kind": "light example/difference",
+      "semantic_content": "Thomas 50 origins/77 speaker/light/whole versus 1QS Two Spirits moral conduct; transformed language or shared milieu alternatives; psychological recognition not ancient evidence.",
+      "pre230": null,
+      "published230": {
+        "line": 53,
+        "anchor": "Thomas 50 associates"
+      },
+      "candidate232": {
+        "line": 205,
+        "anchor": "Thomas 50 associates"
+      },
+      "assessment": "retained",
+      "reason": "Following paragraph restores Cognitive Gnosticism relationship; examples/qualification retained."
+    },
+    {
+      "id": "S59",
+      "kind": "beatitudes example/difference",
+      "semantic_content": "Thomas 54 poor/kingdom differs from4Q525 wisdom/Torah beatitudes; form/sequence/ethical context could be literary or broad Jewish wisdom.",
+      "pre230": null,
+      "published230": {
+        "line": 59,
+        "anchor": "Thomas 54 blesses"
+      },
+      "candidate232": {
+        "line": 211,
+        "anchor": "Thomas 54 blesses"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S60",
+      "kind": "beatitudes scholarship scope",
+      "semantic_content": "Charlesworth comparison is lead, not every-blessing proof; individual saying history differs from collection.",
+      "pre230": null,
+      "published230": {
+        "line": 61,
+        "anchor": "The content is not identical"
+      },
+      "candidate232": {
+        "line": 213,
+        "anchor": "The content is not identical"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S61",
+      "kind": "purity example/difference",
+      "semantic_content": "Thomas 6/14 complicate fasting/prayer/alms/food;1QS turning from evil plus discipline; inner condition does not erase observance disagreement.",
+      "pre230": null,
+      "published230": {
+        "line": 65,
+        "anchor": "Thomas 6 and 14 discuss"
+      },
+      "candidate232": {
+        "line": 217,
+        "anchor": "Thomas 6 and 14 discuss"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S62",
+      "kind": "social carrier example",
+      "semantic_content": "1QS VI meals/deliberation/rank/staged property admission show durable collective transmission rather than free-floating sayings.",
+      "pre230": null,
+      "published230": {
+        "line": 71,
+        "anchor": "In 1QS VI, common deliberation"
+      },
+      "candidate232": {
+        "line": 223,
+        "anchor": "In 1QS VI, common deliberation"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S63",
+      "kind": "Thomas institutional qualification",
+      "semantic_content": "Thomas meals/fasting do not prove Yahad common economy; rule and sayings require bridge; succession meets named relationships.",
+      "pre230": null,
+      "published230": {
+        "line": 73,
+        "anchor": "Thomas is not an institutional charter"
+      },
+      "candidate232": {
+        "line": 225,
+        "anchor": "Thomas is not an institutional charter"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S64",
+      "kind": "Sabbath example/correction",
+      "semantic_content": "CD X–XI supplies concrete Sabbath locus;4QMMT not unspecified Sabbath rule; Gospel healing/rescue not Thomas material.",
+      "pre230": null,
+      "published230": {
+        "line": 77,
+        "anchor": "The Damascus Document's Sabbath regulations"
+      },
+      "candidate232": {
+        "line": 229,
+        "anchor": "The Damascus Document's Sabbath regulations"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S65",
+      "kind": "Sabbath disanalogy",
+      "semantic_content": "Regulated Sabbath versus relief may be rival law interpretations; one-tradition development needs mechanism rather than assumed equivalence.",
+      "pre230": null,
+      "published230": {
+        "line": 79,
+        "anchor": "Here a difference can be more informative"
+      },
+      "candidate232": {
+        "line": 231,
+        "anchor": "Here a difference can be more informative"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S66",
+      "kind": "Temple comparison",
+      "semantic_content": "Gospel Temple and Qumran legitimacy disputes connect authority/worship;4QMMT legal and Habakkuk conflict distinguish purposes.",
+      "pre230": null,
+      "published230": {
+        "line": 83,
+        "anchor": "The Gospel Temple traditions"
+      },
+      "candidate232": {
+        "line": 235,
+        "anchor": "The Gospel Temple traditions"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S67",
+      "kind": "Temple transformation",
+      "semantic_content": "Correct priestly practice, prophetic action and post-destruction reinterpretation distinct; cosmic criticism transformation itself conjectural.",
+      "pre230": null,
+      "published230": {
+        "line": 85,
+        "anchor": "Different institutions can criticize a sanctuary"
+      },
+      "candidate232": {
+        "line": 237,
+        "anchor": "Different institutions can criticize a sanctuary"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S68",
+      "kind": "kingdom example",
+      "semantic_content": "Thomas 3/51/113 recognition/rest versus11Q13 Jubilee judgment versus1QS prophet and Aaron/Israel messiahs.",
+      "pre230": null,
+      "published230": {
+        "line": 89,
+        "anchor": "Thomas 3, 51, and 113"
+      },
+      "candidate232": {
+        "line": 241,
+        "anchor": "Thomas 3, 51, and 113"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S69",
+      "kind": "kingdom distinctions",
+      "semantic_content": "Restoration reorganizes life; actors/timing differ and cannot collapse; chronological and contemporary repair applications separately linked.",
+      "pre230": null,
+      "published230": {
+        "line": 91,
+        "anchor": "The proposed continuity concerns a teaching's power"
+      },
+      "candidate232": {
+        "line": 243,
+        "anchor": "The proposed continuity concerns a teaching's power"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S70",
+      "kind": "counterexamples",
+      "semantic_content": "Oaths, enemy love, initiation, meals, healing, outsider treatment can alter conclusion; similarities cannot alone select case.",
+      "pre230": null,
+      "published230": {
+        "line": 95,
+        "anchor": "The comparison must also examine opposing practices"
+      },
+      "candidate232": {
+        "line": 247,
+        "anchor": "The comparison must also examine opposing practices"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S71",
+      "kind": "next evidence standard",
+      "semantic_content": "Dossier needs text/restorations/languages/manuscript and composition dates/function/common sources/resemblance/disanalogy; independent contribution not motif count.",
+      "pre230": null,
+      "published230": {
+        "line": 97,
+        "anchor": "The next useful comparison is therefore"
+      },
+      "candidate232": {
+        "line": 249,
+        "anchor": "The next useful comparison is therefore"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S72",
+      "kind": "institutional route",
+      "semantic_content": "Judean/Egypt split, related inheritance, displacement/reunion then post70 expression; versions ordered separately.",
+      "pre230": null,
+      "published230": {
+        "line": 107,
+        "anchor": "The institutional conjecture gives"
+      },
+      "candidate232": {
+        "line": 87,
+        "anchor": "The institutional conjecture gives"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S73",
+      "kind": "route qualification",
+      "semantic_content": "Which Onias/institution/movement date and community link must be specified; Oniad institution does not prove Teacher name/Gnostic descent.",
+      "pre230": null,
+      "published230": {
+        "line": 109,
+        "anchor": "The [[onias-egypt-and-priestly-continuity|Onias and Egyptian"
+      },
+      "candidate232": {
+        "line": 89,
+        "anchor": "The [[onias-egypt-and-priestly-continuity|Onias and Egyptian"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S74",
+      "kind": "route branch control",
+      "semantic_content": "Priestly dispute→Egypt→Teacher/Jeshua inheritance→movement/reunion→successors→Paul→biography; variants may order steps differently.",
+      "pre230": null,
+      "published230": {
+        "line": 111,
+        "anchor": "The proposed chain can be stated"
+      },
+      "candidate232": {
+        "line": 91,
+        "anchor": "The proposed chain can be stated"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S75",
+      "kind": "succession mechanism/alternatives",
+      "semantic_content": "Founder's brother James earlier successor; later Peter/James inherit names; descent/office/unrelated namesakes differ and need different evidence.",
+      "pre230": null,
+      "published230": {
+        "line": 113,
+        "anchor": "Succession is essential"
+      },
+      "candidate232": {
+        "line": 93,
+        "anchor": "Succession is essential"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S76",
+      "kind": "succession residual test",
+      "semantic_content": "James task specifically meets kinship language and separate Lord-brothers grouping; explicit mechanism sharpens test.",
+      "pre230": null,
+      "published230": {
+        "line": 115,
+        "anchor": "The [[james-and-contested-succession|James investigation]] therefore"
+      },
+      "candidate232": {
+        "line": 95,
+        "anchor": "The [[james-and-contested-succession|James investigation]] therefore"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S77",
+      "kind": "name/group distinctions",
+      "semantic_content": "Zadokite descent/allegiance/sectarian self-understanding differ; Nazirite/Nazarene/Nazoraean/Essene/Ebionite not simply interchangeable.",
+      "pre230": null,
+      "published230": {
+        "line": 117,
+        "anchor": "Names and group labels also"
+      },
+      "candidate232": {
+        "line": 97,
+        "anchor": "Names and group labels also"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S78",
+      "kind": "joint evidence and emotional limit",
+      "semantic_content": "Dated people+institution+teaching strongest join; cosmic anger is historical transformation, not independent dating device.",
+      "pre230": null,
+      "published230": {
+        "line": 119,
+        "anchor": "The model's strongest eventual evidence"
+      },
+      "candidate232": {
+        "line": 99,
+        "anchor": "The model's strongest eventual evidence"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S79",
+      "kind": "chronological rationale",
+      "semantic_content": "Earlier Teacher could fit pre-Gospel scriptural/communal scheme; Daniel, CD, Teacher appearance/death and restoration separate clocks.",
+      "pre230": null,
+      "published230": {
+        "line": 141,
+        "anchor": "The chronological argument has an affirmative purpose"
+      },
+      "candidate232": {
+        "line": 125,
+        "anchor": "The chronological argument has an affirmative purpose"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S80",
+      "kind": "CD clock",
+      "semantic_content": "390+20 from586/587 yields196/197 then176/177 BCE; choice-dependent readings not independently dated events.",
+      "pre230": null,
+      "published230": {
+        "line": 143,
+        "anchor": "CD I, 5–11 describes"
+      },
+      "candidate232": {
+        "line": 127,
+        "anchor": "CD I, 5–11 describes"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S81",
+      "kind": "alternative clock",
+      "semantic_content": "167+20→147 differs from CD route; cannot combine as independent corroboration; Onias/John remains additional identification.",
+      "pre230": null,
+      "published230": {
+        "line": 145,
+        "anchor": "The working model above instead"
+      },
+      "candidate232": {
+        "line": 129,
+        "anchor": "The working model above instead"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S82",
+      "kind": "CD forty-year qualification",
+      "semantic_content": "CD XX13–15 after Teacher death to destruction of returners to Man of Lie, not ministry/lifespan; cannot double count or substitute20; edition lines matter.",
+      "pre230": null,
+      "published230": {
+        "line": 147,
+        "anchor": "The approximately forty-year interval"
+      },
+      "candidate232": {
+        "line": 131,
+        "anchor": "The approximately forty-year interval"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S83",
+      "kind": "Daniel arithmetic",
+      "semantic_content": "62×7=434,69×7=483,70×7=490;605 start and segment choice need justification; arithmetic does not choose reading.",
+      "pre230": null,
+      "published230": {
+        "line": 149,
+        "anchor": "Daniel 9:24–27 presents"
+      },
+      "candidate232": {
+        "line": 133,
+        "anchor": "Daniel 9:24–27 presents"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S84",
+      "kind": "11Q13 reconstruction",
+      "semantic_content": "Jubilee release/judgment context separate from bracket-restored Daniel II18; restored quotation cannot independently prove selected week calculation; Daniel 9 existence not at issue.",
+      "pre230": null,
+      "published230": {
+        "line": 151,
+        "anchor": "11QMelchizedek adds"
+      },
+      "candidate232": {
+        "line": 135,
+        "anchor": "11QMelchizedek adds"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S85",
+      "kind": "clock synthesis",
+      "semantic_content": "Joint Melchizedek/Daniel inquiry may build coherent model but intervals do not create biography without identities and connecting dates.",
+      "pre230": null,
+      "published230": {
+        "line": 153,
+        "anchor": "The [[melchizedek-priesthood-and-transmission|Melchizedek study]] follows"
+      },
+      "candidate232": {
+        "line": 137,
+        "anchor": "The [[melchizedek-priesthood-and-transmission|Melchizedek study]] follows"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S86",
+      "kind": "research-history attribution",
+      "semantic_content": "Conversation dates snapshots not each turn; author proposals and AI replies distinct, archive unchanged.",
+      "pre230": null,
+      "published230": {
+        "line": 217,
+        "anchor": "The public archive preserves an evolving argument"
+      },
+      "candidate232": {
+        "line": 309,
+        "anchor": "The public archive preserves an evolving argument"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S87",
+      "kind": "development/inner-circle precursor",
+      "semantic_content": "June exploratory Gnostic-Jesus resemblance/inner circles precede full model, not retroactive complete reconstruction.",
+      "pre230": null,
+      "published230": {
+        "line": 219,
+        "anchor": "In the June 17, 2025 snapshot"
+      },
+      "candidate232": {
+        "line": 311,
+        "anchor": "In the June 17, 2025 snapshot"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S88",
+      "kind": "method pivot not withdrawal",
+      "semantic_content": "September identity suggestion; correction of AI James chronology; functional equivalence strategy immediate rather than retraction of identity.",
+      "pre230": null,
+      "published230": {
+        "line": 221,
+        "anchor": "The September 25 snapshot"
+      },
+      "candidate232": {
+        "line": 313,
+        "anchor": "The September 25 snapshot"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S89",
+      "kind": "candidate authorship",
+      "semantic_content": "Request >30 belongs to author;34 parallels/10 disanalogies AI-generated with missing loci/overlap; article selected corrections not validated count.",
+      "pre230": null,
+      "published230": {
+        "line": 223,
+        "anchor": "Later in that snapshot"
+      },
+      "candidate232": {
+        "line": 315,
+        "anchor": "Later in that snapshot"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S90",
+      "kind": "historical alternative",
+      "semantic_content": "October19 separates sayings inheritance and personal identity and connects institutional Egyptian route.",
+      "pre230": null,
+      "published230": {
+        "line": 225,
+        "anchor": "The October 19 snapshot"
+      },
+      "candidate232": {
+        "line": 317,
+        "anchor": "The October 19 snapshot"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S91",
+      "kind": "narrowing rebuttal",
+      "semantic_content": "October20 user institutional split/reunion retained after AI-only ideological/ritual narrowing; weaker AI account not user acceptance.",
+      "pre230": null,
+      "published230": {
+        "line": 227,
+        "anchor": "The October 20 snapshot"
+      },
+      "candidate232": {
+        "line": 319,
+        "anchor": "The October 20 snapshot"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S92",
+      "kind": "named formulation provenance",
+      "semantic_content": "September2026 title/alternatives/requirements editorial terminology not backdated to2025.",
+      "pre230": null,
+      "published230": {
+        "line": 229,
+        "anchor": "The September 18, 2026 working formulation"
+      },
+      "candidate232": {
+        "line": 321,
+        "anchor": "The September 18, 2026 working formulation"
+      },
+      "assessment": "retained",
+      "reason": "Directional locator “below” stale; change to “used here”."
+    },
+    {
+      "id": "S93",
+      "kind": "AI confidence",
+      "semantic_content": "AI confidence/Bayesian scores history only, not numerical proof.",
+      "pre230": null,
+      "published230": {
+        "line": 233,
+        "anchor": "Earlier AI-generated confidence"
+      },
+      "candidate232": {
+        "line": 325,
+        "anchor": "Earlier AI-generated confidence"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S94",
+      "kind": "challenge record relationships",
+      "semantic_content": "Correcting AI paraphrase does not validate all historical premises; date difficulty does not erase founder/community/transmission model.",
+      "pre230": null,
+      "published230": {
+        "line": 247,
+        "anchor": "These revisions preserve a substantial conjecture"
+      },
+      "candidate232": {
+        "line": 339,
+        "anchor": "These revisions preserve a substantial conjecture"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S95",
+      "kind": "access method",
+      "semantic_content": "Public archive consulted and accessible translations/transcriptions/studies; not private conversation publication or recovered AI testimony.",
+      "pre230": null,
+      "published230": {
+        "line": 265,
+        "anchor": "The October 11, 2026 expansion checked"
+      },
+      "candidate232": {
+        "line": 357,
+        "anchor": "The October 11, 2026 expansion checked"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "S96",
+      "kind": "comparison source caveats",
+      "semantic_content": "Thomas English not Greek/Coptic collation;1QS staged property not immediate pool;4Q525 not certainly sectarian/Teacher-authored; Charlesworth only record/opening; CD rescue implements not absolute life-rescue ban.",
+      "pre230": null,
+      "published230": {
+        "line": 267,
+        "anchor": "- [Patterson–Meyer translation"
+      },
+      "candidate232": {
+        "line": 359,
+        "anchor": "- [Patterson–Meyer translation"
+      },
+      "assessment": "retained",
+      "reason": "All source-note caveats retained verbatim, including subsequent seven bullets."
+    },
+    {
+      "id": "S97",
+      "kind": "source identity",
+      "semantic_content": "Pinned public source revision documents modern argument development, not ancient corroboration; original source and attribution unchanged.",
+      "pre230": null,
+      "published230": {
+        "line": 276,
+        "anchor": "The public conversation anchors are pinned"
+      },
+      "candidate232": {
+        "line": 368,
+        "anchor": "The public conversation anchors are pinned"
+      },
+      "assessment": "retained",
+      "reason": "Claim, rationale, and stated limitation remain together; no substantive regression found."
+    },
+    {
+      "id": "N01",
+      "kind": "candidate addition",
+      "semantic_content": "Direct Jesus–Teacher, Thomas–Teacher, three-way synthesis, Yahad/James, and later Gnostic reception kept distinct.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 17,
+        "anchor": "Five connected inquiries organize"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N02",
+      "kind": "candidate addition",
+      "semantic_content": "Matthew 7 hear/do authority compared with prophetic interpreter; different literary forms retained.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 43,
+        "anchor": "**Teaching that claims authority"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N03",
+      "kind": "candidate addition",
+      "semantic_content": "John 2 Temple/body authority comparison does not identify Wicked Priest with Gospel opponent or synchronize conflicts.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 45,
+        "anchor": "**Conflict over the right ordering"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N04",
+      "kind": "candidate addition",
+      "semantic_content": "Matthew 19 economic discipleship compared with discipline, without assigning1QS personally to Teacher.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 47,
+        "anchor": "**Righteousness expressed through"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N05",
+      "kind": "candidate addition",
+      "semantic_content": "Three-way evidence depends on actual text relationships; Thomas/Gospel dependence prevents double counting.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 253,
+        "anchor": "We can now ask the three-way"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N06",
+      "kind": "candidate addition",
+      "semantic_content": "Common economy proposed social carrier with admission, meals, resources, leadership supporting generational survival.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 263,
+        "anchor": "The Yahad is the community"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N07",
+      "kind": "candidate addition",
+      "semantic_content": "Yahad property staged and not universal Scrolls/Teacher-authored; Jesus ethical wealth instructions not identical admission system.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 265,
+        "anchor": "### The Yahad: organized resources"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N08",
+      "kind": "candidate addition",
+      "semantic_content": "Thomas 12 James succession and54/63/95 economics are two links, not charter/property register.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 275,
+        "anchor": "Thomas contributes sayings about poverty"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N09",
+      "kind": "candidate addition",
+      "semantic_content": "Acts 4 sharing and5 owner discretion compared with Yahad without proof of descent; Gal2 poor/James does not found Acts system or inherit treasury.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 279,
+        "anchor": "Acts 4:32–35 depicts"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N10",
+      "kind": "candidate addition",
+      "semantic_content": "Epiphanes equality/common use through hostile Clement distinguished from practice and no documented Yahad–James–Carpocrates lineage.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 291,
+        "anchor": "One concrete comparison is Epiphanes"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N11",
+      "kind": "candidate addition",
+      "semantic_content": "Economic transmission may support distinct later Jesus too; identity retains separate evidence burden.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 295,
+        "anchor": "Returning to the central question, a demonstrated"
+      },
+      "assessment": "new substantive development",
+      "reason": "Adds concrete comparisons and controls without deleting older arguments."
+    },
+    {
+      "id": "N12",
+      "kind": "Collection scope",
+      "semantic_content": "Competing and contradictory perspectives can be included without personal endorsement; first person names origin/development.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 3,
+        "anchor": "This Wiki is a collection"
+      },
+      "assessment": "new user-directed framing",
+      "reason": "Conditional consequences are not presented as established historical or universally harmless theological conclusions."
+    },
+    {
+      "id": "N13",
+      "kind": "Conditional chronology/theology",
+      "semantic_content": "Moving hypothesized founder100–150years could change Teacher/Daniel comparison setting; if identity true DSS important for Jesus history; date change may preserve spiritual value but consequences vary.",
+      "pre230": null,
+      "published230": null,
+      "candidate232": {
+        "line": 13,
+        "anchor": "One attraction of moving the hypothesized founder"
+      },
+      "assessment": "new user-directed framing",
+      "reason": "Conditional consequences are not presented as established historical or universally harmless theological conclusions."
+    }
+  ]
+}

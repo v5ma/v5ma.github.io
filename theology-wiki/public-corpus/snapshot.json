@@ -12,7 +12,7 @@
   "indexedPages": 439,
   "sourceConversations": 354,
   "markdownSources": 562,
-  "indexSha256": "d46d9efd61e741ac4c250dc217244272956791bfa85ecaad9122ba1a26030615",
+  "indexSha256": "86904485cd0afa42ed7554d3e000f2defcde8666c143e8ab24f0fb75e6d3c36b",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
   "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
   "amendments": [
@@ -32,6 +32,18 @@
       "sourceRevision": "64e3e956fd0f7cfb9aa331df6baf81bf7894339e",
       "sourceCommitterDate": "2026-10-11T16:40:28-07:00",
       "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/64e3e956fd0f7cfb9aa331df6baf81bf7894339e",
+      "pages": [
+        "jesus-teacher-of-righteousness-hypothesis"
+      ],
+      "markdownSources": [
+        "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+      ]
+    },
+    {
+      "sourceRevision": "5e5e65334fc923c02197bf116f52f890aabc9996",
+      "sourceCommitterDate": "2026-10-11T16:56:24-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/5e5e65334fc923c02197bf116f52f890aabc9996",
       "pages": [
         "jesus-teacher-of-righteousness-hypothesis"
       ],
