@@ -56,6 +56,7 @@
       "onias-egypt-and-priestly-continuity",
       "james-and-contested-succession",
       "thomas-sayings-and-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -93,12 +94,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/home.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/home.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/home.md",
       "sourcePath": "theology-wiki/content/home.md",
-      "sha256": "9e6460b7cd163471437b2aa4d75cfad09d42bcd0c97d80aa451cb70d6afb9a5f",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
@@ -17799,7 +17800,7 @@
       "pilate-life-timeline",
       "samaritan-texts-and-sacred-authority"
     ],
-    "backlinkCount": 21,
+    "backlinkCount": 22,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
@@ -17811,6 +17812,7 @@
       "exodus-to-temple-competing-chronologies",
       "inner-formation-texts-and-material-witnesses",
       "daniel-jubilee-and-the-teachers-time",
+      "living-jesus-thomas-john-and-synoptics",
       "connected-arguments",
       "source-atlas",
       "argument-challenges",
@@ -18321,7 +18323,7 @@
       "inward-formation-and-accountable-intelligence",
       "computational-god-capabilities-bridge"
     ],
-    "backlinkCount": 30,
+    "backlinkCount": 31,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
@@ -18341,6 +18343,7 @@
       "onias-egypt-and-priestly-continuity",
       "james-and-contested-succession",
       "thomas-sayings-and-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "inward-formation-and-accountable-intelligence",
       "connected-arguments",
@@ -18870,7 +18873,7 @@
       "god-and-our-models-of-god",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 16,
+    "backlinkCount": 17,
     "backlinks": [
       "home",
       "apocalyptic-repair-theology",
@@ -18881,6 +18884,7 @@
       "manuscripts-movements-and-survival",
       "flood-inheritance-and-deep-time",
       "onias-egypt-and-priestly-continuity",
+      "living-jesus-thomas-john-and-synoptics",
       "contested-memories-of-catastrophe",
       "rival-continuations-and-restoration",
       "connected-arguments",
@@ -19001,7 +19005,7 @@
       "thomas-sayings-and-transmission",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 23,
+    "backlinkCount": 24,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
@@ -19016,6 +19020,7 @@
       "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "rival-continuations-and-restoration",
       "connected-arguments",
       "source-atlas",
@@ -19202,7 +19207,7 @@
       "samaritan-texts-and-sacred-authority",
       "apocalypse-and-repair"
     ],
-    "backlinkCount": 13,
+    "backlinkCount": 14,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
@@ -19210,6 +19215,7 @@
       "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
       "daniel-jubilee-and-the-teachers-time",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "apocalypse-and-repair",
       "connected-arguments",
@@ -19561,13 +19567,14 @@
       "jewish-apocalyptic-repair-timeline",
       "sacred-inheritance-and-rival-continuations"
     ],
-    "backlinkCount": 13,
+    "backlinkCount": 14,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "rival-continuations-and-restoration",
       "connected-arguments",
@@ -19656,11 +19663,12 @@
       "museum-trails",
       "sanctuary-community-and-body"
     ],
-    "backlinkCount": 10,
+    "backlinkCount": 11,
     "backlinks": [
       "home",
       "christ-as-an-inner-model",
       "tor-thomas-and-gnostic-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "connected-arguments",
       "source-atlas",
@@ -20089,12 +20097,13 @@
       "jesus-and-biblical-figures",
       "sanctuary-community-and-body"
     ],
-    "backlinkCount": 11,
+    "backlinkCount": 12,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "onias-egypt-and-priestly-continuity",
       "thomas-sayings-and-transmission",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "connected-arguments",
       "evidence-workbench",
@@ -20189,12 +20198,13 @@
       "jesus-and-biblical-figures",
       "ai-re-dates-dead-sea-scrolls"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 13,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
       "tor-thomas-and-gnostic-transmission",
       "james-and-contested-succession",
+      "living-jesus-thomas-john-and-synoptics",
       "sanctuary-community-and-body",
       "inward-formation-and-accountable-intelligence",
       "connected-arguments",
@@ -20215,6 +20225,75 @@
       "sourceCommitterDate": "2026-10-04T04:22:53Z",
       "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/thomas-sayings-and-transmission.md",
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/thomas-sayings-and-transmission.md",
+      "transcriptExactUrl": null
+    }
+  },
+  {
+    "slug": "living-jesus-thomas-john-and-synoptics",
+    "title": "The Living Jesus in Thomas, John and the Synoptic Gospels",
+    "summary": "Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.",
+    "externalSources": [
+      "gospel-20261011-inventory",
+      "gospel-20261011-thomas",
+      "gospel-20261011-john5",
+      "gospel-20261011-matthew22",
+      "gospel-20261011-koester",
+      "gospel-20261011-deconick",
+      "gospel-20261011-goodacre",
+      "gospel-20261011-greek"
+    ],
+    "aliases": [
+      "Living Jesus Thomas John Synoptic Gospels",
+      "Thomas 52 dead prophets God of the living",
+      "Gospel of Thomas reconciliation"
+    ],
+    "category": "jesus",
+    "kind": "Developed article",
+    "updated": "2026-10-11",
+    "claimType": "Comparative textual interpretation and historical inquiry",
+    "attribution": "Authorial working edition developed with AI assistance for the October 2026 Gospel comparison. This is current interpretive synthesis, not a newly recovered historical conversation or verbatim quotation. Ancient passages, scholarly arguments and constructive interpretations retain their distinct attribution.",
+    "art": "",
+    "path": "developed/living-jesus-thomas-john-and-synoptics.md",
+    "topic": "Jesus, ethics & authority",
+    "tags": [
+      "jesus",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-living-jesus-thomas-john-and-synoptics",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/living-jesus-thomas-john-and-synoptics.md"
+    ],
+    "references": [],
+    "readMinutes": 21,
+    "related": [
+      "thomas-sayings-and-transmission",
+      "tor-thomas-and-gnostic-transmission",
+      "manuscripts-movements-and-survival",
+      "sacred-inheritance-and-rival-continuations",
+      "scripture-power-and-repair",
+      "inner-formation-texts-and-material-witnesses",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "james-and-contested-succession",
+      "christ-as-an-inner-model"
+    ],
+    "backlinkCount": 2,
+    "backlinks": [
+      "home",
+      "topic-jesus"
+    ],
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/living-jesus-thomas-john-and-synoptics.md",
+      "sourcePath": "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "sha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
       "transcriptExactUrl": null
     }
   },
@@ -21783,6 +21862,7 @@
       "christ-as-an-inner-model",
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
+      "living-jesus-thomas-john-and-synoptics",
       "17th-century-christian-zionism",
       "allegiance-vs-proclamation-of-christ",
       "barnabas-gospel-debunked",
@@ -21862,12 +21942,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/topic-jesus.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-jesus.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/topic-jesus.md",
       "sourcePath": "theology-wiki/content/developed/topic-jesus.md",
-      "sha256": "e5dcad41386711c30fd9235b878cf7480bc5bb5f347d670784f4d6716dee94e7",
-      "revision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
-      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null

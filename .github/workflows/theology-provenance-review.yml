@@ -54,7 +54,11 @@ jobs:
           developed='theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md'
           assert canonical=='theology-wiki/'+receipt['canonical']['path']
           approved={canonical:receipt['canonical']['sha256'],developed:receipt['files'][developed.removeprefix('theology-wiki/')]['after']}
-          checked=[];revised=[]
+          gospel=json.loads(Path('theology-wiki/gospel-comparison-20261011/publication-receipt.json').read_text())
+          gospel_navigation=gospel['navigation']
+          assert set(gospel_navigation)=={'theology-wiki/content/home.md','theology-wiki/content/developed/topic-jesus.md'}
+          assert gospel['baseline']=='22dd281d9296e5ca5794a8cd83c3dde47147337f'
+          checked=[];revised=[];navigation_revised=[]
           for item in subprocess.check_output(['git','ls-tree','-r',base],text=True).splitlines():
             info,p=item.split('\t',1)
             if not any(p.startswith(x) for x in prefixes):continue
@@ -68,12 +72,18 @@ jobs:
                 prior=subprocess.check_output(['git','show',base+':'+p])
                 assert hashlib.sha256(prior).hexdigest()==receipt['files'][p.removeprefix('theology-wiki/')]['before'],'Unexpected Teacher baseline'
               revised.append(p)
+            elif p in gospel_navigation:
+              nav=gospel_navigation[p]
+              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==nav['after'],'Unapproved Gospel navigation: '+p
+              assert hashlib.sha256(subprocess.check_output(['git','show',base+':'+p])).hexdigest()==nav['before'],'Unexpected navigation baseline: '+p
+              navigation_revised.append(p)
             else:
               assert info.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
               checked.append(p)
           assert sorted(revised)==sorted(approved),'Both approved Teacher paths must exist in the original baseline'
-          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved}},indent=2)+'\n')
-          print('Verified',len(checked),'unchanged original files and exactly two approved Teacher revision paths.')
+          assert sorted(navigation_revised)==sorted(gospel_navigation),'Both Gospel navigators must retain their original baselines'
+          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved},'gospelNavigationAddition':gospel_navigation},indent=2)+'\n')
+          print('Verified',len(checked),'unchanged original files and exactly two approved Teacher revision paths plus two source-pinned Gospel navigators.')
           PY
       - name: Build the actual Cloudflare distribution
         run: node scripts/cloudflare-theology-build.mjs cf-validation

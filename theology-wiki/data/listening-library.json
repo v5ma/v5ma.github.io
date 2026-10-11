@@ -874,6 +874,21 @@
       "words": 1025
     },
     {
+      "slug": "living-jesus-thomas-john-and-synoptics",
+      "title": "The Living Jesus in Thomas, John and the Synoptic Gospels",
+      "summary": "Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.",
+      "category": "jesus",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/living-jesus-thomas-john-and-synoptics.md",
+      "sourceSha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a",
+      "narration": "data/listening/living-jesus-thomas-john-and-synoptics.json",
+      "narrationSha256": "ac9c703588d737214bac58c886b30f030febf73f3878a6704d53d18bb69699c3",
+      "transcript": "products/transcripts/living-jesus-thomas-john-and-synoptics.txt",
+      "segments": 97,
+      "words": 3791
+    },
+    {
       "slug": "computational-god-consciousness-and-theodicy",
       "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",

@@ -23,7 +23,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 ## Browse the backed-up pages
 
-[Theology Wiki](pages/home.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=home) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/home.md).
+[Theology Wiki](pages/home.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=home) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md).
 
 [17th Century Christian Zionism](pages/17th-century-christian-zionism.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=17th-century-christian-zionism) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/sources/17th-century-christian-zionism.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/sources/17th-century-christian-zionism.md).
 
@@ -865,7 +865,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [Ancient texts & origins](pages/topic-origins.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-origins) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-origins.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-origins.md).
 
-[Jesus, ethics & authority](pages/topic-jesus.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-jesus) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-jesus.md).
+[Jesus, ethics & authority](pages/topic-jesus.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-jesus) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md).
 
 [Faith & spiritual practice](pages/topic-practice.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-practice) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-practice.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/topic-practice.md).
 
@@ -898,3 +898,11 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 [The universe might think without being God](pages/cosmic-thought-and-transcendence.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=cosmic-thought-and-transcendence) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/cosmic-thought-and-transcendence.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/cosmic-thought-and-transcendence.md).
 
 [Publication history and time-stamped public backup](pages/publication-history.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=publication-history) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/publication-history.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/publication-history.md).
+
+<!-- gospel-comparison-addition -->
+## Gospel comparison addition
+
+The collection now includes 439 reader pages. The original full-snapshot revision and all unrelated page histories are unchanged. This addition records [The Living Jesus in Thomas, John and the Synoptic Gospels](pages/living-jesus-thomas-john-and-synoptics.md) and its home and Jesus-topic navigation entries at [source revision 9de4155edb0e722fd70a13b072fd7092c2fbb15f](https://github.com/v5ma/v5ma.github.io/commit/9de4155edb0e722fd70a13b072fd7092c2fbb15f), Git committer date 2026-10-11T16:11:23-07:00. This is a source-version record, not an independent timestamp or a claim about the original date of the ideas.
+
+[Exact article source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md). [Canonical source](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md).
+<!-- /gospel-comparison-addition -->
