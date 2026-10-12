@@ -644,8 +644,11 @@
     if (title && lines.length) {
       const heading = lines[0].match(/^#{1,6}\s+(.+)$/);
       if (heading && normalizeForLeadCompare(heading[1]) === title) {
-        lines.shift();
-        while (lines.length && !lines[0].trim()) lines.shift();
+        const duplicateTitle = lines[0];
+        do {
+          lines.shift();
+          while (lines.length && !lines[0].trim()) lines.shift();
+        } while (lines.length && lines[0] === duplicateTitle);
       }
     }
 
