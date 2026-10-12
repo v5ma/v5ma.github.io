@@ -31,6 +31,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p publication-test-output
+          node theology-wiki/gospel-synthesis-20261011/publication.cjs --check | tee publication-test-output/gospel-synthesis-check.json
           node theology-wiki/tools/publication.cjs --check | tee publication-test-output/corpus-check.json
           node --test theology-wiki/tests/research.test.cjs > publication-test-output/node-tests.log 2>&1 || { cat publication-test-output/node-tests.log; exit 1; }
           tail -12 publication-test-output/node-tests.log
@@ -56,6 +57,14 @@ jobs:
           approved={canonical:receipt['canonical']['sha256'],developed:receipt['files'][developed.removeprefix('theology-wiki/')]['after']}
           gospel=json.loads(Path('theology-wiki/gospel-comparison-20261011/publication-receipt.json').read_text())
           gospel_navigation=gospel['navigation']
+          synthesis=json.loads(Path('theology-wiki/gospel-synthesis-20261011/publication-receipt.json').read_text())
+          assert synthesis['baseline']=='70bf669b241ae51fbca864742dfd086b79f662bf'
+          synthesis_navigation=synthesis['navigation']
+          assert set(synthesis_navigation)==set(gospel_navigation)
+          for p,nav in synthesis_navigation.items():
+            assert nav['before']==gospel_navigation[p]['after'],'Broken navigation successor chain: '+p
+            assert synthesis['previousNavigation'][nav['slug']]['record']['sourceSha256']==nav['before']
+
           assert set(gospel_navigation)=={'theology-wiki/content/home.md','theology-wiki/content/developed/topic-jesus.md'}
           assert gospel['baseline']=='22dd281d9296e5ca5794a8cd83c3dde47147337f'
           checked=[];revised=[];navigation_revised=[]
@@ -74,7 +83,7 @@ jobs:
               revised.append(p)
             elif p in gospel_navigation:
               nav=gospel_navigation[p]
-              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==nav['after'],'Unapproved Gospel navigation: '+p
+              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==synthesis_navigation[p]['after'],'Unapproved Gospel synthesis navigation: '+p
               assert hashlib.sha256(subprocess.check_output(['git','show',base+':'+p])).hexdigest()==nav['before'],'Unexpected navigation baseline: '+p
               navigation_revised.append(p)
             else:
@@ -82,7 +91,7 @@ jobs:
               checked.append(p)
           assert sorted(revised)==sorted(approved),'Both approved Teacher paths must exist in the original baseline'
           assert sorted(navigation_revised)==sorted(gospel_navigation),'Both Gospel navigators must retain their original baselines'
-          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved},'gospelNavigationAddition':gospel_navigation},indent=2)+'\n')
+          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved},'gospelNavigationAddition':gospel_navigation,'gospelSynthesisNavigationAddition':synthesis_navigation},indent=2)+'\n')
           print('Verified',len(checked),'unchanged original files and exactly two approved Teacher revision paths plus two source-pinned Gospel navigators.')
           PY
       - name: Build the actual Cloudflare distribution
@@ -103,7 +112,7 @@ jobs:
           import hashlib,json,time,urllib.request,subprocess
           revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
           paths=['theology-wiki/data/page-index.json','theology-wiki/public-corpus/snapshot.json','theology-wiki/public-corpus/page-index.json','theology-wiki/assets/js/publication-tools.js','theology-wiki/assets/js/research-tools.js','theology-wiki/assets/css/publication.css']
-          for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge','cosmic-thought-and-transcendence','publication-history']:
+          for slug in ['computational-god-consciousness-and-theodicy','computational-god-capabilities-bridge','cosmic-thought-and-transcendence','publication-history','gnostic-canonical-gospels-telling-the-truth']:
             paths += ['theology-wiki/content/developed/'+slug+'.md','theology-wiki/public-corpus/pages/'+slug+'.md']
           checked=[]
           for p in paths:

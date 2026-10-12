@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'..'),P=require('../tools/publication.cjs'),C=
 const read=p=>fs.readFileSync(path.join(root,p),'utf8'),json=p=>JSON.parse(read(p));
 const cfg=json('editorial/publication.json'),pages=json('data/page-index.json'),by=new Map(pages.map(p=>[p.slug,p]));
 test('Four added routes retain distinct source dates, authorship and connected arguments',()=>{
- assert.equal(pages.length,439);assert.equal(pages.filter(p=>p.sourceFile).length,354);assert.equal(pages.filter(p=>p.kind==='Developed article').length,32);
+ assert.equal(pages.length,440);assert.equal(pages.filter(p=>p.sourceFile).length,354);assert.equal(pages.filter(p=>p.kind==='Developed article').length,33);
  for(const spec of cfg.pages){const p=by.get(spec.slug);assert(p);assert.equal(p.updated,spec.updated);assert(read('content/'+p.path).includes('canonical_source: '+JSON.stringify(spec.source)));}
  assert.equal(by.get('cosmic-thought-and-transcendence').updated,'2026-09-09');assert.equal(by.get('computational-god-capabilities-bridge').updated,'2026-10-03');
  assert(read(cfg.pages[1].source).includes('new connective exposition'));
@@ -20,11 +20,11 @@ test('Full-text search covers the actual new prose rather than only page titles'
  assert(C.select(pages,'cognitive functions consciousness',{kind:'article'},search).some(p=>p.slug==='computational-god-consciousness-and-theodicy'));
 });
 test('New device-reading texts contain the complete source-matched article; prior recordings are not relabeled',()=>{
- const lib=json('data/listening-library.json');assert.equal(lib.articles.length,38);
+ const lib=json('data/listening-library.json');assert.equal(lib.articles.length,39);
  for(const spec of cfg.pages.filter(x=>x.kind!=='Navigator')){const item=lib.articles.find(x=>x.slug===spec.slug),source=read(item.source),n=json(item.narration);assert.equal(item.sourceSha256,P.hash(source));assert.deepEqual(n.segments,L.segment(source));assert.equal(P.hash(read(item.narration)),item.narrationSha256);assert(!json('products/media/manifest.json').assets.some(x=>x.id===spec.slug));}
 });
 test('Every reader page and full public transcript has a hash-checked public Markdown backup',()=>{
- const report=P.check(root);assert.equal(report.verifiedPages,439);assert.equal(report.verifiedTranscripts,354);
+ const report=P.check(root);assert.equal(report.verifiedPages,440);assert.equal(report.verifiedTranscripts,354);
  const records=json('public-corpus/page-index.json');for(const p of pages){const r=records.find(r=>r.slug===p.slug);assert(r);assert(p.publication.sourceUrl.startsWith('https://github.com/v5ma/v5ma.github.io/blob/master/'));assert(r.exactSourceUrl.includes('/blob/'+r.sourceRevision+'/'));if(!p.sourceFile)assert.equal(read(r.archivePath),read('content/'+p.path));}
 });
 test('Both reader entries expose the same local extension without missing shared stylesheet dependencies',()=>{

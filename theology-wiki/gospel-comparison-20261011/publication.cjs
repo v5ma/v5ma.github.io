@@ -19,6 +19,19 @@ function apply(root,ref,spec=SPEC){
  const date=git('show','-s','--format=%cI',ref).toString().trim(),cfg=json('editorial/publication.json'),base='https://github.com/'+cfg.repository;
  const pages=json('data/page-index.json'),records=json('public-corpus/page-index.json'),meta=json('public-corpus/snapshot.json'),supplement=json('public-corpus/source-manifest.json');
  if(hash(read('public-corpus/page-index.json'))!==meta.indexSha256)throw Error('Corpus index mismatch');
+ // A verified successor may replace only the two explicit navigation records.
+ // Reconstructing its exact predecessor preserves this release's immutable receipt.
+ if(spec.slug===SLUG&&records.some(r=>r.slug==='gnostic-canonical-gospels-telling-the-truth')){
+  const S=require('../gospel-synthesis-20261011/publication.cjs');S.verify(root);
+  const receipt=json('gospel-comparison-20261011/publication-receipt.json'),row=records.find(r=>r.slug===spec.slug),page=pages.find(p=>p.slug===spec.slug);
+  if(row.sourceRevision!==receipt.sourceRevision||row.sourceSha256!==receipt.article.sourceSha256||row.canonicalSha256!==receipt.article.canonicalSha256||page?.publication?.sha256!==row.sourceSha256)throw Error('Historical Gospel article changed');
+  for(const [source,digest] of [[receipt.article.canonical,receipt.article.canonicalSha256],[receipt.article.source,receipt.article.sourceSha256]]){
+   const bytes=fs.readFileSync(path.join(site,source));if(hash(bytes)!==digest||!git('show',ref+':'+source).equals(bytes))throw Error('Historical Gospel source changed');
+  }
+  if(hash(read(row.archivePath))!==row.archiveSha256||row.archiveSha256!==receipt.article.sourceSha256)throw Error('Historical Gospel archive changed');
+  return {addedPages:0,updatedPages:0,preservedPages:records.length,sourceRevision:receipt.sourceRevision,verifiedSuccessor:true};
+ }
+
  const pageBy=new Map(pages.map(p=>[p.slug,p])),recordBy=new Map(records.map(p=>[p.slug,p]));
  if(pageBy.size!==pages.length||recordBy.size!==records.length)throw Error('Duplicate page');
  const selected=[spec.slug,...Object.keys(spec.navigation)];

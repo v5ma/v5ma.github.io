@@ -7,7 +7,7 @@ const references=[...X.references,...D.references,...F.references,...R.reference
 const load=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
 const pages=load('data/page-index.json'),bySlug=new Map(pages.map(p=>[p.slug,p])),graph=load('data/graph.json').related,info=load('data/research.json'),full=load('data/search.json');
 test('All 354 original chats remain byte-identical to their manifest',()=>{const manifest=JSON.parse(fs.readFileSync(path.join(ROOT,'../theology-sources/manifest.json'),'utf8').replace(/^\uFEFF/,''));assert.equal(manifest.length,354);for(const m of manifest){const b=fs.readFileSync(path.join(ROOT,'../theology-sources/chats',m.name));assert.equal(b.length,m.bytes);assert.equal(crypto.createHash('sha256').update(b).digest('hex'),m.sha256.toLowerCase());}});
-test('439 unique routes retain 354 conversations and include thirty-two developed articles',()=>{assert.equal(pages.length,439);assert.equal(bySlug.size,439);assert.equal(pages.filter(p=>p.sourceFile).length,354);assert.equal(pages.filter(p=>p.kind==='Developed article').length,32);});
+test('440 unique routes retain 354 conversations and include thirty-three developed articles',()=>{assert.equal(pages.length,440);assert.equal(bySlug.size,440);assert.equal(pages.filter(p=>p.sourceFile).length,354);assert.equal(pages.filter(p=>p.kind==='Developed article').length,33);});
 test('Every indexed Markdown path exists inside the content directory',()=>{for(const p of pages){assert(!p.path.includes('..'));assert(fs.existsSync(path.join(ROOT,'content',p.path)));}});
 test('Every chat file has exactly one reader route and source hash',()=>{assert.equal(new Set(pages.filter(p=>p.sourceFile).map(p=>p.sourceFile)).size,354);for(const p of pages.filter(p=>p.sourceFile)){assert(C.safeSourceFile(p.sourceFile));assert.match(p.sourceSha256,/^[0-9a-f]{64}$/);assert(p.turnCount>0);}});
 test('Eight topic collections classify every source record',()=>{assert.equal(E.categories.length,8);for(const p of pages.filter(p=>p.sourceFile))assert(E.categories.some(c=>c.id===p.category));});
@@ -75,3 +75,5 @@ require('./connected.test.cjs');
 require('./restoration.test.cjs');
 
 require('../gospel-comparison-20261011/research.test.cjs');
+
+require('../gospel-synthesis-20261011/research.test.cjs');

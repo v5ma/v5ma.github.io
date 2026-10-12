@@ -22,7 +22,7 @@ Thomas is a sayings collection whose classification and relationship to the cano
 
 The Gospel of Truth supplies an especially fruitful starting point: its meditation on knowing the Father also speaks about Jesus' suffering and care for people in need. It already crosses a boundary that a simple division between “faith” and “knowledge” might lead us to expect. [Gospel of Truth](https://www.earlychristianwritings.com/text/gospeltruth.html)
 
-For the detailed Thomas comparisons, see [The Living Jesus in Thomas, John, and the Synoptics](san-reader.html?page=living-jesus-thomas-john-and-synoptics). This page develops the larger interpretive question and brings other texts into the conversation.
+For the detailed Thomas comparisons, see [[living-jesus-thomas-john-and-synoptics|The Living Jesus in Thomas, John, and the Synoptics]]. This page develops the larger interpretive question and brings other texts into the conversation.
 
 ## 1. Faith and knowledge can belong to one relationship
 
