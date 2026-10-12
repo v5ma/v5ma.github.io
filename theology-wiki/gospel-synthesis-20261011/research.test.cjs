@@ -211,3 +211,17 @@ test('Successor provenance reconstructs the exact 439-page predecessor and prese
   assert.equal(prior.meta.additions[0].pages[0], comparison);
   assert.equal(hash(read(S.SPEC.previousReceipt.path)), S.SPEC.previousReceipt.sha256);
 });
+
+test('Generated navigation keeps the existing text and updates only the new entry plus the authorial count', () => {
+  const S = require('./publication.cjs'), index = pages(), built = article();
+  for (const slug of ['home', 'topic-jesus']) {
+    const page = index.find(p => p.slug === slug), text = read('content/' + page.path);
+    assert.equal(hash(S.restoreNavigation(text, slug, built)), S.SPEC.navigation[slug]);
+    if (slug === 'home') {
+      const counts = [...text.matchAll(/^(\d+) developed articles accompany the archive\./gm)];
+      assert.equal(counts.length, 1);
+      assert.equal(Number(counts[0][1]), json('editorial/authorial.json').articles.length);
+      assert.equal(Number(counts[0][1]), 31);
+    }
+  }
+});

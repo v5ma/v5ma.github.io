@@ -889,6 +889,21 @@
       "words": 3791
     },
     {
+      "slug": "gnostic-canonical-gospels-telling-the-truth",
+      "title": "What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?",
+      "summary": "A constructive reading connecting historical action, recognition and transformation across six Gospel comparisons, with genuine disagreements and interpretive limits kept visible.",
+      "category": "jesus",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+      "sourceSha256": "fc7b78f6347646ac4d3dc6454b3cb0f55de346f3c44ac6ca2f364c226273e195",
+      "narration": "data/listening/gnostic-canonical-gospels-telling-the-truth.json",
+      "narrationSha256": "4870eca4cb099d3a886a5ffc6c68408d35325dc3f59b715c3b6bd962eefee1d5",
+      "transcript": "products/transcripts/gnostic-canonical-gospels-telling-the-truth.txt",
+      "segments": 98,
+      "words": 1943
+    },
+    {
       "slug": "computational-god-consciousness-and-theodicy",
       "title": "A Conditional Computational View of God, Consciousness, and Theodicy",
       "summary": "A conditional conjecture about divine creation, cognition, and experience, linked to the author's mathematical, scientific, and philosophical reasoning; not a claim of certainty or prescribed belief.",

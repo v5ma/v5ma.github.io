@@ -8,7 +8,7 @@ const RECEIPT='gospel-synthesis-20261011/publication-receipt.json',MARKER='<!-- 
 const SPEC={slug:SLUG,supplementary:['theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md'],baseline:'70bf669b241ae51fbca864742dfd086b79f662bf',navigation:{
  home:'59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d',
  'topic-jesus':'fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949'
-},baselineHashes:{
+},navigationReplacements:{home:[['30 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.','31 developed articles accompany the archive. They present the inquiry in first-person, theory-centered prose. They are working authorial articles, not replacement transcripts.']]},baselineHashes:{
  'public-corpus/page-index.json':'7b2ad3ce6d62923068e165a09d45cad9ab3bcce5fdc1557742f089e722e7e9ee',
  'public-corpus/source-manifest.json':'90664f6cfe7755708b5e343719b2f4a9d6e9eb3e2af3065e34f62ab15d87b92f',
  'public-corpus/snapshot.json':'70b81cbd0bb28eb3961b1286dfc2f0e49c7b3e56a671ad430cceda44b1e4ad30',
@@ -59,9 +59,7 @@ function apply(root,ref,spec=SPEC){
   if(slug!==spec.slug&&(!old||old.sourceSha256!==spec.navigation[slug]&&!meta.additions?.some(a=>a.pages.includes(spec.slug))))throw Error('Navigation baseline changed '+slug);
   const source='theology-wiki/content/'+p.path,bytes=committed(source);sources.set(source,bytes);
   if(slug!==spec.slug){
-   const entry='[['+spec.slug+'|'+pageBy.get(spec.slug).title+']]: '+pageBy.get(spec.slug).summary+'\n\n';
-   const text=bytes.toString();
-   if(text.split(entry).length!==2||hash(text.replace(entry,''))!==spec.navigation[slug])throw Error('Navigation must add exactly the approved article entry: '+slug);
+   if(hash(restoreNavigation(bytes.toString(),slug,pageBy.get(spec.slug),spec))!==spec.navigation[slug])throw Error('Navigation must add exactly the approved article entry and declared count update: '+slug);
   }
   if(old&&(old.sourcePath!==source||old.archivePath!=='public-corpus/pages/'+slug+'.md'||old.transcriptSourcePath))throw Error('Unexpected existing corpus path');
   const current=old&&old.sourceSha256===hash(bytes)&&old.archiveSha256===hash(bytes)&&hash(read(old.archivePath))===hash(bytes)&&p.publication?.sha256===hash(bytes)&&(slug!==spec.slug||old.canonicalSha256===hash(canonicalBytes));
@@ -95,7 +93,7 @@ function apply(root,ref,spec=SPEC){
  return {addedPages:1,updatedNavigationPages:Object.keys(spec.navigation).length,preservedPages:receipt.preservedExistingPageRecords,sourceRevision:ref};
 }
 if(require.main===module){try{console.log(JSON.stringify(process.argv[2]==='--check'?verify(path.resolve(__dirname,'..')):apply(path.resolve(__dirname,'..'),process.argv[2]),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
-module.exports={apply,verify,restoreBaseline,hash,SPEC,RECEIPT};
+module.exports={apply,verify,restoreBaseline,restoreNavigation,hash,SPEC,RECEIPT};
 
 // Reconstruct the exact predecessor state, never waive a historical hash guard.
 function restoreBaseline(root,spec=SPEC){
@@ -142,8 +140,7 @@ function verify(root,spec=SPEC){
   if(nav.includes(slug)){
    const n=receipt.navigation[row.sourcePath],old=receipt.previousNavigation[slug];
    if(!n||n.slug!==slug||n.before!==spec.navigation[slug]||n.after!==row.sourceSha256||old.record.sourceSha256!==n.before||old.source.sha256!==n.before)throw Error('Successor navigation chain mismatch: '+slug);
-   const line='[['+spec.slug+'|'+article.title+']]: '+article.summary+'\n\n',text=bytes.toString();
-   if(text.split(line).length!==2||hash(text.replace(line,''))!==n.before)throw Error('Navigation must add exactly the approved article entry: '+slug);
+   if(hash(restoreNavigation(bytes.toString(),slug,article,spec))!==n.before)throw Error('Navigation must add exactly the approved article entry and declared count update: '+slug);
   }
  }
  if(receipt.article.canonical!=='theology-wiki/editorial/authorial-articles/'+spec.slug+'.md')throw Error('Unexpected canonical path');
@@ -151,4 +148,16 @@ function verify(root,spec=SPEC){
  if(receipt.article.canonical!=='theology-wiki/editorial/authorial-articles/'+spec.slug+'.md'||receipt.article.source!==row.sourcePath||row.canonicalSha256!==hash(canonical)||receipt.article.canonicalSha256!==hash(canonical)||receipt.article.sourceSha256!==row.sourceSha256)throw Error('Successor canonical mismatch');
  for(const source of expectedSources){const r=sources.find(r=>r.path===source),b=fs.readFileSync(path.join(site,source));if(!r||r.sha256!==hash(b)||r.bytes!==b.length||!r.exactUrl.includes('/blob/'+receipt.sourceRevision+'/'))throw Error('Successor supplementary mismatch: '+source);}
  return {verifiedPages:rows.length,preservedExistingPageRecords:previous.records.length-nav.length,sourceRevision:receipt.sourceRevision};
+}
+
+
+function restoreNavigation(text,slug,article,spec=SPEC){
+ const entry='[['+spec.slug+'|'+article.title+']]: '+article.summary+'\n\n';
+ if(text.split(entry).length!==2)throw Error('Navigation must add exactly the approved article entry: '+slug);
+ let prior=text.replace(entry,'');
+ for(const [before,after] of spec.navigationReplacements?.[slug]||[]){
+  if(prior.split(after).length!==2)throw Error('Navigation count update must match its declared exact text: '+slug);
+  prior=prior.replace(after,before);
+ }
+ return prior;
 }

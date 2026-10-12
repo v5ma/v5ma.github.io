@@ -57,6 +57,7 @@
       "james-and-contested-succession",
       "thomas-sayings-and-transmission",
       "living-jesus-thomas-john-and-synoptics",
+      "gnostic-canonical-gospels-telling-the-truth",
       "topic-gnosis",
       "topic-apocalypse",
       "topic-origins",
@@ -78,7 +79,7 @@
     "kind": "Library home",
     "editionGenerated": false,
     "references": [],
-    "readMinutes": 6,
+    "readMinutes": 7,
     "backlinkCount": 8,
     "backlinks": [
       "topic-gnosis",
@@ -20278,9 +20279,10 @@
       "james-and-contested-succession",
       "christ-as-an-inner-model"
     ],
-    "backlinkCount": 2,
+    "backlinkCount": 3,
     "backlinks": [
       "home",
+      "gnostic-canonical-gospels-telling-the-truth",
       "topic-jesus"
     ],
     "publication": {
@@ -20296,6 +20298,65 @@
       "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
       "transcriptExactUrl": null
     }
+  },
+  {
+    "slug": "gnostic-canonical-gospels-telling-the-truth",
+    "title": "What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?",
+    "summary": "A constructive reading connecting historical action, recognition and transformation across six Gospel comparisons, with genuine disagreements and interpretive limits kept visible.",
+    "externalSources": [
+      "gospel-20261011-inventory",
+      "synthesis-20261011-philip-profile",
+      "synthesis-20261011-mary-profile",
+      "synthesis-20261011-judas-profile",
+      "synthesis-20261011-truth-grant",
+      "synthesis-20261011-truth-mattison",
+      "synthesis-20261011-philip-mattison",
+      "synthesis-20261011-philip-isenberg",
+      "synthesis-20261011-mary",
+      "synthesis-20261011-judas",
+      "synthesis-20261011-john17",
+      "synthesis-20261011-matthew25",
+      "synthesis-20261011-john12",
+      "synthesis-20261011-mark8",
+      "synthesis-20261011-john3",
+      "synthesis-20261011-john5",
+      "synthesis-20261011-luke24",
+      "synthesis-20261011-john20",
+      "synthesis-20261011-john1"
+    ],
+    "aliases": [
+      "Gnostic and canonical gospels telling the truth",
+      "Faith knowledge cross resurrection Gospel synthesis",
+      "Can Gnostic and canonical gospels both be true"
+    ],
+    "category": "jesus",
+    "kind": "Developed article",
+    "updated": "2026-10-11",
+    "claimType": "Constructive theological proposal and comparative textual interpretation",
+    "attribution": "Authorial working edition developed with AI assistance for the October 2026 Gospel synthesis. This educational article presents one constructive proposal among competing perspectives, not a declaration of personal religious belief, scholarly consensus, or a newly recovered historical conversation. Ancient passages and constructive interpretation remain distinct.",
+    "art": "",
+    "path": "developed/gnostic-canonical-gospels-telling-the-truth.md",
+    "topic": "Jesus, ethics & authority",
+    "tags": [
+      "jesus",
+      "developed"
+    ],
+    "editionGenerated": true,
+    "xrRoomId": "theology-gnostic-canonical-gospels-telling-the-truth",
+    "xrDeckId": "theology-reader",
+    "sourceFiles": [
+      "developed/gnostic-canonical-gospels-telling-the-truth.md"
+    ],
+    "references": [],
+    "readMinutes": 13,
+    "related": [
+      "living-jesus-thomas-john-and-synoptics"
+    ],
+    "backlinkCount": 2,
+    "backlinks": [
+      "home",
+      "topic-jesus"
+    ]
   },
   {
     "slug": "contested-memories-of-catastrophe",
@@ -21863,6 +21924,7 @@
       "divine-will-and-self-authorizing-power",
       "scripture-power-and-repair",
       "living-jesus-thomas-john-and-synoptics",
+      "gnostic-canonical-gospels-telling-the-truth",
       "17th-century-christian-zionism",
       "allegiance-vs-proclamation-of-christ",
       "barnabas-gospel-debunked",

@@ -847,6 +847,132 @@
     "accessed": "2026-10-11"
   },
   {
+    "id": "synthesis-20261011-philip-profile",
+    "title": "Emily Laflèche: Gospel of Philip, NASSCAL e-Clavis",
+    "url": "https://www.nasscal.com/e-clavis-christian-apocrypha/gospel-of-philip/",
+    "scope": "Specialist summary for the Valentinian and sacramental profile, including disputed interpretation of the bridal chamber; not a claim about Jesus’ marital status.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-mary-profile",
+    "title": "Judith Hartenstein: Gospel of Mary, NASSCAL e-Clavis",
+    "url": "https://www.nasscal.com/e-clavis-christian-apocrypha/gospel-of-mary/",
+    "scope": "Specialist summary for the dialogue, revelation, manuscript gaps and reception; missing pages are not reconstructed and attribution does not establish authorship by Mary.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-judas-profile",
+    "title": "Gospel of Judas, NASSCAL e-Clavis",
+    "url": "https://www.nasscal.com/e-clavis-christian-apocrypha/gospel-of-judas/",
+    "scope": "Specialist reference on the polemical work and disputed interpretation; the early popular picture of Judas as a straightforward hero is not treated as settled.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-truth-grant",
+    "title": "Gospel of Truth, Grant translation",
+    "url": "https://www.earlychristianwritings.com/text/gospeltruth.html",
+    "scope": "Modern translation consulted for the opening, cross and living-book passages. Connecting revelation and salvation is a constructive synthesis, not complete agreement on atonement.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-truth-mattison",
+    "title": "Gospel of Truth, translated by Mark M. Mattison",
+    "url": "https://www.gospels.net/truth",
+    "scope": "Modern translation consulted for ethical exhortation about hungry, sick and troubled people; the comparison does not equate the entire soteriologies of different writings.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-philip-mattison",
+    "title": "Gospel of Philip, translated by Mark M. Mattison",
+    "url": "https://www.gospels.net/philip",
+    "scope": "Modern translation consulted for Codex II pages 67–68 and sacramental language. Translation access does not imply direct manuscript collation or a uniform ritual reconstruction.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-philip-isenberg",
+    "title": "Gospel of Philip, Isenberg translation",
+    "url": "https://www.earlychristianwritings.com/text/gospelphilip.html",
+    "scope": "Modern translation consulted for resurrection in life (page 73), the difficult reversed sequence (page 56), and creation language (page 75); genuine differences remain unresolved.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-mary",
+    "title": "Gospel of Mary, translated by Mark M. Mattison",
+    "url": "https://www.gospels.net/mary",
+    "scope": "Modern translation consulted for pages 10 and 17–19; a woman’s testimony connects encounter and community without identifying the visions or proving historicity.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-judas",
+    "title": "Gospel of Judas, translated by Mark M. Mattison",
+    "url": "https://www.gospels.net/judas",
+    "scope": "Modern translation consulted for pages 33–36 and 47–53; the lower-ruler cosmology marks a genuine boundary to reconciliation, with translation and interpretation disputes retained.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john17",
+    "title": "John 17, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+17&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 17:1–3 connects eternal life and knowledge of the Father and Jesus; the proposed relational comparison is not proof of literary dependence.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-matthew25",
+    "title": "Matthew 25, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=Matthew+25&version=NRSVUE",
+    "scope": "Primary passage in modern translation. Matthew 25:31–46 grounds the ethical comparison in care for others; no identity of entire salvation systems is inferred.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john12",
+    "title": "John 12, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+12&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 12:23–33 gives Jesus’ death revelatory and life-giving significance; the constructive synthesis does not establish one identical theory of atonement.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-mark8",
+    "title": "Mark 8, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=Mark+8&version=NRSVUE",
+    "scope": "Primary passage in modern translation. Mark 8:31–35 joins Jesus’ suffering with costly discipleship, distinguishing the historical event and participation without separating them.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john3",
+    "title": "John 3, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+3&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 3:5 supplies the water-and-Spirit comparison; this does not resolve every question about Johannine or Valentinian ritual practice.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john5",
+    "title": "John 5, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+5&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 5:24–29 joins present life with a future resurrection horizon; the comparison preserves rather than erases difficult differences in Philip.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-luke24",
+    "title": "Luke 24, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=Luke+24&version=NRSVUE",
+    "scope": "Primary passage in modern translation. Luke 24:36–43 explicitly depicts an embodied risen Jesus; a wholly inward reading cannot simply replace this narrative claim.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john20",
+    "title": "John 20, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+20&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 20:17–18 connects Mary’s encounter with a message to the disciples; comparison does not identify Mary’s distinct noncanonical revelation.",
+    "accessed": "2026-10-11"
+  },
+  {
+    "id": "synthesis-20261011-john1",
+    "title": "John 1, NRSVUE",
+    "url": "https://www.biblegateway.com/passage/?search=John+1&version=NRSVUE",
+    "scope": "Primary passage in modern translation. John 1:1–14 places creation through the Word and the Word’s becoming flesh together; this preserves a real boundary against incompatible creator cosmologies.",
+    "accessed": "2026-10-11"
+  },
+  {
     "id": "bridge-et-flood",
     "title": "The Sumerian Flood Story, segments C-E",
     "url": "https://etcsl.orinst.ox.ac.uk/section1/tr174.htm",

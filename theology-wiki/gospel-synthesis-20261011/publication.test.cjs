@@ -84,3 +84,12 @@ test('Source-only CI refuses uncommitted generated readers and leaves them avail
  for(const p of ['theology-wiki/content/developed/'+spec.slug+'.md','theology-wiki/content/home.md','theology-wiki/content/developed/topic-jesus.md','theology-wiki/data/page-index.json'])assert(exportable.includes(p),p);
  const generatedRef=commit();assert.equal(G.apply(root,generatedRef,spec).addedPages,1);const proof=corpusState(root);const finalRef=commit();assert.equal(G.apply(root,finalRef,spec).sourceRevision,generatedRef);assert.deepEqual(corpusState(root),proof);
 }));
+
+
+test('A declared exact home count update reconstructs its immutable predecessor and rejects any other count',()=>fixture(({root,read,write,commit,spec,prepare})=>{
+ spec.navigationReplacements={home:[['Original home text.','Original home text. 31 articles.']]};
+ prepare();write('content/home.md',read('content/home.md').replace('Original home text.','Original home text. 31 articles.'));
+ const ref=commit();assert.equal(G.apply(root,ref,spec).addedPages,1);assert.equal(G.verify(root,spec).verifiedPages,4);const proof=corpusState(root);assert.equal(G.apply(root,commit(),spec).addedPages,0);assert.deepEqual(corpusState(root),proof);
+ write('content/home.md',read('content/home.md').replace('31 articles.','32 articles.'));assert.throws(()=>G.restoreNavigation(read('content/home.md'),'home',jsonArticle(root,spec.slug),spec),/Navigation count update/);
+}));
+function jsonArticle(root,slug){return JSON.parse(fs.readFileSync(path.join(root,'data/page-index.json'))).find(p=>p.slug===slug);}
