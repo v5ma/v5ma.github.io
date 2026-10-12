@@ -238,6 +238,7 @@ function patchReaders(){
  runtime=patchOnce(runtime, '(_match, target) => renderWikilink(target)', '(_match, target) => renderWikilink(target.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,String.fromCharCode(34)).replace(/&#39;/g,String.fromCharCode(39)))');
 
  runtime=patchOnce(runtime,"    if (localPreviewHost) return true;","    if (localPreviewHost && url.origin === window.location.origin && /^\\/(?:theology-wiki|theology-sources)\\//.test(pathname)) return false;\n    if (localPreviewHost) return true;");
+ runtime=patchOnce(runtime,"      const resolved = rewriteMarkdownHref(href, label, page);","      // Reverse only renderInline's own escaping; validate the raw scheme, then escape the final attribute.\n      const rawHref = href.replace(/&(amp|lt|gt|quot|#39);/g, (_match, entity) => ({amp:'&',lt:'<',gt:'>',quot:String.fromCharCode(34),'#39':String.fromCharCode(39)})[entity]);\n      const resolved = rewriteMarkdownHref(rawHref, label, page);");
  runtime=patchOnce(runtime,'  function renderPageList() {','  function renderPageList() {\n    if (window.TheologyExtension && state.pages.length) { window.TheologyExtension.navigation(state.pages, state.currentPage, state.searchTerm); return; }');
  runtime=patchOnce(runtime,'    const raw = cleanMarkdownHref(href);','    const raw = cleanMarkdownHref(href);\n    if (/^(?:javascript|vbscript|file|data|blob):/i.test(raw)) return "#unsafe-link";');
  runtime=patchOnce(runtime,'    state.currentPage = page;','    const generation = ++renderGeneration;\n    state.currentPage = page;\n    window.dispatchEvent(new CustomEvent("theology:loading", {detail:{slug:page.slug}}));');
@@ -311,8 +312,10 @@ function patchReaders(){
  // Content hashes version the new extension and its integration without rewriting old audio sources.
  const pinConnected=text=>text.replace(/(\.\/assets\/(js|css)\/(connected-tools\.js|connected\.css|research-tools\.js|products-tools\.js)\?v=)[^"'\s]+/g,(_,prefix,type,name)=>prefix+E.version+'&amp;asset='+sha(fs.readFileSync(path.join(ROOT,'assets',type,name))).slice(0,16));
  html=pinConnected(html);original=pinConnected(original);
- write('san-reader.html',bump(html));
- write('index.html',bump(original));
+ // Runtime-only fixes need a content-derived cache key without changing the article edition.
+ const pinReader=text=>text.replace(/(\.\/assets\/js\/theology-reader\.js\?v=)[^"'\s]+/g,'$1'+sha(read('assets/js/theology-reader.js')).slice(0,16));
+ write('san-reader.html',pinReader(bump(html)));
+ write('index.html',pinReader(bump(original)));
 }
 if(require.main===module){try{console.log(JSON.stringify(build(),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
 module.exports={build,category};

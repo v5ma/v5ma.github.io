@@ -77,3 +77,5 @@ require('./restoration.test.cjs');
 require('../gospel-comparison-20261011/research.test.cjs');
 
 require('../gospel-synthesis-20261011/research.test.cjs');
+
+require('./reader-links.test.cjs');
