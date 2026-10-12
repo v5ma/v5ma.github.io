@@ -589,9 +589,9 @@
   },
   {
     "path": "theology-wiki/content/developed/topic-jesus.md",
-    "bytes": 4336,
-    "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
-    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md"
+    "bytes": 4648,
+    "sha256": "2dcb3b0c09a6d8238cdde78f050113da28309bb000b98d8740e00fd84fb61cfc",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/topic-jesus.md"
   },
   {
     "path": "theology-wiki/content/developed/topic-machines.md",
@@ -637,9 +637,9 @@
   },
   {
     "path": "theology-wiki/content/home.md",
-    "bytes": 10938,
-    "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
-    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md"
+    "bytes": 11250,
+    "sha256": "48ef3b1c5c99336bc405b5f82d5d867e9c0dd8876ba5cbf98937c0331b838f1e",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/home.md"
   },
   {
     "path": "theology-wiki/content/sources/17th-century-christian-zionism.md",
@@ -3370,5 +3370,23 @@
     "bytes": 32941,
     "sha256": "95b9a00bfee0bd59f92fddb49728ce6aa93a605cffbfd270f24d8cd3abc6761a",
     "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md"
+  },
+  {
+    "path": "theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+    "bytes": 14112,
+    "sha256": "d0794e22426b2d1020b41850cb7284e7704536e4dbd95cbaa915af0cdc8cd9de",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md"
+  },
+  {
+    "path": "theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md",
+    "bytes": 4247,
+    "sha256": "037f23b1aa767ecb0dfa1fea9fbd801f62ee824d8532043d5ac0db31d5f3604d",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md"
+  },
+  {
+    "path": "theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+    "bytes": 20692,
+    "sha256": "fc7b78f6347646ac4d3dc6454b3cb0f55de346f3c44ac6ca2f364c226273e195",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md"
   }
 ]

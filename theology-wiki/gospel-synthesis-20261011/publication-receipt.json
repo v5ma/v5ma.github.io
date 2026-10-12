@@ -1,0 +1,148 @@
+{
+  "schema": "theology-gospel-synthesis-addition/v1",
+  "baseline": "70bf669b241ae51fbca864742dfd086b79f662bf",
+  "sourceRevision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+  "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
+  "article": {
+    "slug": "gnostic-canonical-gospels-telling-the-truth",
+    "canonical": "theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+    "canonicalSha256": "d0794e22426b2d1020b41850cb7284e7704536e4dbd95cbaa915af0cdc8cd9de",
+    "source": "theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+    "sourceSha256": "fc7b78f6347646ac4d3dc6454b3cb0f55de346f3c44ac6ca2f364c226273e195"
+  },
+  "previousNavigation": {
+    "home": {
+      "record": {
+        "slug": "home",
+        "title": "Theology Wiki",
+        "kind": "Library home",
+        "category": "context",
+        "sourcePath": "theology-wiki/content/home.md",
+        "sourceSha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+        "sourceBytes": 10938,
+        "archivePath": "public-corpus/pages/home.md",
+        "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=home",
+        "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/home.md",
+        "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md",
+        "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md",
+        "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+        "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+        "archiveSha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+        "archiveBytes": 10938,
+        "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/home.md"
+      },
+      "source": {
+        "path": "theology-wiki/content/home.md",
+        "bytes": 10938,
+        "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md"
+      }
+    },
+    "topic-jesus": {
+      "record": {
+        "slug": "topic-jesus",
+        "title": "Jesus, ethics & authority",
+        "kind": "Topic collection",
+        "category": "jesus",
+        "sourcePath": "theology-wiki/content/developed/topic-jesus.md",
+        "sourceSha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+        "sourceBytes": 4336,
+        "archivePath": "public-corpus/pages/topic-jesus.md",
+        "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=topic-jesus",
+        "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/topic-jesus.md",
+        "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md",
+        "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md",
+        "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+        "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+        "archiveSha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+        "archiveBytes": 4336,
+        "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/topic-jesus.md"
+      },
+      "source": {
+        "path": "theology-wiki/content/developed/topic-jesus.md",
+        "bytes": 4336,
+        "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md"
+      }
+    }
+  },
+  "previousSnapshot": {
+    "schema": "theology-public-corpus/v1",
+    "owner": "Micah Blumberg",
+    "description": "Time-stamped public backup of the Theology Wiki; original sources, authorial prose, AI-assisted developments and quotations retain distinct attribution.",
+    "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+    "sourceCommitterDate": "2026-10-04T04:22:53Z",
+    "dateScope": "Git committer date of the source revision, not an independent timestamp or the first publication of every idea. Inspect GitHub verification and PR events separately.",
+    "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/5d8b04025f111559c58321f7b8d1522d88f364a7",
+    "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
+    "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
+    "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
+    "indexedPages": 439,
+    "sourceConversations": 354,
+    "markdownSources": 562,
+    "indexSha256": "7b2ad3ce6d62923068e165a09d45cad9ab3bcce5fdc1557742f089e722e7e9ee",
+    "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
+    "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
+    "amendments": [
+      {
+        "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+        "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+        "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+        "pages": [
+          "jesus-teacher-of-righteousness-hypothesis"
+        ],
+        "markdownSources": [
+          "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+          "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+        ]
+      }
+    ],
+    "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions.",
+    "additions": [
+      {
+        "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+        "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+        "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+        "pages": [
+          "living-jesus-thomas-john-and-synoptics"
+        ],
+        "navigationPages": [
+          "home",
+          "topic-jesus"
+        ],
+        "markdownSources": [
+          "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+          "theology-wiki/content/developed/topic-jesus.md",
+          "theology-wiki/content/home.md",
+          "theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+          "theology-wiki/research-reports/gospel-comparisons-20261011/claim-audit.md"
+        ]
+      }
+    ],
+    "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."
+  },
+  "predecessorHashes": {
+    "public-corpus/page-index.json": "7b2ad3ce6d62923068e165a09d45cad9ab3bcce5fdc1557742f089e722e7e9ee",
+    "public-corpus/source-manifest.json": "90664f6cfe7755708b5e343719b2f4a9d6e9eb3e2af3065e34f62ab15d87b92f",
+    "public-corpus/snapshot.json": "70b81cbd0bb28eb3961b1286dfc2f0e49c7b3e56a671ad430cceda44b1e4ad30",
+    "public-corpus/README.md": "d93339fec297aa9f596842e85495c22e288e7687b794aa811d085655ca39eb3e"
+  },
+  "previousReceipt": {
+    "path": "gospel-comparison-20261011/publication-receipt.json",
+    "sha256": "788c9e6029501dac0aa468d4be73c9d0bf77fd84dc63d593f2a86f5839ecedfb"
+  },
+  "navigation": {
+    "theology-wiki/content/home.md": {
+      "slug": "home",
+      "before": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
+      "after": "48ef3b1c5c99336bc405b5f82d5d867e9c0dd8876ba5cbf98937c0331b838f1e"
+    },
+    "theology-wiki/content/developed/topic-jesus.md": {
+      "slug": "topic-jesus",
+      "before": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
+      "after": "2dcb3b0c09a6d8238cdde78f050113da28309bb000b98d8740e00fd84fb61cfc"
+    }
+  },
+  "preservedExistingPageRecords": 437,
+  "scope": "One new developed article; only home and Jesus-topic navigation records are updated. All original chats and existing article bodies are unchanged."
+}

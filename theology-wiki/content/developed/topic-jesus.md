@@ -23,6 +23,8 @@ The teachings of Jesus, moral judgment and the authority of institutions.
 
 [[living-jesus-thomas-john-and-synoptics|The Living Jesus in Thomas, John and the Synoptic Gospels]]: Scriptural patterns, living and dead language, contextual reconciliations and the historical case for early Jesus traditions in Thomas.
 
+[[gnostic-canonical-gospels-telling-the-truth|What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?]]: A constructive reading connecting historical action, recognition and transformation across six Gospel comparisons, with genuine disagreements and interpretive limits kept visible.
+
 ## Browse the source discussions
 
 These 34 conversations are grouped using provisional topic assignments. Their original words are unchanged; a topic assignment does not imply endorsement of every statement in the discussion.

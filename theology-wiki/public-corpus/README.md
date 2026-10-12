@@ -906,3 +906,12 @@ The collection now includes 439 reader pages. The original full-snapshot revisio
 
 [Exact article source](https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md). [Canonical source](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md).
 <!-- /gospel-comparison-addition -->
+
+
+<!-- gospel-synthesis-addition -->
+## Gospel synthesis addition
+
+The collection now includes 440 reader pages. The original full-snapshot revision and all unrelated page histories are unchanged. This addition records [What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?](pages/gnostic-canonical-gospels-telling-the-truth.md) and its home and Jesus-topic navigation entries at [source revision 59d834212b181cbae8c1e865bf5ca72242800a4a](https://github.com/v5ma/v5ma.github.io/commit/59d834212b181cbae8c1e865bf5ca72242800a4a), Git committer date 2026-10-11T17:22:20-07:00. This is a source-version record, not an independent timestamp or a claim about the original date of the ideas.
+
+[Exact article source](https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md). [Canonical source](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md).
+<!-- /gospel-synthesis-addition -->
