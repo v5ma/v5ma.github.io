@@ -81,8 +81,10 @@ def main():
                         found = rendered.find(block, position)
                         verify('Complete canonical block: ' + block[:70], found >= position)
                         position = found + len(block)
-                    headings = page.locator('#article-body h2').all_text_contents()
-                    verify('All six detailed comparisons are visible', len(case_titles) == 6 and all(title in headings for title in case_titles))
+                    # The reader reserves h1 for its page title and renders Markdown ## as h3.
+                    headings = page.locator('#article-body h3').all_text_contents()
+                    rendered_cases = [title for title in headings if re.match(r'^[1-6]\. ', title)]
+                    verify('All six detailed comparisons are visible', len(case_titles) == 6 and rendered_cases == case_titles and all(page.locator('#article-body').get_by_role('heading', name=title, exact=True, level=3).is_visible() for title in case_titles))
                     verify('Constructive proposal remains explicit', 'This is a constructive theological proposal to test against the texts.' in rendered)
                     verify('Final unresolved differences remain visible', 'allowing them to resist makes the inquiry more trustworthy' in rendered)
 
