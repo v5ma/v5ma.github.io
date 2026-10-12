@@ -511,7 +511,9 @@
       return '<img src="' + escapeHtml(resolveAssetHref(cleanMarkdownHref(href), page)) + '" alt="' + escapeHtml(alt) + '">';
     });
     html = replaceMarkdownLinkSyntax(html, false, (label, href) => {
-      const resolved = rewriteMarkdownHref(href, label, page);
+      // Reverse only renderInline's own escaping; validate the raw scheme, then escape the final attribute.
+      const rawHref = href.replace(/&(amp|lt|gt|quot|#39);/g, (_match, entity) => ({amp:'&',lt:'<',gt:'>',quot:String.fromCharCode(34),'#39':String.fromCharCode(39)})[entity]);
+      const resolved = rewriteMarkdownHref(rawHref, label, page);
       if (resolved === '#unsafe-link') return '<span class="wiki-link wiki-missing">' + label + '</span>';
       const missing = resolved.startsWith('#missing-') ? ' class="wiki-link wiki-missing"' : '';
       return '<a' + missing + ' href="' + escapeHtml(resolved) + '">' + label + '</a>';
