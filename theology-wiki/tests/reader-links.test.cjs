@@ -49,3 +49,17 @@ test('Both reader entry points pin the actual runtime content hash',()=>{
   assert(keys.length>0,page);assert(keys.every(key=>key===digest),page);
  }
 });
+
+test('Repeated identical leading titles render once in the page shell without a duplicate body title',()=>{
+ const slug='gnostic-canonical-gospels-telling-the-truth',page=R.pages.find(p=>p.slug===slug),source=read('content/'+page.path);
+ assert.equal(source.split('# '+page.title+'\n').length-1,2,'Keep both canonical/generated source headings unchanged');
+ const html=R.renderMarkdown(source,page);assert(!html.startsWith('<h2>'+page.title+'</h2>'));assert(html.startsWith('<h3>A shared way of reading</h3>'));
+ const title='An exact title',body='# '+title+'\n\n# '+title+'\n\n# '+title+'\n\n## First section\n\nThe complete body stays.\n\n## '+title+'\n\nA later matching heading stays.';
+ assert.equal(R.renderMarkdown(body,{title}),'<h3>First section</h3>\n<p>The complete body stays.</p>\n<h3>An exact title</h3>\n<p>A later matching heading stays.</p>');
+});
+test('Title deduplication stops at a different heading or intervening prose',()=>{
+ const page={title:'An exact title'};
+ assert.equal(R.renderMarkdown('# An exact title\n\n## Another heading\n\n# An exact title\n\nBody.',page),'<h3>Another heading</h3>\n<h2>An exact title</h2>\n<p>Body.</p>');
+ assert.equal(R.renderMarkdown('# An exact title\n\nOpening prose.\n\n# An exact title\n\nBody.',page),'<p>Opening prose.</p>\n<h2>An exact title</h2>\n<p>Body.</p>');
+ assert.equal(R.renderMarkdown('# An exact title\n\n# An exact title!\n\nBody.',page),'<h2>An exact title!</h2>\n<p>Body.</p>');
+});
