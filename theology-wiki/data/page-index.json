@@ -95,12 +95,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/home.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/home.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/home.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/home.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/home.md",
       "sourcePath": "theology-wiki/content/home.md",
-      "sha256": "59025d80e0997296f7947f8e48a647f2db3ce5617cdd4e05d4e65f155790a26d",
-      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
-      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "sha256": "48ef3b1c5c99336bc405b5f82d5d867e9c0dd8876ba5cbf98937c0331b838f1e",
+      "revision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+      "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
@@ -20356,7 +20356,20 @@
     "backlinks": [
       "home",
       "topic-jesus"
-    ]
+    ],
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/gnostic-canonical-gospels-telling-the-truth.md",
+      "sourcePath": "theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+      "sha256": "fc7b78f6347646ac4d3dc6454b3cb0f55de346f3c44ac6ca2f364c226273e195",
+      "revision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+      "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+      "transcriptExactUrl": null
+    }
   },
   {
     "slug": "contested-memories-of-catastrophe",
@@ -22004,12 +22017,12 @@
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/topic-jesus.md",
       "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/topic-jesus.md",
-      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/9de4155edb0e722fd70a13b072fd7092c2fbb15f/theology-wiki/content/developed/topic-jesus.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/topic-jesus.md",
       "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/topic-jesus.md",
       "sourcePath": "theology-wiki/content/developed/topic-jesus.md",
-      "sha256": "fca3e6fcbf125795e4e230f8a4fa9f0268d9743bee68731252216e15dbc24949",
-      "revision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
-      "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+      "sha256": "2dcb3b0c09a6d8238cdde78f050113da28309bb000b98d8740e00fd84fb61cfc",
+      "revision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+      "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
       "canonicalSourceUrl": null,
       "canonicalHistoryUrl": null,
       "transcriptExactUrl": null
