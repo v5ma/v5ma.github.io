@@ -1,0 +1,62 @@
+{
+  "version": "1.1",
+  "files": [
+    {
+      "path": "analysis/check_state_selection.py",
+      "bytes": 4737,
+      "sha256": "3e36288a48845b2d698ed810f882f83d0e02a031acdb7a3b7c14ce289b378d27"
+    },
+    {
+      "path": "analysis/state-selection-results-r2.json",
+      "bytes": 3177,
+      "sha256": "7fb10a41aa069070b80d77d3cb030972fb79aa4757a3de332f815040c656d236"
+    },
+    {
+      "path": "figures/local-content-dynamics.png",
+      "bytes": 228715,
+      "sha256": "19f9b61a8b67798f63468f3d78fd6ebf64be545dc933460906c52aaf24632093"
+    },
+    {
+      "path": "figures/schedule-and-identification.png",
+      "bytes": 99710,
+      "sha256": "810cae3457cf31180f42d72bab3f89eeda0c52827efd20975a95e5cd435eebef"
+    },
+    {
+      "path": "HESSE-CLAIM-BOUNDARIES.json",
+      "bytes": 3696,
+      "sha256": "efd0840debc31bdef09f2d31fee4c5cd5c036eae81d1e86752037de304e0ee18"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2264,
+      "sha256": "bc1a3bfb0e97bb4748a54d3d062f6df0b6a23727d39c796fe086d49130a8534e"
+    },
+    {
+      "path": "REVIEW-FINDINGS.md",
+      "bytes": 4649,
+      "sha256": "dc8e10acdcc69b7d16b478adcaf575625b615feb431f1dc46ebe8863e04a416f"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.1.md",
+      "bytes": 59535,
+      "sha256": "97501d7d9d388f575f347e028a3f6b62804ff14de839b35c77537c2bb19f8401"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.1.pdf",
+      "bytes": 518117,
+      "sha256": "bf1e47d644a46b46bf8e36c0ae78c8eda378ce4753db9c69c7230cfb7220ba6e"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.1.tex",
+      "bytes": 66121,
+      "sha256": "719bbeb076ae8d261882a3674be06f355dab432b0dca12b8781d69d196a1fcb9"
+    },
+    {
+      "path": "VERIFY.py",
+      "bytes": 535,
+      "sha256": "102387ca5eb9a10567be4dce7bddd6ef14bf1f14601f94e2fa8dc51cb2e3af21"
+    }
+  ],
+  "originalVersionPreserved": true,
+  "biologicalDataReanalysis": false
+}

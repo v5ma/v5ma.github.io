@@ -1,0 +1,135 @@
+{
+  "artifact": "Learning to Feel — acquisition/access measurement fixtures",
+  "date": "2026-10-07",
+  "scope": "Deterministic population-probability examples and algebra checks only; no participants, hypothesis-test calibration or power estimate.",
+  "passedChecks": 13,
+  "totalChecks": 13,
+  "checks": [
+    {
+      "name": "Normal CDF matches independent standard values",
+      "passed": true
+    },
+    {
+      "name": "Inverse CDF known quantile and round trips",
+      "passed": true
+    },
+    {
+      "name": "Population hit/false-alarm inversion recovers d and c",
+      "passed": true
+    },
+    {
+      "name": "Sensory-baseline and threshold shifts give the same observable rates",
+      "passed": true
+    },
+    {
+      "name": "More yes reports need not improve discrimination",
+      "passed": true
+    },
+    {
+      "name": "Joint evidence/threshold shift leaves rates invariant",
+      "passed": true
+    },
+    {
+      "name": "Sensitivity change is distinct at fixed effective criterion",
+      "passed": true
+    },
+    {
+      "name": "Pooling heterogeneous rates does not recover average sensitivity",
+      "passed": true
+    },
+    {
+      "name": "Shared change in all arms cancels in both control contrasts",
+      "passed": true
+    },
+    {
+      "name": "Averaging controls can hide equality with informative replay",
+      "passed": true
+    },
+    {
+      "name": "Both control contrasts retain their separate effects",
+      "passed": true
+    },
+    {
+      "name": "Learning gain without timing dependence is not a timing interaction",
+      "passed": true
+    },
+    {
+      "name": "Boundary probabilities are rejected rather than silently clipped",
+      "passed": true
+    }
+  ],
+  "examples": {
+    "base": {
+      "hit": 0.5,
+      "falseAlarm": 0.15865525393145702,
+      "d": 0.9999999999999999,
+      "c": 0.5
+    },
+    "sensoryBaseline": {
+      "hit": 0.6914624612740131,
+      "falseAlarm": 0.3085375387259869,
+      "d": 1,
+      "c": 1.6653345369377348e-16
+    },
+    "decisionThreshold": {
+      "hit": 0.6914624612740131,
+      "falseAlarm": 0.3085375387259869,
+      "d": 1,
+      "c": 1.6653345369377348e-16
+    },
+    "sensitivity": {
+      "hit": 0.6914624612740131,
+      "falseAlarm": 0.06680720126885803,
+      "d": 2.0000000000000004,
+      "c": 0.5000000000000002
+    },
+    "heterogeneousPooling": {
+      "individualSensitivities": [
+        0.5,
+        3.5
+      ],
+      "meanSensitivity": 2,
+      "pooledSensitivity": 1.5398215184997384
+    },
+    "commonChange": {
+      "L": {
+        "C": 1,
+        "R": 1,
+        "N": 1
+      },
+      "CR": 0,
+      "CN": 0,
+      "pooledControl": 0
+    },
+    "equalInformativeReplay": {
+      "L": {
+        "C": 1,
+        "R": 1,
+        "N": 0
+      },
+      "CR": 0,
+      "CN": 1,
+      "pooledControl": 0.5
+    },
+    "bothControls": {
+      "L": {
+        "C": 1,
+        "R": 0.2,
+        "N": 0.4
+      },
+      "CR": 0.8,
+      "CN": 0.6,
+      "pooledControl": 0.7
+    },
+    "learningWithoutTiming": {
+      "L": {
+        "C": 0,
+        "R": 0,
+        "N": 0
+      },
+      "CR": 0,
+      "CN": 0,
+      "pooledControl": 0
+    }
+  }
+}

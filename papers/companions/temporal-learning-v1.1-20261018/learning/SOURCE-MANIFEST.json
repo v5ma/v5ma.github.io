@@ -1,0 +1,157 @@
+{
+  "version": "1.1",
+  "files": [
+    {
+      "path": "analysis/access-metric-check.mjs",
+      "bytes": 3329,
+      "sha256": "9bc9e4a395db5ad50ee3be8b072409525e56d8ed5b2190fceb59fbaa4ac4c9f0"
+    },
+    {
+      "path": "analysis/access-metric-results.json",
+      "bytes": 2703,
+      "sha256": "05a5cf75f1f11643fd92839b34f4998c6f1765b19250e32d7e729ef0e29075df"
+    },
+    {
+      "path": "analysis/acquisition-access-check.mjs",
+      "bytes": 4943,
+      "sha256": "fd6e7c80d464405b559c7ddd07956c1a1f1500a482dd48cb4bd01994f0890d6f"
+    },
+    {
+      "path": "analysis/acquisition-access-results.json",
+      "bytes": 3166,
+      "sha256": "6a52df5a542316afd8840ed50da3454a1be1fe744296084fd284dde0f610b3eb"
+    },
+    {
+      "path": "analysis/check_state_selection.py",
+      "bytes": 4737,
+      "sha256": "3e36288a48845b2d698ed810f882f83d0e02a031acdb7a3b7c14ce289b378d27"
+    },
+    {
+      "path": "analysis/joint-receiver-comparison-results.json",
+      "bytes": 2718988,
+      "sha256": "ac9ca72ecc25fce2121a7457c9cfcd2ea27b817e4b167432416ab87ffb29ab1a"
+    },
+    {
+      "path": "analysis/joint-receiver-comparison.mjs",
+      "bytes": 20243,
+      "sha256": "c6dc9d46474cccd7b750518ffc7cbc5ce5b6628ae15f009af28e95fdabb104b2"
+    },
+    {
+      "path": "analysis/learned-receiver-application.mjs",
+      "bytes": 12259,
+      "sha256": "d29f2f97d82e0bfa0cf4b2b5752cc74015765f383b13fa8308b631dc55bbf1c4"
+    },
+    {
+      "path": "analysis/learned-receiver-results.json",
+      "bytes": 439216,
+      "sha256": "b06dca7bf66a6feaa373ae13ce3e370980c3cdc7c936c8f59988751f804e5c1e"
+    },
+    {
+      "path": "analysis/phase-learning-design-check.mjs",
+      "bytes": 6895,
+      "sha256": "48d3b8dd415ec0e1c5d2688ced432697fe23a82f7262d6f91b79b006342c1777"
+    },
+    {
+      "path": "analysis/phase-learning-design-results.json",
+      "bytes": 8147,
+      "sha256": "cc31096eed0a045ba2a1ee2221a3b7e5c611e740349efe2f2a63e0908793f188"
+    },
+    {
+      "path": "analysis/receiver-level-inference-check.mjs",
+      "bytes": 9388,
+      "sha256": "051c81e62dfa333cb793f988a9cf2311add4a641194e7375266703aae34bf3fa"
+    },
+    {
+      "path": "analysis/receiver-level-inference-results.json",
+      "bytes": 10197,
+      "sha256": "bb2623a60eb2a2eca65db8a4c12119f981fda51e70aca1d998a61de60d8d64f3"
+    },
+    {
+      "path": "analysis/reciprocal-reconstruction-results.json",
+      "bytes": 207132,
+      "sha256": "58dda4f0c95fbf461f01099990aab8372275e93cdb5ade85fe8dd5673158743b"
+    },
+    {
+      "path": "analysis/reciprocal-reconstruction.mjs",
+      "bytes": 16449,
+      "sha256": "0d8e3c4de918c3e1a98bcbd211fe893d68d858e2a53afe6a3a9eaac3e937b05b"
+    },
+    {
+      "path": "analysis/state-selection-results-r2.json",
+      "bytes": 3177,
+      "sha256": "7fb10a41aa069070b80d77d3cb030972fb79aa4757a3de332f815040c656d236"
+    },
+    {
+      "path": "ARTIFACT-AVAILABILITY-v1.0.md",
+      "bytes": 10437,
+      "sha256": "de71f8cada32ceadebbe1a563393c64ada6abad7e353c92f02ba6ab735b07285"
+    },
+    {
+      "path": "figures/01-mechanism.pdf",
+      "bytes": 3315,
+      "sha256": "d19f6ce602bb00907ecb0d7e9d7594aa73e360e407d7a5e63e320f7d454b7571"
+    },
+    {
+      "path": "figures/02-protocol.pdf",
+      "bytes": 3417,
+      "sha256": "ada1bb70591320353dfe668be2357f3dd8706d26308a392c362313fab16b24de"
+    },
+    {
+      "path": "figures/03-results.pdf",
+      "bytes": 4534,
+      "sha256": "e3629a75d8640cc88745baa1de86dcdfffce85662ab2fa6841f9c81671d86ae4"
+    },
+    {
+      "path": "HESSE-CLAIM-BOUNDARIES.json",
+      "bytes": 3696,
+      "sha256": "efd0840debc31bdef09f2d31fee4c5cd5c036eae81d1e86752037de304e0ee18"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.1.md",
+      "bytes": 200819,
+      "sha256": "040f054bd82875d40267a2c40c650f9ae7bbcba7d4a1596d61879dabb6c4fb4f"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.1.pdf",
+      "bytes": 370061,
+      "sha256": "49329b352948d19c51419e60eac8a1169df1bd96fa8327c4dd56fdcab5169ff7"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.1.tex",
+      "bytes": 221688,
+      "sha256": "9bf118b3e97caa9e92dada1a1dce868f49224958d942e3722eb4b857ed5307f9"
+    },
+    {
+      "path": "Learning-to-Feel-v1.1.md",
+      "bytes": 135438,
+      "sha256": "7c2d8c0606740a4c37fd68efcc2a9e302d0c349e574b04bd5ebb8f307428e0b1"
+    },
+    {
+      "path": "Learning-to-Feel-v1.1.pdf",
+      "bytes": 238224,
+      "sha256": "62aff7484e05c804c460c95ac8eec44071f315bcec1e78154a674f3c7b80fb21"
+    },
+    {
+      "path": "Learning-to-Feel-v1.1.tex",
+      "bytes": 147156,
+      "sha256": "584280c3bd31caec2ddd6e138de02afdc390659e68da61969609ceaa5fa62712"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2474,
+      "sha256": "cfd24205fd159952bb196a9ca25ed93c6ce22cd07dd7cf4c6096ad3b1e18d3de"
+    },
+    {
+      "path": "REVIEW-FINDINGS.md",
+      "bytes": 4649,
+      "sha256": "dc8e10acdcc69b7d16b478adcaf575625b615feb431f1dc46ebe8863e04a416f"
+    },
+    {
+      "path": "VERIFY.py",
+      "bytes": 535,
+      "sha256": "102387ca5eb9a10567be4dce7bddd6ef14bf1f14601f94e2fa8dc51cb2e3af21"
+    }
+  ],
+  "originalVersionPreserved": true,
+  "biologicalDataReanalysis": false
+}

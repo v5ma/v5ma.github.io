@@ -142,3 +142,10 @@ These are preprints, not claims of peer-review acceptance. Existing selections 0
 114. [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks](./114%20-%20Learning%20to%20Feel.pdf) — [Zenodo](https://zenodo.org/records/23447925) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ad46b6c28f00db4eda6488e) · [Supplement and selected sources](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/learning-to-feel-v1.0).
 
 Public v1.0 is based on frozen Draft 34. It is not peer reviewed. Original results and adverse comparisons are preserved; third-party comparator code and the complete private replay archive are not redistributed. The previous 113 paper selections are unchanged.
+
+## Reviewed v1.1 updates — 18 October 2026
+
+The library still contains 114 logical papers. Both v1.0 records, files and companions remain accessible; versioned filenames below are new additions. These are preprints, not peer-reviewed acceptance.
+
+- Paper 113: [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience, v1.1](./113%20-%20Temporal%20Ensembles%20-%20v1.1.pdf) · [Zenodo](https://zenodo.org/records/23455800) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad4fa4827f0a6825fa64967) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/temporal)
+- Paper 114: [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks, v1.1](./114%20-%20Learning%20to%20Feel%20-%20v1.1.pdf) · [Zenodo](https://zenodo.org/records/23455801) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad4fa5c27f0a6825fa6496e) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/learning)

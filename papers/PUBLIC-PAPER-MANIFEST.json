@@ -1,8 +1,8 @@
 {
   "schema": "svgn.public-github-paper-mirror.v1",
   "count": 114,
-  "total_pdf_bytes": 121266262,
-  "selection": "Current selected public PDFs for Papers 1-114 as of 2026-10-17; preceding 113 PDF selections unchanged.",
+  "total_pdf_bytes": 121295111,
+  "selection": "Current selections for 114 papers, 2026-10-18; Papers 113 and 114 select v1.1. All v1.0 PDF files and companions remain preserved.",
   "catalog": "https://pub.svgn.io/",
   "osf_archive": "https://osf.io/3vsar/",
   "source_manifest_sha256": "F2348070349D8DAABADE6B4A48DB18CA63B10453D61F99A2864F06AF22B9AC76",
@@ -1148,28 +1148,52 @@
     {
       "number": 113,
       "title": "Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience",
-      "filename": "113 - Temporal Ensembles in Self-Aware Networks Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience.pdf",
-      "bytes": 497635,
-      "sha256": "53188CEF3A7BE433AE60DC396458683B5D432285C828914F276416D46C56920A",
-      "zenodo": "https://zenodo.org/records/22924518",
-      "osf": "https://osf.io/3vsar/files/osfstorage/6ab42b864711fc9593d329f6",
-      "osf_download": "https://osf.io/download/6ab42b864711fc9593d329f6/",
-      "version": "1.0",
+      "filename": "113 - Temporal Ensembles - v1.1.pdf",
+      "bytes": 518117,
+      "sha256": "BF1E47D644A46B46BF8E36C0AE78C8EDA378CE4753DB9C69C7230CFB7220BA6E",
+      "zenodo": "https://zenodo.org/records/23455800",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ad4fa4827f0a6825fa64967",
+      "osf_download": "https://osf.io/download/6ad4fa4827f0a6825fa64967/",
+      "version": "1.1",
       "verified": true,
-      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal"
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/temporal",
+      "previous_versions": [
+        {
+          "version": "1.0",
+          "filename": "113 - Temporal Ensembles in Self-Aware Networks Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience.pdf",
+          "bytes": 497635,
+          "sha256": "53188CEF3A7BE433AE60DC396458683B5D432285C828914F276416D46C56920A",
+          "zenodo": "https://zenodo.org/records/22924518",
+          "osf": "https://osf.io/3vsar/files/osfstorage/6ab42b864711fc9593d329f6",
+          "osf_download": "https://osf.io/download/6ab42b864711fc9593d329f6/",
+          "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal"
+        }
+      ]
     },
     {
       "number": 114,
       "title": "Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks",
-      "filename": "114 - Learning to Feel.pdf",
-      "bytes": 229857,
-      "sha256": "8F6037E96A23B2EE7B78301F096C657917F74EC396C610D468D3F4688643E7A9",
-      "zenodo": "https://zenodo.org/records/23447925",
-      "osf": "https://osf.io/3vsar/files/osfstorage/6ad46b6c28f00db4eda6488e",
-      "osf_download": "https://osf.io/download/6ad46b6c28f00db4eda6488e/",
-      "version": "1.0",
+      "filename": "114 - Learning to Feel - v1.1.pdf",
+      "bytes": 238224,
+      "sha256": "62AFF7484E05C804C460C95AC8EEC44071F315BCEC1E78154A674F3C7B80FB21",
+      "zenodo": "https://zenodo.org/records/23455801",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ad4fa5c27f0a6825fa6496e",
+      "osf_download": "https://osf.io/download/6ad4fa5c27f0a6825fa6496e/",
+      "version": "1.1",
       "verified": true,
-      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/learning-to-feel-v1.0"
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/learning",
+      "previous_versions": [
+        {
+          "version": "1.0",
+          "filename": "114 - Learning to Feel.pdf",
+          "bytes": 229857,
+          "sha256": "8F6037E96A23B2EE7B78301F096C657917F74EC396C610D468D3F4688643E7A9",
+          "zenodo": "https://zenodo.org/records/23447925",
+          "osf": "https://osf.io/3vsar/files/osfstorage/6ad46b6c28f00db4eda6488e",
+          "osf_download": "https://osf.io/download/6ad46b6c28f00db4eda6488e/",
+          "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/learning-to-feel-v1.0"
+        }
+      ]
     }
   ],
   "shared_companion": "companions/ai-papers-20260905/README.md",
