@@ -1,9 +1,9 @@
-# Micah Blumberg Research Papers 1–113
+# Micah Blumberg Research Papers 1–114
 
-This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–113 as of September 23, 2026.
+This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–114 as of September 23, 2026.
 
 - Searchable catalog: [pub.svgn.io](https://pub.svgn.io/)
-- Unified OSF archive: [Papers 1–113](https://osf.io/3vsar/)
+- Unified OSF archive: [Papers 1–114](https://osf.io/3vsar/)
 - Machine-readable inventory: [`PUBLIC-PAPER-MANIFEST.json`](./PUBLIC-PAPER-MANIFEST.json)
 - Integrity list: [`SHA256SUMS.txt`](./SHA256SUMS.txt)
 
@@ -136,3 +136,9 @@ These are preprints, not claims of peer-review acceptance. Existing selections 0
 111. [Selective Dissipation for Continual Learning: Receiver-Relative Residual Trajectories and Self-Regulated Plasticity](./111%20-%20Selective%20Dissipation%20for%20Continual%20Learning%20Receiver-Relative%20Residual%20Trajectories%20and%20Self-Regulated%20Plasticity.pdf) — [Zenodo](https://zenodo.org/records/22924457) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42a3812f45d94cbd32bca) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/ai)
 112. [Selective Dissipation and Gated Plasticity in a History-Shaped Neural Canvas](./112%20-%20Selective%20Dissipation%20and%20Gated%20Plasticity%20in%20a%20History-Shaped%20Neural%20Canvas.pdf) — [Zenodo](https://zenodo.org/records/22924465) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42a63809e1e0f40d329b6) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/plasticity)
 113. [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience](./113%20-%20Temporal%20Ensembles%20in%20Self-Aware%20Networks%20Dendritic%20Recovery%2C%20Phase-Structured%20Recurrence%2C%20and%20the%20Hypothesis%20of%20Temporal%20Experience.pdf) — [Zenodo](https://zenodo.org/records/22924518) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ab42b864711fc9593d329f6) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal)
+
+## Initial Learning to Feel preprint — 17 October 2026
+
+114. [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks](./114%20-%20Learning%20to%20Feel.pdf) — [Zenodo](https://zenodo.org/records/23447925) · [OSF page](https://osf.io/3vsar/files/osfstorage/6ad46b6c28f00db4eda6488e) · [Supplement and selected sources](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/learning-to-feel-v1.0).
+
+Public v1.0 is based on frozen Draft 34. It is not peer reviewed. Original results and adverse comparisons are preserved; third-party comparator code and the complete private replay archive are not redistributed. The previous 113 paper selections are unchanged.

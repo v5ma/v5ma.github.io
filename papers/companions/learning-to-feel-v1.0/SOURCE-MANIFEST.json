@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "date": "2026-10-17",
+  "baseDraft": 34,
+  "files": [
+    {
+      "path": "ARTIFACT-AVAILABILITY.md",
+      "bytes": 10437,
+      "sha256": "de71f8cada32ceadebbe1a563393c64ada6abad7e353c92f02ba6ab735b07285"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.0.md",
+      "bytes": 193473,
+      "sha256": "5c9f7533963b4e678fbd22bb522d15dc7e1ebb069cc1ed09fd697fed597f569d"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.0.pdf",
+      "bytes": 358552,
+      "sha256": "77a519ff11d7d003f85e133de8cb079b310739821d8ac3073278983520255f66"
+    },
+    {
+      "path": "Learning-to-Feel-Technical-Supplement-v1.0.tex",
+      "bytes": 214588,
+      "sha256": "07278287a2f00105763f877ba52fc8ec99433d132761510d0f66c6b03647d0bc"
+    },
+    {
+      "path": "Learning-to-Feel-v1.0.md",
+      "bytes": 126973,
+      "sha256": "bbb0bfd40bf864ad785a913e689831727552c2522e6b56887a3889a4cc4c9c69"
+    },
+    {
+      "path": "Learning-to-Feel-v1.0.pdf",
+      "bytes": 229857,
+      "sha256": "8f6037e96a23b2ee7b78301f096c657917f74ec396c610d468d3f4688643e7a9"
+    },
+    {
+      "path": "Learning-to-Feel-v1.0.tex",
+      "bytes": 139872,
+      "sha256": "bc273557b7ae2dfe928a2c8b2372d7ebaff1426e367ae28ff195e6a4bb684468"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2502,
+      "sha256": "19d6cbb856dfae45d5c2bf403962c74dc4ab40304f9bcc0e40a716beae2f4704"
+    },
+    {
+      "path": "analysis/access-metric-check.mjs",
+      "bytes": 3329,
+      "sha256": "9bc9e4a395db5ad50ee3be8b072409525e56d8ed5b2190fceb59fbaa4ac4c9f0"
+    },
+    {
+      "path": "analysis/access-metric-results.json",
+      "bytes": 2703,
+      "sha256": "05a5cf75f1f11643fd92839b34f4998c6f1765b19250e32d7e729ef0e29075df"
+    },
+    {
+      "path": "analysis/acquisition-access-check.mjs",
+      "bytes": 4943,
+      "sha256": "fd6e7c80d464405b559c7ddd07956c1a1f1500a482dd48cb4bd01994f0890d6f"
+    },
+    {
+      "path": "analysis/acquisition-access-results.json",
+      "bytes": 3166,
+      "sha256": "6a52df5a542316afd8840ed50da3454a1be1fe744296084fd284dde0f610b3eb"
+    },
+    {
+      "path": "analysis/joint-receiver-comparison-results.json",
+      "bytes": 2718988,
+      "sha256": "ac9ca72ecc25fce2121a7457c9cfcd2ea27b817e4b167432416ab87ffb29ab1a"
+    },
+    {
+      "path": "analysis/joint-receiver-comparison.mjs",
+      "bytes": 20243,
+      "sha256": "c6dc9d46474cccd7b750518ffc7cbc5ce5b6628ae15f009af28e95fdabb104b2"
+    },
+    {
+      "path": "analysis/learned-receiver-application.mjs",
+      "bytes": 12259,
+      "sha256": "d29f2f97d82e0bfa0cf4b2b5752cc74015765f383b13fa8308b631dc55bbf1c4"
+    },
+    {
+      "path": "analysis/learned-receiver-results.json",
+      "bytes": 439216,
+      "sha256": "b06dca7bf66a6feaa373ae13ce3e370980c3cdc7c936c8f59988751f804e5c1e"
+    },
+    {
+      "path": "analysis/phase-learning-design-check.mjs",
+      "bytes": 6895,
+      "sha256": "48d3b8dd415ec0e1c5d2688ced432697fe23a82f7262d6f91b79b006342c1777"
+    },
+    {
+      "path": "analysis/phase-learning-design-results.json",
+      "bytes": 8147,
+      "sha256": "cc31096eed0a045ba2a1ee2221a3b7e5c611e740349efe2f2a63e0908793f188"
+    },
+    {
+      "path": "analysis/receiver-level-inference-check.mjs",
+      "bytes": 9388,
+      "sha256": "051c81e62dfa333cb793f988a9cf2311add4a641194e7375266703aae34bf3fa"
+    },
+    {
+      "path": "analysis/receiver-level-inference-results.json",
+      "bytes": 10197,
+      "sha256": "bb2623a60eb2a2eca65db8a4c12119f981fda51e70aca1d998a61de60d8d64f3"
+    },
+    {
+      "path": "analysis/reciprocal-reconstruction-results.json",
+      "bytes": 207132,
+      "sha256": "58dda4f0c95fbf461f01099990aab8372275e93cdb5ade85fe8dd5673158743b"
+    },
+    {
+      "path": "analysis/reciprocal-reconstruction.mjs",
+      "bytes": 16449,
+      "sha256": "0d8e3c4de918c3e1a98bcbd211fe893d68d858e2a53afe6a3a9eaac3e937b05b"
+    },
+    {
+      "path": "figures/01-mechanism.pdf",
+      "bytes": 3315,
+      "sha256": "d19f6ce602bb00907ecb0d7e9d7594aa73e360e407d7a5e63e320f7d454b7571"
+    },
+    {
+      "path": "figures/02-protocol.pdf",
+      "bytes": 3417,
+      "sha256": "ada1bb70591320353dfe668be2357f3dd8706d26308a392c362313fab16b24de"
+    },
+    {
+      "path": "figures/03-results.pdf",
+      "bytes": 4534,
+      "sha256": "e3629a75d8640cc88745baa1de86dcdfffce85662ab2fa6841f9c81671d86ae4"
+    }
+  ],
+  "scope": "Selected original sources, results and paired PDFs; not the full external comparator replay."
+}

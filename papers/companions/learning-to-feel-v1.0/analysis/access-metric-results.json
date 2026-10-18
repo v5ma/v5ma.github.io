@@ -1,0 +1,137 @@
+{
+  "scope": "Deterministic algebraic fixtures only; no fitting, biological data, measurement calibration, power estimate or independent review.",
+  "sourceSha256": "9BC9E4A395DB5AD50EE3BE8B072409525E56D8ED5B2190FCEB59FBAA4AC4C9F0",
+  "tolerance": 1e-12,
+  "trialCount": 4,
+  "delta": 1.0471975511965976,
+  "checks": [
+    {
+      "name": "Stable relative phase without event-phase consistency",
+      "values": [
+        7.204529898187539e-17,
+        1.1443916996305594e-16,
+        1
+      ],
+      "expected": [
+        0,
+        0,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "Same individual marginals with zero relative consistency",
+      "values": [
+        7.204529898187539e-17,
+        2.7755575615628914e-17,
+        2.1138016631127878e-16
+      ],
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "name": "Marginal phase sets coincide under an explicit modulo-cycle permutation",
+      "values": [
+        0,
+        4.965068306494546e-16,
+        2.482534153247273e-16,
+        2.482534153247273e-16
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "name": "Shared trial rotations preserve relative consistency, change event locking",
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "Coefficient gain is a different quantity from either phase statistic",
+      "values": [
+        1,
+        9,
+        1
+      ],
+      "expected": [
+        1,
+        9,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "Shared-drive and directed models are observationally identical",
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "name": "Different ideal controlled effects despite identical observations",
+      "values": [
+        0,
+        1.0000000000000004
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "Different awareness mixtures have the same block mean",
+      "values": [
+        1,
+        1
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "One versus two labelled events both allow an ever-noticed block response",
+      "values": [
+        1,
+        1
+      ],
+      "expected": [
+        1,
+        1
+      ],
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "scientificNoveltyEstablished": false,
+  "biologicalValidation": false,
+  "newApplication": false
+}

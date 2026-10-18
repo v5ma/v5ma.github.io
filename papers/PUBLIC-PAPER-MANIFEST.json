@@ -1,8 +1,8 @@
 {
   "schema": "svgn.public-github-paper-mirror.v1",
-  "count": 113,
-  "total_pdf_bytes": 121036405,
-  "selection": "Current selected public PDFs for Papers 1-113 as of 2026-09-23; preceding 108 PDF selections unchanged.",
+  "count": 114,
+  "total_pdf_bytes": 121266262,
+  "selection": "Current selected public PDFs for Papers 1-114 as of 2026-10-17; preceding 113 PDF selections unchanged.",
   "catalog": "https://pub.svgn.io/",
   "osf_archive": "https://osf.io/3vsar/",
   "source_manifest_sha256": "F2348070349D8DAABADE6B4A48DB18CA63B10453D61F99A2864F06AF22B9AC76",
@@ -1157,6 +1157,19 @@
       "version": "1.0",
       "verified": true,
       "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/five-papers-20260923/temporal"
+    },
+    {
+      "number": 114,
+      "title": "Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks",
+      "filename": "114 - Learning to Feel.pdf",
+      "bytes": 229857,
+      "sha256": "8F6037E96A23B2EE7B78301F096C657917F74EC396C610D468D3F4688643E7A9",
+      "zenodo": "https://zenodo.org/records/23447925",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6ad46b6c28f00db4eda6488e",
+      "osf_download": "https://osf.io/download/6ad46b6c28f00db4eda6488e/",
+      "version": "1.0",
+      "verified": true,
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/learning-to-feel-v1.0"
     }
   ],
   "shared_companion": "companions/ai-papers-20260905/README.md",
