@@ -149,3 +149,10 @@ The library still contains 114 logical papers. Both v1.0 records, files and comp
 
 - Paper 113: [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience, v1.1](./113%20-%20Temporal%20Ensembles%20-%20v1.1.pdf) · [Zenodo](https://zenodo.org/records/23455800) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad4fa4827f0a6825fa64967) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/temporal)
 - Paper 114: [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks, v1.1](./114%20-%20Learning%20to%20Feel%20-%20v1.1.pdf) · [Zenodo](https://zenodo.org/records/23455801) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad4fa5c27f0a6825fa6496e) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/learning)
+
+## Historical-source v1.2 updates - 20 October 2026
+
+Papers 113 and 114 add the verified 2022 temporal-interleaving and selective-access sources. Existing mathematics and scientific results are unchanged. Both earlier versions remain available. These are preprints, not peer-reviewed acceptances.
+
+- Paper 113: [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience, v1.2](./113%20-%20Temporal%20Ensembles%20-%20v1.2.pdf) · [Zenodo](https://zenodo.org/records/23509960) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad7bbdaadd42367187d52cb) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.2-20261020/temporal)
+- Paper 114: [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks, v1.2](./114%20-%20Learning%20to%20Feel%20-%20v1.2.pdf) · [Zenodo](https://zenodo.org/records/23509961) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad7bc07ffeaa68e48bdaf62) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.2-20261020/learning)

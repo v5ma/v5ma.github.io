@@ -1,0 +1,342 @@
+{
+  "artifact": "Learning to Feel — receiver-level inference stress test",
+  "evidenceType": "constructed Gaussian coefficient experiments; not recordings, a learned neural network, or consciousness evidence",
+  "seedScheme": "20261007 + 100*unitsPerArm + rotationDegrees + 10000*(extraGain-1); separate fixed seeds for moment checks",
+  "estimand": "difference between randomized arms in mean per-unit squared pre/post orientation determinant",
+  "design": {
+    "phaseBins": 8,
+    "trialsPerPhasePerSplit": 4,
+    "splits": 2,
+    "stages": 2,
+    "trialEndpointSD": 1,
+    "datasetsPerScenario": 128,
+    "permutationsPerDataset": 199,
+    "oneSidedAlpha": 0.05,
+    "unitsPerArm": [
+      16,
+      32,
+      64
+    ],
+    "conditions": [
+      {
+        "name": "exchangeable_null",
+        "degrees": 0,
+        "extraGain": 1
+      },
+      {
+        "name": "gain_only_unequal_distributions",
+        "degrees": 0,
+        "extraGain": 2
+      },
+      {
+        "name": "retuning_15_degrees",
+        "degrees": 15,
+        "extraGain": 1
+      },
+      {
+        "name": "retuning_30_degrees",
+        "degrees": 30,
+        "extraGain": 1
+      }
+    ]
+  },
+  "coefficientSD": 0.25,
+  "aggregation": {
+    "individualDeterminants": [
+      0,
+      0
+    ],
+    "pooledPre": [
+      0.5,
+      0.5
+    ],
+    "pooledPost": [
+      1,
+      0.5
+    ],
+    "pooledDeterminant": -0.25
+  },
+  "momentChecks": [
+    {
+      "degrees": 0,
+      "draws": 8192,
+      "J": 0,
+      "varianceJ": 0.22241249999999999,
+      "expectedIndependentCross": 0,
+      "measuredIndependentCross": -0.002382747023501445,
+      "expectedReusedSplit": 0.22241249999999999,
+      "measuredReusedSplit": 0.22805985149473298,
+      "independentCrossMonteCarloSE": 0.002457334171416453
+    },
+    {
+      "degrees": 20,
+      "draws": 8192,
+      "J": 0.5554407127608858,
+      "varianceJ": 0.2224125,
+      "expectedIndependentCross": 0.30851438539232084,
+      "measuredIndependentCross": 0.3134150235229609,
+      "expectedReusedSplit": 0.5309268853923208,
+      "measuredReusedSplit": 0.5339759829309608,
+      "independentCrossMonteCarloSE": 0.0047739710682560225
+    }
+  ],
+  "scenarios": [
+    {
+      "condition": "exchangeable_null",
+      "unitsPerArm": 16,
+      "degrees": 0,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 6,
+      "rejectionFraction": 0.046875,
+      "monteCarloWilson95": [
+        0.021657844171923776,
+        0.09849752245094322
+      ],
+      "meanTrueSquaredOrientationContrast": -8.341892647258146e-35,
+      "meanEstimatedContrast": -0.002564074003239846,
+      "negativeScoreFraction": 0.50537109375
+    },
+    {
+      "condition": "gain_only_unequal_distributions",
+      "unitsPerArm": 16,
+      "degrees": 0,
+      "extraGain": 2,
+      "datasets": 128,
+      "rejections": 7,
+      "rejectionFraction": 0.0546875,
+      "monteCarloWilson95": [
+        0.026740201381346355,
+        0.10858490029974707
+      ],
+      "meanTrueSquaredOrientationContrast": 4.231840044798959e-33,
+      "meanEstimatedContrast": -0.0044246511099223125,
+      "negativeScoreFraction": 0.499267578125
+    },
+    {
+      "condition": "retuning_15_degrees",
+      "unitsPerArm": 16,
+      "degrees": 15,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 48,
+      "rejectionFraction": 0.375,
+      "monteCarloWilson95": [
+        0.29592429097646555,
+        0.4613599480919116
+      ],
+      "meanTrueSquaredOrientationContrast": 0.07497907727307881,
+      "meanEstimatedContrast": 0.0765003084233248,
+      "negativeScoreFraction": 0.428955078125
+    },
+    {
+      "condition": "retuning_30_degrees",
+      "unitsPerArm": 16,
+      "degrees": 30,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 116,
+      "rejectionFraction": 0.90625,
+      "monteCarloWilson95": [
+        0.8432700274269215,
+        0.945556195600853
+      ],
+      "meanTrueSquaredOrientationContrast": 0.28290827101199995,
+      "meanEstimatedContrast": 0.28511986449387505,
+      "negativeScoreFraction": 0.3251953125
+    },
+    {
+      "condition": "exchangeable_null",
+      "unitsPerArm": 32,
+      "degrees": 0,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 9,
+      "rejectionFraction": 0.0703125,
+      "monteCarloWilson95": [
+        0.03742976830393997,
+        0.12823480349360633
+      ],
+      "meanTrueSquaredOrientationContrast": -2.2368693761537083e-35,
+      "meanEstimatedContrast": 0.00016056358082053022,
+      "negativeScoreFraction": 0.50439453125
+    },
+    {
+      "condition": "gain_only_unequal_distributions",
+      "unitsPerArm": 32,
+      "degrees": 0,
+      "extraGain": 2,
+      "datasets": 128,
+      "rejections": 7,
+      "rejectionFraction": 0.0546875,
+      "monteCarloWilson95": [
+        0.026740201381346355,
+        0.10858490029974707
+      ],
+      "meanTrueSquaredOrientationContrast": 3.854977462980224e-33,
+      "meanEstimatedContrast": -0.003715327517675934,
+      "negativeScoreFraction": 0.5050048828125
+    },
+    {
+      "condition": "retuning_15_degrees",
+      "unitsPerArm": 32,
+      "degrees": 15,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 66,
+      "rejectionFraction": 0.515625,
+      "monteCarloWilson95": [
+        0.4298624503761484,
+        0.6004770197403044
+      ],
+      "meanTrueSquaredOrientationContrast": 0.07530717975372517,
+      "meanEstimatedContrast": 0.07651163084587641,
+      "negativeScoreFraction": 0.434814453125
+    },
+    {
+      "condition": "retuning_30_degrees",
+      "unitsPerArm": 32,
+      "degrees": 30,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 128,
+      "rejectionFraction": 1,
+      "monteCarloWilson95": [
+        0.9708630437264916,
+        1
+      ],
+      "meanTrueSquaredOrientationContrast": 0.28489838530646344,
+      "meanEstimatedContrast": 0.29333477186440804,
+      "negativeScoreFraction": 0.3165283203125
+    },
+    {
+      "condition": "exchangeable_null",
+      "unitsPerArm": 64,
+      "degrees": 0,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 6,
+      "rejectionFraction": 0.046875,
+      "monteCarloWilson95": [
+        0.021657844171923776,
+        0.09849752245094322
+      ],
+      "meanTrueSquaredOrientationContrast": 2.0262701267479328e-35,
+      "meanEstimatedContrast": -0.002233290053426902,
+      "negativeScoreFraction": 0.4942626953125
+    },
+    {
+      "condition": "gain_only_unequal_distributions",
+      "unitsPerArm": 64,
+      "degrees": 0,
+      "extraGain": 2,
+      "datasets": 128,
+      "rejections": 7,
+      "rejectionFraction": 0.0546875,
+      "monteCarloWilson95": [
+        0.026740201381346355,
+        0.10858490029974707
+      ],
+      "meanTrueSquaredOrientationContrast": 3.9282723083967666e-33,
+      "meanEstimatedContrast": 0.0011908634985722348,
+      "negativeScoreFraction": 0.50506591796875
+    },
+    {
+      "condition": "retuning_15_degrees",
+      "unitsPerArm": 64,
+      "degrees": 15,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 100,
+      "rejectionFraction": 0.78125,
+      "monteCarloWilson95": [
+        0.7020157030455345,
+        0.8440947590506169
+      ],
+      "meanTrueSquaredOrientationContrast": 0.07591202123992447,
+      "meanEstimatedContrast": 0.07545968140033346,
+      "negativeScoreFraction": 0.4326171875
+    },
+    {
+      "condition": "retuning_30_degrees",
+      "unitsPerArm": 64,
+      "degrees": 30,
+      "extraGain": 1,
+      "datasets": 128,
+      "rejections": 128,
+      "rejectionFraction": 1,
+      "monteCarloWilson95": [
+        0.9708630437264916,
+        1
+      ],
+      "meanTrueSquaredOrientationContrast": 0.28529987728767164,
+      "meanEstimatedContrast": 0.2860707940067373,
+      "negativeScoreFraction": 0.3294677734375
+    }
+  ],
+  "checks": [
+    {
+      "name": "Heterogeneous gains create pooled rotation without individual rotation",
+      "passed": true
+    },
+    {
+      "name": "Common gain does not create pooled rotation",
+      "passed": true
+    },
+    {
+      "name": "Opposed retuning cancels signed averaging but not squared determinants",
+      "passed": true
+    },
+    {
+      "name": "Half-cycle reversal remains invisible to determinant-based statistics",
+      "passed": true
+    },
+    {
+      "name": "Absent baseline has unidentified orientation",
+      "passed": true
+    },
+    {
+      "name": "Common within-unit reference rotation leaves determinant unchanged",
+      "passed": true
+    },
+    {
+      "name": "Stage-specific reference drift is indistinguishable from retuning",
+      "passed": true
+    },
+    {
+      "name": "Coefficient variance from balanced phase means",
+      "passed": true
+    },
+    {
+      "name": "Variance formula at noiseless and zero-signal limits",
+      "passed": true
+    },
+    {
+      "name": "Independent-split moment agreement at 0 degrees",
+      "passed": true
+    },
+    {
+      "name": "Independent-split moment agreement at 20 degrees",
+      "passed": true
+    },
+    {
+      "name": "Reusing a split introduces a positive null moment in this fixture",
+      "passed": true
+    },
+    {
+      "name": "Bounded scenario grid and finite outputs",
+      "passed": true
+    }
+  ],
+  "passedChecks": 13,
+  "totalChecks": 13,
+  "limits": [
+    "No calibrated biological effect size or recommended sample size.",
+    "Studentized permutation calibration is exact only under assignment exchangeability/sharp null; gain-only unequal-distribution rows audit a weaker equal-moment null without asserting finite-sample exactness.",
+    "Independent splits and independent pre/post zero-mean errors are assumed; correlated drift or shared preprocessing can invalidate moments.",
+    "Squared determinants are amplitude-weighted, miss half-cycle reversals and zero-baseline onset, and do not establish phase causality.",
+    "Units are independent experimental participants in this generator, not multiple neurons falsely counted as independent animals.",
+    "No statement that all null rejection fractions must equal alpha; finite Monte Carlo intervals are reported.",
+    "No binary report process, dropouts, phase-estimation error or serially dependent trial model is implemented."
+  ]
+}

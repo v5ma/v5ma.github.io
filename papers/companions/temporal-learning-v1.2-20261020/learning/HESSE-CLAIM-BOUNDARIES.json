@@ -1,0 +1,95 @@
+{
+  "source": "Hesse et al., bioRxiv 10.64898/2026.10.15.759299v1",
+  "sourcePdfSha256": "db38ece2676384b9532511410825745a84cb4f24e2367911655ca3001181b890",
+  "reviewDate": "2026-10-18",
+  "claims": [
+    {
+      "id": "H01",
+      "locator": "Main pp. 4-8; Figure 3; Methods pp. 26-28",
+      "supports": "State-resolved content persists under cross-neuron validation",
+      "doesNotEstablish": "Downstream use, native dendritic mechanism or causal access"
+    },
+    {
+      "id": "H02",
+      "locator": "Main pp. 9-10; Figure 4c-e; Methods pp. 28-30",
+      "supports": "Tuning gain and mean firing differ in direction across the two states",
+      "doesNotEstablish": "Electrical magnitude alone determines conscious access or tuning gain is effective connectivity"
+    },
+    {
+      "id": "H03",
+      "locator": "Figure 4f; Methods p. 29, Decoding state 1 vs state 2",
+      "supports": "Paired state-response ordering is distinguishable across held-out stimulus pairs",
+      "doesNotEstablish": "A 66-percent online single-epoch detector available to the brain"
+    },
+    {
+      "id": "H04",
+      "locator": "Main p. 11; Figure 5c-d; Methods pp. 26,30",
+      "supports": "Model-conditioned dwell estimates; mean dwell, median dwell and autocorrelation decay have different definitions",
+      "doesNotEstablish": "Universal 15-Hz clock, exact regular alternation, or branch recovery calibrated at 60 ms"
+    },
+    {
+      "id": "H05",
+      "locator": "Main p. 12; Figure 5e",
+      "supports": "Weak but nonzero cross-patch evidence under the declared analysis",
+      "doesNotEstablish": "Global synchronous micro-epochs or no regional relation at all"
+    },
+    {
+      "id": "H06",
+      "locator": "Main pp. 14-16; Figure 6",
+      "supports": "Related content-state organization in sampled PFC, with weaker reconstruction than IT",
+      "doesNotEstablish": "Every cortical region has the same decoder fidelity or a universal cortical mechanism"
+    },
+    {
+      "id": "H07",
+      "locator": "Methods pp. 23-25; Figure 1",
+      "supports": "Two male macaque recording subjects and separate human perceptual timing validation",
+      "doesNotEstablish": "A moment-by-moment subjective report from the recorded macaque"
+    },
+    {
+      "id": "H08",
+      "locator": "Methods pp. 27-28",
+      "supports": "Fifty face features reconstructed from pooled state-specific responses; a separate single-trial classifier uses 200-ms windows or trial aggregation",
+      "doesNotEstablish": "Independent rich image reconstruction from every 10-ms neural sample"
+    },
+    {
+      "id": "H09",
+      "locator": "Extended Data Figure 10; Methods p. 31",
+      "supports": "Four declared Poisson generative controls and several held-out signatures",
+      "doesNotEstablish": "Exhaustion of continuous-state/common-drive/overdispersed alternatives"
+    },
+    {
+      "id": "H10",
+      "locator": "Methods p. 31, Data and Code availability",
+      "supports": "Future DANDI/GitHub release promised upon publication",
+      "doesNotEstablish": "Data/code were acquired or reanalyzed in this successor work"
+    }
+  ],
+  "visualCoverage": {
+    "mainFigures": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "extendedDataFigures": [
+      8,
+      9,
+      10
+    ],
+    "extendedCaptionsReadButPanelsNotIndividuallyInspected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "cumulativeTextCoverage": "Main text, captions, Methods and references across the prior intake and this continuation; not 50 freshly inspected page images.",
+  "newBiologicalResults": false,
+  "authorContact": false,
+  "priorityOrInfluenceVerdict": false
+}

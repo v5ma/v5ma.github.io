@@ -1,0 +1,162 @@
+{
+  "checkedUtc": "2026-10-20T18:56:14.177641+00:00",
+  "status": "THREE_SOURCES_AND_TWO_COMMIT_METADATA_RECORDS_VERIFIED",
+  "sources": [
+    {
+      "id": "interlace-20220608",
+      "source": "b0192y ctpr.txt",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/09b8306fbb54536e20ba1071e91dff0cb8a4770f/b0192y%20ctpr.txt",
+      "commit": "09b8306fbb54536e20ba1071e91dff0cb8a4770f",
+      "gitBlob": "1bd979de55c2a4cfeb24f30aa73261587e28a0cb",
+      "sha256": "d1b761cac3871304d775bf58d28a1822476df9d62cf803c95287746484ce1137",
+      "bytes": 4065,
+      "gitAuthorDate": "2022-06-08T18:51:23-07:00",
+      "gitCommitterDate": "2022-06-08T18:51:23-07:00",
+      "quoteLocators": [
+        {
+          "text": "You could interlace them so that they don't appear at the same time",
+          "line": 21,
+          "word_count": 13
+        },
+        {
+          "text": "maybe as if they are overlayed instead of interlaced",
+          "line": 21,
+          "word_count": 9
+        }
+      ],
+      "sourceRole": "Author's rough Pixel transcript; wording quoted as preserved text, not newly verified audio.",
+      "conceptualFit": "strong-partial",
+      "custodyGrade": "A-",
+      "dateBoundary": "Commit metadata is not an independent timestamp proving the repository was public on that date.",
+      "establishes": [
+        "temporal interleaving of distinct representations",
+        "apparently simultaneous experience despite sequential components"
+      ],
+      "doesNotEstablish": [
+        "conscious versus suppressed face codes",
+        "IT and PFC pure reconstructions",
+        "approximately 15 state transitions per second"
+      ]
+    },
+    {
+      "id": "detection-rendering-20221128",
+      "source": "0abstractbump.md",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/4e0cf1ee0975c01dc57182368497d3f0cd864030/0abstractbump.md",
+      "commit": "4e0cf1ee0975c01dc57182368497d3f0cd864030",
+      "gitBlob": "25d11cde903cc0f5c8419ba2a127500da85b1eb1",
+      "sha256": "2190fcf551ce0ed04b8cf992444eed46c7cda7465555fc8b70067c31ea4221f6",
+      "bytes": 4848,
+      "gitAuthorDate": "2022-11-28T18:09:11-08:00",
+      "gitCommitterDate": "2022-11-28T18:09:11-08:00",
+      "quoteLocators": [
+        {
+          "text": "an observer is a strange loop of detection frames interlaced with rendered frames",
+          "line": 13,
+          "word_count": 13
+        }
+      ],
+      "sourceRole": "Authorial synthesis; historical filename has one leading zero.",
+      "conceptualFit": "strong-partial",
+      "custodyGrade": "A-",
+      "dateBoundary": "Commit metadata is not an independent timestamp proving the repository was public on that date.",
+      "establishes": [
+        "interlaced functional roles in a recurrent observer"
+      ],
+      "doesNotEstablish": [
+        "detection/rendering epochs equated with suppressed/conscious face epochs",
+        "a universal consciousness frame rate"
+      ]
+    },
+    {
+      "id": "dominant-rhythms-20221128",
+      "source": "a0325zNAPOT6.md",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/4e0cf1ee0975c01dc57182368497d3f0cd864030/a0325zNAPOT6.md",
+      "commit": "4e0cf1ee0975c01dc57182368497d3f0cd864030",
+      "gitBlob": "dfef23d763f69537bac22fe15e416c9ad96b9c5b",
+      "sha256": "0874c6f763fde8ad4ce06cf7255c75bd5ab0bcf632e53fbceb96703576bbe5e2",
+      "bytes": 35330,
+      "gitAuthorDate": "2022-11-28T18:09:11-08:00",
+      "gitCommitterDate": "2022-11-28T18:09:11-08:00",
+      "quoteLocators": [
+        {
+          "text": "those things that are perceived consciously are the dominant phase wave differential rhythms.",
+          "line": 99,
+          "word_count": 13
+        },
+        {
+          "text": "the synchronous tonic low information brainwave oscillations",
+          "line": 103,
+          "word_count": 7
+        }
+      ],
+      "sourceRole": "Authorial NAPOT 6 draft, with third-party literature quotations separately marked in the full source.",
+      "conceptualFit": "strong-partial",
+      "custodyGrade": "A-",
+      "dateBoundary": "Commit metadata is not an independent timestamp proving the repository was public on that date.",
+      "establishes": [
+        "distinction between neural representation and conscious access",
+        "selective persistence/dominance and a tonic background"
+      ],
+      "doesNotEstablish": [
+        "pure suppressed-face code within alternating epochs",
+        "measured IT/PFC gain asymmetry"
+      ]
+    }
+  ],
+  "commitReadback": [
+    {
+      "sha": "09b8306fbb54536e20ba1071e91dff0cb8a4770f",
+      "authorDateUtc": "2022-06-09T01:51:23Z",
+      "committerDateUtc": "2022-06-09T01:51:23Z"
+    },
+    {
+      "sha": "4e0cf1ee0975c01dc57182368497d3f0cd864030",
+      "authorDateUtc": "2022-11-29T02:09:11Z",
+      "committerDateUtc": "2022-11-29T02:09:11Z"
+    }
+  ],
+  "recordingLead": {
+    "source": "b0192y",
+    "cataloguedDate": "2021-09-17",
+    "custodyGrade": "B",
+    "basis": "Existing recorder catalogue, rank 216; no new audio audition.",
+    "notClaimed": "Exact wording independently verified in September 2021."
+  },
+  "mechanismSignature": [
+    "temporally interleaved contributions",
+    "apparently integrated experience",
+    "recurrent detection and rendering",
+    "selective persistent participation"
+  ],
+  "coverage": {
+    "2011-2012": "Earlier v1.1 source ledger retained; no new date certification.",
+    "2013-2014": "unsearched",
+    "2017": "unsearched",
+    "2021": "catalogued recording lead; audio source-gated",
+    "2022": "Three exact sources verified",
+    "2024-2025": "No new SAN genealogy search",
+    "2026": "Current comparison, not backdated into earlier sources"
+  },
+  "comparison": {
+    "mechanismLens": "Partial match: temporally separated representational contributions; no equivalence of the complete mechanisms.",
+    "causalArchitectureLens": "Historical recurrence/selection proposal connects to the new representation-versus-access problem; downstream selection is not causally tested by the preprint.",
+    "conclusionBacktraceLens": "Apparent experiential continuity need not require continuously expressed content. The historical multisensory and experimental conscious/suppressed content cases remain distinct.",
+    "longitudinalLens": "Not used to make a migration or influence verdict. The already cited 2020 and 2024 studies remain alternative scientific antecedents.",
+    "priorBoundary": "Lisman and Idiart (1995), Rabinovich et al. (2001), Hesse and Tsao (2020), and She et al. (2024) remain credited for their respective operations.",
+    "notEstablished": [
+      "exhaustive novelty",
+      "access or influence",
+      "the exact face-patch result or dwell estimates",
+      "global synchronous micro-epochs",
+      "a dendritic triplet",
+      "a proof of consciousness"
+    ]
+  },
+  "historicalTensions": [
+    "NAPOT 6 combines persistence and recurrent pathways with amplitude/contrast language; these are not silently replaced by modern effective-connectivity language.",
+    "Its closing perception/action language is stronger than the present account; the claim that unperceived content cannot affect behavior is not adopted.",
+    "Later May 2023 wording is not assigned to the November 2022 version."
+  ],
+  "privateConversationRedistributed": false,
+  "fullThirdPartySourcesRedistributed": false
+}

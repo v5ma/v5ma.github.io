@@ -1,0 +1,335 @@
+{
+  "artifact": "Learning to Feel / phase-learning experimental-design check",
+  "version": 1,
+  "evidenceType": "deterministic synthetic fixtures; not biological or behavioral data",
+  "scope": "Conditional algebra, counterexamples, and numerical implementation checks only.",
+  "phaseSamplesRadians": [
+    "0",
+    "pi/2",
+    "pi",
+    "3pi/2"
+  ],
+  "claimsNotTested": [
+    "SAN biological validity",
+    "a new conscious sense",
+    "subjective experience",
+    "an optimal stimulation protocol",
+    "statistical power",
+    "originality of the mathematics"
+  ],
+  "totalChecks": 14,
+  "passedChecks": 14,
+  "checks": [
+    {
+      "name": "Quadrature identifies the declared first harmonic",
+      "status": "pass"
+    },
+    {
+      "name": "An additive mean shift has no phase interaction",
+      "status": "pass"
+    },
+    {
+      "name": "Uniform gain creates a learning-by-phase interaction",
+      "status": "pass"
+    },
+    {
+      "name": "Uniform gain has zero orientation determinant and zero gain residual",
+      "status": "pass"
+    },
+    {
+      "name": "Equal-amplitude retuning need not raise average response",
+      "status": "pass"
+    },
+    {
+      "name": "The nonnegative-gain fit rejects the quarter-cycle fixture",
+      "status": "pass"
+    },
+    {
+      "name": "Gain plus retuning is not pure gain",
+      "status": "pass"
+    },
+    {
+      "name": "A zero baseline makes the orientation comparison unidentified",
+      "status": "pass"
+    },
+    {
+      "name": "A half-cycle reversal defeats the determinant alone but not the gain-ray check",
+      "status": "pass"
+    },
+    {
+      "name": "Raw binary probabilities can falsely suggest retuning when only latent intercept changes",
+      "status": "pass"
+    },
+    {
+      "name": "The correct logit scale removes that constructed artifact",
+      "status": "pass"
+    },
+    {
+      "name": "Opposite-pair residual detects this second harmonic",
+      "status": "pass"
+    },
+    {
+      "name": "Four phase samples cannot distinguish a third-harmonic alias",
+      "status": "pass"
+    },
+    {
+      "name": "Reference drift is observationally identical in this construction",
+      "status": "pass"
+    }
+  ],
+  "fixtures": {
+    "meanOnly": {
+      "pre": {
+        "a": 2,
+        "b": 1,
+        "c": 0.5,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 5,
+        "b": 1,
+        "c": 0.5,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        0,
+        0
+      ],
+      "interactionNorm": 0,
+      "orientationDeterminant": 0,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 1,
+        "residualNorm": 0
+      }
+    },
+    "uniformPositiveGain": {
+      "pre": {
+        "a": 2,
+        "b": 1,
+        "c": 0.5,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 5,
+        "b": 2,
+        "c": 1,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        1,
+        0.5
+      ],
+      "interactionNorm": 1.118033988749895,
+      "orientationDeterminant": 0,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 2,
+        "residualNorm": 0
+      }
+    },
+    "quarterCycleRetuning": {
+      "pre": {
+        "a": 2,
+        "b": 1,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 2,
+        "b": 0,
+        "c": 1,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        -1,
+        1
+      ],
+      "interactionNorm": 1.4142135623730951,
+      "orientationDeterminant": 1,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 0,
+        "residualNorm": 1
+      }
+    },
+    "gainAndRetuning": {
+      "pre": {
+        "a": 2,
+        "b": 1,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 5,
+        "b": 0,
+        "c": 2,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        -1,
+        2
+      ],
+      "interactionNorm": 2.23606797749979,
+      "orientationDeterminant": 2,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 0,
+        "residualNorm": 2
+      }
+    },
+    "initiallyUntuned": {
+      "pre": {
+        "a": 2,
+        "b": 0,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 2,
+        "b": 1,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        1,
+        0
+      ],
+      "interactionNorm": 1,
+      "orientationDeterminant": 0,
+      "nonnegativeGainFit": {
+        "status": "baseline_phase_vector_zero_or_below_numerical_tolerance"
+      }
+    },
+    "halfCycleFlip": {
+      "pre": {
+        "a": 2,
+        "b": 1,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": 2,
+        "b": -1,
+        "c": 0,
+        "oppositePairLackOfFit": 0
+      },
+      "learningInteraction": [
+        -2,
+        0
+      ],
+      "interactionNorm": 2,
+      "orientationDeterminant": 0,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 0,
+        "residualNorm": 1
+      }
+    },
+    "rawProbabilityInterceptChange": {
+      "pre": {
+        "a": 0.06451474540888955,
+        "b": 0.06353851660360736,
+        "c": 0.01842147782244815,
+        "oppositePairLackOfFit": 0.05519121155196348
+      },
+      "post": {
+        "a": 0.30043607291194646,
+        "b": 0.22504175409639635,
+        "c": 0.07826379116639315,
+        "oppositePairLackOfFit": 0.09742468121654013
+      },
+      "learningInteraction": [
+        0.161503237492789,
+        0.059842313343945
+      ],
+      "interactionNorm": 0.17223355708748256,
+      "orientationDeterminant": 0.000827163512275535,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 3.596612756183284,
+        "residualNorm": 0.012503402245498764
+      }
+    },
+    "correctLogitInterceptChange": {
+      "pre": {
+        "a": -3.0000000000000004,
+        "b": 1.2,
+        "c": 0.3999999999999999,
+        "oppositePairLackOfFit": 0
+      },
+      "post": {
+        "a": -1,
+        "b": 1.2,
+        "c": 0.4,
+        "oppositePairLackOfFit": -6.661338147750939e-16
+      },
+      "learningInteraction": [
+        0,
+        1.1102230246251565e-16
+      ],
+      "interactionNorm": 1.1102230246251565e-16,
+      "orientationDeterminant": 1.1102230246251565e-16,
+      "nonnegativeGainFit": {
+        "status": "identified_in_this_noiseless_fixture",
+        "nonnegativeGain": 1,
+        "residualNorm": 1.1102230246251565e-16
+      }
+    },
+    "secondHarmonic": {
+      "a": 2,
+      "b": 0.9999999999999999,
+      "c": 0.5000000000000001,
+      "oppositePairLackOfFit": 1.1999999999999993
+    },
+    "thirdHarmonicAlias": {
+      "sampledValues": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "indistinguishableFundamental": [
+        0,
+        -1,
+        0,
+        1
+      ],
+      "fitted": {
+        "a": 0,
+        "b": 0,
+        "c": -1,
+        "oppositePairLackOfFit": 0
+      }
+    },
+    "referenceDrift": {
+      "apparentRetuning": {
+        "pre": {
+          "a": 2,
+          "b": 1,
+          "c": 0,
+          "oppositePairLackOfFit": 0
+        },
+        "post": {
+          "a": 2,
+          "b": 0,
+          "c": 1,
+          "oppositePairLackOfFit": 0
+        },
+        "learningInteraction": [
+          -1,
+          1
+        ],
+        "interactionNorm": 1.4142135623730951,
+        "orientationDeterminant": 1,
+        "nonnegativeGainFit": {
+          "status": "identified_in_this_noiseless_fixture",
+          "nonnegativeGain": 0,
+          "residualNorm": 1
+        }
+      },
+      "explanation": "These same samples can be generated by a fixed native tuning curve and a quarter-cycle shift in the measurement reference; samples alone cannot distinguish the two."
+    }
+  }
+}
+

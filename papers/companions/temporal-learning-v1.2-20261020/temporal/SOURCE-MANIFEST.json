@@ -1,0 +1,71 @@
+{
+  "version": "1.2",
+  "files": [
+    {
+      "path": "analysis/check_state_selection.py",
+      "bytes": 4737,
+      "sha256": "3e36288a48845b2d698ed810f882f83d0e02a031acdb7a3b7c14ce289b378d27"
+    },
+    {
+      "path": "analysis/state-selection-results-r2.json",
+      "bytes": 3177,
+      "sha256": "7fb10a41aa069070b80d77d3cb030972fb79aa4757a3de332f815040c656d236"
+    },
+    {
+      "path": "figures/local-content-dynamics.png",
+      "bytes": 228715,
+      "sha256": "19f9b61a8b67798f63468f3d78fd6ebf64be545dc933460906c52aaf24632093"
+    },
+    {
+      "path": "figures/schedule-and-identification.png",
+      "bytes": 99710,
+      "sha256": "810cae3457cf31180f42d72bab3f89eeda0c52827efd20975a95e5cd435eebef"
+    },
+    {
+      "path": "HESSE-CLAIM-BOUNDARIES.json",
+      "bytes": 3696,
+      "sha256": "efd0840debc31bdef09f2d31fee4c5cd5c036eae81d1e86752037de304e0ee18"
+    },
+    {
+      "path": "HISTORICAL-SOURCE-LEDGER.json",
+      "bytes": 7373,
+      "sha256": "be7bf8f647c2200a0b58c385d767ba86b7e6382390401002110e4506ddb61742"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2316,
+      "sha256": "4605836bca421ee2c1773774771e2b02381244695eb4a02ea9af44cb9b4f486a"
+    },
+    {
+      "path": "REVIEW-FINDINGS.md",
+      "bytes": 2361,
+      "sha256": "cc4ec74a0f3ee91333fb7c6adc05040c85018ef4e8a20f414138d9965b4e7402"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.2.md",
+      "bytes": 62605,
+      "sha256": "471b0efd03161373960a39eb7efc1c02e6f45375790198ea24facb2d2a85afd1"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.2.pdf",
+      "bytes": 522220,
+      "sha256": "cd390ebbd3fceb6b945ea302dd1c639990386cf06ec921c579e0730e41e5a811"
+    },
+    {
+      "path": "Temporal-Ensembles-v1.2.tex",
+      "bytes": 69348,
+      "sha256": "e8c5b9163f02d561a182d6027c1148e80ffdae9279f20eff86e9fbddf9c24cbc"
+    },
+    {
+      "path": "VERIFY.py",
+      "bytes": 691,
+      "sha256": "15c65d148f32a328264d618d3b3f7af5bc71d015a0a8dd45f312de738f3ebc6f"
+    }
+  ],
+  "previousVersionsPreserved": [
+    "1.0",
+    "1.1"
+  ],
+  "unchangedTechnicalSupplementVersion": null,
+  "newBiologicalData": false
+}
