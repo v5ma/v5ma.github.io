@@ -54,7 +54,13 @@ class ReportTests(unittest.TestCase):
   for r in receipt['articles']:
    rel='theology-wiki/editorial/authorial-articles/'+r['slug']+'.md'
    original=subprocess.check_output(['git','show',BASE+':'+rel],cwd=ROOT)
-   current=(ROOT/rel).read_bytes();self.assertEqual(current,original+r['added_text'].encode())
+   current=(ROOT/rel).read_bytes()
+   if r['slug']=='exodus-to-temple-competing-chronologies':
+    revision=json.loads((ROOT/'theology-wiki/editorial/joseph-revision-20261023.json').read_text())
+    self.assertEqual(sha(current),revision['canonical']['sha256'])
+    current=current[:revision['canonical']['preserved_bytes']]
+    self.assertEqual(sha(current),revision['canonical']['preserved_sha256'])
+   self.assertEqual(current,original+r['added_text'].encode())
    compiled=(ROOT/'theology-wiki/content/developed'/str(r['slug']+'.md')).read_text()
    self.assertIn(r['added_text'].strip(),compiled)
    for link in re.findall(r'\]\((/theology-wiki/research-reports/[^)]+)\)',r['added_text']):
@@ -64,6 +70,10 @@ class ReportTests(unittest.TestCase):
   permitted={r['slug'] for r in json.loads((HERE/'integration-receipt.json').read_text())['articles']}
   names=subprocess.check_output(['git','ls-tree','-r','--name-only',BASE,'theology-wiki/editorial/authorial-articles'],cwd=ROOT,text=True).splitlines()
   for rel in names:
+   if Path(rel).stem=='jesus-teacher-of-righteousness-hypothesis':
+    subprocess.check_call(['node','-e',"require('./theology-wiki/research-expansion-20260918/teacher-revision.cjs').verifyCanonical()"],cwd=ROOT)
+    self.assertEqual((ROOT/'theology-wiki/tests/fixtures/teacher-canonical-before-20261011.md').read_bytes(),subprocess.check_output(['git','show',BASE+':'+rel],cwd=ROOT))
+    continue
    if Path(rel).stem not in permitted:self.assertEqual((ROOT/rel).read_bytes(),subprocess.check_output(['git','show',BASE+':'+rel],cwd=ROOT))
   changed=subprocess.check_output(['git','diff','--name-only',BASE,'--','theology-sources','theology-wiki/event-forecast-register','theology-wiki/data/forecast-ledger.json'],cwd=ROOT,text=True)
   self.assertEqual(changed,'')
