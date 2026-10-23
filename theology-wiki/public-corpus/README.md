@@ -18,6 +18,7 @@ To cite an exact source version, use the commit-specific link in the index rathe
 The full snapshot revision above remains the baseline. Only the articles and Markdown sources listed below were amended; all other exact-version records and complete source-conversation projections retain their earlier revisions. These Git dates do not establish first publication or independent timestamp certification.
 
 - [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
+- [effb9043b8613ed540fd4f6a5a7663f0d28b5c68](https://github.com/v5ma/v5ma.github.io/commit/effb9043b8613ed540fd4f6a5a7663f0d28b5c68), Git committer date 2026-10-22T22:54:21-07:00: [exodus-to-temple-competing-chronologies](pages/exodus-to-temple-competing-chronologies.md).
 
 <!-- /bounded-article-amendments -->
 
@@ -803,7 +804,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [Melchizedek: priesthood, release and transmission](pages/melchizedek-priesthood-and-transmission.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=melchizedek-priesthood-and-transmission) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/melchizedek-priesthood-and-transmission.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/melchizedek-priesthood-and-transmission.md).
 
-[From Exodus to Temple: competing chronologies](pages/exodus-to-temple-competing-chronologies.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=exodus-to-temple-competing-chronologies) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md).
+[From Exodus to Temple: competing chronologies](pages/exodus-to-temple-competing-chronologies.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=exodus-to-temple-competing-chronologies) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/effb9043b8613ed540fd4f6a5a7663f0d28b5c68/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md).
 
 [Manuscripts, movements and survival](pages/manuscripts-movements-and-survival.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=manuscripts-movements-and-survival) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/manuscripts-movements-and-survival.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/manuscripts-movements-and-survival.md).
 

@@ -28,5 +28,125 @@
       "before": "8dd13f93d174d0ed8f51ea0bfec05fe567a984d71fd39e6020ef75fb50f410d3",
       "after": "9edde82f6b8759b892aaecc07ffd08afac13d87be721b000d32404a7b58c1df1"
     }
+  },
+  "previous_corpus": {
+    "record": {
+      "slug": "exodus-to-temple-competing-chronologies",
+      "title": "From Exodus to Temple: competing chronologies",
+      "kind": "Developed article",
+      "category": "origins",
+      "sourcePath": "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+      "sourceSha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5",
+      "sourceBytes": 16595,
+      "archivePath": "public-corpus/pages/exodus-to-temple-competing-chronologies.md",
+      "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=exodus-to-temple-competing-chronologies",
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+      "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+      "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+      "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "canonicalSourcePath": "theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md",
+      "canonicalSha256": "46ca6cf101e76334389193e4be6bc0fef86d3c46c038bff0f859bd16224c4e0e",
+      "archiveSha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5",
+      "archiveBytes": 16595,
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/exodus-to-temple-competing-chronologies.md"
+    },
+    "sources": [
+      {
+        "path": "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+        "bytes": 16595,
+        "sha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md"
+      },
+      {
+        "path": "theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md",
+        "bytes": 12812,
+        "sha256": "46ca6cf101e76334389193e4be6bc0fef86d3c46c038bff0f859bd16224c4e0e",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md"
+      }
+    ],
+    "snapshot": {
+      "schema": "theology-public-corpus/v1",
+      "owner": "Micah Blumberg",
+      "description": "Time-stamped public backup of the Theology Wiki; original sources, authorial prose, AI-assisted developments and quotations retain distinct attribution.",
+      "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "dateScope": "Git committer date of the source revision, not an independent timestamp or the first publication of every idea. Inspect GitHub verification and PR events separately.",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
+      "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
+      "indexedPages": 440,
+      "sourceConversations": 354,
+      "markdownSources": 565,
+      "indexSha256": "d9fdb6f1da59df28c4078f257b00d997d4ae98af6f0a43794158434d89c1290e",
+      "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
+      "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
+      "amendments": [
+        {
+          "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+          "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+          "pages": [
+            "jesus-teacher-of-righteousness-hypothesis"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+            "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+          ]
+        }
+      ],
+      "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions.",
+      "additions": [
+        {
+          "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+          "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+          "pages": [
+            "living-jesus-thomas-john-and-synoptics"
+          ],
+          "navigationPages": [
+            "home",
+            "topic-jesus"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+            "theology-wiki/content/developed/topic-jesus.md",
+            "theology-wiki/content/home.md",
+            "theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+            "theology-wiki/research-reports/gospel-comparisons-20261011/claim-audit.md"
+          ]
+        },
+        {
+          "sourceRevision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+          "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/59d834212b181cbae8c1e865bf5ca72242800a4a",
+          "pages": [
+            "gnostic-canonical-gospels-telling-the-truth"
+          ],
+          "navigationPages": [
+            "home",
+            "topic-jesus"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+            "theology-wiki/content/developed/topic-jesus.md",
+            "theology-wiki/content/home.md",
+            "theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+            "theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md"
+          ]
+        }
+      ],
+      "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."
+    },
+    "amendment_section": "<!-- bounded-article-amendments -->\n## Article amendments\n\nThe full snapshot revision above remains the baseline. Only the articles and Markdown sources listed below were amended; all other exact-version records and complete source-conversation projections retain their earlier revisions. These Git dates do not establish first publication or independent timestamp certification.\n\n- [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).\n\n<!-- /bounded-article-amendments -->\n\n",
+    "hashes": {
+      "public-corpus/page-index.json": "d9fdb6f1da59df28c4078f257b00d997d4ae98af6f0a43794158434d89c1290e",
+      "public-corpus/source-manifest.json": "21d3253c4306678e2f678795c4810556a7bbc0283c9139b9136be1dfd2b18221",
+      "public-corpus/snapshot.json": "5fcbce944aed8d68d72e5a34011f02d8bdf49528b33d74337e1d43b6b503560b",
+      "public-corpus/README.md": "57211a7fff19ed53655adf0d117bfcfaaa0b5561d5bbe466e8c5bf3518edf489"
+    }
   }
 }

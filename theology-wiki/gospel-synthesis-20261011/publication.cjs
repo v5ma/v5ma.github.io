@@ -97,7 +97,7 @@ module.exports={apply,verify,restoreBaseline,restoreNavigation,hash,SPEC,RECEIPT
 
 // Reconstruct the exact predecessor state, never waive a historical hash guard.
 function restoreBaseline(root,spec=SPEC){
- const read=p=>fs.readFileSync(path.join(root,p)),json=p=>JSON.parse(read(p));
+ const read=p=>require('../tools/joseph-revision.cjs').historicalCorpusRead(root,p),json=p=>JSON.parse(read(p));
  const receipt=json(RECEIPT),records=json('public-corpus/page-index.json'),sources=json('public-corpus/source-manifest.json'),meta=json('public-corpus/snapshot.json');
  if(!/^[a-f0-9]{40}$/.test(receipt.sourceRevision||''))throw Error('Invalid successor revision');
  if(receipt.schema!=='theology-gospel-synthesis-addition/v1'||receipt.baseline!==spec.baseline||receipt.article?.slug!==spec.slug)throw Error('Unexpected successor receipt');

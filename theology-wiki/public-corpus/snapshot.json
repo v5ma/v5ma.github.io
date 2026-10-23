@@ -12,7 +12,7 @@
   "indexedPages": 440,
   "sourceConversations": 354,
   "markdownSources": 565,
-  "indexSha256": "d9fdb6f1da59df28c4078f257b00d997d4ae98af6f0a43794158434d89c1290e",
+  "indexSha256": "e2e52bb69ef0645ed8a750677bca9152a4e05f35f5632dc42be92557873323ab",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
   "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
   "amendments": [
@@ -26,6 +26,18 @@
       "markdownSources": [
         "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
         "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+      ]
+    },
+    {
+      "sourceRevision": "effb9043b8613ed540fd4f6a5a7663f0d28b5c68",
+      "sourceCommitterDate": "2026-10-22T22:54:21-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/effb9043b8613ed540fd4f6a5a7663f0d28b5c68",
+      "pages": [
+        "exodus-to-temple-competing-chronologies"
+      ],
+      "markdownSources": [
+        "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+        "theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md"
       ]
     }
   ],
