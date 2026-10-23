@@ -280,7 +280,7 @@
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
+          "sha256": "4f49a4948c26ea42b5486e3de0d87dedced3144fc6f6db4feb77825b428dbac4"
         },
         {
           "slug": "moses-volcano-and-exodus-chronology",
@@ -539,7 +539,7 @@
           "slug": "exodus-to-temple-competing-chronologies",
           "title": "From Exodus to Temple: competing chronologies",
           "path": "content/developed/exodus-to-temple-competing-chronologies.md",
-          "sha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
+          "sha256": "4f49a4948c26ea42b5486e3de0d87dedced3144fc6f6db4feb77825b428dbac4"
         }
       ],
       "script": "products/episodes/objections-in-the-museum.txt",
@@ -616,7 +616,7 @@
           }
         ],
         "sourceSnapshot": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/counting-the-departure.json",
-        "currentSourceSha256": "5dd86aec1019fa1fc25717e4b4784c87285056e73732771c28d60d19decdb406"
+        "currentSourceSha256": "adad3002e1b3defbbafaa5aba9b0d59ee3fb59ab2fc5e0184fe0b25a2cb1141d"
       },
       {
         "id": "exodus-to-temple-competing-chronologies",
@@ -656,7 +656,7 @@
           }
         ],
         "sourceSnapshot": "research-reports/hyksos-avaris-20260922/recorded-source-snapshots/exodus-to-temple-competing-chronologies.md",
-        "currentSourceSha256": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5"
+        "currentSourceSha256": "4f49a4948c26ea42b5486e3de0d87dedced3144fc6f6db4feb77825b428dbac4"
       }
     ]
   }

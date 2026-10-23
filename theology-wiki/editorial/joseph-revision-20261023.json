@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "revision_date_utc": "2026-10-23",
+  "revision_date_pacific": "2026-10-22",
+  "review_base_commit": "247c0f7679797ce98669026c37da74440c9b5e85",
+  "slug": "exodus-to-temple-competing-chronologies",
+  "scope": "Append Joseph formative-period hypothesis; preserve prior canonical bytes, historical receipts, episode spoken content and recorded media. Episode differences are source hashes only.",
+  "canonical": {
+    "path": "editorial/authorial-articles/exodus-to-temple-competing-chronologies.md",
+    "sha256": "e8d9ab6c52aca5f5c3634198f8b8ecc43b8bcb6c31435ded8f68b82d23fe3183",
+    "preserved_bytes": 12812,
+    "preserved_sha256": "46ca6cf101e76334389193e4be6bc0fef86d3c46c038bff0f859bd16224c4e0e"
+  },
+  "prior_receipt": {
+    "path": "research-reports/hyksos-avaris-20260922/revision-receipt.json",
+    "sha256": "db06a81d3ce7751e95c61df673c4caa0296789cf2671534442ba898af9e82615"
+  },
+  "files": {
+    "content/developed/exodus-to-temple-competing-chronologies.md": {
+      "before": "7c21f05983cad6bb04124664fbcad92c23bb9aad7fa1f95940a7ad29f53acba5",
+      "after": "4f49a4948c26ea42b5486e3de0d87dedced3144fc6f6db4feb77825b428dbac4"
+    },
+    "data/listening/exodus-to-temple-competing-chronologies.json": {
+      "before": "f44c4d9449842e5aca357154d3745167eea7d04a9cfd93aeaff28e06aed7d1ec",
+      "after": "ae7fb7230a8bb930d3c276b1381cc3f58bea838e6e13b6c3a42efd2ce5ffb073"
+    },
+    "products/transcripts/exodus-to-temple-competing-chronologies.txt": {
+      "before": "8dd13f93d174d0ed8f51ea0bfec05fe567a984d71fd39e6020ef75fb50f410d3",
+      "after": "9edde82f6b8759b892aaecc07ffd08afac13d87be721b000d32404a7b58c1df1"
+    }
+  }
+}
