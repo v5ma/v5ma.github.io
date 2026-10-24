@@ -924,3 +924,10 @@ The collection now includes 440 reader pages. The original full-snapshot revisio
 
 [Earlier-Teacher and Displaced-Biography Hypothesis](pages/earlier-teacher-displaced-biography.md) is an additive overview at [source revision a28d99a6f4eca0c4c1efa85584b3688d7ef37c94](https://github.com/v5ma/v5ma.github.io/commit/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94), Git committer date 2026-10-24T00:13:22-07:00. This date records this edition, not the origin or truth of the hypothesis. The corpus now contains 441 reader pages and preserves all 354 original conversations.
 <!-- /displaced-biography-overview -->
+
+
+<!-- political-studies-addition -->
+## Political signs and execution-broadcast studies
+
+Two independently attributed studies were added at [source revision 3835e657aefe9f3946666cf75774fe065d8b24ac](https://github.com/v5ma/v5ma.github.io/commit/3835e657aefe9f3946666cf75774fe065d8b24ac), Git committer date 2026-10-24T00:33:15-07:00: [Trump and Prophetic Signs: A Documented Timeline](pages/trump-signs-timeline-brother-paul.md); [Public executions, religious justification and John 16:2](pages/public-executions-religious-justification-and-john-16.md). The corpus now contains 443 reader pages. All 441 prior page records and all 354 original source conversations retain their recorded versions and bytes. This date identifies the new edition, not the origin or truth of its claims.
+<!-- /political-studies-addition -->

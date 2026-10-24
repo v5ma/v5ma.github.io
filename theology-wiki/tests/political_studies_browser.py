@@ -13,7 +13,7 @@ def check(name,value):
     print('PASS',name,flush=True)
 def ready(page,slug,extra=''):
     page.goto(BASE+'?page='+slug+extra,wait_until='domcontentloaded')
-    page.wait_for_function('(s)=>TheologyReader.current()?.slug===s && document.querySelector("#article-body")?.dataset.foundationReady===s && !!document.querySelector("#publication-record")',arg=slug)
+    page.wait_for_function('(s)=>window.TheologyReader?.current()?.slug===s && document.querySelector("#article-body")?.dataset.foundationReady===s && !!document.querySelector("#publication-record")',arg=slug)
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True)
     page=browser.new_page(viewport={'width':1440,'height':1000})
@@ -32,7 +32,7 @@ with sync_playwright() as p:
         check(slug+': served source matches archived hash',True)
         check(slug+': related First Beast link resolves',page.locator('#article-body a[data-page="trump-first-beast-of-revelation"]').count()>0)
         if slug==SLUGS[0]:
-            check('Timeline keeps fifteen themes, original-video uncertainty and future mint date','15.' in body and 'original YouTube URL and upload date remain unverified' in body and 'not a completed mint sale' in body)
+            check('Timeline keeps fifteen themes, original-video uncertainty and future mint date',page.locator('#article-body ol').first.locator('li').count()==15 and 'original YouTube URL and upload date remain unverified' in body and 'not a completed mint sale' in body)
         else:
             check('Execution page keeps cancellation, reversal and conditional warning','not be livestreamed' in body and 'I support President Trump' in body and 'not an established result' in body)
         page.set_viewport_size({'width':390,'height':844})
@@ -43,7 +43,7 @@ with sync_playwright() as p:
     check('Existing First Beast article has incoming links to both additions',all(page.locator('#research-backlinks a[data-page="'+s+'"]').count()>0 for s in SLUGS))
     page.locator('#theology-kind').select_option('all')
     page.locator('#page-search').fill('spectatorship')
-    page.wait_for_function('(s)=>document.querySelector("#page-list a[data-page=\""+s+"\"]")',arg=SLUGS[1])
+    page.wait_for_function('(s)=>[...document.querySelectorAll("#page-list a[data-page]")].some(a=>a.dataset.page===s)',arg=SLUGS[1])
     check('Full-body search finds the new execution study',True)
     for slug in SLUGS:
         ready(page,'listening-room','&listen='+slug)

@@ -9,10 +9,10 @@
   "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
   "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
   "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
-  "indexedPages": 441,
+  "indexedPages": 443,
   "sourceConversations": 354,
-  "markdownSources": 567,
-  "indexSha256": "ee0446f5bf3ce3e715415ac4cdb57ab885a8b96a28abc5819214b8c3e0ec657d",
+  "markdownSources": 571,
+  "indexSha256": "795486ab333971e806163bbe56ee6aebb258d2f2fc3738e9cc8c0ddb7c13b567",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
   "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
   "amendments": [
@@ -112,6 +112,23 @@
         "theology-wiki/editorial/publication-articles/earlier-teacher-displaced-biography.md"
       ],
       "scope": "One hypothesis overview; prior records are preserved. Three separately recorded article amendments retain their old bodies."
+    },
+    {
+      "sourceRevision": "3835e657aefe9f3946666cf75774fe065d8b24ac",
+      "sourceCommitterDate": "2026-10-24T00:33:15-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/3835e657aefe9f3946666cf75774fe065d8b24ac",
+      "pages": [
+        "trump-signs-timeline-brother-paul",
+        "public-executions-religious-justification-and-john-16"
+      ],
+      "navigationPages": [],
+      "markdownSources": [
+        "theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+        "theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+        "theology-wiki/editorial/publication-articles/public-executions-religious-justification-and-john-16.md",
+        "theology-wiki/editorial/publication-articles/trump-signs-timeline-brother-paul.md"
+      ],
+      "scope": "Add exactly two separately attributed articles. Preserve every prior page record, canonical body and original conversation byte."
     }
   ],
   "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."

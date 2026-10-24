@@ -23378,6 +23378,19 @@
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
     "xrRoomId": "theology-trump-signs-timeline-brother-paul",
     "xrDeckId": "theology-reader",
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/trump-signs-timeline-brother-paul.md",
+      "sourcePath": "theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+      "sha256": "91a98e78dd8950ce0000dc542d1b4556117c5f7a95fbaef1061616cebd379bd4",
+      "revision": "3835e657aefe9f3946666cf75774fe065d8b24ac",
+      "sourceCommitterDate": "2026-10-24T00:33:15-07:00",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/trump-signs-timeline-brother-paul.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/trump-signs-timeline-brother-paul.md",
+      "transcriptExactUrl": null
+    },
     "related": [
       "trump-first-beast-of-revelation",
       "antichrist-as-a-pattern-of-conduct",
@@ -23425,6 +23438,19 @@
     "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
     "xrRoomId": "theology-public-executions-religious-justification-and-john-16",
     "xrDeckId": "theology-reader",
+    "publication": {
+      "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+      "historyUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+      "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+      "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/public-executions-religious-justification-and-john-16.md",
+      "sourcePath": "theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+      "sha256": "563e39c10b8f6c82f10cc06007a92c54c8b96e69a4b5a8e94c981d24e743b7e4",
+      "revision": "3835e657aefe9f3946666cf75774fe065d8b24ac",
+      "sourceCommitterDate": "2026-10-24T00:33:15-07:00",
+      "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/publication-articles/public-executions-religious-justification-and-john-16.md",
+      "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/publication-articles/public-executions-religious-justification-and-john-16.md",
+      "transcriptExactUrl": null
+    },
     "related": [
       "antichrist-as-a-pattern-of-conduct",
       "trump-first-beast-of-revelation",

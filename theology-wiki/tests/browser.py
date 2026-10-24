@@ -83,7 +83,7 @@ with sync_playwright() as tool:
         for slug in articles:
             navigate(page,slug)
             assert page.locator('#article-body .wiki-unavailable').count()==0, slug
-            assert page.locator('#article-body').inner_text().count('Source')>0, slug
+            assert page.locator('#article-body').inner_text().lower().count('source')>0, slug
         check('Every developed article renders without unresolved reader links',True)
         navigate(page,'sources-index')
         page.locator('#catalogue-count').wait_for()

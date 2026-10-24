@@ -3400,5 +3400,29 @@
     "bytes": 5006,
     "sha256": "4cf6872db535307a95f2f2f60f246c29a46cb26b479b0bddb9840f935345f9b8",
     "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94/theology-wiki/editorial/publication-articles/earlier-teacher-displaced-biography.md"
+  },
+  {
+    "path": "theology-wiki/editorial/publication-articles/trump-signs-timeline-brother-paul.md",
+    "bytes": 34829,
+    "sha256": "e0f13c0d4be17a34a635b907a72a0125578faecb6aee905b2a425e946ebe6640",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/editorial/publication-articles/trump-signs-timeline-brother-paul.md"
+  },
+  {
+    "path": "theology-wiki/content/developed/trump-signs-timeline-brother-paul.md",
+    "bytes": 35328,
+    "sha256": "91a98e78dd8950ce0000dc542d1b4556117c5f7a95fbaef1061616cebd379bd4",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/content/developed/trump-signs-timeline-brother-paul.md"
+  },
+  {
+    "path": "theology-wiki/editorial/publication-articles/public-executions-religious-justification-and-john-16.md",
+    "bytes": 14357,
+    "sha256": "65b79ce9bbb0138d683b4df139965056af112043337fa04842b7b98f37c00405",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/editorial/publication-articles/public-executions-religious-justification-and-john-16.md"
+  },
+  {
+    "path": "theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md",
+    "bytes": 14903,
+    "sha256": "563e39c10b8f6c82f10cc06007a92c54c8b96e69a4b5a8e94c981d24e743b7e4",
+    "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/3835e657aefe9f3946666cf75774fe065d8b24ac/theology-wiki/content/developed/public-executions-religious-justification-and-john-16.md"
   }
 ]
