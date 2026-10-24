@@ -153,7 +153,7 @@
     }
   ],
   "sourceCount": 354,
-  "developedCount": 33,
+  "developedCount": 35,
   "featured": [
     "apocalyptic-repair-theology",
     "trump-first-beast-of-revelation",
@@ -1731,7 +1731,9 @@
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths",
-      "book-contents"
+      "book-contents",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
     "ukraine-russia-forecast-record": [
       "home",
@@ -1901,7 +1903,9 @@
       "guide-to-the-inquiry",
       "topic-apocalypse",
       "reading-paths",
-      "book-contents"
+      "book-contents",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
     "religion-for-conscious-robots": [
       "home",
@@ -2353,7 +2357,8 @@
       "glossary",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "trump-signs-timeline-brother-paul"
     ],
     "research-method": [
       "home",
@@ -2836,7 +2841,19 @@
       "computational-god-capabilities-bridge",
       "cosmic-thought-and-transcendence"
     ],
-    "earlier-teacher-displaced-biography": []
+    "earlier-teacher-displaced-biography": [],
+    "trump-signs-timeline-brother-paul": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse",
+      "public-executions-religious-justification-and-john-16"
+    ],
+    "public-executions-religious-justification-and-john-16": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse",
+      "trump-signs-timeline-brother-paul"
+    ]
   },
   "publicationEdition": "2026.10.03-public-corpus-2-conjecture"
 }

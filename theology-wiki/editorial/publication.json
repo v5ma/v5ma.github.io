@@ -58,6 +58,42 @@
       "connectArgument": false,
       "summary": "An overview of the same-founder conjecture: retain pre-Christian manuscript evidence, investigate a later relocation of the founder biography, and compare Daniel, covenant, Johannine, healing and calendar traditions.",
       "claimType": "Historical identity and biographical-displacement conjecture"
+    },
+    {
+      "slug": "trump-signs-timeline-brother-paul",
+      "title": "Trump and Prophetic Signs: A Documented Timeline",
+      "source": "editorial/publication-articles/trump-signs-timeline-brother-paul.md",
+      "kind": "Developed article",
+      "category": "apocalypse",
+      "topic": "Apocalypse, power & repair",
+      "updated": "2026-10-24",
+      "integrated": "2026-10-24",
+      "connectArgument": false,
+      "summary": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+      "claimType": "Research working edition: documented events and proposed prophetic correspondences",
+      "relatedFrom": [
+        "trump-first-beast-of-revelation",
+        "antichrist-as-a-pattern-of-conduct",
+        "topic-apocalypse"
+      ]
+    },
+    {
+      "slug": "public-executions-religious-justification-and-john-16",
+      "title": "Public executions, religious justification and John 16:2",
+      "source": "editorial/publication-articles/public-executions-religious-justification-and-john-16.md",
+      "kind": "Developed article",
+      "category": "apocalypse",
+      "topic": "Apocalypse, power & repair",
+      "updated": "2026-10-24",
+      "integrated": "2026-10-24",
+      "connectArgument": false,
+      "summary": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+      "claimType": "Documented broadcast controversy, theological evaluation and conditional warning",
+      "relatedFrom": [
+        "trump-first-beast-of-revelation",
+        "antichrist-as-a-pattern-of-conduct",
+        "topic-apocalypse"
+      ]
     }
   ],
   "bridgeConnections": {

@@ -46,6 +46,10 @@ function integrate(root=path.resolve(__dirname,'..')){
  }
  for(const from of ['home','topic-machines','reading-paths','connected-arguments'])relations.edges.push({from,to:bridge,type:'reading route',why:'A connected route through computational theology and possible minds.',origin:ORIGIN});
  relations.edges.push({from:'home',to:'publication-history',type:'public preservation',why:'Inspect the public backup, version links, and recorded dates.',origin:ORIGIN});
+ for(const spec of cfg.pages)for(const from of spec.relatedFrom||[]){
+  if(!by.has(from))throw Error('Missing related article '+from);
+  relations.edges.push({from,to:spec.slug,type:'related study',why:spec.summary,origin:ORIGIN});
+ }
  const graph=json('data/graph.json');
  for(const p of pages){
   const targets=new Set(graph.related[p.slug]||[]);

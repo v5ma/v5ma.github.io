@@ -1663,6 +1663,48 @@
       "type": "public preservation",
       "why": "Inspect the public backup, version links, and recorded dates.",
       "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "trump-signs-timeline-brother-paul",
+      "type": "related study",
+      "why": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "antichrist-as-a-pattern-of-conduct",
+      "to": "trump-signs-timeline-brother-paul",
+      "type": "related study",
+      "why": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "topic-apocalypse",
+      "to": "trump-signs-timeline-brother-paul",
+      "type": "related study",
+      "why": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "trump-first-beast-of-revelation",
+      "to": "public-executions-religious-justification-and-john-16",
+      "type": "related study",
+      "why": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "antichrist-as-a-pattern-of-conduct",
+      "to": "public-executions-religious-justification-and-john-16",
+      "type": "related study",
+      "why": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
+    },
+    {
+      "from": "topic-apocalypse",
+      "to": "public-executions-religious-justification-and-john-16",
+      "type": "related study",
+      "why": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+      "origin": "Public corpus and computational bridge 2026-10-03"
     }
   ],
   "anchors": [

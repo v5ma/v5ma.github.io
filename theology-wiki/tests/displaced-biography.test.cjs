@@ -14,7 +14,7 @@ test('Dedicated overview retains biography displacement, five date layers and th
  assert(!body.includes('computational-god-capabilities-bridge'));
 });
 test('New overview and three amendments preserve every unrelated exact-version record',()=>{
- const rows=json('public-corpus/page-index.json'),excluded=new Set([r.overview.slug,...r.articles.map(a=>a.slug)]);
+ const rows=JSON.parse(require('../tools/political-studies-publication.cjs').historicalCorpusRead(root,'public-corpus/page-index.json')),excluded=new Set([r.overview.slug,...r.articles.map(a=>a.slug)]);
  assert.equal(rows.length,441);assert.equal(P.hash(JSON.stringify(rows.filter(x=>!excluded.has(x.slug)))),r.previousCorpus.unchangedRecordsSha256);
  const current=rows.find(x=>x.slug===r.overview.slug);assert.equal(P.hash(read(current.archivePath)),current.archiveSha256);assert.equal(current.archiveSha256,P.hash(read('content/developed/'+current.slug+'.md')));
  assert.equal(P.check(root).verifiedTranscripts,354);

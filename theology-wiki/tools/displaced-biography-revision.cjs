@@ -30,7 +30,7 @@ function applyDerivativeRevision(expected,base=root){
 }
 // Exact predecessor reconstruction lets historical release guards keep their hashes.
 function historicalCorpusRead(base,p){
- const read=q=>fs.readFileSync(path.join(base,q));
+ const read=q=>require('./political-studies-publication.cjs').historicalCorpusRead(base,q);
  const r=load(base),prior=r.previousCorpus,slugs=new Set(r.articles.map(a=>a.slug));
  if(p==='data/page-index.json')return Buffer.from(serialize(JSON.parse(read(p)).filter(x=>x.slug!==r.overview.slug)));
  if(!Object.hasOwn(prior.hashes,p))return read(p);

@@ -26,7 +26,7 @@ with sync_playwright() as tool:
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     try:
         open_page(page,'home')
-        check('Reader has 441 indexed pages',page.evaluate('TheologyReader.pages().length')==441)
+        check('Reader has 443 indexed pages',page.evaluate('TheologyReader.pages().length')==443)
         check('Every indexed page exposes a committed source version',page.evaluate('TheologyReader.pages().every(p=>p.publication && /[a-f0-9]{40}/.test(p.publication.revision))'))
         check('Homepage links to the new bridge and public backup',page.locator('#publication-home a').count()==3)
         page.locator('#publication-home a[data-page="computational-god-capabilities-bridge"]').click()
@@ -49,7 +49,7 @@ with sync_playwright() as tool:
         page.wait_for_function('document.querySelector("#page-list a[data-page=computational-god-capabilities-bridge]")')
         check('Global full-text search finds new body prose',True)
         navigate(page,'listening-room')
-        check('Listening library includes 39 complete reading texts',page.locator('#listen-article option').count()==39)
+        check('Listening library includes 41 complete reading texts',page.locator('#listen-article option').count()==41)
         check('Bridge is available for device reading',page.locator('#listen-article option[value="computational-god-capabilities-bridge"]').count()==1)
         # One preserved original conversation, using its real transcript metadata.
         chat=page.evaluate('TheologyReader.pages().find(p=>p.sourceFile).slug')

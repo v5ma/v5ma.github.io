@@ -947,6 +947,36 @@
       "transcript": "products/transcripts/cosmic-thought-and-transcendence.txt",
       "segments": 28,
       "words": 926
+    },
+    {
+      "slug": "trump-signs-timeline-brother-paul",
+      "title": "Trump and Prophetic Signs: A Documented Timeline",
+      "summary": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+      "category": "apocalypse",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/trump-signs-timeline-brother-paul.md",
+      "sourceSha256": "91a98e78dd8950ce0000dc542d1b4556117c5f7a95fbaef1061616cebd379bd4",
+      "narration": "data/listening/trump-signs-timeline-brother-paul.json",
+      "narrationSha256": "20a41cd854d4c913e1b507033dee7a37adc9631fd9c3744830d1e818501d232b",
+      "transcript": "products/transcripts/trump-signs-timeline-brother-paul.txt",
+      "segments": 119,
+      "words": 4244
+    },
+    {
+      "slug": "public-executions-religious-justification-and-john-16",
+      "title": "Public executions, religious justification and John 16:2",
+      "summary": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+      "category": "apocalypse",
+      "kind": "Developed article",
+      "chapters": [],
+      "source": "content/developed/public-executions-religious-justification-and-john-16.md",
+      "sourceSha256": "563e39c10b8f6c82f10cc06007a92c54c8b96e69a4b5a8e94c981d24e743b7e4",
+      "narration": "data/listening/public-executions-religious-justification-and-john-16.json",
+      "narrationSha256": "5e52d330931239a757b08108b2601f879e81996e896bbb3b551bb74bad3bd7f9",
+      "transcript": "products/transcripts/public-executions-religious-justification-and-john-16.txt",
+      "segments": 44,
+      "words": 1777
     }
   ],
   "chapters": [

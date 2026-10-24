@@ -17504,9 +17504,11 @@
       "forecast-ledger",
       "revelation-interpretation-and-america",
       "image-collection",
-      "apocalypse-and-repair"
+      "apocalypse-and-repair",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
-    "backlinkCount": 14,
+    "backlinkCount": 16,
     "backlinks": [
       "home",
       "ukraine-russia-forecast-record",
@@ -17521,7 +17523,9 @@
       "forecast-ledger",
       "topic-apocalypse",
       "reading-paths",
-      "book-contents"
+      "book-contents",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/trump-first-beast-of-revelation.md",
@@ -18422,9 +18426,11 @@
       "trump-first-beast-of-revelation",
       "early-vs-later-gnosticism",
       "image-collection",
-      "apocalypse-and-repair"
+      "apocalypse-and-repair",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
-    "backlinkCount": 12,
+    "backlinkCount": 14,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
@@ -18437,7 +18443,9 @@
       "guide-to-the-inquiry",
       "topic-apocalypse",
       "reading-paths",
-      "book-contents"
+      "book-contents",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/antichrist-as-a-pattern-of-conduct.md",
@@ -21440,7 +21448,7 @@
       "trump-first-beast-of-revelation",
       "research-method"
     ],
-    "backlinkCount": 8,
+    "backlinkCount": 9,
     "backlinks": [
       "home",
       "trump-first-beast-of-revelation",
@@ -21449,7 +21457,8 @@
       "glossary",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "trump-signs-timeline-brother-paul"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/forecast-ledger.md",
@@ -21712,7 +21721,9 @@
       "two-prophets-in-eschatology",
       "zeus-antichrist-connection",
       "home",
-      "sources-index"
+      "sources-index",
+      "trump-signs-timeline-brother-paul",
+      "public-executions-religious-justification-and-john-16"
     ],
     "backlinkCount": 48,
     "backlinks": [
@@ -23333,5 +23344,98 @@
     ],
     "backlinks": [],
     "backlinkCount": 0
+  },
+  {
+    "slug": "trump-signs-timeline-brother-paul",
+    "title": "Trump and Prophetic Signs: A Documented Timeline",
+    "kind": "Developed article",
+    "category": "apocalypse",
+    "topic": "Apocalypse, power & repair",
+    "updated": "2026-10-24",
+    "integrated": "2026-10-24",
+    "connectArgument": false,
+    "summary": "A source-linked chronology developed from Brother Paul's 2026 transcript, separating public events, political-religious imagery, biblical interpretation and unresolved claims.",
+    "claimType": "Research working edition: documented events and proposed prophetic correspondences",
+    "relatedFrom": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse"
+    ],
+    "path": "developed/trump-signs-timeline-brother-paul.md",
+    "tags": [
+      "apocalypse",
+      "developed",
+      "public-backup"
+    ],
+    "aliases": [],
+    "editionGenerated": true,
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
+    "sourceFiles": [
+      "developed/trump-signs-timeline-brother-paul.md"
+    ],
+    "references": [],
+    "readMinutes": 22,
+    "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
+    "xrRoomId": "theology-trump-signs-timeline-brother-paul",
+    "xrDeckId": "theology-reader",
+    "related": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "forecast-ledger",
+      "public-executions-religious-justification-and-john-16"
+    ],
+    "backlinks": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse",
+      "public-executions-religious-justification-and-john-16"
+    ],
+    "backlinkCount": 4
+  },
+  {
+    "slug": "public-executions-religious-justification-and-john-16",
+    "title": "Public executions, religious justification and John 16:2",
+    "kind": "Developed article",
+    "category": "apocalypse",
+    "topic": "Apocalypse, power & repair",
+    "updated": "2026-10-24",
+    "integrated": "2026-10-24",
+    "connectArgument": false,
+    "summary": "Robert Jeffress, the proposed broadcast of Nidal Hasan's execution, its cancellation, and the distinction between justice, spectacle and killing understood as service to God.",
+    "claimType": "Documented broadcast controversy, theological evaluation and conditional warning",
+    "relatedFrom": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse"
+    ],
+    "path": "developed/public-executions-religious-justification-and-john-16.md",
+    "tags": [
+      "apocalypse",
+      "developed",
+      "public-backup"
+    ],
+    "aliases": [],
+    "editionGenerated": true,
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
+    "sourceFiles": [
+      "developed/public-executions-religious-justification-and-john-16.md"
+    ],
+    "references": [],
+    "readMinutes": 9,
+    "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
+    "xrRoomId": "theology-public-executions-religious-justification-and-john-16",
+    "xrDeckId": "theology-reader",
+    "related": [
+      "antichrist-as-a-pattern-of-conduct",
+      "trump-first-beast-of-revelation",
+      "trump-signs-timeline-brother-paul"
+    ],
+    "backlinks": [
+      "trump-first-beast-of-revelation",
+      "antichrist-as-a-pattern-of-conduct",
+      "topic-apocalypse",
+      "trump-signs-timeline-brother-paul"
+    ],
+    "backlinkCount": 4
   }
 ]
