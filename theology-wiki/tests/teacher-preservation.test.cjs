@@ -11,7 +11,7 @@ const R = require('../research-expansion-20260918/teacher-revision.cjs');
 const prior = require('../research-expansion-20260918/revision-receipt.json');
 const expected = Object.fromEntries(Object.entries(prior.files).map(([p, v]) => [p, v.after]));
 const hash = b => crypto.createHash('sha256').update(b).digest('hex');
-const essential = [R.revision.canonical.path, R.revision.historical_canonical.path,
+const essential = ['editorial/displaced-biography-20261024.json', R.revision.canonical.path, R.revision.historical_canonical.path,
   R.revision.prior_revision_receipt.path, 'research-expansion-20260918/integration-receipt.json',
   'research-expansion-20260918/teacher-identity.md', 'editorial/authorial.json', ...Object.keys(R.revision.files)];
 
@@ -58,7 +58,7 @@ test('Teacher preservation rejects a downgraded article date', t => {
 
 test('historical integration is byte-idempotent and cannot restore the obsolete Teacher article', t => {
   const manifest = require('../research-expansion-20260918/manifest.json');
-  const files = [...essential, 'README.md', 'editorial/products.json', 'tests/restoration.test.cjs',
+  const files = [...essential, 'tools/displaced-biography-revision.cjs', 'README.md', 'editorial/products.json', 'tests/restoration.test.cjs',
     'comparative-religion/manifest.json', 'research-expansion-20260918/integrate.cjs',
     'research-expansion-20260918/manifest.json', 'research-expansion-20260918/teacher-revision.cjs',
     'research-expansion-20260918/teacher-revision-20261011.json',

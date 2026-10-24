@@ -3,7 +3,7 @@
   "slug": "sacred-inheritance-and-rival-continuations",
   "title": "Sacred inheritance and rival continuations",
   "source": "content/developed/sacred-inheritance-and-rival-continuations.md",
-  "sourceSha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+  "sourceSha256": "95ca4c4c83bedb08041f722a108f53bb938ca3b665d251f80a3e20341620cae3",
   "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
@@ -206,60 +206,186 @@
     },
     {
       "id": "segment-0034",
+      "section": "Earlier teaching inside a later biography: comparisons to investigate",
+      "notes": false,
+      "text": "Earlier teaching inside a later biography: comparisons to investigate"
+    },
+    {
+      "id": "segment-0035",
+      "section": "Earlier teaching inside a later biography: comparisons to investigate",
+      "notes": false,
+      "text": "Added October 24, 2026 UTC from two supplied AI-generated discussions. The following paraphrases and comparisons are editorial research, not quotations newly recovered from the Teacher."
+    },
+    {
+      "id": "segment-0036",
+      "section": "Earlier teaching inside a later biography: comparisons to investigate",
+      "notes": false,
+      "text": "The Earlier-Teacher and Displaced-Biography overview proposes that older teaching could be transmitted and adapted, including through Greek expression, within a later biography of the same remembered founder. That is stronger than borrowing between two unrelated teachers. The full identity article retains that proposal and its chronological costs; the Daniel study investigates the possible fulfillment mechanism. Here I ask what textual inheritance the proposal would need to explain."
+    },
+    {
+      "id": "segment-0037",
+      "section": "Covenant, a way, and an authoritative interpretation",
+      "notes": false,
+      "text": "Covenant, a way, and an authoritative interpretation"
+    },
+    {
+      "id": "segment-0038",
+      "section": "Covenant, a way, and an authoritative interpretation",
+      "notes": false,
+      "text": "In E. Cook's Damascus Document translation, CD VI, 19 and VIII, 21 identify a new covenant in Damascus. CD VI, 2–11 interprets the well as the Law and distinguishes its diggers, the interpreting rod, and a future teacher. These roles should not all be assigned to one named founder. CD XIX, 33–35 also uses living-water imagery. Compare John 4:10–14, while keeping the settings and referents distinct."
+    },
+    {
+      "id": "segment-0039",
+      "section": "Covenant, a way, and an authoritative interpretation",
+      "notes": false,
+      "text": "The Qumran-Digital transcription of 1QS, VIII, 13–16, contains the Isaiah 40:3 wilderness-way citation and its connection with study of the Law. Compare Isaiah 40:3 and the movement designation in Acts 9:2. A shared scriptural citation and a movement label are worth comparing, but do not establish that both groups had an identical exclusive official name. Acts 11:26 also records the designation Christian; the attachment's “exclusively” is too strong."
+    },
+    {
+      "id": "segment-0040",
+      "section": "Johannine light and truth: affinity does not decide the carrier",
+      "notes": false,
+      "text": "Johannine light and truth: affinity does not decide the carrier"
+    },
+    {
+      "id": "segment-0041",
+      "section": "Johannine light and truth: affinity does not decide the carrier",
+      "notes": false,
+      "text": "1QS III, 13–IV, 26 supplies the Two Spirits comparison. John 12:35–36, 14:17, and 8:12 provide identifiable Gospel passages for light, truth, and life. I do not reproduce the attachment's unattributed Scrolls quotations or describe the vocabularies as unique to these two collections. Nor does the presence of the Community Rule among the scrolls establish that the historical Teacher wrote it."
+    },
+    {
+      "id": "segment-0042",
+      "section": "Johannine light and truth: affinity does not decide the carrier",
+      "notes": false,
+      "text": "Richard Bauckham's The Qumran Community and the Gospel of John reports scholarly arguments for direct or indirect influence but argues instead for shared biblical and wider Jewish sources. He also distinguishes John's Spirit of Truth from the paired spirits' function in 1QS. His account supplies a substantive competing explanation, not a unanimous verdict. A displacement model must explain the differences and the proposed carrier, rather than treating shared imagery as proof of direct borrowing or one author."
+    },
+    {
+      "id": "segment-0043",
+      "section": "4Q521 and the signs of restoration",
+      "notes": false,
+      "text": "4Q521 and the signs of restoration"
+    },
+    {
+      "id": "segment-0044",
+      "section": "4Q521 and the signs of restoration",
+      "notes": false,
+      "text": "Benjamin Wold's Agents of Resurrection in 4Q521, the Sayings Source Q and 4QPseudo-Ezekiel, a 2010 seminar paper, presents the Hebrew and an English translation of 4Q521 fragment 2, column ii. Lines 8 and 11–12 supply release, sight, healing, resurrection, and good-news motifs for comparison with Matthew 11:2–6 and Luke 7:18–23. Wold examines the agent of resurrection and the scriptural combinations involved; the presence of an anointed figure earlier in the fragment does not settle every later agent. This is a specific comparison, not a"
+    },
+    {
+      "id": "segment-0045",
+      "section": "4Q521 and the signs of restoration",
+      "notes": false,
+      "text": "word-for-word identity or an attribution to the Teacher."
+    },
+    {
+      "id": "segment-0046",
+      "section": "Calendars and Sabbath practices are tests, not portraits to caricature",
+      "notes": false,
+      "text": "Calendars and Sabbath practices are tests, not portraits to caricature"
+    },
+    {
+      "id": "segment-0047",
+      "section": "Calendars and Sabbath practices are tests, not portraits to caricature",
+      "notes": false,
+      "text": "The Library of Congress's 1993 Calendrical Document description describes a 364-day framework. Mark 14:12–17 narrates Passover preparation and the meal; John 13:1–2, 18:28, and 19:14 frame the Johannine comparison differently. These are textual observations. The hypothesis that different calendars explain them requires a separate argument; John's chronology alone does not prove that Jesus followed a Qumran calendar or identify his community."
+    },
+    {
+      "id": "segment-0048",
+      "section": "Calendars and Sabbath practices are tests, not portraits to caricature",
+      "notes": false,
+      "text": "Cook's CD XI, 13–17 distinguishes an animal in a pit from a person in water and specifies rescue implements. Compare Mark 2:27 and 3:1–6 as different textual practices and arguments about relief. A change of practice could be proposed within a continuing movement, but requires explanation. Neither an absolute ban on saving human life nor a cartoon contrast between two personalities is an adequate reading."
+    },
+    {
+      "id": "segment-0049",
+      "section": "Four explanations and a concrete next comparison",
+      "notes": false,
+      "text": "Four explanations and a concrete next comparison"
+    },
+    {
+      "id": "segment-0050",
+      "section": "Four explanations and a concrete next comparison",
+      "notes": false,
+      "text": "Common Jewish scriptural resources can explain a resemblance without direct contact. Circulation, oral teaching, or literary influence could connect distinct groups. Institutional succession would add identifiable carriers. The same-founder displacement hypothesis makes the further claim that the inherited person, not merely the vocabulary, was placed in a later life story. These explanations should be compared without silently replacing the fourth with the first or promoting the first into the fourth."
+    },
+    {
+      "id": "segment-0051",
+      "section": "Four explanations and a concrete next comparison",
+      "notes": false,
+      "text": "A useful dossier would record each passage's wording and restoration, copy and composition limits, narrative function, plausible scriptural sources, and evidence for a carrier. It would also record what changes in law, agency, and setting each proposed model predicts. The Teacher–Thomas investigation supplies the connection between such units of teaching and a broader continuity claim. Preservation of a text or oral tradition is a plausible mechanism; its precise route here remains to be demonstrated."
+    },
+    {
+      "id": "segment-0052",
+      "section": "Access and attribution notes for this continuation",
+      "notes": false,
+      "text": "Access and attribution notes for this continuation"
+    },
+    {
+      "id": "segment-0053",
+      "section": "Access and attribution notes for this continuation",
+      "notes": false,
+      "text": "Consulted October 24, 2026 UTC: Cook's online English translation at the CD loci above; the named Hebrew transcription of 1QS, with Bauckham's discussion for the Two Spirits interpretation; Wold's repository-hosted seminar paper, particularly its opening text/translation and discussion of agency; Bauckham's scholarly article as reproduced online; the dated Library of Congress exhibition; the World English Bible chapters linked above, and NABRE for John 18:28. The underlying Scrolls photographs and critical apparatus were not newly collated."
+    },
+    {
+      "id": "segment-0054",
+      "section": "Access and attribution notes for this continuation",
+      "notes": false,
+      "text": "These are qualified paraphrases, not a claim to have recovered the Teacher's personal words. The attachments' forum links and sweeping statements about unique language, exact authorship, certain martyrdom, and proved calendar use are not adopted as evidence."
+    },
+    {
+      "id": "segment-0055",
       "section": "Source conversations",
       "notes": true,
       "text": "Source conversations"
     },
     {
-      "id": "segment-0035",
+      "id": "segment-0056",
       "section": "Source conversations",
       "notes": true,
       "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
     },
     {
-      "id": "segment-0036",
+      "id": "segment-0057",
       "section": "Source conversations",
       "notes": true,
       "text": "Teacher of Righteousness vs Gnostic Jesus is the archived discussion dated 2025-06-17 (UTC export metadata)."
     },
     {
-      "id": "segment-0037",
+      "id": "segment-0058",
       "section": "Source conversations",
       "notes": true,
       "text": "Paul vs James Movement is the archived discussion dated 2025-05-27 (UTC export metadata)."
     },
     {
-      "id": "segment-0038",
+      "id": "segment-0059",
       "section": "Source conversations",
       "notes": true,
       "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
-      "id": "segment-0039",
+      "id": "segment-0060",
       "section": "External sources and access notes",
       "notes": true,
       "text": "External sources and access notes"
     },
     {
-      "id": "segment-0040",
+      "id": "segment-0061",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Library of Congress, The Qumran Community"
     },
     {
-      "id": "segment-0041",
+      "id": "segment-0062",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Curated 1993 exhibition descriptions consulted for Community Rule 4Q258, calendar 4Q321 and MMT 4Q396. These are identified curatorial records, not a new critical edition or the latest dating consensus. Consulted 2026-09-05."
     },
     {
-      "id": "segment-0042",
+      "id": "segment-0063",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Library of Congress, The Qumran Library"
     },
     {
-      "id": "segment-0043",
+      "id": "segment-0064",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Curated exhibition description consulted for Aramaic Enoch 4Q201, dated there to approximately 200-150 BCE. A manuscript witness does not date every Enochic composition or demonstrate a later community's ancestry. Consulted 2026-09-05."

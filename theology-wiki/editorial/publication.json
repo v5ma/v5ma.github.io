@@ -45,6 +45,19 @@
       "category": "context",
       "updated": "2026-10-03",
       "summary": "Inspect GitHub Markdown, exact versions, revision history, file hashes, and the public preservation record for every reader page."
+    },
+    {
+      "slug": "earlier-teacher-displaced-biography",
+      "title": "Earlier-Teacher and Displaced-Biography Hypothesis",
+      "source": "editorial/publication-articles/earlier-teacher-displaced-biography.md",
+      "kind": "Navigator",
+      "category": "jesus",
+      "topic": "Jesus & early communities",
+      "updated": "2026-10-24",
+      "integrated": "2026-10-24",
+      "connectArgument": false,
+      "summary": "An overview of the same-founder conjecture: retain pre-Christian manuscript evidence, investigate a later relocation of the founder biography, and compare Daniel, covenant, Johannine, healing and calendar traditions.",
+      "claimType": "Historical identity and biographical-displacement conjecture"
     }
   ],
   "bridgeConnections": {

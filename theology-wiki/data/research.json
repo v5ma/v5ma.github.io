@@ -1764,6 +1764,7 @@
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
+      "sacred-inheritance-and-rival-continuations",
       "tor-thomas-and-gnostic-transmission",
       "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
@@ -1781,7 +1782,8 @@
       "reading-paths",
       "book-contents",
       "parallel-timelines",
-      "research-board"
+      "research-board",
+      "earlier-teacher-displaced-biography"
     ],
     "moses-volcano-and-exodus-chronology": [
       "home",
@@ -1969,6 +1971,7 @@
     ],
     "sacred-inheritance-and-rival-continuations": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
@@ -1976,6 +1979,7 @@
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "flood-inheritance-and-deep-time",
+      "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
       "living-jesus-thomas-john-and-synoptics",
       "contested-memories-of-catastrophe",
@@ -1984,7 +1988,8 @@
       "topic-traditions",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "earlier-teacher-displaced-biography"
     ],
     "tor-thomas-and-gnostic-transmission": [
       "home",
@@ -2010,7 +2015,8 @@
       "book-contents",
       "parallel-timelines",
       "research-board",
-      "intellectual-debts"
+      "intellectual-debts",
+      "earlier-teacher-displaced-biography"
     ],
     "divine-will-and-self-authorizing-power": [
       "home",
@@ -2151,6 +2157,7 @@
     "daniel-jubilee-and-the-teachers-time": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
+      "sacred-inheritance-and-rival-continuations",
       "onias-egypt-and-priestly-continuity",
       "james-and-contested-succession",
       "connected-arguments",
@@ -2158,7 +2165,8 @@
       "source-atlas",
       "museum-trails",
       "topic-origins",
-      "book-contents"
+      "book-contents",
+      "earlier-teacher-displaced-biography"
     ],
     "onias-egypt-and-priestly-continuity": [
       "home",
@@ -2827,7 +2835,8 @@
       "computational-god-consciousness-and-theodicy",
       "computational-god-capabilities-bridge",
       "cosmic-thought-and-transcendence"
-    ]
+    ],
+    "earlier-teacher-displaced-biography": []
   },
   "publicationEdition": "2026.10.03-public-corpus-2-conjecture"
 }

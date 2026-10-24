@@ -20,12 +20,12 @@ function applyDerivativeRevision(expected){
  assert.deepEqual(Object.keys(r.files).sort(),allowed,'Only three article derivatives may advance');
  const updated={...expected};
  for(const p of allowed){assert.equal(r.files[p].before,expected[p],'Unexpected prior version: '+p);assert.equal(hash(read(p)),r.files[p].after,'Joseph derivative changed: '+p);updated[p]=r.files[p].after;}
- return updated;
+ return require('./displaced-biography-revision.cjs').applyDerivativeRevision(updated);
 }
 // Undo only this later corpus amendment when verifying an older Gospel addition.
 // Its original predecessor digest guards still run against the reconstructed bytes.
 function historicalCorpusRead(base,p){
- const read=q=>fs.readFileSync(path.join(base,q));
+ const read=q=>require('./displaced-biography-revision.cjs').historicalCorpusRead(base,q);
  const r=JSON.parse(read('editorial/joseph-revision-20261023.json')),prior=r.previous_corpus;
  if(!prior||!Object.hasOwn(prior.hashes,p))return read(p);
  let text;

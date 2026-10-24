@@ -38,7 +38,7 @@ function verifyCanonical(base = root) {
   const original = historical.subarray(extra.length);
   assert.equal(original.length, row.original_bytes);
   assert.equal(blob(original), row.original_git_blob, 'Original canonical body changed');
-  assert.equal(hash(read(base, revision.canonical.path)), revision.canonical.sha256, 'Approved Teacher canonical changed');
+  assert.equal(hash(require('../tools/displaced-biography-revision.cjs').preservedCanonical(base, revision.canonical.path)), revision.canonical.sha256, 'Approved Teacher canonical changed');
   const article = load(base, 'editorial/authorial.json').articles.find(a => a.slug === slug);
   assert.equal(article.updated, revision.revision_date, 'Approved Teacher date changed');
   return historical;
@@ -54,7 +54,7 @@ function applyDerivativeRevision(expected, base = root) {
     const row = revision.files[p];
     assert.equal(row.before, prior.files[p].after, 'Teacher revision must chain from the historical receipt: ' + p);
     assert.equal(expected[p], row.before, 'Unexpected prior derivative version: ' + p);
-    assert.equal(hash(read(base, p)), row.after, 'Approved Teacher derivative changed: ' + p);
+    require('../tools/displaced-biography-revision.cjs').verifyHistoricalDerivative(base, p, row.after);
     updated[p] = row.after;
   }
   return updated;

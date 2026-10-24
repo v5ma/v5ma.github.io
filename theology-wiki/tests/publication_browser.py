@@ -26,7 +26,7 @@ with sync_playwright() as tool:
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     try:
         open_page(page,'home')
-        check('Reader has 440 indexed pages',page.evaluate('TheologyReader.pages().length')==440)
+        check('Reader has 441 indexed pages',page.evaluate('TheologyReader.pages().length')==441)
         check('Every indexed page exposes a committed source version',page.evaluate('TheologyReader.pages().every(p=>p.publication && /[a-f0-9]{40}/.test(p.publication.revision))'))
         check('Homepage links to the new bridge and public backup',page.locator('#publication-home a').count()==3)
         page.locator('#publication-home a[data-page="computational-god-capabilities-bridge"]').click()

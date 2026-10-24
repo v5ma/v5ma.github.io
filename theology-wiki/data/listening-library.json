@@ -22,12 +22,12 @@
         }
       ],
       "source": "content/developed/sacred-inheritance-and-rival-continuations.md",
-      "sourceSha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+      "sourceSha256": "95ca4c4c83bedb08041f722a108f53bb938ca3b665d251f80a3e20341620cae3",
       "narration": "data/listening/sacred-inheritance-and-rival-continuations.json",
-      "narrationSha256": "b8a13ee4e12a5734fdb11b336f335850679856d65f7308488e05d89afbc8eee9",
+      "narrationSha256": "1e79a2aa4d9174bcae2ade70b93aedc405441bd9fa97d1b36f4b9c872f35a95a",
       "transcript": "products/transcripts/sacred-inheritance-and-rival-continuations.txt",
-      "segments": 43,
-      "words": 1399
+      "segments": 64,
+      "words": 2292
     },
     {
       "slug": "samaritan-texts-and-sacred-authority",
@@ -169,12 +169,12 @@
         }
       ],
       "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-      "sourceSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "sourceSha256": "443b1f4be75d04439a6890d95b94b9246fec9d22f41eff0eddbf741e58a91663",
       "narration": "data/listening/jesus-teacher-of-righteousness-hypothesis.json",
-      "narrationSha256": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8",
+      "narrationSha256": "0a4cba426226caacf7600c3f8971d93ed25f76a4973d13cce6b56ad80916b129",
       "transcript": "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt",
-      "segments": 178,
-      "words": 7242
+      "segments": 183,
+      "words": 7471
     },
     {
       "slug": "daniel-jubilee-and-the-teachers-time",
@@ -190,12 +190,12 @@
         }
       ],
       "source": "content/developed/daniel-jubilee-and-the-teachers-time.md",
-      "sourceSha256": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+      "sourceSha256": "eeb9c304451670a3fa52fa39588230a64dc2c01e93a8985b8cb1ed9c073e1f62",
       "narration": "data/listening/daniel-jubilee-and-the-teachers-time.json",
-      "narrationSha256": "2bffa22c053ad894972dabced5bc7675b154cbc4fa3751bd0c9728d37d4a4d89",
+      "narrationSha256": "e39050e79f0a4acbb0494be87416cbfa935283db7ba13021a98921804a84e3f3",
       "transcript": "products/transcripts/daniel-jubilee-and-the-teachers-time.txt",
-      "segments": 54,
-      "words": 2152
+      "segments": 62,
+      "words": 2476
     },
     {
       "slug": "james-and-contested-succession",

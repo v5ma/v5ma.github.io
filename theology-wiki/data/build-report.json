@@ -27,7 +27,7 @@
   "timelineRecords": 23,
   "argumentDossiers": 9,
   "reviewedPassages": 24,
-  "pages": 440,
+  "pages": 441,
   "readingPaths": 9,
   "forecastRecords": 6,
   "externalSources": 156,
@@ -38,8 +38,8 @@
   "explainedRelationships": 238,
   "anchoredSourceTurns": 38,
   "indexedTurns": 4980,
-  "links": 1800,
-  "searchTerms": 48248,
+  "links": 1808,
+  "searchTerms": 48269,
   "sourceBytes": 17769481,
   "publicationEdition": "2026.10.03-public-corpus-2-conjecture"
 }

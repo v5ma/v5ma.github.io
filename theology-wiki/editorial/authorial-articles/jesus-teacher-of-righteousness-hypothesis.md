@@ -274,3 +274,13 @@ The October 11, 2026 expansion checked the already-public archive passages linke
 - [Qumran-Digital transcription of 11Q13](https://lexicon.qumran-digital.org/transcriptions/11Q13/2022-10-14/index.html): checked the bracketed restoration in II, 18 and the separate Jubilee context. The restored quotation is identified as restored rather than described as wholly extant.
 
 The public conversation anchors are pinned to repository revision c6e2b09f79c0bb3bd0a0e45b54b72c35d1ca1852. They document the development of the modern argument, not independent corroboration of its ancient identifications. The original public source files and their attribution remain unchanged.
+
+## Clarification: the biography is displaced, not the scrolls
+
+*October 24, 2026 UTC: additive clarification from the supplied discussion, developed with AI assistance.*
+
+In this specific version I keep the relevant pre-Christian manuscript dating and investigate whether an earlier founder's remembered biography was placed later by Gospel writers. I do not try to force those manuscripts into the first century CE. This preserves the stronger same-founder proposal: transmission carries the earlier person's teaching and memory, while the later narrative supplies a different historical setting. The [dedicated overview](/theology-wiki/san-reader.html?page=earlier-teacher-displaced-biography) makes that direction of displacement explicit.
+
+The choice does not turn a manuscript's age into the Teacher's exact lifetime or assert that every Dead Sea Scroll dates to the second century BCE. Copying, composition, remembered events, historical identification, and narrated setting remain separate layers. The earlier dates and incompatible variants above remain available; the phrase “roughly 150 years” names the proposed scale, not a measured universal offset or a reason to replace the 124–137-year calculation already examined here.
+
+The two supplied AI-generated discussions suggest Daniel reanchoring, inherited covenant language, Johannine light and water, healing and restoration, and calendrical comparison. Their research value lies in the questions they identify, not in their confident rhetoric. The [[daniel-jubilee-and-the-teachers-time|Daniel continuation]] states what a relocation mechanism would need to demonstrate. The [[sacred-inheritance-and-rival-continuations|inheritance continuation]] provides the passage comparisons and preserves common-source, influence, institutional-continuity, and same-founder explanations as distinct alternatives.

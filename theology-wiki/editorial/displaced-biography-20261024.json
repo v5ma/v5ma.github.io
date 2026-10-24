@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "dateUTC": "2026-10-24",
+  "reviewBase": "7e40a2b0fb95bfe487539d8f72fa8d51100cfe51",
+  "scope": "One navigable hypothesis overview; append clarifications to exactly three existing canonical bodies, preserving all prior bytes and original archives.",
+  "attachments": [
+    {
+      "title": "Pasted text(20261024-065832).txt",
+      "bytes": 6123,
+      "lines": 26,
+      "access": "Full Library text read; AI-generated discussion, not independent historical evidence."
+    },
+    {
+      "title": "Pasted text(20261024-065834).txt",
+      "bytes": 5158,
+      "lines": 40,
+      "access": "Full Library text read; AI-generated discussion, not independent historical evidence."
+    }
+  ],
+  "articles": [
+    {
+      "slug": "jesus-teacher-of-righteousness-hypothesis",
+      "canonical": {
+        "path": "editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "before": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+        "beforeBytes": 54727,
+        "after": "8bf468e30c4f5c85d60ebc1ffac3b808710529f4090e19346bf7b2707873f7dc"
+      }
+    },
+    {
+      "slug": "daniel-jubilee-and-the-teachers-time",
+      "canonical": {
+        "path": "editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "before": "13868f49248af02e05dddc4f6a46231d1de39c1c1038873afb12d74884aa70a2",
+        "beforeBytes": 14701,
+        "after": "f8f2c28fea7443357e8b948f5884c596e7545ccf70a3aa599e02eb80a926c98c"
+      }
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "canonical": {
+        "path": "editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md",
+        "before": "ee093b8727d35c1dd5c4f3eab77d1fcb2fe021c2144c948eebc45d9d0b16e5e7",
+        "beforeBytes": 9796,
+        "after": "1dec0b9f324212e7259b594d62e21c5a788ce83489bbcf127b25f5b88ef81aca"
+      }
+    }
+  ],
+  "files": {
+    "content/developed/jesus-teacher-of-righteousness-hypothesis.md": {
+      "before": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+      "after": "443b1f4be75d04439a6890d95b94b9246fec9d22f41eff0eddbf741e58a91663"
+    },
+    "data/listening/jesus-teacher-of-righteousness-hypothesis.json": {
+      "before": "faeb550b8ec7d6f88f77fddecd8c0e4c521a493e59b82fe607ce25a2a510fac8",
+      "after": "0a4cba426226caacf7600c3f8971d93ed25f76a4973d13cce6b56ad80916b129"
+    },
+    "products/transcripts/jesus-teacher-of-righteousness-hypothesis.txt": {
+      "before": "7a53e03c62c9afeed7df8d78756d77262a4c9ff161a7d674569271c5ac1cde80",
+      "after": "805b9d4f70e1a2c2a771f20f1739315c5e70d8f8e4e3adab2f69fd554ab9458a"
+    },
+    "content/developed/daniel-jubilee-and-the-teachers-time.md": {
+      "before": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+      "after": "eeb9c304451670a3fa52fa39588230a64dc2c01e93a8985b8cb1ed9c073e1f62"
+    },
+    "data/listening/daniel-jubilee-and-the-teachers-time.json": {
+      "before": "2bffa22c053ad894972dabced5bc7675b154cbc4fa3751bd0c9728d37d4a4d89",
+      "after": "e39050e79f0a4acbb0494be87416cbfa935283db7ba13021a98921804a84e3f3"
+    },
+    "products/transcripts/daniel-jubilee-and-the-teachers-time.txt": {
+      "before": "20afa65d4d035f4f1fdc57c36aa4663a21ca6168cb67090bd35c6558b2bb2daa",
+      "after": "ac74329bde3c693002cf9c18d14fbe2c3c1c0333501bcc702db1150ff9dbf7fd"
+    },
+    "content/developed/sacred-inheritance-and-rival-continuations.md": {
+      "before": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+      "after": "95ca4c4c83bedb08041f722a108f53bb938ca3b665d251f80a3e20341620cae3"
+    },
+    "data/listening/sacred-inheritance-and-rival-continuations.json": {
+      "before": "b8a13ee4e12a5734fdb11b336f335850679856d65f7308488e05d89afbc8eee9",
+      "after": "1e79a2aa4d9174bcae2ade70b93aedc405441bd9fa97d1b36f4b9c872f35a95a"
+    },
+    "products/transcripts/sacred-inheritance-and-rival-continuations.txt": {
+      "before": "f91edc86fc80e86329745fa976e58691c67eefda45e50735209b5f8b09e5135b",
+      "after": "f8efcd3f6678b989e11007d19b7cc0b2fd6b2dd293040e9f35888f7474126aaa"
+    }
+  },
+  "overview": {
+    "slug": "earlier-teacher-displaced-biography",
+    "sources": [
+      "theology-wiki/editorial/publication-articles/earlier-teacher-displaced-biography.md",
+      "theology-wiki/content/developed/earlier-teacher-displaced-biography.md"
+    ]
+  },
+  "previousCorpus": {
+    "records": [
+      {
+        "slug": "jesus-teacher-of-righteousness-hypothesis",
+        "title": "Jesus as the Teacher of Righteousness",
+        "kind": "Developed article",
+        "category": "jesus",
+        "sourcePath": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "sourceSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+        "sourceBytes": 57860,
+        "archivePath": "public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md",
+        "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis",
+        "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+        "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+        "canonicalSourcePath": "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "canonicalSha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+        "archiveSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+        "archiveBytes": 57860,
+        "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/jesus-teacher-of-righteousness-hypothesis.md"
+      },
+      {
+        "slug": "sacred-inheritance-and-rival-continuations",
+        "title": "Sacred inheritance and rival continuations",
+        "kind": "Developed article",
+        "category": "traditions",
+        "sourcePath": "theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "sourceSha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+        "sourceBytes": 11555,
+        "archivePath": "public-corpus/pages/sacred-inheritance-and-rival-continuations.md",
+        "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=sacred-inheritance-and-rival-continuations",
+        "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+        "sourceCommitterDate": "2026-10-04T04:22:53Z",
+        "canonicalSourcePath": "theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md",
+        "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md",
+        "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md",
+        "canonicalSha256": "ee093b8727d35c1dd5c4f3eab77d1fcb2fe021c2144c948eebc45d9d0b16e5e7",
+        "archiveSha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+        "archiveBytes": 11555,
+        "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/sacred-inheritance-and-rival-continuations.md"
+      },
+      {
+        "slug": "daniel-jubilee-and-the-teachers-time",
+        "title": "Daniel, jubilee and the Teacher's time",
+        "kind": "Developed article",
+        "category": "origins",
+        "sourcePath": "theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "sourceSha256": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+        "sourceBytes": 17653,
+        "archivePath": "public-corpus/pages/daniel-jubilee-and-the-teachers-time.md",
+        "readerUrl": "https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=daniel-jubilee-and-the-teachers-time",
+        "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "sourceHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "exactSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+        "sourceCommitterDate": "2026-10-04T04:22:53Z",
+        "canonicalSourcePath": "theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "canonicalSourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "canonicalHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "canonicalSha256": "13868f49248af02e05dddc4f6a46231d1de39c1c1038873afb12d74884aa70a2",
+        "archiveSha256": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+        "archiveBytes": 17653,
+        "archiveUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/public-corpus/pages/daniel-jubilee-and-the-teachers-time.md"
+      }
+    ],
+    "sources": [
+      {
+        "path": "theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "bytes": 17653,
+        "sha256": "78e5b6dfa1c66abe72b5c3b54283b5ef748db6b17a9c750171c4cf3ffa27f001",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md"
+      },
+      {
+        "path": "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "bytes": 57860,
+        "sha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md"
+      },
+      {
+        "path": "theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "bytes": 11555,
+        "sha256": "3f1eabc3a0ee52ad8e4ee9e7e935717e3e68ab29896e375fbe95f314c1601045",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md"
+      },
+      {
+        "path": "theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "bytes": 14701,
+        "sha256": "13868f49248af02e05dddc4f6a46231d1de39c1c1038873afb12d74884aa70a2",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md"
+      },
+      {
+        "path": "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "bytes": 54727,
+        "sha256": "80b93d45ad9269a444cb0c7d2dc5694bef2a4b5c5ed2e2aeafbaa9462b353ba6",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+      },
+      {
+        "path": "theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md",
+        "bytes": 9796,
+        "sha256": "ee093b8727d35c1dd5c4f3eab77d1fcb2fe021c2144c948eebc45d9d0b16e5e7",
+        "exactUrl": "https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md"
+      }
+    ],
+    "snapshot": {
+      "schema": "theology-public-corpus/v1",
+      "owner": "Micah Blumberg",
+      "description": "Time-stamped public backup of the Theology Wiki; original sources, authorial prose, AI-assisted developments and quotations retain distinct attribution.",
+      "sourceRevision": "5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitterDate": "2026-10-04T04:22:53Z",
+      "dateScope": "Git committer date of the source revision, not an independent timestamp or the first publication of every idea. Inspect GitHub verification and PR events separately.",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
+      "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
+      "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
+      "indexedPages": 440,
+      "sourceConversations": 354,
+      "markdownSources": 565,
+      "indexSha256": "e2e52bb69ef0645ed8a750677bca9152a4e05f35f5632dc42be92557873323ab",
+      "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
+      "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
+      "amendments": [
+        {
+          "sourceRevision": "4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+          "sourceCommitterDate": "2026-10-11T12:15:48-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f",
+          "pages": [
+            "jesus-teacher-of-righteousness-hypothesis"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+            "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md"
+          ]
+        },
+        {
+          "sourceRevision": "effb9043b8613ed540fd4f6a5a7663f0d28b5c68",
+          "sourceCommitterDate": "2026-10-22T22:54:21-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/effb9043b8613ed540fd4f6a5a7663f0d28b5c68",
+          "pages": [
+            "exodus-to-temple-competing-chronologies"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
+            "theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md"
+          ]
+        }
+      ],
+      "amendmentScope": "The sourceRevision above identifies the original full snapshot. The explicitly listed article amendments have their own committed revisions and dates; all other page records and original conversation projections retain their previously recorded revisions.",
+      "additions": [
+        {
+          "sourceRevision": "9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+          "sourceCommitterDate": "2026-10-11T16:11:23-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/9de4155edb0e722fd70a13b072fd7092c2fbb15f",
+          "pages": [
+            "living-jesus-thomas-john-and-synoptics"
+          ],
+          "navigationPages": [
+            "home",
+            "topic-jesus"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/living-jesus-thomas-john-and-synoptics.md",
+            "theology-wiki/content/developed/topic-jesus.md",
+            "theology-wiki/content/home.md",
+            "theology-wiki/editorial/authorial-articles/living-jesus-thomas-john-and-synoptics.md",
+            "theology-wiki/research-reports/gospel-comparisons-20261011/claim-audit.md"
+          ]
+        },
+        {
+          "sourceRevision": "59d834212b181cbae8c1e865bf5ca72242800a4a",
+          "sourceCommitterDate": "2026-10-11T17:22:20-07:00",
+          "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/59d834212b181cbae8c1e865bf5ca72242800a4a",
+          "pages": [
+            "gnostic-canonical-gospels-telling-the-truth"
+          ],
+          "navigationPages": [
+            "home",
+            "topic-jesus"
+          ],
+          "markdownSources": [
+            "theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md",
+            "theology-wiki/content/developed/topic-jesus.md",
+            "theology-wiki/content/home.md",
+            "theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
+            "theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md"
+          ]
+        }
+      ],
+      "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."
+    },
+    "amendmentSection": "<!-- bounded-article-amendments -->\n## Article amendments\n\nThe full snapshot revision above remains the baseline. Only the articles and Markdown sources listed below were amended; all other exact-version records and complete source-conversation projections retain their earlier revisions. These Git dates do not establish first publication or independent timestamp certification.\n\n- [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).\n- [effb9043b8613ed540fd4f6a5a7663f0d28b5c68](https://github.com/v5ma/v5ma.github.io/commit/effb9043b8613ed540fd4f6a5a7663f0d28b5c68), Git committer date 2026-10-22T22:54:21-07:00: [exodus-to-temple-competing-chronologies](pages/exodus-to-temple-competing-chronologies.md).\n\n<!-- /bounded-article-amendments -->\n\n",
+    "hashes": {
+      "public-corpus/page-index.json": "e2e52bb69ef0645ed8a750677bca9152a4e05f35f5632dc42be92557873323ab",
+      "public-corpus/source-manifest.json": "ece1f90c3a331fa063658972663dc334202a2795f5cf379087f3fae3e0f32c4f",
+      "public-corpus/snapshot.json": "ba8f0e1dbd64d8ef4aca64c9cf105d6c39ea684e7eab9bfbae0e80f6835c997e",
+      "public-corpus/README.md": "1695a4c90b0586e2adf195965feeaf8131ad97a52a42a896611dd166483a886f"
+    },
+    "unchangedRecordsSha256": "093a2e653b1d99abe010c888d886ed0667554eafefb4b24a6ee1b0b721669745"
+  }
+}

@@ -3,7 +3,7 @@
   "slug": "jesus-teacher-of-righteousness-hypothesis",
   "title": "Jesus as the Teacher of Righteousness",
   "source": "content/developed/jesus-teacher-of-righteousness-hypothesis.md",
-  "sourceSha256": "25d8850edfec9ed9bdfbf0aa236783d941acc3a467d45129deb135324fc34f45",
+  "sourceSha256": "443b1f4be75d04439a6890d95b94b9246fec9d22f41eff0eddbf741e58a91663",
   "policy": "Full article prose and headings, with markup normalized for speech; source and visual notes are separately labeled, not silently summarized. This is an authorial working article, not a recovered author recording.",
   "segments": [
     {
@@ -962,114 +962,144 @@
     },
     {
       "id": "segment-0160",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Source conversations"
+      "section": "Clarification: the biography is displaced, not the scrolls",
+      "notes": false,
+      "text": "Clarification: the biography is displaced, not the scrolls"
     },
     {
       "id": "segment-0161",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Teacher of Righteousness vs Gnostic Jesus is the archived discussion dated 2025-06-17 (UTC export metadata)."
+      "section": "Clarification: the biography is displaced, not the scrolls",
+      "notes": false,
+      "text": "October 24, 2026 UTC: additive clarification from the supplied discussion, developed with AI assistance."
     },
     {
       "id": "segment-0162",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Pilate life timeline is the archived discussion dated 2025-09-08 (UTC export metadata)."
+      "section": "Clarification: the biography is displaced, not the scrolls",
+      "notes": false,
+      "text": "In this specific version I keep the relevant pre-Christian manuscript dating and investigate whether an earlier founder's remembered biography was placed later by Gospel writers. I do not try to force those manuscripts into the first century CE. This preserves the stronger same-founder proposal: transmission carries the earlier person's teaching and memory, while the later narrative supplies a different historical setting. The dedicated overview makes that direction of displacement explicit."
     },
     {
       "id": "segment-0163",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "Daniel and Teacher of Righteousness is the archived discussion dated 2025-10-19 (UTC export metadata)."
+      "section": "Clarification: the biography is displaced, not the scrolls",
+      "notes": false,
+      "text": "The choice does not turn a manuscript's age into the Teacher's exact lifetime or assert that every Dead Sea Scroll dates to the second century BCE. Copying, composition, remembered events, historical identification, and narrated setting remain separate layers. The earlier dates and incompatible variants above remain available; the phrase “roughly 150 years” names the proposed scale, not a measured universal offset or a reason to replace the 124–137-year calculation already examined here."
     },
     {
       "id": "segment-0164",
-      "section": "Source conversations",
-      "notes": true,
-      "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
+      "section": "Clarification: the biography is displaced, not the scrolls",
+      "notes": false,
+      "text": "The two supplied AI-generated discussions suggest Daniel reanchoring, inherited covenant language, Johannine light and water, healing and restoration, and calendrical comparison. Their research value lies in the questions they identify, not in their confident rhetoric. The Daniel continuation states what a relocation mechanism would need to demonstrate. The inheritance continuation provides the passage comparisons and preserves common-source, influence, institutional-continuity, and same-founder explanations as distinct alternatives."
     },
     {
       "id": "segment-0165",
       "section": "Source conversations",
       "notes": true,
-      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
+      "text": "Source conversations"
     },
     {
       "id": "segment-0166",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "External sources and access notes"
+      "text": "Teacher of Righteousness vs Gnostic Jesus is the archived discussion dated 2025-06-17 (UTC export metadata)."
     },
     {
       "id": "segment-0167",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "Israel Museum, Commentary on Habakkuk"
+      "text": "Pilate life timeline is the archived discussion dated 2025-09-08 (UTC export metadata)."
     },
     {
       "id": "segment-0168",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "Curator Adolfo D. Roitman's indexed institutional description was retrieved. Direct page loading failed during research. The description says the Teacher, Wicked Priest and Man of Lies are not securely identified. Consulted 2026-09-04."
+      "text": "Daniel and Teacher of Righteousness is the archived discussion dated 2025-10-19 (UTC export metadata)."
     },
     {
       "id": "segment-0169",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "Galatians 1, World English Bible"
+      "text": "AI re-dates Dead Sea Scrolls is the archived discussion dated 2025-10-20 (UTC export metadata)."
     },
     {
       "id": "segment-0170",
-      "section": "External sources and access notes",
+      "section": "Source conversations",
       "notes": true,
-      "text": "Primary text: Paul's account of persecution, revelation, earlier apostles and a visit to Peter and James. Consulted 2026-09-04."
+      "text": "Authorial working edition developed with AI assistance. The argument is presented in first-person, theory-centered prose; archived conversations remain unchanged and separately attributed. New wording is not a recovered verbatim quotation."
     },
     {
       "id": "segment-0171",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "1 Corinthians 15, World English Bible"
+      "text": "External sources and access notes"
     },
     {
       "id": "segment-0172",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Primary text: received tradition, named witnesses and the statement that many witnesses remained alive. Consulted 2026-09-04."
+      "text": "Israel Museum, Commentary on Habakkuk"
     },
     {
       "id": "segment-0173",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Timothy H. Lim, The Earliest Commentary on the Prophecy of Habakkuk (2020)"
+      "text": "Curator Adolfo D. Roitman's indexed institutional description was retrieved. Direct page loading failed during research. The description says the Teacher, Wicked Priest and Man of Lies are not securely identified. Consulted 2026-09-04."
     },
     {
       "id": "segment-0174",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Author's publisher abstract consulted, not the full monograph or a fresh translation of the scroll. Supports the stated alternative interpretation of the Teacher's role and the importance of fidelity to his teachings. Consulted 2026-09-04."
+      "text": "Galatians 1, World English Bible"
     },
     {
       "id": "segment-0175",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Popovic and colleagues, Dating ancient manuscripts using radiocarbon and AI-based writing style analysis (2025)"
+      "text": "Primary text: Paul's account of persecution, revelation, earlier apostles and a visit to Peter and James. Consulted 2026-09-04."
     },
     {
       "id": "segment-0176",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Published research article consulted in HTML. Used for the distinction between dating manuscript material/handwriting and identifying a historical person. No figure was reproduced and no death date for Jesus or the Teacher was inferred from the model. Consulted 2026-09-04."
+      "text": "1 Corinthians 15, World English Bible"
     },
     {
       "id": "segment-0177",
       "section": "External sources and access notes",
       "notes": true,
-      "text": "Galatians 2, World English Bible"
+      "text": "Primary text: received tradition, named witnesses and the statement that many witnesses remained alive. Consulted 2026-09-04."
     },
     {
       "id": "segment-0178",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Timothy H. Lim, The Earliest Commentary on the Prophecy of Habakkuk (2020)"
+    },
+    {
+      "id": "segment-0179",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Author's publisher abstract consulted, not the full monograph or a fresh translation of the scroll. Supports the stated alternative interpretation of the Teacher's role and the importance of fidelity to his teachings. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0180",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Popovic and colleagues, Dating ancient manuscripts using radiocarbon and AI-based writing style analysis (2025)"
+    },
+    {
+      "id": "segment-0181",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Published research article consulted in HTML. Used for the distinction between dating manuscript material/handwriting and identifying a historical person. No figure was reproduced and no death date for Jesus or the Teacher was inferred from the model. Consulted 2026-09-04."
+    },
+    {
+      "id": "segment-0182",
+      "section": "External sources and access notes",
+      "notes": true,
+      "text": "Galatians 2, World English Bible"
+    },
+    {
+      "id": "segment-0183",
       "section": "External sources and access notes",
       "notes": true,
       "text": "Primary text read in full, especially verses 1-10 on an interval, companions and recognized leaders. The passage does not by itself supply an absolute calendar date for the visit. Consulted 2026-09-04."

@@ -117,8 +117,8 @@ test('Synthesis is the 31st canonical authorial study and 440th reader page with
   assert.match(source.attribution, /constructive|interpretive synthesis/i);
   assert.doesNotMatch(source.attribution, /\b(?:Micah(?: Blumberg)?|the author) (?:personally )?(?:believes|professes|confesses|holds as a personal belief)\b/i);
   const index = pages(), built = article();
-  assert.equal(index.length, 440);
-  assert.equal(new Set(index.map(p => p.slug)).size, 440);
+  assert.equal(index.length, 441);
+  assert.equal(new Set(index.map(p => p.slug)).size, 441);
   assert.equal(built.kind, 'Developed article');
   assert.equal(built.category, 'jesus');
   assert.equal(built.title, canonical.match(/^# (.+)$/m)[1]);
@@ -184,7 +184,7 @@ test('Synthesis narration and transcript retain the whole canonical argument and
 test('Synthesis reader source and canonical source are backed by their own exact publication records', () => {
   const built = article();
   const records = json('public-corpus/page-index.json');
-  assert.equal(records.length, 440);
+  assert.equal(records.length, 441);
   const record = records.find(r => r.slug === slug);
   assert(record);
   const body = read('content/' + built.path);

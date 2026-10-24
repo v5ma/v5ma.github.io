@@ -121,7 +121,7 @@ function restoreBaseline(root,spec=SPEC){
  return {records:priorRecords,sources:priorSources,meta:priorMeta,guide:previous['public-corpus/README.md']};
 }
 function verify(root,spec=SPEC){
- const previous=restoreBaseline(root,spec),site=path.dirname(root),read=p=>fs.readFileSync(path.join(root,p)),json=p=>JSON.parse(read(p));
+ const previous=restoreBaseline(root,spec),site=path.dirname(root),read=p=>require('../tools/displaced-biography-revision.cjs').historicalCorpusRead(root,p),json=p=>JSON.parse(read(p));
  const receipt=json(RECEIPT),rows=json('public-corpus/page-index.json'),pages=json('data/page-index.json'),sources=json('public-corpus/source-manifest.json'),meta=json('public-corpus/snapshot.json');
  if(hash(read('public-corpus/page-index.json'))!==meta.indexSha256||rows.length!==previous.records.length+1||meta.indexedPages!==rows.length||meta.markdownSources!==sources.length)throw Error('Successor corpus coverage mismatch');
  if(new Set(rows.map(r=>r.slug)).size!==rows.length||new Set(pages.map(r=>r.slug)).size!==pages.length||rows.length!==pages.length||pages.some(p=>!rows.some(r=>r.slug===p.slug)))throw Error('Successor reader coverage mismatch');

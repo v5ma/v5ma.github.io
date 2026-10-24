@@ -73,6 +73,44 @@ The central claim is consequently demanding rather than flattening. Shared inher
 
 The wiki should make these distinctions navigable. The book should make them intelligible as an unfolding argument about what it means to inherit something sacred without using that inheritance to make one's own power sacred.
 
+## Earlier teaching inside a later biography: comparisons to investigate
+
+*Added October 24, 2026 UTC from two supplied AI-generated discussions. The following paraphrases and comparisons are editorial research, not quotations newly recovered from the Teacher.*
+
+The [Earlier-Teacher and Displaced-Biography overview](/theology-wiki/san-reader.html?page=earlier-teacher-displaced-biography) proposes that older teaching could be transmitted and adapted, including through Greek expression, within a later biography of the same remembered founder. That is stronger than borrowing between two unrelated teachers. The [[jesus-teacher-of-righteousness-hypothesis|full identity article]] retains that proposal and its chronological costs; [[daniel-jubilee-and-the-teachers-time|the Daniel study]] investigates the possible fulfillment mechanism. Here I ask what textual inheritance the proposal would need to explain.
+
+### Covenant, a way, and an authoritative interpretation
+
+In E. Cook's [Damascus Document translation](https://palimpsest.stmarytx.edu/thanneken/th6314/content/DamascusDocument.htm), CD VI, 19 and VIII, 21 identify a new covenant in Damascus. CD VI, 2–11 interprets the well as the Law and distinguishes its diggers, the interpreting rod, and a future teacher. These roles should not all be assigned to one named founder. CD XIX, 33–35 also uses living-water imagery. Compare [John 4:10–14](https://ebible.org/engwebp/JHN04.htm), while keeping the settings and referents distinct.
+
+The [Qumran-Digital transcription of 1QS](https://lexicon.qumran-digital.org/transcriptions/1QS/2022-10-14/index.html), VIII, 13–16, contains the Isaiah 40:3 wilderness-way citation and its connection with study of the Law. Compare [Isaiah 40:3](https://ebible.org/engwebp/ISA40.htm) and the movement designation in [Acts 9:2](https://ebible.org/engwebp/ACT09.htm). A shared scriptural citation and a movement label are worth comparing, but do not establish that both groups had an identical exclusive official name. [Acts 11:26](https://ebible.org/engwebp/ACT11.htm) also records the designation Christian; the attachment's “exclusively” is too strong.
+
+### Johannine light and truth: affinity does not decide the carrier
+
+1QS III, 13–IV, 26 supplies the Two Spirits comparison. [John 12:35–36](https://ebible.org/engwebp/JHN12.htm), [14:17](https://ebible.org/engwebp/JHN14.htm), and [8:12](https://ebible.org/engwebp/JHN08.htm) provide identifiable Gospel passages for light, truth, and life. I do not reproduce the attachment's unattributed Scrolls quotations or describe the vocabularies as unique to these two collections. Nor does the presence of the Community Rule among the scrolls establish that the historical Teacher wrote it.
+
+Richard Bauckham's [*The Qumran Community and the Gospel of John*](https://cojs.org/the_qumran_community_and_the_gospel_of_john-_richard_bauckham/) reports scholarly arguments for direct or indirect influence but argues instead for shared biblical and wider Jewish sources. He also distinguishes John's Spirit of Truth from the paired spirits' function in 1QS. His account supplies a substantive competing explanation, not a unanimous verdict. A displacement model must explain the differences and the proposed carrier, rather than treating shared imagery as proof of direct borrowing or one author.
+
+### 4Q521 and the signs of restoration
+
+Benjamin Wold's [*Agents of Resurrection in 4Q521, the Sayings Source Q and 4QPseudo-Ezekiel*](https://www.tara.tcd.ie/bitstreams/8bfbe9bb-539e-464a-b4f6-3f5e859730c2/download), a 2010 seminar paper, presents the Hebrew and an English translation of 4Q521 fragment 2, column ii. Lines 8 and 11–12 supply release, sight, healing, resurrection, and good-news motifs for comparison with [Matthew 11:2–6](https://ebible.org/engwebp/MAT11.htm) and [Luke 7:18–23](https://ebible.org/engwebp/LUK07.htm). Wold examines the agent of resurrection and the scriptural combinations involved; the presence of an anointed figure earlier in the fragment does not settle every later agent. This is a specific comparison, not a word-for-word identity or an attribution to the Teacher.
+
+### Calendars and Sabbath practices are tests, not portraits to caricature
+
+The [Library of Congress's 1993 Calendrical Document description](https://www.loc.gov/exhibits/scrolls/scr2.html) describes a 364-day framework. [Mark 14:12–17](https://ebible.org/engwebp/MRK14.htm) narrates Passover preparation and the meal; [John 13:1–2](https://ebible.org/engwebp/JHN13.htm), [18:28](https://bible.usccb.org/bible/john/18), and [19:14](https://ebible.org/engwebp/JHN19.htm) frame the Johannine comparison differently. These are textual observations. The hypothesis that different calendars explain them requires a separate argument; John's chronology alone does not prove that Jesus followed a Qumran calendar or identify his community.
+
+Cook's CD XI, 13–17 distinguishes an animal in a pit from a person in water and specifies rescue implements. Compare [Mark 2:27](https://ebible.org/engwebp/MRK02.htm) and [3:1–6](https://ebible.org/engwebp/MRK03.htm) as different textual practices and arguments about relief. A change of practice could be proposed within a continuing movement, but requires explanation. Neither an absolute ban on saving human life nor a cartoon contrast between two personalities is an adequate reading.
+
+### Four explanations and a concrete next comparison
+
+Common Jewish scriptural resources can explain a resemblance without direct contact. Circulation, oral teaching, or literary influence could connect distinct groups. Institutional succession would add identifiable carriers. The same-founder displacement hypothesis makes the further claim that the inherited person, not merely the vocabulary, was placed in a later life story. These explanations should be compared without silently replacing the fourth with the first or promoting the first into the fourth.
+
+A useful dossier would record each passage's wording and restoration, copy and composition limits, narrative function, plausible scriptural sources, and evidence for a carrier. It would also record what changes in law, agency, and setting each proposed model predicts. The [[tor-thomas-and-gnostic-transmission|Teacher–Thomas investigation]] supplies the connection between such units of teaching and a broader continuity claim. Preservation of a text or oral tradition is a plausible mechanism; its precise route here remains to be demonstrated.
+
+### Access and attribution notes for this continuation
+
+Consulted October 24, 2026 UTC: Cook's online English translation at the CD loci above; the named Hebrew transcription of 1QS, with Bauckham's discussion for the Two Spirits interpretation; Wold's repository-hosted seminar paper, particularly its opening text/translation and discussion of agency; Bauckham's scholarly article as reproduced online; the dated Library of Congress exhibition; the World English Bible chapters linked above, and NABRE for John 18:28. The underlying Scrolls photographs and critical apparatus were not newly collated. These are qualified paraphrases, not a claim to have recovered the Teacher's personal words. The attachments' forum links and sweeping statements about unique language, exact authorship, certain martyrdom, and proved calendar use are not adopted as evidence.
+
 
 ## Source conversations
 

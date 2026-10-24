@@ -17776,7 +17776,7 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 38,
+    "readMinutes": 40,
     "related": [
       "kenite-hypothesis-and-yahweh-origins",
       "tor-thomas-and-gnostic-transmission",
@@ -17798,15 +17798,17 @@
       "daniel-and-teacher-of-righteousness",
       "ai-re-dates-dead-sea-scrolls",
       "argument-challenges",
+      "sacred-inheritance-and-rival-continuations",
       "pilate-life-timeline",
       "samaritan-texts-and-sacred-authority"
     ],
-    "backlinkCount": 22,
+    "backlinkCount": 24,
     "backlinks": [
       "home",
       "el-in-ancient-egypt",
       "christ-as-an-inner-model",
       "gnosticism-and-temple-trauma",
+      "sacred-inheritance-and-rival-continuations",
       "tor-thomas-and-gnostic-transmission",
       "divine-will-and-self-authorizing-power",
       "melchizedek-priesthood-and-transmission",
@@ -17824,7 +17826,8 @@
       "reading-paths",
       "book-contents",
       "parallel-timelines",
-      "research-board"
+      "research-board",
+      "earlier-teacher-displaced-biography"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
@@ -18857,7 +18860,7 @@
         "sha256": "f4140f33480dc7db3f3afb692985c7136a98931f383e1c0d09a3369197beabbe"
       }
     ],
-    "readMinutes": 8,
+    "readMinutes": 13,
     "related": [
       "samaritan-texts-and-sacred-authority",
       "el-in-ancient-egypt",
@@ -18868,15 +18871,18 @@
       "divine-will-and-self-authorizing-power",
       "religion-for-conscious-robots",
       "book-contents",
+      "jesus-teacher-of-righteousness-hypothesis",
+      "daniel-jubilee-and-the-teachers-time",
       "ai-re-dates-dead-sea-scrolls",
       "teacher-of-righteousness-vs-gnostic-jesus",
       "paul-vs-james-movement",
       "god-and-our-models-of-god",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 17,
+    "backlinkCount": 20,
     "backlinks": [
       "home",
+      "jesus-teacher-of-righteousness-hypothesis",
       "apocalyptic-repair-theology",
       "religion-for-conscious-robots",
       "divine-will-and-self-authorizing-power",
@@ -18884,6 +18890,7 @@
       "melchizedek-priesthood-and-transmission",
       "manuscripts-movements-and-survival",
       "flood-inheritance-and-deep-time",
+      "daniel-jubilee-and-the-teachers-time",
       "onias-egypt-and-priestly-continuity",
       "living-jesus-thomas-john-and-synoptics",
       "contested-memories-of-catastrophe",
@@ -18892,7 +18899,8 @@
       "topic-traditions",
       "reading-paths",
       "book-contents",
-      "research-board"
+      "research-board",
+      "earlier-teacher-displaced-biography"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
@@ -19006,7 +19014,7 @@
       "thomas-sayings-and-transmission",
       "rival-continuations-and-restoration"
     ],
-    "backlinkCount": 24,
+    "backlinkCount": 25,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
@@ -19031,7 +19039,8 @@
       "book-contents",
       "parallel-timelines",
       "research-board",
-      "intellectual-debts"
+      "intellectual-debts",
+      "earlier-teacher-displaced-biography"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/tor-thomas-and-gnostic-transmission.md",
@@ -19882,7 +19891,7 @@
         "sha256": "3fc9093724feb181cfb3b6aa5d0791dca0903376d1055565babd1cf2f85d77b2"
       }
     ],
-    "readMinutes": 13,
+    "readMinutes": 14,
     "related": [
       "jesus-teacher-of-righteousness-hypothesis",
       "exodus-to-temple-competing-chronologies",
@@ -19892,13 +19901,15 @@
       "apocalyptic-repair-theology",
       "scripture-power-and-repair",
       "christ-as-an-inner-model",
+      "sacred-inheritance-and-rival-continuations",
       "daniel-and-teacher-of-righteousness",
       "ai-re-dates-dead-sea-scrolls"
     ],
-    "backlinkCount": 10,
+    "backlinkCount": 12,
     "backlinks": [
       "home",
       "jesus-teacher-of-righteousness-hypothesis",
+      "sacred-inheritance-and-rival-continuations",
       "onias-egypt-and-priestly-continuity",
       "james-and-contested-succession",
       "connected-arguments",
@@ -19906,7 +19917,8 @@
       "source-atlas",
       "museum-trails",
       "topic-origins",
-      "book-contents"
+      "book-contents",
+      "earlier-teacher-displaced-biography"
     ],
     "publication": {
       "sourceUrl": "https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
@@ -23271,5 +23283,42 @@
       "cosmic-thought-and-transcendence"
     ],
     "backlinkCount": 4
+  },
+  {
+    "slug": "earlier-teacher-displaced-biography",
+    "title": "Earlier-Teacher and Displaced-Biography Hypothesis",
+    "kind": "Navigator",
+    "category": "jesus",
+    "topic": "Jesus & early communities",
+    "updated": "2026-10-24",
+    "integrated": "2026-10-24",
+    "connectArgument": false,
+    "summary": "An overview of the same-founder conjecture: retain pre-Christian manuscript evidence, investigate a later relocation of the founder biography, and compare Daniel, covenant, Johannine, healing and calendar traditions.",
+    "claimType": "Historical identity and biographical-displacement conjecture",
+    "path": "developed/earlier-teacher-displaced-biography.md",
+    "tags": [
+      "jesus",
+      "navigation",
+      "public-backup"
+    ],
+    "aliases": [],
+    "editionGenerated": true,
+    "publicationEdition": "2026.10.03-public-corpus-2-conjecture",
+    "sourceFiles": [
+      "developed/earlier-teacher-displaced-biography.md"
+    ],
+    "references": [],
+    "readMinutes": 4,
+    "attribution": "AI-assisted authorial exposition. Original source wording and source dates remain separately inspectable.",
+    "xrRoomId": "theology-earlier-teacher-displaced-biography",
+    "xrDeckId": "theology-reader",
+    "related": [
+      "jesus-teacher-of-righteousness-hypothesis",
+      "daniel-jubilee-and-the-teachers-time",
+      "sacred-inheritance-and-rival-continuations",
+      "tor-thomas-and-gnostic-transmission"
+    ],
+    "backlinks": [],
+    "backlinkCount": 0
   }
 ]
