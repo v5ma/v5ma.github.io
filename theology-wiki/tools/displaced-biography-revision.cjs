@@ -63,7 +63,7 @@ function publish(ref,base=root){
  const row={slug:p.slug,title:p.title,kind:p.kind,category:p.category,sourcePath:source,sourceSha256:hash(bytes),sourceBytes:bytes.length,archivePath:'public-corpus/pages/'+p.slug+'.md',readerUrl:cfg.reader+'?page='+p.slug,sourceUrl:url+'/blob/master/'+enc(source),sourceHistoryUrl:url+'/commits/master/'+enc(source),exactSourceUrl:url+'/blob/'+ref+'/'+enc(source),sourceRevision:ref,sourceCommitterDate:date,canonicalSourcePath:canonical,canonicalSourceUrl:url+'/blob/master/'+enc(canonical),canonicalHistoryUrl:url+'/commits/master/'+enc(canonical),canonicalSha256:hash(canonicalBytes),archiveSha256:hash(bytes),archiveBytes:bytes.length,archiveUrl:url+'/blob/master/theology-wiki/public-corpus/pages/'+p.slug+'.md'};
  records.push(row);
  for(const s of [canonical,source]){assert(!sources.some(x=>x.path===s));const b=fs.readFileSync(path.join(site,s));sources.push({path:s,bytes:b.length,sha256:hash(b),exactUrl:url+'/blob/'+ref+'/'+enc(s)});}
- sources.sort((a,b)=>a.path.localeCompare(b.path));
+ // Preserve existing source-record order; the new records append deterministically.
  meta.indexedPages=records.length;meta.markdownSources=sources.length;meta.indexSha256=hash(serialize(records));
  meta.additions.push({sourceRevision:ref,sourceCommitterDate:date,sourceCommitUrl:url+'/commit/'+ref,pages:[p.slug],navigationPages:[],markdownSources:[canonical,source].sort(),scope:'One hypothesis overview; prior records are preserved. Three separately recorded article amendments retain their old bodies.'});
  write(row.archivePath,bytes.toString());write('public-corpus/page-index.json',records);write('public-corpus/source-manifest.json',sources);write('public-corpus/snapshot.json',meta);

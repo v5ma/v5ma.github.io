@@ -19,6 +19,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 - [4b755fd5b6c1da17b43e6c206da4f7d9631b856f](https://github.com/v5ma/v5ma.github.io/commit/4b755fd5b6c1da17b43e6c206da4f7d9631b856f), Git committer date 2026-10-11T12:15:48-07:00: [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md).
 - [effb9043b8613ed540fd4f6a5a7663f0d28b5c68](https://github.com/v5ma/v5ma.github.io/commit/effb9043b8613ed540fd4f6a5a7663f0d28b5c68), Git committer date 2026-10-22T22:54:21-07:00: [exodus-to-temple-competing-chronologies](pages/exodus-to-temple-competing-chronologies.md).
+- [a28d99a6f4eca0c4c1efa85584b3688d7ef37c94](https://github.com/v5ma/v5ma.github.io/commit/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94), Git committer date 2026-10-24T00:13:22-07:00: [daniel-jubilee-and-the-teachers-time](pages/daniel-jubilee-and-the-teachers-time.md), [jesus-teacher-of-righteousness-hypothesis](pages/jesus-teacher-of-righteousness-hypothesis.md), [sacred-inheritance-and-rival-continuations](pages/sacred-inheritance-and-rival-continuations.md).
 
 <!-- /bounded-article-amendments -->
 
@@ -770,7 +771,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [El in Ancient Egypt](pages/el-in-ancient-egypt.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=el-in-ancient-egypt) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/el-in-ancient-egypt.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/el-in-ancient-egypt.md).
 
-[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/4b755fd5b6c1da17b43e6c206da4f7d9631b856f/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
+[Jesus as the Teacher of Righteousness](pages/jesus-teacher-of-righteousness-hypothesis.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=jesus-teacher-of-righteousness-hypothesis) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94/theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md).
 
 [Moses, the volcano and Exodus chronology](pages/moses-volcano-and-exodus-chronology.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=moses-volcano-and-exodus-chronology) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/moses-volcano-and-exodus-chronology.md).
 
@@ -792,7 +793,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [Samaritan texts and sacred authority](pages/samaritan-texts-and-sacred-authority.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=samaritan-texts-and-sacred-authority) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/samaritan-texts-and-sacred-authority.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/samaritan-texts-and-sacred-authority.md).
 
-[Sacred inheritance and rival continuations](pages/sacred-inheritance-and-rival-continuations.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=sacred-inheritance-and-rival-continuations) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md).
+[Sacred inheritance and rival continuations](pages/sacred-inheritance-and-rival-continuations.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=sacred-inheritance-and-rival-continuations) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94/theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md).
 
 [The Teacher, Thomas and Gnostic transmission](pages/tor-thomas-and-gnostic-transmission.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=tor-thomas-and-gnostic-transmission) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/tor-thomas-and-gnostic-transmission.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/tor-thomas-and-gnostic-transmission.md).
 
@@ -814,7 +815,7 @@ The full snapshot revision above remains the baseline. Only the articles and Mar
 
 [Flood inheritance and deep time](pages/flood-inheritance-and-deep-time.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=flood-inheritance-and-deep-time) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/flood-inheritance-and-deep-time.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/flood-inheritance-and-deep-time.md).
 
-[Daniel, jubilee and the Teacher's time](pages/daniel-jubilee-and-the-teachers-time.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=daniel-jubilee-and-the-teachers-time) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md).
+[Daniel, jubilee and the Teacher's time](pages/daniel-jubilee-and-the-teachers-time.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=daniel-jubilee-and-the-teachers-time) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94/theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md).
 
 [Onias, Egypt and priestly continuity](pages/onias-egypt-and-priestly-continuity.md) - [Live reader](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=onias-egypt-and-priestly-continuity) - [Source history](https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/content/developed/onias-egypt-and-priestly-continuity.md) - [Exact source](https://github.com/v5ma/v5ma.github.io/blob/5d8b04025f111559c58321f7b8d1522d88f364a7/theology-wiki/content/developed/onias-egypt-and-priestly-continuity.md).
 
@@ -916,3 +917,10 @@ The collection now includes 440 reader pages. The original full-snapshot revisio
 
 [Exact article source](https://github.com/v5ma/v5ma.github.io/blob/59d834212b181cbae8c1e865bf5ca72242800a4a/theology-wiki/content/developed/gnostic-canonical-gospels-telling-the-truth.md). [Canonical source](https://github.com/v5ma/v5ma.github.io/blob/master/theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md).
 <!-- /gospel-synthesis-addition -->
+
+
+<!-- displaced-biography-overview -->
+## Earlier-Teacher overview addition
+
+[Earlier-Teacher and Displaced-Biography Hypothesis](pages/earlier-teacher-displaced-biography.md) is an additive overview at [source revision a28d99a6f4eca0c4c1efa85584b3688d7ef37c94](https://github.com/v5ma/v5ma.github.io/commit/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94), Git committer date 2026-10-24T00:13:22-07:00. This date records this edition, not the origin or truth of the hypothesis. The corpus now contains 441 reader pages and preserves all 354 original conversations.
+<!-- /displaced-biography-overview -->

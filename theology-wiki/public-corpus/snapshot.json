@@ -9,10 +9,10 @@
   "sourceCommitApi": "https://api.github.com/repos/v5ma/v5ma.github.io/git/commits/5d8b04025f111559c58321f7b8d1522d88f364a7",
   "corpusHistoryUrl": "https://github.com/v5ma/v5ma.github.io/commits/master/theology-wiki/public-corpus/snapshot.json",
   "reader": "https://wiki.onlyonedevil.com/theology-wiki/san-reader",
-  "indexedPages": 440,
+  "indexedPages": 441,
   "sourceConversations": 354,
-  "markdownSources": 565,
-  "indexSha256": "e2e52bb69ef0645ed8a750677bca9152a4e05f35f5632dc42be92557873323ab",
+  "markdownSources": 567,
+  "indexSha256": "ee0446f5bf3ce3e715415ac4cdb57ab885a8b96a28abc5819214b8c3e0ec657d",
   "projection": "Article Markdown is copied byte-for-byte. Conversation projections include the full exported conversation, with a wrapper and normalized line endings; raw transcript hashes are recorded separately.",
   "externalTimestampStatus": "No external trusted timestamp, DOI deposit or independent archive capture is claimed.",
   "amendments": [
@@ -38,6 +38,24 @@
       "markdownSources": [
         "theology-wiki/content/developed/exodus-to-temple-competing-chronologies.md",
         "theology-wiki/editorial/authorial-articles/exodus-to-temple-competing-chronologies.md"
+      ]
+    },
+    {
+      "sourceRevision": "a28d99a6f4eca0c4c1efa85584b3688d7ef37c94",
+      "sourceCommitterDate": "2026-10-24T00:13:22-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94",
+      "pages": [
+        "daniel-jubilee-and-the-teachers-time",
+        "jesus-teacher-of-righteousness-hypothesis",
+        "sacred-inheritance-and-rival-continuations"
+      ],
+      "markdownSources": [
+        "theology-wiki/content/developed/daniel-jubilee-and-the-teachers-time.md",
+        "theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md",
+        "theology-wiki/content/developed/sacred-inheritance-and-rival-continuations.md",
+        "theology-wiki/editorial/authorial-articles/daniel-jubilee-and-the-teachers-time.md",
+        "theology-wiki/editorial/authorial-articles/jesus-teacher-of-righteousness-hypothesis.md",
+        "theology-wiki/editorial/authorial-articles/sacred-inheritance-and-rival-continuations.md"
       ]
     }
   ],
@@ -80,6 +98,20 @@
         "theology-wiki/editorial/authorial-articles/gnostic-canonical-gospels-telling-the-truth.md",
         "theology-wiki/research-reports/gospel-synthesis-20261011/source-notes.md"
       ]
+    },
+    {
+      "sourceRevision": "a28d99a6f4eca0c4c1efa85584b3688d7ef37c94",
+      "sourceCommitterDate": "2026-10-24T00:13:22-07:00",
+      "sourceCommitUrl": "https://github.com/v5ma/v5ma.github.io/commit/a28d99a6f4eca0c4c1efa85584b3688d7ef37c94",
+      "pages": [
+        "earlier-teacher-displaced-biography"
+      ],
+      "navigationPages": [],
+      "markdownSources": [
+        "theology-wiki/content/developed/earlier-teacher-displaced-biography.md",
+        "theology-wiki/editorial/publication-articles/earlier-teacher-displaced-biography.md"
+      ],
+      "scope": "One hypothesis overview; prior records are preserved. Three separately recorded article amendments retain their old bodies."
     }
   ],
   "additionScope": "The full snapshot revision remains the original baseline. Each listed addition and its explicitly listed navigation updates has its own committed source revision. Every unrelated page record and original source conversation keeps its previously recorded version."
