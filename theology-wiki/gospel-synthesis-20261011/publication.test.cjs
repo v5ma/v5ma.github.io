@@ -9,6 +9,11 @@ function fixture(run){
  const commit=()=>{git('add','.');git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-m','Fixture source');return git('rev-parse','HEAD');};
  try{
   git('init');write('editorial/publication.json',{owner:'Fixture',repository:'example/repository',branch:'master',reader:'https://example.invalid/reader',pages:[]});
+  // This synthetic corpus predates later releases. Identity receipts exercise the
+  // real historical readers without weakening their production fail-closed rules.
+  write('editorial/political-studies-20261024.json',{slugs:[],previousCorpus:{hashes:{}}});
+  write('editorial/displaced-biography-20261024.json',{articles:[],overview:{slug:'absent-fixture-overview'},previousCorpus:{hashes:{}}});
+  write('editorial/joseph-revision-20261023.json',{previous_corpus:{hashes:{}}});
   const pages=[['home','Library home'],['topic-jesus','Topic collection'],['unrelated','Developed article']].map(([slug,kind])=>({slug,title:slug,kind,category:'jesus',path:slug==='home'?'home.md':'developed/'+slug+'.md'}));
   write('data/page-index.json',pages);for(const p of pages)write('content/'+p.path,'# '+p.title+'\n\nOriginal '+p.slug+' text.\n');
   const baseline=commit();P.snapshot(root,baseline);commit();
@@ -93,3 +98,9 @@ test('A declared exact home count update reconstructs its immutable predecessor 
  write('content/home.md',read('content/home.md').replace('31 articles.','32 articles.'));assert.throws(()=>G.restoreNavigation(read('content/home.md'),'home',jsonArticle(root,spec.slug),spec),/Navigation count update/);
 }));
 function jsonArticle(root,slug){return JSON.parse(fs.readFileSync(path.join(root,'data/page-index.json'))).find(p=>p.slug===slug);}
+
+test('A missing later-release receipt still fails closed without corpus writes',()=>fixture(({root,commit,spec,prepare})=>{
+ prepare();G.apply(root,commit(),spec);const before=corpusState(root);
+ fs.unlinkSync(path.join(root,'editorial/displaced-biography-20261024.json'));
+ assert.throws(()=>G.verify(root,spec),/ENOENT/);assert.deepEqual(corpusState(root),before);
+}));
