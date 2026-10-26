@@ -31,10 +31,13 @@ function enhance(page){
    const digest=await crypto.subtle.digest('SHA-256',await res.arrayBuffer());const value=Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('');
    status.textContent=value===proof.sha256?'Verified: the served Markdown matches this archived source hash.':'The served Markdown does not match this archived hash. The page or snapshot may have changed; inspect the history.';
   }catch(e){status.textContent=e.message;}finally{button.disabled=false;}});
-  details.append(button,status);panel.append(details);host.after(panel);
+  details.append(button,status);panel.append(details);
+  // Keep the homepage reading choices first; article pages retain their leading proof panel.
+  const homeChoices=page.slug==='home'?document.querySelector('#article-body .depth-featured'):null;
+  if(homeChoices)homeChoices.after(panel);else host.after(panel);
  }
  const strip=document.querySelector('.wiki-family-strip');
- if(strip&&!document.getElementById('publication-nav')){const nav=document.createElement('span');nav.id='publication-nav';nav.className='publication-nav';nav.append(internal('Computational-God conjectures','computational-god-capabilities-bridge'),internal('Public backup','publication-history'));strip.append(nav);}
+ if(strip&&!document.getElementById('publication-nav')){const nav=document.createElement('span');nav.id='publication-nav';nav.className='publication-nav';nav.append(internal('Computational-God conjectures','computational-god-capabilities-bridge'),internal('Public backup','publication-history'));(strip.querySelector('.depth-site-menu>div')||strip).append(nav);}
  if(page.slug==='home'){
   const body=document.getElementById('article-body');body?.querySelector('#publication-home')?.remove();
   const section=document.createElement('section');section.id='publication-home';section.className='publication-home';const heading=document.createElement('h2');heading.textContent='Conjectures about creation and consciousness, with a verifiable record';
