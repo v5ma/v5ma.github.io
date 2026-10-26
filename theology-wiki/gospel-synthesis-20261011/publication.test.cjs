@@ -22,7 +22,7 @@ function fixture(run){
  spec.baselineHashes=Object.fromEntries(['public-corpus/page-index.json','public-corpus/source-manifest.json','public-corpus/snapshot.json','public-corpus/README.md'].map(p=>[p,G.hash(read(p))]));
   const prepare=()=>{write('research-reports/gospel/claim-audit.md','Claim audit with source limits.\n');write('data/page-index.json',[...json('data/page-index.json'),addition]);write('content/'+addition.path,'# Gospel study\n\nFull comparative article.\n');write('editorial/authorial-articles/'+spec.slug+'.md','Full comparative article.\n');for(const p of pages.filter(p=>p.slug!=='unrelated'))write('content/'+p.path,read('content/'+p.path)+'[['+spec.slug+'|'+addition.title+']]: '+addition.summary+'\n\n');};
   run({root,write,read,json,git,commit,baseline,spec,prepare});
- }finally{fs.rmSync(site,{recursive:true,force:true});}
+ }finally{fs.rmSync(site,{recursive:true,force:true,maxRetries:3,retryDelay:100});}
 }
 function corpusState(root){const out={};function visit(d){for(const x of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,x.name);if(x.isDirectory())visit(p);else out[path.relative(root,p)]=G.hash(fs.readFileSync(p));}}visit(path.join(root,'public-corpus'));out['data/page-index.json']=G.hash(fs.readFileSync(path.join(root,'data/page-index.json')));return out;}
 test('One addition updates only its article and two navigators, preserving other exact histories',()=>fixture(({root,read,json,commit,baseline,spec,prepare})=>{
