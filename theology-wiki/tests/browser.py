@@ -370,4 +370,3 @@ with sync_playwright() as tool:
     finally:
         (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'mobileLayouts':LAYOUTS,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
         browser.close()
-

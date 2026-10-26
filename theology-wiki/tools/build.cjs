@@ -320,4 +320,3 @@ function patchReaders(){
 }
 if(require.main===module){try{console.log(JSON.stringify(build(),null,2));}catch(e){console.error(e.stack);process.exitCode=1;}}
 module.exports={build,category};
-

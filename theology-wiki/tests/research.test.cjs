@@ -83,6 +83,5 @@ require('./reader-links.test.cjs');
 require('./displaced-biography.test.cjs');
 require('./political-studies.test.cjs');
 
-
 // The October 2026 linked method supplement has its own content and navigation contracts.
 require('../structural-equivalence/test.cjs');
