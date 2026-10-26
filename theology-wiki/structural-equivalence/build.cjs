@@ -26,7 +26,7 @@ function render(md){
  if(!title||toc.length<8)throw Error('Incomplete authorial supplement');return {title,body,toc};
 }
 function integrateNavigation(){
- const block='<!-- structural-equivalence-navigation:start -->\n    <nav class="wiki-family-strip" aria-label="Method and historical genealogy">\n      <a class="wiki-family-link" href="./structural-equivalence/index.html">New: Structural equivalence and the genealogy of ideas</a>\n      <a class="wiki-family-link" href="./comparative-religion/egypt-emanation/egypt-iran-contact.html">Egypt and Iran: Ma’at, Asha and genealogy</a>\n      <a class="wiki-family-link" href="./comparative-religion/egypt-emanation/moses-jesus-mammon/index.html">Egyptian care, Moses, Jesus and Mammon</a>\n    </nav>\n    <!-- structural-equivalence-navigation:end -->';
+ const block='<!-- structural-equivalence-navigation:start -->\n    <nav class="wiki-family-strip" style="z-index:0" aria-label="Method and historical genealogy">\n      <a class="wiki-family-link" href="./structural-equivalence/index.html">New: Structural equivalence and the genealogy of ideas</a>\n      <a class="wiki-family-link" href="./comparative-religion/egypt-emanation/egypt-iran-contact.html">Egypt and Iran: Ma’at, Asha and genealogy</a>\n      <a class="wiki-family-link" href="./comparative-religion/egypt-emanation/moses-jesus-mammon/index.html">Egyptian care, Moses, Jesus and Mammon</a>\n    </nav>\n    <!-- structural-equivalence-navigation:end -->';
  for(const name of ['index.html','san-reader.html']){
   const file=path.join(WIKI,name);let text=fs.readFileSync(file,'utf8');
   const re=/<!-- structural-equivalence-navigation:start -->[\s\S]*?<!-- structural-equivalence-navigation:end -->/;
