@@ -354,6 +354,8 @@ with sync_playwright() as tool:
         run_connected_checks(page, ctx, open_page, check, OUT, BASE)
         from restoration_checks import run_restoration_checks
         run_restoration_checks(page, ctx, open_page, check, OUT, BASE)
+        from structural_equivalence_checks import run_structural_equivalence_checks
+        run_structural_equivalence_checks(page, check, screenshot, OUT, ORIGIN)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback
@@ -368,3 +370,4 @@ with sync_playwright() as tool:
     finally:
         (OUT/'browser-report.json').write_text(json.dumps({'passed':len(CHECKS),'checks':CHECKS,'errors':ERRORS,'origin':ORIGIN,'mobileLayouts':LAYOUTS,'scope':'Native Chromium HTTP scripts, actual source fetching and SHA verification, actual local images, and real-origin storage. One separate storage-denial fixture is explicitly injected.'},indent=2))
         browser.close()
+
