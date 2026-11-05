@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "scope": "Additive authorial method explanation and visible navigation; prior articles, conversation corpus and main search/listening indexes are unchanged.",
+  "source": "article.md",
+  "sourceSha256": "b1a5c50f099d5b56fbbda6ff3ea7963e1169f18d911ec3a9fa41f5ea4c5be8ab",
+  "outputs": [
+    {
+      "path": "index.html",
+      "sha256": "b121790a32fe6561772dd6e370ec0122d5df25bd30c845f0ab725cf86cba27f3"
+    },
+    {
+      "path": "style.css",
+      "sha256": "03679ab1a2932b0944850626d16703ec012a14720c91b14b3372064af7c42d53"
+    }
+  ],
+  "sections": [
+    "signature-clusters-and-narrative-architecture",
+    "what-plagiarism-equivalence-means",
+    "scientific-ideas-and-disputed-invention",
+    "biblical-narratives-as-members-of-a-larger-family",
+    "egyptian-and-iranian-religious-relationships",
+    "egyptian-care-moses-and-jesus-on-wealth",
+    "state-behavior-and-genocide-equivalence",
+    "authorial-confidence-and-independent-assessment"
+  ]
+}

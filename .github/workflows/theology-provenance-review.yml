@@ -55,6 +55,41 @@ jobs:
           developed='theology-wiki/content/developed/jesus-teacher-of-righteousness-hypothesis.md'
           assert canonical=='theology-wiki/'+receipt['canonical']['path']
           approved={canonical:receipt['canonical']['sha256'],developed:receipt['files'][developed.removeprefix('theology-wiki/')]['after']}
+          # Recognize only the already-recorded October 23/24 appendices. Pin the
+          # receipts themselves; a new edit cannot manufacture a wider exception.
+          def digest(data): return hashlib.sha256(data).hexdigest()
+          def pinned_receipt(path,blob):
+            assert subprocess.check_output(['git','hash-object',path],text=True).strip()==blob,'Amendment receipt changed: '+path
+            return json.loads(Path(path).read_text())
+          displaced=pinned_receipt('theology-wiki/editorial/displaced-biography-20261024.json','6f6b62620d3927bd89f90a6e8dc66bcabd524801')
+          joseph=pinned_receipt('theology-wiki/editorial/joseph-revision-20261023.json','74a072666ba39ee937daad3267bd4ef5c5d0455c')
+          slugs={'jesus-teacher-of-righteousness-hypothesis','daniel-jubilee-and-the-teachers-time','sacred-inheritance-and-rival-continuations'}
+          assert displaced['schema']==1 and displaced['reviewBase']=='7e40a2b0fb95bfe487539d8f72fa8d51100cfe51'
+          assert {a['slug'] for a in displaced['articles']}==slugs and len(displaced['articles'])==3
+          assert joseph['schema_version']==1 and joseph['slug']=='exodus-to-temple-competing-chronologies'
+          assert joseph['review_base_commit']=='247c0f7679797ce98669026c37da74440c9b5e85'
+          amendments={}
+          for a in displaced['articles']:
+            c=a['canonical'];slug=a['slug'];p='theology-wiki/'+c['path']
+            assert p=='theology-wiki/editorial/authorial-articles/'+slug+'.md'
+            amendments[p]={'before':c['before'],'after':c['after'],'prefixBytes':c['beforeBytes']}
+            d='content/developed/'+slug+'.md'
+            amendments['theology-wiki/'+d]=displaced['files'][d]
+          c=joseph['canonical'];slug=joseph['slug'];p='theology-wiki/'+c['path']
+          assert p=='theology-wiki/editorial/authorial-articles/'+slug+'.md'
+          amendments[p]={'before':c['preserved_sha256'],'after':c['sha256'],'prefixBytes':c['preserved_bytes']}
+          d='content/developed/'+slug+'.md'
+          amendments['theology-wiki/'+d]=joseph['files'][d]
+          assert len(amendments)==8
+          # Prove each present body and every preserved canonical prefix before
+          # comparing its predecessor with the older immutable source baseline.
+          for p,a in amendments.items():
+            current=Path(p).read_bytes()
+            assert digest(current)==a['after'],'Unapproved appendix bytes: '+p
+            if 'prefixBytes' in a:
+              assert digest(current[:a['prefixBytes']])==a['before'],'Original canonical prefix changed: '+p
+          assert amendments[canonical]['before']==approved[canonical]
+          assert amendments[developed]['before']==approved[developed]
           gospel=json.loads(Path('theology-wiki/gospel-comparison-20261011/publication-receipt.json').read_text())
           gospel_navigation=gospel['navigation']
           synthesis=json.loads(Path('theology-wiki/gospel-synthesis-20261011/publication-receipt.json').read_text())
@@ -67,13 +102,14 @@ jobs:
 
           assert set(gospel_navigation)=={'theology-wiki/content/home.md','theology-wiki/content/developed/topic-jesus.md'}
           assert gospel['baseline']=='22dd281d9296e5ca5794a8cd83c3dde47147337f'
-          checked=[];revised=[];navigation_revised=[]
+          checked=[];revised=[];navigation_revised=[];appendix_revised=[]
           for item in subprocess.check_output(['git','ls-tree','-r',base],text=True).splitlines():
             info,p=item.split('\t',1)
             if not any(p.startswith(x) for x in prefixes):continue
             assert Path(p).is_file(),p
             if p in approved:
-              assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==approved[p],'Unapproved Teacher revision: '+p
+              assert amendments[p]['before']==approved[p],'Unapproved Teacher revision chain: '+p
+              appendix_revised.append(p)
               if p==canonical:
                 archived='theology-wiki/'+receipt['historical_canonical']['path']
                 assert info.split()[2]==receipt['historical_canonical']['git_blob']==subprocess.check_output(['git','hash-object',archived],text=True).strip(),'Historical canonical changed'
@@ -81,6 +117,13 @@ jobs:
                 prior=subprocess.check_output(['git','show',base+':'+p])
                 assert hashlib.sha256(prior).hexdigest()==receipt['files'][p.removeprefix('theology-wiki/')]['before'],'Unexpected Teacher baseline'
               revised.append(p)
+            elif p in amendments:
+              a=amendments[p]
+              original=subprocess.check_output(['git','show',base+':'+p])
+              assert digest(original)==a['before'],'Unexpected appendix baseline: '+p
+              if 'prefixBytes' in a:
+                assert Path(p).read_bytes()[:a['prefixBytes']]==original,'Original canonical bytes changed: '+p
+              appendix_revised.append(p)
             elif p in gospel_navigation:
               nav=gospel_navigation[p]
               assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==synthesis_navigation[p]['after'],'Unapproved Gospel synthesis navigation: '+p
@@ -90,9 +133,10 @@ jobs:
               assert info.split()[2]==subprocess.check_output(['git','hash-object',p],text=True).strip(),'Original changed: '+p
               checked.append(p)
           assert sorted(revised)==sorted(approved),'Both approved Teacher paths must exist in the original baseline'
+          assert sorted(appendix_revised)==sorted(amendments),'Exactly four recorded article appendices must retain their predecessors'
           assert sorted(navigation_revised)==sorted(gospel_navigation),'Both Gospel navigators must retain their original baselines'
-          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved},'gospelNavigationAddition':gospel_navigation,'gospelSynthesisNavigationAddition':synthesis_navigation},indent=2)+'\n')
-          print('Verified',len(checked),'unchanged original files and exactly two approved Teacher revision paths plus two source-pinned Gospel navigators.')
+          Path('publication-test-output/preservation.json').write_text(json.dumps({'baseline':base,'unchangedFiles':len(checked),'paths':checked,'approvedTeacherRevision':{'pullRequest':receipt['pull_request'],'sha256':approved},'recordedArticleAppendices':amendments,'gospelNavigationAddition':gospel_navigation,'gospelSynthesisNavigationAddition':synthesis_navigation},indent=2)+'\n')
+          print('Verified',len(checked),'unchanged original files, exactly two approved Teacher revision paths, four recorded article appendices and two source-pinned Gospel navigators.')
           PY
       - name: Build the actual Cloudflare distribution
         run: node scripts/cloudflare-theology-build.mjs cf-validation
