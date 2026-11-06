@@ -1,0 +1,85 @@
+{
+  "schema": "theology-prophecy-supplement/v1",
+  "status": "release_edition",
+  "publicationDate": "2026-11-06",
+  "date": "2026-11-05",
+  "baseRevision": "b121d3dad8c339097fe2acf4068f7f61337a2a09",
+  "scope": "Standalone supplemental section; main reader search and listening are not regenerated.",
+  "pages": [
+    {
+      "slug": "prophecy-partial-success-and-causal-feedback",
+      "title": "Prophecy, partial success and causal feedback",
+      "source": "sources/prophecy-partial-success-and-causal-feedback.md",
+      "sourceSha256": "80cf35f4c1dc2e3c5da8387d3ea19fcdc36b500544d1e91df3ef5035fe4afee7",
+      "words": 2902,
+      "readMinutes": 14,
+      "sections": 13
+    },
+    {
+      "slug": "prophecy-recurring-patterns-and-corrective-word",
+      "title": "Prophecy, recurring patterns and the corrective word",
+      "source": "sources/prophecy-recurring-patterns-and-corrective-word.md",
+      "sourceSha256": "cd3ca75e03c29097ef28b49dec480d55dd6304fab1119e2805d1db639b17d5b5",
+      "words": 3247,
+      "readMinutes": 15,
+      "sections": 13
+    },
+    {
+      "slug": "pattern-validation-protocol",
+      "title": "Testing recurring prophetic patterns without demanding perfect prediction",
+      "source": "research/pattern_validation_protocol.md",
+      "sourceSha256": "12a7d81fbe4902e81b5b8eedcf07550ef4d0d5849ac1272f488a6206b2428f1a",
+      "words": 3160,
+      "readMinutes": 15,
+      "sections": 10
+    }
+  ],
+  "searchSections": 36,
+  "wikilinks": [
+    "antichrist-as-a-pattern-of-conduct",
+    "apocalyptic-repair-theology",
+    "biblical-antichrist-interpretation",
+    "christ-as-an-inner-model",
+    "computational-argument-map",
+    "computational-divine-immanence",
+    "forecast-ledger",
+    "jesus-teacher-of-righteousness-hypothesis",
+    "prophecy-partial-success-and-causal-feedback",
+    "prophecy-recurring-patterns-and-corrective-word",
+    "religion-for-conscious-robots",
+    "trump-first-beast-of-revelation",
+    "ukraine-russia-forecast-record"
+  ],
+  "outputs": [
+    {
+      "path": "prophecy-partial-success-and-causal-feedback.html",
+      "bytes": 27706,
+      "sha256": "baf063821409eca1bf7181a463cb16d49eeb393aeef0d59c23ac9cb21d10df91"
+    },
+    {
+      "path": "prophecy-recurring-patterns-and-corrective-word.html",
+      "bytes": 30629,
+      "sha256": "fe429dc273354582fba55866997a4320b2d179d9ac939170f8a0d95eb3fb2719"
+    },
+    {
+      "path": "pattern-validation-protocol.html",
+      "bytes": 29029,
+      "sha256": "3d02bf93c567091ded1e4a4deac11c67e9b6509b8227b68dd91b96076894c4e5"
+    },
+    {
+      "path": "index.html",
+      "bytes": 5269,
+      "sha256": "3424319260a6e2e88932c681f7b278645d76b949b02da6c4140d1c1514efc82f"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 73394,
+      "sha256": "5d0f92351c80b0d979dd41001bf2421fd8236e5feebb4890fbf77da88595f4ac"
+    },
+    {
+      "path": "search-data.js",
+      "bytes": 72121,
+      "sha256": "c0afa286e3410bcbd38356d48d2853e5e6a08e52f8a0e9b3ac7a48dc045b506b"
+    }
+  ]
+}
