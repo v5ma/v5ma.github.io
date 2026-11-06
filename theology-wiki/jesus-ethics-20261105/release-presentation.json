@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-06",
+  "scope": "Publication labels and cross-navigation only. Canonical sources, research data and search text unchanged.",
+  "amendments": [
+    {
+      "path": "prophecy-patterns-20261105/README.md",
+      "beforeSha256": "e6c75d2709fc60fa3c04d3784d134a16d8be9fd31969a466cf51b01a1bfd4f7f",
+      "afterSha256": "a283968122a5af25266060d93fc9e9e8edb729927ee7b7d36e39c4e5b0deaca8"
+    },
+    {
+      "path": "prophecy-patterns-20261105/build-report.json",
+      "beforeSha256": "5066a8e8de23e9be4dc89df6c6c348fa84fe86aa3056a4d73ebbed10f825737f",
+      "afterSha256": "8b7e282704edb3202622041e6a2c080034365bca7caa21c728031b2d221c2a51"
+    },
+    {
+      "path": "prophecy-patterns-20261105/build.cjs",
+      "beforeSha256": "c35d49647f695bac189a93c2f1852f6cc189ad14ea31173d18f23f508a16f8ee",
+      "afterSha256": "1fa08752b927c3a918294cfc9d7df24ead15a2e95a6df214762a6e61df71dff1"
+    },
+    {
+      "path": "prophecy-patterns-20261105/index.html",
+      "beforeSha256": "874cee4ad753672f07ce4852168eb4abe63ae9220739f51fdb3de671572f4bc7",
+      "afterSha256": "3424319260a6e2e88932c681f7b278645d76b949b02da6c4140d1c1514efc82f"
+    },
+    {
+      "path": "prophecy-patterns-20261105/manifest.json",
+      "beforeSha256": "0ce31bca62c239f1e13bb0d505ac104b7de3432d4c6088834e3e5bd380622174",
+      "afterSha256": "9d73d34dde74f26731c965ee0a0b18a67c4d6a9633d77dedd5fbc2221ea3bc02"
+    },
+    {
+      "path": "prophecy-patterns-20261105/pattern-validation-protocol.html",
+      "beforeSha256": "123559d35ef462d1e958b1f4fcac06a0c3d8c384c9b3581c47584ffdd0066715",
+      "afterSha256": "3d02bf93c567091ded1e4a4deac11c67e9b6509b8227b68dd91b96076894c4e5"
+    },
+    {
+      "path": "prophecy-patterns-20261105/prophecy-partial-success-and-causal-feedback.html",
+      "beforeSha256": "c0fd14474423370ff9354a947e57c8286c9cfb1dae70b14c76d4c5c062035cf5",
+      "afterSha256": "baf063821409eca1bf7181a463cb16d49eeb393aeef0d59c23ac9cb21d10df91"
+    },
+    {
+      "path": "prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html",
+      "beforeSha256": "01aabc17a94b1d5ffb497617bc1faa92ff154e9142a606c25bf4cf7bdce51cca",
+      "afterSha256": "fe429dc273354582fba55866997a4320b2d179d9ac939170f8a0d95eb3fb2719"
+    },
+    {
+      "path": "jesus-ethics-20261105/README.md",
+      "beforeSha256": "b9783d16dbffdf79bb2eccbacaf2fc4637d7d5ebedc341bcd4e1a19dc93fb1e4",
+      "afterSha256": "12d388c8a0dd25ced3b97e0ad97d4bbc4f1c1f4185cb636b6b65ed4408885de5"
+    },
+    {
+      "path": "jesus-ethics-20261105/build-report.json",
+      "beforeSha256": "621a7a5f60efd5dfee4305bfeb8b5fb04e6313776695163424003663f186a364",
+      "afterSha256": "72102e223ea3406312791910bf9797de6c37083183bbe8f01b5365d9ca1f7c2b"
+    },
+    {
+      "path": "jesus-ethics-20261105/build.cjs",
+      "beforeSha256": "a63e0162cf20671f0e7d5fcab521acc61e1b925f141156a02af1372071d59b90",
+      "afterSha256": "f4b2012a5806acd923bf3f41e3365d96b7a5377675bc1d22081e527cacbd35fe"
+    },
+    {
+      "path": "jesus-ethics-20261105/christianity-after-bodily-resurrection.html",
+      "beforeSha256": "6f92279f3f3111be23ec7bfa9db0cdd38789a5f12e8500183d7a914be97f64bb",
+      "afterSha256": "22d872e25209f5b2531c8e5c46ba736b48be311d2678cdcec38fb34d4581d6f0"
+    },
+    {
+      "path": "jesus-ethics-20261105/early-resurrection-accounts-and-source-criticism.html",
+      "beforeSha256": "523e01efa11db787acb9c7d0595fb8c417797093327927e8bbd5441f4299a226",
+      "afterSha256": "3f006ac2434841b8919187088d0fc95f319edb8f5433aabfb09ba1e217871ddb"
+    },
+    {
+      "path": "jesus-ethics-20261105/index.html",
+      "beforeSha256": "d0f6e73a75fc829a0eb5affa89dc80ce04537f286ae7ed096b9e77adeb87bb08",
+      "afterSha256": "28a861c78e23ffb7fe2c1896b48952487a0dfdcb64d82a1393d2ce3874d00593"
+    },
+    {
+      "path": "jesus-ethics-20261105/manifest.json",
+      "beforeSha256": "da0752277b6375a0620dfe37175dd236ce8b5aa8414bdc3903d9c3c222d2c265",
+      "afterSha256": "aedb17ce5359e4589211f2f336bf6c68c173060e6c984090bc7466c9bc7b0f13"
+    },
+    {
+      "path": "jesus-ethics-20261105/would-jesus-oppose-the-resurrection-gospel.html",
+      "beforeSha256": "20477b282a03275ef554a3211f04f0727ce934c93a2e5a557d6eabfb22a26f63",
+      "afterSha256": "a286abff610fdaa8b9a7119e7206efad31292daca3c7b19f76d86f288f61cc97"
+    }
+  ]
+}

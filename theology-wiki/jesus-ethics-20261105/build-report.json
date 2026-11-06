@@ -1,0 +1,94 @@
+{
+  "schema": "theology-jesus-ethics-review/v1",
+  "status": "release_edition",
+  "publicationDate": "2026-11-06",
+  "date": "2026-11-05",
+  "baseRevision": "b121d3dad8c339097fe2acf4068f7f61337a2a09",
+  "scope": "Standalone supplemental section; main reader search and listening are not regenerated.",
+  "pages": [
+    {
+      "slug": "would-jesus-oppose-the-resurrection-gospel",
+      "title": "Would Jesus Oppose the Resurrection Gospel? Kingdom, Mercy, and the Authority of Easter",
+      "source": "sources/would-jesus-oppose-the-resurrection-gospel.md",
+      "sourceSha256": "b6e28067e50393aee2cd5a3aa87beca1f9ece8f1e49e88635b3004ffb0a71f4a",
+      "words": 5810,
+      "readMinutes": 27,
+      "sections": 14
+    },
+    {
+      "slug": "early-resurrection-accounts-and-source-criticism",
+      "title": "Early resurrection accounts and source criticism",
+      "source": "sources/early-resurrection-accounts-and-source-criticism.md",
+      "sourceSha256": "3557d7ad4eedea764bcfa3569b960c69badf7690fe612a85f8119cb07905ba79",
+      "words": 3802,
+      "readMinutes": 18,
+      "sections": 12
+    },
+    {
+      "slug": "christianity-after-bodily-resurrection",
+      "title": "Christianity After Bodily Resurrection? Faith, Formation, and Possible Futures",
+      "source": "sources/christianity-after-bodily-resurrection.md",
+      "sourceSha256": "a2778e7dcaa6bd38f77f24b524116c6061dd987a6bd06a86534762cbf0000d6e",
+      "words": 4433,
+      "readMinutes": 21,
+      "sections": 12
+    }
+  ],
+  "searchSections": 38,
+  "wikilinks": [
+    "apocalypse-of-peter-comparison",
+    "apocalyptic-repair-theology",
+    "biblical-resurrection-interpretations",
+    "christ-as-an-inner-model",
+    "christianity-after-bodily-resurrection",
+    "cognitive-gnosticism",
+    "earlier-teacher-displaced-biography",
+    "early-resurrection-accounts-and-source-criticism",
+    "faith-as-deliberate-joy",
+    "flood-inheritance-and-deep-time",
+    "gnostic-canonical-gospels-telling-the-truth",
+    "inanna-death-and-resurrection",
+    "jesus-teacher-of-righteousness-hypothesis",
+    "jesus-temple-sacrifices-debate",
+    "living-jesus-thomas-john-and-synoptics",
+    "melchizedek-priesthood-and-transmission",
+    "paul-and-the-resurrection",
+    "paul-vs-luke-resurrection",
+    "resurrection-debate-in-christianity",
+    "sacred-inheritance-and-rival-continuations",
+    "scripture-power-and-repair",
+    "tor-thomas-and-gnostic-transmission"
+  ],
+  "outputs": [
+    {
+      "path": "would-jesus-oppose-the-resurrection-gospel.html",
+      "bytes": 53679,
+      "sha256": "a286abff610fdaa8b9a7119e7206efad31292daca3c7b19f76d86f288f61cc97"
+    },
+    {
+      "path": "early-resurrection-accounts-and-source-criticism.html",
+      "bytes": 35725,
+      "sha256": "3f006ac2434841b8919187088d0fc95f319edb8f5433aabfb09ba1e217871ddb"
+    },
+    {
+      "path": "christianity-after-bodily-resurrection.html",
+      "bytes": 42883,
+      "sha256": "22d872e25209f5b2531c8e5c46ba736b48be311d2678cdcec38fb34d4581d6f0"
+    },
+    {
+      "path": "index.html",
+      "bytes": 5647,
+      "sha256": "28a861c78e23ffb7fe2c1896b48952487a0dfdcb64d82a1393d2ce3874d00593"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 106473,
+      "sha256": "7abe209e3b89f28d690d4f9589019f41ed2ea16bcd6b79ccda5ef8b26afff8ec"
+    },
+    {
+      "path": "search-data.js",
+      "bytes": 105126,
+      "sha256": "d358a09ad236aee386c3dd5bda805cc57168d5a31369e1bff08c7f2655dab67d"
+    }
+  ]
+}

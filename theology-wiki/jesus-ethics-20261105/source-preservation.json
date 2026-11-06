@@ -1,0 +1,115 @@
+{
+  "status": "unpublished_review_package",
+  "priorCompanionPackageSha256": "425b48d755552346dc4286a6fbf15e6342e959a4f626615e2e18a255a28c00f2",
+  "chapterSources": [
+    {
+      "path": "sources/christianity-after-bodily-resurrection.md",
+      "sha256": "a2778e7dcaa6bd38f77f24b524116c6061dd987a6bd06a86534762cbf0000d6e",
+      "bytes": 34554,
+      "origin": "Canonical text from earlier unpublished companion review package, copied unchanged"
+    },
+    {
+      "path": "sources/early-resurrection-accounts-and-source-criticism.md",
+      "sha256": "3557d7ad4eedea764bcfa3569b960c69badf7690fe612a85f8119cb07905ba79",
+      "bytes": 28400,
+      "origin": "Canonical text from earlier unpublished companion review package, copied unchanged"
+    },
+    {
+      "path": "sources/would-jesus-oppose-the-resurrection-gospel.md",
+      "sha256": "b6e28067e50393aee2cd5a3aa87beca1f9ece8f1e49e88635b3004ffb0a71f4a",
+      "bytes": 44976,
+      "origin": "New final chapter, November 5, 2026"
+    }
+  ],
+  "prophecyFiles": [
+    {
+      "path": "README.md",
+      "sha256": "e6c75d2709fc60fa3c04d3784d134a16d8be9fd31969a466cf51b01a1bfd4f7f"
+    },
+    {
+      "path": "VALIDATION.md",
+      "sha256": "2d28b6e823a9187ec370c207ff46d8842c579c78e047fbb4a95568f28ce9297d"
+    },
+    {
+      "path": "build-report.json",
+      "sha256": "5066a8e8de23e9be4dc89df6c6c348fa84fe86aa3056a4d73ebbed10f825737f"
+    },
+    {
+      "path": "build.cjs",
+      "sha256": "c35d49647f695bac189a93c2f1852f6cc189ad14ea31173d18f23f508a16f8ee"
+    },
+    {
+      "path": "index.html",
+      "sha256": "874cee4ad753672f07ce4852168eb4abe63ae9220739f51fdb3de671572f4bc7"
+    },
+    {
+      "path": "integration.test.cjs",
+      "sha256": "e8742151b792e209bfac1f680caa4e8491a6a6b7896826bcc5eda9d2e6c19195"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "0ce31bca62c239f1e13bb0d505ac104b7de3432d4c6088834e3e5bd380622174"
+    },
+    {
+      "path": "pattern-validation-protocol.html",
+      "sha256": "123559d35ef462d1e958b1f4fcac06a0c3d8c384c9b3581c47584ffdd0066715"
+    },
+    {
+      "path": "prophecy-partial-success-and-causal-feedback.html",
+      "sha256": "c0fd14474423370ff9354a947e57c8286c9cfb1dae70b14c76d4c5c062035cf5"
+    },
+    {
+      "path": "prophecy-recurring-patterns-and-corrective-word.html",
+      "sha256": "01aabc17a94b1d5ffb497617bc1faa92ff154e9142a606c25bf4cf7bdce51cca"
+    },
+    {
+      "path": "research/forecast_register_snapshot.json",
+      "sha256": "f30a64029e4b9eda06d719e037b5bb88d2889e2f9393e50d998652f38bdfe2a1"
+    },
+    {
+      "path": "research/pattern_register_audit.json",
+      "sha256": "baa8d1c3a996aa5cae660b082b4e64160b583cd0545801ed4a09087eaa135af8"
+    },
+    {
+      "path": "research/pattern_validation_demo.py",
+      "sha256": "2d8be94c6ad4ee757e323a01fc78255f6604d35aa7e8c482de3f989af12f8480"
+    },
+    {
+      "path": "research/pattern_validation_demo_results.json",
+      "sha256": "482074d05e9a617ff64d05963dbd9994c1e6564771cde354f1ec0da7db8a9183"
+    },
+    {
+      "path": "research/pattern_validation_protocol.md",
+      "sha256": "12a7d81fbe4902e81b5b8eedcf07550ef4d0d5849ac1272f488a6206b2428f1a"
+    },
+    {
+      "path": "search-data.js",
+      "sha256": "c0afa286e3410bcbd38356d48d2853e5e6a08e52f8a0e9b3ac7a48dc045b506b"
+    },
+    {
+      "path": "search-index.json",
+      "sha256": "5d0f92351c80b0d979dd41001bf2421fd8236e5feebb4890fbf77da88595f4ac"
+    },
+    {
+      "path": "search.js",
+      "sha256": "ba0aa99a4fa566e1d234c331d2b6256548a4d7a8015b9452a5754c72faaca309"
+    },
+    {
+      "path": "series.css",
+      "sha256": "4aa18bfaeeef2dee32a71900399f8fed4b898154f0552f499d15e20a59f5d734"
+    },
+    {
+      "path": "sources/prophecy-partial-success-and-causal-feedback.md",
+      "sha256": "80cf35f4c1dc2e3c5da8387d3ea19fcdc36b500544d1e91df3ef5035fe4afee7"
+    },
+    {
+      "path": "sources/prophecy-recurring-patterns-and-corrective-word.md",
+      "sha256": "cd3ca75e03c29097ef28b49dec480d55dd6304fab1119e2805d1db639b17d5b5"
+    },
+    {
+      "path": "verify.py",
+      "sha256": "78e7e26982b350e78a97a5ea9d698b233ea9525e8f9ef99cdf6fd7918397d365"
+    }
+  ],
+  "preservation": "Earlier companion prose and the entire included prophecy section are byte-identical to their supplied review editions. Existing historical archives and forecast registers were not edited."
+}

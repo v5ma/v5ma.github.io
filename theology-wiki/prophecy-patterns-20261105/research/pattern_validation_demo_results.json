@@ -1,0 +1,41 @@
+{
+  "status": "synthetic_demonstrations_only_not_historical_validation",
+  "seed": 20261105,
+  "probabilistic_skill": {
+    "n": 2000,
+    "true_conditional_probabilities": [
+      0.25,
+      0.75
+    ],
+    "observed_classification_accuracy": 0.7575,
+    "observed_model_brier": 0.18375,
+    "observed_base_rate_brier": 0.25,
+    "observed_brier_skill": 0.265,
+    "theoretical_model_brier": 0.1875,
+    "theoretical_base_rate_brier": 0.25,
+    "theoretical_brier_skill": 0.25
+  },
+  "selection_demo": {
+    "features": 16,
+    "criterion": "at_least_12_matches",
+    "assumption": "independent_fair_binary_features_and_independent_candidates",
+    "single_candidate_exact_probability": 0.0384063720703125,
+    "at_least_one_hit_exact_probability_by_candidates": {
+      "1": 0.0384063720703125,
+      "10": 0.3240481393437009,
+      "100": 0.9800860378007471
+    },
+    "monte_carlo_trials": 20000,
+    "monte_carlo_fixed_candidate_hit_rate": 0.03785,
+    "monte_carlo_best_of_100_hit_rate": 0.98185,
+    "monte_carlo_independent_holdout_hit_rate": 0.03745
+  },
+  "dependent_consequences_demo": {
+    "p_food_crisis_given_war": 0.6,
+    "p_mortality_given_food_crisis_and_war": 0.7,
+    "p_mortality_given_no_food_crisis_and_war": 0.1,
+    "p_mortality_given_war": 0.45999999999999996,
+    "correct_joint_probability": 0.42,
+    "incorrect_independence_product": 0.27599999999999997
+  }
+}

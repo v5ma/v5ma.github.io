@@ -1,0 +1,17 @@
+{
+  "status": "structure_and_provenance_audit_not_outcome_validation",
+  "source": "https://github.com/v5ma/v5ma.github.io/blob/b121d3dad8c339097fe2acf4068f7f61337a2a09/theology-wiki/event-forecast-register/forecasts.json",
+  "retrieved_utc_date": "2026-11-05",
+  "snapshot_sha256": "f30a64029e4b9eda06d719e037b5bb88d2889e2f9393e50d998652f38bdfe2a1",
+  "author_statement_count": 4,
+  "conditional_scenario_count": 6,
+  "distinct_author_prediction_families": [
+    "US-China AI competition and conflict"
+  ],
+  "finite_event_deadline_count": 0,
+  "review_checkpoints_marked_not_event_predictions": 6,
+  "outcome_status_counts": {
+    "not_assessed": 10
+  },
+  "assessment_history_count": 0
+}

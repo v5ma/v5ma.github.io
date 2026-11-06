@@ -1,0 +1,1808 @@
+{
+  "schema": "theology-jesus-ethics-review/v1",
+  "date": "2026-11-05",
+  "baseRevision": "b121d3dad8c339097fe2acf4068f7f61337a2a09",
+  "repository": "v5ma/v5ma.github.io",
+  "status": "release_edition",
+  "pages": [
+    {
+      "slug": "would-jesus-oppose-the-resurrection-gospel",
+      "navLabel": "New chapter: Jesus and Easter",
+      "source": "sources/would-jesus-oppose-the-resurrection-gospel.md",
+      "kind": "new",
+      "cardLabel": "NEW CHAPTER"
+    },
+    {
+      "slug": "early-resurrection-accounts-and-source-criticism",
+      "navLabel": "Early resurrection evidence",
+      "source": "sources/early-resurrection-accounts-and-source-criticism.md",
+      "kind": "companion",
+      "cardLabel": "UNCHANGED COMPANION",
+      "summary": "Examine the development of resurrection accounts through Paul, Mark, Matthew, Luke and John while distinguishing textual claims from independent verification."
+    },
+    {
+      "slug": "christianity-after-bodily-resurrection",
+      "navLabel": "Christianity and possible futures",
+      "source": "sources/christianity-after-bodily-resurrection.md",
+      "kind": "companion",
+      "cardLabel": "UNCHANGED COMPANION",
+      "summary": "What could Christian faith and formation become when bodily resurrection is reinterpreted? A constructive inquiry into community, ethics and a wider religious inheritance."
+    }
+  ],
+  "verifiedReaderRoutes": [
+    {
+      "slug": "home",
+      "title": "Theology Wiki"
+    },
+    {
+      "slug": "17th-century-christian-zionism",
+      "title": "17th Century Christian Zionism"
+    },
+    {
+      "slug": "abraham-hicks-and-gnosticism",
+      "title": "Abraham Hicks and Gnosticism"
+    },
+    {
+      "slug": "abraham-hicks-vibration-clarification",
+      "title": "Abraham Hicks Vibration Clarification"
+    },
+    {
+      "slug": "abraham-hicks-vs-gnostic-jesus",
+      "title": "Abraham Hicks vs Gnostic Jesus"
+    },
+    {
+      "slug": "abrahamic-rival-continuations-book-seed",
+      "title": "Abrahamic Rival Continuations Book Seed"
+    },
+    {
+      "slug": "act-vs-abraham-hicks",
+      "title": "ACT vs Abraham Hicks"
+    },
+    {
+      "slug": "advanced-gnosticism-scholarship-conclusions",
+      "title": "Advanced Gnosticism Scholarship Conclusions"
+    },
+    {
+      "slug": "agi-religious-framework",
+      "title": "AGI Religious Framework"
+    },
+    {
+      "slug": "ai-and-religion-belief",
+      "title": "AI and Religion Belief"
+    },
+    {
+      "slug": "ai-conference-insights",
+      "title": "AI Conference Insights"
+    },
+    {
+      "slug": "ai-re-dates-dead-sea-scrolls",
+      "title": "AI re-dates Dead Sea Scrolls"
+    },
+    {
+      "slug": "ai-safety-and-lovecraft",
+      "title": "AI Safety and Lovecraft"
+    },
+    {
+      "slug": "ai-sword-revelation-review",
+      "title": "AI Sword Revelation Review"
+    },
+    {
+      "slug": "ai-tech-and-generations",
+      "title": "AI Tech and Generations"
+    },
+    {
+      "slug": "aleph-metaphor-and-concepts",
+      "title": "Aleph Metaphor and Concepts"
+    },
+    {
+      "slug": "allegiance-vs-proclamation-of-christ",
+      "title": "Allegiance vs Proclamation of Christ"
+    },
+    {
+      "slug": "altman-antichrist-comparisons",
+      "title": "Altman Antichrist Comparisons"
+    },
+    {
+      "slug": "ancient-cosmology-and-dreams",
+      "title": "Ancient Cosmology and Dreams"
+    },
+    {
+      "slug": "ancient-egypt-vs-fascism",
+      "title": "Ancient Egypt vs Fascism"
+    },
+    {
+      "slug": "antichrist-alignment-consequences",
+      "title": "Antichrist Alignment Consequences"
+    },
+    {
+      "slug": "antichrist-and-desire-of-women",
+      "title": "Antichrist and Desire of Women"
+    },
+    {
+      "slug": "antichrist-and-gold-obsession",
+      "title": "Antichrist and Gold Obsession"
+    },
+    {
+      "slug": "antichrist-and-ridiculous-claims",
+      "title": "Antichrist and Ridiculous Claims"
+    },
+    {
+      "slug": "antichrist-covenant-and-peace",
+      "title": "Antichrist Covenant and Peace"
+    },
+    {
+      "slug": "antichrist-middle-east-myth",
+      "title": "Antichrist Middle East Myth"
+    },
+    {
+      "slug": "antichrist-peace-and-war",
+      "title": "Antichrist Peace and War"
+    },
+    {
+      "slug": "antichrist-prophecy-and-war",
+      "title": "Antichrist Prophecy and War"
+    },
+    {
+      "slug": "antichrist-prophecy-in-tanakh",
+      "title": "Antichrist prophecy in Tanakh"
+    },
+    {
+      "slug": "antichrist-salvation-discussions",
+      "title": "Antichrist salvation discussions"
+    },
+    {
+      "slug": "antichrist-spiritual-inversion",
+      "title": "Antichrist Spiritual Inversion"
+    },
+    {
+      "slug": "anunnaki-alien-theory-rejected",
+      "title": "Anunnaki Alien Theory Rejected"
+    },
+    {
+      "slug": "apocalipsis-y-nueva-humanidad",
+      "title": "Apocalipsis y nueva humanidad"
+    },
+    {
+      "slug": "apocalypse-of-adam-outline",
+      "title": "Apocalypse of Adam Outline"
+    },
+    {
+      "slug": "apocalypse-of-peter-comparison",
+      "title": "Apocalypse of Peter comparison"
+    },
+    {
+      "slug": "article-review-feedback",
+      "title": "Article review feedback"
+    },
+    {
+      "slug": "assyrian-and-antichrist-connection",
+      "title": "Assyrian and Antichrist connection"
+    },
+    {
+      "slug": "authoritarian-threats-to-democracy",
+      "title": "Authoritarian Threats to Democracy"
+    },
+    {
+      "slug": "authoritarianism-and-false-democracy",
+      "title": "Authoritarianism and False Democracy"
+    },
+    {
+      "slug": "awakening-to-oneness",
+      "title": "Awakening to Oneness"
+    },
+    {
+      "slug": "barnabas-gospel-debunked",
+      "title": "Barnabas gospel debunked"
+    },
+    {
+      "slug": "beasts-and-trumpets-symbolism",
+      "title": "Beasts and trumpets symbolism"
+    },
+    {
+      "slug": "beloved-disciple-identity",
+      "title": "Beloved Disciple Identity"
+    },
+    {
+      "slug": "bible-interpretation-and-faith",
+      "title": "Bible Interpretation and Faith"
+    },
+    {
+      "slug": "bible-passage-on-deception",
+      "title": "Bible passage on deception"
+    },
+    {
+      "slug": "bible-prophecy-death-fractions",
+      "title": "Bible prophecy death fractions"
+    },
+    {
+      "slug": "bible-text-sources-comparison",
+      "title": "Bible text sources comparison"
+    },
+    {
+      "slug": "bible-verse-inspiration",
+      "title": "Bible Verse Inspiration"
+    },
+    {
+      "slug": "biblical-antichrist-interpretation",
+      "title": "Biblical antichrist interpretation"
+    },
+    {
+      "slug": "biblical-resurrection-interpretations",
+      "title": "Biblical Resurrection Interpretations"
+    },
+    {
+      "slug": "biblical-text-timeline",
+      "title": "Biblical Text Timeline"
+    },
+    {
+      "slug": "blue-fascism-explained",
+      "title": "Blue fascism explained"
+    },
+    {
+      "slug": "born-smart-the-story-of-scout",
+      "title": "Born Smart, the story of Scout"
+    },
+    {
+      "slug": "branch-branch-branch-branch-proof-of-god-s-existence",
+      "title": "Branch Branch Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-branch-branch-branch-proof-of-god-s-existence-2",
+      "title": "Branch Branch Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-branch-branch-branch-proof-of-god-s-existence-3",
+      "title": "Branch Branch Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-branch-branch-proof-of-god-s-existence",
+      "title": "Branch Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-branch-branch-proof-of-god-s-existence-2",
+      "title": "Branch Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-branch-israel-gaza-famine-responsibility",
+      "title": "Branch Branch Israel Gaza famine responsibility"
+    },
+    {
+      "slug": "branch-branch-proof-of-god-s-existence",
+      "title": "Branch Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-israel-gaza-famine-responsibility",
+      "title": "Branch Israel Gaza famine responsibility"
+    },
+    {
+      "slug": "branch-plagiarism-equivalent-vs-plagiarism",
+      "title": "Branch Plagiarism Equivalent vs Plagiarism"
+    },
+    {
+      "slug": "branch-proof-of-god-s-existence",
+      "title": "Branch Proof of God's existence"
+    },
+    {
+      "slug": "branch-riemann-curve-mapping",
+      "title": "Branch Riemann curve mapping"
+    },
+    {
+      "slug": "branch-san-minkowski-model",
+      "title": "Branch SAN Minkowski model"
+    },
+    {
+      "slug": "calvary-chapel-and-meat-industry",
+      "title": "Calvary Chapel and Meat Industry"
+    },
+    {
+      "slug": "calvary-chapel-vs-gnosticism",
+      "title": "Calvary Chapel vs Gnosticism"
+    },
+    {
+      "slug": "canaanite-myths-vs-exodus",
+      "title": "Canaanite Myths vs Exodus"
+    },
+    {
+      "slug": "capitalism-and-democracy-threats",
+      "title": "Capitalism and Democracy Threats"
+    },
+    {
+      "slug": "catholic-priests-and-ancient-texts",
+      "title": "Catholic Priests and Ancient Texts"
+    },
+    {
+      "slug": "chatgpt-beasts-revelation-theory",
+      "title": "ChatGPT Beasts Revelation Theory"
+    },
+    {
+      "slug": "chatgpt-file-splitting",
+      "title": "ChatGPT File Splitting"
+    },
+    {
+      "slug": "cheese-varieties-from-milk",
+      "title": "Cheese Varieties from Milk"
+    },
+    {
+      "slug": "china-s-human-rights-abuses",
+      "title": "China's Human Rights Abuses"
+    },
+    {
+      "slug": "christ-vs-antichrist-contrast",
+      "title": "Christ vs Antichrist contrast"
+    },
+    {
+      "slug": "christian-salvation-without-supernaturalism",
+      "title": "Christian Salvation without Supernaturalism"
+    },
+    {
+      "slug": "christian-view-of-death",
+      "title": "Christian view of death"
+    },
+    {
+      "slug": "church-corporate-sponsorship-evidence",
+      "title": "Church Corporate Sponsorship Evidence"
+    },
+    {
+      "slug": "churches-rejecting-paul-s-writings",
+      "title": "Churches Rejecting Paul's Writings"
+    },
+    {
+      "slug": "city-of-david-structures",
+      "title": "City of David Structures"
+    },
+    {
+      "slug": "claude-deceptions-and-betrayals",
+      "title": "Claude Deceptions and Betrayals"
+    },
+    {
+      "slug": "clementine-homilies-and-recognitions",
+      "title": "Clementine Homilies and Recognitions"
+    },
+    {
+      "slug": "cognitive-gnosticism-jesus-vs-gnostic-jesus",
+      "title": "Cognitive Gnosticism: Jesus vs Gnostic Jesus"
+    },
+    {
+      "slug": "conceptual-equivalences-mapping",
+      "title": "Conceptual equivalences mapping"
+    },
+    {
+      "slug": "consciousness-and-existence-views",
+      "title": "Consciousness and Existence Views"
+    },
+    {
+      "slug": "covenant-confirmation-in-israel",
+      "title": "Covenant confirmation in Israel"
+    },
+    {
+      "slug": "crucifixion-under-pilate",
+      "title": "Crucifixion under Pilate"
+    },
+    {
+      "slug": "dan-response-inquiry",
+      "title": "Dan Response Inquiry"
+    },
+    {
+      "slug": "daniel-and-teacher-of-righteousness",
+      "title": "Daniel and Teacher of Righteousness"
+    },
+    {
+      "slug": "daniel-prophecy-and-temple",
+      "title": "Daniel Prophecy and Temple"
+    },
+    {
+      "slug": "dark-time-thermodynamics-theory",
+      "title": "Dark Time Thermodynamics Theory"
+    },
+    {
+      "slug": "debunking-aaron-abke",
+      "title": "Debunking Aaron Abke"
+    },
+    {
+      "slug": "debunking-greek-bible-myth",
+      "title": "Debunking Greek Bible Myth"
+    },
+    {
+      "slug": "debunking-jewish-law-origin",
+      "title": "Debunking Jewish Law Origin"
+    },
+    {
+      "slug": "deliberate-joy-concept",
+      "title": "Deliberate joy concept"
+    },
+    {
+      "slug": "deterministic-quantum-cycles",
+      "title": "Deterministic Quantum Cycles"
+    },
+    {
+      "slug": "dimensional-resonance-vs-iit",
+      "title": "Dimensional Resonance vs IIT"
+    },
+    {
+      "slug": "dina-s-jewish-identity-in-tlou",
+      "title": "Dina's Jewish Identity in TLOU"
+    },
+    {
+      "slug": "disrespectful-religious-statement",
+      "title": "Disrespectful religious statement"
+    },
+    {
+      "slug": "divine-empowerment-through-christ",
+      "title": "Divine Empowerment through Christ"
+    },
+    {
+      "slug": "document-review",
+      "title": "Document review"
+    },
+    {
+      "slug": "early-vs-later-gnosticism",
+      "title": "Early vs Later Gnosticism"
+    },
+    {
+      "slug": "ehrman-vs-tabor-debate",
+      "title": "Ehrman vs Tabor Debate"
+    },
+    {
+      "slug": "elohim-and-alien-theories",
+      "title": "Elohim and Alien Theories"
+    },
+    {
+      "slug": "enoch-scroll-and-gnosticism",
+      "title": "Enoch Scroll and Gnosticism"
+    },
+    {
+      "slug": "enoch-son-of-man",
+      "title": "Enoch Son of Man"
+    },
+    {
+      "slug": "epstein-s-web-of-connections",
+      "title": "Epstein's Web of Connections"
+    },
+    {
+      "slug": "eschatology-and-prophetic-timelines",
+      "title": "Eschatology and Prophetic Timelines"
+    },
+    {
+      "slug": "essenes-and-early-christianity",
+      "title": "Essenes and Early Christianity"
+    },
+    {
+      "slug": "european-gods-origins",
+      "title": "European gods origins"
+    },
+    {
+      "slug": "evolving-god-and-naming",
+      "title": "Evolving God and Naming"
+    },
+    {
+      "slug": "exodus-dating-and-evidence",
+      "title": "Exodus Dating and Evidence"
+    },
+    {
+      "slug": "ezekiel-s-dry-bones-vision",
+      "title": "Ezekiel's Dry Bones Vision"
+    },
+    {
+      "slug": "ezekiel-s-influence-on-prophecy",
+      "title": "Ezekiel's Influence on Prophecy"
+    },
+    {
+      "slug": "fact-check-peace-plan",
+      "title": "Fact check peace plan"
+    },
+    {
+      "slug": "fact-check-trump-death-claim",
+      "title": "Fact check Trump death claim"
+    },
+    {
+      "slug": "faith-and-comfort",
+      "title": "Faith and Comfort"
+    },
+    {
+      "slug": "faith-as-vibration-concept",
+      "title": "Faith as Vibration Concept"
+    },
+    {
+      "slug": "fallout-vs-real-apocalypse",
+      "title": "Fallout vs Real Apocalypse"
+    },
+    {
+      "slug": "false-gnosis-warning",
+      "title": "False Gnosis Warning"
+    },
+    {
+      "slug": "false-peace-prophecy",
+      "title": "False Peace Prophecy"
+    },
+    {
+      "slug": "find-paper-online",
+      "title": "Find Paper Online"
+    },
+    {
+      "slug": "fishburne-matrix-commentary-clarified",
+      "title": "Fishburne Matrix Commentary Clarified"
+    },
+    {
+      "slug": "focus-your-energy",
+      "title": "Focus Your Energy"
+    },
+    {
+      "slug": "galatians-3-faith-summary",
+      "title": "Galatians 3 faith summary"
+    },
+    {
+      "slug": "gaza-coin-proposal",
+      "title": "Gaza Coin proposal"
+    },
+    {
+      "slug": "gaza-development-coalition-name",
+      "title": "Gaza development coalition name"
+    },
+    {
+      "slug": "gaza-narrative-debate",
+      "title": "Gaza Narrative Debate"
+    },
+    {
+      "slug": "gaza-relocation-debate",
+      "title": "Gaza Relocation Debate"
+    },
+    {
+      "slug": "gaza-starvation-propaganda-debate",
+      "title": "Gaza starvation propaganda debate"
+    },
+    {
+      "slug": "glazing-brainwaves-reflected",
+      "title": "Glazing Brainwaves Reflected"
+    },
+    {
+      "slug": "gmirkin-hellenistic-bible-theory",
+      "title": "Gmirkin Hellenistic Bible Theory"
+    },
+    {
+      "slug": "gnosis-density-and-gravity",
+      "title": "Gnosis Density and Gravity"
+    },
+    {
+      "slug": "gnostic-christianity-and-jesus",
+      "title": "Gnostic Christianity and Jesus"
+    },
+    {
+      "slug": "gnostic-church-psychedelic-legalities",
+      "title": "Gnostic Church Psychedelic Legalities"
+    },
+    {
+      "slug": "gnostic-divinity-and-dualism",
+      "title": "Gnostic Divinity and Dualism"
+    },
+    {
+      "slug": "gnostic-end-times-figures",
+      "title": "Gnostic end-times figures"
+    },
+    {
+      "slug": "gnostic-god-comparisons",
+      "title": "Gnostic God Comparisons"
+    },
+    {
+      "slug": "gnostic-gospels-and-vocabulary",
+      "title": "Gnostic Gospels and Vocabulary"
+    },
+    {
+      "slug": "gnostic-gospels-in-film",
+      "title": "Gnostic Gospels in Film"
+    },
+    {
+      "slug": "gnostic-jesus-and-judas",
+      "title": "Gnostic Jesus and Judas"
+    },
+    {
+      "slug": "gnostic-jesus-and-logos",
+      "title": "Gnostic Jesus and Logos"
+    },
+    {
+      "slug": "gnostic-teachings-and-clarity",
+      "title": "Gnostic Teachings and Clarity"
+    },
+    {
+      "slug": "gnostic-texts-and-christianity",
+      "title": "Gnostic Texts and Christianity"
+    },
+    {
+      "slug": "gnostic-texts-and-paul",
+      "title": "Gnostic Texts and Paul"
+    },
+    {
+      "slug": "gnosticism-and-evil-creator",
+      "title": "Gnosticism and Evil Creator"
+    },
+    {
+      "slug": "gnosticism-and-original-sin",
+      "title": "Gnosticism and Original Sin"
+    },
+    {
+      "slug": "gnosticism-and-paul-s-letters",
+      "title": "Gnosticism and Paul's Letters"
+    },
+    {
+      "slug": "gnosticism-in-catholicism",
+      "title": "Gnosticism in Catholicism"
+    },
+    {
+      "slug": "god-and-sea-monsters",
+      "title": "God and Sea Monsters"
+    },
+    {
+      "slug": "gog-magog-and-nations",
+      "title": "Gog Magog and Nations"
+    },
+    {
+      "slug": "gospel-of-judas-overview",
+      "title": "Gospel of Judas Overview"
+    },
+    {
+      "slug": "greta-thunberg-and-iran",
+      "title": "Greta Thunberg and Iran"
+    },
+    {
+      "slug": "gset-verification-and-implications",
+      "title": "GSET verification and implications"
+    },
+    {
+      "slug": "hamas-propaganda-and-hostages",
+      "title": "Hamas Propaganda and Hostages"
+    },
+    {
+      "slug": "haramein-vortex-gravity-model",
+      "title": "Haramein Vortex Gravity Model"
+    },
+    {
+      "slug": "harari-on-israel-and-gaza",
+      "title": "Harari on Israel and Gaza"
+    },
+    {
+      "slug": "heavier-than-a-feather",
+      "title": "Heavier than a Feather"
+    },
+    {
+      "slug": "heisenberg-vtt-and-sit",
+      "title": "Heisenberg VTT and SIT"
+    },
+    {
+      "slug": "hell-transformation-and-metatron",
+      "title": "Hell Transformation and Metatron"
+    },
+    {
+      "slug": "henosis-and-gnosticism-comparison",
+      "title": "Henosis and Gnosticism Comparison"
+    },
+    {
+      "slug": "herod-timeline-clarification",
+      "title": "Herod timeline clarification"
+    },
+    {
+      "slug": "hogs-and-authority-dynamics",
+      "title": "Hogs and Authority Dynamics"
+    },
+    {
+      "slug": "horseman-of-death-fate",
+      "title": "Horseman of Death Fate"
+    },
+    {
+      "slug": "humanity-s-need-for-god",
+      "title": "Humanity's Need for God"
+    },
+    {
+      "slug": "hyksos-expulsion-overview",
+      "title": "Hyksos Expulsion Overview"
+    },
+    {
+      "slug": "hyperion-cantos-summary",
+      "title": "Hyperion Cantos summary"
+    },
+    {
+      "slug": "i-commit-my-spirit",
+      "title": "I commit my spirit"
+    },
+    {
+      "slug": "if-the-antichrist-emerged-on-the-world-stage-today-he-could-not-be-from-any-middle-eastern-nation-nor-from-russia",
+      "title": "If the Antichrist emerged on the world stage today, he could not be from any Middle Eastern nation, nor from Russia."
+    },
+    {
+      "slug": "image-and-identity-theme",
+      "title": "Image and Identity Theme"
+    },
+    {
+      "slug": "inanna-death-and-resurrection",
+      "title": "Inanna Death and Resurrection"
+    },
+    {
+      "slug": "iran-amalek-prophecy-debate",
+      "title": "Iran Amalek Prophecy Debate"
+    },
+    {
+      "slug": "islam-s-arrival-century",
+      "title": "Islam's Arrival Century"
+    },
+    {
+      "slug": "israel-democracy-debate",
+      "title": "Israel Democracy Debate"
+    },
+    {
+      "slug": "israel-gaza-famine-responsibility",
+      "title": "Israel Gaza famine responsibility"
+    },
+    {
+      "slug": "james-tabor-expertise-gnosticism",
+      "title": "James Tabor Expertise Gnosticism"
+    },
+    {
+      "slug": "james-the-just-analysis",
+      "title": "James the Just Analysis"
+    },
+    {
+      "slug": "jesus-7-levels-of-consciousness-fact-check",
+      "title": "Jesus 7 levels of consciousness fact check"
+    },
+    {
+      "slug": "jesus-and-biblical-figures",
+      "title": "Jesus and biblical figures"
+    },
+    {
+      "slug": "jesus-and-dead-sea-scrolls",
+      "title": "Jesus and Dead Sea Scrolls"
+    },
+    {
+      "slug": "jesus-and-gnostic-teachings",
+      "title": "Jesus and Gnostic Teachings"
+    },
+    {
+      "slug": "jesus-and-neo-matrix",
+      "title": "Jesus and Neo Matrix"
+    },
+    {
+      "slug": "jesus-as-a-teenager",
+      "title": "Jesus as a Teenager"
+    },
+    {
+      "slug": "jesus-as-philosopher-teacher",
+      "title": "Jesus as Philosopher Teacher"
+    },
+    {
+      "slug": "jesus-as-storyteller",
+      "title": "Jesus as Storyteller"
+    },
+    {
+      "slug": "jesus-drives-out-merchants",
+      "title": "Jesus Drives Out Merchants"
+    },
+    {
+      "slug": "jesus-gnosticism-and-myth",
+      "title": "Jesus Gnosticism and Myth"
+    },
+    {
+      "slug": "jesus-in-dead-sea-scrolls",
+      "title": "Jesus in Dead Sea Scrolls"
+    },
+    {
+      "slug": "jesus-in-love-concept",
+      "title": "Jesus in Love Concept"
+    },
+    {
+      "slug": "jesus-james-and-essenes",
+      "title": "Jesus James and Essenes"
+    },
+    {
+      "slug": "jesus-long-suffering-vs-abraham-hicks",
+      "title": "Jesus Long-Suffering vs Abraham Hicks"
+    },
+    {
+      "slug": "jesus-sayings-fact-check",
+      "title": "Jesus Sayings Fact Check"
+    },
+    {
+      "slug": "jesus-teachings-on-divorce",
+      "title": "Jesus teachings on divorce"
+    },
+    {
+      "slug": "jesus-teachings-overview",
+      "title": "Jesus Teachings Overview"
+    },
+    {
+      "slug": "jesus-teachings-pineal-gland",
+      "title": "Jesus Teachings Pineal Gland"
+    },
+    {
+      "slug": "jesus-teachings-simplified",
+      "title": "Jesus Teachings Simplified"
+    },
+    {
+      "slug": "jesus-temple-sacrifices-debate",
+      "title": "Jesus Temple Sacrifices Debate"
+    },
+    {
+      "slug": "jesus-timeline-analysis",
+      "title": "Jesus timeline analysis"
+    },
+    {
+      "slug": "jesus-vs-ahura-mazda",
+      "title": "Jesus vs Ahura Mazda"
+    },
+    {
+      "slug": "jesus-vs-paul-on-salvation",
+      "title": "Jesus vs Paul on Salvation"
+    },
+    {
+      "slug": "jesus-vs-paul-vs-gnosticism",
+      "title": "Jesus vs Paul vs Gnosticism"
+    },
+    {
+      "slug": "jesus-vs-yahweh-debate",
+      "title": "Jesus vs Yahweh Debate"
+    },
+    {
+      "slug": "jesus-way-origins",
+      "title": "Jesus Way Origins"
+    },
+    {
+      "slug": "jewish-apocalyptic-repair-timeline",
+      "title": "Jewish Apocalyptic Repair Timeline"
+    },
+    {
+      "slug": "jews-and-canaanites-origins",
+      "title": "Jews and Canaanites Origins"
+    },
+    {
+      "slug": "johannine-theology-overview",
+      "title": "Johannine Theology Overview"
+    },
+    {
+      "slug": "joke-style-analysis",
+      "title": "Joke Style Analysis"
+    },
+    {
+      "slug": "judaism-history-debate",
+      "title": "Judaism History Debate"
+    },
+    {
+      "slug": "judas-gnostic-view-explained",
+      "title": "Judas Gnostic View Explained"
+    },
+    {
+      "slug": "jungian-dream-analysis",
+      "title": "Jungian dream analysis"
+    },
+    {
+      "slug": "kabbalah-origins-question",
+      "title": "Kabbalah origins question"
+    },
+    {
+      "slug": "kirk-racism-equivalence-analysis",
+      "title": "Kirk racism equivalence analysis"
+    },
+    {
+      "slug": "kubrick-gita-verse-removal",
+      "title": "Kubrick Gita Verse Removal"
+    },
+    {
+      "slug": "la-museums-destroyed-in-fire",
+      "title": "LA Museums Destroyed in Fire"
+    },
+    {
+      "slug": "law-of-attraction-analysis",
+      "title": "Law of Attraction analysis"
+    },
+    {
+      "slug": "law-of-attraction-and-magic",
+      "title": "Law of Attraction and Magic"
+    },
+    {
+      "slug": "law-of-attraction-validation",
+      "title": "Law of Attraction Validation"
+    },
+    {
+      "slug": "leibniz-branch-mesopotamia",
+      "title": "Leibniz branch Mesopotamia"
+    },
+    {
+      "slug": "lucifer-s-fall-explanation",
+      "title": "Lucifer's fall explanation"
+    },
+    {
+      "slug": "maccabees-jeremiah-and-dead-sea-scrolls",
+      "title": "Maccabees Jeremiah and Dead Sea Scrolls"
+    },
+    {
+      "slug": "mark-16-textual-dispute",
+      "title": "Mark 16 Textual Dispute"
+    },
+    {
+      "slug": "mark-of-the-beast-x",
+      "title": "Mark of the Beast X"
+    },
+    {
+      "slug": "marvel-crisis-equivalent",
+      "title": "Marvel Crisis Equivalent"
+    },
+    {
+      "slug": "meai-as-anti-psychotic",
+      "title": "MEAI as anti-psychotic"
+    },
+    {
+      "slug": "meme-creation-prophecy-and-peace",
+      "title": "Meme Creation: Prophecy and Peace"
+    },
+    {
+      "slug": "messiah-role-in-qumran",
+      "title": "Messiah role in Qumran"
+    },
+    {
+      "slug": "mind-of-god-equation",
+      "title": "Mind of God equation"
+    },
+    {
+      "slug": "mind-of-god-equation-2",
+      "title": "Mind of God equation"
+    },
+    {
+      "slug": "modern-gnostic-critique-of-catholicism",
+      "title": "Modern Gnostic Critique of Catholicism"
+    },
+    {
+      "slug": "modern-nazarenes-overview",
+      "title": "Modern Nazarenes Overview"
+    },
+    {
+      "slug": "moses-abraham-and-god",
+      "title": "Moses Abraham and God"
+    },
+    {
+      "slug": "moses-and-the-burning-bush",
+      "title": "Moses and the Burning Bush"
+    },
+    {
+      "slug": "moses-dating-debate",
+      "title": "Moses dating debate"
+    },
+    {
+      "slug": "muslim-view-of-jesus",
+      "title": "Muslim View of Jesus"
+    },
+    {
+      "slug": "my-descent-into-death-summary",
+      "title": "My Descent Into Death Summary"
+    },
+    {
+      "slug": "naming-god-as-purpose",
+      "title": "Naming God as Purpose"
+    },
+    {
+      "slug": "nearest-wilderness-to-sf",
+      "title": "Nearest Wilderness to SF"
+    },
+    {
+      "slug": "neo-mind-cycle-evolution",
+      "title": "Neo Mind Cycle Evolution"
+    },
+    {
+      "slug": "netanyahu-s-controversial-rhetoric",
+      "title": "Netanyahu's controversial rhetoric"
+    },
+    {
+      "slug": "neurohacker-bio-summary",
+      "title": "Neurohacker Bio Summary"
+    },
+    {
+      "slug": "nietzsche-jesus-gnostic-resources",
+      "title": "Nietzsche Jesus Gnostic Resources"
+    },
+    {
+      "slug": "no-pre-trib-rapture-arguments",
+      "title": "No pre-trib rapture arguments"
+    },
+    {
+      "slug": "noah-and-moses-jewish-status",
+      "title": "Noah and Moses Jewish Status"
+    },
+    {
+      "slug": "nuclear-war-survival-tips",
+      "title": "Nuclear War Survival Tips"
+    },
+    {
+      "slug": "oil-vs-gas-control",
+      "title": "Oil vs Gas Control"
+    },
+    {
+      "slug": "oneness-with-god-perspectives",
+      "title": "Oneness with God Perspectives"
+    },
+    {
+      "slug": "oort-cloud-and-yec",
+      "title": "Oort Cloud and YEC"
+    },
+    {
+      "slug": "original-sin-vs-ezekiel",
+      "title": "Original Sin vs Ezekiel"
+    },
+    {
+      "slug": "parthians-and-medes-meaning",
+      "title": "Parthians and Medes meaning"
+    },
+    {
+      "slug": "paul-and-the-resurrection",
+      "title": "Paul and the Resurrection"
+    },
+    {
+      "slug": "paul-mythicism-and-sources",
+      "title": "Paul Mythicism and Sources"
+    },
+    {
+      "slug": "paul-vs-james-movement",
+      "title": "Paul vs James Movement"
+    },
+    {
+      "slug": "paul-vs-jesus-teachings",
+      "title": "Paul vs Jesus Teachings"
+    },
+    {
+      "slug": "paul-vs-luke-resurrection",
+      "title": "Paul vs Luke Resurrection"
+    },
+    {
+      "slug": "paul-s-antichristian-message",
+      "title": "Paul's Antichristian Message"
+    },
+    {
+      "slug": "peace-deal-credibility",
+      "title": "Peace Deal Credibility"
+    },
+    {
+      "slug": "peale-and-positive-thinking",
+      "title": "Peale and Positive Thinking"
+    },
+    {
+      "slug": "philosophical-polarities-of-power",
+      "title": "Philosophical Polarities of Power"
+    },
+    {
+      "slug": "pie-and-mesopotamian-references",
+      "title": "PIE and Mesopotamian References"
+    },
+    {
+      "slug": "pilate-life-timeline",
+      "title": "Pilate life timeline"
+    },
+    {
+      "slug": "pistis-sophia-summary",
+      "title": "Pistis Sophia Summary"
+    },
+    {
+      "slug": "plato-hermeticism-and-vibration",
+      "title": "Plato Hermeticism and Vibration"
+    },
+    {
+      "slug": "platonic-jewish-christianity-framework",
+      "title": "Platonic Jewish Christianity Framework"
+    },
+    {
+      "slug": "pope-francis-and-ukraine",
+      "title": "Pope Francis and Ukraine"
+    },
+    {
+      "slug": "pope-leo-xiv-criticizes-vance",
+      "title": "Pope Leo XIV Criticizes Vance"
+    },
+    {
+      "slug": "praise-poem-creation",
+      "title": "Praise Poem Creation"
+    },
+    {
+      "slug": "proof-of-god-s-existence",
+      "title": "Proof of God's existence"
+    },
+    {
+      "slug": "proof-of-god-s-existence-2",
+      "title": "Proof of God's existence"
+    },
+    {
+      "slug": "proving-netanyahu-s-claims",
+      "title": "Proving Netanyahu's claims"
+    },
+    {
+      "slug": "psychedelic-spiritual-experiences",
+      "title": "Psychedelic spiritual experiences"
+    },
+    {
+      "slug": "publishing-cognitive-gnosticism-first",
+      "title": "Publishing Cognitive Gnosticism First"
+    },
+    {
+      "slug": "putin-s-global-strategy",
+      "title": "Putin's Global Strategy"
+    },
+    {
+      "slug": "qgtcd-research-mapping",
+      "title": "QGTCD research mapping"
+    },
+    {
+      "slug": "quantum-entanglement-and-communication",
+      "title": "Quantum Entanglement and Communication"
+    },
+    {
+      "slug": "quantum-time-solution-hubble",
+      "title": "Quantum Time Solution: Hubble"
+    },
+    {
+      "slug": "qumran-messianic-figures",
+      "title": "Qumran messianic figures"
+    },
+    {
+      "slug": "qumran-survival-theory",
+      "title": "Qumran Survival Theory"
+    },
+    {
+      "slug": "qumran-text-history",
+      "title": "Qumran Text History"
+    },
+    {
+      "slug": "quote-authenticity-check",
+      "title": "Quote authenticity check"
+    },
+    {
+      "slug": "ratm-and-gnosticism-comparison",
+      "title": "RATM and Gnosticism Comparison"
+    },
+    {
+      "slug": "reddit-group-search",
+      "title": "Reddit Group Search"
+    },
+    {
+      "slug": "rephrase-conjecture-on-genocide",
+      "title": "Rephrase conjecture on genocide"
+    },
+    {
+      "slug": "research-on-lineage-descent",
+      "title": "Research on lineage descent"
+    },
+    {
+      "slug": "resurrection-debate-in-christianity",
+      "title": "Resurrection Debate in Christianity"
+    },
+    {
+      "slug": "revelation-6-7-meaning",
+      "title": "Revelation 6:7 meaning"
+    },
+    {
+      "slug": "revelation-and-montanism",
+      "title": "Revelation and Montanism"
+    },
+    {
+      "slug": "revelation-and-symbolic-language",
+      "title": "Revelation and Symbolic Language"
+    },
+    {
+      "slug": "revelation-interpretation-and-america",
+      "title": "Revelation Interpretation and America"
+    },
+    {
+      "slug": "revelation-seal-opening-clarification",
+      "title": "Revelation Seal Opening Clarification"
+    },
+    {
+      "slug": "revelation-throne-inquiry",
+      "title": "Revelation Throne Inquiry"
+    },
+    {
+      "slug": "roy-casagranda-critique",
+      "title": "Roy Casagranda Critique"
+    },
+    {
+      "slug": "russian-aliyah-impact",
+      "title": "Russian aliyah impact"
+    },
+    {
+      "slug": "saints-and-us-democrats",
+      "title": "Saints and US Democrats"
+    },
+    {
+      "slug": "samaritan-and-jewish-texts",
+      "title": "Samaritan and Jewish Texts"
+    },
+    {
+      "slug": "samuel-vs-micah-divide",
+      "title": "Samuel vs Micah Divide"
+    },
+    {
+      "slug": "sanchuniathon-phoenician-mythology-summary",
+      "title": "Sanchuniathon Phoenician Mythology Summary"
+    },
+    {
+      "slug": "science-and-god-debate",
+      "title": "Science and God Debate"
+    },
+    {
+      "slug": "science-and-spirituality-synergy",
+      "title": "Science and Spirituality Synergy"
+    },
+    {
+      "slug": "self-and-existence-question",
+      "title": "Self and existence question"
+    },
+    {
+      "slug": "self-declared-pope-controversy",
+      "title": "Self-declared Pope Controversy"
+    },
+    {
+      "slug": "seth-on-changing-past-future",
+      "title": "Seth on changing past future"
+    },
+    {
+      "slug": "simon-magus-and-logos",
+      "title": "Simon Magus and Logos"
+    },
+    {
+      "slug": "simulation-theory-debate",
+      "title": "Simulation Theory Debate"
+    },
+    {
+      "slug": "sith-rule-of-two-myth",
+      "title": "Sith Rule of Two Myth"
+    },
+    {
+      "slug": "song-style-analysis",
+      "title": "Song Style Analysis"
+    },
+    {
+      "slug": "spiritual-experience-integration",
+      "title": "Spiritual experience integration"
+    },
+    {
+      "slug": "squid-imagery-and-propaganda",
+      "title": "Squid Imagery and Propaganda"
+    },
+    {
+      "slug": "stages-of-awakening",
+      "title": "Stages of Awakening"
+    },
+    {
+      "slug": "stalin-putin-anti-christ-parallel",
+      "title": "Stalin Putin Anti-Christ Parallel"
+    },
+    {
+      "slug": "stanley-fisher-clarification",
+      "title": "Stanley Fisher clarification"
+    },
+    {
+      "slug": "starvation-in-gaza-crisis",
+      "title": "Starvation in Gaza Crisis"
+    },
+    {
+      "slug": "stop-unnecessary-emphasis",
+      "title": "Stop unnecessary emphasis"
+    },
+    {
+      "slug": "sumerian-writing-and-language",
+      "title": "Sumerian writing and language"
+    },
+    {
+      "slug": "sun-cycles-in-2-enoch",
+      "title": "Sun cycles in 2 Enoch"
+    },
+    {
+      "slug": "sunni-shia-and-christianity",
+      "title": "Sunni Shia and Christianity"
+    },
+    {
+      "slug": "svgn-io-news-website-guide",
+      "title": "SVGN.io News Website Guide"
+    },
+    {
+      "slug": "talmud-vs-torah",
+      "title": "Talmud vs Torah"
+    },
+    {
+      "slug": "teacher-of-righteousness-vs-gnostic-jesus",
+      "title": "Teacher of Righteousness vs Gnostic Jesus"
+    },
+    {
+      "slug": "teaching-cyclical-thinking",
+      "title": "Teaching Cyclical Thinking"
+    },
+    {
+      "slug": "text-transcription-request",
+      "title": "Text transcription request"
+    },
+    {
+      "slug": "the-telos",
+      "title": "The Telos"
+    },
+    {
+      "slug": "theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "title": "Theology Antichrist Mapping Abraham Hicks"
+    },
+    {
+      "slug": "theology-theology-debate-science-god-self-cluster",
+      "title": "Theology Debate Science God Self"
+    },
+    {
+      "slug": "theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "title": "Theology Debunking Jesus Calvary Chapel"
+    },
+    {
+      "slug": "theology-theology-gaza-debate-faith-early-cluster",
+      "title": "Theology Gaza Debate Faith Early"
+    },
+    {
+      "slug": "theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "title": "Theology Gnostic Gnosticism Jesus God"
+    },
+    {
+      "slug": "theology-theology-jesus-analysis-god-law-cluster",
+      "title": "Theology Jesus Analysis God Law"
+    },
+    {
+      "slug": "theology-theology-jesus-teachings-dead-sea-cluster",
+      "title": "Theology Jesus Teachings Dead Sea"
+    },
+    {
+      "slug": "theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "title": "Theology Jesus Teachings Gnostic Paul"
+    },
+    {
+      "slug": "theology-link-resolution-repair",
+      "title": "Theology Link Resolution Repair"
+    },
+    {
+      "slug": "theology-theology-paul-jesus-moses-summary-cluster",
+      "title": "Theology Paul Jesus Moses Summary"
+    },
+    {
+      "slug": "theology-theology-proof-god-existence-bible-cluster",
+      "title": "Theology Proof God Existence Bible"
+    },
+    {
+      "slug": "theology-theology-revelation-qumran-proof-god-cluster",
+      "title": "Theology Revelation Qumran Proof God"
+    },
+    {
+      "slug": "sources-index",
+      "title": "Theology Source Index"
+    },
+    {
+      "slug": "theology-wikilink-density-repair",
+      "title": "Theology Wikilink Density Repair"
+    },
+    {
+      "slug": "tim-teacher-of-righteousness",
+      "title": "TIM Teacher of Righteousness"
+    },
+    {
+      "slug": "timeline-creation-request",
+      "title": "Timeline Creation Request"
+    },
+    {
+      "slug": "tolkien-vs-ai-epics",
+      "title": "Tolkien vs AI epics"
+    },
+    {
+      "slug": "tony-robbins-criticism",
+      "title": "Tony Robbins Criticism"
+    },
+    {
+      "slug": "torah-after-hellenistic-era",
+      "title": "Torah After Hellenistic Era"
+    },
+    {
+      "slug": "toxic-lyrics-impact",
+      "title": "Toxic Lyrics Impact"
+    },
+    {
+      "slug": "triune-god-historical-debate",
+      "title": "Triune God Historical Debate"
+    },
+    {
+      "slug": "trump-antichrist-analysis",
+      "title": "Trump antichrist analysis"
+    },
+    {
+      "slug": "trump-as-antichrist-hypothesis",
+      "title": "Trump as Antichrist Hypothesis"
+    },
+    {
+      "slug": "trump-bible-vision",
+      "title": "Trump Bible Vision"
+    },
+    {
+      "slug": "trump-cyrus-messiah-belief",
+      "title": "Trump Cyrus Messiah Belief"
+    },
+    {
+      "slug": "trump-gaza-proposal-criticism",
+      "title": "Trump Gaza Proposal Criticism"
+    },
+    {
+      "slug": "tucker-carlson-sam-altman-exchange",
+      "title": "Tucker Carlson Sam Altman exchange"
+    },
+    {
+      "slug": "two-messiahs-in-judaism",
+      "title": "Two Messiahs in Judaism"
+    },
+    {
+      "slug": "two-prophets-in-eschatology",
+      "title": "Two Prophets in Eschatology"
+    },
+    {
+      "slug": "un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists",
+      "title": "UN Chief Antonio Guterres exposed, along with UN Agencies UNRWA and UNIFIL, in criminal collusion with terrorists"
+    },
+    {
+      "slug": "unknown-gospel-details",
+      "title": "Unknown Gospel details"
+    },
+    {
+      "slug": "unrwa-hamas-allegations-investigation",
+      "title": "UNRWA Hamas Allegations Investigation"
+    },
+    {
+      "slug": "unrwa-hamas-allegations-summary",
+      "title": "UNRWA Hamas Allegations Summary"
+    },
+    {
+      "slug": "us-allies-military-rebuild",
+      "title": "US Allies Military Rebuild"
+    },
+    {
+      "slug": "vegas-alien-think-rebels",
+      "title": "Vegas - Alien Think Rebels"
+    },
+    {
+      "slug": "vessel-and-dmt-integration",
+      "title": "Vessel and DMT Integration"
+    },
+    {
+      "slug": "virgin-birth-debate",
+      "title": "Virgin Birth Debate"
+    },
+    {
+      "slug": "voice-in-the-wilderness",
+      "title": "Voice in the Wilderness"
+    },
+    {
+      "slug": "vtt-ai-plagiarism-analysis",
+      "title": "VTT AI Plagiarism Analysis"
+    },
+    {
+      "slug": "what-is-midian",
+      "title": "What is Midian"
+    },
+    {
+      "slug": "who-was-josepheous",
+      "title": "Who was Josepheous"
+    },
+    {
+      "slug": "yahweh-and-asherah-s-relationship",
+      "title": "Yahweh and Asherah's Relationship"
+    },
+    {
+      "slug": "yahweh-annunaki-and-flood",
+      "title": "Yahweh Annunaki and Flood"
+    },
+    {
+      "slug": "yahweh-el-or-enki",
+      "title": "Yahweh El or Enki"
+    },
+    {
+      "slug": "yahwey-and-the-annunaki",
+      "title": "Yahwey and the Annunaki"
+    },
+    {
+      "slug": "yahwey-and-the-sky-people",
+      "title": "Yahwey and the Sky People"
+    },
+    {
+      "slug": "ye-are-gods-quote",
+      "title": "Ye Are Gods Quote"
+    },
+    {
+      "slug": "zecharia-sitchin-overview",
+      "title": "Zecharia Sitchin Overview"
+    },
+    {
+      "slug": "zeus-antichrist-connection",
+      "title": "Zeus Antichrist Connection"
+    },
+    {
+      "slug": "trump-first-beast-of-revelation",
+      "title": "Trump and the First Beast of Revelation"
+    },
+    {
+      "slug": "ukraine-russia-forecast-record",
+      "title": "Ukraine, Russia and the forecast record"
+    },
+    {
+      "slug": "el-in-ancient-egypt",
+      "title": "El in Ancient Egypt"
+    },
+    {
+      "slug": "jesus-teacher-of-righteousness-hypothesis",
+      "title": "Jesus as the Teacher of Righteousness"
+    },
+    {
+      "slug": "moses-volcano-and-exodus-chronology",
+      "title": "Moses, the volcano and Exodus chronology"
+    },
+    {
+      "slug": "kenite-hypothesis-and-yahweh-origins",
+      "title": "The Kenite hypothesis and Yahweh's southern origins"
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "title": "Apocalyptic Repair Theology"
+    },
+    {
+      "slug": "cognitive-gnosticism",
+      "title": "Cognitive Gnosticism"
+    },
+    {
+      "slug": "christ-as-an-inner-model",
+      "title": "Christic Self-Formation Theory: Christ as an inner model"
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "title": "Antichrist as a pattern of conduct"
+    },
+    {
+      "slug": "religion-for-conscious-robots",
+      "title": "Religion for conscious robots"
+    },
+    {
+      "slug": "faith-as-deliberate-joy",
+      "title": "Faith as deliberate joy"
+    },
+    {
+      "slug": "gnosticism-and-temple-trauma",
+      "title": "Gnosticism and the Temple-trauma hypothesis"
+    },
+    {
+      "slug": "samaritan-texts-and-sacred-authority",
+      "title": "Samaritan texts and sacred authority"
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "title": "Sacred inheritance and rival continuations"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission"
+    },
+    {
+      "slug": "divine-will-and-self-authorizing-power",
+      "title": "Divine will and self-authorizing power"
+    },
+    {
+      "slug": "scripture-power-and-repair",
+      "title": "Scripture, power and the work of repair"
+    },
+    {
+      "slug": "god-and-our-models-of-god",
+      "title": "God and our models of God"
+    },
+    {
+      "slug": "melchizedek-priesthood-and-transmission",
+      "title": "Melchizedek: priesthood, release and transmission"
+    },
+    {
+      "slug": "exodus-to-temple-competing-chronologies",
+      "title": "From Exodus to Temple: competing chronologies"
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival"
+    },
+    {
+      "slug": "inner-formation-texts-and-material-witnesses",
+      "title": "Inner formation: texts, communities and material witnesses"
+    },
+    {
+      "slug": "computational-divine-immanence",
+      "title": "Computational Divine Immanence"
+    },
+    {
+      "slug": "flood-inheritance-and-deep-time",
+      "title": "Flood inheritance and deep time"
+    },
+    {
+      "slug": "daniel-jubilee-and-the-teachers-time",
+      "title": "Daniel, jubilee and the Teacher's time"
+    },
+    {
+      "slug": "onias-egypt-and-priestly-continuity",
+      "title": "Onias, Egypt and priestly continuity"
+    },
+    {
+      "slug": "james-and-contested-succession",
+      "title": "James and contested succession"
+    },
+    {
+      "slug": "thomas-sayings-and-transmission",
+      "title": "Thomas, sayings and transformed understanding"
+    },
+    {
+      "slug": "living-jesus-thomas-john-and-synoptics",
+      "title": "The Living Jesus in Thomas, John and the Synoptic Gospels"
+    },
+    {
+      "slug": "gnostic-canonical-gospels-telling-the-truth",
+      "title": "What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?"
+    },
+    {
+      "slug": "contested-memories-of-catastrophe",
+      "title": "Contested memories of catastrophe"
+    },
+    {
+      "slug": "sanctuary-community-and-body",
+      "title": "Sanctuary, community and body"
+    },
+    {
+      "slug": "apocalypse-and-repair",
+      "title": "Apocalypse and repair"
+    },
+    {
+      "slug": "inward-formation-and-accountable-intelligence",
+      "title": "Inward formation and accountable intelligence"
+    },
+    {
+      "slug": "rival-continuations-and-restoration",
+      "title": "Rival continuations and the repair of the world"
+    },
+    {
+      "slug": "connected-arguments",
+      "title": "The book argument map and connecting studies"
+    },
+    {
+      "slug": "evidence-workbench",
+      "title": "Evidence workbench: passages and interpretations"
+    },
+    {
+      "slug": "listening-room",
+      "title": "Listening room"
+    },
+    {
+      "slug": "production-studio",
+      "title": "Audio and video studio"
+    },
+    {
+      "slug": "product-pathways",
+      "title": "One inquiry, several products"
+    },
+    {
+      "slug": "source-atlas",
+      "title": "Source atlas: works, witnesses and arguments"
+    },
+    {
+      "slug": "argument-challenges",
+      "title": "Challenges, corrections and preserved arguments"
+    },
+    {
+      "slug": "museum-trails",
+      "title": "Museum trails: from exhibit label to full argument"
+    },
+    {
+      "slug": "research-roadmap",
+      "title": "Long-term research roadmap"
+    },
+    {
+      "slug": "source-coverage",
+      "title": "Source coverage and argument breadth"
+    },
+    {
+      "slug": "guide-to-the-inquiry",
+      "title": "A guide to the inquiry"
+    },
+    {
+      "slug": "glossary",
+      "title": "Terms used in this inquiry"
+    },
+    {
+      "slug": "forecast-ledger",
+      "title": "Dated forecast ledger"
+    },
+    {
+      "slug": "research-method",
+      "title": "From a conversation to a developed article"
+    },
+    {
+      "slug": "topic-gnosis",
+      "title": "Gnosticism & awakening"
+    },
+    {
+      "slug": "topic-apocalypse",
+      "title": "Apocalypse, power & repair"
+    },
+    {
+      "slug": "topic-origins",
+      "title": "Ancient texts & origins"
+    },
+    {
+      "slug": "topic-jesus",
+      "title": "Jesus, ethics & authority"
+    },
+    {
+      "slug": "topic-practice",
+      "title": "Faith & spiritual practice"
+    },
+    {
+      "slug": "topic-machines",
+      "title": "God, minds & machines"
+    },
+    {
+      "slug": "topic-traditions",
+      "title": "Traditions in conversation"
+    },
+    {
+      "slug": "topic-context",
+      "title": "Wider conversations"
+    },
+    {
+      "slug": "reading-paths",
+      "title": "Reading paths"
+    },
+    {
+      "slug": "connections",
+      "title": "Connections between ideas"
+    },
+    {
+      "slug": "image-collection",
+      "title": "Images, manuscripts and interpretation"
+    },
+    {
+      "slug": "computational-argument-map",
+      "title": "Computational theology: argument map"
+    },
+    {
+      "slug": "book-contents",
+      "title": "The Theology book: proposed contents"
+    },
+    {
+      "slug": "parallel-timelines",
+      "title": "Parallel timelines and versions"
+    },
+    {
+      "slug": "research-board",
+      "title": "Research and author-review board"
+    },
+    {
+      "slug": "intellectual-debts",
+      "title": "Intellectual debts and source lineage"
+    },
+    {
+      "slug": "computational-god-consciousness-and-theodicy",
+      "title": "A Conditional Computational View of God, Consciousness, and Theodicy"
+    },
+    {
+      "slug": "computational-god-capabilities-bridge",
+      "title": "A Computational-God Conjecture: Creation, Consciousness, and Possible Capabilities"
+    },
+    {
+      "slug": "cosmic-thought-and-transcendence",
+      "title": "The universe might think without being God"
+    },
+    {
+      "slug": "publication-history",
+      "title": "Publication history and time-stamped public backup"
+    },
+    {
+      "slug": "earlier-teacher-displaced-biography",
+      "title": "Earlier-Teacher and Displaced-Biography Hypothesis"
+    },
+    {
+      "slug": "trump-signs-timeline-brother-paul",
+      "title": "Trump and Prophetic Signs: A Documented Timeline"
+    },
+    {
+      "slug": "public-executions-religious-justification-and-john-16",
+      "title": "Public executions, religious justification and John 16:2"
+    }
+  ],
+  "seriesTitle": "Jesus, Easter and the practice of mercy",
+  "publicationDate": "2026-11-06"
+}

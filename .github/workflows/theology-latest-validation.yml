@@ -1,0 +1,51 @@
+name: Theology Latest validation
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'theology-wiki/**'
+      - '.github/workflows/theology-latest-validation.yml'
+  push:
+    paths:
+      - 'theology-wiki/**'
+      - '.github/workflows/theology-latest-validation.yml'
+permissions:
+  contents: read
+jobs:
+  focused-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and run 29 focused regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          for section in jesus-ethics-20261105 prophecy-patterns-20261105; do
+            (cd "theology-wiki/$section" && node build.cjs && node --test integration.test.cjs && python verify.py)
+          done
+          node theology-wiki/latest/build.cjs
+          node theology-wiki/latest/build.cjs --check
+          node --test theology-wiki/latest/test.cjs
+          python theology-wiki/prophecy-patterns-20261105/research/pattern_validation_demo.py
+          git diff --exit-code -- theology-wiki/jesus-ethics-20261105 theology-wiki/prophecy-patterns-20261105 theology-wiki/latest
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Desktop, mobile, navigation and no-JavaScript checks
+        run: python theology-wiki/latest/browser-test.py
+      - name: Upload browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: theology-browser-failure-${{ github.run_id }}
+          path: browser-test-artifacts/
+          if-no-files-found: ignore
+          retention-days: 14
