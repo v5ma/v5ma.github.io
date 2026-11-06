@@ -34,7 +34,7 @@ test('entry point additions are exact and original bytes including source prose 
     const original=fs.readFileSync(path.join(__dirname,'..',name),'utf8');
     const pattern=/^ +<a class="wiki-family-link" href="\.\/latest\/index\.html">Latest<\/a>\r?\n/gm;
     assert.equal([...original.matchAll(pattern)].length,1);
-    assert.equal(crypto.createHash('sha256').update(original.replace(pattern,'')).digest('hex'),hash);
+    assert.equal(crypto.createHash('sha256').update(original.replace(pattern,'').replace(/&amp;release=20261106/g,'')).digest('hex'),hash);
   }
 });
 test('static accessible navigation and selected-release notice are present without JavaScript', () => {
@@ -44,4 +44,10 @@ test('static accessible navigation and selected-release notice are present witho
   assert.match(html,/aria-current="page">Latest/); assert.match(html,/selected release log, not an exhaustive commit history/);
   assert.ok(!html.includes('<script'));
   for(const match of html.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes('id="'+match[1]+'"'));
+});
+
+test('runtime navigation includes Latest and both supplements after reader enhancement', () => {
+  const script=fs.readFileSync(path.join(__dirname,'../assets/js/depth-tools.js'),'utf8');
+  assert.match(script,/strip.innerHTML=.*latest\/index\.html/);
+  for(const section of ['jesus-ethics-20261105','prophecy-patterns-20261105']) assert.ok(script.includes('./'+section+'/index.html'));
 });
