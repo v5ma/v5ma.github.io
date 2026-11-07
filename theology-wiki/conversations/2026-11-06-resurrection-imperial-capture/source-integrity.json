@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "source": "transcript.json",
+  "sha256": "27d23fdf51a62a7ea8db15a1336bf39dcbcf31d503272f3a962bbb0cb583ef4c",
+  "turns": [
+    {
+      "id": "turn-1",
+      "speaker": "User",
+      "sha256": "11ca5140f4c43df61e1d6ea4e347009b700641ee3e802b4e6c956344cbd3d4c5",
+      "attachments": []
+    },
+    {
+      "id": "turn-2",
+      "speaker": "dot",
+      "sha256": "82378d6241b0342ba6d4b66a16a04db2c0b38a957964ac6becc3f4178b82ef8a",
+      "attachments": []
+    },
+    {
+      "id": "turn-3",
+      "speaker": "dot",
+      "sha256": "ef8e58a19dd3636a71c4c5e1e912b30e85d60574f2b9fb43c524cd7bc1ad959b",
+      "attachments": []
+    },
+    {
+      "id": "turn-4",
+      "speaker": "User",
+      "sha256": "1a9df463cf55f0db96e886f7a9c5d9c73571fcfbd1be252d82bf420da475e544",
+      "attachments": []
+    },
+    {
+      "id": "turn-5",
+      "speaker": "dot",
+      "sha256": "2e316cdee62eeb7cbdfdb1c75015cf3f1b016297b25ae0d83cf7928e0a355f38",
+      "attachments": []
+    },
+    {
+      "id": "turn-6",
+      "speaker": "dot",
+      "sha256": "e4c6afe889621b441201e78d86113463c9cf734afc4b9327dbb8577563f92e63",
+      "attachments": []
+    },
+    {
+      "id": "turn-7",
+      "speaker": "User",
+      "sha256": "9ac6485daf6609e1c75bf999c4eb45d877d07116efbbb4c4299fe9be71dd9ee8",
+      "attachments": []
+    },
+    {
+      "id": "turn-8",
+      "speaker": "dot",
+      "sha256": "ee43e3d44a9b52bd7ed5397ca840a32571cf224c32a0d4036e72dff45a51d8ae",
+      "attachments": []
+    },
+    {
+      "id": "turn-9",
+      "speaker": "dot",
+      "sha256": "8a60ef92a1f74fce6ed3cb010c327ceef6eedd4476430ed51807ca0075205f44",
+      "attachments": []
+    },
+    {
+      "id": "turn-10",
+      "speaker": "User",
+      "sha256": "72e6d2e3b81709e78253cf0ef90925b9b25522a7d86cc85fe04bcc691e816697",
+      "attachments": []
+    },
+    {
+      "id": "turn-11",
+      "speaker": "dot",
+      "sha256": "cd24c4df3c789524f26ce2fb08714a2f9742b98ad8969fb3e59a1d39d407ad40",
+      "attachments": []
+    },
+    {
+      "id": "turn-12",
+      "speaker": "User",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "attachments": [
+        {
+          "name": "Pasted text(3).md",
+          "sha256": "7a857da9bde97fcfe42855e36a2bdfc874c91bf5131e88bd47ed92c7f983d2ac"
+        }
+      ]
+    },
+    {
+      "id": "turn-13",
+      "speaker": "dot",
+      "sha256": "c9ba578ef08a4edbf7e65d35e6b17d3497128c802f9618cd9ec8335a56d9e120",
+      "attachments": []
+    },
+    {
+      "id": "turn-14",
+      "speaker": "dot",
+      "sha256": "58063b3bf864ae5a4ad15fa2c2ad83cf6b25b881daa530a541bfe56ba0299ac5",
+      "attachments": []
+    },
+    {
+      "id": "turn-15",
+      "speaker": "User",
+      "sha256": "a6f689da094c9814aaaad9a85bbcda316f103c0697b5d33a2f5095fca6de8450",
+      "attachments": [
+        {
+          "name": "Pasted text.txt",
+          "sha256": "f93a37b4bba9d23913654151612e46c7a4c8f0cb0ff50f3807f082fec187c599"
+        }
+      ]
+    },
+    {
+      "id": "turn-16",
+      "speaker": "dot",
+      "sha256": "290bf6f77c911561934708b71ab8e1d1d69e0b577f692e6205bc479f42583d2d",
+      "attachments": []
+    },
+    {
+      "id": "turn-17",
+      "speaker": "dot",
+      "sha256": "55dba0581b085b9d7ecd7a52fd44cfb35277f2f3095db59f72b86240ea6fb2cc",
+      "attachments": []
+    }
+  ]
+}
