@@ -16,6 +16,8 @@ The tests also check the six November 6 additions, synthetic-only protocol cavea
 
 ## Release provenance
 
+- November 7, 2026: the complete November 6 conversation about Jesus, Resurrection Theology and Imperial Capture, including all 17 messages and both user-supplied texts. The transcript retains original wording, source links, historical qualifications, and the user's clarification about imperial pressure within the Gospel narratives.
+
 - November 6, 2026: first publication of five prepared chapters and one proposed research protocol. November 5 directory/source dates are preparation dates, not public-release dates.
 - October 30, 2026: Iran infrastructure cascade inquiry; verified publication commit `6efe636e0db5107fbf25e241ca2605f68e984bc2`.
 - October 24, 2026: Trump signs timeline, public executions study and Earlier-Teacher overview; verified publication commits `3835e657aefe9f3946666cf75774fe065d8b24ac` and `a28d99a6f4eca0c4c1efa85584b3688d7ef37c94`.
