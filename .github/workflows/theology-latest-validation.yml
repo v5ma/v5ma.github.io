@@ -47,6 +47,9 @@ jobs:
         run: |
           python theology-wiki/latest/browser-test.py
           python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/browser-test.py
+      - name: Verify the exact master publication on GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        run: python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/verify-live.py
       - name: Upload browser failure evidence
         if: failure()
         uses: actions/upload-artifact@v4

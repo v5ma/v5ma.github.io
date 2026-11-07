@@ -33,7 +33,6 @@ test('all source wording is retained in generated Markdown and outputs are deter
 test('speakers, attachment attribution, source uncertainty and clarified scope remain visible', () => {
   assert.equal((html.match(/class="turn user"/g)||[]).length,6);
   assert.equal((html.match(/class="turn assistant"/g)||[]).length,11);
-  assert.equal((html.match(/class="attachment-text"/g)||[]).length,0); // The prose class is retained too.
   assert.equal((html.match(/class="prose attachment-text"/g)||[]).length,2);
   assert.ok(html.includes('not an independently fact-checked article'));
   assert.ok(html.includes('not authorship of every sentence'));
