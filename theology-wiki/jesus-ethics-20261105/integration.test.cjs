@@ -28,5 +28,7 @@ test('the prophecy section preserves sources and exact bounded release-presentat
  const allowed=new Set(['README.md','manifest.json','build.cjs','build-report.json','index.html','prophecy-partial-success-and-causal-feedback.html','prophecy-recurring-patterns-and-corrective-word.html','pattern-validation-protocol.html']);
  const amendments=release.amendments.filter(a=>a.path.startsWith('prophecy-patterns-20261105/'));
  for(const a of amendments){const rel=a.path.split('/').slice(1).join('/');assert.ok(allowed.has(rel),rel);assert.equal(receipt.prophecyFiles.find(r=>r.path===rel)?.sha256,a.beforeSha256,rel);}
- for(const r of receipt.prophecyFiles){const a=amendments.find(a=>a.path==='prophecy-patterns-20261105/'+r.path);assert.equal(sha(fs.readFileSync(path.join(root,'../prophecy-patterns-20261105',r.path))),a?.afterSha256||r.sha256,r.path);}
+ const continuation=JSON.parse(read('../clouds-and-millennium-20261109/navigation-amendments.json'));
+ for(const c of continuation.amendments){const rel=c.path.split('/').slice(1).join('/');assert.ok(allowed.has(rel),rel);const prior=amendments.find(a=>a.path===c.path);assert.equal(c.beforeSha256,prior?.afterSha256||receipt.prophecyFiles.find(r=>r.path===rel)?.sha256,rel);}
+ for(const r of receipt.prophecyFiles){const a=amendments.find(a=>a.path==='prophecy-patterns-20261105/'+r.path),c=continuation.amendments.find(c=>c.path==='prophecy-patterns-20261105/'+r.path);assert.equal(sha(fs.readFileSync(path.join(root,'../prophecy-patterns-20261105',r.path))),c?.afterSha256||a?.afterSha256||r.sha256,r.path);}
 });

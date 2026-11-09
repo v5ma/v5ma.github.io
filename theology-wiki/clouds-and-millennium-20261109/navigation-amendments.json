@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-09",
+  "scope": "Add a separate reciprocal reading panel outside the original prophecy prose; source Markdown and research/search data are unchanged. This is a continuation of, not a replacement for, the November 6 release record.",
+  "amendments": [
+    {
+      "path": "prophecy-patterns-20261105/build-report.json",
+      "beforeSha256": "8b7e282704edb3202622041e6a2c080034365bca7caa21c728031b2d221c2a51",
+      "afterSha256": "c7c46ef9ed22ec305788a69f6534bdd40f9c51fb4658a390bedc702287f55cc6"
+    },
+    {
+      "path": "prophecy-patterns-20261105/build.cjs",
+      "beforeSha256": "1fa08752b927c3a918294cfc9d7df24ead15a2e95a6df214762a6e61df71dff1",
+      "afterSha256": "99ff6bf97d2a8db893dba84e1d304db79a69efee3a1bc6ffdd44a70a0c46c88e"
+    },
+    {
+      "path": "prophecy-patterns-20261105/index.html",
+      "beforeSha256": "3424319260a6e2e88932c681f7b278645d76b949b02da6c4140d1c1514efc82f",
+      "afterSha256": "0a694bfc96e7bd8f88a3dc59ea1b9b5513f3a7e75a4b0d0b5ebb95310c9a5b3e"
+    },
+    {
+      "path": "prophecy-patterns-20261105/pattern-validation-protocol.html",
+      "beforeSha256": "3d02bf93c567091ded1e4a4deac11c67e9b6509b8227b68dd91b96076894c4e5",
+      "afterSha256": "0a02711336666e22b6dd97b85eb2bc4d2436d73fe9b3c562d37ea958aff3905c"
+    },
+    {
+      "path": "prophecy-patterns-20261105/prophecy-partial-success-and-causal-feedback.html",
+      "beforeSha256": "baf063821409eca1bf7181a463cb16d49eeb393aeef0d59c23ac9cb21d10df91",
+      "afterSha256": "6a5fd43e1eb616e8942cfb8b8e8ea00edb875ebaee18bbeccbd7c10a61423a1a"
+    },
+    {
+      "path": "prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html",
+      "beforeSha256": "fe429dc273354582fba55866997a4320b2d179d9ac939170f8a0d95eb3fb2719",
+      "afterSha256": "083ff71575cb268daab0f498d17cbf26d3e73247d6f27bb0b88219e31709d686"
+    }
+  ]
+}
