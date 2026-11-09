@@ -1,0 +1,34 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const {createRenderer}=require('../jesus-ethics-20261105/build.cjs');
+const ROOT=__dirname;
+const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
+function build(check=false){
+ const cfg=JSON.parse(fs.readFileSync(path.join(ROOT,'manifest.json'),'utf8'));
+ const renderer=createRenderer(new Set(),new Set(cfg.pages.map(p=>p.slug))),outputs={},search=[],docs=[];
+ const link=(label,href)=>'<a href="'+esc(href)+'">'+esc(label)+'</a>';
+ const nav=current=>'<nav aria-label="Section navigation">'+[{slug:'index',navLabel:'Overview'},...cfg.pages].map(p=>'<a href="'+p.slug+'.html"'+(p.slug===current?' aria-current="page"':'')+'>'+esc(p.navLabel)+'</a>').join('')+'</nav>';
+ const shell=(title,summary,body,current,searchable=false)=>'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="'+esc(summary)+'"><title>'+esc(title)+' | Theology Wiki</title><link rel="stylesheet" href="series.css"></head><body><a class="skip" href="#main">Skip to content</a><header><p class="eyebrow">THEOLOGY WIKI · PUBLISHED NOVEMBER 9, 2026</p><h1>'+esc(title)+'</h1><p class="lede">'+esc(summary)+'</p><nav aria-label="Wiki navigation">'+link('Theology Wiki','../san-reader.html?page=home')+link('Latest','../latest/index.html')+link('Earlier resurrection studies','../jesus-ethics-20261105/index.html')+'</nav>'+nav(current)+'</header><main id="main">'+body+'</main><footer><p>A working inquiry with competing interpretations. Historical claims, theological proposals and a text’s own presentation remain distinct. The wiki collects contradictory perspectives; inclusion is not endorsement of every view.</p><p>'+link('Sources, build and validation','README.md')+' · '+link('Latest additions','../latest/index.html')+'</p></footer>'+(searchable?'<script src="search-data.js"></script><script src="search.js"></script>':'')+'</body></html>\n';
+ for(const p of cfg.pages){
+  if(!/^[a-z0-9-]+$/.test(p.slug)||p.source!=='sources/'+p.slug+'.md')throw Error('Unsafe source');
+  const source=fs.readFileSync(path.join(ROOT,p.source),'utf8');
+  if(source.match(/^# (.+)$/m)?.[1]!==p.title)throw Error('Title mismatch '+p.slug);
+  const result=renderer.render(source),minutes=Math.ceil(source.split(/\s+/).length/220);
+  const toc='<details class="contents" open><summary>In this chapter</summary><ol>'+result.headings.filter(h=>h.level===2).map(h=>'<li>'+link(h.title,'#'+h.id)+'</li>').join('')+'</ol></details>';
+  const i=cfg.pages.indexOf(p),sequence='<nav class="sequence" aria-label="Continue reading">'+link('← '+(i?cfg.pages[i-1].navLabel:'Overview'),i?cfg.pages[i-1].slug+'.html':'index.html')+(i<cfg.pages.length-1?link(cfg.pages[i+1].navLabel+' →',cfg.pages[i+1].slug+'.html'):'')+'</nav>';
+  outputs[p.slug+'.html']=shell(p.title,p.summary,'<p class="edition">New chapter · '+minutes+' minute read · '+link('Source Markdown',p.source)+'</p>'+toc+'<article class="prose">'+result.html+'</article>'+sequence,p.slug);
+  for(const section of result.sections)search.push({title:p.title,kind:p.slug,heading:section.heading,url:p.slug+'.html#'+section.anchor,text:section.text.replace(/\[([^\]]+)\]\([^\s]+\)/g,'$1').replace(/[*`]/g,'').replace(/\s+/g,' ').trim()});
+  docs.push({...p,sourceSha256:hash(source),words:source.split(/\s+/).length,sections:result.sections.length});
+ }
+ const cards=cfg.pages.map((p,i)=>'<article class="card"><p class="eyebrow">UPDATE '+(i+1)+'</p><h2>'+link(p.title,p.slug+'.html')+'</h2><p>'+esc(p.summary)+'</p></article>').join('');
+ const searchUI='<section class="search" aria-labelledby="search-title"><h2 id="search-title">Search these four chapters</h2><form id="search-form" role="search"><div><label for="query">Words or a phrase</label><input type="search" id="query" name="q" placeholder="Try “Pilate” or “angels”" autocomplete="off"></div><div><label for="scope">Search in</label><select id="scope"><option value="">All four chapters</option>'+cfg.pages.map(p=>'<option value="'+p.slug+'">'+esc(p.navLabel)+'</option>').join('')+'</select></div><button type="button" id="reset">Clear</button></form><p id="search-status" role="status" aria-live="polite">Search runs on this device. It covers these four complete chapters only.</p><div id="search-results"></div><noscript><p>Search needs JavaScript. All chapters and contents lists remain readable without it.</p></noscript></section>';
+ outputs['index.html']=shell('Jesus, resurrection and empire: four connected inquiries','Recovering an unorthodox interpretation through the historical Jesus, the earliest sources, their differences and the power that shaped their reception.','<p class="notice"><strong>Four substantive additions, November 9, 2026.</strong> Start with the purpose and method, follow the argument’s development, then examine the early-creed and Pilate comparisons. These studies extend the earlier chapters without replacing their source prose.</p><section class="cards" aria-label="Four connected chapters">'+cards+'</section>'+searchUI+'<section class="connections"><h2>Read alongside the existing wiki</h2><p>'+link('Early resurrection accounts and source criticism','../jesus-ethics-20261105/early-resurrection-accounts-and-source-criticism.html')+' · '+link('Would Jesus oppose the resurrection gospel?','../jesus-ethics-20261105/would-jesus-oppose-the-resurrection-gospel.html')+'</p><p>'+link('Thomas, John and the Synoptics','../san-reader.html?page=living-jesus-thomas-john-and-synoptics')+' · '+link('Manuscripts, movements and survival','../san-reader.html?page=manuscripts-movements-and-survival')+'</p><p>This section has its own full-text search. The main reader and other supplements retain their existing search indexes.</p></section>','index',true);
+ outputs['search-index.json']=JSON.stringify(search,null,2)+'\n';
+ outputs['search-data.js']='window.INQUIRY_SEARCH='+JSON.stringify(search).replace(/</g,'\\u003c')+';\n';
+ outputs['build-report.json']=JSON.stringify({schema:1,publicationDate:cfg.publicationDate,baseRevision:cfg.baseRevision,pages:docs,searchSections:search.length,outputs:Object.entries(outputs).map(([name,content])=>({path:name,bytes:Buffer.byteLength(content),sha256:hash(content)}))},null,2)+'\n';
+ for(const [name,content] of Object.entries(outputs)){const p=path.join(ROOT,name);if(check){if(!fs.existsSync(p)||fs.readFileSync(p,'utf8')!==content)throw Error('Stale output '+name);}else fs.writeFileSync(p,content);}
+ return {pages:docs.length,searchSections:search.length,outputs:Object.keys(outputs).length};
+}
+if(require.main===module)console.log(JSON.stringify(build(process.argv.includes('--check'))));
+module.exports={build};

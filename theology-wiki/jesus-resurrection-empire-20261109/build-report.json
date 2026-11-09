@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "baseRevision": "fed57ca73d00f9100d8924f968b575452efbd032",
+  "pages": [
+    {
+      "slug": "purpose-and-unorthodox-interpretation",
+      "navLabel": "Purpose and method",
+      "title": "Searching for the interpretation that changes the interpretation",
+      "summary": "A direct statement of purpose and a method for comparing canonical and noncanonical evidence without collapsing manuscript dates, canon history and empire.",
+      "source": "sources/purpose-and-unorthodox-interpretation.md",
+      "sourceSha256": "a94770a0b3d5c1c3633e94e57c2fc0bc81c5a57259c273faf942e22252a63957",
+      "words": 1386,
+      "sections": 6
+    },
+    {
+      "slug": "how-the-argument-developed",
+      "navLabel": "Argument development",
+      "title": "How the argument developed: Jesus, resurrection and empire",
+      "summary": "Trace the historical-Jesus hypothesis, Paul, later Gospel narratives, countertexts and the move to a first-century imperial question.",
+      "source": "sources/how-the-argument-developed.md",
+      "sourceSha256": "90efe093050c32d9c7664b9322bde69d940f6d3b8c97b318763b25604af08761",
+      "words": 1323,
+      "sections": 7
+    },
+    {
+      "slug": "early-creeds-angels-and-resurrection",
+      "navLabel": "Creeds and angels",
+      "title": "Early creeds, angels and resurrection evidence",
+      "summary": "Examine 1 Corinthians 15, Philippians 2, Colossians 1, Hebrews 13 and angelic hospitality, separating early testimony from later interpretive claims.",
+      "source": "sources/early-creeds-angels-and-resurrection.md",
+      "sourceSha256": "6128b70d7c9bc899e2847377914c8db238a7d153e09a1d8cc4d5cb9b83d7d7f4",
+      "words": 1326,
+      "sections": 7
+    },
+    {
+      "slug": "imperial-pressure-and-pilate",
+      "navLabel": "Empire and Pilate",
+      "title": "Imperial pressure and the Gospel Pilate",
+      "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
+      "source": "sources/imperial-pressure-and-pilate.md",
+      "sourceSha256": "c2c0ac0dd677f2016a578603a785f900bb34c3821943f7db1a07b3d7863abf9d",
+      "words": 1281,
+      "sections": 7
+    }
+  ],
+  "searchSections": 27,
+  "outputs": [
+    {
+      "path": "purpose-and-unorthodox-interpretation.html",
+      "bytes": 14403,
+      "sha256": "56225144a5bc87896e7dae2fcebe8a07c3bbb92b87a3dd8dcf77c79c1ab5694b"
+    },
+    {
+      "path": "how-the-argument-developed.html",
+      "bytes": 13977,
+      "sha256": "e0dd14e205befd12ae4f3070fc00c1d52f4fa973f8a6cc2a3505eed915fe476c"
+    },
+    {
+      "path": "early-creeds-angels-and-resurrection.html",
+      "bytes": 14427,
+      "sha256": "8d0b81f60f8d47bddd561c354c83731f033e643c2aff6f791764deba94e09dea"
+    },
+    {
+      "path": "imperial-pressure-and-pilate.html",
+      "bytes": 13478,
+      "sha256": "c4064ed4e0b2727c0c799f13c00ac17ff58098e6aca58d3411bda908e6a78fa4"
+    },
+    {
+      "path": "index.html",
+      "bytes": 5341,
+      "sha256": "938b7a642494399c9f98f09b30467ed90e657d954ee05872376e8f02cd543543"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 43983,
+      "sha256": "d2b4430da904ab86a0ae997d64a35a0c1592c79a81e9c2a8d740b7dbc697b6f0"
+    },
+    {
+      "path": "search-data.js",
+      "bytes": 43033,
+      "sha256": "02ea271bdf530380976985b7e969cfff26daab9a125308f323a7f300a3064a8e"
+    }
+  ]
+}

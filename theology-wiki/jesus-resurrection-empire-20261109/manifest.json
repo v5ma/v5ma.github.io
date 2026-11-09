@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "baseRevision": "fed57ca73d00f9100d8924f968b575452efbd032",
+  "pages": [
+    {
+      "slug": "purpose-and-unorthodox-interpretation",
+      "navLabel": "Purpose and method",
+      "title": "Searching for the interpretation that changes the interpretation",
+      "summary": "A direct statement of purpose and a method for comparing canonical and noncanonical evidence without collapsing manuscript dates, canon history and empire.",
+      "source": "sources/purpose-and-unorthodox-interpretation.md"
+    },
+    {
+      "slug": "how-the-argument-developed",
+      "navLabel": "Argument development",
+      "title": "How the argument developed: Jesus, resurrection and empire",
+      "summary": "Trace the historical-Jesus hypothesis, Paul, later Gospel narratives, countertexts and the move to a first-century imperial question.",
+      "source": "sources/how-the-argument-developed.md"
+    },
+    {
+      "slug": "early-creeds-angels-and-resurrection",
+      "navLabel": "Creeds and angels",
+      "title": "Early creeds, angels and resurrection evidence",
+      "summary": "Examine 1 Corinthians 15, Philippians 2, Colossians 1, Hebrews 13 and angelic hospitality, separating early testimony from later interpretive claims.",
+      "source": "sources/early-creeds-angels-and-resurrection.md"
+    },
+    {
+      "slug": "imperial-pressure-and-pilate",
+      "navLabel": "Empire and Pilate",
+      "title": "Imperial pressure and the Gospel Pilate",
+      "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
+      "source": "sources/imperial-pressure-and-pilate.md"
+    }
+  ]
+}

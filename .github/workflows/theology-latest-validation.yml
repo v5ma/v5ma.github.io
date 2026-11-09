@@ -35,6 +35,10 @@ jobs:
           node --test theology-wiki/latest/test.cjs
           python theology-wiki/prophecy-patterns-20261105/research/pattern_validation_demo.py
           git diff --exit-code -- theology-wiki/jesus-ethics-20261105 theology-wiki/prophecy-patterns-20261105 theology-wiki/latest
+      - name: Build and validate the November 9 inquiries
+        run: |
+          node theology-wiki/jesus-resurrection-empire-20261109/build.cjs --check
+          node --test theology-wiki/jesus-resurrection-empire-20261109/test.cjs
       - name: Build and validate the conversation transcript
         run: |
           node theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/build.cjs --check
@@ -45,11 +49,14 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Desktop, mobile, navigation and no-JavaScript checks
         run: |
+          python theology-wiki/jesus-resurrection-empire-20261109/browser-test.py
           python theology-wiki/latest/browser-test.py
           python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/browser-test.py
       - name: Verify the exact master publication on GitHub Pages
         if: github.ref == 'refs/heads/master'
-        run: python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/verify-live.py
+        run: |
+          python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/verify-live.py
+          python theology-wiki/jesus-resurrection-empire-20261109/verify-live.py
       - name: Upload browser failure evidence
         if: failure()
         uses: actions/upload-artifact@v4
