@@ -26,7 +26,7 @@ test('all new static pages have accessible structure and valid local targets/fra
 });
 test('Latest includes each new page once without removing the previous release records',()=>{
  const latest=JSON.parse(fs.readFileSync(path.join(root,'../latest/manifest.json'),'utf8'));
- assert.equal(latest.entries.filter(x=>x.date==='2026-11-09').length,4);
+ assert.equal(latest.entries.filter(x=>x.date==='2026-11-09'&&x.href.startsWith('../jesus-resurrection-empire-20261109/')).length,4);
  for(const p of cfg.pages)assert.equal(latest.entries.filter(x=>x.href==='../jesus-resurrection-empire-20261109/'+p.slug+'.html').length,1);
  assert.ok(latest.entries.some(x=>x.date==='2026-11-07'));assert.equal(latest.entries.filter(x=>x.date==='2026-11-06').length,6);
 });

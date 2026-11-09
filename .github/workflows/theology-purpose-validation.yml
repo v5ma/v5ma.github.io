@@ -1,0 +1,56 @@
+name: Theology purpose entrance validation
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'theology-wiki/purpose/**'
+      - 'theology-wiki/index.html'
+      - 'theology-wiki/san-reader.html'
+      - 'theology-wiki/assets/js/depth-tools.js'
+      - 'theology-wiki/latest/**'
+      - '.github/workflows/theology-purpose-validation.yml'
+  push:
+    paths:
+      - 'theology-wiki/purpose/**'
+      - 'theology-wiki/index.html'
+      - 'theology-wiki/san-reader.html'
+      - 'theology-wiki/assets/js/depth-tools.js'
+      - 'theology-wiki/latest/**'
+      - '.github/workflows/theology-purpose-validation.yml'
+permissions:
+  contents: read
+jobs:
+  purpose-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact letter, category coverage, endpoints and source preservation
+        run: |
+          node theology-wiki/purpose/build.cjs --check
+          node --test theology-wiki/purpose/test.cjs
+          node theology-wiki/latest/build.cjs --check
+          node --test theology-wiki/latest/test.cjs
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Desktop, mobile, keyboard, no-JavaScript and reader navigation
+        run: python theology-wiki/purpose/browser-test.py
+      - name: Verify exact published files and live navigation
+        if: github.ref == 'refs/heads/master'
+        run: python theology-wiki/purpose/verify-live.py
+      - name: Upload screenshots and verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: theology-purpose-${{ github.run_id }}
+          path: browser-test-artifacts/purpose/
+          if-no-files-found: ignore
+          retention-days: 14

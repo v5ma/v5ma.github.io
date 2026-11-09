@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const {validate,render} = require('./build.cjs');
+const {stripIntegration} = require('../purpose/build.cjs');
 const manifest = require('./manifest.json');
 const clone = () => JSON.parse(JSON.stringify(manifest));
 test('manifest is valid and generated HTML is deterministic and current', () => {
@@ -34,7 +35,7 @@ test('entry point additions are exact and original bytes including source prose 
     const original=fs.readFileSync(path.join(__dirname,'..',name),'utf8');
     const pattern=/^ +<a class="wiki-family-link" href="\.\/latest\/index\.html">Latest<\/a>\r?\n/gm;
     assert.equal([...original.matchAll(pattern)].length,1);
-    assert.equal(crypto.createHash('sha256').update(original.replace(pattern,'').replace(/&amp;release=20261106/g,'')).digest('hex'),hash);
+    assert.equal(crypto.createHash('sha256').update(stripIntegration(original).replace(pattern,'').replace(/&amp;release=20261106/g,'')).digest('hex'),hash);
   }
 });
 test('static accessible navigation and selected-release notice are present without JavaScript', () => {
@@ -51,3 +52,4 @@ test('runtime navigation includes Latest and both supplements after reader enhan
   assert.match(script,/strip.innerHTML=.*latest\/index\.html/);
   for(const section of ['jesus-ethics-20261105','prophecy-patterns-20261105']) assert.ok(script.includes('./'+section+'/index.html'));
 });
+
