@@ -32,3 +32,9 @@ Tests additionally check resolved wikilinks, citation anchors, preserved earlier
 Three further source-linked studies bring the series to twelve chapters. Each original chapter gains a bounded reciprocal connection while retaining every prior paragraph and wikilink. `origins-prior-source-hashes.json` protects the nine chapter bodies as published at f851922; the earlier four-chapter preservation receipt also remains enforced. The new sources distinguish Mandaean tradition and competing origin hypotheses, stages of fourth-century consolidation, Jewish textual plurality, and direct versus comparative connections.
 
 The section search, navigation, reading map and Latest are rebuilt. Main-reader content, original conversations and narration assets remain unchanged. Tests cover all twelve chapters, bibliography anchors, real wikilinks, preserved text and new historical interpretation boundaries.
+
+## Eusebius and Walter Bauer extension
+
+The thirteenth chapter compares the apostolic-continuity narrative with Bauer’s 1934 regional thesis, the 1971 English translation, scholarly precursors and criticism, and the limits of source survival. Six earlier chapters receive a reciprocal connection. Every previous source body is preserved after removing only the new, clearly titled bridge; `eusebius-prior-source-hashes.json` records the twelve source hashes at f3afe118. The earlier preservation checks remain enforced.
+
+The series navigation and full-text search, Latest and purpose reading map include the chapter. Main-reader content, original conversations, public corpus snapshots and narration assets remain unchanged. The page uses numbered citations with explicit source-access notes and distinguishes an ancient classification, a modern reconstruction and a theological judgment.

@@ -76,6 +76,10 @@ The constructive question then returns to [[antichrist-as-a-pattern-of-conduct|A
 
 The Director’s Cut therefore names a question about selection and power, not a substitute for research. Recovering the discarded, disputed and differently preserved voices lets the interpretation change. Keeping their disagreements intact prevents a new reconstruction from repeating the flattening it criticizes.
 
+## Reading the history of orthodoxy
+
+[[eusebius-bauer-orthodoxy-and-heresy|Eusebius and Walter Bauer: who gets to call the beginning orthodox?]] gives the history-writing problem its own study. It compares the succession narrative with Edessa, Egypt, Asia Minor and Rome, while keeping Bauer’s 1934 thesis separate from claims that Constantine invented orthodoxy or that scholarship has reached a unanimous verdict.
+
 ## Sources and access notes
 
 1. [Galatians 1–2](https://www.biblegateway.com/passage/?search=Galatians%201-2&version=NRSVUE). Paul's own presentation of conflict over Gospel and authority.

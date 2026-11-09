@@ -54,6 +54,10 @@ The Pilate comparison now opens into [[competing-crosses-and-imperial-capture|Co
 
 The next comparison separates [[mandaean-origins-john-and-migration|Mandaean memories of John]], [[dead-sea-scrolls-jewish-diversity-and-empire|Jewish diversity in the Dead Sea Scrolls]] and [[constantine-consolidation-and-christian-diversity|fourth-century imperial consolidation]]. Each adds a different kind of evidence to the inquiry, so the chronology cannot be reduced to one uninterrupted Roman editorial plan.
 
+## Reading the history of orthodoxy
+
+The chronology also has a history of interpretation. [[eusebius-bauer-orthodoxy-and-heresy|Eusebius and Walter Bauer]] contrasts a continuous apostolic mainstream with a regional investigation of how communities acquired the labels orthodox and heretical. Neither later success nor later exclusion establishes the original meaning of a witness.
+
 ## Sources and access notes
 
 - This is an edited argument map, not a private-conversation transcript. It preserves the ambitious hypothesis while distinguishing observations, proposed explanations and unresolved questions. Alternative readings are analytical comparisons, not assertions that each is a settled personal belief.

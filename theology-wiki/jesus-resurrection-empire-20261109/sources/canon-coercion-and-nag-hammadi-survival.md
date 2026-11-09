@@ -60,6 +60,10 @@ This method preserves the force of Micah's question: how can institutional power
 
 [[constantine-consolidation-and-christian-diversity|The Director’s Cut: Constantine, consolidation and Christian diversity]] develops the chronology from pre-imperial disputes through Nicaea, copying commissions, the 367 list and later law. [[dead-sea-scrolls-jewish-diversity-and-empire|The Dead Sea Scrolls]] investigate a much earlier Jewish archive, and [[mandaean-origins-john-and-migration|Mandaean origins and John]] distinguish living tradition from a securely dated ancestral chain.
 
+## Reading the history of orthodoxy
+
+[[eusebius-bauer-orthodoxy-and-heresy|The Eusebius–Bauer debate]] connects the survival question to historical method. Eusebius’s disputed-book categories complicate his own continuity narrative; Nag Hammadi expands the archive without functioning as a census or confirming every regional reconstruction in Bauer.
+
 ## Sources and access notes
 
 1. [Irenaeus, Against Heresies 3.11.8–9](https://www.newadvent.org/fathers/0103311.htm). Accessible primary translation for the four-Gospel argument and Valentinian Gospel of Truth notice.

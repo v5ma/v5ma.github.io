@@ -68,6 +68,10 @@ The new comparisons therefore knit together two tasks: recovering a wider range 
 
 [[constantine-consolidation-and-christian-diversity|The Director’s Cut: Constantine, consolidation and Christian diversity]] gives the institutional hypothesis its own chronology. [[mandaean-origins-john-and-migration|Mandaean origins and John]] and [[dead-sea-scrolls-jewish-diversity-and-empire|the Dead Sea Scrolls]] widen the religious comparison without treating every dissenting voice as one anti-Roman movement.
 
+## Reading the history of orthodoxy
+
+[[eusebius-bauer-orthodoxy-and-heresy|Eusebius and Bauer on orthodoxy and heresy]] examines how a tradition’s institutional success shapes its account of the past. It also distinguishes pre-imperial boundary-making from later state support, and surviving evidence from unsupported estimates of ancient majorities.
+
 ## Sources and access notes
 
 1. [Gospel of Peter, translated by Raymond E. Brown](https://www.earlychristianwritings.com/text/gospelpeter-brown.html), especially sections 1–5 and 45–46. Accessible primary translation checked for Herod's command and Pilate's self-exoneration. This text is not the Coptic Apocalypse of Peter.

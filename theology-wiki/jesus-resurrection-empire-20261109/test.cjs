@@ -2,13 +2,14 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {build}=require('./build.cjs'),cfg=require('./manifest.json'),root=__dirname;
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-test('twelve complete chapters build deterministically and generated outputs are current',()=>{
- assert.equal(cfg.pages.length,12);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,12);
- assert.deepEqual(build(true),{pages:12,searchSections:109,outputs:16});
+const stripEusebius=s=>s.replace(/\n## Reading the history of orthodoxy\n[\s\S]*?(?=\n## Sources and access notes)/,'');
+test('thirteen complete chapters build deterministically and generated outputs are current',()=>{
+ assert.equal(cfg.pages.length,13);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,13);
+ assert.deepEqual(build(true),{pages:13,searchSections:125,outputs:17});
  for(const p of cfg.pages){const s=read(p.source);assert.ok(s.split(/\s+/).length>1000,p.slug);assert.ok(s.includes('Sources and access notes'));assert.equal((s.match(/^# /gm)||[]).length,1);}
 });
 test('search covers every chapter and each section links to its real heading',()=>{
- const data=JSON.parse(read('search-index.json'));assert.equal(new Set(data.map(x=>x.kind)).size,12);
+ const data=JSON.parse(read('search-index.json'));assert.equal(new Set(data.map(x=>x.kind)).size,13);
  for(const r of data){const [file,id]=r.url.split('#');assert.ok(read(file).includes('id="'+id+'"'),r.url);assert.ok(r.text.length);}
  for(const term of ['Pilate','Hebrews','Athanasius','Unorthodox'])assert.ok(data.some(r=>(r.text+r.heading).includes(term)),term);
 });
@@ -26,7 +27,7 @@ test('all new static pages have accessible structure and valid local targets/fra
 });
 test('Latest includes each new page once without removing the previous release records',()=>{
  const latest=JSON.parse(fs.readFileSync(path.join(root,'../latest/manifest.json'),'utf8'));
- assert.equal(latest.entries.filter(x=>x.date==='2026-11-09'&&x.href.startsWith('../jesus-resurrection-empire-20261109/')).length,12);
+ assert.equal(latest.entries.filter(x=>x.date==='2026-11-09'&&x.href.startsWith('../jesus-resurrection-empire-20261109/')).length,13);
  for(const p of cfg.pages)assert.equal(latest.entries.filter(x=>x.href==='../jesus-resurrection-empire-20261109/'+p.slug+'.html').length,1);
  assert.ok(latest.entries.some(x=>x.date==='2026-11-07'));assert.equal(latest.entries.filter(x=>x.date==='2026-11-06').length,6);
 });
@@ -56,7 +57,7 @@ test('wikilinks resolve to verified reader routes or companion pages and are ind
 test('the four earlier source bodies are unchanged apart from additive bridge sections',()=>{
  const hashes=require('./prior-source-hashes.json');
  for(const [slug,expected] of Object.entries(hashes)){
-  const text=read('sources/'+slug+'.md');
+  const text=stripEusebius(read('sources/'+slug+'.md'));
   const original=text.replace(/\n## (A new comparison: competing meanings of the cross|The next step: Nag Hammadi and competing crosses|Compare salvation language beyond the early formulas|Beyond Pilate: who controls the meaning of the cross\?)\n[\s\S]*?(?=\n## Sources and access notes)/,'');
   assert.equal(crypto.createHash('sha256').update(original).digest('hex'),expected,slug);
   assert.match(text,/\[\[(?:competing-crosses-and-imperial-capture|ransom-revelation-and-defeated-rulers)/);
@@ -75,7 +76,7 @@ test('new studies preserve textual distinctions and bounded interpretation',()=>
 test('all nine published chapter bodies and their existing wikilinks are preserved',()=>{
  const baseline=require('./origins-prior-source-hashes.json');assert.equal(Object.keys(baseline).length,9);
  for(const [slug,expected] of Object.entries(baseline)){
-  const text=read('sources/'+slug+'.md');
+  const text=stripEusebius(read('sources/'+slug+'.md'));
   const old=text.replace(/\n## Further connections: John, Constantine and the scrolls\n[\s\S]*?(?=\n## Sources and access notes)/,'');
   assert.equal(crypto.createHash('sha256').update(old).digest('hex'),expected,slug);
   assert.ok(text.includes('## Further connections: John, Constantine and the scrolls'),slug);
@@ -95,4 +96,24 @@ test('all new articles connect outward and receive reciprocal links',()=>{
   assert.ok(cfg.pages.slice(0,9).some(x=>read(x.source).includes('[['+slug+'|')),slug);
   assert.ok(JSON.parse(read('search-index.json')).some(x=>x.kind===slug));
  }
+});
+
+test('Eusebius extension preserves all twelve earlier chapter bodies',()=>{
+ const baseline=require('./eusebius-prior-source-hashes.json');assert.equal(Object.keys(baseline).length,12);
+ let reciprocal=0;
+ for(const [slug,expected] of Object.entries(baseline)){
+  const source=read('sources/'+slug+'.md');
+  assert.equal(crypto.createHash('sha256').update(stripEusebius(source)).digest('hex'),expected,slug);
+  if(source.includes('[[eusebius-bauer-orthodoxy-and-heresy|'))reciprocal++;
+ }
+ assert.equal(reciprocal,6);
+});
+test('Eusebius and Bauer chapter preserves chronology, geography, criticism and evidence limits',()=>{
+ const slug='eusebius-bauer-orthodoxy-and-heresy',s=read('sources/'+slug+'.md'),h=read(slug+'.html');
+ for(const term of ['**1934**','**1971**','Hegesippus','3.25','3.32.7','4.7.1','Irenaeus','Tertullian','Edessa','Egypt','Ephesus, Magnesia, Tralles and Philadelphia','Rome','Harnack','Turner','Robinson','Harrington','Jorgensen','Williams','Nag Hammadi','demographic survey','not automatically','full article was not reviewed'])assert.ok(s.includes(term),term);
+ assert.match(s,/did not establish that every alternative was earlier/);
+ for(let n=1;n<=19;n++)assert.ok(h.includes('id="ref-'+n+'"'),n);
+ assert.ok((s.match(/\[\[/g)||[]).length>=12);
+ const map=require('../purpose/reading-map.json');assert.ok(map.some(x=>x.links.some(l=>l.href.endsWith('/'+slug+'.html'))));
+ assert.ok(JSON.parse(read('search-index.json')).some(x=>x.kind===slug&&x.text.includes('1934')));
 });

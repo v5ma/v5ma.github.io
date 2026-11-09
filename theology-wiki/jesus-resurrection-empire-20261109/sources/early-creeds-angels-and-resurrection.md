@@ -50,6 +50,10 @@ The new bridge [[ransom-revelation-and-defeated-rulers|Ransom, revelation and de
 
 [[constantine-consolidation-and-christian-diversity|The real-time split within early Christianity]] places these early formulas beside arguments over authority before Constantine. [[dead-sea-scrolls-jewish-diversity-and-empire|The Dead Sea Scrolls]] supply a Jewish setting for angelic conflict and apocalyptic expectation without making every later Christian text dependent on Qumran.
 
+## Reading the history of orthodoxy
+
+[[eusebius-bauer-orthodoxy-and-heresy|Eusebius, Bauer and the origins of orthodoxy]] distinguishes early attestation from a later claim to represent every early community. Bauer’s regional challenge does not erase the early sources examined here; it asks how those sources, other witnesses and later boundaries belong in the same history.
+
 ## Sources and access notes
 
 1. James Ware, [The Resurrection of Jesus in the Pre-Pauline Formula of 1 Cor 15.3–5](https://doi.org/10.1017/S0028688514000150), *New Testament Studies* 60.4 (2014): 475–498. A counterargument favoring bodily resurrection in the formula.
