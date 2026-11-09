@@ -20,6 +20,12 @@ The implications need to be stated at the correct level. A familiar scriptural w
 
 Text and canon are different questions here. A community may disagree about the wording of a book it accepts, or agree on the wording of a work while disagreeing about its authority. The [[constantine-consolidation-and-christian-diversity|Constantine study]] distinguishes these questions from imperial patronage and Christian canon lists. A history that merges all standardization into one fourth-century decision cannot explain the earlier manuscripts or the different communities transmitting them.
 
+## Samaritan textual affinities: a concrete two-way bridge
+
+The [Alternative Inheritances guide](../alternative-inheritances-20261109/alternative-inheritances.html#a-shared-torah-is-not-a-shared-institutional-allegiance) connects this textual-plurality discussion to [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]. Its specific witness is 4QpaleoExodᵐ (4Q22), whose harmonizing textual affinities do not by themselves establish Samaritan ownership or the authority of an independent library. The guide also distinguishes preserved readings from Hila Dayfani’s 2022 reconstruction of the Gerizim composition, with explicit source-access notes.
+
+The comparison moves in both directions: a shared Torah tradition complicates the idea that every community had a wholly separate textual past, while differences about sanctuary and authority prevent textual resemblance from becoming a proven genealogy. [Open the cross-reference matrix](../alternative-inheritances-20261109/alternative-inheritances.html#cross-reference-matrix-alternative-inheritances) for the links to Samaritan self-definition, John 4 and reported Christian succession claims.
+
 ## Enoch, Jubilees and what a later Bible leaves outside
 
 The scrolls preserve portions of Enochic writings and Jubilees, among many works not included in most modern Christian Bibles. Their presence expands the evidence for ancient religious reading. It does not supply a reliable percentage of books “banned by Rome.” Such a number would depend on which fragments, compositions and later canon were being counted, and exclusion is not identical to prohibition.

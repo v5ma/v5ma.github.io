@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "baseRevision": "e6662b5553596445576607c8476c38931a3f267c",
+  "slug": "alternative-inheritances",
+  "title": "Alternative inheritances: Samaritans, the scrolls and Christian authority",
+  "summary": "Follow specific, two-way connections among Samaritan traditions, Qumran manuscripts and competing Christian authority, with the evidence and limits of every bridge visible.",
+  "source": "sources/alternative-inheritances.md",
+  "connections": [
+    {
+      "slug": "samaritan-texts-and-sacred-authority",
+      "label": "Samaritan texts and sacred authority",
+      "heading": "The Dead Sea Scrolls question",
+      "relationship": "Textual affinity",
+      "context": "The concrete bridge is 4QpaleoExodᵐ (4Q22): harmonizing readings connect it to the Samaritan Pentateuch, but do not identify its readers. Dayfani’s 2022 reconstruction also challenges the older assumption that the Gerizim composition was absent. Follow [[qumran-text-history|Qumran Text History]] and [[jesus-and-dead-sea-scrolls|Jesus and Dead Sea Scrolls]] with the distinction between preserved wording, reconstruction and institutional allegiance intact.",
+      "section": "gerizim-readings-need-passage-by-passage-comparison"
+    },
+    {
+      "slug": "jesus-and-dead-sea-scrolls",
+      "label": "Jesus and Dead Sea Scrolls",
+      "heading": null,
+      "relationship": "Comparative structure",
+      "context": "Compare the authority questions in [[samaritan-texts-and-sacred-authority|Samaritan texts and sacred authority]]: shared scripture, priesthood and sacred place can come apart. John 4 directly engages the Samaritan mountain/Jerusalem dispute; shared language with Qumran is a different kind of evidence. These connections do not establish that Jesus’s movement belonged to Qumran or descended from Samaritan institutions.",
+      "section": "john-4-supplies-a-direct-christian-comparison"
+    },
+    {
+      "slug": "samaritan-and-jewish-texts",
+      "label": "Samaritan and Jewish Texts",
+      "heading": null,
+      "relationship": "Community self-definition",
+      "context": "Read this preserved conversation beside [[samaritan-texts-and-sacred-authority|the developed Samaritan inquiry]] and [[qumran-text-history|Qumran Text History]]. The new bridge separates the Samaritan community’s own account of Israelite continuity from textual comparison and modern historical reconstruction. It does not define a living tradition solely through its opponents.",
+      "section": "sacred-place-and-the-community-s-own-account"
+    },
+    {
+      "slug": "qumran-text-history",
+      "label": "Qumran Text History",
+      "heading": null,
+      "relationship": "Textual affinity",
+      "context": "4QpaleoExodᵐ supplies a specific connection to [[samaritan-texts-and-sacred-authority|the Samaritan Pentateuch inquiry]]. The label pre-Samaritan concerns textual affinities, not proof of Samaritan ownership or one universally authoritative library. Compare each passage before moving from a reading to a community.",
+      "section": "a-shared-torah-is-not-a-shared-institutional-allegiance"
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "label": "Sacred inheritance and rival continuations",
+      "heading": "Legitimacy consists of several things that can come apart",
+      "relationship": "Comparative structure",
+      "context": "The [[samaritan-texts-and-sacred-authority|Samaritan inquiry]], [[jesus-and-dead-sea-scrolls|Jesus and Dead Sea Scrolls]] and [[tor-thomas-and-gnostic-transmission|Christian transmission inquiry]] now share an explicit reading matrix. It separates shared readings, rival sacred places, direct literary engagement and reported succession, so a connection does not silently become a genealogy.",
+      "section": "cross-reference-matrix-alternative-inheritances"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "label": "The Teacher, Thomas and Gnostic transmission",
+      "heading": null,
+      "relationship": "Reported succession",
+      "context": "Clement, Stromata VII.17, reports rival claims linking Basilides to Glaucias/Peter and Valentinus to Theudas/Paul. These are specific ancient pedigree claims, not a demonstrated Samaritan-to-Qumran-to-Christian chain. Compare [[sacred-inheritance-and-rival-continuations|rival inheritances]] and [[samaritan-texts-and-sacred-authority|Samaritan authority]] at the level of the claim actually attested.",
+      "section": "competing-apostolic-claims-name-the-source-and-claimant"
+    },
+    {
+      "slug": "living-jesus-thomas-john-and-synoptics",
+      "label": "The Living Jesus in Thomas, John and the Synoptics",
+      "heading": null,
+      "relationship": "Direct literary engagement",
+      "context": "John 4:19–24 directly engages the Samaritan mountain/Jerusalem worship dispute. That gives [[samaritan-texts-and-sacred-authority|the Samaritan inquiry]] a firmer connection to a particular Christian text than a general claim about shared light/darkness language. It still does not establish Qumran membership or an institutional descent line.",
+      "section": "john-4-supplies-a-direct-christian-comparison"
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "label": "Manuscripts, movements and survival",
+      "heading": null,
+      "relationship": "Evidence and inference",
+      "context": "Use [[qumran-text-history|Qumran Text History]] and [[samaritan-texts-and-sacred-authority|Samaritan sacred authority]] to test the steps between a surviving manuscript, textual affinity, religious ownership and social authority. Those are four different claims. A common harmonizing practice cannot supply all four at once.",
+      "section": "a-shared-torah-is-not-a-shared-institutional-allegiance"
+    }
+  ],
+  "matrix": [
+    {
+      "question": "Which Torah wording?",
+      "from": "samaritan-texts-and-sacred-authority",
+      "to": "qumran-text-history",
+      "type": "Textual affinity",
+      "basis": "4QpaleoExodᵐ / 4Q22 and harmonizing textual practices",
+      "limit": "A textual relationship does not identify an owner or prove regional authority."
+    },
+    {
+      "question": "Who defines legitimate worship?",
+      "from": "samaritan-texts-and-sacred-authority",
+      "to": "jesus-and-dead-sea-scrolls",
+      "type": "Comparative structure",
+      "basis": "Gerizim and disputes about ritual or calendar in the scrolls",
+      "limit": "Different sacred places and different Temple policies are not one movement."
+    },
+    {
+      "question": "Does a Christian text discuss Samaritans?",
+      "from": "samaritan-texts-and-sacred-authority",
+      "to": "living-jesus-thomas-john-and-synoptics",
+      "type": "Direct literary engagement",
+      "basis": "John 4:19–24: the mountain, Jerusalem, spirit and truth",
+      "limit": "Literary engagement does not establish Qumran or Samaritan institutional ancestry."
+    },
+    {
+      "question": "Whose continuity claim?",
+      "from": "samaritan-and-jewish-texts",
+      "to": "sacred-inheritance-and-rival-continuations",
+      "type": "Community self-definition",
+      "basis": "Samaritan Israelite identity and competing accounts of inheritance",
+      "limit": "Present the community’s own account without treating it as independent proof."
+    },
+    {
+      "question": "Whose apostolic pedigree?",
+      "from": "sacred-inheritance-and-rival-continuations",
+      "to": "tor-thomas-and-gnostic-transmission",
+      "type": "Reported succession",
+      "basis": "Clement, Stromata VII.17, and competing Christian authority claims",
+      "limit": "A reported pedigree is evidence of a claim, not automatic verification."
+    },
+    {
+      "question": "How much can a manuscript establish?",
+      "from": "qumran-text-history",
+      "to": "manuscripts-movements-and-survival",
+      "type": "Evidence and inference",
+      "basis": "Witness, reading, reconstruction, ownership and reception",
+      "limit": "Copy date, composition date, narrated event and social influence remain distinct."
+    }
+  ],
+  "staticConnections": [
+    {
+      "label": "Dead Sea Scrolls, Jewish diversity and empire",
+      "href": "../jesus-resurrection-empire-20261109/dead-sea-scrolls-jewish-diversity-and-empire.html",
+      "reason": "Textual plurality, canon and community authority are different questions."
+    },
+    {
+      "label": "The laughing Jesus in the Coptic Apocalypse of Peter",
+      "href": "../jesus-resurrection-empire-20261109/laughing-jesus-apocalypse-of-peter.html",
+      "reason": "A particular Christian revelation disputes ecclesiastical authority without supplying a Samaritan ancestry."
+    },
+    {
+      "label": "Dead Sea Scrolls dating and the Teacher: evidence review",
+      "href": "../evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "reason": "Manuscript dating and proposed historical identity are separate from textual affiliation."
+    }
+  ]
+}

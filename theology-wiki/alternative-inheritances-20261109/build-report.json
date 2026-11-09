@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "source": "sources/alternative-inheritances.md",
+  "sourceSha256": "e5ef0a2e75b625782b1bbfa3c8403e778c229821b3563ac7f02d3f5bcfdef285",
+  "baseRevision": "e6662b5553596445576607c8476c38931a3f267c",
+  "words": 1995,
+  "sections": 10,
+  "reciprocalConnections": 8,
+  "matrixRows": 6,
+  "wikilinks": [
+    "book-contents",
+    "connections",
+    "jesus-and-dead-sea-scrolls",
+    "living-jesus-thomas-john-and-synoptics",
+    "manuscripts-movements-and-survival",
+    "parallel-timelines",
+    "qumran-text-history",
+    "sacred-inheritance-and-rival-continuations",
+    "samaritan-and-jewish-texts",
+    "samaritan-texts-and-sacred-authority",
+    "tor-thomas-and-gnostic-transmission"
+  ],
+  "outputs": [
+    {
+      "path": "alternative-inheritances.html",
+      "sha256": "49dd8f5169aee83e34f2228efa6715b1e69269c6b4bc69056bd768af83e6af3a"
+    },
+    {
+      "path": "index.html",
+      "sha256": "49dd8f5169aee83e34f2228efa6715b1e69269c6b4bc69056bd768af83e6af3a"
+    },
+    {
+      "path": "search-index.json",
+      "sha256": "b9ac6be8454f276b3f21358d9c93a56311a98bf25336bad0948fd394b8b1a213"
+    },
+    {
+      "path": "reader-links.js",
+      "sha256": "4c0994eb2bf435bdc3bc4a0e45b2eb157445b1317e2bbd718ed0534381ca8a38"
+    }
+  ]
+}

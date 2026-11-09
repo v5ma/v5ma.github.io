@@ -59,9 +59,9 @@
       "title": "The laughing Jesus: crucifixion and authority in the Apocalypse of Peter",
       "summary": "Read the living Jesus, suffering counterpart and critique of bishops and deacons in NHC VII,3, with precise manuscript locators and political implications.",
       "source": "sources/laughing-jesus-apocalypse-of-peter.md",
-      "sourceSha256": "7ede40bff7137ad64e14b883cdb0aa52939d2d5a5f4fbd2271dbb9f4ae8314e1",
-      "words": 1341,
-      "sections": 9
+      "sourceSha256": "82ef21fc5ced9d10f13322acb3fa9e6dac6bd66f4061ae74a8b515e0db63a060",
+      "words": 1408,
+      "sections": 10
     },
     {
       "slug": "gospel-of-truth-cross-and-knowledge",
@@ -119,9 +119,9 @@
       "title": "The Dead Sea Scrolls: Jewish diversity, Roman power and the limits of a straight line",
       "summary": "Read textual plurality, Enochic traditions, light and darkness and the Roman Kittim as evidence for a varied Jewish world, while testing proposed later connections.",
       "source": "sources/dead-sea-scrolls-jewish-diversity-and-empire.md",
-      "sourceSha256": "6b64b9001af9b04cdd17880af3f0e1818d9f42287330b897f1c27f819ecc8f52",
-      "words": 1948,
-      "sections": 9
+      "sourceSha256": "ed80272119c17eb0eb0b25c3475ed2b9f6643b984cf50ee9e1a1943ffc4e022c",
+      "words": 2066,
+      "sections": 10
     },
     {
       "slug": "eusebius-bauer-orthodoxy-and-heresy",
@@ -134,7 +134,7 @@
       "sections": 10
     }
   ],
-  "searchSections": 125,
+  "searchSections": 127,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
@@ -163,8 +163,8 @@
     },
     {
       "path": "laughing-jesus-apocalypse-of-peter.html",
-      "bytes": 14699,
-      "sha256": "cbef1014182d1df6a32e04da31a2ea3f8dd37d13cf14c4812e1cce56c440ff27"
+      "bytes": 15706,
+      "sha256": "374459e4771f82ca6e8e6193e467daeced20edc6d8e8a0b54ff96967b7e50063"
     },
     {
       "path": "gospel-of-truth-cross-and-knowledge.html",
@@ -193,8 +193,8 @@
     },
     {
       "path": "dead-sea-scrolls-jewish-diversity-and-empire.html",
-      "bytes": 20363,
-      "sha256": "e124dbbf1f248d8c276dfacf584fa84be6f7d21be21bf4b47f734fa5e7be01e1"
+      "bytes": 21808,
+      "sha256": "c75636f032288440fa5326050ae6275c3720cae6787aed88b7567fd004566f73"
     },
     {
       "path": "eusebius-bauer-orthodoxy-and-heresy.html",
@@ -208,13 +208,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 183798,
-      "sha256": "f4249a7307c2ca60f0238e00b82e4c096b30f6b6109e03772ff67dfe4d708495"
+      "bytes": 185820,
+      "sha256": "efb2e633ea13de86971d4d6bbaf656990c370e5f07727eac88dfe7e3e597ae2c"
     },
     {
       "path": "search-data.js",
-      "bytes": 179320,
-      "sha256": "358bb6840b9500f262217fd99e9fc2447c598bb714d47083a1e5b16f860c57f7"
+      "bytes": 181270,
+      "sha256": "091c000ea8e1710f25ed26bedb9f2d691cb27596ee37c2adaaffe442a36f78d7"
     }
   ]
 }

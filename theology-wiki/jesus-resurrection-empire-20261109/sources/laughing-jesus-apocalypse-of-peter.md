@@ -52,6 +52,10 @@ The chapter also complicates a simple contrast between ransom and revelation: th
 
 The [[mandaean-origins-john-and-migration|Mandaean representation of John and Jesus]] is a useful contrast: it can contest Jesus’s authority rather than defend a different account of the living Savior. [[constantine-consolidation-and-christian-diversity|Early Christian diversity and imperial consolidation]] explains why those distinct positions should not be merged into two uniform camps.
 
+## Alternative inheritances: a comparison of authority claims
+
+The [Alternative Inheritances guide](../alternative-inheritances-20261109/alternative-inheritances.html#competing-apostolic-claims-name-the-source-and-claimant) places this revelation to Peter beside Clement’s reports of rival apostolic pedigrees, then connects those authority questions to Samaritan traditions and the scrolls. The relationship is comparative: this Apocalypse challenges some bishops and deacons, but does not document a Samaritan-to-Qumran-to-Christian succession. [Follow the two-way matrix](../alternative-inheritances-20261109/alternative-inheritances.html#cross-reference-matrix-alternative-inheritances) to keep textual affinity, literary engagement and reported lineage distinct.
+
 ## Sources and access notes
 
 1. [Coptic Apocalypse of Peter, translated by James Brashler and Roger A. Bullard](https://www.earlychristianwritings.com/text/apocalypsepeter.html). Accessible complete translation checked for the crucifixion vision, ecclesiastical polemic and ransom language. Brief quotations retain this translation's wording; interpretive summaries are not presented as direct quotation.

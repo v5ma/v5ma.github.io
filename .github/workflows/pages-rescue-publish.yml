@@ -59,3 +59,5 @@ jobs:
           artifact_name: ${{ needs.build.outputs.artifact }}
 
 # Evidence edition release 2026-11-09: publish the current master after its candidate gate.
+
+# November 9 alternative inheritances: publish the tested reciprocal Samaritan and scrolls routes.

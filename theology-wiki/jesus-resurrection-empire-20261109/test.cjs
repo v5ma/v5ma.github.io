@@ -3,9 +3,10 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const {build}=require('./build.cjs'),cfg=require('./manifest.json'),root=__dirname;
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const stripEusebius=s=>s.replace(/\n## Reading the history of orthodoxy\n[\s\S]*?(?=\n## Sources and access notes)/,'');
+const stripInheritances=s=>s.replace(/\n## Samaritan textual affinities: a concrete two-way bridge\n[\s\S]*?(?=\n## Enoch, Jubilees)/,'').replace(/\n## Alternative inheritances: a comparison of authority claims\n[\s\S]*?(?=\n## Sources and access notes)/,'');
 test('thirteen complete chapters build deterministically and generated outputs are current',()=>{
  assert.equal(cfg.pages.length,13);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,13);
- assert.deepEqual(build(true),{pages:13,searchSections:125,outputs:17});
+ assert.deepEqual(build(true),{pages:13,searchSections:127,outputs:17});
  for(const p of cfg.pages){const s=read(p.source);assert.ok(s.split(/\s+/).length>1000,p.slug);assert.ok(s.includes('Sources and access notes'));assert.equal((s.match(/^# /gm)||[]).length,1);}
 });
 test('search covers every chapter and each section links to its real heading',()=>{
@@ -103,7 +104,7 @@ test('Eusebius extension preserves all twelve earlier chapter bodies',()=>{
  let reciprocal=0;
  for(const [slug,expected] of Object.entries(baseline)){
   const source=read('sources/'+slug+'.md');
-  assert.equal(crypto.createHash('sha256').update(stripEusebius(source)).digest('hex'),expected,slug);
+  assert.equal(crypto.createHash('sha256').update(stripEusebius(stripInheritances(source))).digest('hex'),expected,slug);
   if(source.includes('[[eusebius-bauer-orthodoxy-and-heresy|'))reciprocal++;
  }
  assert.equal(reciprocal,6);
