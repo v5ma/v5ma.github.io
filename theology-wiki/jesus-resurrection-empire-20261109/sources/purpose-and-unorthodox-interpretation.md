@@ -43,6 +43,10 @@ The conviction that new insights can reopen inherited readings also has a theolo
 
 An interpretation becomes more persuasive when it explains both the evidence that prompted it and the evidence that resists it. For every proposed revision, the useful questions are: What passage changes meaning? Which earlier witness supports the change? What rival reading best explains the same evidence? What discovery or counterexample would require revision? The purpose remains ambitious: to recover a reading capable of changing inherited Christianity and helping people practice justice, peace and healing now.
 
+## A new comparison: competing meanings of the cross
+
+The expanded inquiry now moves through [[competing-crosses-and-imperial-capture|Competing crosses and imperial capture]], [[laughing-jesus-apocalypse-of-peter|the Coptic Apocalypse of Peter]] and [[gospel-of-truth-cross-and-knowledge|the Gospel of Truth]]. These chapters place Micah’s first-century hypothesis beside contrasting ancient interpretations rather than treating canonical and noncanonical books as two uniform camps. [[canon-coercion-and-nag-hammadi-survival|Canon, coercion and survival]] then separates documented institutional measures from uncertain explanations of manuscript burial.
+
 ## Sources and access notes
 
 The first paragraph preserves one short statement of the project's purpose. The surrounding prose is an edited development of the inquiry, not a transcript or an assertion that every scholarly qualification has become a settled personal belief. This section presents ideas without reproducing private correspondence.

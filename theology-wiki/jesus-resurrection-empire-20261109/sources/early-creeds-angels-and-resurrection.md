@@ -42,6 +42,10 @@ Mark 12:18–27 compares resurrected people with heavenly angels in a dispute ab
 
 An early proclamation constrains a late-invention theory without deciding how every appearance should be understood. Angelic hospitality complicates a simplistic test of bodily presence without turning Jesus into an angel. The historical-Jesus passages belong in the separate [argument-development chapter](how-the-argument-developed.html). The central task is to compare actual claims rather than assume that “early,” “spiritual,” “bodily” or “hymn” settles the interpretation.
 
+## Compare salvation language beyond the early formulas
+
+The new bridge [[ransom-revelation-and-defeated-rulers|Ransom, revelation and defeated rulers]] compares Mark 10, 1 Corinthians 2 and Colossians 2 with the two Nag Hammadi works. The [[gospel-of-truth-cross-and-knowledge|Gospel of Truth]] is especially useful because knowledge and Jesus’s life-giving death appear together. This complicates a rigid division between canonical sacrifice and noncanonical awakening, while preserving the chronological distinction between early Pauline testimony and later Christian interpretation.
+
 ## Sources and access notes
 
 1. James Ware, [The Resurrection of Jesus in the Pre-Pauline Formula of 1 Cor 15.3–5](https://doi.org/10.1017/S0028688514000150), *New Testament Studies* 60.4 (2014): 475–498. A counterargument favoring bodily resurrection in the formula.

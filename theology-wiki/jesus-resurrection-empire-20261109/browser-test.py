@@ -55,15 +55,15 @@ def main():
                         assert page.locator('article.prose h2').count()>0
                         assert page.locator('.contents a').count()>0
                 page.goto(base)
-                assert page.locator('.cards .card').count()==4
+                assert page.locator('.cards .card').count()==len(manifest['pages'])
                 page.screenshot(path=str(artifacts/f'overview-{size["width"]}.png'),full_page=True)
-            checks.append('Five pages: headings/content and no overflow at 1440px and 390px; overview has four cards')
+            checks.append('All chapter pages: headings/content and no overflow at 1440px and 390px; overview card count matches manifest')
             page.set_viewport_size({'width':1440,'height':1000}); page.goto(base)
-            for term in ['Pilate','angels','orthodox']:
+            for term in ['Pilate','angels','orthodox','Nag Hammadi','Valentinus','ransom']:
                 page.locator('#query').fill(term)
                 assert page.locator('#search-results .result').count()>0, term
                 assert 'matching section' in page.locator('#search-status').inner_text()
-                assert 'q='+term in page.url
+                assert 'q='+term.replace(' ','+') in page.url
             page.locator('#query').fill('Pilate')
             scope='imperial-pressure-and-pilate'; page.locator('#scope').select_option(scope)
             assert page.locator('.result').count()>0
@@ -78,10 +78,10 @@ def main():
             assert page.locator('#query').input_value()=='Pilate'; page.go_back(); assert page.locator('#query').input_value()=='angels'
             checks.append('Search terms, scoped filter, reload URL restore, result navigation/back, popstate, Escape, no-results, Clear and focus pass')
             nojs=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844}); np=nojs.new_page(); np.goto(base)
-            assert np.locator('.card a').count()==4
+            assert np.locator('.card a').count()==len(manifest['pages'])
             for name in pages[1:]:
                 np.goto(base+name); assert len(np.locator('article.prose').inner_text())>500; assert np.locator('.contents a').count()>0
-            checks.append('No-JavaScript overview links and four complete readable chapters pass')
+            checks.append('No-JavaScript overview links and all complete readable chapters pass')
             assert not errors, errors
             browser.close()
         result={'status':'PASS','checks':checks,'screenshots':[str(p) for p in artifacts.glob('overview-*.png')]}

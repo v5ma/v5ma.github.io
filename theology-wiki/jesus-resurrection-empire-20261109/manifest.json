@@ -30,6 +30,99 @@
       "title": "Imperial pressure and the Gospel Pilate",
       "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
       "source": "sources/imperial-pressure-and-pilate.md"
+    },
+    {
+      "slug": "competing-crosses-and-imperial-capture",
+      "navLabel": "Competing crosses",
+      "title": "Competing crosses and the imperial-capture hypothesis",
+      "summary": "Connect the Pilate inquiry to contrasting crucifixion interpretations, testing partial and contested capture rather than a single coordinated rewrite.",
+      "source": "sources/competing-crosses-and-imperial-capture.md"
+    },
+    {
+      "slug": "laughing-jesus-apocalypse-of-peter",
+      "navLabel": "The laughing Jesus",
+      "title": "The laughing Jesus: crucifixion and authority in the Apocalypse of Peter",
+      "summary": "Read the living Jesus, suffering counterpart and critique of bishops and deacons in NHC VII,3, with precise manuscript locators and political implications.",
+      "source": "sources/laughing-jesus-apocalypse-of-peter.md"
+    },
+    {
+      "slug": "gospel-of-truth-cross-and-knowledge",
+      "navLabel": "The Gospel of Truth",
+      "title": "The Gospel of Truth: the cross as knowledge",
+      "summary": "Follow Error, the fruit of knowledge and the living book, preserving the text’s positive account of Jesus’s death and its uncertain attribution.",
+      "source": "sources/gospel-of-truth-cross-and-knowledge.md"
+    },
+    {
+      "slug": "ransom-revelation-and-defeated-rulers",
+      "navLabel": "Ransom and rulers",
+      "title": "Ransom, revelation and defeated rulers",
+      "summary": "Compare Mark’s service and ransom, Paul’s ignorant rulers, Colossians’ defeated powers and the overlapping Nag Hammadi accounts of salvation.",
+      "source": "sources/ransom-revelation-and-defeated-rulers.md"
+    },
+    {
+      "slug": "canon-coercion-and-nag-hammadi-survival",
+      "navLabel": "Canon and survival",
+      "title": "Canon, coercion and the survival of Nag Hammadi",
+      "summary": "Distinguish early boundary-making, Constantine’s coercive measures, Athanasius’s list and competing explanations of the books’ preservation.",
+      "source": "sources/canon-coercion-and-nag-hammadi-survival.md"
+    }
+  ],
+  "extensionRevision": "4dcafa165c44351aca343f49f160ca0831138100",
+  "verifiedReaderRoutes": [
+    {
+      "slug": "cognitive-gnosticism",
+      "title": "Cognitive Gnosticism",
+      "path": "developed/cognitive-gnosticism.md"
+    },
+    {
+      "slug": "christ-as-an-inner-model",
+      "title": "Christic Self-Formation Theory: Christ as an inner model",
+      "path": "developed/christ-as-an-inner-model.md"
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "title": "Antichrist as a pattern of conduct",
+      "path": "developed/antichrist-as-a-pattern-of-conduct.md"
+    },
+    {
+      "slug": "gnosticism-and-temple-trauma",
+      "title": "Gnosticism and the Temple-trauma hypothesis",
+      "path": "developed/gnosticism-and-temple-trauma.md"
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "title": "Sacred inheritance and rival continuations",
+      "path": "developed/sacred-inheritance-and-rival-continuations.md"
+    },
+    {
+      "slug": "tor-thomas-and-gnostic-transmission",
+      "title": "The Teacher, Thomas and Gnostic transmission",
+      "path": "developed/tor-thomas-and-gnostic-transmission.md"
+    },
+    {
+      "slug": "manuscripts-movements-and-survival",
+      "title": "Manuscripts, movements and survival",
+      "path": "developed/manuscripts-movements-and-survival.md"
+    },
+    {
+      "slug": "thomas-sayings-and-transmission",
+      "title": "Thomas, sayings and transformed understanding",
+      "path": "developed/thomas-sayings-and-transmission.md"
+    },
+    {
+      "slug": "living-jesus-thomas-john-and-synoptics",
+      "title": "The Living Jesus in Thomas, John and the Synoptic Gospels",
+      "path": "developed/living-jesus-thomas-john-and-synoptics.md"
+    },
+    {
+      "slug": "gnostic-canonical-gospels-telling-the-truth",
+      "title": "What if both the Gnostic Gospels and the Canonical Gospels are telling the truth?",
+      "path": "developed/gnostic-canonical-gospels-telling-the-truth.md"
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "title": "Apocalyptic Repair Theology",
+      "path": "developed/apocalyptic-repair-theology.md"
     }
   ]
 }

@@ -17,6 +17,12 @@ node theology-wiki/latest/build.cjs --check
 node --test theology-wiki/latest/test.cjs
 ```
 
-The deterministic builder reuses the existing supplemental Markdown renderer. It generates complete static pages, a local full-text search index and content hashes. Search covers these four chapters only; main-reader search and listening are not regenerated. All chapter content and navigation remain available without JavaScript. Browser checks use installed Playwright and Chromium, serve the repository locally, and cover desktop/mobile, search, filtering, clearing, history and no-JavaScript reading.
+The deterministic builder reuses the existing supplemental Markdown renderer. It generates complete static pages, a local full-text search index and content hashes. Search covers the chapters in this section only; main-reader search and listening are not regenerated. All chapter content and navigation remain available without JavaScript. Browser checks use installed Playwright and Chromium, serve the repository locally, and cover desktop/mobile, search, filtering, clearing, history and no-JavaScript reading.
 
 The release adds four entries to Latest without changing earlier release entries. Public verification must compare hosted bytes against the actual published commit before reporting the release live. Passing software checks establishes navigation and publication integrity, not the truth of a historical reconstruction.
+
+## Nag Hammadi and crucifixion extension
+
+Five further studies, published November 9, 2026, extend the four original inquiries to nine chapters. They compare NHC VII,3 and NHC I,3, canonical ransom and victory language, institutional coercion and manuscript survival. Canonical source is still `sources/*.md`; `manifest.json` records eleven verified main-reader routes used by real wikilinks. The source distinguishes observations, historical hypotheses, constructive applications and competing views. All four earlier chapters retain their original prose and gain a short reciprocal-links section. The purpose reading map and Latest expose the new studies. The section’s search covers all nine chapters; the main reader index is not rebuilt.
+
+Tests additionally check resolved wikilinks, citation anchors, preserved earlier prose, reciprocal connections and interpretation boundaries. `prior-source-hashes.json` fixes the four original article bodies so additive connections cannot silently replace them. The five new pages are edited research, not a verbatim publication of a private conversation.

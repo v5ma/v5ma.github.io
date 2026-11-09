@@ -9,9 +9,9 @@
       "title": "Searching for the interpretation that changes the interpretation",
       "summary": "A direct statement of purpose and a method for comparing canonical and noncanonical evidence without collapsing manuscript dates, canon history and empire.",
       "source": "sources/purpose-and-unorthodox-interpretation.md",
-      "sourceSha256": "a94770a0b3d5c1c3633e94e57c2fc0bc81c5a57259c273faf942e22252a63957",
-      "words": 1386,
-      "sections": 6
+      "sourceSha256": "d453161f684456301067e4f3fb26a1f3349473db525fe5bf116c975ee6901c2a",
+      "words": 1452,
+      "sections": 7
     },
     {
       "slug": "how-the-argument-developed",
@@ -19,9 +19,9 @@
       "title": "How the argument developed: Jesus, resurrection and empire",
       "summary": "Trace the historical-Jesus hypothesis, Paul, later Gospel narratives, countertexts and the move to a first-century imperial question.",
       "source": "sources/how-the-argument-developed.md",
-      "sourceSha256": "90efe093050c32d9c7664b9322bde69d940f6d3b8c97b318763b25604af08761",
-      "words": 1323,
-      "sections": 7
+      "sourceSha256": "f2fcbcc6a25243b230f1e01c39d2a3b259b521906308c53e10653dcfd4298ac8",
+      "words": 1398,
+      "sections": 8
     },
     {
       "slug": "early-creeds-angels-and-resurrection",
@@ -29,9 +29,9 @@
       "title": "Early creeds, angels and resurrection evidence",
       "summary": "Examine 1 Corinthians 15, Philippians 2, Colossians 1, Hebrews 13 and angelic hospitality, separating early testimony from later interpretive claims.",
       "source": "sources/early-creeds-angels-and-resurrection.md",
-      "sourceSha256": "6128b70d7c9bc899e2847377914c8db238a7d153e09a1d8cc4d5cb9b83d7d7f4",
-      "words": 1326,
-      "sections": 7
+      "sourceSha256": "c165f13c183283e4414a1f1af917e7703578def8931ca80b3d2ac4d001826e71",
+      "words": 1396,
+      "sections": 8
     },
     {
       "slug": "imperial-pressure-and-pilate",
@@ -39,47 +39,122 @@
       "title": "Imperial pressure and the Gospel Pilate",
       "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
       "source": "sources/imperial-pressure-and-pilate.md",
-      "sourceSha256": "c2c0ac0dd677f2016a578603a785f900bb34c3821943f7db1a07b3d7863abf9d",
-      "words": 1281,
-      "sections": 7
+      "sourceSha256": "a5312d2fe6adfe9166cbebf24c267949a7614b6725e512572d6442ae63ad4893",
+      "words": 1387,
+      "sections": 8
+    },
+    {
+      "slug": "competing-crosses-and-imperial-capture",
+      "navLabel": "Competing crosses",
+      "title": "Competing crosses and the imperial-capture hypothesis",
+      "summary": "Connect the Pilate inquiry to contrasting crucifixion interpretations, testing partial and contested capture rather than a single coordinated rewrite.",
+      "source": "sources/competing-crosses-and-imperial-capture.md",
+      "sourceSha256": "bbe914094d8010487ed7dd3230419115120d345b75f6bc58db3fb9f70b938ba2",
+      "words": 1473,
+      "sections": 9
+    },
+    {
+      "slug": "laughing-jesus-apocalypse-of-peter",
+      "navLabel": "The laughing Jesus",
+      "title": "The laughing Jesus: crucifixion and authority in the Apocalypse of Peter",
+      "summary": "Read the living Jesus, suffering counterpart and critique of bishops and deacons in NHC VII,3, with precise manuscript locators and political implications.",
+      "source": "sources/laughing-jesus-apocalypse-of-peter.md",
+      "sourceSha256": "3413e5008ac15471dd7b34fd77e1eae0f16779a5192657e84faf18fa1fb6df1b",
+      "words": 1288,
+      "sections": 8
+    },
+    {
+      "slug": "gospel-of-truth-cross-and-knowledge",
+      "navLabel": "The Gospel of Truth",
+      "title": "The Gospel of Truth: the cross as knowledge",
+      "summary": "Follow Error, the fruit of knowledge and the living book, preserving the text’s positive account of Jesus’s death and its uncertain attribution.",
+      "source": "sources/gospel-of-truth-cross-and-knowledge.md",
+      "sourceSha256": "cde35053cd573fd3575451cd5296d2f3e37f4d45c2ae0bed78d71789dac3790a",
+      "words": 1381,
+      "sections": 8
+    },
+    {
+      "slug": "ransom-revelation-and-defeated-rulers",
+      "navLabel": "Ransom and rulers",
+      "title": "Ransom, revelation and defeated rulers",
+      "summary": "Compare Mark’s service and ransom, Paul’s ignorant rulers, Colossians’ defeated powers and the overlapping Nag Hammadi accounts of salvation.",
+      "source": "sources/ransom-revelation-and-defeated-rulers.md",
+      "sourceSha256": "1b7f83501442edced6b13e408b86868e9edc15861cfc18ae8ead0d231fefb808",
+      "words": 1379,
+      "sections": 8
+    },
+    {
+      "slug": "canon-coercion-and-nag-hammadi-survival",
+      "navLabel": "Canon and survival",
+      "title": "Canon, coercion and the survival of Nag Hammadi",
+      "summary": "Distinguish early boundary-making, Constantine’s coercive measures, Athanasius’s list and competing explanations of the books’ preservation.",
+      "source": "sources/canon-coercion-and-nag-hammadi-survival.md",
+      "sourceSha256": "3721b567be26d33254f46c0ceff99fb0d07975addd6a6c9b23f4e940198a511c",
+      "words": 1394,
+      "sections": 9
     }
   ],
-  "searchSections": 27,
+  "searchSections": 73,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
-      "bytes": 14403,
-      "sha256": "56225144a5bc87896e7dae2fcebe8a07c3bbb92b87a3dd8dcf77c79c1ab5694b"
+      "bytes": 15681,
+      "sha256": "2c13d8817171d27db4a4d5df8c126723f76c0d7645f83f9d08885e3b030a904c"
     },
     {
       "path": "how-the-argument-developed.html",
-      "bytes": 13977,
-      "sha256": "e0dd14e205befd12ae4f3070fc00c1d52f4fa973f8a6cc2a3505eed915fe476c"
+      "bytes": 15259,
+      "sha256": "0fdc62a16405e6753bbd47785490904f081632b26f315d121a350d2a97285cc2"
     },
     {
       "path": "early-creeds-angels-and-resurrection.html",
-      "bytes": 14427,
-      "sha256": "8d0b81f60f8d47bddd561c354c83731f033e643c2aff6f791764deba94e09dea"
+      "bytes": 15617,
+      "sha256": "0daa399558b9b4c8dd1018bdf3400072990f3f7e73875abdd6e9dad0dfc6b721"
     },
     {
       "path": "imperial-pressure-and-pilate.html",
-      "bytes": 13478,
-      "sha256": "c4064ed4e0b2727c0c799f13c00ac17ff58098e6aca58d3411bda908e6a78fa4"
+      "bytes": 15104,
+      "sha256": "3f990639231701450b72accbabda8a56133b9876e1998fb83517ac7ac3f54a7a"
+    },
+    {
+      "path": "competing-crosses-and-imperial-capture.html",
+      "bytes": 15459,
+      "sha256": "859e50acb5d0a3fe45689835d3a7fd5cfb10da269cd138b95e2bdb3c5948d5d2"
+    },
+    {
+      "path": "laughing-jesus-apocalypse-of-peter.html",
+      "bytes": 13695,
+      "sha256": "6df94cae53ec6032f0e5fbf91305d5a2d01ddccd4a3ba8979f0cd522d5c9ea92"
+    },
+    {
+      "path": "gospel-of-truth-cross-and-knowledge.html",
+      "bytes": 14523,
+      "sha256": "415c2674d9b3fc44337811f547fa8cd21a4c5bde85779a465dfed065dd6253d8"
+    },
+    {
+      "path": "ransom-revelation-and-defeated-rulers.html",
+      "bytes": 14110,
+      "sha256": "23268b9658213b851ae78e04c8587fbecb2346530e43b81833b25b308ad861cd"
+    },
+    {
+      "path": "canon-coercion-and-nag-hammadi-survival.html",
+      "bytes": 15048,
+      "sha256": "50dd42d3d5db8703833898d31f2b21f84d2062c940dc031bd65af594d4ad8a4d"
     },
     {
       "path": "index.html",
-      "bytes": 5341,
-      "sha256": "938b7a642494399c9f98f09b30467ed90e657d954ee05872376e8f02cd543543"
+      "bytes": 7821,
+      "sha256": "512efbf94bbe0e600853ea38351bef9406e485e1e7de0791413853a51f7a98e0"
     },
     {
       "path": "search-index.json",
-      "bytes": 43983,
-      "sha256": "d2b4430da904ab86a0ae997d64a35a0c1592c79a81e9c2a8d740b7dbc697b6f0"
+      "bytes": 104109,
+      "sha256": "492aaea14a6afb383e0c91448d065095a058413cdb07198cbe215c2c7f90e387"
     },
     {
       "path": "search-data.js",
-      "bytes": 43033,
-      "sha256": "02ea271bdf530380976985b7e969cfff26daab9a125308f323a7f300a3064a8e"
+      "bytes": 101503,
+      "sha256": "b7c4ebf5fbc4846085222f82d436d27e275b5a0938122adf836cb33065ea1a49"
     }
   ]
 }
