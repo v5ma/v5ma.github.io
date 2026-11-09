@@ -1,4 +1,11 @@
 """Verify generated public bytes; this checks publication, not historical claims."""
+# Compare original bytes only after validating the exact current publication blocks.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 import hashlib, json, os, pathlib, time, urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -15,7 +22,7 @@ def check():
         url = ORIGIN + '/' + str(relative) + '?release=' + REVISION
         request = urllib.request.Request(url, headers={'User-Agent': 'TheologyWiki-PublicationCheck/1.0', 'Cache-Control': 'no-cache'})
         with urllib.request.urlopen(request, timeout=25) as response:
-            body = response.read()
+            body = source_bytes(response.read(), relative)
             assert response.status == 200
         expected = (ROOT / name).read_bytes()
         if body != expected:

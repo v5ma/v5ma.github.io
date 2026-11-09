@@ -1,4 +1,11 @@
 """Compare actual public responses with the exact checkout, with a bounded deployment wait."""
+# Validate only the exact current publication enhancements before source comparison.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import argparse,hashlib,json,os,time,urllib.request
@@ -16,7 +23,7 @@ def fetch(n):
  try:
   req=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'TheologyEgyptResearchVerification/1.0'})
   with urllib.request.urlopen(req,timeout=20) as response:body=response.read();status=response.status
-  digest=hashlib.sha256(body).hexdigest();return n,{'url':url,'status':status,'sha256':digest,'expected_sha256':expected[n],'matches_checkout':status==200 and digest==expected[n]}
+  digest=hashlib.sha256(source_bytes(body,n)).hexdigest();return n,{'url':url,'status':status,'sha256':digest,'expected_sha256':expected[n],'matches_checkout':status==200 and digest==expected[n]}
  except Exception as e:return n,{'url':url,'matches_checkout':False,'error':type(e).__name__+': '+str(e)}
 observed={};deadline=time.monotonic()+args.wait_seconds;attempt=0
 while True:
@@ -29,3 +36,4 @@ while True:
 result={'status':'failed' if remaining else 'passed','checkout':os.environ.get('GITHUB_SHA'),'attempts':attempt,'expected_files':len(expected),'matched_files':len(expected)-len(remaining),'files':observed,'scope':'Actual production bytes. No local substitution or browser-response mocking.'}
 Path(args.report).parent.mkdir(parents=True,exist_ok=True);Path(args.report).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
 if remaining:raise SystemExit(1)
+

@@ -1,0 +1,1502 @@
+{
+  "pages": 616,
+  "servedPageAddresses": 619,
+  "aliases": {
+    "static:alternative-inheritances-20261109/index.html": "static:alternative-inheritances-20261109/alternative-inheritances.html",
+    "static:clouds-and-millennium-20261109/index.html": "static:clouds-and-millennium-20261109/clouds-and-millennium.html",
+    "static:rppa-power-20261109/index.html": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html"
+  },
+  "readerPages": 443,
+  "standalonePages": 176,
+  "directedConnections": 8354,
+  "reciprocalPairs": 4177,
+  "minimum": 0,
+  "median": 8,
+  "maximum": 86,
+  "at100": 0,
+  "under12": 363,
+  "zero": 119,
+  "linkTypes": {
+    "Existing reading link": 654,
+    "Shared subject": 6270,
+    "conceptual connection": 10,
+    "related comparison": 232,
+    "Linked from": 580,
+    "introduces": 2,
+    "evidence review": 4,
+    "authored link": 169,
+    "compare the question": 49,
+    "Comparative structure": 2,
+    "Evidence and inference": 1,
+    "Textual affinity": 2,
+    "Community self-definition": 1,
+    "Direct literary engagement": 1,
+    "Reported succession": 1,
+    "source": 73,
+    "cited-by": 169,
+    "related study": 6,
+    "connects": 36,
+    "extends": 7,
+    "distinguishes": 7,
+    "clarifies": 5,
+    "responds": 1,
+    "compare the method": 2,
+    "source context": 1,
+    "documents": 4,
+    "Recurring symbols and historical applications": 1,
+    "Interpretation and practical repair": 1,
+    "Competing prophetic readings": 1,
+    "develops": 8,
+    "compares": 16,
+    "tests": 3,
+    "applies": 5,
+    "grounds": 2,
+    "reading route": 4,
+    "organizes": 4,
+    "Historical mechanism": 1,
+    "uses": 1,
+    "Institutional bridge": 1,
+    "contrasts": 2,
+    "Ethical education and its coercive inversion": 1,
+    "The source of the controlled-payment scenario": 1,
+    "Recurring conduct and a claimed final fulfillment": 1,
+    "From theological diagnosis to protection": 1,
+    "Representation, prediction and action": 1,
+    "Computational analogy and an empirical research design": 1,
+    "Different projects with similar names": 1,
+    "An invented acronym and a real textual question": 1,
+    "Moral learning and automated gatekeeping": 1,
+    "Interpretive authority and the root-access analogy": 1,
+    "A specific identification and its institutional evidence": 1,
+    "Passage-level development": 1,
+    "tracks": 1,
+    "public preservation": 1,
+    "Constructive interpretation": 1
+  },
+  "excludedAtCapacity": 0,
+  "unresolved": [],
+  "exceptions": [
+    {
+      "id": "static:event-forecast-register/authority-imagery/comparisons.html",
+      "title": "16 comparison questions",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:17th-century-christian-zionism",
+      "title": "17th Century Christian Zionism",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:guide-to-the-inquiry",
+      "title": "A guide to the inquiry",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/wider-esoteric-family.html",
+      "title": "A wider family of emanation, mediation and return",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/ahmadi.html",
+      "title": "Ahmadiyya Muslim traditions",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:ai-and-religion-belief",
+      "title": "AI and Religion Belief",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:ai-conference-insights",
+      "title": "AI Conference Insights",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:event-forecast-register/authority-imagery/timeline.html",
+      "title": "AI-policy chronology and administrative dates",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:ai-safety-and-lovecraft",
+      "title": "AI Safety and Lovecraft",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:ai-sword-revelation-review",
+      "title": "AI Sword Revelation Review",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:aleph-metaphor-and-concepts",
+      "title": "Aleph Metaphor and Concepts",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:allegiance-vs-proclamation-of-christ",
+      "title": "Allegiance vs Proclamation of Christ",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:ancient-egypt-vs-fascism",
+      "title": "Ancient Egypt vs Fascism",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:topic-origins",
+      "title": "Ancient texts & origins",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:antichrist-alignment-consequences",
+      "title": "Antichrist Alignment Consequences",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:antichrist-covenant-and-peace",
+      "title": "Antichrist Covenant and Peace",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:antichrist-middle-east-myth",
+      "title": "Antichrist Middle East Myth",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:antichrist-salvation-discussions",
+      "title": "Antichrist salvation discussions",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:topic-apocalypse",
+      "title": "Apocalypse, power & repair",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:article-review-feedback",
+      "title": "Article review feedback",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/assyrian-chaldean.html",
+      "title": "Assyrian Church of the East and Chaldean Catholic Church",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:production-studio",
+      "title": "Audio and video studio",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:authoritarianism-and-false-democracy",
+      "title": "Authoritarianism and False Democracy",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:awakening-to-oneness",
+      "title": "Awakening to Oneness",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/baha.html",
+      "title": "Baha'i Faith",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:barnabas-gospel-debunked",
+      "title": "Barnabas gospel debunked",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/basilidian.html",
+      "title": "Basilides and Basilidian testimony",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:beloved-disciple-identity",
+      "title": "Beloved Disciple Identity",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:biblical-resurrection-interpretations",
+      "title": "Biblical Resurrection Interpretations",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:blue-fascism-explained",
+      "title": "Blue fascism explained",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:research-expansion-20260918/board-peace-followup/index.html",
+      "title": "Board of Peace and 2027 forecast windows",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:born-smart-the-story-of-scout",
+      "title": "Born Smart, the story of Scout",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:branch-plagiarism-equivalent-vs-plagiarism",
+      "title": "Branch Plagiarism Equivalent vs Plagiarism",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:calvary-chapel-vs-gnosticism",
+      "title": "Calvary Chapel vs Gnosticism",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:catholic-priests-and-ancient-texts",
+      "title": "Catholic Priests and Ancient Texts",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:argument-challenges",
+      "title": "Challenges, corrections and preserved arguments",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:chatgpt-beasts-revelation-theory",
+      "title": "ChatGPT Beasts Revelation Theory",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:chatgpt-file-splitting",
+      "title": "ChatGPT File Splitting",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:cheese-varieties-from-milk",
+      "title": "Cheese Varieties from Milk",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:christian-salvation-without-supernaturalism",
+      "title": "Christian Salvation without Supernaturalism",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:christian-view-of-death",
+      "title": "Christian view of death",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/christianity-general.html",
+      "title": "Christianity generally",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:church-corporate-sponsorship-evidence",
+      "title": "Church Corporate Sponsorship Evidence",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:churches-rejecting-paul-s-writings",
+      "title": "Churches Rejecting Paul's Writings",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:city-of-david-structures",
+      "title": "City of David Structures",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/claim-audit.html",
+      "title": "Claim audit and unverified quotations",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:claude-deceptions-and-betrayals",
+      "title": "Claude Deceptions and Betrayals",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:clementine-homilies-and-recognitions",
+      "title": "Clementine Homilies and Recognitions",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:connections",
+      "title": "Connections between ideas",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/coptic.html",
+      "title": "Coptic Orthodox and Coptic Catholic churches",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:covenant-confirmation-in-israel",
+      "title": "Covenant confirmation in Israel",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:dan-response-inquiry",
+      "title": "Dan Response Inquiry",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:daniel-prophecy-and-temple",
+      "title": "Daniel Prophecy and Temple",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:dark-time-thermodynamics-theory",
+      "title": "Dark Time Thermodynamics Theory",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:debunking-greek-bible-myth",
+      "title": "Debunking Greek Bible Myth",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:debunking-jewish-law-origin",
+      "title": "Debunking Jewish Law Origin",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:deterministic-quantum-cycles",
+      "title": "Deterministic Quantum Cycles",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:dina-s-jewish-identity-in-tlou",
+      "title": "Dina's Jewish Identity in TLOU",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/sovereignty-and-adversaries.html",
+      "title": "Divine sovereignty and adversarial powers before Christianity",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/moral-horizons-beyond-life.html",
+      "title": "Do afterlife beliefs extend the moral time horizon?",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:document-review",
+      "title": "Document review",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:earlier-teacher-displaced-biography",
+      "title": "Earlier-Teacher and Displaced-Biography Hypothesis",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/early-jesus-movement.html",
+      "title": "Early Jewish Jesus movement",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/eastern-orthodox.html",
+      "title": "Eastern Orthodox Christianity",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/moses-jesus-mammon/wealth-mortality-and-responsibility.html",
+      "title": "Egypt, Mammon and the difference between protection and exemption",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:elohim-and-alien-theories",
+      "title": "Elohim and Alien Theories",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:epstein-s-web-of-connections",
+      "title": "Epstein's Web of Connections",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:eschatology-and-prophetic-timelines",
+      "title": "Eschatology and Prophetic Timelines",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:european-gods-origins",
+      "title": "European gods origins",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:event-forecast-register/index.html",
+      "title": "Events, interpretations and future observations",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:evidence-workbench",
+      "title": "Evidence workbench: passages and interpretations",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:evolving-god-and-naming",
+      "title": "Evolving God and Naming",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:ezekiel-s-dry-bones-vision",
+      "title": "Ezekiel's Dry Bones Vision",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:fact-check-trump-death-claim",
+      "title": "Fact check Trump death claim",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:faith-and-comfort",
+      "title": "Faith and Comfort",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:topic-practice",
+      "title": "Faith & spiritual practice",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:fallout-vs-real-apocalypse",
+      "title": "Fallout vs Real Apocalypse",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:false-gnosis-warning",
+      "title": "False Gnosis Warning",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:find-paper-online",
+      "title": "Find Paper Online",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/abstraction-and-genealogy.html",
+      "title": "From structural resemblance to a testable religious genealogy",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:glazing-brainwaves-reflected",
+      "title": "Glazing Brainwaves Reflected",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:gmirkin-hellenistic-bible-theory",
+      "title": "Gmirkin Hellenistic Bible Theory",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:gnostic-divinity-and-dualism",
+      "title": "Gnostic Divinity and Dualism",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:gnostic-end-times-figures",
+      "title": "Gnostic end-times figures",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:gnostic-jesus-and-judas",
+      "title": "Gnostic Jesus and Judas",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:gnostic-texts-and-christianity",
+      "title": "Gnostic Texts and Christianity",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:gnostic-texts-and-paul",
+      "title": "Gnostic Texts and Paul",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:topic-gnosis",
+      "title": "Gnosticism & awakening",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:topic-machines",
+      "title": "God, minds & machines",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/greek-melkite.html",
+      "title": "Greek Orthodox and Melkite Greek Catholic traditions",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:greta-thunberg-and-iran",
+      "title": "Greta Thunberg and Iran",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:hamas-propaganda-and-hostages",
+      "title": "Hamas Propaganda and Hostages",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:haramein-vortex-gravity-model",
+      "title": "Haramein Vortex Gravity Model",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:heavier-than-a-feather",
+      "title": "Heavier than a Feather",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:hell-transformation-and-metatron",
+      "title": "Hell Transformation and Metatron",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:hogs-and-authority-dynamics",
+      "title": "Hogs and Authority Dynamics",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:hyperion-cantos-summary",
+      "title": "Hyperion Cantos summary",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/ibadi.html",
+      "title": "Ibadism",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:research-expansion-20260918/index.html",
+      "title": "Identity, divine agency and scarcity",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:image-and-identity-theme",
+      "title": "Image and Identity Theme",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html",
+      "title": "Images, allegiance and economic participation",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:image-collection",
+      "title": "Images, manuscripts and interpretation",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:intellectual-debts",
+      "title": "Intellectual debts and source lineage",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:iran-amalek-prophecy-debate",
+      "title": "Iran Amalek Prophecy Debate",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/islam-general.html",
+      "title": "Islam generally",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:islam-s-arrival-century",
+      "title": "Islam's Arrival Century",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/ismaili.html",
+      "title": "Ismaili traditions",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:israel-democracy-debate",
+      "title": "Israel Democracy Debate",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/jw.html",
+      "title": "Jehovah's Witnesses",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-and-dead-sea-scrolls",
+      "title": "Jesus and Dead Sea Scrolls",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-as-philosopher-teacher",
+      "title": "Jesus as Philosopher Teacher",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jesus-as-storyteller",
+      "title": "Jesus as Storyteller",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:topic-jesus",
+      "title": "Jesus, ethics & authority",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-gnosticism-and-myth",
+      "title": "Jesus Gnosticism and Myth",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jesus-in-dead-sea-scrolls",
+      "title": "Jesus in Dead Sea Scrolls",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jesus-in-love-concept",
+      "title": "Jesus in Love Concept",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:conversations/2026-11-06-resurrection-imperial-capture/index.html",
+      "title": "Jesus, Resurrection Theology and Imperial Capture",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-sayings-fact-check",
+      "title": "Jesus Sayings Fact Check",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-teachings-on-divorce",
+      "title": "Jesus teachings on divorce",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jesus-teachings-overview",
+      "title": "Jesus Teachings Overview",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:jesus-teachings-pineal-gland",
+      "title": "Jesus Teachings Pineal Gland",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jesus-vs-paul-vs-gnosticism",
+      "title": "Jesus vs Paul vs Gnosticism",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:jews-and-canaanites-origins",
+      "title": "Jews and Canaanites Origins",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:joke-style-analysis",
+      "title": "Joke Style Analysis",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:kirk-racism-equivalence-analysis",
+      "title": "Kirk racism equivalence analysis",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:la-museums-destroyed-in-fire",
+      "title": "LA Museums Destroyed in Fire",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/lds.html",
+      "title": "Latter-day Saints",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:leibniz-branch-mesopotamia",
+      "title": "Leibniz branch Mesopotamia",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:evidence-review-20261109/linguistic-epigraphic-matrix.html",
+      "title": "Linguistic and epigraphic checks on biblical chronology",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:listening-room",
+      "title": "Listening room",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:research-roadmap",
+      "title": "Long-term research roadmap",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/egypt-iran-contact.html",
+      "title": "Ma'at, asha and the possibility of an unrecorded connection",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:mark-16-textual-dispute",
+      "title": "Mark 16 Textual Dispute",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/maronite.html",
+      "title": "Maronite Catholic Church",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:marvel-crisis-equivalent",
+      "title": "Marvel Crisis Equivalent",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:meai-as-anti-psychotic",
+      "title": "MEAI as anti-psychotic",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:meme-creation-prophecy-and-peace",
+      "title": "Meme Creation: Prophecy and Peace",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:messiah-role-in-qumran",
+      "title": "Messiah role in Qumran",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:religious-development/minority-witnesses-and-living-traditions.html",
+      "title": "Minority Witnesses and Living Traditions",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:modern-gnostic-critique-of-catholicism",
+      "title": "Modern Gnostic Critique of Catholicism",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:modern-nazarenes-overview",
+      "title": "Modern Nazarenes Overview",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:moses-abraham-and-god",
+      "title": "Moses Abraham and God",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:moses-and-the-burning-bush",
+      "title": "Moses and the Burning Bush",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:museum-trails",
+      "title": "Museum trails: from exhibit label to full argument",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:my-descent-into-death-summary",
+      "title": "My Descent Into Death Summary",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:naming-god-as-purpose",
+      "title": "Naming God as Purpose",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:nearest-wilderness-to-sf",
+      "title": "Nearest Wilderness to SF",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:neo-mind-cycle-evolution",
+      "title": "Neo Mind Cycle Evolution",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:neurohacker-bio-summary",
+      "title": "Neurohacker Bio Summary",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:no-pre-trib-rapture-arguments",
+      "title": "No pre-trib rapture arguments",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:nuclear-war-survival-tips",
+      "title": "Nuclear War Survival Tips",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:oil-vs-gas-control",
+      "title": "Oil vs Gas Control",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/old-calendar.html",
+      "title": "Old Calendarist and True Orthodox jurisdictions",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:product-pathways",
+      "title": "One inquiry, several products",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:oneness-with-god-perspectives",
+      "title": "Oneness with God Perspectives",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:oort-cloud-and-yec",
+      "title": "Oort Cloud and YEC",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/oriental-orthodox.html",
+      "title": "Oriental Orthodox Christianity",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:parallel-timelines",
+      "title": "Parallel timelines and versions",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:paul-s-antichristian-message",
+      "title": "Paul's Antichristian Message",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:peale-and-positive-thinking",
+      "title": "Peale and Positive Thinking",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:pistis-sophia-summary",
+      "title": "Pistis Sophia Summary",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:platonic-jewish-christianity-framework",
+      "title": "Platonic Jewish Christianity Framework",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:praise-poem-creation",
+      "title": "Praise Poem Creation",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:role-workbook.html",
+      "title": "Prophetic Patterns and Repair",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:publication-history",
+      "title": "Publication history and time-stamped public backup",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:quantum-entanglement-and-communication",
+      "title": "Quantum Entanglement and Communication",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:quantum-time-solution-hubble",
+      "title": "Quantum Time Solution: Hubble",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:authority/qumran-jesus-and-ways-of-life.html",
+      "title": "Qumran, Jesus and the ways of life and death",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:qumran-survival-theory",
+      "title": "Qumran Survival Theory",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:ratm-and-gnosticism-comparison",
+      "title": "RATM and Gnosticism Comparison",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:reading-paths",
+      "title": "Reading paths",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:rephrase-conjecture-on-genocide",
+      "title": "Rephrase conjecture on genocide",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:research-board",
+      "title": "Research and author-review board",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:research-on-lineage-descent",
+      "title": "Research on lineage descent",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:revelation-throne-inquiry",
+      "title": "Revelation Throne Inquiry",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:russian-aliyah-impact",
+      "title": "Russian aliyah impact",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/thomas.html",
+      "title": "Saint Thomas Christians",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:saints-and-us-democrats",
+      "title": "Saints and US Democrats",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:science-and-god-debate",
+      "title": "Science and God Debate",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:science-and-spirituality-synergy",
+      "title": "Science and Spirituality Synergy",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:seth-on-changing-past-future",
+      "title": "Seth on changing past future",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/adventist.html",
+      "title": "Seventh-day Adventists",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/afterlives-and-ancestors.html",
+      "title": "Shades, judgment, transformation and the care of descendants",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:sith-rule-of-two-myth",
+      "title": "Sith Rule of Two Myth",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:song-style-analysis",
+      "title": "Song Style Analysis",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:authority/sources.html",
+      "title": "Source and access register",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:source-coverage",
+      "title": "Source coverage and argument breadth",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:event-forecast-register/authority-imagery/sources.html",
+      "title": "Source witnesses and access limits",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/moses-jesus-mammon/sources.html",
+      "title": "Sources, passages and reading scope",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/sources.html",
+      "title": "Sources, passages and retrieval limits",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:technology-signs.html",
+      "title": "Speaking images, returning fire",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:spiritual-experience-integration",
+      "title": "Spiritual experience integration",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:squid-imagery-and-propaganda",
+      "title": "Squid Imagery and Propaganda",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:stages-of-awakening",
+      "title": "Stages of Awakening",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:stalin-putin-anti-christ-parallel",
+      "title": "Stalin Putin Anti-Christ Parallel",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:stanley-fisher-clarification",
+      "title": "Stanley Fisher clarification",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:event-forecast-register/corpus-review/index.html",
+      "title": "Statements, sources and research questions",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:teaching-cyclical-thinking",
+      "title": "Teaching Cyclical Thinking",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:glossary",
+      "title": "Terms used in this inquiry",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:text-transcription-request",
+      "title": "Text transcription request",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:event-forecast-register/authority-imagery/ai-policy-chronology.html",
+      "title": "The AI-policy news cycle: dates before a coordination finding",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:the-telos",
+      "title": "The Telos",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:cosmic-thought-and-transcendence",
+      "title": "The universe might think without being God",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:authority/cosmic-thought-and-transcendence.html",
+      "title": "The universe might think without being God",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:theology-theology-antichrist-mapping-abraham-hicks-cluster",
+      "title": "Theology Antichrist Mapping Abraham Hicks",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-debate-science-god-self-cluster",
+      "title": "Theology Debate Science God Self",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-debunking-jesus-calvary-chapel-cluster",
+      "title": "Theology Debunking Jesus Calvary Chapel",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-gaza-debate-faith-early-cluster",
+      "title": "Theology Gaza Debate Faith Early",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-gnostic-gnosticism-jesus-god-cluster",
+      "title": "Theology Gnostic Gnosticism Jesus God",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-jesus-analysis-god-law-cluster",
+      "title": "Theology Jesus Analysis God Law",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-jesus-teachings-dead-sea-cluster",
+      "title": "Theology Jesus Teachings Dead Sea",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-jesus-teachings-gnostic-paul-cluster",
+      "title": "Theology Jesus Teachings Gnostic Paul",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-link-resolution-repair",
+      "title": "Theology Link Resolution Repair",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-paul-jesus-moses-summary-cluster",
+      "title": "Theology Paul Jesus Moses Summary",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-proof-god-existence-bible-cluster",
+      "title": "Theology Proof God Existence Bible",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-theology-revelation-qumran-proof-god-cluster",
+      "title": "Theology Revelation Qumran Proof God",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:theology-wikilink-density-repair",
+      "title": "Theology Wikilink Density Repair",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:tolkien-vs-ai-epics",
+      "title": "Tolkien vs AI epics",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:tony-robbins-criticism",
+      "title": "Tony Robbins Criticism",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:topic-traditions",
+      "title": "Traditions in conversation",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:triune-god-historical-debate",
+      "title": "Triune God Historical Debate",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:trump-bible-vision",
+      "title": "Trump Bible Vision",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:tucker-carlson-sam-altman-exchange",
+      "title": "Tucker Carlson Sam Altman exchange",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "static:comparative-religion/egypt-emanation/moses-jesus-mammon/comparisons.html",
+      "title": "Twelve connections and their limits",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:un-chief-antonio-guterres-exposed-along-with-un-agencies-unrwa-and-unifil-in-criminal-collusion-with-terrorists",
+      "title": "UN Chief Antonio Guterres exposed, along with UN Agencies UNRWA and UNIFIL, in criminal collusion with terrorists",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:unknown-gospel-details",
+      "title": "Unknown Gospel details",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:unrwa-hamas-allegations-investigation",
+      "title": "UNRWA Hamas Allegations Investigation",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:unrwa-hamas-allegations-summary",
+      "title": "UNRWA Hamas Allegations Summary",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:unsealed/unsealing-the-reader.html",
+      "title": "Unsealing the reader",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:us-allies-military-rebuild",
+      "title": "US Allies Military Rebuild",
+      "connections": 0,
+      "reason": "No qualifying narrow-topic or authored relationship in available text"
+    },
+    {
+      "id": "reader:vessel-and-dmt-integration",
+      "title": "Vessel and DMT Integration",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:voice-in-the-wilderness",
+      "title": "Voice in the Wilderness",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:event-forecast-register/truth-social/index.html",
+      "title": "War, loyalty and commerce",
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:event-forecast-register/x-media/index.html",
+      "title": "What the account chooses to share",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:topic-context",
+      "title": "Wider conversations",
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "static:comparative-religion/abrahamic-inheritance/groups/yazidi.html",
+      "title": "Yazidi tradition",
+      "connections": 3,
+      "reason": "Only these supported connections were found; no quota padding"
+    },
+    {
+      "id": "reader:ye-are-gods-quote",
+      "title": "Ye Are Gods Quote",
+      "connections": 4,
+      "reason": "Only these supported connections were found; no quota padding"
+    }
+  ]
+}

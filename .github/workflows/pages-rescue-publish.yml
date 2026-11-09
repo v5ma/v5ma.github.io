@@ -2,7 +2,7 @@ name: Publish current master to GitHub Pages
 on:
   push:
     branches: [master]
-    paths: ['.github/workflows/pages-rescue-publish.yml']
+    paths: ['.github/workflows/pages-rescue-publish.yml', 'scripts/theology-connectivity-artifact.cjs', 'scripts/theology-connectivity-artifact.test.cjs', 'theology-wiki/**']
 permissions:
   contents: read
   pages: write
@@ -37,10 +37,17 @@ jobs:
           git rev-parse HEAD
           shasum -a 256 index.html 404.html agent-wiki-theology-route.html
           shasum -a 256 theology-wiki/index.html theology-wiki/san-reader.html theology-sources/index.html
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test publication-only connectivity integration
+        run: node --test theology-wiki/connections/test.cjs scripts/theology-connectivity-artifact.test.cjs
+      - name: Copy current source and add verified wiki connections
+        run: node scripts/theology-connectivity-artifact.cjs .pages-connectivity > connectivity-artifact-report.json
       - uses: actions/upload-pages-artifact@v3
         with:
           name: ${{ steps.source.outputs.artifact }}
-          path: .
+          path: .pages-connectivity
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -66,3 +73,4 @@ jobs:
 # November 9 clouds comparison: publish only after the candidate validation gate.
 
 # November 9 grandmaster refinement: publish the tested deep-pattern reasoning clarification.
+

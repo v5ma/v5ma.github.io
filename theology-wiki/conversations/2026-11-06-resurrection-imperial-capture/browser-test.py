@@ -1,4 +1,11 @@
 """Read-only local or live transcript checks, at desktop and phone sizes."""
+# Validate only the exact current publication enhancements before source comparison.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 import functools
 import hashlib
 import http.server
@@ -54,7 +61,7 @@ def run():
                 page.get_by_role('link',name='Imperial pressure within the four Gospels',exact=True).click()
                 check(page.url.endswith('#turn-15'),'Clarification permalink works')
                 check('Mathew, Mark, Luke, and John.' in page.locator('#turn-15').inner_text(),'Clarification wording preserved')
-                page.get_by_role('link',name='Early resurrection accounts and source criticism',exact=True).click()
+                page.locator('aside.related').get_by_role('link',name='Early resurrection accounts and source criticism',exact=True).click()
                 check(page.url.endswith('/early-resurrection-accounts-and-source-criticism.html'),'Related chapter opens')
                 page.go_back()
                 check(page.url.endswith('#turn-15'),'Back restores transcript anchor')
@@ -67,7 +74,7 @@ def run():
                 for name in ['index.html','transcript.json','transcript.md','source-integrity.json','conversation.css']:
                     result = context.request.get(base+ROUTE.replace('index.html',name))
                     check(result.status==200,name+' HTTP 200')
-                    check(hashlib.sha256(result.body()).digest()==hashlib.sha256((HERE/name).read_bytes()).digest(),name+' bytes match local release')
+                    check(hashlib.sha256(source_bytes(result.body(),"theology-wiki/"+ROUTE.replace("index.html",name)) if server is None else result.body()).digest()==hashlib.sha256((HERE/name).read_bytes()).digest(),name+' bytes match local release')
                 check(not errors,'No JavaScript errors')
                 page.screenshot(path=str(OUT/f'conversation-{width}-js-{js}.png'))
                 context.close()
@@ -80,3 +87,4 @@ def run():
 
 if __name__=='__main__':
     run()
+

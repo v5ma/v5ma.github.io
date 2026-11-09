@@ -1,4 +1,11 @@
 """Wait for actual hosted bytes to match this checkout; never substitute local files."""
+# Validate only the exact current publication enhancements before source comparison.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 from pathlib import Path
 import argparse, hashlib, json, os, time, urllib.request
 HERE=Path(__file__).resolve().parent
@@ -19,7 +26,7 @@ while True:
   try:
    request=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'TheologyWikiPublicationCheck/1.0'})
    with urllib.request.urlopen(request,timeout=15) as response:body=response.read();status=response.status
-   digest=hashlib.sha256(body).hexdigest();observed[path]={'status':status,'sha256':digest,'expected_sha256':expected[path],'matches_checkout':digest==expected[path],'url':url}
+   digest=hashlib.sha256(source_bytes(body,path)).hexdigest();observed[path]={'status':status,'sha256':digest,'expected_sha256':expected[path],'matches_checkout':digest==expected[path],'url':url}
   except Exception as exc:observed[path]={'matches_checkout':False,'error':str(exc),'url':url}
  if all(r.get('matches_checkout') for r in observed.values()):break
  if time.monotonic()>=deadline:break
@@ -27,3 +34,4 @@ while True:
 report={'status':'passed' if all(r.get('matches_checkout') for r in observed.values()) else 'failed','checkout':os.environ.get('GITHUB_SHA'),'attempts':attempt,'files':observed,'scope':'Actual served files compared to checkout hashes, including the three follow-up assets. Browser behavior is checked in a separate step.'}
 Path(args.report).parent.mkdir(parents=True,exist_ok=True);Path(args.report).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 if report['status']!='passed':raise SystemExit(1)
+

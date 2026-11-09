@@ -1,0 +1,1677 @@
+{
+  "schema": "theology-relevance-cues/v1",
+  "status": "Candidate-generation vocabulary, not proof of a historical relationship",
+  "matchingPolicy": {
+    "normalization": "Case-fold, collapse punctuation/space, preserve phrase boundaries. Never match inside larger unrelated words.",
+    "contentScope": "Substantive prose only. Exclude global navigation, footers, table of contents, bibliography-only hits, build metadata and generated connections.",
+    "minimumEvidence": "Each endpoint must contain an exact distinctive phrase in its title/summary or at least two substantive occurrences in its body. For cue groups require one match from every group in both endpoints. A single shared title-like specific work/person may support a 'shared subject' reading link, not a claim of influence.",
+    "strongRecommendation": "For broader concepts require two independent specific topics shared or one specific topic plus two corroborating distinguishing phrases. Retain one exact excerpt from each endpoint. Do not pad to a target count.",
+    "labels": "Use 'Shared subject' or 'Compare the question' for generated candidates. Use 'Historical influence', 'source', 'correction', 'refutation' or 'same person' only when explicitly established by the inspected text.",
+    "deduplication": "Canonical target URL identity, not bare slug; the evidence-review Revelation article and archived conversation share a slug but are different pages.",
+    "direction": "Preserve original relationship direction. A reciprocal discovery link is a comparison/cited-by route, not reciprocal endorsement.",
+    "excludedGenericCues": [
+      "God",
+      "Jesus",
+      "Christ",
+      "Paul",
+      "religion",
+      "Bible",
+      "power",
+      "authority",
+      "evidence",
+      "history",
+      "text",
+      "spirit",
+      "Christian",
+      "Jewish",
+      "source",
+      "truth",
+      "light",
+      "darkness",
+      "empire",
+      "belief",
+      "canon",
+      "Torah",
+      "resurrection"
+    ],
+    "groupCooccurrence": "Every group cue must co-occur with the other groups in one substantive paragraph or a short window, not in disconnected portions of an entire article. Show support for all groups, not just the first generic term.",
+    "nonSubstantivePages": "Exclude legacy generated cluster/repair notes and navigation/catalogue-only prose from semantic evidence. Retain registry entries without invented recommendations."
+  },
+  "topics": [
+    {
+      "id": "recurring-pattern-prophecy",
+      "label": "Fractal Eschatology and recurring-pattern prophecy",
+      "phrases": [
+        "Fractal Eschatology",
+        "Recurring-Pattern Prophecy Argument",
+        "RPPA",
+        "Prophetic Deep-Pattern Reasoning"
+      ],
+      "qualification": "A modern author's framework; not an ancient technical term or an empirically validated result."
+    },
+    {
+      "id": "prophecy-causal-feedback",
+      "label": "Prophecy, warning and causal feedback",
+      "phrases": [
+        "self-fulfilling prophecy",
+        "self-defeating prophecy",
+        "causal feedback",
+        "conditional prophecy"
+      ],
+      "corroborating": [
+        "prediction",
+        "Jonah",
+        "warning",
+        "forecast",
+        "prophecy"
+      ],
+      "qualification": "Separate predictions from effects produced by believing or acting on them."
+    },
+    {
+      "id": "prophecy-validation",
+      "label": "Testing recurring prophetic patterns",
+      "phrases": [
+        "pattern validation",
+        "forecast ledger",
+        "prediction register",
+        "preregistered",
+        "out-of-sample"
+      ],
+      "corroborating": [
+        "prophecy",
+        "forecast",
+        "prediction",
+        "counterevidence"
+      ],
+      "qualification": "A research design, synthetic test or dated register is not a demonstrated hit rate."
+    },
+    {
+      "id": "revelation-final-battles",
+      "label": "Revelation 19–20, Gog and Magog, and the millennium",
+      "phrases": [
+        "Gog and Magog",
+        "Gog Magog",
+        "Revelation 19",
+        "Revelation 20",
+        "amillennialism"
+      ],
+      "corroborating": [
+        "recapitulation",
+        "sequential",
+        "Satan",
+        "dragon",
+        "battle",
+        "binding"
+      ],
+      "qualification": "Compare competing sequence/recapitulation readings without equating symbols with current persons."
+    },
+    {
+      "id": "revelation-clouds",
+      "label": "Cloud imagery and historical application",
+      "groups": [
+        [
+          "clouds",
+          "cloud"
+        ],
+        [
+          "Daniel 7",
+          "Mark 14",
+          "Son of Man",
+          "Revelation 1"
+        ]
+      ],
+      "qualification": "Symbolic language alone does not establish either recurrence or a final historical referent."
+    },
+    {
+      "id": "mark-economic-exclusion",
+      "label": "The mark, allegiance and exclusion from commerce",
+      "groups": [
+        [
+          "mark of the beast",
+          "Revelation 13"
+        ],
+        [
+          "buy",
+          "sell",
+          "commerce",
+          "economic exclusion",
+          "payment"
+        ]
+      ],
+      "qualification": "Similar economic mechanisms are comparisons, not automatic proof of fulfillment."
+    },
+    {
+      "id": "gaza-payment-proposals",
+      "label": "Gaza currency, wallet and governance proposals",
+      "groups": [
+        [
+          "Gaza"
+        ],
+        [
+          "stablecoin",
+          "Gaza Wallet",
+          "Gaza Coin",
+          "Board of Peace",
+          "GREAT Trust",
+          "payment rail"
+        ]
+      ],
+      "qualification": "Distinguish the 2020 academic project, 2026 proposals, adoption and verified operation."
+    },
+    {
+      "id": "computational-theology",
+      "label": "Computational theology and models of divine action",
+      "phrases": [
+        "Computational Divine Immanence",
+        "computational theology",
+        "computational God",
+        "mind of God equation"
+      ],
+      "qualification": "Mathematical and computational analogies are not evidence of a literal implemented system."
+    },
+    {
+      "id": "machine-moral-education",
+      "label": "Moral education of artificial intelligence",
+      "phrases": [
+        "AGI Religious Framework",
+        "religion for conscious robots",
+        "machine moral education",
+        "ethical education for AI"
+      ],
+      "groupsOptional": [
+        [
+          "AGI",
+          "artificial intelligence",
+          "robot"
+        ],
+        [
+          "moral education",
+          "religious framework",
+          "religion",
+          "conscience"
+        ]
+      ],
+      "qualification": "An author's educational proposal is not proof that AI controls people's access to necessities."
+    },
+    {
+      "id": "sacred-rival-inheritance",
+      "label": "Rival continuations of sacred inheritance",
+      "phrases": [
+        "rival continuations",
+        "alternative inheritances",
+        "sacred inheritance"
+      ],
+      "qualification": "A comparative framework does not establish an unbroken genealogy."
+    },
+    {
+      "id": "samaritan-textual-plurality",
+      "label": "Samaritan Pentateuch and pre-Samaritan textual witnesses",
+      "phrases": [
+        "Samaritan Pentateuch",
+        "4QpaleoExod",
+        "4Q22",
+        "pre-Samaritan"
+      ],
+      "qualification": "Textual affinity and harmonization do not establish Samaritan ownership of a manuscript."
+    },
+    {
+      "id": "gerizim-sacred-geography",
+      "label": "Gerizim, Jerusalem and John 4",
+      "groups": [
+        [
+          "Gerizim",
+          "Samaritan"
+        ],
+        [
+          "John 4",
+          "Jerusalem",
+          "sanctuary",
+          "sacred mountain"
+        ]
+      ],
+      "qualification": "Compare sacred geography, scripture and the community's account without substituting a rival tradition's judgment."
+    },
+    {
+      "id": "qumran-teacher",
+      "label": "The Teacher of Righteousness hypothesis",
+      "phrases": [
+        "Teacher of Righteousness",
+        "Moreh ha-Tzedek",
+        "earlier teacher",
+        "displaced biography"
+      ],
+      "qualification": "Preserve the proposed identification and its counterevidence; shared titles do not establish identity."
+    },
+    {
+      "id": "scrolls-dating",
+      "label": "Dead Sea Scrolls manuscript dating",
+      "groups": [
+        [
+          "Dead Sea Scrolls",
+          "Qumran",
+          "Habakkuk Pesher",
+          "4Q"
+        ],
+        [
+          "radiocarbon",
+          "palaeography",
+          "paleography",
+          "Enoch model",
+          "dating",
+          "manuscript dates"
+        ]
+      ],
+      "qualification": "Copying, composition, narrated events and later interpretation have different dates."
+    },
+    {
+      "id": "qumran-kittim",
+      "label": "Qumran, the Kittim and Roman power",
+      "phrases": [
+        "Kittim",
+        "Habakkuk Pesher",
+        "1QpHab"
+      ],
+      "qualification": "Compare the named textual evidence; do not treat all scrolls as one communal position."
+    },
+    {
+      "id": "gmirkin-berossus",
+      "label": "Gmirkin's Hellenistic composition and Berossus hypothesis",
+      "phrases": [
+        "Gmirkin",
+        "Berossus",
+        "Berosus"
+      ],
+      "qualification": "A borrowing hypothesis, its challenges and earlier transmission routes remain distinguishable."
+    },
+    {
+      "id": "mesopotamian-flood-witnesses",
+      "label": "Flood transmission through named Mesopotamian witnesses",
+      "phrases": [
+        "Atrahasis",
+        "Atra-hasis",
+        "Xisouthros",
+        "Utnapishtim",
+        "Gilgamesh"
+      ],
+      "corroborating": [
+        "flood",
+        "Genesis",
+        "Berossus",
+        "Noah"
+      ],
+      "qualification": "Shared narrative elements do not establish direct literary dependence or the date of a flood event."
+    },
+    {
+      "id": "plato-genesis",
+      "label": "Plato, Genesis and Hellenistic literary dependence",
+      "groups": [
+        [
+          "Plato",
+          "Critias",
+          "Timaeus"
+        ],
+        [
+          "Genesis",
+          "Pentateuch",
+          "Gmirkin",
+          "Torah"
+        ]
+      ],
+      "qualification": "Keep Gmirkin's Plato proposal distinct from his earlier Berossus argument."
+    },
+    {
+      "id": "judaism-origins-chronology",
+      "label": "Israelite inheritance, Judah and the history of Judaism",
+      "groups": [
+        [
+          "Judaism",
+          "Judean",
+          "Judah"
+        ],
+        [
+          "Hellenistic",
+          "Persian period",
+          "Second Temple",
+          "ethnogenesis",
+          "origin",
+          "origins",
+          "4000",
+          "4,000",
+          "300 BCE"
+        ]
+      ],
+      "qualification": "Distinguish communities, names, practices, texts and completed institutions; one periodization does not settle all origins."
+    },
+    {
+      "id": "eusebius-bauer",
+      "label": "Eusebius, Walter Bauer and regional Christian origins",
+      "phrases": [
+        "Eusebius",
+        "Walter Bauer",
+        "Orthodoxy and Heresy in Earliest Christianity"
+      ],
+      "corroborating": [
+        "orthodoxy",
+        "heresy",
+        "regional",
+        "apostolic",
+        "succession",
+        "church history"
+      ],
+      "qualification": "Bauer's 1934 regional challenge does not prove every alternative preceded orthodoxy everywhere."
+    },
+    {
+      "id": "apostolic-pedigree",
+      "label": "Claims of apostolic succession and teaching lineages",
+      "phrases": [
+        "apostolic succession",
+        "Glaucias",
+        "Theudas",
+        "Stromata VII",
+        "Prescription Against Heretics"
+      ],
+      "qualification": "An ancient reported pedigree is evidence of a claim, not independent verification of the whole chain."
+    },
+    {
+      "id": "constantine-coercion",
+      "label": "Constantine, councils and imperial coercion",
+      "groups": [
+        [
+          "Constantine",
+          "Athanasius",
+          "Nicaea"
+        ],
+        [
+          "canon formation",
+          "coercion",
+          "patronage",
+          "Festal Letter",
+          "Christian diversity",
+          "suppression"
+        ]
+      ],
+      "qualification": "Do not conflate canon, council decisions, doctrinal boundaries, patronage and manuscript destruction."
+    },
+    {
+      "id": "nag-hammadi-survival",
+      "label": "Nag Hammadi manuscript survival and ownership",
+      "groups": [
+        [
+          "Nag Hammadi",
+          "NHC"
+        ],
+        [
+          "codices",
+          "monastic",
+          "burial",
+          "survival",
+          "deposition",
+          "Pachomian",
+          "ownership"
+        ]
+      ],
+      "qualification": "Surviving books restore evidence; their existence alone does not settle why they were deposited."
+    },
+    {
+      "id": "apocalypse-peter",
+      "label": "The living and laughing Jesus in the Coptic Apocalypse of Peter",
+      "phrases": [
+        "laughing Jesus",
+        "NHC VII,3",
+        "NHC VII 3",
+        "Coptic Apocalypse of Peter"
+      ],
+      "qualification": "Distinguish this Nag Hammadi work from the other Apocalypse of Peter."
+    },
+    {
+      "id": "gospel-truth",
+      "label": "The Gospel of Truth, Error and saving knowledge",
+      "phrases": [
+        "Gospel of Truth",
+        "NHC I,3",
+        "NHC I 3"
+      ],
+      "qualification": "The positive role of the cross in this work should not be erased by a generic claim about Gnostic rejection of suffering."
+    },
+    {
+      "id": "pilate-imperial-pressure",
+      "label": "Pilate, Gospel narrative and Roman pressure",
+      "groups": [
+        [
+          "Pilate"
+        ],
+        [
+          "Philo",
+          "Josephus",
+          "accommodation",
+          "imperial pressure",
+          "innocent",
+          "blame"
+        ]
+      ],
+      "qualification": "Narrative accommodation, authorial theology, later appropriation and state authorship are separate claims."
+    },
+    {
+      "id": "pauline-resurrection-body",
+      "label": "Paul's spiritual body and early resurrection testimony",
+      "phrases": [
+        "1 Corinthians 15",
+        "spiritual body",
+        "soma pneumatikon",
+        "sōma pneumatikon",
+        "pre-Pauline creed"
+      ],
+      "qualification": "Spiritual is not automatically nonbodily; early testimony does not by itself establish a supernatural event."
+    },
+    {
+      "id": "mark-ending",
+      "label": "Mark 16 and the history of resurrection endings",
+      "phrases": [
+        "Mark 16",
+        "shorter ending",
+        "longer ending of Mark"
+      ],
+      "qualification": "A later surviving narrative need not mean the belief itself originated at that date."
+    },
+    {
+      "id": "saving-death-countertexts",
+      "label": "Ransom, covenant and saving-death countertexts",
+      "phrases": [
+        "Mark 10:45",
+        "Mark 14:24",
+        "ransom for many",
+        "Colossians 2:15",
+        "1 Corinthians 2:8"
+      ],
+      "qualification": "Preserve texts that challenge a proposed ethics-versus-atonement division."
+    },
+    {
+      "id": "angelic-hospitality",
+      "label": "Angelic hospitality and resurrection interpretation",
+      "phrases": [
+        "Hebrews 13:2",
+        "entertained angels",
+        "angelic hospitality"
+      ],
+      "qualification": "Resemblance between hospitality and resurrection scenes does not prove the same literary source or historical event."
+    },
+    {
+      "id": "mandaean-origins",
+      "label": "Mandaean origins, baptism and John the Baptist",
+      "phrases": [
+        "Mandaean",
+        "Mandaean Book of John",
+        "Haran Gawaita"
+      ],
+      "qualification": "Later sacred history, western-migration arguments and Mesopotamian evidence need their separate chronological limits."
+    },
+    {
+      "id": "thomas-living-jesus",
+      "label": "Thomas, living Jesus sayings and transformed understanding",
+      "phrases": [
+        "Gospel of Thomas",
+        "Thomas sayings",
+        "living Jesus"
+      ],
+      "corroborating": [
+        "saying",
+        "interpretation",
+        "John",
+        "Synoptic",
+        "knowledge"
+      ],
+      "qualification": "Shared sayings or a spiritual reading do not establish a direct institutional transmission line."
+    },
+    {
+      "id": "cognitive-christ-formation",
+      "label": "Cognitive Gnosticism and Christic self-formation",
+      "phrases": [
+        "Cognitive Gnosticism",
+        "Christic Self-Formation",
+        "Christ as an inner model"
+      ],
+      "qualification": "A constructive contemporary interpretation should not be relabeled as an ancient doctrine."
+    },
+    {
+      "id": "demiurge-correctable-authority",
+      "label": "Yaldabaoth, the demiurge and limited authority",
+      "phrases": [
+        "Yaldabaoth",
+        "Ialdabaoth",
+        "Letter to Flora",
+        "Apocryphon of John",
+        "Reality of the Rulers"
+      ],
+      "qualification": "Do not flatten divergent creator traditions into a single evil-creator or two-devil system."
+    },
+    {
+      "id": "melchizedek-priesthood",
+      "label": "Melchizedek and priestly transmission",
+      "phrases": [
+        "Melchizedek",
+        "11QMelch",
+        "11Q13"
+      ],
+      "qualification": "A shared name or role is a comparison, not automatic person-identification or continuous lineage."
+    },
+    {
+      "id": "onias-leontopolis",
+      "label": "Onias, Leontopolis and Egyptian priestly continuity",
+      "phrases": [
+        "Onias",
+        "Leontopolis"
+      ],
+      "qualification": "Keep sanctuary history and later proposed continuities distinct."
+    },
+    {
+      "id": "maimonides-resurrection",
+      "label": "Maimonides, Messiah and resurrection",
+      "groups": [
+        [
+          "Maimonides",
+          "Rambam"
+        ],
+        [
+          "Messiah",
+          "resurrection",
+          "world to come",
+          "Laws of Kings",
+          "Thirteen Principles"
+        ]
+      ],
+      "qualification": "Do not collapse philosophical readings, resurrection, messianic criteria and later mystical reception."
+    },
+    {
+      "id": "abraham-hicks",
+      "label": "Abraham/Esther Hicks and deliberate emotional practice",
+      "qualification": "Compare attributed teaching, interpretation and the proposed practice without treating emotional metaphors as physical measurements.",
+      "phrases": [
+        "Abraham Hicks",
+        "Abraham-Hicks",
+        "Esther Hicks"
+      ]
+    },
+    {
+      "id": "law-of-attraction",
+      "label": "Law of Attraction claims and tests",
+      "qualification": "Separate reported benefits of attention and motivation from unsupported universal causal laws.",
+      "phrases": [
+        "law of attraction",
+        "law-of-attraction",
+        "manifestation practice"
+      ]
+    },
+    {
+      "id": "deliberate-joy",
+      "label": "Deliberate joy, faith and emotional practice",
+      "qualification": "A practical emotional or theological interpretation is not proof that feelings directly control external events.",
+      "phrases": [
+        "deliberate joy",
+        "faith as vibration",
+        "faith-as-vibration"
+      ]
+    },
+    {
+      "id": "positive-thinking",
+      "label": "Positive thinking and its historical teachers",
+      "qualification": "Compare the specific practices and claims, not a presumed common mechanism for every motivational tradition.",
+      "phrases": [
+        "Norman Vincent Peale",
+        "positive thinking",
+        "Tony Robbins"
+      ]
+    },
+    {
+      "id": "acceptance-commitment",
+      "label": "Acceptance and Commitment Therapy and spiritual practice",
+      "qualification": "Distinguish a clinical approach and its evidence from claims made by spiritual teachers.",
+      "phrases": [
+        "Acceptance and Commitment Therapy",
+        "psychological flexibility",
+        "cognitive defusion"
+      ]
+    },
+    {
+      "id": "spiritual-integration",
+      "label": "Integrating psychedelic and spiritual experiences",
+      "qualification": "An experience can be personally meaningful without verifying a metaphysical explanation or establishing clinical efficacy.",
+      "phrases": [
+        "psychedelic spiritual",
+        "spiritual experience integration",
+        "DMT integration",
+        "psychedelic integration"
+      ]
+    },
+    {
+      "id": "nondual-awakening",
+      "label": "Oneness, nonduality and stages of awakening",
+      "qualification": "Compare traditions and reported experiences without assuming identical doctrines or a universal developmental scale.",
+      "phrases": [
+        "oneness with God",
+        "awakening to oneness",
+        "nonduality",
+        "non-duality",
+        "stages of awakening"
+      ]
+    },
+    {
+      "id": "jungian-dreams",
+      "label": "Jungian dream interpretation and ancient cosmology",
+      "qualification": "Interpretive associations are not independently verified facts about dream causes or historical transmission.",
+      "phrases": [
+        "Jungian",
+        "Carl Jung",
+        "dream interpretation",
+        "dream analysis"
+      ]
+    },
+    {
+      "id": "moses-exodus-chronology",
+      "label": "Moses and competing Exodus chronologies",
+      "qualification": "Keep proposed narrated events, archaeological contexts, text composition and surviving copies separate.",
+      "groups": [
+        [
+          "Moses",
+          "Exodus dating",
+          "Exodus chronology",
+          "Exodus to Temple"
+        ],
+        [
+          "dating",
+          "chronology",
+          "Thera",
+          "Ahmose",
+          "eruption",
+          "Hyksos"
+        ]
+      ]
+    },
+    {
+      "id": "thera-eruption",
+      "label": "Thera/Santorini and Exodus catastrophe comparisons",
+      "qualification": "A possible catastrophe parallel does not establish the identity, date or composition of the Exodus narrative.",
+      "phrases": [
+        "Thera",
+        "Santorini",
+        "Minoan eruption"
+      ]
+    },
+    {
+      "id": "hyksos-avaris",
+      "label": "Hyksos, Avaris and Egyptian expulsion histories",
+      "qualification": "Compare archaeological and historical evidence before mapping later Exodus or Joseph stories onto it.",
+      "phrases": [
+        "Hyksos",
+        "Avaris",
+        "Ahmose"
+      ]
+    },
+    {
+      "id": "joseph-egypt",
+      "label": "Joseph narratives in their proposed Egyptian settings",
+      "qualification": "Distinguish the narrated setting and later transmission from a demonstrated historical identification.",
+      "groups": [
+        [
+          "Joseph"
+        ],
+        [
+          "Egypt",
+          "Hyksos",
+          "Pharaoh",
+          "Genesis"
+        ]
+      ]
+    },
+    {
+      "id": "kenite-yahweh",
+      "label": "Kenite/Midianite proposals for Yahweh’s origins",
+      "qualification": "Treat the southern-origin hypothesis and its archaeological/textual evidence as arguments, not settled identification.",
+      "phrases": [
+        "Kenite",
+        "Midianite",
+        "Midian",
+        "Shasu"
+      ]
+    },
+    {
+      "id": "el-egypt",
+      "label": "El and Egyptian/Levantine religious contact",
+      "qualification": "Match El as a bounded proper name, never a substring; distinguish linguistic attestation, deity identification and cultic adoption.",
+      "groups": [
+        [
+          "El",
+          "Elyon"
+        ],
+        [
+          "Egypt",
+          "Ugarit",
+          "Canaan",
+          "Semitic",
+          "pantheon"
+        ]
+      ],
+      "caseSensitiveAcronyms": [
+        "El"
+      ]
+    },
+    {
+      "id": "yahweh-asherah",
+      "label": "Yahweh, Asherah and Israelite religious plurality",
+      "qualification": "Inscriptions, divine names, cultic objects and theological reconstructions support different claims.",
+      "phrases": [
+        "Asherah",
+        "Kuntillet Ajrud",
+        "Khirbet el-Qom"
+      ]
+    },
+    {
+      "id": "enki-anunnaki",
+      "label": "Enki, Anunnaki and modern ancient-alien interpretations",
+      "qualification": "A shared ancient divine name does not validate modern extraterrestrial reconstructions or deity-equivalence claims.",
+      "phrases": [
+        "Enki",
+        "Anunnaki",
+        "Annunaki",
+        "Zecharia Sitchin"
+      ]
+    },
+    {
+      "id": "sanchuniathon",
+      "label": "Sanchuniathon and Phoenician myth transmission",
+      "qualification": "Distinguish the claimed ancient author, later transmitting writer and surviving witness.",
+      "phrases": [
+        "Sanchuniathon",
+        "Sanchuniathōn",
+        "Philo of Byblos"
+      ]
+    },
+    {
+      "id": "enochic-literature",
+      "label": "Enochic literature and Son of Man traditions",
+      "qualification": "Different Enochic books, manuscript dates and later receptions must remain distinct.",
+      "phrases": [
+        "1 Enoch",
+        "2 Enoch",
+        "Book of Enoch",
+        "Enochic",
+        "Enoch Son of Man"
+      ]
+    },
+    {
+      "id": "enoch-solar-cycles",
+      "label": "Solar calendars in Enochic texts",
+      "qualification": "A numerical or calendrical parallel is not itself a shared historical institution.",
+      "groups": [
+        [
+          "Enoch"
+        ],
+        [
+          "solar",
+          "sun",
+          "calendar",
+          "cycle"
+        ]
+      ]
+    },
+    {
+      "id": "daniel-seventy-weeks",
+      "label": "Daniel, the seventy weeks and Temple chronology",
+      "qualification": "Separate the text’s periodization, proposed historical referents and later prophetic applications.",
+      "phrases": [
+        "seventy weeks",
+        "seventy sevens",
+        "Daniel 9",
+        "Daniel 11"
+      ]
+    },
+    {
+      "id": "james-succession",
+      "label": "James the Just and competing Christian succession",
+      "qualification": "A conflict or succession claim must be located in a specific source rather than assumed from later doctrinal differences.",
+      "phrases": [
+        "James the Just",
+        "James movement",
+        "James and Paul",
+        "Paul vs James",
+        "Jerusalem church"
+      ]
+    },
+    {
+      "id": "clementine-literature",
+      "label": "Clementine Homilies and Recognitions",
+      "qualification": "The preserved literary form and its putative earlier sources have different dates and evidentiary status.",
+      "phrases": [
+        "Clementine Homilies",
+        "Clementine Recognitions",
+        "Pseudo-Clementine"
+      ]
+    },
+    {
+      "id": "essenes-jesus",
+      "label": "Essenes and proposed links to Jesus’s movement",
+      "qualification": "Compare practices and chronology without treating resemblance as demonstrated membership or institutional descent.",
+      "groups": [
+        [
+          "Essene",
+          "Essenes"
+        ],
+        [
+          "Jesus",
+          "James",
+          "Christian",
+          "Qumran"
+        ]
+      ]
+    },
+    {
+      "id": "josephus-history",
+      "label": "Josephus as an ancient historical witness",
+      "qualification": "Name the work and passage; Josephus’s survival and usefulness do not make every proposed inference equally secure.",
+      "phrases": [
+        "Josephus",
+        "Josepheous",
+        "Josephous",
+        "Jewish War",
+        "Antiquities of the Jews"
+      ]
+    },
+    {
+      "id": "herod-chronology",
+      "label": "Herodian chronology and Jesus narratives",
+      "qualification": "Keep the different rulers and proposed birth/execution chronologies distinct.",
+      "phrases": [
+        "Herod the Great",
+        "Herod Antipas",
+        "Herod timeline",
+        "Herodian"
+      ]
+    },
+    {
+      "id": "johannine-logos",
+      "label": "The Logos in John, Philo and other traditions",
+      "qualification": "Require Logos as a substantive philosophical/theological term; a shared word does not prove identical doctrine or direct dependence.",
+      "phrases": [
+        "Logos",
+        "Johannine prologue",
+        "John 1:1"
+      ],
+      "corroborating": [
+        "John",
+        "Philo",
+        "Simon",
+        "Stoic",
+        "divine",
+        "Word",
+        "theology",
+        "reason"
+      ]
+    },
+    {
+      "id": "simon-magus",
+      "label": "Simon Magus and later heresiological accounts",
+      "qualification": "Separate Acts, later opponents’ accounts and reconstructions of a historical movement.",
+      "phrases": [
+        "Simon Magus",
+        "Simon the magician",
+        "Simonian"
+      ]
+    },
+    {
+      "id": "beloved-disciple",
+      "label": "The beloved disciple and Johannine identity claims",
+      "qualification": "Narrative role, traditional attribution and historical identity are different claims.",
+      "phrases": [
+        "beloved disciple",
+        "disciple whom Jesus loved"
+      ]
+    },
+    {
+      "id": "gospel-judas",
+      "label": "The Gospel of Judas and interpretations of betrayal",
+      "qualification": "Do not merge different translations and disputed readings into a single settled portrayal.",
+      "phrases": [
+        "Gospel of Judas",
+        "Codex Tchacos"
+      ]
+    },
+    {
+      "id": "pistis-sophia",
+      "label": "Pistis Sophia and later Gnostic cosmology",
+      "qualification": "This particular work’s narrative and reception should not stand for all texts grouped as Gnostic.",
+      "phrases": [
+        "Pistis Sophia"
+      ]
+    },
+    {
+      "id": "apocalypse-adam",
+      "label": "The Apocalypse of Adam and revelatory lineage",
+      "qualification": "Preserve the distinction between narrative genealogy and historically demonstrable transmission.",
+      "phrases": [
+        "Apocalypse of Adam"
+      ]
+    },
+    {
+      "id": "gnostic-terminology",
+      "label": "The category Gnosticism and contested classification",
+      "qualification": "A modern classification and an ancient group’s self-description are not interchangeable.",
+      "groups": [
+        [
+          "Gnosticism",
+          "Gnostic"
+        ],
+        [
+          "Michael Allen Williams",
+          "Karen King",
+          "classification",
+          "category",
+          "definition",
+          "Sethian",
+          "Valentinian"
+        ]
+      ]
+    },
+    {
+      "id": "valentinian-traditions",
+      "label": "Valentinus and Valentinian interpretations",
+      "qualification": "Do not infer a single doctrine shared by every work associated with this movement.",
+      "phrases": [
+        "Valentinus",
+        "Valentinian",
+        "Valentinians"
+      ]
+    },
+    {
+      "id": "sethian-traditions",
+      "label": "Sethian texts and sacred ancestry",
+      "qualification": "A scholarly category and a claim about an organized community require different evidence.",
+      "phrases": [
+        "Sethian",
+        "Sethians"
+      ]
+    },
+    {
+      "id": "marcionite-traditions",
+      "label": "Marcion, scripture and contested Christian inheritance",
+      "qualification": "Compare the specific textual and doctrinal claims without assuming that all noncanonical Christianity was Marcionite.",
+      "phrases": [
+        "Marcion",
+        "Marcionite"
+      ]
+    },
+    {
+      "id": "inanna-descent",
+      "label": "Inanna’s descent and resurrection comparisons",
+      "qualification": "A narrative resemblance is not proof of direct borrowing or the identity of religious figures.",
+      "phrases": [
+        "Inanna",
+        "Ishtar",
+        "Dumuzi"
+      ]
+    },
+    {
+      "id": "henosis-plotinus",
+      "label": "Henosis and Plotinian return",
+      "qualification": "Compare philosophical union and religious transformation without erasing the traditions’ differences.",
+      "phrases": [
+        "henosis",
+        "Plotinus",
+        "Enneads"
+      ]
+    },
+    {
+      "id": "hermetic-literature",
+      "label": "Hermetic literature and Egyptian/Greek reception",
+      "qualification": "Distinguish surviving texts, claimed antiquity and later esoteric reception.",
+      "phrases": [
+        "Hermetic",
+        "Hermetica",
+        "Hermes Trismegistus",
+        "Corpus Hermeticum"
+      ]
+    },
+    {
+      "id": "kabbalah-origins",
+      "label": "Kabbalah, its origins and later continuities",
+      "qualification": "Different historical layers and living interpretations should not become a single timeless doctrine.",
+      "phrases": [
+        "Kabbalah",
+        "Kabbalistic",
+        "Zohar",
+        "Sefer Yetzirah"
+      ]
+    },
+    {
+      "id": "hasidic-devotion",
+      "label": "Hasidism, intellect and devotional practice",
+      "qualification": "Compare the named movement and practice without treating all Jewish mysticism as equivalent.",
+      "phrases": [
+        "Hasidism",
+        "Hasidic",
+        "Baal Shem Tov",
+        "Chabad"
+      ]
+    },
+    {
+      "id": "islam-sunni-shia",
+      "label": "Sunni–Shia succession and religious authority",
+      "qualification": "A comparison of succession disputes is not proof of the same history as Christian or Jewish divisions.",
+      "phrases": [
+        "Sunni",
+        "Shia",
+        "Shi‘a",
+        "Shiite"
+      ]
+    },
+    {
+      "id": "jesus-quran",
+      "label": "Jesus in Qur’anic and Muslim interpretation",
+      "qualification": "Keep Qur’anic wording, later interpretation and historical claims distinct.",
+      "groups": [
+        [
+          "Jesus",
+          "Isa"
+        ],
+        [
+          "Quran",
+          "Qur’an",
+          "Qur'an",
+          "Muslim",
+          "Islamic"
+        ]
+      ]
+    },
+    {
+      "id": "zoroastrian-contact",
+      "label": "Iranian religion, Ahura Mazda and contact hypotheses",
+      "qualification": "A shared theme needs chronological and contact evidence before being labeled influence.",
+      "phrases": [
+        "Ahura Mazda",
+        "Zoroastrian",
+        "Zoroaster",
+        "Zarathustra"
+      ]
+    },
+    {
+      "id": "buddhist-comparison",
+      "label": "Buddhist traditions and comparative practice",
+      "qualification": "Compare specific practices or doctrines, not an assumed single Buddhism or universal mystical identity.",
+      "phrases": [
+        "Buddhist",
+        "Buddhism",
+        "Buddha",
+        "bodhisattva"
+      ],
+      "corroborating": [
+        "meditation",
+        "doctrine",
+        "tradition",
+        "awakening",
+        "practice",
+        "suffering",
+        "ritual",
+        "Buddhist"
+      ]
+    },
+    {
+      "id": "job-adversary",
+      "label": "Job and the role of the adversary",
+      "qualification": "Job’s literary figure and later Satan traditions should not be silently equated.",
+      "groups": [
+        [
+          "Job"
+        ],
+        [
+          "Satan",
+          "adversary",
+          "suffering",
+          "accuser"
+        ]
+      ]
+    },
+    {
+      "id": "lucifer-reception",
+      "label": "Isaiah 14 and the later Lucifer tradition",
+      "qualification": "The Babylonian royal taunt and later theological reception are distinct historical layers.",
+      "phrases": [
+        "Lucifer",
+        "morning star",
+        "Isaiah 14"
+      ]
+    },
+    {
+      "id": "moral-agency-free-will",
+      "label": "Free will, responsibility and moral agency",
+      "qualification": "Distinguish a philosophical proposal from empirical neuroscience and religious claims about responsibility.",
+      "phrases": [
+        "free will",
+        "moral agency",
+        "free choice",
+        "determinism"
+      ]
+    },
+    {
+      "id": "natural-causation-prayer",
+      "label": "Prayer and natural causation",
+      "qualification": "A theological account of prayer and a testable causal claim are not the same kind of assertion.",
+      "groups": [
+        [
+          "prayer"
+        ],
+        [
+          "natural causation",
+          "causality",
+          "miracle",
+          "intervention",
+          "petition"
+        ]
+      ]
+    },
+    {
+      "id": "original-sin-ezekiel",
+      "label": "Original sin and individual responsibility in Ezekiel",
+      "qualification": "Separate later doctrinal formulations from the source passage and traditions that read it differently.",
+      "phrases": [
+        "original sin",
+        "Ezekiel 18",
+        "inherited guilt"
+      ]
+    },
+    {
+      "id": "baptism-ritual",
+      "label": "Baptism, living water and ritual identity",
+      "qualification": "Similar rituals are comparison points; institutional descent requires additional evidence.",
+      "groups": [
+        [
+          "baptism",
+          "baptist",
+          "baptizing"
+        ],
+        [
+          "ritual",
+          "living water",
+          "initiation",
+          "Mandaean",
+          "purity"
+        ]
+      ]
+    },
+    {
+      "id": "temple-sacrifice-critique",
+      "label": "Temple action, merchants and sacrifice criticism",
+      "qualification": "Specific criticisms do not automatically establish opposition to every meaning of sacrifice or saving death.",
+      "groups": [
+        [
+          "Temple",
+          "sacrifice",
+          "sacrifices"
+        ],
+        [
+          "merchants",
+          "money changers",
+          "money-changers",
+          "Jesus",
+          "Hosea",
+          "mercy"
+        ]
+      ]
+    },
+    {
+      "id": "mammon-economic-ethics",
+      "label": "Mammon, wealth and ethical responsibility",
+      "qualification": "Compare the ethical arguments without treating every use of money or gold as the same theological symbol.",
+      "phrases": [
+        "Mammon",
+        "golden calf",
+        "wealth and responsibility"
+      ]
+    },
+    {
+      "id": "christian-zionism",
+      "label": "Christian Zionism and prophetic political programs",
+      "qualification": "Distinguish Christian political theology from Jewish identity and from independently verified geopolitical forecasts.",
+      "phrases": [
+        "Christian Zionism",
+        "Christian Zionist",
+        "restorationism"
+      ]
+    },
+    {
+      "id": "trump-prophetic-identification",
+      "label": "Trump in specific prophetic-identification arguments",
+      "qualification": "A reading connection preserves an author’s identification for scrutiny; it does not certify that identity.",
+      "groups": [
+        [
+          "Trump"
+        ],
+        [
+          "Antichrist",
+          "First Beast",
+          "Cyrus",
+          "messiah",
+          "prophecy",
+          "Revelation"
+        ]
+      ]
+    },
+    {
+      "id": "daniel-gold-fortresses",
+      "label": "Daniel 11, gold and the god of fortresses",
+      "qualification": "Compare textual interpretations and documented imagery without presenting resemblance as proof of fulfillment.",
+      "phrases": [
+        "god of fortresses",
+        "god of fortifications",
+        "Daniel 11:38",
+        "Daniel 11:37"
+      ]
+    },
+    {
+      "id": "revelation-seals",
+      "label": "Revelation’s seals, scroll and inheritance",
+      "qualification": "A title-deed or system-overwrite reading remains an interpretation rather than the literal wording of the text.",
+      "phrases": [
+        "seven seals",
+        "seven-sealed scroll",
+        "opening the seals",
+        "Revelation 5",
+        "Revelation 6"
+      ]
+    },
+    {
+      "id": "revelation-horsemen",
+      "label": "Horsemen, death fractions and apocalypse imagery",
+      "qualification": "Literary imagery, later historical application and quantitative forecasts require different arguments.",
+      "phrases": [
+        "four horsemen",
+        "horseman",
+        "Revelation 6:7",
+        "death fractions"
+      ]
+    },
+    {
+      "id": "rapture-timing",
+      "label": "Rapture timing and eschatological systems",
+      "qualification": "Use the specific biblical passages and proposed ordering rather than grouping every future-oriented reading together.",
+      "phrases": [
+        "pre-trib",
+        "pretribulation",
+        "rapture"
+      ]
+    },
+    {
+      "id": "gaza-deprivation",
+      "label": "Gaza food insecurity, responsibility and relief",
+      "qualification": "Preserve dates, classifications, forecasts and responsible institutions; do not transfer blame to whole ethnic or religious communities.",
+      "groups": [
+        [
+          "Gaza"
+        ],
+        [
+          "famine",
+          "starvation",
+          "hunger",
+          "food insecurity",
+          "IPC",
+          "aid restriction"
+        ]
+      ]
+    },
+    {
+      "id": "gaza-relocation",
+      "label": "Gaza relocation and redevelopment proposals",
+      "qualification": "A proposed plan is not an executed policy; critical claims need identified actors and dates.",
+      "groups": [
+        [
+          "Gaza"
+        ],
+        [
+          "relocation",
+          "redevelopment",
+          "displacement",
+          "Trump proposal",
+          "resettlement"
+        ]
+      ]
+    },
+    {
+      "id": "unrwa-allegations",
+      "label": "UNRWA/Hamas allegations and investigation",
+      "qualification": "A link to an allegation is not endorsement. Preserve who alleged what, findings, limitations and dates.",
+      "groups": [
+        [
+          "UNRWA",
+          "UNIFIL"
+        ],
+        [
+          "Hamas",
+          "allegation",
+          "investigation",
+          "collusion",
+          "neutrality"
+        ]
+      ]
+    },
+    {
+      "id": "ukraine-russia-forecast",
+      "label": "Russia–Ukraine and dated prophetic/political forecasts",
+      "qualification": "Do not turn retrospective resemblance or an undated conversation turn into a preregistered forecast.",
+      "groups": [
+        [
+          "Ukraine",
+          "Putin",
+          "Russia"
+        ],
+        [
+          "forecast",
+          "prediction",
+          "prophecy",
+          "war",
+          "strategy"
+        ]
+      ]
+    },
+    {
+      "id": "consciousness-iit",
+      "label": "Consciousness models and integrated information",
+      "qualification": "Require a substantive theoretical discussion; related models can disagree and need independent evidence.",
+      "groups": [
+        [
+          "Integrated Information Theory",
+          "IIT",
+          "dimensional resonance",
+          "consciousness"
+        ],
+        [
+          "information theory",
+          "existence",
+          "model",
+          "neuroscience",
+          "consciousness theory",
+          "integrated"
+        ]
+      ],
+      "caseSensitiveAcronyms": [
+        "IIT"
+      ]
+    },
+    {
+      "id": "proof-god-arguments",
+      "label": "Arguments about God’s existence",
+      "qualification": "A formal proposal, an argument’s validity and a demonstrated conclusion are distinct claims.",
+      "phrases": [
+        "proof of God",
+        "God's existence",
+        "cosmological argument",
+        "ontological argument"
+      ]
+    },
+    {
+      "id": "quantum-entanglement",
+      "label": "Quantum entanglement and communication claims",
+      "qualification": "Shared vocabulary does not validate faster-than-light communication or theological extrapolations.",
+      "phrases": [
+        "quantum entanglement",
+        "no-signalling",
+        "no-signaling"
+      ]
+    },
+    {
+      "id": "riemann-geometry",
+      "label": "Riemannian geometry and model mapping",
+      "qualification": "Require substantive mathematical content in both pages; ignore old candidate-routing blocks and accidental graph adjacency.",
+      "phrases": [
+        "Riemann",
+        "Minkowski"
+      ]
+    },
+    {
+      "id": "vtt-sit-models",
+      "label": "VTT, SIT and proposed physical models",
+      "qualification": "Short acronyms need exact bounded context and corroboration from physics/model language; do not link arbitrary occurrences.",
+      "groups": [
+        [
+          "Vibrational Time Theory",
+          "VTT",
+          "SIT",
+          "Self Interference Theory"
+        ],
+        [
+          "physics",
+          "quantum",
+          "Heisenberg",
+          "theory",
+          "model",
+          "plagiarism"
+        ]
+      ],
+      "caseSensitiveAcronyms": [
+        "VTT",
+        "SIT"
+      ]
+    },
+    {
+      "id": "simulation-ontology",
+      "label": "Simulation theory and computational ontology",
+      "qualification": "Compare philosophical alternatives without implying that a simulation has been established.",
+      "phrases": [
+        "simulation theory",
+        "simulation hypothesis"
+      ]
+    },
+    {
+      "id": "matrix-gnostic-comparison",
+      "label": "The Matrix, Neo and Gnostic readings",
+      "qualification": "A film’s interpretive analogy is not evidence about ancient history or the creators’ intent without sources.",
+      "groups": [
+        [
+          "Matrix",
+          "Neo"
+        ],
+        [
+          "Gnostic",
+          "Gnosticism",
+          "Jesus",
+          "awakening",
+          "Fishburne"
+        ]
+      ]
+    },
+    {
+      "id": "near-death-experience",
+      "label": "Near-death experiences and spiritual interpretation",
+      "qualification": "Reported experience and its theological explanation need separate evaluation.",
+      "phrases": [
+        "near-death experience",
+        "near death experience",
+        "My Descent Into Death"
+      ]
+    },
+    {
+      "id": "faith-works-salvation",
+      "label": "Faith, works and salvation in competing Christian readings",
+      "qualification": "A shared debate does not justify reducing faith to passive assent or denying that believers value ethical action.",
+      "groups": [
+        [
+          "salvation",
+          "justification"
+        ],
+        [
+          "works of the law",
+          "good works",
+          "by faith",
+          "faith alone",
+          "James 2",
+          "Galatians 3",
+          "Paul vs Jesus",
+          "ethics"
+        ]
+      ]
+    },
+    {
+      "id": "taheb-messiah",
+      "label": "The Samaritan Taheb and messianic restoration",
+      "qualification": "A related restoration expectation does not establish identity with a Christian Messiah claim.",
+      "phrases": [
+        "Taheb"
+      ]
+    },
+    {
+      "id": "montanism-revelation",
+      "label": "Montanism, prophecy and Revelation’s reception",
+      "qualification": "Reception and controversy are historical relationships, not proof of a text’s origin.",
+      "phrases": [
+        "Montanism",
+        "Montanist",
+        "Montanus"
+      ]
+    },
+    {
+      "id": "historical-jesus-scholarship",
+      "label": "James Tabor, Bart Ehrman and historical reconstruction",
+      "qualification": "Shared engagement with a scholar is a reading route, not endorsement of every claim attributed to that scholar.",
+      "phrases": [
+        "James Tabor",
+        "Bart Ehrman"
+      ]
+    },
+    {
+      "id": "atonement-nonliteral-ethics",
+      "label": "Ethics and Christianity without literal bodily resurrection",
+      "qualification": "Keep the constructive theological proposal distinct from historical claims about what Jesus or early followers believed.",
+      "phrases": [
+        "Christianity after bodily resurrection",
+        "Christian salvation without supernaturalism",
+        "resurrection gospel"
+      ]
+    },
+    {
+      "id": "talmud-torah",
+      "label": "Torah, Talmud and rabbinic textual development",
+      "qualification": "Separate scriptural text, oral-law claims, compilation dates and communities’ authority judgments.",
+      "phrases": [
+        "Talmud",
+        "Mishnah",
+        "rabbinic Judaism"
+      ]
+    },
+    {
+      "id": "maccabean-temple",
+      "label": "Maccabean/Hasmonean crisis and Temple authority",
+      "qualification": "A shared historical setting needs precise dates and sources before it supports a person-identification.",
+      "phrases": [
+        "Maccabee",
+        "Maccabees",
+        "Maccabean",
+        "Hasmonean"
+      ]
+    },
+    {
+      "id": "yahweh-name-origins",
+      "label": "Divine names, Yahweh and proposed identities",
+      "qualification": "Broad name matching alone should rank low unless both pages discuss name, origin, identity or cultic history; do not infer equivalence.",
+      "groups": [
+        [
+          "Yahweh",
+          "Yahwey",
+          "YHWH"
+        ],
+        [
+          "divine name",
+          "name origin",
+          "origins",
+          "Asherah",
+          "El or Enki",
+          "deity",
+          "Kenite",
+          "Midian",
+          "Canaanite"
+        ]
+      ]
+    },
+    {
+      "id": "abraham-noah-israelite-names",
+      "label": "Ancestral narratives and retrospective religious names",
+      "qualification": "Narrative ancestors, later communal labels and historical attestations cannot all be dated by the same genealogy.",
+      "groups": [
+        [
+          "Abraham",
+          "Noah",
+          "Moses"
+        ],
+        [
+          "Jewish status",
+          "Israelite",
+          "Jew",
+          "Judaism",
+          "identity"
+        ]
+      ]
+    },
+    {
+      "id": "sumerian-cuneiform",
+      "label": "Sumerian writing and cuneiform transmission",
+      "phrases": [
+        "Sumerian writing",
+        "Sumerian language",
+        "cuneiform"
+      ],
+      "qualification": "The antiquity of writing and the date or route of a particular story’s transmission are different questions."
+    },
+    {
+      "id": "calvary-chapel",
+      "label": "Calvary Chapel teaching and institutional practice",
+      "phrases": [
+        "Calvary Chapel"
+      ],
+      "qualification": "Compare named teachings and documented institutional actions without treating all members or all churches as one actor."
+    },
+    {
+      "id": "virgin-birth-traditions",
+      "label": "Virgin birth and infancy narratives",
+      "phrases": [
+        "virgin birth",
+        "infancy narrative",
+        "Matthew 1:23",
+        "Luke 1:34"
+      ],
+      "qualification": "Compare wording, textual development and theological interpretation rather than assuming either supernatural verification or direct borrowing."
+    },
+    {
+      "id": "psalm82-divine-council",
+      "label": "Psalm 82, the divine council and “you are gods”",
+      "phrases": [
+        "Psalm 82",
+        "ye are gods",
+        "you are gods",
+        "divine council"
+      ],
+      "qualification": "The Hebrew poem, its Johannine quotation and later theological applications are distinct readings."
+    },
+    {
+      "id": "wilderness-voice",
+      "label": "The wilderness voice in Isaiah and John the Baptist traditions",
+      "phrases": [
+        "voice in the wilderness",
+        "voice crying in the wilderness",
+        "Isaiah 40:3"
+      ],
+      "qualification": "A shared quotation supports a textual comparison, not automatic identity between historical speakers."
+    },
+    {
+      "id": "war-scroll-final-war",
+      "label": "The War Scroll, holy war and final-battle imagery",
+      "phrases": [
+        "War Scroll",
+        "1QM",
+        "Sons of Light against the Sons of Darkness"
+      ],
+      "corroborating": [
+        "battle",
+        "war",
+        "Qumran",
+        "Kittim",
+        "Revelation"
+      ],
+      "qualification": "A comparison of apocalyptic warfare is not evidence that the texts describe the same event or were written by the same community."
+    }
+  ]
+}

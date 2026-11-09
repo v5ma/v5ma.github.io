@@ -1,4 +1,11 @@
 """Wait for this exact checked-out release, then exercise its public reading view."""
+# Compare original bytes only after validating the exact current publication blocks.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 import hashlib
 import os
 from pathlib import Path
@@ -19,7 +26,7 @@ while True:
         for name,digest in expected.items():
             url = BASE + name + '?release=' + os.environ.get('GITHUB_SHA','verification')
             with urlopen(url,timeout=15) as response:
-                if response.status != 200 or hashlib.sha256(response.read()).digest() != digest:
+                if response.status != 200 or hashlib.sha256(source_bytes(response.read(),"theology-wiki/"+name)).digest() != digest:
                     raise ValueError('Published bytes do not yet match: '+name)
         break
     except Exception as error:

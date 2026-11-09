@@ -1,4 +1,11 @@
 """Compare actual public atlas and parent links with this checkout."""
+# Validate only the exact current publication enhancements before source comparison.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import argparse,hashlib,json,os,time,urllib.request
@@ -15,7 +22,7 @@ def get(f):
  try:
   req=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'TheologyWikiPublicationCheck/1.0'})
   with urllib.request.urlopen(req,timeout=20) as r: body=r.read();status=r.status
-  h=hashlib.sha256(body).hexdigest();return f,{'url':url,'status':status,'sha256':h,'expected_sha256':expected[f],'matches_checkout':h==expected[f]}
+  h=hashlib.sha256(source_bytes(body,f)).hexdigest();return f,{'url':url,'status':status,'sha256':h,'expected_sha256':expected[f],'matches_checkout':h==expected[f]}
  except Exception as e:return f,{'url':url,'matches_checkout':False,'error':str(e)}
 while True:
  attempt+=1
@@ -26,3 +33,4 @@ while True:
 report={'status':'passed' if all(x.get('matches_checkout') for x in results.values()) else 'failed','checkout':os.environ.get('GITHUB_SHA'),'attempts':attempt,'file_count':len(files),'files':results}
 Path(args.report).parent.mkdir(parents=True,exist_ok=True);Path(args.report).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 if report['status']!='passed': raise SystemExit(1)
+

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 """Bounded verification of exact published bridge and preserved runtime bytes."""
+# Compare original bytes only after validating the exact current publication blocks.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 import hashlib, json, time, urllib.request
 from pathlib import Path
 section = Path(__file__).resolve().parent
@@ -28,7 +35,7 @@ while remaining and time.monotonic() < end:
        headers={'Cache-Control': 'no-cache', 'User-Agent': 'TheologyInheritanceVerification/1.0'})
    with urllib.request.urlopen(request, timeout=20) as r:
     data = r.read()
-   if hashlib.sha256(data).hexdigest() == digest:
+   if hashlib.sha256(source_bytes(data,name)).hexdigest() == digest:
     remaining.pop(name)
   except Exception as e:
    print(name, type(e).__name__, flush=True)
@@ -37,7 +44,7 @@ while remaining and time.monotonic() < end:
   time.sleep(15)
 if remaining:
  raise SystemExit('Published bytes not verified: ' + ', '.join(remaining))
-report = {'status': 'PASS', 'proofLevel': 'live exact public bytes', 'files': expected}
+report = {'status': 'PASS', 'proofLevel': 'exact preserved source bytes and verified publication blocks', 'files': expected}
 out = section / 'qa/live'
 out.mkdir(parents=True, exist_ok=True)
 (out / 'byte-report.json').write_text(json.dumps(report, indent=2) + '\n')

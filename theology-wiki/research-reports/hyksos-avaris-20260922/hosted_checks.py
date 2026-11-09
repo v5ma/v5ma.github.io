@@ -1,4 +1,11 @@
 """Wait for actual public bytes to match this checkout; never substitute local data."""
+# Validate only the exact current publication enhancements before source comparison.
+import sys
+from pathlib import Path
+sys.path.insert(0, str(next(p for p in Path(__file__).resolve().parents
+    if (p / 'scripts/theology_publication_bytes.py').is_file()) / 'scripts'))
+from theology_publication_bytes import source_bytes
+
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import argparse,hashlib,json,os,time,urllib.request
@@ -14,7 +21,7 @@ def read(f):
  try:
   req=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'TheologyWikiReportVerification/1.0'})
   with urllib.request.urlopen(req,timeout=20) as r:body=r.read();status=r.status
-  digest=hashlib.sha256(body).hexdigest();return f,{'url':url,'status':status,'sha256':digest,'expected_sha256':expected[f],'matches_checkout':digest==expected[f]}
+  digest=hashlib.sha256(source_bytes(body,f)).hexdigest();return f,{'url':url,'status':status,'sha256':digest,'expected_sha256':expected[f],'matches_checkout':digest==expected[f]}
  except Exception as e:return f,{'url':url,'matches_checkout':False,'error':str(e)}
 while True:
  attempt+=1
@@ -23,3 +30,4 @@ while True:
  time.sleep(5)
 passed=all(v.get('matches_checkout') for v in results.values());r={'status':'passed' if passed else 'failed','file_count':len(files),'attempts':attempt,'files':results};Path(a.report).parent.mkdir(parents=True,exist_ok=True);Path(a.report).write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))
 if not passed:raise SystemExit(1)
+
