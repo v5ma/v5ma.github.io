@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "source": "sources/rppa-battles-economic-power-and-gaza.md",
-  "sourceSha256": "081d2e6b3b01a6ba9f2f7958e564c4e74833a64aa67e199b6e8fc1207e855144",
+  "sourceSha256": "b0a36a59be40c6b4ab3d3da6723a6343b07d10f602177053830819cc6a40a3f6",
   "baseRevision": "42840b26143c00af743d108401e1184052c238e3",
-  "words": 5059,
+  "words": 5237,
   "sections": 16,
   "connections": 11,
   "wikilinks": [
@@ -22,23 +22,23 @@
   "outputs": [
     {
       "path": "rppa-battles-economic-power-and-gaza.html",
-      "sha256": "f147d2da953d2f8170bcc818abb625dedece0d0965ed968a193f612af3ebb25d"
+      "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
     },
     {
       "path": "index.html",
-      "sha256": "f147d2da953d2f8170bcc818abb625dedece0d0965ed968a193f612af3ebb25d"
+      "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
     },
     {
       "path": "search-index.json",
-      "sha256": "cbea1c68a50204e18970c3ab0cc308ec95f69541c5b68f235e30acd15a224994"
+      "sha256": "9342829d3907af3cfec746335e18a276c9007b615b61906519405761c6cda527"
     },
     {
       "path": "search-data.js",
-      "sha256": "ab7cc170e647865f7f06b41446033c3c900bb3e42915b862000efa2696e27668"
+      "sha256": "f75acda8da0327ef7dd40db4cb52fbbfaf280f81cdbeed2bf1844717876f77a4"
     },
     {
       "path": "reader-links.js",
-      "sha256": "46864e18c04bebe82fe95a782db08479befc6aafa70dfa1b665f3845aaf69616"
+      "sha256": "2aba59bf3ce920645bc63fec765f04e9cd6c6a187017549c91584c8ec65a1fe4"
     }
   ]
 }
