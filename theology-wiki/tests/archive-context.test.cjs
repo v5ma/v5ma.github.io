@@ -33,6 +33,8 @@ test('existing links qualify the archive without changing destinations or other 
  assert.match(api.a(slug,'Existing label'),/Existing label<small class="archive-link-context"> \(archived minority hypothesis\)/);
  assert.ok(api.a(slug).includes('?page='+slug));
  assert.ok(!api.a('topic-origins').includes('archive-link-context'));
+ const bad={closest:()=>false,querySelector:()=>null,getAttribute:()=> 'https://%/'+slug};
+ assert.doesNotThrow(()=>api.qualifyArchiveLinks({querySelectorAll:()=>[bad]}));
 });
 test('original conversation bytes and manifest identity are unchanged',()=>{
  const bytes=fs.readFileSync(path.join(root,'..','theology-sources/chats',page.sourceFile));

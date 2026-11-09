@@ -13,7 +13,8 @@ function archiveFootnote(p){
 function qualifyArchiveLinks(root){
  root?.querySelectorAll('a[href]').forEach(link=>{
   if(link.closest('#source-transcript')||link.querySelector('.archive-link-context'))return;
-  const url=new URL(link.getAttribute('href'),location.href);
+  if(!link.getAttribute('href').includes(contextualArchive))return;
+  let url;try{url=new URL(link.getAttribute('href'),location.href);}catch{return;}
   if(url.origin!==location.origin||url.searchParams.get('page')!==contextualArchive)return;
   const note=document.createElement('small');note.className='archive-link-context';note.textContent=archiveQualifier;link.append(note);
  });
