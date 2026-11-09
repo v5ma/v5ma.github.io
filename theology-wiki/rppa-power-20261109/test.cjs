@@ -1,7 +1,7 @@
 'use strict';
 const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {build,integrate,tag}=require('./build.cjs'),cfg=require('./manifest.json'),read=p=>fs.readFileSync(path.join(__dirname,p),'utf8'),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
-test('complete RPPA study and search rebuild deterministically',()=>{const b=build(true);a.ok(b.words>4500);a.equal(b.sections,16);a.equal(b.connections,11);});
+test('complete RPPA study and search rebuild deterministically',()=>{const b=build(true);a.ok(b.words>4500);a.equal(b.sections,17);a.equal(b.connections,11);});
 test('citations, section anchors and all reader destinations resolve',()=>{const s=read(cfg.slug+'.html'),ids=[...s.matchAll(/ id="([^"]+)"/g)].map(m=>m[1]);a.equal(ids.length,new Set(ids).size);for(const m of s.matchAll(/href="#([^"]+)"/g))a.ok(ids.includes(m[1]),m[1]);for(let n=1;n<=18;n++)a.ok(ids.includes('ref-'+n));for(const r of require('./search-index.json'))a.ok(ids.includes(r.url.split('#')[1]));a.doesNotMatch(s,/\[\[|\*\*/);for(const c of cfg.connections)a.ok(ids.includes(c.section));});
 test('four layers, three variables and source limitations remain explicit',()=>{const s=read(cfg.source);for(const x of ['Four layers','Variable 1','Variable 2','Variable 3','does not itself name Armageddon','does not say the dragon can act only','not literally state','does not prove it','2020 academic','questions posed by the archived AI','AGI is not a necessary condition','not an established beta test','not proof that John describes','Gaius','not yet establish that complete mechanism','not a completed test'])a.ok(s.includes(x),x);});
 test('each integration is singular and preserves original entrance bytes',()=>{for(const [p,expected]of Object.entries(require('./entrance-preservation.json'))){const s=read('../'+p);a.equal(s.split(tag).length,2);a.equal(integrate(s),s);a.equal(hash(s.replace(tag,'')),expected,p);}});
@@ -9,3 +9,12 @@ test('preserved source prose and purpose letter are byte-identical',()=>{for(con
 test('Unsealed inheritance addition is separate and preserves every earlier byte',()=>{const p=require('./unsealed-preservation.json'),s=read('../unsealed/index.html');a.equal(s.split(p.panel).length,2);a.equal(hash(s.replace(p.panel,'')),p.sha256);});
 test('Latest, purpose, clouds and Unsealed inheritance provide return routes',()=>{for(const p of ['../latest/index.html','../purpose/index.html','../clouds-and-millennium-20261109/clouds-and-millennium.html','../unsealed/index.html'])a.ok(read(p).includes('../rppa-power-20261109/'+cfg.slug+'.html'),p);});
 test('local links resolve and javascript uses safe text nodes',()=>{const invPath=path.join(__dirname,'../../repository-paths.json'),inv=fs.existsSync(invPath)?new Set(JSON.parse(fs.readFileSync(invPath))):null;for(const m of read(cfg.slug+'.html').matchAll(/(?:href|src)="([^"]+)"/g)){const u=m[1].replace(/&amp;/g,'&');if(/^https?:|^#/.test(u))continue;const p=path.resolve(__dirname,u.split(/[?#]/)[0]),rel=path.relative(path.resolve(__dirname,'../..'),p);a.ok(fs.existsSync(p)||inv?.has(rel),u);}for(const f of ['reader-extension.js','search.js'])a.doesNotMatch(read(f),/innerHTML\s*=/);});
+
+test('repair comparison preserves the earlier full source and distinguishes analogy from prediction',()=>{
+ const baseline=require('./repair-links-prior-source-hash.json'),s=read(cfg.source);
+ const original=s.replace(/\n## Four further comparisons: authority, healing, seals and images\n[\s\S]*?(?=\n## The practical connection: repair and accountable power)/,'').replace(/19\. \[Daniel 7:21–22,[\s\S]*?(?=The wiki connections above were checked)/,'');
+ a.equal(hash(original),baseline.sha256);
+ for(const t of ['Daniel 7:21–22','Isaiah 55:1–3','Revelation 7:3','Speech alone does not establish','add no prediction score'])a.ok(s.includes(t),t);
+ for(const anchor of ['actors','speech']){a.ok(s.includes('../technology-signs.html#'+anchor));a.ok(read('../technology-signs.html').includes('id="'+anchor+'"'));}
+ for(let n=19;n<=21;n++)a.ok(read(cfg.slug+'.html').includes('id="ref-'+n+'"'));
+});

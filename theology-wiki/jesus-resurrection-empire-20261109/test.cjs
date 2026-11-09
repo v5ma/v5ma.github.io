@@ -7,7 +7,7 @@ const stripEusebius=s=>stripCanonPilate(s).replace(/\n## Reading the history of 
 const stripInheritances=s=>s.replace(/\n## Samaritan textual affinities: a concrete two-way bridge\n[\s\S]*?(?=\n## Enoch, Jubilees)/,'').replace(/\n## Alternative inheritances: a comparison of authority claims\n[\s\S]*?(?=\n## Sources and access notes)/,'');
 test('fifteen complete chapters build deterministically and generated outputs are current',()=>{
  assert.equal(cfg.pages.length,15);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,15);
- assert.deepEqual(build(true),{pages:15,searchSections:151,outputs:19});
+ assert.deepEqual(build(true),{pages:15,searchSections:156,outputs:19});
  for(const p of cfg.pages){const s=read(p.source);assert.ok(s.split(/\s+/).length>1000,p.slug);assert.ok(s.includes('Sources and access notes'));assert.equal((s.match(/^# /gm)||[]).length,1);}
 });
 test('search covers every chapter and each section links to its real heading',()=>{
@@ -135,4 +135,24 @@ test('new canon and Pilate studies have specific evidence, counterexamples and r
   const links=cfg.pages.slice(0,13).filter(p=>read(p.source).includes('[['+slug+'|'));assert.equal(links.length,6,slug);
   assert.ok(require('../purpose/reading-map.json').some(x=>x.links.some(l=>l.href.endsWith('/'+slug+'.html'))));
  }
+});
+
+test('portrayal revision retains every earlier paragraph of the two expanded studies',()=>{
+ const baseline=require('./portrayal-prior-source-hashes.json');
+ for(const [file,expected] of Object.entries(baseline)){
+  const original=read('sources/'+file)
+   .replace(/\n## The historical question is how Pilate is portrayed\n[\s\S]*?(?=\n## The governor in Philo and Josephus)/,'')
+   .replace(/\n## Track responsibility through each Gospel\n[\s\S]*?(?=\n## The Gospel of Peter intensifies the transfer)/,'')
+   .replace(/\n## Three ways a contested past becomes authoritative\n[\s\S]*?(?=\n## Sources and access notes)/,'')
+   .replace(/\n12\. \[Helen K\. Bond,[\s\S]*$/,'\n');
+  assert.equal(crypto.createHash('sha256').update(original).digest('hex'),expected,file);
+ }
+});
+
+test('portrayal, scholarly disagreement and authority comparisons remain explicit and searchable',()=>{
+ const p=read('sources/pilate-from-roman-prefect-to-christian-memory.md'),c=read('sources/dead-sea-scrolls-and-eusebian-canon.md');
+ for(const term of ['not an attempt to read his heart','Jewish writers','Matthew alone','Callie Callon','Bruce Chilton','Warren Carter','three independent witnesses','never inherited culpability'])assert.ok(p.includes(term),term);
+ for(const term of ['Narrative authority','Institutional authority','Surviving evidence','1934','1971','massacre of all manuscript owners'])assert.ok(c.includes(term),term);
+ const data=require('./search-index.json');for(const term of ['Callon','Chilton','Narrative authority'])assert.ok(data.some(r=>r.text.includes(term)),term);
+ for(let n=1;n<=16;n++)assert.ok(read('pilate-from-roman-prefect-to-christian-memory.html').includes('id="ref-'+n+'"'),n);
 });

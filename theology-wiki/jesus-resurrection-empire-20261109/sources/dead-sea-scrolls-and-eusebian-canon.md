@@ -77,6 +77,20 @@ This is also where Bauer helps as a question rather than a verdict. Whose accoun
 
 The resulting conclusion is sharper than a claim that the scrolls expose one imperial edit. They demonstrate that later boundaries cannot define the whole religious past. Eusebius's own disputed books reveal unsettled Christian reception; the scrolls independently reveal a wider and differently organized Jewish inheritance. The strongest critique compares those histories, identifies actual agents of selection, and tests imperial influence against both accommodating and resistant texts.
 
+## Three ways a contested past becomes authoritative
+
+Pilate, Eusebius and the scrolls connect through a shared question: how does one representation of the past come to seem natural or exclusive? The evidence works at three different levels.
+
+- **Narrative authority:** the Pilate stories allocate speech, initiative and blame. A reader may accept the governor's claim to innocence, or notice the violence he still authorizes. The [[pilate-from-roman-prefect-to-christian-memory|comparison of portrayals]] tests those choices in particular passages.
+- **Institutional authority:** Eusebius arranges earlier teachers and books through categories of continuity, dispute and error. His classifications matter, but his preservation of disagreement also gives later readers material with which to question a simplified history. The [[eusebius-bauer-orthodoxy-and-heresy|Bauer study]] compares that historical framework with Bauer's regional reconstruction, first published in German in 1934 and in English translation in 1971.
+- **Surviving evidence:** the Dead Sea Scrolls make a wider Jewish textual landscape available for comparison with later boundaries. Physical survival can restore evidence that an inherited catalogue does not adequately represent. It does not tell us, by itself, why every other text disappeared or exactly who read each surviving work.
+
+The connection is methodological rather than a claim that all three histories result from one Roman editorial decision. Each asks us to distinguish the surviving witness from the authority later granted to it. A narrator's exonerating gesture need not establish an innocent governor; an orthodox historian's labels need not establish the earliest form of Christianity everywhere; a later canon need not describe the whole scriptural world of earlier Jewish communities.
+
+That comparison also sets a limit on the imperial hypothesis. Qumran's destruction and the interrupted reproduction of a library can help explain cultural loss, while leaving the fate of individual depositors unknown. They cannot establish a massacre of all manuscript owners or an imperial decision against their specific books. The evidence discussed above supports investigation of war, selection, copying and patronage as distinct mechanisms. It does not license assigning the same mechanism to every missing voice.
+
+The constructive result is a more demanding history of power: identify who is speaking, which alternatives are still visible, how a particular boundary is enforced, and what evidence survives outside it. The scrolls supply Jewish context; Pilate's portrayals supply a comparison of responsibility; Eusebius and Bauer supply rival accounts of Christian origins. Their differences are what make the connection useful.
+
 ## Sources and access notes
 
 1. [Israel Antiquities Authority, Introduction to the Dead Sea Scrolls](https://www.deadseascrolls.org.il/learn-about-the-scrolls/introduction). Institutional overview consulted for corpus, authority and textual diversity.

@@ -139,9 +139,9 @@
       "navLabel": "Scrolls and canon",
       "summary": "Compare Jewish scriptural authority with Eusebius’s actual categories, tracing Enoch, Jubilees, inherited concepts and the evidence required for imperial selection.",
       "source": "sources/dead-sea-scrolls-and-eusebian-canon.md",
-      "sourceSha256": "b50d0a434a5d65bc4a3f91569cb1cc504af93dbacd830d3a1ea3df256b785480",
-      "words": 2519,
-      "sections": 9
+      "sourceSha256": "605af26a75e64f814ec6b2b3c2a76ce99edc3a782bcb78533e683600d1cbbd37",
+      "words": 2910,
+      "sections": 10
     },
     {
       "slug": "pilate-from-roman-prefect-to-christian-memory",
@@ -149,12 +149,12 @@
       "navLabel": "Pilate’s reception",
       "summary": "Follow Philo, Josephus, the canonical Gospels, the Gospel of Peter and Ethiopian commemoration, testing rehabilitation alongside rival memories.",
       "source": "sources/pilate-from-roman-prefect-to-christian-memory.md",
-      "sourceSha256": "4011c462ed3d71d59a5f8d0b6d779cc315736335725841e041fb0f0dbff1e3cd",
-      "words": 1481,
-      "sections": 9
+      "sourceSha256": "e4dc50d568169675f4c221ad5c967255a75eaa28e9f6d7264e01053ce700958d",
+      "words": 2631,
+      "sections": 13
     }
   ],
-  "searchSections": 151,
+  "searchSections": 156,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
@@ -223,13 +223,13 @@
     },
     {
       "path": "dead-sea-scrolls-and-eusebian-canon.html",
-      "bytes": 27109,
-      "sha256": "adb1ab423a2830c71ff40bcb15a7406f73194a9a3d124b4f10007fed31a4f2c9"
+      "bytes": 30210,
+      "sha256": "62d091aaf05cef6de02e80a320a227f2a6ea410d15cf3120753c7fb940839922"
     },
     {
       "path": "pilate-from-roman-prefect-to-christian-memory.html",
-      "bytes": 17234,
-      "sha256": "8cb6c2ba087864f37e5fb0aa3d7b31bce811384aef77c164129efdc78c834c90"
+      "bytes": 27815,
+      "sha256": "63f246b97e152868b2c1326a04796ab4a9be8e74ca27c436191bbf1b3c0c6eb1"
     },
     {
       "path": "index.html",
@@ -238,13 +238,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 222173,
-      "sha256": "55757e26e3be3f937b2dbf08ca8dffec5510df0241b56d6470f7e10a363205d0"
+      "bytes": 234114,
+      "sha256": "9bee9e9b47e2f685c7d83617d8501f3300c92ea5cad948c0ee717b21484b56c4"
     },
     {
       "path": "search-data.js",
-      "bytes": 216759,
-      "sha256": "90c261b391e3439fcaf8355a8ac8f6fa0bbb17fbf80be4f0ddf6f2f57c84df56"
+      "bytes": 228520,
+      "sha256": "6094613c5fb6eb3f5b9e68a066030c9e54cee88e3583a33656a64b1d1939c280"
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "source": "sources/rppa-battles-economic-power-and-gaza.md",
-  "sourceSha256": "b0a36a59be40c6b4ab3d3da6723a6343b07d10f602177053830819cc6a40a3f6",
+  "sourceSha256": "5894b54e83f09ae0e7671eeaa19db0b68f2b307ed7a00611c206edcbbbf6a29f",
   "baseRevision": "42840b26143c00af743d108401e1184052c238e3",
-  "words": 5237,
-  "sections": 16,
+  "words": 5798,
+  "sections": 17,
   "connections": 11,
   "wikilinks": [
     "trump-first-beast-of-revelation",
@@ -22,23 +22,23 @@
   "outputs": [
     {
       "path": "rppa-battles-economic-power-and-gaza.html",
-      "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+      "sha256": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229"
     },
     {
       "path": "index.html",
-      "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+      "sha256": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229"
     },
     {
       "path": "search-index.json",
-      "sha256": "9342829d3907af3cfec746335e18a276c9007b615b61906519405761c6cda527"
+      "sha256": "7541b11b4ff107da337425ab120b637ac7ffc79be9ef96aa45d9b3b10e0b61a5"
     },
     {
       "path": "search-data.js",
-      "sha256": "f75acda8da0327ef7dd40db4cb52fbbfaf280f81cdbeed2bf1844717876f77a4"
+      "sha256": "30231e4c6d856dd70481232aa357aff577467d0c4a16867ae05361f6a4d4b3ae"
     },
     {
       "path": "reader-links.js",
-      "sha256": "2aba59bf3ce920645bc63fec765f04e9cd6c6a187017549c91584c8ec65a1fe4"
+      "sha256": "d1c6c8c17a40e56054251566b7ce6bcaf96b15510c6ec90af833cd2a304c48f5"
     }
   ]
 }
