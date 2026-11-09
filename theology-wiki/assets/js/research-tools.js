@@ -3,7 +3,21 @@
 'use strict';
 const C=window.TheologyResearchCore,esc=C.esc,$=s=>document.querySelector(s),key='theology:reading:v2';
 const reader=()=>window.TheologyReader,pages=()=>reader()?.pages()||[],href=s=>'?page='+encodeURIComponent(s);
-const a=(s,label)=>`<a href="${href(s)}" data-page="${esc(s)}">${esc(label||pages().find(p=>p.slug===s)?.title||s)}</a>`;
+const contextualArchive='gmirkin-hellenistic-bible-theory',archiveQualifier=' (archived minority hypothesis)';
+const a=(s,label)=>`<a href="${href(s)}" data-page="${esc(s)}">${esc(label||pages().find(p=>p.slug===s)?.title||s)}${s===contextualArchive?`<small class="archive-link-context">${archiveQualifier}</small>`:''}</a>`;
+// Editorial presentation only: never change the hash-pinned historical conversation.
+function archiveFootnote(p){
+ if(p.slug!==contextualArchive)return '';
+ return '<aside id="gmirkin-editorial-footnote" class="research-small" role="note"><p><strong>Editorial footnote.</strong> Gmirkin’s specific theory of Alexandrian Pentateuch composition is a contested minority hypothesis, not a foundation of this wiki’s argument (<a href="https://doi.org/10.17159/2312-3621/2026/v39n1a9">West, 2026, §B</a>). The archived reply’s broader suggestion that Israel was invented in the fourth–third centuries BCE conflicts with earlier evidence: the <a href="https://www.posenlibrary.com/entry/stela-merneptah">Merneptah stele, c. 1208 BCE</a>, names a people Israel, and the <a href="https://www.livius.org/sources/content/anet/320-the-stela-of-mesha/">ninth-century BCE Mesha stele</a> names Omri as king of Israel. Neither inscription establishes the Torah’s final composition date. The historical conversation is retained unchanged.</p></aside>';
+}
+function qualifyArchiveLinks(root){
+ root?.querySelectorAll('a[href]').forEach(link=>{
+  if(link.closest('#source-transcript')||link.querySelector('.archive-link-context'))return;
+  const url=new URL(link.getAttribute('href'),location.href);
+  if(url.origin!==location.origin||url.searchParams.get('page')!==contextualArchive)return;
+  const note=document.createElement('small');note.className='archive-link-context';note.textContent=archiveQualifier;link.append(note);
+ });
+}
 let info=null,full=null,fullPromise=null,sourceAbort=null,renderTicket=0,sourceTurns=[],activeSource=null,turnLimit=16,navLimit=40,catalogLimit=30,storageOK=true;
 let preferences={version:1,saved:[]};
 try{const p=JSON.parse(localStorage.getItem(key)||'null');if(p?.version===1&&Array.isArray(p.saved))preferences.saved=p.saved.filter(x=>typeof x==='string').slice(0,2000);}catch{storageOK=false;}
@@ -60,7 +74,7 @@ function backlinks(page){
 }
 function sourceCard(p){
  const url='../theology-sources/chats/'+encodeURIComponent(p.sourceFile);
- return `<section class="source-record"><div class="source-record-heading"><span class="research-badge">Original conversation</span><span>${p.turnCount} top-level turns / ${esc(p.date||'Undated')} UTC</span></div><h3>The question in the source</h3><p class="source-excerpt">${esc(p.primaryExcerpt||p.summary)}</p><div class="research-buttons"><button data-research="load-source" type="button">Read the full conversation</button><a href="${url}" target="_blank" rel="noopener noreferrer">Open original text file</a>${a('topic-'+p.category,'Browse this topic')}</div><details><summary>Source integrity and attribution</summary><p>The original ${p.sourceBytes.toLocaleString()} bytes are preserved. The display separates top-level export speakers; a user turn can contain pasted AI text or quoted material. Dates come from export metadata, not an independent priority record.</p><p>SHA-256: <code>${esc(p.sourceSha256)}</code></p></details><div id="source-transcript"></div></section>`;
+ return `<section class="source-record"><div class="source-record-heading"><span class="research-badge">Original conversation</span><span>${p.turnCount} top-level turns / ${esc(p.date||'Undated')} UTC</span></div><h3>The question in the source</h3><p class="source-excerpt">${esc(p.primaryExcerpt||p.summary)}</p>${archiveFootnote(p)}<div class="research-buttons"><button data-research="load-source" type="button">Read the full conversation</button><a href="${url}" target="_blank" rel="noopener noreferrer">Open original text file</a>${a('topic-'+p.category,'Browse this topic')}</div><details><summary>Source integrity and attribution</summary><p>The original ${p.sourceBytes.toLocaleString()} bytes are preserved. The display separates top-level export speakers; a user turn can contain pasted AI text or quoted material. Dates come from export metadata, not an independent priority record.</p><p>SHA-256: <code>${esc(p.sourceSha256)}</code></p></details><div id="source-transcript"></div></section>`;
 }
 function cards(list){return `<div class="research-cards">${list.map(p=>`<article class="research-card"><span class="research-small">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}</span><h3>${a(p.slug,p.title)}</h3><p>${esc(p.summary)}</p></article>`).join('')}</div>`;}
 async function onPage(p){
@@ -94,6 +108,7 @@ async function onPage(p){
  await window.TheologyProducts?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyBridges?.enhance(p);if(ticket!==renderTicket)return;
  window.TheologyPublication?.enhance(p);
+ qualifyArchiveLinks(body);qualifyArchiveLinks($('.context-panel'));
  announce((p.title||p.slug)+' loaded.');
 }
 function renderCatalogue(){

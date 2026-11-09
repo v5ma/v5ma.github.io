@@ -14,6 +14,7 @@ concurrency:
 # Theology Wiki: the games moved to superinformationtheory.com/games; everything else stays in git history.
 # Each build attempt gets a distinct artifact; deploy-only retries reuse the
 # exact successful build output. Preserve older artifacts rather than deleting them.
+# November 9 archive-context correction: preserve the original record; qualify its historical claim.
 jobs:
   build:
     runs-on: ubuntu-latest

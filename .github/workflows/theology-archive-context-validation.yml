@@ -1,0 +1,46 @@
+name: Theology archive context validation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'theology-wiki/**'
+      - '.github/workflows/theology-archive-context-validation.yml'
+  pull_request:
+    paths:
+      - 'theology-wiki/**'
+      - '.github/workflows/theology-archive-context-validation.yml'
+permissions:
+  contents: read
+jobs:
+  archive-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify scoped archive correction and navigation preservation
+        run: |
+          node --test theology-wiki/tests/archive-context.test.cjs
+          node --test theology-wiki/latest/test.cjs
+      - name: Install browser dependencies
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Verify real reader, preserved transcript, links and search
+        run: python theology-wiki/tests/archive_context_browser.py
+      - name: Verify the corrected runtime and behavior on GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        env:
+          ARCHIVE_CONTEXT_BASE: https://v5ma.github.io
+        run: python theology-wiki/tests/archive_context_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-archive-context-${{ github.run_id }}
+          path: browser-test-artifacts/archive-context/
+          retention-days: 14
