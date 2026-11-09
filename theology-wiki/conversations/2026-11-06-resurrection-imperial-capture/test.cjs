@@ -53,8 +53,10 @@ test('HTML has unique anchors, exact source URLs, safe markup and complete stati
 test('local navigation resolves and Latest adds this release without replacing prior entries', () => {
   for(const m of html.matchAll(/href="([^"#]+)"/g)) if(!m[1].startsWith('http')) assert.ok(fs.existsSync(path.resolve(__dirname,m[1].split('?')[0])),m[1]);
   const manifest=require('../../latest/manifest.json');
-  assert.equal(manifest.entries[0].date,'2026-11-07');
-  assert.equal(manifest.entries[0].href,'../conversations/2026-11-06-resurrection-imperial-capture/index.html');
+  const releases=manifest.entries.filter(e=>e.href==='../conversations/2026-11-06-resurrection-imperial-capture/index.html');
+  assert.equal(releases.length,1);
+  assert.equal(releases[0].date,'2026-11-07');
+  assert.equal(releases[0].kind,'New');
   assert.equal(manifest.entries.filter(e=>e.date==='2026-11-06').length,6);
 });
 test('public transcript exposes no internal identifiers or unrelated metadata', () => {

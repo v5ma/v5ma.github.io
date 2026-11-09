@@ -57,11 +57,11 @@ jobs:
         run: |
           python theology-wiki/conversations/2026-11-06-resurrection-imperial-capture/verify-live.py
           python theology-wiki/jesus-resurrection-empire-20261109/verify-live.py
-      - name: Upload browser failure evidence
-        if: failure()
+      - name: Upload browser test evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: theology-browser-failure-${{ github.run_id }}
+          name: theology-browser-evidence-${{ github.run_id }}
           path: browser-test-artifacts/
           if-no-files-found: ignore
           retention-days: 14
