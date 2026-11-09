@@ -15,17 +15,17 @@ Before: published master dc7117785fdb4a66265c99e6ecd4ff7584164aee. Integration b
 
 - Independent adversarial review completed. It caught a real Latest baseline-normalization regression; the fix strips only the exact new script and authorized cache token. Baseline hashes were not changed.
 - 21 local checks pass across evidence, Latest and Gmirkin archive context. Deterministic outputs, link targets, source/interpretation distinctions, source-guide mapping, original Gmirkin transcript bytes, cache tokens and prior navigation invariants are covered.
-- Native browser launch on the local executor is blocked by socket permissions. This is an environment failure, not a browser pass. Candidate-branch CI must pass before master integration.
+- Native browser launch on the local executor is blocked by socket permissions. This is an environment failure, not a browser pass. Candidate-branch native Chromium CI subsequently passed: https://github.com/v5ma/v5ma.github.io/actions/runs/42579214908 (candidate 43cced66e54d750fd21f3f717558215ecbbf1d29).
 - No timing, frame-rate or performance improvement is claimed. No A/B timing result exists. Screenshots and responsive checks are required in native browser CI at desktop and mobile viewport sizes.
 - Verification compares the tested candidate with its parent and disallows archive/source changes. A focused passing suite is not a claim that every inherited repository workflow is green.
 
 ## Integrated
 
-Pending candidate browser gate and lease-protected master update. The parent revision is the rollback reference; revert only this scoped change, never reset unrelated changes.
+Candidate browser gate passed. Ready for lease-protected master update. The parent revision is the rollback reference; revert only this scoped change, never reset unrelated changes.
 
 ## Device-proven
 
-Pending native Chromium browser CI. This proves the tested browser/viewport scenarios, not a physical phone or the user's hardware.
+Native Chromium browser CI passed desktop/mobile, no-JavaScript, search, comparison accordion and repeated-flow checks. This proves the tested browser/viewport scenarios, not a physical phone or the user's hardware.
 
 ## Released
 

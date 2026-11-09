@@ -1,16 +1,48 @@
 {
-  "schema":1,
-  "changes":[{
-    "id":"EVIDENCE-20261109-01",
-    "title":"Introduce evidence-led editorial companions",
-    "filesAndFunctions":["evidence-review-20261109/sources and build.cjs","reader-guide.js sourceGuide and enhance","assets/js/research-tools.js sourceCard and onPage","index.html and san-reader.html script integration","latest manifest and narrow preservation normalization"],
-    "beforeCommit":"5a3167fbbf319df52c3e190008c543dff4b3518a",
-    "afterCommit":null,
-    "invariants":["Original transcripts, manifests and earlier article prose remain unchanged","Turn links, original source loading, hash verification and Gmirkin correction remain functional","No hidden authorship, fabricated citations or claimed independent peer review","Static reading works without JavaScript; old routes and Latest baseline hashes remain"],
-    "gateResults":{"adversarialReview":"Passed after exact Latest normalization fix","localNodeTests":"21 passed, 0 failed","deterministicBuild":"Passed","localNativeBrowser":"Blocked: executor socket permission","candidateNativeBrowser":"Pending","liveBytesAndBrowser":"Pending"},
-    "measuredEffect":{"before":{"newStudies":0,"reviewCompanions":0},"after":{"newStudies":5,"reviewCompanions":4,"searchSections":31,"nativeComparisonAccordions":4},"performanceClaim":false},
-    "proofLevel":"Local functional checks; candidate and live gates pending",
-    "status":"Pass 2 local checks complete; candidate browser gate pending",
-    "date":"2026-11-09"
-  }]
+  "schema": 1,
+  "changes": [
+    {
+      "id": "EVIDENCE-20261109-01",
+      "title": "Introduce evidence-led editorial companions",
+      "filesAndFunctions": [
+        "evidence-review-20261109/sources and build.cjs",
+        "reader-guide.js sourceGuide and enhance",
+        "assets/js/research-tools.js sourceCard and onPage",
+        "index.html and san-reader.html script integration",
+        "latest manifest and narrow preservation normalization"
+      ],
+      "beforeCommit": "5a3167fbbf319df52c3e190008c543dff4b3518a",
+      "afterCommit": "43cced66e54d750fd21f3f717558215ecbbf1d29",
+      "invariants": [
+        "Original transcripts, manifests and earlier article prose remain unchanged",
+        "Turn links, original source loading, hash verification and Gmirkin correction remain functional",
+        "No hidden authorship, fabricated citations or claimed independent peer review",
+        "Static reading works without JavaScript; old routes and Latest baseline hashes remain"
+      ],
+      "gateResults": {
+        "adversarialReview": "Passed after exact Latest normalization fix",
+        "localNodeTests": "21 passed, 0 failed",
+        "deterministicBuild": "Passed",
+        "localNativeBrowser": "Blocked: executor socket permission",
+        "candidateNativeBrowser": "Passed: https://github.com/v5ma/v5ma.github.io/actions/runs/42579214908",
+        "liveBytesAndBrowser": "Pending"
+      },
+      "measuredEffect": {
+        "before": {
+          "newStudies": 0,
+          "reviewCompanions": 0
+        },
+        "after": {
+          "newStudies": 5,
+          "reviewCompanions": 4,
+          "searchSections": 31,
+          "nativeComparisonAccordions": 4
+        },
+        "performanceClaim": false
+      },
+      "proofLevel": "Local functional checks and native Chromium CI; live public verification remains a release gate",
+      "status": "Pass 2 gated; ready for lease-protected master integration",
+      "date": "2026-11-09"
+    }
+  ]
 }
