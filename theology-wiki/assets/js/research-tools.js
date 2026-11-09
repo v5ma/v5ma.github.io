@@ -75,7 +75,7 @@ function backlinks(page){
 }
 function sourceCard(p){
  const url='../theology-sources/chats/'+encodeURIComponent(p.sourceFile);
- return `<section class="source-record"><div class="source-record-heading"><span class="research-badge">Original conversation</span><span>${p.turnCount} top-level turns / ${esc(p.date||'Undated')} UTC</span></div><h3>The question in the source</h3><p class="source-excerpt">${esc(p.primaryExcerpt||p.summary)}</p>${archiveFootnote(p)}<div class="research-buttons"><button data-research="load-source" type="button">Read the full conversation</button><a href="${url}" target="_blank" rel="noopener noreferrer">Open original text file</a>${a('topic-'+p.category,'Browse this topic')}</div><details><summary>Source integrity and attribution</summary><p>The original ${p.sourceBytes.toLocaleString()} bytes are preserved. The display separates top-level export speakers; a user turn can contain pasted AI text or quoted material. Dates come from export metadata, not an independent priority record.</p><p>SHA-256: <code>${esc(p.sourceSha256)}</code></p></details><div id="source-transcript"></div></section>`;
+ return `${window.TheologyReview?.sourceGuide(p)||''}<section class="source-record"><div class="source-record-heading"><span class="research-badge">Original conversation</span><span>${p.turnCount} top-level turns / ${esc(p.date||'Undated')} UTC</span></div><h3>The question in the source</h3><p class="source-excerpt">${esc(p.primaryExcerpt||p.summary)}</p>${archiveFootnote(p)}<div class="research-buttons"><button data-research="load-source" type="button">Read the full conversation</button><a href="${url}" target="_blank" rel="noopener noreferrer">Open original text file</a>${a('topic-'+p.category,'Browse this topic')}</div><details><summary>Source integrity and attribution</summary><p>The original ${p.sourceBytes.toLocaleString()} bytes are preserved. The display separates top-level export speakers; a user turn can contain pasted AI text or quoted material. Dates come from export metadata, not an independent priority record.</p><p>SHA-256: <code>${esc(p.sourceSha256)}</code></p></details><div id="source-transcript"></div></section>`;
 }
 function cards(list){return `<div class="research-cards">${list.map(p=>`<article class="research-card"><span class="research-small">${esc(p.claimType||p.kind)}${p.featured?' / New investigation':''}${p.date?' / '+p.date:''}</span><h3>${a(p.slug,p.title)}</h3><p>${esc(p.summary)}</p></article>`).join('')}</div>`;}
 async function onPage(p){
@@ -109,6 +109,7 @@ async function onPage(p){
  await window.TheologyProducts?.enhance(p);if(ticket!==renderTicket)return;
  await window.TheologyBridges?.enhance(p);if(ticket!==renderTicket)return;
  window.TheologyPublication?.enhance(p);
+ window.TheologyReview?.enhance(p);
  qualifyArchiveLinks(body);qualifyArchiveLinks($('.context-panel'));
  announce((p.title||p.slug)+' loaded.');
 }

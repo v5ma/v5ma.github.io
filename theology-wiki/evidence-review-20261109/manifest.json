@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "status": "Source-checked editorial working edition; not independently peer-reviewed",
+  "pages": [
+    {"slug":"evidence-and-editorial-method","title":"From research conversations to evidence-led arguments","navLabel":"Editorial method","summary":"Claim labels, precise citations, fair counterarguments and a reversible correction record."},
+    {"slug":"revelation-and-symbolic-language","title":"Revelation: symbolic resistance and the problem of violence","navLabel":"Revelation","summary":"Bird imagery, Ezekiel, contested reception and the ethical difficulty of symbolic violence."},
+    {"slug":"dead-sea-scrolls-dating","title":"Dead Sea Scrolls Dating and the Teacher of Righteousness","navLabel":"Scrolls and dating","summary":"Named manuscripts, radiocarbon and Enoch predictions, with limits on historical identification."},
+    {"slug":"linguistic-epigraphic-matrix","title":"Linguistic and epigraphic checks on biblical chronology","navLabel":"Language and inscriptions","summary":"A selected matrix separating written formulas, communities, linguistic arguments and completed books."},
+    {"slug":"why-christianity-spread","title":"Why early Christianity spread: practices, networks, hope, and power","navLabel":"Community and power","summary":"A chronological explanation that examines community before empire and coercion after imperial support."}
+  ],
+  "archiveCompanions": {
+    "revelation-and-symbolic-language":"revelation-and-symbolic-language",
+    "ai-re-dates-dead-sea-scrolls":"dead-sea-scrolls-dating",
+    "jesus-and-dead-sea-scrolls":"dead-sea-scrolls-dating",
+    "gmirkin-hellenistic-bible-theory":"linguistic-epigraphic-matrix"
+  }
+}

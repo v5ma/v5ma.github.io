@@ -35,7 +35,7 @@ test('entry point additions are exact and original bytes including source prose 
     const original=fs.readFileSync(path.join(__dirname,'..',name),'utf8');
     const pattern=/^ +<a class="wiki-family-link" href="\.\/latest\/index\.html">Latest<\/a>\r?\n/gm;
     assert.equal([...original.matchAll(pattern)].length,1);
-    assert.equal(crypto.createHash('sha256').update(stripIntegration(original).replace(pattern,'').replace(/&amp;release=20261106/g,'').replace(/research-tools\.js\?v=[a-f0-9]+/g,'research-tools.js?v=0bb91b3092c1cf07')).digest('hex'),hash);
+    assert.equal(crypto.createHash('sha256').update(stripIntegration(original).replace('<!-- evidence-review-assets --><script src="./evidence-review-20261109/reader-guide.js?v=20261109-1"></script>','').replace(pattern,'').replace(/&amp;release=20261106/g,'').replace(/research-tools\.js\?v=[a-f0-9]+/g,'research-tools.js?v=0bb91b3092c1cf07')).digest('hex'),hash);
   }
 });
 test('static accessible navigation and selected-release notice are present without JavaScript', () => {

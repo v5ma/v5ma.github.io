@@ -57,3 +57,5 @@ jobs:
         uses: actions/deploy-pages@v5
         with:
           artifact_name: ${{ needs.build.outputs.artifact }}
+
+# Evidence edition release 2026-11-09: publish the current master after its candidate gate.

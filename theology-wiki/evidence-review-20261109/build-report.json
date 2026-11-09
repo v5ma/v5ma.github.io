@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "pages": 5,
+  "searchSections": 31,
+  "outputs": [
+    {
+      "path": "evidence-and-editorial-method.html",
+      "bytes": 8388,
+      "sha256": "918d95a249268fe6820d10cef79b1f3856aa72cb7fe9f309ea37e397fe2f08e0"
+    },
+    {
+      "path": "revelation-and-symbolic-language.html",
+      "bytes": 8638,
+      "sha256": "d1ae1ddb53f97c313882587c89e2a3b5017053f89d9cd4b859d4be7b7be17035"
+    },
+    {
+      "path": "dead-sea-scrolls-dating.html",
+      "bytes": 11559,
+      "sha256": "65fa23a5c2c398c8a205ad28f9cc4dc402c60c499595746bb00e8d7ea1fc82e2"
+    },
+    {
+      "path": "linguistic-epigraphic-matrix.html",
+      "bytes": 10500,
+      "sha256": "448348c59995dc2f08f2a3e031c6335b2feb26e31333c662ee5daa0cb2800662"
+    },
+    {
+      "path": "why-christianity-spread.html",
+      "bytes": 8888,
+      "sha256": "9ec6c6078f29e06f9df6754df94e5a5ba7ee228259a2601ae4eff2a6d2a4c9c3"
+    },
+    {
+      "path": "index.html",
+      "bytes": 5370,
+      "sha256": "740f2604379d2ead8d58bc11975d976fd6eb9e4b0670b0001e9bafa5389d53a0"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 35776,
+      "sha256": "2c159b18d8e0c00fb566fbfb9549677ad7f1031f7cf62dda009559aec067b0e6"
+    },
+    {
+      "path": "search-data.js",
+      "bytes": 34682,
+      "sha256": "417f78c5471d67997d16eab1e025f46345129575405e055b878fb2802599e0e9"
+    },
+    {
+      "path": "reader-guide.js",
+      "bytes": 2003,
+      "sha256": "39d91f653c0221f30e51050156f89f371d40a83236f0f4eeca34679f85e4ae56"
+    }
+  ]
+}

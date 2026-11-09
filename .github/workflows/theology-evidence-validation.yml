@@ -1,0 +1,50 @@
+name: Theology evidence edition validation
+on:
+  push:
+    paths:
+      - 'theology-wiki/evidence-review-20261109/**'
+      - 'theology-wiki/assets/js/research-tools.js'
+      - 'theology-wiki/index.html'
+      - 'theology-wiki/san-reader.html'
+      - '.github/workflows/theology-evidence-validation.yml'
+  pull_request:
+    paths:
+      - 'theology-wiki/evidence-review-20261109/**'
+      - '.github/workflows/theology-evidence-validation.yml'
+permissions:
+  contents: read
+jobs:
+  evidence-edition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify deterministic build, links, archive behavior and prior Latest invariants
+        run: |
+          node theology-wiki/evidence-review-20261109/build.cjs --check
+          node --test theology-wiki/evidence-review-20261109/test.cjs
+          node --test theology-wiki/tests/archive-context.test.cjs
+          node --test theology-wiki/latest/test.cjs
+      - name: Install native browser test dependencies
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Test responsive pages, search and reader guide
+        run: python theology-wiki/evidence-review-20261109/browser-test.py
+      - name: Verify current publication and real reader integration
+        if: github.ref == 'refs/heads/master'
+        run: |
+          python theology-wiki/evidence-review-20261109/verify-live.py
+          python theology-wiki/evidence-review-20261109/browser-test.py --live --artifacts evidence-test-output/live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theology-evidence-${{ github.run_id }}
+          path: evidence-test-output/
+          retention-days: 14
