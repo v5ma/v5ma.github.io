@@ -21,11 +21,11 @@
   },
   {
     "path": "theology-wiki/latest/index.html",
-    "sha256": "370141f035701bb0b730c0fc8870d520db280b3a5d19eb12402d40d594b4012b"
+    "sha256": "3db03983bffa17698bbb2ef9c9d1bee36c4a99a55772ffa9859d66fa4b76187e"
   },
   {
     "path": "theology-wiki/latest/manifest.json",
-    "sha256": "6b4bea3dadfe7fda7b9652b642eda4e3c1f436b0487f9d8c7249504c37e26624"
+    "sha256": "6f1cbc7349fc58262a509ff5abbc014b50f4202a079219bcad4de8e8eea0d0c7"
   },
   {
     "path": "theology-wiki/latest/test.cjs",
@@ -33,15 +33,15 @@
   },
   {
     "path": "theology-wiki/purpose/index.html",
-    "sha256": "2e778a6f6e525e440f10c935b1276a3298639e656a99f7012aba3bf987dc2e58"
+    "sha256": "5dd51a3f527673b32ba95eec60ab942a62b749315c66640a689c7d12529f730c"
   },
   {
     "path": "theology-wiki/purpose/reading-map.json",
-    "sha256": "a13decf457237e0d8f754f629451f120c3fc1616907507d59d5186e5cdfdf76a"
+    "sha256": "1e421b73e689adb5bfe8d3a2f7aec53eb1d65757d38ba3d3aca3eea824eca7a1"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/README.md",
-    "sha256": "ff3d905ee65567fb79374cc116e79c4abf6a12563b5350916eb3d7543701d9ac"
+    "sha256": "b77563aeee45722915996a342dbfaac05e95c1c48114b8670706e9066fe2b60a"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/browser_check.py",
@@ -49,7 +49,7 @@
   },
   {
     "path": "theology-wiki/rppa-power-20261109/build-report.json",
-    "sha256": "4b940e8ecc861661a1af250cd424c304200fb4b1db12e3cd50578bda36adf965"
+    "sha256": "be0dc2c58f3a8afeb06a19cda4f724edc777ccc64c2efc301178d954292e1bcd"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/build.cjs",
@@ -61,7 +61,7 @@
   },
   {
     "path": "theology-wiki/rppa-power-20261109/index.html",
-    "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+    "sha256": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/manifest.json",
@@ -77,19 +77,19 @@
   },
   {
     "path": "theology-wiki/rppa-power-20261109/reader-links.js",
-    "sha256": "2aba59bf3ce920645bc63fec765f04e9cd6c6a187017549c91584c8ec65a1fe4"
+    "sha256": "d1c6c8c17a40e56054251566b7ce6bcaf96b15510c6ec90af833cd2a304c48f5"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
-    "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+    "sha256": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/search-data.js",
-    "sha256": "f75acda8da0327ef7dd40db4cb52fbbfaf280f81cdbeed2bf1844717876f77a4"
+    "sha256": "30231e4c6d856dd70481232aa357aff577467d0c4a16867ae05361f6a4d4b3ae"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/search-index.json",
-    "sha256": "9342829d3907af3cfec746335e18a276c9007b615b61906519405761c6cda527"
+    "sha256": "7541b11b4ff107da337425ab120b637ac7ffc79be9ef96aa45d9b3b10e0b61a5"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/search.js",
@@ -101,11 +101,11 @@
   },
   {
     "path": "theology-wiki/rppa-power-20261109/sources/rppa-battles-economic-power-and-gaza.md",
-    "sha256": "b0a36a59be40c6b4ab3d3da6723a6343b07d10f602177053830819cc6a40a3f6"
+    "sha256": "5894b54e83f09ae0e7671eeaa19db0b68f2b307ed7a00611c206edcbbbf6a29f"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/test.cjs",
-    "sha256": "d62c153a35c66130c7e7a40acfaa4a0f307abcc6557390cbe3f870c38f7191a9"
+    "sha256": "4f9fe9dda018d563f7f88d7a315452d8053635cad6a18ab66a63d2659b41c850"
   },
   {
     "path": "theology-wiki/rppa-power-20261109/unsealed-preservation.json",
@@ -122,5 +122,13 @@
   {
     "path": "theology-wiki/unsealed/index.html",
     "sha256": "595ae80d1b20667c87b785b78b6a257f85e7fcd8c38ecbe125022bf6832cd076"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/publication-files-initial.json",
+    "sha256": "69f9783aa9a5ef2d08bcae25a8c1b1a5b31714ab80e29afa95b0befc5cfdc100"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/repair-links-prior-source-hash.json",
+    "sha256": "cf314d4bd5c3847bc18de8136930d2a1e2b2c614b9a015738eb20be5bd831104"
   }
 ]

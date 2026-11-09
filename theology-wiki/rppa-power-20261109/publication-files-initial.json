@@ -1,0 +1,126 @@
+[
+  {
+    "path": "theology-wiki/clouds-and-millennium-20261109/build-report.json",
+    "sha256": "da48c87fa98a1e04f4e5b2554f2a45a4cf1fb0ce54109e6efa3bbfc30a3aa442"
+  },
+  {
+    "path": "theology-wiki/clouds-and-millennium-20261109/build.cjs",
+    "sha256": "3ac434b9037954828a735349e43500ac7fd7dbfd573e64dc82261edc653634a0"
+  },
+  {
+    "path": "theology-wiki/clouds-and-millennium-20261109/clouds-and-millennium.html",
+    "sha256": "2595eb7818c8b201ce39305ab157fced75ec2781b480c169670cdfcb6a3dc315"
+  },
+  {
+    "path": "theology-wiki/clouds-and-millennium-20261109/index.html",
+    "sha256": "2595eb7818c8b201ce39305ab157fced75ec2781b480c169670cdfcb6a3dc315"
+  },
+  {
+    "path": "theology-wiki/index.html",
+    "sha256": "0955940d77e6ed9a925ca0bf24b13813ce6d42ad6329ba727b39d31522b659dd"
+  },
+  {
+    "path": "theology-wiki/latest/index.html",
+    "sha256": "370141f035701bb0b730c0fc8870d520db280b3a5d19eb12402d40d594b4012b"
+  },
+  {
+    "path": "theology-wiki/latest/manifest.json",
+    "sha256": "6b4bea3dadfe7fda7b9652b642eda4e3c1f436b0487f9d8c7249504c37e26624"
+  },
+  {
+    "path": "theology-wiki/latest/test.cjs",
+    "sha256": "d88104f3b39b863a8c83f01f671f77a2f0cfe070626d9a7f0f5ad15fc77a6987"
+  },
+  {
+    "path": "theology-wiki/purpose/index.html",
+    "sha256": "2e778a6f6e525e440f10c935b1276a3298639e656a99f7012aba3bf987dc2e58"
+  },
+  {
+    "path": "theology-wiki/purpose/reading-map.json",
+    "sha256": "a13decf457237e0d8f754f629451f120c3fc1616907507d59d5186e5cdfdf76a"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/README.md",
+    "sha256": "ff3d905ee65567fb79374cc116e79c4abf6a12563b5350916eb3d7543701d9ac"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/browser_check.py",
+    "sha256": "290a683f30aae51c6aaeb5a8ed3ae81ebe7432a7b8b421b18087273e2fd159db"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/build-report.json",
+    "sha256": "4b940e8ecc861661a1af250cd424c304200fb4b1db12e3cd50578bda36adf965"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/build.cjs",
+    "sha256": "0e2e88d4b94f61591409b0a4501f4fc49362f615071e36794f0e24315a4689be"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/entrance-preservation.json",
+    "sha256": "54b902935c289ee3a5f14174b244081ae170eeec72cfed0319ee97096798479b"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/index.html",
+    "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/manifest.json",
+    "sha256": "63f5421826f789ecdde413debba41bc37cbf5544710b8485e1973c64c38a8418"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/preservation.json",
+    "sha256": "c5e993e5eae51b0458c273ffb762a0dceb9ae690786be5e68d5307b99b378d72"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/reader-extension.js",
+    "sha256": "a2e48ff27a8274d83833c443279bff465e187b6a384bc2cefcec21ed8a6e76c0"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/reader-links.js",
+    "sha256": "2aba59bf3ce920645bc63fec765f04e9cd6c6a187017549c91584c8ec65a1fe4"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
+    "sha256": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/search-data.js",
+    "sha256": "f75acda8da0327ef7dd40db4cb52fbbfaf280f81cdbeed2bf1844717876f77a4"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/search-index.json",
+    "sha256": "9342829d3907af3cfec746335e18a276c9007b615b61906519405761c6cda527"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/search.js",
+    "sha256": "a123031df376c650d4e779121325b3b07a8dcdf88201420ccdb54de3979050c9"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/series.css",
+    "sha256": "aaf487895358c9a1d9de0d8f365bb29b1e2e6b028a77673294cb4be9fb5a381b"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/sources/rppa-battles-economic-power-and-gaza.md",
+    "sha256": "b0a36a59be40c6b4ab3d3da6723a6343b07d10f602177053830819cc6a40a3f6"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/test.cjs",
+    "sha256": "d62c153a35c66130c7e7a40acfaa4a0f307abcc6557390cbe3f870c38f7191a9"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/unsealed-preservation.json",
+    "sha256": "74410282446b34df23a711626338c2b4f51786c2612bc62ddaa9bd16bc642343"
+  },
+  {
+    "path": "theology-wiki/rppa-power-20261109/verify-live.py",
+    "sha256": "6e9709aeaa92571169a902f214ec78d632af18f872d1f3d5c6bd51cd504c7791"
+  },
+  {
+    "path": "theology-wiki/san-reader.html",
+    "sha256": "601b54a8eb19db3335dd427c94cd8068ae013eff366f487c652d656756c8bb05"
+  },
+  {
+    "path": "theology-wiki/unsealed/index.html",
+    "sha256": "595ae80d1b20667c87b785b78b6a257f85e7fcd8c38ecbe125022bf6832cd076"
+  }
+]

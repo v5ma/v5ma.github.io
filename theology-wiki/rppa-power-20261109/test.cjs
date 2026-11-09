@@ -18,3 +18,10 @@ test('repair comparison preserves the earlier full source and distinguishes anal
  for(const anchor of ['actors','speech']){a.ok(s.includes('../technology-signs.html#'+anchor));a.ok(read('../technology-signs.html').includes('id="'+anchor+'"'));}
  for(let n=19;n<=21;n++)a.ok(read(cfg.slug+'.html').includes('id="ref-'+n+'"'));
 });
+
+test('hosted verification retains its initial receipt and verifies every current release path',()=>{
+ const original=read('publication-files-initial.json');a.equal(hash(original),'69f9783aa9a5ef2d08bcae25a8c1b1a5b31714ab80e29afa95b0befc5cfdc100');
+ const before=JSON.parse(original),now=require('./publication-files.json'),paths=new Set(now.map(r=>r.path));
+ a.equal(paths.size,now.length);for(const r of before)a.ok(paths.has(r.path),r.path);
+ for(const r of now)a.equal(hash(fs.readFileSync(path.join(__dirname,'../..',r.path))),r.sha256,r.path);
+});
