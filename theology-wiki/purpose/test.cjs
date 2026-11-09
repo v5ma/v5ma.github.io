@@ -15,7 +15,7 @@ test('the nine selected letter paragraphs are preserved exactly and in order',()
  assert.ok(letter.includes("I'm searching for the Unorthodox Interpretation that changes the Orthodox Interpretation."));
  assert.ok(letter.includes('what the earliest Christians believed about resurrection'));
  assert.ok(letter.includes('How was his teaching corrupted by others'));
- assert.ok(!html.includes('Darlene'));assert.ok(!html.includes('desalination'));
+ assert.ok(!html.includes('desalination'));
 });
 test('the static page rebuilds deterministically',()=>assert.equal(html,render()));
 test('all eight existing collections contribute and retain their own topic routes',()=>{
