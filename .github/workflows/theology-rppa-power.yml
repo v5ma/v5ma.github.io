@@ -1,0 +1,48 @@
+name: Validate RPPA, economic power and Gaza
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'theology-wiki/rppa-power-20261109/**'
+      - 'theology-wiki/latest/**'
+      - 'theology-wiki/index.html'
+      - 'theology-wiki/san-reader.html'
+      - 'theology-wiki/prophecy-patterns-20261105/**'
+      - '.github/workflows/theology-rppa-power.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test generated output, source preservation and connections
+        run: |
+          node --test theology-wiki/clouds-and-millennium-20261109/test.cjs theology-wiki/rppa-power-20261109/test.cjs theology-wiki/latest/test.cjs theology-wiki/jesus-ethics-20261105/integration.test.cjs theology-wiki/purpose/test.cjs theology-wiki/prophecy-patterns-20261105/integration.test.cjs theology-wiki/alternative-inheritances-20261109/test.cjs
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Test desktop, mobile, reader journeys and search
+        run: python theology-wiki/rppa-power-20261109/browser_check.py
+      - name: Verify exact hosted bytes and live browser behavior
+        if: github.ref == 'refs/heads/master'
+        env:
+          RPPA_BASE: https://v5ma.github.io
+          RPPA_REPORT_DIR: qa/live
+        run: |
+          python theology-wiki/rppa-power-20261109/verify-live.py
+          python theology-wiki/rppa-power-20261109/browser_check.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rppa-power-${{ github.run_id }}
+          path: theology-wiki/rppa-power-20261109/qa/
+          retention-days: 14

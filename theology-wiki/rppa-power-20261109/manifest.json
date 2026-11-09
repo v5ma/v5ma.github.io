@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "baseRevision": "42840b26143c00af743d108401e1184052c238e3",
+  "slug": "rppa-battles-economic-power-and-gaza",
+  "title": "RPPA, the final battles, and economic power in Gaza",
+  "summary": "A connected inquiry into Revelation 19\u201320, the mark and economic coercion, Gaza governance and currency proposals, computational theology and accountable authority.",
+  "source": "sources/rppa-battles-economic-power-and-gaza.md",
+  "connections": [
+    {
+      "slug": "trump-first-beast-of-revelation",
+      "label": "Trump and the First Beast",
+      "relationship": "A specific identification and its institutional evidence",
+      "context": "The Gaza inquiry tests concentrated governance and proposed payment controls while separating documented policy from the author\u2019s theological identification.",
+      "section": "gaza-documented-authority-proposed-currency-and-open-questions"
+    },
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "label": "Antichrist as a pattern of conduct",
+      "relationship": "Recurring conduct and a claimed final fulfillment",
+      "context": "Compare the difference between a recurring mechanism of economic exclusion and a unique final fulfillment.",
+      "section": "the-mark-allegiance-and-economic-exclusion"
+    },
+    {
+      "slug": "antichrist-and-ridiculous-claims",
+      "label": "Antichrist and Ridiculous Claims",
+      "relationship": "The source of the controlled-payment scenario",
+      "context": "This conversation contains the conditional enclave and payment-rail scenario. Its later turns are not all dated by its export start date, and AI elaboration is not adopted policy.",
+      "section": "what-the-existing-gaza-discussions-actually-contain"
+    },
+    {
+      "slug": "gaza-coin-proposal",
+      "label": "Gaza Coin proposal",
+      "relationship": "Different projects with similar names",
+      "context": "The 2020 academic Gaza Wallet project must be distinguished from the 2026 Board of Peace stablecoin discussions.",
+      "section": "what-the-existing-gaza-discussions-actually-contain"
+    },
+    {
+      "slug": "gaza-development-coalition-name",
+      "label": "Gaza development coalition name",
+      "relationship": "An invented acronym and a real textual question",
+      "context": "The archived MA-GOG communiqu\u00e9 is an imaginative draft, not an official announcement. Compare actual governance sources and Revelation\u2019s Gog and Magog imagery.",
+      "section": "what-the-existing-gaza-discussions-actually-contain"
+    },
+    {
+      "slug": "computational-argument-map",
+      "label": "Computational theology argument map",
+      "relationship": "Computational analogy and an empirical research design",
+      "context": "RPPA needs explicit inputs, variables and counterevidence without presenting its computational analogy as an established model.",
+      "section": "computational-theology-agi-and-inherited-authority"
+    },
+    {
+      "slug": "computational-divine-immanence",
+      "label": "Computational Divine Immanence",
+      "relationship": "Representation, prediction and action",
+      "context": "Connect the model/action distinction with prophetic deep-pattern reasoning and the causal effects of belief.",
+      "section": "computational-theology-agi-and-inherited-authority"
+    },
+    {
+      "slug": "religion-for-conscious-robots",
+      "label": "Religion for conscious robots",
+      "relationship": "Moral learning and automated gatekeeping",
+      "context": "What would keep an intelligent intermediary answerable to people affected by its decisions? The Gaza comparison is conditional and does not establish an AGI deployment.",
+      "section": "computational-theology-agi-and-inherited-authority"
+    },
+    {
+      "slug": "sacred-inheritance-and-rival-continuations",
+      "label": "Sacred inheritance and rival continuations",
+      "relationship": "Interpretive authority and the root-access analogy",
+      "context": "The technical metaphor highlights who can change rules; it does not equate institutions or turn scripture into literal executable code.",
+      "section": "computational-theology-agi-and-inherited-authority"
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "label": "Apocalyptic Repair Theology",
+      "relationship": "From theological diagnosis to protection",
+      "context": "Economic freedom, truthful dissent, appeal and practical correction remain evaluable without first establishing a final prophetic identity.",
+      "section": "the-practical-connection-repair-and-accountable-power"
+    },
+    {
+      "slug": "agi-religious-framework",
+      "label": "AGI Religious Framework",
+      "relationship": "Ethical education and its coercive inversion",
+      "context": "The new three-variable matrix distinguishes Micah\u2019s machine-education proposal from the AI\u2019s suggested doctrines and from an unverified system for policing human wallets.",
+      "section": "the-three-variable-computational-apocalypse-scenario"
+    }
+  ]
+}

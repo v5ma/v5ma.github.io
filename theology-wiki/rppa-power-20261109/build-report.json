@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "source": "sources/rppa-battles-economic-power-and-gaza.md",
+  "sourceSha256": "081d2e6b3b01a6ba9f2f7958e564c4e74833a64aa67e199b6e8fc1207e855144",
+  "baseRevision": "42840b26143c00af743d108401e1184052c238e3",
+  "words": 5059,
+  "sections": 16,
+  "connections": 11,
+  "wikilinks": [
+    "trump-first-beast-of-revelation",
+    "antichrist-as-a-pattern-of-conduct",
+    "antichrist-and-ridiculous-claims",
+    "gaza-coin-proposal",
+    "gaza-development-coalition-name",
+    "agi-religious-framework",
+    "computational-argument-map",
+    "computational-divine-immanence",
+    "religion-for-conscious-robots",
+    "sacred-inheritance-and-rival-continuations",
+    "apocalyptic-repair-theology"
+  ],
+  "outputs": [
+    {
+      "path": "rppa-battles-economic-power-and-gaza.html",
+      "sha256": "f147d2da953d2f8170bcc818abb625dedece0d0965ed968a193f612af3ebb25d"
+    },
+    {
+      "path": "index.html",
+      "sha256": "f147d2da953d2f8170bcc818abb625dedece0d0965ed968a193f612af3ebb25d"
+    },
+    {
+      "path": "search-index.json",
+      "sha256": "cbea1c68a50204e18970c3ab0cc308ec95f69541c5b68f235e30acd15a224994"
+    },
+    {
+      "path": "search-data.js",
+      "sha256": "ab7cc170e647865f7f06b41446033c3c900bb3e42915b862000efa2696e27668"
+    },
+    {
+      "path": "reader-links.js",
+      "sha256": "46864e18c04bebe82fe95a782db08479befc6aafa70dfa1b665f3845aaf69616"
+    }
+  ]
+}

@@ -5,19 +5,19 @@
   },
   {
     "path": "theology-wiki/clouds-and-millennium-20261109/build-report.json",
-    "sha256": "181972c2b51f518ff00962f1114e167e22691b2c4b544f16bf1cca3d253b3ec4"
+    "sha256": "da48c87fa98a1e04f4e5b2554f2a45a4cf1fb0ce54109e6efa3bbfc30a3aa442"
   },
   {
     "path": "theology-wiki/clouds-and-millennium-20261109/build.cjs",
-    "sha256": "121a6c5ac8a93607b85ad4a8411b2fdb720e01492655a9d2762f0e20d636f810"
+    "sha256": "3ac434b9037954828a735349e43500ac7fd7dbfd573e64dc82261edc653634a0"
   },
   {
     "path": "theology-wiki/clouds-and-millennium-20261109/clouds-and-millennium.html",
-    "sha256": "2d3fcf9d52599b291bfa5d985585eaae47f6beb11c28f4f2d235bc33059e65c6"
+    "sha256": "2595eb7818c8b201ce39305ab157fced75ec2781b480c169670cdfcb6a3dc315"
   },
   {
     "path": "theology-wiki/clouds-and-millennium-20261109/index.html",
-    "sha256": "2d3fcf9d52599b291bfa5d985585eaae47f6beb11c28f4f2d235bc33059e65c6"
+    "sha256": "2595eb7818c8b201ce39305ab157fced75ec2781b480c169670cdfcb6a3dc315"
   },
   {
     "path": "theology-wiki/clouds-and-millennium-20261109/manifest.json",
@@ -61,15 +61,15 @@
   },
   {
     "path": "theology-wiki/index.html",
-    "sha256": "8a6beeb327632a5f30a2c0065e6ed7e024dba9d086b65f485329540d07d7d767"
+    "sha256": "0955940d77e6ed9a925ca0bf24b13813ce6d42ad6329ba727b39d31522b659dd"
   },
   {
     "path": "theology-wiki/latest/index.html",
-    "sha256": "8befd197a043e11bd691e27d582a410b9f02b0e53f8fc5bc3783720f7bdf31b7"
+    "sha256": "370141f035701bb0b730c0fc8870d520db280b3a5d19eb12402d40d594b4012b"
   },
   {
     "path": "theology-wiki/latest/manifest.json",
-    "sha256": "85a39902c169d933911c3c78dec5abee81c8b3010055a055e7e57f3bcd156d12"
+    "sha256": "6b4bea3dadfe7fda7b9652b642eda4e3c1f436b0487f9d8c7249504c37e26624"
   },
   {
     "path": "theology-wiki/prophecy-patterns-20261105/build-report.json",
@@ -97,14 +97,14 @@
   },
   {
     "path": "theology-wiki/purpose/index.html",
-    "sha256": "685ef811483366b897fc2f913833d51da6acd01e8b017e3555521b7c38280f80"
+    "sha256": "2e778a6f6e525e440f10c935b1276a3298639e656a99f7012aba3bf987dc2e58"
   },
   {
     "path": "theology-wiki/purpose/reading-map.json",
-    "sha256": "a93f48ecae94ecea9ef1e3acecbef28fab587c2ef27fed98ab412fd07bf3e8f9"
+    "sha256": "a13decf457237e0d8f754f629451f120c3fc1616907507d59d5186e5cdfdf76a"
   },
   {
     "path": "theology-wiki/san-reader.html",
-    "sha256": "ed228e7c2f215e5894eee746fc4847b28ed6711836bcde408e5163af0722709e"
+    "sha256": "601b54a8eb19db3335dd427c94cd8068ae013eff366f487c652d656756c8bb05"
   }
 ]
