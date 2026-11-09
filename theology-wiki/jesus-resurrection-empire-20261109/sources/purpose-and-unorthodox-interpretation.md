@@ -47,6 +47,10 @@ An interpretation becomes more persuasive when it explains both the evidence tha
 
 The expanded inquiry now moves through [[competing-crosses-and-imperial-capture|Competing crosses and imperial capture]], [[laughing-jesus-apocalypse-of-peter|the Coptic Apocalypse of Peter]] and [[gospel-of-truth-cross-and-knowledge|the Gospel of Truth]]. These chapters place Micah’s first-century hypothesis beside contrasting ancient interpretations rather than treating canonical and noncanonical books as two uniform camps. [[canon-coercion-and-nag-hammadi-survival|Canon, coercion and survival]] then separates documented institutional measures from uncertain explanations of manuscript burial.
 
+## Further connections: John, Constantine and the scrolls
+
+Three further inquiries widen the comparison: [[mandaean-origins-john-and-migration|Mandaean origins and John]] asks how rival memories relate to historical ancestry; [[constantine-consolidation-and-christian-diversity|Constantine and Christian diversity]] traces institutional consolidation; and [[dead-sea-scrolls-jewish-diversity-and-empire|the Dead Sea Scrolls]] recover an earlier Jewish landscape. These are connected questions, not a presumed single transmission chain.
+
 ## Sources and access notes
 
 The first paragraph preserves one short statement of the project's purpose. The surrounding prose is an edited development of the inquiry, not a transcript or an assertion that every scholarly qualification has become a settled personal belief. This section presents ideas without reproducing private correspondence.

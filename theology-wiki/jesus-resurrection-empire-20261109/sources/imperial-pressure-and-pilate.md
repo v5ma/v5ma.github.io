@@ -42,6 +42,10 @@ The first-century composition question should therefore remain distinct from the
 
 The [[laughing-jesus-apocalypse-of-peter|Coptic Apocalypse of Peter]] and the [[gospel-of-truth-cross-and-knowledge|Gospel of Truth]] offer contrasting ways to deny coercion the last word. Neither narrates a Pilate trial. Their value for the imperial-capture hypothesis is that they relocate decisive authority away from the visible success of an execution, although their unnamed powers should not simply be equated with Rome. The [[competing-crosses-and-imperial-capture|comparative synthesis]] examines that political potential alongside counterexamples: the noncanonical Gospel of Peter strengthens Pilate’s exoneration, while canonical texts retain critiques of domination. [[canon-coercion-and-nag-hammadi-survival|Canon, coercion and survival]] follows the later institutional question without assuming that it proves first-century state authorship.
 
+## Further connections: John, Constantine and the scrolls
+
+[[dead-sea-scrolls-jewish-diversity-and-empire|Pesher Habakkuk and the Roman Kittim]] offers an earlier Jewish example of interpreting domination through scripture. [[constantine-consolidation-and-christian-diversity|Constantine and imperial consolidation]] then examines a different period, when imperial favor could enforce Christian boundaries. The first-century composition question remains distinct from those later mechanisms.
+
 ## Sources and access notes
 
 - Primary comparisons: Mark 15; Matthew 27:19–26; Luke 23:4, 14–15, 22; John 18–19; Philo, Embassy to Gaius 299–305; Josephus, Antiquities 18.55–62 and 18.85–89. [Mark 15](https://www.biblegateway.com/passage/?search=Mark+15&version=NRSVUE) and [John 19](https://www.biblegateway.com/passage/?search=John+19&version=NRSVUE) were checked in accessible chapter pages. The linked translations of Philo and Josephus are reading aids, not newly collated critical texts.

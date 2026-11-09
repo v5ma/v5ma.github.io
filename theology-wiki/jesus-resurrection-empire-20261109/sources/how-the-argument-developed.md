@@ -50,6 +50,10 @@ The point of this inquiry is to recover an unorthodox reading capable of changin
 
 The Pilate comparison now opens into [[competing-crosses-and-imperial-capture|Competing crosses and imperial capture]]. The new studies ask how the [[laughing-jesus-apocalypse-of-peter|laughing living Jesus]] and the [[gospel-of-truth-cross-and-knowledge|cross as knowledge]] redistribute the meaning of victory. Their differences matter: one separates bodily suffering from the transcendent Savior, while the other gives Jesus’s death a saving and revelatory role. [[ransom-revelation-and-defeated-rulers|Ransom, revelation and defeated rulers]] connects these alternatives back to Mark, Paul and Colossians.
 
+## Further connections: John, Constantine and the scrolls
+
+The next comparison separates [[mandaean-origins-john-and-migration|Mandaean memories of John]], [[dead-sea-scrolls-jewish-diversity-and-empire|Jewish diversity in the Dead Sea Scrolls]] and [[constantine-consolidation-and-christian-diversity|fourth-century imperial consolidation]]. Each adds a different kind of evidence to the inquiry, so the chronology cannot be reduced to one uninterrupted Roman editorial plan.
+
 ## Sources and access notes
 
 - This is an edited argument map, not a private-conversation transcript. It preserves the ambitious hypothesis while distinguishing observations, proposed explanations and unresolved questions. Alternative readings are analytical comparisons, not assertions that each is a settled personal belief.

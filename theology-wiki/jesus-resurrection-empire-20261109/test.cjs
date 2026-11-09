@@ -2,13 +2,13 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {build}=require('./build.cjs'),cfg=require('./manifest.json'),root=__dirname;
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-test('nine complete chapters build deterministically and generated outputs are current',()=>{
- assert.equal(cfg.pages.length,9);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,9);
- assert.deepEqual(build(true),{pages:9,searchSections:73,outputs:13});
+test('twelve complete chapters build deterministically and generated outputs are current',()=>{
+ assert.equal(cfg.pages.length,12);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,12);
+ assert.deepEqual(build(true),{pages:12,searchSections:109,outputs:16});
  for(const p of cfg.pages){const s=read(p.source);assert.ok(s.split(/\s+/).length>1000,p.slug);assert.ok(s.includes('Sources and access notes'));assert.equal((s.match(/^# /gm)||[]).length,1);}
 });
 test('search covers every chapter and each section links to its real heading',()=>{
- const data=JSON.parse(read('search-index.json'));assert.equal(new Set(data.map(x=>x.kind)).size,9);
+ const data=JSON.parse(read('search-index.json'));assert.equal(new Set(data.map(x=>x.kind)).size,12);
  for(const r of data){const [file,id]=r.url.split('#');assert.ok(read(file).includes('id="'+id+'"'),r.url);assert.ok(r.text.length);}
  for(const term of ['Pilate','Hebrews','Athanasius','Unorthodox'])assert.ok(data.some(r=>(r.text+r.heading).includes(term)),term);
 });
@@ -26,7 +26,7 @@ test('all new static pages have accessible structure and valid local targets/fra
 });
 test('Latest includes each new page once without removing the previous release records',()=>{
  const latest=JSON.parse(fs.readFileSync(path.join(root,'../latest/manifest.json'),'utf8'));
- assert.equal(latest.entries.filter(x=>x.date==='2026-11-09'&&x.href.startsWith('../jesus-resurrection-empire-20261109/')).length,9);
+ assert.equal(latest.entries.filter(x=>x.date==='2026-11-09'&&x.href.startsWith('../jesus-resurrection-empire-20261109/')).length,12);
  for(const p of cfg.pages)assert.equal(latest.entries.filter(x=>x.href==='../jesus-resurrection-empire-20261109/'+p.slug+'.html').length,1);
  assert.ok(latest.entries.some(x=>x.date==='2026-11-07'));assert.equal(latest.entries.filter(x=>x.date==='2026-11-06').length,6);
 });
@@ -69,4 +69,30 @@ test('new studies preserve textual distinctions and bounded interpretation',()=>
  for(const x of ['3.64–66','367','remains debated','funerary','monastic','not a cache of Christian Gospels'])assert.ok(canon.includes(x),x);
  for(const x of ['Mark 10:42–45','1 Corinthians 2:6–8','Colossians 2:13–15','Neither saying names a recipient'])assert.ok(ransom.includes(x),x);
  for(const p of cfg.pages){const html=read(p.slug+'.html');for(const m of html.matchAll(/class="citation" href="#(ref-\d+)"/g))assert.ok(html.includes('id="'+m[1]+'"'),p.slug+': '+m[1]);}
+});
+
+
+test('all nine published chapter bodies and their existing wikilinks are preserved',()=>{
+ const baseline=require('./origins-prior-source-hashes.json');assert.equal(Object.keys(baseline).length,9);
+ for(const [slug,expected] of Object.entries(baseline)){
+  const text=read('sources/'+slug+'.md');
+  const old=text.replace(/\n## Further connections: John, Constantine and the scrolls\n[\s\S]*?(?=\n## Sources and access notes)/,'');
+  assert.equal(crypto.createHash('sha256').update(old).digest('hex'),expected,slug);
+  assert.ok(text.includes('## Further connections: John, Constantine and the scrolls'),slug);
+ }
+});
+test('new origins studies retain chronological and evidential distinctions',()=>{
+ const m=read('sources/mandaean-origins-john-and-migration.md'),c=read('sources/constantine-consolidation-and-christian-diversity.md'),d=read('sources/dead-sea-scrolls-jewish-diversity-and-empire.md');
+ for(const t of ['does not establish it','Müller-Kessler','Mesopotamian','Artabanus','late 20s or early 30s','70 CE','pp. 83–87','do not identify','migration'])assert.ok(m.includes(t),t);
+ for(const t of ['**313:**','**325:**','**337:**','**367:**','**380:**','fifty copies','do not promulgate a complete New Testament','real-time split','Barnabas','coercion'])assert.ok(c.includes(t),t);
+ for(const t of ['not Christian Gospels','textual plurality','1QpHab','VI.2–5','Kittim','Ethiopian','does not say those angels created','not a modern ideal','unbroken Qumran'])assert.ok(d.includes(t),t);
+ assert.doesNotMatch(m+c+d,/libfile_|Pasted text|supplied summaries/);
+});
+test('all new articles connect outward and receive reciprocal links',()=>{
+ const newSlugs=cfg.pages.slice(9).map(x=>x.slug);
+ for(const slug of newSlugs){
+  const source=read('sources/'+slug+'.md');assert.ok((source.match(/\[\[/g)||[]).length>=8,slug);
+  assert.ok(cfg.pages.slice(0,9).some(x=>read(x.source).includes('[['+slug+'|')),slug);
+  assert.ok(JSON.parse(read('search-index.json')).some(x=>x.kind===slug));
+ }
 });

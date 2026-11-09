@@ -65,6 +65,27 @@
       "title": "Canon, coercion and the survival of Nag Hammadi",
       "summary": "Distinguish early boundary-making, Constantine’s coercive measures, Athanasius’s list and competing explanations of the books’ preservation.",
       "source": "sources/canon-coercion-and-nag-hammadi-survival.md"
+    },
+    {
+      "slug": "mandaean-origins-john-and-migration",
+      "navLabel": "Mandaeans and John",
+      "title": "Mandaean origins: John the Baptist, migration and rival memory",
+      "summary": "Investigate whether Mandaean ancestors knew John or fled after his execution, comparing western-migration arguments, Mesopotamian evidence and the limits of later sacred history.",
+      "source": "sources/mandaean-origins-john-and-migration.md"
+    },
+    {
+      "slug": "constantine-consolidation-and-christian-diversity",
+      "navLabel": "Constantine and diversity",
+      "title": "The Director’s Cut: Constantine, consolidation and Christian diversity",
+      "summary": "Trace diverse early Christian responses and the distinct stages of imperial patronage, councils, coercion, manuscript copying and canon formation.",
+      "source": "sources/constantine-consolidation-and-christian-diversity.md"
+    },
+    {
+      "slug": "dead-sea-scrolls-jewish-diversity-and-empire",
+      "navLabel": "Dead Sea Scrolls",
+      "title": "The Dead Sea Scrolls: Jewish diversity, Roman power and the limits of a straight line",
+      "summary": "Read textual plurality, Enochic traditions, light and darkness and the Roman Kittim as evidence for a varied Jewish world, while testing proposed later connections.",
+      "source": "sources/dead-sea-scrolls-jewish-diversity-and-empire.md"
     }
   ],
   "extensionRevision": "4dcafa165c44351aca343f49f160ca0831138100",
@@ -124,5 +145,6 @@
       "title": "Apocalyptic Repair Theology",
       "path": "developed/apocalyptic-repair-theology.md"
     }
-  ]
+  ],
+  "originsExtensionRevision": "f8519229d79c56f83ec6dbfaaf38f2d72ef41f9e"
 }

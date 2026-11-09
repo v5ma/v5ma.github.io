@@ -56,6 +56,10 @@ A disciplined reading can proceed through five questions:
 
 Applied this way, the wiki's imperial-capture hypothesis becomes more exacting. It investigates how particular readings weaken or preserve a text's resistance to domination. It does not need the claim that every canonical verse was designed to serve empire, nor that every excluded book offers an inherently liberating alternative. [[competing-crosses-and-imperial-capture|Competing crosses and imperial capture]] draws these tests into the larger argument.
 
+## Further connections: John, Constantine and the scrolls
+
+[[dead-sea-scrolls-jewish-diversity-and-empire|Pesher Habakkuk and Jewish apocalyptic traditions]] provide earlier examples of relating religious interpretation to domination. [[constantine-consolidation-and-christian-diversity|Constantine and Christian diversity]] follows the later shift in institutional power without treating every cosmic ruler as a Roman official.
+
 ## Sources and access notes
 
 1. [Mark 10:42–45 and chapter notes](https://bible.usccb.org/bible/mark/10); [Matthew 20:25–28](https://bible.usccb.org/bible/matthew/20). The comparison concerns the passages' explicit service/ransom context and absence of a named payment recipient, not a newly established historical attribution.

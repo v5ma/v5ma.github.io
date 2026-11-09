@@ -50,6 +50,10 @@ The absence of Pilate is therefore significant as a difference in emphasis, not 
 
 That also strengthens the existing inquiry [[gnostic-canonical-gospels-telling-the-truth|What if both the Gnostic and canonical Gospels are telling the truth?]] A constructive reconciliation needs to acknowledge real differences before treating texts as complementary. The *Gospel of Truth* offers material for that work, but it should retain the freedom to disagree with both later orthodoxy and a modern theory of what “Gnostic” religion ought to mean.
 
+## Further connections: John, Constantine and the scrolls
+
+[[dead-sea-scrolls-jewish-diversity-and-empire|Jewish light-and-darkness traditions]] widen the background for comparison without establishing direct dependence. The [[mandaean-origins-john-and-migration|Mandaean John study]] supplies a contrasting religious evaluation of Jesus, while [[constantine-consolidation-and-christian-diversity|Constantine and diversity]] separates the history of such interpretations from their later institutional reception.
+
 ## Sources and access notes
 
 1. [The Gospel of Truth, translated by Mark M. Mattison](https://thegnosticgospels.org/gospels/gospel-of-truth/). Complete accessible text with manuscript page numbers, expressly dedicated to the public domain. Pages 17–18 support the Error/tree comparison; pages 19–20 support the living-book and death discussion. Editorial additions in the translation are distinguished from manuscript wording.

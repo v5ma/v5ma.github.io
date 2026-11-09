@@ -49,6 +49,14 @@
       {
         "href": "../unsealed/index.html",
         "label": "Unsealed inheritance: recovering texts and reconsidering a canon"
+      },
+      {
+        "href": "../jesus-resurrection-empire-20261109/mandaean-origins-john-and-migration.html",
+        "label": "Mandaean origins, John and migration"
+      },
+      {
+        "href": "../jesus-resurrection-empire-20261109/dead-sea-scrolls-jewish-diversity-and-empire.html",
+        "label": "Dead Sea Scrolls, Jewish diversity and Roman power"
       }
     ],
     "topic": "topic-origins"
@@ -169,6 +177,10 @@
       {
         "href": "../scripture-concordance/index.html",
         "label": "The scripture concordance"
+      },
+      {
+        "href": "../jesus-resurrection-empire-20261109/constantine-consolidation-and-christian-diversity.html",
+        "label": "Constantine, consolidation and Christian diversity"
       }
     ],
     "topic": "topic-apocalypse"

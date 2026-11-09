@@ -46,6 +46,10 @@ An early proclamation constrains a late-invention theory without deciding how ev
 
 The new bridge [[ransom-revelation-and-defeated-rulers|Ransom, revelation and defeated rulers]] compares Mark 10, 1 Corinthians 2 and Colossians 2 with the two Nag Hammadi works. The [[gospel-of-truth-cross-and-knowledge|Gospel of Truth]] is especially useful because knowledge and Jesus’s life-giving death appear together. This complicates a rigid division between canonical sacrifice and noncanonical awakening, while preserving the chronological distinction between early Pauline testimony and later Christian interpretation.
 
+## Further connections: John, Constantine and the scrolls
+
+[[constantine-consolidation-and-christian-diversity|The real-time split within early Christianity]] places these early formulas beside arguments over authority before Constantine. [[dead-sea-scrolls-jewish-diversity-and-empire|The Dead Sea Scrolls]] supply a Jewish setting for angelic conflict and apocalyptic expectation without making every later Christian text dependent on Qumran.
+
 ## Sources and access notes
 
 1. James Ware, [The Resurrection of Jesus in the Pre-Pauline Formula of 1 Cor 15.3–5](https://doi.org/10.1017/S0028688514000150), *New Testament Studies* 60.4 (2014): 475–498. A counterargument favoring bodily resurrection in the formula.

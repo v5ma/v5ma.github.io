@@ -56,6 +56,10 @@ A useful inquiry names the actor, action, target, date and source. Did an author
 
 This method preserves the force of Micah's question: how can institutional power determine what future readers encounter as Christianity? It replaces a single totalizing explanation with mechanisms that can actually be examined. [[competing-crosses-and-imperial-capture|Competing crosses and imperial capture]] joins that institutional history to the close reading of the crucifixion texts.
 
+## Further connections: John, Constantine and the scrolls
+
+[[constantine-consolidation-and-christian-diversity|The Director’s Cut: Constantine, consolidation and Christian diversity]] develops the chronology from pre-imperial disputes through Nicaea, copying commissions, the 367 list and later law. [[dead-sea-scrolls-jewish-diversity-and-empire|The Dead Sea Scrolls]] investigate a much earlier Jewish archive, and [[mandaean-origins-john-and-migration|Mandaean origins and John]] distinguish living tradition from a securely dated ancestral chain.
+
 ## Sources and access notes
 
 1. [Irenaeus, Against Heresies 3.11.8–9](https://www.newadvent.org/fathers/0103311.htm). Accessible primary translation for the four-Gospel argument and Valentinian Gospel of Truth notice.

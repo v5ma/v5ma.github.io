@@ -9,9 +9,9 @@
       "title": "Searching for the interpretation that changes the interpretation",
       "summary": "A direct statement of purpose and a method for comparing canonical and noncanonical evidence without collapsing manuscript dates, canon history and empire.",
       "source": "sources/purpose-and-unorthodox-interpretation.md",
-      "sourceSha256": "d453161f684456301067e4f3fb26a1f3349473db525fe5bf116c975ee6901c2a",
-      "words": 1452,
-      "sections": 7
+      "sourceSha256": "e3d936c9b893dc1140cc05b18a6786e94ebff21ada6bdbcaeb0c304ce09cafde",
+      "words": 1505,
+      "sections": 8
     },
     {
       "slug": "how-the-argument-developed",
@@ -19,9 +19,9 @@
       "title": "How the argument developed: Jesus, resurrection and empire",
       "summary": "Trace the historical-Jesus hypothesis, Paul, later Gospel narratives, countertexts and the move to a first-century imperial question.",
       "source": "sources/how-the-argument-developed.md",
-      "sourceSha256": "f2fcbcc6a25243b230f1e01c39d2a3b259b521906308c53e10653dcfd4298ac8",
-      "words": 1398,
-      "sections": 8
+      "sourceSha256": "3ffdc617481e44546a701a522465f45a1b712f297bbcf899b75ee289b1975291",
+      "words": 1447,
+      "sections": 9
     },
     {
       "slug": "early-creeds-angels-and-resurrection",
@@ -29,9 +29,9 @@
       "title": "Early creeds, angels and resurrection evidence",
       "summary": "Examine 1 Corinthians 15, Philippians 2, Colossians 1, Hebrews 13 and angelic hospitality, separating early testimony from later interpretive claims.",
       "source": "sources/early-creeds-angels-and-resurrection.md",
-      "sourceSha256": "c165f13c183283e4414a1f1af917e7703578def8931ca80b3d2ac4d001826e71",
-      "words": 1396,
-      "sections": 8
+      "sourceSha256": "ec267d52ca5d4b023d4c4014611866f871e51fce3c704b938b0a18a7047af3bb",
+      "words": 1443,
+      "sections": 9
     },
     {
       "slug": "imperial-pressure-and-pilate",
@@ -39,9 +39,9 @@
       "title": "Imperial pressure and the Gospel Pilate",
       "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
       "source": "sources/imperial-pressure-and-pilate.md",
-      "sourceSha256": "a5312d2fe6adfe9166cbebf24c267949a7614b6725e512572d6442ae63ad4893",
-      "words": 1387,
-      "sections": 8
+      "sourceSha256": "e61c16f462c648d058d5b136b0a2e42841e5ae4f84b267f20f89d973617e140b",
+      "words": 1437,
+      "sections": 9
     },
     {
       "slug": "competing-crosses-and-imperial-capture",
@@ -49,9 +49,9 @@
       "title": "Competing crosses and the imperial-capture hypothesis",
       "summary": "Connect the Pilate inquiry to contrasting crucifixion interpretations, testing partial and contested capture rather than a single coordinated rewrite.",
       "source": "sources/competing-crosses-and-imperial-capture.md",
-      "sourceSha256": "bbe914094d8010487ed7dd3230419115120d345b75f6bc58db3fb9f70b938ba2",
-      "words": 1473,
-      "sections": 9
+      "sourceSha256": "8fd2559d81180ac84712d21e235ad291e36e1eed42fe7cbb99769adcd151ea04",
+      "words": 1518,
+      "sections": 10
     },
     {
       "slug": "laughing-jesus-apocalypse-of-peter",
@@ -59,9 +59,9 @@
       "title": "The laughing Jesus: crucifixion and authority in the Apocalypse of Peter",
       "summary": "Read the living Jesus, suffering counterpart and critique of bishops and deacons in NHC VII,3, with precise manuscript locators and political implications.",
       "source": "sources/laughing-jesus-apocalypse-of-peter.md",
-      "sourceSha256": "3413e5008ac15471dd7b34fd77e1eae0f16779a5192657e84faf18fa1fb6df1b",
-      "words": 1288,
-      "sections": 8
+      "sourceSha256": "7ede40bff7137ad64e14b883cdb0aa52939d2d5a5f4fbd2271dbb9f4ae8314e1",
+      "words": 1341,
+      "sections": 9
     },
     {
       "slug": "gospel-of-truth-cross-and-knowledge",
@@ -69,9 +69,9 @@
       "title": "The Gospel of Truth: the cross as knowledge",
       "summary": "Follow Error, the fruit of knowledge and the living book, preserving the text’s positive account of Jesus’s death and its uncertain attribution.",
       "source": "sources/gospel-of-truth-cross-and-knowledge.md",
-      "sourceSha256": "cde35053cd573fd3575451cd5296d2f3e37f4d45c2ae0bed78d71789dac3790a",
-      "words": 1381,
-      "sections": 8
+      "sourceSha256": "5ae7746299731f76e5e72be00b751ef4dd8e1c1a4569f65951422896a36a54f9",
+      "words": 1427,
+      "sections": 9
     },
     {
       "slug": "ransom-revelation-and-defeated-rulers",
@@ -79,9 +79,9 @@
       "title": "Ransom, revelation and defeated rulers",
       "summary": "Compare Mark’s service and ransom, Paul’s ignorant rulers, Colossians’ defeated powers and the overlapping Nag Hammadi accounts of salvation.",
       "source": "sources/ransom-revelation-and-defeated-rulers.md",
-      "sourceSha256": "1b7f83501442edced6b13e408b86868e9edc15861cfc18ae8ead0d231fefb808",
-      "words": 1379,
-      "sections": 8
+      "sourceSha256": "9b65282d630e25441c92734fa20c1c79a85a8c056141a5ae1d10ad08f3926185",
+      "words": 1422,
+      "sections": 9
     },
     {
       "slug": "canon-coercion-and-nag-hammadi-survival",
@@ -89,72 +89,117 @@
       "title": "Canon, coercion and the survival of Nag Hammadi",
       "summary": "Distinguish early boundary-making, Constantine’s coercive measures, Athanasius’s list and competing explanations of the books’ preservation.",
       "source": "sources/canon-coercion-and-nag-hammadi-survival.md",
-      "sourceSha256": "3721b567be26d33254f46c0ceff99fb0d07975addd6a6c9b23f4e940198a511c",
-      "words": 1394,
+      "sourceSha256": "6560951ba56e8af354192b95e3d2d6423bcb017957b8f76efd97f0762e356747",
+      "words": 1450,
+      "sections": 10
+    },
+    {
+      "slug": "mandaean-origins-john-and-migration",
+      "navLabel": "Mandaeans and John",
+      "title": "Mandaean origins: John the Baptist, migration and rival memory",
+      "summary": "Investigate whether Mandaean ancestors knew John or fled after his execution, comparing western-migration arguments, Mesopotamian evidence and the limits of later sacred history.",
+      "source": "sources/mandaean-origins-john-and-migration.md",
+      "sourceSha256": "a733c94363787e839b8e1cca9dd21444ded72db8eaa16108b92b128866c7de36",
+      "words": 1689,
+      "sections": 9
+    },
+    {
+      "slug": "constantine-consolidation-and-christian-diversity",
+      "navLabel": "Constantine and diversity",
+      "title": "The Director’s Cut: Constantine, consolidation and Christian diversity",
+      "summary": "Trace diverse early Christian responses and the distinct stages of imperial patronage, councils, coercion, manuscript copying and canon formation.",
+      "source": "sources/constantine-consolidation-and-christian-diversity.md",
+      "sourceSha256": "b73c7d61de0711cbb948e18259e5780f3e1a9c2c403da121f6d4ab93e54a38f4",
+      "words": 1782,
+      "sections": 9
+    },
+    {
+      "slug": "dead-sea-scrolls-jewish-diversity-and-empire",
+      "navLabel": "Dead Sea Scrolls",
+      "title": "The Dead Sea Scrolls: Jewish diversity, Roman power and the limits of a straight line",
+      "summary": "Read textual plurality, Enochic traditions, light and darkness and the Roman Kittim as evidence for a varied Jewish world, while testing proposed later connections.",
+      "source": "sources/dead-sea-scrolls-jewish-diversity-and-empire.md",
+      "sourceSha256": "6b64b9001af9b04cdd17880af3f0e1818d9f42287330b897f1c27f819ecc8f52",
+      "words": 1948,
       "sections": 9
     }
   ],
-  "searchSections": 73,
+  "searchSections": 109,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
-      "bytes": 15681,
-      "sha256": "2c13d8817171d27db4a4d5df8c126723f76c0d7645f83f9d08885e3b030a904c"
+      "bytes": 16710,
+      "sha256": "09d58988e6e0413b4266b859cac871b53db02755efe6edd48a9baa6c3ef0fe32"
     },
     {
       "path": "how-the-argument-developed.html",
-      "bytes": 15259,
-      "sha256": "0fdc62a16405e6753bbd47785490904f081632b26f315d121a350d2a97285cc2"
+      "bytes": 16229,
+      "sha256": "7f80ae2a7497362530991e47370056a5b1f2196233ef1a9453f69240b9cefec8"
     },
     {
       "path": "early-creeds-angels-and-resurrection.html",
-      "bytes": 15617,
-      "sha256": "0daa399558b9b4c8dd1018bdf3400072990f3f7e73875abdd6e9dad0dfc6b721"
+      "bytes": 16540,
+      "sha256": "636496d643116b25e85eca2780405ab8a6a96afdfa9b26f91c75d0b09b6733ab"
     },
     {
       "path": "imperial-pressure-and-pilate.html",
-      "bytes": 15104,
-      "sha256": "3f990639231701450b72accbabda8a56133b9876e1998fb83517ac7ac3f54a7a"
+      "bytes": 16074,
+      "sha256": "8a1786f6c8fb35eef8e3f77ce2512a25a263435a3287f2dc108048718181f635"
     },
     {
       "path": "competing-crosses-and-imperial-capture.html",
-      "bytes": 15459,
-      "sha256": "859e50acb5d0a3fe45689835d3a7fd5cfb10da269cd138b95e2bdb3c5948d5d2"
+      "bytes": 16432,
+      "sha256": "d59a331a8e145f8ea7055a3b516e607844aa7f70bc10e57d3e018e6665e9e7fd"
     },
     {
       "path": "laughing-jesus-apocalypse-of-peter.html",
-      "bytes": 13695,
-      "sha256": "6df94cae53ec6032f0e5fbf91305d5a2d01ddccd4a3ba8979f0cd522d5c9ea92"
+      "bytes": 14626,
+      "sha256": "bf39bd1ccbb99995cc4066e8ed128f1c8b5cd52a8ac8236294d0daf772d352f0"
     },
     {
       "path": "gospel-of-truth-cross-and-knowledge.html",
-      "bytes": 14523,
-      "sha256": "415c2674d9b3fc44337811f547fa8cd21a4c5bde85779a465dfed065dd6253d8"
+      "bytes": 15529,
+      "sha256": "c98a3d202dd7ea55a474e106c0363fe8342d57ad51038f6da6fbb69ebdae2623"
     },
     {
       "path": "ransom-revelation-and-defeated-rulers.html",
-      "bytes": 14110,
-      "sha256": "23268b9658213b851ae78e04c8587fbecb2346530e43b81833b25b308ad861cd"
+      "bytes": 15017,
+      "sha256": "57a7bb6028717f9c235c1e832956d2f0fbc5612431b478468f0d3541354ca67c"
     },
     {
       "path": "canon-coercion-and-nag-hammadi-survival.html",
-      "bytes": 15048,
-      "sha256": "50dd42d3d5db8703833898d31f2b21f84d2062c940dc031bd65af594d4ad8a4d"
+      "bytes": 16171,
+      "sha256": "754f76a1948c9fdd71c24de7f7d542cf660d05835a87b9f8a36f80967e0d0e97"
+    },
+    {
+      "path": "mandaean-origins-john-and-migration.html",
+      "bytes": 18258,
+      "sha256": "4cb9462666d7a117f442a44fa772453ee81acd0558a9d7b55deee4531a0dac2a"
+    },
+    {
+      "path": "constantine-consolidation-and-christian-diversity.html",
+      "bytes": 19240,
+      "sha256": "ef11f1edb03f8ceae0e495a393f2c4ef5ffe7091af165776e59d6e46068966a5"
+    },
+    {
+      "path": "dead-sea-scrolls-jewish-diversity-and-empire.html",
+      "bytes": 20213,
+      "sha256": "c9773c7e9c5d7f972225b97b9d3b41760341e765687dcc5344071d30d2b2edf0"
     },
     {
       "path": "index.html",
-      "bytes": 7821,
-      "sha256": "512efbf94bbe0e600853ea38351bef9406e485e1e7de0791413853a51f7a98e0"
+      "bytes": 9501,
+      "sha256": "d7f22c7656fe73623c4df957ba7fe0dd3fa245d47acbf06028668a4213aad891"
     },
     {
       "path": "search-index.json",
-      "bytes": 104109,
-      "sha256": "492aaea14a6afb383e0c91448d065095a058413cdb07198cbe215c2c7f90e387"
+      "bytes": 154624,
+      "sha256": "0a97f881c27641cf7e18a3e4111cbb59d273c1bca4678a688518219a1ff5ba25"
     },
     {
       "path": "search-data.js",
-      "bytes": 101503,
-      "sha256": "b7c4ebf5fbc4846085222f82d436d27e275b5a0938122adf836cb33065ea1a49"
+      "bytes": 150722,
+      "sha256": "ecfb866b4da17f9f6a537354e11e6c05cb5a13c67e19ca851eb23e92d388764d"
     }
   ]
 }

@@ -48,6 +48,10 @@ The Apocalypse gives [[living-jesus-thomas-john-and-synoptics|The Living Jesus i
 
 The chapter also complicates a simple contrast between ransom and revelation: the Apocalypse itself contains ransom vocabulary around VII 78.1–18. A word's presence does not make its whole salvation model identical to Mark's. The useful bridge is [[ransom-revelation-and-defeated-rulers|Ransom, revelation and defeated rulers]], where vocabulary, narrative and later theories are compared separately.
 
+## Further connections: John, Constantine and the scrolls
+
+The [[mandaean-origins-john-and-migration|Mandaean representation of John and Jesus]] is a useful contrast: it can contest Jesus’s authority rather than defend a different account of the living Savior. [[constantine-consolidation-and-christian-diversity|Early Christian diversity and imperial consolidation]] explains why those distinct positions should not be merged into two uniform camps.
+
 ## Sources and access notes
 
 1. [Coptic Apocalypse of Peter, translated by James Brashler and Roger A. Bullard](https://www.earlychristianwritings.com/text/apocalypsepeter.html). Accessible complete translation checked for the crucifixion vision, ecclesiastical polemic and ransom language. Brief quotations retain this translation's wording; interpretive summaries are not presented as direct quotation.

@@ -64,6 +64,10 @@ Within that constructive project, [[antichrist-as-a-pattern-of-conduct|Antichris
 
 The new comparisons therefore knit together two tasks: recovering a wider range of ancient Christian possibilities and asking what their use does to people now. Neither task requires pretending that the sources agree. Their disagreements are part of what makes a serious reconsideration possible.
 
+## Further connections: John, Constantine and the scrolls
+
+[[constantine-consolidation-and-christian-diversity|The Director’s Cut: Constantine, consolidation and Christian diversity]] gives the institutional hypothesis its own chronology. [[mandaean-origins-john-and-migration|Mandaean origins and John]] and [[dead-sea-scrolls-jewish-diversity-and-empire|the Dead Sea Scrolls]] widen the religious comparison without treating every dissenting voice as one anti-Roman movement.
+
 ## Sources and access notes
 
 1. [Gospel of Peter, translated by Raymond E. Brown](https://www.earlychristianwritings.com/text/gospelpeter-brown.html), especially sections 1–5 and 45–46. Accessible primary translation checked for Herod's command and Pilate's self-exoneration. This text is not the Coptic Apocalypse of Peter.

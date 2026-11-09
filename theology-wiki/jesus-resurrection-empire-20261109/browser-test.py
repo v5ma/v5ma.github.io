@@ -59,7 +59,7 @@ def main():
                 page.screenshot(path=str(artifacts/f'overview-{size["width"]}.png'),full_page=True)
             checks.append('All chapter pages: headings/content and no overflow at 1440px and 390px; overview card count matches manifest')
             page.set_viewport_size({'width':1440,'height':1000}); page.goto(base)
-            for term in ['Pilate','angels','orthodox','Nag Hammadi','Valentinus','ransom']:
+            for term in ['Pilate','angels','orthodox','Nag Hammadi','Valentinus','ransom','Mandaeans','Kittim','Constantine','Artabanus']:
                 page.locator('#query').fill(term)
                 assert page.locator('#search-results .result').count()>0, term
                 assert 'matching section' in page.locator('#search-status').inner_text()
