@@ -12,6 +12,14 @@ The contrast grows more specific when texts are read beside one another. [[ranso
 
 There was no single moment when two finished camps, “orthodox” and “Gnostic,” separated in perfect agreement about their own boundaries. Nor did every alternative have the same political implications. A rejection of bodily suffering could deprive the executioner of ultimate victory, but that theological move is not by itself an explicit program against the Roman state. Canonical writings can also challenge domination. Those complications make [[competing-crosses-and-imperial-capture|the comparative hypothesis]] more precise.
 
+Different responses to worldly power are visible even inside the eventual canon:
+
+- **Order and accommodation:** Romans 13:1–7 calls for subjection to governing authorities, payment of taxes and honor. Its rationale can support social order, although the passage does not tell us that Paul approved every imperial action.
+- **Apocalyptic indictment:** Revelation 17–18 portrays Babylon as predatory, luxurious and implicated in the blood of the faithful. The familiar interpretation connecting Babylon with Rome makes this an especially sharp counterpoint to an obedient-imperial reading of Christianity.
+- **A different model of leadership:** Mark 10:42–45 contrasts rulers who dominate with a community ordered around service. The saying challenges the pattern of power without laying out a complete program for overthrowing the Roman state. [11]
+
+These are overlapping textual responses, not a census of three neatly separated parties. A community might pay taxes, reject emperor worship, condemn exploitation and still refuse armed revolt. The contrast matters because a later institution could emphasize one response while limiting the public force of another. The theological diversity of the cross and the political diversity of Christian conduct must be investigated together without assuming they map perfectly onto each other.
+
 ## Consolidation began before imperial patronage
 
 Around 180 CE, Irenaeus argues for exactly four Gospels and criticizes rival Gospel use, including a Valentinian Gospel of Truth. His *Against Heresies* 3.11 is evidence of a second-century effort to define legitimate inheritance. It also makes disagreement visible through the person trying to restrict it. We should not mistake his categories for a complete census of the movement. [2]
@@ -80,3 +88,4 @@ The Director’s Cut therefore names a question about selection and power, not a
 8. [Athanasius, Festal Letter 39](https://www.newadvent.org/fathers/2806039.htm), 367 CE. Episcopal classification of canonical, instructional and rejected books.
 9. [Theodosian Code 16.1.2](https://sourcebooks.fordham.edu/source/theodcodeXVI.asp), 380 CE. The legal extract is the evidence used here. The hosting page's introductory claim attributing the 311 toleration to Constantine is inaccurate: that earlier edict was Galerius's.
 10. [Codex Sinaiticus Project: contents](https://codexsinaiticus.org/en/codex/content.aspx). Institutional description of the manuscript's books, including Barnabas and Hermas.
+11. [Romans 13:1–7, Revelation 17–18 and Mark 10:42–45](https://www.biblegateway.com/passage/?search=Romans%2013%3A1-7%3B%20Revelation%2017-18%3B%20Mark%2010%3A42-45&version=NRSVUE). Primary passages compared for submission, apocalyptic indictment and service. These categories describe readings, not a fixed scholarly taxonomy of separate movements.

@@ -109,8 +109,8 @@
       "title": "The Director’s Cut: Constantine, consolidation and Christian diversity",
       "summary": "Trace diverse early Christian responses and the distinct stages of imperial patronage, councils, coercion, manuscript copying and canon formation.",
       "source": "sources/constantine-consolidation-and-christian-diversity.md",
-      "sourceSha256": "b73c7d61de0711cbb948e18259e5780f3e1a9c2c403da121f6d4ab93e54a38f4",
-      "words": 1782,
+      "sourceSha256": "8873e4ad85dc177831a0ae7df5b7218ca2d771c1472aa0ddff593b188bcf5d5f",
+      "words": 2004,
       "sections": 9
     },
     {
@@ -178,8 +178,8 @@
     },
     {
       "path": "constantine-consolidation-and-christian-diversity.html",
-      "bytes": 19240,
-      "sha256": "ef11f1edb03f8ceae0e495a393f2c4ef5ffe7091af165776e59d6e46068966a5"
+      "bytes": 21118,
+      "sha256": "bb09bba7968cd809a31e6381e36ee611cbacf0769efa5eb94abd2cd365533f66"
     },
     {
       "path": "dead-sea-scrolls-jewish-diversity-and-empire.html",
@@ -193,13 +193,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 154624,
-      "sha256": "0a97f881c27641cf7e18a3e4111cbb59d273c1bca4678a688518219a1ff5ba25"
+      "bytes": 156182,
+      "sha256": "8b779b65af4627936d9f3e65dd3e5e45fbdf7583e7e1ef79b38c7e0a3a48abc2"
     },
     {
       "path": "search-data.js",
-      "bytes": 150722,
-      "sha256": "ecfb866b4da17f9f6a537354e11e6c05cb5a13c67e19ca851eb23e92d388764d"
+      "bytes": 152280,
+      "sha256": "1330220973eb32ae6a3e48ef8f0e94421dadc3c78fa40f0c304df03051c3875a"
     }
   ]
 }

@@ -84,7 +84,7 @@ test('all nine published chapter bodies and their existing wikilinks are preserv
 test('new origins studies retain chronological and evidential distinctions',()=>{
  const m=read('sources/mandaean-origins-john-and-migration.md'),c=read('sources/constantine-consolidation-and-christian-diversity.md'),d=read('sources/dead-sea-scrolls-jewish-diversity-and-empire.md');
  for(const t of ['does not establish it','Müller-Kessler','Mesopotamian','Artabanus','late 20s or early 30s','70 CE','pp. 83–87','do not identify','migration'])assert.ok(m.includes(t),t);
- for(const t of ['**313:**','**325:**','**337:**','**367:**','**380:**','fifty copies','do not promulgate a complete New Testament','real-time split','Barnabas','coercion'])assert.ok(c.includes(t),t);
+ for(const t of ['**313:**','**325:**','**337:**','**367:**','**380:**','fifty copies','do not promulgate a complete New Testament','real-time split','Romans 13:1–7','Revelation 17–18','Mark 10:42–45','Barnabas','coercion'])assert.ok(c.includes(t),t);
  for(const t of ['not Christian Gospels','textual plurality','1QpHab','VI.2–5','Kittim','Ethiopian','does not say those angels created','not a modern ideal','unbroken Qumran'])assert.ok(d.includes(t),t);
  assert.doesNotMatch(m+c+d,/libfile_|Pasted text|supplied summaries/);
 });
