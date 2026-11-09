@@ -110,6 +110,7 @@ test('Eusebius extension preserves all twelve earlier chapter bodies',()=>{
 });
 test('Eusebius and Bauer chapter preserves chronology, geography, criticism and evidence limits',()=>{
  const slug='eusebius-bauer-orthodoxy-and-heresy',s=read('sources/'+slug+'.md'),h=read(slug+'.html');
+ assert.doesNotMatch(h,/\*/,'No unrendered emphasis markers');
  for(const term of ['**1934**','**1971**','Hegesippus','3.25','3.32.7','4.7.1','Irenaeus','Tertullian','Edessa','Egypt','Ephesus, Magnesia, Tralles and Philadelphia','Rome','Harnack','Turner','Robinson','Harrington','Jorgensen','Williams','Nag Hammadi','demographic survey','not automatically','full article was not reviewed'])assert.ok(s.includes(term),term);
  assert.match(s,/did not establish that every alternative was earlier/);
  for(let n=1;n<=19;n++)assert.ok(h.includes('id="ref-'+n+'"'),n);

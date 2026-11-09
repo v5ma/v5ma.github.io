@@ -129,8 +129,8 @@
       "navLabel": "Eusebius and Bauer",
       "summary": "Compare apostolic continuity and heresy as deviation with Bauer’s 1934 regional challenge, its scholarly reception, and the limits of the surviving evidence.",
       "source": "sources/eusebius-bauer-orthodoxy-and-heresy.md",
-      "sourceSha256": "169a48ec33ac94cb6d1908d888feb291e14dbac475ad2d9f90ad8bca4184ecb8",
-      "words": 3044,
+      "sourceSha256": "a1770cfc72700fe7e0bc8db2a80f27f72610eb6adde4eddb0e61a96dac124530",
+      "words": 3045,
       "sections": 10
     }
   ],
@@ -198,8 +198,8 @@
     },
     {
       "path": "eusebius-bauer-orthodoxy-and-heresy.html",
-      "bytes": 31405,
-      "sha256": "223faf5e3650ccc0bd52e276256d47379559b690faa12e4ff25c0a12e62febd6"
+      "bytes": 31417,
+      "sha256": "b43c55e59fd063c3bc558edf3b5e18623dadb8df46b2fcf4a1812b1fe3a22bd0"
     },
     {
       "path": "index.html",
@@ -209,12 +209,12 @@
     {
       "path": "search-index.json",
       "bytes": 183798,
-      "sha256": "d1e7aed228c9467f4b8553134b9889e8f9feeae4d845dc639d065c9d0067efd4"
+      "sha256": "f4249a7307c2ca60f0238e00b82e4c096b30f6b6109e03772ff67dfe4d708495"
     },
     {
       "path": "search-data.js",
       "bytes": 179320,
-      "sha256": "da7b602515ca41db9537ae2022c1a56f25da7f1e656b82f38a7297cabe8341c0"
+      "sha256": "358bb6840b9500f262217fd99e9fc2447c598bb714d47083a1e5b16f860c57f7"
     }
   ]
 }

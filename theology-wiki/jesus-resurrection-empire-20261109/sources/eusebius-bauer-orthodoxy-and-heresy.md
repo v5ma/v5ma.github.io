@@ -81,8 +81,8 @@ Bauer's influence was also uneven and gradual. The reception appendix to the Eng
 
 Several criticisms deserve to remain visible:
 
-- **H. E. W. Turner, *The Pattern of Christian Truth* (1954):** continuity can involve relatively stable commitments expressed through flexible and developing theology. Acknowledging development need not mean that every community began without shared substance. [13]
-- **Thomas A. Robinson, *The Bauer Thesis Examined* (1988):** regional conclusions, especially for Asia Minor, require testing rather than acceptance as a package. An influential thesis can be challenged at the level of geography and source interpretation. [16]
+- **H. E. W. Turner:** *The Pattern of Christian Truth* (1954) proposes that continuity can involve relatively stable commitments expressed through flexible and developing theology. Acknowledging development need not mean that every community began without shared substance. [13]
+- **Thomas A. Robinson:** *The Bauer Thesis Examined* (1988) challenges regional conclusions, especially for Asia Minor. An influential thesis can be tested at the level of geography and source interpretation rather than accepted as a package. [16]
 - **Later work on categories and identity:** a survey by David W. Jorgensen describes continuing approaches to boundary-making, social relations and the language of “proto-orthodoxy,” alongside outright criticism of Bauer. The field is not adequately represented as unanimous acceptance or unanimous rejection. [17]
 - **Critiques of “Gnosticism”:** Michael Allen Williams questions treating diverse materials as a single coherent religion defined by a fixed set of stereotypes. Recovering plurality on one side while flattening every alternative into one “Gnostic church” would reproduce the problem in reverse. [18]
 
