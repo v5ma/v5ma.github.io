@@ -22,7 +22,7 @@ python theology-wiki/alternative-inheritances-20261109/browser_check.py
 node theology-wiki/jesus-resurrection-empire-20261109/build.cjs --check
 ```
 
-`browser_check.py` exercises the local guide at desktop/mobile widths, the actual reader extension in deterministic fixtures, repeated page events, delayed archive-card rendering, navigation cleanup and search. With a complete checkout it also checks four real reader routes and the browser Back journey. Set `INHERITANCE_BASE=https://v5ma.github.io` for public deployment verification. Fixture tests alone do not claim to replace testing the full live reader. The source copies and historical archive remain unchanged; only the newer static DSS and Apocalypse of Peter chapters receive inline editorial bridges.
+`browser_check.py` exercises the local guide at desktop/mobile widths, the actual reader extension in deterministic fixtures, repeated page events, delayed archive-card rendering, navigation cleanup and search. With a complete checkout it also checks all eight real reader routes and the browser Back journey. The master workflow waits for exact published bytes before testing the live reader. Set `INHERITANCE_BASE=https://v5ma.github.io` for public deployment verification. Fixture tests alone do not claim to replace testing the full live reader. The source copies and historical archive remain unchanged; only the newer static DSS and Apocalypse of Peter chapters receive inline editorial bridges.
 
 ## Scholarly limits
 

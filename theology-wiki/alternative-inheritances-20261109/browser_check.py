@@ -11,8 +11,8 @@ threading.Thread(target=server.serve_forever, daemon=True).start()
 base = os.environ.get('INHERITANCE_BASE', f'http://127.0.0.1:{server.server_port}').rstrip('/')
 cfg = json.loads((HERE / 'manifest.json').read_text())
 bundle = (HERE / 'reader-links.js').read_text()
-out = HERE / 'qa'
-out.mkdir(exist_ok=True)
+out = HERE / os.environ.get('INHERITANCE_REPORT_DIR', 'qa/local')
+out.mkdir(parents=True, exist_ok=True)
 checks = []
 try:
  with sync_playwright() as p:

@@ -37,6 +37,14 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Check desktop/mobile guide and reader bridge behavior
         run: python theology-wiki/alternative-inheritances-20261109/browser_check.py
+      - name: Wait for exact published bytes and test the live reader
+        if: github.ref == 'refs/heads/master'
+        env:
+          INHERITANCE_BASE: https://v5ma.github.io
+          INHERITANCE_REPORT_DIR: qa/live
+        run: |
+          python theology-wiki/alternative-inheritances-20261109/verify-live.py
+          python theology-wiki/alternative-inheritances-20261109/browser_check.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
