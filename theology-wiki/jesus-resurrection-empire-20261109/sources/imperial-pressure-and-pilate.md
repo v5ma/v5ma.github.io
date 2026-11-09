@@ -46,6 +46,10 @@ The [[laughing-jesus-apocalypse-of-peter|Coptic Apocalypse of Peter]] and the [[
 
 [[dead-sea-scrolls-jewish-diversity-and-empire|Pesher Habakkuk and the Roman Kittim]] offers an earlier Jewish example of interpreting domination through scripture. [[constantine-consolidation-and-christian-diversity|Constantine and imperial consolidation]] then examines a different period, when imperial favor could enforce Christian boundaries. The first-century composition question remains distinct from those later mechanisms.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+Continue with [[pilate-from-roman-prefect-to-christian-memory|Pilate from Roman prefect to Christian memory]] for the Gospel of Peter’s precise handwashing contrast, Tertullian, Eusebius and Ethiopian commemoration. The [[dead-sea-scrolls-and-eusebian-canon|scrolls and canon comparison]] asks why favorable narration and canonical membership cannot be treated as the same filter.
+
 ## Sources and access notes
 
 - Primary comparisons: Mark 15; Matthew 27:19–26; Luke 23:4, 14–15, 22; John 18–19; Philo, Embassy to Gaius 299–305; Josephus, Antiquities 18.55–62 and 18.85–89. [Mark 15](https://www.biblegateway.com/passage/?search=Mark+15&version=NRSVUE) and [John 19](https://www.biblegateway.com/passage/?search=John+19&version=NRSVUE) were checked in accessible chapter pages. The linked translations of Philo and Josephus are reading aids, not newly collated critical texts.

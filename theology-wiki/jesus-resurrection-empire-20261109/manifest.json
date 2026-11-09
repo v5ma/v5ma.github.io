@@ -93,6 +93,20 @@
       "navLabel": "Eusebius and Bauer",
       "summary": "Compare apostolic continuity and heresy as deviation with Bauer’s 1934 regional challenge, its scholarly reception, and the limits of the surviving evidence.",
       "source": "sources/eusebius-bauer-orthodoxy-and-heresy.md"
+    },
+    {
+      "slug": "dead-sea-scrolls-and-eusebian-canon",
+      "title": "The Dead Sea Scrolls and the Eusebian canon: what the evidence changes",
+      "navLabel": "Scrolls and canon",
+      "summary": "Compare Jewish scriptural authority with Eusebius’s actual categories, tracing Enoch, Jubilees, inherited concepts and the evidence required for imperial selection.",
+      "source": "sources/dead-sea-scrolls-and-eusebian-canon.md"
+    },
+    {
+      "slug": "pilate-from-roman-prefect-to-christian-memory",
+      "title": "Pilate from Roman prefect to Christian memory",
+      "navLabel": "Pilate’s reception",
+      "summary": "Follow Philo, Josephus, the canonical Gospels, the Gospel of Peter and Ethiopian commemoration, testing rehabilitation alongside rival memories.",
+      "source": "sources/pilate-from-roman-prefect-to-christian-memory.md"
     }
   ],
   "extensionRevision": "4dcafa165c44351aca343f49f160ca0831138100",

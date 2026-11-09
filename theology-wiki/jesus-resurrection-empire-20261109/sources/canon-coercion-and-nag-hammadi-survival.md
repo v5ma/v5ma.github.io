@@ -64,6 +64,10 @@ This method preserves the force of Micah's question: how can institutional power
 
 [[eusebius-bauer-orthodoxy-and-heresy|The Eusebius–Bauer debate]] connects the survival question to historical method. Eusebius’s disputed-book categories complicate his own continuity narrative; Nag Hammadi expands the archive without functioning as a census or confirming every regional reconstruction in Bauer.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+The [[dead-sea-scrolls-and-eusebian-canon|scrolls and Eusebian canon comparison]] asks what archaeological witnesses can establish about changing scriptural boundaries. [[pilate-from-roman-prefect-to-christian-memory|Pilate’s reception]] uses Serapion and the Gospel of Peter to distinguish doctrinal exclusion from the politics of a narrative.
+
 ## Sources and access notes
 
 1. [Irenaeus, Against Heresies 3.11.8–9](https://www.newadvent.org/fathers/0103311.htm). Accessible primary translation for the four-Gospel argument and Valentinian Gospel of Truth notice.

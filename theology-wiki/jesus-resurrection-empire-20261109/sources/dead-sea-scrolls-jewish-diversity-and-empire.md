@@ -74,6 +74,10 @@ The comparison works when it asks a common question of different archives: what 
 
 The resulting argument is strong without that shortcut. Religious history was more varied than a single later canon can show. Communities argued about authority before imperial sponsorship, and imperial power later changed the stakes of some arguments. Recovering the scrolls helps restore the questions and possibilities that a narrower reading forgets. It does not tell us in advance which modern reconstruction must win.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+The [[dead-sea-scrolls-and-eusebian-canon|scrolls and Eusebian canon study]] develops graded authority, Josephus’s twenty-two books and Eusebius’s disputed Christian writings. [[pilate-from-roman-prefect-to-christian-memory|Pilate’s changing reception]] supplies a different test of imperial accommodation: a noncanonical book can also soften Roman responsibility.
+
 ## Sources and access notes
 
 1. [Dana M. Pike, “The Dead Sea Scrolls and the New Testament”](https://rsc.byu.edu/new-testament-history-culture-society/dead-sea-scrolls-new-testament), 2019. Scholarly overview of corpus, chronology and Christian-origins comparisons, published in an explicitly Latter-day Saint educational setting.

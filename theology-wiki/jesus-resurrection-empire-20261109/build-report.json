@@ -9,9 +9,9 @@
       "title": "Searching for the interpretation that changes the interpretation",
       "summary": "A direct statement of purpose and a method for comparing canonical and noncanonical evidence without collapsing manuscript dates, canon history and empire.",
       "source": "sources/purpose-and-unorthodox-interpretation.md",
-      "sourceSha256": "7346815574a49dbb794e9f1c117049c19a9b5f09e1bd48a498691fe504c73d3c",
-      "words": 1547,
-      "sections": 9
+      "sourceSha256": "fcf25d08d18e0feecfc0c3853acb18dec53684ce443e3d343da2d32a47c567dd",
+      "words": 1587,
+      "sections": 10
     },
     {
       "slug": "how-the-argument-developed",
@@ -39,9 +39,9 @@
       "title": "Imperial pressure and the Gospel Pilate",
       "summary": "Compare Gospel portrayals of Pilate with Philo and Josephus, testing accommodation and anti-imperial readings without assuming state authorship.",
       "source": "sources/imperial-pressure-and-pilate.md",
-      "sourceSha256": "e61c16f462c648d058d5b136b0a2e42841e5ae4f84b267f20f89d973617e140b",
-      "words": 1437,
-      "sections": 9
+      "sourceSha256": "aa29eb01e87400a98ad06a84b48695620fb1ca57e4a9120f29275b45f0a02100",
+      "words": 1486,
+      "sections": 10
     },
     {
       "slug": "competing-crosses-and-imperial-capture",
@@ -89,9 +89,9 @@
       "title": "Canon, coercion and the survival of Nag Hammadi",
       "summary": "Distinguish early boundary-making, Constantine’s coercive measures, Athanasius’s list and competing explanations of the books’ preservation.",
       "source": "sources/canon-coercion-and-nag-hammadi-survival.md",
-      "sourceSha256": "ee4bbd1b43beb47195a0314e054ad08423d27c74489ea6fbc9ca09dec5a1d70d",
-      "words": 1491,
-      "sections": 11
+      "sourceSha256": "2da68cc26f7ded3e68a06a15cf530401e6a80b0c9375cd8374a4f754555965a7",
+      "words": 1534,
+      "sections": 12
     },
     {
       "slug": "mandaean-origins-john-and-migration",
@@ -109,9 +109,9 @@
       "title": "The Director’s Cut: Constantine, consolidation and Christian diversity",
       "summary": "Trace diverse early Christian responses and the distinct stages of imperial patronage, councils, coercion, manuscript copying and canon formation.",
       "source": "sources/constantine-consolidation-and-christian-diversity.md",
-      "sourceSha256": "085f05b0a2ba607f105f67692095873413bf0a23bd33adda46222eed82950ad1",
-      "words": 2060,
-      "sections": 10
+      "sourceSha256": "f669e626b2c7c5383128e4c526282c573b85fa1ab0e1cb896fc53862fba9eba7",
+      "words": 2092,
+      "sections": 11
     },
     {
       "slug": "dead-sea-scrolls-jewish-diversity-and-empire",
@@ -119,9 +119,9 @@
       "title": "The Dead Sea Scrolls: Jewish diversity, Roman power and the limits of a straight line",
       "summary": "Read textual plurality, Enochic traditions, light and darkness and the Roman Kittim as evidence for a varied Jewish world, while testing proposed later connections.",
       "source": "sources/dead-sea-scrolls-jewish-diversity-and-empire.md",
-      "sourceSha256": "ed80272119c17eb0eb0b25c3475ed2b9f6643b984cf50ee9e1a1943ffc4e022c",
-      "words": 2066,
-      "sections": 10
+      "sourceSha256": "523355f22c1032ed8c5dfdda0b5713a050e55e5b8c0f386b4bc6df8a955f0b9f",
+      "words": 2109,
+      "sections": 11
     },
     {
       "slug": "eusebius-bauer-orthodoxy-and-heresy",
@@ -129,92 +129,122 @@
       "navLabel": "Eusebius and Bauer",
       "summary": "Compare apostolic continuity and heresy as deviation with Bauer’s 1934 regional challenge, its scholarly reception, and the limits of the surviving evidence.",
       "source": "sources/eusebius-bauer-orthodoxy-and-heresy.md",
-      "sourceSha256": "a1770cfc72700fe7e0bc8db2a80f27f72610eb6adde4eddb0e61a96dac124530",
-      "words": 3045,
-      "sections": 10
+      "sourceSha256": "efaca2d2797fb7510af4d3a377f1610d3f546adaad844623367d961f5ad471e0",
+      "words": 3090,
+      "sections": 11
+    },
+    {
+      "slug": "dead-sea-scrolls-and-eusebian-canon",
+      "title": "The Dead Sea Scrolls and the Eusebian canon: what the evidence changes",
+      "navLabel": "Scrolls and canon",
+      "summary": "Compare Jewish scriptural authority with Eusebius’s actual categories, tracing Enoch, Jubilees, inherited concepts and the evidence required for imperial selection.",
+      "source": "sources/dead-sea-scrolls-and-eusebian-canon.md",
+      "sourceSha256": "b50d0a434a5d65bc4a3f91569cb1cc504af93dbacd830d3a1ea3df256b785480",
+      "words": 2519,
+      "sections": 9
+    },
+    {
+      "slug": "pilate-from-roman-prefect-to-christian-memory",
+      "title": "Pilate from Roman prefect to Christian memory",
+      "navLabel": "Pilate’s reception",
+      "summary": "Follow Philo, Josephus, the canonical Gospels, the Gospel of Peter and Ethiopian commemoration, testing rehabilitation alongside rival memories.",
+      "source": "sources/pilate-from-roman-prefect-to-christian-memory.md",
+      "sourceSha256": "4011c462ed3d71d59a5f8d0b6d779cc315736335725841e041fb0f0dbff1e3cd",
+      "words": 1481,
+      "sections": 9
     }
   ],
-  "searchSections": 127,
+  "searchSections": 151,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
-      "bytes": 17279,
-      "sha256": "0e2e657fe636aa5a666467db85eb48faab9d050ec18de0d2f25551b1c20dc6b6"
+      "bytes": 18056,
+      "sha256": "b5d582acda571c619af0041c487ab4814d539705701e9962abe0df074c538926"
     },
     {
       "path": "how-the-argument-developed.html",
-      "bytes": 16838,
-      "sha256": "4b9f9fb25ce2658ad58f5d96788f4f4d50f89a6a1ecf7788452a4cbbfab2deda"
+      "bytes": 16995,
+      "sha256": "81c080229635caee2d63e8cff80e81065033384c76bc872f04b0376b84baea32"
     },
     {
       "path": "early-creeds-angels-and-resurrection.html",
-      "bytes": 17145,
-      "sha256": "fd69ecbb0365725ab84d06484b3b865bef6eb73df220f8c6c8b83e36dab5ecc1"
+      "bytes": 17302,
+      "sha256": "4c3d830754f63227bfb7e8423b184571a7d16e738042466e80e83d9207346aa6"
     },
     {
       "path": "imperial-pressure-and-pilate.html",
-      "bytes": 16147,
-      "sha256": "7458b71273bbad053684fcfed8530195c39a6b10fe10903ad3cb47195f457071"
+      "bytes": 16991,
+      "sha256": "a528b5e9d94fa33704c8138771eb928e8aa74f256213c9af6c8fbb07e6aa35f8"
     },
     {
       "path": "competing-crosses-and-imperial-capture.html",
-      "bytes": 17012,
-      "sha256": "49fe9aa1f92d9fdcb8abf8fc1ad15a80ec01a0bab27cdbf355fa9b4736bbb30e"
+      "bytes": 17169,
+      "sha256": "ddd26a12a484cc23e29c232583b504b1372d30cedd98d329c049ae95a0099476"
     },
     {
       "path": "laughing-jesus-apocalypse-of-peter.html",
-      "bytes": 15706,
-      "sha256": "374459e4771f82ca6e8e6193e467daeced20edc6d8e8a0b54ff96967b7e50063"
+      "bytes": 15863,
+      "sha256": "c4df89ad88c5a02319bd04f83f13b00925894aa083fb5fcfe8aa67670128b44c"
     },
     {
       "path": "gospel-of-truth-cross-and-knowledge.html",
-      "bytes": 15602,
-      "sha256": "ee143cb6b68a4240801cc235ce73846757efc404a3b1362927a9b6d908807a9b"
+      "bytes": 15759,
+      "sha256": "83ad42955998ae6b5fa1198c10ad883c07a47addf2641d3e1b166ea1e6388471"
     },
     {
       "path": "ransom-revelation-and-defeated-rulers.html",
-      "bytes": 15090,
-      "sha256": "bad13e24e818f54c2c7125235fe43868f650b5bf55f65029a6a5441413c66977"
+      "bytes": 15247,
+      "sha256": "0ad02b7ec1088dc9936d33dd244873d659fd6f9fe120185ec8ed1bac973d0636"
     },
     {
       "path": "canon-coercion-and-nag-hammadi-survival.html",
-      "bytes": 16753,
-      "sha256": "d9e8409abb24d25d3cf536f4ebd650b9f74e21b859049ffa94b465f748bbfa8e"
+      "bytes": 17561,
+      "sha256": "e17437ce6b620853064a2f3a89173b21d90f939908595e6882ae5b9136194adf"
     },
     {
       "path": "mandaean-origins-john-and-migration.html",
-      "bytes": 18331,
-      "sha256": "7d596bdb4926bd9e6599180e03980c4170d7e4b74e7c4fbcd2b17906e2fdbc84"
+      "bytes": 18488,
+      "sha256": "314bd8a15dc9f25fb68b2bc45ab6d2fbe8e5d4dbc71ab301503f8cd1ffea007a"
     },
     {
       "path": "constantine-consolidation-and-christian-diversity.html",
-      "bytes": 21763,
-      "sha256": "1a4fc111983654b3a4c7042e231aff93370a6e06bd81a8e1ad0adbfb1021979b"
+      "bytes": 22524,
+      "sha256": "19bd082d486434bd6e3613e5eeca80d8046111a923a93fd19bf78e51efd21810"
     },
     {
       "path": "dead-sea-scrolls-jewish-diversity-and-empire.html",
-      "bytes": 21808,
-      "sha256": "c75636f032288440fa5326050ae6275c3720cae6787aed88b7567fd004566f73"
+      "bytes": 22640,
+      "sha256": "8079bc36090b1537ac8acb965e4d8c18ae40cc821321b2f0e77ca8dd36b14680"
     },
     {
       "path": "eusebius-bauer-orthodoxy-and-heresy.html",
-      "bytes": 31417,
-      "sha256": "b43c55e59fd063c3bc558edf3b5e18623dadb8df46b2fcf4a1812b1fe3a22bd0"
+      "bytes": 32329,
+      "sha256": "6a3ba9bcd5f085d1477f3e7eadffb4e54486ec72e621eb2fbb1431adc3da4883"
+    },
+    {
+      "path": "dead-sea-scrolls-and-eusebian-canon.html",
+      "bytes": 27109,
+      "sha256": "adb1ab423a2830c71ff40bcb15a7406f73194a9a3d124b4f10007fed31a4f2c9"
+    },
+    {
+      "path": "pilate-from-roman-prefect-to-christian-memory.html",
+      "bytes": 17234,
+      "sha256": "8cb6c2ba087864f37e5fb0aa3d7b31bce811384aef77c164129efdc78c834c90"
     },
     {
       "path": "index.html",
-      "bytes": 10108,
-      "sha256": "08c090fe641fe5b94c7c1e9507f69373916d3afcf4c691e62b6b34795a6f8343"
+      "bytes": 11248,
+      "sha256": "746fe3e3684b55a0d3647de803e91cdea1c9e793811b147ef74906937881c4c7"
     },
     {
       "path": "search-index.json",
-      "bytes": 185820,
-      "sha256": "efb2e633ea13de86971d4d6bbaf656990c370e5f07727eac88dfe7e3e597ae2c"
+      "bytes": 222173,
+      "sha256": "55757e26e3be3f937b2dbf08ca8dffec5510df0241b56d6470f7e10a363205d0"
     },
     {
       "path": "search-data.js",
-      "bytes": 181270,
-      "sha256": "091c000ea8e1710f25ed26bedb9f2d691cb27596ee37c2adaaffe442a36f78d7"
+      "bytes": 216759,
+      "sha256": "90c261b391e3439fcaf8355a8ac8f6fa0bbb17fbf80be4f0ddf6f2f57c84df56"
     }
   ]
 }

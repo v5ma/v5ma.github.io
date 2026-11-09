@@ -55,6 +55,10 @@ Three further inquiries widen the comparison: [[mandaean-origins-john-and-migrat
 
 [[eusebius-bauer-orthodoxy-and-heresy|Eusebius and Walter Bauer]] asks how the claim to preserve apostolic teaching became an account of Christianity’s beginnings. Bauer’s 1934 challenge makes neglected witnesses worth investigating without assuming that every excluded position was earlier or truer.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+The [[dead-sea-scrolls-and-eusebian-canon|scrolls and canon study]] tests how later boundaries shape the past; [[pilate-from-roman-prefect-to-christian-memory|Pilate’s reception]] tests how a narrative shifts responsibility. Read these together to distinguish selection of books from selection of interpretations.
+
 ## Sources and access notes
 
 The first paragraph preserves one short statement of the project's purpose. The surrounding prose is an edited development of the inquiry, not a transcript or an assertion that every scholarly qualification has become a settled personal belief. This section presents ideas without reproducing private correspondence.

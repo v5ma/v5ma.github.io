@@ -38,3 +38,10 @@ The section search, navigation, reading map and Latest are rebuilt. Main-reader 
 The thirteenth chapter compares the apostolic-continuity narrative with Bauer’s 1934 regional thesis, the 1971 English translation, scholarly precursors and criticism, and the limits of source survival. Six earlier chapters receive a reciprocal connection. Every previous source body is preserved after removing only the new, clearly titled bridge; `eusebius-prior-source-hashes.json` records the twelve source hashes at f3afe118. The earlier preservation checks remain enforced.
 
 The series navigation and full-text search, Latest and purpose reading map include the chapter. Main-reader content, original conversations, public corpus snapshots and narration assets remain unchanged. The page uses numbered citations with explicit source-access notes and distinguishes an ancient classification, a modern reconstruction and a theological judgment.
+
+
+## Canon boundaries and Pilate reception extension
+
+Two source-linked studies extend the series to fifteen chapters. The scrolls/canon comparison distinguishes Jewish scriptural authority, Eusebius’s actual Christian categories, Josephus’s twenty-two books, textual plurality, inherited concepts and specific evidence for imperial influence. The Pilate reception study compares Philo, Josephus, canonical narratives, the Gospel of Peter, Tertullian, Eusebius and Ethiopian commemoration. These are edited research chapters, not published private correspondence or a video transcript.
+
+Six earlier chapters gain bounded reciprocal bridges. `canon-pilate-prior-source-hashes.json` preserves the thirteen source bodies at 9ac775c911adef6a9e0e7b3855dddbe9f4ff3879; every older preservation receipt remains enforced. Section search, navigation, Latest and the purpose reading map include the new chapters. Original conversations, main-reader search, recordings, corpus snapshots and all other article bodies remain unchanged. The existing deployment workflow is unchanged. Passing content and browser checks is distinct from verified public deployment.

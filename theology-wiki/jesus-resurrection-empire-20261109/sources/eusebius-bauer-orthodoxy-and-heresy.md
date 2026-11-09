@@ -108,6 +108,10 @@ The useful questions are concrete: **Who claims continuity? What is the earliest
 
 Eusebius and Bauer remain worth reading together because their contrast exposes the difference between a community's account of its legitimacy and a historian's reconstruction of its formation. Recognizing that difference does not end the argument. It makes the argument possible without assuming its conclusion.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+The [[dead-sea-scrolls-and-eusebian-canon|new canon comparison]] distinguishes Eusebius’s actual classifications from a simplified story of effortless agreement. [[pilate-from-roman-prefect-to-christian-memory|The Pilate reception study]] shows that Eusebius himself also preserves a punitive memory of the governor, complicating a single trajectory toward rehabilitation.
+
 ## Sources and access notes
 
 1. [Walter Bauer, introductory materials and contents](https://ccat.sas.upenn.edu/rak/publics/new/BAUER00.htm), *Orthodoxy and Heresy in Earliest Christianity*. German original 1934; second German edition 1964; English translation 1971. Bibliographic details and introductory passages checked through indexed excerpts. Direct retrieval of some Penn pages was unavailable; this page does not claim a fresh full-book reading.

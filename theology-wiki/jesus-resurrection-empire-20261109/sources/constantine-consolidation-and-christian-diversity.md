@@ -80,6 +80,10 @@ The Director’s Cut therefore names a question about selection and power, not a
 
 [[eusebius-bauer-orthodoxy-and-heresy|Eusebius and Walter Bauer: who gets to call the beginning orthodox?]] gives the history-writing problem its own study. It compares the succession narrative with Edessa, Egypt, Asia Minor and Rome, while keeping Bauer’s 1934 thesis separate from claims that Constantine invented orthodoxy or that scholarship has reached a unanimous verdict.
 
+## New comparisons: canon boundaries and Pilate’s reception
+
+The [[dead-sea-scrolls-and-eusebian-canon|scrolls and canon study]] separates earlier Jewish authority from fourth-century Christian classifications. [[pilate-from-roman-prefect-to-christian-memory|Pilate’s reception]] traces accommodation and counter-memories before and after imperial patronage.
+
 ## Sources and access notes
 
 1. [Galatians 1–2](https://www.biblegateway.com/passage/?search=Galatians%201-2&version=NRSVUE). Paul's own presentation of conflict over Gospel and authority.
