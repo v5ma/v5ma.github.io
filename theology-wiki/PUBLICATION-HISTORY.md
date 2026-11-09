@@ -70,10 +70,3 @@ Snapshot dates concern preservation events and recorded source revisions. Earlie
 ## Computational theology reading bridge
 
 The [Computational God capabilities bridge](https://wiki.onlyonedevil.com/theology-wiki/san-reader?page=computational-god-capabilities-bridge) connects the necessary-ground argument, divine immanence, cosmic thought, logic, alternative conscious implementations, finite agency, and repair. It leads back to the original connected essays rather than replacing them. The earlier cosmic-thought manuscript and the initial consciousness-and-theodicy research note remain unchanged in their original repository paths.
-
-
-## November 9, 2026: Jesus, resurrection and empire
-
-Four substantive edited chapters extend the inquiry: its stated unorthodox purpose and chronological method; the development of the historical-Jesus/resurrection argument; early creeds and angel narratives; and first-century imperial pressure tested through Pilate. The section includes primary texts, competing scholarly readings and source-access limits. It does not reproduce new private correspondence or identify private interlocutors.
-
-The section is at `jesus-resurrection-empire-20261109/index.html`; all four chapters are listed in Latest and have a dedicated full-text search. Earlier source prose, archival transcripts, main-reader search and listening remain unchanged. Deterministic builds, source hashes, link/anchor tests and desktop/mobile/no-JavaScript browser checks accompany this release. Hosted-byte verification is a separate deployment check.
