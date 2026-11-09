@@ -32,7 +32,7 @@ try:
    checks.append(f'{width}px static guide, matrix and document width')
   # A complete checkout or explicit public base can exercise the real reader too.
   if os.environ.get('INHERITANCE_BASE') or (ROOT/'theology-wiki/assets/js/reader.js').exists() or (ROOT/'theology-wiki/public-corpus').exists():
-   for slug in ['samaritan-texts-and-sacred-authority','jesus-and-dead-sea-scrolls','sacred-inheritance-and-rival-continuations','qumran-text-history']:
+   for slug in [c['slug'] for c in cfg['connections']]:
     page.goto(base+'/theology-wiki/san-reader.html?page='+slug)
     page.locator('#inheritance-context').wait_for(timeout=45000)
     assert page.locator('#inheritance-context').count()==1
@@ -58,6 +58,9 @@ try:
    page.add_script_tag(content=bundle)
    assert page.locator('#inheritance-context').count() == 1
    assert page.locator('#inheritance-matrix').count() == 1
+   page.evaluate("""() => { const d=document.createElement('details'); d.className='depth-source-notes'; d.innerHTML='<summary>Sources and editorial notes</summary>'; const b=document.getElementById('article-body'); b.append(d); d.append(document.getElementById('inheritance-matrix')); }""")
+   page.wait_for_function("document.getElementById('inheritance-matrix').parentElement.id === 'article-body'")
+   assert page.locator('#inheritance-matrix summary').is_visible()
    assert page.locator('#source-transcript').inner_html() == original
    assert page.locator('#old-prose').inner_text() == 'Original editorial prose.'
    if c['heading']:
