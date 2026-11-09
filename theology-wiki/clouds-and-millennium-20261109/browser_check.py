@@ -15,6 +15,7 @@ try:
   for width in [1440,390]:
    page.set_viewport_size({'width':width,'height':900});page.goto(base+'/theology-wiki/clouds-and-millennium-20261109/clouds-and-millennium.html');assert page.locator('h1').inner_text()==cfg['title'];assert page.locator('.prose h2').count()==12;assert page.evaluate('document.documentElement.scrollWidth<=innerWidth');page.screenshot(path=str(out/f'comparison-{width}.png'));page.locator('#chapter-search').fill('first resurrection');assert page.locator('#chapter-search-results a').count()>0;page.locator('#chapter-search').fill('zznotfoundzz');assert page.locator('#chapter-search-status').inner_text()=='0 matching sections.';page.locator('#chapter-search').fill('');checks.append(f'{width}px article, no overflow, search, no results and clear')
   if os.environ.get('CLOUDS_BASE') or (ROOT/'theology-wiki/assets/js/theology-reader.js').exists():
+   page.set_viewport_size({'width':1440,'height':1000})
    for c in cfg['connections']:
     page.goto(base+'/theology-wiki/san-reader.html?page='+c['slug']);page.locator('#clouds-millennium-context').wait_for(timeout=60000);assert page.locator('#clouds-millennium-context').count()==1;assert page.locator('#source-transcript [data-clouds-bridge]').count()==0;checks.append('Live reader '+c['slug'])
    page.locator('#clouds-millennium-context a').click();page.wait_for_url('**/clouds-and-millennium.html*');page.go_back();page.locator('#clouds-millennium-context').wait_for(timeout=60000);checks.append('Live reader outbound and browser Back')
