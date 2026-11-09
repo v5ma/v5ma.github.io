@@ -79,6 +79,8 @@ try:
                 for link in links.all():
                     assert link.locator('.archive-link-context').count() == 1, slug
             # Actual all-page search and navigation still lead to the archive.
+            if not page.locator('#theology-kind').is_visible():
+                page.locator('#mobile-nav-toggle').click()
             page.select_option('#theology-kind', 'all')
             page.locator('#page-search').fill('Gmirkin')
             result = page.locator('#page-list a.page-link[data-page="' + SLUG + '"]')
