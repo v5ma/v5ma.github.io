@@ -15,6 +15,7 @@ concurrency:
 # Each build attempt gets a distinct artifact; deploy-only retries reuse the
 # exact successful build output. Preserve older artifacts rather than deleting them.
 # November 9 archive-context correction: preserve the original record; qualify its historical claim.
+# November 9 RPPA bridge: publish the tested Revelation, Gaza, AGI and participatory unsealing connections.
 jobs:
   build:
     runs-on: ubuntu-latest
