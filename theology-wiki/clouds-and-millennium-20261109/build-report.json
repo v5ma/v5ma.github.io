@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "source": "sources/clouds-and-millennium.md",
+  "sourceSha256": "561abb24ae512b335ec590db1c02a85387ed45562bf97072aff4139e35e61678",
+  "baseRevision": "055a27d92f5040efeb0dd76a6aa804d33d4bc174",
+  "words": 2835,
+  "sections": 12,
+  "connections": 3,
+  "wikilinks": [
+    "antichrist-as-a-pattern-of-conduct",
+    "apocalyptic-repair-theology",
+    "biblical-antichrist-interpretation"
+  ],
+  "outputs": [
+    {
+      "path": "clouds-and-millennium.html",
+      "sha256": "a5901756dc5ea52446bce6aa4f115aea97251a804c82843664157ae552529b1e"
+    },
+    {
+      "path": "index.html",
+      "sha256": "a5901756dc5ea52446bce6aa4f115aea97251a804c82843664157ae552529b1e"
+    },
+    {
+      "path": "search-index.json",
+      "sha256": "7b579442144cea49541db72a778ddb670c791d3cd8180830eed6cee4de262f01"
+    },
+    {
+      "path": "search-data.js",
+      "sha256": "1eaa86cd803d8c9db60e5321e4d2877e85543d22c8e3ef5adf84c37dc4c3ef5b"
+    },
+    {
+      "path": "reader-links.js",
+      "sha256": "53a5bf7186ebd64e0262d21f0b038fab41174250c4f7a8496d8f1756284b1a95"
+    }
+  ]
+}

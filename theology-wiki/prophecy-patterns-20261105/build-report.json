@@ -53,23 +53,23 @@
   "outputs": [
     {
       "path": "prophecy-partial-success-and-causal-feedback.html",
-      "bytes": 27706,
-      "sha256": "baf063821409eca1bf7181a463cb16d49eeb393aeef0d59c23ac9cb21d10df91"
+      "bytes": 28150,
+      "sha256": "6a5fd43e1eb616e8942cfb8b8e8ea00edb875ebaee18bbeccbd7c10a61423a1a"
     },
     {
       "path": "prophecy-recurring-patterns-and-corrective-word.html",
-      "bytes": 30629,
-      "sha256": "fe429dc273354582fba55866997a4320b2d179d9ac939170f8a0d95eb3fb2719"
+      "bytes": 31073,
+      "sha256": "083ff71575cb268daab0f498d17cbf26d3e73247d6f27bb0b88219e31709d686"
     },
     {
       "path": "pattern-validation-protocol.html",
-      "bytes": 29029,
-      "sha256": "3d02bf93c567091ded1e4a4deac11c67e9b6509b8227b68dd91b96076894c4e5"
+      "bytes": 29473,
+      "sha256": "0a02711336666e22b6dd97b85eb2bc4d2436d73fe9b3c562d37ea958aff3905c"
     },
     {
       "path": "index.html",
-      "bytes": 5269,
-      "sha256": "3424319260a6e2e88932c681f7b278645d76b949b02da6c4140d1c1514efc82f"
+      "bytes": 5713,
+      "sha256": "0a694bfc96e7bd8f88a3dc59ea1b9b5513f3a7e75a4b0d0b5ebb95310c9a5b3e"
     },
     {
       "path": "search-index.json",

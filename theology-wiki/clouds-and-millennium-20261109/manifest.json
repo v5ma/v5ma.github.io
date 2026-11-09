@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "publicationDate": "2026-11-09",
+  "baseRevision": "055a27d92f5040efeb0dd76a6aa804d33d4bc174",
+  "slug": "clouds-and-millennium",
+  "title": "Clouds, a thousand years, and what symbolic language can establish",
+  "summary": "A source-based comparison of clouds, Revelation 20 and recurring patterns: what symbolism establishes, what it leaves open, and where amillennial and premillennial arguments actually differ.",
+  "source": "sources/clouds-and-millennium.md",
+  "connections": [
+    {
+      "slug": "antichrist-as-a-pattern-of-conduct",
+      "label": "Antichrist as a pattern of conduct",
+      "relationship": "Recurring symbols and historical applications",
+      "context": "A recurring image does not by itself prove that a historical pattern recurs. The clouds and millennium comparison separates the image, its referent, and the evidence needed for an application.",
+      "section": "four-questions-that-must-not-be-collapsed"
+    },
+    {
+      "slug": "apocalyptic-repair-theology",
+      "label": "Apocalyptic Repair Theology",
+      "relationship": "Interpretation and practical repair",
+      "context": "Symbolic language can describe consequential judgments and actions. The new comparison keeps historical recurrence, a final event and the ethical work of repair distinct.",
+      "section": "what-this-changes-for-the-work-of-repair"
+    },
+    {
+      "slug": "biblical-antichrist-interpretation",
+      "label": "Biblical Antichrist Interpretation",
+      "relationship": "Competing prophetic readings",
+      "context": "Amillennialism, preterism and recurring-pattern interpretation answer different questions. Compare the actual passages and arguments rather than assigning every symbolic reading to one school.",
+      "section": "amillennialism-is-not-denial-of-a-final-return"
+    }
+  ]
+}
