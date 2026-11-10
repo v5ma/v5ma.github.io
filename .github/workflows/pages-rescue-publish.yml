@@ -2,7 +2,7 @@ name: Publish current master to GitHub Pages
 on:
   push:
     branches: [master]
-    paths: ['.github/workflows/pages-rescue-publish.yml', 'scripts/theology-connectivity-artifact.cjs', 'scripts/theology-connectivity-artifact.test.cjs', 'theology-wiki/**']
+    paths: ['.github/workflows/**', 'scripts/theology-connectivity-artifact.cjs', 'scripts/theology-connectivity-artifact.test.cjs', 'theology-wiki/**']
 permissions:
   contents: read
   pages: write
