@@ -1,53 +1,58 @@
 {
   "schema": 1,
-  "date": "2026-11-09",
-  "pages": 5,
-  "searchSections": 31,
+  "date": "2026-11-10",
+  "pages": 6,
+  "searchSections": 40,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
-      "bytes": 8388,
-      "sha256": "918d95a249268fe6820d10cef79b1f3856aa72cb7fe9f309ea37e397fe2f08e0"
+      "bytes": 8707,
+      "sha256": "21714b0857943b5c71c2f369f289e65b405d0401289bf5d874e729abf8fc58a5"
     },
     {
       "path": "revelation-and-symbolic-language.html",
-      "bytes": 8638,
-      "sha256": "d1ae1ddb53f97c313882587c89e2a3b5017053f89d9cd4b859d4be7b7be17035"
+      "bytes": 8700,
+      "sha256": "0b8afd2c8b1f5f83b34234202e587966a78d4d788da7cda4a2e5c7d4a6b23610"
     },
     {
       "path": "dead-sea-scrolls-dating.html",
-      "bytes": 11559,
-      "sha256": "65fa23a5c2c398c8a205ad28f9cc4dc402c60c499595746bb00e8d7ea1fc82e2"
+      "bytes": 11621,
+      "sha256": "795c68ca8f8a0a2cb9801ed2f9ebdb7b1d8fc94d11eb2c4aa19270a695c4b761"
     },
     {
       "path": "linguistic-epigraphic-matrix.html",
-      "bytes": 10500,
-      "sha256": "448348c59995dc2f08f2a3e031c6335b2feb26e31333c662ee5daa0cb2800662"
+      "bytes": 10562,
+      "sha256": "53451ecb12c4e598f667c936ceb40a2aaa77ac23edc11578ac7f3d643188b2e2"
     },
     {
       "path": "why-christianity-spread.html",
-      "bytes": 8888,
-      "sha256": "9ec6c6078f29e06f9df6754df94e5a5ba7ee228259a2601ae4eff2a6d2a4c9c3"
+      "bytes": 8950,
+      "sha256": "05ee09173f4d8abdbd7251f3ed09f3bc9ee9f20ff35481218b24d0525e8d477e"
+    },
+    {
+      "path": "paul-james-and-contested-authority.html",
+      "bytes": 15952,
+      "sha256": "e46e0ff1e8d03948120394159b1a659470dbf43073791bc585e257fdf3070a0b"
     },
     {
       "path": "index.html",
-      "bytes": 5370,
-      "sha256": "740f2604379d2ead8d58bc11975d976fd6eb9e4b0670b0001e9bafa5389d53a0"
+      "bytes": 5865,
+      "sha256": "33a5583f92619a66c2d24674f507e0e124f4b4a7bba7da76d4f06110f4d49bce"
     },
     {
       "path": "search-index.json",
-      "bytes": 35776,
-      "sha256": "2c159b18d8e0c00fb566fbfb9549677ad7f1031f7cf62dda009559aec067b0e6"
+      "bytes": 47720,
+      "sha256": "3b3f4db3939a7994dfb3d637dc5ea4b3660d9d2471a872ecb0b4733c963c075e"
     },
     {
       "path": "search-data.js",
-      "bytes": 34682,
-      "sha256": "417f78c5471d67997d16eab1e025f46345129575405e055b878fb2802599e0e9"
+      "bytes": 46302,
+      "sha256": "8f350957783ba51028efa66d77ce6e9e44cd87c7e452b399670265dc094cd3da"
     },
     {
       "path": "reader-guide.js",
-      "bytes": 2003,
-      "sha256": "39d91f653c0221f30e51050156f89f371d40a83236f0f4eeca34679f85e4ae56"
+      "bytes": 2499,
+      "sha256": "0c5eb7ea008baba8f27c83b338b15b524905a9ef0362fc3b42063593f7148e9c"
     }
   ]
 }

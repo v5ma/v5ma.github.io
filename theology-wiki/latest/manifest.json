@@ -2,6 +2,22 @@
   "schema": 1,
   "entries": [
     {
+      "date": "2026-11-10",
+      "kind": "New",
+      "title": "Find a study across the Theology Wiki",
+      "href": "../discover/index.html",
+      "summary": "Search titles, topics and study headings across articles, guides and archived discussions, with separate collections and connected reading routes.",
+      "category": "Navigation and connected reading"
+    },
+    {
+      "date": "2026-11-10",
+      "kind": "New",
+      "title": "Paul, James and contested authority",
+      "href": "../evidence-review-20261109/paul-james-and-contested-authority.html",
+      "summary": "Compare agreement and confrontation in Galatians, Acts, James and later anti-Pauline testimony without collapsing their dates or voices.",
+      "category": "Evidence and early Christian diversity"
+    },
+    {
       "date": "2026-11-09",
       "kind": "New",
       "title": "The Dead Sea Scrolls and the Eusebian canon: what the evidence changes",

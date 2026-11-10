@@ -4,6 +4,9 @@ on:
     paths:
       - 'theology-wiki/connections/**'
       - 'scripts/theology-connectivity-artifact*'
+      - 'scripts/theology-release-sync*'
+      - 'theology-wiki/discover/**'
+      - 'theology-wiki/evidence-review-20261109/**'
       - '.github/workflows/theology-connectivity.yml'
   workflow_dispatch:
 permissions:
@@ -23,7 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate graph, original sources, all routes and reproducible output
-        run: node --test theology-wiki/connections/test.cjs scripts/theology-connectivity-artifact.test.cjs
+        run: node --test theology-wiki/connections/test.cjs scripts/theology-connectivity-artifact.test.cjs scripts/theology-release-sync.test.cjs theology-wiki/discover/test.cjs theology-wiki/evidence-review-20261109/test.cjs
       - name: Verify strict publication byte normalization
         run: python -m unittest discover -s scripts -p 'test_theology_publication_bytes.py'
       - name: Verify the prior evidence and reading editions remain intact
@@ -36,6 +39,13 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Test desktop, mobile, archive preservation, search and no-JavaScript fallback
         run: python theology-wiki/connections/browser_test.py
+      - name: Test discovery and evidence feature in Chromium
+        run: |
+          python -m http.server 8766 --directory .pages-connectivity >/tmp/discovery-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          DISCOVERY_URL=http://127.0.0.1:8766/theology-wiki/discover/index.html python theology-wiki/discover/browser_test.py
+          python theology-wiki/evidence-review-20261109/browser-test.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

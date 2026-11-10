@@ -1,27 +1,27 @@
 {
-  "pages": 618,
-  "servedPageAddresses": 621,
+  "pages": 619,
+  "servedPageAddresses": 622,
   "aliases": {
     "static:alternative-inheritances-20261109/index.html": "static:alternative-inheritances-20261109/alternative-inheritances.html",
     "static:clouds-and-millennium-20261109/index.html": "static:clouds-and-millennium-20261109/clouds-and-millennium.html",
     "static:rppa-power-20261109/index.html": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html"
   },
   "readerPages": 443,
-  "standalonePages": 178,
-  "directedConnections": 8504,
-  "reciprocalPairs": 4252,
+  "standalonePages": 179,
+  "directedConnections": 8526,
+  "reciprocalPairs": 4263,
   "minimum": 0,
   "median": 8,
   "maximum": 86,
   "at100": 0,
-  "under12": 363,
-  "zero": 119,
+  "under12": 364,
+  "zero": 118,
   "linkTypes": {
-    "Existing reading link": 690,
+    "Existing reading link": 702,
     "Shared subject": 6370,
     "conceptual connection": 10,
     "related comparison": 232,
-    "Linked from": 594,
+    "Linked from": 604,
     "introduces": 2,
     "evidence review": 4,
     "authored link": 169,
@@ -337,8 +337,8 @@
     {
       "id": "reader:churches-rejecting-paul-s-writings",
       "title": "Churches Rejecting Paul's Writings",
-      "connections": 0,
-      "reason": "No qualifying narrow-topic or authored relationship in available text"
+      "connections": 1,
+      "reason": "Only these supported connections were found; no quota padding"
     },
     {
       "id": "reader:city-of-david-structures",

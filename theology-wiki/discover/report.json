@@ -1,0 +1,10 @@
+{
+  "pages": 619,
+  "counts": {
+    "study": 197,
+    "guide": 68,
+    "discussion": 354
+  },
+  "routes": 4,
+  "scope": "Titles, topics, tags and study section headings; not full-text search of archived conversations."
+}

@@ -27,9 +27,9 @@ try:
     if p!='index':assert len(page.locator('article.prose').inner_text())>1000
    page.goto(url);page.screenshot(path=str(args.artifacts/f'overview-{width}.png'),full_page=True)
   page.goto(url+'dead-sea-scrolls-dating.html');box=page.locator('details.counterargument');assert box.get_attribute('open') is not None;box.locator('summary').click();assert box.get_attribute('open') is None;box.locator('summary').click();assert box.get_attribute('open') is not None
-  checks.append('All six pages readable without horizontal overflow at 1440px and 390px; comparison accordion closes and reopens')
-  page.goto(url);assert page.locator('.card').count()==5
-  for term in ['1QpHab','KH1','Ezekiel','radiocarbon','Pliny','Hebraisms']:
+  checks.append('All manifest pages readable without horizontal overflow at 1440px and 390px; comparison accordion closes and reopens')
+  page.goto(url);assert page.locator('.card').count()==len(cfg['pages'])
+  for term in ['1QpHab','KH1','Ezekiel','radiocarbon','Pliny','Hebraisms','Antioch']:
    page.locator('#query').fill(term);assert page.locator('.result').count()>0,term
   page.locator('#query').fill('Teacher');page.locator('#scope').select_option('dead-sea-scrolls-dating');assert page.locator('.result').count()>0
   assert all('dead-sea-scrolls-dating.html#' in x for x in page.locator('.result a').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))'))
@@ -53,12 +53,12 @@ try:
   if args.live:
    for entry in ['index.html','san-reader.html']:
     page.goto(base+entry+'?page=home');page.locator('#evidence-edition-entry a').wait_for();assert page.locator('#evidence-edition-entry').count()==1
-    for slug in ['revelation-and-symbolic-language','ai-re-dates-dead-sea-scrolls','jesus-and-dead-sea-scrolls','gmirkin-hellenistic-bible-theory']:
+    for slug in cfg['archiveCompanions']:
      page.goto(base+entry+'?page='+slug);page.locator('.evidence-source-guide').wait_for();assert page.locator('.evidence-companion').count()==1
      if slug=='gmirkin-hellenistic-bible-theory':assert 'minority' in page.locator('#article-body').inner_text().lower()
     page.goto(base+entry+'?page=revelation-and-symbolic-language&turn=1');page.locator('#turn-1').wait_for();assert 'Micah Blumberg' in page.locator('#turn-1').inner_text()
     page.goto(base+entry+'?page=revelation-and-symbolic-language');page.locator('[data-research="load-source"]').click();page.locator('#turn-1').wait_for();assert page.locator('#turn-list .chat-turn').count()>0
-   checks.append('Live actual readers: home, four archives, preserved Gmirkin correction, direct turn and transcript loading pass')
+   checks.append('Live actual readers: home, all companion archives, preserved Gmirkin correction, direct turn and transcript loading pass')
   assert not errors,errors
   browser.close()
  result={'status':'PASS','proofLevel':'live public origin' if args.live else 'local native Chromium, supplemental pages and adapter harness','checks':checks};(args.artifacts/'report.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

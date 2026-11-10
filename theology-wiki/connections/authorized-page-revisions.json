@@ -127,6 +127,55 @@
       "after": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229",
       "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
       "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "before": "65fa23a5c2c398c8a205ad28f9cc4dc402c60c499595746bb00e8d7ea1fc82e2",
+      "after": "795c68ca8f8a0a2cb9801ed2f9ebdb7b1d8fc94d11eb2c4aa19270a695c4b761",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/evidence-and-editorial-method.html",
+      "before": "918d95a249268fe6820d10cef79b1f3856aa72cb7fe9f309ea37e397fe2f08e0",
+      "after": "21714b0857943b5c71c2f369f289e65b405d0401289bf5d874e729abf8fc58a5",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/index.html",
+      "before": "740f2604379d2ead8d58bc11975d976fd6eb9e4b0670b0001e9bafa5389d53a0",
+      "after": "33a5583f92619a66c2d24674f507e0e124f4b4a7bba7da76d4f06110f4d49bce",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/linguistic-epigraphic-matrix.html",
+      "before": "448348c59995dc2f08f2a3e031c6335b2feb26e31333c662ee5daa0cb2800662",
+      "after": "53451ecb12c4e598f667c936ceb40a2aaa77ac23edc11578ac7f3d643188b2e2",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/revelation-and-symbolic-language.html",
+      "before": "d1ae1ddb53f97c313882587c89e2a3b5017053f89d9cd4b859d4be7b7be17035",
+      "after": "0b8afd2c8b1f5f83b34234202e587966a78d4d788da7cda4a2e5c7d4a6b23610",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/why-christianity-spread.html",
+      "before": "9ec6c6078f29e06f9df6754df94e5a5ba7ee228259a2601ae4eff2a6d2a4c9c3",
+      "after": "05ee09173f4d8abdbd7251f3ed09f3bc9ee9f20ff35481218b24d0525e8d477e",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
+    },
+    {
+      "path": "theology-wiki/latest/index.html",
+      "before": "3db03983bffa17698bbb2ef9c9d1bee36c4a99a55772ffa9859d66fa4b76187e",
+      "after": "b27460cc52750478f03ea533deb965f23b749bb2772cdcbad96e68329336294a",
+      "baseRevision": "55d9c8a21edea31231981e3cd06a8b33b2346409",
+      "reason": "User-authorized six-study evidence edition and Latest navigation: add the cited Paul\u2013James companion and unified discovery while preserving archived discussion source text."
     }
   ]
 }
