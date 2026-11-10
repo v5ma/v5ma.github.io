@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "baselineRevision": "bceb27f24842ae9929f821f4e92ad8ca91207415",
+  "revisions": [
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/canon-coercion-and-nag-hammadi-survival.html",
+      "before": "d9e8409abb24d25d3cf536f4ebd650b9f74e21b859049ffa94b465f748bbfa8e",
+      "after": "e17437ce6b620853064a2f3a89173b21d90f939908595e6882ae5b9136194adf",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/competing-crosses-and-imperial-capture.html",
+      "before": "49fe9aa1f92d9fdcb8abf8fc1ad15a80ec01a0bab27cdbf355fa9b4736bbb30e",
+      "after": "ddd26a12a484cc23e29c232583b504b1372d30cedd98d329c049ae95a0099476",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/constantine-consolidation-and-christian-diversity.html",
+      "before": "1a4fc111983654b3a4c7042e231aff93370a6e06bd81a8e1ad0adbfb1021979b",
+      "after": "19bd082d486434bd6e3613e5eeca80d8046111a923a93fd19bf78e51efd21810",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/dead-sea-scrolls-jewish-diversity-and-empire.html",
+      "before": "c75636f032288440fa5326050ae6275c3720cae6787aed88b7567fd004566f73",
+      "after": "8079bc36090b1537ac8acb965e4d8c18ae40cc821321b2f0e77ca8dd36b14680",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/early-creeds-angels-and-resurrection.html",
+      "before": "fd69ecbb0365725ab84d06484b3b865bef6eb73df220f8c6c8b83e36dab5ecc1",
+      "after": "4c3d830754f63227bfb7e8423b184571a7d16e738042466e80e83d9207346aa6",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/eusebius-bauer-orthodoxy-and-heresy.html",
+      "before": "b43c55e59fd063c3bc558edf3b5e18623dadb8df46b2fcf4a1812b1fe3a22bd0",
+      "after": "6a3ba9bcd5f085d1477f3e7eadffb4e54486ec72e621eb2fbb1431adc3da4883",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/gospel-of-truth-cross-and-knowledge.html",
+      "before": "ee143cb6b68a4240801cc235ce73846757efc404a3b1362927a9b6d908807a9b",
+      "after": "83ad42955998ae6b5fa1198c10ad883c07a47addf2641d3e1b166ea1e6388471",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/how-the-argument-developed.html",
+      "before": "4b9f9fb25ce2658ad58f5d96788f4f4d50f89a6a1ecf7788452a4cbbfab2deda",
+      "after": "81c080229635caee2d63e8cff80e81065033384c76bc872f04b0376b84baea32",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/imperial-pressure-and-pilate.html",
+      "before": "7458b71273bbad053684fcfed8530195c39a6b10fe10903ad3cb47195f457071",
+      "after": "a528b5e9d94fa33704c8138771eb928e8aa74f256213c9af6c8fbb07e6aa35f8",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/index.html",
+      "before": "08c090fe641fe5b94c7c1e9507f69373916d3afcf4c691e62b6b34795a6f8343",
+      "after": "746fe3e3684b55a0d3647de803e91cdea1c9e793811b147ef74906937881c4c7",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/laughing-jesus-apocalypse-of-peter.html",
+      "before": "374459e4771f82ca6e8e6193e467daeced20edc6d8e8a0b54ff96967b7e50063",
+      "after": "c4df89ad88c5a02319bd04f83f13b00925894aa083fb5fcfe8aa67670128b44c",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/mandaean-origins-john-and-migration.html",
+      "before": "7d596bdb4926bd9e6599180e03980c4170d7e4b74e7c4fbcd2b17906e2fdbc84",
+      "after": "314bd8a15dc9f25fb68b2bc45ab6d2fbe8e5d4dbc71ab301503f8cd1ffea007a",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/purpose-and-unorthodox-interpretation.html",
+      "before": "0e2e657fe636aa5a666467db85eb48faab9d050ec18de0d2f25551b1c20dc6b6",
+      "after": "b5d582acda571c619af0041c487ab4814d539705701e9962abe0df074c538926",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/jesus-resurrection-empire-20261109/ransom-revelation-and-defeated-rulers.html",
+      "before": "bad13e24e818f54c2c7125235fe43868f650b5bf55f65029a6a5441413c66977",
+      "after": "0ad02b7ec1088dc9936d33dd244873d659fd6f9fe120185ec8ed1bac973d0636",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/latest/index.html",
+      "before": "370141f035701bb0b730c0fc8870d520db280b3a5d19eb12402d40d594b4012b",
+      "after": "3db03983bffa17698bbb2ef9c9d1bee36c4a99a55772ffa9859d66fa4b76187e",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/purpose/index.html",
+      "before": "2e778a6f6e525e440f10c935b1276a3298639e656a99f7012aba3bf987dc2e58",
+      "after": "5dd51a3f527673b32ba95eec60ab942a62b749315c66640a689c7d12529f730c",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/rppa-power-20261109/index.html",
+      "before": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2",
+      "after": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    },
+    {
+      "path": "theology-wiki/rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
+      "before": "5294509c34beab0794c639030095785d335a3bbd865fa94372526ef12020bdb2",
+      "after": "0e9fc7df4bcf9d42d6025d03dcca2bbeeeb4eed600839b99b657f40ea9b93229",
+      "baseRevision": "76e81dd6c4acc34707ed0eb1a741426fe4db7000",
+      "reason": "Preserve original baseline while recording previously approved and published editorial HTML revisions, verified against accepted preservation blob 746585422fc96c3ad30922b553f0772ab4e83242."
+    }
+  ]
+}

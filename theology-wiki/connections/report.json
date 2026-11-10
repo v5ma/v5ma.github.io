@@ -1,15 +1,15 @@
 {
-  "pages": 616,
-  "servedPageAddresses": 619,
+  "pages": 618,
+  "servedPageAddresses": 621,
   "aliases": {
     "static:alternative-inheritances-20261109/index.html": "static:alternative-inheritances-20261109/alternative-inheritances.html",
     "static:clouds-and-millennium-20261109/index.html": "static:clouds-and-millennium-20261109/clouds-and-millennium.html",
     "static:rppa-power-20261109/index.html": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html"
   },
   "readerPages": 443,
-  "standalonePages": 176,
-  "directedConnections": 8354,
-  "reciprocalPairs": 4177,
+  "standalonePages": 178,
+  "directedConnections": 8504,
+  "reciprocalPairs": 4252,
   "minimum": 0,
   "median": 8,
   "maximum": 86,
@@ -17,11 +17,11 @@
   "under12": 363,
   "zero": 119,
   "linkTypes": {
-    "Existing reading link": 654,
-    "Shared subject": 6270,
+    "Existing reading link": 690,
+    "Shared subject": 6370,
     "conceptual connection": 10,
     "related comparison": 232,
-    "Linked from": 580,
+    "Linked from": 594,
     "introduces": 2,
     "evidence review": 4,
     "authored link": 169,
@@ -1219,7 +1219,7 @@
     {
       "id": "static:technology-signs.html",
       "title": "Speaking images, returning fire",
-      "connections": 3,
+      "connections": 4,
       "reason": "Only these supported connections were found; no quota padding"
     },
     {
