@@ -27,8 +27,19 @@ def main():
     mode = 'hosted' if ORIGIN.startswith('https://') else 'local'
     report = {'origin': ORIGIN, 'commit': REVISION, 'files': {}, 'targets': {}, 'passed': False}
     digest = lambda data: hashlib.sha256(data).hexdigest()
-    targets = set(re.findall(r'\[\[([^\]|#]+)', (ROOT / f'theology-wiki/editorial/authorial-articles/{SLUG}.md').read_text()))
-    assert len(targets) == 20, targets
+    receipt_bytes = (ROOT / 'theology-wiki/editorial/displaced-biography-20261024.json').read_bytes()
+    assert digest(receipt_bytes) == '1bbb5446558e401e119e28e1d54be6d397af7ec85d742fd860564541a4a62ba1', 'Recorded appendix receipt changed'
+    receipt = json.loads(receipt_bytes)
+    amendment = next(row['canonical'] for row in receipt['articles'] if row['slug'] == SLUG)
+    assert amendment['path'] == f'editorial/authorial-articles/{SLUG}.md'
+    canonical = (ROOT / 'theology-wiki' / amendment['path']).read_bytes()
+    assert digest(canonical) == amendment['after'], 'Recorded canonical appendix changed'
+    original = canonical[:amendment['beforeBytes']]
+    assert digest(original) == amendment['before'], 'Original canonical prefix changed'
+    original_targets = set(re.findall(r'\[\[([^\]|#]+)', original.decode('utf-8')))
+    targets = set(re.findall(r'\[\[([^\]|#]+)', canonical.decode('utf-8')))
+    assert len(original_targets) == 20, original_targets
+    assert targets == original_targets | {'sacred-inheritance-and-rival-continuations'}, targets
     try:
         with sync_playwright() as tool:
             options = {'headless': True}
@@ -67,13 +78,13 @@ def main():
                 assert targets <= links, sorted(targets - links)
                 for target in sorted(targets):
                     fetch('theology-wiki/content/' + known[target]['path'], report['targets'], target)
-                report.update({'passed': True, 'phrases': PHRASES, 'canonicalLinkTargets': len(targets), 'renderedContentAndLinks': True})
+                report.update({'passed': True, 'phrases': PHRASES, 'canonicalLinkTargets': len(targets), 'preservedCanonicalLinkTargets': len(original_targets), 'renderedContentAndLinks': True})
                 page.screenshot(path=str(OUT / f'teacher-{mode}.png'), full_page=True)
             finally:
                 browser.close()
     finally:
         (OUT / f'teacher-{mode}.json').write_text(json.dumps(report, indent=2) + '\n')
-    print('PASS Teacher source, backup, listening, rendered argument and 20 linked targets:', ORIGIN)
+    print('PASS Teacher source, backup, listening, rendered argument and', len(targets), 'linked targets (20 preserved plus one recorded appendix target):', ORIGIN)
 
 
 if __name__ == '__main__':
