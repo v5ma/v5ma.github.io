@@ -673,6 +673,14 @@
       "sha256": "D2EB4E36DBA508C270B193FCD65068E60E27123117E012CFC1AA58A714264C96",
       "bytes": 1742,
       "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/breadth/PROGRAM-INVENTORY-R2.json",
+      "source_sha256": "98B99B0A903ADF3B671169F611777BFA7A53E4F4AE0D36B9CD0183505CAE7DC5",
+      "path": "THEORETICAL-HANDOFF/PROGRAM-REGISTER.json",
+      "sha256": "8F0B9654836825C359E123D41904EF88FDBB53946E1CA8AB88B44F742FE266B6",
+      "bytes": 598186,
+      "kind": "derived-routing-metadata-with-no-raw-source-bodies"
     }
   ],
   "exact_goal": {

@@ -9,6 +9,7 @@ Start with [THEORETICAL HANDOFF](THEORETICAL-HANDOFF/START-HERE.md).
 - [Exact archived goal](THEORETICAL-HANDOFF/active-goal.exact.md)
 - [Same goal with repository-relative links](THEORETICAL-HANDOFF/active-goal.github.md)
 - [File and provenance index](THEORETICAL-HANDOFF/FILE-INDEX.json)
+- [340-program routing snapshot](THEORETICAL-HANDOFF/PROGRAM-REGISTER.json) — historical metadata, not 340 certified public comparisons.
 - [Reader preview](reader/comparison-wiki/index.html)
 - [Field-wide introduction](reader/comparison-wiki/introduction.html)
 

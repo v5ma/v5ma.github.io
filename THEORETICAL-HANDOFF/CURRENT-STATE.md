@@ -21,6 +21,10 @@ The Motivation seven-pair review has four bounded partials and three weaker comp
 
 This branch is a foundation tranche. Inventory and disclosure review of the rest of the Comparison Encyclopedia working corpus remain unfinished. Do not infer that missing files never existed. The complete private backup and remote verification must be recorded separately; this public commit alone does not prove them.
 
+The public routing snapshot now identifies all 340 programmes in the frozen inventory. It preserves recorded counts and review states as historical metadata, without adding raw sources or claiming current exhaustive coverage. Recent targets can be absent from that older snapshot without being absent from the project.
+
+The private checkpoint has captured 1,662 working files from five recent work roots, except recorded PDF and derived-database omissions. Historical inventory reached 25,000 files before its explicit cap; further inventory and transfer remain open. These are backup file counts, not scientific findings.
+
 Third-party original PDFs and complete extractions are intentionally outside the public package. Retain their citations, retrieval URLs, versions and checksums. If a source cannot be recovered, mark the affected comparison open.
 
 ## Product release boundary
