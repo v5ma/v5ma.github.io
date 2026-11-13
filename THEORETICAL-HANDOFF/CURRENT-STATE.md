@@ -23,7 +23,7 @@ This branch is a foundation tranche. Inventory and disclosure review of the rest
 
 The public routing snapshot now identifies all 340 programmes in the frozen inventory. It preserves recorded counts and review states as historical metadata, without adding raw sources or claiming current exhaustive coverage. Recent targets can be absent from that older snapshot without being absent from the project.
 
-The private checkpoint has captured 1,662 working files from five recent work roots, except recorded PDF and derived-database omissions. Historical inventory reached 25,000 files before its explicit cap; further inventory and transfer remain open. These are backup file counts, not scientific findings.
+The private checkpoint has captured 1,662 working files from five recent work roots, except recorded PDF and derived-database omissions. The bounded historical inventory is now complete within its 15 selected roots: 39,159 entries. Inventory does not mean upload. Private transfer through historical batch 6 was remotely verified at commit `dc59b5e38433d0ca8f525f14a939f66819d394dd`; later batches may supersede this checkpoint. At that checkpoint, 32,189 historical entries had not yet been processed. Dependencies outside the selected roots still require closure. These are backup file counts, not scientific findings.
 
 Third-party original PDFs and complete extractions are intentionally outside the public package. Retain their citations, retrieval URLs, versions and checksums. If a source cannot be recovered, mark the affected comparison open.
 
