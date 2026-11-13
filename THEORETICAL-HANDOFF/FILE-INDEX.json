@@ -681,6 +681,76 @@
       "sha256": "8F0B9654836825C359E123D41904EF88FDBB53946E1CA8AB88B44F742FE266B6",
       "bytes": 598186,
       "kind": "derived-routing-metadata-with-no-raw-source-bodies"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/wrong-answer-brain-theta-timing-mit-san/article.md",
+      "path": "published-articles/wrong-answer-brain-theta-timing-mit-san/article.md",
+      "sha256": "B29296150F74A3FA26043405AA0B5C0C205684531EB9B03E8ECEDA4C029A132D",
+      "bytes": 4948,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/wrong-answer-brain-theta-timing-mit-san/photos/earl-miller.jpg",
+      "path": "published-articles/wrong-answer-brain-theta-timing-mit-san/photos/earl-miller.jpg",
+      "sha256": "E277E2708D7700A8836ADCD4915D05426F789201B5C882C108E2B1006E9D8B04",
+      "bytes": 87292,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/wrong-answer-brain-theta-timing-mit-san/photos/picower-institute.jpg",
+      "path": "published-articles/wrong-answer-brain-theta-timing-mit-san/photos/picower-institute.jpg",
+      "sha256": "AB76FAFC9FCA83D770CEE1D644C09896156D5159CB2CCF8DB91BD190F0C3A28A",
+      "bytes": 143007,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/mouse-reward-brainstem-gamma-consideration-sandwich/article.md",
+      "path": "published-articles/mouse-reward-brainstem-gamma-consideration-sandwich/article.md",
+      "sha256": "75C7D066471D323B030B004034319E5D06BDFA19C4E81BEEC527487762D08908",
+      "bytes": 4932,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/mouse-reward-brainstem-gamma-consideration-sandwich/photos/karl-deisseroth.jpg",
+      "path": "published-articles/mouse-reward-brainstem-gamma-consideration-sandwich/photos/karl-deisseroth.jpg",
+      "sha256": "CC47DEF134B45A81A2F5991197014CC33FE3A833CB71658D100E7A12B4822651",
+      "bytes": 295277,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/mouse-reward-brainstem-gamma-consideration-sandwich/photos/kanaka-rajan.jpg",
+      "path": "published-articles/mouse-reward-brainstem-gamma-consideration-sandwich/photos/kanaka-rajan.jpg",
+      "sha256": "FCEA98C5E6E5F3F84DE16DFA6526C033E89CD537CF5D83E99787A90A3FCD65E7",
+      "bytes": 1155382,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/same-mug-doris-tsao-consciousness-world-model-san/article.md",
+      "path": "published-articles/same-mug-doris-tsao-consciousness-world-model-san/article.md",
+      "sha256": "823363C7669CCA7324AD6D32D8EBF583CED64E421F2AB63CA4CA75437E35A245",
+      "bytes": 5743,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/same-mug-doris-tsao-consciousness-world-model-san/photos/li-ka-shing-center.jpg",
+      "path": "published-articles/same-mug-doris-tsao-consciousness-world-model-san/photos/li-ka-shing-center.jpg",
+      "sha256": "A0855448ABFBEBE08EA5E6430F4F81977DED2CBED4FFDF14685373F7F4D5BEF6",
+      "bytes": 326975,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "source": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\three-neuroscience-news-20261112/public-article-payload/content-index.json",
+      "path": "published-articles/content-index.json",
+      "sha256": "DFCA529729D8C87FD9EF54EF61E944E42C9699968CC3F9F43E6E9301482A4223",
+      "bytes": 3495,
+      "kind": "unchanged-approved-published-article-or-cleared-media"
+    },
+    {
+      "path": "THEORETICAL-HANDOFF/EXTERNAL-SOURCES.json",
+      "source": "curated-existing-local-custody-receipts",
+      "sha256": "8104D57969361F78ECAA4CF55C28989471499A4BE6876EAE88920D1AA83A49C3",
+      "bytes": 3187,
+      "kind": "references-not-redistributed-papers"
     }
   ],
   "exact_goal": {

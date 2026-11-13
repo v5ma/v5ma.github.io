@@ -1,0 +1,77 @@
+{
+  "schema": "three-reviewed-article-public-content-index-v1",
+  "articles": [
+    {
+      "id": "MIT-THETA-SAN",
+      "title": "What a Wrong Answer Reveals About the Brain's Timing",
+      "slug": "wrong-answer-brain-theta-timing-mit-san",
+      "markdown": "wrong-answer-brain-theta-timing-mit-san/article.md",
+      "markdown_sha256": "B29296150F74A3FA26043405AA0B5C0C205684531EB9B03E8ECEDA4C029A132D",
+      "images": [
+        {
+          "path": "photos/earl-miller.jpg",
+          "sha256": "E277E2708D7700A8836ADCD4915D05426F789201B5C882C108E2B1006E9D8B04",
+          "credit": "Neocx",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Earl-miller-photo-3.jpg",
+          "changes": "None."
+        },
+        {
+          "path": "photos/picower-institute.jpg",
+          "sha256": "AB76FAFC9FCA83D770CEE1D644C09896156D5159CB2CCF8DB91BD190F0C3A28A",
+          "credit": "Alan Levine",
+          "license": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Picower_Institute-20060913.jpg",
+          "changes": "Wikimedia web-size rendition; no crop."
+        }
+      ]
+    },
+    {
+      "id": "MOTIVATION-GCS",
+      "title": "What Changes in a Mouse's Brain When the Reward Arrives",
+      "slug": "mouse-reward-brainstem-gamma-consideration-sandwich",
+      "markdown": "mouse-reward-brainstem-gamma-consideration-sandwich/article.md",
+      "markdown_sha256": "75C7D066471D323B030B004034319E5D06BDFA19C4E81BEEC527487762D08908",
+      "images": [
+        {
+          "path": "photos/karl-deisseroth.jpg",
+          "sha256": "CC47DEF134B45A81A2F5991197014CC33FE3A833CB71658D100E7A12B4822651",
+          "credit": "Christopher Michel",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Karl_Deisseroth_by_Christopher_Michel_02.jpg",
+          "changes": "Wikimedia web-size rendition; no crop."
+        },
+        {
+          "path": "photos/kanaka-rajan.jpg",
+          "sha256": "FCEA98C5E6E5F3F84DE16DFA6526C033E89CD537CF5D83E99787A90A3FCD65E7",
+          "credit": "Rajan Lab via Wikimedia Commons; photographer not listed",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Kanaka_Rajan.jpg",
+          "changes": "None."
+        }
+      ]
+    },
+    {
+      "id": "ASTERA-SAN",
+      "title": "How Does the Brain Know It's Still the Same Mug?",
+      "slug": "same-mug-doris-tsao-consciousness-world-model-san",
+      "markdown": "same-mug-doris-tsao-consciousness-world-model-san/article.md",
+      "markdown_sha256": "823363C7669CCA7324AD6D32D8EBF583CED64E421F2AB63CA4CA75437E35A245",
+      "images": [
+        {
+          "path": "photos/li-ka-shing-center.jpg",
+          "sha256": "A0855448ABFBEBE08EA5E6430F4F81977DED2CBED4FFDF14685373F7F4D5BEF6",
+          "credit": "Joe Parks",
+          "license": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Li_Ka_Shing_Center,_UC_Berkeley_-_Flickr_-_Joe_Parks.jpg",
+          "changes": "Web-sized copy; no crop."
+        }
+      ]
+    }
+  ]
+}

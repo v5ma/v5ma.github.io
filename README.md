@@ -10,6 +10,8 @@ Start with [THEORETICAL HANDOFF](THEORETICAL-HANDOFF/START-HERE.md).
 - [Same goal with repository-relative links](THEORETICAL-HANDOFF/active-goal.github.md)
 - [File and provenance index](THEORETICAL-HANDOFF/FILE-INDEX.json)
 - [340-program routing snapshot](THEORETICAL-HANDOFF/PROGRAM-REGISTER.json) — historical metadata, not 340 certified public comparisons.
+- [Published article copies](published-articles/content-index.json) — three unchanged approved texts and their five attributed images.
+- [External paper references](THEORETICAL-HANDOFF/EXTERNAL-SOURCES.json) — version dates and custody hashes; no original PDFs or complete extractions.
 - [Reader preview](reader/comparison-wiki/index.html)
 - [Field-wide introduction](reader/comparison-wiki/introduction.html)
 

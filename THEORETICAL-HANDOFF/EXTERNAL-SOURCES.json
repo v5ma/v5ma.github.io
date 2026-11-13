@@ -1,0 +1,71 @@
+{
+  "schema": "external-paper-retrieval-catalog-v1",
+  "papers": [
+    {
+      "id": "MOTIVATION-V1",
+      "title": "Motivation-dependent communication between cortex and brainstem",
+      "doi": "10.64898/2026.11.05.764652",
+      "url": "https://www.biorxiv.org/content/10.64898/2026.11.05.764652v1",
+      "version": "v1",
+      "posted": "2026-11-06",
+      "pages": 37,
+      "sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6"
+    },
+    {
+      "id": "THALAMIC-V2",
+      "title": "Thalamic oscillations distinguish natural states of consciousness in humans",
+      "doi": "10.1101/2025.01.28.635248",
+      "url": "https://www.biorxiv.org/content/10.1101/2025.01.28.635248v2",
+      "version": "v2",
+      "posted": "2026-05-10",
+      "pages": 38,
+      "sha256": "3655AF8D6AAB0380A9A911BC07A324B53A45F1AC59069ACBDBD2F41425D6E422"
+    },
+    {
+      "id": "GAUGE-V2",
+      "title": "Plasticity from Symmetry: A Gauge-Theoretic Framework",
+      "doi": "10.48550/arXiv.2603.16619",
+      "url": "https://arxiv.org/abs/2603.16619v2",
+      "version": "v2",
+      "submitted": "2026-03-25",
+      "printed_date": "2026-03-26",
+      "pages": 16,
+      "sha256": "AFA02F636CB64115887B41E0CDB7288CD0D2B65601D9BBDBC48D20AA93CB5FF7",
+      "scope": "Materials plasticity; the approved comparison lane is SIT/QGTCD, not a claimed neural-plasticity experiment."
+    },
+    {
+      "id": "ENTANGLED-JOURNAL",
+      "title": "The entangled loop: Emotion, interference and hierarchy in the architecture of consciousness",
+      "doi": "10.1016/j.neubiorev.2026.107063",
+      "url": "https://www.sciencedirect.com/science/article/pii/S014976342600521X",
+      "available_online": "2026-10-27",
+      "volume": "192 (2027)",
+      "pages": 14,
+      "sha256": "9A69E0A699ED829AB02E931E981E362BFED698CDF6F3D85E0E5F4F3D9E67D7EF"
+    },
+    {
+      "id": "OPERATOR-V2",
+      "title": "One operator to rule them all: Unifying connectome harmonics, turbulence and complex harmonics in brain dynamics",
+      "doi": "10.64898/2026.06.05.730423",
+      "url": "https://www.biorxiv.org/content/10.64898/2026.06.05.730423v2",
+      "version": "v2",
+      "posted": "2026-07-01",
+      "pages": 22,
+      "sha256": "71F8299A9095817E8D08DF2F02E7347D850115A47F3D1E9B97F1311399D2FC3D"
+    },
+    {
+      "id": "MILLER-THETA-PREPRINT",
+      "title": "Theta gates and routes information in the frontal cortex",
+      "doi": "10.64898/2026.06.03.729810",
+      "url": "https://www.biorxiv.org/content/10.64898/2026.06.03.729810v1",
+      "version": "v1",
+      "posted": "2026-06-04",
+      "pages": 40,
+      "sha256": "E3E075746C4066D51B074C3DB0EF46B83A8939C19E715A14F43A5601CA4BB66A",
+      "scope": "Not the November journal body; do not silently transfer version-specific findings."
+    }
+  ],
+  "PDF_files_included": 0,
+  "full_paper_extractions_included": 0,
+  "boundary": "Citations and custody hashes only. Obtain originals lawfully from their providers. Hashes identify the local copies used in review; a different retrieved hash requires a version/custody check, not an automatic allegation. This is not a complete bibliography or a new SAN/SIT comparison result."
+}
