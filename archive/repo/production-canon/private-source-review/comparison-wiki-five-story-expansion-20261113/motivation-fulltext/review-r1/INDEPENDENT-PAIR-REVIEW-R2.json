@@ -1,0 +1,234 @@
+{
+  "schema": "comparison-encyclopedia-independent-pair-review-r2",
+  "created_on": "2026-11-13",
+  "reviewer": "/root/biorxiv_635248_intake",
+  "worker": "/root",
+  "status": "SEVEN-PAIR-REVIEW-FOUR-ROW-DELTA-NO-RELEASE-CERTIFICATION",
+  "scope": "Inherit the immutable first three independent decisions and independently inspect only four added pairs, phase-decoder clarification and necessary primary-source context. All seven rows remain preserved; three remain explicitly weak components/analogies.",
+  "review_root": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1",
+  "input_refs": [
+    {"path_relative_to_review_root": "INDEPENDENT-PAIR-REVIEW-R1.json", "sha256": "7AC2B3A2BD51F924F56829FCFCFF3EEC6E0A44E8BA2E0845C789CFEECF1E482A"},
+    {"path_relative_to_review_root": "WORKER-PAIR-REVIEW-R2.json", "sha256": "D90D4D73EC1B61E440EEA079A755302354EFF1164BF9CB0D928E41B0482EFE12"},
+    {"path_relative_to_review_root": "WORKER-MATRIX-R2.json", "sha256": "F4BACACCD0BAB476D9803D114C7D0EBD4D81F01505AD2C96586BE3B9339F421B"},
+    {"path_relative_to_review_root": "PHASE-DECODER-METHOD-CLARIFICATION.json", "sha256": "D591DD3564F193C33512925B2A6CC0D0B96F040AD33A60D24191DFE6EC2157DC"},
+    {"path_relative_to_review_root": "PAIR06-TARGET-CONTEXT-QUALIFICATION.json", "sha256": "F344AE665EF22E088C2F6A879CD66FA8B78E168532716E2666184F832EA5A4AD"},
+    {"path_relative_to_review_root": "EXECUTION-AUTHORIZED.json", "sha256": "9DBCE0ACCE123306F7CCFDD5B025649B7944DA41573FA305EDA74B4E9DE15E92"},
+    {"path_relative_to_review_root": "FIXED-INPUTS.json", "sha256": "5A209E23CBADA5197D04D86F363DCFCD53235C79990240AAA2810F7231927368"},
+    {"path_relative_to_review_root": "SEMANTIC-EXECUTION.json", "sha256": "01ACBD667692F8615C49B528C47924089C39FAD1B3C60465C305EED9F16A6CE5"}
+  ],
+  "inherited_review": {
+    "ref": "INDEPENDENT-PAIR-REVIEW-R1.json",
+    "rows": [
+      {"worker_row_id": "MOT-FULLTEXT-PAIR-01", "pointer": "#/rows/0", "decision": "ACCEPT-BOUNDED-PARTIAL-WITH-MODEL-INPUT-QUALIFICATION"},
+      {"worker_row_id": "MOT-FULLTEXT-PAIR-02", "pointer": "#/rows/1", "decision": "ACCEPT-FUNCTION-LEVEL-PARTIAL-WITH-CARRIER-AND-DATE-QUALIFICATIONS"},
+      {"worker_row_id": "MOT-FULLTEXT-PAIR-03", "pointer": "#/rows/2", "decision": "RETAIN-WEAK-PARTIAL-COMPONENT-NOT-GCS-MECHANISM-CONFIRMATION"}
+    ],
+    "first_three_worker_core_fields_unchanged_in_R2": true,
+    "checked_fields": ["source", "source_document", "target", "target_pdf", "relation", "lens_results"],
+    "R1_file_modified": false,
+    "source_qualifications_and_citation_limits_inherited": true
+  },
+  "new_primary_source_refs": [
+    {"id": "FW18", "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/miller-source-pairs-20261111/choice-sources/FW18-a0135-20220608.txt", "sha256": "E4F275290FA83F729C68A9DDB572AD4F7E2E877E5F3F06DBF6390ADDC6BB7EE2", "lines_read": [24,30]},
+    {"id": "S15", "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/git-sources/S15.txt", "sha256": "A8F24C153B9708925CE0B8502BC64C07AC35CE6C03AB1E84DB125A8C4E09CEDF", "lines_read": [3,27]},
+    {"id": "FW11", "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/miller-source-pairs-20261111/choice-sources/FW11-a0090-20220608.txt", "sha256": "93DBDD3104CD751CC72448B0C4DC44730FB54996BFD90E5BB0E1E544E55B9DAF", "lines_read": [17,35]},
+    {"id": "S16", "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/git-sources/S16.txt", "sha256": "3003CCA13203DD0CCC5352781E1CA726CBF51773DC7E25C26E7AAE2AB4DACCE3", "lines_read": [25,35]}
+  ],
+  "target": {
+    "version": "MOTIVATION-BIORXIV-V1-20261106",
+    "pdf_sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6",
+    "extraction_sha256": "A4EC4FADB6771575CE648D4AB086D473092633CB68C875F3E40A4212B7E11137",
+    "paths_inherited_from": "INDEPENDENT-PAIR-REVIEW-R1.json#/primary_sources/MOTIVATION",
+    "delta_pages_read": [2,3,8,29,34],
+    "relevant_context_already_read_in_R1": [18,19,22,23,31,32],
+    "cross_version_transfer": false
+  },
+  "delta_rows": [
+    {
+      "worker_row_id": "MOT-FULLTEXT-PAIR-04",
+      "source_route_id": "FW18-PREDICT-ACTION",
+      "target_fact_id": "MOT-FULL-01",
+      "decision": "ACCEPT-BOUNDED-ANTICIPATORY-ACTION-FUNCTION-PARTIAL",
+      "membership": "PRESERVE",
+      "source_locator": "FW18 lines24-30, especially26 and30",
+      "target_locator": "Motivation p3, learned reward-timing paragraph",
+      "source_passage": "so that our actions can become aligned with our movement through space, or so our muscles are aligned with the environment",
+      "target_passage": "mice learned to precisely synchronize the timing of their licking relative to the timing of expected reward",
+      "strongest_positive_reconstruction": "The full source sentence explicitly joins near-future expectation to alignment of muscular action with the environment. The target observes learned tongue protrusion before expected reward, timed for contact near delivery. That source-to-target comparison concerns prospective action timing, not merely two uses of prediction vocabulary.",
+      "input_transform_output": "Expected near-future event -> advance preparation/timing of movement -> action aligned with the event; compared at the functional role, not at a shared neural implementation.",
+      "lens_results": {
+        "L1": {"result": "bounded-function-partial", "basis": "Both retain anticipatory temporal coordination of movement with an expected external event."},
+        "L2": {"result": "causal-prefix-partial", "basis": "Source expectation-to-muscle-alignment and target learned reward-timing-to-anticipatory-protrusion share an ordered functional fragment. Target behavior does not establish the source's proposed phase-field renderer."},
+        "L3": {"result": "dated-wording-earlier-qualified", "basis": "Use the frozen June8,2022 Git wording date, not a family-level 2012 ancestor date. It precedes the November6,2026 target, while historical first-publication time and global originality remain unproved."}
+      },
+      "adversarial_scope_test": "The source's tentative one-millisecond illustration is not an experimentally established prediction. The target's reported lick-reward offset is a different behavioral measure; numerical resemblance cannot certify the phase-field proposal. Anticipation is a broad existing function, not a new field-wide origin conclusion.",
+      "qualification": "Retain 'I think perhaps' and the source's speculative modality. Target is a task-specific observation; no specific predictive neural substrate or perceptual rendering is demonstrated by this pair.",
+      "source_quote_and_target_anchor_match": true,
+      "source_quote_sha256": "02AB7004923855A4341C4D836CA16F9D9B6CB342052F60ACDB90FAC4BE0CAB65",
+      "formal_relation_ceiling": "Functional/causal-prefix partial; not mathematical equivalence or tested phase-field mechanism.",
+      "public_projection_authorized": false
+    },
+    {
+      "worker_row_id": "MOT-FULLTEXT-PAIR-05",
+      "source_route_id": "S15-UNEXPECTED-PHASE",
+      "target_fact_id": "MOT-FULL-06",
+      "decision": "ACCEPT-RELATIVE-TIMING-VARIABLE-ROLE-PARTIAL",
+      "membership": "PRESERVE",
+      "source_locator": "S15 lines3-27, especially17,23 and25",
+      "target_locator": "Motivation p8, direction-dependent preferred phase; p29 decoding-method qualification",
+      "source_passage": "The result of a neuron spiking out of sync with it’s otherwise tonic oscillation is a phase wave differential",
+      "target_passage": "We observed changes in the preferred phase based on lick direction",
+      "strongest_positive_reconstruction": "Within the explicitly Micah-authored block, the source assigns representational/communicative significance to deviations of firing relative to recurring neural timing. The target relates different movement directions to distinct preferred spike phases within a recurring lick cycle. The common variable role is differentiated information carried by relative neural timing.",
+      "input_transform_output": "A recurring reference plus relative spike timing -> distinguishable temporal neural patterns -> differentiated represented variable. Reference and represented variable remain separately specified on each side.",
+      "lens_results": {
+        "L1": {"result": "variable-role-partial", "basis": "Relative spike timing plays an information-bearing role on both sides. A neural tonic/collective reference is not identified with the target's behavioral lick-cycle reference."},
+        "L2": {"result": "bounded-representational-fragment", "basis": "Reference -> timing variation -> distinguishable pattern is a shared fragment. Source unexpectedness, downstream synaptic effects and PWD updates extend beyond the target's directional association."},
+        "L3": {"result": "dated-wording-earlier-with-named-prior-gate", "basis": "The exact S15 wording is fixed September6,2024, before target November2026. Target p2 explicitly attributes its phase-code question to prior turtle spinal-network findings cited as Linden et al.2022 at p34. That full prior remains unreviewed; no field-wide firstness or copying inference is permitted."}
+      },
+      "adversarial_scope_test": "Direction-dependent stable phase preference is not itself unexpected inhibition or a prediction-error differential relative to a tonic neural baseline. These are role-level similarities, not identical phase definitions. The p29 LDA uses phase and resultant vector strength, so decoder performance cannot be presented as isolated proof from phase alone.",
+      "authorship_qualification": "Line3 explicitly opens 'Micah Blumberg said'; the selected source text is before line27's Self Aware Networks GPT boundary. The source ledger's mention of other excerpts at lines65-71 is not the attribution locator for this selected passage.",
+      "source_quote_and_target_anchor_match": true,
+      "source_quote_sha256": "816BAA1882C82408688EB9C780566DA4C15BC0CB753085454C5FE3098B9249E9",
+      "formal_relation_ceiling": "Partial representational-variable correspondence; not full PWD mechanism identity.",
+      "provisional_group": "timing-coded-information",
+      "public_projection_authorized": false
+    },
+    {
+      "worker_row_id": "MOT-FULLTEXT-PAIR-06",
+      "source_route_id": "FW11-LEARNED-PATHS",
+      "target_fact_id": "MOT-FULL-16",
+      "decision": "RETAIN-WEAK-MODEL-ANALOGY-WITH-ADDITIONAL-TRAINING-LOCATOR",
+      "membership": "PRESERVE",
+      "source_locator": "FW11 lines17-35, especially23-25",
+      "target_locator": "Motivation p18 training paragraph and pp31-32 RNN training; MOT-FULL-16 current-contribution paragraph is a separate model result",
+      "source_passage": "their connections reshape themselves to create paths that represent learned patterns as paths, synaptic communication paths between cells",
+      "additional_target_passage": "We then used gradient descent to fit the connectivity and single neuron parameters of the RNN",
+      "strongest_positive_reconstruction": "The source proposes learned patterns becoming materially instantiated in changed neural connections. The target adjusts artificial recurrent connectivity and unit parameters to reproduce measured temporal activity. A weak learning/configuration-to-pattern correspondence survives when the model-versus-biology difference remains explicit.",
+      "input_transform_output": "Experienced/training patterns -> connection/configuration change -> reproduced or retained activity patterns; biological proposal versus externally optimized artificial model.",
+      "lens_results": {
+        "L1": {"result": "weak-model-level-partial", "basis": "Connection reconfiguration associated with acquired patterns is present at a broad modeling level. Target evidence is gradient-descent parameter fitting, not observed synaptic remodeling in the mice."},
+        "L2": {"result": "weak-training-architecture-analogy", "basis": "Pattern -> adapted connection configuration -> patterned activity is the shared abstract chain. The target training procedure is externally supplied and does not reproduce the proposed biological self-learning mechanism."},
+        "L3": {"result": "dated-wording-earlier-generic-component-qualified", "basis": "Use June8,2022 exact Git wording fixation before November6,2026 target. No backdating to a 2012 family label and no claim that SAN originated neural plasticity, learned weights or recurrent-network training."}
+      },
+      "adversarial_scope_test": "MOT-FULL-16's quoted decrease in cortical-to-medullary current is not a learning event. In the fitted model c_ij(t)=J_ij phi(x_j(t)), time-varying current can arise with unchanged trained weights. The weak learned-configuration analogy must bind the separate training passage on p18 and parameter description on p32, not equate within-trial activity changes with synaptic plasticity.",
+      "locator_annotation": {
+        "root_additive_qualification_ref": "PAIR06-TARGET-CONTEXT-QUALIFICATION.json",
+        "independent_anchor_checks": [
+          {"page": 18, "normalized_offset": 1679, "quote_sha256": "1D9CC6DDCB8CDDE097FD8593C5808B9ECD8867F2EDC2F3CDB36709D3839FF3C4", "literal_and_hash_match": true},
+          {"page": 32, "normalized_offset": 499, "quote_sha256": "7D5B6D9CCBA952B343B48F044AC6FA41B06302B0EF400950DCF2117EE4AEBCB7", "literal_and_hash_match": true},
+          {"page": 32, "normalized_offset": 1699, "quote_sha256": "CAF6850AE0CCFBC7B23738B0774338A90657BF854B16FB67FA488A2FEE02E03A", "literal_and_hash_match": true}
+        ],
+        "original_fact_and_row_retained": true,
+        "original_fact_anchor_proves": "Model-estimated time-dependent recurrent-current contribution, not the learning claim itself.",
+        "additional_exact_support": ["p18: gradient descent fits connectivity and single-neuron parameters", "p32: trained input/readout vectors, recurrent weights, gains and biases"],
+        "matrix_cell_note": "Do not mark the initial FW11 x MOT-FULL-16 cell as a certified learning-mechanism equivalence merely because this broader same-document model-training analogy was reviewed. Keep the precise operation and additional locator visible."
+      },
+      "source_quote_and_original_target_anchor_match": true,
+      "source_quote_sha256": "B87542AC93FFD15D65DCCCC44CA6D12292C2779395334D4F545BD8BBBE0660BC",
+      "formal_relation_ceiling": "Weak model-level analogy with supplemental training locator; no biological learning-rule equivalence proved.",
+      "public_projection_authorized": false
+    },
+    {
+      "worker_row_id": "MOT-FULLTEXT-PAIR-07",
+      "source_route_id": "S16-OSCILLATOR-READING",
+      "target_fact_id": "MOT-FULL-07",
+      "decision": "RETAIN-WEAK-READOUT-ROLE-ANALOGY-WITH-PHASE-STRENGTH-QUALIFICATION",
+      "membership": "PRESERVE",
+      "source_locator": "S16 lines25-35, especially27 and31",
+      "target_locator": "Motivation p8 decoding result and p29 LDA methods",
+      "source_passage": "reads the stream of wavelets, transmitted via synaptic connections",
+      "method_passage": "The width of the matrix is 2U, since both phase value and vector strength are included for each unit",
+      "strongest_positive_reconstruction": "The source describes receiving neural assemblies extracting representational content from temporal/spatial firing patterns. The target demonstrates that an external LDA can extract lick direction from phase-related population features. The informational readout role overlaps weakly; the source's biological reader is not identified with the analyst's classifier.",
+      "input_transform_output": "Temporally structured neural pattern -> readout operation -> content distinction; biological receiving assembly versus external analysis model.",
+      "lens_results": {
+        "L1": {"result": "weak-readout-role-partial", "basis": "Both concern readable information in temporally structured activity. The target uses each unit's phase and phase-locking/vector-strength feature, not phase alone."},
+        "L2": {"result": "weak-informational-chain-analogy", "basis": "Pattern -> readout -> differentiated content is shared only at an abstract role. External decodability does not establish causal downstream biological use or the source's proposed oscillatory receiver."},
+        "L3": {"result": "dated-wording-earlier-with-prior-gate", "basis": "June18,2023 Git wording fixation precedes the November2026 target. First-publication visibility is qualified, and the target's named motor-network lineage remains open to exact prior-body review. No origin or influence conclusion follows."}
+      },
+      "adversarial_scope_test": "A successful classifier can exploit features the organism does not use; phase-locking strength can contribute to the reported decoder. The p8 shorthand is preserved as a quotation but p29 governs a precise methods description. Neither source soliton/wavelet ontology nor a downstream receiving mechanism is validated by this analysis result.",
+      "source_quote_and_target_anchor_match": true,
+      "source_quote_sha256": "15C25A808E0516ED95801D0CE662C7020EA4BA1C442B7DFA6F4DD548FB564DDF",
+      "formal_relation_ceiling": "Weak readout-role analogy; no biological receiver identity or phase-only decoding result established.",
+      "provisional_group": "timing-coded-information",
+      "public_projection_authorized": false
+    }
+  ],
+  "phase_decoder_clarification": {
+    "ref": "PHASE-DECODER-METHOD-CLARIFICATION.json",
+    "independently_checked_against_target_page": 29,
+    "finding": "Verified: LDA concatenates phase values and resultant vector strength, giving 2U features per lick. Use phase-related features, not phase alone, when describing the demonstrated decoder.",
+    "source_p8_shorthand_preserved": true,
+    "affected_rows": ["MOT-FULLTEXT-PAIR-05", "MOT-FULLTEXT-PAIR-07"],
+    "deletion_or_membership_effect": 0
+  },
+  "named_prior_boundary": {
+    "target_pages": [2,34],
+    "reference_number": 24,
+    "authors_as_cited": ["Linden, H.", "Petersen, P.C.", "Vestergaard, M.", "Berg, R.W."],
+    "year_as_cited": 2022,
+    "title": "Movement is governed by rotational neural dynamics in spinal motor networks",
+    "doi": "10.1038/s41586-022-05293-w",
+    "role": "Target's explicitly named source for the movement-specific phase-code question, not an independently adjudicated source in this review.",
+    "full_prior_body_reviewed": false,
+    "field_firstness_claimed": false,
+    "effect": "Requires exact prior-body comparison before any stronger historical-originality or signature-genealogy conclusion; does not delete preserved document-relative partials."
+  },
+  "lens4": {
+    "state": "LSM-UNKNOWN",
+    "quantitative": "quantitative-not-calibrated",
+    "basis": "Neither the target's complete staged history nor alternative lineages have been saturated. Seven pairs cannot establish a migration/dependence finding.",
+    "row_lens_results_remain_three_only": true
+  },
+  "operation_group_view": {
+    "status": "PROVISIONAL-SUMMARY-NOT-INDEPENDENT-INVENTION-COUNT",
+    "groups": [
+      {"name": "body-feedback-recurrence", "rows": ["MOT-FULLTEXT-PAIR-01"]},
+      {"name": "context-dependent-cooperation", "rows": ["MOT-FULLTEXT-PAIR-02"]},
+      {"name": "initial-state-processing", "rows": ["MOT-FULLTEXT-PAIR-03"]},
+      {"name": "anticipatory-motor-alignment", "rows": ["MOT-FULLTEXT-PAIR-04"]},
+      {"name": "timing-coded-information", "rows": ["MOT-FULLTEXT-PAIR-05", "MOT-FULLTEXT-PAIR-07"]},
+      {"name": "learned-recurrent-configuration", "rows": ["MOT-FULLTEXT-PAIR-06"]}
+    ],
+    "primary_row_membership_not_deduplicated": true
+  },
+  "preservation": {
+    "all_worker_pair_ids": ["MOT-FULLTEXT-PAIR-01", "MOT-FULLTEXT-PAIR-02", "MOT-FULLTEXT-PAIR-03", "MOT-FULLTEXT-PAIR-04", "MOT-FULLTEXT-PAIR-05", "MOT-FULLTEXT-PAIR-06", "MOT-FULLTEXT-PAIR-07"],
+    "old_Motivation_ids": ["NEWS-20261112-MOT-01", "NEWS-20261112-MOT-02"],
+    "parent_sets_reference": "FIXED-INPUTS.json",
+    "parent_id_count": 1072,
+    "existing_D28_count": 45,
+    "existing_news_count": 17,
+    "R1_and_worker_files_modified": false,
+    "count_decrement": 0,
+    "new_governed_count_delta": 0
+  },
+  "counts": {
+    "reviewed_pairs_total": 7,
+    "newly_read_delta_pairs": 4,
+    "bounded_function_or_variable_partials": 4,
+    "weak_components_or_analogies_retained": 3,
+    "provisional_operation_groups": 6,
+    "distinct_target_authors": 10,
+    "row_author_associations_preserved": 70,
+    "author_associations_used_as_win_count": 0,
+    "worker_matrix_cells": 940,
+    "worker_reported_remaining_open_cells": 933,
+    "new_matrix_cell_closure_performed_by_this_review": 0,
+    "new_governed_wins": 0,
+    "new_public_release_certifications": 0,
+    "ten_distinct_points_claimed": false,
+    "full_43_check_certification_claimed": false
+  },
+  "validation_boundary": "All four added source quotations and target anchors match the original files after whitespace normalization, and their recorded source-quote hashes match. Same-artifact source precision annotations preserve every original row. Independent review is not meta-audit, method/drift completion, global source validation or release authorization.",
+  "remaining": [
+    "Keep pair06 training evidence distinct from the MOT-FULL-16 current-contribution anchor in any later projection or matrix annotation.",
+    "Retain phase plus vector strength in decoder descriptions and biological-receiver versus analyst-readout separation.",
+    "Exact prior-body and complete genealogy/history reviews remain open; no forced ten-point count.",
+    "Parent meta-audit, method-compliance and application-drift gates remain required before public projection.",
+    "R2 worker required_next text still says three rows; its explicit seven-row scope governs this review. This note does not modify the frozen worker file."
+  ],
+  "external_searches": 0,
+  "new_agents": 0,
+  "new_semantic_runs": 0,
+  "public_projection_authorized": false
+}

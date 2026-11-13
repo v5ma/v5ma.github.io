@@ -1,0 +1,688 @@
+{
+  "schema": "research-archive-file-index-v1",
+  "scope": "Foundation tranche only; comprehensive working-corpus inventory and disclosure review continue.",
+  "files": [
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-PREFLIGHT-RECALL-CHECKLIST.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-PREFLIGHT-RECALL-CHECKLIST.md",
+      "sha256": "9B5FA7D5305AD4260019488A4B4EF2FE289D497946C1150A94927BE876FAA989",
+      "bytes": 9938,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-APPLICATION-DRIFT-CHECKLIST.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-APPLICATION-DRIFT-CHECKLIST.md",
+      "sha256": "359913070BB6F4DED68E76862DEE350C9124A7CF62BDAB28C58D7622E6613E4D",
+      "bytes": 9667,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-GOAL-LINK-MAP.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-GOAL-LINK-MAP.md",
+      "sha256": "7AFB95BD31978BDA5086305C7275D69AE74142C5E762A613EC2618631CEF628B",
+      "bytes": 299117,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-METHOD-LOCK.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-METHOD-LOCK.md",
+      "sha256": "1931CFE03F8F907DF395E1CEDA524CDF04CB0A72AFEB30F1992D5F1C78E6FF4D",
+      "bytes": 21711,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/D Documents/codex_instruction_pack_final/02-jigsaw-turbovec-fit-pattern-manual(2).txt",
+      "path": "archive/external/D-Documents/codex_instruction_pack_final/02-jigsaw-turbovec-fit-pattern-manual(2).txt",
+      "sha256": "FA4DA2252259BA24EA7D7C9E59EEE5DCF37ADD6E84079DF4A2FD2FD5E699B594",
+      "bytes": 36997,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/operational-equivalence-jigsaw-census-tool-20260527.md",
+      "path": "archive/repo/production-canon/docs/operational-equivalence-jigsaw-census-tool-20260527.md",
+      "sha256": "9BA5EA70EAC38A4EDEDA56677878148ADF29DEC885C5429F7F72F1B4046C4AFD",
+      "bytes": 31158,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/agent-wiki/agents/semantic-jigsaw-solver-assembly-protocol-20260523.md",
+      "path": "archive/repo/agent-wiki/agents/semantic-jigsaw-solver-assembly-protocol-20260523.md",
+      "sha256": "A5AEACBAB2F416ED2B0DD3F496567728FE7BE4637319EDB9E769C77FD8D4A394",
+      "bytes": 18539,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/agent-wiki/agents/operational-equivalence-fit-pattern-scope-lens-continuity-20260528.md",
+      "path": "archive/repo/agent-wiki/agents/operational-equivalence-fit-pattern-scope-lens-continuity-20260528.md",
+      "sha256": "FC72B68237EF964AB1254211CD238741F8458B1767A221B81385BE0DDB7A987D",
+      "bytes": 21077,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/agent-wiki/agents/fit-pattern-census-companion-fit-continuity-20260528.md",
+      "path": "archive/repo/agent-wiki/agents/fit-pattern-census-companion-fit-continuity-20260528.md",
+      "sha256": "D40E54D9D4716AC3A16B5CCA6C40435508BD14A3DCC23A6E5A1037B4DC423FB4",
+      "bytes": 11553,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/production-map/major-cluster-signature-census-operational-shape-workflow-20260605.md",
+      "path": "archive/repo/production-canon/production-map/major-cluster-signature-census-operational-shape-workflow-20260605.md",
+      "sha256": "1351FA906625DE6013A07A14AB518461A80CAF502C3C59AF49F980428A296073",
+      "bytes": 4248,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/agent-wiki/agents/nine-wiki-jigsaw-rank-20260524.md",
+      "path": "archive/repo/agent-wiki/agents/nine-wiki-jigsaw-rank-20260524.md",
+      "sha256": "B493C96127BE3F5CE6180689AD71C13E58EC6A74E11AABDB8BDB566EA1E1F4A0",
+      "bytes": 17582,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-CONCISE-STANDING-GOAL.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-CONCISE-STANDING-GOAL.md",
+      "sha256": "40EB869BBBB27FDB40C711C8A5AEC009E5004F7EA35C4B437D5FB9373329F4A6",
+      "bytes": 11045,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-preflight-recall-checklist-v1.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-preflight-recall-checklist-v1.json",
+      "sha256": "C04E384DEF4002E31E8BC66B9EFA1210DFA83526285682DA06B7431CAD18C419",
+      "bytes": 11719,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-method-compliance-checklist-v1.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-method-compliance-checklist-v1.json",
+      "sha256": "3E2FA620E00CBF77792A789CCFB193CD9FEC244D5BE3ABC9A20AAC4EBDAC68CA",
+      "bytes": 12815,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-application-drift-checklist-v1.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-application-drift-checklist-v1.json",
+      "sha256": "00A9DADDD9B1E8790B86525B3BEEE2A54B428B7599F745E1652F1D22B829C1F1",
+      "bytes": 7402,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-atom-win-lineage-ledger-schema-v1.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-atom-win-lineage-ledger-schema-v1.json",
+      "sha256": "5B8117923D718AB315496C8DD700814085E7902F03CF16B6DABB03CDB230EE83",
+      "bytes": 9070,
+      "kind": "direct-goal-authority"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/scripts/agent-wiki/verify-comparison-preflight-recall-receipt.py",
+      "path": "archive/repo/scripts/agent-wiki/verify-comparison-preflight-recall-receipt.py",
+      "sha256": "CD7D7F0ACD611B16DDBD2F818A32EAFDF8F8484689815AA01BB441A8891F62CA",
+      "bytes": 11132,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/wiki/comparisons/AGENTS.md",
+      "path": "archive/repo/wiki/comparisons/AGENTS.md",
+      "sha256": "88D4AFB9A173A03B4E8A7373E5176083356830F8AC9B3F5711223A7E91517E08",
+      "bytes": 23210,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/wiki/comparisons/comparison-methodology-and-plagiarism-equivalence.md",
+      "path": "archive/repo/wiki/comparisons/comparison-methodology-and-plagiarism-equivalence.md",
+      "sha256": "A0C5215EAE1122D276EA0EAF183DF328F9F935AB60970962D125ACAFADDEBBFC",
+      "bytes": 136276,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/wiki/comparisons/comparison-analysis-failure-modes.md",
+      "path": "archive/repo/wiki/comparisons/comparison-analysis-failure-modes.md",
+      "sha256": "975A83B89E5EAD6A3D6C6BD6F710484892B03391C2590026C1C4AA5346EEF621",
+      "bytes": 67680,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/wiki/comparisons/priority-findings/README.md",
+      "path": "archive/repo/wiki/comparisons/priority-findings/README.md",
+      "sha256": "745FF00C04ED046FEDD42F3BD28318E9AF6807DEA22574C7CA5734E2AE40AC69",
+      "bytes": 14507,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/FULL-GENEALOGY-SATURATION-GATE-20260728.md",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/FULL-GENEALOGY-SATURATION-GATE-20260728.md",
+      "sha256": "852ACBABD99A385F6E67EE7CC46217EAC151D47A3EE4CCE0B8CFE279D0BF996D",
+      "bytes": 6758,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/full-genealogy-saturation-gate-v1.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/full-genealogy-saturation-gate-v1.json",
+      "sha256": "10ECBAE58CADA849C37DE55034C04722C32AB1E87E8775BBBD77F8015BC63D19",
+      "bytes": 6530,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/LOSSLESS-DOCUMENT-INSTANCE-RECOUNT-PROTOCOL-20260808.md",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/LOSSLESS-DOCUMENT-INSTANCE-RECOUNT-PROTOCOL-20260808.md",
+      "sha256": "58B601BFC38D1C83927DC661536EE655A504A39D3DC07C8EE2E41A561BA1C406",
+      "bytes": 8787,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-method-registry.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-method-registry.json",
+      "sha256": "7AC446A679DA5DD29BA01A5A524402F994083EAB2A4F2D488E44176E7FE2B1B7",
+      "bytes": 16142,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-comparison-audit-template.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-comparison-audit-template.json",
+      "sha256": "A9A6C1FE7FA12633DBA3238016C632D8DDC60A521452DF44AACD470A8FBD3F93",
+      "bytes": 3502,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/comparison-wiki-method-lock-v1.json",
+      "path": "archive/repo/production-canon/docs/comparison-wiki-method-lock-v1.json",
+      "sha256": "5C588C5D51B0985DD9673D822B2ED71087717A6623A2DF6C26DB04C0B99CA8BD",
+      "bytes": 22435,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/scripts/agent-wiki/verify-comparison-compliance-receipt.py",
+      "path": "archive/repo/scripts/agent-wiki/verify-comparison-compliance-receipt.py",
+      "sha256": "83183BE3B15895F83EFEA62C18761BB621C24AECFB2C1C3ADD1A951A894EF973",
+      "bytes": 11493,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/scripts/agent-wiki/verify-comparison-application-drift-receipt.py",
+      "path": "archive/repo/scripts/agent-wiki/verify-comparison-application-drift-receipt.py",
+      "sha256": "61EE2E54D2BA672D22CBCD1E5D1D91CF5C2399E3601AADC2BB830BC9FF7A5BE1",
+      "bytes": 8514,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-METHOD-BOOTLOADER-V2.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-METHOD-BOOTLOADER-V2.md",
+      "sha256": "325703FC972EF48D1436FBF31F4289A804C41A556BFDB6B51CD88B76F475175E",
+      "bytes": 4611,
+      "kind": "core-method"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-preflight-recall-reconstruction-v2.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-preflight-recall-reconstruction-v2.json",
+      "sha256": "55E993F9BA5EC3166CA74F91075AFB93BF850300AD321D12510D83B9D715E065",
+      "bytes": 2447,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/scripts/agent-wiki/verify-comparison-preflight-recall-reconstruction-v2.py",
+      "path": "archive/repo/scripts/agent-wiki/verify-comparison-preflight-recall-reconstruction-v2.py",
+      "sha256": "51EE146D0AEEDE3410B3DE16E01F8535CA4A37350573FC19DBA7EF61BACC9560",
+      "bytes": 9554,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-PRESENTATION-REQUIREMENTS.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-PRESENTATION-REQUIREMENTS.md",
+      "sha256": "4F1EB36B745339F7D0ED61299AF9FD71098A34492EFFE6CFEB7132666872281E",
+      "bytes": 13498,
+      "kind": "core-method"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-GENEALOGICAL-ATOM-LOSSLESS-CAPSULE-PROTOCOL-20260828.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-GENEALOGICAL-ATOM-LOSSLESS-CAPSULE-PROTOCOL-20260828.md",
+      "sha256": "E201D0B420B67E9F1801ABA581D2C1D3B9439E4C47A5893382A213969EE2033C",
+      "bytes": 9859,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-INFOGRAPHIC-DONOR-CHECKLIST-20260828.md",
+      "path": "archive/repo/production-canon/docs/COMPARISON-WIKI-INFOGRAPHIC-DONOR-CHECKLIST-20260828.md",
+      "sha256": "4265DECA415DD244AF53F7F1CF2BFB27BE63A89A877A1E1E6FF794D92E0008A4",
+      "bytes": 9294,
+      "kind": "method-linked-dependency"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/index.html",
+      "path": "reader/comparison-wiki/joscha-bach/index.html",
+      "sha256": "A0F27E9458D82B4D18AB8BAE74DC284F94340EAFA7EE95ED618A4695083D932E",
+      "bytes": 139319,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/evidence.html",
+      "path": "reader/comparison-wiki/joscha-bach/evidence.html",
+      "sha256": "83A4D57FC09BCD979197445D2360EF1A52B6846F3D53365DF2EDFF9D5E3B70FA",
+      "bytes": 86127,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/comparison-data.json",
+      "path": "reader/comparison-wiki/joscha-bach/comparison-data.json",
+      "sha256": "D8407737E600EECB00DBB960B385027EE50F7B86D7FD5BBDE9B641575FD46DC0",
+      "bytes": 147961,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/2022-source-extension/index.html",
+      "path": "reader/comparison-wiki/joscha-bach/2022-source-extension/index.html",
+      "sha256": "8BE4DC6E847D767EAC6E273CF4E4A1020686B2D23CA3DA0A42712F4844138867",
+      "bytes": 58874,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/2022-source-extension/evidence.html",
+      "path": "reader/comparison-wiki/joscha-bach/2022-source-extension/evidence.html",
+      "sha256": "83B26C47B6946FC68D707D33A07F254542FA3F9DDB52C3EEAE6E864F0D537C7B",
+      "bytes": 83421,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/2022-source-extension/comparison-data.json",
+      "path": "reader/comparison-wiki/joscha-bach/2022-source-extension/comparison-data.json",
+      "sha256": "B81C64CFCCAF4CCA901B8FBE066441FAA0630BA1E3209373687B37866AD93369",
+      "bytes": 97251,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/neural-lace-source-comparisons/index.html",
+      "path": "reader/comparison-wiki/joscha-bach/neural-lace-source-comparisons/index.html",
+      "sha256": "F14147D9D33B245D97DC1382EB4A5912B4ED587ECC5F299CCFAEF1C3AE32FB42",
+      "bytes": 97399,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/neural-lace-source-comparisons/evidence.html",
+      "path": "reader/comparison-wiki/joscha-bach/neural-lace-source-comparisons/evidence.html",
+      "sha256": "F635B56F00ED534B912F5199A55B4E40BFFAF1F728139861A0BE187A17692A1C",
+      "bytes": 56189,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/neural-lace-source-comparisons/comparison-data.json",
+      "path": "reader/comparison-wiki/joscha-bach/neural-lace-source-comparisons/comparison-data.json",
+      "sha256": "C25D68ED7FCF82D91028B5C1A7A332978B639B5E410A91CDAD3226EED03DD14C",
+      "bytes": 58292,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-spatial-computing/index.html",
+      "path": "reader/comparison-wiki/miller-spatial-computing/index.html",
+      "sha256": "80C8BF5415DEF1C08264DBE0706A6A1BC34B9A4836570DD01E5060F81309A12D",
+      "bytes": 17066,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-spatial-computing/evidence.html",
+      "path": "reader/comparison-wiki/miller-spatial-computing/evidence.html",
+      "sha256": "3EB27853B37C7E89891EDDE35718FE4456071429C434A51520D7447FB3F8CD52",
+      "bytes": 31687,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-spatial-computing/comparison-data.json",
+      "path": "reader/comparison-wiki/miller-spatial-computing/comparison-data.json",
+      "sha256": "AC0BEEABCCC29ED2E494AC8FA0936516FC94E57566C1C6B77E58F01A656FDD1A",
+      "bytes": 42910,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/index.html",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/index.html",
+      "sha256": "64761586DDD01DA8B03F7251BF504F4BC8EF266F0830CF78B870CE8FF175F31F",
+      "bytes": 49040,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/evidence.html",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/evidence.html",
+      "sha256": "18E7117735DCF0EFDA445C8B609CB6D417479697126DDC0F284DAA3C14B85899",
+      "bytes": 804125,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/comparison-data.json",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/comparison-data.json",
+      "sha256": "48142DB5C9D9C7307BE5A7B6DF8388118924A3DBD9C553B054EF0349BC93F6D5",
+      "bytes": 1243834,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/reader.css",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/reader.css",
+      "sha256": "BB98096A93B18A1D08DF6EE4EB59A3998B1D8AFF15D32ED60ECABC639C345B16",
+      "bytes": 3402,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/reader.js",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/reader.js",
+      "sha256": "32ADE8AD2F81A21A3FFF751F697B1F1748F96566F3A774C242AE6893E5CEFBF6",
+      "bytes": 2487,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/anil-seth/source-comparisons/ledger.csv",
+      "path": "reader/comparison-wiki/anil-seth/source-comparisons/ledger.csv",
+      "sha256": "B63EA2A8E27665309C353A7CAF27CA43EE9E368F3613B48499F9E31259F88477",
+      "bytes": 120979,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/.gitattributes",
+      "path": "reader/comparison-wiki/.gitattributes",
+      "sha256": "CDBE181DEEE63CD6B76A34F4C3B69BC306A09375C256444C313F7E2E0080521D",
+      "bytes": 16,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/index.html",
+      "path": "reader/comparison-wiki/index.html",
+      "sha256": "084C99C4CDA118B10BF4C24AACFA39D2F471E7AD74DB17E9E31A18AAD6E4C891",
+      "bytes": 5522,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/README.md",
+      "path": "reader/comparison-wiki/README.md",
+      "sha256": "A1C61C52F2C3D811B012999A961DCD030C3195565D61EBA8F3C769AB331289F4",
+      "bytes": 5793,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/map/index.html",
+      "path": "reader/comparison-wiki/map/index.html",
+      "sha256": "2D96FD54E6E5A2E4F068BBAFA9BDD2FEF8B9F7FA774313FA73A1EBA117ABDB62",
+      "bytes": 3579,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/map/map.css",
+      "path": "reader/comparison-wiki/map/map.css",
+      "sha256": "6F2647E3BF376274085B83BCE223C1AFA1526B5A1F0F3A6E3249950704A62ACF",
+      "bytes": 5766,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/map/map.mjs",
+      "path": "reader/comparison-wiki/map/map.mjs",
+      "sha256": "B7342BAAD2115633A41103530F1C3EBCC0ED527FCBBF2565E2F284C67E149379",
+      "bytes": 15784,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/map/map-model.mjs",
+      "path": "reader/comparison-wiki/map/map-model.mjs",
+      "sha256": "B4E5B7FC1C6030960AFEE4F8E6C38102D95D22BCDA7AF7755017A8FA7DD938BD",
+      "bytes": 1734,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/map/comparison-map.json",
+      "path": "reader/comparison-wiki/map/comparison-map.json",
+      "sha256": "7FCB3F2C9B59E9AAD9F53B50B281EFF0A16E2417F93E0E4E55CA63EB204EB9DD",
+      "bytes": 678280,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/manifest-sha256.json",
+      "path": "reader/comparison-wiki/manifest-sha256.json",
+      "sha256": "BF434E4485ECB686CE8EC3B168E3895DBD7EA77844CBA0710834FF2B4100FB3C",
+      "bytes": 9108,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/snapshot.json",
+      "path": "reader/comparison-wiki/snapshot.json",
+      "sha256": "7F31C35B3CF1ED4D7FD114A304EFED53559D34D37453DCF8A7C8E966858EAD17",
+      "bytes": 6613,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/michael-graziano/self-modelling/comparison-data.json",
+      "path": "reader/comparison-wiki/michael-graziano/self-modelling/comparison-data.json",
+      "sha256": "643324A6BD919E630751D859D3804DE2CBA8EFC65E65015CFDD78F38D6CC7321",
+      "bytes": 168672,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/michael-graziano/self-modelling/index.html",
+      "path": "reader/comparison-wiki/michael-graziano/self-modelling/index.html",
+      "sha256": "3BD6FA6620ABF362C6256E3DFF94F9BCF67395ABB14DC80CF640CCDE212C426C",
+      "bytes": 105947,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/michael-graziano/self-modelling/evidence.html",
+      "path": "reader/comparison-wiki/michael-graziano/self-modelling/evidence.html",
+      "sha256": "B92F1411A5AC308396AA57032A2E8C410991853B031F098FBDA8B2C87A023C2A",
+      "bytes": 117226,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/michael-graziano/self-modelling/cards.css",
+      "path": "reader/comparison-wiki/michael-graziano/self-modelling/cards.css",
+      "sha256": "3D7CD41829B97CC6CC55B91AA76C0CE290F7641DBF4258DF747B2611066B8833",
+      "bytes": 3174,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/michael-graziano/self-modelling/cards.mjs",
+      "path": "reader/comparison-wiki/michael-graziano/self-modelling/cards.mjs",
+      "sha256": "CE2EDF6485CD3605CA16A282BDBB9E242EAB87DA24DD851AA273144080FD8ADE",
+      "bytes": 3354,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/paired-passages/index.html",
+      "path": "reader/comparison-wiki/joscha-bach/paired-passages/index.html",
+      "sha256": "6377E327D4566A4A953E02D9C3C1BE45E0AC7791D10D46CA4CFD0FB9A6CBF040",
+      "bytes": 2325,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/paired-passages/cards.css",
+      "path": "reader/comparison-wiki/joscha-bach/paired-passages/cards.css",
+      "sha256": "477084BEBE1F4C3AEFBA91DF44EEE5FD527DBEC52552350106A7FC4CBFED1038",
+      "bytes": 3547,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/paired-passages/cards.mjs",
+      "path": "reader/comparison-wiki/joscha-bach/paired-passages/cards.mjs",
+      "sha256": "071EF746BFA4F6B1FA9330CCDB07D0411F9AF90E12156E8B19CD4D4BD15CE9AD",
+      "bytes": 7708,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/joscha-bach/paired-passages/comparison-data.json",
+      "path": "reader/comparison-wiki/joscha-bach/paired-passages/comparison-data.json",
+      "sha256": "8FFB1033A8A6136A835A29DD2F16C6E93DD9ECF3BA69E6AAD3338D38AB433C63",
+      "bytes": 109688,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-expanded/index.html",
+      "path": "reader/comparison-wiki/miller-expanded/index.html",
+      "sha256": "6668A9FC9DC8412240E21DF1F504F7C939C707B56206736C8759ACBACFCAE5B4",
+      "bytes": 2363,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-expanded/catalog.css",
+      "path": "reader/comparison-wiki/miller-expanded/catalog.css",
+      "sha256": "8C08A95D6C98BE39B6BDF819099B7FFAEF7331C1F403D7CC50FCE00A35973BC5",
+      "bytes": 2673,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-expanded/catalog.mjs",
+      "path": "reader/comparison-wiki/miller-expanded/catalog.mjs",
+      "sha256": "06E883598F1E16F24380A18645AEEA1E52DC289778CA58E7F1350D24FA84753A",
+      "bytes": 10391,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-expanded/catalog.json",
+      "path": "reader/comparison-wiki/miller-expanded/catalog.json",
+      "sha256": "186849A438E68E918F7DFBC68A4D25D633D6F08319271B0CA407A24AE8BB703D",
+      "bytes": 700519,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/miller-expanded/sources.json",
+      "path": "reader/comparison-wiki/miller-expanded/sources.json",
+      "sha256": "B7B0EF31B57E63EA1DEAD8F68420FD9E33CD5E6B55BE59EAA1FDAA4318282CC7",
+      "bytes": 63307,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/hawkins-lineage/index.html",
+      "path": "reader/comparison-wiki/hawkins-lineage/index.html",
+      "sha256": "A55F5206AEA3830E4CB21D7A21439AE955102E38D88D5E82050993E82AEEA168",
+      "bytes": 2649,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/hawkins-lineage/catalog.mjs",
+      "path": "reader/comparison-wiki/hawkins-lineage/catalog.mjs",
+      "sha256": "87EFEEB5446943FCDAE76FAD4CB953C861105DFD8003990A1129E8344A53F6D8",
+      "bytes": 18377,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/hawkins-lineage/catalog.css",
+      "path": "reader/comparison-wiki/hawkins-lineage/catalog.css",
+      "sha256": "7D4ECBB9DC9F2F1868CEF3529743AB4D5DB98529F5A587417004B96E5956D8CD",
+      "bytes": 3039,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/hawkins-lineage/catalog.json",
+      "path": "reader/comparison-wiki/hawkins-lineage/catalog.json",
+      "sha256": "FFF4761C5A33FC0E48A1B95C6E1C56BAFDD805F96BA805E482B56138C1106E08",
+      "bytes": 1050578,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/hawkins-lineage/sources.json",
+      "path": "reader/comparison-wiki/hawkins-lineage/sources.json",
+      "sha256": "54307CE4FD6BA4FFC1CD556ACF03EE8D73F719AD67024D8DA0B5CC691C354150",
+      "bytes": 86862,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/levin-lineage/index.html",
+      "path": "reader/comparison-wiki/levin-lineage/index.html",
+      "sha256": "BC96C45EF9CAE4835D5E524B0A25D9ABFFB47E0EE8A11FAE9C848A547DB7B32A",
+      "bytes": 3047,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/levin-lineage/catalog.mjs",
+      "path": "reader/comparison-wiki/levin-lineage/catalog.mjs",
+      "sha256": "41E33B3CDD59725819466054D5D8CDC3E15C29C2AAFC3FD0B4D1BAD102CCB302",
+      "bytes": 23350,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/levin-lineage/catalog.css",
+      "path": "reader/comparison-wiki/levin-lineage/catalog.css",
+      "sha256": "C6FE6F13BE1659FAE7900CF6BCFCDF4BD5B08BD53AFED61CF63CC7C936065090",
+      "bytes": 3168,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/levin-lineage/catalog.json",
+      "path": "reader/comparison-wiki/levin-lineage/catalog.json",
+      "sha256": "38E6B804D2A8CAB9691F0A3C639883BF7DB510F167CD0D34EB40E8670A282865",
+      "bytes": 463727,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/levin-lineage/sources.json",
+      "path": "reader/comparison-wiki/levin-lineage/sources.json",
+      "sha256": "8D323DB4978DA95617C124A4F04E0276CC7BD40C6751A96BE9470485C4A455D3",
+      "bytes": 88880,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/introduction.html",
+      "path": "reader/comparison-wiki/introduction.html",
+      "sha256": "825F1E92B594F5A35668D1B5ED5752B2B6B4203018BC3A309F02BFC271EDC55D",
+      "bytes": 7613,
+      "kind": "reader-preview-not-live-deployment"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/NETWORK-AND-NAMING-CONTRACT.json",
+      "path": "THEORETICAL-HANDOFF/status/NETWORK-AND-NAMING-CONTRACT.json",
+      "sha256": "91419E1CC59D79AA405630C7C99A1639EE4EE5FB3FFB5F075D756FF13BA67815",
+      "bytes": 4620,
+      "kind": "review-state"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/INDEPENDENT-PRESENTATION-REVIEW.json",
+      "path": "THEORETICAL-HANDOFF/status/INDEPENDENT-PRESENTATION-REVIEW.json",
+      "sha256": "FA6AA97FD107B886BF009E1CA9A6A093803A81CB4E9056A026BAF1A1FA8A9F05",
+      "bytes": 20610,
+      "kind": "review-state"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/WORKER-PAIR-REVIEW-R2.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/WORKER-PAIR-REVIEW-R2.json",
+      "sha256": "D90D4D73EC1B61E440EEA079A755302354EFF1164BF9CB0D928E41B0482EFE12",
+      "bytes": 158775,
+      "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/INDEPENDENT-PAIR-REVIEW-R2.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/INDEPENDENT-PAIR-REVIEW-R2.json",
+      "sha256": "8C3AF06D6D3F514CD87BC83ACC905E6D7B073C2EAF085F4004F1CFBC36ADD962",
+      "bytes": 22417,
+      "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/META-PAIR-REVIEW-R2.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/META-PAIR-REVIEW-R2.json",
+      "sha256": "A5B876C53D504AECA5A2CB7DBBF80EA0CC5DFA76EE8030715B1EE210D2F194F7",
+      "bytes": 52368,
+      "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/PAIR06-TARGET-CONTEXT-QUALIFICATION.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/PAIR06-TARGET-CONTEXT-QUALIFICATION.json",
+      "sha256": "F344AE665EF22E088C2F6A879CD66FA8B78E168532716E2666184F832EA5A4AD",
+      "bytes": 2137,
+      "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/PHASE-DECODER-METHOD-CLARIFICATION.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/PHASE-DECODER-METHOD-CLARIFICATION.json",
+      "sha256": "D591DD3564F193C33512925B2A6CC0D0B96F040AD33A60D24191DFE6EC2157DC",
+      "bytes": 731,
+      "kind": "qualified-research-working-record"
+    },
+    {
+      "source": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/CURRENT-STATE-R3.json",
+      "path": "archive/repo/production-canon/private-source-review/comparison-wiki-five-story-expansion-20261113/motivation-fulltext/review-r1/CURRENT-STATE-R3.json",
+      "sha256": "D2EB4E36DBA508C270B193FCD65068E60E27123117E012CFC1AA58A714264C96",
+      "bytes": 1742,
+      "kind": "qualified-research-working-record"
+    }
+  ],
+  "exact_goal": {
+    "path": "THEORETICAL-HANDOFF/active-goal.exact.md",
+    "sha256": "9BAC03F7385334BE194A19E80C1C14B4FC01170E9B4C215551A39C067394EECB",
+    "bytes": 10906
+  },
+  "direct_goal_links": 17,
+  "missing": [],
+  "third_party_PDFs_included": 0,
+  "private_history_included": false,
+  "complete_backup": false
+}

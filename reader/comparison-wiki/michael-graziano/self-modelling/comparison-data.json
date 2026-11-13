@@ -1,0 +1,2038 @@
+{
+  "schema": "graziano-source-edition-public-proposal-v1",
+  "status": "SOURCE_RECORD_DATED_PARTIAL_COMPARISONS_AI_REVIEWED",
+  "scope": "Four 2022 SAN source-formulation versions compared with four named operator families in two later Premakumar/Graziano paper versions. Broader before/after genealogy and the newest2026self-schemas paper remain outside this source-edition certification scope.",
+  "counts": {
+    "source_formulation_versions": 4,
+    "source_note_documents": 3,
+    "target_document_versions": 2,
+    "target_claim_version_records": 8,
+    "comparison_links": 32,
+    "author_navigation_edges": 224,
+    "independently_counted_target_repetitions": null
+  },
+  "count_boundary": "32 links are 16 source/claim pairings checked in two versions, not 32 inventions, independent experiments or confirmations. Two a0007z versions show development/persistence of one note. Author edges do not add wins.",
+  "source_date_boundary": "2022 dates are historical Git records whose exact wording matches current public bytes. Earlier 2012 headers remain reported dates, not authenticated first public release.",
+  "sources": [
+    {
+      "id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "date": "2022-06-12",
+      "date_type": "Historical Git record; original first public release not independently authenticated",
+      "reported_note_date": "2012-09-07",
+      "document": "a0339z.md",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "git_commit": "4245ac674ea89dbf2b832f14a256a4d30937f13a",
+      "sha256": "835009EAE0FA62D471E5368131806D08C22549AE7C590DDFBA70187FAFE221D8",
+      "qualification": "The2012header is owner-reported, not independently authenticated publication. The2022Git object fixes this wording. Metaphysical, meditation and machine-consciousness assertions elsewhere in the note are not adopted as findings. The Numenta reference remains visible.",
+      "attribution": "Attributed to Blumberg by the preserved note and Book source register; no independent original Facebook capture recovered."
+    },
+    {
+      "id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "date": "2022-06-08",
+      "date_type": "Historical Git record; original first public release not independently authenticated",
+      "reported_note_date": "2012-04-19",
+      "document": "a0632z ctpr.txt",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "git_commit": "5360f6414909a2474129b2140ee0dc3112c93b6b",
+      "sha256": "C4538E29BCC1B8B3584334047A95CB1DE0E3B2C1A359F496643225C33939E120",
+      "qualification": "The2012header is owner-reported. The2022retrospective rendering comment at line3 is not backdated into2012. Hawkins is explicitly recommended and the Pinker quotation is separately attributed. The instrument/song description is an analogy, not proof that every neuron hears a literal sound or of the source's other numerical/physical claims.",
+      "attribution": "The selected dialogue turns are explicitly labelled Micah Blumberg in the source."
+    },
+    {
+      "id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "date": "2022-08-30",
+      "date_type": "Historical Git author/commit record; original public availability is not independently certified.",
+      "reported_note_date": null,
+      "document": "a0007z.md",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "git_commit": "86ca59559908f6cad3f9f3314f3d651c3e0c6ea1",
+      "sha256": "BAE95CC2D214077ABCE720EEA26177DADC1301FB3DC0946C93A3B85D1D4F88F9",
+      "qualification": "Tentative basal/apical/exit-terminal account. This is learning a response mapping, not an explicit classification-plus-regression objective.",
+      "attribution": "Blumberg commentary in the SAN note is kept distinct from quoted scientific literature."
+    },
+    {
+      "id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "date": "2022-09-18",
+      "date_type": "Historical Git author/commit record; original public availability is not independently certified.",
+      "reported_note_date": null,
+      "document": "a0007z.md",
+      "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "git_commit": "894b4d4ea3f23d4d1d526e123b5744283ff9cd5d",
+      "sha256": "824A074A17729942D83FEBA0E9BA3297EEC4F287F9C46FE956B890273FBC4B50",
+      "qualification": "The source says \"My intuition\" and describes feedback-linked cell responses. Anatomical speculation is not stripped from the source context.",
+      "attribution": "Blumberg commentary in the SAN note is kept distinct from quoted scientific literature."
+    }
+  ],
+  "targets": [
+    {
+      "id": "G-T24-A01-PREDICTS-OWN-HIDDEN-STATES",
+      "family": "A01",
+      "version": "GRAZIANO-T24-2024-ARXIV-V1",
+      "date": "2024-07-14",
+      "title": "Unexpected Benefits of Self-Modeling in Neural Systems",
+      "url": "https://arxiv.org/abs/2407.10188v1",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "source_locator": "PDF pages 1-2; extracted lines 63-71 and 123-128",
+      "sha256": "B66283213B3D1E960FE73EF95CAD2AB718A58F915912A558D94D5D2826051067",
+      "hash_kind": "held PDF bytes"
+    },
+    {
+      "id": "G-T24-A02-AUXILIARY-REGRESSION",
+      "family": "A02",
+      "version": "GRAZIANO-T24-2024-ARXIV-V1",
+      "date": "2024-07-14",
+      "title": "Unexpected Benefits of Self-Modeling in Neural Systems",
+      "url": "https://arxiv.org/abs/2407.10188v1",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "source_locator": "PDF page 2; extracted lines 113-128",
+      "sha256": "B66283213B3D1E960FE73EF95CAD2AB718A58F915912A558D94D5D2826051067",
+      "hash_kind": "held PDF bytes"
+    },
+    {
+      "id": "G-T24-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "version": "GRAZIANO-T24-2024-ARXIV-V1",
+      "date": "2024-07-14",
+      "title": "Unexpected Benefits of Self-Modeling in Neural Systems",
+      "url": "https://arxiv.org/abs/2407.10188v1",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "source_locator": "PDF page 3, left column",
+      "sha256": "B66283213B3D1E960FE73EF95CAD2AB718A58F915912A558D94D5D2826051067",
+      "hash_kind": "held PDF bytes"
+    },
+    {
+      "id": "G-T24-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "version": "GRAZIANO-T24-2024-ARXIV-V1",
+      "date": "2024-07-14",
+      "title": "Unexpected Benefits of Self-Modeling in Neural Systems",
+      "url": "https://arxiv.org/abs/2407.10188v1",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "source_locator": "PDF page 3, left column",
+      "sha256": "B66283213B3D1E960FE73EF95CAD2AB718A58F915912A558D94D5D2826051067",
+      "hash_kind": "held PDF bytes"
+    },
+    {
+      "id": "G-T26-A01-PREDICTS-INTERNAL-STATES",
+      "family": "A01",
+      "version": "GRAZIANO-T26-2026-VOR",
+      "date": "2026-05-14",
+      "title": "Unexpected benefits of self-modelling in neural systems",
+      "url": "https://doi.org/10.1098/rsta.2024.0531",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "source_locator": "Published source capture lines 121–124",
+      "sha256": "868442FA76856C32181E1E360D52E783FF341349670D1F1061BB210354749B43",
+      "hash_kind": "numbered source-text capture; not PDF bytes"
+    },
+    {
+      "id": "G-T26-A02-AUXILIARY-SELF-MODELING-TASK",
+      "family": "A02",
+      "version": "GRAZIANO-T26-2026-VOR",
+      "date": "2026-05-14",
+      "title": "Unexpected benefits of self-modelling in neural systems",
+      "url": "https://doi.org/10.1098/rsta.2024.0531",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "source_locator": "Published source capture lines 145–156",
+      "sha256": "868442FA76856C32181E1E360D52E783FF341349670D1F1061BB210354749B43",
+      "hash_kind": "numbered source-text capture; not PDF bytes"
+    },
+    {
+      "id": "G-T26-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "version": "GRAZIANO-T26-2026-VOR",
+      "date": "2026-05-14",
+      "title": "Unexpected benefits of self-modelling in neural systems",
+      "url": "https://doi.org/10.1098/rsta.2024.0531",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "source_locator": "Publisher PDF page 4, located lines 158–168",
+      "sha256": "868442FA76856C32181E1E360D52E783FF341349670D1F1061BB210354749B43",
+      "hash_kind": "numbered source-text capture; not PDF bytes"
+    },
+    {
+      "id": "G-T26-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "version": "GRAZIANO-T26-2026-VOR",
+      "date": "2026-05-14",
+      "title": "Unexpected benefits of self-modelling in neural systems",
+      "url": "https://doi.org/10.1098/rsta.2024.0531",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "qualification": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "source_locator": "Publisher PDF page 4, located lines 169–171",
+      "sha256": "868442FA76856C32181E1E360D52E783FF341349670D1F1061BB210354749B43",
+      "hash_kind": "numbered source-text capture; not PDF bytes"
+    }
+  ],
+  "rows": [
+    {
+      "id": "GRAZIANO-DOCWIN-91B5B26D598E22D0B644",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T24-A01-PREDICTS-OWN-HIDDEN-STATES",
+      "family": "A01",
+      "source_date": "2022-09-18",
+      "target_date": "2024-07-14",
+      "source_statement": "The cell is proposed to learn and predict its own response patterns through feedback.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "The network predicts subsets of its own hidden activations.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+      "kind": "own-neural-activity prediction role",
+      "strength": "moderate role-level partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-neural-activity prediction role",
+        "favorable": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The cell is proposed to learn and predict its own response patterns through feedback.",
+        "target_roles": "The network predicts subsets of its own hidden activations.",
+        "shared_role": "own-neural-activity prediction role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning and predicting the cell’s own responses"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-F6DC84F405510C785476",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T24-A01-PREDICTS-OWN-HIDDEN-STATES",
+      "family": "A01",
+      "source_date": "2022-08-30",
+      "target_date": "2024-07-14",
+      "source_statement": "The cell is proposed to learn and predict its own response patterns through feedback.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "The network predicts subsets of its own hidden activations.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+      "kind": "own-neural-activity prediction role",
+      "strength": "moderate role-level partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-neural-activity prediction role",
+        "favorable": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The cell is proposed to learn and predict its own response patterns through feedback.",
+        "target_roles": "The network predicts subsets of its own hidden activations.",
+        "shared_role": "own-neural-activity prediction role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning and predicting the cell’s own responses"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-D7E1433EC8FC2F035F0341",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T24-A01-PREDICTS-OWN-HIDDEN-STATES",
+      "family": "A01",
+      "source_date": "2022-06-12",
+      "target_date": "2024-07-14",
+      "source_statement": "A neural thought pattern represents its own activity within sensing and action.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "The network predicts subsets of its own hidden activations.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The note models the system’s own thought activity; the later network predicts its own internal activations.",
+      "kind": "partial own-activity representation",
+      "strength": "weak-to-moderate conceptual partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "partial own-activity representation",
+        "favorable": "The note models the system’s own thought activity; the later network predicts its own internal activations.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "A neural thought pattern represents its own activity within sensing and action.",
+        "target_roles": "The network predicts subsets of its own hidden activations.",
+        "shared_role": "partial own-activity representation",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a neural pattern represents its own activity"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-819E34C670A929D915DAF3",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T24-A01-PREDICTS-OWN-HIDDEN-STATES",
+      "family": "A01",
+      "source_date": "2022-06-08",
+      "target_date": "2024-07-14",
+      "source_statement": "The neurons producing a pattern also receive it, within a feedback loop that learns.",
+      "source_quote": {
+        "line": 49,
+        "quote": "Who listens to the song and understands the meaning? the song is a loop, the neurons that play it also listen to it",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L49"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "The network predicts subsets of its own hidden activations.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "Self-generated activity returns to the neural system; the target predicts selected internally generated activations.",
+      "kind": "own-activity learning causal prefix",
+      "strength": "weak-to-moderate partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-activity learning causal prefix",
+        "favorable": "Self-generated activity returns to the neural system; the target predicts selected internally generated activations.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The neurons producing a pattern also receive it, within a feedback loop that learns.",
+        "target_roles": "The network predicts subsets of its own hidden activations.",
+        "shared_role": "own-activity learning causal prefix",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a learning loop receives its own activity"
+    },
+    {
+      "id": "GRAZIANO-SOURCE-EDITION-EC8331FB96F4AB07565AF8",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T24-A02-AUXILIARY-REGRESSION",
+      "family": "A02",
+      "source_date": "2022-09-18",
+      "target_date": "2024-07-14",
+      "source_statement": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+      "source_quote": {
+        "line": 47,
+        "quote": "An interesting thought about the cyclic nature of Layer 5 pyramidal cells, is the idea that the process of the dendrite being a sensor, like an eyeball or an ear appears to apply to both sides of the neuron, on the way in, and on the way out. So the Apical dendrite, as a neural network, is learning from incoming sensory stimulus, but the Soma burst is one of the incoming sensory stimuli, with models of soma burst waveforms becoming part of what the Apical Dendrite has to contend with.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L47"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "Self-modeling is implemented as an auxiliary regression task.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+      "kind": "additional internal-learning role",
+      "strength": "weak-to-moderate component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "additional internal-learning role",
+        "favorable": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+        "target_roles": "Self-modeling is implemented as an auxiliary regression task.",
+        "shared_role": "additional internal-learning role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning from the cell’s own activity"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-7CB5D4FA11FA0C429AE3",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T24-A02-AUXILIARY-REGRESSION",
+      "family": "A02",
+      "source_date": "2022-08-30",
+      "target_date": "2024-07-14",
+      "source_statement": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+      "source_quote": {
+        "line": 35,
+        "quote": "An interesting thought about the cyclic nature of Layer 5 pyramidal cells, is the idea that the process of the dendrite being a sensor, like an eyeball or an ear appears to apply to both sides of the neuron, on the way in, and on the way out. So the Apical dendrite, as a neural network, is learning from incoming sensor stimulus, but the Soma burst is one of the incoming sensor stimulai, with models of soma burst waveforms becoming part of what the Apical Dendrite has to contend with.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L35"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "Self-modeling is implemented as an auxiliary regression task.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+      "kind": "additional internal-learning role",
+      "strength": "weak-to-moderate component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "additional internal-learning role",
+        "favorable": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+        "target_roles": "Self-modeling is implemented as an auxiliary regression task.",
+        "shared_role": "additional internal-learning role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning from the cell’s own activity"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-2531A0FE58C3F12156E32F",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T24-A02-AUXILIARY-REGRESSION",
+      "family": "A02",
+      "source_date": "2022-06-12",
+      "target_date": "2024-07-14",
+      "source_statement": "A representation of the system’s own thought activity is included within ongoing neural sensing and action.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "Self-modeling is implemented as an auxiliary regression task.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "Both accounts include an internally directed modelling role inside the functioning network.",
+      "kind": "internal-modelling architecture component",
+      "strength": "weak conceptual/architecture partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "internal-modelling architecture component",
+        "favorable": "Both accounts include an internally directed modelling role inside the functioning network.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "A representation of the system’s own thought activity is included within ongoing neural sensing and action.",
+        "target_roles": "Self-modeling is implemented as an auxiliary regression task.",
+        "shared_role": "internal-modelling architecture component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-representation within sensing and action"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-2159ABF1CD53AA0526009A",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T24-A02-AUXILIARY-REGRESSION",
+      "family": "A02",
+      "source_date": "2022-06-08",
+      "target_date": "2024-07-14",
+      "source_statement": "A 2022-recorded retrospective comment describes a rendering that a subsequent neural array or layer reads and interprets.",
+      "source_quote": {
+        "line": 3,
+        "quote": "Comment on the note: What I think I was missing at this point in time (2012) was the part about how a memory-prediction was actually a rendering that a subsequent array or layer of nerve cells would read & interpret.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L3"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim wording checked against the2024PDF page2; line-break hyphens and whitespace joined for readability.",
+      "target_statement": "Self-modeling is implemented as an auxiliary regression task.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "An internal representation becomes input to further neural processing; the target adds a specific internal regression task.",
+      "kind": "internal neural readout component",
+      "strength": "weak component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "Line 3 is a retrospective comment fixed in 2022, not a verified 2012 statement.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "internal neural readout component",
+        "favorable": "An internal representation becomes input to further neural processing; the target adds a specific internal regression task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "A 2022-recorded retrospective comment describes a rendering that a subsequent neural array or layer reads and interprets.",
+        "target_roles": "Self-modeling is implemented as an auxiliary regression task.",
+        "shared_role": "internal neural readout component",
+        "scope_limit": "Line 3 is a retrospective comment fixed in 2022, not a verified 2012 statement.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a neural representation is read by another layer"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-5928D99804B56C410D88",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T24-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-09-18",
+      "target_date": "2024-07-14",
+      "source_statement": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+      "kind": "coupled learning-role architecture",
+      "strength": "weak-to-moderate architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "coupled learning-role architecture",
+        "favorable": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "coupled learning-role architecture",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN links response learning with learning about responses"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-A32132257E5EDD8C9245",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T24-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-08-30",
+      "target_date": "2024-07-14",
+      "source_statement": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+      "kind": "coupled learning-role architecture",
+      "strength": "weak-to-moderate architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "coupled learning-role architecture",
+        "favorable": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "coupled learning-role architecture",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN links response learning with learning about responses"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-7DA4CA25A387A68325DDAF",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T24-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-06-12",
+      "target_date": "2024-07-14",
+      "source_statement": "The note joins sensing and action with a recursively developing representation of the system’s own activity.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "Primary engagement and internal self-representation coexist in one system; the target implements an explicit paired learning objective.",
+      "kind": "paired-role architecture component",
+      "strength": "weak architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "paired-role architecture component",
+        "favorable": "Primary engagement and internal self-representation coexist in one system; the target implements an explicit paired learning objective.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "The note joins sensing and action with a recursively developing representation of the system’s own activity.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "paired-role architecture component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-representation alongside sensing and action"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-68D7605C981D48B35EA68D",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T24-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-06-08",
+      "target_date": "2024-07-14",
+      "source_statement": "A neural system produces and receives its own patterns within a feedback loop that learns.",
+      "source_quote": {
+        "line": 44,
+        "quote": "Being is a learning loop, like a feedback loop that learns",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L44"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "The predictions and targets were passed to their respective loss functions and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The internally generated activity participates in learning alongside the system’s other activity; the target implements primary and self-modelling losses together.",
+      "kind": "internally returned learning component",
+      "strength": "weak architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "internally returned learning component",
+        "favorable": "The internally generated activity participates in learning alongside the system’s other activity; the target implements primary and self-modelling losses together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "A neural system produces and receives its own patterns within a feedback loop that learns.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "internally returned learning component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-generated activity feeds a learning loop"
+    },
+    {
+      "id": "GRAZIANO-OP-02AE465E84391429B764CC",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T24-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-09-18",
+      "target_date": "2024-07-14",
+      "source_statement": "The response mapping and the model of the cell’s responses are both described as learned.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+      "kind": "two adaptive roles / causal-prefix mapping",
+      "strength": "moderate role-level partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "two adaptive roles / causal-prefix mapping",
+        "favorable": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The response mapping and the model of the cell’s responses are both described as learned.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "two adaptive roles / causal-prefix mapping",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes two adaptive learning roles"
+    },
+    {
+      "id": "GRAZIANO-OP-5F41654BAC7D61117420DD",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T24-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-08-30",
+      "target_date": "2024-07-14",
+      "source_statement": "The response mapping and the model of the cell’s responses are both described as learned.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+      "kind": "two adaptive roles / causal-prefix mapping",
+      "strength": "moderate role-level partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "two adaptive roles / causal-prefix mapping",
+        "favorable": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The response mapping and the model of the cell’s responses are both described as learned.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "two adaptive roles / causal-prefix mapping",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes two adaptive learning roles"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-6E9082577AE83072A9BD38",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T24-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-06-12",
+      "target_date": "2024-07-14",
+      "source_statement": "A prediction of awareness incorporates its own development and evolves through the continuing loop.",
+      "source_quote": {
+        "line": 10,
+        "quote": "We have a prediction of awareness, and it seems aware because this prediction is incorporating it's own development into an even higher level of awareness about itself.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L10"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The source’s internal self-representation can develop; the target also permits its internal predictor to change during training.",
+      "kind": "adaptive self-model component",
+      "strength": "weak conceptual partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "Only adaptive self-representation is mapped. The source is not used to assert a separately trained generator.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "adaptive self-model component",
+        "favorable": "The source’s internal self-representation can develop; the target also permits its internal predictor to change during training.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "A prediction of awareness incorporates its own development and evolves through the continuing loop.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "adaptive self-model component",
+        "scope_limit": "Only adaptive self-representation is mapped. The source is not used to assert a separately trained generator.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: the self-representation develops"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-317030652681ED6980721B",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T24-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-06-08",
+      "target_date": "2024-07-14",
+      "source_statement": "The note joins learning from returned activity with tissue becoming prepared for later signals through experience.",
+      "source_quote": {
+        "line": 31,
+        "quote": "right so as you sense something, an electric pattern is traveling up the neo cortex, and the statistically novel parts leave a bigger impact, so your memory-prediction is the learn response to that sensory-electrical impact, it's the tissue attempting to be ready for that impact the next time it comes, that's how memory-prediction works on the small scale.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L31"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Readable wording verified against the held PDF page3image; extraction had collapsed spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://arxiv.org/abs/2407.10188v1",
+      "match": "The source describes adaptable response generation and a learning self-loop; the target allows both actual activations and their predictions to change.",
+      "kind": "qualitative co-adaptation causal prefix",
+      "strength": "weak-to-moderate partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "qualitative co-adaptation causal prefix",
+        "favorable": "The source describes adaptable response generation and a learning self-loop; the target allows both actual activations and their predictions to change.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The note joins learning from returned activity with tissue becoming prepared for later signals through experience.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "qualitative co-adaptation causal prefix",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram N. Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a learning loop with adaptable responses"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-B2FBA73841C57C47DD06",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T26-A01-PREDICTS-INTERNAL-STATES",
+      "family": "A01",
+      "source_date": "2022-09-18",
+      "target_date": "2026-05-14",
+      "source_statement": "The cell is proposed to learn and predict its own response patterns through feedback.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "An artificial network predicts its internal states.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+      "kind": "own-neural-activity prediction role",
+      "strength": "moderate role-level partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-neural-activity prediction role",
+        "favorable": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The cell is proposed to learn and predict its own response patterns through feedback.",
+        "target_roles": "An artificial network predicts its internal states.",
+        "shared_role": "own-neural-activity prediction role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning and predicting the cell’s own responses"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-93556A53F13F0E727739",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T26-A01-PREDICTS-INTERNAL-STATES",
+      "family": "A01",
+      "source_date": "2022-08-30",
+      "target_date": "2026-05-14",
+      "source_statement": "The cell is proposed to learn and predict its own response patterns through feedback.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "An artificial network predicts its internal states.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+      "kind": "own-neural-activity prediction role",
+      "strength": "moderate role-level partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-neural-activity prediction role",
+        "favorable": "The shared role is learning a model of the neural system’s own activity, stated explicitly in the 2022 source before the 2024/2026 papers.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The cell is proposed to learn and predict its own response patterns through feedback.",
+        "target_roles": "An artificial network predicts its internal states.",
+        "shared_role": "own-neural-activity prediction role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning and predicting the cell’s own responses"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-3C08158497F89FC0D377DB",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T26-A01-PREDICTS-INTERNAL-STATES",
+      "family": "A01",
+      "source_date": "2022-06-12",
+      "target_date": "2026-05-14",
+      "source_statement": "A neural thought pattern represents its own activity within sensing and action.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "An artificial network predicts its internal states.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The note models the system’s own thought activity; the later network predicts its own internal activations.",
+      "kind": "partial own-activity representation",
+      "strength": "weak-to-moderate conceptual partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "partial own-activity representation",
+        "favorable": "The note models the system’s own thought activity; the later network predicts its own internal activations.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "A neural thought pattern represents its own activity within sensing and action.",
+        "target_roles": "An artificial network predicts its internal states.",
+        "shared_role": "partial own-activity representation",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a neural pattern represents its own activity"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-97DD037CC2D876BC05C4B2",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T26-A01-PREDICTS-INTERNAL-STATES",
+      "family": "A01",
+      "source_date": "2022-06-08",
+      "target_date": "2026-05-14",
+      "source_statement": "The neurons producing a pattern also receive it, within a feedback loop that learns.",
+      "source_quote": {
+        "line": 49,
+        "quote": "Who listens to the song and understands the meaning? the song is a loop, the neurons that play it also listen to it",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L49"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "In addition to performing a primary task, the networks were responsible for predicting the values of subsets of their own hidden activations.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "An artificial network predicts its internal states.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "Self-generated activity returns to the neural system; the target predicts selected internally generated activations.",
+      "kind": "own-activity learning causal prefix",
+      "strength": "weak-to-moderate partial",
+      "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "Predicts current selected hidden activations, not automatically a future biological firing or conscious experience.",
+      "lens_1": {
+        "relation": "own-activity learning causal prefix",
+        "favorable": "Self-generated activity returns to the neural system; the target predicts selected internally generated activations.",
+        "residual": "A qualitative neural self-model is not the target’s numerical prediction of selected current hidden activations in one forward pass. This does not establish the complete estimator, future-state semantics or consciousness."
+      },
+      "lens_2": {
+        "source_roles": "The neurons producing a pattern also receive it, within a feedback loop that learns.",
+        "target_roles": "An artificial network predicts its internal states.",
+        "shared_role": "own-activity learning causal prefix",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To reach the reported own-activation prediction, the target must retain an internal activity value and estimate it. Recover the source’s explicit own-activity modelling role, while retaining the missing numerical/state-coordinate implementation.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a learning loop receives its own activity"
+    },
+    {
+      "id": "GRAZIANO-SOURCE-EDITION-942C01660790DE34D4A711",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T26-A02-AUXILIARY-SELF-MODELING-TASK",
+      "family": "A02",
+      "source_date": "2022-09-18",
+      "target_date": "2026-05-14",
+      "source_statement": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+      "source_quote": {
+        "line": 47,
+        "quote": "An interesting thought about the cyclic nature of Layer 5 pyramidal cells, is the idea that the process of the dendrite being a sensor, like an eyeball or an ear appears to apply to both sides of the neuron, on the way in, and on the way out. So the Apical dendrite, as a neural network, is learning from incoming sensory stimulus, but the Soma burst is one of the incoming sensory stimuli, with models of soma burst waveforms becoming part of what the Apical Dendrite has to contend with.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L47"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "Internal-state prediction is trained as an auxiliary task.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+      "kind": "additional internal-learning role",
+      "strength": "weak-to-moderate component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "additional internal-learning role",
+        "favorable": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+        "target_roles": "Internal-state prediction is trained as an auxiliary task.",
+        "shared_role": "additional internal-learning role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning from the cell’s own activity"
+    },
+    {
+      "id": "GRAZIANO-DOCWIN-04042FE8489D45E422D2",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T26-A02-AUXILIARY-SELF-MODELING-TASK",
+      "family": "A02",
+      "source_date": "2022-08-30",
+      "target_date": "2026-05-14",
+      "source_statement": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+      "source_quote": {
+        "line": 35,
+        "quote": "An interesting thought about the cyclic nature of Layer 5 pyramidal cells, is the idea that the process of the dendrite being a sensor, like an eyeball or an ear appears to apply to both sides of the neuron, on the way in, and on the way out. So the Apical dendrite, as a neural network, is learning from incoming sensor stimulus, but the Soma burst is one of the incoming sensor stimulai, with models of soma burst waveforms becoming part of what the Apical Dendrite has to contend with.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L35"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "Internal-state prediction is trained as an auxiliary task.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+      "kind": "additional internal-learning role",
+      "strength": "weak-to-moderate component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "additional internal-learning role",
+        "favorable": "Learning about internally generated activity accompanies ordinary signal processing; the target implements this additional focus as an auxiliary task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "The proposed apical learning process receives external sensory input and the cell’s own somatic burst patterns.",
+        "target_roles": "Internal-state prediction is trained as an auxiliary task.",
+        "shared_role": "additional internal-learning role",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes learning from the cell’s own activity"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-3AA152D7447C9192E882D6",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T26-A02-AUXILIARY-SELF-MODELING-TASK",
+      "family": "A02",
+      "source_date": "2022-06-12",
+      "target_date": "2026-05-14",
+      "source_statement": "A representation of the system’s own thought activity is included within ongoing neural sensing and action.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "Internal-state prediction is trained as an auxiliary task.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "Both accounts include an internally directed modelling role inside the functioning network.",
+      "kind": "internal-modelling architecture component",
+      "strength": "weak conceptual/architecture partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "internal-modelling architecture component",
+        "favorable": "Both accounts include an internally directed modelling role inside the functioning network.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "A representation of the system’s own thought activity is included within ongoing neural sensing and action.",
+        "target_roles": "Internal-state prediction is trained as an auxiliary task.",
+        "shared_role": "internal-modelling architecture component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-representation within sensing and action"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R5-C9E2C8B4AAFC584D596DFD",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T26-A02-AUXILIARY-SELF-MODELING-TASK",
+      "family": "A02",
+      "source_date": "2022-06-08",
+      "target_date": "2026-05-14",
+      "source_statement": "A 2022-recorded retrospective comment describes a rendering that a subsequent neural array or layer reads and interprets.",
+      "source_quote": {
+        "line": 3,
+        "quote": "Comment on the note: What I think I was missing at this point in time (2012) was the part about how a memory-prediction was actually a rendering that a subsequent array or layer of nerve cells would read & interpret.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L3"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "we augmented the output layer to predict both the class probabilities and the activations of specific target layers within the network.",
+      "target_quote_rule": "Verbatim published-version source-capture wording, with line breaks joined.",
+      "target_statement": "Internal-state prediction is trained as an auxiliary task.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "An internal representation becomes input to further neural processing; the target adds a specific internal regression task.",
+      "kind": "internal neural readout component",
+      "strength": "weak component partial",
+      "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation.",
+      "source_limit": "Line 3 is a retrospective comment fixed in 2022, not a verified 2012 statement.",
+      "target_limit": "A numerical auxiliary regression output is more specific than merely reading an internal representation.",
+      "lens_1": {
+        "relation": "internal neural readout component",
+        "favorable": "An internal representation becomes input to further neural processing; the target adds a specific internal regression task.",
+        "residual": "Reading or learning from internal activity is not an explicitly specified additional output head, numerical auxiliary regression loss or training schedule. The shared role is preserved without identifying the full implementation."
+      },
+      "lens_2": {
+        "source_roles": "A 2022-recorded retrospective comment describes a rendering that a subsequent neural array or layer reads and interprets.",
+        "target_roles": "Internal-state prediction is trained as an auxiliary task.",
+        "shared_role": "internal neural readout component",
+        "scope_limit": "Line 3 is a retrospective comment fixed in 2022, not a verified 2012 statement.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To add self-modelling beside the main task, the target must expose internal activity to an additional learned prediction role. Compare that role to internal readout/own-response learning, not merely to the word self.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a neural representation is read by another layer"
+    },
+    {
+      "id": "GRAZIANO-OP-F42E07906D82A1736B8DA4",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T26-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-09-18",
+      "target_date": "2026-05-14",
+      "source_statement": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions, and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+      "kind": "coupled learning-role architecture",
+      "strength": "weak-to-moderate architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "coupled learning-role architecture",
+        "favorable": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "coupled learning-role architecture",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN links response learning with learning about responses"
+    },
+    {
+      "id": "GRAZIANO-OP-DD5297EF633E9E990473D5",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T26-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-08-30",
+      "target_date": "2026-05-14",
+      "source_statement": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions, and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+      "kind": "coupled learning-role architecture",
+      "strength": "weak-to-moderate architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "coupled learning-role architecture",
+        "favorable": "The earlier source joins two learning roles; the later system trains a primary task and an internal-prediction task together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "Response learning and learning the cell’s own responses are coupled through recurring feedback.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "coupled learning-role architecture",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN links response learning with learning about responses"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-A69F711711EA6D3B1CBA26",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T26-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-06-12",
+      "target_date": "2026-05-14",
+      "source_statement": "The note joins sensing and action with a recursively developing representation of the system’s own activity.",
+      "source_quote": {
+        "line": 8,
+        "quote": "the observer is the thought pattern making a thought pattern of the thought pattern",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L8"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "The predictions and targets were passed to their respective loss functions, and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "Primary engagement and internal self-representation coexist in one system; the target implements an explicit paired learning objective.",
+      "kind": "paired-role architecture component",
+      "strength": "weak architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "paired-role architecture component",
+        "favorable": "Primary engagement and internal self-representation coexist in one system; the target implements an explicit paired learning objective.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "The note joins sensing and action with a recursively developing representation of the system’s own activity.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "paired-role architecture component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-representation alongside sensing and action"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-F864269540C721258D2910",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T26-A03-ADDITIVE-JOINT-LOSS",
+      "family": "A03",
+      "source_date": "2022-06-08",
+      "target_date": "2026-05-14",
+      "source_statement": "A neural system produces and receives its own patterns within a feedback loop that learns.",
+      "source_quote": {
+        "line": 44,
+        "quote": "Being is a learning loop, like a feedback loop that learns",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L44"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "The predictions and targets were passed to their respective loss functions, and models were trained jointly on these two tasks.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The internally generated activity participates in learning alongside the system’s other activity; the target implements primary and self-modelling losses together.",
+      "kind": "internally returned learning component",
+      "strength": "weak architecture partial",
+      "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "internally returned learning component",
+        "favorable": "The internally generated activity participates in learning alongside the system’s other activity; the target implements primary and self-modelling losses together.",
+        "residual": "The source does not specify the target’s weighted cross-entropy-plus-regression objective, optimizer, targets or gradient computation. Coupled learning roles are not mathematical identity of the loss."
+      },
+      "lens_2": {
+        "source_roles": "A neural system produces and receives its own patterns within a feedback loop that learns.",
+        "target_roles": "The two tasks are classification and prediction of the network's own selected hidden activations. The paper uses additive weighted classification and regression losses.",
+        "shared_role": "internally returned learning component",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To train the two tasks jointly, the target must combine task-specific error signals. The sources support joined learning roles at most; no additive numerical loss is inferred from feedback language.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: self-generated activity feeds a learning loop"
+    },
+    {
+      "id": "GRAZIANO-OP-F2E78CCABF9F5111CF12AF",
+      "source_id": "G-M22SEP18-A01-PREDICT-OWN-CAUSAL-PATTERNS",
+      "target_id": "G-T26-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-09-18",
+      "target_date": "2026-05-14",
+      "source_statement": "The response mapping and the model of the cell’s responses are both described as learned.",
+      "source_quote": {
+        "line": 51,
+        "quote": "My intuition is that the apical is learning its own cell's response, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about its own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md#L51"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/894b4d4ea3f23d4d1d526e123b5744283ff9cd5d/a0007z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+      "kind": "two adaptive roles / causal-prefix mapping",
+      "strength": "moderate role-level partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "two adaptive roles / causal-prefix mapping",
+        "favorable": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The response mapping and the model of the cell’s responses are both described as learned.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "two adaptive roles / causal-prefix mapping",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes two adaptive learning roles"
+    },
+    {
+      "id": "GRAZIANO-OP-B41DD2AEB8A3B0CA5D6542",
+      "source_id": "G-M22AUG30-A01-CYCLIC-INPUT-OUTPUT-MAPPING",
+      "target_id": "G-T26-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-08-30",
+      "target_date": "2026-05-14",
+      "source_statement": "The response mapping and the model of the cell’s responses are both described as learned.",
+      "source_quote": {
+        "line": 39,
+        "quote": "My intuition is that the apical is learning it's responds, and through feedback loops, with itself and with other pyramidal neurons the cell is going to make predictions about it's own patterns of causation, what patterns it responds & how it reacts or responds. With the Apical Dendrite perhaps symbolizing a more complex response that is connected to more complex learning. (compared to other types of neurons)",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md#L39"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/86ca59559908f6cad3f9f3314f3d651c3e0c6ea1/a0007z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+      "kind": "two adaptive roles / causal-prefix mapping",
+      "strength": "moderate role-level partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "two adaptive roles / causal-prefix mapping",
+        "favorable": "The source gives both response generation and self-response prediction adaptive roles; the target makes both actual and predicted internal activations trainable.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The response mapping and the model of the cell’s responses are both described as learned.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "two adaptive roles / causal-prefix mapping",
+        "scope_limit": "The source is tentative (My intuition) and mixes basal/apical/exit terminology; compare the learning role without endorsing every anatomical implementation claim.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN proposes two adaptive learning roles"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-7BE24D6314DF7C538019C4",
+      "source_id": "G-M22-R4-A0339-SELF-PATTERN-DEVELOPMENT",
+      "target_id": "G-T26-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-06-12",
+      "target_date": "2026-05-14",
+      "source_statement": "A prediction of awareness incorporates its own development and evolves through the continuing loop.",
+      "source_quote": {
+        "line": 10,
+        "quote": "We have a prediction of awareness, and it seems aware because this prediction is incorporating it's own development into an even higher level of awareness about itself.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md#L10"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/4245ac674ea89dbf2b832f14a256a4d30937f13a/a0339z.md",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The source’s internal self-representation can develop; the target also permits its internal predictor to change during training.",
+      "kind": "adaptive self-model component",
+      "strength": "weak conceptual partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "Only adaptive self-representation is mapped. The source is not used to assert a separately trained generator.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "adaptive self-model component",
+        "favorable": "The source’s internal self-representation can develop; the target also permits its internal predictor to change during training.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "A prediction of awareness incorporates its own development and evolves through the continuing loop.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "adaptive self-model component",
+        "scope_limit": "Only adaptive self-representation is mapped. The source is not used to assert a separately trained generator.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: the self-representation develops"
+    },
+    {
+      "id": "GRAZIANO-GENEALOGY-R4-5715974107759890106553",
+      "source_id": "G-M22-R4-A0632-LEARNING-SELF-FEEDBACK",
+      "target_id": "G-T26-A10-TRAINABLE-PREDICTION-AND-TARGET",
+      "family": "A10",
+      "source_date": "2022-06-08",
+      "target_date": "2026-05-14",
+      "source_statement": "The note joins learning from returned activity with tissue becoming prepared for later signals through experience.",
+      "source_quote": {
+        "line": 31,
+        "quote": "right so as you sense something, an electric pattern is traveling up the neo cortex, and the statistically novel parts leave a bigger impact, so your memory-prediction is the learn response to that sensory-electrical impact, it's the tissue attempting to be ready for that impact the next time it comes, that's how memory-prediction works on the small scale.",
+        "url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt#L31"
+      },
+      "source_url": "https://github.com/v5ma/selfawarenetworks/blob/5360f6414909a2474129b2140ee0dc3112c93b6b/a0632z%20ctpr.txt",
+      "target_quote": "During training, the two could both be varied to find the best critical points under the joint loss function.",
+      "target_quote_rule": "Verbatim source-capture wording; line breaks collapsed to spaces.",
+      "target_statement": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+      "target_url": "https://doi.org/10.1098/rsta.2024.0531",
+      "match": "The source describes adaptable response generation and a learning self-loop; the target allows both actual activations and their predictions to change.",
+      "kind": "qualitative co-adaptation causal prefix",
+      "strength": "weak-to-moderate partial",
+      "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction.",
+      "source_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+      "target_limit": "SAN is not asserted to supply this specific weighted classification-plus-regression loss. Same-pass activation prediction is distinct from prediction of a future biological firing.",
+      "lens_1": {
+        "relation": "qualitative co-adaptation causal prefix",
+        "favorable": "The source describes adaptable response generation and a learning self-loop; the target allows both actual activations and their predictions to change.",
+        "residual": "The target lets both actual and predicted hidden activations vary under its joint loss. The source supplies only the stated adaptive component or qualitative coupled-role account, not the same shared-parameter optimization or measured complexity reduction."
+      },
+      "lens_2": {
+        "source_roles": "The note joins learning from returned activity with tissue becoming prepared for later signals through experience.",
+        "target_roles": "Here “the two” refers to the predicted activations and the actual hidden activations. Both depend on trainable model weights; the target activity is not held permanently fixed. This explanation is a paraphrase, not an alteration of the quotation.",
+        "shared_role": "qualitative co-adaptation causal prefix",
+        "scope_limit": "The owner-reported 2012 header is separate from the 2022 wording record.",
+        "full_architecture_identity": false
+      },
+      "lens_3": {
+        "backward_test": "To make both sides trainable, the target requires adaptable predicted and actual activations. Test each source for predictor adaptation and response-generation adaptation separately. A one-sided supported component remains partial and does not establish the two-sided conjunction.",
+        "chronology": "Selected 2022 Git record precedes exact later target version; neither worldwide-first nor earlier public-release authentication is asserted.",
+        "alternative_routes": "The target places its work in attention-schema, multi-task and self-supervised-learning literature. Shared background and independent development remain live possibilities. A bounded source correspondence is not a derivation or omission verdict.",
+        "prior_control_boundary": "Earlier 2011–2022 AST stages and the newestOctober 2026 self-schemas paper remain on the wider programme grid; this selection does not erase or settle them."
+      },
+      "lens_4_event": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+      "citation_state": "not-evaluable",
+      "authors": [
+        "Vickram Premakumar",
+        "Michael Vaiana",
+        "Florin Pop",
+        "Judd Rosenblatt",
+        "Diogo Schwerz de Lucena",
+        "Kirsten Ziman",
+        "Michael S. A. Graziano"
+      ],
+      "source_review_status": "Qualified partial source correspondence, independently AI-reviewed; final release gates are separate.",
+      "source_heading": "SAN: a learning loop with adaptable responses"
+    }
+  ],
+  "longitudinal": {
+    "id": "GRAZIANO-SOURCE-EDITION-LSM-20261108",
+    "status": "LSM-UNKNOWN",
+    "quantitative_status": "not calibrated",
+    "boundary": "Selected target operators persist in both later paper versions. This does not establish a complete before/after migration, dependence, access or influence.",
+    "known_history_boundary": "The separate coverage matrix names 14 target stages, including arXiv v2 and the October 2026 self-schemas paper. Unreviewed stage/signature cells remain unknown; no before-state absence or influence conclusion follows."
+  },
+  "policy": "Motives are not assigned by policy. Citation coverage is not evaluated in this edition."
+}

@@ -1,0 +1,274 @@
+{
+  "schema": "public-comparison-package-files-v1",
+  "revision": "LEVIN_READER_CANDIDATE_R3",
+  "files": [
+    {
+      "path": "joscha-bach/index.html",
+      "sha256": "A0F27E9458D82B4D18AB8BAE74DC284F94340EAFA7EE95ED618A4695083D932E",
+      "bytes": 139319
+    },
+    {
+      "path": "joscha-bach/evidence.html",
+      "sha256": "83A4D57FC09BCD979197445D2360EF1A52B6846F3D53365DF2EDFF9D5E3B70FA",
+      "bytes": 86127
+    },
+    {
+      "path": "joscha-bach/comparison-data.json",
+      "sha256": "D8407737E600EECB00DBB960B385027EE50F7B86D7FD5BBDE9B641575FD46DC0",
+      "bytes": 147961
+    },
+    {
+      "path": "joscha-bach/2022-source-extension/index.html",
+      "sha256": "8BE4DC6E847D767EAC6E273CF4E4A1020686B2D23CA3DA0A42712F4844138867",
+      "bytes": 58874
+    },
+    {
+      "path": "joscha-bach/2022-source-extension/evidence.html",
+      "sha256": "83B26C47B6946FC68D707D33A07F254542FA3F9DDB52C3EEAE6E864F0D537C7B",
+      "bytes": 83421
+    },
+    {
+      "path": "joscha-bach/2022-source-extension/comparison-data.json",
+      "sha256": "B81C64CFCCAF4CCA901B8FBE066441FAA0630BA1E3209373687B37866AD93369",
+      "bytes": 97251
+    },
+    {
+      "path": "joscha-bach/neural-lace-source-comparisons/index.html",
+      "sha256": "F14147D9D33B245D97DC1382EB4A5912B4ED587ECC5F299CCFAEF1C3AE32FB42",
+      "bytes": 97399
+    },
+    {
+      "path": "joscha-bach/neural-lace-source-comparisons/evidence.html",
+      "sha256": "F635B56F00ED534B912F5199A55B4E40BFFAF1F728139861A0BE187A17692A1C",
+      "bytes": 56189
+    },
+    {
+      "path": "joscha-bach/neural-lace-source-comparisons/comparison-data.json",
+      "sha256": "C25D68ED7FCF82D91028B5C1A7A332978B639B5E410A91CDAD3226EED03DD14C",
+      "bytes": 58292
+    },
+    {
+      "path": "miller-spatial-computing/index.html",
+      "sha256": "80C8BF5415DEF1C08264DBE0706A6A1BC34B9A4836570DD01E5060F81309A12D",
+      "bytes": 17066
+    },
+    {
+      "path": "miller-spatial-computing/evidence.html",
+      "sha256": "3EB27853B37C7E89891EDDE35718FE4456071429C434A51520D7447FB3F8CD52",
+      "bytes": 31687
+    },
+    {
+      "path": "miller-spatial-computing/comparison-data.json",
+      "sha256": "AC0BEEABCCC29ED2E494AC8FA0936516FC94E57566C1C6B77E58F01A656FDD1A",
+      "bytes": 42910
+    },
+    {
+      "path": "anil-seth/source-comparisons/index.html",
+      "sha256": "64761586DDD01DA8B03F7251BF504F4BC8EF266F0830CF78B870CE8FF175F31F",
+      "bytes": 49040
+    },
+    {
+      "path": "anil-seth/source-comparisons/evidence.html",
+      "sha256": "18E7117735DCF0EFDA445C8B609CB6D417479697126DDC0F284DAA3C14B85899",
+      "bytes": 804125
+    },
+    {
+      "path": "anil-seth/source-comparisons/comparison-data.json",
+      "sha256": "48142DB5C9D9C7307BE5A7B6DF8388118924A3DBD9C553B054EF0349BC93F6D5",
+      "bytes": 1243834
+    },
+    {
+      "path": "anil-seth/source-comparisons/reader.css",
+      "sha256": "BB98096A93B18A1D08DF6EE4EB59A3998B1D8AFF15D32ED60ECABC639C345B16",
+      "bytes": 3402
+    },
+    {
+      "path": "anil-seth/source-comparisons/reader.js",
+      "sha256": "32ADE8AD2F81A21A3FFF751F697B1F1748F96566F3A774C242AE6893E5CEFBF6",
+      "bytes": 2487
+    },
+    {
+      "path": "anil-seth/source-comparisons/ledger.csv",
+      "sha256": "B63EA2A8E27665309C353A7CAF27CA43EE9E368F3613B48499F9E31259F88477",
+      "bytes": 120979
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "CDBE181DEEE63CD6B76A34F4C3B69BC306A09375C256444C313F7E2E0080521D",
+      "bytes": 16
+    },
+    {
+      "path": "index.html",
+      "sha256": "084C99C4CDA118B10BF4C24AACFA39D2F471E7AD74DB17E9E31A18AAD6E4C891",
+      "bytes": 5522
+    },
+    {
+      "path": "README.md",
+      "sha256": "A1C61C52F2C3D811B012999A961DCD030C3195565D61EBA8F3C769AB331289F4",
+      "bytes": 5793
+    },
+    {
+      "path": "map/index.html",
+      "sha256": "2D96FD54E6E5A2E4F068BBAFA9BDD2FEF8B9F7FA774313FA73A1EBA117ABDB62",
+      "bytes": 3579
+    },
+    {
+      "path": "map/map.css",
+      "sha256": "6F2647E3BF376274085B83BCE223C1AFA1526B5A1F0F3A6E3249950704A62ACF",
+      "bytes": 5766
+    },
+    {
+      "path": "map/map.mjs",
+      "sha256": "B7342BAAD2115633A41103530F1C3EBCC0ED527FCBBF2565E2F284C67E149379",
+      "bytes": 15784
+    },
+    {
+      "path": "map/map-model.mjs",
+      "sha256": "B4E5B7FC1C6030960AFEE4F8E6C38102D95D22BCDA7AF7755017A8FA7DD938BD",
+      "bytes": 1734
+    },
+    {
+      "path": "map/comparison-map.json",
+      "sha256": "7FCB3F2C9B59E9AAD9F53B50B281EFF0A16E2417F93E0E4E55CA63EB204EB9DD",
+      "bytes": 678280
+    },
+    {
+      "path": "michael-graziano/self-modelling/comparison-data.json",
+      "sha256": "643324A6BD919E630751D859D3804DE2CBA8EFC65E65015CFDD78F38D6CC7321",
+      "bytes": 168672
+    },
+    {
+      "path": "michael-graziano/self-modelling/index.html",
+      "sha256": "3BD6FA6620ABF362C6256E3DFF94F9BCF67395ABB14DC80CF640CCDE212C426C",
+      "bytes": 105947
+    },
+    {
+      "path": "michael-graziano/self-modelling/evidence.html",
+      "sha256": "B92F1411A5AC308396AA57032A2E8C410991853B031F098FBDA8B2C87A023C2A",
+      "bytes": 117226
+    },
+    {
+      "path": "michael-graziano/self-modelling/cards.css",
+      "sha256": "3D7CD41829B97CC6CC55B91AA76C0CE290F7641DBF4258DF747B2611066B8833",
+      "bytes": 3174
+    },
+    {
+      "path": "michael-graziano/self-modelling/cards.mjs",
+      "sha256": "CE2EDF6485CD3605CA16A282BDBB9E242EAB87DA24DD851AA273144080FD8ADE",
+      "bytes": 3354
+    },
+    {
+      "path": "joscha-bach/paired-passages/index.html",
+      "sha256": "6377E327D4566A4A953E02D9C3C1BE45E0AC7791D10D46CA4CFD0FB9A6CBF040",
+      "bytes": 2325
+    },
+    {
+      "path": "joscha-bach/paired-passages/cards.css",
+      "sha256": "477084BEBE1F4C3AEFBA91DF44EEE5FD527DBEC52552350106A7FC4CBFED1038",
+      "bytes": 3547
+    },
+    {
+      "path": "joscha-bach/paired-passages/cards.mjs",
+      "sha256": "071EF746BFA4F6B1FA9330CCDB07D0411F9AF90E12156E8B19CD4D4BD15CE9AD",
+      "bytes": 7708
+    },
+    {
+      "path": "joscha-bach/paired-passages/comparison-data.json",
+      "sha256": "8FFB1033A8A6136A835A29DD2F16C6E93DD9ECF3BA69E6AAD3338D38AB433C63",
+      "bytes": 109688
+    },
+    {
+      "path": "miller-expanded/index.html",
+      "sha256": "6668A9FC9DC8412240E21DF1F504F7C939C707B56206736C8759ACBACFCAE5B4",
+      "bytes": 2363
+    },
+    {
+      "path": "miller-expanded/catalog.css",
+      "sha256": "8C08A95D6C98BE39B6BDF819099B7FFAEF7331C1F403D7CC50FCE00A35973BC5",
+      "bytes": 2673
+    },
+    {
+      "path": "miller-expanded/catalog.mjs",
+      "sha256": "06E883598F1E16F24380A18645AEEA1E52DC289778CA58E7F1350D24FA84753A",
+      "bytes": 10391
+    },
+    {
+      "path": "miller-expanded/catalog.json",
+      "sha256": "186849A438E68E918F7DFBC68A4D25D633D6F08319271B0CA407A24AE8BB703D",
+      "bytes": 700519
+    },
+    {
+      "path": "miller-expanded/sources.json",
+      "sha256": "B7B0EF31B57E63EA1DEAD8F68420FD9E33CD5E6B55BE59EAA1FDAA4318282CC7",
+      "bytes": 63307
+    },
+    {
+      "path": "hawkins-lineage/index.html",
+      "sha256": "A55F5206AEA3830E4CB21D7A21439AE955102E38D88D5E82050993E82AEEA168",
+      "bytes": 2649
+    },
+    {
+      "path": "hawkins-lineage/catalog.mjs",
+      "sha256": "87EFEEB5446943FCDAE76FAD4CB953C861105DFD8003990A1129E8344A53F6D8",
+      "bytes": 18377
+    },
+    {
+      "path": "hawkins-lineage/catalog.css",
+      "sha256": "7D4ECBB9DC9F2F1868CEF3529743AB4D5DB98529F5A587417004B96E5956D8CD",
+      "bytes": 3039
+    },
+    {
+      "path": "hawkins-lineage/catalog.json",
+      "sha256": "FFF4761C5A33FC0E48A1B95C6E1C56BAFDD805F96BA805E482B56138C1106E08",
+      "bytes": 1050578
+    },
+    {
+      "path": "hawkins-lineage/sources.json",
+      "sha256": "54307CE4FD6BA4FFC1CD556ACF03EE8D73F719AD67024D8DA0B5CC691C354150",
+      "bytes": 86862
+    },
+    {
+      "path": "levin-lineage/index.html",
+      "sha256": "BC96C45EF9CAE4835D5E524B0A25D9ABFFB47E0EE8A11FAE9C848A547DB7B32A",
+      "bytes": 3047
+    },
+    {
+      "path": "levin-lineage/catalog.mjs",
+      "sha256": "41E33B3CDD59725819466054D5D8CDC3E15C29C2AAFC3FD0B4D1BAD102CCB302",
+      "bytes": 23350
+    },
+    {
+      "path": "levin-lineage/catalog.css",
+      "sha256": "C6FE6F13BE1659FAE7900CF6BCFCDF4BD5B08BD53AFED61CF63CC7C936065090",
+      "bytes": 3168
+    },
+    {
+      "path": "levin-lineage/catalog.json",
+      "sha256": "38E6B804D2A8CAB9691F0A3C639883BF7DB510F167CD0D34EB40E8670A282865",
+      "bytes": 463727
+    },
+    {
+      "path": "levin-lineage/sources.json",
+      "sha256": "8D323DB4978DA95617C124A4F04E0276CC7BD40C6751A96BE9470485C4A455D3",
+      "bytes": 88880
+    },
+    {
+      "path": "introduction.html",
+      "sha256": "825F1E92B594F5A35668D1B5ED5752B2B6B4203018BC3A309F02BFC271EDC55D",
+      "bytes": 7613
+    }
+  ],
+  "excludes": [
+    "manifest-sha256.json",
+    "snapshot.json"
+  ],
+  "source_selection_records": 86,
+  "original_author_assets_unchanged": 23,
+  "supplementary_presentation_files": 4,
+  "catalog_records": 1072,
+  "selected_miller_source_pairs": 11,
+  "hawkins_catalog_records": 1089,
+  "selected_hawkins_family_source_pairs": 18,
+  "levin_catalog_records": 388,
+  "selected_levin_source_pairs": 17
+}

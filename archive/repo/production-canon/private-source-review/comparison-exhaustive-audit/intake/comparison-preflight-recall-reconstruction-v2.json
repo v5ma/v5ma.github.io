@@ -1,0 +1,82 @@
+{
+  "schema": "comparison-preflight-recall-reconstruction-v2",
+  "template_version": "2.0.0",
+  "validity_state": "PREFLIGHT-RECONSTRUCTION-UNVERIFIED",
+  "rule": "Complete and verify this addendum after the V1 preflight receipt passes and before the bounded batch begins. It proves active reconstruction of the method, not correct later application.",
+  "scope": {
+    "program_id": null,
+    "batch_id": null,
+    "worker_id": null,
+    "bounded_batch_statement": null,
+    "reconstruction_started_at": null,
+    "reconstruction_completed_at": null
+  },
+  "bound_v1_preflight": {
+    "receipt_path": null,
+    "receipt_sha256": null,
+    "validation_path": null,
+    "validation_sha256": null,
+    "validation_status": null
+  },
+  "bootloader_document": {
+    "path": "production-canon/docs/COMPARISON-WIKI-METHOD-BOOTLOADER-V2.md",
+    "sha256": null,
+    "loaded": false
+  },
+  "recall_reconstruction": {
+    "bootloader_sequence": [
+      "freeze",
+      "route",
+      "recover",
+      "translate",
+      "triangulate",
+      "expand",
+      "adjudicate",
+      "project",
+      "certify"
+    ],
+    "semantic_discovery_boundary": null,
+    "four_lens_allocation": null,
+    "before_after_zero_rival_rule": null,
+    "lossless_partial_equivalence_and_open_unknown_rule": null,
+    "regression_lessons": {
+      "miller": null,
+      "hawkins": null,
+      "george": null
+    },
+    "paired_output_contract": null,
+    "completion_gate_chain": [
+      "preflight-recall",
+      "method-compliance",
+      "independent-review",
+      "meta-audit",
+      "post-task-application-drift"
+    ],
+    "name_control": "George is the surname; Dileep is the given name."
+  },
+  "prohibited_counts": {
+    "rival_win_count": 0,
+    "rival_award_count": 0,
+    "candidate_count_used_as_ceiling_count": 0,
+    "predecessor_floor_count": 0,
+    "automated_no_fit_veto_count": 0,
+    "ontology_exclusion_count": 0,
+    "cross_context_exclusion_count": 0,
+    "unknown_as_absence_count": 0,
+    "broad_search_authorized_count": 0
+  },
+  "certification": {
+    "worker": null,
+    "certified_at": null,
+    "all_reconstruction_fields_complete": false
+  },
+  "authorization": {
+    "batch_execution_authorized": false,
+    "batch_execution_authorized_at": null,
+    "governed_fanin_authorized": false,
+    "public_projection_authorized": false,
+    "rival_win_authorized": false,
+    "rival_award_authorized": false,
+    "broad_search_authorized": false
+  }
+}

@@ -1,0 +1,83 @@
+{
+    "schema":  "v5ma.source-faithful-comparison-audit.v1",
+    "record_status":  "template-not-an-audit-result",
+    "challenged_atom_id":  "",
+    "program_id":  "",
+    "exact_micah_wording":  "",
+    "micah_source_path":  "",
+    "micah_source_sha256":  "",
+    "dates":  {
+                  "event_date":  "",
+                  "internal_date":  "",
+                  "git_fixation_date":  "",
+                  "public_publication_date":  ""
+              },
+    "comparison_versions":  {
+                                "pre_audit_comparison_wording":  "",
+                                "first_corrective_audit_wording":  "",
+                                "current_audit_wording":  ""
+                            },
+    "suspected_error_class":  "",
+    "micah_source_family_searched":  [
+
+                                     ],
+    "recovered_plain_language_operation":  "",
+    "mature_micah_terminology":  {
+                                     "term":  "",
+                                     "date":  "",
+                                     "backdated":  false
+                                 },
+    "target":  {
+                   "exact_work_identity":  "",
+                   "exact_version":  "",
+                   "source_sha256":  "",
+                   "wording":  "",
+                   "formal_operator_translation":  ""
+               },
+    "same_scale_established_evidence":  [
+
+                                        ],
+    "partial_micah_priority_anchors":  [
+
+                                       ],
+    "protected_priority_event_ids":  [
+
+                                     ],
+    "four_lens_results":  {
+                              "mechanism_equivalence":  "not-run",
+                              "narrative_patent_architecture":  "not-run",
+                              "detective_chronology":  "not-run",
+                              "longitudinal_signature_migration":  "not-run"
+                          },
+    "meta_audit_result":  "not-run",
+    "additive_disposition":  "CHALLENGE_OPEN",
+    "remaining_evidence_gaps":  [
+
+                                ],
+    "public_private_boundary":  "",
+    "canonical_count_effect":  0,
+    "protected_verdict_changes":  0,
+    "micah_genealogy_saturation":  {
+                                       "coverage_manifest":  "",
+                                       "applicable_micah_stages":  [
+
+                                                                   ],
+                                       "applicable_target_stages":  [
+
+                                                                    ],
+                                       "target_atom_ids":  [
+
+                                                           ],
+                                       "era_vocabulary_translation_queries":  [
+
+                                                                              ],
+                                       "passage_level_source_ledger":  [
+
+                                                                       ],
+                                       "stage_by_stage_atom_matrix":  "",
+                                       "coverage_denominator":  0,
+                                       "completed_matrix_cells":  0,
+                                       "unresolved_matrix_cells":  0,
+                                       "status":  "not-run"
+                                   }
+}

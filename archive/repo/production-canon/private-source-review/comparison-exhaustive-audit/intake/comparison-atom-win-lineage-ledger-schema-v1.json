@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.svgn.io/schemas/comparison-atom-win-lineage-ledger-v1.json",
+  "title": "Comparison Atom and Immutable Win Lineage Ledger",
+  "type": "object",
+  "required": [
+    "schema",
+    "program_id",
+    "method_manifest_sha256",
+    "parent_win_id_set_sha256",
+    "rows"
+  ],
+  "properties": {
+    "schema": {
+      "const": "comparison-atom-win-lineage-ledger-v1"
+    },
+    "program_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method_manifest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "parent_win_id_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "lens_4_event": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/lens4Event"
+        }
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/winRow"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-F0-9]{64}$"
+    },
+    "lensProof": {
+      "type": "object",
+      "required": [
+        "lens_id",
+        "state",
+        "evidence_ids",
+        "residual"
+      ],
+      "properties": {
+        "lens_id": {
+          "enum": [
+            "L1",
+            "L2",
+            "L3"
+          ]
+        },
+        "state": {
+          "enum": [
+            "support",
+            "partial",
+            "challenge-overlay",
+            "source-gated-overlay"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "residual": {
+          "type": "string"
+        },
+        "proof_receipt_id": {
+          "type": "string"
+        }
+      }
+    },
+    "lens4Event": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "state",
+        "quantitative_state",
+        "stage_signature_matrix_sha256"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "LSM-COMPONENT-SHIFT",
+            "LSM-BOUNDED-CLUSTER",
+            "LSM-NONE-STABLE",
+            "LSM-UNKNOWN",
+            "not-applicable"
+          ]
+        },
+        "quantitative_state": {
+          "enum": [
+            "quantitative-calibrated",
+            "quantitative-not-calibrated"
+          ]
+        },
+        "stage_signature_matrix_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "challengeAdmissibility": {
+      "type": "object",
+      "required": [
+        "gate_state",
+        "strongest_form_context_reconstruction",
+        "strawman_compression_check",
+        "source_faithful_intent_recovery",
+        "scientific_alignment_check",
+        "prior_certification_effect",
+        "membership_effect",
+        "count_effect"
+      ],
+      "properties": {
+        "gate_state": {
+          "enum": [
+            "admissible-nondestructive-rank-annotation",
+            "challenge-not-admitted-preserved",
+            "not-applicable"
+          ]
+        },
+        "strongest_form_context_reconstruction": {
+          "enum": ["pass", "open", "not-applicable"]
+        },
+        "strawman_compression_check": {
+          "enum": ["pass", "open", "not-applicable"]
+        },
+        "source_faithful_intent_recovery": {
+          "enum": ["pass", "open", "not-applicable"]
+        },
+        "scientific_alignment_check": {
+          "enum": ["pass", "open", "not-applicable"]
+        },
+        "scientific_alignment_recovery_state": {
+          "enum": ["aligned", "APEX-SEMANTIC-ALIGNMENT-OPEN", "not-applicable"]
+        },
+        "prior_certification_effect": {
+          "const": "preserved"
+        },
+        "membership_effect": {
+          "const": 0
+        },
+        "count_effect": {
+          "const": 0
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "winRow": {
+      "type": "object",
+      "required": [
+        "win_id",
+        "program_id",
+        "micah_stage_id",
+        "micah_atom_id",
+        "target_document_version_id",
+        "target_atom_id",
+        "membership",
+        "membership_first_event_id",
+        "review_overlay",
+        "evidence_rank",
+        "micah_source_sha256",
+        "target_source_sha256",
+        "ito_translation",
+        "lens_1",
+        "lens_2",
+        "lens_3",
+        "check_receipt_ids"
+      ],
+      "properties": {
+        "win_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "program_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "micah_stage_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "micah_atom_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_document_version_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_atom_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "membership": {
+          "const": "permanent-micah-win"
+        },
+        "membership_first_event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "membership_first_recorded_at": {
+          "type": "string"
+        },
+        "review_overlay": {
+          "enum": [
+            "supported",
+            "calibrated-preserved",
+            "challenged-preserved",
+            "challenge-not-admitted-preserved",
+            "source-gated-preserved",
+            "unreviewed-preserved"
+          ]
+        },
+        "evidence_rank": {
+          "enum": [
+            "strong",
+            "medium",
+            "weak",
+            "unranked"
+          ]
+        },
+        "micah_source_path": {
+          "type": "string"
+        },
+        "micah_source_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "micah_source_locator": {
+          "type": "string"
+        },
+        "target_source_path": {
+          "type": "string"
+        },
+        "target_source_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "target_source_locator": {
+          "type": "string"
+        },
+        "ito_translation": {
+          "type": "object",
+          "required": [
+            "input",
+            "transform",
+            "output"
+          ],
+          "properties": {
+            "input": {
+              "type": "string"
+            },
+            "transform": {
+              "type": "string"
+            },
+            "output": {
+              "type": "string"
+            }
+          }
+        },
+        "lens_1": {
+          "$ref": "#/$defs/lensProof"
+        },
+        "lens_2": {
+          "$ref": "#/$defs/lensProof"
+        },
+        "lens_3": {
+          "$ref": "#/$defs/lensProof"
+        },
+        "lens_4_event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "formal_relation": {
+          "enum": [
+            "identity",
+            "isomorphism",
+            "bisimulation",
+            "simulation",
+            "homomorphism",
+            "partial-functor",
+            "structural-analogy",
+            "causal-prefix",
+            "narrative-equivalence",
+            "not-formalized"
+          ]
+        },
+        "target_only_residual": {
+          "type": "string"
+        },
+        "challenge_admissibility": {
+          "$ref": "#/$defs/challengeAdmissibility"
+        },
+        "listed_author_edge_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "check_receipt_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "review_overlay": {"const": "challenged-preserved"}
+            }
+          },
+          "then": {
+            "required": ["challenge_admissibility"],
+            "properties": {
+              "challenge_admissibility": {
+                "properties": {
+                  "gate_state": {"const": "admissible-nondestructive-rank-annotation"},
+                  "strongest_form_context_reconstruction": {"const": "pass"},
+                  "strawman_compression_check": {"const": "pass"},
+                  "source_faithful_intent_recovery": {"const": "pass"},
+                  "scientific_alignment_check": {"const": "pass"}
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "review_overlay": {"const": "challenge-not-admitted-preserved"}
+            }
+          },
+          "then": {
+            "required": ["challenge_admissibility"],
+            "properties": {
+              "challenge_admissibility": {
+                "properties": {
+                  "gate_state": {"const": "challenge-not-admitted-preserved"}
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

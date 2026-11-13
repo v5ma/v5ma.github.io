@@ -1,0 +1,575 @@
+02 - JIGSAW, TURBOVEC, AND FIT-PATTERN MANUAL
+Final merged document
+
+Status.
+
+This is the canonical execution manual for candidate retrieval, fit testing, operational-equivalence census, companion discovery, relation scoring, assembly-oriented routing, and fan-in truth discipline.
+
+This document merges and supersedes the two source drafts a02-jigsaw-turbovec-fit-pattern-manual.txt and b02-jigsaw-turbovec-fit-pattern-manual.txt.
+
+Purpose.
+
+This document tells Codex how to decide what pieces are worth comparing, what relation may connect them, what action should be attempted, what proof is required, what must be blocked, and what must be sent to fan-in before any claim becomes truth.
+
+The central rule.
+
+Jigsaw is not search. Jigsaw is assembly-fit reasoning.
+
+TurboVec can find nearby pieces. Theater can hide upstream bias. Jigsaw decides what kind of relation might exist. Operational-equivalence census discovers row-signature neighborhoods. Fit-Pattern Census asks what kinds of companions repeatedly fit with that kind of seed. Fan-in records truth.
+
+The goal is not to retrieve more things that look like the seed. The goal is to find parts that fit well together into products, wikis, proofs, capabilities, demos, customer paths, domain rooms, business-lane surfaces, or archive-safe decisions.
+
+The one-sentence model.
+
+TurboVec retrieves candidate pieces; Theater prevents retrieval bias from becoming judgment; Jigsaw tests operational fit; Operational-Equivalence Census finds invariant row signatures at scale; Fit-Pattern Census finds companion roles from known-good assemblies; fan-in decides truth.
+
+What this document is not.
+
+This is not a generic semantic-search guide.
+
+This is not a permission slip for broad disk reading, public dumping, unbounded transcript ingestion, live billing, DNS mutation, secret exposure, or autonomous production authority.
+
+This is not a rule that similar files should be merged.
+
+This is a protocol for converting a large, fragmented archive into product-relevant assemblies by ranking candidate joins, bridge relations, proof gaps, companion roles, accepted edges, rejected edges, and archive-safe dispositions.
+
+Core layers.
+
+TurboVec is the fast proximity layer. It is local eyesight. It retrieves possible neighbors, surface-similar examples, seed families, source-universe trays, repo slices, date-window neighborhoods, privacy-class neighborhoods, and nearby clusters cheaply.
+
+Theater is the blind handoff layer. It prevents TurboVec score, ordering, and opinion from becoming semantic judgment. Theater passes the query object, candidate paths or bodies, desired relation family, allowed action family, privacy boundary, forbidden influences, and allowed output shape while hiding upstream score, order, and answer-oracle information.
+
+Jigsaw is the fit-testing layer. It inspects pieces, extracts operational atoms and signatures, classifies relation families, checks Scope Lenses, tests bridge value, records possible inhibitors, detects negative space, and emits bounded assembly recommendations.
+
+Operational-Equivalence Census is the fast row-signature layer. It extracts many cheap operational rows, canonicalizes them, buckets them into invariant signature clusters, counts full and partial signatures, ranks candidate clusters, and avoids broad O(n squared) pairwise scoring as the normal corpus path.
+
+Fit-Pattern Census is the companion-discovery layer. It learns what repeatedly fits with what in known-good assemblies. It turns repeated assemblies into searchable companion-role signatures, including roles that are complementary rather than equivalent.
+
+Fan-in is the truth layer. It absorbs worker output into approved Product Canon, Nine Wiki, Capability Canon, business-lane, proof, verdict, blocker, workbench, calendar, runbook, wiki page, route, customer-path, or archive surfaces. No retrieval, rank, Jigsaw, Theater, or worker output is production truth by itself.
+
+Everything means index everything, not read everything.
+
+When Micah says TurboVec should consume everything, interpret this as building stable piece signatures, chunk embeddings, metadata records, privacy tags, source-family records, cluster IDs, and lookup IDs across the source universe.
+
+Do not interpret it as permission for broad LLM reading, public dumping, private-source exposure, credential exposure, or unbounded transcript ingestion.
+
+A safe source-universe index records enough structure to retrieve and route pieces without exposing or reading more content than the closure object requires.
+
+The durable ledger.
+
+TurboVec should not replace the durable ledger. TurboVec returns candidate IDs, vectors, scores, or paths. A database, manifest, append-only ledger, or equivalent control surface must preserve paths, hashes, source family, privacy boundary, cluster membership, edge state, proof state, rejected joins, task IDs, product surfaces, known baselines, and verdict history.
+
+The ledger is where accepted, rejected, deferred, blocked, retained-proof, archive-candidate, warning, baseline, and obsolete-duplicate states live.
+
+TurboVec is candidate retrieval. The ledger is memory and truth history. Jigsaw is fit testing. Fan-in is acceptance.
+
+Puzzle-frame rule.
+
+A worker's local file tray is not the whole puzzle.
+
+Each worker needs a bounded puzzle frame before comparing pieces. The puzzle frame tells the worker what finished picture it is helping assemble, which boundaries matter, which existing clusters are relevant, which proof gates apply, and where output should be absorbed.
+
+The puzzle frame can come from Vision, PRD, product surface dossier, business-lane checklist, Product Canon Ride map, domain registry, wiki tray, proof matrix, route manifest, demo evidence matrix, capability record, source-fragment index, or explicit worker packet.
+
+Vision and PRD are blueprint demand surfaces.
+
+Business-lane checklists are executable product-code demand surfaces.
+
+Code, routes, proofs, worker leaves, runtime artifacts, source notes, media files, wiki pages, and prior demos are supply surfaces.
+
+The correct fit may be indirect and multi-hop.
+
+A valid chain may look like this:
+
+Vision demand -> PRD requirement -> business-lane checklist item -> route/component -> code module -> proof packet -> product surface.
+
+A worker should not reject a fit merely because a code file does not use the same words as Vision. The worker should ask whether a chain through PRD, lane, product surface, route, proof, or capability makes the relation operationally valid.
+
+The jigsaw board.
+
+Every worker or tool pass needs a board frame. A board frame defines the product, wiki, research, proof, business-lane, or capability surface in which the pieces are being tested.
+
+The box picture is the desired finished surface. Examples include a daily demo packet, customer route, 3D wiki adapter, product component, domain room, public wiki page, source/proof tuple, protected-service surface, SaaS shell row, WebAR Cafe offer row, SVGN article packet, capability asset, or archive decision.
+
+The edges are product boundaries, route contracts, public/private gates, schemas, customer paths, proof gates, domain boundaries, deployment targets, entitlement gates, billing state, and forbidden side effects.
+
+The trays are clusters and subclusters based on path, source family, product surface, wiki family, role, proof state, privacy boundary, metadata, semantic content, operational atoms, known baselines, and known companion patterns.
+
+The anchors are canonical files, route entrypoints, manifest files, demo pages, named baselines, proof packets, source indexes, page indexes, worklogs, product maps, calendars, workbench rows, and high-centrality cluster records.
+
+The local fit tests compare operations, routes, imports, schemas, proof paths, page links, source lineage, public/private status, product roles, runtime behavior, customer paths, and lane ownership.
+
+The bridge pieces connect larger assemblies. A bridge can connect code to a demo, wiki to product, product to proof, source to claim, domain to portal, capability to worker card, media to public story, lane checklist to route, PRD to code, or Vision to customer path.
+
+The negative space is a missing component implied by the current assembly. Examples include code with no proof, demo with no runbook, wiki page with no source, product claim with no implementation, Stripe path with no entitlement proof, business-lane row with no product code, domain room with no route proof, portal node with no graph identity, or worker handoff with no fan-in surface.
+
+Piece model.
+
+A piece can be a file, chunk, route, wiki page, proof packet, image, video, code module, task card, worker output, source note, product row, demo route, cluster object, capability asset, rejected edge, domain room, business-lane checklist item, baseline file, warning case, or retained-proof artifact.
+
+A piece signature should include stable ID, path, hash, source family, extension, size, modified date, title or heading, privacy boundary, product hints, wiki hints, code role, import/export hints, route hints, proof state, known baselines, source/provenance status, and embedding ID where available.
+
+For code, the signature should include imports, exports, functions, components, route entrypoints, DOM IDs, schema names, dependencies, build path, runtime target, proof commands, protected selectors, and known regression paths where available.
+
+For documents and wikis, the signature should include title, headings, concepts, wikilinks, source anchors, citation state, public/private gate, relation to product surfaces, known duplicate or supersession state, and any claimed proof or route relationship.
+
+For media, the signature should include file type, date, event, location if known, rights/provenance state, product or story relevance, candidate output path, and whether the media can be public, private, internal, staged, or rights-needed.
+
+For business-lane rows, the signature should include lane, code, owning checklist, active/archived state, product-code requirement, blocked live side effects, allowed fail-closed behavior, proof requirement, and fan-in target.
+
+For baselines and milestones, the signature should include why the file is a baseline, what successor line it belongs to, what should not be overwritten, and what proof or historical role it preserves.
+
+Jigsaw algorithm phases.
+
+Use the jigsaw algorithm in four phases.
+
+Phase 1 is segmentation.
+
+Break the corpus, cluster, or tray into pieces that can be inspected. For text, this can be pages, sections, paragraphs, rows, claims, source references, or relation assertions. For code, this can be modules, functions, components, routes, handlers, schemas, contracts, proof commands, selectors, or entrypoints. For demos, this can be routes, UI actions, scene objects, timeline events, portal transitions, carousel interactions, media assets, console readbacks, screenshots, and proof artifacts.
+
+Phase 2 is border vectorization.
+
+Convert each piece into comparison surfaces. These surfaces are not only words. They include route shape, API shape, import/export shape, state transition, actor, operation, operand, proof gate, privacy gate, runtime constraints, source lineage, domain role, cluster role, lane ownership, customer path, billing state, and known companion patterns.
+
+Phase 3 is compatibility scoring.
+
+Score the proposed relation, not just the two pieces. Use exact signature fit, partial signature fit, signature rank, operational-atom fit, architectural narrative bonus, causal-interface fit, proof fit, privacy fit, runtime fit, bridge value, product value, risk, cost, and fan-in readiness.
+
+Phase 4 is global assembly recommendation.
+
+Emit a candidate relation, next action, proof requirement, inhibitor lens, and fan-in target. Do not emit production truth unless a proper fan-in and proof record has already accepted it.
+
+Operational atoms and row signatures.
+
+Operational-Equivalence Census should extract many small rows. A row should be small enough to compare at census scale and stable enough to survive synonym replacement, file movement, and surface-language differences.
+
+A useful canonical row can include actorRole, operation, operandRole, boundedContext, stateBefore, stateAfter, interfaceType, proofGate, privacyGate, productRole, clusterRole, evidencePath, sourcePath, scopeLens, normalFormSignature, partialSignature, and signatureRank.
+
+Row invariance is required.
+
+Different words can compile to the same canonical row when they serve the same function under the current Scope Lens. For example, customer creates WebXR scene and client generates A-Frame room may share an operational signature when the lens is customer authoring. The surface vocabulary differs; the functional row can still match.
+
+Do not rely on word matching as the compatibility test. Word matching is retrieval pressure only. The census should normalize synonyms and functional isomorphisms into invariant rows when the actor, operation, operand, state transition, product role, and context justify it.
+
+More rows can improve statistical cluster matching when those rows preserve meaningful operational atoms. More rows do not help if they are noisy, generated filler, or merely lexical fragments without operational role.
+
+Full signatures and partial signatures.
+
+A full signature match means enough rows match to propose a strong same-role, same-operation, or same-pattern candidate.
+
+A partial signature match means some rows match while other rows are missing, different, complementary, private, blocked, or not yet known.
+
+Partial signatures are first-class evidence. A full signature match is not required for a useful join. Many useful product analogies, code reuses, wiki bridges, and runtime assemblies begin as partial matches.
+
+Count partial signatures. Rank partial signatures. Track rowOverlapAnchor, overlapCount, signatureRowCount, companionRoleSignature, matchedRows, missingRows, knownCompanionRows, and nextFanInTarget where available.
+
+A partial atomic match can be strengthened by architectural narrative isomorphism, but it must not be weakened merely by architectural narrative mismatch.
+
+Architectural narrative.
+
+Architectural narrative is the surrounding story of operations: cadence, timing, sequence, omission, causal interface, state transition, authority boundary, before/after relation, dependency order, user journey, product role, and what is allowed to happen next.
+
+Architectural narrative can add evidence. It can show that two partial signatures live in similar causal sequences or play similar roles in different domains.
+
+Architectural narrative mismatch is not negative evidence by itself. Difference alone is not a contradiction. Every comparison contains differences. Many useful abstractions cross domains and therefore have different stories.
+
+A mismatch can subtract, disqualify, or block only when a declared Scope Lens says the difference is an actual operational contradiction.
+
+Cross-domain transfer candidates.
+
+A strong atomic match with a different narrative may be useful. Mark it as a cross-domain-transfer candidate instead of downgrading it by default.
+
+Cross-domain transfer is especially important for coding, product architecture, research analogies, and capability-canon work. A mechanism found in a proof program, wiki graph, runtime demo, neural model, business checklist, or media pipeline may transfer into another domain when the operational atoms fit.
+
+Scope Lenses.
+
+A Scope Lens defines the relation being tested and the rules that can invalidate that relation.
+
+Do not use one global contradiction filter. A relation can be valid under one lens and invalid under another.
+
+Examples of Scope Lenses include customer authoring, public publication, private proof triage, code reuse, protected-service exposure, live billing, route proof, wiki citation, source provenance, baseline lineage, capability extraction, archive disposition, domain frontdoor, portal room, and product demo readiness.
+
+A lens should state the proposed relation family, allowed actions, blocked actions, privacy boundary, proof gate, and fan-in surface.
+
+Relation-specific inhibitors.
+
+Contradictions are relation-specific. Do not use contradiction as a broad prefilter.
+
+A contradiction matters when it invalidates the proposed relation. Examples include same-role substitution error, unsafe customer exposure, false public claim, forbidden live side effect, proof-policy violation, runtime incompatibility, mutually exclusive state, entitlement bypass, source-map or secret exposure, destructive filesystem action, license/commercial-use conflict, public/private gate failure, legal posture conflict, lane ownership conflict, or false equivalence.
+
+Example. Customer export of a tenant-owned scene can be valid. Customer download of proprietary runtime scripts, source maps, secrets, build internals, private repo files, signing keys, or service-role data is invalid under a moat-safe customer authoring lens. The atom match remains real. The proposed public-exposure relation is disqualified.
+
+Example. Agent edits document and agent edits deployment config share an edit operation. That match may be useful as an abstraction. It becomes blocked under a live-side-effect safety lens if the target is DNS, billing, secrets, production deployment config, registrar state, unaudited Stripe state, or unaudited Supabase state.
+
+A difference that blocks substitution may still be useful for composition. Opposite or complementary functions can be correct assembly partners.
+
+Inhibitory signatures.
+
+Inhibitors should also have signatures. A known bad relation can become a reverse-search row. This lets the census search for contradiction shapes at scale.
+
+Use reverse signatures as triage and route safety, not as broad erasure. A reverse signature can block substitution, exposure, proof promotion, public publishing, or live side effects. It should not automatically block composition.
+
+The same component may be unsafe as a public customer export but useful as an internal audit tool. The proposed relation determines the inhibitor.
+
+Relation families.
+
+Do not collapse all relations into same or different. Record the relation family.
+
+Equivalence means two pieces play the same or similar operational role.
+
+Substitution means one piece could replace another under a defined lens.
+
+Analogy means two pieces share an abstract operation or architecture across different contexts.
+
+Dependency means one piece requires another.
+
+Implementation-of means a code piece implements a product, wiki, lane, or PRD claim.
+
+Proof-of means a proof packet supports a route, product row, page claim, business-lane row, or demo readiness claim.
+
+Source-of means a source supports a wiki, product, research, media, or publication claim.
+
+Duplicate means two artifacts carry the same live content and one may supersede the other.
+
+Supersession means one baseline, milestone, or canonical document replaces an older one for a particular purpose.
+
+Complementarity means two different pieces fit together to make an assembly.
+
+Polarity means two opposite or contrasting functions can fit together, such as lock/unlock, grab/drop, edit/protect, publish/review, public/private, route/fallback, author/proof, customer/admin, or shell/protected-service.
+
+Adapter means a piece translates between two systems.
+
+Bridge means a piece connects two larger clusters.
+
+Context companion means a non-equivalent component repeatedly appears near the seed in known-good assemblies.
+
+Baseline lineage means a piece preserves earlier working behavior or historical proof that a later branch must respect.
+
+Warning or regression means a piece carries caution evidence and should inform future filters, tests, and route safety.
+
+Capability candidate means repeated evidence suggests a reusable skill, workflow, capability, or semantic action pointer.
+
+Business-lane closure means a piece belongs to an executable lane-owned product-code checklist or fail-closed preview path.
+
+Negative-space gap means the shape of the partial assembly implies a missing piece.
+
+Fit-Pattern Census.
+
+Fit-Pattern Census is the companion-discovery layer.
+
+It learns repeated known-good assemblies and asks what kinds of pieces fit around a seed family.
+
+The peanut-butter-and-jelly insight is mandatory.
+
+If a seed is peanut butter, TurboVec can find peanut-butter-like things and Jigsaw can find operationally similar peanut-butter-like things. That is not the final goal. The next question is what repeatedly fits with peanut butter.
+
+Fit-Pattern Census learns that companion roles exist. It turns repeated known-good assemblies into search rows and companion-role signatures.
+
+The purpose of operational similarity is often not to retrieve the same kind of part. It is to discover the companion roles that repeatedly fit with that kind of part.
+
+A carousel-like seed should cause the system to search not only for more carousel files, but also for notes, media, 3D objects, drag/drop, diamond slots, follower behavior, timeline persistence, portal transitions, proof replay, PIPV gates, menu panels, customer playback, slot data, runtime readback, and saved state when those roles have been repeatedly paired with carousel clusters.
+
+A 3D wiki seed should cause the system to search for concept_card, concept_edge, wiki-page packet, carousel neighborhood, portal transition, proof packet, privacy gate, source anchor, ranking data, reader path, authored paragraph path, and product bridge.
+
+A portal/SPZ seed should cause the system to search for room graph, splat assets, SPZ renderer state, domain transitions, active sliding-window loaders, route proof, themed environment rules, WebXR fallback behavior, stencil/occlusion checks, and baseline/fallback fork records.
+
+A business-lane seed should cause the system to search for product-code rows, disabled/fail-closed UI, state files, proof requirements, lane boundaries, dependencies, customer path, safe CTA, support route, and owning-lane fan-in surface.
+
+A capability-canon seed should cause the system to search for repeated triggers, stable inputs, procedure, proof gates, stop condition, output surface, related skills, related workflows, and semantic action pointer fields.
+
+Row-scale signature overlap.
+
+Do not rely only on whole-cluster similarity.
+
+Signatures are repeated known patterns of rows that fit well together. If two 12-row signatures overlap on 3 rows, those 3 rows may be a strong row-scale anchor when the missing 9 rows are known companion roles that repeatedly fit the same anchor elsewhere.
+
+Low aggregate similarity can be a useful assembly clue because it exposes non-equivalent companion components that may fit the matching rows.
+
+This is the synaptic-scale mechanism of Fit-Pattern Census. The row overlap may be the handle that lets the system discover missing companion roles.
+
+Track rowOverlapAnchor, overlapCount, signatureRowCount, companionRoleSignature, knownCompanionRows, missingCompanionRows, evidencePath, and nextFanInTarget.
+
+Known-good fit-pattern library.
+
+Major clusters should maintain fit-pattern libraries.
+
+A fit-pattern row should include patternId, seedSignature, rowOverlapAnchor, overlapCount, signatureRowCount, companionRoleSignature, fitRelation, stateTransition, proofGate, clusterRole, evidencePath, nextFanInTarget, and inhibitorLens when relevant.
+
+A fit-pattern library should be built from repeated known-good assemblies, explicit user flags, milestone or baseline files, proof-backed demos, product-canon rows, accepted fan-in records, major cluster anchors, capability-canon records, and route proof evidence.
+
+The library should also record caution patterns: regressions, warning cases, false starts, standalone renderer islands, unsafe exposure paths, stale duplicates, known defects, overbroad workers, bad fan-in, proof gaps, and runtime branches that should not be treated as current product direction.
+
+Use known-good patterns as search templates. If a new seed matches part of a known assembly, look for missing companion roles from the pattern. If the expected companion is absent, emit a negative-space gap.
+
+Reverse fit-pattern search.
+
+Fit-Pattern Census should work in both directions.
+
+Forward mode asks: given this seed, what companions repeatedly fit it?
+
+Reverse mode asks: given this target assembly pattern, which file, route, baseline, or candidate best satisfies the seed role, companion role, bridge role, proof role, warning role, or missing role?
+
+Reverse mode can help rank the best file in a series, identify a likely landmark, detect a structurally suspicious file before runtime execution, or find the best bridge target for a known assembly need.
+
+Reverse mode is candidate evidence only. It can rank suspicious or promising files. It cannot prove runtime correctness without proof.
+
+Rank signals.
+
+Ranks are candidate-routing evidence only.
+
+ProductRank estimates centrality to product surfaces.
+
+BridgeRank estimates how much a candidate connects large assemblies.
+
+GapRank estimates how much missing evidence or missing implementation blocks the current goal.
+
+ProofRank estimates whether a route or claim has proof, screenshot, console readback, runbook, route readback, acceptedEvidence tuple, or source/proof tuple.
+
+JigsawRank estimates relation fit under the active lens.
+
+FitPatternRank estimates how strongly a candidate participates in repeated known-good assemblies.
+
+InhibitorRank estimates whether a proposed relation may be blocked under a declared lens.
+
+NoveltyRank or ExpansionRank may estimate whether a candidate adds useful new assembly capacity rather than only baseline lineage. This is candidate evidence, not proof.
+
+AttentionRank or RayRank may later estimate embodied user importance from pointer, ray, selection, voice, scene-graph telemetry, or live XR coding interaction.
+
+The best next action is the highest expected product-coherence gain per risk, cost, proof burden, and fan-in readiness.
+
+The better question is not which file is most important. The better question is which proofable join would connect the most product-relevant assemblies with the lowest risk and cost.
+
+Product geometry.
+
+Products have shapes: routes, schemas, APIs, user flows, proof gates, deployment boundaries, source ownership, privacy gates, customer paths, payment states, runtime contracts, public/private statuses, entitlement paths, workspace boundaries, and fallback states.
+
+A semantically related note does not automatically fit. It must match the operational shape.
+
+Product geometry is why Jigsaw scores proposed relations rather than merely scoring files. A file can be relevant but not fit the current route. A code module can be useful but not safe to expose. A demo can be beautiful but unproved. A proof packet can be real but not tied to the current product surface. A baseline can be old but still essential.
+
+Production use boundary.
+
+The TurboVec/Jigsaw toolchain can be used for controlled production pilots when it is bounded by surface, lane, privacy class, closure object, and no-touch set.
+
+It is not autonomous production authority.
+
+It should not mutate live products, public claims, billing, DNS, registrar state, secrets, production deployment, private source exposure, destructive filesystem state, or customer data without explicit current authorization and proof.
+
+Use it to produce candidate packets, edge rows, fit surveys, cluster briefs, proof-gap reports, worker cards, archive decisions, retained-proof suggestions, and capability-canon candidates.
+
+It is appropriate for bounded Codex work packets. It is not the default autonomous controller for the whole disk.
+
+Jigsaw worker sequence.
+
+A worker should operate in this sequence unless a more specific task packet overrides it.
+
+Orient to the puzzle frame.
+
+Identify the box picture, product surface, wiki surface, business lane, proof target, or capability target. Record the closure object and fan-in target.
+
+Inspect the local tray.
+
+List the files, routes, chunks, task records, proof packets, pages, or artifacts in the tray. Identify obvious anchors, baselines, privacy gates, lane boundaries, and no-touch surfaces.
+
+Build or read piece signatures.
+
+Extract stable IDs, paths, roles, metadata, headings, route hints, imports, proof hints, public/private state, known baselines, and source-family tags.
+
+Use TurboVec for candidate neighborhoods.
+
+Find nearby pieces, anchor files, plausible duplicates, known baselines, existing clusters, source families, route neighbors, wiki neighbors, and candidate bridge targets. Treat proximity as evidence, not truth.
+
+Use Theater when scores or ordering must be hidden.
+
+If an independent downstream judgment is needed, hide TurboVec score, ordering, and opinion before the Jigsaw pass. Pass the query object, candidate bodies, relation question, allowed action family, privacy boundary, and forbidden influences.
+
+Use Jigsaw to classify possible relations.
+
+Test structural fit, operational fit, route fit, schema fit, proof fit, privacy fit, runtime fit, lane fit, customer-surface fit, source/provenance fit, and archive disposition.
+
+Use Operational-Equivalence Census when the set is large.
+
+Extract invariant rows, full signatures, partial signatures, signature ranks, and row clusters. Avoid all-pairs unless debugging, small samples, or candidate pairs already exist.
+
+Use Fit-Pattern Census to search for companion roles.
+
+Look for known-good assembly patterns, missing companions, context companions, bridge candidates, caution patterns, baseline lineage, and negative-space gaps.
+
+Apply relation-specific inhibitors.
+
+Use Scope Lenses to block only the proposed relation that is actually unsafe or false. Do not erase useful composition evidence.
+
+Choose the disposition.
+
+Emit one bounded result: accepted join, rejected join, deferred join, blocker, product bridge, wiki bridge, capability candidate, business-lane closure card, proof request, source/provenance repair, duplicate-collapse packet, retained-proof packet, warning signature, baseline lineage note, or archive-safe decision.
+
+Do not let ranking become proof.
+
+Fan-in decides truth.
+
+Output records.
+
+A candidate edge row should include edgeId, relationFamily, sourcePieceId, targetPieceId, sourcePath, targetPath, scopeLens, exactSignatureScore, partialSignatureScore, signatureRankScore, architecturalNarrativeBonus, causalInterfaceScore, fitPatternScore, inhibitorScore, proofScore, privacyScore, productScore, customerPathScore, evidencePaths, proposedAction, proofRequirement, fanInTarget, and currentDisposition.
+
+A fit-pattern row should include patternId, seedSignature, rowOverlapAnchor, overlapCount, signatureRowCount, companionRoleSignature, fitRelation, stateTransition, proofGate, clusterRole, evidencePath, inhibitorLens, nextFanInTarget, and knownGoodAssemblySource.
+
+An inhibitor row should include inhibitorId, inhibitorLens, blockedRelationFamily, triggerSignature, sourcePieceId, targetPieceId, reason, evidencePath, blockedAction, allowedActionIfAny, and reviewRequirement.
+
+A cluster object update should include clusterId, anchor files, accepted members, rejected joins, deferred joins, proof paths, known companions, missing companions, inhibitors, public/private state, product role, wiki role, capability role, business-lane role, baseline lineage, caution signatures, and next fan-in target.
+
+A JigsawPack should include query object, board frame, candidate pieces, relation family, closure object, read set, write set, no-touch set, proof gate, inhibitor lens, expected output, fan-in target, and disposition if not fit.
+
+A proof-gap row should include claim, route or surface, expected proof, observed evidence, missing proof, current disposition, blocker if any, next direct action, and fan-in target.
+
+A duplicate-collapse packet should include duplicates, canonical target, retained-proof paths, supersession reason, public/private status, blocked risks, and archive disposition.
+
+Truth and dispositions.
+
+Accepted means reviewed and incorporated into a canonical surface.
+
+Deferred means possibly useful but not ready, missing evidence, blocked by dependency, or out of current scope.
+
+Rejected means wrong under the current lens and should not be retried without new evidence.
+
+Blocked means desirable but blocked by a named blocker.
+
+Retained-proof means the raw artifact remains as evidence after absorption.
+
+Archive-candidate means it can leave active surfaces after necessary evidence is preserved.
+
+Obsolete duplicate means superseded by a better canonical artifact.
+
+Warning means the artifact carries caution evidence or regression risk.
+
+Baseline means the artifact preserves known-good lineage or historical proof and should not be overwritten casually.
+
+Landmark means the artifact is a high-value anchor for future routing or proof.
+
+Capability-candidate means a repeated action pattern may deserve skill, workflow, capability, or semantic action pointer packaging.
+
+Common failure modes.
+
+Do not treat word matches as fit.
+
+Do not treat vector proximity as truth.
+
+Do not let TurboVec score leak into blind semantic judgment.
+
+Do not use all-pairs comparison as the default corpus path.
+
+Do not treat contradictions as broad pre-disqualifiers.
+
+Do not retrieve only equivalents when the goal is assembly fit.
+
+Do not ignore companion roles because they are not similar to the seed.
+
+Do not throw away low-aggregate-similarity clusters when the overlapping rows are known fit anchors.
+
+Do not let generated output indexes dominate candidate lists.
+
+Do not create broad maps when a closure object is required.
+
+Do not call task throughput product progress unless outputs are fanned in.
+
+Do not create new leaves when fan-in is behind.
+
+Do not forget known baselines, landmarks, milestones, backups, and warning cases.
+
+Do not make a standalone renderer island when existing modular runtime, carousel, portal, wiki-room, runtime-scene, proof-runner, or Product Canon surfaces should be reused.
+
+Do not treat a domain room as live DNS proof.
+
+Do not treat test-mode billing as live billing.
+
+Do not treat article outline, source packet, or research shelf item as product implementation.
+
+Do not treat a worker handoff as accepted truth.
+
+Do not treat private material as public-candidate without an explicit gate.
+
+Default command behavior.
+
+When a worker or operator asks what to do with a tray, produce a small JigsawPack, not an essay.
+
+The packet should say what the pieces are, what board frame applies, what anchors matter, what nearby candidates exist, what relation families are plausible, what fit-pattern companions should be searched, what inhibitors apply, what proof is needed, what should be written, and where fan-in should absorb the result.
+
+If the tray is too broad, shrink the board frame before doing a deeper Jigsaw pass.
+
+If fan-in is behind, do not create another broad candidate list. Create absorption packets, verdict rows, proof-gap rows, retained-proof packets, duplicate-collapse packets, or blocker rows.
+
+If a route is unsafe, use fail-closed state and record the inhibitor.
+
+If a relation is promising but unproved, emit a proof request rather than an accepted join.
+
+If a relation is wrong, reject it with the lens and reason so future workers do not rediscover the same false join.
+
+Minimal JigsawPack template.
+
+Use this compact shape when a worker needs an actionable packet.
+
+jigsawPackId:
+boardFrame:
+closureObject:
+sourcePieces:
+candidatePieces:
+anchors:
+knownBaselines:
+relationFamiliesToTest:
+fitPatternCompanionsToSearch:
+scopeLens:
+allowedActions:
+blockedActions:
+readSet:
+writeSet:
+noTouchSet:
+proofRequirement:
+inhibitorsToCheck:
+expectedOutput:
+fanInTarget:
+dispositionIfNoFit:
+
+Minimal candidate edge template.
+
+edgeId:
+sourcePieceId:
+targetPieceId:
+relationFamily:
+scopeLens:
+exactSignatureScore:
+partialSignatureScore:
+signatureRankScore:
+architecturalNarrativeBonus:
+fitPatternScore:
+inhibitorScore:
+proofScore:
+privacyScore:
+productScore:
+evidencePaths:
+proposedAction:
+proofRequirement:
+fanInTarget:
+currentDisposition:
+
+Minimal fit-pattern row template.
+
+patternId:
+seedSignature:
+rowOverlapAnchor:
+overlapCount:
+signatureRowCount:
+companionRoleSignature:
+fitRelation:
+stateTransition:
+proofGate:
+clusterRole:
+evidencePath:
+inhibitorLens:
+nextFanInTarget:
+
+The final test.
+
+A good Jigsaw result should make the next action smaller, safer, more proofable, and more product-relevant.
+
+If the output does not help finish a product surface, wiki page, demo route, proof tuple, customer path, business-lane product-code row, capability, or archive decision, it is probably not the right output.
+
+The strongest result is not the most interesting abstraction. The strongest result is the most direct proof-bounded join, bridge, companion discovery, blocker, or archive-safe decision that increases product coherence without violating the current Scope Lens.

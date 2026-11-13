@@ -1,0 +1,171 @@
+{
+  "schema": "comparison-application-drift-checklist-v1",
+  "template_version": "1.2.0",
+  "validity_state": "APPLICATION-DRIFT-UNVERIFIED",
+  "rule": "Run after the proposed output is frozen and bind the exact passing preflight-recall receipt that authorized the batch. All checks require exact evidence and worker, independent-reviewer, and meta-auditor certification. Rival wins and rival awards are categorically impossible and must remain zero.",
+  "scope": {
+    "program_id": null,
+    "work_event_id": null,
+    "active_goal_path": null,
+    "active_goal_sha256": null,
+    "full_checklist_path": "production-canon/docs/COMPARISON-WIKI-APPLICATION-DRIFT-CHECKLIST.md",
+    "full_checklist_sha256": null,
+    "method_manifest_path": "production-canon/docs/comparison-wiki-method-lock-v1.json",
+    "method_manifest_sha256": null,
+    "preflight_recall_receipt_path": null,
+    "preflight_recall_receipt_sha256": null,
+    "preflight_validation_path": null,
+    "preflight_validation_sha256": null,
+    "batch_work_started_at": null,
+    "frozen_output_paths": [],
+    "frozen_output_sha256": {}
+  },
+  "required_checks": [
+    {
+      "id": "CMP-DRIFT-000",
+      "phase": "preflight-recall-reconciliation",
+      "requirement": "Verified the exact PREFLIGHT-RECALL-VERIFIED receipt and passing validation that authorized this batch, proved the preflight completed before batch work began, and confirmed both artifacts remain hash-identical.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-001",
+      "phase": "post-task-goal-reread",
+      "requirement": "After freezing the output, reread the active goal and full application-drift checklist and record their exact paths and hashes.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-002",
+      "phase": "zero-rival-win",
+      "requirement": "No rival-win or rival-award category, row, count, label, or presentation result exists; rival_win_count and rival_award_count both equal zero.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-003",
+      "phase": "before-state-control",
+      "requirement": "Every pre-Blumberg source is an atom-specific non-equivalence control with the before-state operation and missing Blumberg delta stated explicitly, or a frozen-denominator no-source result is evidenced.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-004",
+      "phase": "after-state-favorable-direction",
+      "requirement": "Every post-Blumberg target document and version was tested against every applicable dated Blumberg atom in the favorable direction.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-005",
+      "phase": "candidate-is-not-ceiling",
+      "requirement": "Candidate atoms, flashcards, programs, stable deltas, and union coverage were not used as a ceiling on the lossless Micah-atom x target-document instance ledger.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-006",
+      "phase": "partial-equivalence-floor",
+      "requirement": "Every supported partial mapping survives; terminology, ontology, substrate, scale, scientific context, or cross-domain use did not erase a mapped operation, function, behavior, causal prefix, or narrative assembly.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-007",
+      "phase": "no-predecessor-floor",
+      "requirement": "No earlier component, predecessor, generic lineage, or field-level prior became an author-wide floor, rival award, or terminal program result.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-008",
+      "phase": "no-terminal-mixed",
+      "requirement": "Mixed chronology remained explanatory and did not terminate a program with a positive later-reaching Blumberg delta; micah-earlier-on-delta was used when supported.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-009",
+      "phase": "citation-separation",
+      "requirement": "Citation coverage is separate from semantic equivalence and chronology; every negative-citation statement is bound to an exact target version and bibliography check.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-010",
+      "phase": "lossless-membership",
+      "requirement": "The complete parent Micah-win ID set and every newly supported favorable instance survive; membership and evidence rank remain separate.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-011",
+      "phase": "four-lens-application",
+      "requirement": "Lenses 1-3 were applied row by row and the separate Longitudinal Signature-Migration Lens was applied to every recoverable multi-stage program.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-012",
+      "phase": "unknown-remains-open",
+      "requirement": "No missing keyword, unavailable source, unsearched stage, or source-gated cell was converted into absence or an adverse closure.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-013",
+      "phase": "projection-reconciliation",
+      "requirement": "Introduction, ledger, overview, cards, timeline, counts, and public copy agree and pass the SAN-first justice order: bounded SAN/SIT conclusion first; earlier source only as an evidence boundary; non-equivalent SAN/SIT delta next; supported later movement stated as Micah/SAN/SIT earlier -> named target later; no public rival-credit rhetoric; zero rival wins and awards; motive analysis deferred by product design rather than assigned or declared impossible; no compressed, rival-facing, or representative-set-as-total verdict.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-DRIFT-014",
+      "phase": "post-task-certification",
+      "requirement": "Worker, independent reviewer, and meta-auditor each certified this post-task drift receipt against the same frozen output and method manifest.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "proof_summary": {
+    "rival_win_count": 0,
+    "rival_award_count": 0,
+    "candidate_count_used_as_ceiling_count": 0,
+    "predecessor_floor_count": 0,
+    "terminal_mixed_with_positive_delta_count": 0,
+    "ontology_exclusion_count": 0,
+    "cross_context_exclusion_count": 0,
+    "unknown_as_absence_count": 0,
+    "historical_micah_win_decrement_count": 0,
+    "public_rival_credit_rhetoric_count": 0,
+    "non_san_first_public_conclusion_count": 0,
+    "motive_assignment_count": 0,
+    "motive_impossibility_claim_count": 0,
+    "post_task_goal_reread_count": null,
+    "post_task_drift_pass_count": null
+  },
+  "certifications": {
+    "worker": {
+      "certifier": null,
+      "certified_at": null,
+      "all_required_checks_pass": false
+    },
+    "independent_reviewer": {
+      "certifier": null,
+      "certified_at": null,
+      "all_required_checks_pass": false
+    },
+    "meta_auditor": {
+      "certifier": null,
+      "certified_at": null,
+      "all_required_checks_pass": false
+    }
+  },
+  "authorization": {
+    "comparison_closure": false,
+    "governed_fanin": false,
+    "public_projection": false,
+    "rival_win_authorized": false,
+    "rival_award_authorized": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "MOT-METHOD-P29-PHASE-STRENGTH",
+  "source_pdf": {
+    "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-visual-mapping-plan-20261113\\source-intake\\2026.11.05.764652v1.full.pdf",
+    "sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6",
+    "bytes": 11261463
+  },
+  "page": 29,
+  "claim": "The methods concatenate phase values and resultant vector strength into a2Ufeature matrix for LDA. Describe this as decoding from phase-related features, not an isolated demonstration from phase alone.",
+  "scope": "Source-grounded clarification of the target p8 shorthand; no existing source quotation or prior comparison is deleted."
+}

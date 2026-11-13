@@ -1,0 +1,159 @@
+{
+  "schema": "comparison-public-map-snapshot-v1",
+  "source_selection_date": "2026-11-08",
+  "status": "LOCAL_PUBLIC_SAFE_INTEGRATION_CANDIDATE",
+  "counts": {
+    "records": 86,
+    "exact_excerpt_sets": 42,
+    "source_wording_stages": 15,
+    "target_document_versions": 9,
+    "program_labels": 4,
+    "listed_author_labels": 30,
+    "author_navigation_edges": 418,
+    "source_release_pass_rows": 82,
+    "miller_current_recheck_exception_rows": 4
+  },
+  "source_editions": [
+    {
+      "name": "Joscha Bach: initial source edition",
+      "records": 18,
+      "path": "joscha-bach/index.html",
+      "certificate_sha256": "6AC97FFB652EC6F757F4AF4515FB9475BEE1D14175FEB8E767E55E2CE69EC246",
+      "allowlist_sha256": "817619CF14550822BCBCA0BEFE9B562C5C84289BDD3D707B4EEE44EEDEC3CD29"
+    },
+    {
+      "name": "Joscha Bach: 2022-source extension",
+      "records": 14,
+      "path": "joscha-bach/2022-source-extension/index.html",
+      "certificate_sha256": "BF77D73B7637E3D28C206167142961AEA58567734736302EDD3E008AD106543D",
+      "allowlist_sha256": "CCD3AE024851F21D8CB17BC56AF14F10185FAB440B81B4C028BA130EF2EC120B"
+    },
+    {
+      "name": "Joscha Bach: Neural Lace monologue edition",
+      "records": 10,
+      "path": "joscha-bach/neural-lace-source-comparisons/index.html",
+      "certificate_sha256": "27E821FF5669D04B09A44A6D2DCAB21CAD38879C60D85D26BDF7D98F9EEC7D7F",
+      "allowlist_sha256": "1642C49CB80E3AE1685EFD5E76E4F9568A39A87890CDE0424F789670DF93E363"
+    },
+    {
+      "name": "Earl K. Miller: spatial-computing edition",
+      "records": 4,
+      "path": "miller-spatial-computing/index.html",
+      "certificate_sha256": "E8A9221ACFBFA31CE3C1749DE0A92AC90688723BA6B5423FC81A371C13846DF5",
+      "allowlist_sha256": "439FDCE1C3F73F20E109DC7833ECE084BCD6298CEAFF2FEF449DF749412EED4C"
+    },
+    {
+      "name": "Anil Seth and coauthors: selected source comparisons",
+      "records": 8,
+      "path": "anil-seth/source-comparisons/index.html",
+      "certificate_sha256": "2A50231217444F51B339C617A53935F486D2356C9E993596F666D3CA8865BE0D",
+      "allowlist_sha256": "21CE68C0B8C03093DBA254B18344330EC43A2773067C857D25DA82B60A5BC173"
+    },
+    {
+      "name": "Graziano/Premakumar and coauthors: self-modelling source edition",
+      "records": 32,
+      "path": "michael-graziano/self-modelling/index.html",
+      "certificate_sha256": "7308AC35056B9791010E25EA3BE55B092C1D18C8F3F0A043BF9C21401B15C4EC",
+      "allowlist_sha256": "188DF0E200D6978E496D2F2C15E8F07A43611D48A60118B8C8C5FA600A65D2A6"
+    }
+  ],
+  "manifest_sha256": "BF434E4485ECB686CE8EC3B168E3895DBD7EA77844CBA0710834FF2B4100FB3C",
+  "original_assets_unchanged": 23,
+  "new_scientific_certification": false,
+  "whole_wiki_complete": false,
+  "private_working_corpus_included": false,
+  "live_website_deployed": false,
+  "miller_current_global_recheck": "FAIL-SHARED-WORKING-INTERFACE-DRIFT",
+  "miller_historical_public_source_assets_unchanged": true,
+  "review_boundary": "Six source editions are inherited exactly. The combined86-record projection,real-browser acceptance,site integration andupload remain separate gates.",
+  "revision": 6,
+  "navigation_revision": "Selected cards reveal their passage branch, including URL-selected cards outside the initial six groups.",
+  "source_release_scoped_recheck": {
+    "selected_records": 86,
+    "editions": 6,
+    "miller": "PASS-SOURCE-RELEASE-SCOPED-V2",
+    "legacy_global_failure_preserved": true,
+    "graziano": "SOURCE-CERTIFIED-32-ROW-BOUNDED-EDITION"
+  },
+  "full_map_certification": false,
+  "public_upload_authorized": false,
+  "layout_revision": "Wrap long terms at large text sizes without shrinking text or changing source wording.",
+  "integration_revision": "LEVIN_READER_CANDIDATE_R3",
+  "theme_revision": "Palette variables resolve on the root that paints the page; body metadata remains synchronized. No scientific data or source assets changed.",
+  "supplementary_presentations": [
+    {
+      "name": "Bach paired passages",
+      "path": "joscha-bach/paired-passages/index.html",
+      "existing_records": 14,
+      "new_sentence_presentations": 4,
+      "new_source_editions": 0,
+      "new_scientific_findings": 0
+    },
+    {
+      "name": "Miller full catalog and selected sources",
+      "path": "miller-expanded/index.html",
+      "catalog_records": 1072,
+      "selected_source_records": 11,
+      "overlap_with_original_highlights": true,
+      "new_scientific_findings": 0
+    },
+    {
+      "name": "Hawkins / HTM / Thousand Brains family catalog",
+      "path": "hawkins-lineage/index.html",
+      "catalog_records": 1089,
+      "selected_source_records": 18,
+      "new_scientific_findings": 0,
+      "status": "candidate"
+    },
+    {
+      "name": "Michael Levin and coauthors catalog",
+      "path": "levin-lineage/index.html",
+      "catalog_records": 388,
+      "selected_source_records": 17,
+      "new_scientific_findings": 0,
+      "status": "candidate"
+    }
+  ],
+  "public_file_count": 53,
+  "miller_catalog": {
+    "records": 1072,
+    "target_document_version_keys": 61,
+    "historical_author_associations": 4943,
+    "source_pair_records": 11,
+    "source_pair_documents": 5,
+    "target_versions_for_source_pairs": 10,
+    "unreleased_evidence_bodies": 1061,
+    "whole_program_complete": false
+  },
+  "hawkins_family_catalog": {
+    "records": 1089,
+    "target_document_version_keys": 38,
+    "historical_author_associations": 2835,
+    "unknown_individual_author_versions": 5,
+    "unknown_individual_author_records": 112,
+    "selected_source_records": 18,
+    "selected_san_source_files": 2,
+    "selected_target_versions": 3,
+    "related_target_paper_families": 2,
+    "selected_historical_author_associations": 78,
+    "evidence_bodies_not_in_selected_candidate": 1071,
+    "status": "LOCAL_SOURCE_PRESENTATION_CANDIDATE_NOT_RELEASE_CERTIFIED",
+    "whole_program_complete": false
+  },
+  "documentation_revision": "README scopes the 86 records and 42 excerpt sets to the inherited timeline map, not the whole 47-file package or either complete family catalog.",
+  "levin_catalog": {
+    "records": 388,
+    "protected_baseline_records": 273,
+    "newer_candidate_records": 115,
+    "evidence_variants": 390,
+    "target_keys": 18,
+    "historical_author_associations": 731,
+    "selected_source_records": 17,
+    "selected_san_source_files": 4,
+    "selected_target_versions": 7,
+    "related_target_paper_families": 3,
+    "evidence_bodies_not_in_selected_candidate": 371,
+    "status": "LOCAL_CANDIDATE_PENDING_SOURCE_INDEPENDENT_META_BROWSER_AND_RELEASE_REVIEW",
+    "whole_program_complete": false
+  }
+}

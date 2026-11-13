@@ -1,0 +1,34 @@
+{
+  "schema": "comparison-encyclopedia-network-and-naming-contract-v1",
+  "authority": "Micah Blumberg's direct request, 2026-11-13",
+  "continuity": "Restates and extends the existing cross-comparison map, longitudinal evidence ladder and paired dossier/card requirements; it is not a replacement for them.",
+  "product_name": "Comparison Encyclopedia",
+  "naming_scope": "Use the new name in this product's own interface, introduction, navigation and new editorial prose. Preserve exact historical quotations, external publication titles, stable record IDs, old certificate bytes and existing URLs. Other products such as SAN Wiki and Agent Wiki are not renamed by this contract.",
+  "goal": "Make the dated SAN/SIT contributions visible across the whole comparison field, and directly examine how other works overlap with one another, including their descriptions of novelty and their citation relationships.",
+  "comparison_units": ["source-bound concept/operation", "joined signature cluster", "ordered causal or narrative architecture", "exact work and version", "listed-author navigation edge"],
+  "required_edge_layers": [
+    {"layer":"SAN/SIT-to-work","proof":"Dated Blumberg passage, exact target passage, translated operation, graded shared content, residual, source/custody and version-qualified chronology."},
+    {"layer":"work-to-work","proof":"Directly checked passages from both works; shared mapping to SAN/SIT is a candidate-discovery route, not automatic proof that their partial mappings compose."},
+    {"layer":"signature-cluster","proof":"Named matching components, their joint occurrence, causal order/dependencies, unmatched components and separately counted source occurrences."},
+    {"layer":"novelty-claim","proof":"Exact statement of claimed novelty, date, author/work attribution and the scope of what was asserted as new. Do not infer a priority claim merely because an article reports a result."},
+    {"layer":"citation-coverage","proof":"Exact version and bibliography/body coverage; citation-present, citation-coverage-gap, novelty-claim-tension or not-evaluable remains separate from equivalence."},
+    {"layer":"listed-author","proof":"Recorded byline/identifier; not an extra scientific win or proof that each listed author personally created a particular component."}
+  ],
+  "public_interface": [
+    "Let readers start from one SAN/SIT atom, a target author, a paper, a mechanism, an equation role or a date range.",
+    "Show directly reviewed matches separately from candidate bridges and source-gated connections.",
+    "Allow a dated network/timeline view that exposes the earlier SAN/SIT record and later matched formulations without implying causal influence from chronology alone.",
+    "Keep earliest lineage anchors, strongest mature pre-target formulations and intervening versions reachable.",
+    "Offer a concise passage pair and a fuller expert dossier for each reviewed connection.",
+    "Every count drills into its underlying rows; distinguish concepts, formulation occurrences, document versions, programmes, people and author edges.",
+    "Preserve weak, partial, overlapping and disputed instances in the underlying ledger; deduplicated summaries are additional views, not deletion."
+  ],
+  "scoring_boundary": "Report graded content/operation matches and descriptive signature or architecture scores at their demonstrated scope. Project terms such as plagiarism-equivalence are content-comparison labels, not automatic findings of conduct or legal liability. Statistical dependence/sigma measures require their separate calibrated tests.",
+  "motive_policy": "The Encyclopedia assigns no motives as a policy design; motive analysis is deferred at this methodological stage.",
+  "scale_policy": "Use the existing atom/claim indexes and bounded semantic routes to nominate direct pair reviews. No broad raw-file search or unbounded all-pairs run. Unreviewed pair space stays unreviewed, not silently equivalent or nonmatching.",
+  "factual_boundary": "The user's 300-plus-author example is a requested field-wide framing, not a new verified count in this contract. No new match, priority, citation-gap, originality, dependence or infringement finding is created by adding this requirement.",
+  "release_gate": "Versioned presentation-only successor of the exact approved public package. Recheck modified copy, stable links, unchanged scientific records/counts, package hashes, rendering, independent/meta review and the applicable method/drift receipts before publication.",
+  "new_scientific_findings": 0,
+  "global_count_delta": 0,
+  "published": false
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "motivation-pair06-target-context-qualification-v1",
+  "row_id": "MOT-FULLTEXT-PAIR-06",
+  "source_pdf_sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6",
+  "source_extraction": {
+    "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-visual-mapping-plan-20261113/source-intake/MOTIVATION-PAGES.json",
+    "sha256": "A4EC4FADB6771575CE648D4AB086D473092633CB68C875F3E40A4212B7E11137"
+  },
+  "reason": "The original routing fact MOT-FULL-16 describes fitted-model current contributions. It is not itself a training/plasticity statement. The weak model-learning analogy uses the distinct training passages below, already inside the same frozen target body.",
+  "anchors": [
+    {
+      "page": 18,
+      "text": "We then used gradient descent to fit the connectivity and single neuron parameters of the RNN",
+      "normalized_offset": 1679,
+      "quote_sha256": "1D9CC6DDCB8CDDE097FD8593C5808B9ECD8867F2EDC2F3CDB36709D3839FF3C4"
+    },
+    {
+      "page": 32,
+      "text": "The parameters that are trained during learning are the input vectors, readout vectors, recurrent connectivity weights, and single neuron gains and biases.",
+      "normalized_offset": 499,
+      "quote_sha256": "7D5B6D9CCBA952B343B48F044AC6FA41B06302B0EF400950DCF2117EE4AEBCB7"
+    },
+    {
+      "page": 32,
+      "text": "Once the networks are trained, we estimate the time-dependent current from every source neuron",
+      "normalized_offset": 1699,
+      "quote_sha256": "CAF6850AE0CCFBC7B23738B0774338A90657BF854B16FB67FA488A2FEE02E03A"
+    }
+  ],
+  "mandatory_wording": "Learning-related parameter fitting is separate from time-varying currents computed after fitting. Do not say within-trial currents show within-trial weight plasticity or prove biological learning.",
+  "effect": "Additive source-context/locator qualification; no row, grade, count, source byte or previous certificate removed. Any eventual card for06 must use these training anchors rather than the current-contribution quote.",
+  "new_findings": 0,
+  "publication_authorized": false
+}

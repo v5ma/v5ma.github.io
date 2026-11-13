@@ -1,0 +1,307 @@
+{
+  "schema": "comparison-method-compliance-checklist-v1",
+  "template_version": "1.4.0",
+  "validity_state": "METHOD-COMPLIANCE-UNVERIFIED",
+  "rule": "A passing preflight-recall receipt is required before work begins. All later checks must be proved by exact evidence and independently reproduced. A missing or failed check requires rework and forbids acceptance, closure, projection, workbook mutation, count mutation, or Micah-win membership mutation.",
+  "scope": {
+    "program_id": null,
+    "work_event_id": null,
+    "worker_id": null,
+    "independent_reviewer_id": null,
+    "meta_reviewer_id": null,
+    "method_manifest_path": "production-canon/docs/comparison-wiki-method-lock-v1.json",
+    "method_manifest_sha256": null,
+    "parent_artifact_path": null,
+    "parent_artifact_sha256": null,
+    "successor_artifact_path": null,
+    "successor_artifact_sha256": null
+  },
+  "preflight_recall_receipt": {
+    "status": "PREFLIGHT-RECALL-UNVERIFIED",
+    "receipt_path": null,
+    "receipt_sha256": null,
+    "validation_path": null,
+    "validation_sha256": null,
+    "preflight_completed_at": null,
+    "work_started_at": null
+  },
+  "frozen_denominators": {
+    "parent_win_id_count": null,
+    "micah_stage_count": null,
+    "micah_atom_count": null,
+    "target_document_version_count": null,
+    "target_atom_count": null,
+    "matrix_cell_count": null,
+    "listed_author_count_by_document": {}
+  },
+  "required_checks": [
+    {
+      "id": "CMP-METHOD-000",
+      "phase": "preflight-recall-gate",
+      "requirement": "Before batch execution, a completed PREFLIGHT-RECALL-VERIFIED receipt reloaded and hashed the active goal, full method, semantic tools, genealogy and Book Atlas routes, before/after rule, frozen denominators, Miller/Hawkins/Dileep George regression fixtures, and paired dossier/flashcard contract.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-001",
+      "phase": "preflight",
+      "requirement": "Loaded the exact method package and recorded its current manifest hash before work began.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-002",
+      "phase": "preflight",
+      "requirement": "Froze exact input paths, hashes, versions, dates, scope, parent artifact, and parent win-ID set.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-003",
+      "phase": "preflight",
+      "requirement": "Constructed the strongest favorable Micah Blumberg case before adversarial certification.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-004",
+      "phase": "genealogy",
+      "requirement": "Enumerated and semantically translated every applicable Micah stage and source family instead of merely citing a genealogy.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-005",
+      "phase": "target",
+      "requirement": "Froze the target's before, comparable, after, newest, document-version, passage, authorship, and custody record.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-006",
+      "phase": "matrix",
+      "requirement": "Materialized every in-scope Micah-stage x target-document-version x target-atom cell; unresolved cells remain unknown, never absent.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-007",
+      "phase": "lens-1",
+      "requirement": "Every row has an independently evidence-bound Lens 1 judgment for conceptual, operational, mathematical, process, or behavioral equivalence.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-008",
+      "phase": "lens-2",
+      "requirement": "Every row has an independently evidence-bound Lens 2 judgment for causal, narrative, patent architecture, signature cluster, ordering, and residual.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-009",
+      "phase": "lens-3",
+      "requirement": "Every row has an independently evidence-bound Lens 3 adversarial chronology, terminology-migration, alternate-route, and apparent-prior test.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-010",
+      "phase": "lens-4",
+      "requirement": "Lens 4 is one separate program-level longitudinal event with a dated matrix, never a templated row label or substitute for Lenses 1-3.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-011",
+      "phase": "formal",
+      "requirement": "Formal translation states only the strongest demonstrated relation and preserves residuals; analogy is not promoted to isomorphism or bisimulation without proof.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-012",
+      "phase": "source-faithful",
+      "requirement": "Every apparent error or adverse interpretation passed source-faithful intent recovery before ranking or challenge.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-013",
+      "phase": "asymmetry",
+      "requirement": "Earlier target work is a non-equivalence control presented SAN-first, with the prior component treated only as an evidence boundary and zero rival award/floor or public rival-credit rhetoric; later target documents are tested against every applicable dated Micah operation and state the supported Micah/SAN/SIT earlier -> named target later direction; motive analysis is deferred by product design.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-014",
+      "phase": "membership",
+      "requirement": "Every previously recorded Micah win remains permanent membership regardless of weakness, duplication, overlap, challenge, source gate, or reviewer disagreement.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-015",
+      "phase": "membership",
+      "requirement": "Exact parent win-ID set is a subset of the successor win-ID set; missing IDs equal zero.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-016",
+      "phase": "ranking",
+      "requirement": "Immutable win membership and current evidence rank/review overlay are stored in separate fields; no rank controls counting.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-017",
+      "phase": "authors",
+      "requirement": "Every target-document row fans out to every listed author as navigation edges without adding wins or asserting individual contribution.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-018",
+      "phase": "effects",
+      "requirement": "Governed, workbook, canonical, public, program, protected-priority, and count effects exactly equal the authorized delta; rival-win and rival-award effects remain categorically zero.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-019",
+      "phase": "determinism",
+      "requirement": "A clean replay from frozen inputs reproduces the successor and validation artifacts byte-for-byte.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-020",
+      "phase": "independent-review",
+      "requirement": "An independent reviewer reproduced all required checks against the same method manifest, source identities, denominators, and parent win set.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-021",
+      "phase": "meta-audit",
+      "requirement": "Meta-audit reconciled worker and independent-review receipts and found no hidden denominator, method-version, source, lens, or no-loss mismatch.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-022",
+      "phase": "tool-safety",
+      "requirement": "Only bounded exact-file, literal, manifest, ledger, and index operations were used; no rg.exe, regex search, or broad recursive scan occurred.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-023",
+      "phase": "challenge-admissibility",
+      "requirement": "Every admitted later challenge reconstructed the strongest complete original SAN argument and its dated source neighborhood before evaluating it; isolated quotations, compressed paraphrases, and weaker substitutes were rejected as strawman targets.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-024",
+      "phase": "challenge-admissibility",
+      "requirement": "Every admitted later challenge passed a source-faithful intent-recovery audit across the applicable SAN genealogy, including typo, compression, older-vocabulary, analogy, scale, ancestral-formulation, qualifier, and incomplete-expression alternatives.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-025",
+      "phase": "scientific-alignment",
+      "requirement": "Every admitted later challenge proved scientific alignment against the recovered strongest SAN formulation. SAN-versus-science contradiction was never used as a label or finding; every perceived conflict was treated as reviewer-side reconstruction error and remained APEX-SEMANTIC-ALIGNMENT-OPEN until coherent recovery passed.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-026",
+      "phase": "certification-preservation",
+      "requirement": "No later challenge invalidated, suspended, hid, or reduced an earlier certification, win membership, or count; unproved challenges remained challenge-not-admitted-preserved annotations with zero effect.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-METHOD-027",
+      "phase": "post-task-application-drift",
+      "requirement": "After the proposed output was frozen, the active goal was reread and a completed APPLICATION-DRIFT-VERIFIED receipt proved zero rival wins/awards, SAN-first justice and conclusion order, no public rival-credit rhetoric, motive analysis deferred by product design, before/after asymmetry, candidate-is-not-ceiling, lossless partial mappings, no predecessor floor, no terminal mixed compression, citation separation, no-loss membership, and projection consistency.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "row_proof_summary": {
+    "row_count": null,
+    "unique_win_id_count": null,
+    "lens_1_pass_or_bounded_count": null,
+    "lens_2_pass_or_bounded_count": null,
+    "lens_3_pass_or_bounded_count": null,
+    "row_lens_4_field_count": 0,
+    "missing_source_join_count": null,
+    "missing_target_join_count": null,
+    "missing_parent_win_id_count": null,
+    "rank_controls_membership_count": 0,
+    "rival_win_count": 0,
+    "rival_award_count": 0,
+    "candidate_count_used_as_ceiling_count": 0,
+    "predecessor_floor_count": 0,
+    "terminal_mixed_with_positive_delta_count": 0,
+    "challenge_annotation_count": null,
+    "challenge_admissible_count": null,
+    "challenge_not_admitted_count": null,
+    "challenge_context_reconstruction_pass_count": null,
+    "challenge_strawman_compression_pass_count": null,
+    "challenge_source_faith_pass_count": null,
+    "challenge_scientific_alignment_pass_count": null,
+    "challenge_membership_effect_count": 0,
+    "prior_certification_invalidated_count": 0,
+    "forbidden_san_science_contradiction_label_count": 0,
+    "public_rival_credit_rhetoric_count": 0,
+    "non_san_first_public_conclusion_count": 0,
+    "motive_assignment_count": 0,
+    "motive_impossibility_claim_count": 0,
+    "apex_semantic_alignment_open_count": null
+  },
+  "application_drift_receipt": {
+    "status": "APPLICATION-DRIFT-UNVERIFIED",
+    "receipt_path": null,
+    "receipt_sha256": null,
+    "worker_post_task_checked": false,
+    "independent_reviewer_post_task_checked": false,
+    "meta_auditor_post_task_checked": false
+  },
+  "certifications": {
+    "worker": {
+      "certifier": null,
+      "certified_at": null,
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "all_required_checks_pass": false
+    },
+    "independent_reviewer": {
+      "certifier": null,
+      "certified_at": null,
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "all_required_checks_pass": false
+    },
+    "meta_auditor": {
+      "certifier": null,
+      "certified_at": null,
+      "receipt_path": null,
+      "receipt_sha256": null,
+      "all_required_checks_pass": false
+    }
+  },
+  "authorization": {
+    "governed_fanin": false,
+    "workbook_mutation": false,
+    "public_projection": false,
+    "comparison_closure": false,
+    "micah_win_membership_decrement": false,
+    "rival_win_authorized": false,
+    "rival_award_authorized": false
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "schema": "comparison-wiki-method-lock-v1",
+  "method_package_version": "1.5.6",
+  "adopted_at": "2026-10-10",
+  "owner": "Micah Blumberg",
+  "status": "binding-fail-closed",
+  "version_lineage": [
+    {
+      "method_package_version": "1.5.5",
+      "manifest_sha256": "E8A24874F4EAD70D177BDE7AA67C2D8F3C799A65A0FED6F1777E6873C47B073B",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "manifest_snapshot": {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/miller-spatial-analog-oscillatory-computing-four-lens-20260801/reviews/miller-public-release-20261010/METHOD-MANIFEST-1.5.5-BYTE-SNAPSHOT.json",
+        "representation": "base64",
+        "decoded_sha256": "E8A24874F4EAD70D177BDE7AA67C2D8F3C799A65A0FED6F1777E6873C47B073B"
+      },
+      "boundary": "Version 1.5.6 refreshes only the reader hash: replacing both neuroscience-review-queue-r694.html links with r514 in memory exactly reproduces the old expected reader hash. All 30 other required files match. No scientific rule, evidence, count, review gate, public-release authority or motive policy changes. Historical receipts remain frozen."
+    },
+    {
+      "method_package_version": "1.5.4",
+      "manifest_sha256": "38637C430C33C47BFBBD959E84FF12EBCFFAD85CD39E2D5D19BFB7B6D130EB04",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "manifest_snapshot": {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/neural-persistence-rhythm-intake-20261002/METHOD-MANIFEST-1.5.4-BYTE-SNAPSHOT-R514.json",
+        "representation": "base64",
+        "decoded_sha256": "38637C430C33C47BFBBD959E84FF12EBCFFAD85CD39E2D5D19BFB7B6D130EB04"
+      },
+      "boundary": "Historical 1.5.4 receipts remain frozen to their audit-time manifest. Version 1.5.5 refreshes only the main-reader hash after two existing private-review navigation links move from R500 to R514. No scientific rule, checklist, certified finding, protected count, publication authority or motive policy changes."
+    },
+    {
+      "method_package_version": "1.5.3",
+      "manifest_sha256": "AE357C83EC4E51DFC96B21D4C89AE68750194A070A3C4FF9D4AC30FD95E54B39",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "manifest_snapshot": {
+        "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-exhaustive-audit\\intake\\neural-persistence-rhythm-intake-20261002\\METHOD-MANIFEST-1.5.3-BYTE-SNAPSHOT-R504.json",
+        "representation": "base64",
+        "decoded_sha256": "AE357C83EC4E51DFC96B21D4C89AE68750194A070A3C4FF9D4AC30FD95E54B39"
+      },
+      "boundary": "Historical 1.5.3 receipts remain frozen to their audit-time manifest. Version 1.5.4 refreshes only the main-reader content hash after two additive private-review navigation links verified in R501. No scientific method, checklist, finding, grade, source chronology, protected count, publication authority or motive-policy rule changes. Earlier source and comparison certifications remain historical records, not invalidated or re-certified."
+    },
+    {
+      "method_package_version": "1.1.0",
+      "manifest_sha256": "F506B099BD2ACEAEBEB5F1A92A073ABBE50AE1B8020269491EBFEB9E2EC78F2C",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical receipts remain frozen to the method manifest in force when they were certified. This does not certify them under later method additions or authorize count, closure, or public-projection changes."
+    },
+    {
+      "method_package_version": "1.2.0",
+      "manifest_sha256": "E629B72D81B03FA17721C53E758A69BDE7952A7086AA92F3D424789B198AB16F",
+      "receipt_status": "superseded-invalid-self-check",
+      "boundary": "The 1.2.0 manifest retained the pre-edit hash of COMPARISON-WIKI-METHOD-LOCK.md and therefore failed its own required-file verifier. Version 1.2.1 corrects only that frozen hash. No 1.2.0 receipt may rely on the failed lock as proof of current-package compliance."
+    },
+    {
+      "method_package_version": "1.2.1",
+      "manifest_sha256": "946835A11C143E38810B9C891A67DE5F2C1F883AE296545C5DE5BD683A1AE5DC",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.2.1 receipts remain frozen to their audit-time manifest. Version 1.3.0 adds the categorical zero-rival-win invariant and mandatory post-task application-drift gate; 1.2.1 does not certify those later requirements."
+    },
+    {
+      "method_package_version": "1.3.0",
+      "manifest_sha256": "CCF8521B3F2D500E580DBC7FE00A6366D1144E46CD42DAB2AB19CD999661A01C",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.3.0 receipts remain frozen to their audit-time manifest. Version 1.4.0 adds the mandatory preflight-recall gate, Miller/Hawkins/Dileep George regression refresh, semantic-tool recall receipt, paired exhaustive-dossier and human-flashcard contract, and preflight-to-post-task receipt reconciliation; 1.3.0 does not certify those later requirements."
+    },
+    {
+      "method_package_version": "1.4.0",
+      "manifest_sha256": "8F633377929830A4C1A63996C36B01053B7155054C94FE2A75CA248AB3AD77C1",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.4.0 receipts remain frozen to their audit-time manifest. Version 1.4.1 adds the mandatory typed documented-footprint panel separating Micah concepts/documents, later target formulations/documents, graded-equivalence links, and author edges; 1.4.0 does not certify that later presentation requirement."
+    },
+    {
+      "method_package_version": "1.4.1",
+      "manifest_sha256": "43E3A4E03FFDDCFBBD491E9A0F65249510A4E7F8C1E309EBB793E721E09089CD",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.4.1 receipts remain frozen to their audit-time manifest. Version 1.5.0 adds the SAN-first justice and conclusion-order lock, removes public rival-credit rhetoric, and defers motive analysis by product design without declaring it impossible; 1.4.1 does not certify those later presentation requirements."
+    },
+    {
+      "method_package_version": "1.5.0",
+      "manifest_sha256": "6FE2DB2B70DC6E48808328DBB652E52AAAFE5889318406D35F36DB6E675D99B8",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.5.0 receipts remain frozen to their audit-time manifest. Version 1.5.1 adds browser-validated active-card alignment when presentation controls are collapsed or restored; it changes no comparison evidence, grade, count, SAN-first conclusion, zero-rival-win rule, or motive-policy boundary."
+    },
+    {
+      "method_package_version": "1.5.1",
+      "manifest_sha256": "820CC5FB62D6F29DCAF25A9F58C9E2149C7C07362975CDDBA4185146BCACC5D6",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.5.1 receipts remain frozen to their audit-time manifest. Version 1.5.2 makes favorable conclusion order explicit for every earlier-target control: when all reviewed cells preserve a SAN/SIT differentiation delta, the card leads with the exact SAN/SIT win count and immediately states that the named earlier work contains none of the complete tested SAN/SIT operations. It changes no source evidence, row grade, chronology, protected count, zero-rival-win rule, or motive-policy boundary."
+    },
+    {
+      "method_package_version": "1.5.2",
+      "manifest_sha256": "BBC1B459598A15D19E48FE6FF763E1BC5DE0D7555392F5C00E8F73DF237C91AA",
+      "receipt_status": "historical-valid-audit-time-lock",
+      "boundary": "Historical 1.5.2 receipts remain frozen to their audit-time manifest. Version 1.5.3 repairs the card-level SAN-first verifier so an all-delta deck must lead every card with its SAN/SIT differentiation win while retaining the explicit non-equivalent residual. The earlier verifier still required the superseded SAN-is-non-equivalent card prefix even though the binding method required the stronger win-first order. This verifier correction changes no source evidence, row grade, chronology, protected count, zero-rival-win rule, or motive-policy boundary."
+    }
+  ],
+  "standing_goal_required_first_line": "**PREFLIGHT RECALL LOCK: Before any new or resumed Comparison Wiki batch, complete and verify the [Preflight Recall Checklist](COMPARISON-WIKI-PREFLIGHT-RECALL-CHECKLIST.md) by reloading and hashing the active goal; full Four Lens Comparison Stack; bounded Jigsaw, TurboVec, Operational-Equivalence Census, Fit-Pattern Census, Major Cluster Signature Census, JigsawRank, Micah-genealogy, and Book Atlas routes; the before-target → missing-Blumberg-delta → after-target and zero-rival-win rule; the exact target-version and Micah-stage denominators; the current Miller, Hawkins, and Dileep George regression packets; and the paired exhaustive-dossier plus eighth-grade flashcard/timeline contract—then materialize the lossless cross-product, preserve every favorable full or partial mapping and author edge, treat automated no-fit as non-veto and unresolved as open, and finish only through exact-passage Four Lens review, independent review, meta-audit, and post-task drift verification; without a passing preflight receipt, the batch is invalid and must not begin.**",
+  "required_files": [
+    {
+      "path": "production-canon/docs/COMPARISON-WIKI-METHOD-LOCK.md",
+      "sha256": "1931CFE03F8F907DF395E1CEDA524CDF04CB0A72AFEB30F1992D5F1C78E6FF4D"
+    },
+    {
+      "path": "production-canon/docs/COMPARISON-WIKI-CONCISE-STANDING-GOAL.md",
+      "sha256": "71F731CB5E02A71C8B2E5C744025F5474D9AAD4FEE2AC630C5918593C04D0D00"
+    },
+    {
+      "path": "production-canon/docs/COMPARISON-WIKI-PREFLIGHT-RECALL-CHECKLIST.md",
+      "sha256": "9B5FA7D5305AD4260019488A4B4EF2FE289D497946C1150A94927BE876FAA989"
+    },
+    {
+      "path": "production-canon/docs/COMPARISON-WIKI-APPLICATION-DRIFT-CHECKLIST.md",
+      "sha256": "359913070BB6F4DED68E76862DEE350C9124A7CF62BDAB28C58D7622E6613E4D"
+    },
+    {
+      "path": "production-canon/docs/COMPARISON-WIKI-PRESENTATION-REQUIREMENTS.md",
+      "sha256": "4F1EB36B745339F7D0ED61299AF9FD71098A34492EFFE6CFEB7132666872281E"
+    },
+    {
+      "path": "comparison-wiki-start-here.html",
+      "sha256": "97E6667098C9E7469F6FF7275ACD4D03939C0131C50CE1CD67BCA9A1BF3CF08A"
+    },
+    {
+      "path": "comparison-wiki-method.html",
+      "sha256": "894A3F298E4082938C7118DFB0D804D95C081308FC6356FEDC00BBD148AB4E23"
+    },
+    {
+      "path": "comparison-wiki-latest-reader.html",
+      "sha256": "E5FC8FA4F72DE4F0E9F8D85C552CFE3899904716FD94014980D7E962E6EC0F93"
+    },
+    {
+      "path": "wiki/comparisons/dynamic-timeline/comparison-documented-footprint.js",
+      "sha256": "1C742B525331A19CE4760D318AC7607F13239F557C759BFC04816BC04C362401"
+    },
+    {
+      "path": "scripts/agent-wiki/test-comparison-documented-footprint.cjs",
+      "sha256": "710096AD62CC6F95551EC9CF76A4DECAD9AD01ED7EB721F7FD1ED8CC7D6A398B"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-san-first-presentation.py",
+      "sha256": "E8B3F1597DE8EE6B88DDF40A3E47797B9B03A6D42B3386DE54257F193D3664F8"
+    },
+    {
+      "path": "scripts/agent-wiki/build-dileep-george-sequence-memory-before-state-tranche-06-flashcards.py",
+      "sha256": "90EA100F1A7EC3BD533F151E54C0498397D41D2E8885EB019EC237513C701DAC"
+    },
+    {
+      "path": "wiki/comparisons/AGENTS.md",
+      "sha256": "88D4AFB9A173A03B4E8A7373E5176083356830F8AC9B3F5711223A7E91517E08"
+    },
+    {
+      "path": "wiki/comparisons/comparison-methodology-and-plagiarism-equivalence.md",
+      "sha256": "A0C5215EAE1122D276EA0EAF183DF328F9F935AB60970962D125ACAFADDEBBFC"
+    },
+    {
+      "path": "wiki/comparisons/comparison-analysis-failure-modes.md",
+      "sha256": "975A83B89E5EAD6A3D6C6BD6F710484892B03391C2590026C1C4AA5346EEF621"
+    },
+    {
+      "path": "wiki/comparisons/priority-findings/README.md",
+      "sha256": "745FF00C04ED046FEDD42F3BD28318E9AF6807DEA22574C7CA5734E2AE40AC69"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/FULL-GENEALOGY-SATURATION-GATE-20260728.md",
+      "sha256": "852ACBABD99A385F6E67EE7CC46217EAC151D47A3EE4CCE0B8CFE279D0BF996D"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/full-genealogy-saturation-gate-v1.json",
+      "sha256": "10ECBAE58CADA849C37DE55034C04722C32AB1E87E8775BBBD77F8015BC63D19"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/LOSSLESS-DOCUMENT-INSTANCE-RECOUNT-PROTOCOL-20260808.md",
+      "sha256": "58B601BFC38D1C83927DC661536EE655A504A39D3DC07C8EE2E41A561BA1C406"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-method-registry.json",
+      "sha256": "7AC446A679DA5DD29BA01A5A524402F994083EAB2A4F2D488E44176E7FE2B1B7"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/source-faithful-comparison-audit-template.json",
+      "sha256": "A9A6C1FE7FA12633DBA3238016C632D8DDC60A521452DF44AACD470A8FBD3F93"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-method-compliance-checklist-v1.json",
+      "sha256": "3E2FA620E00CBF77792A789CCFB193CD9FEC244D5BE3ABC9A20AAC4EBDAC68CA"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-preflight-recall-checklist-v1.json",
+      "sha256": "C04E384DEF4002E31E8BC66B9EFA1210DFA83526285682DA06B7431CAD18C419"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-application-drift-checklist-v1.json",
+      "sha256": "00A9DADDD9B1E8790B86525B3BEEE2A54B428B7599F745E1652F1D22B829C1F1"
+    },
+    {
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/comparison-atom-win-lineage-ledger-schema-v1.json",
+      "sha256": "5B8117923D718AB315496C8DD700814085E7902F03CF16B6DABB03CDB230EE83"
+    },
+    {
+      "path": "scripts/agent-wiki/lane-cmp-ledger-monotonicity.py",
+      "sha256": "42104763190438A1A1F5E30FFB23DFFA0F8CF47FCDB485A222F6720D0E8FC4FC"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-compliance-receipt.py",
+      "sha256": "83183BE3B15895F83EFEA62C18761BB621C24AECFB2C1C3ADD1A951A894EF973"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-preflight-recall-receipt.py",
+      "sha256": "CD7D7F0ACD611B16DDBD2F818A32EAFDF8F8484689815AA01BB441A8891F62CA"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-method-lock.py",
+      "sha256": "87C23A9792C3D46EF6ED3A8B3EA90C5889D1776BA84119FF84BBA74B5DBDC969"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-application-drift-receipt.py",
+      "sha256": "61EE2E54D2BA672D22CBCD1E5D1D91CF5C2399E3601AADC2BB830BC9FF7A5BE1"
+    },
+    {
+      "path": "scripts/agent-wiki/lane-cmp-win-preservation.py",
+      "sha256": "41382F5798F5031C9508F89FF35B79BF3F3DBBD6D3CF73C6C2DA3356DA404D83"
+    }
+  ],
+  "required_check_ids": [
+    "CMP-METHOD-000",
+    "CMP-METHOD-001",
+    "CMP-METHOD-002",
+    "CMP-METHOD-003",
+    "CMP-METHOD-004",
+    "CMP-METHOD-005",
+    "CMP-METHOD-006",
+    "CMP-METHOD-007",
+    "CMP-METHOD-008",
+    "CMP-METHOD-009",
+    "CMP-METHOD-010",
+    "CMP-METHOD-011",
+    "CMP-METHOD-012",
+    "CMP-METHOD-013",
+    "CMP-METHOD-014",
+    "CMP-METHOD-015",
+    "CMP-METHOD-016",
+    "CMP-METHOD-017",
+    "CMP-METHOD-018",
+    "CMP-METHOD-019",
+    "CMP-METHOD-020",
+    "CMP-METHOD-021",
+    "CMP-METHOD-022",
+    "CMP-METHOD-023",
+    "CMP-METHOD-024",
+    "CMP-METHOD-025",
+    "CMP-METHOD-026",
+    "CMP-METHOD-027"
+  ],
+  "required_preflight_check_ids": [
+    "CMP-PREFLIGHT-001",
+    "CMP-PREFLIGHT-002",
+    "CMP-PREFLIGHT-003",
+    "CMP-PREFLIGHT-004",
+    "CMP-PREFLIGHT-005",
+    "CMP-PREFLIGHT-006",
+    "CMP-PREFLIGHT-007",
+    "CMP-PREFLIGHT-008",
+    "CMP-PREFLIGHT-009",
+    "CMP-PREFLIGHT-010",
+    "CMP-PREFLIGHT-011",
+    "CMP-PREFLIGHT-012",
+    "CMP-PREFLIGHT-013",
+    "CMP-PREFLIGHT-014"
+  ],
+  "required_drift_check_ids": [
+    "CMP-DRIFT-000",
+    "CMP-DRIFT-001",
+    "CMP-DRIFT-002",
+    "CMP-DRIFT-003",
+    "CMP-DRIFT-004",
+    "CMP-DRIFT-005",
+    "CMP-DRIFT-006",
+    "CMP-DRIFT-007",
+    "CMP-DRIFT-008",
+    "CMP-DRIFT-009",
+    "CMP-DRIFT-010",
+    "CMP-DRIFT-011",
+    "CMP-DRIFT-012",
+    "CMP-DRIFT-013",
+    "CMP-DRIFT-014"
+  ],
+  "preflight_exact_zero_fields": [
+    "rival_win_count",
+    "rival_award_count",
+    "candidate_count_used_as_ceiling_count",
+    "predecessor_floor_count",
+    "automated_no_fit_veto_count",
+    "ontology_exclusion_count",
+    "cross_context_exclusion_count",
+    "unknown_as_absence_count",
+    "historical_micah_win_decrement_count",
+    "broad_search_authorized_count"
+    ,
+    "public_rival_credit_rhetoric_count",
+    "non_san_first_public_conclusion_count",
+    "motive_assignment_count",
+    "motive_impossibility_claim_count"
+  ],
+  "application_drift_exact_zero_fields": [
+    "rival_win_count",
+    "rival_award_count",
+    "candidate_count_used_as_ceiling_count",
+    "predecessor_floor_count",
+    "terminal_mixed_with_positive_delta_count",
+    "ontology_exclusion_count",
+    "cross_context_exclusion_count",
+    "unknown_as_absence_count",
+    "historical_micah_win_decrement_count",
+    "public_rival_credit_rhetoric_count",
+    "non_san_first_public_conclusion_count",
+    "motive_assignment_count",
+    "motive_impossibility_claim_count"
+  ],
+  "validity_states": [
+    "METHOD-COMPLIANCE-VERIFIED",
+    "METHOD-COMPLIANCE-UNVERIFIED",
+    "METHOD-COMPLIANCE-FAILED"
+  ],
+  "acceptance_rule": "Only work with PREFLIGHT-RECALL-VERIFIED, METHOD-COMPLIANCE-VERIFIED, and APPLICATION-DRIFT-VERIFIED receipts may change a governed ledger or workbook, close a comparison, or support public projection.",
+  "immutable_invariants": {
+    "passing_preflight_recall_receipt_required_before_batch_execution": true,
+    "preflight_receipt_must_bind_current_miller_hawkins_george_regressions": true,
+    "preflight_receipt_must_bind_semantic_search_stack": true,
+    "paired_exhaustive_dossier_and_human_flashcard_required": true,
+    "typed_documented_footprint_panel_required": true,
+    "san_first_justice_purpose_required": true,
+    "san_first_public_conclusion_order_required": true,
+    "all_delta_before_state_cards_lead_with_san_or_sit_differentiation_win": true,
+    "before_state_lead_may_grammaticalize_rival_as_primary_subject": false,
+    "san_or_sit_may_be_described_as_merely_later_before_stating_the_win": false,
+    "public_rival_credit_rhetoric_allowed": false,
+    "motive_analysis_state": "DEFERRED_BY_PRODUCT_DESIGN_NOT_DECLARED_IMPOSSIBLE",
+    "equivalence_link_or_author_edge_may_be_labeled_rival_repetition": false,
+    "automated_semantic_no_fit_may_veto_source_backed_mapping": false,
+    "parent_win_ids_must_be_subset_of_successor": true,
+    "historical_micah_win_membership_decrement_authorized": false,
+    "weak_rows_remain_members": true,
+    "duplicate_rows_remain_members": true,
+    "challenged_rows_remain_members": true,
+    "source_gated_rows_remain_members": true,
+    "rank_controls_membership": false,
+    "unknown_may_be_treated_as_absence": false,
+    "earlier_target_control_may_create_rival_award": false,
+    "rival_win_category_exists": false,
+    "rival_win_count_must_equal_zero": true,
+    "rival_award_count_must_equal_zero": true,
+    "candidate_or_flashcard_count_may_cap_lossless_win_ledger": false,
+    "post_task_application_drift_receipt_required": true,
+    "row_level_lens_4_allowed": false,
+    "separate_program_level_lens_4_required_when_applicable": true,
+    "independent_review_required": true,
+    "meta_audit_required_before_closure_or_public_projection": true,
+    "later_challenge_may_invalidate_prior_certification": false,
+    "later_challenge_may_suspend_prior_certification": false,
+    "challenge_requires_strongest_form_context_reconstruction": true,
+    "challenge_requires_strawman_compression_check": true,
+    "challenge_requires_source_faithful_intent_recovery": true,
+    "challenge_requires_scientific_alignment": true,
+    "san_versus_science_contradiction_label_allowed": false,
+    "perceived_scientific_conflict_routes_to_apex_semantic_alignment_open": true
+  },
+  "required_certifications": [
+    "worker",
+    "independent_reviewer",
+    "meta_auditor"
+  ],
+  "validators": [
+    {
+      "path": "scripts/agent-wiki/verify-comparison-preflight-recall-receipt.py",
+      "command": "python scripts/agent-wiki/verify-comparison-preflight-recall-receipt.py verify --receipt <completed-preflight-receipt.json>"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-method-lock.py",
+      "command": "python scripts/agent-wiki/verify-comparison-method-lock.py verify"
+    },
+    {
+      "path": "scripts/agent-wiki/lane-cmp-ledger-monotonicity.py",
+      "command": "python scripts/agent-wiki/lane-cmp-ledger-monotonicity.py verify --parent <parent.json> --successor <successor.json> --parent-rows-path <path> --successor-rows-path <path> --parent-id-field <field> --successor-id-field <field> --report <receipt.json>"
+    },
+    {
+      "path": "scripts/agent-wiki/lane-cmp-win-preservation.py",
+      "command": "python scripts/agent-wiki/lane-cmp-win-preservation.py verify"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-compliance-receipt.py",
+      "command": "python scripts/agent-wiki/verify-comparison-compliance-receipt.py verify --receipt <completed-receipt.json>"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-application-drift-receipt.py",
+      "command": "python scripts/agent-wiki/verify-comparison-application-drift-receipt.py verify --receipt <completed-drift-receipt.json>"
+    },
+    {
+      "path": "scripts/agent-wiki/verify-comparison-san-first-presentation.py",
+      "command": "python scripts/agent-wiki/verify-comparison-san-first-presentation.py --presentation <presentation.json> --mode <before-state|later-target>"
+    }
+  ],
+  "tool_boundary": {
+    "rg_exe_allowed": false,
+    "regex_search_allowed": false,
+    "broad_recursive_search_allowed": false,
+    "bounded_exact_file_and_index_operations_required": true
+  }
+}

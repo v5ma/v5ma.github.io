@@ -1,0 +1,1200 @@
+{
+  "schema": "comparison-encyclopedia-motivation-seven-pair-meta-review-r2",
+  "created_date": "2026-11-13",
+  "reviewer": "/root/entangled_loop_intake",
+  "worker": "/root",
+  "independent_reviewer": "/root/biorxiv_635248_intake",
+  "independence": {
+    "authored_worker_pairs": false,
+    "performed_prior_independent_pair_review": false,
+    "separate_meta_source_checks": true
+  },
+  "status": "SEVEN-PAIR-META-RECONCILED-WITH-MANDATORY-SCOPE-QUALIFICATIONS",
+  "scope": "Private meta reconciliation of exactly seven selected Motivation passage pairs. This is not the complete 940-cell review, whole-programme genealogy, full 43-check method/drift receipt, or release certification.",
+  "decision": {
+    "bounded_partials_retained": [
+      "MOT-FULLTEXT-PAIR-01",
+      "MOT-FULLTEXT-PAIR-02",
+      "MOT-FULLTEXT-PAIR-04",
+      "MOT-FULLTEXT-PAIR-05"
+    ],
+    "weak_components_or_analogies_retained": [
+      "MOT-FULLTEXT-PAIR-03",
+      "MOT-FULLTEXT-PAIR-06",
+      "MOT-FULLTEXT-PAIR-07"
+    ],
+    "all_seven_members_preserved": true,
+    "worker_independent_substantive_conflict": false,
+    "method_compliance_for_full_batch": "UNVERIFIED-NOT-CERTIFIED-BY-THIS-META",
+    "application_drift_for_full_batch": "UNVERIFIED-NOT-CERTIFIED-BY-THIS-META",
+    "private_review_history_only": true,
+    "public_projection_authorized": false
+  },
+  "meta_method_binding": {
+    "method_manifest_matches_frozen_V1": true,
+    "hash_bound_refs": [
+      {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/comparison-wiki-method-lock-v1.json",
+        "sha256": "5C588C5D51B0985DD9673D822B2ED71087717A6623A2DF6C26DB04C0B99CA8BD",
+        "bytes": 22435
+      },
+      {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/wiki/comparisons/AGENTS.md",
+        "sha256": "88D4AFB9A173A03B4E8A7373E5176083356830F8AC9B3F5711223A7E91517E08",
+        "bytes": 23210
+      },
+      {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-METHOD-LOCK.md",
+        "sha256": "1931CFE03F8F907DF395E1CEDA524CDF04CB0A72AFEB30F1992D5F1C78E6FF4D",
+        "bytes": 21711
+      },
+      {
+        "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/docs/COMPARISON-WIKI-METHOD-BOOTLOADER-V2.md",
+        "sha256": "325703FC972EF48D1436FBF31F4289A804C41A556BFDB6B51CD88B76F475175E",
+        "bytes": 4611
+      },
+      {
+        "path": "D:/micahone/D Documents/ComparisonWikiChecklist.txt",
+        "sha256": "E1F4204B555C9A64CF7AE9C494DD700C3CF75E66D65327E2E3B9318A68BE438D",
+        "bytes": 11382
+      },
+      {
+        "path": "D:/micahone/D Documents/DetectiveFrame.txt",
+        "sha256": "58D3E122C6B6445F6F0B402FC5377F0C07562321DFDE6F2462002A9FD208FFEA",
+        "bytes": 7688
+      }
+    ],
+    "scope": "Same method package for the source-pair meta overlay; this is not certification of all method/drift items."
+  },
+  "frozen_input_refs": [
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\INDEPENDENT-PAIR-REVIEW-R2.json",
+      "sha256": "8C3AF06D6D3F514CD87BC83ACC905E6D7B073C2EAF085F4004F1CFBC36ADD962",
+      "bytes": 22417
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\FIXED-INPUTS.json",
+      "sha256": "5A209E23CBADA5197D04D86F363DCFCD53235C79990240AAA2810F7231927368",
+      "bytes": 181309
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V1.json",
+      "sha256": "99064A07239B0C1633CA2E975F33868CAD224F2DC2CC7ABEB0EBA9E12E7AB45E",
+      "bytes": 32848
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V2.json",
+      "sha256": "E3238F354B126618B0EE541DE8198D96A0949859AAF5604F5AC2A9AB41B3484C",
+      "bytes": 6090
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V1-VALIDATION.json",
+      "sha256": "7610F96521A1FDC206F626BEC2F655E5CA9679E8460665F5A3D208BD82B556BE",
+      "bytes": 652
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V2-VALIDATION.json",
+      "sha256": "7700A65CF311BE3C389ACC242D4E0507C522D77BAFFC13B532D971BC456B613B",
+      "bytes": 658
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\INDEPENDENT-PAIR-REVIEW-R1.json",
+      "sha256": "7AC2B3A2BD51F924F56829FCFCFF3EEC6E0A44E8BA2E0845C789CFEECF1E482A",
+      "bytes": 21352
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\WORKER-PAIR-REVIEW-R2.json",
+      "sha256": "D90D4D73EC1B61E440EEA079A755302354EFF1164BF9CB0D928E41B0482EFE12",
+      "bytes": 158775
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\WORKER-MATRIX-R2.json",
+      "sha256": "F4BACACCD0BAB476D9803D114C7D0EBD4D81F01505AD2C96586BE3B9339F421B",
+      "bytes": 210806
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PHASE-DECODER-METHOD-CLARIFICATION.json",
+      "sha256": "D591DD3564F193C33512925B2A6CC0D0B96F040AD33A60D24191DFE6EC2157DC",
+      "bytes": 731
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PAIR06-TARGET-CONTEXT-QUALIFICATION.json",
+      "sha256": "F344AE665EF22E088C2F6A879CD66FA8B78E168532716E2666184F832EA5A4AD",
+      "bytes": 2137
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\EXECUTION-AUTHORIZED.json",
+      "sha256": "9DBCE0ACCE123306F7CCFDD5B025649B7944DA41573FA305EDA74B4E9DE15E92",
+      "bytes": 2139
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\SEMANTIC-EXECUTION.json",
+      "sha256": "01ACBD667692F8615C49B528C47924089C39FAD1B3C60465C305EED9F16A6CE5",
+      "bytes": 4765
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/WORKER-PAIR-REVIEW.json",
+      "sha256": "58631E7E35C23751AE36AC5EB4A8FBAFCC39D92D480C238CD312F98C40DD911D",
+      "bytes": 129396
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\RECALL.json",
+      "sha256": "246D75D6BF6B989959EE58040FC846AB163EA290B58374CF8163C29B61032BE1",
+      "bytes": 3114
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\FULLTEXT-TARGET-ADDENDUM.json",
+      "sha256": "AF99130ACBCADF61D3F7FF280567EE4ED7C2008B5FEC2E98063714253695D9B5",
+      "bytes": 18275
+    },
+    {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-visual-mapping-plan-20261113/source-intake/MOTIVATION-PAGES.json",
+      "sha256": "A4EC4FADB6771575CE648D4AB086D473092633CB68C875F3E40A4212B7E11137",
+      "bytes": 147553
+    },
+    {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-visual-mapping-plan-20261113/source-intake/2026.11.05.764652v1.full.pdf",
+      "sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6",
+      "bytes": 11261463
+    },
+    {
+      "path": "D:/micahone/vscode v5ma/paper-development/all-current-public-paper-pdfs-20260813/065 - Embodied Neural Rendering in Self-Aware Networks.pdf",
+      "sha256": "D0B4BCB2911A84F8A8C9BE07E5CDFA9CF8E47F10B0F44A7D9902647070CFC4D7",
+      "bytes": 13290377
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-theta-news-20261112/strong-source/a0310zNAPOT5-20220917.md",
+      "sha256": "66642AF5B4CC43F0CE252FAEF42970A6EEC57D0BAFE214A682E10E564D5CDC9E",
+      "bytes": 77399
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-source-pairs-20261111/choice-sources/FW18-a0135-20220608.txt",
+      "sha256": "E4F275290FA83F729C68A9DDB572AD4F7E2E877E5F3F06DBF6390ADDC6BB7EE2",
+      "bytes": 2410
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\levin-source-release-20261111/git-sources/S15.txt",
+      "sha256": "A8F24C153B9708925CE0B8502BC64C07AC35CE6C03AB1E84DB125A8C4E09CEDF",
+      "bytes": 40844
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-source-pairs-20261111/choice-sources/FW11-a0090-20220608.txt",
+      "sha256": "93DBDD3104CD751CC72448B0C4DC44730FB54996BFD90E5BB0E1E544E55B9DAF",
+      "bytes": 4018
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\levin-source-release-20261111/git-sources/S16.txt",
+      "sha256": "3003CCA13203DD0CCC5352781E1CA726CBF51773DC7E25C26E7AAE2AB4DACCE3",
+      "bytes": 8100
+    }
+  ],
+  "expected_independent_r2_sha256": "8C3AF06D6D3F514CD87BC83ACC905E6D7B073C2EAF085F4004F1CFBC36ADD962",
+  "integrity_checks": {
+    "count": 69,
+    "failures": [],
+    "details": [
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\INDEPENDENT-PAIR-REVIEW-R2.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/FIXED-INPUTS.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/PREFLIGHT-V1.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/PREFLIGHT-V2.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/PREFLIGHT-V1-VALIDATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/PREFLIGHT-V2-VALIDATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\INDEPENDENT-PAIR-REVIEW-R1.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\WORKER-PAIR-REVIEW-R2.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\WORKER-MATRIX-R2.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PHASE-DECODER-METHOD-CLARIFICATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PAIR06-TARGET-CONTEXT-QUALIFICATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\EXECUTION-AUTHORIZED.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\FIXED-INPUTS.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\SEMANTIC-EXECUTION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\EXECUTION-AUTHORIZED.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V1.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V1-VALIDATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V2.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\PREFLIGHT-V2-VALIDATION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\FIXED-INPUTS.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\SEMANTIC-EXECUTION.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\WORKER-PAIR-REVIEW.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\review-r1\\RECALL.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext\\FULLTEXT-TARGET-ADDENDUM.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-five-story-expansion-20261113\\motivation-fulltext/review-r1/WORKER-PAIR-REVIEW.json"
+      },
+      {
+        "id": "v1-pass",
+        "pass": true,
+        "detail": "Exact frozen receipt"
+      },
+      {
+        "id": "v2-pass",
+        "pass": true,
+        "detail": "Exact frozen receipt"
+      },
+      {
+        "id": "private-authorization",
+        "pass": true,
+        "detail": "Public=false"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-visual-mapping-plan-20261113/source-intake/MOTIVATION-PAGES.json"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-visual-mapping-plan-20261113/source-intake/2026.11.05.764652v1.full.pdf"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:/micahone/vscode v5ma/paper-development/all-current-public-paper-pdfs-20260813/065 - Embodied Neural Rendering in Self-Aware Networks.pdf"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:/micahone/vscode v5ma/paper-development/all-current-public-paper-pdfs-20260813/065 - Embodied Neural Rendering in Self-Aware Networks.pdf"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-theta-news-20261112/strong-source/a0310zNAPOT5-20220917.md"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-source-pairs-20261111/choice-sources/FW18-a0135-20220608.txt"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\levin-source-release-20261111/git-sources/S15.txt"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\miller-source-pairs-20261111/choice-sources/FW11-a0090-20220608.txt"
+      },
+      {
+        "id": "hash-match",
+        "pass": true,
+        "detail": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-wiki-breadth-release-20261111\\levin-source-release-20261111/git-sources/S16.txt"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-01"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-01"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-01"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-02"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-02"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-02"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-03"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-03"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-03"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-04"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-04"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-04"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-05"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-05"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-05"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-06"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-06"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-06"
+      },
+      {
+        "id": "pair-source-target-bindings",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-07"
+      },
+      {
+        "id": "author-roster",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-07"
+      },
+      {
+        "id": "three-lenses",
+        "pass": true,
+        "detail": "MOT-FULLTEXT-PAIR-07"
+      },
+      {
+        "id": "pair06-training-supplements",
+        "pass": true,
+        "detail": "Three exact anchors"
+      },
+      {
+        "id": "phase-plus-strength",
+        "pass": true,
+        "detail": "Target p29"
+      },
+      {
+        "id": "lossless-id-preservation",
+        "pass": true,
+        "detail": "parent_ids"
+      },
+      {
+        "id": "lossless-id-preservation",
+        "pass": true,
+        "detail": "existing_D28_ids"
+      },
+      {
+        "id": "lossless-id-preservation",
+        "pass": true,
+        "detail": "preserved_news_ids"
+      },
+      {
+        "id": "old-two-motivation-preserved",
+        "pass": true,
+        "detail": "Both IDs retained"
+      },
+      {
+        "id": "seven-row-independent-coverage",
+        "pass": true,
+        "detail": "All seven"
+      },
+      {
+        "id": "r1-core-unchanged",
+        "pass": true,
+        "detail": [
+          {
+            "id": "MOT-FULLTEXT-PAIR-01",
+            "unchanged": true
+          },
+          {
+            "id": "MOT-FULLTEXT-PAIR-02",
+            "unchanged": true
+          },
+          {
+            "id": "MOT-FULLTEXT-PAIR-03",
+            "unchanged": true
+          }
+        ]
+      },
+      {
+        "id": "matrix-membership",
+        "pass": true,
+        "detail": "940 coordinates / 933 open / 7 worker-pending"
+      },
+      {
+        "id": "provisional-groups",
+        "pass": true,
+        "detail": 6
+      },
+      {
+        "id": "author-association-count-not-wins",
+        "pass": true,
+        "detail": 70
+      }
+    ],
+    "pair_quote_and_offset_checks": [
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-01",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 1364,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-02",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 3724,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-03",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 1614,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-04",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 2369,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-05",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 1792,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-06",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 3450,
+        "target_offset_matches": true,
+        "target_authors": 10
+      },
+      {
+        "row_id": "MOT-FULLTEXT-PAIR-07",
+        "source_quote_hash": true,
+        "source_quote_in_frozen_context": true,
+        "target_quote_hash": true,
+        "target_quote_in_page": true,
+        "target_offset": 2247,
+        "target_offset_matches": true,
+        "target_authors": 10
+      }
+    ],
+    "pair06_supplemental_anchor_checks": [
+      {
+        "page": 18,
+        "text": "We then used gradient descent to fit the connectivity and single neuron parameters of the RNN",
+        "normalized_offset": 1679,
+        "quote_sha256": "1D9CC6DDCB8CDDE097FD8593C5808B9ECD8867F2EDC2F3CDB36709D3839FF3C4",
+        "hash_matches": true,
+        "offset_matches": true
+      },
+      {
+        "page": 32,
+        "text": "The parameters that are trained during learning are the input vectors, readout vectors, recurrent connectivity weights, and single neuron gains and biases.",
+        "normalized_offset": 499,
+        "quote_sha256": "7D5B6D9CCBA952B343B48F044AC6FA41B06302B0EF400950DCF2117EE4AEBCB7",
+        "hash_matches": true,
+        "offset_matches": true
+      },
+      {
+        "page": 32,
+        "text": "Once the networks are trained, we estimate the time-dependent current from every source neuron",
+        "normalized_offset": 1699,
+        "quote_sha256": "CAF6850AE0CCFBC7B23738B0774338A90657BF854B16FB67FA488A2FEE02E03A",
+        "hash_matches": true,
+        "offset_matches": true
+      }
+    ],
+    "first_three_core_fields_unchanged": [
+      {
+        "id": "MOT-FULLTEXT-PAIR-01",
+        "unchanged": true
+      },
+      {
+        "id": "MOT-FULLTEXT-PAIR-02",
+        "unchanged": true
+      },
+      {
+        "id": "MOT-FULLTEXT-PAIR-03",
+        "unchanged": true
+      }
+    ],
+    "whitespace_normalization": "Collapse Unicode whitespace to single spaces, trim boundaries; no wording or punctuation substitution.",
+    "method_boundary": "These are exact-source/preservation checks, not the complete canonical compliance checklist."
+  },
+  "source_read_scope": {
+    "target_version": "MOTIVATION-BIORXIV-V1-20261106",
+    "target_pdf_sha256": "FACAA791CF8A0A21E4ED669FD9563BACC3D04DAA48541D1407F74982335997E6",
+    "target_extraction_sha256": "A4EC4FADB6771575CE648D4AB086D473092633CB68C875F3E40A4212B7E11137",
+    "target_pages_read": [
+      1,
+      2,
+      3,
+      8,
+      16,
+      18,
+      19,
+      22,
+      23,
+      29,
+      31,
+      32,
+      34
+    ],
+    "source_contexts": [
+      "P65 exact original PDF pp9,12,13",
+      "A0310 lines52-64",
+      "FW18 lines24-30",
+      "S15 lines3-27",
+      "FW11 lines17-35",
+      "S16 lines25-35"
+    ],
+    "unique_SAN_source_documents": 6,
+    "broader_corpus_reread": false,
+    "equation_level_identity_certified": false,
+    "raw_patient_data_accessed": false
+  },
+  "rows": [
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-01",
+      "meta_decision": "RECONCILED-RETAIN-BOUNDED-PARTIAL",
+      "evidence_rank_retained": "bounded-functional-causal-prefix-partial",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Action-related bodily return participates in recurrent neural processing.",
+      "mandatory_scope": "The target receives measured visible tongue volume as an assumed proprioceptive proxy; it does not autonomously generate movement, receive a measured afferent pathway and implement the entire SAN action-copy/prediction/residual/state/policy sequence.",
+      "target_pages_checked": [
+        18,
+        19,
+        23,
+        31,
+        32
+      ],
+      "source_context_checked": "P65 pp9,12,13; exact July29 edition, not internal July13 label",
+      "formal_translation": {
+        "category": "Map only the selected body-return -> neural-processing arrow; source body/world updating and target fitted rate trajectories remain distinct codomains.",
+        "pi_source": "body_return?(x).receiver_update!(x).P",
+        "pi_target": "tongue_proxy?(x).rnn_state_update!(x).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-02",
+      "meta_decision": "RECONCILED-RETAIN-FUNCTION-LEVEL-PARTIAL",
+      "evidence_rank_retained": "bounded-function-level-partial",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Context changes effective cooperation and participation among neural populations.",
+      "mandatory_scope": "Task/focus phase-linking and motivational-epoch cortical/medullary covariance are not identical variables or carriers. Communication-subspace results are predictive/correlational; common inputs remain possible and communication-through-coherence was not analyzed. This does not erase the paper's separate optogenetic evidence.",
+      "target_pages_checked": [
+        16,
+        18,
+        19,
+        22,
+        23
+      ],
+      "source_context_checked": "A0310 lines52-64, especially58 and60",
+      "formal_translation": {
+        "category": "A partial context -> coordination-role correspondence, not equality between phase coupling and covariance-defined subspaces.",
+        "pi_source": "task?(c).phase_links!(reconfigure(c)).P",
+        "pi_target": "epoch?(c).subspace_estimate!(coordination(c)).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-03",
+      "meta_decision": "RECONCILED-RETAIN-WEAK-COMPONENT",
+      "evidence_rank_retained": "weak-state-processing-component",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Internal state joins incoming signals in determining evolving activity.",
+      "mandatory_scope": "A fitted trial-specific initial condition, represented through a transient input, does not isolate receiver-specific input effectiveness, a phase gate or a nonlinear three-context GCS interaction.",
+      "target_pages_checked": [
+        18,
+        31,
+        32
+      ],
+      "source_context_checked": "P65 pp12-13; tests and source-owned limitations retained",
+      "formal_translation": {
+        "category": "Weak state-plus-input -> trajectory prefix only; no mapping of the source's discriminating interaction operators.",
+        "pi_source": "state?(s).context?(x).receiver_effect!(s,x).P",
+        "pi_target": "initial_state?(s).inputs?(x).rnn_trajectory!(s,x).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-04",
+      "meta_decision": "RECONCILED-RETAIN-ANTICIPATORY-PARTIAL",
+      "evidence_rank_retained": "bounded-anticipatory-action-function-partial",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "A near-future expectation is used to align movement with an event.",
+      "mandatory_scope": "Use the complete FW18 sentence joining expectation to muscle/environment alignment, retain its tentative modality, and do not equate its illustrative one-millisecond idea with the target's measured lick-reward offset or validate the proposed phase-field renderer.",
+      "target_pages_checked": [
+        3
+      ],
+      "source_context_checked": "FW18 lines24-30, especially26 and30; June8,2022 exact wording",
+      "formal_translation": {
+        "category": "Partial expectation -> anticipatory movement alignment chain; physical phase-field rendering is not mapped.",
+        "pi_source": "expected_event?(e).prepare_movement!(e).P",
+        "pi_target": "learned_reward_timing?(e).anticipatory_protrusion!(e).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-05",
+      "meta_decision": "RECONCILED-RETAIN-VARIABLE-ROLE-PARTIAL",
+      "evidence_rank_retained": "bounded-relative-timing-variable-role-partial",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Relative spike timing can distinguish represented variables.",
+      "mandatory_scope": "SAN's tonic/neural-collective reference and unexpected phase deviation are not the target's behavioral lick-cycle phase and stable direction-dependent preference. The target does not establish the full PWD surprise/update mechanism. Any decoder description must include resultant vector strength.",
+      "target_pages_checked": [
+        2,
+        8,
+        23,
+        29,
+        34
+      ],
+      "source_context_checked": "S15 lines3-27: Micah speaker begins at3; selected passage17 precedes GPT boundary27",
+      "formal_translation": {
+        "category": "Partial recurring-reference -> relative-timing distinction role mapping; the reference objects and encoded variables are not identified.",
+        "pi_source": "tonic_reference?(r).spike?(t).pwd_pattern!(t-r).P",
+        "pi_target": "lick_reference?(r).spike?(t).direction_phase_feature!(t-r).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-06",
+      "meta_decision": "RECONCILED-RETAIN-WEAK-ANALOGY-WITH-SUPPLEMENTAL-LOCATORS",
+      "evidence_rank_retained": "weak-model-learning-configuration-analogy",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Learned patterns are associated with changed connection configuration and reproduced activity.",
+      "mandatory_scope": "Bind the weak analogy to p18 parameter fitting and p32 trained parameters. MOT-FULL-16's current-contribution quote is a different result: c_ij(t)=J_ij phi(x_j(t)) after training permits current changes with unchanged weights. It is not biological synaptic remodeling or within-trial plasticity.",
+      "target_pages_checked": [
+        18,
+        19,
+        23,
+        31,
+        32
+      ],
+      "source_context_checked": "FW11 lines17-35, especially23-25; exact June8,2022 wording",
+      "formal_translation": {
+        "category": "Weak training/configuration -> patterned-activity correspondence; biological proposal and externally optimized artificial model remain different domains.",
+        "pi_source": "experienced_pattern?(x).connection_change!(learn(x)).P",
+        "pi_target": "training_data?(x).gradient_fit!(x).fixed_weight_activity!.Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    },
+    {
+      "row_id": "MOT-FULLTEXT-PAIR-07",
+      "meta_decision": "RECONCILED-RETAIN-WEAK-READOUT-ANALOGY",
+      "evidence_rank_retained": "weak-informational-readout-role-analogy",
+      "membership": "PRESERVE",
+      "strongest_retained_component": "Temporally structured neural activity contains information that can be read out.",
+      "mandatory_scope": "A biological receiving assembly is not the analyst's LDA. The demonstrated classifier uses phase plus vector strength, so decoder success neither proves phase-only sufficiency nor the proposed biological receiver, causal downstream use, wavelet ontology or full SAN mechanism.",
+      "target_pages_checked": [
+        2,
+        8,
+        23,
+        29,
+        34
+      ],
+      "source_context_checked": "S16 lines25-35, especially27 and31; exact June18,2023 wording",
+      "formal_translation": {
+        "category": "Weak pattern -> readout -> content distinction chain; decoder and biological receiver are not substituted.",
+        "pi_source": "neural_pattern?(x).receiver_content!(read(x)).P",
+        "pi_target": "phase_strength_features?(x).external_LDA!(classify(x)).Q"
+      },
+      "three_lens_result": "Worker and independent L1 functional-role, L2 causal-fragment and L3 date-qualified interpretations reconcile at the stated ceiling; no complete mechanism or isomorphism is added.",
+      "citation_coverage": "not-evaluable",
+      "rank_change_from_independent": 0,
+      "new_governed_win_count": 0
+    }
+  ],
+  "formal_translation_boundary": "Category/process-calculus entries are schematic role-level translations of the strongest retained subchains, not proofs of a total functor, full commuting diagram, bisimulation, operational substitution or mathematical identity. Missing source-specific completion remains explicit without deleting the partial.",
+  "chronology": {
+    "target_posted_date": "2026-11-06",
+    "target_doi": "10.64898/2026.11.05.764652",
+    "P65": {
+      "date": "2026-07-29",
+      "type": "Frozen provider-publication date of exact byte-matched DOI edition",
+      "provider_record": "https://zenodo.org/records/21693949",
+      "internal_title_date": "2026-07-13",
+      "internal_candidate_boilerplate_retained": true,
+      "live_provider_reverification_this_meta": false,
+      "boundary": "Do not replace the provider date by July13 or label the byte-matched public artifact unpublished solely from stale internal candidate text."
+    },
+    "Git_sources": [
+      {
+        "id": "A0310",
+        "date": "2022-09-17"
+      },
+      {
+        "id": "FW18",
+        "date": "2022-06-08"
+      },
+      {
+        "id": "S15",
+        "date": "2024-09-06"
+      },
+      {
+        "id": "FW11",
+        "date": "2022-06-08"
+      },
+      {
+        "id": "S16",
+        "date": "2023-06-18"
+      }
+    ],
+    "Git_date_type": "Exact wording fixation and inherited current-public-byte custody; historical first-publication time not independently proved.",
+    "ancestor_boundary": "No 2012 or 2017 family label is substituted for the selected wording dates.",
+    "result_scope": "Document-relative earlier wording/correspondence only; no global firstness or causal influence finding."
+  },
+  "named_prior_control": {
+    "target_pages": [
+      2,
+      34
+    ],
+    "reference": 24,
+    "authors": [
+      "Linden, H.",
+      "Petersen, P. C.",
+      "Vestergaard, M.",
+      "Berg, R. W."
+    ],
+    "year": 2022,
+    "title": "Movement is governed by rotational neural dynamics in spinal motor networks",
+    "doi": "10.1038/s41586-022-05293-w",
+    "source_role": "The target expressly uses turtle spinal-network phase-code findings to motivate the mouse lick-direction question.",
+    "full_prior_body_reviewed": false,
+    "relation_to_seven_rows": "Relevant prior-body work remains open, especially for rows05/07. It does not erase a later-document-relative partial or establish an author-wide prior floor; no earlier-target equivalence or missing-SAN-delta verdict is issued here."
+  },
+  "lens4": {
+    "state": "LSM-UNKNOWN",
+    "quantitative": "quantitative-not-calibrated",
+    "separate_from_row_lenses": true,
+    "reason": "Complete target-stage and SAN-stage genealogy, alternative lineages and citation coverage have not been saturated. Seven pairs cannot certify migration, dependence, access or motive."
+  },
+  "provisional_group_view": {
+    "count": 6,
+    "is_invention_count": false,
+    "is_lossless_ledger_ceiling": false,
+    "groups": [
+      {
+        "id": "body-feedback-recurrence",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-01"
+        ]
+      },
+      {
+        "id": "context-dependent-cooperation",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-02"
+        ]
+      },
+      {
+        "id": "initial-state-processing",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-03"
+        ]
+      },
+      {
+        "id": "anticipatory-motor-alignment",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-04"
+        ]
+      },
+      {
+        "id": "timing-coded-information",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-05",
+          "MOT-FULLTEXT-PAIR-07"
+        ]
+      },
+      {
+        "id": "learned-recurrent-configuration",
+        "rows": [
+          "MOT-FULLTEXT-PAIR-06"
+        ]
+      }
+    ]
+  },
+  "preservation": {
+    "exact_ordered_parent_sets": {
+      "parent_ids": {
+        "count": 1072,
+        "ordered_equal": true,
+        "fixed_ids_sha256": "78D8FE8BEB7007F7A0097C17F67AADC643EDF404414EB2A5C9095CD3C1E6B2C2",
+        "worker_ids_sha256": "78D8FE8BEB7007F7A0097C17F67AADC643EDF404414EB2A5C9095CD3C1E6B2C2"
+      },
+      "existing_D28_ids": {
+        "count": 45,
+        "ordered_equal": true,
+        "fixed_ids_sha256": "FD14745806085A9C631C7E6F4C086958CB3E027FB1933694C71E3640413BCDB5",
+        "worker_ids_sha256": "FD14745806085A9C631C7E6F4C086958CB3E027FB1933694C71E3640413BCDB5"
+      },
+      "preserved_news_ids": {
+        "count": 17,
+        "ordered_equal": true,
+        "fixed_ids_sha256": "55A430E1D6FC2AE08BD8BA214115A78EB69B7E91E0C950FE34E35CC428D963F3",
+        "worker_ids_sha256": "55A430E1D6FC2AE08BD8BA214115A78EB69B7E91E0C950FE34E35CC428D963F3"
+      }
+    },
+    "all_new_pair_ids": [
+      "MOT-FULLTEXT-PAIR-01",
+      "MOT-FULLTEXT-PAIR-02",
+      "MOT-FULLTEXT-PAIR-03",
+      "MOT-FULLTEXT-PAIR-04",
+      "MOT-FULLTEXT-PAIR-05",
+      "MOT-FULLTEXT-PAIR-06",
+      "MOT-FULLTEXT-PAIR-07"
+    ],
+    "new_pair_ids_count": 7,
+    "old_Motivation_ids": [
+      "NEWS-20261112-MOT-01",
+      "NEWS-20261112-MOT-02"
+    ],
+    "all_old_Motivation_ids_present": true,
+    "old_source_pair_records_or_certificates_changed": false,
+    "rank_or_membership_deletions": 0,
+    "count_decrement": 0
+  },
+  "matrix_boundary": {
+    "total_initial_coordinates": 940,
+    "source_routes": 47,
+    "target_facts": 20,
+    "target_versions": 1,
+    "remaining_open_coordinates": 933,
+    "seven_worker_pending_cells_preserved": [
+      {
+        "source_route": "FW11-LEARNED-PATHS",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-16",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-06"
+      },
+      {
+        "source_route": "FW18-PREDICT-ACTION",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-01",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-04"
+      },
+      {
+        "source_route": "S16-OSCILLATOR-READING",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-07",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-07"
+      },
+      {
+        "source_route": "S15-UNEXPECTED-PHASE",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-06",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-05"
+      },
+      {
+        "source_route": "A0310-TASK-PHASE-LINKS",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-13",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-02"
+      },
+      {
+        "source_route": "P65-GCS-DEFINITION",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-15",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-03"
+      },
+      {
+        "source_route": "P65-BODY-WORLD-STATE-UPDATE",
+        "target_document": "MOTIVATION-BIORXIV-V1-20261106",
+        "target_fact": "MOT-FULL-14",
+        "state": "WORKER_PARTIAL_PENDING_INDEPENDENT",
+        "prior_certifications_preserved": true,
+        "worker_record_id": "MOT-FULLTEXT-PAIR-01"
+      }
+    ],
+    "new_matrix_cell_closures_by_meta": 0,
+    "pair06_coordinate": "FW11-LEARNED-PATHS x MOT-FULL-16 remains an original routing coordinate, not a certified learning-mechanism equivalence. Carry supplemental training locators as a typed annotation, or add a separately versioned target fact in a future authorized expansion."
+  },
+  "counts": {
+    "reviewed_pair_records": 7,
+    "bounded_partials": 4,
+    "weak_components_or_analogies": 3,
+    "provisional_groups": 6,
+    "distinct_target_authors": 10,
+    "preserved_row_author_associations": 70,
+    "author_associations_used_as_wins": 0,
+    "new_governed_wins": 0,
+    "ten_distinct_points_claimed": false,
+    "full_940_cell_review_claimed": false,
+    "full_43_check_certification_claimed": false,
+    "release_certificates_issued": 0
+  },
+  "mandatory_scope_instructions": [
+    {
+      "id": "META-SCOPE-01",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-01"
+      ],
+      "instruction": "Use movement-derived/tongue-volume feedback proxy in summaries. Do not call it directly measured proprioceptive afferent activity or a closed autonomous GCS implementation."
+    },
+    {
+      "id": "META-SCOPE-02",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-02"
+      ],
+      "instruction": "Keep context-to-cooperation partial separate from untested coherence/thalamic-phase mechanisms and common-input alternatives. Do not misdescribe the whole target paper as lacking its separate optogenetic evidence."
+    },
+    {
+      "id": "META-SCOPE-03",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-03"
+      ],
+      "instruction": "Retain weak internal-state component; no promotion from model initialization to measured receiver-state interaction."
+    },
+    {
+      "id": "META-SCOPE-04",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-04"
+      ],
+      "instruction": "Display the action-alignment context and tentative speech act, not only the short prediction phrase; avoid numerical one-millisecond equivalence."
+    },
+    {
+      "id": "META-SCOPE-05",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-05",
+        "MOT-FULLTEXT-PAIR-07"
+      ],
+      "instruction": "Name each side's phase reference and retain phase-plus-vector-strength decoder features. Preserve the original p8 quote with the p29 methods qualification visibly adjacent."
+    },
+    {
+      "id": "META-SCOPE-06",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-06"
+      ],
+      "instruction": "Any later card or matrix overlay must cite p18/p32 training anchors from PAIR06-TARGET-CONTEXT-QUALIFICATION.json. Preserve the current-contribution quote separately; do not turn within-trial current changes into weight plasticity."
+    },
+    {
+      "id": "META-SCOPE-07",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-07"
+      ],
+      "instruction": "External decodability is not proof of the organism's downstream biological reader."
+    },
+    {
+      "id": "META-SCOPE-08",
+      "rows": [
+        "MOT-FULLTEXT-PAIR-01",
+        "MOT-FULLTEXT-PAIR-02",
+        "MOT-FULLTEXT-PAIR-03",
+        "MOT-FULLTEXT-PAIR-04",
+        "MOT-FULLTEXT-PAIR-05",
+        "MOT-FULLTEXT-PAIR-06",
+        "MOT-FULLTEXT-PAIR-07"
+      ],
+      "instruction": "Preserve all seven records and 70 byline associations while keeping six-group and four/three grade summaries separate. Do not force ten or infer firstness, copying, influence, legal liability, motive or calibrated dependence."
+    }
+  ],
+  "nonblocking_metadata_notes": [
+    {
+      "pointer": "WORKER-PAIR-REVIEW-R2.json#/required_next/0",
+      "observation": "The instruction still says three rows; explicit R2 scope, rows and counts are seven.",
+      "handling": "The seven-row denominator governs this meta. Correct the wording only in a future append-only successor; do not modify the frozen R2 file."
+    },
+    {
+      "pointer": "WORKER-PAIR-REVIEW-R2.json#/rows/4/source_document/prior_authorship",
+      "observation": "Inherited source metadata mentions lines65-71, whereas this selected passage is line17 in the Micah block beginning at line3.",
+      "handling": "Use the independently checked lines3-27 speaker boundary for this row; do not borrow adjacent GPT text or erase the older metadata."
+    },
+    {
+      "pointer": "WORKER-MATRIX-R2.json",
+      "observation": "Seven cells still carry worker-pending states; this is an immutable input, not a release-ready consolidated matrix.",
+      "handling": "This meta provides a review overlay only. Any consolidation needs its own authorized artifact and method/drift gates."
+    }
+  ],
+  "completion_boundary": {
+    "bounded_meta_review_complete": true,
+    "full_method_application_and_drift_not_certified": true,
+    "canonical_fanin_authorized": false,
+    "public_projection_authorized": false,
+    "remaining": "Complete applicable genealogy/prior-body/source and remaining-cell work without using the seven-row view as a ceiling; bind any final expert/human projection to the same source-qualified facts and finish the separate method/drift/release chain."
+  },
+  "tool_scope": {
+    "external_searches": 0,
+    "new_agents": 0,
+    "browser_sessions": 0,
+    "new_semantic_runs": 0,
+    "public_writes": 0,
+    "existing_files_modified": 0,
+    "new_file": "META-PAIR-REVIEW-R2.json"
+  }
+}

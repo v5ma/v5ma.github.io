@@ -1,0 +1,544 @@
+{
+  "schema": "comparison-encyclopedia-independent-presentation-review-v1",
+  "reviewed_at_date": "2026-11-13",
+  "reviewer": "/root/entangled_loop_intake",
+  "independence": {
+    "authored_candidate": false,
+    "built_candidate": false,
+    "reviewed_exact_frozen_candidate": true,
+    "independent_byte_reconstruction_performed": true
+  },
+  "status": "INDEPENDENT-PRESENTATION-PASS-STATIC-ONLY",
+  "decision": {
+    "presentation_copy_supported": true,
+    "allowed_diff_supported": true,
+    "semantic_data_preservation_supported": true,
+    "blocking_issues": 0,
+    "browser_acceptance": "NOT-PERFORMED-BY-THIS-REVIEWER",
+    "meta_audit": "SEPARATE-GATE",
+    "method_and_drift_closeout": "SEPARATE-GATES",
+    "public_release_authorized": false
+  },
+  "scope": "Exact 53-file presentation-only successor to the certified 52-file parent. Naming, introduction and navigation are reviewed; inherited scientific claims are preserved, not re-adjudicated.",
+  "candidate": {
+    "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package",
+    "manifest_ref": {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\CANDIDATE-MANIFEST.json",
+      "sha256": "157ED92EB2DA9B26F71CF0793639FB945A248AA1420707784A2035F467764D46",
+      "bytes": 14308
+    },
+    "package_digest": "E808A89CE9AD55F0BA457DBC962C77A753D79F2A6C9EDC8C711991A0F0B6D244",
+    "file_count": 53,
+    "introduction_ref": {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\candidate\\public-package\\comparison-wiki\\introduction.html",
+      "sha256": "825F1E92B594F5A35668D1B5ED5752B2B6B4203018BC3A309F02BFC271EDC55D",
+      "bytes": 7613
+    }
+  },
+  "parent": {
+    "manifest_ref": {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/PUBLIC-PACKAGE-MANIFEST-R3.json",
+      "sha256": "4F0895A94461CC4E02B51CB04ADA719D52616A46FEE5C807D74D95E8EDD337F7",
+      "bytes": 12426
+    },
+    "certificate_ref": {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/SELECTED-PROJECTION-CERTIFICATE.json",
+      "sha256": "FB83C9899DA5D3ED83F897F039D872D57C7A320346D51809F89609C01FED99EB",
+      "bytes": 7596
+    },
+    "package_digest": "F0DA5F2552FF2073B29DAA8093100149E19523F75978544C18825D93A290A604",
+    "file_count": 52,
+    "all_parent_file_hashes_unchanged": true,
+    "certificate_bytes_unchanged": true
+  },
+  "reviewed_exact_inputs": [
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\BUILD-AUTHORIZED.json",
+      "sha256": "A6FC79D73DF92DB15115677E9CFD30D0939C1598BCF6F9DEC05DFC735672C890",
+      "bytes": 2170
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\PREFLIGHT-V1.json",
+      "sha256": "EE31CDE1144742B7F01E4525279DF72629E3520EF72727078A4701A64B6C1593",
+      "bytes": 35769
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\PREFLIGHT-V1-VALIDATION.json",
+      "sha256": "6A763C7AD5066A2E035CE3B547B3E4713A84054A5DC4D71A85FBF9FAE1E1212E",
+      "bytes": 627
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\PREFLIGHT-V2.json",
+      "sha256": "2695B1F5FA3D6A779228DD6F243DA770A3ED2E037D6BD76CAF1726BD12366A72",
+      "bytes": 6507
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\PREFLIGHT-V2-VALIDATION.json",
+      "sha256": "3667249846733DE135ECAA965AA2180A561DF0E1FB25EEB6263B098CB2181E64",
+      "bytes": 608
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\NETWORK-AND-NAMING-CONTRACT.json",
+      "sha256": "91419E1CC59D79AA405630C7C99A1639EE4EE5FB3FFB5F075D756FF13BA67815",
+      "bytes": 4620
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\introduction.draft.html",
+      "sha256": "825F1E92B594F5A35668D1B5ED5752B2B6B4203018BC3A309F02BFC271EDC55D",
+      "bytes": 7613
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\CANDIDATE-MANIFEST.json",
+      "sha256": "157ED92EB2DA9B26F71CF0793639FB945A248AA1420707784A2035F467764D46",
+      "bytes": 14308
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\ALLOWED-DIFF.json",
+      "sha256": "6A0C70218C7A54F27E9813E1D525D3B49437CB9F7EC9F780C1730784035629F3",
+      "bytes": 28202
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\BUILD-TESTS.json",
+      "sha256": "301D02221FC87C82502E3FEBE67D19F4F5DBA5F296A331C1BD391115EC9DD51E",
+      "bytes": 15990
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\BUILD-RECEIPT.json",
+      "sha256": "048458FC8122F4AF9DCF420E2DC7DA381D37688548D0F1F042083AF39EB4FB7E",
+      "bytes": 2553
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\FIXED-PRESENTATION-INPUTS.json",
+      "sha256": "FF24D578FE2CD13FD728C1E74104AE2A711A8AF810D46AB6D84ACE7C703E2889",
+      "bytes": 22481
+    },
+    {
+      "path": "D:\\micahone\\vscode v5ma\\v5ma.github.io\\production-canon\\private-source-review\\comparison-encyclopedia-brand-network-intro-20261113\\build-presentation-candidate.mjs",
+      "sha256": "02CC612CFC9A407AFAB62C637430B93E666ED4E04618A932CD847971400156B4",
+      "bytes": 18161
+    },
+    {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/PUBLIC-PACKAGE-MANIFEST-R3.json",
+      "sha256": "4F0895A94461CC4E02B51CB04ADA719D52616A46FEE5C807D74D95E8EDD337F7",
+      "bytes": 12426
+    },
+    {
+      "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-wiki-breadth-release-20261111/levin-source-release-20261111/SELECTED-PROJECTION-CERTIFICATE.json",
+      "sha256": "FB83C9899DA5D3ED83F897F039D872D57C7A320346D51809F89609C01FED99EB",
+      "bytes": 7596
+    }
+  ],
+  "preflight_receipt_checks": {
+    "v1": "PASS receipt verified against its exact SHA256; 14/14 recorded checks pass",
+    "v2": "PASS receipt verified against its exact SHA256 and bound V1",
+    "authorization": "Build authorized only for presentation; scientific adjudication and public projection remain false",
+    "new_scientific_denominators": {
+      "parent_win_id_count": 0,
+      "micah_stage_count": 0,
+      "micah_atom_count": 0,
+      "target_document_version_count": 0,
+      "seed_target_atom_count": 0,
+      "initial_matrix_cell_count": 0,
+      "listed_author_count_by_document": {},
+      "append_only_discovery_allowed": true,
+      "denominator_scope": "No scientific ledger is newly adjudicated in this engineering batch. These zeros are not corpus counts. All inherited scientific membership is protected through the exact52-file parent and full nonpresentation-data equality proof.",
+      "parent_public_files": 52,
+      "expected_successor_public_files": 53,
+      "new_author_to_author_edges": 0
+    },
+    "boundary": "Zero denominators concern newly adjudicated scientific work in this branch, not the existing corpus. No full scientific re-review was conducted."
+  },
+  "independent_static_checks": {
+    "total": 400,
+    "failed": 0,
+    "groups": {
+      "reference-hash": {
+        "checks": 14,
+        "passed": 14,
+        "failed": 0
+      },
+      "v1-actual-pass": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "v1-checks": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "v2-actual-pass": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "bounded-authorization": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "path-set": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "parent-file-hash": {
+        "checks": 52,
+        "passed": 52,
+        "failed": 0
+      },
+      "candidate-file-hash": {
+        "checks": 53,
+        "passed": 53,
+        "failed": 0
+      },
+      "bounded-directory-membership": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "parent-digest": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "candidate-digest": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "approved-token-count": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "literal-offset": {
+        "checks": 22,
+        "passed": 22,
+        "failed": 0
+      },
+      "independent-byte-reconstruction": {
+        "checks": 50,
+        "passed": 50,
+        "failed": 0
+      },
+      "unique-nav-anchor": {
+        "checks": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "file-diff-counts": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "intro-byte-equality": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "scientific-json-equality": {
+        "checks": 12,
+        "passed": 12,
+        "failed": 0
+      },
+      "policy-brand-only": {
+        "checks": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "derived-manifest-metadata-only": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "derived-manifest-one-new-file": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "inner-manifest-row-identity": {
+        "checks": 50,
+        "passed": 50,
+        "failed": 0
+      },
+      "inner-manifest-live-hash": {
+        "checks": 51,
+        "passed": 51,
+        "failed": 0
+      },
+      "inner-manifest-new-path": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "snapshot-exact-two-fields": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "inherited-counts-identical": {
+        "checks": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "legacy-hrefs-sequence": {
+        "checks": 18,
+        "passed": 18,
+        "failed": 0
+      },
+      "new-nav-href": {
+        "checks": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "intro-link-resolves": {
+        "checks": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "second-build-bytes": {
+        "checks": 53,
+        "passed": 53,
+        "failed": 0
+      }
+    },
+    "method": "Read only exact manifest-listed files and inspect manifest-derived directories for unexpected entries; recompute SHA256/package digests; reconstruct candidate bytes from parent bytes plus the fixed authorized token positions and two exact nav insertions; deeply compare JSON independently of builder PASS assertions.",
+    "candidate_path_set_exact": true,
+    "unexpected_candidate_entries": 0,
+    "unchanged_inherited_files": 33,
+    "changed_inherited_files": 19,
+    "brand_replacements": 22,
+    "brand_modified_files": 17,
+    "derived_metadata_files": 2,
+    "new_intro_files": 1,
+    "new_navigation_insertions": 2,
+    "legacy_href_occurrences_preserved": 5570,
+    "second_build_hashes_match": true
+  },
+  "semantic_preservation": {
+    "science_json_changed_beyond_policy_names": false,
+    "non_derived_json_changes": [
+      {
+        "path": "comparison-wiki/joscha-bach/2022-source-extension/comparison-data.json",
+        "changes": [
+          {
+            "pointer": "#/policy/motives",
+            "before": "The Comparison Wiki assigns no motives as a policy design. Motive analysis is deferred at this methodological stage.",
+            "after": "The Comparison Encyclopedia assigns no motives as a policy design. Motive analysis is deferred at this methodological stage."
+          }
+        ]
+      },
+      {
+        "path": "comparison-wiki/joscha-bach/paired-passages/comparison-data.json",
+        "changes": [
+          {
+            "pointer": "#/source_policy/motives",
+            "before": "The Comparison Wiki assigns no motives as a policy design. Motive analysis is deferred at this methodological stage.",
+            "after": "The Comparison Encyclopedia assigns no motives as a policy design. Motive analysis is deferred at this methodological stage."
+          }
+        ]
+      }
+    ],
+    "derived_fields_allowed": [
+      "comparison-wiki/manifest-sha256.json#/files: existing path order/metadata retained; hashes and byte lengths updated; introduction.html appended",
+      "comparison-wiki/snapshot.json#/manifest_sha256",
+      "comparison-wiki/snapshot.json#/public_file_count"
+    ],
+    "source_quotes_preserved": true,
+    "record_ids_preserved": true,
+    "rank_and_grade_fields_preserved": true,
+    "scientific_counts_preserved": true,
+    "legacy_urls_and_hrefs_preserved": true,
+    "external_titles_and_other_product_names_preserved": true,
+    "byline_or_author_edges_changed": false,
+    "proof_boundary": "Byte reconstruction outside the 22 reviewed product-brand tokens and two new nav insertions, plus exact deep JSON comparison; only two nonderived product-policy string values differ."
+  },
+  "brand_scope_review": {
+    "occurrence_ids": [
+      "BRAND-0001",
+      "BRAND-0002",
+      "BRAND-0003",
+      "BRAND-0004",
+      "BRAND-0005",
+      "BRAND-0006",
+      "BRAND-0007",
+      "BRAND-0008",
+      "BRAND-0009",
+      "BRAND-0010",
+      "BRAND-0011",
+      "BRAND-0012",
+      "BRAND-0013",
+      "BRAND-0014",
+      "BRAND-0015",
+      "BRAND-0016",
+      "BRAND-0017",
+      "BRAND-0018",
+      "BRAND-0019",
+      "BRAND-0020",
+      "BRAND-0021",
+      "BRAND-0022"
+    ],
+    "all_contexts_inspected": true,
+    "contexts": "Product titles, eyebrows, navigation labels, own README prose and motive-policy strings; no historical quotation or external publication title was renamed."
+  },
+  "introduction_review": {
+    "path": "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-encyclopedia-brand-network-intro-20261113/candidate/public-package/comparison-wiki/introduction.html",
+    "sha256": "825F1E92B594F5A35668D1B5ED5752B2B6B4203018BC3A309F02BFC271EDC55D",
+    "full_source_copy_read": true,
+    "byte_equal_to_authorized_draft": true,
+    "manual_checks": [
+      {
+        "id": "INTRO-01",
+        "decision": "PASS",
+        "lines": [
+          19,
+          20
+        ],
+        "check": "SAN/SIT recognition leads",
+        "reason": "Purpose and evidence-first comparison method lead the introduction; no unsupported new paper-specific priority result is asserted."
+      },
+      {
+        "id": "INTRO-02",
+        "decision": "PASS",
+        "lines": [
+          22,
+          23,
+          28
+        ],
+        "check": "Direct work-to-work scope without transitive certification",
+        "reason": "Shared SAN/SIT connections nominate direct reviews; every work-to-work connection explicitly needs its own passage-level check."
+      },
+      {
+        "id": "INTRO-03",
+        "decision": "PASS",
+        "lines": [
+          29
+        ],
+        "check": "Signature clusters and causal architecture",
+        "reason": "Components, order, dependencies and feedback are separated from a claimed whole arrangement."
+      },
+      {
+        "id": "INTRO-04",
+        "decision": "PASS",
+        "lines": [
+          30,
+          31
+        ],
+        "check": "Novelty and citation findings are separate",
+        "reason": "The copy calls for exact novelty statements and exact-edition citation coverage; it introduces neither a new novelty finding nor a citation-omission finding."
+      },
+      {
+        "id": "INTRO-05",
+        "decision": "PASS",
+        "lines": [
+          34,
+          42
+        ],
+        "check": "Intended network versus implemented/reviewed coverage",
+        "reason": "Intended map language and the explicit final scope caveat prevent the field-wide goal from being represented as completed pairwise review."
+      },
+      {
+        "id": "INTRO-06",
+        "decision": "PASS",
+        "lines": [
+          35,
+          36,
+          38
+        ],
+        "check": "Lineage and lossless instance preservation",
+        "reason": "Earliest ancestry, mature pre-target formulations and intervening stages remain distinct; repeated, overlapping and weak instances are retained while summaries use typed units."
+      },
+      {
+        "id": "INTRO-07",
+        "decision": "PASS",
+        "lines": [
+          39
+        ],
+        "check": "No legal, copying or motive verdict",
+        "reason": "Project-defined content labels are expressly not automatic conduct/legal findings; calibrated statistics have a separate gate, and motive analysis is deferred by design."
+      },
+      {
+        "id": "INTRO-08",
+        "decision": "PASS",
+        "lines": [
+          19,
+          42
+        ],
+        "check": "No fabricated author count or new scientific claim",
+        "reason": "The full introduction was read. No 300-plus count, individual author accusation, new equivalence edge or new numerical scientific finding is asserted."
+      },
+      {
+        "id": "INTRO-09",
+        "decision": "PASS",
+        "lines": [
+          17,
+          43
+        ],
+        "check": "Local navigation",
+        "reason": "The introduction's index/map links resolve inside the exact candidate package; existing routes remain unchanged."
+      }
+    ],
+    "exact_anchor_locators": [
+      {
+        "anchor": "The Comparison Encyclopedia exists",
+        "line": 19
+      },
+      {
+        "anchor": "The direct connection still needs",
+        "line": 28
+      },
+      {
+        "anchor": "Shared concept clusters and architecture",
+        "line": 29
+      },
+      {
+        "anchor": "Claims of originality",
+        "line": 30
+      },
+      {
+        "anchor": "Citation relationships",
+        "line": 31
+      },
+      {
+        "anchor": "The intended map can start",
+        "line": 34
+      },
+      {
+        "anchor": "We preserve the full record",
+        "line": 38
+      },
+      {
+        "anchor": "They are not automatic findings",
+        "line": 39
+      },
+      {
+        "anchor": "The Encyclopedia assigns no motives",
+        "line": 39
+      },
+      {
+        "anchor": "The introduction states the full intended scope",
+        "line": 42
+      }
+    ],
+    "not_new_scientific_results": true,
+    "not_a_claim_of_completed_author_network": true
+  },
+  "issues": [],
+  "pending_acceptance": [
+    "Root's real-browser rendering, theme switching, keyboard/navigation and mobile acceptance",
+    "Separate meta-review and applicable final method/drift receipts",
+    "Explicit publication of this exact successor package; no latest pointer or deployment was performed here"
+  ],
+  "constraints": {
+    "new_san_sit_adjudications": 0,
+    "new_scientific_wins": 0,
+    "source_corpus_rescans": 0,
+    "regex_searches": 0,
+    "browser_sessions_started": 0,
+    "network_requests": 0,
+    "candidate_files_modified_by_reviewer": 0,
+    "old_evidence_or_certificates_modified": 0
+  },
+  "tool_route_note": "The diff skill's knowledge graph is absent from this frozen candidate. The review used the supplied exact package manifests and independently reconstructed allowed differences; no workspace-wide git scan or out-of-scope graph overlay was created."
+}

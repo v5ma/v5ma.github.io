@@ -1,0 +1,180 @@
+{
+    "schema":  "v5ma.source-faithful-method-registry.v1",
+    "generated_at":  "2026-07-27",
+    "verified_at":  "2026-07-28",
+    "owner":  "DSR - Comparison Wiki Expansion",
+    "status":  "active-comparison-gate",
+    "claims_boundary":  "This registry governs source recovery and lossless comparison revision. It does not itself certify priority, equivalence, copying, access, intent, misconduct, publication, or deployment readiness.",
+    "intake":  {
+                   "path":  "D:/micahone/D Documents/SourceFaithful.txt",
+                   "sha256":  "D914B9129F542E5E7DD9C89FF0A13954E8DE071CE192C83422C09E2C7340AA64"
+               },
+    "method_family":  {
+                          "method_family_id":  "SOURCE-FAITHFUL-CORE",
+                          "origin_formalization_count":  3,
+                          "comparison_profile_count":  1,
+                          "core_sequence":  [
+                                                "recover strongest source-faithful meaning",
+                                                "explain the operation plainly",
+                                                "connect established research at the same scale",
+                                                "state the comparison boundary",
+                                                "preserve the Micah-authored extension and discriminating test"
+                                            ],
+                          "invariants":  [
+                                             "Treat an apparent error as a source-recovery problem before treating it as an idea failure.",
+                                             "Preserve exact original bytes and real dates.",
+                                             "Search the complete source family, including earlier and later formulations.",
+                                             "Classify wording damage, analogy compression, terminology drift, missing qualifiers, scale mismatch, genuine conflict, and deliberate extension separately.",
+                                             "Never backdate mature terminology onto an earlier operation.",
+                                             "Prefer additive repair over narrative replacement.",
+                                             "Preserve public-private, speaker, quotation, and custody boundaries.",
+                                             "Apply the stronger preservation rule retroactively to earlier correction waves.",
+                                             "Treat a genealogy page as a router rather than proof that its passages and stages were tested.",
+                                             "Require full-genealogy saturation before an adverse comparison disposition can close."
+                                         ]
+                      },
+    "profiles":  [
+                     {
+                         "profile_id":  "SF-WIKI",
+                         "origin_formalization":  true,
+                         "adopted":  "2026-07-22",
+                         "domain":  "SAN Wiki correction and retroaudit",
+                         "source_path":  "D:/micahone/vscode v5ma/v5ma.github.io/wiki/san/knowledge-graph/reviews/source-faithful-correction-intent-recovery-protocol-20260722.md",
+                         "sha256":  "7389E61C481F86D3BB9D8BAD0A29935DC56BA4B8710CC1D585444337DDEA7834",
+                         "initial_registered_sha256":  "D53BCDAEB333B7B98669F69BA7C1C3B3653EE046C04A800CDCA0764C612FF6BB",
+                         "hash_drift":  {
+                                            "observed":  true,
+                                            "observed_at":  "2026-07-28",
+                                            "last_write_time":  "2026-07-28T02:20:07-07:00",
+                                            "disposition":  "COMPATIBLE_PROTOCOL_FAMILY_ROUTING_ADDITION",
+                                            "note":  "The SAN Wiki-owned source added a protocol-family routing section and retained the source-faithful correction differential, narrative-preservation gate, and ownership boundary. The initial and current hashes are preserved; the Comparison lane did not edit the SAN Wiki-owned file."
+                                        },
+                         "distinct_contribution":  "Full correction differential, immutable source layers, mandatory version comparison, and an affirmative narrative-preservation gate.",
+                         "mutation_boundary":  "Read-only intake for the Comparison lane."
+                     },
+                     {
+                         "profile_id":  "SF-PAPER",
+                         "origin_formalization":  true,
+                         "adopted":  "2026-07-22",
+                         "domain":  "Research-paper portfolio revision, roster-bound rather than denominator-bound",
+                         "source_path":  "D:/micahone/vscode v5ma/paper-development/65-paper-final-draft-control-20260719/EARNED-VOCABULARY-PORTFOLIO-CONTRACT-20260722.md",
+                         "sha256":  "35486623165111FE43CB129A3D918DEAE70365301F070020EED0F32A03E76034",
+                         "initial_registered_sha256":  "20C8AB8488376DF1F76F9DABBE4C10C81F405C3FF5FAFBE4E384CA079523B112",
+                         "hash_drift":  {
+                                            "observed":  true,
+                                            "observed_at":  "2026-07-28",
+                                            "last_write_time":  "2026-07-28T01:33:10-07:00",
+                                            "disposition":  "COMPATIBLE_ROSTER_AND_ROUTING_ADDITION",
+                                            "note":  "The papers-owned source changed after registration and now states that the live roster contains 78 identities, makes the contract roster-bound, and adds explicit protocol-family routing. The source-faithful method clauses remain present. The initial hash and current read hash are preserved; the Comparison lane did not edit the papers-owned file."
+                                        },
+                         "distinct_contribution":  "Lossless four-layer revision joined to earned vocabulary, reader comprehension, measurement, and failure conditions.",
+                         "mutation_boundary":  "Read-only intake for the Comparison lane."
+                     },
+                     {
+                         "profile_id":  "SF-ATOM",
+                         "origin_formalization":  true,
+                         "adopted":  "2026-07-26",
+                         "domain":  "Transcript and high-volume source-atom review",
+                         "source_path":  "D:/micahone/vscode v5ma/paper-development/san-transcript-review-20260724/human-source-atom-review-20260725/SOURCE-FAITHFUL-CORRECTION-PROTOCOL.md",
+                         "sha256":  "9204A8B1030C801B529F55A48ACA42B0326ECC38BB5514CA73FA478557FC6967",
+                         "distinct_contribution":  "Operational triggers, custody fields, controlled outcomes, and additive shared-page validation.",
+                         "mutation_boundary":  "Read-only intake for the Comparison lane."
+                     },
+                     {
+                         "profile_id":  "SF-COMPARISON",
+                         "origin_formalization":  false,
+                         "adopted":  "2026-07-27",
+                         "domain":  "Comparison Wiki unfavorable-finding and correction gate",
+                         "source_path":  "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/SOURCE-FAITHFUL-METHOD-GENEALOGY-AND-COMPARISON-GATE-20260727.md",
+                         "sha256":  "829D78C1CBEDD599027CD4AACA06C2D9EDAE82D98DC855E1A029FB6792D80482",
+                         "initial_registered_sha256":  "B4085FAF30FDFA7D59973D14E396AE4F146DA64D8506FEEEFDA791CE014D1D7D",
+                         "revision_note":  "The Comparison-owned consolidation was additively revised on 2026-07-28 to add the full-genealogy saturation gate exposed by the Carhart-Harris regression case. The prior observed hash is preserved; the method now distinguishes a genealogy citation from passage-level era-translated coverage.",
+                         "distinct_contribution":  "Applies source-faithful recovery before narrowing a Micah atom or issuing an unfavorable, target-earlier, or corrective comparison disposition.",
+                         "mutation_boundary":  "Comparison-owned active gate; no automatic verdict or count mutation.",
+                         "pre_saturation_gate_sha256":  "F52716D78D3E0363650AE87A56FA62D7C01CA18636993DC35FD8D1233FA26940"
+                     }
+                 ],
+    "comparison_gate":  {
+                            "trigger_conditions":  [
+                                                       "deny or narrow a Micah-priority atom",
+                                                       "replace an earlier Micah formulation with a later paraphrase",
+                                                       "label a Micah claim scientifically, medically, mathematically, or anatomically wrong",
+                                                       "interpret older vocabulary as absence of the later operation",
+                                                       "treat rival terminology as non-equivalence without operator translation",
+                                                       "change a protected priority event",
+                                                       "publish an unfavorable or target-earlier disposition",
+                                                       "form an adverse result from one Micah snapshot while applicable earlier or later stages remain untested"
+                                                   ],
+                            "required_record_fields":  [
+                                                           "challenged_atom_id",
+                                                           "exact_micah_wording",
+                                                           "micah_source_sha256",
+                                                           "event_date",
+                                                           "internal_date",
+                                                           "git_fixation_date",
+                                                           "public_publication_date",
+                                                           "pre_audit_comparison_wording",
+                                                           "first_corrective_audit_wording",
+                                                           "current_audit_wording",
+                                                           "suspected_error_class",
+                                                           "micah_source_family_searched",
+                                                           "recovered_plain_language_operation",
+                                                           "mature_micah_terminology_and_date",
+                                                           "rival_wording",
+                                                           "formal_operator_translation",
+                                                           "same_scale_established_evidence",
+                                                           "partial_micah_priority_anchors",
+                                                           "protected_priority_event_ids",
+                                                           "four_lens_results",
+                                                           "meta_audit_result",
+                                                           "additive_disposition",
+                                                           "remaining_evidence_gaps",
+                                                           "micah_genealogy_coverage_manifest",
+                                                           "micah_stage_by_target_stage_by_atom_matrix",
+                                                           "era_vocabulary_translation_queries",
+                                                           "passage_level_source_ledger",
+                                                           "coverage_denominator",
+                                                           "completed_matrix_cells",
+                                                           "unresolved_matrix_cells"
+                                                       ],
+                            "allowed_dispositions":  [
+                                                         "MICAH_PRIORITY_EVENT_PRESERVED",
+                                                         "ADDITIVE_PARTIAL_PRIORITY",
+                                                         "MIXED_ATOM_SPLIT",
+                                                         "NAMED_PRIOR_ON_BOUNDED_ATOM",
+                                                         "OPPOSITE_CONCLUSION_HOLD",
+                                                         "SOURCE_GATED",
+                                                         "CHALLENGE_OPEN"
+                                                     ],
+                            "forbidden_actions":  [
+                                                      "silent source rewrite",
+                                                      "destructive downgrade",
+                                                      "mature-term backdating",
+                                                      "keyword-only non-equivalence",
+                                                      "private-source publication",
+                                                      "uncalibrated derivation probability",
+                                                      "access or intent inference",
+                                                      "genealogy citation without passage-level coverage",
+                                                      "late-terminology-only genealogy search",
+                                                      "collapsing unknown genealogy cells into absence",
+                                                      "adverse closure without a genealogy-saturation receipt"
+                                                  ]
+                        },
+    "count_effect":  {
+                         "canonical_program_count_effect":  0,
+                         "protected_verdict_changes":  0
+                     },
+    "verification":  {
+                         "three_origin_formalizations_confirmed":  true,
+                         "one_shared_core_confirmed":  true,
+                         "comparison_profile_is_additive_adaptation":  true,
+                         "source_files_mutated_by_comparison_lane":  0,
+                         "interpretation":  "Three domain formalizations converged on one source-faithful preservation architecture. This is governance triangulation, not three unrelated inventions and not evidence for any specific comparison verdict."
+                     },
+    "full_genealogy_saturation_gate":  {
+                                           "adopted_at":  "2026-07-28",
+                                           "human_contract":  "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/FULL-GENEALOGY-SATURATION-GATE-20260728.md",
+                                           "machine_contract":  "D:/micahone/vscode v5ma/v5ma.github.io/production-canon/private-source-review/comparison-exhaustive-audit/intake/full-genealogy-saturation-gate-v1.json",
+                                           "closure_rule":  "Adverse dispositions remain genealogy-saturation-open and challenge-open until passage-level, era-translated matrix coverage and independent meta-audit pass."
+                                       }
+}

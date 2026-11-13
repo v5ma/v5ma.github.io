@@ -1,0 +1,313 @@
+{
+  "schema": "comparison-preflight-recall-checklist-v1",
+  "template_version": "1.1.0",
+  "validity_state": "PREFLIGHT-RECALL-UNVERIFIED",
+  "rule": "This receipt must be completed and verified before a new or resumed comparison batch begins. It proves recall and setup only; it does not replace row-level Four Lens review, independent review, meta-audit, or the post-task application-drift gate.",
+  "scope": {
+    "program_id": null,
+    "batch_id": null,
+    "worker_id": null,
+    "bounded_batch_statement": null,
+    "preflight_started_at": null,
+    "preflight_completed_at": null,
+    "method_manifest_path": "production-canon/docs/comparison-wiki-method-lock-v1.json",
+    "method_manifest_sha256": null,
+    "fixed_input_manifest_path": null,
+    "fixed_input_manifest_sha256": null,
+    "scope_lens": null
+  },
+  "required_documents": [
+    {
+      "role": "active_goal",
+      "path": null,
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "concise_standing_goal",
+      "path": "production-canon/docs/COMPARISON-WIKI-CONCISE-STANDING-GOAL.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "method_lock",
+      "path": "production-canon/docs/COMPARISON-WIKI-METHOD-LOCK.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "preflight_recall_checklist",
+      "path": "production-canon/docs/COMPARISON-WIKI-PREFLIGHT-RECALL-CHECKLIST.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "method_manifest",
+      "path": "production-canon/docs/comparison-wiki-method-lock-v1.json",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "semantic_stack_manual",
+      "path": "D:/micahone/D Documents/codex_instruction_pack_final/02-jigsaw-turbovec-fit-pattern-manual(2).txt",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "genealogical_atom_protocol",
+      "path": "production-canon/docs/COMPARISON-WIKI-GENEALOGICAL-ATOM-LOSSLESS-CAPSULE-PROTOCOL-20260828.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "book_atlas_route",
+      "path": null,
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "presentation_requirements",
+      "path": "production-canon/docs/COMPARISON-WIKI-PRESENTATION-REQUIREMENTS.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "miller_regression",
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/miller-spatial-analog-oscillatory-computing-four-lens-20260801/reviews/MILLER-V20-COMPLETED-26-CHECK-METHOD-COMPLIANCE-RECEIPT-20260812.json",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "hawkins_regression",
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/hawkins-morphology-pwd-lossless-expansion-20260808/validation/HAWKINS-V38-GLOBAL-WORKBOOK-FANIN-COMPLETED-26-CHECK-METHOD-COMPLIANCE-RECEIPT-20260813.json",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    },
+    {
+      "role": "george_regression",
+      "path": "production-canon/private-source-review/comparison-exhaustive-audit/intake/dileep-george-cortical-column-neuroai-lossless-expansion-20260830/README.md",
+      "sha256": null,
+      "loaded": false,
+      "recalled_rule": null
+    }
+  ],
+  "semantic_discovery_stack": [
+    {
+      "tool": "Jigsaw",
+      "route_path": null,
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    },
+    {
+      "tool": "TurboVec",
+      "route_path": null,
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    },
+    {
+      "tool": "Operational-Equivalence Census",
+      "route_path": "production-canon/docs/operational-equivalence-jigsaw-census-tool-20260527.md",
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    },
+    {
+      "tool": "Fit-Pattern Census",
+      "route_path": "agent-wiki/agents/fit-pattern-census-companion-fit-continuity-20260528.md",
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    },
+    {
+      "tool": "Major Cluster Signature Census",
+      "route_path": "production-canon/production-map/major-cluster-signature-census-operational-shape-workflow-20260605.md",
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    },
+    {
+      "tool": "JigsawRank",
+      "route_path": "agent-wiki/agents/nine-wiki-jigsaw-rank-20260524.md",
+      "route_sha256": null,
+      "status": null,
+      "bounded_input_receipt": null
+    }
+  ],
+  "regression_guard_summary": {
+    "miller_one_or_zero_compression_recalled": false,
+    "hawkins_leaf_atom_and_missing_delta_recalled": false,
+    "george_methods_undercoverage_recalled": false,
+    "representative_set_is_not_ceiling": false,
+    "automated_no_fit_is_non_veto": false,
+    "before_after_zero_rival_rule_recalled": false,
+    "current_count_snapshots": {
+      "miller": null,
+      "hawkins": null,
+      "george": null
+    }
+  },
+  "frozen_denominators": {
+    "parent_win_id_count": null,
+    "micah_stage_count": null,
+    "micah_atom_count": null,
+    "target_document_version_count": null,
+    "seed_target_atom_count": null,
+    "initial_matrix_cell_count": null,
+    "listed_author_count_by_document": {},
+    "append_only_discovery_allowed": true
+  },
+  "paired_output_contract": {
+    "exhaustive_dossier_required": false,
+    "human_flashcards_required": false,
+    "strongest_one_or_two_sentences_per_side": false,
+    "earliest_lineage_anchor_visible": false,
+    "strongest_mature_pre_target_formulation_visible": false,
+    "intervening_formulations_reachable": false,
+    "eighth_grade_plain_language_required": false,
+    "card_expands_to_source_bound_dossier": false,
+    "card_count_is_not_evidence_denominator": false
+  },
+  "required_checks": [
+    {
+      "id": "CMP-PREFLIGHT-001",
+      "phase": "goal-and-scope",
+      "requirement": "Loaded and hashed the active goal, concise standing goal, and preflight checklist; stated the bounded batch in one sentence.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-002",
+      "phase": "method-package",
+      "requirement": "Loaded and hashed the full method lock and current manifest; distinguished preflight, method compliance, and post-task drift as separate gates.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-003",
+      "phase": "before-after-asymmetry",
+      "requirement": "Recalled the SAN-first justice and before/after rule: bounded SAN/SIT non-equivalence conclusion first; earlier target component only as an evidence boundary without public rival-credit rhetoric; missing Blumberg delta stated; favorable after-state testing with Micah/SAN/SIT earlier -> named target later when supported; zero rival wins and awards; motive analysis deferred by product design rather than declared impossible.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-004",
+      "phase": "semantic-stack",
+      "requirement": "Loaded the bounded semantic-discovery routes, versions or hashes, fixed input manifest, Scope Lens, tool status, and non-veto boundary for automated no-fit.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-005",
+      "phase": "micah-genealogy",
+      "requirement": "Loaded the Micah genealogy, Genealogical Atom protocol, and Book Atlas route; froze the initial stages and atoms with append-only discovery.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-006",
+      "phase": "target-roster",
+      "requirement": "Froze exact target documents and versions, custody, dates, authors, atoms, and before/comparable/after/newest stages.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-007",
+      "phase": "miller-regression",
+      "requirement": "Loaded the current Miller regression fixture and recalled why representative sets cannot cap a lossless comparison.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-008",
+      "phase": "hawkins-regression",
+      "requirement": "Loaded the current Hawkins regression fixture and recalled leaf-atom splitting, the missing joined delta, and the before/after rule.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-009",
+      "phase": "george-regression",
+      "requirement": "Loaded the current Dileep George packet and recalled methods-level undercoverage, intake-not-ceiling, and automated-no-fit non-veto lessons.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-010",
+      "phase": "exhaustive-contract",
+      "requirement": "Reconfirmed the exact-passage, Four Lens, formal, residual, citation, author-edge, chronology, independent-review, and meta-audit dossier contract.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-011",
+      "phase": "human-presentation-contract",
+      "requirement": "Reconfirmed the eighth-grade flashcard and timeline contract, including strongest sentence pairs, earliest anchor, mature pre-target formulation, source expansion, SAN-first conclusion order across introductions and cards, no public rival-credit rhetoric, and motive analysis deferred by product design.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-012",
+      "phase": "denominator-freeze",
+      "requirement": "Froze parent IDs and the initial lossless cross-product; append-only discovery may expand it, while no candidate or presentation view may cap it.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-013",
+      "phase": "tool-safety",
+      "requirement": "Authorized only exact files, manifests, ledgers, IDs, indexes, and literal lookups; prohibited rg.exe, regex, broad recursive search, and unbounded all-pairs runs.",
+      "state": "pending",
+      "evidence": []
+    },
+    {
+      "id": "CMP-PREFLIGHT-014",
+      "phase": "authorization",
+      "requirement": "Completed, hashed, and verified this receipt before batch execution; all checks pass and explicit worker authorization is present.",
+      "state": "pending",
+      "evidence": []
+    }
+  ],
+  "prohibited_counts": {
+    "rival_win_count": 0,
+    "rival_award_count": 0,
+    "candidate_count_used_as_ceiling_count": 0,
+    "predecessor_floor_count": 0,
+    "automated_no_fit_veto_count": 0,
+    "ontology_exclusion_count": 0,
+    "cross_context_exclusion_count": 0,
+    "unknown_as_absence_count": 0,
+    "historical_micah_win_decrement_count": 0,
+    "broad_search_authorized_count": 0,
+    "public_rival_credit_rhetoric_count": 0,
+    "non_san_first_public_conclusion_count": 0,
+    "motive_assignment_count": 0,
+    "motive_impossibility_claim_count": 0
+  },
+  "certification": {
+    "worker": null,
+    "certified_at": null,
+    "all_required_checks_pass": false
+  },
+  "authorization": {
+    "batch_execution_authorized": false,
+    "batch_execution_authorized_at": null,
+    "governed_fanin_authorized": false,
+    "public_projection_authorized": false,
+    "rival_win_authorized": false,
+    "rival_award_authorized": false,
+    "broad_search_authorized": false
+  }
+}
