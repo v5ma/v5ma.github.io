@@ -27,3 +27,8 @@ test('calf and chronology update retains competing witnesses and local limits', 
  const text=fs.readFileSync(path.join(__dirname,'sources/hyksos-thera-and-exodus-memory.md'),'utf8');
  for(const phrase of ['Deuteronomy 10:1–5','1492 BCE','local gate evidence',"Aaron's origin"]) { assert.ok(text.includes(phrase),phrase); }
 });
+
+test('regional memory comparison distinguishes textual integration from population history', () => {
+ const text=fs.readFileSync(path.join(__dirname,'sources/hyksos-thera-and-exodus-memory.md'),'utf8');
+ for(const phrase of ['Joshua 24:5–7','MacDonald','favissa','old age','not identical names','literary integration and actual Bronze Age population integration']) assert.ok(text.includes(phrase),phrase);
+});
