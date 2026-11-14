@@ -4,6 +4,8 @@
 
 The most productive question is not whether the earliest church was perfectly unified or completely divided. It is **what people agreed about, what they fought about, and whose account of that struggle survives**. Paul's own letters provide unusually early evidence of both cooperation and serious conflict. Reading them critically makes the wiki's inquiry into competing inheritances more precise, not less challenging.
 
+Read the attributed companion [James Tabor on Jesus, Paul, and the Letter of James](james-tabor-jesus-paul-and-james.html) for the substantive transformation thesis, its ethical qualifications and its contested evidential basis. Compare also [John, Qumran, the Baptist and the Signs Gospel](john-qumran-baptist-and-signs.html), which distinguishes a Jewish setting from a proven chain of dependence.
+
 ## Start with the witnesses, not the finished story
 
 Distinguish four different objects of study:
@@ -74,3 +76,4 @@ These are historical tests of the explanation, not mathematical proofs. Missing 
 5. Irenaeus, [*Against Heresies* 1.26.2](https://www.newadvent.org/fathers/0103126.htm). Preserve the difference between what the polemicist reports and what the group would have said about itself.
 
 Biblical passages above link to the public-domain World English Bible. Interpretation should be checked against the Greek where the argument turns on wording. This study provides an inspectable comparison, not a claim that all source, chronology or translation disputes have been resolved.
+

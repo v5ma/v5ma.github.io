@@ -2,6 +2,8 @@
 
 See also the [evidence and editorial method](evidence-and-editorial-method.html) and [linguistic and epigraphic matrix](linguistic-epigraphic-matrix.html).
 
+The companion [John, Qumran, the Baptist and the Signs Gospel](john-qumran-baptist-and-signs.html) compares specific Community Rule passages with Johannine language while separating shared Jewish vocabulary from direct community membership.
+
 ## Evidence: manuscripts and identifiable passages
 
 The Dead Sea Scrolls should be cited as individual manuscripts, not as a single chronological witness. **1QpHab**, the Habakkuk commentary from Qumran Cave 1, supplies a particularly important reference point for the Teacher of Righteousness. In **VII 4–5**, the commentator attributes understanding of prophetic mysteries to the Teacher. **V 9–12** describes a dispute involving the Teacher, the Man of the Lie, and the house of Absalom. **XI 4–8** depicts the Wicked Priest pursuing the Teacher and confronting his community on the Day of Atonement. These are specific textual claims, not an identification of their protagonists with named New Testament figures. The Hebrew passages are reproduced in Gary A. Rendsburg, “The Nature of Qumran Hebrew as Revealed through Pesher Habakkuk,” especially p. 140, in *Hebrew of the Late Second Temple Period* (2015), pp. 132–159. [Text and analysis](https://jewishstudies.rutgers.edu/images/documents/faculty/Rendsburg/pesher-habakkuk-std-114.pdf); [DOI](https://doi.org/10.1163/9789004299313_010).
@@ -43,3 +45,4 @@ The warranted conclusion is therefore limited: new dating evidence can revise ma
 - **Lim:** inspected the publisher’s abstract and bibliographic record, not the paywalled full monograph. The attributed characterization of the Teacher is stated in that abstract. No page-specific claim about the full commentary is made.
 - **Im:** consulted the accessible journal abstract and bibliographic record, not the full Korean article. The summary above is limited to the abstract’s stated argument.
 - **Museum access:** the [Israel Museum digital Habakkuk viewer](https://dss.collections.imj.org.il/habakkuk) returned HTTP 502 during verification. Its images were not inspected. An accessible syndicated museum record and another museum description give inconsistent century labels; neither is used here to assert a precise date for 1QpHab. The artifact identifiers and passage references remain distinct from that unresolved catalog discrepancy.
+

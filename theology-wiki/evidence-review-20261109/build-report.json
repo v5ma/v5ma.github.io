@@ -1,73 +1,83 @@
 {
   "schema": 1,
   "date": "2026-11-14",
-  "pages": 10,
-  "searchSections": 93,
+  "pages": 12,
+  "searchSections": 106,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
-      "bytes": 9745,
-      "sha256": "d68972a8c7f1c06efcb1688eba1c406e4588046a15532fa8357c0bc72cfc87d7"
+      "bytes": 9872,
+      "sha256": "148003e99d7a8df09d62883a67e55f948a15da3986f613d570bf53cc712cf77e"
     },
     {
       "path": "revelation-and-symbolic-language.html",
-      "bytes": 8993,
-      "sha256": "6e957b3aa0aba667a9fa460a5caff79756d51d09703a440837dcd365833406cb"
+      "bytes": 9120,
+      "sha256": "9371463211f0f156d9f054e1662693571f0d94b133595f59614b2c97d3a60120"
     },
     {
       "path": "dead-sea-scrolls-dating.html",
-      "bytes": 11914,
-      "sha256": "1d9f9ad44855e26f994e8e3931a1db12709bee7decb0c076e51d85bba110fd80"
+      "bytes": 12300,
+      "sha256": "ee746297ee2f559db0d00b44fe86ffbd48345454e7b7cd1e845bfc40c732734a"
     },
     {
       "path": "linguistic-epigraphic-matrix.html",
-      "bytes": 10855,
-      "sha256": "a82f175d23c6b31ca3f4d5c2b5270957793d94bb36e0cd4203bd2bbfe6202d5d"
+      "bytes": 10982,
+      "sha256": "263bdaa4567f00f6f37a062f7138db27d86631aae5c11dfa44da9a979e51515c"
     },
     {
       "path": "why-christianity-spread.html",
-      "bytes": 9243,
-      "sha256": "a22125c5dd48e4c81550e6f768ab0fd6480bb98d7e39edb1e1a4f163d3f59b7b"
+      "bytes": 9370,
+      "sha256": "2d43299930b9c3be0fc6fb52c0d9e56bcedad60228af3cfd0d1682ffe6528c67"
     },
     {
       "path": "paul-james-and-contested-authority.html",
-      "bytes": 16245,
-      "sha256": "ec5ee8a893c5df8ea8768a61503df0bf0287d1c49454c9b4616d6b4235b9be24"
+      "bytes": 16801,
+      "sha256": "8803ed0b1b0a4dc8b355c06a70e3de6279531cffe5558953c3a416f8b4d47b7a"
     },
     {
       "path": "dan-mcclellan-texts-history-and-method.html",
-      "bytes": 18704,
-      "sha256": "91554ab04dcb47d8c000bd63dffe1b73e854a6978ff67358ad4b94be4b3f6921"
+      "bytes": 18831,
+      "sha256": "a8d00f266e0fed4aaefc67be836139df390decbae10dcabf08697a83dddbf6bc"
     },
     {
       "path": "hyksos-thera-and-exodus-memory.html",
-      "bytes": 74231,
-      "sha256": "4e113c523426ebdb954048eaafa2eea75e8cc6deaa30e5e17727d81503bf48a2"
+      "bytes": 74358,
+      "sha256": "f4186e2890d18597c896f911fe1b1eae0b6e13844d1e0eabd7483dc81f11b9db"
     },
     {
       "path": "apiru-amarna-and-israel-the-late-bronze-bridge.html",
-      "bytes": 27251,
-      "sha256": "21cce94c12e8b6827d48262b95d74f0721a00fff321f16f0d8afbff1de1caacc"
+      "bytes": 27378,
+      "sha256": "794b05db70ccc35b198b90b423a80d282cb2966d50d3b41b775ab2c7f392be24"
     },
     {
       "path": "deborah-jael-and-the-kenite-memory.html",
-      "bytes": 19490,
-      "sha256": "aa1060c4b352d784e6f1905d10376d1846f86c491713fafaace759b5761a1bf7"
+      "bytes": 19617,
+      "sha256": "d3a0cf4c482402a9f89a541226097d94949ae82eea9d47ed250f7a03d01ac207"
+    },
+    {
+      "path": "james-tabor-jesus-paul-and-james.html",
+      "bytes": 15666,
+      "sha256": "36399b607824aa12d11049b27846da57da5ec25e83d72bcab188e4ea8a8a0bfd"
+    },
+    {
+      "path": "john-qumran-baptist-and-signs.html",
+      "bytes": 15261,
+      "sha256": "78f8bc12b58821d18f9091ec6d78b6ac294109f84c1bb36fd20a623c9bdfb1a8"
     },
     {
       "path": "index.html",
-      "bytes": 7869,
-      "sha256": "9e18a2f8e983e364ca2b43dc39e05ee69d0538857c30cafb401eb8c78c244b38"
+      "bytes": 8797,
+      "sha256": "ceefb10c6e6bdab23e45b90b86b468445ee5021b5c9141c318c097c09df20b08"
     },
     {
       "path": "search-index.json",
-      "bytes": 163213,
-      "sha256": "1edc13a1b8cdec93c37828dffe5b9d6e4986441ee5fc4127d3be928efe7450fe"
+      "bytes": 187784,
+      "sha256": "04a30cc4c2ec4ace5a2f3c552e16f3879a40bcecffe23f350ba3e5fbb5fe4dd1"
     },
     {
       "path": "search-data.js",
-      "bytes": 159887,
-      "sha256": "95fcb608873241c351574e12e6a744e628600b7068293a914828a2c6a1046b3e"
+      "bytes": 183990,
+      "sha256": "3b9352fa37f5a6b006512852e076f4e0c64efa4b21ea067caee5841f77b0c7de"
     },
     {
       "path": "reader-guide.js",
