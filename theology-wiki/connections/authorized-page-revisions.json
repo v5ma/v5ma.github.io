@@ -281,6 +281,55 @@
       "after": "929f8fb3164b973cc4d3a6fb3b0af6a9aaf4dabc3c89633c9a9275cfe28e8731",
       "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
       "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/revelation-and-symbolic-language.html",
+      "before": "22f918ed59cb83b2c100eff66c65fb1afbde3659253b227401499a5436125992",
+      "after": "6e957b3aa0aba667a9fa460a5caff79756d51d09703a440837dcd365833406cb",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/linguistic-epigraphic-matrix.html",
+      "before": "cf7fc36a4fcb63ba4db16529e7a38f04a51301d5e8546a2f1618acb2e4a4866f",
+      "after": "a82f175d23c6b31ca3f4d5c2b5270957793d94bb36e0cd4203bd2bbfe6202d5d",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/why-christianity-spread.html",
+      "before": "0434e8139bc5612e1b22df85d06c3785eae32873d26ec5ecfef305d388bcd195",
+      "after": "a22125c5dd48e4c81550e6f768ab0fd6480bb98d7e39edb1e1a4f163d3f59b7b",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/index.html",
+      "before": "af4347740eeafc706e3fd187fc1a3e792982fabc17cadd9bcc2c08ceebe5664c",
+      "after": "9e18a2f8e983e364ca2b43dc39e05ee69d0538857c30cafb401eb8c78c244b38",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/evidence-and-editorial-method.html",
+      "before": "ba436d8bac14f02ab025701bc5fead24c826c8880f6e37564ce0409f8a7f77d4",
+      "after": "d68972a8c7f1c06efcb1688eba1c406e4588046a15532fa8357c0bc72cfc87d7",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "before": "813f5bda52cf540c6c4ecda298fba1944ef3bda46f57b7897286618b25e97e68",
+      "after": "1d9f9ad44855e26f994e8e3931a1db12709bee7decb0c076e51d85bba110fd80",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
+    },
+    {
+      "path": "theology-wiki/latest/index.html",
+      "before": "929f8fb3164b973cc4d3a6fb3b0af6a9aaf4dabc3c89633c9a9275cfe28e8731",
+      "after": "c827bb9543a343a5e61b6dec04b54f1b65fe994403b53177fedb997dfb4d9b4b",
+      "baseRevision": "227e9fcfde7fb3ba9534ee96c9a30677083287ed",
+      "reason": "Add user requested Deborah Kenite companion with series navigation and Latest discovery; original research records remain intact."
     }
   ]
 }

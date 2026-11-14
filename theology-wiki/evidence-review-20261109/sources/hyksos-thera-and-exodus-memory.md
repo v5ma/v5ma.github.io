@@ -312,6 +312,10 @@ Together, these ideas offer proposed mechanisms for how memories could travel th
 
 [Apiru, Amarna, and Israel: testing the Late Bronze bridge](apiru-amarna-and-israel-the-late-bronze-bridge.html) develops the proposed coalition’s continuity through Shechem, the Amarna letters and Merneptah. It distinguishes a positive regional-political precedent from demonstrated ancestry.
 
+## Further study: southern allies in northern memory
+
+[Deborah, Jael, and the Kenites](deborah-jael-and-the-kenite-memory.html) examines the Song’s date, Moses-related Kenite genealogy, metallurgy, the Rechabites and Elijah as distinct tests of an enduring wilderness tradition.
+
 ## Connected reading and correction record
 
 - [Editorial method](evidence-and-editorial-method.html): distinguish a research question, a source and a conclusion.

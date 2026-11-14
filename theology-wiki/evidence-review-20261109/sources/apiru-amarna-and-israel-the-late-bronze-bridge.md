@@ -111,6 +111,10 @@ A successful continuation of Blumberg's model would therefore trace institutions
 
 Start with [Dan McClellan and historical method](dan-mcclellan-texts-history-and-method.html), then examine [the Hyksos departure, city evidence and religious-memory proposals](hyksos-thera-and-exodus-memory.html). Continue here through Amarna, mobile societies, Merneptah, the Judges ledger and Egyptian retreat. This is a sequence of research questions and competing explanations, not a chain of established conclusions or an attribution of this reconstruction to McClellan.
 
+## Further study: southern allies in northern memory
+
+[Deborah, Jael, and the Kenites](deborah-jael-and-the-kenite-memory.html) examines the Song’s date, Moses-related Kenite genealogy, metallurgy, the Rechabites and Elijah as distinct tests of an enduring wilderness tradition.
+
 ## Connected reading
 
 - [Hyksos, Thera, and Exodus](hyksos-thera-and-exodus-memory.html): the earlier departure, city matrix and comparative models.
