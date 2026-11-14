@@ -14,6 +14,44 @@
 
 The strongest version of Blumberg's question keeps all three open without making success at one level count as success at every level.
 
+## The positive comparative case: three models on the same criteria
+
+**Blumberg's affirmative thesis:** A Hyksos-associated departure gives the Exodus–Joshua tradition a documented Egyptian military setting and an earlier landscape containing substantial fortified cities. If a literal thirteenth-century conquest fails to match particular sites, moving the comparison to the end of the Middle Bronze Age can improve the fit on those criteria. This is a positive historical proposal, not merely a list of objections to a late date. The alternative perspective matters: an Egyptian victory narrative and a departing group's liberation memory could describe different experiences of a conflict. Demonstrating that possibility is not yet demonstrating that the surviving accounts describe the same people.
+
+The comparison below uses three deliberately specified models, not three exhaustive categories of scholarship. **H** is a Hyksos-associated departure and later conquest-memory model; **T** is a literal, unified thirteenth-century Exodus–Joshua conquest; **M** is a smaller Egyptian-associated migrant contribution to a population formed substantially within Canaan. H and M can overlap if a small departing group, rather than all Hyksos rulers or all Delta inhabitants, supplied the memory. No aggregate score or scholarly ranking is claimed.
+
+### Criterion 1: an Egyptian departure and a military setting
+
+- **H — positive fit:** Ahmose's conflict with Avaris and the campaign at Sharuhen supply an independently attested military context linking Egypt and the southern Levant. This is a genuine advantage over a scenario that must posit its entire departure crisis without such an identified event. It does not establish a detour through Midian or a commander named Moses.
+- **T — open identification:** A thirteenth-century setting does not, by itself, identify an independently documented departure corresponding to the narrated Exodus. Failure to identify one does not show that no smaller departure occurred.
+- **M — smaller historical claim:** A mobile Egyptian-associated group need not equal the biblical census or the entire later Israelite population. The burden becomes identifying the group, its distinctive traditions and its incorporation, rather than finding one army responsible for every conquest account.
+
+Candelora's research-based ARCE account makes the Egyptian setting richer, not simpler: Hyksos denotes rulers rather than a single ethnic population; Avaris shows long-standing Levantine–Egyptian cultural mixture, and West Asian inhabitants continued there after the conquest. These findings favor exploring differentiated groups and competing memories, but challenge an all-inhabitants expulsion. [Candelora, “The Hyksos”](https://arce.org/resource/hyksos/). The soldier's account remains evidence for actual Egyptian campaigning, not evidence that Egypt borrowed Joshua's victories. [Ahmose son of Ibana, autobiographical text](https://sites.cs.st-andrews.ac.uk/people/mn31/egyptian/texts/corpus/pdf/urkIV-001.pdf).
+
+### Criterion 2: occupied cities and the particular destruction predicted
+
+- **H — selective improvement:** Middle Bronze Jericho supplies a fortified, destroyed city where a thirteenth-century literal scenario encounters a serious mismatch. Other sites supply substantial earlier occupation. This is comparative evidence worth pursuing. The city-by-city section above also preserves negative and ambiguous cases, including Ai's identification problem and Hazor's local continuity evidence.
+- **T — uneven fit:** Later destruction at some sites cannot repair the mismatch at every other named place. Nor should an unburned town count against this model when the text predicts surrender, survival or occupation rather than burning.
+- **M — different prediction:** This model permits local continuity alongside migrants and selective conflicts. It must explain how geographically and chronologically diverse memories became a unified conquest story; it cannot claim that continuity verifies the migrant component.
+
+For every site, record occupation, fortification, the text's actual prediction, the independent date interval and the evidence for an attacker. Do not count five correlated features of one destruction as five independent confirmations. See the excavation sources in the city-by-city comparison, especially Jericho, Lachish and Hazor.
+
+### Criterion 3: chronology without adjustable rescue assumptions
+
+- **H:** A departure date and a destruction date must be independently established before testing the interval between them. Earlier does not automatically mean synchronous with Ahmose.
+- **T:** A proposed departure, wilderness interval and entry must likewise fit the same dated sequence. Later cultural memories cannot substitute for missing contemporary synchronization.
+- **M:** Allowing a longer formation process reduces the need for one synchronized campaign, but demands evidence for transmission through that longer interval. Flexibility is not free confirmation.
+
+Höflmayer's 2019 published abstract reports that radiocarbon evidence challenges both low and conventional end-of-Middle-Bronze chronologies, potentially putting the transition before the New Kingdom. That directly tests the strongest H version: some destruction may precede, rather than follow, Ahmose's expulsion. The abstract supports this chronological caution; the full-text download was unavailable in this review. [Höflmayer, “The Expulsion of the Hyksos and the End of the Middle Bronze Age”](https://egyptianexpedition.org/articles/the-expulsion-of-the-hyksos-and-the-end-of-the-middle-bronze-age-a-reassessment-in-light-of-recent-chronological-research/).
+
+**Forty days and forty years are different hypotheses.** Blumberg's latest formulation mentions forty days, whereas the earlier reconstruction used forty years. Neither is silently substituted for the other. Numbers 14:34 itself distinguishes the forty days of reconnaissance from the forty-year judgment. A forty-day migration would require its own textual and historical argument; a symbolic duration cannot provide a precise calendar bridge. The year-18/1492 illustration below remains conditional on the earlier forty-year model. [Numbers 14](https://www.biblegateway.com/passage/?search=Numbers%2014&version=NRSVUE).
+
+### Criterion 4: motifs, memory and what would improve the case
+
+H connects Egyptian exit, warfare and displacement in one independently known historical environment. T retains a later literal narrative sequence but faces the site mismatches specified above. M explains how an Egyptian tradition might become a shared origin without making all Israelites former Egyptian residents. None independently establishes the calf controversy, Midianite alliance or Moses–Joshua succession as a sixteenth-century event.
+
+The next constructive step is not to abandon H because it is incomplete. It is to test whether its advantages survive a fixed, complete site list and independent dating, then seek distinctive evidence of the proposed departing group and its transmission into Israel. Conversely, evidence that key destruction levels preceded departure, or that the required cities were absent at entry, would weaken a unified H conquest even if a Hyksos contribution to cultural memory remained possible. **A relative improvement over T can support further research into H without proving H or excluding M.**
+
 ## Thera is a date range, not a stopwatch for Exodus
 
 Manning's 2022 radiocarbon model placed the eruption at 1609–1560 BCE with 95.4% probability, with a narrower 68.3% interval of 1606–1589 BCE. These are model-dependent calibrated ranges, not a securely known eruption year. [Manning, 2022, abstract and chronological models](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0274835).

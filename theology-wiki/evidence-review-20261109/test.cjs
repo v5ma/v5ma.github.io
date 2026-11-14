@@ -32,3 +32,5 @@ test('regional memory comparison distinguishes textual integration from populati
  const text=fs.readFileSync(path.join(__dirname,'sources/hyksos-thera-and-exodus-memory.md'),'utf8');
  for(const phrase of ['Joshua 24:5–7','MacDonald','favissa','old age','not identical names','literary integration and actual Bronze Age population integration']) assert.ok(text.includes(phrase),phrase);
 });
+
+test('positive comparison keeps shared criteria and duration alternatives',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['The positive comparative case','Forty days and forty years','No aggregate score','Candelora','Höflmayer'])assert.ok(s.includes(phrase),phrase);});

@@ -2,7 +2,7 @@
   "schema": 1,
   "date": "2026-11-14",
   "pages": 8,
-  "searchSections": 66,
+  "searchSections": 67,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
@@ -41,8 +41,8 @@
     },
     {
       "path": "hyksos-thera-and-exodus-memory.html",
-      "bytes": 54017,
-      "sha256": "1119cd78f03d2444c440a7978e238552344fb46f42b34a59415c0985fd6459c4"
+      "bytes": 62418,
+      "sha256": "6026a9b824c11f2a961945f442598df96e022162f9eb9f590db880389d707911"
     },
     {
       "path": "index.html",
@@ -51,13 +51,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 107111,
-      "sha256": "dcfb151d7fe779946020ca5039eb3f30682c7e166b30a7adb28ed34c4d87f971"
+      "bytes": 114395,
+      "sha256": "70c219a99a95fcd6feb5d70e8e8235302163efd85dbcf8f56fac3269c7ced4af"
     },
     {
       "path": "search-data.js",
-      "bytes": 104757,
-      "sha256": "a1de71e77a5846bc8b6098bcc6fcb12308d2530149db8d84ae99a1de62908365"
+      "bytes": 112005,
+      "sha256": "407cb545064941c8aeca2372073a9d85c3488bba3842b15eb9a96fb8583b2e45"
     },
     {
       "path": "reader-guide.js",
