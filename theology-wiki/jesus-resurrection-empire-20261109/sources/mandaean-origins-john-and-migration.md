@@ -30,6 +30,36 @@ Edmondo Lupieri surveys the dispute and challenges direct descent from John's fo
 
 These arguments do not answer precisely the same question. A community can acquire a language after migration. A religious tradition can absorb stories about a distant region without a corresponding population movement. A mixed history could contain both migrant groups and substantial Mesopotamian formation. Each possibility needs evidence of its own. The eastern language does not logically exclude every western ancestor; the sacred geography does not by itself demonstrate a migration.
 
+## A positive migration model need not deny Mesopotamian formation
+
+The strongest western-origin argument is cumulative rather than dependent on one resemblance: the recurring Jerusalem setting, the name Jordan for ritual water, inherited traditions honoring the Baptist and migration traditions are considered together. McGrath's case is that these features deserve a historical explanation, not dismissal because the surviving books are late. The counterquestion is whether transmission of stories and sacred geography could explain the same pattern without direct descent from John's immediate followers. Neither isolated vocabulary nor a single late manuscript settles that choice. [4]
+
+Brikha H. S. Nasoraia offers a constructive combined account in a 2025 journal article: western Baptist traditions and populations contribute to a formation process that also incorporates Mesopotamian elements. Its discussion of migration, Miriai and encounters with other religions is a substantive positive proposal, not merely an assertion that origins are unknowable. It is nevertheless a reconstruction with acknowledged missing evidence. It does not turn every episode of sacred history into a contemporary travel record or make the combined model a unanimous scholarly conclusion. [7]
+
+## Qumran gives an early precedent, not a Mandaean manuscript
+
+The Dead Sea Scrolls establish that purification practices, light-and-darkness contrasts and spirit-of-truth language were present in Jewish literature before the surviving Mandaean codices. The Community Rule's two-spirit instruction (1QS 3:13–4:26) and its wilderness interpretation of Isaiah 40:3 (1QS 8:12–16) therefore supply a real comparative setting, not a modern invention projected backward. These are positive historical precedents for studying later religious language. The [John–Qumran study](../evidence-review-20261109/john-qumran-baptist-and-signs.html) identifies the passages and competing explanations in detail.
+
+But the archaeological object is a Qumran manuscript, not a Mandaean Book of John found at Qumran. It does not identify the Rule's community as Mandaeans or record its migration to Mesopotamia. A motif's early attestation demonstrates that it was available in a wider environment; demonstrating transmission to a particular community requires additional evidence. The meaningful next question is which combinations, distinctive terminology or practices can distinguish inheritance from independent reuse of shared traditions.
+
+The Baptist is a possible intermediary, but the two links must be evaluated separately. John 1:35–40 narrates disciples moving from the Baptist toward Jesus. Neither that movement nor proximity to the Jordan establishes Baptist membership at Qumran. Similarly, evidence for a western ancestor of the Mandaeans would not establish that every aspect of later Mandaeism already existed in that ancestor. The hypothesis becomes more useful when its component claims can succeed or fail independently.
+
+## Egyptian precedents and the limits of a single-origin explanation
+
+Egypt belongs in the comparison too. Egyptian traditions of judgment, regeneration and life after death prevent treating those broad themes as inventions unique to one later religion. The [Getty discussion of the Book of the Dead](https://www.getty.edu/news/what-is-the-egyptian-book-of-the-dead/) distinguishes the deceased person's journey, moral judgment and renewal with Re and Osiris. That is not automatically the same structure as a universal final resurrection and cosmic renovation; [Shaul Shaked's account of Zoroastrian eschatology](https://www.iranicaonline.org/articles/eschatology-i/) discusses individual and collective judgment within that tradition's cosmic conflict.
+
+A stronger test of actual borrowing requires a narrower comparison. Michael V. Fox's [study of Amenemope and Proverbs 22:17–23:11](https://www.academia.edu/6703498/_From_Amenemope_to_Proverbs_Editorial_Art_in_Proverbs_22_17_23_11_ZAW_126_2014_76_91) analyzes the adaptation and editorial transformation of specific Egyptian wisdom material. It is an example of arguing transmission from detailed textual correspondences rather than from a shared theme alone. Its evidence supports that particular literary relationship, not an automatic Egyptian derivation of Mandaean religion or every Jewish and Christian afterlife belief.
+
+The same standard should apply to proposed Iranian influence. Egyptian precedents make an exclusively Iranian explanation of generic afterlife motifs inadequate; they do not by themselves disprove a specific Iranian contribution to a later doctrinal arrangement. A historically useful model can admit multiple sources and subsequent transformation while requiring dates, contact and distinctive correspondences for each proposed connection.
+
+## What the surviving objects and copy histories actually date
+
+The 2020 Häberl–McGrath critical edition identifies Codex Sabéen 10 as the earliest surviving manuscript of the Book of John, copied in Basra on October 13, 1616. Its copyist counted it as the thirtieth generation in its transmission. The editors discuss a colophon-based reconstruction reaching the early Islamic period for this book, while a separate note mentions Buckley's arguments for third-century copying lineages in other Mandaean texts. Those are not interchangeable claims. [8]
+
+A colophon is a copyist's record and may transmit a genealogy of previous copies. A reconstructed earlier copying date is not possession of the earlier physical manuscript; nor does 1616 imply that the religion began in 1616. Late-antique Mandaic bowls and amulets are a different class of material evidence from a surviving Book of John codex. They establish earlier language and practices without independently dating all of the book's narratives about John. [5][8]
+
+The distinctions are consequently productive: object date, earlier copy lineage, composition of a passage, and community formation can each provide information without being collapsed into a single foundation date. Qumran supplies early Jewish comparanda; Mandaic inscriptions supply earlier Mesopotamian material; later codices preserve literary traditions that may have much older components. The historical task is to connect those categories with arguments, not to substitute one for another.
+
 ## The Haran Gawaita is a tradition to interpret, not a dated passenger list
 
 The *Haran Gawaita* connects Mandaean origins and movement with a king named Artabanus. More than one Parthian ruler bore that name, and the work combines historical recollection with sacred history. Choosing an Artabanus changes the proposed chronology. It cannot simply be assumed that the text independently dates an exodus to John's death or to 66–70 CE. [4][6]
@@ -68,3 +98,9 @@ My working conclusion is therefore open but bounded: Mandaean tradition may pres
 4. [James F. McGrath, “Revisiting the Mandaeans and the New Testament”](https://bibleinterp.arizona.edu/articles/2013/08/mcg378026), 2013. A scholarly argument favoring a western connection and pre-Islamic tradition, not a statement of unanimous consensus.
 5. [Christa Müller-Kessler, “Mandaeans v. Mandaic Language”](https://www.iranicaonline.org/articles/mandaeans/mandaeans-v-mandaic-language/), Encyclopaedia Iranica. A competing linguistic case for Mesopotamian origins.
 6. [Edmondo F. Lupieri, “Mandaeans i. History”](https://www.iranicaonline.org/articles/mandaeans/mandaeans-i-history/), Encyclopaedia Iranica. Historiography, origin disputes and critical discussion of migration and sacred-history claims. Its reconstruction is presented as an argument, not adopted as the only possible account.
+
+
+7. [Brikha H. S. Nasoraia, “Probing the Relationships Between Mandaeans (the Followers of John the Baptist), Early Christians, and Manichaeans”](https://www.mdpi.com/2077-1444/16/1/14), Religions 16(1), 14 (2025; published December 27, 2024). Especially section 4, an integrated formation proposal, not independent confirmation of each narrated migration episode.
+8. [Häberl and McGrath, The Mandaean Book of John: Critical Edition, Translation, and Commentary, prefatory remarks](https://api.pageplace.de/preview/DT0400.9783110487862_A33482931/preview-9783110487862_A33482931.pdf), 2020, pp. 2–4. Distinguishes surviving codices and reconstructed scribal lineages. This is a different edition/pagination from the open translation cited for chapter 30 above.
+
+Editorial update: November 14, 2026. Expanded the positive migration model, Qumran comparison and manuscript-evidence distinctions; earlier discussion and competing explanations retained. This is an editorial research synthesis, not independently peer-reviewed.

@@ -2,12 +2,13 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {build}=require('./build.cjs'),cfg=require('./manifest.json'),root=__dirname;
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const stripCanonPilate=s=>s.replace(/\n## New comparisons: canon boundaries and Pilate’s reception\n[\s\S]*?(?=\n## Sources and access notes)/,'');
+const stripMandaean=s=>s.replace(/\n## A positive migration model need not deny Mesopotamian formation\n[\s\S]*?(?=\n## The Haran Gawaita)/,'').replace(/\n+7\. \[Brikha H\. S\. Nasoraia,[\s\S]*$/,'\n');
+const stripCanonPilate=s=>stripMandaean(s).replace(/\n## New comparisons: canon boundaries and Pilate’s reception\n[\s\S]*?(?=\n## Sources and access notes)/,'');
 const stripEusebius=s=>stripCanonPilate(s).replace(/\n## Reading the history of orthodoxy\n[\s\S]*?(?=\n## Sources and access notes)/,'');
 const stripInheritances=s=>s.replace(/\n## Samaritan textual affinities: a concrete two-way bridge\n[\s\S]*?(?=\n## Enoch, Jubilees)/,'').replace(/\n## Alternative inheritances: a comparison of authority claims\n[\s\S]*?(?=\n## Sources and access notes)/,'');
 test('fifteen complete chapters build deterministically and generated outputs are current',()=>{
  assert.equal(cfg.pages.length,15);assert.equal(new Set(cfg.pages.map(p=>p.slug)).size,15);
- assert.deepEqual(build(true),{pages:15,searchSections:156,outputs:19});
+ assert.deepEqual(build(true),{pages:15,searchSections:160,outputs:19});
  for(const p of cfg.pages){const s=read(p.source);assert.ok(s.split(/\s+/).length>1000,p.slug);assert.ok(s.includes('Sources and access notes'));assert.equal((s.match(/^# /gm)||[]).length,1);}
 });
 test('search covers every chapter and each section links to its real heading',()=>{
@@ -156,3 +157,6 @@ test('portrayal, scholarly disagreement and authority comparisons remain explici
  const data=require('./search-index.json');for(const term of ['Callon','Chilton','Narrative authority'])assert.ok(data.some(r=>r.text.includes(term)),term);
  for(let n=1;n<=16;n++)assert.ok(read('pilate-from-roman-prefect-to-christian-memory.html').includes('id="ref-'+n+'"'),n);
 });
+
+
+test('Mandaean expansion separates artifacts precedent and provenance',()=>{const s=read('sources/mandaean-origins-john-and-migration.md');for(const x of ['Codex Sabéen 10','October 13, 1616','thirtieth generation','not a Mandaean Book of John found at Qumran','Nasoraia','Amenemope','specific Iranian contribution'])assert.ok(s.includes(x),x);});

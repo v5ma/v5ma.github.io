@@ -99,9 +99,9 @@
       "title": "Mandaean origins: John the Baptist, migration and rival memory",
       "summary": "Investigate whether Mandaean ancestors knew John or fled after his execution, comparing western-migration arguments, Mesopotamian evidence and the limits of later sacred history.",
       "source": "sources/mandaean-origins-john-and-migration.md",
-      "sourceSha256": "a733c94363787e839b8e1cca9dd21444ded72db8eaa16108b92b128866c7de36",
-      "words": 1689,
-      "sections": 9
+      "sourceSha256": "38e882a7df38f908283c5f57e8db5d3771daba365bd365cd18064e4390a2fa1d",
+      "words": 2652,
+      "sections": 13
     },
     {
       "slug": "constantine-consolidation-and-christian-diversity",
@@ -154,7 +154,7 @@
       "sections": 13
     }
   ],
-  "searchSections": 156,
+  "searchSections": 160,
   "outputs": [
     {
       "path": "purpose-and-unorthodox-interpretation.html",
@@ -203,8 +203,8 @@
     },
     {
       "path": "mandaean-origins-john-and-migration.html",
-      "bytes": 18488,
-      "sha256": "314bd8a15dc9f25fb68b2bc45ab6d2fbe8e5d4dbc71ab301503f8cd1ffea007a"
+      "bytes": 27301,
+      "sha256": "d47747cbe7661277ddb406caeb4e49bf4e61f31bf3df204c83ce04d5ab91c737"
     },
     {
       "path": "constantine-consolidation-and-christian-diversity.html",
@@ -238,13 +238,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 234114,
-      "sha256": "9bee9e9b47e2f685c7d83617d8501f3300c92ea5cad948c0ee717b21484b56c4"
+      "bytes": 242174,
+      "sha256": "89fc8df3ca50ecde2c39127adc9fd99081aa141d318cd94c4c5d7a116c27b779"
     },
     {
       "path": "search-data.js",
-      "bytes": 228520,
-      "sha256": "6094613c5fb6eb3f5b9e68a066030c9e54cee88e3583a33656a64b1d1939c280"
+      "bytes": 236436,
+      "sha256": "b79b9f10f42499ae2b84762f52e5c10aedadf9e790b84b431cab8ec21127ce7e"
     }
   ]
 }
