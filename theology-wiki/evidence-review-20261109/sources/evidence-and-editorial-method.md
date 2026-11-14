@@ -51,3 +51,7 @@ Compare [Paul, James and contested authority](paul-james-and-contested-authority
 
 
 Compare [Dan McClellan on texts, history, and the words of Jesus](dan-mcclellan-texts-history-and-method.html) for an attributed discussion of why manuscript agreement, historical authenticity and modern moral application answer different questions. His preferred reconstructions remain distinguished from the method itself.
+
+## Chronology and cultural memory
+
+[Hyksos, Thera, and Exodus](hyksos-thera-and-exodus-memory.html) applies this method to an earlier-conquest proposal: chronological overlap, historical identification and cultural transmission require different evidence.

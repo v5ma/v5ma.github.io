@@ -1,58 +1,63 @@
 {
   "schema": 1,
   "date": "2026-11-14",
-  "pages": 7,
-  "searchSections": 51,
+  "pages": 8,
+  "searchSections": 61,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
-      "bytes": 9123,
-      "sha256": "7a0995d312515e2c55b734effc22ace1fbd1f2e328bb26515bc99c65d87a651a"
+      "bytes": 9590,
+      "sha256": "2a8264289a1e8c7578fc97045dd841d5afc14dc908d9eb5e279204881175ecf5"
     },
     {
       "path": "revelation-and-symbolic-language.html",
-      "bytes": 8771,
-      "sha256": "4ff4a5adc34b58d0866e9e2696c9c7f13e4ffe1b6c87e8da783ed43694c06c68"
+      "bytes": 8838,
+      "sha256": "a912b1aa9eeecabaf97e065de6f8d7ccd9e9e7974a30ca3838072bae29754ac3"
     },
     {
       "path": "dead-sea-scrolls-dating.html",
-      "bytes": 11692,
-      "sha256": "59c72447d1bbb0afbe0e8dd8aec9bf028fd8a7a7e3e269fcb64cb2f448617183"
+      "bytes": 11759,
+      "sha256": "72d189510f39203e59ece96ed1dfac5bd893c731693dc9315f3923d23b606be2"
     },
     {
       "path": "linguistic-epigraphic-matrix.html",
-      "bytes": 10633,
-      "sha256": "5662066e5d807ef92efd4063e14c07fe6c7fd2299fdc23a1a649822f494376c7"
+      "bytes": 10700,
+      "sha256": "896478b1c56769822bfe629bf7f3e96ab6248926e56fcad57d420fc1aad77795"
     },
     {
       "path": "why-christianity-spread.html",
-      "bytes": 9021,
-      "sha256": "f74856be11e3f3f1c1c8ad0cf3d354fc0f28076a3190454bb2c2f594d053f95d"
+      "bytes": 9088,
+      "sha256": "b984ed0ced18b23cebdd425e874f3149846526cf0de42b2f5375e7678b8c95ee"
     },
     {
       "path": "paul-james-and-contested-authority.html",
-      "bytes": 16023,
-      "sha256": "67ed6557f5a7e47955fe1931c201e60c97e11197b4357e2728d854e825023b5e"
+      "bytes": 16090,
+      "sha256": "67df9328eef265bf144080fb3c33114699885f9d3c1be5bd1b7c351fc939c3b0"
     },
     {
       "path": "dan-mcclellan-texts-history-and-method.html",
-      "bytes": 18482,
-      "sha256": "5b6ff221b331ab95acc28196a9893ce2f132eecfce0b60319510a1755ffe9c73"
+      "bytes": 18549,
+      "sha256": "341747d8ab4ea784d471b83320d8938774af7990c8e6f1e7ed9cb7747cf89c70"
+    },
+    {
+      "path": "hyksos-thera-and-exodus-memory.html",
+      "bytes": 15176,
+      "sha256": "7635442e35b117ee275b04330f802a07cbde11be4c441b00d10c7339fa789cfa"
     },
     {
       "path": "index.html",
-      "bytes": 6354,
-      "sha256": "84e7652923c9548d5b90163b3b362ccf282b045c47b20832779f1fe9a93bccfb"
+      "bytes": 6826,
+      "sha256": "5c8d5954474e08c0de1177405d34d87b7b925fd656cef378cc993b6ad312523f"
     },
     {
       "path": "search-index.json",
-      "bytes": 63837,
-      "sha256": "042a7ee2b8b2d61ab887b0ec3d2cb5cef70af87d6efb3b90ba6af99433e9acdc"
+      "bytes": 76492,
+      "sha256": "6b346685be619fc1d8ec3b08cc0729261e32c577a717fda6b4dcc114968634dd"
     },
     {
       "path": "search-data.js",
-      "bytes": 62023,
-      "sha256": "08df21f8b0ed3a43cd02511ffcbd54c80e72ff95724b52d8696291d883816271"
+      "bytes": 74318,
+      "sha256": "79e387f8e21f18c98d509acffeb26ffa2035bdf2afdcf3874390408fa40081d1"
     },
     {
       "path": "reader-guide.js",
