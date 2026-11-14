@@ -44,3 +44,5 @@ test('Judges chronology exposes tally and independent constraints',()=>{const s=
 test('audited memory hypotheses retain textual anchors and uncertainty',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['two-memory hypothesis',"Joseph's remains",'sanctuary patronage','Levantine divine-throne'])assert.ok(s.includes(phrase),phrase);});
 
 test('Deborah study separates poem prose and ancestry',()=>{const s=read('sources/deborah-jael-and-the-kenite-memory.md');for(const phrase of ['Koller','Frolov','Amzallag','does not call its participants Apiru','refuge from approaching armies','does not identify Elijah as a Kenite'])assert.ok(s.includes(phrase),phrase);});
+
+test('EA 288 comparison retains grammatical alternatives and rhetoric',()=>{const s=read('sources/apiru-amarna-and-israel-the-late-bronze-bridge.md');for(const phrase of ['EA 288:29–30','passive treatment-reading','stative becoming-reading','not a newly discovered Israelite self-identification'])assert.ok(s.includes(phrase),phrase);});

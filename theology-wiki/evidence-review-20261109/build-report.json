@@ -46,8 +46,8 @@
     },
     {
       "path": "apiru-amarna-and-israel-the-late-bronze-bridge.html",
-      "bytes": 25502,
-      "sha256": "895377cef44f53f73b1da0c84f3618c84b9d9e2d82769a46ca59d62a893fc965"
+      "bytes": 27251,
+      "sha256": "21cce94c12e8b6827d48262b95d74f0721a00fff321f16f0d8afbff1de1caacc"
     },
     {
       "path": "deborah-jael-and-the-kenite-memory.html",
@@ -61,13 +61,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 161739,
-      "sha256": "f9419965a8dd17abe5a797edcecde9f5ed355b38c1326d87139fe969400ff79e"
+      "bytes": 163213,
+      "sha256": "1edc13a1b8cdec93c37828dffe5b9d6e4986441ee5fc4127d3be928efe7450fe"
     },
     {
       "path": "search-data.js",
-      "bytes": 158413,
-      "sha256": "e75e39b5e80fc4e7ed9e3d6311c3b25056c5677f29a0cecbb11e17da98418cc9"
+      "bytes": 159887,
+      "sha256": "95fcb608873241c351574e12e6a744e628600b7068293a914828a2c6a1046b3e"
     },
     {
       "path": "reader-guide.js",

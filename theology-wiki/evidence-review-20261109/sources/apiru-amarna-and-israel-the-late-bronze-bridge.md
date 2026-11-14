@@ -26,6 +26,14 @@ Finkelstein and Na'aman's 2005 study supplies a particularly useful positive pre
 
 Alice Mandell's introduction provides an accessible route into Labayu and the accusations surrounding him, with translations attributed to the Lauinger–Yoder ORACC edition. [Mandell, “The ‘Apiru and Labʾayu Ruler of Shechem”](https://www.thetorah.com/article/the-apiru-and-labayu-ruler-of-shechem). Direct ORACC retrieval was intermittent during this review; the manuscript identifiers and available scholarly discussions are recorded so that readers can inspect the witnesses rather than rely on a paraphrase alone.
 
+### EA 288: when Abdi-Heba compares himself with the Apiru
+
+Alice Mandell's 2025 study prints EA 288:29–30 and argues for an active translation: “I have acted like the ʿApiru”. She reads this as Abdi-Heba explaining his failure to appear before Pharaoh because hostile conditions prevent travel, not admitting that he joined an ethnic group. Her note 50 contrasts Moran and Lauinger–Yoder's passive treatment-reading with Rainey's stative becoming-reading. The grammatical choice remains consequential rather than invisible.
+
+In the same letter, EA 288:34–38 depicts Apiru taking royal cities. The juxtaposition matters: a ruler can use the label for opponents while comparing his own isolation with theirs. Mandell connects this to the letter's diplomatic rhetoric and the distinction between the verb here and a form used for joining or colluding. This is a scholarly interpretation of the wording, not a newly discovered Israelite self-identification. [Mandell, “Canaanite Literary Culture Before the Bible” (2025), sections 6–7 and notes 50–52](https://www.mdpi.com/2077-1444/16/8/970).
+
+For the proposed coalition model, the constructive gain is a better question: which relationships, activities and accusations recur, rather than which single ethnicity every use must name? Read this alongside the [method study](dan-mcclellan-texts-history-and-method.html) and the [Deborah study's distinction between coalition membership and ancestry](deborah-jael-and-the-kenite-memory.html). The comparison supports investigating permeable social boundaries; it does not close the chronological gap.
+
 ## Apiru is not automatically Hebrew, and not merely a synonym for bandit
 
 The crucial question is not whether the words look similar in English transliteration. It is how each term functions in its dated context. “Apiru,” “Habiru” and related scholarly spellings occur in discussions of social and political classifications; the biblical “Hebrew” has its own uses and textual history. A proposed linguistic relationship does not identify every group bearing the earlier label with Israel. [Na'aman, “Habiru and Hebrews: The Transfer of a Social Term to the Literary Sphere” (1986)](https://www.academia.edu/12933196/Habiru_and_Hebrews_The_Transfer_of_a_Social_Term_to_the_Literary_Sphere_Journal_of_Near_Eastern_Studies_45_1986_pp_271_286).
