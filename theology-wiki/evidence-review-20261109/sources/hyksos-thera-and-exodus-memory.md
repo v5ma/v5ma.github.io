@@ -290,6 +290,24 @@ The attachment's exclusive claims need narrowing. Avaris provides a particularly
 
 Finally, the city matrix does not establish that all the named cities were simultaneously fortified and burned, and the chronological section does not establish Thera as a concurrent trigger. Removing these universal claims preserves the comparative hypothesis's genuine strengths while making its direct-chain prediction testable. These distinctions connect to [the wiki's evidence method](evidence-and-editorial-method.html), [dating texts and inscriptions](linguistic-epigraphic-matrix.html), and [later historical portrayal](../jesus-resurrection-empire-20261109/pilate-from-roman-prefect-to-christian-memory.html). They compare methods, not identical historical causes.
 
+## Two catastrophe memories and a sanctuary-based bridge
+
+### Thera in Egypt and a separate mountain memory
+
+Blumberg distinguishes two possible memories rather than requiring one eruption to explain everything: distant effects of Thera in Egypt, and a separate Sinai/Midian encounter remembered through volcanic-looking mountain imagery. Exodus 19:16–19 describes thunder, lightning, cloud, smoke, fire and trembling. Such language makes the comparison understandable, but does not identify a volcano, a geological event or its date. [Exodus 19](https://www.biblegateway.com/passage/?search=Exodus%2019&version=NRSVUE).
+
+This **two-memory hypothesis** preserves the proposed conceptual distinction while leaving both historical identifications open. The account does not establish an active Sinai volcano, a particular Arabian eruption or the mountain's location; storm-theophany imagery is also a literary possibility. It cannot repair the Thera–Ahmose chronological difficulty simply by assigning the mountain scene to a second unidentified catastrophe. Any geological proposal must supply independent location, dating and transmission evidence.
+
+### Joseph's bones, Shiloh and institutional incorporation
+
+The proposed Shechem–Shiloh integration has concrete textual anchors. Joshua 24:32 connects Joseph's remains brought from Egypt with burial at Shechem and the inheritance of Joseph's descendants. Joshua 18:1 locates the assembled community and tent of meeting at Shiloh. These motifs link Egyptian ancestry, land, inheritance and a shared sanctuary within the narrative. They are not excavated evidence for Joseph's remains or a dated sixteenth-century treaty. [Joshua 24:32](https://www.biblegateway.com/passage/?search=Joshua%2024%3A32&version=NRSVUE); [Joshua 18:1](https://www.biblegateway.com/passage/?search=Joshua%2018%3A1&version=NRSVUE).
+
+Blumberg proposes sanctuary patronage and reciprocal exchange as a mechanism: an Egyptian-associated priestly group could contribute portable cult and ancestry traditions while Ephraim-associated communities supplied land, support and a place in a wider coalition. That is a constructive institutional-memory hypothesis, not a transaction documented by the verses. It gives the archaeological and literary investigation a question to test without turning storage jars into verified tithes.
+
+The related proposal treats the Ark as a possible combination of Egyptian portable-shrine conventions and Levantine divine-throne imagery. The biblical descriptions themselves combine portability with divine presence and cherubim: compare Exodus 25:10–22 and 1 Samuel 4:4. Formal comparison does not establish manufacture in Egypt, direct borrowing, or the date at which motifs were combined. Joshua 18:1 mentions the tent, not an excavated Ark; the Ark's Shiloh setting is explicit in 1 Samuel 3–4. [Exodus 25](https://www.biblegateway.com/passage/?search=Exodus%2025&version=NRSVUE); [1 Samuel 4](https://www.biblegateway.com/passage/?search=1%20Samuel%204&version=NRSVUE).
+
+Together, these ideas offer proposed mechanisms for how memories could travel through institutions rather than only through an unchanged army. The [Late Bronze bridge study](apiru-amarna-and-israel-the-late-bronze-bridge.html) tests the parallel population and political questions.
+
 ## Next study: the intervening centuries
 
 [Apiru, Amarna, and Israel: testing the Late Bronze bridge](apiru-amarna-and-israel-the-late-bronze-bridge.html) develops the proposed coalition’s continuity through Shechem, the Amarna letters and Merneptah. It distinguishes a positive regional-political precedent from demonstrated ancestry.

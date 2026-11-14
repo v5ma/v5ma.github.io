@@ -38,3 +38,7 @@ test('positive comparison keeps shared criteria and duration alternatives',()=>{
 test('transmission comparison distinguishes direct events and cultural memory',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['Avaris → Midian → Canaan','Killebrew','Hendel','Papyrus Anastasi V','not an established archaeological observation'])assert.ok(s.includes(phrase),phrase);});
 
 test('Late Bronze bridge preserves primary distinctions',()=>{const s=read('sources/apiru-amarna-and-israel-the-late-bronze-bridge.md');for(const phrase of ['EA 254','EA 289','Ben-Yosef','not automatically the exact year','not a census','not an ethnic equation'])assert.ok(s.includes(phrase),phrase);assert.ok(JSON.parse(read('search-index.json')).some(x=>x.kind==='apiru-amarna-and-israel-the-late-bronze-bridge'));});
+
+test('Judges chronology exposes tally and independent constraints',()=>{const s=read('sources/apiru-amarna-and-israel-the-late-bronze-bridge.md');for(const phrase of ['410 years','390','1446 BCE','584 years','terminus post quem','Judges 3:3'])assert.ok(s.includes(phrase),phrase);});
+
+test('audited memory hypotheses retain textual anchors and uncertainty',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['two-memory hypothesis',"Joseph's remains",'sanctuary patronage','Levantine divine-throne'])assert.ok(s.includes(phrase),phrase);});

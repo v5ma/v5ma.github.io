@@ -54,6 +54,49 @@ Ann Killebrew's mixed-origin model offers a serious alternative: early Israel fo
 
 Thus three possibilities remain distinguishable: continuous descent of a particular earlier coalition; incorporation of smaller migrant groups into local populations; or later adoption and transformation of Egyptian-associated memories. They can overlap, but cannot be counted as the same claim whenever one version encounters contrary evidence.
 
+## Can Judges preserve the long interval?
+
+Blumberg's next constructive proposal places the regional conflicts of Judges within the interval between an earlier conquest and the monarchy: a decentralized coalition could persist without a capital, and later royal institutions could emerge when Egyptian control weakened. This offers a historical mechanism for the bridge rather than requiring three empty centuries. But the book's narrated sequence, the sums of its durations, the dates of its sources and the archaeology of particular conflicts must be tested separately.
+
+### An explicit chronological ledger
+
+The numerical notices can be checked directly. The following is a tally of the stated periods, not a claim that they all followed one another without overlap:
+
+- Judges 3:8: oppression, 8 years; 3:11: rest, 40.
+- Judges 3:14: oppression, 18; 3:30: rest, 80.
+- Judges 4:3: oppression, 20; 5:31: rest, 40.
+- Judges 6:1: oppression, 7; 8:28: rest, 40.
+- Judges 9:22: Abimelech, 3; 10:2: Tola, 23; 10:3: Jair, 22.
+- Judges 10:7–8: oppression, 18; 12:7: Jephthah, 6.
+- Judges 12:9: Ibzan, 7; 12:11: Elon, 10; 12:14: Abdon, 8.
+- Judges 13:1: Philistine oppression, 40; 15:20: Samson, 20.
+
+Adding these notices yields **410 years**. Yet Judges 15:20 places Samson's judging during Philistine rule. Removing just that double-counted twenty-year period would produce **390**, not a proven total: other overlaps, regional concurrency and unnumbered intervals remain questions. Judges 16:31 repeats Samson's twenty years; it is not a second judgeship to add. [Judges 13–16](https://www.biblegateway.com/passage/?search=Judges%2013-16&version=NRSVUE).
+
+Robert Chisholm documents the arithmetic problem and proposes parallel narrative panels as a solution. His particular reconstruction is a scholarly proposal, not a consensus calendar. The important methodological point is that simply adding the numbers does not produce an uncontested historical duration. [Chisholm, “The Chronology of the Book of Judges” (2009), pp. 247–255, especially the ledger on p. 247](https://etsjets.org/wp-content/uploads/2010/06/files_JETS-PDFs_52_52-2_JETS-52-2-247-255-Chisholm.pdf).
+
+### What the 480 years do and do not support
+
+In the Masoretic wording, 1 Kings 6:1 places the temple's beginning in the 480th year after the Exodus and Solomon's fourth regnal year. Using the conventional approximate temple date of 966 BCE gives an Exodus around **1446 BCE**, not 1550. From 1550 to 966 is **584 years**; the conventional 480-year arithmetic differs by about 104 years. Ancient inclusive counting may shift a year; it cannot remove a century. [1 Kings 6:1](https://www.biblegateway.com/passage/?search=1%20Kings%206%3A1&version=NRSVUE).
+
+An earlier Hyksos model can question the temple date, treat 480 as a schematic literary number, or argue that a later chronology reorganizes older traditions. Each is an additional hypothesis requiring argument. It cannot simultaneously treat 480 as exact independent confirmation of a 1550 departure. Conversely, a shorter literal thirteenth-century chronology also has to address the long biblical totals. The ledger tests all models rather than supplying a free confirmation for one.
+
+### Philistines prevent a simple wholesale redating
+
+Philistines are not restricted to Samson's closing cycle. They occur in Judges 3:3, Shamgar's notice in 3:31, and the oppression framework of 10:7. A proposal that assigns the entire book's conflicts to the sixteenth through fourteenth centuries must explain these references and the independently dated material history of Philistine communities. Merely moving the Samson story later does not resolve every occurrence. [Judges 3](https://www.biblegateway.com/passage/?search=Judges%203&version=NRSVUE); [Judges 10](https://www.biblegateway.com/passage/?search=Judges%2010&version=NRSVUE).
+
+Possible explanations include a genuinely later episode, later geographical terminology, or literary combination of traditions from different periods. They should be argued passage by passage. A mixed-period book could preserve earlier regional memories without functioning as an uninterrupted contemporary chronicle of the proposed coalition.
+
+## From Egyptian retreat to monarchy: a mechanism, not a single switch
+
+The affirmative political argument is plausible at the level of mechanism: weakening imperial supervision could expand the room for local coalitions and territorial rulers. The Shechem comparison above provides an earlier example of regional ambition under uneven imperial control. It does not mean Egypt disappeared at one precisely fixed moment or that monarchy followed immediately.
+
+Jaffa's excavators report repeated resistance and two destructions in the second half of the twelfth century BCE. Their radiocarbon-based interpretation proposes about **1125 BCE as a terminus post quem**, meaning a date at or after which the end of Egyptian rule should be considered in their reconstruction. This is evidence against treating 1150 as a universally settled, instantaneous cutoff. The report attributes likely resistance to local Canaanite centers, not to a named Joshua coalition. [Burke and colleagues, “Excavations of the New Kingdom Fortress in Jaffa, 2011–2014” (2017)](https://ajaonline.org/field-report/3356/).
+
+A successful continuation of Blumberg's model would therefore trace institutions and populations through changing Egyptian presence, regional conflicts and later political consolidation. The emergence, scale and dates of early monarchies remain separate archaeological and textual questions. Egyptian retreat can help explain an opportunity; it does not by itself identify who took it, prove a united monarchy of a particular size, or verify continuity from the Hyksos expulsion.
+
+**Book-development takeaway:** The strongest chapter argument is not that every chronological figure already matches. It is that an earlier Egyptian-associated group could have persisted within changing Canaanite networks, with some memories later organized into the Exodus–Joshua–Judges–monarchy sequence. The direct-coalition hypothesis gains explanatory possibilities from this setting, while its chronology and continuity still face specific, public tests.
+
 ## A constructive research programme
 
 1. **Fix the proposed route and interval.** Use independent site dates, not a date selected because it would fit the narrative. Keep the forty-day and forty-year variants separate.
@@ -63,6 +106,10 @@ Thus three possibilities remain distinguishable: continuous descent of a particu
 5. **State a revision condition.** If the chronology, route or claimed continuity fails, narrow the hypothesis to a contribution to later memory rather than silently moving the same army to another century.
 
 **Provisional conclusion:** The Apiru evidence can help investigate the interval by providing real social and military mechanisms. It does not yet bridge it through demonstrated identity. The stronger affirmative formulation is that the earlier coalition may have entered networks visible in Amarna-era Canaan, not that the letters already name Moses, Joshua or their descendants. That preserves a serious historical possibility while making its next evidential requirements explicit.
+
+## A reading route for the developing book
+
+Start with [Dan McClellan and historical method](dan-mcclellan-texts-history-and-method.html), then examine [the Hyksos departure, city evidence and religious-memory proposals](hyksos-thera-and-exodus-memory.html). Continue here through Amarna, mobile societies, Merneptah, the Judges ledger and Egyptian retreat. This is a sequence of research questions and competing explanations, not a chain of established conclusions or an attribution of this reconstruction to McClellan.
 
 ## Connected reading
 

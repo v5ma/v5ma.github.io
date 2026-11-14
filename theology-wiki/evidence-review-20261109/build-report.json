@@ -2,7 +2,7 @@
   "schema": 1,
   "date": "2026-11-14",
   "pages": 9,
-  "searchSections": 77,
+  "searchSections": 81,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
@@ -41,13 +41,13 @@
     },
     {
       "path": "hyksos-thera-and-exodus-memory.html",
-      "bytes": 69887,
-      "sha256": "1da39d0e40ee1c734ae9a12cb838f4a9024c49b58f72134df6ab37c1c92b6cbf"
+      "bytes": 73678,
+      "sha256": "bc4f4072452b7278d097f098cc635bd93e69d243c5b8cc4cf922e6691ef3c3c9"
     },
     {
       "path": "apiru-amarna-and-israel-the-late-bronze-bridge.html",
-      "bytes": 17114,
-      "sha256": "36f74115044e0e43fa1544b80104666f9f8334279ecbbeb35e31073edb9ad39d"
+      "bytes": 24949,
+      "sha256": "d405570fb797b7326fb251ab0165baef39d6974c61d604b4620794587225915d"
     },
     {
       "path": "index.html",
@@ -56,13 +56,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 134629,
-      "sha256": "924a71c2f3182c2a6b3d3a3f769bc4e4353712a9e20e23ae7b3296b8ab2b6d50"
+      "bytes": 144803,
+      "sha256": "a3675b6c0727ceb50053e1abca7e4c4a3cffeffd48673a31febf85963f2620e3"
     },
     {
       "path": "search-data.js",
-      "bytes": 131879,
-      "sha256": "bb614bc5122595bd05bda28d1669089605ed26c1f754a0dce764e898e2eedfc0"
+      "bytes": 141909,
+      "sha256": "1709501be650b68be9f625b40b697ff6e3dd6a6ce7029612e0ea29bfc23e0162"
     },
     {
       "path": "reader-guide.js",
