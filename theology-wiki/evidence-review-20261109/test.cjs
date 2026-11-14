@@ -17,3 +17,8 @@ test('Dan summary preserves attribution and contested-source boundaries',()=>{co
 test('Hyksos study separates dates, identity and memory',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');assert.match(s,/Research question contributed by Micah Blumberg/);assert.match(s,/not a fresh recalibration/);assert.match(s,/not a statistical score/);assert.match(s,/not a demonstrated chain/);assert.ok(JSON.parse(read('search-index.json')).some(r=>r.kind==='hyksos-thera-and-exodus-memory'));});
 
 test('city comparison preserves archaeological and textual distinctions',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');assert.match(s,/Lachish is not a clean negative case/);assert.match(s,/not a city Joshua is said to destroy/);assert.match(s,/settlement levels|Settlement levels/);assert.match(s,/thirteen of sixteen/);assert.match(s,/not simply accepting every conventional 1550 date/);for(const city of ['Hazor','Hebron','Bethel','Shiloh','Gibeon','et-Tell','Arad','Heshbon','Dibon','Lachish'])assert.ok(s.includes(city));});
+
+test('conditional reconstruction distinguishes sources, sequence and chronology', () => {
+  const text = fs.readFileSync(path.join(__dirname, 'sources/hyksos-thera-and-exodus-memory.md'), 'utf8');
+  for (const phrase of ['Micah Blumberg', '1510 BCE', 'after his reign', 'assigned to Ephraim', 'before the collective departure', 'above', 'not a fixed synchronism']) assert.ok(text.includes(phrase), phrase);
+});
