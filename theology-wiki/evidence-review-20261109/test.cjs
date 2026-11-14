@@ -34,3 +34,5 @@ test('regional memory comparison distinguishes textual integration from populati
 });
 
 test('positive comparison keeps shared criteria and duration alternatives',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['The positive comparative case','Forty days and forty years','No aggregate score','Candelora','Höflmayer'])assert.ok(s.includes(phrase),phrase);});
+
+test('transmission comparison distinguishes direct events and cultural memory',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const phrase of ['Avaris → Midian → Canaan','Killebrew','Hendel','Papyrus Anastasi V','not an established archaeological observation'])assert.ok(s.includes(phrase),phrase);});

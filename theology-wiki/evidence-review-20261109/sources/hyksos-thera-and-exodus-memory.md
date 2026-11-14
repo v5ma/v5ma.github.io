@@ -262,6 +262,34 @@ A serious version should therefore specify:
 
 The supplied discussion named Jan Assmann and Donald Redford, but gave no identifiable works or page references. Their names are not treated here as proof of a consensus. Establishing their precise, potentially different arguments belongs in a follow-up literature review.
 
+## Direct campaign or layered memory? The Late Bronze bridge
+
+Blumberg's further comparison sharpens what is distinctive about the proposal: **Avaris → Midian → Canaan within one generation** is a claim about connected operations, not simply a claim that an old Egyptian departure influenced later storytelling. If independently supported, it would explain both military capability and the relationship of successive events. The corresponding research task is to establish the links, rather than treating a plausible mechanism as a documented itinerary. The forty-year version of that chain and the subsequently mentioned forty-day version must remain separate tests.
+
+### Cultural memory is a fourth comparison, not merely a weaker direct-conquest theory
+
+Ronald Hendel's 2015 study offers a specific alternative: memories of Egyptian domination in Canaan and its eventual collapse could be transformed into a collective story of liberation from Egyptian bondage. His account includes people actually taken to Egypt as captives or slaves, alongside communities that experienced Egyptian power within Canaan. It explains why indigenous origins do not make an Egyptian liberation story inexplicable: communities can share a remembered oppression without all having crossed the same border. This is Hendel's proposal, not evidence that every Exodus episode occurred. It also does not require the Hyksos expulsion to be the core event. [Hendel, “The Exodus as Cultural Memory: Egyptian Bondage and the Song of the Sea” (2015)](https://www.academia.edu/11748616/The_Exodus_as_Cultural_Memory_Egyptian_Bondage_and_the_Song_of_the_Sea).
+
+Thus the question is not just “sixteenth or thirteenth century?” It is also “one connected campaign, several remembered experiences, or a combination?” A direct Hyksos-linked expedition predicts a closer chronological and geographical sequence. A layered-memory model predicts selection, relocation and combination of experiences across time. It must still explain why particular motifs and places were selected; the label “memory” is not permission to invent a transmission history.
+
+### Indigenous formation is not one uniform scholarly position
+
+The supplied comparison combines pastoral settlement, social revolt and mixed-origin formation under one heading. These are related alternatives to a straightforward conquest, not interchangeable theories. Ann Killebrew's 2006 study explicitly distinguishes conquest, infiltration, social revolution and pastoral-Canaanite approaches before proposing largely indigenous kinship groups with smaller external contributions. That synthesis is compatible with asking whether an Egyptian-associated group supplied an influential tradition, without establishing that it was Levite or Hyksos. Her article also separates Finkelstein's pastoral/sedentarization mechanism from the Mendenhall–Gottwald social-revolution approach. It would therefore misrepresent the debate to call Finkelstein, Dever and Gottwald advocates of one identical “peasant-revolt” model. [Killebrew, “The Emergence of Ancient Israel: The Social Boundaries of a ‘Mixed Multitude’ in Canaan”](https://www.academia.edu/8302194/The_Emergence_of_Ancient_Israel_The_Social_Boundaries_of_a_Mixed_Multitude_in_Canaan_by_Ann_E_Killebrew_2006).
+
+### What the intervening centuries should be asked to show
+
+For a direct expedition around 1500 BCE, the later emergence of identifiable Israel does create a substantial historical interval to explain. But “the coalition existed invisibly for three centuries” is not an established archaeological observation: it assumes both that the coalition existed and that its material signature is already known. A more useful research programme asks:
+
+- **Continuity:** Which settlements, burial practices or institutions could connect the proposed migrants to later communities, and which changes count against continuity?
+- **Identity:** What would distinguish the proposed group from neighboring Canaanites using similar pottery and buildings? Egyptian-associated names alone cannot supply a continuous population history.
+- **Political setting:** How could that group have persisted under subsequent Egyptian involvement in Canaan? Assess the Amarna-era evidence rather than skipping directly from city destruction to Iron Age villages.
+- **Transmission:** Are there intermediate witnesses to the traditions, or only later texts from which a transmission path is reconstructed?
+- **Competing predictions:** Would the same evidence fit a later small migration or a mixed indigenous population equally well? If so, it cannot uniquely select Hyksos origins.
+
+The attachment's exclusive claims need narrowing. Avaris provides a particularly concrete military and cultural setting; that is stronger than claiming no other period contained organized West Asian populations in Egypt. Egyptian border controls likewise establish a constraint, not an impermeable frontier. Malamat discusses Ramesside administrative records of border movements and pursuit of escaped servants, including Papyrus Anastasi V. These are evidence for mobility and enforcement, not proof of a mass Exodus or of its impossibility. [Malamat, “Let My People Go and Go and Go and Go,” citing the Egyptian texts translated in ANET, pp. 258–259](https://library.biblicalarchaeology.org/article/let-my-people-go-and-go-and-go-and-go/). The publisher exposes the references and indexed passage, while full article access is restricted.
+
+Finally, the city matrix does not establish that all the named cities were simultaneously fortified and burned, and the chronological section does not establish Thera as a concurrent trigger. Removing these universal claims preserves the comparative hypothesis's genuine strengths while making its direct-chain prediction testable. These distinctions connect to [the wiki's evidence method](evidence-and-editorial-method.html), [dating texts and inscriptions](linguistic-epigraphic-matrix.html), and [later historical portrayal](../jesus-resurrection-empire-20261109/pilate-from-roman-prefect-to-christian-memory.html). They compare methods, not identical historical causes.
+
 ## Connected reading and correction record
 
 - [Editorial method](evidence-and-editorial-method.html): distinguish a research question, a source and a conclusion.
