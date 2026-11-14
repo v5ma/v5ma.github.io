@@ -2,7 +2,7 @@
   "schema": 1,
   "date": "2026-11-14",
   "pages": 13,
-  "searchSections": 114,
+  "searchSections": 116,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
@@ -61,13 +61,13 @@
     },
     {
       "path": "john-qumran-baptist-and-signs.html",
-      "bytes": 17301,
-      "sha256": "4d0f9afc7148c602999cb2fedf01c6a61d25839bfcb684890187a1e19348a787"
+      "bytes": 22255,
+      "sha256": "baa37c5a57115b11cda9ae3d6cbce6be224c6e59de1cd508b543118472d98ca9"
     },
     {
       "path": "cultural-memory-without-false-certainty.html",
-      "bytes": 18495,
-      "sha256": "372db4b0adf356b4d29408af3d5861ee1c1191fe6f95f700b10ce39510b16a66"
+      "bytes": 18786,
+      "sha256": "45fd6e4b409191a0b82fc56066f6216c185d078e55e71bfcbe29767214aa30ce"
     },
     {
       "path": "index.html",
@@ -76,13 +76,13 @@
     },
     {
       "path": "search-index.json",
-      "bytes": 210352,
-      "sha256": "ffc5349a0be544a498d71d044f9a5abb546191546d4be3ae7d1ce704579b3455"
+      "bytes": 214795,
+      "sha256": "f62605ad757dae5274335a3d4f513162b48ed7414da8abd211aa27fc276dbe3e"
     },
     {
       "path": "search-data.js",
-      "bytes": 206270,
-      "sha256": "e76e488bf02d161800b5fd0a401f290e20939825557d0c8a02f1f18821f45de4"
+      "bytes": 210641,
+      "sha256": "296002a7a31fcf775c8e7e68bc406279c3ff08be8da4ac383ff3669aad236565"
     },
     {
       "path": "reader-guide.js",
