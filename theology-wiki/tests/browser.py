@@ -312,7 +312,7 @@ with sync_playwright() as tool:
             open_page(page)
             first=page.locator('.depth-featured .research-card').first.bounding_box()
             LAYOUTS.append({'viewportWidth':width,'firstArticleTop':round(first['y'],2),'viewportHeight':844})
-            assert first['y']<600,(width,first)
+            assert first['y']<600,(width,first,page.locator('.wiki-family-strip').evaluate_all('(els)=>els.map(e=>({label:e.getAttribute("aria-label"),height:e.getBoundingClientRect().height,top:e.getBoundingClientRect().top}))'))
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
         check('First article begins within 600 pixels on 320, 390 and 768 pixel screens',True)
         page.set_viewport_size({'width':390,'height':844})
@@ -354,6 +354,8 @@ with sync_playwright() as tool:
         run_connected_checks(page, ctx, open_page, check, OUT, BASE)
         from restoration_checks import run_restoration_checks
         run_restoration_checks(page, ctx, open_page, check, OUT, BASE)
+        from structural_equivalence_checks import run_structural_equivalence_checks
+        run_structural_equivalence_checks(page, check, screenshot, OUT, ORIGIN)
         check('No uncaught browser errors in the test suite',not ERRORS)
     except Exception:
         import traceback

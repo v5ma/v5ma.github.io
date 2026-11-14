@@ -1,5 +1,28 @@
 """Real HTTP checks for the passage comparison and full supplementary listening."""
+import hashlib
+import json
+from pathlib import Path
+
+
 def run_restoration_checks(page, ctx, open_page, check, OUT, BASE):
+    library=json.loads((Path(__file__).resolve().parents[1]/'data/listening-library.json').read_text())
+    principal={row['slug'] for row in library['articles'] if row['kind']=='Developed article'}
+    bridges={row['slug'] for row in library['articles'] if row['kind']=='Bridge study'}
+    added_principal={'living-jesus-thomas-john-and-synoptics','gnostic-canonical-gospels-telling-the-truth',
+                     'computational-god-consciousness-and-theodicy','cosmic-thought-and-transcendence',
+                     'trump-signs-timeline-brother-paul','public-executions-religious-justification-and-john-16'}
+    added_bridges={'computational-god-capabilities-bridge'}
+    # Preserve the exact 29 principal / 5 bridge selections at immutable source
+    # revision 9e5fd3f205015c84b0973061f0aec54ef81dd794, plus only recorded additions.
+    selection_hash=lambda values:hashlib.sha256(('\n'.join(sorted(values))+'\n').encode()).hexdigest()
+    assert added_principal <= principal and len(principal)==35
+    assert selection_hash(principal-added_principal)=='75db5e37c7e8872b10155880a19d59a5c98ee6429d8d69291e4d5d6574ed6220'
+    assert added_bridges <= bridges and len(bridges)==6
+    assert selection_hash(bridges-added_bridges)=='cb1d458f4ec8c1c40fc2584c156710084f8ef1c1a8e92e149ff645693b0e468c'
+    def selections():
+        values=page.locator('#listen-article option').evaluate_all('(els)=>els.map(e=>e.value)')
+        assert len(values)==len(set(values)), 'Duplicate listening selection'
+        return set(values)
     slug='rival-continuations-and-restoration'
     def ready(extra=''):
         open_page(page,slug,extra)
@@ -35,13 +58,13 @@ def run_restoration_checks(page, ctx, open_page, check, OUT, BASE):
     check('Bridge Listen action opens its own full, source-verified text','hashes match' in page.locator('#listen-version').inner_text() and 'Supplementary bridge essay' in page.locator('#listen-kind-note').inner_text() and page.locator('.listen-paragraph').count()>30)
     check('Bridge device text is not mislabeled as a prerecorded audiobook','No prerecorded' in page.locator('#listen-recorded').inner_text() and page.locator('#listen-recording').count()==0)
     page.locator('#listen-kind').select_option('Bridge study')
-    check('Listening type filter exposes exactly five full bridge essays',page.locator('#listen-article option').count()==5)
+    check('Listening type filter preserves five original bridge essays and the recorded capabilities bridge',selections()==bridges)
     page.locator('#listen-chapter').select_option('shared-archive')
-    check('Chapter and type filters compose through supplementary membership',page.locator('#listen-article option[value="'+slug+'"]').count()==1 and 0<page.locator('#listen-article option').count()<5)
+    check('Chapter and type filters compose through supplementary membership',page.locator('#listen-article option[value="'+slug+'"]').count()==1 and 0<page.locator('#listen-article option').count()<len(bridges))
     page.locator('#listen-search').fill('zzzz-not-found')
     check('Combined listening filter has a recoverable empty state',page.locator('#listen-article option').count()==0 and page.locator('#listen-load').is_disabled())
     page.locator('#listen-search').fill('');page.locator('#listen-chapter').select_option('');page.locator('#listen-kind').select_option('Developed article')
-    check('Principal-only listening preserves the original twenty-nine choices',page.locator('#listen-article option').count()==29)
+    check('Principal-only listening preserves twenty-nine original choices and six recorded additions',selections()==principal)
     page.locator('#listen-kind').select_option('Bridge study')
     slugs=page.locator('#listen-article option').evaluate_all('(els)=>els.map(e=>e.value)')
     for item in slugs:
@@ -49,7 +72,7 @@ def run_restoration_checks(page, ctx, open_page, check, OUT, BASE):
         page.wait_for_function('(s)=>document.querySelector("#product-workspace")?.dataset.articleReady===s',arg=item)
         check('Full bridge listening verifies its exact source: '+item,'hashes match' in page.locator('#listen-version').inner_text() and page.locator('.listen-paragraph').count()>15)
     page.locator('#listen-kind').select_option('');page.locator('#listen-search').fill('');page.locator('#listen-chapter').select_option('')
-    check('Clearing filters restores all forty-one complete studies',page.locator('#listen-article option').count()==41)
+    check('Clearing filters restores all forty-one complete studies',selections()==principal|bridges)
     page.locator('#product-workspace').evaluate('(el)=>el.scrollIntoView({block:"start"})');page.screenshot(path=str(OUT/'restoration-listening-mobile.png'))
     page.set_viewport_size({'width':1440,'height':1000})
     open_page(page,'connected-arguments');page.wait_for_selector('#connected-workspace[data-ready="true"]')

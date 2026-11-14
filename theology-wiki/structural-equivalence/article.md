@@ -1,0 +1,69 @@
+# Structural equivalence and the genealogy of ideas
+
+Micah Blumberg · October 26, 2026 · Edited explanation of the author's spoken account
+
+I use structural equivalence to investigate relationships that a comparison of words alone can miss. Two works may change their vocabulary, symbols, characters, or setting while retaining corresponding concepts and the relations among them. My aim is to make those correspondences explicit: translate or map the elements, identify partial equivalents, measure their concentration, and compare the architecture in which they operate. For historical texts, this supports a question central to the Theology Wiki: are we looking at unrelated inventions, or at members of an intellectual family whose forms have changed?
+
+## Signature clusters and narrative architecture
+
+A **signature cluster** is the matching set of partially equivalent concepts. In my current terminology, it is a **K-nearest-neighbor cluster** of equivalent ideas. The definition concerns which elements match after translation or mapping. It does not contain the entire argument about how those elements are organized.
+
+**Narrative architecture** is the distinct, higher-level structure: the roles, directed relations, ordering, and progression connecting the elements. Two works can share several ingredients while arranging them differently. Conversely, different names or images can occupy corresponding positions in a recognizable sequence. The matching set and the relational architecture must therefore be examined separately before they are combined.
+
+My method brings the count or density of partial equivalences together with that higher structural comparison. The intended inference concerns how plausible independent origin is under an explicit model. A distinctive concentration of matches with corresponding organization is more informative than an isolated resemblance. Partial equivalence is enough to investigate a family relationship; it does not require every feature of the compared works to be identical.
+
+I envisage results strong enough to meet a threshold such as five sigma when the model and evidence justify it. A count is not itself a probability, however. A likelihood, a Bayes factor, a posterior probability, and a sigma threshold are different quantities. The particular illustrative calculations discussed below do not supply a calibrated five-sigma result.
+
+## What plagiarism equivalence means
+
+My term **plagiarism equivalence** concerns a dependence-like relation inferred from outputs. The distinction is important: **“Plagiarism equivalent does not mean equivalent to plagiarism.”** I am not claiming access to the producing person's intention. The comparison is about the resulting body of concepts and its organization, not a finding that someone intentionally plagiarized.
+
+I propose an analogy with striking-similarity reasoning: an unusually distinctive correspondence might have evidential force without direct knowledge of a person's internal state. That is my proposed use of the comparison, not a legal determination. US copyright protects qualifying original expression rather than the underlying ideas, methods, or systems; a conceptual match alone cannot establish infringement. [US Copyright Office, Circular 33](https://www.copyright.gov/circs/circ33.pdf)
+
+## Scientific ideas and disputed invention
+
+The first application concerns my work in Super Information Theory and Self-Aware Networks, and my concern that later physics or neuroscience writing may express related ideas without attribution. Translating the concepts makes that concern examinable even when the language has changed. A useful comparison must show the actual correspondences and differences, rather than substitute an accusation for analysis.
+
+The second application is disputed independent invention. Newton and Leibniz provide an example of comparing mathematical content across different presentations. I recall more than thirty correspondences in the earlier work. The publicly preserved AI-assisted comparison contains a thirty-item rubric, claims approximately twenty-two effective independent items after grouping, and gives a seven-item core covering linearity, product and chain rules, rational powers, higher derivatives or Taylor structure, the fundamental theorem of calculus, and a first-order differential-equation example. Those are the earlier analysis's reported results; its grouping and assumed probabilities are not an independent historical adjudication. [Public Newton–Leibniz discussion](https://github.com/n5ro/gold/blob/main/Liebniz.md)
+
+The intended question is substantive: can equivalence in a developed body of work provide evidence against an account of entirely independent origin? Answering it requires distinguishing mathematical equivalence of presentations from the historical explanation of how those presentations arose.
+
+## Biblical narratives as members of a larger family
+
+The third application is the genealogy of historical books and religious narratives. My interpretation is that selected biblical and ancient Mesopotamian stories are not merely vaguely similar: they are partial-match genealogical relatives. Calling them family members does not mean that every teaching, institution, practice, or identity in Judaism is identical to every feature of an earlier tradition.
+
+The public EC-Myth discussion compares Atrahasis and the Utnapištim narrative in Gilgamesh XI with Genesis 6–9; selected Dilmun, Adapa, and Gilgamesh materials with Genesis 2–3; and the Sargon birth story with Exodus 2. Its flood example separately identifies a matching set and an ordered trace: decree, boat, bitumen, animals, birds, mountain, sacrifice, and sign. This is the distinction between a signature and narrative architecture in a concrete form. The same discussion labels its numerical run illustrative and supplies assumed probabilities; its follow-on quotation tables contain placeholders. Those specific outputs are not calibrated independent-origin probabilities. [Public EC-Myth discussion and templates](https://github.com/n5ro/gold/blob/main/Annunaki)
+
+The comparison must retain the differences among its witnesses. Sumerian and Akkadian are not interchangeable labels, and a surviving tablet's date is not automatically the composition date of its story. A composite assembled from different texts also needs to remain distinguishable from a sequence attested in one particular text. Those distinctions determine what relationship is being claimed.
+
+## Egyptian and Iranian religious relationships
+
+My account extends to portions of Zoroastrianism and Egyptian religion. I regard the correspondences as evidence of a family relationship rather than accept a categorical declaration of independent invention. The comparison includes Ma'at and Asha as formulations of cosmic truth or order; Isfet and Druj as disorder or falsehood; human moral participation in order; judgment after death; and light or solar symbolism. The question concerns a combination of functions, not the coincidence of one translated word.
+
+The existing Egyptian–Iranian study develops both that positive research direction and the distinctions needed to test it. Linguistic ancestry and conceptual borrowing are different questions. Early Iranian bridge passages must not be silently combined with later tribunal and scales accounts as though all belonged to one securely dated early doctrine. Lapis trade suggests opportunities for contact, not a record of which religious ideas traveled. [Ma'at, Asha, and an unrecorded connection](../comparative-religion/egypt-emanation/egypt-iran-contact.html)
+
+The earlier discussion is genuinely part of this investigation; my recollection of having confirmed nonindependence should not be erased because a particular reviewer has not recovered the complete supporting work. The presently recovered comparison does not itself supply a calibrated numerical run for this relationship. That is a specific limit of the material available for independent inspection, not a replacement of my position with a claim that no relationship exists.
+
+## Egyptian care Moses and Jesus on wealth
+
+The [Moses, Jesus and Mammon studies](../comparative-religion/egypt-emanation/moses-jesus-mammon/index.html) connect this investigation to ethical responsibility. Egyptian funerary self-presentation includes care for other people, as the studies discuss through the inscriptions of Iti and Neferiu. Mosaic obligations address social responsibilities, while Luke 16's story of the rich man and Lazarus explicitly appeals to Moses and the prophets.
+
+My constructive reading is that an obligation already present in the inherited teaching becomes consequential within an afterlife narrative. This is a more specific claim than saying that the stories share a concern with morality. It asks how responsibility, wealth, judgment, and continuity of teaching are related.
+
+The links are not all the same kind. A Gospel's explicit appeal to Moses differs from a proposed Egyptian contribution to later traditions. Seventh-year debt release is not simply interchangeable with Jubilee, and Egyptian evidence of moral care rules out reducing all Egyptian religion to exemption from responsibility. The full studies preserve these distinctions rather than assume an uninterrupted Egypt-to-Moses-to-Jesus chain.
+
+## State behavior and genocide equivalence
+
+The fourth application extends comparison to state behaviors and outcomes. Could explicit criteria identify partial equivalences in actions, their organization, and their consequences? I propose examining Nazi Germany as a historical comparator and Israeli state actions in Gaza as a comparison target.
+
+For this application I introduce **genocide equivalence**. As with my output-based use of plagiarism equivalence, I exclude knowing or assuming intention from the proposed calculation. The question is whether the actions and outcomes meet an expressly defined equivalence relation. This is a proposed application, not a completed score or finding that the two historical situations are identical. It does not presume that the states' actions have a shared genealogy.
+
+The subjects are governments, institutions, policies, and actions—not Jewish people or Judaism. A meaningful comparison must specify actors, periods, criteria, evidence, denominators, and material differences. The proposal does not turn a resemblance count into a legal verdict.
+
+The legal distinction is precise: Article II of the Genocide Convention combines specified acts with intent to destroy a protected group, wholly or partly, as such. An analysis that deliberately excludes intent cannot by itself establish that full legal definition. [Genocide Convention, Article II](https://treaties.un.org/doc/Publication/UNTS/Volume%2078/volume-78-I-1021-English.pdf)
+
+## Authorial confidence and independent assessment
+
+I do not accept relabeling my framework a heuristic simply because someone has not recovered the work on which my confidence rests. I have stated that I have already confirmed the content for myself. That position should be preserved accurately, alongside a clear account of which sources and results are actually available for another person to inspect.
+
+Independent assessment should examine explicit mappings, source passages, dependency grouping, mismatches, and alternative explanations. It should test the reference class and calibration used to interpret a score. A missing record in a bounded retrieval is not proof that an analysis never occurred; an author's confidence is not a substitute for presenting the analysis to a new reviewer. Keeping those questions separate allows the method and its applications to be discussed at their actual strength.
