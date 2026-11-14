@@ -22,3 +22,8 @@ test('conditional reconstruction distinguishes sources, sequence and chronology'
   const text = fs.readFileSync(path.join(__dirname, 'sources/hyksos-thera-and-exodus-memory.md'), 'utf8');
   for (const phrase of ['Micah Blumberg', '1510 BCE', 'after his reign', 'assigned to Ephraim', 'before the collective departure', 'above', 'not a fixed synchronism']) assert.ok(text.includes(phrase), phrase);
 });
+
+test('calf and chronology update retains competing witnesses and local limits', () => {
+ const text=fs.readFileSync(path.join(__dirname,'sources/hyksos-thera-and-exodus-memory.md'),'utf8');
+ for(const phrase of ['Deuteronomy 10:1–5','1492 BCE','local gate evidence',"Aaron's origin"]) { assert.ok(text.includes(phrase),phrase); }
+});
