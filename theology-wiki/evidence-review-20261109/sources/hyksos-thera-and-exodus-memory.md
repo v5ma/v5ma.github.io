@@ -290,6 +290,10 @@ The attachment's exclusive claims need narrowing. Avaris provides a particularly
 
 Finally, the city matrix does not establish that all the named cities were simultaneously fortified and burned, and the chronological section does not establish Thera as a concurrent trigger. Removing these universal claims preserves the comparative hypothesis's genuine strengths while making its direct-chain prediction testable. These distinctions connect to [the wiki's evidence method](evidence-and-editorial-method.html), [dating texts and inscriptions](linguistic-epigraphic-matrix.html), and [later historical portrayal](../jesus-resurrection-empire-20261109/pilate-from-roman-prefect-to-christian-memory.html). They compare methods, not identical historical causes.
 
+## Next study: the intervening centuries
+
+[Apiru, Amarna, and Israel: testing the Late Bronze bridge](apiru-amarna-and-israel-the-late-bronze-bridge.html) develops the proposed coalition’s continuity through Shechem, the Amarna letters and Merneptah. It distinguishes a positive regional-political precedent from demonstrated ancestry.
+
 ## Connected reading and correction record
 
 - [Editorial method](evidence-and-editorial-method.html): distinguish a research question, a source and a conclusion.

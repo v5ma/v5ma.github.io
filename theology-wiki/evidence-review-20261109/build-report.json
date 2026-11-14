@@ -1,63 +1,68 @@
 {
   "schema": 1,
   "date": "2026-11-14",
-  "pages": 8,
-  "searchSections": 68,
+  "pages": 9,
+  "searchSections": 77,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
-      "bytes": 9590,
-      "sha256": "2a8264289a1e8c7578fc97045dd841d5afc14dc908d9eb5e279204881175ecf5"
+      "bytes": 9672,
+      "sha256": "ba436d8bac14f02ab025701bc5fead24c826c8880f6e37564ce0409f8a7f77d4"
     },
     {
       "path": "revelation-and-symbolic-language.html",
-      "bytes": 8838,
-      "sha256": "a912b1aa9eeecabaf97e065de6f8d7ccd9e9e7974a30ca3838072bae29754ac3"
+      "bytes": 8920,
+      "sha256": "22f918ed59cb83b2c100eff66c65fb1afbde3659253b227401499a5436125992"
     },
     {
       "path": "dead-sea-scrolls-dating.html",
-      "bytes": 11759,
-      "sha256": "72d189510f39203e59ece96ed1dfac5bd893c731693dc9315f3923d23b606be2"
+      "bytes": 11841,
+      "sha256": "813f5bda52cf540c6c4ecda298fba1944ef3bda46f57b7897286618b25e97e68"
     },
     {
       "path": "linguistic-epigraphic-matrix.html",
-      "bytes": 10700,
-      "sha256": "896478b1c56769822bfe629bf7f3e96ab6248926e56fcad57d420fc1aad77795"
+      "bytes": 10782,
+      "sha256": "cf7fc36a4fcb63ba4db16529e7a38f04a51301d5e8546a2f1618acb2e4a4866f"
     },
     {
       "path": "why-christianity-spread.html",
-      "bytes": 9088,
-      "sha256": "b984ed0ced18b23cebdd425e874f3149846526cf0de42b2f5375e7678b8c95ee"
+      "bytes": 9170,
+      "sha256": "0434e8139bc5612e1b22df85d06c3785eae32873d26ec5ecfef305d388bcd195"
     },
     {
       "path": "paul-james-and-contested-authority.html",
-      "bytes": 16090,
-      "sha256": "67df9328eef265bf144080fb3c33114699885f9d3c1be5bd1b7c351fc939c3b0"
+      "bytes": 16172,
+      "sha256": "0b37545dc75e13d76f40f92c28539a4577059e46d247c0654ecefead7298e4c2"
     },
     {
       "path": "dan-mcclellan-texts-history-and-method.html",
-      "bytes": 18549,
-      "sha256": "341747d8ab4ea784d471b83320d8938774af7990c8e6f1e7ed9cb7747cf89c70"
+      "bytes": 18631,
+      "sha256": "18afd3ccbc035de41a4a7e260b4320199cd040cb4e8e64dca2a21e0bcc109188"
     },
     {
       "path": "hyksos-thera-and-exodus-memory.html",
-      "bytes": 69304,
-      "sha256": "93f5f865ed5133bc702baea8aa82f89de6d76d29a206187d31482c670eee9b01"
+      "bytes": 69887,
+      "sha256": "1da39d0e40ee1c734ae9a12cb838f4a9024c49b58f72134df6ab37c1c92b6cbf"
+    },
+    {
+      "path": "apiru-amarna-and-israel-the-late-bronze-bridge.html",
+      "bytes": 17114,
+      "sha256": "36f74115044e0e43fa1544b80104666f9f8334279ecbbeb35e31073edb9ad39d"
     },
     {
       "path": "index.html",
-      "bytes": 6826,
-      "sha256": "5c8d5954474e08c0de1177405d34d87b7b925fd656cef378cc993b6ad312523f"
+      "bytes": 7343,
+      "sha256": "af4347740eeafc706e3fd187fc1a3e792982fabc17cadd9bcc2c08ceebe5664c"
     },
     {
       "path": "search-index.json",
-      "bytes": 120307,
-      "sha256": "435ed86d127ef7e184d2c6c497d0fc5415236b955d3fefc8efac8db802a72091"
+      "bytes": 134629,
+      "sha256": "924a71c2f3182c2a6b3d3a3f769bc4e4353712a9e20e23ae7b3296b8ab2b6d50"
     },
     {
       "path": "search-data.js",
-      "bytes": 117881,
-      "sha256": "7f88911f1daca0d895ec45d64dd67ca8525b0753f97944c3d238c031b7d051bf"
+      "bytes": 131879,
+      "sha256": "bb614bc5122595bd05bda28d1669089605ed26c1f754a0dce764e898e2eedfc0"
     },
     {
       "path": "reader-guide.js",

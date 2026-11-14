@@ -232,6 +232,55 @@
       "after": "b56e58eb2cec56231d8ddeff9b6a77bcce611fc37c0158aaa91f93ac4152a52e",
       "baseRevision": "ad41422a893c5891f53b2a77bf22515785502d0e",
       "reason": "User-requested city-by-city evidence comparison updates the Latest summary; archived source transcripts unchanged."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/revelation-and-symbolic-language.html",
+      "before": "a912b1aa9eeecabaf97e065de6f8d7ccd9e9e7974a30ca3838072bae29754ac3",
+      "after": "22f918ed59cb83b2c100eff66c65fb1afbde3659253b227401499a5436125992",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/linguistic-epigraphic-matrix.html",
+      "before": "896478b1c56769822bfe629bf7f3e96ab6248926e56fcad57d420fc1aad77795",
+      "after": "cf7fc36a4fcb63ba4db16529e7a38f04a51301d5e8546a2f1618acb2e4a4866f",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/why-christianity-spread.html",
+      "before": "b984ed0ced18b23cebdd425e874f3149846526cf0de42b2f5375e7678b8c95ee",
+      "after": "0434e8139bc5612e1b22df85d06c3785eae32873d26ec5ecfef305d388bcd195",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/index.html",
+      "before": "5c8d5954474e08c0de1177405d34d87b7b925fd656cef378cc993b6ad312523f",
+      "after": "af4347740eeafc706e3fd187fc1a3e792982fabc17cadd9bcc2c08ceebe5664c",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/evidence-and-editorial-method.html",
+      "before": "2a8264289a1e8c7578fc97045dd841d5afc14dc908d9eb5e279204881175ecf5",
+      "after": "ba436d8bac14f02ab025701bc5fead24c826c8880f6e37564ce0409f8a7f77d4",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "before": "72d189510f39203e59ece96ed1dfac5bd893c731693dc9315f3923d23b606be2",
+      "after": "813f5bda52cf540c6c4ecda298fba1944ef3bda46f57b7897286618b25e97e68",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
+    },
+    {
+      "path": "theology-wiki/latest/index.html",
+      "before": "b56e58eb2cec56231d8ddeff9b6a77bcce611fc37c0158aaa91f93ac4152a52e",
+      "after": "929f8fb3164b973cc4d3a6fb3b0af6a9aaf4dabc3c89633c9a9275cfe28e8731",
+      "baseRevision": "3a4accb872c30ce5412d412974f94d8a226a56fd",
+      "reason": "User requested new Late Bronze bridge study; add series navigation and Latest discovery while preserving editorial source records."
     }
   ]
 }
