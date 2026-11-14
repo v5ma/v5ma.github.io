@@ -1,83 +1,88 @@
 {
   "schema": 1,
   "date": "2026-11-14",
-  "pages": 12,
-  "searchSections": 106,
+  "pages": 13,
+  "searchSections": 112,
   "outputs": [
     {
       "path": "evidence-and-editorial-method.html",
-      "bytes": 9872,
-      "sha256": "148003e99d7a8df09d62883a67e55f948a15da3986f613d570bf53cc712cf77e"
+      "bytes": 10188,
+      "sha256": "25969a3ad005403c5db23d25174b3e7da51aaf7fd14b2f92b50c3b8680833f35"
     },
     {
       "path": "revelation-and-symbolic-language.html",
-      "bytes": 9120,
-      "sha256": "9371463211f0f156d9f054e1662693571f0d94b133595f59614b2c97d3a60120"
+      "bytes": 9194,
+      "sha256": "d978609dfe057fc344270dd012aded0e2fa6ee600948c5f153490807db08a524"
     },
     {
       "path": "dead-sea-scrolls-dating.html",
-      "bytes": 12300,
-      "sha256": "ee746297ee2f559db0d00b44fe86ffbd48345454e7b7cd1e845bfc40c732734a"
+      "bytes": 12374,
+      "sha256": "d21dbfb8fd54e5ff186ef1cf051c752c7d4ce257a66382985774efee12e64813"
     },
     {
       "path": "linguistic-epigraphic-matrix.html",
-      "bytes": 10982,
-      "sha256": "263bdaa4567f00f6f37a062f7138db27d86631aae5c11dfa44da9a979e51515c"
+      "bytes": 11056,
+      "sha256": "dcfaa6f4a2a80163ac08360489b29596ccd59a8b1f2ac1c3df5ed9fde8269ebf"
     },
     {
       "path": "why-christianity-spread.html",
-      "bytes": 9370,
-      "sha256": "2d43299930b9c3be0fc6fb52c0d9e56bcedad60228af3cfd0d1682ffe6528c67"
+      "bytes": 9444,
+      "sha256": "5e767213edcf52478fcdebbbc5c64ff1e32a35434d2ff2e314afc0cbe5ada05c"
     },
     {
       "path": "paul-james-and-contested-authority.html",
-      "bytes": 16801,
-      "sha256": "8803ed0b1b0a4dc8b355c06a70e3de6279531cffe5558953c3a416f8b4d47b7a"
+      "bytes": 16875,
+      "sha256": "a48d8c79d5e318ccaa61558d2f9e442a801c2a4b6a26ab16ffde233af98c949b"
     },
     {
       "path": "dan-mcclellan-texts-history-and-method.html",
-      "bytes": 18831,
-      "sha256": "a8d00f266e0fed4aaefc67be836139df390decbae10dcabf08697a83dddbf6bc"
+      "bytes": 18905,
+      "sha256": "fecbdc681d70ebb40773e5add998a99f8c85a3c51d4a265d454bdad3aa16226b"
     },
     {
       "path": "hyksos-thera-and-exodus-memory.html",
-      "bytes": 78578,
-      "sha256": "7062aa7b91f11347831040f5c2f2f3fda9281a29ee6c0e3f672fc864b43a1e88"
+      "bytes": 80796,
+      "sha256": "dcc050cb0f63232a97c773f382fc0cea05d5300353f27e32b5bed03e4dd36dca"
     },
     {
       "path": "apiru-amarna-and-israel-the-late-bronze-bridge.html",
-      "bytes": 27378,
-      "sha256": "794b05db70ccc35b198b90b423a80d282cb2966d50d3b41b775ab2c7f392be24"
+      "bytes": 27452,
+      "sha256": "a85e94c7a0ed36cf026420f7165499bd4cc5f32b185c9949e4cd27c7f1552d2b"
     },
     {
       "path": "deborah-jael-and-the-kenite-memory.html",
-      "bytes": 19617,
-      "sha256": "d3a0cf4c482402a9f89a541226097d94949ae82eea9d47ed250f7a03d01ac207"
+      "bytes": 19691,
+      "sha256": "5f9d7e0e528bed91e2ae2031c3b65b198efc12e427fbf2d14f124c1b24fbad67"
     },
     {
       "path": "james-tabor-jesus-paul-and-james.html",
-      "bytes": 15666,
-      "sha256": "36399b607824aa12d11049b27846da57da5ec25e83d72bcab188e4ea8a8a0bfd"
+      "bytes": 16060,
+      "sha256": "a5a02fc80edf5b442969ad5f0e72e511e329512d3efaf4c5f773db737273ddd6"
     },
     {
       "path": "john-qumran-baptist-and-signs.html",
-      "bytes": 15533,
-      "sha256": "28196cb626b572d8f48c2416be10d89388dc6558fe0624370cc8c4109b5d9990"
+      "bytes": 17301,
+      "sha256": "4d0f9afc7148c602999cb2fedf01c6a61d25839bfcb684890187a1e19348a787"
+    },
+    {
+      "path": "cultural-memory-without-false-certainty.html",
+      "bytes": 13051,
+      "sha256": "05342d81eb68d9c8b316508f6da63e79291422dc02a8956994defe6bef971b4c"
     },
     {
       "path": "index.html",
-      "bytes": 8797,
-      "sha256": "ceefb10c6e6bdab23e45b90b86b468445ee5021b5c9141c318c097c09df20b08"
+      "bytes": 9317,
+      "sha256": "109187c60f4c6e7dc2523f0442aae99c1289ff24153a25d0e37e118bce32b786"
     },
     {
       "path": "search-index.json",
-      "bytes": 191400,
-      "sha256": "9ddf22ab9284b439a03531bc3a1c45587bfc511f458fa1d501c96d6cdd8124a5"
+      "bytes": 205161,
+      "sha256": "b14416b0eadd0e9051b98aea5fcaa46351f8d57714fb1af077f76daa643e3e31"
     },
     {
       "path": "search-data.js",
-      "bytes": 187606,
-      "sha256": "1ecdb5ea38664ad4974c0ec05bbfe711e06cc1ea660c8cb5fde0263499171932"
+      "bytes": 201151,
+      "sha256": "7a8805029e778ea4d2d8576df6057b79cd8067139866fff46a9a6103ee126957"
     },
     {
       "path": "reader-guide.js",

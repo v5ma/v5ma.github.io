@@ -4,7 +4,7 @@
 
 The Fourth Gospel can be investigated through three connected questions: how its language resembles Jewish texts from Qumran; whether followers of John the Baptist could have transmitted traditions into the Jesus movement; and whether a source underlying its signs narratives predates its final composition. None of these questions requires the answer to the other two to be settled first. Shared language is not proof of institutional membership, and an earlier source is not the same thing as an earlier completed Gospel.
 
-Micah Blumberg supplied two John-focused syntheses on November 14, 2026. They motivate this inquiry but are not identified scholarly publications or James Tabor transcripts. The [Tabor companion](james-tabor-jesus-paul-and-james.html) attributes his Jesus–Paul–James argument separately. This page does not attribute the following hypotheses to him merely because they arose in the same discussion.
+Micah Blumberg supplied two John-focused syntheses on November 14, 2026. Micah identifies the surrounding discussion as his exchanges with Gemini and this assistant. These syntheses motivate this inquiry but are not identified scholarly publications or James Tabor transcripts. The [Tabor companion](james-tabor-jesus-paul-and-james.html) attributes his Jesus–Paul–James argument separately. This page does not attribute the following hypotheses to him merely because they arose in the same discussion.
 
 ## The specific John–Community Rule comparisons
 
@@ -46,6 +46,10 @@ John 9:22, 12:42 and 16:2 raise another question, conflict over exclusion from s
 
 Finally, incarnation and bodily appearance matter: John 1:14 describes the Word becoming flesh, and John 20 narrates wounds and an invitation to touch. But the more explicit rejection of denying Christ's coming in flesh occurs in 1 John 4:2–3 and 2 John 7. Gospel and epistles are related material, not interchangeable documents. Nor should John 21's breakfast be cited as an explicit statement that Jesus ate fish: that explicit eating scene is Luke 24:42–43. Such precision makes a proposed anti-docetic reading testable rather than all-purpose.
 
+Two further comparisons deserve specific attention. Elliot Wolfson's [discussion of Qumran knowledge traditions](https://www.academia.edu/3335498/Seven_Mysteries_of_Knowledge_Qumran_E_sotericism_Reconsidered), p. 200, treats 1QS 11:11 as placing all existence within divine knowledge and design. That can be compared with creation through the Logos in John 1:3, without making the expressions identical theology or proving direct borrowing. Van Kooten's [2025 study of John 5:2](https://www.cambridge.org/core/journals/new-testament-studies/article/pre70-ce-dating-of-the-gospel-of-john-there-is-in-jerusalem-a-pool-which-has-five-porticoes-52/6EB521B72901E535E1BB31A1A1473C94) argues that the pool's present-tense description supports composition before 70. That is a specific linguistic and historical argument, not simply archaeological proof of the date of the entire Gospel; the possibility of earlier remembered or source material remains a competing explanation to evaluate.
+
+The supplied discussion also raises Peter and the Beloved Disciple: do their contrasts express rivalry, complementary authority, or both? This remains a focused research question here. Literary contrast alone cannot reconstruct a hostile community. These questions and scholarly proposals are not attributed to Tabor.
+
 ## What this contributes to the Wiki
 
 The strongest result is a research map: Jewish parallels challenge a simplistic Greek-versus-Jewish opposition; Baptist disciples provide a narrative connection without proving Essene membership; source criticism distinguishes earlier material from the date of a finished Gospel; and attributed polemic theories preserve disagreements rather than collapse them into one origin story.
@@ -53,3 +57,5 @@ The strongest result is a research map: Jewish parallels challenge a simplistic 
 Read alongside [Tabor on James and Paul](james-tabor-jesus-paul-and-james.html), [contested Christian authority](paul-james-and-contested-authority.html), [DSS and Jewish diversity](../jesus-resurrection-empire-20261109/dead-sea-scrolls-jewish-diversity-and-empire.html), and the [evidence method](evidence-and-editorial-method.html). These are comparison routes, not claims that their authors endorse a single genealogy.
 
 Review status: source-checked editorial synthesis, November 14, 2026; not independently peer-reviewed. No full manuscript collation or proof of direct Qumran transmission is claimed. Full assessment of Fortna and competing reconstructions, the date of John, and the historical setting of its conflicts remains open.
+
+For the shared research method behind these comparisons, see [Cultural memory without false certainty](cultural-memory-without-false-certainty.html): positive hypotheses, missing evidence and distinct kinds of transmission.

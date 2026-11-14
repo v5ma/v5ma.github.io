@@ -55,3 +55,6 @@ Compare [Dan McClellan on texts, history, and the words of Jesus](dan-mcclellan-
 ## Chronology and cultural memory
 
 [Hyksos, Thera, and Exodus](hyksos-thera-and-exodus-memory.html) applies this method to an earlier-conquest proposal: chronological overlap, historical identification and cultural transmission require different evidence.
+
+
+For the shared research method behind these comparisons, see [Cultural memory without false certainty](cultural-memory-without-false-certainty.html): positive hypotheses, missing evidence and distinct kinds of transmission.
