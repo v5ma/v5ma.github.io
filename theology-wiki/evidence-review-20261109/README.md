@@ -15,3 +15,8 @@ Rollback: revert the scoped evidence-edition commit on top of current master, ra
 ## November 10 extension
 
 Added a sixth study, Paul, James and contested authority, and four archive companions. Primary witnesses, later reception and modern interpretations remain distinct. Manifest-driven navigation and search include the new source.
+
+
+## Dan McClellan summary, November 14, 2026
+
+The seventh study summarizes a supplied response-video transcript, carefully separating McClellan's arguments, the other speaker's remarks and editorial qualifications. Original recording URL/date are not yet verified; no full transcript is republished and no endorsement is claimed. Canonical prose is sources/dan-mcclellan-texts-history-and-method.md. The existing builder produces its reader page, local search sections and navigation; the editorial-method page provides a reciprocal contextual link and Latest provides a release entry. No archived conversations or principal-reader source/narration files are changed. Global discovery and connection graph regeneration are separate from this scoped publication.

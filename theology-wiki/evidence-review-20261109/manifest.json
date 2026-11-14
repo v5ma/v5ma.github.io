@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "publicationDate": "2026-11-10",
+  "publicationDate": "2026-11-14",
   "status": "Source-checked editorial working edition; not independently peer-reviewed",
   "pages": [
     {
@@ -38,6 +38,12 @@
       "title": "Paul, James and contested authority",
       "navLabel": "Paul and James",
       "summary": "Compare Paul's account of agreement and conflict, Acts' narrative, James on faith and works, and later anti-Pauline testimony without collapsing their dates or voices."
+    },
+    {
+      "slug": "dan-mcclellan-texts-history-and-method",
+      "title": "Dan McClellan on texts, history, and the words of Jesus",
+      "navLabel": "Dan McClellan",
+      "summary": "An attributed summary distinguishing manuscript preservation, historical attribution, literary dependence and modern interpretation."
     }
   ],
   "archiveCompanions": {

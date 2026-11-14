@@ -35,7 +35,7 @@ The [linguistic and epigraphic matrix](linguistic-epigraphic-matrix.html) demons
 
 Original conversations, speaker labels, turn links and source integrity checks remain available. New editorial summaries are linked alongside them; they do not silently replace the archived words. A historical transcript is useful for reconstructing how a question developed, not as a substitute for the sources required to answer it.
 
-This expanded evidence edition covers six guides and studies, not a completed claim-by-claim review of all 354 archived conversations. Other developed articles retain their own stated evidence and review status. The general archive warning applies to every conversation, while the new claim-specific companion links cover Revelation, the Dead Sea Scrolls, the Gmirkin discussion, and selected Paul/James comparisons.
+This expanded evidence edition covers seven guides and studies, not a completed claim-by-claim review of all 354 archived conversations. Other developed articles retain their own stated evidence and review status. The general archive warning applies to every conversation, while the new claim-specific companion links cover Revelation, the Dead Sea Scrolls, the Gmirkin discussion, and selected Paul/James comparisons.
 
 ## Review status and corrections
 
@@ -48,3 +48,6 @@ A useful correction identifies the page, disputed sentence, proposed revision an
 Start with the [evidence studies](index.html). Use the existing [explained connection graph](../san-reader.html?page=connections) to follow relationships, or the [book argument map](../san-reader.html?page=connected-arguments) for longer reading paths. Graph edges represent stated reading relationships, not independent proof of historical dependence.
 
 Compare [Paul, James and contested authority](paul-james-and-contested-authority.html) for a worked example of distinguishing participant testimony, later narrative, disputed attribution and subsequent reception.
+
+
+Compare [Dan McClellan on texts, history, and the words of Jesus](dan-mcclellan-texts-history-and-method.html) for an attributed discussion of why manuscript agreement, historical authenticity and modern moral application answer different questions. His preferred reconstructions remain distinguished from the method itself.
