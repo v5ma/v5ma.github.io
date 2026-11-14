@@ -49,3 +49,5 @@ test('EA 288 comparison retains grammatical alternatives and rhetoric',()=>{cons
 
 
 test('Tabor attribution and John source hypotheses remain distinct',()=>{const t=read('sources/james-tabor-jesus-paul-and-james.md'),j=read('sources/john-qumran-baptist-and-signs.md');for(const x of ['not a text written or approved by him','ethics are close','word for word','1 Corinthians 15:3–11'])assert.ok(t.includes(x),x);for(const x of ['1QS 3:13–4:26','not a recovered manuscript','Mandaean','Fortna'])assert.ok(j.includes(x),x);});
+
+test('Egyptian awareness and Sheol do not imply Mosaic adoption or rejection',()=>{const s=read('sources/hyksos-thera-and-exodus-memory.md');for(const x of ['awareness and adoption','Acts 7:22','not a surviving Egyptian school record','Ecclesiastes 9:10','Isaiah 14:9–11','Daniel 12:2','deliberate-rejection'])assert.ok(s.includes(x),x);});
