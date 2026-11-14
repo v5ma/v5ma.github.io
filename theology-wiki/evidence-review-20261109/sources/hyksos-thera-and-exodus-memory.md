@@ -4,7 +4,7 @@
 
 **Working conclusion:** These are worth investigating as two different hypotheses. An earlier destruction at Jericho creates a chronological comparison, not an identification of Joshua's army. A Hyksos contribution to later Exodus memory is a possible transmission hypothesis, not proof that the Hyksos and Israelites were the same population. Neither question is settled by assigning every event to approximately 1550 BCE.
 
-**Review status:** Evidence-led editorial study, not independently peer-reviewed. The supplied discussion is the starting question, not a scholarly source. Its numbered citation placeholders were not recoverable references; the sources below replace them. This is not an article by, or attributed to, Dan McClellan.
+**Review status:** Evidence-led editorial study, not independently peer-reviewed. The supplied discussion is the starting question, not a scholarly source. Its numbered citation placeholders were not recoverable references; the sources below replace them.
 
 ## Three claims that need different tests
 
@@ -28,13 +28,72 @@ Short-lived cereal grains from the end of Middle Bronze Jericho were radiocarbon
 
 This supports the question's important starting point: an earlier horizon deserves consideration rather than testing only a thirteenth-century scenario. It does not tell us whether the attackers were Egyptians, local rivals, a group ancestral to Israel, or another force. Nor does a burned city establish the narrative mechanism in Joshua 6. The next test must compare the whole proposed itinerary and sequence, including inconvenient sites, rather than selecting the best match.
 
-## Why a thirteen-city claim needs a site-by-site audit
+## City-by-city comparison: what improves, and what does not
 
-The supplied discussion did not provide the list behind the claim about thirteen cities. It also grouped Jericho, Hazor, Shechem, Megiddo and Lachish into a single destruction wave. This page does not reproduce that grouping as an established result.
+Blumberg's follow-up supplies named sites, making the earlier-chronology proposal more testable. The important positive observation survives: several places have substantial Middle Bronze occupation and destruction evidence. But occupation, fortification, burning, abandonment and the identity of an attacker are different observations. This selected-site comparison is not a statistical score for Joshua's historicity.
 
-Research on the Middle-to-Late Bronze transition explicitly questions a single synchronous collapse. Eshel and colleagues discuss radiocarbon evidence for a prolonged sequence of Canaanite destructions, including dates before the conventional Hyksos expulsion. Their study concerns silver hoards and regional connections, not proof of a biblical campaign. [Eshel et al., 2023, historical background](https://www.sciencedirect.com/science/article/pii/S0305440322001637).
+**Define the textual prediction first.** Joshua 6 and 8 describe burning Jericho and Ai; Joshua 11:10–13 singles out Hazor's burning among the northern mound-cities. A conquest list does not predict a city-wide fire at every place. Gibeon negotiates in Joshua 9, while Shiloh is the assembly and sanctuary location of Joshua 18:1, not a city Joshua is said to destroy. The approach traditions in Numbers must likewise be distinguished from Joshua's campaigns. [Joshua 11:13–15](https://www.biblegateway.com/passage/?search=Joshua+11%3A13-15&version=KJV); [Joshua 18:1](https://www.biblegateway.com/passage/?search=Joshua+18%3A1&version=KJV).
 
-A useful next-stage matrix would give each named site its proposed identification, excavated stratum, occupation history, destruction evidence, dating method, confidence range and competing explanation. Ai requires special attention to the identification of the biblical place before any alternative chronology is assessed. A different proposed location cannot silently inherit et-Tell's excavation results. No complete thirteen-city audit has been performed for this page.
+### Jericho / Tell es-Sultan
+
+**Evidence:** A substantial fortified Middle Bronze city ended in destruction; its short-lived grain samples are discussed above. **Assessment:** A legitimate earlier-horizon comparison, not a demonstrated Joshua event. Burned stored grain does not by itself establish the precise season of the attack, the sequence of all wall collapses, or a particular siege length. The thirteenth-century comparison also needs care: Nigro's 2026 reconstruction argues for a reduced, refortified Late Bronze settlement continuing into the early thirteenth century, following an earlier period of near-abandonment. Attribute that reconstruction rather than describing the entire Late Bronze period as empty. [Nigro, 2026, The Spring Hill at Tell es-Sultan in the Late Bronze Age](https://www.academia.edu/178884962/Nigro_2026_SA_32_1_The_Spring_Hill_at_Tell_es_Sultan_in_the_Late_Bronze_Age).
+
+### Hazor / Tel Hazor
+
+**Evidence:** A major fortified Middle Bronze center, with a terminal Middle Bronze destruction before its Late Bronze sequence. **Assessment:** Do not convert “Stratum XVI, 1550 BCE” into an independently measured exact date. Shaar and colleagues explain their initial chronological assignment and modeling assumptions; their treatment of XVI–XVII covers a broad interval. Hazor also had substantial Late Bronze occupation, so it is not simply an empty thirteenth-century city. [Shaar et al., 2020, section 2.1 and Table 2](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020GC009251).
+
+### Hebron / Tel Rumeida
+
+**Evidence:** Excavated Middle Bronze II–III fortifications and a published cuneiform sheep-account tablet support a substantial administered settlement. **Assessment:** Neither establishes a destruction specifically in 1550–1500 BCE. One tablet should not silently become an extensive administrative archive. [Eisenberg and Ben-Shlomo excavation report](https://hadashot.iaa.org.il/Report_Detail_Eng.aspx?id=24926&mag_id=124); [Anbar and Na’aman, An Account Tablet of Sheep from Ancient Hebron](https://www.academia.edu/12932470/An_Account_Tablet_of_Sheep_from_Ancient_Hebron_Tel_Aviv_13_14_1986_1987_pp_3_12_co_author_Moshe_Anbar_).
+
+### Bethel / Beitin
+
+**Evidence:** Research describes Middle Bronze fortification, a Late Bronze I gap and renewed Late Bronze II occupation. **Assessment:** This supports an earlier occupied setting, not a securely dated 1550 BCE conflagration. It also prevents treating all thirteenth-century Bethel as absent. [Finkelstein and Singer-Avitz, 2009, Reevaluating Bethel](https://www.academia.edu/1070692/Finkelstein_I_and_Singer_Avitz_L_2009_Reevaluating_Bethel_ZDPV_125_33_48); [Finkelstein, 1993, pp. 115–116](https://www.academia.edu/1963172/Finkelstein_I_1993_The_Sociopolitical_Organization_of_the_Central_Hill_Country_in_the_Second_Millennium_B_C_E_In_Biran_A_and_Aviram_J_eds_Biblical_Archaeology_Today_1990_Pre_Congress_Symposium_Supplement_Jerusalem_110_131).
+
+### Shiloh
+
+**Evidence:** The excavators describe monumental Middle Bronze IIC Stratum VII and burning/debris; their pottery chronology placed its end somewhere in the sixteenth century BCE. **Assessment:** Relevant regional background, but not a direct match to a Joshua destruction story. Do not conflate it with Shiloh's much later Iron Age destruction. [Finkelstein et al., 1985, Excavations at Shiloh 1981–1984, pp. 158–164](https://doi.org/10.1179/tav.1985.1985.2.123).
+
+### Debir candidate / Tell Beit Mirsim
+
+**Evidence:** A substantial Middle Bronze settlement; Stratum D is assigned to the final Middle Bronze phase in conventional treatments. **Assessment:** The identification with Debir is contested, notably by the proposal for Khirbet Rabud. The exact fire description and modern absolute date for the claimed Stratum D destruction remain unverified in this review, so this row is not scored as a confirmed 1550 BCE conquest. [Albright’s original excavation publication](https://tpsalomonreinach.mom.fr/files/original/3e9ba4b9c94e424c7a8de8e9eaa9013ee64504f4.pdf); [Kochavi, Khirbet Rabûd = Debir, 1974](https://doi.org/10.1179/033443574788593494). The latter’s bibliographic identification was checked; publisher full text was inaccessible.
+
+### Gibeon / el-Jib
+
+**Evidence:** Middle Bronze activity and tombs are documented. Settlement levels and funerary use are different kinds of evidence: a 2025 excavation report discusses Late Bronze burials near el-Jib despite the absence of recorded Late Bronze occupation levels on the mound. **Assessment:** “No thirteenth-century remains” is too broad. An absence of a destruction layer is compatible with a treaty but does not independently establish one; ordinary abandonment or incomplete excavation can produce the same observation. The newly published nearby cave is Late Bronze I, not proof of thirteenth-century urban occupation. [Regev et al., 2025](https://publications.iaa.org.il/atiqot/vol117/iss1/2/).
+
+### Ai candidate / et-Tell
+
+**Evidence:** The standard excavation-based sequence places a major Early Bronze city before a long gap and later Iron Age resettlement, not a demonstrated Middle Bronze city awaiting conquest. Even Bimson's defense of an alternative conquest chronology acknowledges the excavation problem and argues over the site's identification. **Assessment:** Moving the date alone does not solve et-Tell. Alternative sites must independently satisfy geography, occupation and dating, rather than being selected merely because et-Tell is inconvenient. [Bimson, Redating the Exodus and Conquest, second edition, section 7.3, pp. 201–209](https://biblicalarchaeology.gospelstudies.org.uk/pdf/bimson/redating-the-exodus-and-conquest_bimson.pdf). Callaway's [1976 excavation report](https://doi.org/10.2307/3209413) is a primary follow-up reference; its full text was not accessible in this review.
+
+### Arad / Tel Arad, and the Malhata–Masos alternatives
+
+**Evidence:** Tel Arad has the well-established Early Bronze city and later Iron Age fortress, not an established Middle Bronze IIC urban center. **Assessment:** An earlier date alone does not create a city at this mound. Proposals connecting Arad with Tel Malhata and Hormah with Tel Masos change the geographical hypothesis and require their own evidence; Hormah is not a securely identified extra match to add to a tally. [IAA site excavation report](https://publications.iaa.org.il/ha-esi/vol138/iss1/76/); [Bimson and Livingston’s published comparison chart](https://library.biblicalarchaeology.org/sidebar/biblical-tradition-and-the-archaeological-record/). The chart records the proponents’ case, not current consensus.
+
+### Heshbon candidate / Tell Hesban (Tall Hisban)
+
+**Evidence:** The expedition's published stratigraphic sequence documents Iron Age layers; a securely identified Middle Bronze urban destruction matching Sihon's capital is not established by the project materials consulted here. **Assessment:** This is a remaining evidential problem, not proof that the whole surrounding region was unoccupied. Nearby sites and changing place-name identifications must be examined separately. [Madaba Plains Project's Hesban publication series, especially volumes 5, 6 and 11](https://madabaplains.org/hisban/research/hesban-series/). The full specialist pottery volume has not been audited for this page.
+
+### Dibon / Dhiban
+
+**Evidence:** The excavation project's public account describes intermittent settlement, identifying Early Bronze, Iron Age and later remains; it does not establish a fortified Middle Bronze IIC city with a conquest destruction. **Assessment:** No positive match established here. This limited conclusion is safer than asserting that no Middle Bronze material has ever occurred anywhere at or near Dhiban. Its disturbed contexts and changing settlement footprint require attention. [Dhiban Excavation and Development Project](https://opencontext.org/projects/01d080df-2f6b-4f59-bcf0-87543ac89574).
+
+### Lachish / Tel Lachish
+
+**Evidence:** End-Middle-Bronze destruction is documented. The Austrian-Israeli excavation report explicitly includes Lachish among sites with prominent transition destructions. **Assessment:** Lachish is not a clean negative case, contrary to the supplied comparison. Whether every sector burned, the precise date, synchronism with other sites and the responsible attackers are further questions. The report distinguishes a conventional chronological framework from the need to test it. [IAA Austrian-Israeli excavation report, 2022](https://hadashot.iaa.org.il/report_detail_eng.aspx?id=26125&mag_id=134). Later radiocarbon work also revises an alleged Late Bronze occupation gap, showing why categorical occupancy summaries need updating. [Webster et al., radiocarbon assessment](https://www.cambridge.org/core/journals/radiocarbon/article/new-radiocarbonbased-assessment-supports-the-prominence-of-tel-lachish-during-late-bronze-age-ibiia/DB5BD324428E314F2BFC324C391BE5F2).
+
+## What a fair archaeological comparison would require
+
+The cited evidence does not justify repeating “thirteen of sixteen cities” as a verified Dever/Finkelstein statistic. The exact publication, page, site list and counting rule were not supplied. The comparison must not mix **no settlement**, **no fortification**, **no fire**, and **uncertain identification** into one negative category. Nor should a Middle Bronze positive count combine fortified occupation at one site, burning at another and a treaty inferred from silence at a third.
+
+Middle Bronze IIC, Middle Bronze III and their calendar boundaries also vary across chronological schemes. Bimson's argument is especially easy to misstate: he advocated revising the absolute date of the end-Middle-Bronze horizon toward the fifteenth century, not simply accepting every conventional 1550 date and moving Joshua to it. His relocation proposals and his redating proposal are separate assumptions. [Bimson, chapters 4–6 and 7.3](https://biblicalarchaeology.gospelstudies.org.uk/pdf/bimson/redating-the-exodus-and-conquest_bimson.pdf).
+
+A reproducible comparison should preregister the sites and identifications, the biblical observation predicted at each, the permissible date ranges, and how to count unknowns. The same criteria should then be applied to both an earlier and a later chronology. The unverified “over eighty percent” highland-abandonment figure is not used here without its survey denominator, regional boundaries and dating method.
+
+**Egyptian power is important, but not a universal destruction label.** Egyptian military expansion and later imperial control are indispensable context. Yet the extent and mechanisms of control changed over time: local rulers and Egyptian administration coexisted. Fourteenth-century Amarna correspondence cannot, by itself, date a sixteenth-century destruction or prove continuous direct government of every town from 1550 onward. [Faust, An Imperial Encounter, 2023](https://www.academia.edu/107004984/Faust_A_2023_An_Imperial_Encounter_The_Egyptian_Empire_in_Canaan_Highland_Ethnogenesis_and_the_Transformation_of_History_in_Sara_Mohr_and_Shane_Thompson_eds_Power_and_Identity_at_the_Margins_of_the_Ancient_Near_East_Colorado_University_Press_of_Colorado_pp_14_41).
+
+Independent regional dating also challenges a single destruction wave: Eshel and colleagues discuss a prolonged Middle-to-Late Bronze transition rather than all cities falling together. [Eshel et al., 2023](https://www.sciencedirect.com/science/article/pii/S0305440322001637). Memories of ruined cities, Egyptian domination and later highland communities **could** have contributed to conquest traditions, but that is the transmission hypothesis to investigate, not the archaeological result already obtained.
+
 
 ## What the Egyptian evidence actually contributes
 
@@ -73,4 +132,4 @@ The supplied discussion named Jan Assmann and Donald Redford, but gave no identi
 - [Pilate and Christian memory](../jesus-resurrection-empire-20261109/pilate-from-roman-prefect-to-christian-memory.html): compare later portrayal with evidence about earlier events. This is a methodological connection, not a shared historical cause.
 - [Eusebius, Bauer and competing histories](../jesus-resurrection-empire-20261109/eusebius-bauer-orthodoxy-and-heresy.html): ask how retrospective histories organize origins and authority.
 
-**Corrections to the supplied discussion:** no fixed Thera-to-Exodus interval; no verified list of thirteen cities; no single proven 1550 BCE conquest horizon; no automatic equation of Hyksos with Israelites; no claim that Egyptian responsibility for every destruction is settled. The underlying possibility of older Egyptian-Levantine memories contributing to Exodus remains an open research question rather than being discarded with those overstatements.
+**Corrections and update record:** The first edition separated chronology from identity. The city-by-city update adds the named sites, corrects Lachish’s treatment as a negative case, distinguishes settlement from tomb evidence at Gibeon, and separates Shiloh from Joshua’s destruction targets. No fixed Thera-to-Exodus interval, verified thirteen-of-sixteen statistic, synchronous conquest horizon, automatic Hyksos–Israelite identity, or universal Egyptian responsibility is claimed. The underlying possibility of older Egyptian-Levantine memories contributing to Exodus remains an open research question rather than being discarded with those overstatements.

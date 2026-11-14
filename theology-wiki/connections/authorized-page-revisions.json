@@ -225,6 +225,13 @@
       "after": "f2386658d8bf3e679aac8cbb769ddd564066d55d85f4a8de58b61c65b98a97ac",
       "baseRevision": "7f346233374218459f8865d0825175d953f46a40",
       "reason": "Record user-authorized evidence-study releases for Dan McClellan and Hyksos/Exodus, including series navigation and Latest; historical source transcripts remain unchanged."
+    },
+    {
+      "path": "theology-wiki/latest/index.html",
+      "before": "f2386658d8bf3e679aac8cbb769ddd564066d55d85f4a8de58b61c65b98a97ac",
+      "after": "b56e58eb2cec56231d8ddeff9b6a77bcce611fc37c0158aaa91f93ac4152a52e",
+      "baseRevision": "ad41422a893c5891f53b2a77bf22515785502d0e",
+      "reason": "User-requested city-by-city evidence comparison updates the Latest summary; archived source transcripts unchanged."
     }
   ]
 }
