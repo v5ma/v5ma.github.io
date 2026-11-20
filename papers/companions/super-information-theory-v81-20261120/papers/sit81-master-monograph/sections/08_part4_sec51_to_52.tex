@@ -1,0 +1,232 @@
+\part{Machine-Verified Formalization, Curved 3+1D ADM Gravity, and 4D Non-Perturbative Lattice Gauge Theory}
+
+\section{Infinite-Dimensional Sobolev Coherence Tower, Galerkin Convergence, and Sharp Spatial Cutoff Loop Anomalies}
+\label{sec:stage3-sobolev}
+
+Early machine-checked tranches of the SIT verification program (\texttt{SITTranche\allowbreak{}DCoherence\allowbreak{}Tower\allowbreak{}And\allowbreak{}Transport}) modeled ultraviolet mode projections over finite index sets \texttt{Finset N}. Stage~3 Phase~3 removed that finite-carrier restriction by constructing an infinite-dimensional Hilbert sequence carrier and weighted Sobolev tower in Lean~4.30 (\texttt{SITStage3\allowbreak{}Infinite\allowbreak{}Sobolev\allowbreak{}Coherence\allowbreak{}Tower}, $66$ strict standard-axiom theorems audited in \texttt{SITStage3Phase3Audit}), while Stage~4 Phase~0 paired that theorem stack with the November~2026 perturbative diagnosis of sharp spatial mode cutoffs (\emph{The Hawking--Page transition at weak coupling}, \texttt{hexagon:2611.00175v1}) to establish why non-perturbative 4D gauge-coherence physics must transition from spatial Galerkin projectors $P_N$ to a 4D hypercubic Euclidean Wilson lattice.
+
+\subsection{Infinite-Dimensional $\ell^2(\mathbb{N})$ Carrier and Strict Weighted Sobolev Nesting $H^2(\mu) \subsetneq H^1(\mu) \subsetneq \ell^2$}
+
+On a compact Riemannian three-manifold $(\Sigma^3, q)$ (such as the periodic three-torus $\mathbb{T}^3$ or round three-sphere $S^3$), the non-negative Laplace--Beltrami operator $-\Delta_q \ge 0$ possesses a countable orthonormal basis $\{\phi_n\}_{n\in\mathbb{N}}$ in $L^2(\Sigma^3, d\mu_q)$ with eigenvalues $0 \le \mu_0 \le \mu_1 \le \dots \to +\infty$. Expanding real scalar field components in this eigenbasis identifies $L^2(\Sigma^3, d\mu_q)$ isometrically with the infinite-dimensional real sequence space
+\begin{equation}
+\mathrm{L2Seq} := \ell^2(\mathbb{N}; \mathbb{R})
+= \left\{ u : \mathbb{N} \to \mathbb{R} \;\middle|\; \|u\|_{\ell^2}^2 := \sum_{n=0}^\infty |u_n|^2 < \infty \right\},
+\label{eq:L2Seq_def}
+\end{equation}
+equipped with canonical basis vectors $e_n := \mathrm{lp.single}\;2\;n\;1$ satisfying $\langle e_n, e_m\rangle = \delta_{nm}$ and $\|e_n\|_{\ell^2} = 1$. Because $\{e_n\}_{n\in\mathbb{N}}$ is an infinite linearly independent family, Lean theorem \texttt{l2\allowbreak{}Seq\_\allowbreak{}not\_\allowbreak{}finite\allowbreak{}Dimensional} proves unconditionally that $\neg\,\mathrm{FiniteDimensional}\,\mathbb{R}\,\mathrm{L2Seq}$.
+
+Given any non-negative spectral weight sequence $\mu : \mathbb{N} \to \mathbb{R}_{\ge 0}$, the kinetic-energy ($H^1$) and elliptic-operator graph ($H^2$) domains are formalized as $\mathbb{R}$-submodules of $\mathrm{L2Seq}$:
+\begin{align}
+H^1(\mu) &:= \left\{ u \in \mathrm{L2Seq} \;\middle|\; \|u\|_{H^1(\mu)}^2 := \sum_{n=0}^\infty \bigl(1 + \mu_n\bigr) u_n^2 < \infty \right\}, \label{eq:H1_mu_def}\\
+H^2(\mu) &:= \left\{ u \in \mathrm{L2Seq} \;\middle|\; \|u\|_{H^2(\mu)}^2 := \sum_{n=0}^\infty \bigl(1 + \mu_n\bigr)^2 u_n^2 < \infty \right\}. \label{eq:H2_mu_def}
+\end{align}
+From $1 \le 1 + \mu_n \le (1 + \mu_n)^2$, monotonicity of non-negative infinite series yields $\|u\|_{\ell^2}^2 \le \|u\|_{H^1(\mu)}^2 \le \|u\|_{H^2(\mu)}^2$ and continuous inclusions $H^2(\mu) \subseteq H^1(\mu) \subseteq \mathrm{L2Seq}$.
+
+\begin{theorem}[Strict Infinite-Dimensional Sobolev Subspace Separation]
+\label{thm:sobolev_strict_nesting}
+For the concrete unbounded spectral sequence $\mu_n^{\mathrm{std}} := (n + 1)^2$ ($n \in \mathbb{N}$), the Sobolev submodules satisfy strict proper inclusions
+\begin{equation}
+H^2(\mu^{\mathrm{std}}) \;\subsetneq\; H^1(\mu^{\mathrm{std}}) \;\subsetneq\; \ell^2(\mathbb{N}; \mathbb{R}).
+\label{eq:strict_sobolev_chain}
+\end{equation}
+Specifically, $w^{(1)}_n := (n + 1)^{-2}$ satisfies $w^{(1)} \in H^1(\mu^{\mathrm{std}}) \setminus H^2(\mu^{\mathrm{std}})$, and $w^{(0)}_n := (n + 1)^{-1}$ satisfies $w^{(0)} \in \ell^2(\mathbb{N}) \setminus H^1(\mu^{\mathrm{std}})$ (\texttt{h2\allowbreak{}Submodule\_\allowbreak{}strict\_\allowbreak{}lt\_\allowbreak{}h1\allowbreak{}Submodule}, \texttt{h1\allowbreak{}Submodule\_\allowbreak{}strict\_\allowbreak{}lt\_\allowbreak{}top}).
+\end{theorem}
+
+\begin{proof}
+For $w^{(1)}_n = (n+1)^{-2}$, $\sum_{n=0}^\infty (w^{(1)}_n)^2 = \sum_{m=1}^\infty m^{-4} < \infty$ and $\sum_{n=0}^\infty (1 + (n+1)^2)(n+1)^{-4} = \sum_{m=1}^\infty (m^{-4} + m^{-2}) < \infty$ by $p$-series convergence ($p > 1$), hence $w^{(1)} \in H^1(\mu^{\mathrm{std}})$. However, $(1 + (n+1)^2)^2 (w^{(1)}_n)^2 = \bigl((n+1)^{-2} + 1\bigr)^2 \ge 1$ fails to converge to zero as $n \to \infty$, so $w^{(1)} \notin H^2(\mu^{\mathrm{std}})$. Analogously, $(w^{(0)}_n)^2 = (n+1)^{-2}$ is summable, whereas $(1 + (n+1)^2)(w^{(0)}_n)^2 \ge 1$ diverges, proving $w^{(0)} \in \ell^2 \setminus H^1(\mu^{\mathrm{std}})$.
+\end{proof}
+
+\paragraph{Weyl Asymptotics Remark (\texttt{Finding (e)}).}
+Note that $\mu_n^{\mathrm{std}} = (n+1)^2 = O(n^2)$ models 1D Sturm--Liouville / circle eigenvalue growth, whereas on a compact 3-manifold $(\Sigma^3, q)$ Weyl's law gives $\mu_n \sim c_W n^{2/3}$. Both satisfy $\mu_n \ge 0$, $\mu_n \to +\infty$, and strict nesting $H^2(\mu) \subsetneq H^1(\mu) \subsetneq \ell^2$ (for $\mu_n \sim n^{2/3}$, $u_n = (n+1)^{-7/10} \in \ell^2 \setminus H^1$ and $u_n = (n+1)^{-11/10} \in H^1 \setminus H^2$), while the denser 3D spectrum $O(n^{2/3})$ explains why pointwise 3D $L^4(\Sigma^3)$ Ladyzhenskaya control requires geometric 3D Sobolev interpolation (\texttt{hLady}, \texttt{OPEN-3}) rather than 1D sequence majorization.
+
+\subsection{Spectral Galerkin Projectors $P_N$, Strong Convergence, and Quantitative Tail Rates}
+
+For each mode cutoff $N \in \mathbb{N}$, define the continuous linear spectral projector $P_N : \mathrm{L2Seq} \to \mathrm{L2Seq}$ (\texttt{galerkinProj N}) by coordinate truncation $(P_N u)_n := u_n$ for $n < N$ and $0$ for $n \ge N$. The audited Lean~4.30 suite establishes:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Orthogonal Projector Algebra:} $\|P_N\|_{\mathrm{op}} \le 1$, $P_N^2 = P_N$, $P_N P_M = P_{\min(N,M)}$, $\langle P_N u, v\rangle = \langle u, P_N v\rangle$ ($P_N^* = P_N$), $P_N(\mathrm{L2Seq}) \subset H^2(\mu)$, and exact Pythagorean decomposition $\|u\|_{\ell^2}^2 = \|P_N u\|_{\ell^2}^2 + \|u - P_N u\|_{\ell^2}^2$.
+  \item \textbf{Strong Operator Convergence vs.\ Uniform-Norm Obstruction:} For every $u \in \mathrm{L2Seq}$, $\|u - P_N u\|_{\ell^2} \to 0$ as $N \to \infty$ (\texttt{galerkin\allowbreak{}Proj\_\allowbreak{}tendsto\_\allowbreak{}nhds}). Conversely, for every $N \in \mathbb{N}$, $\|e_N - P_N e_N\|_{\ell^2} = \|e_N\|_{\ell^2} = 1$ (\texttt{galerkin\allowbreak{}Proj\_\allowbreak{}tail\_\allowbreak{}basis\allowbreak{}Vec\_\allowbreak{}norm}), proving that $P_N \not\to I$ in the uniform operator norm $\|\cdot\|_{\mathrm{op}}$ precisely because $\mathrm{L2Seq}$ is infinite-dimensional.
+  \item \textbf{Quantitative Sobolev Tail Decay Rates:} Whenever $u \in H^2(\mu)$ and $\mu_n \ge \Lambda_N^2 > 0$ for all $n \ge N$, coordinatewise majorization $(1 + \Lambda_N^2) \le (1 + \mu_n)$ on $n \ge N$ yields exact ultraviolet error bounds (\texttt{galerkin\allowbreak{}Proj\_\allowbreak{}l2\_\allowbreak{}defect\_\allowbreak{}bound}, \texttt{galerkin\allowbreak{}Proj\_\allowbreak{}h1\_\allowbreak{}defect\_\allowbreak{}bound}):
+  \begin{equation}
+  \|u - P_N u\|_{\ell^2}^2 \le \frac{1}{\bigl(1 + \Lambda_N^2\bigr)^2}\,\|u\|_{H^2(\mu)}^2,
+  \qquad
+  \|u - P_N u\|_{H^1(\mu)}^2 \le \frac{1}{1 + \Lambda_N^2}\,\|u\|_{H^2(\mu)}^2.
+  \label{eq:sobolev_tail_bounds}
+  \end{equation}
+  \item \textbf{Isometric Gauge Conjugation:} For any linear isometry $U : \mathrm{L2Seq} \simeq_{\ell_i} \mathrm{L2Seq}$, the conjugated projector $P_N^{(U)} := U P_N U^{-1}$ is self-adjoint, idempotent, intertwines $U$ ($P_N^{(U)}(Uu) = U(P_N u)$), converges strongly to $I$, and transfers both quantitative tail bounds~\eqref{eq:sobolev_tail_bounds} onto $U(H^2(\mu))$. (Per \texttt{Finding (e)}, this formalizes abstract Hilbert-space unitary conjugation on real $\mathrm{L2Seq}$, whereas continuum local multiplication $\psi(x) \mapsto e^{i\alpha(x)}\psi(x)$ intertwining $-\mathbf{D}^2$ on $L^2(\Sigma^3,\mathbb{C})$ belongs to residual \texttt{OPEN-3}.)
+\end{enumerate}
+
+\subsection{Why Sharp Spatial Mode Cutoffs $P_N$ Break Boost Covariance in 4D Gauge Loops (\texttt{hexagon:2611.00175v1})}
+\label{sec:sharp-cutoff-anomaly}
+
+While spectral Galerkin projectors $P_N$ cleanly control fixed-slice Sobolev approximations, a crucial question is whether sharp spatial or spherical-harmonic mode truncation ($n \le J$) can define a Lorentz/Euclidean-covariant non-perturbative 4D quantum gauge theory. Sections~6.1 and~9 of the November~2026 perturbative analysis of 4D gauge theory on $\mathbb{R}\times S^3$ (\emph{The Hawking--Page transition at weak coupling}, \texttt{hexagon:2611.00175v1}, \url{https://hexagonmath.org/pdf/2611.00175v1}) prove quantitatively that it cannot, due to three distinct loop-level obstructions:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Christ--Lee Operator-Ordering Potentials ($V_{\mathrm{CL}}$):} Eliminating $A_0$ via Gauss's law in Coulomb gauge ($\nabla\cdot\mathbf{A} = 0$) generates the nonlocal Coulomb interaction $H_{\mathrm{C}} = \frac{g_{\mathrm{YM}}^2}{2}\int\!\!\int \rho^a(x) K_{ab}[\mathbf{A}](x,y)\rho^b(y)$ with Faddeev--Popov kernel $K = M^{-1}(-\nabla^2)M^{-1}$ ($M = -\nabla\cdot\mathbf{D}[\mathbf{A}]$). Passing from Weyl-ordered canonical variables to normal-ordered Fock operators induces explicit $O(\hbar^2)$ Christ--Lee local/quasi-local counter-potentials $V_{\mathrm{CL}}$ required to preserve Ward identities.
+  \item \textbf{Quadratic Scalar Mass Counterterms from Boost Boundary Violations:} Because Lorentz and conformal boost generators couple adjacent harmonic shells $n \leftrightarrow n+1$, truncating sharply at $n \le J$ severs boost cancellations across the cutoff shell $n = J$. Explicit summation of scalar self-energy diagrams at harmonic cutoffs $J = 0, 1, \dots, 6$ yields
+  \[
+  \Sigma_{\mathrm{scal}}(J) = \bigl[-1.594,\;-29.477,\;-84.509,\;-170.044,\;-281.395,\;-422.012,\;-588.717\bigr]
+  \]
+  (with $J=0$ matching the exact plane-wave matrix model value $-51/32 = -1.59375$), fitted to high precision by $-13.9(3)\,J^2 - 15\,J$ (ordinary least-squares coefficient $-13.9722$), corresponding across modes $E = 1, 2, 3$ ($\delta E \simeq \delta m^2/(2E)$) to a severe cutoff-dependent quadratic mass shift $\delta m^2 \approx -28\,J^2$ (versus the covariant supersymmetric target $(2\zeta_3 - 1)/4 \approx 0.351$).
+  \item \textbf{Finite $-\frac{4}{3}g^2$ Coulomb Propagator Shift and Multi-Trace Anomalies:} Incomplete cancellation between transverse-gluon and instantaneous-Coulomb loops under sharp truncation induces both non-covariant double-trace terms proportional to $(n_B - n_F)$ ($1/60$ in pure Yang--Mills) and a finite non-zero renormalization of the Coulomb gauge-kinetic kernel:
+  \begin{equation}
+  \delta h_4 = -\frac{4}{3}\,h_2^{\mathrm{Coul}},
+  \qquad
+  (-\nabla^2)^{-1} \;\longrightarrow\; \left(1 - \frac{4}{3}g^2\right)(-\nabla^2)^{-1}
+  \label{eq:coulomb_4_3_anomaly}
+  \end{equation}
+  (confirmed by independent numerical sector fits $-1.3332$ and $-1.3296$).
+\end{enumerate}
+
+\paragraph{Architectural Consequence for SIT.}
+Equation~\eqref{eq:coulomb_4_3_anomaly} establishes rigorously why sharp spatial mode cutoffs $P_N$ must not be used to construct non-perturbative 4D gauge-coherence measures. Replacing $P_N$ with a \textbf{4D hypercubic Euclidean Wilson lattice} (Section~\ref{sec:stage4-lattice}) preserves exact local compact-group gauge invariance at every finite spacing $a$, satisfies hypercubic axis-permutation $S_4$ symmetry and Osterwalder--Schrader reflection positivity (for both pure Wilson gauge fields in Target~(4) and AM--GM-gated coupled $(U,\psi,\rho_t)$ configurations in Model~L3, Section~\ref{sec:stage4-lattice}) without boost-boundary counterterms, and supports compact Haar integration directly.
+
+\SITConditionalFigure{fig6_eft_hierarchy_scales}{Multi-decade energy hierarchy of the canonical effective field theory \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{BM\_PHYS\_EFT\_1}) from laboratory $^{87}\mathrm{Rb}$ BEC ($8.6\times 10^{-22}\,\mathrm{GeV}$) and optical/nuclear clocks ($\sim 10^{-9}\,\mathrm{GeV}$) through Standard Model electroweak/LHC scales and SIT portal/Proca masses ($m_A = 6.06\times 10^{13}\,\mathrm{GeV}$, $v_0 = 2.0\times 10^{14}\,\mathrm{GeV}$, $m_1 = 2.45\times 10^{14}\,\mathrm{GeV}$, $m_2 = 2.83\times 10^{16}\,\mathrm{GeV}$) up to the dimension-6 and gravitational cutoffs $\Lambda_{\mathrm{UV}} = \Lambda_{\mathrm{sym}} = 1.414\times 10^{18}\,\mathrm{GeV}$, $\Lambda_{\mathrm{EM}} = 2.0\times 10^{18}\,\mathrm{GeV}$, and $M_{\mathrm{Pl}} = 2.435\times 10^{18}\,\mathrm{GeV}$, alongside Weinberg loop suppression $(E/\Lambda_{\mathrm{UV}})^{2L+2}$ for $L = 0,1,2,3$.}{fig:eft-hierarchy-scales}{Displays the 40-order-of-magnitude hierarchy of \texttt{BM\_PHYS\_EFT\_1} energy scales and verifies exact identity $(\Lambda_{\mathrm{sym}}/\Lambda_{\mathrm{EM}})^2 = (f_{\mathrm{EM}0}-1)/(f_{\mathrm{SM}0}-1) = 0.5$ ($\mathrm{rtol} \le 8.1\times 10^{-16}$) together with monotone Weinberg loop suppression $(E/\Lambda_{\mathrm{UV}})^{2L}$ ($9.8\times 10^{-29}$ per loop at $\sqrt{s}=14\,\mathrm{TeV}$).}
+
+\section{Curved $3+1$D ADM Canonical Gravity, $13\times 13$ Cholesky--DeWitt Legendre Inversion, and Dirac--Bergmann Closure}
+\label{sec:stage3-curved-adm}
+
+To verify that the non-minimal constitutive dressings $f_{\mathrm{EM}}(\Rcoh)$ and $f_{\mathrm{SM}}(\Rcoh)$ and portal potential $U_{\mathrm{link}}(\rho_t, \psi)$ do not spoil general covariance or introduce anomalous second-class/ternary constraints at the full nonlinear curved level, Stage~3 Phase~4, Stage~5, and Stage~5.1 carried out a complete $3+1$D Arnowitt--Deser--Misner (ADM) Hamiltonian analysis of \texttt{M\_AUTH\_SIT\_EFT\_v1}, verified across $74/74$ symbolic and exact rational reverse-AD checks in SymPy~1.14.0 (\texttt{verify\_\allowbreak{}adm\_\allowbreak{}hypersurface\_\allowbreak{}closure.\allowbreak{}py}), $181$ strict standard-axiom kernel declarations in Stage~3 (\texttt{Stage3ADM/*}, \texttt{SITStage3\allowbreak{}Curved\allowbreak{}ADMHypersurface\allowbreak{}Closure}), $227$ unconstrained 6-component off-diagonal pointwise 3-jet kernel declarations in Stage~5 (\texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Off\allowbreak{}Diagonal\allowbreak{}Curved\allowbreak{}ADMClosure}), and Sylvester positive-definite domain specialization \texttt{IsSPD3} in Stage~5.1 (\texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Matter\allowbreak{}And\allowbreak{}ADMDomain\allowbreak{}Refinements}, $51$ declarations).
+
+\subsection{$3+1$D ADM Foliation, $36$-Dimensional Phase Space, and $13\times 13$ DeWitt--Cholesky Legendre Inversion}
+
+In signature $(-,+,+,+)$, foliating $(\mathcal{M}^4, g_{\mu\nu})$ into spatial hypersurfaces $(\Sigma_t, q_{ij})$ with lapse $N > 0$ and shift $N^i$ gives
+\begin{equation}
+ds^2 = -\bigl(N^2 - N_k N^k\bigr)dt^2 + 2 N_i\,dt\,dx^i + q_{ij}\,dx^i dx^j,
+\qquad
+\sqrt{-g} = N\sqrt{q},
+\label{eq:adm_metric_foliation}
+\end{equation}
+with future-directed unit normal $n_\mu = (-N,0,0,0)$, $n^\mu = (N^{-1}, -N^i/N)$ ($n_\mu n^\mu = -1$), and extrinsic curvature $K_{ij} = \frac{1}{2N}(\dot{q}_{ij} - D_i N_j - D_j N_i)$. Writing $\psi = u + iv$ in real components and modeling $\mathcal{L}_{\mathrm{matter}} = -\frac{1}{2}g^{\mu\nu}\partial_\mu\chi\partial_\nu\chi - V_{\mathrm{mat}}(\chi)$ by a representative neutral screened scalar field $\chi$, the full canonical system spans \textbf{$18$ configuration coordinates},
+\[
+\mathcal{Q} = \bigl(q_{ij}\;[6],\; A_i\;[3],\; \rho_t\;[1],\; u\;[1],\; v\;[1],\; \chi\;[1],\; N\;[1],\; N^i\;[3],\; A_0\;[1]\bigr),
+\]
+and $18$ conjugate momenta $\mathcal{P}$, forming a \textbf{$36$-dimensional unconstrained canonical phase space}.
+
+\paragraph{Primary Constraints and $13\times 13$ Dynamical Velocity Hessian.}
+Because $\mathcal{L}_{\mathrm{AUTH}}$ contains no time derivatives of $(N, N^i, A_0)$, five primary first-class constraints hold identically:
+\begin{equation}
+\pi_N \approx 0, \qquad \pi_{N^i} \approx 0 \quad (i=1,2,3), \qquad \pi_{A_0} \approx 0.
+\label{eq:adm_primary_constraints}
+\end{equation}
+Across the remaining $13$ dynamical velocities $(\dot{q}_{ij}[6], \dot{\rho}_t[1], \dot{u}[1], \dot{v}[1], \dot{A}_i[3], \dot{\chi}[1])$, the ultralocal Hessian matrix $\mathcal{M}_{AB} = \partial^2\mathcal{L}_{\mathrm{ADM}}/\partial\dot{Q}^A\partial\dot{Q}^B$ block-diagonalizes cleanly into five sectors:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Gravitational $6\times 6$ DeWitt Block:} $\pi^{ij} = -\frac{\sqrt{q}}{2\kappa_G}(K^{ij} - q^{ij}K)$ with inverse DeWitt supermetric $G_{ijkl} = \frac{1}{2}(q_{ik}q_{jl} + q_{il}q_{jk} - q_{ij}q_{kl})$ of signature $(5+, 1-)$ (five positive shear modes plus one negative trace mode constrained by $\mathcal{H}_\perp \approx 0$).
+  \item \textbf{Positive Matter-Gauge Blocks ($1 + 2 + 3 + 1 = 7$):} $\pi_\rho = \frac{\sqrt{q}\kappa_t}{N}(\dot{\rho}_t - N^k\partial_k\rho_t)$, $\pi_u = \frac{\sqrt{q}\kappa_c}{N}(\dot{u} + \hat{q}A_0 v - N^k D_k u)$, $\pi_v = \frac{\sqrt{q}\kappa_c}{N}(\dot{v} - \hat{q}A_0 u - N^k D_k v)$, $\Pi^i = \frac{\sqrt{q}f_{\mathrm{EM}}(\Rcoh)}{N}q^{ij}(\dot{A}_j - \partial_j A_0 - N^k F_{kj})$, and $\pi_\chi = \frac{\sqrt{q}f_{\mathrm{SM}}(\Rcoh)}{N}(\dot{\chi} - N^k\partial_k\chi)$.
+\end{enumerate}
+Parameterizing single-chart symmetric positive-definite spatial metrics via an upper-triangular Cholesky factor $q = L^{\mathsf{T}} L$ (\texttt{Chol3} with positive diagonal entries $L_{11}, L_{22}, L_{33} > 0$, so $\det q = (L_{11}L_{22}L_{33})^2 > 0$ automatically), \texttt{Stage3\allowbreak{}ADM.\allowbreak{}Pillar2\allowbreak{}Legendre} proves in Lean~4.30 that the $13\times 13$ velocity Hessian determinant is strictly non-vanishing ($\det\mathcal{M}_{13\times 13} \ne 0$) and the Legendre transformation $\dot{Q}^A \leftrightarrow P_A$ is globally bijective on every SPD chart.
+
+\subsection{Secondary Constraints and Exact Gauss Sign Crosswalk (\texttt{Finding (c)})}
+
+Legendre inversion casts the canonical Lagrangian into exact Dirac--ADM form:
+\begin{equation}
+\mathcal{L}_{\mathrm{ADM}}
+= \pi^{ij}\dot{q}_{ij} + \pi_\rho\dot{\rho}_t + \pi_u\dot{u} + \pi_v\dot{v} + \Pi^i\dot{A}_i + \pi_\chi\dot{\chi}
+  - \Bigl(N\,\mathcal{H}_\perp + N^i\,\mathcal{H}_i^{\mathrm{cov}} - A_0\,G_{\mathrm{Gauss}}\Bigr),
+\label{eq:L_ADM_canonical}
+\end{equation}
+where preservation of Eq.~\eqref{eq:adm_primary_constraints} ($\dot{\pi}_N, \dot{\pi}_{N^i}, \dot{\pi}_{A_0} \approx 0$) enforces five secondary constraints:
+\begin{align}
+\mathcal{H}_\perp &= \frac{2\kappa_G}{\sqrt{q}}\Bigl(q_{ik}q_{jl} - \frac{1}{2}q_{ij}q_{kl}\Bigr)\pi^{ij}\pi^{kl}
+  - \frac{\sqrt{q}}{2\kappa_G}R^{(3)}
+  + \frac{1}{2\sqrt{q}}\left[\frac{\pi_\rho^2}{\kappa_t} + \frac{\pi_u^2 + \pi_v^2}{\kappa_c} + \frac{q_{ij}\Pi^i\Pi^j}{f_{\mathrm{EM}}} + \frac{\pi_\chi^2}{f_{\mathrm{SM}}}\right]
+  \nonumber\\
+&\quad + \sqrt{q}\Bigl[
+    \frac{\kappa_t}{2}q^{ij}\partial_i\rho_t\partial_j\rho_t
+    + \frac{\kappa_c}{2}q^{ij}(D_i u D_j u + D_i v D_j v)
+    \nonumber\\
+&\qquad\qquad
+    + \frac{f_{\mathrm{EM}}}{4}q^{ik}q^{jl}F_{ij}F_{kl}
+    + \frac{f_{\mathrm{SM}}}{2}q^{ij}\partial_i\chi\partial_j\chi
+    + V_{\mathrm{tot}} + f_{\mathrm{SM}}V_{\mathrm{mat}}
+  \Bigr], \label{eq:H_perp_def}\\
+\mathcal{H}_i^{\mathrm{cov}} &= -2 q_{ij} D_k\pi^{jk} + \pi_\rho\partial_i\rho_t + \pi_u D_i u + \pi_v D_i v + F_{ij}\Pi^j + \pi_\chi\partial_i\chi, \label{eq:Hi_cov_def}\\
+G_{\mathrm{Gauss}} &:= +\partial_i\Pi^i - \hat{q}\bigl(u\pi_v - v\pi_u\bigr). \label{eq:G_Gauss_def}
+\end{align}
+
+\paragraph{Exact Gauss Sign Crosswalk (\texttt{Finding (c)}).}
+In the Lean~4.30 formalization (\texttt{Stage3\allowbreak{}ADM.\allowbreak{}Pillar4\allowbreak{}Curved\allowbreak{}Closure\allowbreak{}A}), the field \texttt{ndGauss} is defined with opposite overall sign, $\mathrm{ndGauss}(j) := -\sum_{k=0}^2 \partial_k\Pi_k + \hat{q}(u\pi_v - v\pi_u) = -G_{\mathrm{Gauss}}$. Consequently, the compiled Lean identity \texttt{nd\allowbreak{}Htot\_\allowbreak{}cov\_\allowbreak{}Lie\_\allowbreak{}equiv},
+\[
+\mathrm{ndHtotCov}(j, i) + A_i\,\mathrm{ndGauss}(j) = \mathrm{ndHtotLie}(j, i),
+\]
+translates under $\mathrm{ndGauss} = -G_{\mathrm{Gauss}}$ identically into the standard covariant-vs-Lie momentum generator decomposition:
+\begin{equation}
+\mathcal{H}_i^{\mathrm{cov}} = \mathcal{H}_i^{\mathrm{Lie}} + A_i\,G_{\mathrm{Gauss}}.
+\label{eq:Hi_cov_Lie_identity}
+\end{equation}
+
+\subsection{First-Class Dirac--Bergmann Hypersurface Deformation Closure and $36 - 2\times 10 = 16$ Mode Count}
+
+On local formal finite-order 3-jet bundles (\texttt{SymMat3Jet} and \texttt{SPDOff\allowbreak{}Diag\allowbreak{}Coupled\allowbreak{}ADMJet}), Lean~4.30 proves exact pointwise differential-polynomial identities with explicit spatial total-divergence remainders $\sum_{k=1}^3\partial_k B^k(x)$ (such as $\mathcal{P}_{\mathrm{Lie}}(\xi, N) = \mathcal{H}_\perp(\mathcal{L}_\xi N) + \partial_k B_{\mathrm{tot}}^k$). On closed compact spatial slices ($\partial\Sigma_t = \emptyset$) or for smooth compactly supported lapse, shift, and gauge test functions $(N_1, N_2, \xi^i, \eta^i, \lambda) \in C_c^\infty(\Sigma_t)$ where $\int_{\Sigma_t}\partial_k B^k\,d^3x = 0$ (while functional-analytic Fr\'echet differentiability on infinite-dimensional Sobolev/Banach phase spaces and asymptotically flat Regge--Teitelboim surface-integral boundary conditions belong to \texttt{OPEN-2B}), integrating these pointwise 3-jet identities yields smeared equal-time first-class Poisson closure:
+\begin{align}
+\bigl\{\mathcal{H}_\perp[N_1],\,\mathcal{H}_\perp[N_2]\bigr\}
+&= \mathcal{H}_i^{\mathrm{cov}}[S^i] + \int_{\Sigma} \partial_k\bigl(2 q_{ij}\pi^{jk} S^i\bigr)\,d^3x
+= \mathcal{H}_i^{\mathrm{Lie}}[S^i] + G_{\mathrm{Gauss}}[S^i A_i] + \text{bdy}, \label{eq:pb_H_H}\\
+\bigl\{\mathcal{D}_{\mathrm{Lie}}[\xi],\,\mathcal{H}_\perp[N]\bigr\}
+&= \mathcal{H}_\perp[\mathcal{L}_\xi N] + \text{bdy}, \label{eq:pb_DLie_H}\\
+\bigl\{\mathcal{D}_{\mathrm{cov}}[\xi],\,\mathcal{H}_\perp[N]\bigr\}
+&= \mathcal{H}_\perp[\mathcal{L}_\xi N] + G_{\mathrm{Gauss}}\!\left[\frac{N q_{ij}\xi^i\Pi^j}{\sqrt{q}\,f_{\mathrm{EM}}(\Rcoh)}\right] + \text{bdy}, \label{eq:pb_Dcov_H}\\
+\bigl\{\mathcal{D}_{\mathrm{cov}}[\xi],\,\mathcal{D}_{\mathrm{cov}}[\eta]\bigr\}
+&= \mathcal{D}_{\mathrm{cov}}\bigl[[\xi,\eta]\bigr] - G_{\mathrm{Gauss}}\bigl[\xi^i\eta^j F_{ij}\bigr] + \text{bdy}, \label{eq:pb_Dcov_Dcov}\\
+\bigl\{\mathcal{H}_\perp[N],\,G_{\mathrm{Gauss}}[\lambda]\bigr\} &= \text{bdy} \approx 0,
+\qquad
+\bigl\{G_{\mathrm{Gauss}}[\lambda_1],\,G_{\mathrm{Gauss}}[\lambda_2]\bigr\} = 0, \label{eq:pb_H_G}
+\end{align}
+where $S^i := q^{ij}(N_1\partial_j N_2 - N_2\partial_j N_1)$ is the universal DeWitt hypersurface deformation vector!
+
+\paragraph{Why $f_{\mathrm{EM}}(\Rcoh)$ and $f_{\mathrm{SM}}(\Rcoh)$ Generate Zero Anomaly in $\{\mathcal{H}_\perp, \mathcal{H}_\perp\}$.}
+A decisive non-trivial check (SymPy Suite~6 and \texttt{Stage3\allowbreak{}ADM.\allowbreak{}Pillar4\allowbreak{}Curved\allowbreak{}Closure\allowbreak{}B/C}) explains why the non-minimal coherence dressings preserve Eq.~\eqref{eq:pb_H_H}: because $f_{\mathrm{EM}}((u^2+v^2)/\psi_0^2)$ and $f_{\mathrm{SM}}((u^2+v^2)/\psi_0^2)$ depend algebraically on $(u,v)$ with \emph{zero spatial derivatives} $\partial_i u, \partial_i v$, their Euler--Lagrange variations $\partial\mathcal{H}_\perp/\partial u$ and $\partial\mathcal{H}_\perp/\partial v$ multiply ultralocal $\pi_u, \pi_v$ terms proportionally to $(N_1 N_2 - N_2 N_1) \equiv 0$, contributing \textbf{zero} obstruction to the derivative-antisymmetric structure $(N_1\partial_j N_2 - N_2\partial_j N_1)$.
+
+\paragraph{Dirac--Bergmann Degree-of-Freedom Count (\texttt{Finding (b)}).}
+Because the $5$ primary constraints~\eqref{eq:adm_primary_constraints} and $5$ secondary constraints $(\mathcal{H}_\perp, \mathcal{H}_i^{\mathrm{cov}}, G_{\mathrm{Gauss}})$ commute weakly on the constraint surface with \textbf{zero ternary constraints}, all $10$ constraints are first-class, leaving
+\begin{equation}
+\dim\mathcal{P}_{\mathrm{phys}} = 36 - 2 \times 10 = 16 = 2 \times 8
+\label{eq:dirac_bergmann_16_dims}
+\end{equation}
+physical phase-space dimensions per spatial point: \textbf{$8$ propagating bosonic modes} ($7$ pure-SIT modes $[2\text{ graviton TT} + 2\text{ transverse }U(1) + 1\text{ longitudinal Proca/phase} + 2\text{ radial }(\rho_t,|\psi|)]$ plus $1$ neutral matter scalar $\chi$).
+
+\begin{table}[htbp]
+\centering
+\caption{Summary of curved $3+1$D ADM verification suites across SymPy~1.14.0 ($74/74$ checks) and Lean~4.30 (\texttt{Stage3ADM/*}, $181$ strict declarations + \texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Off\allowbreak{}Diagonal\allowbreak{}Curved\allowbreak{}ADMClosure}, $227$ strict declarations + \texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Matter\allowbreak{}And\allowbreak{}ADMDomain\allowbreak{}Refinements} Sylvester \texttt{IsSPD3} specialization), with exact \texttt{Finding (d)} and formal 3-jet scope boundaries.}
+\label{tab:curved-adm-suites}
+\vspace{0.4em}
+\footnotesize
+\begin{tabular}{|p{3.0cm}|p{7.1cm}|r|p{2.6cm}|}
+\hline
+\textbf{Suite / Pillar} & \textbf{Mathematical Scope Verified} & \textbf{Count} & \textbf{Engine / Status} \\
+\hline
+SymPy Suite 1 / \texttt{Pillar1} & $3+1$D ADM kinematics, $5$ primary constraints, shift divergence, Gauss sign lock & $12$ + $43$ & SymPy + Lean (\texttt{PASS}) \\
+\hline
+SymPy Suite 2 / \texttt{Pillar2} & $13\times 13$ velocity Hessian factorization $(5+,1-) \oplus 7+$, \texttt{Chol3} SPD Legendre bijection & $10$ + $26$ & SymPy + Lean (\texttt{PASS}) \\
+\hline
+SymPy Suite 3 / \texttt{Pillar3} & $1+1$D matter $a(x)$ and $x$-reduced 3D $\mathrm{diag}(a(x),b(x),c(x))$ with $R^{(3)} \ne 0$ & $24$ + $31$ & SymPy + Lean (\texttt{PASS}) \\
+\hline
+SymPy Suite 4 / \texttt{Pillar4A--E} & 3D anisotropic $\mathrm{diag}(a,b,c)$ $\{\mathcal{H}_\perp,\mathcal{H}_\perp\}$, $\{\mathcal{D},\mathcal{H}_\perp\}$ (Palatini IBP \#1/\#2 in Lean) + 6-comp.\ $\{\mathcal{D},\mathcal{D}\}$, $\{\mathcal{D},G\}$ & $12$ + $41$ & SymPy + Lean (\texttt{PASS}) \\
+\hline
+SymPy Suite 5 (Jet AD) & Full 6-component off-diagonal $q_{ij}(x,y,z)$ raw 2nd-order $R^{(3)}$ reverse-AD polynomial jet $\{\mathcal{H}_\perp,\mathcal{H}_\perp\}$ at $\det q = 144, 900$ & $8$ & SymPy exact (\texttt{PASS}) \\
+\hline
+SymPy Suite 6 / \texttt{Pillar5} & Non-minimal $f'_{\mathrm{EM}}, f'_{\mathrm{SM}}$ cancellation on off-diagonal $q_{ij}$ + Dirac $36 - 2\times 10 = 16$ count & $8$ + $4$ & SymPy + Lean (\texttt{PASS}) \\
+\hline
+Stage 5 / \texttt{OffDiagonalADM} & Pointwise 3-jet unconstrained 6-component symmetric $3\times 3$ off-diagonal $q_{ij}$ ($\det q > 0$, specialized to Sylvester cone \texttt{IsSPD3}) $\delta_\xi R^{(3)}$, weight-$+1$ transport \& $\{\mathcal{D}_{\mathrm{Lie}},\mathcal{H}_\perp\}$, $\{\mathcal{D}_{\mathrm{cov}},\mathcal{H}_\perp\}$ modulo $\partial_k B^k$ & $227$ & Lean + $\mathbb{Q}(\sqrt{\det q})$ (\texttt{PASS}) \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Explicit Lean vs.\ SymPy vs.\ \texttt{OPEN-2B}/\texttt{OPEN-2} Scope Boundaries (\texttt{Finding (d)} \& Sylvester \texttt{IsSPD3}).}
+Per \texttt{v1\_1} canonical candor: (1) Lean \texttt{Pillar4\allowbreak{}Curved\allowbreak{}Closure\allowbreak{}E/D} initiates gravitational $\{\mathcal{H}_\perp,\mathcal{H}_\perp\}$ cancellation after Palatini integration by parts \#1 and formalizes IBP \#2, while raw second-order symbolic differentiation of $R^{(3)}(q,\partial q,\partial^2 q)$ in $\{\mathcal{H}_\perp,\mathcal{H}_\perp\}$ on full 6-component off-diagonal $q_{ij}(x,y,z)$ is verified in SymPy Suites~4--5; (2) Stage-5 module \texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Off\allowbreak{}Diagonal\allowbreak{}Curved\allowbreak{}ADMClosure} ($227$ declarations: \texttt{offdiag\_\allowbreak{}curved\_\allowbreak{}adm\_\allowbreak{}DLie\_\allowbreak{}Hperp\_\allowbreak{}closure}, \texttt{offdiag\_\allowbreak{}curved\_\allowbreak{}adm\_\allowbreak{}Dcov\_\allowbreak{}Hperp\_\allowbreak{}closure}, \texttt{od\_\allowbreak{}Htot\_\allowbreak{}weight1\_\allowbreak{}transport}, \texttt{odDelR3\_eq}) proves exact local pointwise 3-jet unconstrained 6-component symmetric $3\times 3$ off-diagonal $q_{ij}(x,y,z)$ spatial-diffeomorphism / super-Hamiltonian $\{\mathcal{D},\mathcal{H}_\perp\}$ closure modulo explicit divergences $\partial_k B^k$ directly in Lean~4.30 over the invertible locus $\det q > 0$ (closing \texttt{Finding (d)\#3}); (3) because $\det q > 0$ alone on symmetric $3\times 3$ matrices admits non-Riemannian $(-,-,+)$ counterexamples such as $\mathrm{diag}(-1,-1,1)$ ($\det = +1 > 0$, proved non-SPD in \texttt{s\_\allowbreak{}lorentz\_\allowbreak{}det\_\allowbreak{}pos\_\allowbreak{}not\_\allowbreak{}spd}), Stage-5.1/5.2 (\texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Matter\allowbreak{}And\allowbreak{}ADMDomain\allowbreak{}Refinements}, $66$ declarations) enforces Sylvester's leading-principal-minor criterion \texttt{IsSPD3} ($q_{11} > 0 \wedge q_{11}q_{22}-q_{12}^2 > 0 \wedge \det q > 0$), proves equivalence with quadratic positive-definiteness (\texttt{isSPD3\_iff\_posDef}), and establishes simultaneous off-diagonal $\{\mathcal{D},\mathcal{H}_\perp\}$ closure and matter/electric/magnetic energy positivity on \texttt{SPDOff\allowbreak{}Diag\allowbreak{}Coupled\allowbreak{}ADMJet} (\texttt{spd\_\allowbreak{}offdiag\_\allowbreak{}curved\_\allowbreak{}adm\_\allowbreak{}closure\_\allowbreak{}and\_\allowbreak{}energy\_\allowbreak{}positivity}); and (4) passing from single-chart pointwise formal 3-jet identities modulo $\partial_k B^k$ to integrated constraint algebras on infinite-dimensional Sobolev/Banach phase spaces with Regge--Teitelboim asymptotic boundary conditions (\texttt{OPEN-2B}), together with quantum Wheeler--DeWitt operator factor-ordering, Schwinger commutator anomalies, global multi-chart Cauchy PDE existence, and non-perturbative Dirac observables (\texttt{OPEN-2}), remains explicitly open (Tier~5).
+
+\subsection{Stage-6 Action-Response Diagnostics, Conditional Weak-Field E\"ot-Wash Non-Exclusion, and Primary Experimental Provenance}
+\label{sec:stage6-action-diagnostics}
+
+Version~81 replaces the retired legacy Cassini/Yukawa figure (\texttt{fig4}, which relied on an unproved conformal Jordan-frame identification and a hand-coded \texttt{np.piecewise} exclusion sketch) with two Stage-6 Lean~4.30 formal modules (\texttt{Stage6FunctionalResponse.\allowbreak{}ActionIdentityDiagnostics} [$6$ theorems] and \texttt{Stage6FunctionalResponse.\allowbreak{}UnchangedActionWeakFieldObservable} [$5$ theorems]), a conditional weak-field E\"ot-Wash non-exclusion calculation directly from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, and six locked primary experimental provenance records:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Multiplicative vs.\ Conformal Matter Obstruction and $U(1)$ Kinetic-Mixing Diagnostics (\texttt{ActionIdentityDiagnostics}, $6$ theorems):} For any real scalar matter field $\chi$ in four dimensions, comparing the unchanged multiplicative portal $+\sqrt{-g}\,f_{\mathrm{SM}}\mathcal{L}_{\mathrm{matter}}$ against a conformal Jordan metric $\tilde{g}_{\mu\nu} = A^2 g_{\mu\nu}$ (where $\sqrt{-\tilde{g}}\tilde{g}^{\mu\nu} = A^2\sqrt{-g}g^{\mu\nu}$ while $\sqrt{-\tilde{g}} = A^4\sqrt{-g}$) forces $A^2 = A^4 = f_{\mathrm{SM}} \implies f_{\mathrm{SM}} = 1$ (\texttt{multiplicative\_\allowbreak{}vs\_\allowbreak{}conformal\_\allowbreak{}scalar\_\allowbreak{}coeff\_\allowbreak{}forces\_\allowbreak{}unit}, \texttt{multiplicative\_\allowbreak{}vs\_\allowbreak{}conformal\_\allowbreak{}mass\_\allowbreak{}mismatch\_\allowbreak{}of\_\allowbreak{}ne\_\allowbreak{}one}). Canonical scalar normalization $\chi = e^{-z/2}X$ ($f = e^z$) preserves free scalar mass at constant $f_0$, rescales quartic couplings as $\lambda/f_0$, and satisfies $\nabla_\mu(f T^{\mu\nu}) = \mathcal{L}_m \partial^\nu f$ (\texttt{canonical\_\allowbreak{}scalar\_\allowbreak{}wave\_\allowbreak{}operator\_\allowbreak{}identity}, \texttt{canonical\_\allowbreak{}scalar\_\allowbreak{}lagrangian\_\allowbreak{}divergence\_\allowbreak{}identity}, \texttt{canonical\_\allowbreak{}scalar\_\allowbreak{}constant\_\allowbreak{}prefactor\_\allowbreak{}free\_\allowbreak{}mass\_\allowbreak{}and\_\allowbreak{}quartic}). In the gauge sector, $2\times 2$ visible/hidden $U(1)$ kinetic mixing with a massive hidden mode preserves the massless visible-photon residue at $1/z_v$ independently of the hidden normalization $z_h$ (\texttt{kinetic\_\allowbreak{}mixing\_\allowbreak{}visible\_\allowbreak{}propagator\_\allowbreak{}decomp\_\allowbreak{}and\_\allowbreak{}residue}). Consequently, earlier Jordan-frame Cassini illustrations (such as the nominal $24.24\times$ margin under conformal Model~C2 [$A = f_{\mathrm{SM}}^{\pm 1}$], or the $1/4$-smaller coupling $\alpha_{\mathrm{conf}}^{(\mathrm{C1})} = \frac{1}{4}\alpha_{\mathrm{sym}}$ under conformal Model~C1 [$g^{(J)} = f_{\mathrm{SM}}^{-1}g^{(E)}$, $A = f_{\mathrm{SM}}^{-1/2}$], Section~\ref{sec:ppn-shapiro-exact}) remain strictly \emph{conditional} on explicitly adopting one chosen conformal extension rather than an unconditional prediction of unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+  \item \textbf{Conditional Weak-Field E\"ot-Wash Non-Exclusion Directly from Unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{UnchangedActionWeakFieldObservable}, $5$ theorems):} Propagating the shared canonical generalized eigenproblem $H v = m^2 K_{\mathrm{eff}}(\beta) v$ (incorporating the Stage-6 lattice AM--GM shift $\Delta K_{\mathrm{rad}} = 3\beta/200{,}000{,}002 = 3.299999967\times 10^{-8}$ at $\beta = 2.2$) gives $m_1 = 2.449459082\times 10^{14}\,\mathrm{GeV}$ ($\lambda_1 = 8.055941\times 10^{-31}\,\mathrm{m}$) and $m_2 = 2.828462483\times 10^{16}\,\mathrm{GeV}$ ($\lambda_2 = 6.976480\times 10^{-33}\,\mathrm{m}$) (\texttt{unchanged\_\allowbreak{}action\_\allowbreak{}two\_\allowbreak{}mode\_\allowbreak{}yukawa\_\allowbreak{}decomposition\_\allowbreak{}and\_\allowbreak{}sum\_\allowbreak{}rule}, \texttt{amgm\_\allowbreak{}kinetic\_\allowbreak{}shift\_\allowbreak{}effect\_\allowbreak{}on\_\allowbreak{}spectrum\_\allowbreak{}and\_\allowbreak{}yukawa}). Evaluating the exact finite-thickness parallel-slab normal-force ratio $R_{\mathrm{slab}}(d)$ (\texttt{eotwash\_\allowbreak{}parallel\_\allowbreak{}slab\_\allowbreak{}yukawa\_\allowbreak{}integral\_\allowbreak{}exact}, \texttt{eotwash\_\allowbreak{}two\_\allowbreak{}mode\_\allowbreak{}lee2020\_\allowbreak{}certificate}) against the Lee~\emph{et~al.}\ (2020) E\"ot-Wash anchor ($\lambda < 38.6\,\mu\mathrm{m}$ at $|\alpha_Y| = 1$, $95\%$~CL, $d = 52\,\mu\mathrm{m}$) yields:
+  \begin{itemize}
+    \item Under a declared pressureless-dust worldline closure ($q_{\mathrm{eff}} := -\langle\mathcal{L}_m\rangle/\rho_m = 1$), $\alpha_1 = 4.744521\times 10^{-7}$, $\alpha_2 = 1.186308\times 10^{-11}$, $d/\lambda_1 = 6.45486\times 10^{25}$, and $\log_{10} R_{\mathrm{slab}}(52\,\mu\mathrm{m}) = -2.80331\times 10^{25}$: canonical \texttt{BM\_PHYS\_EFT\_1} is strictly not excluded yet exponentially indistinguishable from Newtonian gravity at $52\,\mu\mathrm{m}$.
+    \item Under a homogeneous free Klein--Gordon scalar closure, cycle-averaging yields $\langle\mathcal{L}_m\rangle = 0$ (\texttt{free\_\allowbreak{}klein\_\allowbreak{}gordon\_\allowbreak{}cycle\_\allowbreak{}averaged\_\allowbreak{}lagrangian\_\allowbreak{}zero}), so $q_{\mathrm{eff}} = 0$ and $\alpha_1 = \alpha_2 = 0$ identically.
+    \item As a deliberately tuned low-mass parameter-space illustration ($25.68$ decades below \texttt{BM\_PHYS\_EFT\_1}), setting $(\alpha_1, \lambda_1) = (1.0, 38.6\,\mu\mathrm{m})$ ($m_1 = 5.112\,\mathrm{meV}$) yields a uniform-slab normal-force ratio $R_{\mathrm{slab}}(52\,\mu\mathrm{m}) = 0.02797$ ($2.80\%$).
+  \end{itemize}
+  \textbf{Four Mandatory Modeling Caveats:} (i)~neither the $q_{\mathrm{eff}} = 1$ dust closure nor the $q_{\mathrm{eff}} = 0$ free-scalar closure derives the microscopic composite-material scalar charges of real laboratory nuclei/atoms---for Lee~\emph{et~al.}\ (2020), both source and detector scalar contrasts enter jointly via $\rho_{\mathrm{Pt}} q_{\mathrm{Pt}} - \rho_{\mathrm{epoxy}} q_{\mathrm{epoxy}}$ (\texttt{OPEN-6A}); (ii)~$R_{\mathrm{slab}}(d)$ models the normal force between uniform parallel slabs, whereas Lee~\emph{et~al.}\ (2020) measured torsional harmonics from rotating 18-fold and 120-fold patterned platinum attractor and detector bodies with epoxy-filled holes mounted on BK7 glass supports (where the $54$-frequency signal is the third harmonic of the 18-fold pattern)---reproducing the Newtonian fit and published $38.6\,\mu\mathrm{m}$ single-Yukawa exclusion after auditing Lee's dissertation (\emph{A Fourier-Bessel Test of the Gravitational Inverse-Square Law}, 2020: Chapter~11 Table~11.4 single-Yukawa fit parameters and Appendix~A corrected run-by-run harmonic torques, geometries, calibrations, separation errors, and nuisance priors) before performing a joint two-mode confidence analysis remains \texttt{OPEN-6D} (now directly instantiated on canonical \texttt{AuthModelParams} via \texttt{Stage6Addendum.\allowbreak{}ActionResponsePropagatorIdentity}, $5$ theorems, proving $0 < m_0^2 \le m_1^2$, automatic $p^2 + m_a^2 \ne 0$ for $p^2 \ge 0$, and $(p^2 K + H)^{-1} = V\,\mathrm{diag}(1/(p^2+m_a^2))\,V^\top$); (iii)~the $m_1 = 5.112\,\mathrm{meV}$ ($2.80\%$) illustration is strictly a uniform-slab parameter-space witness, not a prediction of \texttt{BM\_PHYS\_EFT\_1}; and (iv)~SymPy/NumPy agreement verifies numerical implementation, not physical modeling assumptions.
+  \item \textbf{Corrected Six-Record Primary Provenance (\texttt{primary\_measurements\_manifest\_v2.json}) and Legacy Quarantine:} Multi-channel empirical fitting across Cassini ($\gamma_{\mathrm{PPN}}-1 = (+2.1\pm 2.3)\times 10^{-5}$, Bertotti~\emph{et~al.}\ 2003), Tokyo Skytree ($\alpha_{\mathrm{RS}} = (+1.4\pm 9.1)\times 10^{-5}$, $1\sigma$ combined, Takamoto~\emph{et~al.}\ 2020), MICROSCOPE ($\eta(\mathrm{Ti,Pt}) = [-1.5\pm 2.3(\mathrm{stat})\pm 1.5(\mathrm{syst})]\times 10^{-15}$, Touboul~\emph{et~al.}\ 2022), Asenbaum~\emph{et~al.}\ (2020) ($\eta(^{85}\mathrm{Rb},^{87}\mathrm{Rb}) = [+1.6\pm 1.8(\mathrm{stat})\pm 3.4(\mathrm{syst})]\times 10^{-12}$, dual-isotope rather than BEC vs.\ thermal), Lee~\emph{et~al.}\ (2020), and NIST/BACON (\emph{Phys.\ Rev.\ Lett.}\ \textbf{137}, 033201, published July~14, 2026; DOI \texttt{10.1103/g865-9mk1}, \texttt{arXiv:2512.21428}, optical frequency-ratio measurement uncertainties at or below $3.2\times 10^{-18}$ across phase-stabilized optical fiber links---an experimental uncertainty budget rather than a universal clock floor or direct SIT coupling bound) remains fail-closed \texttt{BLOCKED} pending \texttt{OPEN-6}. Legacy Version~80.2 figures \texttt{fig4} and \texttt{fig5}, the misattributed $3\times 10^{-8}$ Skytree bound and $29.4\,\mu\mathrm{Gal}$ BEC ceiling (reclassified as hypothetical sensitivity targets), and the hand-coded \texttt{np.piecewise} Yukawa sketch are permanently quarantined.
+\end{enumerate}
+
+The complete 40-order-of-magnitude energy-scale hierarchy and Weinberg perturbative loop suppression of \texttt{M\_AUTH\_SIT\_EFT\_v1} at canonical benchmark \texttt{BM\_PHYS\_EFT\_1} remain displayed in Figure~\ref{fig:eft-hierarchy-scales}, while legacy Version~80.2 figures plotting the quarantined \texttt{np.piecewise} Yukawa sketch (\texttt{fig4}) and $3\times 10^{-8}$ Skytree benchmark (\texttt{fig5}) remain permanently retired in Version~81.

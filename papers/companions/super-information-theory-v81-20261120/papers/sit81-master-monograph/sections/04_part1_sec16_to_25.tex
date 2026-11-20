@@ -1,0 +1,563 @@
+\section{The Arrow of Time: Unital Purity Monotonicity, Relative-Entropy Contraction, and Informational Hysteresis}
+\label{sec:arrow-of-time}
+\label{sec:thermodynamics}
+\label{sec:HTheoremProof}
+
+At the microscopic level, the classical field equations of \texttt{M\_AUTH\_SIT\_EFT\_v1} are strictly time--reversal symmetric: replacing $t \mapsto -t$, $\theta \mapsto -\theta$, and $A_i \mapsto -A_i$ leaves the covariant action and its Euler--Lagrange equations invariant. The macroscopic arrow of time therefore cannot be a fundamental asymmetry of the classical field equations; it arises from initial/boundary conditions and coarse-grained open-system dynamics.
+
+Following the operational separation contract of Section~\ref{sec:PrimitiveFieldDefinitions} and the July~2026 CPTP audit of Paper~002, Version~81 strictly distinguishes three different mathematical statements that earlier drafts conflated: (i)~on-shell $U(1)$ Noether charge conservation $\nabla_\mu J^\mu_{\mathrm{coh}} = 0$ for the classical EFT field $\psi$; (ii)~monotonicity of quantum state purity $P(\rho) = \mathrm{Tr}(\rho^2)$, which holds universally \emph{only} for unital CPTP maps (and fails for non-unital channels such as amplitude damping); and (iii)~monotonic contraction of quantum relative entropy $D(\Phi(\rho)\|\Phi(\omega)) \le D(\rho\|\omega)$, which holds for arbitrary CPTP maps (Result~\ref{thm:CoherenceMonotonicity}).
+
+\paragraph{Integrative Context and Narrowed Kinetic Attribution.}
+SIT draws conceptual motivation from Shannon entropy, open-system quantum thermodynamics, and rigorous kinetic theory. In particular, the Deng--Hani--Ma (2025) propagation-of-chaos theorem rigorously derives the classical Boltzmann kinetic limit for a specified microscopic hard-sphere gas; Version~81 cites it strictly as an illustrative mathematical benchmark showing how macroscopic irreversibility can be proved from a defined microscopic reversible model, \emph{not} as a proof that trajectories increasing the SIT scalar modulus $\Rcoh$ have vanishing measure (applying kinetic-limit reasoning to SIT fields would require its own separate microscopic model and scaling proof).
+
+A conceptual research theme of SIT is modeling equilibration via local iterative ``signal-dissipation'' updates that reduce local differences across coupled degrees of freedom (Subsection~16.7 below). Such discrete dissipative update models are \emph{separate reduced phenomenological models}, distinct from the time-reversible classical Euler--Lagrange equations of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+In the canonical action, closed-system $U(1)$ symmetry furnishes the exact conserved gauge-invariant current $J^\mu_{\mathrm{coh}} = \kappa_c |\psi|^2 (\nabla^\mu\theta - \hat{q}A^\mu)$ ($\nabla_\mu J^\mu_{\mathrm{coh}} = 0$), which governs Noether charge transport of $\psi$ without by itself deriving open-system entropy production or purity decay.
+
+\begin{result}[Corrected Open-System Monotonicity: Unital CPTP Purity Non-Increase and General CPTP Relative-Entropy Contraction]
+\label{thm:CoherenceMonotonicity}
+Let $\rho_{\mathrm{sys}}$ be a finite-dimensional quantum state ($d > 1$) evolving under a completely positive, trace-preserving (CPTP) map $\Phi$ or Markovian Lindblad generator, and let $R_{\mathrm{coh}}^{\mathrm{proxy}}(\rho_{\mathrm{sys}}) := (\mathrm{Tr}[\rho_{\mathrm{sys}}^2] - 1/d)/(1 - 1/d)$ denote the operational normalized purity proxy (kept distinct from the classical EFT field amplitude $\Rcoh = |\psi|/\psi_0$ pending \texttt{OPEN-6C}):
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Retraction of Version~79 Universal CPTP Purity Claim:} Contrary to Version~79, density-matrix purity $P(\rho) = \mathrm{Tr}(\rho^2)$ does \emph{not} decrease under every CPTP map, nor does unchanged purity imply unitary evolution. Two exact finite-dimensional counterexamples (imported from July~2026 Paper~002, Section~8) refute both statements:
+  \begin{itemize}
+    \item \emph{Non-unital amplitude damping increases purity:} For $0 < p \le 1$ with Kraus operators $K_0 = |0\rangle\langle 0| + \sqrt{1-p}\,|1\rangle\langle 1|$ and $K_1 = \sqrt{p}\,|0\rangle\langle 1|$, acting on the maximally mixed qubit $\rho = I/2$ produces $\Phi(\rho) = \mathrm{diag}\bigl((1+p)/2,\,(1-p)/2\bigr)$, whose purity $(1+p^2)/2 > 1/2$ strictly increases.
+    \item \emph{Non-unitary complete dephasing preserves purity on diagonal states:} Complete dephasing in the computational basis is non-unitary, yet fixes every already-diagonal density matrix with identically unchanged purity.
+  \end{itemize}
+  \item \textbf{Exact Unital CPTP Purity Non-Increase:} In fixed finite dimension $d$, purity $P(\rho) = \mathrm{Tr}(\rho^2)$ (and hence $R_{\mathrm{coh}}^{\mathrm{proxy}}$) is non-increasing for \emph{every} state $\rho$ under $\Phi$ if and only if $\Phi$ is \emph{unital} ($\Phi(I) = I$). For continuous-time Lindblad dynamics~\eqref{eq:Lindblad_equation}, unitality holds whenever $\sum_k \gamma_k [L_k, L_k^\dagger] = 0$ (for example, Hermitian jump operators $L_k = L_k^\dagger$), yielding $\frac{d}{dt}\mathrm{Tr}(\rho_{\mathrm{sys}}^2) \le 0$ and $\frac{d}{dt}R_{\mathrm{coh}}^{\mathrm{proxy}} \le 0$ for every state.
+  \item \textbf{General CPTP Contraction via Quantum Relative Entropy:} For \emph{any} (including non-unital) CPTP map $\Phi$ and any two states $\rho, \omega$ satisfying $\mathrm{supp}(\rho) \subseteq \mathrm{supp}(\omega)$, the quantum relative entropy obeys the data-processing inequality
+  \begin{equation}
+  D\bigl(\Phi(\rho)\,\|\,\Phi(\omega)\bigr) \le D(\rho\,\|\,\omega),
+  \qquad
+  D(\rho\,\|\,\omega) := \mathrm{Tr}\bigl[\rho(\ln\rho - \ln\omega)\bigr],
+  \label{eq:relative_entropy_dpi}
+  \end{equation}
+  providing the mathematically sound general monotonicity law for distinguishability and mismatch reduction (reducing to purity/entropy monotonicity relative to $\omega = I/d$ specifically when $\Phi$ is unital).
+\end{enumerate}
+\end{result}
+
+\subsection{Open-System Lindblad Dynamics and Scope of Monotonicity}
+\label{sec:CoherenceConservationArrow}
+To state the thermodynamic dissipation bridge without repeating Version~79's non-unital error, we separate the operational proxy $R_{\mathrm{coh}}^{\mathrm{proxy}}$ from the classical EFT modulus $\Rcoh = |\psi|/\psi_0$ and track the exact hypotheses of Lindblad evolution.
+
+\paragraph{Step 1: Operational Purity Proxy vs.\ EFT Field Amplitude.}
+For a local finite-dimensional subsystem of dimension $d > 1$ described by density matrix $\rho_{\mathrm{sys}}(x)$, the normalized purity proxy is
+\begin{equation}
+    R_{\mathrm{coh}}^{\mathrm{proxy}}(x) = \frac{\mathrm{Tr}[\rho_{\mathrm{sys}}^2(x)] - \frac{1}{d}}{1 - \frac{1}{d}}.
+\label{eq:Rcoh_purity_relation}
+\end{equation}
+As established in Section~\ref{sec:PrimitiveFieldDefinitions} and Paper~002 (Section~4.2), $R_{\mathrm{coh}}^{\mathrm{proxy}}$ is a well-defined quantum-information statistic; connecting it to the classical EFT field amplitude $\Rcoh = |\psi|/\psi_0$ requires an explicit state-to-field calibration kernel (\texttt{OPEN-6C}) rather than an automatic identity.
+
+\paragraph{Step 2: Markovian Lindblad Master Equation.}
+Open-system Markovian evolution is governed by the Gorini--Kossakowski--Sudarshan--Lindblad equation:
+\begin{equation}
+    \frac{d\rho_{\mathrm{sys}}}{dt} = -\frac{i}{\hbar}[H_{\mathrm{sys}}, \rho_{\mathrm{sys}}] + \sum_k \gamma_k \left( L_k \rho_{\mathrm{sys}} L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k, \rho_{\mathrm{sys}}\} \right),
+    \label{eq:Lindblad_equation}
+\end{equation}
+with decay rates $\gamma_k \ge 0$.
+
+\paragraph{Step 3: Unital Purity Monotonicity vs.\ General Relative-Entropy Contraction.}
+Differentiating $P(t) = \mathrm{Tr}(\rho_{\mathrm{sys}}^2(t))$ along~\eqref{eq:Lindblad_equation} yields
+\begin{equation}
+    \frac{d}{dt} \mathrm{Tr}(\rho_{\mathrm{sys}}^2)
+    = -\sum_k \gamma_k\,\mathrm{Tr}\!\left([L_k, \rho_{\mathrm{sys}}]^\dagger [L_k, \rho_{\mathrm{sys}}]\right)
+      + \sum_k \gamma_k\,\mathrm{Tr}\!\left(\rho_{\mathrm{sys}}^2 [L_k, L_k^\dagger]\right).
+    \label{eq:purity_decay}
+\end{equation}
+The first sum is manifestly non-positive; the second term vanishes identically for all states $\rho_{\mathrm{sys}}$ if and only if the generator is unital ($\sum_k \gamma_k [L_k, L_k^\dagger] = 0$). Consequently: (i)~under \emph{unital} Lindblad evolution, $\frac{d}{dt}\mathrm{Tr}(\rho_{\mathrm{sys}}^2) \le 0$ and $\frac{d}{dt}R_{\mathrm{coh}}^{\mathrm{proxy}} \le 0$ hold for every state, with equality whenever $[L_k, \rho_{\mathrm{sys}}] = 0$ for all active jump operators (which includes non-unitary dephasing of already-diagonal states); and (ii)~under \emph{non-unital} dissipative cooling or spontaneous emission (such as amplitude damping), purity can strictly increase, while the general monotonic law is relative-entropy contraction $D(\rho_{\mathrm{sys}}(t)\|\omega_{\mathrm{ss}}) \le D(\rho_{\mathrm{sys}}(0)\|\omega_{\mathrm{ss}})$ toward any stationary reference state $\omega_{\mathrm{ss}}$ (Eq.~\eqref{eq:relative_entropy_dpi}).
+
+\subsection{The Geometric Arrow: Irreversibility from Informational Hysteresis}
+
+Within the unital and relative-entropy domains specified above, open-system distinguishability contracts monotonically, while at the conceptual level SIT investigates informational hysteresis (Section~\ref{sec:memory_substrate}) as a complementary geometric picture of macroscopic irreversibility.
+
+While the fundamental field equations of \texttt{M\_AUTH\_SIT\_EFT\_v1} are time-reversal symmetric, macroscopic field configurations and coarse-grained open-system records are generally not. Accumulated phase gradients and dissipated radiation into environmental degrees of freedom make exact time-reversed initial conditions practically inaccessible in macroscopic regimes.
+
+This separates microscopic time-reversal symmetry of the classical action from effective macroscopic irreversibility. The statistical contraction of accessible distinguishability in open systems (Eq.~\eqref{eq:relative_entropy_dpi}) and the coarse-grained spreading of field excitations provide complementary descriptions of irreversible behavior without invoking fundamental microscopic time asymmetry.
+
+\blockquote{
+It's not the particle interactions themselves that are irreversible, but how they affect the larger informational field.
+}
+
+\subsection{Conceptual Entropy-Bookkeeping Analogy}
+
+At the heuristic level (distinct from a proved theorem of \texttt{M\_AUTH\_SIT\_EFT\_v1}), one may compare a coarse-grained spatial functional of the coherence proxy
+\[
+S_{\mathrm{coh}} = -\int R_{\mathrm{coh}}^{\mathrm{proxy}}\ln R_{\mathrm{coh}}^{\mathrm{proxy}}\sqrt{-g}\,d^{3}x
+\]
+against the usual subsystem von~Neumann entropy
+\[
+S_{\mathrm{dec}} = -\mathrm{Tr}\,\rho\ln\rho.
+\]
+Version~81 explicitly notes that $S_{\mathrm{coh}} + S_{\mathrm{dec}}$ is \emph{not} a conserved quantity for arbitrary solutions of the field equations or general CPTP channels; rather, the pairing serves strictly as a conceptual bookkeeping analogy, while rigorous classical irreversibility in kinetic theory (such as the Deng--Hani--Ma hard-sphere Boltzmann limit) applies to its own specified microscopic model rather than proving monotonicity of $\Rcoh$.
+
+\subsection{Classical Causality without Retrocausality}
+
+Although the microscopic action is time-symmetric, linearized perturbations of \texttt{M\_AUTH\_SIT\_EFT\_v1} propagate causally inside the light cone ($c_{\mathrm{char}} = 1$). No signal propagates backward in time; apparent non-local quantum correlations reflect entanglement and measurement context rather than superluminal or retrocausal signaling.
+
+\subsection{Long--Range Temporal Coherence (Conceptual Regime)}
+
+Because the global $U(1)$ symmetry of \texttt{M\_AUTH\_SIT\_EFT\_v1} furnishes the conserved gauge-invariant coherence current $J^\mu_{\mathrm{coh}} = \kappa_c |\psi|^2 (\nabla^\mu\theta - \hat{q}A^\mu)$ (Eq.~\eqref{eq:abstract_coherence_current}), isolated coherent domains maintain phase order until external couplings exchange coherence charge or induce decoherence. Earlier Version~79 prose speculated on specific millihertz phononic-superlattice clock slow-downs and attosecond near-horizon frame-dragging amplitudes; Version~81 removes those uncalculated numerical scales because no action-to-apparatus derivation (\texttt{OPEN-6}) currently fixes such magnitudes from \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\subsection{Thermodynamic Dissipation as a Computational Process}
+
+\subsection{Mathematical Formulation: Local Signal-Dissipation Dynamics}
+
+Consider a system of $N$ interacting agents, nodes, or oscillators, each with a local property $Q_i(t)$ at time $t$.
+In physical applications, $Q_i(t)$ may represent:
+
+\begin{itemize}
+    \item Phase of an oscillator or wave,
+    \item Energy or momentum of a particle,
+    \item Local amplitude of quantum coherence.
+\end{itemize}
+
+Define the difference between two components:
+\[
+\Delta Q_{ij}(t) = Q_i(t) - Q_j(t)
+\]
+
+When two components interact, they partially dissipate their difference according to a local update rule:
+\begin{align}
+Q_i(t+\delta t) &= Q_i(t) - \frac{\gamma}{2} \Delta Q_{ij}(t) \\
+Q_j(t+\delta t) &= Q_j(t) + \frac{\gamma}{2} \Delta Q_{ij}(t)
+\label{eq:local-update}
+\end{align}
+where $0 < \gamma \leq 1$ is a dissipation (or coupling) parameter.
+Over many iterations, such updates drive all $Q_i$ toward a common value---realizing equilibrium as a computational process.
+\subsection{Mapping Coherence/Decoherence to Signal Dissipation}
+
+The local dissipation rules serve as the microscopic engine for the macroscopic evolution of the theory's central fields:
+\begin{itemize}
+    \item The \textbf{coherence ratio} $R_{\mathrm{coh}}(x,t)$ evolves as local subsystems interact and their informational states dissipate differences.
+\item The \textbf{time-density field} $\rho_t(x,t)$ is driven by the cumulative effect of these microscopic dissipation events, encoding the local density of temporally resolved events.
+\end{itemize}
+
+In SIT, $Q_i(t)$ can be interpreted as the local quantum coherence amplitude or phase at site $i$.
+Coherence between nodes $i$ and $j$ is maximized when $Q_i = Q_j$; decoherence corresponds to persistent differences or fluctuations.
+Thus, each local dissipation event can be viewed as a micro-level act of coherence reinforcement:
+\begin{align}
+\text{High coherence:}\quad & Q_i \approx Q_j \implies \Delta Q_{ij} \approx 0,\\
+\text{Active dissipation:}\quad & |\Delta Q_{ij}| \text{ large} \implies \text{system far from equilibrium (low coherence)}.
+\end{align}
+
+The global, macroscopic field evolution---such as the time-density field $\rho_t(x)$---emerges from the statistical aggregation of many such micro-level updates.
+When interpreted as a field, the signal dissipation process maps onto a diffusion-like equation:
+\begin{equation}
+\frac{\partial Q(x,t)}{\partial t} = D \nabla^2 Q(x,t),
+\label{eq:dissipation}
+\end{equation}
+where $Q(x,t)$ is the spatially varying property (e.g., coherence amplitude), and $D$ is an effective diffusion constant derived from $\gamma$ and the interaction network.
+\subsection{Macro-Level Evolution of the Time-Density Field}
+
+The collective action of countless signal-dissipation steps at the micro level leads to the smooth evolution of the macro-level time-density field, $\rho_t(x)$, governed by its field equation (see Section~\ref{sec:core-action}):
+\[
+\Box \rho_t - V'(\rho_t) + \cdots = 0
+\]
+Here, the ``$\cdots$'' term absorbs all source and coupling terms from matter, coherence, and interactions.
+The approach to equilibrium (or attractor states) for $\rho_t$ can be understood as the integrated result of local coherence-dissipation events at every scale.
+\subsection{Information-Theoretic Interpretation: Entropy and Coherence}
+
+The signal-dissipation process can be interpreted as local reduction of informational (Shannon or quantum) entropy.
+As local differences in $Q_i$ vanish, the system moves toward maximal mutual coherence, corresponding to minimal entropy production.
+Conversely, persistent incoherence (large $\Delta Q_{ij}$) maintains or increases entropy.
+This micro-to-macro bridge justifies the treatment of coherence conservation and time-density evolution as physical processes with direct thermodynamic and computational meaning.
+\subsection{Example: Coherence Relaxation in a Network}
+
+Consider a ring of $N$ oscillators with initial random phases $Q_i(0)$.
+At each time step, each oscillator exchanges phase information with its nearest neighbors according to the local update rule (Eq.~\ref{eq:local-update}).
+Over many iterations, all $Q_i$ converge to a common phase, maximizing global coherence:
+\[
+\lim_{t \to \infty} Q_i(t) = Q_{\mathrm{eq}} \quad \forall i
+\]
+The rate of convergence (relaxation time) depends on $\gamma$ and network topology.
+In physical terms, this process models synchronization in neural circuits, quantum decoherence in open systems, or even heat conduction.
+This mechanistic foundation ensures that the evolution of $R_{\mathrm{coh}}$ and $\rho_t$ is not left to abstract principle, but arises from a well-defined, physically computable process:
+\begin{itemize}
+    \item \emph{Coherence increases} as local differences dissipate, corresponding to the growth of order and synchrony in the system.
+\item \emph{Decoherence or disorder} results from the persistence or amplification of local differences, inhibiting equilibration.
+\item The \emph{time-density field} $\rho_t(x,t)$ evolves as the statistical outcome of these local interactions, linking the micro-dynamics of dissipation to macroscopic gravitational and temporal effects.
+\end{itemize}
+
+\subsection{Summary}
+
+By formalizing thermodynamic dissipation as a wave-based, local computational process, SIT unifies the dynamics of coherence, entropy, and time-density into a single theoretical framework.
+The macroscopic field evolution described in Section~\ref{sec:core-action} is thus revealed as the statistical outcome of myriad microscopic signal-dissipation events---a mechanistic bridge between information, computation, and fundamental physics.
+
+\subsection{The Coherence Field as a Conceptual Memory Substrate and Informational Hysteresis}
+\label{sec:hysteresis_memory}
+\label{sec:memory_substrate}
+
+While Result~\ref{thm:CoherenceMonotonicity} establishes strictly \emph{bounded} open-system monotonicity (purity non-increase for unital CPTP maps and quantum relative-entropy contraction $D(\Phi(\rho)\|\Phi(\omega)) \le D(\rho\|\omega)$ for general CPTP maps), SIT additionally explores a conceptual geometric picture termed \textbf{informational hysteresis}. In this phenomenological interpretation, after a localized subsystem exchanges energy and phase correlations with an unobserved environment, the coarse-grained reduced state does not retrace its initial configuration identically.
+
+During a cyclic control trajectory $p$ in a reduced dissipative state space, an effective path-dependent geometric phase offset may be parameterized schematically as
+\begin{equation}
+\Phi_{\mathrm{geom}}[p] \approx \oint_p C_{\mathrm{rec}}^+[p]\,dt
+\label{eq:informational_hysteresis_loop}
+\end{equation}
+(Appendices~\ref{app:recursion-influence}--\ref{app:prior_work}). Version~81 emphasizes that this hysteresis picture is a \emph{conceptual open-system model}, distinct from both a universal decay law for global $\Rcoh$ and any claimed conservation of total informational entropy (retracted above).
+
+\subsection{Scope of Open-System Monotonicity and Holonomy}
+
+In summary, Result~\ref{thm:CoherenceMonotonicity} replaces earlier universal global-coherence decay and global entropy-conservation assertions with established, bounded open-system quantum theorems (unital CPTP purity non-increase and general CPTP relative-entropy contraction). Parallel transport of a charged field around closed loops yields standard $U(1)$ gauge holonomy $\exp\bigl(i\hat{q}\oint_\gamma A_\mu dx^\mu\bigr)$ under the independent connection $A_\mu$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}, while deriving any explicit thermodynamic arrow for the classical scalar fields $(\rho_t, \psi)$ from microscopic coarse-graining remains an open problem distinct from the Deng--Hani--Ma hard-sphere Boltzmann theorem.
+
+\section{Wave--Particle Duality and Coherence--Decoherence Phenomenology}
+\label{sec:duality}
+
+At the conceptual level, wave--particle complementarity is closely related to environment-induced decoherence: high interferometric fringe visibility produces interference patterns, whereas environmental entanglement suppresses off-diagonal density-matrix elements and recovers classical trajectory statistics.
+
+In semiclassical quantization, the Bohr--Sommerfeld / Einstein--Brillouin--Keller condition
+\begin{equation}\label{eq:EBK}
+   \oint p_i\,dq^i \;=\; 2\pi n\hbar,
+   \qquad n\in\mathbb{Z},
+\end{equation}
+selects constructive single-valued phase quantization. Following the operational separation contract (Section~\ref{sec:PrimitiveFieldDefinitions}), Version~81 distinguishes standard quantum interferometric visibility (an operational density-matrix statistic) from the classical $U(1)$ Noether current $J^\mu_{\mathrm{coh}} = \kappa_c|\psi|^2(\nabla^\mu\theta - \hat{q}A^\mu)$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}: the Noether current does \emph{not} automatically equal fringe visibility, nor does unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} derive quantitative crossover curves for Ramsey phase-echo, Mach--Zehnder, or atom-fountain experiments prior to specifying the microscopic detector and preparation couplings (\texttt{OPEN-6C}). Those interferometric platforms remain prospective conceptual analogies rather than completed SIT predictions.
+
+\section{Measurement-Induced Coherence Gradients in the Two-Slit Geometry}
+\label{sec:two-slit}
+
+In a standard two-slit experiment interference arises when the
+coherence ratio \(R_{\text{coh}}\) is uniform across both paths. As a
+prospective conceptual hypothesis, Super Information Theory suggests
+that a monitoring device might perturb this balance by inducing a
+local coherence perturbation \(\Delta R_{\text{coh}}\) and, through
+the canonical scalar coupling of \texttt{M\_AUTH\_SIT\_EFT\_v1}, a
+corresponding temporal-density shift \(\delta\rho_t\). In the
+canonical action, phase evolution couples to the independent gauge
+connection \(A_\mu\) via the covariant derivative
+\(D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi\) rather than through a
+flat gradient ansatz \(A_i = (\hbar/e)\partial_i\arg\psi\) (whose
+local curl vanishes identically on smooth patches). Whether any
+monitoring apparatus produces a measurable fringe displacement remains
+an open microphysical problem contingent on deriving the detector
+source functional \(J_{\mathrm{prep}}\) and the electromagnetic
+coupling dictionary (\texttt{OPEN-6B}/\texttt{OPEN-6C}); any such
+effect would be strongly suppressed by existing post-Newtonian and
+short-range bounds on SIT's scalar couplings and is not yet a
+quantitatively derived prediction of the canonical action.
+
+A prospective experimental test would replace a projective
+``which-way'' detector with a tunable low-noise weak phase probe once
+the detector-to-field transfer function is derived under
+\texttt{OPEN-6C}, testing for any continuous shift of the interference
+envelope above ordinary environmental decoherence.
+
+\subsection{Broader Consequences}
+
+Conceptually, because the covariant coherence-field dynamics links
+microscopic phase evolution and macroscopic spacetime response in the
+same effective action, weak-measurement interferometry offers a
+prospective tabletop testbed alongside torsion-balance and clock
+experiments. Once an explicit detector source and fringe-shift formula
+are derived from \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{OPEN-6C}),
+a non-observation would constrain the specific coupling parameter
+region and preparation model tested, in accordance with the Scoped
+Falsification Principle of Section~\ref{sec:experimental-predictions}.
+
+\subsection{Neural and Cosmological Echoes}
+
+The regulated horizon that emerges around an over-coupled detector
+is mathematically identical to the coherence boundaries that
+organise cortical phase waves and to the curvature cut-offs that
+stabilise collapsing stars.  In each case a conserved Noether
+current shunts excess coherence into decoherent radiation,
+enforcing a finite amplitude--frequency product and preventing
+singularity formation.  The laboratory experiment therefore
+connects three scales---quantum, neural, and cosmic---through a single
+gauge-holonomy principle already embedded in the master action.
+
+
+
+\section{Stability, Causality, Ghost Freedom, and Mathematical Consistency}
+\label{sec:stability-causality}
+
+We now consolidate the classical and linearized quantum stability proofs for the authoritative $(-,+,+,+)$ effective field theory \texttt{M\_AUTH\_SIT\_EFT\_v1}, backed by machine-checked Lean~4.30 theorems (\texttt{SitQg.Stage2.QG11To14}, \texttt{SitQg.Stage2.QG15To19}, \texttt{SITQG09\allowbreak{}Linearized\allowbreak{}Fluctuation\allowbreak{}And\allowbreak{}Obstruction}).
+
+\subsection{Stability, Absence of Ghosts, and Positive-Definite Radial Hessian}
+
+\subsubsection{Quadratic Expansion in Mostly-Plus Signature $(-,+,+,+)$}
+
+Expanding the bosonic fields of $S_{\mathrm{AUTH}}$ around the zero-cosmological-constant broken-symmetry vacuum
+\[
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \qquad
+\rho_t(x) = \rho_0 + \delta\rho_t(x), \qquad
+|\psi(x)| = v_0 + \delta|\psi|(x), \qquad
+A_\mu(x) = \delta A_\mu(x),
+\]
+with $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$, the scalar kinetic terms $-\frac{\kappa_t}{2}\eta^{\mu\nu}\partial_\mu\delta\rho_t\partial_\nu\delta\rho_t - \frac{\kappa_c}{2}\eta^{\mu\nu}\partial_\mu\delta|\psi|\partial_\nu\delta|\psi|$ evaluate explicitly to
+\begin{equation}
+\mathcal{L}_{\mathrm{scal}}^{(2)}
+= +\frac{\kappa_t}{2}\Bigl[(\partial_t\delta\rho_t)^2 - (\nabla\delta\rho_t)^2\Bigr]
+  + \frac{\kappa_c}{2}\Bigl[(\partial_t\delta|\psi|)^2 - (\nabla\delta|\psi|)^2\Bigr]
+  - \frac{1}{2}
+  \begin{pmatrix}\delta\rho_t & \delta|\psi|\end{pmatrix}
+  H
+  \begin{pmatrix}\delta\rho_t \\ \delta|\psi|\end{pmatrix},
+\label{eq:quadratic_scalar_lagrangian_sec19}
+\end{equation}
+where $H$ is the $2\times 2$ radial Hessian matrix~\eqref{eq:radial_Hessian_sec5}. In unitary gauge ($\theta = 0$ absorbed into longitudinal $\delta A_\mu$ for $v_0 > 0$), the gauge-phase sector yields the canonical Proca Lagrangian
+\begin{equation}
+\mathcal{L}_{\mathrm{vec}}^{(2)}
+= -\frac{f_{\mathrm{EM}}(R_0)}{4}\,\delta F_{\mu\nu}\delta F^{\mu\nu}
+  - \frac{1}{2}\kappa_c\hat{q}^2 v_0^2\,\eta^{\mu\nu}\delta A_\mu\delta A_\nu,
+\qquad
+m_A^2 = \frac{\hat{q}^2\kappa_c v_0^2}{f_{\mathrm{EM}}(R_0)} > 0,
+\label{eq:proca_mass_sec19}
+\end{equation}
+reducing smoothly at $v_0 = 0$ ($f_{\mathrm{EM}}(0)=1$) to two massless Maxwell polarizations plus one massless Goldstone phase mode. Simultaneously, ADM scalar--vector--tensor decomposition of the linearized Einstein--Hilbert sector yields the transverse-traceless graviton Lagrangian
+\begin{equation}
+\mathcal{L}_{\mathrm{TT}}^{(2)}
+= \frac{1}{8\kappa_G}\Bigl[(\partial_t h_{ij}^{\mathrm{TT}})^2 - (\partial_k h_{ij}^{\mathrm{TT}})^2\Bigr],
+\qquad
+c_T^2 = 1,
+\label{eq:graviton_TT_sec19}
+\end{equation}
+while the elliptic ADM Hamiltonian constraint $\Delta\Psi = +\frac{\kappa_G}{2}T_{00}^{(2)}$ eliminates the non-propagating conformal trace $\Psi$ and the Gauss constraint eliminates $\delta A_0$.
+
+\subsubsection{Ghost Freedom, Tachyonic Stability, and Exact Polarizations Count}
+
+Under the canonical positivity domain ($\kappa_G, \kappa_t, \kappa_c, \lambda_\rho, \lambda_\psi, m_{\mathrm{link}}, \psi_0, \rho_0, M_{\mathrm{sym}} > 0$, $c_{\mathrm{EM}}, \lambda_{\mathrm{portal}}, \hat{q}, v_0 \ge 0$):
+\begin{itemize}
+  \item \textbf{Exact Physical Mode Count ($7$ Pure-SIT / $8$ Matter-Coupled):} In pure-SIT bosonic vacuum ($\mathcal{L}_{\mathrm{matter}} = 0$), exactly \textbf{$7$ physical bosonic polarizations} ($14$ phase-space degrees of freedom) propagate: $2$ TT gravitons $(h_+, h_\times)$, $2$ transverse vector modes, $1$ longitudinal Proca mode ($v_0 > 0$) or phase scalar ($v_0 = 0$), and $2$ massive real scalar modes from $(\delta\rho_t, \delta|\psi|)$. When coupled to a representative neutral screened scalar matter field $\chi$ in curved $3+1$D ADM canonical gravity (\texttt{Stage3ADM}, Section~\ref{sec:stage3-curved-adm}), Dirac--Bergmann constraint reduction yields $36 - 2\times 10 = 16$ physical phase-space dimensions, i.e.\ \textbf{$8$ propagating bosonic modes} ($7 + 1$).
+  \item \textbf{Strict Absence of Ghosts:} Every propagating kinetic coefficient ($\frac{1}{8\kappa_G} > 0$, $\frac{\kappa_t}{2} > 0$, $\frac{\kappa_c}{2} > 0$, $\frac{f_{\mathrm{EM}}(R_0)}{2} \ge \frac{1}{2} > 0$) is strictly positive.
+  \item \textbf{Strict Absence of Tachyons:} For $v_0 > 0$ and $K = \mathrm{diag}(\kappa_t, \kappa_c) \succ 0$, $\mathrm{tr}(H) > 0$ and $\det(H) = 2v_0^2(2\lambda_\rho\lambda_\psi\rho_0^2 + \lambda_\psi m_{\mathrm{link}}^2 + 4\lambda_\rho\rho_0^2\lambda_{\mathrm{portal}}) > 0$ guarantee strictly positive physical squared eigenmasses $0 < \frac{\det(H)}{\max(\kappa_t,\kappa_c)\,\mathrm{tr}(H)} \le m_1^2 \le m_2^2$ of $M_{\mathrm{phys}}^2 = K^{-1/2} H K^{-1/2}$ ($H u_a = m_a^2 K u_a$; at unit kinetic normalization $K = I_2$ in \texttt{BM\_\allowbreak{}QG16\_\allowbreak{}UNIT\_\allowbreak{}MASS\_\allowbreak{}EIGENVALUES}, $H = \bigl(\begin{smallmatrix}2 & -2\\ -2 & 6\end{smallmatrix}\bigr)$ gives $m_\mp^2 = 4 \mp 2\sqrt{2} > 0$).
+\end{itemize}
+
+\subsection{Perturbative EFT Renormalizability and Weinberg Derivative Power Counting}
+
+\subsubsection{Renormalizable Scalar-Gauge Core}
+
+In flat spacetime ($G \to 0$) with dimension-6 dressings switched off ($c_{\mathrm{EM}} \to 0$, $M_{\mathrm{sym}} \to \infty$), $\mathcal{L}_{\mathrm{coh}} - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}$ is a standard dimension-$\le 4$ power-counting renormalizable Abelian Higgs + portal singlet QFT in $3+1$ dimensions.
+
+\subsubsection{Weinberg Loop Suppression Below $\Lambda_{\mathrm{UV}}$}
+
+Including Einstein--Hilbert gravity ($\kappa_G = M_{\mathrm{Pl}}^{-2}$) and the dimension-6 operators suppressed by $\Lambda_{\mathrm{EM}}^{-2}$ and $\Lambda_{\mathrm{sym}}^{-2}$, any connected $L$-loop Feynman diagram with $V$ vertices, $I$ internal lines, and $E_{\mathrm{ext}}$ external legs satisfies Euler's topological identity $I = L + V - 1$, yielding Weinberg's derivative power-counting exponent
+\begin{equation}
+\sum_{v=1}^V (n_v - 2) = E_{\mathrm{ext}} + 2L - 2 \quad (\text{grav.}),
+\qquad
+\mathcal{M}_L(E) \;\lesssim\; \left(\frac{E}{\Lambda_{\mathrm{UV}}}\right)^{2L + 2}
+\quad (2 \to 2,\ E \ll \Lambda_{\mathrm{UV}}),
+\label{eq:weinberg_power_counting_sec19}
+\end{equation}
+proved monotonically decreasing in $L$ for $E < \Lambda_{\mathrm{UV}}$ in Lean~4.30 (\texttt{weinberg\allowbreak{}Loop\allowbreak{}Power\_\allowbreak{}monotone}; e.g.\ at $E/\Lambda_{\mathrm{UV}} = 10^{-2}$, suppression factors are $10^{-4}, 10^{-8}, 10^{-12}$ at $L = 0, 1, 2$).
+
+\subsection{Energy Conditions in Signature $(-,+,+,+)$}
+
+For a canonical real scalar sector with $T_{\mu\nu}^{(\phi)} = \kappa_\phi\bigl(\partial_\mu\phi\partial_\nu\phi - \frac{1}{2}g_{\mu\nu}g^{\alpha\beta}\partial_\alpha\phi\partial_\beta\phi\bigr) - g_{\mu\nu}V(\phi)$ ($\kappa_\phi > 0$, $V(\phi) \ge 0$):
+\begin{itemize}
+  \item \textbf{Null Energy Condition (NEC):} For every null vector $n^\mu$ ($g_{\mu\nu}n^\mu n^\nu = 0$), $T_{\mu\nu}^{(\phi)}n^\mu n^\nu = \kappa_\phi(n^\mu\partial_\mu\phi)^2 \ge 0$, and $T_{\mu\nu}^{(\mathrm{EM})}n^\mu n^\nu = f_{\mathrm{EM}}(\Rcoh)(n^\mu F_{\mu\lambda})(n_\nu F^{\nu\lambda}) \ge 0$ since $f_{\mathrm{EM}} \ge 1$. Thus the NEC holds identically across the entire pure-SIT bosonic core.
+  \item \textbf{Weak Energy Condition (WEC):} For every unit timelike vector $u^\mu$ ($g_{\mu\nu}u^\mu u^\nu = -1$), choosing a local Lorentz rest frame gives $T_{\mu\nu}^{(\mathrm{SIT})}u^\mu u^\nu = \frac{\kappa_t}{2}[(\partial_0\rho_t)^2 + (\nabla\rho_t)^2] + \frac{\kappa_c}{2}[|D_0\psi|^2 + |\mathbf{D}\psi|^2] + \frac{f_{\mathrm{EM}}}{2}(\mathbf{E}^2 + \mathbf{B}^2) + V_{\mathrm{tot}}(\rho_t,|\psi|) \ge 0$, so the WEC holds globally by $V_{\mathrm{tot}} \ge 0$.
+  \item \textbf{Strong Energy Condition (SEC):} As in standard inflationary and dark-energy scalar theories, $(T_{\mu\nu} - \frac{1}{2}g_{\mu\nu}T)u^\mu u^\nu$ can become negative in potential-dominated regimes ($V_{\mathrm{tot}} > \text{kinetic}$), permitting late-time cosmic acceleration without ghost or NEC pathology.
+\end{itemize}
+
+\subsection{Causality and Strict Hyperbolicity}
+
+All Euler--Lagrange equations~\eqref{eq:summary_einstein_sec8}--\eqref{eq:summary_maxwell_sec8} (in harmonic/Lorenz gauge) share the second-order principal symbol $\sigma_2(\xi) = -g^{\mu\nu}\xi_\mu\xi_\nu\,I$. Because $f_{\mathrm{EM}}(\Rcoh)$ multiplies $F_{\mu\nu}F^{\mu\nu}$ isotropically without derivative couplings of the form $\partial_\mu\rho_t\partial_\nu\rho_t F^{\mu\alpha}F^\nu_{\ \alpha}$, all characteristic cones coincide exactly with the physical metric null cone $g^{\mu\nu}\xi_\mu\xi_\nu = 0$ ($c_{\mathrm{char}} = c_T = 1$), strictly forbidding superluminal signal propagation.
+
+\subsection{Local Cauchy Problem and Well-Posedness}
+
+On any globally hyperbolic spacetime $(\mathcal{M}^4, g_{\mu\nu})$ with smooth initial data on a spacelike Cauchy slice $\Sigma_0$ satisfying the elliptic ADM Hamiltonian, momentum, and $U(1)$ Gauss constraints, Leray--Choquet-Bruhat--Yvonne hyperbolic PDE theory guarantees local-in-time existence, uniqueness (up to diffeomorphism and $U(1)$ gauge), and causal domain-of-dependence stability; full nonlinear curved $3+1$D constraint preservation under evolution is established at the local formal 3-jet level modulo explicit spatial divergences $\partial_k B^k$ on the physical Sylvester Riemannian positive-definite cone \texttt{IsSPD3} via Dirac--Bergmann Poisson closure in Section~\ref{sec:stage3-curved-adm} (while infinite-dimensional Sobolev/Banach constraint domains with Regge--Teitelboim asymptotic boundary conditions and global infinite-time multi-chart Cauchy PDE regularity on generic curved data remain noted under \texttt{OPEN-2B}/\texttt{OPEN-2}).
+
+\subsection{Summary of Mathematical Rigor}
+
+\texttt{M\_AUTH\_SIT\_EFT\_v1} is free of ghosts and tachyons, satisfies the NEC and WEC globally, propagates all bosonic modes causally on the physical light cone, closes its nonlinear $3+1$D ADM constraints first-class, and admits controlled Weinberg loop power counting below $\Lambda_{\mathrm{UV}}$.
+
+\section{Reductions and Boundaries with Established Theories}
+\label{app:reductions}
+
+This section summarizes the exact algebraic reductions, unbroken-phase limits, heavy-scalar approximations, and explicit scope boundaries relating \texttt{M\_AUTH\_SIT\_EFT\_v1} to General Relativity, standard Quantum Mechanics, and classical kinetic theory.
+
+\subsection{Metric Variation}
+
+Starting from the SIT action (Equation~\eqref{eq:SIT_action}), the gravitational field equations arise from variation with respect to the metric \(g_{\mu\nu}\):
+\[
+\delta S_{\mathrm{SIT}}/\delta g^{\mu\nu} = 0.
+\]
+
+\subsection{Scope of Weak-Field Post-Newtonian Bounds}
+
+Earlier drafts quoted informal estimates such as $|\alpha\,\delta\rho_t| \lesssim 10^{-5}$ and $|\alpha| \lesssim 10^{-2}$ from Lunar Laser Ranging, Cassini Doppler tracking, and binary-pulsar timing. Consistent with Stage~6 (Section~\ref{sec:stage6-action-diagnostics}) and the blocked six-record primary provenance ledger (\texttt{OPEN-6D}), Version~81 retires those informal estimates: constraining the parameters of \texttt{M\_AUTH\_SIT\_EFT\_v1} against Solar System, torsion-balance, and clock observations requires deriving the full coupled gravitational and material-charge responses from the stated action first.
+
+\subsection{Algebraic Metric Reduction vs.\ Coupled Solution Conditions}
+
+In canonical \texttt{M\_AUTH\_SIT\_EFT\_v1} (which couples $\rho_t$ minimally to $g_{\mu\nu}$ rather than as a non-minimal Brans--Dicke scalar and does not rescale $\hbar$), substituting constant vacuum fields $(\rho_t, |\psi|) = (\rho_0, v_0)$ with pure-gauge phase $D_\mu\psi = 0$ ($V_{\mathrm{tot}} = 0$, $\nabla V_{\mathrm{tot}} = 0$) reduces the \emph{metric} equation algebraically to
+\[
+G_{\mu\nu} = 8\pi G_{\mathrm{eff}}\,T_{\mu\nu}^{\mathrm{SM}} + 8\pi G\,f_{\mathrm{EM}}(R_0)\,T_{\mu\nu}^{\mathrm{EM},0},
+\qquad
+G_{\mathrm{eff}} = G\,f_{\mathrm{SM}}(R_0).
+\]
+This algebraic metric reduction constitutes an \emph{exact solution of the full coupled theory} only when the scalar, gauge, and matter equations are simultaneously satisfied: at $v_0 > 0$, neutral dust ($\mathcal{L}_{\mathrm{matter}} = -\rho_m < 0$) leaves a nonzero scalar-equation residual $-v_0\rho_m/(\psi_0^2 M_{\mathrm{sym}}^2) \ne 0$, and $[D_\mu, D_\nu]\psi = -i\hat{q}F_{\mu\nu}\psi = 0$ forces $F_{\mu\nu} = 0$ whenever $\hat{q}v_0 \ne 0$ (Appendix~D.2). Source-free vacuum ($\mathcal{L}_{\mathrm{matter}} = 0, F_{\mu\nu} = 0$) is an exact solution at $(\rho_0, v_0)$; broader exact sourced GR-plus-Maxwell reduction ($G_{\mathrm{eff}} = G$, $f_{\mathrm{EM}} = 1$, $m_A = 0$) holds in the separate unbroken parameter limit $v_0 = 0$; and heavy-scalar decoupling ($m_1, m_2 \gg E_{\mathrm{obs}}$, where $m_1^2, m_2^2$ solve $H u_a = m_a^2 K u_a$) provides a controlled asymptotic approximation.
+
+\subsection{Standard Quantum Evolution Boundary (Not Derived from Classical EFT)}
+
+Consistent with the operational separation contract (Section~\ref{sec:PrimitiveFieldDefinitions}), \texttt{M\_AUTH\_SIT\_EFT\_v1} is a classical effective field theory for $(\rho_t, \psi, A_\mu, g_{\mu\nu})$ and does \emph{not} derive the von Neumann equation $i\hbar\,\partial_t\rho = [\hat{H}, \rho]$ or the single-particle Schr\"odinger equation $i\hbar\,\partial_t\psi_{\mathrm{QM}} = \hat{H}\psi_{\mathrm{QM}}$ from classical scalar fields. Standard Hilbert-space quantum mechanics applies untouched in the tested weak-field constant-background limit, while any quantum-matter back-reaction onto $(\rho_t, \psi)$ remains open under \texttt{OPEN-6C}.
+
+\subsection{External Kinetic-Theory Correspondence (Not Derived from $S_{\mathrm{AUTH}}$)}
+
+In the decoupled constant-background limit where $(\rho_t, \psi)$ perturbations are negligible, dilute classical gases obey the standard Boltzmann kinetic equation
+\[
+\frac{\partial f}{\partial t} + \mathbf{v} \cdot \nabla_x f + \mathbf{F} \cdot \nabla_p f = C[f]
+\]
+under the usual microscopic collisional assumptions of statistical mechanics (for instance, the hard-sphere Boltzmann--Grad theorem of Deng--Hani--Ma~2025). Consistent with Appendix~\ref{app:KineticLimit}, \texttt{M\_AUTH\_SIT\_EFT\_v1} does \emph{not} derive the collision operator $C[f]$ or Navier--Stokes closure from the classical SIT scalars $(\rho_t, \psi)$; any SIT-specific transport correction remains an open research problem.
+
+\section{Informational Symmetry and CPT Balance}
+\label{sec:CPT-balance}
+
+Super Information Theory seeks CPT balance without appealing to an external ``mirror universe.''  
+The master action \texttt{M\_AUTH\_SIT\_EFT\_v1} already furnishes the conserved gauge-invariant Noether current
+$J^\mu_{\mathrm{coh}} = \kappa_c|\psi|^2(\nabla^\mu\theta - \hat{q}A^\mu)$ (Eq.~\eqref{eq:abstract_coherence_current}),
+whose covariant divergence vanishes on shell and enforces global phase-charge conservation.  
+Coupled to the independent gauge connection $A_\mu$ through $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$ (rather than a pure-gradient flat connection, whose local field strength vanishes identically), local changes in coherence charge are balanced by current flux within a single spacetime manifold.  
+Apparent macroscopic time-reversal asymmetries are therefore attributed to coarse graining and boundary conditions,
+not to a second time-reversed cosmos.  
+
+For completeness, the earlier "anti-universe" speculation is now treated as a historical note in Appendix~\ref{app:speculative}.
+
+On a cosmological scale, the exploratory ``Halfway Universe'' concept is discussed as an open Level-1 phenomenological hypothesis (distinct from a proved symmetry identity) in Section~\ref{sec:blackholesvoids}.
+
+\subsection{Coherence Saturation and Exploratory Horizon Analogies}
+\label{sec:info-horizons}
+
+Earlier drafts introduced the heuristic term ``informational horizon'' to imagine a boundary where $\Rcoh$ approaches a saturation value and blocks classical curvature singularities or accounts for quantum-eraser interference. Version~81 explicitly scopes those statements as speculative conceptual analogies rather than proved consequences of \texttt{M\_AUTH\_SIT\_EFT\_v1}. In the canonical action, $\psi$ is an unbounded complex scalar regulated dynamically by its quartic potential $U(|\psi|) = \frac{\lambda_\psi}{4}(|\psi|^2 - v_0^2)^2$ (rather than a hard kinematic ceiling $\Rcoh \le 1$), no black-hole singularity-resolution theorem has been proved inside the low-energy EFT regime below $\Lambda_{\mathrm{UV}}$ (\texttt{OPEN-5}), and quantum-eraser statistics are already fully described by standard Hilbert-space quantum mechanics without invoking a spacetime horizon.
+
+\subsection{Gravitational Stability and Ultraviolet Cutoff Scope}
+\label{sec:grav-stability}
+
+Within the classical low-energy regime of \texttt{M\_AUTH\_SIT\_EFT\_v1}, local well-posedness and energy positivity follow from the ghost-free kinetic signature ($\kappa_t > 0, \kappa_c > 0$) and the nonnegative $Z_2$-lifted scalar potential $V_{\mathrm{tot}} \ge 0$ (Sections~\ref{sec:framework}--\ref{sec:screening-mechanism}). Whether an ultraviolet completion above $\Lambda_{\mathrm{UV}} = \min(M_{\mathrm{Pl}}, \Lambda_{\mathrm{EM}}, \Lambda_{\mathrm{sym}})$ resolves gravitational collapse singularities in supernovae or early-universe cosmology remains an open quantum-gravity problem (\texttt{OPEN-5}) rather than a derived theorem of the classical EFT action.
+
+\subsection{Summary of Bounded Empirical Benchmarks}
+
+Torsion-balance short-range tests (Lee~2020), the kinetic Boltzmann--Grad theorem of Deng--Hani--Ma~(2025) in its hard-sphere regime, and standard electromagnetic Aharonov--Bohm holonomy occupy distinct scientific roles: Deng--Hani--Ma provides an external kinetic-theory benchmark (not a constraint on SIT scalar couplings, Section~\ref{sec:coherence-conservation}), Aharonov--Bohm phase measures gauge curvature of an independent $U(1)$ connection $A_\mu$ (Section~\ref{sec:magnetism-holonomy}), and short-range gravitational bounds constrain \texttt{M\_AUTH\_SIT\_EFT\_v1} only through the full coupled screening and finite-geometry likelihood program (\texttt{OPEN-6A}, Section~\ref{sec:experimental-predictions}). None of these benchmarks renders singularity resolution or quantum measurement foundations solved within the current monograph.
+
+
+
+\section{Renormalisation-Group Flow, Weinberg Power Counting, and Seeley--DeWitt Heat-Kernel Structure}
+\label{sec:rg-heat-kernel}
+
+For SIT's laboratory and astrophysical phenomenology to remain radiatively consistent across scales $E \ll \Lambda_{\mathrm{UV}}$, its couplings must evolve benignly under renormalization-group (RG) flow while its one-loop gravitational and dimension-6 divergences follow standard Wilsonian effective field theory.
+
+\subsection{Sub-Planckian Matter-Scalar Toy Setup and One-Loop Beta Functions}
+
+In a minimal sub-Planckian renormalizable subsector ($\mu \ll \Lambda_{\mathrm{UV}}$) coupling a real time-density fluctuation $\delta\rho_t$ with quartic $\frac{\lambda_\rho}{4!}(\delta\rho_t)^4$, complex coherence scalar $\psi$ with $\frac{\lambda_c}{4!}|\psi|^4$ and portal $\frac{\lambda_{c\rho}}{4}(\delta\rho_t)^2|\psi|^2$, a benchmark Dirac fermion with Yukawa $\alpha_Y\delta\rho_t\bar{\Psi}\Psi$, and an Abelian gauge field $A_\mu$ with coupling $e$, dimensional regularization in $d = 4 - \epsilon$ ($\overline{\mathrm{MS}}$) gives the standard one-loop beta functions $\mu\,dX/d\mu = \beta_X$:
+\begin{align}
+\beta_{\lambda_\rho} &= \frac{3\lambda_\rho^2 - 24\alpha_Y^4 + \lambda_{c\rho}^2}{16\pi^2}, \label{eq:beta_lambda_rho_sec22}\\
+\beta_{\alpha_Y} &= \frac{5\alpha_Y^3 - 6\alpha_Y e^2}{16\pi^2}, \label{eq:beta_alpha_sec22}
+\end{align}
+remaining perturbative with zero Landau pole across terrestrial, collider, and cosmological scales whenever initial couplings satisfy $|\alpha_Y|, \lambda_\rho, \lambda_{c\rho} \lesssim 10^{-1}$. Meanwhile, in canonical \texttt{M\_AUTH\_SIT\_EFT\_v1}, direct linear couplings to $F_{\mu\nu}F^{\mu\nu}$ and $\mathcal{L}_{\mathrm{matter}}$ are forbidden by $\mathbb{Z}_2$ invariance of $|\psi|^2$, entering only at dimension-6 via $\Lambda_{\mathrm{EM}}^{-2}|\psi|^2 F^2$ and $\Lambda_{\mathrm{sym}}^{-2}|\psi|^2\mathcal{L}_{\mathrm{matter}}$ and enjoying automatic Planck/GUT-scale suppression~\eqref{eq:cutoff_ratio_identity}.
+
+\subsection{Covariant One-Loop Seeley--DeWitt Heat-Kernel Expansion}
+
+Integrating out quadratic bosonic fluctuations around a smooth background $(g_{\mu\nu}, \rho_t, \psi, A_\mu)$ produces a Laplace-type fluctuation operator $\Delta = -g^{\mu\nu}\nabla_\mu\nabla_\nu - E$ with bundle curvature $\Omega_{\mu\nu} = [\nabla_\mu, \nabla_\nu]$. In proper-time heat-kernel regularization with UV cutoff $\Lambda_{\mathrm{reg}} \le \Lambda_{\mathrm{UV}}$,
+\begin{equation}
+\mathrm{Tr}\,e^{-s\Delta}
+\;\sim\;
+\frac{1}{(4\pi s)^2}\sum_{k=0}^\infty s^k \int d^4x\,\sqrt{-g}\,\mathrm{tr}\,a_k(x)
+\qquad (s \to 0^+),
+\label{eq:heat_kernel_asymptotic}
+\end{equation}
+the first three Gilkey--Seeley--DeWitt invariants govern all one-loop UV divergences in four dimensions:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Quartic Vacuum Divergence ($a_0$):}
+  \begin{equation}
+  a_0(x) = I,
+  \end{equation}
+  generating an $O(\Lambda_{\mathrm{reg}}^4 / (16\pi^2))$ shift absorbed into the bare vacuum energy counterterm $\delta\Lambda_{\mathrm{vac}}$, preserving the physical renormalization condition $V_{\mathrm{tot}}(\rho_0, v_0) = 0$.
+  \item \textbf{Quadratic Mass and Einstein--Hilbert Divergence ($a_1$, \texttt{ODQ-5}):}
+  \begin{equation}
+  a_1(x) = \frac{1}{6}\,R\,I + E,
+  \end{equation}
+  generating $O(\Lambda_{\mathrm{reg}}^2/(16\pi^2))$ renormalizations of the scalar mass parameters and shifting the bare inverse Newton constant $1/(16\pi G_{\mathrm{bare}})$. Crucially (\texttt{ODQ-5}), \texttt{M\_AUTH\_SIT\_EFT\_v1} retains $\frac{R}{16\pi G} = \frac{M_{\mathrm{Pl}}^2}{2}R$ as a \emph{primitive} tree-level term in the effective action rather than adopting naive one-loop Sakharov induced gravity (retired branch \texttt{C12}, discussed in Section~\ref{sec:emergence_sm_g_moved}), because quadratic cutoff shifts depend on regularization scheme and unknown UV physics above $\Lambda_{\mathrm{UV}}$.
+  \item \textbf{Logarithmic Curvature-Squared and Dimension-6 Counterterms ($a_2$):}
+  \begin{equation}
+  a_2(x)
+  = \frac{1}{180}\bigl(R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma} - R_{\mu\nu}R^{\mu\nu}\bigr)I
+    + \frac{1}{6}\,\Box_g\!\left(E + \frac{1}{5}R\right)I
+    + \frac{1}{2}\left(E + \frac{1}{6}R\right)^2
+    + \frac{1}{12}\,\Omega_{\mu\nu}\Omega^{\mu\nu},
+  \label{eq:seeley_dewitt_a2}
+  \end{equation}
+  generating logarithmic $\ln(\Lambda_{\mathrm{reg}}/\mu)$ running of dimension-4 couplings together with one-loop higher-curvature counterterms $c_1(\mu)R^2 + c_2(\mu)R_{\mu\nu}R^{\mu\nu}$ (as well as Euler--Heisenberg-like $O(\Lambda_{\mathrm{EM}}^{-4})(F_{\mu\nu}F^{\mu\nu})^2$ operators).
+\end{enumerate}
+
+\subsection{Two-Loop Goroff--Sagnotti Proliferation and the Explicit \texttt{OPEN-1} Boundary}
+
+At two loops in pure and scalar-coupled Einstein gravity, the non-vanishing on-shell Goroff--Sagnotti cubic Riemann counterterm $\frac{209}{2880(16\pi^2)^2\epsilon}\,\frac{1}{M_{\mathrm{Pl}}^2}R_{\mu\nu}^{\ \ \rho\sigma}R_{\rho\sigma}^{\ \ \alpha\beta}R_{\alpha\beta}^{\ \ \mu\nu}$ appears, followed by an infinite tower of higher-dimension operators as $L \to \infty$. Below $\Lambda_{\mathrm{UV}}$, every such operator is suppressed by $(E/\Lambda_{\mathrm{UV}})^{2L+2} \ll 1$ and leaves all laboratory, Solar System, and sub-Planckian cosmological predictions completely predictive and finite; at or above $E \ge \Lambda_{\mathrm{UV}}$, perturbative EFT breaks down, and constructing a regulator-independent non-perturbative 4D quantum-gravity UV completion remains explicitly open (\texttt{OPEN-1}, Tier~5).
+
+\section{Accelerated Worldlines: Dimensional Audit and Open Self-Force Status}
+\label{sec:electron-accel}
+
+Earlier SIT drafts proposed an informal accelerated-particle proper-time correction written as $\delta\rho_t \simeq \beta\,G m_0 / (a\,r_e)$ (with dimensionless $\beta$ asserted to satisfy a torsion-balance bound $|\beta| < 10^{-5}$ and fractional proper-time shift $< 10^{-15}$). Version~81 explicitly \emph{retires} both that formula and those numerical claims for two concrete reasons:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Dimensional Inconsistency:} In SI units with dimensionless $\beta$, rest mass $m_0$ ($[\mathrm{M}]$), proper acceleration $a$ ($[\mathrm{L\,T^{-2}}]$), and classical radius $r_e$ ($[\mathrm{L}]$), the ratio $G m_0 / (a\,r_e)$ has physical dimension $[\mathrm{L^3\,M^{-1}\,T^{-2}}][\mathrm{M}] / ([\mathrm{L\,T^{-2}}][\mathrm{L}]) = [\mathrm{L}]$ (\emph{length}), contradicting the assigned inverse-time dimension $[\rho_t] = [\mathrm{T^{-1}}]$ of the temporal-density scalar (Section~\ref{sec:atomic-clocks}).
+  \item \textbf{Open Self-Force and Torsion-Balance Bridge (\texttt{OPEN-6}):} Consistent with Sections~\ref{sec:timedensity}, \ref{sec:experimental-predictions}, and~\ref{sec:stage6-action-diagnostics}, standalone $|\beta| < 10^{-5}$ bounds are retired, and any scalar radiation-reaction or self-force shift along an accelerated worldline in \texttt{M\_AUTH\_SIT\_EFT\_v1} requires an explicit green-function regularization and microscopic worldline coupling derivation (\texttt{OPEN-6A}/\texttt{OPEN-6B}).
+\end{enumerate}
+
+\section{Operational Coherence Proxies vs.\ Open Quantitative Response Maps}
+\label{sec:quantitative}
+
+Earlier drafts heuristically identified $\Rcoh$ with a discrete state-count fraction $N_{\mathrm{coherent}}/N_{\mathrm{total}}$, substituted $\rho_t = \rho_0\exp[\alpha\Rcoh]$, and quoted illustrative figures including a $\Delta\nu/\nu \approx 5\times 10^{-11}$ cavity-modulated optical-clock shift (at $\Delta\Rcoh \sim 10^{-8}, \alpha \simeq 10^{-2}$) and a predicted $1\%$ galaxy-cluster lensing mass-profile correction. Consistent with the operational separation contract (Section~\ref{sec:PrimitiveFieldDefinitions}) and the Scoped Falsification Principle (Section~\ref{sec:experimental-predictions}), Version~81 retires both the $5\times 10^{-11}$ clock forecast and the $1\%$ cluster mass-profile figure as unsupported quantitative predictions: in \texttt{M\_AUTH\_SIT\_EFT\_v1}, $\Rcoh = |\psi|/\psi_0$ is a classical field modulus ratio rather than a discrete state count, deriving a cavity-modulated clock shift requires resolving both the visible $U(1)$ photon dictionary (\texttt{OPEN-6B}) and the laboratory preparation source $J_{\mathrm{prep}}$ (\texttt{OPEN-6C}), and deriving any cluster-scale weak-lensing residual requires a complete cosmological perturbation and mass-calibration calculation (\texttt{OPEN-6D}). Likewise, heuristic phase-dissipation expressions such as $dI/dt = -\gamma\int (\Delta\phi)^2\,d^3x$ serve solely as conceptual open-system motifs rather than canonical Hamiltonian equations of $S_{\mathrm{AUTH}}$.
+
+\section{Conditional Parameterization of Atomic Clock Frequency Shifts in SIT}
+\label{sec:atomic-clock-prediction}
+\label{sec:atomic-clocks}
+
+Section~\ref{sec:atomic-clock-prediction} formulates the disambiguated conditional parameterization for atomic clock frequency shifts under postulated $\rho_t$ variations (contingent on \texttt{OPEN-6B}/\texttt{OPEN-6C}), separating gravitational-potential redshift tests from hypothetical laboratory-prepared coherence benchmarks and distinguishing published primary measurements from quarantined sensitivity targets.
+
+\subsection{Physical Context, Disambiguated Response Symbols, and Assumptions} % anchor: second occurrence
+
+Super Information Theory introduces a scalar field \(\rho_t(x)\), the \emph{time-density field}, with physical dimension inverse time \([T^{-1}]\). This field is hypothesized to modulate the local structure of proper time or effective electromagnetic couplings, potentially affecting quantum transition frequencies measurable by atomic clocks (contingent on the visible \(U(1)\) photon dictionary, \texttt{OPEN-6B}). To repair a notation collision present in Versions~79--80.2---which reused the single symbol \(\alpha_{\mathrm{eff}}\) for both the local field response and the gravitational-potential redshift slope, thereby double-counting the transfer factor \(\mathcal{T}\) whenever \(\mathcal{T} \ne 1\)---Version~81 distinguishes the two coefficients strictly:
+\begin{itemize}
+    \item \(\rho_t(x)\) varies slowly on scales relevant to laboratory clocks and gravitational potentials.
+    \item Local coupling of \(\rho_t\) to the electromagnetic sector is parameterized by a function \(f_2(\rho_t)\) expanded to first order using the \emph{local field-response coefficient} \(\alpha_\rho\):
+    \[
+    f_2(\rho_t) = 1 + \alpha_\rho \frac{\delta \rho_t}{\rho_0} + \mathcal{O}(\delta \rho_t^2),
+    \]
+    where \(\rho_0\) is the vacuum expectation value of \(\rho_t\).
+    \item For gravitational-potential variations \(\Delta\Phi/c^2\), defining the dimensionless laboratory transfer factor \(\mathcal{T} := (\rho_0^{-1}\partial\rho_t/\partial(\Phi/c^2))_{\mathrm{lab}}\) yields \(\delta\rho_t/\rho_0 = \mathcal{T}\,(\Delta\Phi/c^2)\) and defines the \emph{gravitational-potential redshift slope}
+    \[
+    \alpha_\Phi := \frac{d\ln\nu}{d(\Phi/c^2)} = \alpha_\rho\,\mathcal{T}.
+    \]
+    \item Empirically, the cited Tokyo Skytree transportable optical-lattice clock test (Takamoto~\emph{et~al.}, 2020) reported \(\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1)\times 10^{-5}\) across a \(450\,\mathrm{m}\) height difference, while NIST (2026) achieved \(3.2\times 10^{-18}\) fractional optical-clock ratio uncertainty. The legacy \(3\times 10^{-8}\) value cited in Versions~79--80.2 is formally quarantined in Version~81 as a \emph{hypothetical future sensitivity benchmark}, not a published \(95\%\)~CL experimental bound.
+\end{itemize}
+
+\subsection{Derivation of the Gravitational Potential-Induced Shift}
+
+When atomic transition frequencies depend on electromagnetic couplings modulated by \(f_2(\rho_t)\), the local fractional frequency shift at spacetime point \(x\) is governed strictly by the local field-response coefficient \(\alpha_\rho\):
+\[
+\frac{\Delta \nu}{\nu}(x) = \alpha_\rho \frac{\delta \rho_t(x)}{\rho_0}.
+\]
+For a gravitational-potential-driven variation \(\delta\rho_t/\rho_0 = \mathcal{T}\,(\Delta\Phi/c^2)\), substituting into the local response gives without double-counting \(\mathcal{T}\):
+\[
+\left(\frac{\Delta \nu}{\nu}\right)_{\mathrm{SIT}}
+= \alpha_\rho\,\frac{\delta \rho_t}{\rho_0}
+= \alpha_\rho\,\mathcal{T}\,\frac{\Delta\Phi}{c^2}
+= \alpha_\Phi\,\frac{\Delta\Phi}{c^2}.
+\]
+This additive correction is distinct from the pure GR redshift \(\Delta\Phi/c^2\) and requires the visible \(U(1)\) photon dictionary (\texttt{OPEN-6B}) plus an action-derived terrestrial scalar profile \(\mathcal{T}\) before any primary clock dataset can constrain \texttt{M\_AUTH\_SIT\_EFT\_v1} unconditionally.
+
+\subsection{Empirical Provenance vs.\ Hypothetical Sensitivity Benchmarks}
+
+\textbf{Primary experimental provenance vs.\ quarantined hypothetical target.} The published Tokyo Skytree optical-lattice clock test (Takamoto~\emph{et~al.}, 2020) constrains gravitational-redshift deviations at \(\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1)\times 10^{-5}\) (\(1\sigma\) combined), whereas the historical figure
+\[
+|\alpha_\Phi|_{\mathrm{hyp}} \lesssim 3 \times 10^{-8} \quad \text{(hypothetical future sensitivity target; NOT an empirical 95\% CL bound)}
+\]
+would require \(1.47\times 10^{-21}\) fractional clock accuracy over the \(450\,\mathrm{m}\) Skytree baseline (\(\Delta\Phi/c^2 = 4.91\times 10^{-14}\)). Version~81 therefore quarantines \(3\times 10^{-8}\) strictly as a hypothetical future sensitivity target (see Section~\ref{sec:stage6-action-diagnostics} and Appendix~\ref{appendix:ClockConstraints}).
+
+Vacuum \(\rho_0\) corresponds in Planck-scale exploratory estimates to
+\[
+\rho_0 \sim \frac{1}{t_{\mathrm{Planck}}} \approx 5.4 \times 10^{43} \ \mathrm{s}^{-1},
+\]
+while in canonical EFT benchmark \texttt{BM\_PHYS\_EFT\_1} we set \(\rho_0 = 2.0\times 10^{16}\,\mathrm{GeV}\). Forecasts are expressed in terms of \(\delta\rho_t/\rho_0\) with \(\alpha_\rho\), or in terms of \(\Delta\Phi/c^2\) with \(\alpha_\Phi = \alpha_\rho\mathcal{T}\).
+
+\textbf{Conditional metrological status.} Until the visible electromagnetic \(U(1)\) dictionary (\texttt{OPEN-6B}) and terrestrial transfer factor \(\mathcal{T}\) are derived from \texttt{M\_AUTH\_SIT\_EFT\_v1}, clock comparisons bound the phenomenological product \(\alpha_\Phi = \alpha_\rho\mathcal{T}\) rather than imposing an unconditional constraint on the unchanged action.
+
+\subsection{Test 2: Conditional Template for Engineered Coherence-Induced Shifts (\texttt{OPEN-6B}/\texttt{OPEN-6C})}
+A second prospective experimental modality explores whether directly manipulating a laboratory system's quantum coherence can induce a differential clock shift at fixed gravitational potential. Crucially, under Stage-6 \texttt{OPEN-6} discipline, this channel is explicitly a \emph{conditional future observable template} rather than a fixed or non-tunable quantitative prediction of unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Distinct Preparation-Response Requirement:} Whereas a potential-driven clock shift uses the unified dictionary $y_{\mathrm{clock}} = \alpha_\rho r$ ($r := \delta\rho_t/\rho_0$) paired with a derived gravitational transfer relation $r = \mathcal{T} p$ ($p := \Delta\Phi/c^2$) to give $y_{\mathrm{clock}} = \alpha_\Phi p$ ($\alpha_\Phi = \alpha_\rho\mathcal{T}$), a laboratory-prepared coherent state requires its own action-derived state-preparation source $J_{\mathrm{prep}}$ (\texttt{OPEN-6C}) together with an explicit visible electromagnetic $U(1)$ photon dictionary (\texttt{OPEN-6B}). The gravitational-potential transfer factor $\mathcal{T}$ cannot simply be carried over into a distinct state-preparation geometry.
+  \item \textbf{Upper Bounds Do Not Imply Nonzero Lower Bounds:} Any historical exploratory scale (such as $\Delta\nu/\nu \sim 10^{-15}$ for an illustrative parameter ansatz) is strictly conditional and cannot be inferred from an experimental upper limit on $\alpha_\Phi$. An experimental upper bound on a coupling never establishes a nonzero lower bound on a predicted signal.
+  \item \textbf{Precise Falsification Scope:} Comparing two identical optical clocks held at the same gravitational potential (one in an engineered coherent state, one decohered) can exclude a \emph{fully specified parameter benchmark} once its preparation source $J_{\mathrm{prep}}$, visible-photon response coefficients, and experimental nuisance parameters are derived and fixed; a null result cannot exclude the entire SIT framework while \texttt{OPEN-6B} and \texttt{OPEN-6C} remain unresolved.
+\end{enumerate}
+
+\subsection{Experimental Feasibility and Conditional Falsifiability Scope}
+
+Modern optical-lattice and quantum-logic atomic clocks achieve optical frequency-ratio measurement uncertainties at or below $3.2\times 10^{-18}$ across phase-stabilized optical fiber links (NIST/BACON, \emph{Phys.\ Rev.\ Lett.}\ \textbf{137}, 033201, 2026; DOI \texttt{10.1103/g865-9mk1}, \texttt{arXiv:2512.21428}) and test terrestrial gravitational redshifts at $\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1)\times 10^{-5}$ ($1\sigma$ combined; Tokyo Skytree, Takamoto~\emph{et~al.}, 2020). Converting these primary measurements into quantitative exclusion contours on \texttt{M\_AUTH\_SIT\_EFT\_v1} requires (i)~deriving the visible $U(1)$ response coefficients and terrestrial transfer factor $\mathcal{T}$ for potential-driven tests ($y_{\mathrm{clock}} = \alpha_\Phi p = \alpha_\rho\mathcal{T} p$), and (ii)~deriving $J_{\mathrm{prep}}$ and apparatus nuisance budgets for engineered-coherence tests. Until those mappings (\texttt{OPEN-6B}/\texttt{OPEN-6C}) are closed, both channels remain explicitly blocked in the Stage-6 provenance manifest (\texttt{primary\_measurements\_manifest\_v2.json}).
+

@@ -1,0 +1,26 @@
+{
+  "schema": "sit.v81_hydrogen_house_style_receipt.v1",
+  "baseline_v803_commit": "30a71e4ffdda366c8d2489ee553d4a0a8b4c17af",
+  "house_style_standard": "SIT Hydrogen Part I & II / 78-Paper House Style (11pt US Letter, 1in margin, Times New Roman via XeLaTeX, blue hyperref, Author: Micah Blumberg / Self Aware Networks Research Institute / selfawarenetworks.com)",
+  "document": {
+    "tex": "papers/sit81-master-monograph/Super_Information_Theory_81.tex",
+    "pdf": "papers/sit81-master-monograph/Super_Information_Theory_81.pdf",
+    "singlefile": "papers/sit81-master-monograph/Super_Information_Theory_81_singlefile.tex",
+    "pages": 187,
+    "box_pt": [
+      612.0,
+      792.0
+    ],
+    "has_times_new_roman_regular_and_bold": true,
+    "tex_sha256": "9434143a15f9394a8b8c853670fa6d194226e0302c9fd1cf72e701ad0cbf317e",
+    "pdf_sha256": "9c76d6116003810465887d51ab4ccf55bc505ffd20bc3de634f98adda9786ab0",
+    "txt_sha256": "24f4ff0993a5a54c0bb1297d034c7ee0bc7c8a37d58cf77608b8591b66d346a6",
+    "singlefile_sha256": "af4d2c7fd0df978c5a16e19918db40fde2a63dfeabf3f536d27d55e2cd88b496",
+    "undef_or_rerun_warnings": [],
+    "overfull_gt_3pt": 0,
+    "max_overfull_pt": 2.54,
+    "visual_blanks": [],
+    "visual_clips": [],
+    "compile_elapsed_s": 25.17
+  }
+}

@@ -1,8 +1,8 @@
 {
   "schema": "svgn.public-github-paper-mirror.v1",
-  "count": 114,
-  "total_pdf_bytes": 121304613,
-  "selection": "Current selections for 114 papers, 2026-10-20; Papers 113 and 114 select v1.2. All v1.0 and v1.1 files and companions remain preserved.",
+  "count": 115,
+  "total_pdf_bytes": 122816041,
+  "selection": "Current selections for 115 papers, 2026-11-20; Paper 115 adds Super Information Theory Version 81 (187-page working research monograph, reviewed commit dc949cbcf39d7527a922b10f15a91265d11ba243). All 114 preceding paper selections and archived versions remain preserved.",
   "catalog": "https://pub.svgn.io/",
   "osf_archive": "https://osf.io/3vsar/",
   "source_manifest_sha256": "F2348070349D8DAABADE6B4A48DB18CA63B10453D61F99A2864F06AF22B9AC76",
@@ -1214,6 +1214,20 @@
           "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.1-20261018/learning"
         }
       ]
+    },
+    {
+      "number": 115,
+      "title": "Super Information Theory: The Coherence Conservation Law Unifying the Wave Function, Gravity, and Time (Version 81)",
+      "filename": "115 - Super Information Theory Version 81.pdf",
+      "bytes": 1511428,
+      "sha256": "9C76D6116003810465887D51AB4CCF55BC505FFD20BC3DE634F98ADDA9786AB0",
+      "zenodo": "https://zenodo.org/records/24406082",
+      "osf": "https://osf.io/3vsar/files/osfstorage/6b00a29df38f1c71572639db",
+      "osf_download": "https://osf.io/download/6b00a29df38f1c71572639db/",
+      "version": "81",
+      "verified": true,
+      "reviewed_commit": "dc949cbcf39d7527a922b10f15a91265d11ba243",
+      "companion": "https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/super-information-theory-v81-20261120"
     }
   ],
   "shared_companion": "companions/ai-papers-20260905/README.md",

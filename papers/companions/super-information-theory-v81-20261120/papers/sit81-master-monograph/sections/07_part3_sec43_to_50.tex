@@ -1,0 +1,413 @@
+\section{Core Predictions and Resolutions to Open Problems}
+\label{sec:core-predictions-open}
+
+\subsection{Physical Grounding for the Free Energy Principle}
+
+Super Information Theory provides a candidate field-theoretic underpinning for macroscopic principles of biological and adaptive self-organization, most notably Karl Friston's Free Energy Principle (FEP). The FEP posits that persistent open systems act so as to bound and minimize a variational free-energy functional serving as an upper bound on sensory surprise. Because FEP is formulated as a substrate-independent statistical constraint, SIT complements it by specifying a concrete physical mechanism through which free-energy-like Lyapunov functionals arise in open dissipative media without postulating teleological forces.
+
+\paragraph{Ontological Status of Effective Functionals.}
+No new fundamental ``purpose'' primitive is introduced into $S_{\mathrm{AUTH}}$. Any candidate control or memory functional $\Phi_{\mathrm{eff}}$ is strictly a \emph{system-specific reduced effective functional} obtained after coarse-graining open-system environmental couplings in the Feynman--Vernon influence-functional formalism (Appendices~\ref{app:recursion-influence}--\ref{app:clean-recursion}):
+\begin{itemize}
+  \item \textbf{Prediction Error as Phase-Wave Differential:} Sensory mismatch corresponds physically to localized spatial or temporal gradients in $(\Rcoh, \theta)$ between internal oscillatory assemblies and external boundary driving.
+  \item \textbf{Active Inference as Dissipative Coherence Reconfiguration:} Open subsystems export entropy into their environment while relaxing internal phase-wave differentials toward phase-locked attractors, realizing perception and motor control as damped gradient flows on the reduced informational landscape.
+  \item \textbf{Stationary Action as the Underlying Law:} Apparent free-energy minimization is an emergent reduced description of trajectories governed at the microscopic level by $\delta S_{\mathrm{AUTH}} = 0$ coupled to a thermal/dissipative bath.
+\end{itemize}
+
+\section{Exploratory Phenomenological Energy-Density Ansatz (Separate from Canonical Action)}
+\label{sec:informational_energy_equivalence}
+
+This section preserves the exploratory ``SIT~4.0'' phenomenological energy-density proposal as a \emph{separately specified heuristic idea}, clearly demarcating it from the authoritative continuum action \texttt{M\_AUTH\_SIT\_EFT\_v1} and repairing two dimensional and consistency errors present in earlier drafts.
+
+\subsection{The Phenomenological Energy-Density Ansatz and Vacuum-Mismatch Boundary}
+
+Earlier SIT~4.0 drafts postulated an auxiliary local energy-density ansatz
+\begin{equation}
+    \varepsilon_{\text{SIT}}^{\mathrm{phen}}(x) = \zeta \cdot |\psi(x)| \cdot [\rho_t(x)]^2,
+    \label{eq:sit_energy_equivalence}
+\end{equation}
+where $\zeta$ is a phenomenological dimensional scale parameter (such that $[\zeta]\cdot[|\psi|]\cdot[\rho_t]^2 = [\text{energy density}] = [M L^{-1} T^{-2}]$ in SI units, or $[M]^1$ when $[|\psi|] = [\rho_t] = [M]^1$ in natural units). Two strict mathematical boundaries separate Eq.~\eqref{eq:sit_energy_equivalence} from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Not Derived from Unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (Vacuum Consistency Check):} At the canonical constant broken-phase vacuum $(\rho_0, v_0 > 0, A_\mu = 0)$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}, all field gradients, $F_{\mu\nu}$, and the total scalar potential $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ vanish identically, so the canonical scalar--gauge stress--energy tensor is strictly $T_{\mu\nu}^{\mathrm{scal+EM}} = 0$. By contrast, evaluating Eq.~\eqref{eq:sit_energy_equivalence} on the same constant positive vacuum yields $\zeta v_0 \rho_0^2 > 0$. Therefore Eq.~\eqref{eq:sit_energy_equivalence} cannot serve simultaneously as a new postulate and as a consequence of the unchanged action; connecting it to canonical stress--energy would require an explicit background subtraction (e.g.\ relative to $(\rho_0, v_0)$) or a separate covariant action operator with proved $\nabla^\mu T_{\mu\nu} = 0$.
+  \item \textbf{Mass Density vs.\ Integrated Mass (Restoring Volume Integration):} Converting an energy density $\varepsilon$ via $\varepsilon = m c^2 / V$ produces a \emph{mass density} $\rho_{\mathrm{mass}}(x) := \varepsilon_{\mathrm{SIT}}^{\mathrm{phen}}(x)/c^2$, not a total particle mass. For a spatially uniform body of volume $V$, total mass is $M = V \varepsilon_{\mathrm{SIT}}^{\mathrm{phen}} / c^2$; for a general spatial configuration, an integrated mass requires an explicit energy integral over a spatial hypersurface:
+  \begin{equation}
+      \rho_{\mathrm{mass}}^{\mathrm{phen}}(x) = \frac{\zeta}{c^2}\,|\psi(x)|\,[\rho_t(x)]^2,
+      \qquad
+      M_{\mathrm{info}}^{\mathrm{phen}} = \int_{\mathcal{V}} \rho_{\mathrm{mass}}^{\mathrm{phen}}(x)\,d^3x.
+      \label{eq:mass_from_sit}
+  \end{equation}
+\end{enumerate}
+
+\subsection{Conceptual Structure-vs.-Activity Interpretation}
+
+Qualitatively, Eq.~\eqref{eq:sit_energy_equivalence} expresses an exploratory conceptual contrast between localized structural order (large $|\psi|$) and rapid dynamical activity (large $\rho_t$). Version~81 explicitly retracts any claim that Eq.~\eqref{eq:mass_from_sit} derives elementary particle rest masses from first principles, explains galactic dark matter, or accounts for human consciousness; those remain open speculative questions outside the proved derivations of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+
+
+\section{Coherence-Regulated Hydrodynamics and the Clay Navier--Stokes Boundary}
+\label{sec:navier-stokes-boundary}
+
+In the classical kinetic and hydrodynamic limit (Section~\ref{sec:stability-causality} and Appendix~\ref{app:KineticLimit}), velocity moments of the coarse-grained Boltzmann distribution recover the compressible and incompressible Navier--Stokes equations. Within Super Information Theory, macroscopic fluid fields---velocity $\mathbf{v}(\mathbf{x},t)$, pressure $p(\mathbf{x},t)$, and vorticity $\boldsymbol{\omega} = \nabla \times \mathbf{v}$---represent hydrodynamic moments of an underlying physical substrate whose microscopic gradients are coupled to $\Rcoh(x)$ and $\rho_t(x)$.
+
+\subsection{Physical Regularization via Coherence Saturation and Dispersive Hyperviscosity}
+
+When a physical fluid approaches extreme small-scale shear or vortex stretching, two structural mechanisms intrinsic to \texttt{M\_AUTH\_SIT\_EFT\_v1} activate at the mesoscopic cutoff scale:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Bounded Normalized Coherence and Positive Gradient Energy:} Normalized interferometric purity satisfies $0 \le \Rcoh^{\mathrm{proxy}}(x) \le 1$, while spatial gradients of $(\rho_t, \psi)$ carry positive-definite $H^1$ energy density $\frac{\kappa_t}{2}|\nabla\rho_t|^2 + \frac{\kappa_c}{2}|\mathbf{D}\psi|^2 + V_{\mathrm{tot}}(\rho_t,|\psi|) \ge 0$.
+  \item \textbf{State-Dependent Dispersive and Hyperviscous Regularization:} Coarse-graining the coupled $(\rho_t, \psi)$ stress tensor and open-system Lindblad dissipation into the hydrodynamic momentum balance supplements constant Newtonian viscosity $\nu\Delta\mathbf{v}$ with Bohm/Korteweg-type dispersive capillary stresses and high-wavenumber coherence-saturation damping,
+  \begin{equation}
+  \partial_t\mathbf{v} + (\mathbf{v}\cdot\nabla)\mathbf{v} + \frac{1}{\rho}\nabla p
+  = \nu\Delta\mathbf{v} - \nu_{\mathrm{coh}}\,(-\Delta)^\alpha\mathbf{v} + \frac{\kappa_c}{2\rho}\nabla\bigl(\Delta|\psi|/|\psi|\bigr),
+  \qquad \alpha \ge \frac{5}{4},
+  \label{eq:sit_modified_navier_stokes}
+  \end{equation}
+  for which Lions' classical hyperviscosity theorem guarantees global smooth solutions whenever $\alpha \ge 5/4$.
+\end{enumerate}
+
+\subsection{Explicit Epistemic Boundary: Unmodified Clay Navier--Stokes Remains \texttt{NOT\_SOLVED}}
+
+In strict compliance with the \texttt{QG49} five-tier epistemic ledger (Appendix~\ref{app:epistemic-ledger-lean}), it is essential to state with complete mathematical precision what this mechanism does and does \emph{not} establish:
+\begin{itemize}
+  \item \textbf{Physical Regularization vs.\ Pure Mathematical Millennium Problem:} Equation~\eqref{eq:sit_modified_navier_stokes} provides a \emph{modified physical hydrodynamic model} in which short-distance coherence gradient penalties prevent physical energy density from diverging. It does \textbf{not} constitute a proof of global smooth solutions (nor a finite-time blow-up counterexample) for the \emph{unmodified} pure incompressible 3D Eulerian Clay Millennium Navier--Stokes equations ($\partial_t\mathbf{v} + (\mathbf{v}\cdot\nabla)\mathbf{v} + \nabla p = \nu\Delta\mathbf{v}$, $\nabla\cdot\mathbf{v} = 0$ with constant $\nu > 0$ and zero higher-order dispersion), which remains strictly \textbf{\texttt{NOT\_SOLVED}} (Tier~5).
+  \item \textbf{Formal Ladyzhenskaya Embedding Interface (\texttt{hLady}, \texttt{OPEN-3}):} Within the Lean~4.30 Sobolev formalization (\texttt{SITStage3\allowbreak{}Infinite\allowbreak{}Sobolev\allowbreak{}Coherence\allowbreak{}Tower}), sequence-space $H^2(\mu) \subsetneq H^1(\mu) \subsetneq \ell^2$ embeddings and $O(\Lambda_N^{-1})$ Galerkin bounds are kernel-proved unconditionally, whereas 3D continuum spatial $L^4$ Ladyzhenskaya interpolation ($\|u\|_{L^4}^4 \le C\|u\|_{L^2}\|\nabla u\|_{L^2}^3$) is isolated transparently as an explicit conditional hypothesis \texttt{hLady} (\texttt{W\_ADV\_TD\_02}, \texttt{OPEN-3}).
+\end{itemize}
+
+\section{Informational Torque: Conceptual Proposal and Mathematical Corrections}
+\label{sec:informational-torque}
+\label{sec:informational_torque}
+
+Earlier SIT drafts introduced an exploratory geometric concept termed ``informational torque'' to probe whether non-parallel amplitude and phase gradients of $\psi(x)$ could play a role analogous to Berry curvature in sourcing spacetime curvature. Version~81 preserves the conceptual question while explicitly correcting three mathematical errors in the earlier formulas and grounding gravitational curvature strictly in the variational Einstein equations of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\subsection{Retraction of Earlier Flat-Connection Torque and Singular Curvature Identities}
+
+Three concrete mathematical checks invalidate the earlier equations of this section:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Flat Phase-Gradient Connection Cannot Generate Nonzero Torque:} Earlier drafts wrote a Berry-like connection $\mathbf{A}_{\mathrm{Berry}} \propto \nabla\theta$ and identified its curvature with $\boldsymbol{\tau}_{\mathrm{old}} = (\hbar/e)|\psi|\nabla|\psi|\times\nabla\theta$. On any smooth patch, however, the curl of a gradient vanishes identically ($\nabla\times\nabla\theta = \mathbf{0}$). As an explicit counterexample, setting $|\psi|(x,y) = x + 2$ and $\theta(x,y) = y$ gives $\nabla\times(\nabla\theta) = \mathbf{0}$ everywhere while $|\psi|\nabla|\psi|\times\nabla\theta = (0, 0, x+2) \ne \mathbf{0}$, proving that $\boldsymbol{\tau}_{\mathrm{old}}$ is \emph{not} the curvature of a connection proportional to $\nabla\theta$.
+  \item \textbf{Local Gauge Non-Invariance of $\nabla\theta$:} Under a local $U(1)$ gauge transformation $\psi \mapsto e^{i\hat{q}\chi}\psi$, $A_\mu \mapsto A_\mu + \partial_\mu\chi$, the bare phase gradient $\nabla\theta$ shifts by $\hat{q}\nabla\chi$. Any gauge-invariant spatial cross product built from $\psi$ must replace $\nabla\theta$ with the covariant superflow vector $\nabla\theta - \hat{q}\mathbf{A}$ (proportional to the canonical Noether current $\mathbf{J}_{\mathrm{coh}} = \kappa_c|\psi|^2(\nabla\theta - \hat{q}\mathbf{A})$):
+  \begin{equation}
+  \boldsymbol{\tau}_{\mathrm{cov}} := \kappa_c\,|\psi|\,\nabla|\psi| \times \bigl(\nabla\theta - \hat{q}\mathbf{A}\bigr)
+  = \frac{1}{2}\,\nabla\bigl(|\psi|^2\bigr) \times \bigl(\kappa_c(\nabla\theta - \hat{q}\mathbf{A})\bigr).
+  \label{eq:gauge_invariant_torque_def}
+  \end{equation}
+  While Eq.~\eqref{eq:gauge_invariant_torque_def} repairs local $U(1)$ gauge invariance, it is simply an algebraic field composite and does \emph{not} derive spacetime curvature.
+  \item \textbf{Retraction of the Singular $R_{\mu\nu\rho}{}^\sigma \propto \tau_{\mu\nu\rho}{}^\sigma / \Box\rho_t$ Expression:} Earlier drafts displayed a formula $R_{\mu\nu\rho}{}^\sigma = \frac{16\pi G}{c^4}\tau_{\mu\nu\rho}{}^\sigma / \Box\rho_t$ attributed to varying the master action. Version~81 explicitly retracts that expression: metric variation of \texttt{M\_AUTH\_SIT\_EFT\_v1} produces the standard Einstein equation $G_{\mu\nu} = \kappa_G T_{\mu\nu}^{\mathrm{tot}}$ (Eq.~\eqref{eq:covariant_einstein_sec5}), no derivation yields the displayed rank-4 tensor ratio, its denominator $\Box\rho_t$ vanishes identically on canonical constant-field backgrounds, and vacuum General Relativity admits nonzero Riemann curvature ($R_{\mu\nu\rho}{}^\sigma \ne 0$) even when $(\rho_t, \psi)$ are strictly constant.
+\end{enumerate}
+
+\subsection{Exploratory Experimental Template (Conditional on \texttt{OPEN-6C})}
+
+The conceptual question above motivates asking whether optical-lattice atom interferometers with controlled phase and contrast gradients could probe transverse coherence-gradient responses once a concrete coupling is derived. Under \texttt{QG49} discipline, unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} does \emph{not} derive a quantitative transverse displacement forecast (earlier picometer estimates remain retired pending derivation of $J_{\mathrm{prep}}$ and material couplings under \texttt{OPEN-6A}/\texttt{OPEN-6C}).
+
+\subsection{Scope of Any Future Geometric-Phase / Berry-Curvature Construction}
+
+To construct a mathematically valid Berry curvature in a future extension, one must specify an explicit family of quantum states $|\Psi(\boldsymbol{\lambda})\rangle$ over a declared parameter manifold $\boldsymbol{\lambda}$ (with nontrivial connection $\mathcal{A}_a = i\langle\Psi|\partial_{\lambda^a}\Psi\rangle$ and two-form $\mathcal{F}_{ab} = \partial_a\mathcal{A}_b - \partial_b\mathcal{A}_a$, distinct from the spacetime gradient $\nabla\theta$ of a single scalar phase). In the present canonical EFT \texttt{M\_AUTH\_SIT\_EFT\_v1}, gravitational curvature is sourced strictly by $T_{\mu\nu}^{\mathrm{tot}}$ and gauge curvature is carried by the independent $U(1)$ connection $A_\mu$ (Section~\ref{sec:magnetism-holonomy}, \texttt{OPEN-6B}).
+
+\vspace{1cm}
+
+\section{Magnetism, Gauge Holonomy, and the Flat-Connection Boundary}
+\label{sec:magnetism-holonomy}
+\label{sec:magnetism_as_holonomy}
+
+Earlier drafts of Super Information Theory explored whether ordinary magnetic fields could be derived purely from gradients of the coherence phase $\theta(x) = \arg\psi(x)$. Version~81 replaces that heuristic identification with a strict geometric separation matching Part~II, Paper~002, and Companion Paper~III: the canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1} carries an \emph{independent} internal $U(1)$ gauge connection $A_\mu$ whose relationship to visible electromagnetism remains open (\texttt{OPEN-6B}), whereas setting $A_\mu$ equal to a local phase gradient yields a flat (pure-gauge) connection.
+
+\subsection{Historical Flat-Connection Ansatz, Its $F_{\mu\nu} = 0$ Limitation, and the Canonical Independent Connection}
+
+In the canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1} (Part~II), local $U(1)$ gauge symmetry of the complex coherence field $\psi(x)$ requires introducing an \emph{independent} principal-bundle connection 1-form $A_\mu$ inside the covariant derivative $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$, with gauge-invariant curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ and kinetic term $-\frac{1}{4}f_{\mathrm{EM}}(R_{\mathrm{coh}})F_{\mu\nu}F^{\mu\nu}$. By contrast, earlier SIT drafts examined a historical/conjectural flat-connection ansatz writing
+\begin{equation}
+   A_\mu^{\mathrm{flat}} \; := \; \frac{\hbar}{e}\,\partial_\mu\theta(x).
+\end{equation}
+This flat-connection expression is \emph{not} the general connection required by local $U(1)$ gauge symmetry. On any simply connected region where $\theta(x)$ is smooth and locally single-valued, the curl of a gradient vanishes identically:
+\begin{equation}
+   F_{\mu\nu}^{\mathrm{flat}} \;=\; \partial_\mu A_\nu^{\mathrm{flat}} - \partial_\nu A_\mu^{\mathrm{flat}}
+   \;=\; \frac{\hbar}{e}\bigl(\partial_\mu\partial_\nu - \partial_\nu\partial_\mu\bigr)\theta(x) \;=\; 0,
+   \qquad
+   \mathbf{B}^{\mathrm{flat}} \;=\; \nabla \times \mathbf{A}^{\mathrm{flat}} \;=\; 0.
+\end{equation}
+Nontrivial global holonomy can exist on multiply connected domains or around singular vortex/defect cores where $\theta(x)$ is multivalued, but a pure phase gradient does \emph{not} establish a general construction of ordinary non-flat magnetic fields ($\mathbf{B} \ne 0$, $F_{\mu\nu} \ne 0$). Throughout Version~81, general magnetic fields require an independent gauge connection $A_\mu$ with nonvanishing curvature $F_{\mu\nu} \ne 0$, and matching SIT's internal $U(1)$ sector to visible electromagnetism remains an explicitly open microphysical task (\texttt{OPEN-6B}).
+
+As standard electromagnetic background, the Aharonov--Bohm (AB) effect demonstrates the physical observability of closed-loop $U(1)$ holonomy even where $\mathbf{B} = 0$ along the particle paths: an electron beam split around an enclosed magnetic flux $\Phi_B$ acquires the standard quantum-mechanical phase shift
+\[
+  \theta_{\text{AB}}
+  =
+  \frac{e}{\hbar}\oint A_i\,dx^i = \frac{e}{\hbar}\Phi_B.
+\]
+Any additional SIT interpretation linking the visible electromagnetic AB connection to the coherence bundle $\psi$ is explicitly conditional on establishing the visible-sector gauge dictionary (\texttt{OPEN-6B}); the established AB interference pattern is standard quantum electrodynamics, not an independent empirical validation of SIT.
+
+\subsection{Electron--Beam Deflection Background and Withdrawal of the Legacy CRT Bound}
+\label{sec:magnet}
+
+\paragraph{Standard electromagnetic baseline.}
+In a cathode-ray tube (CRT) or an electron microscope, the ordinary Lorentz force
+$\boldsymbol{F}=e\,\boldsymbol{v}\!\times\!\boldsymbol{B}$ bends an electron
+trajectory into an arc of radius
+$R_{\!B}=mv/(eB)$, with the same curvature arising in standard quantum mechanics from minimal substitution
+$\boldsymbol{p}\to\boldsymbol{p}-e\boldsymbol{A}$ for a genuine non-flat electromagnetic connection ($\nabla\times\boldsymbol{A} = \boldsymbol{B} \ne 0$).
+
+\paragraph{Conditional SIT discussion and withdrawal of legacy $\lambda R_{\mathrm{coh}} \lesssim 10^{-8}$ figure.}
+Earlier exploratory drafts reinterpreted classical CRT deflection ($v \simeq 2.0\times 10^{7}\,\mathrm{m\,s^{-1}}$, $B \simeq 10^{-2}\,\mathrm{T}$, $90^\circ$ bend over $L = 5\,\mathrm{cm}$) using the flat-connection phase-gradient ansatz to quote a heuristic bound $\lambda R_{\mathrm{coh}} \lesssim 10^{-8}$ and describe electron deflection as a calibrated probe of the coherence field. Version~81 explicitly \emph{withdraws} that CRT-derived $10^{-8}$ figure as an empirical SIT bound and withdraws the ``calibrated probe'' characterization. Because ordinary Lorentz deflection occurs in a region with $\boldsymbol{B} \ne 0$ (which cannot be generated by a smooth pure gradient $\partial_\mu\theta$) and because neither the visible $U(1)_{\mathrm{EM}}$ dictionary (\texttt{OPEN-6B}) nor the apparatus transfer function (\texttt{OPEN-6D}) has been derived from \texttt{M\_AUTH\_SIT\_EFT\_v1}, CRT deflection currently stands solely as established electromagnetic background rather than an empirical SIT constraint.
+
+\paragraph{Scoped conclusion.}
+Electron deflection remains a standard electromagnetic phenomenon. Any future SIT-specific magnetic or interferometric bound requires first resolving how visible electromagnetism embeds alongside or mixes with SIT's internal $U(1)$ connection (\texttt{OPEN-6B}) and deriving the corresponding observable shift from the canonical action.
+
+\subsection{Conditional Decoupling Hypothesis and Consistency Check}
+
+Under the separate conjectural hypothesis that static magnetic fields couple predominantly through gauge/phase degrees of freedom rather than sourcing large modulus ($|\psi|$) or temporal-density ($\rho_t$) gradients, magnetic setups and scalar-gravity setups would probe distinct sectors of the theory. However, in the canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1}, $-\frac{1}{4}f_{\mathrm{EM}}(R_{\mathrm{coh}})F_{\mu\nu}F^{\mu\nu}$ couples $F_{\mu\nu}F^{\mu\nu}$ directly to $R_{\mathrm{coh}}^2$ whenever $c_{\mathrm{EM}} \ne 0$ and the visible electromagnetic field is identified with $F_{\mu\nu}$ (which must be evaluated consistently with \texttt{OPEN-6B}).
+
+\textbf{Prospective Setup:} Place a Cavendish-type torsion balance or precision gravimeter next to a stable high-field superconducting magnet (e.g., 10~Tesla), controlling for ordinary magnetic susceptibility and classical electromagnetic stress-energy.
+
+\textbf{The Consistency Check (Conditional on the Gauge Dictionary, \texttt{OPEN-6B}):} Under a conjectural pure-phase decoupling model in which static magnetic fields do not source $|\psi|$ or $\rho_t$ gradients beyond standard electromagnetic stress-energy $T_{\mu\nu}^{\mathrm{EM}}$, no anomalous differential gravitational attraction is induced. Conversely, deriving a quantitative prediction from \texttt{M\_AUTH\_SIT\_EFT\_v1} requires resolving \texttt{OPEN-6B} (including the status of $c_{\mathrm{EM}} R_{\mathrm{coh}}^2 F^2$ for visible magnetic fields).
+
+
+\section{Deriving the Standard Model and Gravity from First Principles}
+\label{sec:emergence_sm_g_moved}
+\label{sec:vortical_defects}
+
+Having established the mathematical consistency of Super Information Theory (SIT), this section moves the theory from phenomenological unification to fundamental explanation.
+We now examine how Super Information Theory interfaces with the Standard Model particle spectrum, flavor mixing, and gravitational coupling, separating rigorously machine-checked Stage-4 chiral-gauge theorems from open topological research conjectures under \texttt{QG49} epistemic discipline.
+
+\subsection{A Conjectured Topological Particle Spectrum from the Coherence Field}
+
+A central ambition of fundamental physics is to derive the observed spectrum of elementary particles from a minimal set of first principles. Super Information Theory (SIT) proposes a path toward this goal by conjecturing that elementary particles are stable, quantized topological excitations of the fundamental complex coherence field, $\psi(x)$. In this framework, the diverse properties of particles---both fermions and bosons---emerge as calculable invariants of an underlying informational geometry.
+
+\subsubsection{Stress-Energy and the Emergence of Gravity}
+
+This topological classification is not merely a labeling scheme; it has direct physical consequences for the spacetime metric. A topological defect in the coherence field carries energy and momentum, and therefore sources gravitational curvature. Its stress-energy tensor follows directly from varying the SIT master action with respect to the metric $g_{\mu\nu}$:
+\begin{equation}
+    T_{\mu\nu}^{\text{vortex}} = \kappa_{c}\left(\nabla_{\mu} R_{\text{coh}}\nabla_{\nu} R_{\text{coh}} - \frac{1}{2} g_{\mu\nu}\nabla_{\alpha} R_{\text{coh}}\nabla^{\alpha} R_{\text{coh}}\right) + T_{\mu\nu}^{\text{core}},
+\end{equation}
+where $T_{\mu\nu}^{\text{core}}$ encodes the short-distance structure within the defect's core radius where the phase becomes ill-defined. Because this $T_{\mu\nu}^{\text{vortex}}$ appears on the right side of the Einstein field equations, $G_{\mu\nu} = 8\pi G T_{\mu\nu}$, each stable winding necessarily sources curvature. This leads to a profound conclusion: \textbf{gravity is not an \emph{extra} field but the inevitable geometric response to the energy stored in a coherence defect.}
+
+\subsubsection{The Stability Condition and Informational Structure of Particles}
+
+Not all topological configurations are physically realized as stable particles. A vortex must be energetically stable against decay into radiation. Whether a given vortex preserves macroscopic coherence or dissipates depends on the balance between its internal gradient energy (informational tension) and the decohering couplings that radiate energy away. We define the coarse-grained energy per unit length of a defect as:
+\begin{equation}
+    \mathcal{E} = \pi\kappa_{c}\ln(r_{\infty}/r_{0}) - \Gamma,
+\end{equation}
+where $r_{0}$ is the core radius, $r_{\infty}$ is the system size, and $\Gamma$ is the dissipation rate determined by environment-induced decoherence. This leads to two distinct physical regimes:
+\begin{itemize}
+    \item $\mathcal{E} > 0$: A \textbf{coherence-sustaining, long-lived defect}. The informational tension dominates, creating a stable, massive, gravitating particle.
+    \item $\mathcal{E} < 0$: A \textbf{turbulent, rapidly decaying defect}. Dissipation dominates, leading to a transient, radiation-dominated excitation.
+\end{itemize}
+This stability condition is governed by an excitability ratio. Configurations with a low ratio are stable particles, whereas those with a high ratio are fleeting resonances. Furthermore, the internal structure of the defect affects the local rate of time via the fundamental SIT constraint $\rho_{t} = \rho_{0}\exp[\alpha R_{\text{coh}}]$. At the core of a strongly wound vortex, the coherence field must vanish ($R_{\text{coh}} \rightarrow 0$), causing the time-density to approach its vacuum value, $\rho_{t} \rightarrow \rho_{0}$, which dilates proper time. This provides the concrete mechanism by which coherence defects seed both particle identity and spacetime geometry.
+
+\subsubsection{A Unified View of Fermions and Bosons: Sources and Interactions}
+
+SIT makes a fundamental distinction between the two classes of elementary particles, grounding it in their distinct informational roles.
+\begin{itemize}
+    \item \textbf{Fermions as Stable Topological Sources:} The fundamental particles of matter (quarks and leptons) are identified as stable, localized, and topologically protected defects (solitons, vortices, or knots) in the coherence field. Their persistence is guaranteed by topological invariants. They are the stable \emph{sources} of informational structure in the universe. The Pauli Exclusion Principle arises as a topological constraint preventing two identical defects from coexisting at the same location.
+
+    \item \textbf{Bosons as Quantized Propagators of Interaction:} The fundamental force carriers are identified not as stable defects, but as the quantized, propagating excitations of the fields that mediate interactions \emph{between} the fermionic sources. They are the carriers of informational change, phase communication, and topological reconfiguration.
+\end{itemize}
+
+\subsubsection{Topological Classification of Fermion Families and Generations}
+
+The classification of fermionic matter rests on the topological properties of the coherence manifold, $M_{\text{coh}}$, which represents the space of all possible stable configurations of the $\psi$ field.
+
+\begin{itemize}
+    \item \textbf{Particle Families as Homotopy Classes:} The primary division of fermions into distinct families is determined by the topology of $M_{\text{coh}}$. We postulate that different particle families correspond to elements of different homotopy groups, $\pi_n(M_{\text{coh}})$. For instance, the fundamental group $\pi_1(M_{\text{coh}})$ might classify leptonic states, while a higher-order group like $\pi_3(M_{\text{coh}})$ could correspond to the more complex internal structure of quarks.
+
+    \item \textbf{Generations as Nested Topological Structures:} The existence of three generations of matter is proposed to arise from higher-order, nested topological structures. A second-generation particle would be a stable topological excitation of the field configuration that constitutes a first-generation particle. The increasing mass of higher generations is a natural consequence of the increased gradient energy and informational complexity required to sustain these nested configurations.
+\end{itemize}
+
+\subsubsection{Quantum Numbers and Bosons from Geometric Principles}
+
+Within SIT, conserved quantum numbers and their associated force-carrying bosons are not abstract labels but emerge from the geometry of the coherence field and its phase.
+
+\begin{itemize}
+    \item \textbf{Electromagnetism (Canonical Gauge Boundary, \texttt{OPEN-6B}):} In the canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1}, local $U(1)$ gauge invariance is carried by an \emph{independent} internal connection $A_\mu$ (distinct from a flat phase gradient $\partial_\mu\theta$), which acquires a broken-phase mass $m_A^2 = \kappa_c \hat{q}^2 v_0^2 / f_{\mathrm{EM}0}$ whenever $\hat{q}v_0 \ne 0$. Identifying the massless visible \textbf{photon} therefore cannot rely on taking $A_\mu \propto \partial_\mu\theta$ or equating the broken internal connection directly with visible electromagnetism; instead, it requires either a separate unbroken visible $U(1)_{\mathrm{EM}}$ gauge field decoupled from the broken coherence vacuum expectation value $v_0$ or an explicit visible-versus-hidden gauge dictionary (\texttt{OPEN-6B}, with tree-level kinetic mixing analyzed in Stage~6).
+
+    \item \textbf{Strong Force:} The $SU(3)$ color charge of quarks emerges from a more complex, non-Abelian topological structure. The \textbf{gluons} are the eight quantized excitations of the connections on this non-Abelian structure, mediating transitions between the three stable color states.
+
+    \item \textbf{Weak Force:} The weak force changes a particle's topological identity. The massive \textbf{W and Z bosons} are high-energy, propagating excitations of the coherence field capable of inducing topological reconnections, thereby transforming one type of fermionic knot into another. Their large mass reflects the high energy barrier for this fundamental reconfiguration.
+\end{itemize}
+
+\subsubsection{Spin and Topological Statistics}
+The distinction between fermions and bosons is encoded in the behavior of their corresponding topological excitations under a $2\pi$ rotation. Fermionic modes are identified with field configurations that acquire a non-trivial phase factor (a minus sign) upon such a rotation (e.g., a skyrmion or a twisted loop), naturally embedding the spin-statistics theorem into the geometry of the coherence field.
+
+\subsubsection{The Origin of Mass Scale and the Higgs Boson from the SIT Vacuum}
+The parameters that govern mass are determined by the self-consistent properties of the SIT vacuum. The informational potential $V(|\psi|, \rho_t)$ possesses a non-trivial minimum that defines the vacuum state, and the curvature of this potential sets the fundamental energy scale for all excitations. Therefore, mass does not arise from coupling to a separate Higgs field, but from the energy required to "lift" a topological excitation out of the stable SIT vacuum.
+
+In this picture, the experimentally observed \textbf{Higgs boson} is reinterpreted. It is not a quantum of a separate, fundamental field. Instead, we propose it is a massive, scalar, non-topological excitation of the \textbf{SIT vacuum field itself}. It is a propagating ripple in the background "informational stiffness" of spacetime. This excitation naturally couples to the topological defects (fermions), affecting their stability and energy, thereby reproducing the observed Higgs mechanism without requiring an additional fundamental field.
+
+\subsubsection{Roadmap to a Unique and Complete Spectrum}
+
+This framework moves beyond analogy to a concrete program of proof. The ultimate goal is to demonstrate that the complete set of stable, low-energy topological solutions to the non-linear SIT field equations is precisely the Standard Model particle spectrum, with no extraneous states. This program contrasts with purely algebraic approaches by being fundamentally geometric and dynamic. The roadmap to this proof involves four key steps:
+\begin{enumerate}
+    \item \textbf{Define the full non-linear field equations} for the complex field $\psi$ and $\rho_t$, including the self-interaction terms specified by the informational potential $V(|\psi|, \rho_t)$.
+    \item \textbf{Analyze the stability of solitonic solutions} to these equations, identifying which configurations are energetically stable and long-lived.
+    \item \textbf{Classify all stable solutions} using the tools of algebraic topology (homotopy, homology, and knot theory) to generate a complete set of topological invariants.
+    \item \textbf{Prove a one-to-one correspondence} between this set of classified topological excitations and the observed particles of the Standard Model, and demonstrate that no other stable solutions are permitted in the low-energy regime.
+\end{enumerate}
+If successful, this research program would reframe the Standard Model of particle physics not as a collection of fundamental postulates, but as the potential emergent consequence of a deeper, unified informational geometry.
+
+\subsection{A Proposed Mechanism for Mass and Particle Mixing from Informational Stability}
+
+Following the conjecture that particles are stable, topological excitations of the coherence field, we now outline a proposed mechanism for explaining their fundamental properties: mass and mixing. This section conjectures that the observed mass hierarchy and mixing matrices of the Standard Model are not arbitrary parameters but could be emergent consequences of the stability and geometry of these underlying informational modes.
+
+\subsubsection{The Mass-Resilience Relation and the Informational Resilience Index}
+
+In SIT, mass is not a fundamental property but is instead a measure of a coherence mode's resistance to decoherence---its \textit{informational resilience}. A more resilient, stable, or topologically complex coherence pattern requires more energy to create or disrupt, manifests as a more significant local thickening of the time-density field $\rho_t$, and is thus perceived as having greater mass.
+
+We formalize this concept by defining the \textbf{Informational Resilience Index}, $I_R(i)$, for the $i$-th particle mode. This dimensionless index is a calculable functional of the particle's corresponding coherence field configuration, $R_{\text{coh}}^{(i)}(x)$, representing the total action cost of the static field configuration:
+\begin{equation}
+    I_R(i) = \int_{\mathbb{R}^3} \mathcal{L}_{\text{static}}\left( R_{\text{coh}}^{(i)}, \nabla R_{\text{coh}}^{(i)} \right) d^3x = \int_{\mathbb{R}^3} \left( \frac{\kappa_c}{2} |\nabla R_{\text{coh}}^{(i)}|^2 + V(R_{\text{coh}}^{(i)}) \right) d^3x,
+    \label{eq:resilience_index_consolidated}
+\end{equation}
+where $\mathcal{L}_{\text{static}}$ is the static Lagrangian density for the $R_{\text{coh}}$ field.
+
+The mass of the $i$-th particle is then determined by the \textbf{Mass-Resilience Relation}:
+\begin{equation}
+    m_i = m_0 \exp(k \cdot I_R(i)).
+    \label{eq:mass_resilience_relation_consolidated}
+\end{equation}
+Here, $m_0$ is a fundamental mass scale set by the vacuum energy of the informational fields, and $k$ is a dimensionless constant parameterizing the informational medium's "stiffness." This exponential relationship naturally generates a large hierarchy of masses from O(1) differences in the Informational Resilience Index.
+
+\subsubsection{Particle Mixing as Quantum Tunneling Between Coherence Modes}
+
+SIT reinterprets particle interactions and flavor changes as quantum tunneling events between different stable topological minima in the configuration space of the $R_{\text{coh}}$ field. The CKM and PMNS mixing matrices, which parameterize these transitions, are therefore derivable from the geometry of this configuration space.
+
+The matrix element $V_{ij}$ describing the transition amplitude between particle state $i$ and state $j$ is given by the path integral over all field configurations that interpolate between the two stable modes. In the semi-classical (WKB) approximation, this tunneling amplitude is dominated by the overlap of the wave-functionals corresponding to the two particle modes:
+\begin{equation}
+    V_{ij} \approx \mathcal{N} \int \Psi_j^*[R_{\text{coh}}] \Psi_i[R_{\text{coh}}] \mathcal{D}R_{\text{coh}},
+    \label{eq:mixing_overlap_integral_consolidated}
+\end{equation}
+where $\Psi_i[R_{\text{coh}}]$ is the wave-functional for the $i$-th particle's coherence mode. This implies that the mixing angles are determined by the geometric "shape" and proximity of the different stable coherence modes.
+
+
+\paragraph{Explicit \texttt{QG49} Scope Note on Three-Generation Topological Homotopy (\texttt{NOT\_SOLVED}).}
+While Sections~48.1--48.2 formulate a concrete geometric research program modeling fermion families and mass hierarchies via solitonic resilience indices $I_R(i)$, deriving the exact number of three chiral fermion generations from homotopy groups $\pi_3(\mathcal{M}_{\mathrm{coh}})$ (or nested skyrmion moduli) has \textbf{not} been proved and remains an explicit open conjecture (\textbf{\texttt{3-generation homotopy: NOT\_\allowbreak{}SOLVED}}, Tier~5). What \emph{is} rigorously proved in Lean~4.30 across Stage~4 Phase~4 and Stage~5.1 (detailed below in Subsection~48.4 and Section~\ref{sec:stage4-matter-holonomy}) is the finite-matrix Neuberger--Ginsparg--Wilson chiral overlap algebra (with explicit non-zero operator witness $D_{\mathrm{ov}} \ne 0$) and the exact injective unitary group embedding $SU(3)_c \times SU(2)_L \times U(1)_Y \hookrightarrow U(6)$ coupled to a positive massive fermion-determinant SIT+SM probability measure.
+
+\subsection{Fundamental Einstein--Hilbert Gravity vs.\ Retirement of Naive One-Loop Induced Gravity (\texttt{C12})}
+
+\subsubsection{The Informational Stress--Energy Tensor}
+
+Within \texttt{M\_AUTH\_SIT\_EFT\_v1}, the scalar sector carries the canonical $(-,+,+,+)$ stress--energy tensor
+\begin{equation}
+T_{\mu\nu}^{(\mathrm{info})}
+= \kappa_t\,\partial_\mu\rho_t\partial_\nu\rho_t
+  + \kappa_c\,\mathrm{Re}\bigl[(D_\mu\psi)^*(D_\nu\psi)\bigr]
+  - g_{\mu\nu}\left[\frac{\kappa_t}{2}(\partial\rho_t)^2 + \frac{\kappa_c}{2}|D\psi|^2 + V_{\mathrm{tot}}(\rho_t,|\psi|)\right],
+\label{eq:info_tension_tensor_consolidated}
+\end{equation}
+whose vacuum expectation value at $(\rho_0, v_0)$ vanishes classically ($V_{\mathrm{tot}}(\rho_0, v_0) = 0$).
+
+\subsubsection{Retirement of Sakharov One-Loop Induced Gravity (\texttt{C12}, \texttt{ODQ-5})}
+
+In Version~79 (former Subsection~48.3.2), an exploratory Sakharov induced-gravity ansatz proposed setting the bare Einstein--Hilbert coefficient to zero and computing $1/(16\pi G)$ entirely from one-loop matter/coherence fluctuations $\sim \Lambda_{\mathrm{UV}}^2/(16\pi^2)$. Formal audit in Stages~2--3 (\texttt{ODQ-5}) retired that branch (\texttt{C12}, Tier~4) for three decisive mathematical reasons:
+\begin{enumerate}[leftmargin=2em]
+  \item Without a primitive tree-level $\frac{M_{\mathrm{Pl}}^2}{2}R$ kinetic term, the tree-level metric propagator does not exist and the $13\times 13$ curved ADM velocity Hessian loses its $(5+,1-)$ DeWitt gravitational block (Section~\ref{sec:stage3-curved-adm}).
+  \item As established by the Seeley--DeWitt coefficient $a_1 = \frac{1}{6}R I + E$ in Section~\ref{sec:rg-heat-kernel}, one-loop quadratic $\Lambda_{\mathrm{reg}}^2$ shifts depend on the arbitrary regulator scheme and receive uncontrolled contributions from unknown trans-Planckian degrees of freedom at $E \ge \Lambda_{\mathrm{UV}}$.
+  \item Retaining $\mathcal{L}_{\mathrm{EH}} = \frac{R}{16\pi G} = \frac{M_{\mathrm{Pl}}^2}{2}R$ as a primitive low-energy parameter absorbed against $a_1$ counterterms yields a completely consistent, predictive Wilsonian EFT for all $E \ll \Lambda_{\mathrm{UV}}$, while honestly leaving the microscopic origin of $M_{\mathrm{Pl}}$ above $\Lambda_{\mathrm{UV}}$ to \texttt{OPEN-1} (\texttt{NOT\_SOLVED}).
+\end{enumerate}
+
+\subsection{Proved Finite-Matrix Ginsparg--Wilson Chiral Fermions, Non-Zero Neuberger Overlap Construction, and $SU(3)_c\times SU(2)_L\times U(1)_Y \hookrightarrow U(6)$ Interface}
+
+To couple chiral Standard Model multiplets to SIT's $(\rho_t, \psi)$ fields on a 4D lattice with explicit epistemic demarcation between machine-checked finite-matrix theorems and analytical Brillouin-zone dispersion, Stage~4 Phase~4 (\texttt{Stage4\allowbreak{}Matter.\allowbreak{}Chiral\allowbreak{}Overlap\allowbreak{}SMInterface}, theorem \texttt{SITStage4\allowbreak{}Proofs.\allowbreak{}chiral\_\allowbreak{}overlap\_\allowbreak{}sm\_\allowbreak{}interface\_\allowbreak{}holds}) and Stage~5.1 (\texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Matter\allowbreak{}And\allowbreak{}ADMDomain\allowbreak{}Refinements}, $51$ declarations) establish in Lean~4.30:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Finite-Matrix Ginsparg--Wilson Algebra and Non-Zero Neuberger Overlap Witness:} Frozen Stage~4 proves that for any matrix $D \in M_N(\mathbb{C})$ with Hermitian $\gamma_5$ ($\gamma_5^2 = I$, $D^\dagger = \gamma_5 D \gamma_5$) obeying $D\gamma_5 + \gamma_5 D = a D\gamma_5 D$ ($a > 0$), $\hat{\gamma}_5 := \gamma_5(I - a D)$ satisfies $\hat{\gamma}_5^2 = I$, $D\hat{\gamma}_5 + \gamma_5 D = 0$, $D + D^\dagger = a D^\dagger D$, and $D D^\dagger = D^\dagger D$ (noting candidly that $D = 0$ satisfies that abstract premise alone). Stage~5.1 eliminates triviality constructively by building $D_{\mathrm{ov}} = \frac{1}{a}(I - \gamma_5 H_W)$ from a $\gamma_5$-Hermitian unitary Wilson sign factor $H_W$ and proving both Ginsparg--Wilson compliance (\texttt{neuberger\allowbreak{}Overlap\_\allowbreak{}satisfies\_\allowbreak{}ginsparg\_\allowbreak{}wilson}) and $D_{\mathrm{ov}} \ne 0$ (\texttt{neuberger\allowbreak{}Overlap\_\allowbreak{}witness\_\allowbreak{}nontrivial}).
+  \item \textbf{Injective Standard Model Gauge Multiplet Embedding:} Using block-diagonal unitary matrices, $\mathrm{embedSM} : U(3) \times U(2) \times U(1) \hookrightarrow U(6)$ embeds $SU(3)_c \times SU(2)_L \times U(1)_Y$ injectively as a multiplicative group homomorphism preserving both trace additivity $\mathrm{Tr}(\mathrm{embedSM}(g_3,g_2,g_1)) = \mathrm{Tr}\,g_3 + \mathrm{Tr}\,g_2 + \mathrm{Tr}\,g_1$ and determinant multiplicativity $\det(\mathrm{embedSM}(g_3,g_2,g_1)) = \det g_3 \cdot \det g_2 \cdot \det g_1$.
+  \item \textbf{Constructive Massive Fermion-Determinant SIT+SM Probability Measure:} Frozen Stage~4 proves gauge-invariant measure normalization $W_{\min} \le Z_{\mathrm{SIT+SM}} \le W_{\max}$ conditional on any continuous gauge-invariant functional $0 < W_{\min} \le W_{\mathrm{ferm}} \le W_{\max}$, while Stage~5.1 constructs the concrete massive determinant weight $W_{\mathrm{ferm}}(U) := \det(D_{\mathrm{ov}}[U]^\dagger D_{\mathrm{ov}}[U] + m_f^2 I_N)$ ($m_f > 0$) and proves the Hermitian eigenvalue bounds $0 < m_f^{2N} \le W_{\mathrm{ferm}}(U) \le ((2/a)^2 + m_f^2)^N$ and exact unitary gauge invariance (\texttt{det\_\allowbreak{}conj\allowbreak{}Transpose\_\allowbreak{}mul\_\allowbreak{}self\_\allowbreak{}add\_\allowbreak{}mass\allowbreak{}Sq\_\allowbreak{}ge}, \texttt{massive\allowbreak{}Fermion\allowbreak{}Det\allowbreak{}Weight\_\allowbreak{}constructs\_\allowbreak{}sm\_\allowbreak{}interface}). Meanwhile, momentum-space single-pole dispersion at $p = 0$ excluding the $15$ Brillouin-zone corner doublers ($0 < m_0 < 2r$), exponential locality on L\"uscher-admissible plaquette fields, and massless single-Weyl chiral determinant Berry phases (\texttt{OPEN-5A}) remain analytical/open outside Lean scope (Section~\ref{sec:stage4-matter-holonomy}).
+\end{enumerate}
+
+\subsection{Conditional Isolation of the Level-2 Arithmetic Spectral Bridge (\texttt{HELD\_PER\_ODQ7})}
+
+Earlier exploratory drafts investigated an operator-theoretic Level-2 arithmetic correspondence comparing logarithmic prime sources and Riemann zeta zeros to resonant modes of an auxiliary operator $H_{\mathrm{SIT}}$. Under \texttt{QG49} epistemic hygiene (\texttt{ODQ-7}, formalized in Lean~4.30 module \texttt{SitQg.Stage2.QG31To35} and \texttt{SITF43\allowbreak{}To\allowbreak{}F46\allowbreak{}Riemann\allowbreak{}Bridge}), this arithmetic sector is \textbf{logically decoupled in both directions} from the physical \texttt{M\_AUTH\_SIT\_EFT\_v1} gravitational, gauge, and experimental core:
+\begin{itemize}
+  \item Every physical theorem in Parts~I--IV holds unconditionally without any number-theoretic hypothesis.
+  \item Conversely, SIT makes \textbf{zero claim} to an unconditional proof of the Riemann Hypothesis (\textbf{\texttt{OPEN-4: NOT\_SOLVED}}, \texttt{HELD\_PER\_ODQ7}, \texttt{rh\_solved = false}) or of any computational complexity separation such as $P \ne NP$ (\textbf{\texttt{P = NP mixing gap: NOT\_\allowbreak{}SOLVED}}). Any spectral correspondence between self-adjoint operators and zeta zeros remains strictly conditional on unproved spectral-realization hypotheses isolated in Tier~3/Tier~5.
+\end{itemize}
+
+
+\section{Non-Perturbative 4D Haar Wilson-Coherence Resolution of Gauge Gating and the Mass Gap Boundary}
+\label{sec:mass-gap}
+
+A central question in non-Abelian gauge physics is how short-range massive/confined gauge excitations arise and how SIT's coherence-gated gauge dynamics behave as coherence approaches zero ($\Rcoh \to 0$) versus a nonzero condensate ($v_0 > 0$). Version~81 replaces the informal 2025 continuum $f \to 0$ canonical-Hamiltonian heuristic (\texttt{C09}) with the \textbf{exact Stage-4 two-phase non-perturbative 4D hypercubic Euclidean Haar Wilson-coherence lattice resolution}, proved in Lean~4.30 (\texttt{Stage4Lattice/*}, Section~\ref{sec:stage4-lattice}), while maintaining a rock-solid boundary separating SIT's coupled lattice/EFT results from the unsolved Clay Millennium pure Yang--Mills continuum problem.
+
+\subsection{Why Continuum $f \to 0$ (\texttt{C09}) Fails Canonically Yet Resolves on a Compact 4D Haar Lattice}
+
+In late-2025 exploratory notes (\texttt{SIT-60} and \texttt{Coherence\_\allowbreak{}Gated\_\allowbreak{}Yang\_\allowbreak{}Mills\_\allowbreak{}Gap 3.\allowbreak{}txt}, explicitly footnoted there as non-Wightman/non-OS), setting the gauge kinetic prefactor $f(\rho_t, |\psi|)$ to vanish at $|\psi| = 0$ ($f(\rho_t, 0) = 0$) was proposed to penalize zero-coherence chromoelectric fluctuations. Within \textbf{continuum canonical Hamiltonian EFT}, however, Legendre transformation of $-\frac{1}{4}f(\rho_t,|\psi|)F_{\mu\nu}^a F^{a\mu\nu}$ produces the electric kinetic energy density
+\begin{equation}
+\mathcal{H}_{\mathrm{elec}}^{\mathrm{cont}} = \frac{1}{2 f(\rho_t, |\psi|)}\,\Pi_i^a \Pi^{ai},
+\label{eq:continuum_pi_over_f_singularity}
+\end{equation}
+which diverges catastrophically as $f \to 0$, destroying uniform ellipticity/hyperbolicity and preventing weak-field Maxwell recovery. For this reason, $f(\rho_t,0) = 0$ (\texttt{C09}) is permanently Tier-4 excluded from continuum \texttt{M\_AUTH\_SIT\_EFT\_v1}, where $f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2 \ge 1$ holds strictly (\texttt{ODQ-3}).
+
+On a \textbf{compact-group 4D Euclidean hypercubic Wilson lattice} $\Lambda_l = (\mathbb{Z}/l\mathbb{Z})^4$ with link variables $U(x,\mu) \in G \subset U(n+1)$ integrated against normalized bi-invariant Haar probability measure $dh(U_e)$, no division by $f$ ever occurs! Each oriented plaquette $(x,\mu,\nu)$ carries non-negative Wilson energy density $E_\square(U) = 1 - \frac{1}{n+1}\mathrm{Re}\,\mathrm{Tr}\,U_\square(x,\mu,\nu) \in [0, 2]$ multiplied by the symmetric 4-corner geometric-mean coherence gate $f_\square(\rho,\psi) \ge 0$ (\texttt{plaquetteGate}) in the unshifted Stage-4 coupled Euclidean action (\textbf{Model~L1}, \texttt{sit\allowbreak{}Wilson\allowbreak{}Coherence\allowbreak{}Action}):
+\begin{equation}
+S_{\mathrm{SIT}}^{\mathrm{lat}}(U,\psi,\rho)
+= \beta\sum_{\square} f_\square(\rho,\psi)\,E_\square(U)
+  + \kappa_c\sum_{x,\mu}\bigl\|\psi(x) - U(x,\mu)\psi(x+\hat{\mu})\bigr\|^2
+  + \sum_x V_{\mathrm{site}}\bigl(\rho(x), \|\psi(x)\|^2\bigr).
+\label{eq:sec49_coupled_lattice_action}
+\end{equation}
+Because $S_{\mathrm{SIT}}^{\mathrm{lat}} \ge 0$ for all $\beta, \kappa_c \ge 0$ and $f_{\mathrm{gate}}, V_{\mathrm{site}} \ge 0$, the Boltzmann weight satisfies $0 < \exp(-S_{\mathrm{SIT}}^{\mathrm{lat}}) \le 1$ pointwise, and compact Haar integration proves (\texttt{SITStage4\allowbreak{}Proofs.\allowbreak{}c09\_\allowbreak{}nonperturbative\_\allowbreak{}finiteness\_\allowbreak{}holds})
+\begin{equation}
+0 < Z_{\mathrm{SIT}}(G, l, \beta, \kappa_c) \le 1,
+\label{eq:sec49_Z_bounds}
+\end{equation}
+yielding a bona fide, locally gauge-invariant probability measure $d\mu_{\mathrm{SIT}}$ even when $f_{\mathrm{gate}}(\rho, 0) = 0$. Furthermore, while unshifted Model~L1~\eqref{eq:sec49_coupled_lattice_action} governs fixed-background and conditional gauge expectations yet exhibits a reduced two-state gate-kernel sign obstruction in its isolated cross-slab factor $\exp(-\beta g_0 g_1)$ (\texttt{unshifted\_\allowbreak{}gate\_\allowbreak{}two\_\allowbreak{}by\_\allowbreak{}two\_\allowbreak{}det\_\allowbreak{}neg}, motivating an arithmetic baseline rather than constituting a full gauge-integrated coupled L1 no-go theorem), replacing the constant baseline $1$ inside $f_\square E_\square(U)$ by the 4-corner arithmetic average $\bar{f}_\square = \frac{1}{4}\sum_{c\in\square} f_c$ defines unified \textbf{Model~L3} (\texttt{sitAMGMGatedOSAction} in \texttt{Stage5\allowbreak{}Extensions.\allowbreak{}Unified\allowbreak{}AMGMGated\allowbreak{}OSPositivity}, Section~\ref{sec:stage4-lattice}), which differs from Model~L1 by the gauge-link-independent sum $\beta\,\mathrm{amgmCoherenceGap} + \kappa_t\sum_{x,\mu}(\rho(x+e_\mu)-\rho(x))^2 \ge 0$ (isolating the pure AM--GM site-gradient counterterm at $\kappa_t = 0$ or against a reference action carrying the same clock-hopping term) and simultaneously achieves within a single action exact zero-matter ($\delta_0 \otimes \mu_{\mathrm{temp}}$ and conditional $\psi = 0$) Haar disorder (with zero single-plaquette expectation for $l \ge 2$), identical conditional link law $P_{\mathrm{L3}}(U\mid\rho,\psi) = P_{\mathrm{L1}}(U\mid\rho,\psi)$, exact action equality on spatially constant backgrounds paired with explicit continuum matching of the $O(a^{-2})$ / marginal / $O(a^2)$ AM--GM radial scalar kinetic shift $\frac{3\beta}{8a^2}\int \frac{(\partial_\mu f)^2}{f}\,d^4x$ (Section~\ref{sec:stage4-lattice}), and coupled $(U,\psi,\rho)$ $2L_t$ reflection positivity across compact-ball and unbounded/Gaussian site priors.
+
+\subsection{Two-Phase Unification: Unbroken Haar Disorder, Activation Floor, Broken-Phase EFT, and First-Order Polyakov Barrier}
+
+The single non-perturbative lattice measure~\eqref{eq:sec49_coupled_lattice_action} unifies four rigorous regimes proved in Lean~4.30:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Exact $\psi \equiv 0$ Ultra-Local Haar Disorder (\texttt{haar\_\allowbreak{}coherence\_\allowbreak{}gating\_\allowbreak{}floor\_\allowbreak{}holds}):} In the unbroken zero-coherence sector $\psi \equiv 0$ with $f_{\mathrm{gate}}(\rho,0) = 0$, the conditional link law reduces to pure product Haar measure $\prod_e dh(U_e)$. By $SU(2)$ antithetic Haar invariance ($u \mapsto -u$), single-plaquette traces have zero mean and connected two-plaquette correlators across distinct Euclidean time slices ($x_{0,4} \ne x_{1,4}$) vanish identically ($\langle \mathrm{Tr}\,U_{\square_0}\,\mathrm{Tr}\,U_{\square_1}^*\rangle_c = 0$), corresponding to infinite lattice mass gap / zero correlation length on the zero-coherence branch.
+  \item \textbf{Quantitative Coherence-Activation Bound:} Turning on any finite site coherence profile $\psi(x)$ with $0 \le f_{\mathrm{gate}}(r,s) \le L_f s$ shifts bounded gauge expectations ($|O(U)| \le M$) from their $\beta = 0$ Haar baseline by at most
+  \begin{equation}
+  \Bigl|\langle O\rangle_{\beta,\psi} - \langle O\rangle_{0,\psi}\Bigr|
+  \le 48\,M\,\beta\,L_f\sum_{x\in\Lambda_l}\|\psi(x)\|^2,
+  \label{eq:sec49_48_bound}
+  \end{equation}
+  while any coercive site potential $V_{\mathrm{site}}(r,s) \ge \frac{1}{2}\Delta_{\mathrm{coh}} s$ ($\Delta_{\mathrm{coh}} > 0$) imposes a strictly positive energetic cost $\sum_x V_{\mathrm{site}}(\rho(x),\|\psi(x)\|^2) \ge \frac{1}{2}\Delta_{\mathrm{coh}}\sum_x\|\psi(x)\|^2 > 0$ on every non-zero coherence excitation $\psi \ne 0$.
+  \item \textbf{Broken-Phase $O(a^2)$ Recovery of \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{broken\_\allowbreak{}phase\_\allowbreak{}eft\_\allowbreak{}unification\_\allowbreak{}holds}):} In a constant broken-magnitude background $\|\psi(x)\|^2 = v_0^2 > 0$, $\rho(x) = \rho_0$ with $f_{\mathrm{gate}}(\rho_0, v_0^2\Rcoh^2) = f_0 + c_2\Rcoh^2$ ($f_0 > 0$), dividing by $f_0$ reproduces the exact Stage-2 constitutive dressing $f_{\mathrm{EM}}(\Rcoh) = 1 + (c_2/f_0)\Rcoh^2 \ge 1$, generates a gauge-invariant Proca screening scale $m_A^2 = \hat{q}^2\kappa_c v_0^2 / f_0 > 0$ (consistent with Elitzur's theorem $\langle U_{e,00}\rangle = 0$ without gauge fixing), and recovers the continuum quadratic Yang--Mills trace $\lim_{\varepsilon\to 0}\varepsilon^{-2}[1 - \frac{1}{n+1}\mathrm{Re}\,\mathrm{Tr}\exp(\varepsilon F)] = \frac{1}{2(n+1)}\|F\|_F^2$ at $O(a^2)$.
+  \item \textbf{Heavy-Coherence First-Order Polyakov Barrier (\texttt{compact\_\allowbreak{}polyakov\_\allowbreak{}first\_\allowbreak{}order\_\allowbreak{}transition\_\allowbreak{}holds}):} Coupling the thermal Polyakov loop character $u_1$ to a heavy coherence mode $\Rcoh$ of mass $m_{\mathrm{coh}} > 0$ via $V_{\mathrm{joint}}(a_T, u_1, \Rcoh) = (1-a_T)u_1 + b_0 u_1^2 + c u_1^3 + \frac{1}{2}m_{\mathrm{coh}}^2\Rcoh^2 - \kappa u_1\Rcoh$ ($c > 0$) and completing the square yields $b_{\mathrm{eff}} = b_0 - \frac{\kappa^2}{2 m_{\mathrm{coh}}^2} < 0$ whenever $\kappa^2 > 2 b_0 m_{\mathrm{coh}}^2$. At critical temperature $a_{\mathrm{crit}} = 1 - b_{\mathrm{eff}}^2/(4c) < 1$, the confined ($u_1 = 0$) and deconfined ($u_* = -b_{\mathrm{eff}}/(2c) > 0$) phases coexist degenerately across the exact positive cubic free-energy barrier
+  \begin{equation}
+  V_{\mathrm{eff}}\!\left(a_{\mathrm{crit}},\,\frac{u_*}{3}\right) = \frac{4}{27}\,c\,u_*^3 > 0.
+  \label{eq:sec49_polyakov_barrier}
+  \end{equation}
+\end{enumerate}
+
+\subsection{Explicit Clay Millennium Boundary: Continuum Pure Yang--Mills Mass Gap Remains \texttt{NOT\_SOLVED}}
+
+In strict adherence to \texttt{QG49} Tier~5, neither the coupled SIT coherence-lattice gap mechanisms above nor the October 2026 pure-gauge scaling-limit construction (\texttt{OpenAI-YM-20261028}, evaluated in \texttt{yang-mills-group/YM} \texttt{assessment-1.pdf} Section~8) resolves the Clay Millennium Prize problem for \textbf{unmodified four-dimensional continuum pure Yang--Mills theory} ($f \equiv 1$ with zero scalar fields): proving infinite-volume uniqueness and a strictly positive Osterwalder--Schrader Hamiltonian spectral gap $\sigma(H_{\mathrm{YM}}) \subset \{0\} \cup [\Delta, \infty)$ ($\Delta > 0$) in the $a_N \to 0$, $L_p \to \infty$ continuum limit remains \textbf{\texttt{NOT\_SOLVED}}, and is isolated conditionally inside Stage-4 Target~\texttt{(7)} (\texttt{Open\allowbreak{}AIUVFixed\allowbreak{}Point\allowbreak{}Assumptions -> Yang\allowbreak{}Mills.\allowbreak{}Joint\allowbreak{}Existence}, Section~\ref{sec:2025-vs-2026-ym}).
+
+\section{Black Holes, Voids, and the Halfway Universe (Exploratory Level-1 Cosmology Program)}
+\label{sec:black-holes-voids}
+\label{sec:blackholesvoids}
+
+\textbf{Level-1 Exploratory Status:} The cosmological scenarios in this section are \emph{exploratory Level-1 phenomenological hypotheses} separate from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (whose canonical vacuum satisfies $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ and whose cosmological perturbation theory remains open under \texttt{OPEN-6D}). Version~81 preserves these cosmological research questions while correcting four algebraic and logical inconsistencies from earlier drafts.
+
+\subsection{Halfway Universe Heuristic and Sign Correction of the Contrast Integral}
+
+Conceptually, the ``Halfway Universe'' proposal investigates whether cosmic structure formation exhibits a dynamical balance between compact high-density gravitational regions (black holes and clusters) and expanding under-dense cosmic voids, motivating open questions about Bekenstein--Hawking entropy bookkeeping and late-time cosmic acceleration (without claiming to resolve the black-hole information paradox or derive a conserved cosmic coherence budget from \texttt{M\_AUTH\_SIT\_EFT\_v1}).
+
+\paragraph{Sign Correction of the Earlier Zero-Sum Equation.}
+Earlier drafts wrote $\int_{\mathcal{V}}[\rho_t(\mathbf{x}) - \rho_{t,0}]\,d^3x = \alpha\int_{\mathcal{V}}\Rcoh\,d^3x \approx 0$ and argued that positive black-hole contributions cancel against cosmic voids. Because $\Rcoh \ge 0$ everywhere and the void limit sets $\Rcoh \to 0$ and $\rho_t \to \rho_{t,0}$, voids contribute $0$ (not negative values) to the integral, so cancellation cannot occur as written. Formulating a genuine zero-mean cosmic contrast requires defining a \emph{signed} fluctuation relative to a specified spatial mean background $\bar{R}_{\mathrm{bg}}(t) := \langle\Rcoh\rangle_{\mathcal{V}}(t) > 0$,
+\begin{equation}
+\delta\Rcoh(\mathbf{x}, t) := \Rcoh(\mathbf{x}, t) - \bar{R}_{\mathrm{bg}}(t),
+\qquad
+\int_{\mathcal{V}} \delta\Rcoh(\mathbf{x}, t)\,d^3x = 0,
+\label{eq:signed_cosmic_contrast}
+\end{equation}
+where overdense regions ($\delta\Rcoh > 0$) and underdense voids ($\delta\Rcoh < 0$) carry opposite signs by construction; whether any nonlinear solution of a cosmological SIT action links $\delta\rho_t$ linearly to $\delta\Rcoh$ remains an open Level-1 problem.
+
+\subsection{Exploratory Dark-Sector Parameterizations and Corrected Friedmann Linearization}
+\label{sec:darkmatter}
+
+Rather than claiming that unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} already replaces particle dark matter or derives the baryonic Tully--Fisher relation, we state explicitly what each exploratory Level-1 phenomenological ansatz assumes and correct the Friedmann linearization factor:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Single-Galaxy $1/r^2$ Density Profile vs.\ Baryonic Tully--Fisher Relation:} In a phenomenological modified-Poisson ansatz $\nabla^2 V_{\mathrm{grav}}(\mathbf{x}) = 4\pi G\bigl[\rho_b(\mathbf{x}) + \rho_{\mathrm{eff,coh}}(\mathbf{x})\bigr]$ with effective density $\rho_{\mathrm{eff,coh}} := \alpha_{\mathrm{dm}}\Rcoh$ (where $\alpha_{\mathrm{dm}}$ carries mass-density dimensions), assuming a flat circular velocity curve $v(r) \approx v_{\mathrm{flat}}$ merely infers an isothermal halo profile $\rho_{\mathrm{eff,coh}}(r) \approx v_{\mathrm{flat}}^2/(4\pi G r^2)$ for that galaxy. It does \emph{not} derive the cross-galaxy baryonic Tully--Fisher scaling relation ($M_b \propto v_{\mathrm{flat}}^4$, McGaugh~2012), which links total baryonic mass across distinct galaxies to asymptotic rotation speed and remains an open target for any cosmological extension.
+  \item \textbf{Corrected Friedmann Linearization Factor ($2\rho_{\mathrm{tot}}$, Not $6\rho_{\mathrm{tot}}$):} In an exploratory flat ($k = 0$) Friedmann parameterization adding an effective coherence energy-density contribution $\alpha_{\mathrm{cos}}\langle\Rcoh\rangle(z)$ (with $\alpha_{\mathrm{cos}}$ carrying energy-density dimensions),
+  \begin{equation}
+  H^2(z) = \frac{8\pi G}{3}\,\rho_{\mathrm{tot}}(z),
+  \qquad
+  \rho_{\mathrm{tot}}(z) := \rho_m(z) + \alpha_{\mathrm{cos}}\langle\Rcoh\rangle(z) + \rho_\Lambda,
+  \label{eq:friedmann_exploratory}
+  \end{equation}
+  differentiating $H^2 = \frac{8\pi G}{3}\rho_{\mathrm{tot}}$ at fixed $\rho_m, \rho_\Lambda$ gives $2H\,\delta H = \frac{8\pi G}{3}\alpha_{\mathrm{cos}}\,\delta\langle\Rcoh\rangle$, yielding the corrected leading fractional shift
+  \begin{equation}
+  \frac{\delta H_0}{H_0} \approx \frac{\alpha_{\mathrm{cos}}}{2\,\rho_{\mathrm{tot}}}\,\delta\langle\Rcoh\rangle
+  \label{eq:hubble_shift_corrected}
+  \end{equation}
+  (correcting the erroneous factor $1/(6\rho_{\mathrm{tot}})$ printed in earlier drafts). Whether $\langle\Rcoh\rangle(z)$ evolves cosmologically in a way consistent with CMB acoustic peaks, BAO, and supernova data remains an open Level-1 calculation (\texttt{OPEN-6D}).
+  \item \textbf{Dimensional and Transfer-Function Requirements for Lensing and Flow Templates:} Any prospective weak-lensing deflection or galaxy--void outflow parameterization of the schematic form $\delta\theta(\mathbf{x}) \sim \mathcal{K}_{\mathrm{lens}}\,\nabla_\perp\Rcoh(\mathbf{x})$ or $v_{\mathrm{flow}} \sim \mathcal{K}_{\mathrm{flow}}\,\Delta\Rcoh$ requires explicit dimensional coupling kernels $(\mathcal{K}_{\mathrm{lens}}, \mathcal{K}_{\mathrm{flow}})$ and cosmological transfer functions derived from a specified gravitational action (subject to the mass-calibration and form-factor identifiability cautions of Section~\ref{subsec:identifiability-and-qgtcd-guardrails}). In uniform backgrounds, unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} reduces to standard General Relativity.
+\end{enumerate}
+

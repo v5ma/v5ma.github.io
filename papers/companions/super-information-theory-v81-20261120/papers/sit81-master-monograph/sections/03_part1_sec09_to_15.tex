@@ -1,0 +1,386 @@
+\section{Symmetries, Noether Charge Conservation, and Operational Coherence Boundaries}
+\label{sec:coherence-conservation}
+\label{sec:symmetry-noether-moved}
+\label{app:NoetherCurrents}
+
+This section derives the exact Noether currents associated with general covariance and the internal $U(1)$ phase symmetry of the canonical SIT action (\texttt{M\_AUTH\_SIT\_EFT\_v1}), and strictly separates proved on-shell Noether charge conservation from operational quantum basis coherence, density-matrix purity, entanglement, and neural synchronization (following the operational separation contract of Section~\ref{sec:PrimitiveFieldDefinitions} and Paper~002).
+
+\subsection{General Covariance and Energy--Momentum Conservation}
+
+Because $S_{\mathrm{AUTH}} = \int d^4x\,\sqrt{-g}\,\mathcal{L}_{\mathrm{AUTH}}$ is invariant under smooth diffeomorphisms $x^\mu \mapsto x^\mu + \xi^\mu(x)$, Noether's second theorem (equivalently the contracted Bianchi identity $\nabla_\mu G^{\mu\nu} \equiv 0$) implies exact on-shell covariant conservation of the total stress--energy tensor:
+\[
+\nabla_\mu T^{\mu\nu}_{\mathrm{tot}} = 0,
+\qquad
+T^{\mu\nu}_{\mathrm{tot}} = T^{\mu\nu}_{(\rho_t)} + T^{\mu\nu}_{(\psi)} + T^{\mu\nu}_{(\mathrm{EM})} + T^{\mu\nu}_{(\mathrm{pot})} + f_{\mathrm{SM}}(\Rcoh)\,T^{\mu\nu}_{\mathrm{SM}}.
+\]
+
+\subsection{U(1) Phase Symmetry and the Gauge-Invariant Coherence Current}
+
+The canonical action~\eqref{eq:canonical_action_sec5} is invariant under local $U(1)$ gauge transformations
+\begin{equation}
+\psi(x) \to e^{i\hat{q}\chi(x)}\psi(x),
+\qquad
+A_\mu(x) \to A_\mu(x) + \partial_\mu\chi(x),
+\label{eq:u1_gauge_transform_sec9}
+\end{equation}
+implemented through $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$ inside the $(-,+,+,+)$ kinetic density $\mathcal{L}_\psi = -\frac{\kappa_c}{2}g^{\mu\nu}(D_\mu\psi)^*(D_\nu\psi) - U(|\psi|)$. Invariance under the global subgroup ($\chi = \mathrm{const}$) yields the gauge-invariant conserved coherence current
+\begin{equation}
+J^\mu_{\mathrm{coh}}
+= \frac{i\kappa_c}{2}\Bigl(\psi(D^\mu\psi)^* - \psi^*(D^\mu\psi)\Bigr),
+\qquad
+\nabla_\mu J^\mu_{\mathrm{coh}} = 0 \quad (\text{on-shell}).
+\label{eq:Jcoh_covariant_sec9}
+\end{equation}
+Writing $\psi(x) = |\psi(x)| e^{i\theta(x)}$ casts Eq.~\eqref{eq:Jcoh_covariant_sec9} into its explicit London superflow form:
+\begin{equation}
+J^\mu_{\mathrm{coh}} = \kappa_c |\psi|^2 \bigl(\nabla^\mu\theta - \hat{q}A^\mu\bigr),
+\label{eq:Jcoh_london_sec9}
+\end{equation}
+which reduces in the zero-field limit $A_\mu \to 0$ to $J^\mu_{\mathrm{coh}} = \kappa_c |\psi|^2 \nabla^\mu\theta$ and sources the coherence-gated Maxwell/Proca equation~\eqref{eq:maxwell_proca_eom_canonical}.
+
+\paragraph{Exact Scope of Noether Charge Conservation vs.\ Operational Coherence Measures:}
+The conservation law $\nabla_\mu J^\mu_{\mathrm{coh}} = 0$ is an exact on-shell theorem strictly for the global $U(1)$ Noether charge $Q_{\mathrm{coh}} = \int_\Sigma J^0_{\mathrm{coh}}\sqrt{q}\,d^3x$ of the complex EFT field $\psi$ in \texttt{M\_AUTH\_SIT\_EFT\_v1}. It does \emph{not} imply conservation or monotonicity of arbitrary operational coherence statistics:
+\begin{itemize}
+    \item \textbf{What Noether Conservation Establishes:} In a closed classical solution of \texttt{M\_AUTH\_SIT\_EFT\_v1} (with appropriate boundary falloff), total $U(1)$ Noether charge $Q_{\mathrm{coh}}$ is conserved, and local charge changes are balanced by spatial flux $\nabla\cdot\mathbf{J}_{\mathrm{coh}}$.
+    \item \textbf{What Noether Conservation Does \emph{Not} Establish:} Conservation of $Q_{\mathrm{coh}}$ does \emph{not} prove conservation of fixed-basis quantum off-diagonal coherence, density-matrix purity, multipartite entanglement, or neural cross-frequency synchrony. Under unitary quantum evolution, fixed-basis coherence is \emph{not} conserved: for example, a single-qubit Hadamard unitary maps $|0\rangle \mapsto |+\rangle$, changing computational-basis off-diagonal coherence $2|\rho_{01}|$ from $0$ to $1$ while purity $\mathrm{Tr}(\rho^2) = 1$ stays constant. Similarly, under non-unital open-system CPTP maps (Section~\ref{sec:arrow-of-time}), even purity can strictly increase.
+\end{itemize}
+
+\subsection{Why Uncertainty Relations Do Not Establish a Universal Coherence Budget}
+\label{subsec:uncertainty-vs-coherence}
+
+Earlier drafts of SIT proposed a universal conservation-of-coherence rule across complementary observables $(A, B)$ of the schematic form $\mathcal{C}_A \mathcal{C}_B \gtrsim \chi > 0$, attempting to derive the Heisenberg--Robertson uncertainty principle ($\Delta x\,\Delta p \ge \hbar/2$) and neural cross-frequency trade-offs as instances of a single conserved coherence budget. Version~81 explicitly \emph{retracts} any claim of a universal conserved coherence budget or universal positive product lower bound across complementary bases:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Counterexample to Universal Lower Bound $\mathcal{C}_A \mathcal{C}_B \ge \chi > 0$:} For a single qubit in the maximally mixed state $\rho = I/2$, off-diagonal coherence vanishes identically in \emph{every} orthonormal basis ($\mathcal{C}_Z = \mathcal{C}_X = \mathcal{C}_Y = 0$), so $\mathcal{C}_A \mathcal{C}_B = 0$ for every complementary pair, refuting any universal positive lower bound $\chi > 0$ on basis coherence measures.
+  \item \textbf{Counterexample to Unitary Basis-Coherence Conservation:} A unitary transformation (such as the Hadamard gate $|0\rangle \mapsto |+\rangle$) changes fixed-basis coherence freely while leaving purity invariant, showing that unitary quantum dynamics conserves inner products and von~Neumann entropy rather than a single fixed-basis coherence functional.
+  \item \textbf{Distinction Between Variance Uncertainty and Coherence Conservation:} Standard quantum mechanics derives Robertson--Schr\"odinger variance bounds ($\Delta A\,\Delta B \ge \frac{1}{2}|\langle[A,B]\rangle|$) and entropic uncertainty relations from non-commutativity of observables on Hilbert space. Those established theorems constrain simultaneous sharpness in incompatible bases, but do not follow from $U(1)$ Noether charge conservation of a classical EFT field $\psi$, nor do they derive neural band-power trade-offs (which belong to separate empirical neuroscience modeling, Section~\ref{sec:neuroscience-implications}).
+\end{enumerate}
+
+The motivating conceptual research question---how basis-dependent coherence, entanglement, and measurement-induced disturbance trade off inside specified quantum protocols, and whether cross-frequency synchrony exhibits empirical trade-offs in neural recordings---remains part of the interdisciplinary research program, kept cleanly separated from the proved Noether current $\nabla_\mu J^\mu_{\mathrm{coh}} = 0$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\subsection{Time-Density Field and Internal Symmetries}
+
+For $\rho_t(x)$, if $V(\rho_t)$ is invariant under shifts or certain scaling transformations, similar Noether currents arise.
+
+\paragraph{Example: Shift Symmetry in $\rho_t$.}
+If $V(\rho_t)$ is constant, consider infinitesimal shifts $\rho_t \to \rho_t + \beta$:
+\[
+J^\mu_{(\rho_t)} = \frac{\partial \mathcal{L}_{\rho_t}}{\partial (\partial_\mu \rho_t)} \delta \rho_t = \partial^\mu \rho_t\, \beta
+\]
+Conservation:
+\[
+\nabla_\mu J^\mu_{(\rho_t)} = \square \rho_t = 0
+\]
+if the equation of motion holds and $V'(\rho_t) = 0$.
+
+\paragraph{Remarks:}
+If $V'(\rho_t) \neq 0$, this current is explicitly broken as well.
+
+\subsection{Electromagnetic Gauge Invariance}
+
+If matter and electromagnetic fields are present, standard $U(1)$ gauge invariance applies:
+\[
+A_\mu \to A_\mu + \partial_\mu \chi, \qquad \psi \to e^{ie\chi/\hbar} \psi
+\]
+Noether's theorem yields the standard electromagnetic current:
+\[
+J^\mu_{\mathrm{EM}} = \frac{\partial \mathcal{L}_{\mathrm{matter}}}{\partial (\partial_\mu \psi)} (i e / \hbar) \psi + \text{c.c.}
+\]
+This is unaffected by $R_{\mathrm{coh}}$ and $\rho_t$ unless the coupling functions $f_1, f_2$ break $U(1)$ invariance, which is not permitted if standard EM is to be recovered.
+
+\subsection{Summary Table of Symmetries and Currents}
+\begin{center}
+\small
+\begin{tabular}{|p{0.16\textwidth}|p{0.17\textwidth}|p{0.33\textwidth}|p{0.22\textwidth}|}
+\hline
+\textbf{Field/Sector} & \textbf{Symmetry} & \textbf{Noether Current} & \textbf{Conservation Condition} \\
+\hline
+Metric, all fields & Diffeomorphism & $T^{\mu\nu}_{\text{total}}$ & Always (on-shell) \\
+Complex Field $\psi$ & Global U(1) phase rotation & $J^\mu_{\mathrm{coh}} = \frac{i\kappa_c}{2}(\psi\nabla^\mu\psi^* - \psi^*\nabla^\mu\psi)$ & Holds if action depends only on $|\psi|$ \\
+$\rho_t$ & Shift symmetry & $J^\mu_{(\rho_t)} \propto \nabla^\mu \rho_t$ & Broken if potential $V(\rho_t)$ is non-trivial \\
+EM/matter & Local U(1) gauge & $J^\mu_{\mathrm{EM}}$ & Holds by construction \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+In the presence of explicit symmetry-breaking potentials $U(R_{\mathrm{coh}})$, $V(\rho_t)$, or non-invariant coupling functions $f_1, f_2$, the corresponding currents are only approximately conserved. SIT thus recovers standard physical conservation laws in the appropriate limits, and introduces generalized coherence/entropy currents whose exact conservation is symmetry-dependent.
+
+
+
+\section{Quantum Operator Formalism for the Informational Fields}
+\label{sec:quantum-operator-formalism}
+\label{sec:path-int}
+
+Having established the classical action, symmetries, and post-Newtonian consistency of \texttt{M\_AUTH\_SIT\_EFT\_v1}, we formulate its canonical quantization as a perturbative quantum effective field theory valid at energies $E \ll \Lambda_{\mathrm{UV}} := \min(M_{\mathrm{Pl}}, \Lambda_{\mathrm{EM}}, \Lambda_{\mathrm{sym}})$.
+
+\subsection{Canonical Quantization and Equal-Time Commutation Relations}
+
+Promoting $\psi(x)$ and $\rho_t(x)$ around Minkowski space $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ to operator-valued distributions $\hat{\psi}(\mathbf{x},t)$, $\hat{\psi}^\dagger(\mathbf{x},t)$, and $\hat{\rho}_t(\mathbf{x},t)$, the $(-,+,+,+)$ kinetic Lagrangian $-\frac{\kappa_t}{2}\eta^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t - \frac{\kappa_c}{2}\eta^{\mu\nu}(D_\mu\psi)^\dagger(D_\nu\psi) = +\frac{\kappa_t}{2}\dot{\rho}_t^2 + \frac{\kappa_c}{2}|D_0\psi|^2 - \dots$ defines positive-norm canonical conjugate momenta:
+\begin{align}
+\hat{\Pi}_\rho(\mathbf{x},t) &:= \frac{\partial\mathcal{L}_{\mathrm{AUTH}}}{\partial(\partial_0\hat{\rho}_t)} = +\kappa_t\,\partial_0\hat{\rho}_t(\mathbf{x},t), \label{eq:canon_mom_rho}\\
+\hat{\Pi}_\psi(\mathbf{x},t) &:= \frac{\partial\mathcal{L}_{\mathrm{AUTH}}}{\partial(\partial_0\hat{\psi})} = +\frac{\kappa_c}{2}\,(D_0\hat{\psi})^\dagger(\mathbf{x},t), \label{eq:canon_mom_psi}\\
+\hat{\Pi}_{\psi^\dagger}(\mathbf{x},t) &:= \frac{\partial\mathcal{L}_{\mathrm{AUTH}}}{\partial(\partial_0\hat{\psi}^\dagger)} = +\frac{\kappa_c}{2}\,D_0\hat{\psi}(\mathbf{x},t). \label{eq:canon_mom_psidag}
+\end{align}
+We impose standard equal-time canonical commutation relations ($\hbar = 1$, restoring $\hbar$ explicitly where informative):
+\begin{align}
+\bigl[\hat{\psi}(\mathbf{x},t),\,\hat{\Pi}_\psi(\mathbf{y},t)\bigr] &= i\hbar\,\delta^{(3)}(\mathbf{x}-\mathbf{y}),
+\qquad
+\bigl[\hat{\psi}^\dagger(\mathbf{x},t),\,\hat{\Pi}_{\psi^\dagger}(\mathbf{y},t)\bigr] = i\hbar\,\delta^{(3)}(\mathbf{x}-\mathbf{y}), \nonumber\\
+\bigl[\hat{\rho}_t(\mathbf{x},t),\,\hat{\Pi}_\rho(\mathbf{y},t)\bigr] &= i\hbar\,\delta^{(3)}(\mathbf{x}-\mathbf{y}),
+\label{eq:equal_time_ccr}
+\end{align}
+with all remaining equal-time commutators vanishing.
+
+\subsection{Bounded-Below Linearized Fock/KLMN Hamiltonian and Retirement of Unconstructed SUSY (\texttt{C06})}
+
+Expanding \texttt{M\_AUTH\_SIT\_EFT\_v1} to quadratic order around the stable vacuum $(\eta_{\mu\nu}, \rho_0, v_0, A_\mu = 0)$ in ADM scalar--vector--tensor variables reveals how gauge constraints eliminate every unphysical negative-norm mode (\texttt{SITQG09LinearizedFluctuationAndObstruction}, \texttt{SITTrancheBAuthoritativeModelAndQuantum}):
+\begin{itemize}
+  \item \textbf{Constraint Elimination of Conformal and Temporal-Gauge Ghosts:} Although the unconstrained metric trace carries a conformal kinetic contribution $-6(\partial_t\Psi)^2$, the linearized ADM Hamiltonian constraint $\Delta\Psi = +\frac{\kappa_G}{2}T_{00}^{(2)}$ renders $\Psi$ non-propagating, while the $U(1)$ Gauss constraint $\nabla\cdot\mathbf{\Pi} - \hat{q}(u\pi_v - v\pi_u) = 0$ eliminates $A_0$.
+  \item \textbf{Bounded-Below Physical Fock/KLMN Spectrum:} Across the remaining $7$ physical bosonic polarizations in pure-SIT vacuum ($2$ transverse-traceless gravitons $h_{+,\times}$ with $c_T = 1$, $2$ transverse photons/Proca modes, $1$ longitudinal Proca mode of mass $m_A = \sqrt{\hat{q}^2\kappa_c v_0^2 / f_{\mathrm{EM}0}}$ for $v_0 > 0$ or Goldstone phase $\theta$ for $v_0 = 0$, and $2$ massive scalar eigenstates of $M_{\mathrm{phys}}^2 = K^{-1/2} H K^{-1/2}$ with $\det(H) > 0$), every kinetic weight ($\frac{1}{8\kappa_G}$, $\frac{\kappa_t}{2}$, $\frac{\kappa_c}{2}$, $\frac{f_{\mathrm{EM}0}}{2}$) and every physical mass-squared eigenvalue is strictly non-negative. Under ultraviolet mode regularization $\Lambda_{\mathrm{reg}} \le \Lambda_{\mathrm{UV}}$ with normal ordering (or Kato--Lions--Lax--Milgram--Nelson quadratic-form perturbation for small interactions), the physical quantum Hamiltonian is bounded below:
+  \begin{equation}
+  \hat{H}_{\mathrm{phys}} \ge E_0 > -\infty.
+  \label{eq:klmn_bounded_below}
+  \end{equation}
+  \item \textbf{Explicit Retirement of Unconstructed Supersymmetry (\texttt{C06}, \texttt{ODQ-4}):} Earlier exploratory drafts postulated an unconstructed supersymmetric factorization $\hat{H}_{\mathrm{SIT}} = \hat{A}^\dagger\hat{A}$ to argue for energy non-negativity. Under \texttt{QG49} Tier-4 hygiene, \texttt{C06} is permanently retired: \texttt{M\_AUTH\_SIT\_EFT\_v1} contains no superpartner fields and requires no supersymmetry, because Eq.~\eqref{eq:klmn_bounded_below} follows directly from $\kappa_G, \kappa_t, \kappa_c > 0$, $f_{\mathrm{EM}} \ge 1$, $V_{\mathrm{tot}} \ge 0$, and $\det(H) > 0$.
+\end{itemize}
+
+\subsection{Consistency of Heisenberg, Path-Integral, and Classical Formulations}
+
+\paragraph{(a) Heisenberg Evolution.} Any physical observable $\hat{O}$ evolves via $i\hbar\,d\hat{O}/dt = [\hat{O}, \hat{H}_{\mathrm{phys}}]$, reproducing the operator field equations upon inserting Eq.~\eqref{eq:equal_time_ccr}.
+
+\paragraph{(b) Regulated EFT Path Integral.} Below $\Lambda_{\mathrm{UV}}$, transition amplitudes admit the Faddeev--Popov gauge-fixed path-integral representation
+\begin{equation}
+\braket{\Psi_f}{e^{-i\hat{H}_{\mathrm{phys}}(t_f-t_i)/\hbar}\Psi_i}
+= \int_{\Lambda_{\mathrm{reg}} \le \Lambda_{\mathrm{UV}}} \mathcal{D}[g_{\mu\nu}]\,\mathcal{D}[\rho_t]\,\mathcal{D}[\psi]\,\mathcal{D}[\psi^*]\,\mathcal{D}[A_\mu]\,\mu_{\mathrm{FP}}\,
+  \exp\!\left(\frac{i}{\hbar}S_{\mathrm{AUTH}}\right),
+\label{eq:eft_path_integral}
+\end{equation}
+while non-perturbative gauge-coherence path integrals are constructed rigorously on a compact-group 4D hypercubic Euclidean Haar Wilson lattice in Part~IV (Section~\ref{sec:stage4-lattice}).
+
+\paragraph{(c) Semiclassical Recovery.} Both coherent-state expectation values $\bra{\Psi}\delta S_{\mathrm{AUTH}}/\delta\psi^*\ket{\Psi} = 0$ and the $\hbar \to 0$ stationary-phase saddle $\delta S_{\mathrm{AUTH}} = 0$ recover the exact classical Euler--Lagrange equations~\eqref{eq:summary_einstein_sec8}--\eqref{eq:summary_maxwell_sec8}:
+\[
+\bra{\Psi}\Bigl(\frac{\kappa_c}{2} D_\mu D^\mu\hat{\psi} - \frac{\partial V_{\mathrm{tot}}}{\partial\hat{\psi}^*} + \dots\Bigr)\ket{\Psi} = 0
+\;\Longrightarrow\;
+\frac{\kappa_c}{2} D_\mu D^\mu\psi - \frac{\partial V_{\mathrm{tot}}}{\partial\psi^*} + \dots = 0.
+\]
+
+\section{SIT 3.0: Exploratory State-Dependent Clock Hypothesis and Impossibility of a Linear Coherence Operator}
+\label{sec:SIT3}
+\label{sec:QIP}
+
+This section preserves the exploratory ``SIT~3.0'' research question---whether quantum coherence or entanglement in a localized register could enter an effective proper-time rate---while correcting a fatal mathematical inconsistency in earlier drafts (which postulated a single fixed Hermitian operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ with mutually incompatible properties). This hypothesis is a \emph{separate phenomenological extension}, not derived from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\paragraph{Mathematical Impossibility of the Earlier Linear Operator $\hat{\mathcal{R}}_{\mathrm{coh}}$.}
+Earlier SIT drafts simultaneously required a fixed, state-independent Hermitian operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ to satisfy: (a)~$\mathrm{Tr}(\rho\,\hat{\mathcal{R}}_{\mathrm{coh}}) = 2|\rho_{01}|$ on single-qubit density matrices, (b)~$\hat{\mathcal{R}}_{\mathrm{coh}}|\psi_1\rangle\otimes\cdots\otimes|\psi_N\rangle = 0$ on every $N$-partite product state, and (c)~positive eigenvalues $N_c > 0$ and $N_w > 0$ on GHZ and $W$ states. Two elementary proofs establish that no such linear operator exists:
+\begin{enumerate}[leftmargin=2em]
+  \item \emph{Violation of Linearity Under Mixing:} Both $|+\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ and $|-\rangle = (|0\rangle - |1\rangle)/\sqrt{2}$ satisfy $2|\rho_{01}| = 1$. Their equal statistical mixture is $\rho = \frac{1}{2}|+\rangle\langle +| + \frac{1}{2}|-\rangle\langle -| = I/2$, which has $2|\rho_{01}| = 0$. Because the expectation value $\mathrm{Tr}(\rho\hat{O})$ of any fixed linear observable $\hat{O}$ is affine in $\rho$, having expectation $1$ on both $|+\rangle$ and $|-\rangle$ forces expectation $1$ (not $0$) on $I/2$. Thus $2|\rho_{01}|$ is a \emph{nonlinear} convex state functional, never the expectation value of a single state-independent Hermitian operator.
+  \item \emph{Computational Product Basis Forces $\hat{\mathcal{R}}_{\mathrm{coh}} \equiv 0$:} The $2^N$ computational product states $\{|i_1\rangle\otimes\cdots\otimes|i_N\rangle : i_k \in \{0,1\}\}$ form a complete orthonormal basis of $(\mathbb{C}^2)^{\otimes N}$. Any linear operator that annihilates every product state therefore vanishes identically ($\hat{\mathcal{R}}_{\mathrm{coh}} = 0$) and must also annihilate every superposition thereof, including $(|0\rangle^{\otimes N} + |1\rangle^{\otimes N})/\sqrt{2}$ and $|W_N\rangle$; it cannot possess nonzero GHZ or $W$ eigenvalues.
+\end{enumerate}
+
+\paragraph{Corrected Exploratory Formulation (Nonlinear State Functional vs.\ Restricted Linear Witness).}
+To keep the state-dependent-clock research question mathematically well posed, Version~81 replaces the impossible linear operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ with one of two distinct, mathematically consistent choices (neither yet derived from \texttt{M\_AUTH\_SIT\_EFT\_v1}):
+\begin{itemize}
+  \item \textbf{Option A (Declared Nonlinear State Functional $\mathcal{C}_{\mathrm{state}}[\rho]$):} A state-dependent proper-time ansatz takes the form
+  \begin{equation}
+  \frac{d\tau}{dt} \;=\; \rho_g(x)\,\exp\!\Bigl[\gamma\,\mathcal{C}_{\mathrm{state}}[\rho]\Bigr]
+  \;=\; \rho_g(x)\Bigl[1 + \gamma\,\mathcal{C}_{\mathrm{state}}[\rho] + \mathcal{O}(\gamma^2)\Bigr],
+  \label{eq:SIT3-master}
+  \end{equation}
+  where $\mathcal{C}_{\mathrm{state}}[\rho] \ge 0$ is explicitly a \emph{nonlinear} functional of the state $\rho$---for instance, the $\ell_1$-norm basis coherence $2|\rho_{01}|$ for a single qubit in a fixed basis, or a genuine multipartite entanglement monotone that vanishes identically on all separable states (such as concurrence/tangle, negativity, or relative entropy of entanglement) while remaining strictly positive on GHZ or $W$ states. \emph{Correction Regarding Quantum Fisher Information:} Earlier Version~81 wording incorrectly listed ordinary quantum Fisher information $F_Q(\rho, \hat{J})$ as an entanglement monotone vanishing on separable states; in fact, for the separable product state $|+\rangle^{\otimes N}$ and collective generator $\hat{J}_z = \frac{1}{2}\sum_{i=1}^N \hat{Z}_i$, direct evaluation gives $F_Q(|+\rangle^{\otimes N}, \hat{J}_z) = 4\,\mathrm{Var}(\hat{J}_z) = N \ne 0$. Ordinary quantum Fisher information can serve only as an entanglement criterion relative to a declared separability ceiling (for example, the shifted excess $\max(0, F_Q(\rho, \hat{J}_z) - N)$ for $\hat{J}_z$), not as a zero-on-separable functional itself.
+  \item \textbf{Option B (State-Specific Linear Entanglement Witness $\hat{W}_{\Psi}$):} For a \emph{fixed} target entangled state (such as a specific GHZ state), a standard linear Hermitian witness $\hat{W}_{\mathrm{GHZ}}$ can satisfy $\mathrm{Tr}(\rho_{\mathrm{sep}}\hat{W}_{\mathrm{GHZ}}) \ge 0$ on separable states while taking a negative value on the target GHZ state, without annihilating all product states or reproducing $2|\rho_{01}|$.
+\end{itemize}
+
+\paragraph{Open Status of Downstream Clock, Sorkin ($I_{123}$), and No-Signaling Claims.}
+Because the earlier operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ does not exist, all downstream formulas previously attributed to it---specifically GHZ vs.\ $W$ amplification scaling, three-arm clock-beat offsets, and the Sorkin third-order interference coefficient $\kappa_3$---are explicitly marked \textbf{open phenomenological targets} requiring rederivation once a concrete functional $\mathcal{C}_{\mathrm{state}}[\rho]$ (or witness) and microscopic coupling $\gamma$ are specified (\texttt{OPEN-6C}). Furthermore, Version~81 retracts the assertion that a ``phase-only'' state-dependent modification at $\mathcal{O}(\gamma)$ automatically guarantees no-signaling: in nonlinear modifications of quantum mechanics, preventing superluminal signaling requires specifying the full composite-system state-update law, tensor-product extension, and measurement/collapse prescription explicitly (cf.\ Gisin--Polchinski nonlinear quantum mechanics constraints). In the $\gamma \to 0$ limit, standard quantum mechanics and General Relativity are recovered identically.
+
+\bigskip
+
+\subsection{Boundary Between Gauge Connections and Gravitational Curvature}
+\label{sec:dual_geometry}
+
+Earlier SIT drafts attempted to derive general electromagnetic curvature directly from a pure phase gradient $A_\mu = (\hbar/e)\partial_\mu\theta$ and to identify spacetime curvature with an ``informational torque'' functional. Version~81 aligns this subsection strictly with \texttt{M\_AUTH\_SIT\_EFT\_v1} and Section~\ref{sec:magnetism-holonomy}:
+\begin{itemize}
+  \item \textbf{Electromagnetic Sector (Independent Connection, \texttt{OPEN-6B}):} On any smooth, simply connected region, a pure phase gradient $A_\mu^{\mathrm{flat}} = (\hbar/e)\partial_\mu\theta$ has identically vanishing curvature $F_{\mu\nu}^{\mathrm{flat}} = \partial_\mu A_\nu^{\mathrm{flat}} - \partial_\nu A_\mu^{\mathrm{flat}} = 0$ and cannot generate ordinary nonzero magnetic fields ($\mathbf{B} \ne 0$). In canonical \texttt{M\_AUTH\_SIT\_EFT\_v1}, local $U(1)$ gauge invariance is carried by an \emph{independent} dynamical gauge connection $A_\mu$ with arbitrary curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ (massive $m_A^2 = \kappa_c\hat{q}^2 v_0^2/f_{\mathrm{EM}0}$ whenever $\hat{q}v_0 \ne 0$, leaving the visible massless photon dictionary open under \texttt{OPEN-6B}).
+  \item \textbf{Gravitational Sector (Variational Einstein Equations):} Spacetime curvature in \texttt{M\_AUTH\_SIT\_EFT\_v1} is governed exclusively by the variational Einstein field equation $G_{\mu\nu} = \kappa_G T_{\mu\nu}^{\mathrm{tot}}$ of Eq.~\eqref{eq:covariant_einstein_sec5}, where scalar gradients of $(\rho_t, \psi)$ enter through their canonical stress--energy tensors $T_{\mu\nu}^{(\rho_t)} + T_{\mu\nu}^{(\psi)} + T_{\mu\nu}^{(\mathrm{pot})}$. Heuristic Berry-phase or ``informational torque'' analogies are kept strictly separate from metric variation (Section~\ref{sec:informational-torque}).
+\end{itemize}
+
+\section{Exploratory Multi-Modal Energy-Density Ansatz (Separate from Canonical Action)}
+\label{sec:integrated_functional}
+
+This section preserves an exploratory phenomenological ansatz from earlier SIT drafts---\emph{not} derived from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (whose canonical vacuum stress--energy vanishes at $(\rho_0, v_0)$)---exploring how an effective multi-modal energy density might be parameterized in terms of coarse-grained coherence proxies and dynamic rates (see Section~\ref{sec:informational_energy_equivalence} for dimensional and vacuum-subtraction requirements).
+
+\subsection{Phenomenological Local Energy-Density Ansatz}
+In this separately postulated heuristic model, an auxiliary energy density is written as
+\begin{equation}
+    \varepsilon_{\mathrm{SIT}}^{\mathrm{phen}}(x) = \zeta \cdot R_{\mathrm{coh}}(x) \cdot [\rho_t(x)]^2,
+    \label{eq:local_energy_density}
+\end{equation}
+where $\zeta$ is a phenomenological scale parameter (requiring explicit background subtraction relative to vacuum $(\rho_0, v_0)$ and an explicit covariant stress--energy derivation before any comparison with $T_{00}^{\mathrm{tot}}$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}).
+
+This single-mode ansatz is insufficient to describe general quantum systems, motivating the exploratory multi-modal sketch below (distinct from the proved canonical Hamiltonian of Section~\ref{sec:quantum-operator-formalism}).
+
+\subsection{Exploratory Multi-Modal Sketch}
+To parameterize multiple coarse-grained oscillatory modes ($i$) heuristically, earlier drafts wrote a schematic mode-sum expression:
+\begin{equation}
+    \varepsilon_{\mathrm{total}}^{\mathrm{phen}}(x,t) = \sum_i \left\{ \zeta_i R_{\mathrm{coh},i} [\rho_{t,i}]^2 + \frac{1}{2}(\partial_\mu R_{\mathrm{coh},i})^2 + \frac{\kappa}{2}(\partial_\mu \rho_{t,i})^2 \right\}
+    \label{eq:full_functional}
+\end{equation}
+(a classical heuristic mode sum, distinct from the canonical Hamiltonian of \texttt{M\_AUTH\_SIT\_EFT\_v1} in Section~\ref{sec:quantum-operator-formalism} and explicitly omitting the impossible linear coherence operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ retracted in Section~\ref{sec:SIT3}).
+
+\subsection{Boundary Between This Exploratory Sketch and Canonical \texttt{M\_AUTH\_SIT\_EFT\_v1}}
+Version~81 clarifies three points where earlier drafts overstated the scope of Eq.~\eqref{eq:full_functional}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Gravitational and Cosmological Sector:} In unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, metric variation produces $T_{\mu\nu}^{\mathrm{tot}}$ with potential $V_{\mathrm{tot}}(\rho_t, |\psi|) \ge 0$ satisfying $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ (not $V = \zeta R\rho_t^2$, which is nonzero at the constant vacuum, Section~\ref{sec:informational_energy_equivalence}). Dark-matter and dark-energy parameterizations remain open Level-1 cosmological hypotheses (Section~\ref{sec:black-holes-voids}, \texttt{OPEN-6D}).
+  \item \textbf{Quantum State Dependence:} Because no fixed linear Hermitian operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ can annihilate all product states while giving positive GHZ eigenvalues (Section~\ref{sec:SIT3}), any state-dependent energy or BEC-versus-thermal gravitational response requires either an action-derived microscopic state-preparation source $J_{\mathrm{prep}}$ (\texttt{OPEN-6C}) or a separately specified nonlinear/phenomenological condensate model (such as Paper~003's Penrose--Onsager contract, Section~\ref{sec:smoking-gun-bec}).
+  \item \textbf{Thermodynamic Dissipation:} Closed-system solutions of \texttt{M\_AUTH\_SIT\_EFT\_v1} satisfy $\nabla_\mu J^\mu_{\mathrm{coh}} = 0$ identically; irreversible dissipation is governed in finite-dimensional open quantum systems by unital CPTP purity non-increase and general CPTP relative-entropy contraction (Result~\ref{thm:CoherenceMonotonicity}), rather than by claiming $\partial_\mu J^\mu_{\mathrm{coh}} > 0$ derives the Second Law of Thermodynamics directly from the canonical action.
+\end{enumerate}
+
+
+
+\section{Exploratory Relational Network Analogy and Resolution of \texttt{C08}}
+\label{sec:network-formulation}
+
+Super Information Theory also motivates discrete relational graph toy models for mesoscopic oscillator simulations, provided naive row-normalized stochastic averaging (\texttt{C08}) is avoided and the mathematical boundary between heuristic graph dynamics and the continuum field theory \texttt{M\_AUTH\_SIT\_EFT\_v1} is maintained strictly.
+
+\paragraph{Relational Events and Hermitian Adjacency Amplitudes.}
+Let $V = \{v_1, v_2, \dots, v_N\}$ denote a finite set of elemental relational nodes equipped with a Hermitian complex adjacency matrix $A(\tau) = A^\dagger(\tau)$ ($A_{ij}(\tau) = A_{ji}^*(\tau)$) parameterized by internal evolution parameter $\tau$, carrying link phase $\arg A_{ij}(\tau)$ and relational weight $|A_{ij}(\tau)|^2$. Each edge retains a Hermitian exponentially weighted memory kernel
+\begin{equation}
+M_{ij}(\tau) = \int_0^\tau e^{-(\tau-\sigma)/\tau_m}\,A_{ij}(\sigma)\,d\sigma
+\qquad \bigl(M(\tau) = M^\dagger(\tau)\bigr)
+\end{equation}
+with memory horizon $\tau_m > 0$, while node-level scalar proxies track accumulated activity and local phase alignment:
+\begin{equation}
+\rho_t^{\mathrm{net}}(i,\tau) = \frac{1}{\tau_0}\int_0^\tau \sum_j |A_{ij}(\sigma)|^2\,d\sigma,
+\qquad
+\Rcoh^{\mathrm{net}}(i,\tau) = \frac{1}{d_i}\left|\sum_j A_{ij}(\tau)\right|.
+\end{equation}
+
+\paragraph{Hermiticity Repair and Explicit Withdrawal of Earlier Continuum-Action Claim.}
+Earlier drafts proposed the evolution equation $i\hbar\,\partial_\tau A_{ij} = -\kappa_{\mathrm{net}}(LA)_{ij} - i\lambda_{\mathrm{diss}}A_{ij} + \mu_{\mathrm{mem}}M_{ij} + \nu_{\mathrm{net}}[\rho_t(i)-\rho_t(j)]A_{ij}$ (with symmetric graph Laplacian $L = D - W = L^\dagger$) while declaring $A(\tau) = A^\dagger(\tau)$ Hermitian. That equation does \emph{not} preserve Hermiticity: dividing by $i\hbar$ maps Hermitian contributions into anti-Hermitian derivatives, yielding the nonzero Hermiticity defect
+\begin{equation}
+\partial_\tau\bigl(A - A^\dagger\bigr) = \frac{i}{\hbar}\Bigl[\kappa_{\mathrm{net}}(LA + AL) - 2\mu_{\mathrm{mem}} M\Bigr] \ne 0
+\label{eq:network_hermiticity_defect}
+\end{equation}
+even on a two-node graph ($L = \bigl(\begin{smallmatrix}1 & -1\\ -1 & 1\end{smallmatrix}\bigr)$, real symmetric $A(0) = \bigl(\begin{smallmatrix}1 & 1\\ 1 & 2\end{smallmatrix}\bigr)$, positive damping $\lambda_{\mathrm{diss}} > 0$), so the trajectory immediately leaves the declared Hermitian state space! To preserve $A(\tau) = A^\dagger(\tau)$ identically along the flow, a consistent exploratory graph toy model must place Hermitian operators inside a commutator $-i[H_{\mathrm{net}}, A]/\hbar$ and real symmetric damping/diffusion/memory terms outside the imaginary unit:
+\begin{equation}
+\partial_\tau A(\tau)
+= -\frac{i}{\hbar}\bigl[H_{\mathrm{net}}(\tau),\, A(\tau)\bigr]
+  - \frac{\lambda_{\mathrm{diss}}}{\hbar}\,A(\tau)
+  - \frac{\kappa_{\mathrm{diff}}}{2}\bigl\{L,\, A(\tau)\bigr\}
+  + \frac{\mu_{\mathrm{mem}}}{\hbar}\,M(\tau),
+\label{eq:discrete_super_coherence}
+\end{equation}
+where $H_{\mathrm{net}}(\tau) := -\kappa_{\mathrm{net}} L + \nu_{\mathrm{net}}\,\mathrm{diag}(\rho_t^{\mathrm{net}}(\tau)) = H_{\mathrm{net}}^\dagger(\tau)$ and $\{L, A\} = LA + AL$, ensuring $\partial_\tau(A - A^\dagger) \equiv 0$ identically whenever $A = A^\dagger$ and $M = M^\dagger$.
+
+\paragraph{Explicit Scope Boundary (Not a Derivation of $S_{\mathrm{AUTH}}$).}
+Version~81 explicitly withdraws the earlier claim that taking $a \to 0$ in a first-order discrete graph toy model derives the full relativistic gravitational-gauge continuum action $S_{\mathrm{AUTH}}$ (Eq.~\eqref{eq:canonical_action_sec5}). Equation~\eqref{eq:discrete_super_coherence} is retained strictly as a Hermiticity-preserving phenomenological graph toy model; by contrast, the proved classical $C^4$ continuum limit of SIT applies strictly to the Stage-6 periodic 4D lattice kinetic and plaquette functionals of Section~\ref{sec:stage4-lattice} (with full quantum continuum QFT construction explicitly open under \texttt{OPEN-1}).
+
+\subsection{Mathematical Resolution of Row-Normalized Clock Collapse (\texttt{C08})}
+\label{sec:c08-network-resolution}
+
+An important structural obstruction uncovered during formal verification (\texttt{ODQ-6}, formalized in Lean~4.30 module \texttt{HsitTail.SitUv.SITF41F42ProjectionCoherenceTower}, theorem \texttt{unbounded\_fiber\_collapses\_projected\_support}) concerns how discrete network amplitudes are normalized and projected:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Why Naive Row-Normalized Stochastic Clock Readout Collapses (\texttt{C08} Retired):} If one imposes strict row-stochastic normalization $\sum_{j=1}^N |A_{ij}(\tau)|^2 = 1$ for every vertex $i$ \emph{and} simultaneously defines local coherence as $\Rcoh^{\mathrm{naive}}(i,\tau) := \sum_j |A_{ij}(\tau)|^2$, then $\Rcoh^{\mathrm{naive}}(i,\tau) \equiv 1$ and $\rho_t^{\mathrm{naive}}(i,\tau) = (\tau/\tau_0)\cdot 1$ become spatially uniform across all vertices $i$, collapsing $\nabla\Rcoh \equiv 0$ and $\nabla\rho_t \equiv 0$ identically! Similarly, iterating a row-normalized random-walk transition matrix $P = D^{-1}W$ ($P\mathbf{1} = \mathbf{1}$) without spectral scale separation washes out spatial clock gradients, while unweighted projection across unbounded microscopic fibers collapses projected norm support. Accordingly, naive row-normalized clock readout (\texttt{C08}) is permanently retired in Tier~4.
+  \item \textbf{Continuum Spectral Sobolev and 4D Euclidean Wilson Replacements:} Two rigorous mathematical structures replace \texttt{C08} in Version~81:
+  \begin{itemize}
+    \item \emph{Weighted Sobolev Eigenmode Towers (Section~\ref{sec:stage3-sobolev}):} Expanding fields in the orthonormal eigenbasis $\{\phi_n\}_{n\in\mathbb{N}}$ of the unnormalized Laplace--Beltrami operator $-\Delta_q\phi_n = \mu_n\phi_n$ ($\mu_n \ge 0$, $\mu_n \to \infty$) yields the strict infinite-dimensional Sobolev hierarchy $H^2(\mu) \subsetneq H^1(\mu) \subsetneq \ell^2(\mathbb{N})$ with controlled spectral Galerkin defect bounds $\|u - P_N u\|_{H^1(\mu)}^2 \le (1 + \Lambda_N^2)^{-1}\|u\|_{H^2(\mu)}^2$.
+    \item \emph{Compact-Group 4D Hypercubic Wilson Lattices (Section~\ref{sec:stage4-lattice}):} For non-perturbative gauge-coherence physics, edges $(x,\mu)$ on a 4D Euclidean hypercubic torus $(\mathbb{Z}/l\mathbb{Z})^4$ carry unitary group transporters $U(x,\mu) \in G \subset U(n+1)$ integrated with normalized bi-invariant Haar measure $dh(U_e)$, while sites carry unpinned matter/coherence amplitudes $\psi(x) \in \mathbb{C}^{n+1}$ and temporal scalars $\rho_t(x) \in \mathbb{R}$ coupled through $\sum_{x,\mu}\|\psi(x) - U(x,\mu)\psi(x+\hat{\mu})\|^2$, preserving both spatial gradients and exact local gauge invariance at every finite lattice spacing.
+  \end{itemize}
+\end{enumerate}
+
+\section{Time Density and Phase--Rate Dynamics}\label{sec:timedensity}
+
+Super Information Theory identifies a scalar \emph{time--density field} $\rho_t(x)$, with physical dimension $[\mathrm{T}^{-1}]$, as one of its two primitive variables.  Its operational meaning is set by the phase accumulation of a reference clock carried along any world-line.  Let $\varphi(x)$ denote the phase of the locally maximally coherent mode.  We postulate
+\begin{equation}\label{eq:phi-rate}
+    \dot{\varphi}(x)\;=\;\frac{S_{\text{coh}}(x)}{\hbar_{\rm eff}},
+    \qquad
+    \rho_t(x)\;=\;\rho_0\,\Bigl(\dot{\varphi}_0/\dot{\varphi}(x)\Bigr),
+\end{equation}
+where $S_{\text{coh}}$ is the density of the coherence action and $\hbar_{\rm eff}$ is a fixed microscopic constant that calibrates informational action in ordinary SI units.  Equation~\eqref{eq:phi-rate} replaces the older ``quantum stopwatch'' metaphor with a dimensionally explicit relation: slower phase advance (smaller~$\dot{\varphi}$) corresponds to larger~$\rho_t$ and hence stronger scalar--tensor back-reaction in the action of Sec.~\ref{sec:framework}.  The converse holds for decoherence-dominated regions.
+
+Linearising the canonical field equations of \texttt{M\_AUTH\_SIT\_EFT\_v1} around the uniform vacuum $(\rho_0, v_0)$ produces the coupled symmetric two-scalar linear response operator $(K\nabla^2 - H)$ derived in Sections~\ref{sec:framework} and~\ref{sec:screening-mechanism} (rather than a one-way uncoupled Poisson modification $\nabla^2\Phi = 4\pi G\rho_m + \beta\nabla^2\delta\rho_t$, which is a pedagogical approximation, Section~\ref{sec:experimental-predictions}). Earlier drafts asserted an unqualified laboratory torsion-balance bound $|\beta| < 10^{-5}$; Version~81 retires that standalone bound because short-range fifth-force constraints depend jointly on the mass eigenvalues $(m_-, m_+)$, the source coupling $Q_{\mathrm{eff}}$, and finite-geometry screening integrals (\texttt{OPEN-6A}, Section~\ref{sec:experimental-predictions}). High-accuracy transportable optical clocks probe the disambiguated local field-response coefficient $\alpha_\rho$ via $\Delta\nu/\nu = \alpha_\rho\,\delta\rho_t/\rho_0$ and gravitational-potential redshift slope $\alpha_\Phi = \alpha_\rho\mathcal{T}$ (Appendix~\ref{appendix:ClockConstraints}).
+
+\subsection{Self-Organising Feedback and Coherence Flow}
+
+The global $U(1)$ phase symmetry of the complex field $\psi$ (or gauge-covariant matter current when $\hat{q} \neq 0$) leads, via Noether's theorem, to a conserved $U(1)$ charge current:
+\[
+    J^\mu_{\mathrm{coh}} = \frac{i\kappa_c}{2} \left( \psi (D^\mu \psi)^* - \psi^* D^\mu \psi \right) = \kappa_c |\psi|^2 (\nabla^\mu \theta - \hat{q} A^\mu),
+    \qquad
+    \nabla_\mu J^\mu_{\mathrm{coh}} = 0.
+\]
+This current is the exact classical Noether current of \texttt{M\_AUTH\_SIT\_EFT\_v1} (distinct from operational quantum-state coherence measures, Section~\ref{sec:coherence-conservation}). In unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, spacetime curvature is sourced strictly by the symmetric metric stress--energy tensor $T_{\mu\nu}^{\mathrm{tot}}$ (Section~\ref{sec:stress-energy}); earlier drafts introduced an antisymmetric heuristic tensor $\tau_{\mu\nu\rho} = \beta\nabla_{[\mu}\Rcoh\nabla_{\nu]}\rho_t u_\rho$ and claimed a $10\,\mathrm{pm}$ atom-interferometer displacement over a one-meter baseline. Consistent with Section~\ref{sec:informational_torque}, Version~81 retracts both the unproved antisymmetric Einstein source term and the unsupported $10\,\mathrm{pm}$ interferometer forecast as open phenomenological items requiring a complete action-to-apparatus derivation (\texttt{OPEN-6}).
+
+\subsection{Relation to Quantum Interference}
+
+In standard gauge theory and in \texttt{M\_AUTH\_SIT\_EFT\_v1} with an independent gauge connection $A_\mu$ (Section~\ref{sec:magnetism-holonomy}), the electromagnetic Aharonov--Bohm phase around a closed loop enclosing magnetic flux $\Phi_B = \int F$ is $\theta_{\mathrm{AB}} = (e/\hbar)\oint A_\mu\,dx^\mu$ (nonzero because $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu \neq 0$ inside the solenoid). Earlier drafts wrote $\theta_{\mathrm{AB}} = (e/\hbar)\oint (\nabla\theta)\cdot d\boldsymbol{\ell}$ and claimed electron interferometers already constrain $\lambda \Rcoh$; Version~81 retracts that expression because a single-valued gradient $\nabla\theta$ has vanishing curl and zero line integral on any simply connected patch, while the multiplicative constitutive dressing $f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2$ modifies electromagnetic propagation only through explicit $\Rcoh$-dependent constitutive susceptibility rather than replacing $A_\mu$ with $\nabla\theta$ (Section~\ref{sec:magnetism-holonomy}).
+
+\section{Exploratory Quantum-Domain Analogies and Experimental Proposals}
+\label{sec:applications-predictions}
+
+The subsections below collect exploratory quantum-domain analogies from earlier drafts while explicitly separating conceptual sketches from proved consequences of \texttt{M\_AUTH\_SIT\_EFT\_v1} and repairing earlier algebraic sign and dimensional inconsistencies.
+
+\subsection{Exploratory Tunneling-Rate Analogy}
+\label{sec:quantum-tunneling}
+
+In standard quantum mechanics, one-dimensional barrier transmission is governed by the stationary Schr\"odinger equation $-(\hbar^2/2m)\psi'' + [V(x) - E]\psi = 0$. Earlier SIT drafts explored a phenomenological analogy in which an effective barrier stiffness or inverse diffusion parameter depends on local time density, $-D(\rho_t)\,u'' + [V(x)-E]u = 0$ with WKB exponent $2\int_{x_1}^{x_2}\sqrt{(V(x)-E)/D(\rho_t(x))}\,dx$. Note that this stationary equation is a heuristic phenomenological model (not a direct consequence of \texttt{M\_AUTH\_SIT\_EFT\_v1}). Moreover, Version~81 corrects a sign error in earlier drafts: if $D(\rho_t) \propto 1/\rho_t$ so that the WKB action scales as $\int\sqrt{(V-E)\rho_t}\,dx$, then \emph{increasing} $\rho_t$ \emph{increases} the WKB barrier exponent and \emph{suppresses} (rather than enhances) transmission $T \sim \exp(-2S_{\mathrm{eff}}/\hbar)$; conversely, enhancing transmission at larger $\rho_t$ would require $D(\rho_t)$ to increase with $\rho_t$. Any physical SIT modification to tunneling rates remains an open Level-1 phenomenology question (\texttt{OPEN-6C}).
+
+\subsection{Time--Energy Uncertainty Bounds and Consistency Check}
+\label{sec:quantum-time-energy}
+
+The quantum time--energy uncertainty relation $\Delta E\,\Delta t \ge \hbar/2$ (in Mandelstam--Tamm operational form, relating energy spread to the minimum timescale for orthogonal state evolution) is a standard kinematic theorem of Hilbert-space quantum mechanics. Earlier SIT drafts heuristically substituted $\Delta t \approx \rho_t^{-1}$ together with $\Delta E \approx E_{\mathrm{coh}}(1 - \Rcoh)$ while simultaneously associating high coherence ($\Rcoh \to 1$) with large $\rho_t$ and ``greater temporal uncertainty.'' Version~81 explicitly retracts that heuristic combination as internally inconsistent:
+\begin{enumerate}[leftmargin=2em]
+  \item If $\Delta t = \rho_t^{-1}$, then larger $\rho_t$ gives \emph{smaller} (not greater) $\Delta t$;
+  \item Taking $\Rcoh \to 1$ together with large $\rho_t$ drives the product $E_{\mathrm{coh}}(1 - \Rcoh)\rho_t^{-1} \to 0$, violating $\ge \hbar/2$ (and conversely rearranging the inequality as $\rho_t \le 2E_{\mathrm{coh}}(1 - \Rcoh)/\hbar$ would force $\rho_t \to 0$ as $\Rcoh \to 1$, contradicting the manuscript's own high-$\rho_t$ / high-$\Rcoh$ correlation).
+\end{enumerate}
+Standard quantum uncertainty relations therefore stand on their own Hilbert-space derivation and are neither replaced by nor derived from the classical EFT scalar fields $(\rho_t, \psi)$.
+
+\subsection{SuperTimePosition Coordinate (Exploratory Concept)}
+\label{sec:stp}
+
+In the exploratory SuperTimePosition (STP) conceptualization (examined further in Paper~034), one defines a world-line integrated temporal phase count $\Theta(x,t) := \int^t \rho_t(x,t')\,dt'$. In \texttt{M\_AUTH\_SIT\_EFT\_v1}, the dynamical field equations are the covariant wave equations for $(\rho_t, \psi, A_\mu, g_{\mu\nu})$ derived in Section~\ref{sec:framework} (rather than independent wave equations for $\Theta$); whether an STP parameterization admits a non-trivial relativistic observable beyond standard proper time $\tau = \int ds$ remains an open research question.
+
+\subsection{Measurement-Induced Perturbations (Dimensional Repair and Open Status)}
+\label{sec:measurement}
+
+Earlier drafts sketched a transient gravitational-potential perturbation during quantum measurement via $\delta V_{\mathrm{grav}} \sim G\,\delta\rho_g/r$ and $\delta\nu/\nu \approx \delta V_{\mathrm{grav}}$. Version~81 notes two dimensional omissions in that sketch---a gravitational potential requires integrating mass density over the active source volume $\delta M = \int_V \delta\rho_g\,d^3x$ (giving $\delta\Phi \sim -G\,\delta M/r$, Section~\ref{sec:informational_energy_equivalence}), and the dimensionless fractional redshift divides by $c^2$ ($\delta\nu/\nu \sim \delta\Phi/c^2$)---and marks any measurement-induced scalar or gravitational transient as an unproved Level-1 hypothesis contingent on deriving an explicit microscopic state-preparation source $J_{\mathrm{prep}}$ (\texttt{OPEN-6C}).
+
+\subsection{Distinction from Position--Momentum Uncertainty}
+\label{sec:uncertainty-distinction}
+
+Standard canonical position--momentum uncertainty $\Delta x\,\Delta p \ge \hbar/2$ and Mandelstam--Tamm time--energy bounds belong to quantum kinematics, whereas the classical SIT EFT fields $(\rho_t, \psi)$ govern covariant field dynamics at scales below $\Lambda_{\mathrm{UV}}$; Version~81 keeps these two domains cleanly separated rather than equating $\rho_t^{-1}$ with a quantum measurement duration.
+
+\subsection{Singularity Avoidance Remains an Open Ultraviolet Question}
+\label{sec:collapse-prevention}
+
+Because the earlier heuristic inequality $\rho_t \le 2E_{\mathrm{coh}}(1 - \Rcoh)/\hbar$ is internally inconsistent with $\Rcoh \to 1$ at large $\rho_t$ (Section~\ref{sec:quantum-time-energy}), Version~81 retracts the claim that this algebraic rearrangement prevents classical gravitational singularities. Within the effective field theory \texttt{M\_AUTH\_SIT\_EFT\_v1}, curvature behavior above the cutoff scale $\Lambda_{\mathrm{UV}}$ lies outside the EFT regime of validity, and singularity resolution remains an open ultraviolet quantum-gravity problem (\texttt{OPEN-5}).
+
+\subsection{Light, Lasers, and the Gravitational Field}
+
+Coherent light, such as that produced by a laser, represents a macroscopic quantum state in which photons are phase-aligned and occupy a well-defined mode. In conventional physics, the gravitational field generated by a laser is expected to be minuscule, scaling only with the energy of the beam and independent of its coherence properties. This expectation has been formalized in calculations showing that a 1~J laser pulse, regardless of coherence, generates the same infinitesimal spacetime curvature as an equivalent incoherent light pulse with the same energy distribution. Classical general relativity therefore treats coherence as organizational, not causal: it simply concentrates energy, but does not amplify or uniquely source gravity.
+
+In contrast, SIT proposes that coherence---when maximized among a system of photons---induces localized variations in the time-density field, $\rho_t$, which couple directly to spacetime curvature. The hypothesis is that the more perfectly phase-aligned a quantum system, the more efficiently it modulates or ``focuses'' the informational content of its stress-energy, leading to enhanced or anomalous gravitational effects not captured by classical GR.
+
+\subsection{Bose--Einstein Condensates and Coherence-Induced Gravity}
+
+Matter-wave coherence is realized most dramatically in Bose--Einstein condensates (BECs), where a macroscopic population of atoms occupies the same quantum state. In standard physics, the gravitational field produced by a BEC is again expected to reflect only its total mass-energy; coherence is not considered as a causal modifier. SIT, however, extends its conjecture to matter systems: the perfect coherence of a BEC is posited to alter local time-density gradients, potentially generating subtle deviations in gravitational behavior compared to an incoherent ensemble of the same mass.
+
+If SIT is correct, one would expect ultra-coherent systems---whether composed of photons or massive particles---to generate or modulate gravitational fields in ways that cannot be reduced to energy density alone. This prediction sets the stage for experimental challenge.
+
+
+\subsection{Experimental Evidence and Proposals}
+
+To date, no experiment has definitively observed gravitational anomalies attributable to coherence per se. The gravitational field of laboratory light beams, including intense lasers, remains below current detection thresholds, and all observed phenomena are consistent with classical predictions. Likewise, tests with BECs have not revealed deviations from the equivalence principle: coherent matter falls at the same rate as incoherent matter, within experimental error.
+
+Nevertheless, advancing technology is narrowing the gap between SIT predictions and empirical accessibility. Proposed experiments include:
+\begin{itemize}
+    \item High-power laser interferometry to search for self-induced gravitational lensing or beam--beam interactions exceeding classical expectations.
+    \item Drop tests comparing the free-fall acceleration of coherent BECs versus thermal clouds under ultra-sensitive gravimetry.
+    \item Quantum tomography and interferometric protocols measuring declared operational coherence statistics (purity, visibility, or condensate fraction) under matched-preparation controls (Eq.~\eqref{eq:bec_matched_residual}) once an explicit state-to-field map (\texttt{OPEN-6C}) is specified.
+\end{itemize}
+
+Furthermore, proposed gravity-mediated entanglement experiments (such as BMV-type setups) probe whether gravitational fields act quantum-mechanically on spatial superpositions; testing any SIT-specific contribution beyond standard linearized quantum gravity requires deriving the corresponding observable shift from a specified action and parameter point (\texttt{OPEN-6}).
+
+\subsection{Scoped Falsifiability}
+
+Consistent with the Scoped Falsification Principle (Section~\ref{sec:experimental-predictions}), a null result excludes only a specified action, parameter point, matter closure, and preparation model whose derived prediction exceeds experimental sensitivity, rather than falsifying the entire research program in the abstract while \texttt{OPEN-6} remains open.
+

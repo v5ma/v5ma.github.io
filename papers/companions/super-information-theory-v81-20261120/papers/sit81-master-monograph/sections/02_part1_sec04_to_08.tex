@@ -1,0 +1,606 @@
+\section{The Gravitational Sector}
+\label{sec:gravitational-sector}
+
+\subsection{Derivation of the Modified Einstein Equations}
+
+We derive the gravitational field equations by varying the canonical SIT action $S_{\mathrm{AUTH}}$ (Eq.~\eqref{eq:canonical_action_sec5}) with respect to the inverse metric $g^{\mu\nu}$ in mostly-plus Lorentzian signature $(-,+,+,+)$. Decomposing the total action into five additive covariant pieces,
+\begin{equation}
+S_{\mathrm{AUTH}} = S_{\mathrm{EH}} + S_{\rho_t} + S_{\psi} + S_{\mathrm{pot}} + S_{\mathrm{EM}}^{\mathrm{coh}} + S_{\mathrm{SM}}^{\mathrm{coh}},
+\label{eq:action_sector_split}
+\end{equation}
+variation of the Einstein--Hilbert sector $S_{\mathrm{EH}} = \int d^4x\,\sqrt{-g}\,R/(16\pi G)$ yields the Einstein tensor:
+\begin{equation}
+\frac{\delta S_{\mathrm{EH}}}{\delta g^{\mu\nu}}
+= \frac{\sqrt{-g}}{16\pi G}\left(R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R\right)
+= \frac{\sqrt{-g}}{2\kappa_G}\,G_{\mu\nu},
+\qquad
+\kappa_G := 8\pi G > 0.
+\label{eq:eh_variation}
+\end{equation}
+Defining the Hilbert stress--energy tensor of each non-gravitational sector by the canonical variational convention
+\[
+T_{\mu\nu}^{(X)} := -\frac{2}{\sqrt{-g}}\frac{\delta S_X}{\delta g^{\mu\nu}},
+\]
+stationarity $\delta S_{\mathrm{AUTH}} / \delta g^{\mu\nu} = 0$ yields the modified Einstein field equations:
+\begin{equation}
+G_{\mu\nu}
+= \kappa_G\,T_{\mu\nu}^{\mathrm{tot}}
+= 8\pi G\Bigl(
+  T_{\mu\nu}^{(\rho_t)}
+  + T_{\mu\nu}^{(\psi)}
+  + T_{\mu\nu}^{(\mathrm{EM})}
+  + T_{\mu\nu}^{(\mathrm{pot})}
+  + T_{\mu\nu}^{(\mathrm{matter})}
+\Bigr).
+\label{eq:Einstein-like}
+\end{equation}
+Each contribution is manifestly symmetric, gauge-invariant, and ghost-free under $\kappa_t > 0$, $\kappa_c > 0$, and $f_{\mathrm{EM}}(\Rcoh) \ge 1$:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Time-Density Scalar Sector ($T_{\mu\nu}^{(\rho_t)}$):} Varying $-\frac{\kappa_t}{2}\int d^4x\,\sqrt{-g}\,g^{\alpha\beta}\partial_\alpha\rho_t\partial_\beta\rho_t$ gives
+  \begin{equation}
+  T_{\mu\nu}^{(\rho_t)}
+  = \kappa_t\left(\partial_\mu\rho_t\,\partial_\nu\rho_t - \frac{1}{2}g_{\mu\nu}\,g^{\alpha\beta}\partial_\alpha\rho_t\,\partial_\beta\rho_t\right),
+  \label{eq:T_rhot_sec4}
+  \end{equation}
+  whose Minkowski-frame energy density $T_{00}^{(\rho_t)} = \frac{\kappa_t}{2}\bigl[(\partial_t\rho_t)^2 + (\nabla\rho_t)^2\bigr] \ge 0$ is strictly positive-definite for $\kappa_t > 0$.
+  \item \textbf{Complex Coherence Sector ($T_{\mu\nu}^{(\psi)}$):} Varying $-\frac{\kappa_c}{2}\int d^4x\,\sqrt{-g}\,g^{\alpha\beta}(D_\alpha\psi)^*(D_\beta\psi)$ gives the symmetrized gauge-invariant stress--energy tensor
+  \begin{equation}
+  T_{\mu\nu}^{(\psi)}
+  = \kappa_c\left(\mathrm{Re}\bigl[(D_\mu\psi)^*(D_\nu\psi)\bigr] - \frac{1}{2}g_{\mu\nu}\,g^{\alpha\beta}(D_\alpha\psi)^*(D_\beta\psi)\right),
+  \label{eq:T_psi_sec4}
+  \end{equation}
+  with $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$, sourcing curvature directly from coherence amplitude gradients and gauge-covariant phase supercurrents.
+  \item \textbf{Coherence-Dressed Maxwell/Proca Sector ($T_{\mu\nu}^{(\mathrm{EM})}$):} Varying $-\frac{1}{4}\int d^4x\,\sqrt{-g}\,f_{\mathrm{EM}}(\Rcoh)F_{\alpha\beta}F^{\alpha\beta}$ yields
+  \begin{equation}
+  T_{\mu\nu}^{(\mathrm{EM})}
+  = f_{\mathrm{EM}}(\Rcoh)\left(F_{\mu\lambda}F_\nu^{\ \lambda} - \frac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right),
+  \qquad
+  f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2 \ge 1.
+  \label{eq:T_EM_sec4}
+  \end{equation}
+  \item \textbf{Potential and Portal Linkage Sector ($T_{\mu\nu}^{(\mathrm{pot})}$):} Since $V_{\mathrm{tot}}(\rho_t, |\psi|) = V(\rho_t) + U(|\psi|) + U_{\mathrm{link}}(\rho_t,|\psi|) \ge 0$ depends on the metric exclusively through $\sqrt{-g}$, its variation contributes
+  \begin{equation}
+  T_{\mu\nu}^{(\mathrm{pot})} = -g_{\mu\nu}\,V_{\mathrm{tot}}(\rho_t, |\psi|),
+  \label{eq:T_pot_sec4}
+  \end{equation}
+  yielding $T_{00}^{(\mathrm{pot})} = +V_{\mathrm{tot}}(\rho_t, |\psi|) \ge 0$ in $(-,+,+,+)$ and vanishing identically at the equilibrium vacuum $(\rho_0, v_0)$.
+  \item \textbf{Coherence-Dressed Matter Sector ($T_{\mu\nu}^{(\mathrm{matter})}$):} Varying $+\int d^4x\,\sqrt{-g}\,f_{\mathrm{SM}}(\Rcoh)\mathcal{L}_{\mathrm{matter}}$ gives
+  \begin{equation}
+  T_{\mu\nu}^{(\mathrm{matter})}
+  = f_{\mathrm{SM}}(\Rcoh)\,T_{\mu\nu}^{\mathrm{SM}},
+  \qquad
+  f_{\mathrm{SM}}(\Rcoh) = 1 + \frac{\Rcoh^2}{2 M_{\mathrm{sym}}^2} \ge 1,
+  \label{eq:T_matt_sec4}
+  \end{equation}
+  where $T_{\mu\nu}^{\mathrm{SM}} := -\frac{2}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_{\mathrm{matter}})}{\delta g^{\mu\nu}}$ is the canonical Standard Model stress--energy tensor. This coherence dressing modulates the effective gravitational coupling of matter in unscreened coherent regimes, grounding the equivalence-principle tests of Sections~\ref{sec:smoking-gun-bec} and~\ref{sec:experimental-predictions}.
+\end{enumerate}
+
+\subsection{Summary of Operational Definitions}
+
+The operational constructs $\rho_t$ and $\Rcoh$ translate across physical and biological domains without ambiguity:
+\begin{itemize}
+  \item \textbf{Coincidence as a Bit:} Rather than an abstract binary voltage, an operational bit corresponds to a registered spatiotemporal confluence of events, elevating local $\Rcoh$.
+  \item \textbf{Self-Aware Networks:} Oscillatory synchrony and phase-wave differentials in neural networks realize mesoscopic high-coherence states measurable via EEG, MEG, and multi-electrode arrays (Section~\ref{sec:neuroscience-implications}).
+  \item \textbf{Coherence as an Order Parameter:} In quantum optics and cold-atom physics, operational coherence proxies track interferometric visibility and condensate fraction (kept strictly distinct from the classical EFT modulus $\Rcoh = |\psi|/\psi_0$ pending \texttt{OPEN-6C}, Section~\ref{sec:PrimitiveFieldDefinitions}); in finite-dimensional open quantum systems, monotonicity is governed by unital CPTP purity non-increase and general CPTP relative-entropy contraction (Result~\ref{thm:CoherenceMonotonicity}).
+\end{itemize}
+
+\subsection{Coherence--Time Coupling and State-Dependent Gravitational Effects}
+
+While classical General Relativity couples geometry universally to total $T_{\mu\nu}$ regardless of internal phase coherence, SIT introduces an explicit, screened state-dependent dressing alongside scalar kinetic and linkage stress--energy:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{State-Dependent Sourcing:} Regions of elevated macroscopic phase alignment ($\Rcoh > R_0$) dress matter stress--energy via $f_{\mathrm{SM}}(\Rcoh)$ and excite $(\rho_t, |\psi|)$ gradients.
+  \item \textbf{Covariant Energy Redistribution:} Total energy--momentum remains strictly conserved on-shell ($\nabla^\mu T_{\mu\nu}^{\mathrm{tot}} = 0$) by diffeomorphism invariance; work expended to prepare or destroy macroscopic coherence exchanges energy conservatively among matter, electromagnetic, and $(\rho_t, \psi)$ sectors.
+  \item \textbf{Clock-Rate Modulation via Linkage:} Spatial variations in $|\psi|$ pull $\rho_t$ through the portal potential $U_{\mathrm{link}}(\rho_t, |\psi|)$, linking local clock rates to coherence profiles without introducing extra temporal dimensions.
+\end{enumerate}
+
+\paragraph{SIT Gravity Postulates (GP1--GP7).}
+\begin{itemize}
+  \item \textbf{GP1 (Field Content):} Gravitational and electromagnetic deviations from GR+Maxwell are mediated by $\psi(x) = |\psi(x)|e^{i\theta(x)}$ ($\Rcoh = |\psi|/\psi_0$) and $\rho_t(x)$ on $(\mathcal{M}^4, g_{\mu\nu})$.
+  \item \textbf{GP2 (Coherence Conservation):} Global $U(1)$ phase invariance yields the conserved Noether current $\nabla_\mu J^\mu_{\mathrm{coh}} = 0$ (Section~\ref{sec:coherence-conservation}).
+  \item \textbf{GP3 (Coherence--Time Linkage):} Along the portal valley of $U_{\mathrm{link}}(\rho_t, |\psi|)$, $\rho_t - \rho_0 = \frac{\sqrt{\lambda_{\mathrm{portal}}}}{m_{\mathrm{link}}}(|\psi|^2 - v_0^2)$. In the separate exploratory register-level phenomenology of Section~\ref{sec:QIP} (not derived from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, \texttt{OPEN-6C}), any proposed state-dependent proper-time ansatz takes the form $d\tau/dt = \rho_g(x)[1 + \gamma\,\mathcal{C}_{\mathrm{state}}[\rho] + O(\gamma^2)]$ using a declared \emph{nonlinear} state functional $\mathcal{C}_{\mathrm{state}}[\rho]$ (or a state-specific linear witness $\hat{W}_\Psi$), explicitly replacing the retired impossible operator $\hat{\mathcal{R}}_{\mathrm{coh}}$.
+  \item \textbf{GP4 (Curvature Source):} Metric variation yields $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}^{\mathrm{tot}}$, reducing in the static weak-field limit around $(\rho_0, v_0)$ to a Yukawa-screened Poisson law.
+  \item \textbf{GP5 (GR Recovery and Coupled Consistency):} At the constant broken-phase vacuum $(\rho_t, |\psi|) = (\rho_0, v_0)$ with $D_\mu\psi = 0$, $V_{\mathrm{tot}} = 0$ and $\nabla V_{\mathrm{tot}} = 0$, reducing the metric equation \emph{algebraically} to $G_{\mu\nu} = 8\pi G f_{\mathrm{SM}}(R_0) T_{\mu\nu}^{\mathrm{SM}} + 8\pi G f_{\mathrm{EM}}(R_0) T_{\mu\nu}^{\mathrm{EM},0}$; this yields an exact coupled solution when the scalar and gauge equations also vanish (such as source-free vacuum $\mathcal{L}_{\mathrm{matter}} = 0, F_{\mu\nu} = 0$, whereas $\mathcal{L}_{\mathrm{matter}} = -\rho_m < 0$ or $\hat{q}v_0 F_{\mu\nu} \ne 0$ excites scalar/Proca equations at $v_0 > 0$), while broader exact sourced GR+Maxwell ($f_{\mathrm{SM}} = f_{\mathrm{EM}} = 1, m_A = 0$) holds in the separate unbroken parameter limit $v_0 = 0$, and heavy-scalar decoupling provides a controlled asymptotic approximation.
+  \item \textbf{GP6 (Operational Dictionary):} Normalized operational coherence proxies approaching $1$ mark maximal phase alignment, while proxies approaching $0$ mark complete local decoherence (distinct from the unbounded classical field ratio $\Rcoh = |\psi|/\psi_0 \ge 0$).
+  \item \textbf{GP7 (Laboratory Channels):} State-dependent free-fall comparisons in $^{87}\mathrm{Rb}$ BECs and differential optical-lattice clock redshift measurements provide prospective falsification channels once microscopic source and detector bridges (\texttt{OPEN-6}) are derived.
+\end{itemize}
+
+\subsection{Relativistic Clarification: Internal vs.\ External Coherence Perspectives}
+
+External laboratory observers see ultrarelativistic wavepackets cycle rapidly in coordinate time ($\Delta t$ small), whereas in the particle's comoving proper frame ($\Delta\tau = \gamma^{-1}\Delta t$) internal phase evolution is Lorentz-dilated, preserving $\Delta E\,\Delta t \ge \hbar/2$. Because $\rho_t(x)$ is a genuine Lorentz scalar rather than a coordinate time axis, SIT requires no multitemporal signature $(-, -, +, +)$ (which would introduce fatal Ostrogradsky/kleinian ghosts, purged as branch \texttt{C05} under \texttt{ODQ-2}): proper causality is governed everywhere by a single Lorentzian metric $g_{\mu\nu}$ of signature $(-,+,+,+)$.
+
+In phenomenological regimes where $\rho_t$ tracks $\Rcoh$ monotonically around $\rho_0$, one may write the smooth adiabatic representation $\rho_t(x) \approx \rho_0\exp[\alpha\Rcoh(x)] = \rho_0[1 + \alpha\Rcoh(x) + O(\alpha^2)]$, or equivalently via the quadratic portal minimum of \texttt{M\_AUTH\_SIT\_EFT\_v1}, $\rho_t - \rho_0 = (\sqrt{\lambda_{\mathrm{portal}}}/m_{\mathrm{link}})(|\psi|^2 - v_0^2)$. In both parameterizations, constant fields at a stationary vacuum recover standard General Relativity with constant effective gravitational coupling.
+
+\subsection{Determining the Functional Form Linking Coherence--Decoherence to Local Time Density}
+
+Integrating deterministic oscillatory synchronization (\emph{SuperTimePosition}), local difference dissipation (\emph{Micah's New Law of Thermodynamics}), and interference-driven clock modulation (\emph{Super Dark Time}) motivates mesoscopic analogies between oscillator ensembles and the continuum EFT fields $(\Rcoh, \rho_t)$ (distinct from canonical action derivations).
+
+\subsection{Synchronization and Informational Coherence}
+
+For an ensemble of $N$ coupled phase oscillators with instantaneous phases $\theta_j(t)$, the Kuramoto complex order parameter
+\begin{equation}
+r e^{i\Theta} = \frac{1}{N}\sum_{j=1}^N e^{i\theta_j}
+\label{eq:kuramoto_order_sec4}
+\end{equation}
+provides a discrete mesoscopic analogy for a bounded phase-alignment amplitude $r \in [0,1]$ and collective phase $\Theta$.
+
+\subsection{Wave-Driven Dissipation and Equilibrium Dynamics (Heuristic Oscillator Analogy)}
+
+In open oscillator networks exchanging phase signals, pairwise phase differences $\Delta\phi_{ij} = \phi_i - \phi_j$ satisfy $\sin(\Delta\phi_{ij}) = -\sin(\Delta\phi_{ji})$, so the antisymmetric double sum $\sum_{i,j}\sin(\Delta\phi_{ij})$ vanishes identically; earlier drafts writing $d\rho_t/dt = \alpha_{\mathrm{sync}}\sum_{i,j}\sin(\Delta\phi_{ij})$ therefore yielded $d\rho_t/dt \equiv 0$. A non-vanishing heuristic synchronization-rate proxy instead uses the symmetric phase-alignment defect:
+\begin{equation}
+\frac{d\rho_t^{\mathrm{osc}}}{dt} = -\alpha_{\mathrm{sync}}\frac{1}{N^2}\sum_{i,j=1}^N \bigl[1 - \cos(\Delta\phi_{ij})\bigr] = -\alpha_{\mathrm{sync}}\bigl(1 - r^2\bigr) \le 0,
+\end{equation}
+which vanishes precisely at full phase lock ($r = 1$) and is explicitly marked as an exploratory oscillator-network proxy rather than an Euler--Lagrange equation of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\subsection{Quantum--Gravitational Interference Interpretation}
+
+For a superposition $\sum_n C_n e^{i\phi_n}$ of local modes, interference cross-terms modulate the local coherence expectation and induced time-density shift according to
+\begin{equation}
+\rho_t(\Rcoh) = \rho_0 + \gamma_{\mathrm{int}}\,\mathrm{Re}\!\left[\sum_{n,m} C_n C_m^* e^{i(\phi_n - \phi_m)}\right],
+\end{equation}
+linking constructive phase alignment ($\Delta\phi_{nm} \to 0$) to positive $\delta\rho_t$ shifts and destructive dephasing to relaxation back toward $\rho_0$.
+
+\subsection{Empirical Validation Pathways}
+
+Three complementary measurement modalities probe this linkage directly (contingent on the Stage-6 microphysical action-to-apparatus dictionaries in Section~\ref{sec:stage6-action-diagnostics} and \texttt{OPEN-6}): (i) optical-lattice atomic clock comparisons (testing terrestrial gravitational redshift at $(+1.4 \pm 9.1)\times 10^{-5}$ in the Tokyo Skytree campaign and achieving optical frequency-ratio measurement uncertainties at or below $3.2\times 10^{-18}$ in the NIST/BACON report; legacy $3\times 10^{-8}$ targets are quarantined as hypothetical future sensitivities); (ii) cold-atom Mach--Zehnder and fountain interferometers ($\sim 10^{-3}\,\mathrm{rad}$ phase resolution); and (iii) cluster-scale weak and strong gravitational lensing tomography ($\sim 1\%$ shear/delay precision).
+
+\subsection{Information as Active Substrate}
+
+Within this covariant architecture, spatial gradients $\nabla_i\Rcoh$ and covariant phase currents $D_\mu\psi$ enter $T_{\mu\nu}^{\mathrm{tot}}$ on equal mathematical footing with conventional matter fields, elevating structured correlation from passive bookkeeping to a dynamically tested field sector.
+
+\subsection{Coherence as Informational Teamwork}
+
+Self-interaction in $U(|\psi|) = \frac{\lambda_\psi}{4}(|\psi|^2 - v_0^2)^2$ ($\lambda_\psi > 0$) stabilizes collective condensate formation much like a Ginzburg--Landau superfluid or phased antenna array: phase-aligned modes reinforce a coherent expectation value $|\psi| = v_0$, whereas incoherent thermal excitations average out in phase without shifting the macroscopic order parameter.
+
+\subsection{Integration into the Mathematical Framework}
+
+Across continuum PDEs, discrete oscillator lattices, and $U(1)$ principal bundles, resonance, geometric holonomy, and coincidence counting refer to projections of the same gauge-coupled complex scalar $\psi(x)$ and real scalar $\rho_t(x)$, whose canonical effective field theory we now state in complete precision.
+
+\section{What the Theory Is: Mathematical Framework (\texttt{M\_AUTH\_SIT\_EFT\_v1})}
+\label{sec:framework}
+\label{sec:quantitative-coupling}
+
+\subsection{Primitive Fields, Spacetime Conventions, and Dimensional Ledger}
+
+The authoritative continuum effective field theory \texttt{M\_AUTH\_SIT\_EFT\_v1} (canon \texttt{v1\_1}, locked across \texttt{ODQ-1} through \texttt{ODQ-7}) is defined on a four-dimensional time-oriented Lorentzian manifold $(\mathcal{M}^4, g_{\mu\nu})$ in mostly-plus metric signature $(-,+,+,+)$ with Minkowski reference $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ and natural units $\hbar = c = 1$ ($[M] = \mathrm{GeV}$). All field and parameter mass dimensions are locked strictly as follows:
+\begin{itemize}
+  \item \textbf{Dimension $[M]^{-2}$:} Gravitational coupling $\kappa_G := 8\pi G = M_{\mathrm{Pl}}^{-2} > 0$.
+  \item \textbf{Dimension $[M]^0$ (dimensionless):} Metric tensor $g_{\mu\nu}$, dimensionless coherence ratio $\Rcoh := |\psi|/\psi_0 \ge 0$, vacuum coherence ratio $R_0 := v_0/\psi_0 \ge 0$, electromagnetic gating coefficient $c_{\mathrm{EM}} \ge 0$, dimensionless symmetron scale parameter $M_{\mathrm{sym}} > 0$, quartic self-couplings $\lambda_\rho > 0$ and $\lambda_\psi > 0$, portal coupling $\lambda_{\mathrm{portal}} \ge 0$, $U(1)$ charge coupling $\hat{q} \ge 0$, and positive kinetic normalizations $\kappa_t > 0$, $\kappa_c > 0$.
+  \item \textbf{Dimension $[M]^1$ ($\mathrm{GeV}$):} Real temporal-density scalar $\rho_t$, complex coherence scalar $\psi = u + iv = |\psi|e^{i\theta}$, $U(1)$ gauge connection $A_\mu$ with curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ and covariant derivative $D_\mu\psi = (\partial_\mu - i\hat{q}A_\mu)\psi$, together with reference scales $\psi_0 > 0$, $\rho_0 > 0$, $v_0 = \psi_0 R_0 \ge 0$, $m_{\mathrm{link}} > 0$, $M_{\mathrm{Pl}}$, $\Lambda_{\mathrm{EM}}$, $\Lambda_{\mathrm{sym}}$, and $\Lambda_{\mathrm{UV}}$.
+  \item \textbf{Dimension $[M]^4$ Lagrangian densities:} $\mathcal{L}_{\mathrm{EH}}$, $\mathcal{L}_{\mathrm{coh}}$, $\mathcal{L}_{\mathrm{EM}}^{\mathrm{coh}}$, and $\mathcal{L}_{\mathrm{SM}}^{\mathrm{coh}}$.
+  \item \textbf{Dimension $[M]^6$ EFT operators:} $-\frac{c_{\mathrm{EM}}}{4\psi_0^2}|\psi|^2 F_{\mu\nu}F^{\mu\nu} = -\frac{1}{4\Lambda_{\mathrm{EM}}^2}|\psi|^2 F_{\mu\nu}F^{\mu\nu}$ and $+\frac{|\psi|^2}{2\psi_0^2 M_{\mathrm{sym}}^2}\mathcal{L}_{\mathrm{matter}} = +\frac{|\psi|^2}{\Lambda_{\mathrm{sym}}^2}\mathcal{L}_{\mathrm{matter}}$.
+\end{itemize}
+
+Operationally, a reference clock of proper frequency $\omega_0$ in the baseline environment $\rho_t = \rho_0$ ticks locally at $\omega(x) = \omega_0(\rho_0/\rho_t(x))$, yielding fractional shift $\Delta\omega/\omega \approx -\delta\rho_t/\rho_0$ to first order. Local $U(1)$ gauge transformations act via $\psi(x) \mapsto e^{i\hat{q}\chi(x)}\psi(x)$ and $A_\mu(x) \mapsto A_\mu(x) + \partial_\mu\chi(x)$, leaving $|\psi|$, $\Rcoh$, $\rho_t$, $F_{\mu\nu}$, and $|D_\mu\psi|^2$ strictly invariant.
+
+\subsection{The Canonical Master Action and Vacuum-Positive Couplings}
+
+The authoritative effective action is
+\begin{equation}
+S_{\mathrm{AUTH}}[g,\rho_t,\psi,A_\mu,\Psi_{\mathrm{SM}}]
+= \int d^4x\,\sqrt{-g}\Bigl[
+  \mathcal{L}_{\mathrm{EH}}
+  + \mathcal{L}_{\mathrm{coh}}
+  + \mathcal{L}_{\mathrm{EM}}^{\mathrm{coh}}
+  + \mathcal{L}_{\mathrm{SM}}^{\mathrm{coh}}
+\Bigr],
+\label{eq:canonical_action_sec5}
+\end{equation}
+where the four covariant sectors are defined unambiguously in signature $(-,+,+,+)$ by
+\begin{align}
+\mathcal{L}_{\mathrm{EH}} &= \frac{R}{16\pi G} = \frac{R}{2\kappa_G} = \frac{M_{\mathrm{Pl}}^2}{2}\,R, \label{eq:L_EH_def}\\
+\mathcal{L}_{\mathrm{coh}} &= -\frac{\kappa_t}{2}\,g^{\mu\nu}(\partial_\mu\rho_t)(\partial_\nu\rho_t)
+  - \frac{\kappa_c}{2}\,g^{\mu\nu}(D_\mu\psi)^*(D_\nu\psi)
+  - V(\rho_t) - U(|\psi|) - U_{\mathrm{link}}(\rho_t,\psi), \label{eq:L_coh_def}\\
+\mathcal{L}_{\mathrm{EM}}^{\mathrm{coh}} &= -\frac{1}{4}\,f_{\mathrm{EM}}(\Rcoh)\,F_{\mu\nu}F^{\mu\nu},
+  \qquad f_{\mathrm{EM}}(\Rcoh) := 1 + c_{\mathrm{EM}}\Rcoh^2 \ge 1, \label{eq:L_EM_def}\\
+\mathcal{L}_{\mathrm{SM}}^{\mathrm{coh}} &= +f_{\mathrm{SM}}(\Rcoh)\,\mathcal{L}_{\mathrm{matter}},
+  \qquad f_{\mathrm{SM}}(\Rcoh) := 1 + \frac{\Rcoh^2}{2 M_{\mathrm{sym}}^2} \ge 1. \label{eq:L_SM_def}
+\end{align}
+
+\paragraph{Potentials, $\mathbb{Z}_2$ Degeneracy Lifting, and Positive-Definite Vacuum Hessian.}
+The dimension-$\le 4$ polynomial scalar potential block $V_{\mathrm{tot}}(\rho_t,\psi) := V(\rho_t) + U(|\psi|) + U_{\mathrm{link}}(\rho_t,\psi)$ is locked as
+\begin{align}
+V(\rho_t) &= \frac{\lambda_\rho}{4}\bigl(\rho_t^2 - \rho_0^2\bigr)^2,
+\qquad
+U(|\psi|) = \frac{\lambda_\psi}{4}\bigl(|\psi|^2 - v_0^2\bigr)^2,
+\qquad v_0 = \psi_0 R_0 \ge 0, \label{eq:V_U_canonical}\\
+U_{\mathrm{link}}(\rho_t,\psi) &= \frac{1}{2}\Bigl[m_{\mathrm{link}}(\rho_t - \rho_0) - \sqrt{\lambda_{\mathrm{portal}}}\,\bigl(|\psi|^2 - v_0^2\bigr)\Bigr]^2.
+\label{eq:U_link_canonical}
+\end{align}
+Because $V_{\mathrm{tot}}$ is a sum of three real squares with $\lambda_\rho, \lambda_\psi, m_{\mathrm{link}} > 0$, it satisfies $V_{\mathrm{tot}}(\rho_t,\psi) \ge 0$ globally on $\mathbb{R}\times\mathbb{C}$ (\texttt{potentialsTotal\_globally\_nonneg}), vanishing with zero gradient uniquely on the physical vacuum circle $\rho_t = \rho_0$, $|\psi| = v_0$ (\texttt{vacuumEquilibrium\_zeroCosmologicalConstant}). Crucially, the linear-in-$(\rho_t - \rho_0)$ portal term explicitly breaks the unphysical negative-clock $\mathbb{Z}_2$ mirror branch at $(-\rho_0, v_0)$:
+\begin{equation}
+V_{\mathrm{tot}}(-\rho_0, v_0) = 2 m_{\mathrm{link}}^2 \rho_0^2 > 0.
+\label{eq:Z2_lifting_gap}
+\end{equation}
+Expanding $V_{\mathrm{tot}}$ around $(\rho_0, v_0)$ in radial fluctuations $\delta\Phi = (\delta\rho_t, \delta|\psi|)^\top$ with kinetic matrix $K = \mathrm{diag}(\kappa_t, \kappa_c) \succ 0$ yields the symmetric $2\times 2$ potential-curvature Hessian matrix $H$:
+\begin{equation}
+H = \begin{pmatrix}
+2\lambda_\rho\rho_0^2 + m_{\mathrm{link}}^2 & -2 m_{\mathrm{link}}\sqrt{\lambda_{\mathrm{portal}}}\,v_0 \\[0.4em]
+-2 m_{\mathrm{link}}\sqrt{\lambda_{\mathrm{portal}}}\,v_0 & 2 v_0^2\bigl(\lambda_\psi + 2\lambda_{\mathrm{portal}}\bigr)
+\end{pmatrix},
+\label{eq:radial_Hessian_sec5}
+\end{equation}
+with trace $\mathrm{tr}(H) > 0$ and determinant
+\begin{equation}
+\det(H) = 2 v_0^2\Bigl(2\lambda_\rho\lambda_\psi\rho_0^2 + \lambda_\psi m_{\mathrm{link}}^2 + 4\lambda_\rho\rho_0^2\lambda_{\mathrm{portal}}\Bigr).
+\label{eq:det_H_positive}
+\end{equation}
+For $v_0 > 0$ and $\kappa_t, \kappa_c > 0$, $\det(H) > 0$ with Rayleigh margin $\lambda_{\min}(H) \ge \det(H)/\mathrm{tr}(H) > 0$. Because $K = \mathrm{diag}(\kappa_t, \kappa_c) \succ 0$ can carry nontrivial kinetic normalizations, the \emph{physical squared eigenmasses} $(m_1^2, m_2^2)$ and canonical orthogonal mixing angle $\vartheta$ are the eigenvalues and rotation angle of the canonically normalized mass matrix $M_{\mathrm{phys}}^2 := K^{-1/2} H K^{-1/2}$ (equivalently solving the generalized eigenproblem $H u_a = m_a^2 K u_a$, Section~\ref{sec:stage6-action-diagnostics} and Appendix~E.5), which are strictly positive by Sylvester's law of inertia ($\lambda_{\min}(M_{\mathrm{phys}}^2) \ge \lambda_{\min}(H)/\max(\kappa_t, \kappa_c) > 0$) and coincide with the raw eigenvalues of $H$ when $K = I_2$ ($\kappa_t = \kappa_c = 1$). In the stiff-link decoupling limit $m_{\mathrm{link}} \to \infty$, the Schur complement $(H_{22} - H_{12}^2/H_{11})/\kappa_c \to 2\lambda_\psi v_0^2/\kappa_c > 0$ remains smooth and positive.
+
+\paragraph{Elimination of the Zero-Coherence $1/f$ Singularity.}
+Both constitutive dressings $f_{\mathrm{EM}}(\Rcoh) \ge 1$ and $f_{\mathrm{SM}}(\Rcoh) \ge 1$ are bounded away from zero across all field configurations, including $\Rcoh \to 0$. In decoherent empty space ($\Rcoh \to 0$), $f_{\mathrm{EM}}(0) = f_{\mathrm{SM}}(0) = 1$, recovering standard Maxwell electrodynamics without dividing canonical electric momenta $\Pi^2/(2f_{\mathrm{EM}})$ by zero (the singularity that required quarantining the 2025 degenerate-vacuum draft \texttt{C09} from continuum EFT under \texttt{ODQ-3}, resolved non-perturbatively on the 4D Haar Wilson lattice in Sections~\ref{sec:mass-gap} and~\ref{sec:stage4-lattice}).
+
+\subsubsection{Classification as a Two-Scalar--Vector--Tensor EFT and Cutoff Crosswalk}
+
+Using CODATA 2022 physical constants ($\hbar = 1.054571817\times 10^{-34}\,\mathrm{J\,s}$, $c = 299792458\,\mathrm{m\,s^{-1}}$, $G = 6.6743\times 10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$, $1\,\mathrm{GeV} = 1.602176634\times 10^{-10}\,\mathrm{J}$), the three Planck mass conventions in the literature and the two dimension-6 operator cutoffs satisfy exact identities (\texttt{ADV\_D1\_01}):
+\begin{align}
+M_{\mathrm{Pl,unred}} &= \sqrt{\frac{\hbar c}{G}}\,\frac{c^2}{\mathrm{GeV}} = 1.220890128209864\times 10^{19}\,\mathrm{GeV}, \nonumber\\
+M_{\mathrm{Pl}} &:= \kappa_G^{-1/2} = (8\pi G)^{-1/2} = \frac{M_{\mathrm{Pl,unred}}}{\sqrt{8\pi}} = 2.4353234593382036\times 10^{18}\,\mathrm{GeV}, \label{eq:Planck_scales_crosswalk}\\
+M_{\mathrm{Pl,QG31}} &:= (2\kappa_G)^{-1/2} = (16\pi G)^{-1/2} = \frac{M_{\mathrm{Pl}}}{\sqrt{2}} = 1.7220337324807252\times 10^{18}\,\mathrm{GeV}, \nonumber
+\end{align}
+paired with dimension-6 gauge-gating and symmetron scales
+\begin{equation}
+\Lambda_{\mathrm{EM}} := \frac{\psi_0}{\sqrt{c_{\mathrm{EM}}}} \quad (+\infty\ \text{if } c_{\mathrm{EM}}=0),
+\qquad
+\Lambda_{\mathrm{sym}} := \sqrt{2}\,\psi_0 M_{\mathrm{sym}},
+\qquad
+\Lambda_{\mathrm{UV}} := \min\bigl(M_{\mathrm{Pl}},\,\Lambda_{\mathrm{EM}},\,\Lambda_{\mathrm{sym}}\bigr).
+\label{eq:Lambda_UV_ceiling}
+\end{equation}
+For any $\Rcoh > 0$ and $c_{\mathrm{EM}} > 0$, the vacuum-dressing deviations obey the exact structural identity
+\begin{equation}
+\left(\frac{\Lambda_{\mathrm{sym}}}{\Lambda_{\mathrm{EM}}}\right)^2
+= 2 c_{\mathrm{EM}} M_{\mathrm{sym}}^2
+= \frac{c_{\mathrm{EM}}\Rcoh^2}{\Rcoh^2 / (2 M_{\mathrm{sym}}^2)}
+= \frac{f_{\mathrm{EM}}(\Rcoh) - 1}{f_{\mathrm{SM}}(\Rcoh) - 1},
+\label{eq:cutoff_ratio_identity}
+\end{equation}
+guaranteeing radiative stability across electromagnetic and matter-dressing channels whenever $M_{\mathrm{sym}} \gg 1$ and $c_{\mathrm{EM}} \ll 1$ (e.g.\ canonical benchmark \texttt{BM\_PHYS\_EFT\_1} in Appendix~\ref{app:epistemic-ledger-lean}, where $\psi_0 = 2\times 10^{16}\,\mathrm{GeV}$, $M_{\mathrm{sym}} = 50$, $c_{\mathrm{EM}} = 10^{-4}$ yield $\Lambda_{\mathrm{EM}} = 2.0\times 10^{18}\,\mathrm{GeV}$ and $\Lambda_{\mathrm{sym}} = \Lambda_{\mathrm{UV}} = 1.4142\times 10^{18}\,\mathrm{GeV}$).
+
+\subsection{Canonical Stress--Energy vs.\ Separately Postulated Phenomenological Mass-Density Ansatz}
+
+In unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, gravitational sourcing is governed strictly by the variational stress--energy tensor $T_{\mu\nu}^{\mathrm{tot}}$ of Eq.~\eqref{eq:covariant_einstein_sec5}, which vanishes identically at the constant vacuum $(\rho_0, v_0, A_\mu = 0)$ where all gradients and $V_{\mathrm{tot}}(\rho_0, v_0)$ vanish. Separately, earlier phenomenological SIT notes (Section~\ref{sec:informational_energy_equivalence}) explored an auxiliary mass-density ansatz
+\begin{equation}
+\rho_{\mathrm{info}}^{\mathrm{phen}}(x) := \frac{\varepsilon_{\mathrm{SIT}}^{\mathrm{phen}}(x)}{c^2} = \frac{\zeta}{c^2}\,\Rcoh(x)\,\bigl[\rho_t(x)\bigr]^2,
+\qquad
+M_{\mathrm{info}}^{\mathrm{phen}} = \int_{\mathcal{V}} \rho_{\mathrm{info}}^{\mathrm{phen}}(x)\,d^3x,
+\label{eq:informational_mass_def}
+\end{equation}
+where $\rho_{\mathrm{info}}^{\mathrm{phen}}$ is a \emph{mass density} (not a total mass without volume integration). Two strict boundaries apply:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Separate Specification (Not Derived from Unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}):} Because the canonical vacuum has $T_{\mu\nu}^{(\rho_t)} + T_{\mu\nu}^{(\psi)} + T_{\mu\nu}^{(\mathrm{pot})} = 0$ at $(\rho_0, v_0)$ whereas $\zeta R_0 \rho_0^2 > 0$, Eq.~\eqref{eq:informational_mass_def} is \emph{not} a consequence of unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}; connecting it to the canonical stress--energy tensor would require an explicit vacuum-subtraction scheme or an additional covariant operator with proved stress--energy conservation (Section~\ref{sec:informational_energy_equivalence}).
+  \item \textbf{Standard Model Rest Mass Preserved in Decoherent Limits:} Ordinary Standard Model rest masses carried inside $\mathcal{L}_{\mathrm{matter}}$ never disappear when $\Rcoh \to 0$; at $v_0 \to 0$, $f_{\mathrm{SM}}(0) = 1$ and gravitational sourcing reverts smoothly to standard General Relativity coupled to $T_{\mu\nu}^{\mathrm{SM}}$.
+\end{enumerate}
+
+\subsection{Field Equations, Bianchi--Noether Identity, and Dynamical Sources}
+\label{sec:stress-energy}
+
+\subsubsection{Covariant Euler--Lagrange Field Equations}
+
+Varying $S_{\mathrm{AUTH}}$ with respect to $g^{\mu\nu}$, $\rho_t$, $\psi^*$, and $A_\nu$ yields the closed coupled second-order field system of \texttt{M\_AUTH\_SIT\_EFT\_v1}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Einstein Equation:}
+  \begin{equation}
+  G_{\mu\nu} = \kappa_G\Bigl(T_{\mu\nu}^{(\rho_t)} + T_{\mu\nu}^{(\psi)} + T_{\mu\nu}^{(\mathrm{EM})} + T_{\mu\nu}^{(\mathrm{pot})} + f_{\mathrm{SM}}(\Rcoh)\,T_{\mu\nu}^{\mathrm{SM}}\Bigr).
+  \label{eq:covariant_einstein_sec5}
+  \end{equation}
+  \item \textbf{Temporal-Density Scalar Equation of Motion:}
+  \begin{equation}
+  \kappa_t\,\Box_g\rho_t
+  - \Bigl[\lambda_\rho\rho_t(\rho_t^2 - \rho_0^2) + m_{\mathrm{link}}\bigl(m_{\mathrm{link}}(\rho_t - \rho_0) - \sqrt{\lambda_{\mathrm{portal}}}\,(|\psi|^2 - v_0^2)\bigr)\Bigr] = 0,
+  \label{eq:rhot_eom_canonical}
+  \end{equation}
+  where $\Box_g\rho_t := \frac{1}{\sqrt{-g}}\partial_\mu(\sqrt{-g}\,g^{\mu\nu}\partial_\nu\rho_t)$ reduces in flat Minkowski space to $(-\partial_t^2 + \nabla^2)\rho_t$.
+  \item \textbf{Complex Coherence Scalar Equation of Motion:}
+  \begin{align}
+  \kappa_c\,D_\mu D^\mu\psi
+  &- \Biggl[
+    \lambda_\psi\bigl(|\psi|^2 - v_0^2\bigr)
+    - 2\sqrt{\lambda_{\mathrm{portal}}}\,\Bigl(m_{\mathrm{link}}(\rho_t - \rho_0) - \sqrt{\lambda_{\mathrm{portal}}}\,\bigl(|\psi|^2 - v_0^2\bigr)\Bigr)
+    \nonumber\\
+  &\qquad\quad
+    + \frac{c_{\mathrm{EM}}}{2\psi_0^2}\,F_{\alpha\beta}F^{\alpha\beta}
+    - \frac{1}{\psi_0^2 M_{\mathrm{sym}}^2}\,\mathcal{L}_{\mathrm{matter}}
+  \Biggr]\psi = 0.
+  \label{eq:Rcoh-eom}
+  \end{align}
+  \item \textbf{Coherence-Gated Maxwell/Proca Equation:}
+  \begin{equation}
+  \nabla_\mu\bigl(f_{\mathrm{EM}}(\Rcoh)\,F^{\nu\mu}\bigr)
+  = \hat{q}\,J^\nu_{\mathrm{coh}} + J^\nu_{\mathrm{EM,SM}},
+  \qquad
+  J^\nu_{\mathrm{coh}} = \kappa_c|\psi|^2\bigl(\partial^\nu\theta - \hat{q}A^\nu\bigr).
+  \label{eq:maxwell_proca_eom_canonical}
+  \end{equation}
+\end{enumerate}
+
+\subsubsection{Contracted Bianchi--Noether Conservation Identity}
+
+Although individual dressed sectors exchange energy--momentum proportionally to $\nabla_\nu f_{\mathrm{EM}}(\Rcoh)$ and $\nabla_\nu f_{\mathrm{SM}}(\Rcoh)$, off-shell diffeomorphism and $U(1)$ gauge invariance enforce exact derivative cancellation across Eqs.~\eqref{eq:rhot_eom_canonical}--\eqref{eq:maxwell_proca_eom_canonical} (verified symbolically in 4D and formally in Lean's \texttt{Jet1Plus1D} module), yielding exact on-shell conservation of the total stress--energy tensor:
+\begin{equation}
+\nabla^\mu G_{\mu\nu} \equiv 0
+\implies
+\nabla^\mu T_{\mu\nu}^{\mathrm{tot}} = 0.
+\label{eq:bianchi_noether_total}
+\end{equation}
+
+\subsection{Physical Classification: Scalar--Tensor Effective Field Theory}
+
+Within the standard scalar--tensor EFT taxonomy, $S_{\mathrm{AUTH}}$ retains a canonical Einstein-frame Ricci term $\frac{M_{\mathrm{Pl}}^2}{2}R$ while coupling the gauge-invariant coherence modulus $\Rcoh^2$ quadratically to $F_{\mu\nu}F^{\mu\nu}$ and $\mathcal{L}_{\mathrm{matter}}$ and linking $\rho_t$ to $|\psi|^2$ via $U_{\mathrm{link}}$. When $(\rho_t, |\psi|)$ freezes to its vacuum expectation $(\rho_0, v_0)$, all scalar gradients vanish, $V_{\mathrm{tot}}(\rho_0, v_0) = 0$, and General Relativity is recovered with rescaled constants $G_{\mathrm{eff}} = G f_{\mathrm{SM}}(R_0)$ and $\alpha_{\mathrm{EM,eff}} = \alpha_{\mathrm{bare}}/f_{\mathrm{EM}}(R_0)$ (conditional on identifying $A_\mu$ with the visible electromagnetic sector, \texttt{OPEN-6B}).
+
+\subsection{Electromagnetic Holonomy from the Coherence Phase}
+
+Under local $U(1)$ gauge transformations $\psi \mapsto e^{i\hat{q}\chi}\psi$, $A_\mu \mapsto A_\mu + \partial_\mu\chi$, the field strength $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ is the curvature two-form of a principal $U(1)$ bundle over $\mathcal{M}^4$. On any simply connected pure-gauge patch where $F_{\mu\nu} = 0$, one may set $A_\mu = \hat{q}^{-1}\partial_\mu\theta$, recovering Aharonov--Bohm phase holonomy $\exp\bigl(i\hat{q}\oint_\gamma A_\mu dx^\mu\bigr)$; globally, whenever $F_{\mu\nu} \ne 0$, $A_\mu$ is a genuine dynamical connection not globally reducible to the gradient of a single-valued scalar phase (Sections~\ref{sec:magnetism-holonomy} and~\ref{sec:stage4-matter-holonomy}).
+
+\section{Why the Theory Is Safe: Screening Mechanism, Shapiro Null-Cone Invariance, and the Newtonian Limit}
+\label{sec:screening-mechanism}
+
+To reconcile state-dependent coherence couplings with stringent Solar System tests (Cassini radioscience, Lunar Laser Ranging, E\"ot-Wash torsion balances), \texttt{M\_AUTH\_SIT\_EFT\_v1} incorporates an exact quadratic $\mathbb{Z}_2$-symmetric matter dressing $f_{\mathrm{SM}}(\Rcoh) = 1 + \Rcoh^2/(2 M_{\mathrm{sym}}^2)$ and isotropic electromagnetic gating $f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2$. We analyze coupled two-field environmental symmetron screening---distinguishing exact two-field stationarity and stability conditions from decoupled or stiff-portal single-field approximations---and derive consistent conditional conformal-frame post-Newtonian bounds.
+
+\subsection{Environmental Ground-State Selection, Coupled Stationarity, Two-Field Stability, and Fixed-Equilibrium Stiffening}
+
+For non-relativistic dust with $\mathcal{L}_{\mathrm{matter}} = -\rho_m \le 0$, the matter-dressed Lagrangian $+f_{\mathrm{SM}}(\Rcoh)\mathcal{L}_{\mathrm{matter}} = -\rho_m - \frac{\rho_m}{2\psi_0^2 M_{\mathrm{sym}}^2}|\psi|^2$ adds a positive quadratic density term $+\frac{\rho_m}{2\psi_0^2 M_{\mathrm{sym}}^2}|\psi|^2$ to the effective potential for $(\rho_t, |\psi|)$:
+\begin{equation}
+V_{\mathrm{eff}}(\rho_t, |\psi|;\,\rho_m)
+= V_{\mathrm{tot}}(\rho_t, |\psi|) + \frac{\rho_m}{2\psi_0^2 M_{\mathrm{sym}}^2}\,|\psi|^2.
+\label{eq:symmetron_Veff_sec6}
+\end{equation}
+Three distinct statements govern this effective potential, and care is required when passing from the fixed-background Hessian to nonlinear two-field interior equilibria:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Fixed-Equilibrium Quadratic Stiffening (\texttt{ADV\_D1\_03}, Exact Algebraic Result):} Evaluated around a fixed reference equilibrium, static dust $\rho_m \ge 0$ contributes a strictly non-negative curvature stiffening $\Delta H_{22}(\rho_m) = +\frac{\rho_m}{\psi_0^2 M_{\mathrm{sym}}^2} \ge 0$ (\texttt{symmetronDustShift\_nonnegative\_stabilizing}), raising the effective radial stiffness inside dense media.
+  \item \textbf{Coupled Nonlinear Stationarity Equations (Correcting the Portal-Valley Approximation):} A static homogeneous interior configuration $(\rho_{\mathrm{in}}^*, v_{\mathrm{in}}^*)$ must satisfy \emph{both} coupled stationarity equations $\partial_{\rho_t} V_{\mathrm{eff}} = 0$ and $\partial_{|\psi|} V_{\mathrm{eff}} = 0$ simultaneously. Crucially, minimizing the portal term $U_{\mathrm{link}}$ alone by setting $\rho_{\mathrm{in}}^{\mathrm{naive}} = \rho_0 - (\sqrt{\lambda_{\mathrm{portal}}}/m_{\mathrm{link}})v_0^2$ at $|\psi| = 0$ does \emph{not} in general solve $\partial_{\rho_t} V_{\mathrm{eff}} = 0$, because $V'(\rho_{\mathrm{in}}^{\mathrm{naive}}) = \lambda_\rho\rho_{\mathrm{in}}^{\mathrm{naive}}\bigl((\rho_{\mathrm{in}}^{\mathrm{naive}})^2 - \rho_0^2\bigr) \ne 0$ (for example, at $\lambda_\rho = \lambda_\psi = \lambda_{\mathrm{portal}} = \rho_0 = v_0 = \psi_0 = M_{\mathrm{sym}} = 1$ and $m_{\mathrm{link}} = 2$, $\rho_{\mathrm{in}}^{\mathrm{naive}} = 1/2$ yields $\partial_{\rho_t} V_{\mathrm{eff}}(1/2, 0) = -3/8 \ne 0$, with no dust $\rho_t$-derivative to cancel it). Instead, at the $\mathbb{Z}_2$/$U(1)$-symmetric interior locus $\psi = u + iv = 0$ (where $\partial_u V_{\mathrm{eff}} = \partial_v V_{\mathrm{eff}} = 0$ identically), exact stationarity requires $\rho_{\mathrm{in}}^*$ to solve the coupled cubic equation
+  \begin{equation}
+  \lambda_\rho\,\rho_{\mathrm{in}}^*\bigl((\rho_{\mathrm{in}}^*)^2 - \rho_0^2\bigr)
+  + m_{\mathrm{link}}\Bigl(m_{\mathrm{link}}(\rho_{\mathrm{in}}^* - \rho_0) + \sqrt{\lambda_{\mathrm{portal}}}\,v_0^2\Bigr) = 0.
+  \label{eq:exact_coupled_interior_cubic}
+  \end{equation}
+  \item \textbf{Full Two-Field Hessian Stability Criterion (Strict Minimum vs.\ Saddle and Degenerate Boundary Counterexamples):} Because $V_{\mathrm{eff}}$ is a multi-field potential in $(\rho_t, u, v)$ (with $|\psi|^2 = u^2 + v^2$), radial curvature alone is \emph{not} sufficient for local stability. At any stationary point $(\rho_{\mathrm{in}}^*, 0, 0)$ solving Eq.~\eqref{eq:exact_coupled_interior_cubic}, the mixed derivatives $\partial_{\rho_t}\partial_u V_{\mathrm{eff}} = \partial_{\rho_t}\partial_v V_{\mathrm{eff}} = \partial_u\partial_v V_{\mathrm{eff}} = 0$ vanish identically by $U(1)$ symmetry, so the full Hessian is diagonal:
+  \begin{equation}
+  H_{\mathrm{sym}}(\rho_{\mathrm{in}}^*, 0; \rho_m) = \mathrm{diag}\!\Bigl(H_{\rho\rho}(\rho_{\mathrm{in}}^*),\; H_{rr}(\rho_{\mathrm{in}}^*; \rho_m),\; H_{rr}(\rho_{\mathrm{in}}^*; \rho_m)\Bigr),
+  \label{eq:exact_two_field_sym_hessian}
+  \end{equation}
+  with temporal-field curvature
+  \begin{equation}
+  H_{\rho\rho}(\rho_{\mathrm{in}}^*) := \partial_{\rho_t}^2 V_{\mathrm{eff}}(\rho_{\mathrm{in}}^*, 0) = \lambda_\rho\bigl(3(\rho_{\mathrm{in}}^*)^2 - \rho_0^2\bigr) + m_{\mathrm{link}}^2
+  \label{eq:exact_H_rhorho}
+  \end{equation}
+  and radial curvature $H_{rr}(\rho_{\mathrm{in}}^*; \rho_m) := \partial_u^2 V_{\mathrm{eff}}(\rho_{\mathrm{in}}^*, 0; \rho_m) = (\rho_m - \rho_{m,\mathrm{crit}})/(\psi_0^2 M_{\mathrm{sym}}^2)$, where the exact coupled radial threshold is
+  \begin{align}
+  \rho_{m,\mathrm{crit}}
+  &:= \psi_0^2 M_{\mathrm{sym}}^2\left[\lambda_\psi v_0^2 + 2\sqrt{\lambda_{\mathrm{portal}}}\Bigl(m_{\mathrm{link}}(\rho_{\mathrm{in}}^* - \rho_0) + \sqrt{\lambda_{\mathrm{portal}}}\,v_0^2\Bigr)\right] \nonumber\\
+  &= \psi_0^2 M_{\mathrm{sym}}^2\left[\lambda_\psi v_0^2 - \frac{2\sqrt{\lambda_{\mathrm{portal}}}\,\lambda_\rho}{m_{\mathrm{link}}}\,\rho_{\mathrm{in}}^*\bigl((\rho_{\mathrm{in}}^*)^2 - \rho_0^2\bigr)\right].
+  \label{eq:exact_coupled_screening_threshold}
+  \end{align}
+  Therefore, a \textbf{sufficient condition} for $(\rho_{\mathrm{in}}^*, 0)$ to be a strict local minimum is that \emph{both} eigenvalues are strictly positive: $H_{\rho\rho}(\rho_{\mathrm{in}}^*) > 0$ \emph{and} $\rho_m > \rho_{m,\mathrm{crit}}$ ($H_{rr} > 0$), while $H_{\rho\rho} \ge 0$ and $\rho_m \ge \rho_{m,\mathrm{crit}}$ are \textbf{necessary}. Earlier wording claiming local stability ``iff $\partial_{|\psi|}^2 V_{\mathrm{eff}} \ge 0$'' is refuted by two explicit exact counterexamples:
+  \begin{itemize}
+    \item \emph{Temporal-direction saddle counterexample ($H_{rr} > 0$ yet $H_{\rho\rho} < 0$):} Choosing $\lambda_\rho = \lambda_\psi = \rho_0 = v_0 = \psi_0 = M_{\mathrm{sym}} = 1$, $m_{\mathrm{link}} = 1/2$, $\lambda_{\mathrm{portal}} = (27/32)^2$, and $\rho_m = 2$, the exact stationary point $(\rho_{\mathrm{in}}^*, 0) = (1/4, 0)$ satisfies Eq.~\eqref{eq:exact_coupled_interior_cubic} identically and passes the radial check with $H_{rr} = 107/512 > 0$, yet $H_{\rho\rho} = -9/16 < 0$ (radial-plane Hessian $\mathrm{diag}(-9/16,\; 107/512)$), making $(1/4, 0)$ a \emph{saddle point} rather than a local minimum.
+    \item \emph{Degenerate zero-eigenvalue instability counterexample ($H_{\rho\rho} > 0, H_{rr} = 0$):} At the equality boundary $\rho_m = \rho_{m,\mathrm{crit}}$ ($H_{rr} = 0$) with $H_{\rho\rho} > 0$, minimizing over $\delta\rho_t = (m_{\mathrm{link}}\sqrt{\lambda_{\mathrm{portal}}}/H_{\rho\rho})|\psi|^2 + O(|\psi|^4)$ along the coupled valley shifts the effective $|\psi|^4$ coefficient to $\lambda_{\mathrm{eff}}^{(4)} = \frac{\lambda_\psi}{4} + \frac{\lambda_{\mathrm{portal}}}{2} - \frac{m_{\mathrm{link}}^2\lambda_{\mathrm{portal}}}{2 H_{\rho\rho}}$. At $\lambda_\rho = \rho_0 = v_0 = m_{\mathrm{link}} = \psi_0 = M_{\mathrm{sym}} = 1$, $\lambda_{\mathrm{portal}} = (7/8)^2$, $\lambda_\psi = 1/10$, $\rho_{\mathrm{in}}^* = 1/2$, and $\rho_m = \rho_{m,\mathrm{crit}} = 121/160$, the Hessian is positive semidefinite $\mathrm{diag}(3/4,\; 0)$, yet $\lambda_{\mathrm{eff}}^{(4)} = -197/1920 < 0$, so $(1/2, 0)$ is \emph{unstable} along the coupled quartic valley.
+  \end{itemize}
+  By contrast, at the unit-parameter $m_{\mathrm{link}} = 2$ benchmark above, the exact real root is $\rho_{\mathrm{in}}^* \approx 0.59607$, the radial threshold is $\rho_{m,\mathrm{crit}} \approx 1.38429$ (exceeding the naive decoupled value $1.0$), and the temporal curvature is strictly positive, $H_{\rho\rho}(\rho_{\mathrm{in}}^*) \approx 4.06590 > 0$, so $(\rho_{\mathrm{in}}^*, 0)$ is indeed a strict local minimum for every $\rho_m > 1.38429$. Only in the controlled \emph{stiff-portal asymptotic regime} $m_{\mathrm{link}}^2 \gg \lambda_\rho\rho_0^2$ (which also ensures $H_{\rho\rho} > 0$ automatically) with $\sqrt{\lambda_{\mathrm{portal}}}\,v_0^2 \ll m_{\mathrm{link}}\rho_0$ does Eq.~\eqref{eq:exact_coupled_interior_cubic} reduce to $\rho_{\mathrm{in}}^* = \rho_0 - (\sqrt{\lambda_{\mathrm{portal}}}/m_{\mathrm{link}})v_0^2 + O(\lambda_\rho\rho_0^2/m_{\mathrm{link}}^2)$ and Eq.~\eqref{eq:exact_coupled_screening_threshold} approach $\lambda_\psi v_0^2\psi_0^2 M_{\mathrm{sym}}^2$:
+  \begin{itemize}
+    \item \emph{High-density screened interior ($\rho_m > \rho_{m,\mathrm{crit}}$ with $H_{\rho\rho}(\rho_{\mathrm{in}}^*) > 0$):} The symmetric stationary point $(\rho_{\mathrm{in}}^*, 0)$ solving Eq.~\eqref{eq:exact_coupled_interior_cubic} is a strict local minimum, pinning $|\psi| = 0$ so the linear scalar-matter coupling $f'_{\mathrm{SM}}(0) = 0$ vanishes in the bulk interior.
+    \item \emph{Low-density unscreened vacuum ($\rho_m \ll \rho_{m,\mathrm{crit}}$):} The coupled ground state relaxes toward $(\rho_0, v_0)$ ($v_0 > 0$), permitting state-dependent laboratory responses in ultra-high-vacuum chambers.
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{Falsifiability of the Screening Window.}
+Viability requires a single non-empty parameter domain that simultaneously satisfies Cassini and torsion-balance bounds in high-density/macroscopic bodies (solving the full coupled two-field equations) while preserving calculable laboratory sensitivity in unscreened vacuum; if no parameter region satisfies both constraints concurrently using total conserved $T_{\mu\nu}^{\mathrm{tot}}$, that screening realization is excluded.
+
+\subsection{Linearization and Scope of Decoupled Single-Field Approximations}
+
+Linearizing the full two-scalar system $(\delta\rho_t, \delta|\psi|)$ around a coupled homogeneous equilibrium $(\rho_{\mathrm{bg}}, v_{\mathrm{bg}})$ yields the coupled Helmholtz/Yukawa system $(K\nabla^2 - H_{\mathrm{eff}}(\rho_{\mathrm{bg}}))\,\delta\Phi = J_{\mathrm{src}}$; its radial source entry vanishes identically when $v_{\mathrm{bg}} \to 0$. Passing to canonically normalized modes $\hat{\Phi} = K^{1/2}\delta\Phi$ and diagonalizing the positive-definite physical mass matrix $M_{\mathrm{phys}}^2 = K^{-1/2} H K^{-1/2}$ ($H u_a = m_a^2 K u_a$, Eq.~\eqref{eq:radial_Hessian_sec5}) with mixing angle $\vartheta$ and physical eigenmasses $(m_1, m_2) > 0$, a static point mass $M$ generates the normalized two-Yukawa screening profile
+\begin{equation}
+S(r) := \sin^2\vartheta\,e^{-m_1 r} + \cos^2\vartheta\,e^{-m_2 r} \in (0, 1],
+\qquad
+S(0) = 1,
+\qquad
+\lim_{r\to\infty} S(r) = 0.
+\label{eq:two_yukawa_S_profile}
+\end{equation}
+Reducing this two-field system to a single-field radial Helmholtz approximation $(\nabla^2 - m_{\mathrm{eff}}^2(\rho_{\mathrm{bg}}))\,\delta|\psi| = \frac{v_{\mathrm{bg}}}{\kappa_c\psi_0^2 M_{\mathrm{sym}}^2}\,\delta\rho_m$ requires \emph{both} heavy temporal decoupling ($m_{\mathrm{link}}^2 \gg \lambda_\rho\rho_0^2$, $\lambda_{\mathrm{portal}} \to 0$) \emph{and} negligible induced kinetic mixing ($4\kappa_t\lambda_{\mathrm{portal}} v_0^2 / (\kappa_c m_{\mathrm{link}}^2) \ll 1$, since eliminating $\rho_t - \rho_0 \approx (\sqrt{\lambda_{\mathrm{portal}}}/m_{\mathrm{link}})(|\psi|^2 - v_0^2)$ in $-\frac{\kappa_t}{2}(\partial\rho_t)^2$ adds $-\frac{2\kappa_t\lambda_{\mathrm{portal}}|\psi|^2}{m_{\mathrm{link}}^2}(\partial|\psi|)^2$).
+
+\subsection{Thin-Shell Suppression Estimate (Imported Single-Field Conformal Benchmark)}
+
+As an \emph{imported heuristic benchmark} from single-field conformal symmetron literature (valid only in the decoupled single-field conformal regime, not yet derived for the full coupled multiplicative two-field action \texttt{M\_AUTH\_SIT\_EFT\_v1}), an extended spherical body of radius $R_{\mathrm{body}}$, mass $M_{\mathrm{body}}$, and surface Newtonian potential $\Phi_N = G M_{\mathrm{body}} / R_{\mathrm{body}}$ whose interior pins $v_{\mathrm{in}} \approx 0$ exhibits thin-shell scaling
+\begin{equation}
+\epsilon_{\mathrm{th}} \simeq \frac{|v_{\mathrm{vac}} - v_{\mathrm{in}}|}{6\,\alpha_{\mathrm{eff,body}}\,M_{\mathrm{Pl}}\,\Phi_N},
+\label{eq:thin_shell_factor}
+\end{equation}
+suggesting exterior scalar-charge suppression ($\epsilon_{\mathrm{th}} \ll 1$) when $\Phi_N$ is large (Sun, Earth) versus $\epsilon_{\mathrm{th}} \gtrsim 1$ in microscopic laboratory traps ($\Phi_N \ll 10^{-20}$). Obtaining rigorous exterior charges for unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} requires solving the coupled two-field nonlinear spherical boundary-value problem for $(\rho_t(r), |\psi(r)|)$ directly (\texttt{OPEN-6A}/\texttt{OPEN-6D}).
+
+\subsection{Planar Large-Radius Decoupled Exterior Profile Approximation}
+
+In the decoupled single-field ($\lambda_{\mathrm{portal}} \to 0$), planar/large-radius ($m_\psi R_{\mathrm{body}} \gg 1$, neglecting the spherical curvature term $-(2/r)\partial_r|\psi|$) approximation outside a screened boundary ($v_{\mathrm{in}} = 0$ at $r = R_{\mathrm{body}}$), the coherence amplitude recovers toward its exterior vacuum value via the 1D $\phi^4$ kink
+\begin{equation}
+\Rcoh(r) \simeq R_0 \tanh\!\left[\sqrt{\frac{\lambda_\psi v_0^2}{2\kappa_c}}\,(r - R_{\mathrm{body}})\right],
+\qquad r \gtrsim R_{\mathrm{body}},
+\label{eq:radial_tanh_profile}
+\end{equation}
+which receives both spherical $O(1/(m_\psi R_{\mathrm{body}}))$ and coupled two-field $O(\lambda_{\mathrm{portal}}\lambda_\rho\rho_0^2 / (\lambda_\psi m_{\mathrm{link}}^2))$ corrections whenever $\rho_t(r)$ varies simultaneously from $\rho_{\mathrm{in}}^*$ to $\rho_0$.
+
+\subsection{Exact Shapiro Null-Cone Invariance and Consistently Normalized Conditional Conformal-Frame PPN Bounds}
+\label{sec:ppn-shapiro-exact}
+
+We now state the Parameterized Post-Newtonian (PPN) potential identities for a \emph{consistently specified conditional conformal extension} together with the mandatory Stage-6 action-equivalence qualification (\texttt{Stage6FunctionalResponse.\allowbreak{}ActionIdentityDiagnostics}, Section~\ref{sec:stage6-action-diagnostics}). Writing the static spherically symmetric Einstein-frame metric in isotropic coordinates as
+\[
+ds_E^2 = -\bigl(1 + 2\Phi_E(r)\bigr)dt^2 + \bigl(1 - 2\Psi_E(r)\bigr)d\mathbf{x}^2,
+\qquad
+\Phi_E(r) = \Psi_E(r) = -\frac{G M_E}{r},
+\]
+suppose one adopts a conditional universal conformal Jordan metric
+\begin{equation}
+g_{\mu\nu}^{(J)} := A^2(\Rcoh)\,g_{\mu\nu}^{(E)},
+\qquad
+S_{\mathrm{pp}} = -m\int d\tau_J = -m\int A(\Rcoh)\,d\tau_E,
+\label{eq:conformal_metric_general_A}
+\end{equation}
+with smooth positive conformal factor $A(\Rcoh) > 0$. Deriving \emph{both} the static point-particle scalar source ($\nabla^2\delta|\psi| - m_{\mathrm{eff}}^2\delta|\psi| = \frac{M_E}{\kappa_c}\frac{A'(v_0)}{A(v_0)}\delta^{(3)}(\mathbf{r})$, where $M_E = m A(v_0)$) \emph{and} the weak-field Jordan metric perturbation $g_{\mu\nu}^{(J)}/A_0^2 = [1 + 2(A'(v_0)/A(v_0))\delta|\psi|]g_{\mu\nu}^{(E)}$ consistently from the same $A(\Rcoh)$ yields the modified Jordan-frame potentials
+\begin{equation}
+\Phi_J(r) = \Phi_E(r)\bigl[1 + \alpha_{\mathrm{conf}}[A]\,S(r)\bigr],
+\qquad
+\Psi_J(r) = \Phi_E(r)\bigl[1 - \alpha_{\mathrm{conf}}[A]\,S(r)\bigr],
+\label{eq:jordan_potentials_exact}
+\end{equation}
+where $S(r) \in [0,1]$ is the normalized Yukawa profile~\eqref{eq:two_yukawa_S_profile} and the dimensionless conformal scalar-strength coefficient is uniquely determined by $A$:
+\begin{equation}
+\alpha_{\mathrm{conf}}[A]
+:= \frac{2 M_{\mathrm{Pl}}^2}{\kappa_c}\left(\frac{A'(v_0)}{A(v_0)}\right)^2 \ge 0.
+\label{eq:alpha_conf_general}
+\end{equation}
+\textbf{Resolution of Earlier Conformal Normalization Mismatch (Factor of $1/4$):} Earlier drafts simultaneously wrote $g_{\mu\nu}^{(J)} = f_{\mathrm{SM}}(\Rcoh)^{-1} g_{\mu\nu}^{(E)}$ (which implies $A = f_{\mathrm{SM}}^{-1/2}$) while printing $\alpha_{\mathrm{sym}} := \frac{2 M_{\mathrm{Pl}}^2}{\kappa_c}\bigl(\frac{f'_{\mathrm{SM}}(v_0)}{f_{\mathrm{SM}}(R_0)}\bigr)^2$ (which corresponds to $A = f_{\mathrm{SM}}^{\pm 1}$). Version~81 resolves that mismatch explicitly by separating the two distinct conditional conformal models:
+\begin{itemize}
+  \item \textbf{Conformal Model C1 ($g_{\mu\nu}^{(J)} = f_{\mathrm{SM}}(\Rcoh)^{-1} g_{\mu\nu}^{(E)}$, i.e.\ $A = f_{\mathrm{SM}}^{-1/2}$):} Because $A'/A = -\frac{1}{2}f'_{\mathrm{SM}}/f_{\mathrm{SM}}$, consistent source and test-body derivation gives
+  \begin{equation}
+  \alpha_{\mathrm{conf}}^{(\mathrm{C1})} = \frac{M_{\mathrm{Pl}}^2}{2\kappa_c}\left(\frac{f'_{\mathrm{SM}}(v_0)}{f_{\mathrm{SM}}(R_0)}\right)^2 = \frac{1}{4}\,\alpha_{\mathrm{sym}}.
+  \label{eq:alpha_conf_C1}
+  \end{equation}
+  \item \textbf{Conformal Model C2 ($g_{\mu\nu}^{(J)} = f_{\mathrm{SM}}(\Rcoh)^{\pm 2} g_{\mu\nu}^{(E)}$, i.e.\ $A = f_{\mathrm{SM}}^{\pm 1}$):} Because $A'/A = \pm f'_{\mathrm{SM}}/f_{\mathrm{SM}}$, consistent derivation gives
+  \begin{equation}
+  \alpha_{\mathrm{conf}}^{(\mathrm{C2})} = \frac{2 M_{\mathrm{Pl}}^2}{\kappa_c}\left(\frac{f'_{\mathrm{SM}}(v_0)}{f_{\mathrm{SM}}(R_0)}\right)^2 = \alpha_{\mathrm{sym}},
+  \label{eq:alpha_sym_exact}
+  \end{equation}
+  which algebraically matches the unchanged-action dust ($q_{\mathrm{eff}} = 1$) two-mode exchange coefficient $\alpha_{\mathrm{sym}}$ of Section~\ref{sec:stage6-action-diagnostics} (where the worldline action couples linearly to $f_{\mathrm{SM}}$ rather than $f_{\mathrm{SM}}^{1/2}$).
+\end{itemize}
+\textbf{Stage-6 Action-Equivalence Qualification:} Stage~6 proves in Lean~4.30 (\texttt{multiplicative\_\allowbreak{}vs\_\allowbreak{}conformal\_\allowbreak{}scalar\_\allowbreak{}coeff\_\allowbreak{}forces\_\allowbreak{}unit}) that the unchanged multiplicative portal $+\sqrt{-g}\,f_{\mathrm{SM}}(\Rcoh)\mathcal{L}_{\mathrm{matter}}$ in Eq.~\eqref{eq:abstract_master_action} is \emph{not} algebraically identical to \emph{either} conformal extension C1 or C2 unless $f_{\mathrm{SM}} = 1$. Accordingly, the two conformal-frame PPN results below hold strictly \emph{conditional} on explicitly adopting one chosen conformal extension (C1 or C2)---rather than as unconditional predictions of unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Exact Shapiro Null-Cone Invariance (Conformal Frame):} Because the Maxwell kinetic term $-\frac{1}{4}f_{\mathrm{EM}}(\Rcoh)\sqrt{-g}g^{\mu\alpha}g^{\nu\beta}F_{\mu\nu}F_{\alpha\beta}$ in $d=4$ spacetime dimensions is Weyl-invariant under $g_{\mu\nu}^{(J)} = A^2 g_{\mu\nu}^{(E)}$ and $f_{\mathrm{EM}}(\Rcoh)$ is an isotropic scalar function, geometric-optics light rays follow the null cones $ds^2 = 0$ identically, and under Eq.~\eqref{eq:jordan_potentials_exact} the sum of the Jordan-frame potentials satisfies the exact cancellation
+  \begin{equation}
+  \Phi_J(r) + \Psi_J(r) = 2\Phi_E(r),
+  \label{eq:shapiro_null_cone_invariance}
+  \end{equation}
+  eliminating anomalous tree-level birefringence and locking gravitational light bending to $2\Phi_E(r)$.
+  \item \textbf{Conditional Eddington--Cassini PPN $\gamma$ Bound:} Formalized algebraically in Lean~4.30 (\texttt{SitQg.Stage2.QG15To19.ppnGammaBound\_of\_alpha\_and\_screening}) for any abstract conformal strength $\alpha_{\mathrm{conf}} \ge 0$ in Eq.~\eqref{eq:jordan_potentials_exact}, the ratio $\gamma_{\mathrm{PPN}}(r) := \Psi_J(r)/\Phi_J(r)$ satisfies
+  \begin{equation}
+  \gamma_{\mathrm{PPN}}(r) = \frac{1 - \alpha_{\mathrm{conf}} S(r)}{1 + \alpha_{\mathrm{conf}} S(r)},
+  \qquad
+  \bigl|\gamma_{\mathrm{PPN}}(r) - 1\bigr|
+  = \frac{2\alpha_{\mathrm{conf}} S(r)}{1 + \alpha_{\mathrm{conf}} S(r)}
+  \le \frac{2\alpha_{\mathrm{conf}}}{1 + \alpha_{\mathrm{conf}}} < 2.
+  \label{eq:gamma_ppn_exact_bound}
+  \end{equation}
+  Hence $|\gamma_{\mathrm{PPN}} - 1| < 2.3 \times 10^{-5}$ holds even unscreened ($S(r) = 1$) whenever $\alpha_{\mathrm{conf}} < 1.15 \times 10^{-5}$. Evaluating the \texttt{BM\_PHYS\_EFT\_1} parameter tuple strictly as conditional conformal-extension illustrations gives $\alpha_{\mathrm{conf}}^{(\mathrm{C2})} = \alpha_{\mathrm{sym}} = 4.7446\times 10^{-7}$ ($|\gamma_{\mathrm{PPN}}-1|_{S=1} = 9.4893\times 10^{-7}$) under Model~C2 ($A = f_{\mathrm{SM}}^{\pm 1}$), or $\alpha_{\mathrm{conf}}^{(\mathrm{C1})} = \frac{1}{4}\alpha_{\mathrm{sym}} = 1.1862\times 10^{-7}$ ($|\gamma_{\mathrm{PPN}}-1|_{S=1} = 2.3723\times 10^{-7}$) under Model~C1 ($A = f_{\mathrm{SM}}^{-1/2}$), while in the unbroken symmetric limit $v_0 = 0$ (\texttt{BM\_V0\_SYMMETRIC\_GR}), $\alpha_{\mathrm{conf}} = 0$, $f_{\mathrm{EM}0} = f_{\mathrm{SM}0} = 1$, and $\gamma_{\mathrm{PPN}} = \beta_{\mathrm{PPN}} = 1$ identically. Neither conformal illustration replaces deriving the gravitational response directly from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{OPEN-6D}; see Section~\ref{sec:stage6-action-diagnostics} for the direct unchanged-action E\"ot-Wash channel).
+\end{enumerate}
+
+\subsection{Consistency of Parameter Scales}
+
+Across both high-scale EFT benchmarks (\texttt{BM\_PHYS\_EFT\_1}: $\psi_0 = \rho_0 = m_{\mathrm{link}} = 2\times 10^{16}\,\mathrm{GeV}$, $R_0 = 0.01$, $M_{\mathrm{sym}} = 50$, where the heavy scalar eigenmasses $m_1 = 2.4495\times 10^{14}\,\mathrm{GeV}$ [range $\lambda_1 = 8.056\times 10^{-31}\,\mathrm{m}$] and $m_2 = 2.8285\times 10^{16}\,\mathrm{GeV}$ exponentially suppress macroscopic fifth forces under the declared dust closure of Section~\ref{sec:stage6-action-diagnostics}) and light-scalar thin-shell regimes ($\mu \sim 10^{-3}\,\mathrm{eV}$, $M \sim 10^5\text{--}10^6\,\mathrm{GeV}$, $\epsilon_{\mathrm{th}} \ll 1$ for Solar System bodies with $\Phi_N \sim 10^{-9}\text{--}10^{-6}$ while $\epsilon_{\mathrm{th}} \gtrsim 1$ for laboratory traps with $\Phi_N \ll 10^{-20}$), \texttt{M\_AUTH\_SIT\_EFT\_v1} admits broad, radiatively stable EFT parameter domains whose direct laboratory falsifiability awaits completion of the microphysical action-to-apparatus bridges (\texttt{OPEN-6}).
+
+\section{What the Theory Predicts: Map to Observables}
+\label{sec:map-to-observables}
+
+Super Information Theory organizes its prospective laboratory and astrophysical observable channels into five interfaces, with strict Version~81 separation between the one conditional weak-field channel derived directly from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} and future channels requiring completion of \texttt{OPEN-6}:
+\begin{itemize}
+  \item \textbf{Sub-Millimeter Torsion-Balance Fifth-Force Tests (Stage-6 Conditional Non-Exclusion Channel):} Under a declared pressureless-dust worldline closure ($q_{\mathrm{eff}} = 1$, contrasted with $q_{\mathrm{eff}} = 0$ for homogeneous free Klein--Gordon oscillation), unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} maps directly onto two-mode Yukawa exchange with range $\lambda_1 = 8.056\times 10^{-31}\,\mathrm{m}$ at \texttt{BM\_PHYS\_EFT\_1} (exponentially indistinguishable from Newtonian gravity at the $52\,\mu\mathrm{m}$ E\"ot-Wash separation, Section~\ref{sec:stage6-action-diagnostics}); reproducing Lee~\emph{et~al.}'s patterned rotating-mass torque likelihood from Lee's dissertation Appendix~A with microscopic test-material scalar charges remains \texttt{OPEN-6A}/\texttt{OPEN-6D}.
+  \item \textbf{Optical-Clock Redshift Metrology (Conditional on Visible $U(1)$ Dictionary, \texttt{OPEN-6B}):} Separating the local time-density response $\alpha_\rho$ from the gravitational-potential transfer factor $\mathcal{T} := (\rho_0^{-1}\partial\rho_t/\partial(\Phi/c^2))_{\mathrm{lab}}$ and potential redshift slope $\alpha_\Phi := d\ln\nu/d(\Phi/c^2) = \alpha_\rho\mathcal{T}$ (repairing the Version~79/80.2 symbol collision that reused $\alpha_{\mathrm{eff}}$ for both), a potential-driven clock shift obeys without double-counting $\mathcal{T}$:
+  \begin{equation}
+  \frac{\Delta\nu}{\nu} = \alpha_\rho\,\frac{\delta\rho_t}{\rho_0} = \alpha_\rho\,\mathcal{T}\,\frac{\Delta\Phi}{c^2} = \alpha_\Phi\,\frac{\Delta\Phi}{c^2}.
+  \label{eq:clock_shift_map_sec7}
+  \end{equation}
+  The published Tokyo Skytree optical-lattice clock test (Takamoto~\emph{et~al.}, 2020) reported $\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1)\times 10^{-5}$, while NIST (2026) achieved $3.2\times 10^{-18}$ optical-clock ratio uncertainty; the legacy $3\times 10^{-8}$ figure cited in earlier drafts is formally quarantined in Version~81 as a \emph{hypothetical future sensitivity benchmark}, not an empirical $95\%$~CL bound (Section~\ref{sec:atomic-clocks} and Appendix~\ref{appendix:ClockConstraints}).
+  \item \textbf{Cold-Atom Interferometry (Conditional on $J_{\mathrm{prep}}$, \texttt{OPEN-6C}):} Controlled spatial gradients of $\Rcoh$ and $\rho_t$ motivate exploratory phase-shift and deflection sensitivity studies (Sections~\ref{sec:applications-predictions} and~\ref{sec:informational-torque}), contingent on deriving the microscopic state-preparation source $J_{\mathrm{prep}}$.
+  \item \textbf{Bose--Einstein Condensate vs.\ Thermal Cloud Equivalence Test (Hypothetical Sensitivity Benchmark, \texttt{OPEN-6A}/\texttt{OPEN-6C}):} Comparing a pure $^{87}\mathrm{Rb}$ BEC against an equal-mass thermal cloud tests coherence-dependent gravitational coupling (subject to Paper~003/014's condensate-source and matched-preparation systematic controls); the legacy $|\delta a| \le 29.4\,\mu\mathrm{Gal}$ figure derived from $|\alpha_\Phi| \le 3\times 10^{-8}$ at $\chi = 1$ is explicitly relabeled in Version~81 as a \emph{hypothetical sensitivity target} rather than an experimentally anchored ceiling (Section~\ref{sec:smoking-gun-bec} and Appendix~\ref{app:BEC-benchmark}).
+  \item \textbf{Astrophysical Lensing Tomography (Level-1 Exploratory Regime):} Slow cluster-scale coherence gradients provide exploratory templates for Euclid, JWST, and Rubin Observatory weak/strong lensing surveys (Sections~\ref{sec:part2-astro-probes} and~\ref{sec:black-holes-voids}).
+\end{itemize}
+
+\subsection{Parameter Summary, Vacuum Recovery Endpoints, and Observational Scope}
+
+The canonical parameter tuple $\{\kappa_G, \kappa_t, \kappa_c, \psi_0, \rho_0, v_0, m_{\mathrm{link}}, \lambda_\rho, \lambda_\psi, \lambda_{\mathrm{portal}}, c_{\mathrm{EM}}, M_{\mathrm{sym}}, \hat{q}\}$ satisfies strict kinetic positivity, bounded-below scalar potential ($V_{\mathrm{tot}} \ge 0$), and principal-symbol hyperbolic wave propagation ($c_{\mathrm{char}} = 1$). Regarding GR/Maxwell recovery and Solar System safety, Version~81 enforces three explicit distinctions (correcting earlier wording that claimed exact GR/Maxwell recovery as $(\rho_t, |\psi|) \to (\rho_0, 0)$ at $v_0 > 0$):
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Why $(\rho_0, 0)$ Is Not a Broken-Phase Vacuum ($v_0 > 0$):} Evaluating Eq.~\eqref{eq:U_link_canonical} at $(\rho_t, |\psi|) = (\rho_0, 0)$ when $v_0 > 0$ gives $V_{\mathrm{tot}}(\rho_0, 0) = (\frac{\lambda_\psi}{4} + \frac{\lambda_{\mathrm{portal}}}{2})v_0^4 > 0$ and $\partial_{\rho_t} V_{\mathrm{tot}}(\rho_0, 0) = m_{\mathrm{link}}\sqrt{\lambda_{\mathrm{portal}}}\,v_0^2 \ne 0$; thus $(\rho_0, 0)$ is neither stationary nor zero-energy in the broken phase.
+  \item \textbf{Algebraic Metric Reduction vs.\ Full Coupled Solution Conditions:} At the broken-phase vacuum $(\rho_t, |\psi|) = (\rho_0, v_0)$ with $D_\mu\psi = 0$ ($V_{\mathrm{tot}} = 0$, $\nabla V_{\mathrm{tot}} = 0$), the metric equation reduces \emph{algebraically} to GR with constant $G_{\mathrm{eff}} = G f_{\mathrm{SM}}(R_0)$ and $f_{\mathrm{EM}}(R_0)$, forming an exact solution of the full coupled system whenever the scalar and gauge equations are simultaneously satisfied (such as source-free vacuum $\mathcal{L}_{\mathrm{matter}} = 0, F_{\mu\nu} = 0$; whereas at $v_0 > 0$, neutral dust $\mathcal{L}_{\mathrm{matter}} = -\rho_m < 0$ produces a nonzero scalar residual $-v_0\rho_m/(\psi_0^2 M_{\mathrm{sym}}^2) \ne 0$ and $[D_\mu, D_\nu]\psi = -i\hat{q}F_{\mu\nu}\psi = 0$ forces $F_{\mu\nu} = 0$ when $\hat{q}v_0 \ne 0$, Appendix~D.2). Broader exact sourced GR+Maxwell ($f_{\mathrm{EM}} = f_{\mathrm{SM}} = 1$, $m_A = 0$) holds in the separate unbroken parameter limit $v_0 = 0$ (\texttt{BM\_V0\_SYMMETRIC\_GR}), while heavy-scalar decoupling ($m_1, m_2 \gg E_{\mathrm{obs}}$) provides a controlled asymptotic approximation.
+  \item \textbf{Observational Safety Requires a Derived Response:} Positivity of the parameter tuple alone does \emph{not} establish Solar System PPN safety; empirical viability requires deriving the gravitational and electromagnetic response from the stated action and testing it against observational data (\texttt{OPEN-6D}, Section~\ref{sec:stage6-action-diagnostics}).
+\end{enumerate}
+
+\section{Action Principle and Field Equations}
+\label{sec:action-principle}
+\label{sec:core-action}
+
+\subsection{Symmetries and Minimal Canonical Model Selection (Not Uniqueness)}
+
+The canonical action $S_{\mathrm{AUTH}}$ is a \emph{specific minimal ghost-free ansatz}---not the unique action permitted by symmetry---chosen within the class of dimension-$\le 4$ operators (plus leading $\mathbb{Z}_2$-even gauge-invariant dimension-6 dressings $f_{\mathrm{EM}}, f_{\mathrm{SM}}$) satisfying four baseline requirements: (1) four-dimensional diffeomorphism invariance; (2) local $U(1)$ gauge invariance $\psi \mapsto e^{i\hat{q}\chi}\psi$, $A_\mu \mapsto A_\mu + \partial_\mu\chi$; (3) discrete $C, P, T$ invariance and absence of bare phase-dependent potentials; and (4) strict second-order hyperbolicity excluding higher-derivative Ostrogradsky ghosts such as $(\Box\rho_t)^2$ or $(\nabla_\mu\nabla_\nu\Rcoh)^2$ (\texttt{C07} purged under \texttt{ODQ-2}). Because $U_{\mathrm{link}}$ explicitly breaks $\rho_t \mapsto -\rho_t$ symmetry via $m_{\mathrm{link}}(\rho_t - \rho_0)$, symmetry and second-order hyperbolicity alone still permit additional dimension-$\le 4$ operators---including non-minimal curvature couplings ($\xi_1 R\rho_t$, $\xi_2 R\rho_t^2$, $\xi_3 R|\psi|^2$), odd polynomial terms ($\rho_t$, $\rho_t^3$, $|\psi|^2\rho_t$), and independent quartic cross-terms $|\psi|^2\rho_t^2$---which are set to zero in \texttt{M\_AUTH\_SIT\_EFT\_v1} by explicit canonical model selection rather than claimed symmetry uniqueness.
+
+\subsection{Symmetries and Gauge Structure}
+
+Over $(\mathcal{M}^4, g_{\mu\nu})$ in signature $(-,+,+,+)$, every scalar potential and constitutive coupling depends on $\psi$ exclusively through $|\psi|^2 = \psi^*\psi = \psi_0^2\Rcoh^2$, while spacetime derivatives of $\psi$ enter solely via $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$. Time-density $\rho_t$ transforms as a neutral real Lorentz scalar.
+
+\subsection{Unified Canonical SIT Action and Lagrangian}
+
+Collecting Eqs.~\eqref{eq:L_EH_def}--\eqref{eq:U_link_canonical}, the unified action in explicit component form is
+\begin{align}
+S_{\mathrm{AUTH}}
+&= \int d^4x\,\sqrt{-g}\Biggl[
+  \frac{R}{16\pi G}
+  - \frac{\kappa_t}{2}\,g^{\mu\nu}\nabla_\mu\rho_t\nabla_\nu\rho_t
+  - \frac{\kappa_c}{2}\,g^{\mu\nu}(D_\mu\psi)^*(D_\nu\psi)
+  \nonumber\\
+&\qquad\quad
+  - V(\rho_t) - U(|\psi|) - U_{\mathrm{link}}(\rho_t,\psi)
+  - \frac{1}{4}\,f_{\mathrm{EM}}(\Rcoh)\,F_{\mu\nu}F^{\mu\nu}
+  + f_{\mathrm{SM}}(\Rcoh)\,\mathcal{L}_{\mathrm{matter}}
+\Biggr].
+\label{eq:SIT_action}
+\end{align}
+
+\subsection{Exclusion of Pathological and Superseded Operators}
+
+To maintain complete mathematical consistency and prevent any ambiguity with pre-Version-80 drafts, four operator classes are strictly excluded from $S_{\mathrm{AUTH}}$:
+\begin{itemize}
+  \item \textbf{Wrong-Sign Ghost Kinetic Terms (\texttt{C04} Purged):} In mostly-plus signature $(-,+,+,+)$, a scalar kinetic term $+\frac{1}{2}g^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t = -\frac{1}{2}(\partial_t\rho_t)^2 + \frac{1}{2}(\nabla\rho_t)^2$ carries negative kinetic energy and produces catastrophic vacuum instability. All legacy $+\frac{1}{2}g^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t$ sign conventions from early drafts are permanently replaced by $-\frac{\kappa_t}{2}g^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t$ with $\kappa_t > 0$.
+  \item \textbf{Higher-Derivative Ostrogradsky Operators (\texttt{C07} Purged):} Operators such as $(\Box_g\rho_t)^2$ or $(\nabla_\mu\nabla_\nu\Rcoh)^2$ introduce fourth-order equations of motion with unbounded-below Ostrogradsky Hamiltonians and are excluded from the tree-level action (appearing only as Planck/cutoff-suppressed perturbative EFT counterterms treated via order reduction below $\Lambda_{\mathrm{UV}}$).
+  \item \textbf{Non-Gauge-Invariant Phase Potentials:} Any bare dependence on $\theta = \arg\psi$ outside $D_\mu\psi$ violates local $U(1)$ gauge invariance and charge conservation.
+  \item \textbf{Zero-Floor Gauge Dressings in Continuum EFT (\texttt{C09} Quarantined):} Dressings with $f_{\mathrm{EM}}(\rho_t, 0) = 0$ make the continuum canonical Hamiltonian $\frac{1}{2f_{\mathrm{EM}}}\Pi^2$ singular at $|\psi| = 0$; continuum \texttt{M\_AUTH\_SIT\_EFT\_v1} enforces $f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2 \ge 1$.
+\end{itemize}
+
+\subsection{Motivation for the Canonical Action's Form}
+
+Under diffeomorphism invariance, $U(1)$ gauge symmetry, $\mathbb{Z}_2$ vacuum selection, and second-order hyperbolicity, Eq.~\eqref{eq:SIT_action} is the minimal ghost-free covariant effective action coupling spacetime curvature, temporal clock-rate density $\rho_t$, complex phase-coherence order $\psi$, Abelian gauge curvature $F_{\mu\nu}$, and Standard Model matter $\mathcal{L}_{\mathrm{matter}}$.
+
+\subsection{Derivation of the Field Equations and Total Stress--Energy Tensor}
+
+\subsubsection{Variational Principle}
+
+Requiring $\delta S_{\mathrm{AUTH}} = 0$ under arbitrary compactly supported variations $(\delta g^{\mu\nu}, \delta\rho_t, \delta\psi^*, \delta A_\nu)$ on $(\mathcal{M}^4, g_{\mu\nu})$ yields $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}^{\mathrm{tot}}$ with $T_{\mu\nu} = -2\frac{\delta\mathcal{L}_{\mathrm{non\text{-}EH}}}{\delta g^{\mu\nu}} + g_{\mu\nu}\mathcal{L}_{\mathrm{non\text{-}EH}}$.
+
+\subsubsection{Contribution from the Time-Density and Coherence Scalars}
+
+Using $\delta\sqrt{-g} = -\frac{1}{2}\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu}$ on $\mathcal{L}_{\mathrm{coh}}$ gives
+\begin{align}
+T_{\mu\nu}^{(\rho_t)} + T_{\mu\nu}^{(\psi)} + T_{\mu\nu}^{(\mathrm{pot})}
+&= \kappa_t\,\partial_\mu\rho_t\partial_\nu\rho_t
+  + \kappa_c\,\mathrm{Re}\bigl[(D_\mu\psi)^*(D_\nu\psi)\bigr]
+  \nonumber\\
+&\quad
+  - g_{\mu\nu}\left[
+    \frac{\kappa_t}{2}\,g^{\alpha\beta}\partial_\alpha\rho_t\partial_\beta\rho_t
+    + \frac{\kappa_c}{2}\,g^{\alpha\beta}(D_\alpha\psi)^*(D_\beta\psi)
+    + V_{\mathrm{tot}}(\rho_t,|\psi|)
+  \right].
+\label{eq:T_scalar_combined_sec8}
+\end{align}
+
+\subsubsection{Contribution from Coherence-Dressed Gauge and Matter Sectors}
+
+Using $\frac{\delta(F_{\alpha\beta}F^{\alpha\beta})}{\delta g^{\mu\nu}} = 2 F_{\mu\lambda}F_\nu^{\ \lambda}$ on $\mathcal{L}_{\mathrm{EM}}^{\mathrm{coh}} = -\frac{1}{4}f_{\mathrm{EM}}(\Rcoh)F_{\alpha\beta}F^{\alpha\beta}$ (with canonical Maxwell factor $-1/4$, repairing historical $-1/2$ typos \texttt{T1}) and varying $+f_{\mathrm{SM}}(\Rcoh)\mathcal{L}_{\mathrm{matter}}$ yields
+\begin{equation}
+T_{\mu\nu}^{(\mathrm{EM})} + T_{\mu\nu}^{(\mathrm{matter})}
+= f_{\mathrm{EM}}(\Rcoh)\left(F_{\mu\lambda}F_\nu^{\ \lambda} - \frac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)
+  + f_{\mathrm{SM}}(\Rcoh)\,T_{\mu\nu}^{\mathrm{SM}}.
+\label{eq:T_dressed_combined_sec8}
+\end{equation}
+
+\subsubsection{Physical Interpretation of Coherence Effects and Low-Energy GR Recovery}
+
+In regions of elevated macroscopic coherence ($\Rcoh > R_0$), $(\rho_t, |\psi|)$ gradients and dressings $(f_{\mathrm{EM}}, f_{\mathrm{SM}})$ contribute positive-energy gravitational sourcing; in decohered or screened regions where $(\rho_t, |\psi|) \to (\rho_0, 0)$, $V_{\mathrm{tot}}(\rho_0, 0) = \frac{\lambda_\psi}{4}v_0^4 + \frac{\lambda_{\mathrm{portal}}}{2}v_0^4$ acts as a non-stationary positive potential offset for $v_0 > 0$, while at the broken-phase vacuum $(\rho_0, v_0)$ we have $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ identically (giving exact source-free vacuum GR, controlled $O(m_{1,2}^{-2})$ sourced GR recovery in the heavy-scalar limit, and exact sourced GR+Maxwell in the unbroken limit $v_0 = 0$).
+
+\subsubsection{Summary of Canonical Field Equations}
+
+For ease of reference across Parts~I--IV, the complete canonical Euler--Lagrange equations of \texttt{M\_AUTH\_SIT\_EFT\_v1} in $(-,+,+,+)$ (aligned directly with $\delta S_{\mathrm{AUTH}}/\delta\psi^* = 0$ in Eq.~\eqref{eq:appD_full_variation}, where the kinetic term $-\frac{\kappa_c}{2}|D\psi|^2$ produces $+\frac{\kappa_c}{2}D_\mu D^\mu\psi$ against undoubled $\partial/\partial\psi^*$ derivatives, multiplying by $2$ to give Eq.~\eqref{eq:Rcoh-eom}) are:
+\begin{align}
+G_{\mu\nu} &= 8\pi G\,\Bigl(T_{\mu\nu}^{(\rho_t)} + T_{\mu\nu}^{(\psi)} + T_{\mu\nu}^{(\mathrm{EM})} + T_{\mu\nu}^{(\mathrm{pot})} + f_{\mathrm{SM}}(\Rcoh)\,T_{\mu\nu}^{\mathrm{SM}}\Bigr), \label{eq:summary_einstein_sec8}\\
+\kappa_t\,\Box_g\rho_t &= \frac{\partial V_{\mathrm{tot}}}{\partial\rho_t}, \label{eq:summary_rhot_sec8}\\
+\frac{\kappa_c}{2}\,D_\mu D^\mu\psi &= \frac{\partial V_{\mathrm{tot}}}{\partial\psi^*}
+  + \frac{1}{4}\frac{\partial f_{\mathrm{EM}}}{\partial\psi^*}\,F_{\alpha\beta}F^{\alpha\beta}
+  - \frac{\partial f_{\mathrm{SM}}}{\partial\psi^*}\,\mathcal{L}_{\mathrm{matter}}, \label{eq:summary_psi_sec8}\\
+\nabla_\mu\bigl(f_{\mathrm{EM}}(\Rcoh)\,F^{\nu\mu}\bigr) &= \hat{q}\,\kappa_c|\psi|^2\bigl(\partial^\nu\theta - \hat{q}A^\nu\bigr) + J^\nu_{\mathrm{EM,SM}}. \label{eq:summary_maxwell_sec8}
+\end{align}
+Notice the canonical minus sign in $\kappa_t\Box_g\rho_t - \partial_{\rho_t}V_{\mathrm{tot}} = 0$ (repairing historical sign flip \texttt{R1}/\texttt{R2}): around the minimum $(\rho_0, v_0)$ where $m_\rho^2 = \partial_{\rho_t}^2 V_{\mathrm{tot}} > 0$, flat-space perturbations satisfy $(-\partial_t^2 + \nabla^2)\delta\rho_t - (m_\rho^2/\kappa_t)\delta\rho_t = 0$, i.e.\ $\partial_t^2\delta\rho_t - \nabla^2\delta\rho_t + (m_\rho^2/\kappa_t)\delta\rho_t = 0$, guaranteeing stable real dispersion $\omega^2 = \mathbf{k}^2 + m_\rho^2/\kappa_t > 0$.

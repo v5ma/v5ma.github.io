@@ -1,9 +1,9 @@
-# Micah Blumberg Research Papers 1–114
+# Micah Blumberg Research Papers 1–115
 
-This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–114 as of September 23, 2026.
+This folder contains exact, checksum-verified copies of the current public PDF for Papers 1–115 as of September 23, 2026.
 
 - Searchable catalog: [pub.svgn.io](https://pub.svgn.io/)
-- Unified OSF archive: [Papers 1–114](https://osf.io/3vsar/)
+- Unified OSF archive: [Papers 1–115](https://osf.io/3vsar/)
 - Machine-readable inventory: [`PUBLIC-PAPER-MANIFEST.json`](./PUBLIC-PAPER-MANIFEST.json)
 - Integrity list: [`SHA256SUMS.txt`](./SHA256SUMS.txt)
 
@@ -156,3 +156,9 @@ Papers 113 and 114 add the verified 2022 temporal-interleaving and selective-acc
 
 - Paper 113: [Temporal Ensembles in Self-Aware Networks: Dendritic Recovery, Phase-Structured Recurrence, and the Hypothesis of Temporal Experience, v1.2](./113%20-%20Temporal%20Ensembles%20-%20v1.2.pdf) · [Zenodo](https://zenodo.org/records/23509960) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad7bbdaadd42367187d52cb) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.2-20261020/temporal)
 - Paper 114: [Learning to Feel: Perception-Action Learning, Phase-Compatible Recruitment, and Conscious Sensory Access in Self-Aware Networks, v1.2](./114%20-%20Learning%20to%20Feel%20-%20v1.2.pdf) · [Zenodo](https://zenodo.org/records/23509961) · [OSF](https://osf.io/3vsar/files/osfstorage/6ad7bc07ffeaa68e48bdaf62) · [Companion](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/temporal-learning-v1.2-20261020/learning)
+
+## Super Information Theory: Version 81 (Master Monograph) - 20 November 2026
+
+115. [Super Information Theory: The Coherence Conservation Law Unifying the Wave Function, Gravity, and Time (Version 81)](./115%20-%20Super%20Information%20Theory%20Version%2081.pdf) - [Zenodo](https://zenodo.org/records/24406082) (DOI 10.5281/zenodo.24406082) · [OSF page](https://osf.io/3vsar/files/osfstorage/6b00a29df38f1c71572639db) · [Sources, verification scripts, and receipts](https://github.com/v5ma/v5ma.github.io/tree/master/papers/companions/super-information-theory-v81-20261120).
+
+Working EFT and mathematical research monograph (187 pages, reviewed commit `dc949cbcf39d7527a922b10f15a91265d11ba243`, PDF SHA-256 `9c76d6116003810465887d51ab4ccf55bc505ffd20bc3de634f98adda9786ab0`). Not peer reviewed. Preserves explicit chronology after Version 79 and the July 2026 Version 80 compact corrective edition (Paper 002), keeping bounded formal results, 20-check symbolic/numerical regression verification, conditional phenomenology, and open problems (`OPEN-1` through `OPEN-6`) clearly distinguished. All 114 previous paper selections remain unchanged.

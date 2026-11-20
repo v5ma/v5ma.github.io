@@ -1,0 +1,150 @@
+{
+  "version": "81",
+  "date": "2026-11-20",
+  "reviewed_commit": "dc949cbcf39d7527a922b10f15a91265d11ba243",
+  "pdf_sha256": "9c76d6116003810465887d51ab4ccf55bc505ffd20bc3de634f98adda9786ab0",
+  "pdf_bytes": 1511428,
+  "pdf_pages": 187,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3518,
+      "sha256": "324af3954412593e0dff34c5fb27d458fedab3fceb1a9d74a6eeee41fe95ac07"
+    },
+    {
+      "path": "SIT81-MONOGRAPH-HANDOFF.md",
+      "bytes": 28492,
+      "sha256": "59da34a6f592f77575aa108906df12f28e7fff28c7982eb3f335a48ebfcd114d"
+    },
+    {
+      "path": "papers/sit81-master-monograph/Super_Information_Theory_81.pdf",
+      "bytes": 1511428,
+      "sha256": "9c76d6116003810465887d51ab4ccf55bc505ffd20bc3de634f98adda9786ab0"
+    },
+    {
+      "path": "papers/sit81-master-monograph/Super_Information_Theory_81.tex",
+      "bytes": 4794,
+      "sha256": "9434143a15f9394a8b8c853670fa6d194226e0302c9fd1cf72e701ad0cbf317e"
+    },
+    {
+      "path": "papers/sit81-master-monograph/Super_Information_Theory_81.txt",
+      "bytes": 566788,
+      "sha256": "24f4ff0993a5a54c0bb1297d034c7ee0bc7c8a37d58cf77608b8591b66d346a6"
+    },
+    {
+      "path": "papers/sit81-master-monograph/Super_Information_Theory_81_singlefile.tex",
+      "bytes": 674268,
+      "sha256": "af4d2c7fd0df978c5a16e19918db40fde2a63dfeabf3f536d27d55e2cd88b496"
+    },
+    {
+      "path": "papers/sit81-master-monograph/figures/fig1_su2_phase_diagram.pdf",
+      "bytes": 114859,
+      "sha256": "544fb64351273828ce5a6ec6f6228b811ea4a9deb9280407115990fd3fc0e29a"
+    },
+    {
+      "path": "papers/sit81-master-monograph/figures/fig2_polyakov_susceptibility_hysteresis.pdf",
+      "bytes": 89880,
+      "sha256": "f104218e87d1be3887ce8eba86f58b006984c15e2dd11121b52be0cb0e7312ed"
+    },
+    {
+      "path": "papers/sit81-master-monograph/figures/fig3_timeslice_correlator_c09.pdf",
+      "bytes": 74394,
+      "sha256": "45aac87d48032ba5071c858fbc3a68df4111ed4a59d4e2d617ddddd4452e28f9"
+    },
+    {
+      "path": "papers/sit81-master-monograph/figures/fig6_eft_hierarchy_scales.pdf",
+      "bytes": 73672,
+      "sha256": "991f1b6377113126e78ab89ed1660d7e875c80a410ea03f98cdc7ffd0a1a9dab"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/00_abstract_and_note.tex",
+      "bytes": 33834,
+      "sha256": "04bfbedee794e3bd55461c91bbc04c4f67c94f0f6f45da0476814fc97f59b39a"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/01_part1_sec01_to_03.tex",
+      "bytes": 24047,
+      "sha256": "8b3a78e1bbc988f215dfbc4d9b771a5a57f1d99dcf28383f361879f9781e146e"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/02_part1_sec04_to_08.tex",
+      "bytes": 71313,
+      "sha256": "73851a71967f99a74a5a23b6d342001692ee4c8abda14cad618c10c4c594b6db"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/03_part1_sec09_to_15.tex",
+      "bytes": 49945,
+      "sha256": "e28509c2b17d50a5bf346c62f4dd77cdd28afe245cfeeb8d8e017b373c385b57"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/04_part1_sec16_to_25.tex",
+      "bytes": 61285,
+      "sha256": "23d7737a6a69397fc6220a7d5be5fbc3e56c51dff0b9aa48cc463e0df63254ce"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/05_part2_sec26_to_31.tex",
+      "bytes": 46933,
+      "sha256": "7d64360aab69089e54417ecc96544360dd5d720d48deae653eeaf1474d2a7e54"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/06_part3_sec32_to_42.tex",
+      "bytes": 55557,
+      "sha256": "ba7525eb3dc094ebddb609b278e9d4bc19ae1f8d575092cc79a4dc147eb23edb"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/07_part3_sec43_to_50.tex",
+      "bytes": 61607,
+      "sha256": "889167910e64764c104c60479e1f7173191ed5ed266283af1c2c0dcb93541b90"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/08_part4_sec51_to_52.tex",
+      "bytes": 40004,
+      "sha256": "e58bbed8049cdbf7bf901a244654f8eca1c564e34109155883acbf3fb604eb75"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/09_part4_sec53_to_55.tex",
+      "bytes": 62831,
+      "sha256": "5c224a666bfb0dedef7f71d94245798dbe8f3a0e361b6635b1aed83243ca407b"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/10_appendices_A_to_M.tex",
+      "bytes": 70844,
+      "sha256": "28eacca0de3473532f50bd279c73459462a98034b096acb6f576f32932daa076"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/11_appendices_N_to_AA.tex",
+      "bytes": 47861,
+      "sha256": "7ac08ebeb8b133d4a22dd880d73773fae4d31c57cb0737b282c3138d26720fcc"
+    },
+    {
+      "path": "papers/sit81-master-monograph/sections/12_appendix_AB_and_backmatter.tex",
+      "bytes": 46714,
+      "sha256": "a2f114412419e89d2e71bc1af5cab076d7ef4834a97b9772f6983a7a1e9ba531"
+    },
+    {
+      "path": "reviews/SIT81-HYDROGEN-STYLE-RECEIPT.json",
+      "bytes": 1271,
+      "sha256": "76ecbcb17a94f2c5bb29c4ce1c106ac8d7dc6ebfce3178daca017d66bb88c829"
+    },
+    {
+      "path": "reviews/SIT81-MATH-VERIFICATION-RECEIPT.json",
+      "bytes": 3610,
+      "sha256": "b2527e19636d9e53c359cdc94f18d4340e18b48bf5625212b9a24842572fa92e"
+    },
+    {
+      "path": "reviews/SIT81-MONOGRAPH-AUDIT-RECEIPT.json",
+      "bytes": 1671,
+      "sha256": "70326b68f38c227f8dea79bd0d8f0041a4d34d3d447e134f01a01464bd335319"
+    },
+    {
+      "path": "reviews/verify_sit81_math.py",
+      "bytes": 18626,
+      "sha256": "f081e717f3eba90aac1b2cbe512f3e4a8f234c87a730c454236c43bf04011370"
+    },
+    {
+      "path": "reviews/verify_sit81_monograph.py",
+      "bytes": 30387,
+      "sha256": "5c996e5433fed2f745bb5b99b5d3adf2840c31ac62df5f5456f4b05330202af8"
+    }
+  ]
+}

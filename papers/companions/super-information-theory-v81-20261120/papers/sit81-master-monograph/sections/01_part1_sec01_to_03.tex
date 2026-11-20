@@ -1,0 +1,174 @@
+\part{Foundations of Super Information Theory}
+
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Motivation and Theoretical Scope}
+
+The foundational postulate of Super Information Theory (SIT) is that ``information'' is not an abstract Platonic symbol but an operationally defined property of physical systems, quantified through the local coincidence of independent physical events. A coincidence event occurs whenever two or more physical processes intersect within a defined spatiotemporal neighborhood, from the simultaneous arrival of particles in a detector to the synchronized firing of cortical neurons. The fundamental fields of SIT---the complex coherence field $\psi(x)$ and the real time-density field $\rho_t(x)$---provide the formal mathematical description of the structure and dynamics of these coincidence processes.
+
+The unification of general relativity and quantum mechanics remains a central challenge of theoretical physics. Super Information Theory proposes a covariant framework in which quantum phase coherence is not treated merely as a passive statistical descriptor on a fixed background, but as an active order-parameter field whose gradients and modulus couple dynamically to spacetime curvature and local proper-time accumulation. Physical phenomena across gravitational, electromagnetic, and thermodynamic regimes emerge from the coupled variational dynamics of $(\psi, \rho_t, g_{\mu\nu}, A_\mu)$ alongside Standard Model matter, without introducing unobservable ontological substrates.
+
+Crucially, the core framework developed in this monograph does not claim to constitute an unconditional ultraviolet-complete quantum theory of gravity at trans-Planckian energies. All continuum field equations and perturbative loop results are derived and interpreted within a controlled Wilsonian effective field theory (EFT) regime valid below an explicit ultraviolet cutoff $\Lambda_{\mathrm{UV}} := \min(M_{\mathrm{Pl}}, \Lambda_{\mathrm{EM}}, \Lambda_{\mathrm{sym}})$; whether SIT admits a regulator-independent non-perturbative 4D gravitational UV fixed point above $\Lambda_{\mathrm{UV}}$ remains an explicit open problem (\texttt{OPEN-1}, Appendix~\ref{app:epistemic-ledger-lean}).
+
+Within this well-defined effective regime, gravity, electromagnetism, and quantum interference represent distinct geometric aspects of a unified informational field structure:
+\begin{itemize}
+  \item \textbf{Gravity} is sourced by the stress--energy of matter together with the coupled dynamics of the time-density scalar $\rho_t(x)$ and the gauge-invariant coherence modulus $\Rcoh(x) := |\psi(x)|/\psi_0$.
+  \item \textbf{Electromagnetism} is realized through a $U(1)$ principal bundle connection $A_\mu(x)$ coupled minimally to the coherence phase $\theta(x) \equiv \arg(\psi(x))$ via $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$, reducing on flat pure-gauge patches ($F_{\mu\nu}=0$) to Aharonov--Bohm phase holonomy while retaining two physical transverse polarizations (plus a longitudinal Proca mode when $v_0 > 0$) globally.
+\end{itemize}
+
+The central objective of this monograph is to establish this unified canonical action (\texttt{M\_AUTH\_SIT\_EFT\_v1}), prove its mathematical stability, ghost freedom, curved $3+1$D ADM constraint closure, and non-perturbative 4D lattice gauge consistency, demonstrate its exact reduction to General Relativity, Maxwell/Proca theory, quantum mechanics, and kinetic theory in tested limits, and derive concrete laboratory falsifiers in optical-clock metrology, cold-atom interferometry, and $^{87}\mathrm{Rb}$ Bose--Einstein condensates.
+
+\subsection{Foundational Insight: From Neuroscience to a Unified Physical Theory}
+
+The conceptual architecture of Super Information Theory grew out of a synthesis uniting two inverse scaling laws across neuroscience and fundamental physics. This synthesis provided the bridge for extending an oscillatory theory of mind (\emph{Self-Aware Networks}) into a covariant field theory of spacetime and coherence, beginning in 2022 with \emph{Quantum Gradient Time Crystal Dilation (QGTCD)}.
+
+In systems neuroscience, the \textbf{$1/f$ power law} (spectral ``pink noise'') characterizes cortical population activity in which oscillatory amplitude scales inversely with temporal frequency: slower, large-scale rhythms coordinate broad spatial ensembles, whereas faster, localized bursts carry rapid state updates. In fundamental wave mechanics, wavelength $\lambda$ and period $T$ likewise scale inversely with frequency $f$. Synthesizing these observations yields an organizing physical principle: at fixed informational energy budget, a coherent wave configuration trades off spatial/structural \textbf{Magnitude} against dynamical \textbf{Frequency}.
+
+Visualized through the physiological contrast between sustained tonic synchronization and rapid phasic signaling, this trade-off motivates an informational reading of Einstein's mass--energy equivalence $E = mc^2$ across distinct morphologies of coherent organization:
+\begin{itemize}
+  \item \textbf{Radiative Energy ($E$):} Coherent excitations organized as high-frequency, propagating, low-amplitude modes (analogous to phasic bursts).
+  \item \textbf{Localized Mass ($m$):} Coherent excitations organized as persistent, phase-locked, spatially localized standing structures---informational solitons or ``time crystals'' (analogous to tonic attractors)---whose coherence modulus thickens local time density $\rho_t$.
+  \item \textbf{Decoherent Vacuum Baseline:} The reference state $(\rho_t = \rho_0,\, \Rcoh = R_0)$ relative to which gradients of coherence and time density source measurable curvature and clock shifts.
+\end{itemize}
+
+\subsection{Relation to Causal Fermion Systems and Bounded Comparison Scope}
+\label{sec:cfs-convergence}
+
+An instructive point of comparison in foundational physics is the relationship between Super Information Theory (SIT) and Causal Fermion Systems (CFS), developed by Felix Finster and collaborators from operator algebras and a causal action principle. Following the bounded four-lens audit established in Paper~048 (\emph{Causal Fermion Systems and Super Information Theory}, July~28, 2026), Version~81 strictly separates dated conceptual parallels from mathematical equivalence or empirical validation:
+\begin{itemize}
+  \item \textbf{Dated Conceptual Parallels (Narrative Level Only):} SIT's 2017 premise framing information around relational ``coincidence patterns'' and internal distributed observation (NAPOT) shares high-level vocabulary with later 2024--2025 CFS expositions describing spacetime as a ``web of correlations'' and intrinsic ``effective dynamical collapse.'' Chronological overlap in conceptual framing is \emph{not} a mathematical embedding, a proof of operational equivalence, or an independent empirical validation of SIT.
+  \item \textbf{Bounded Effective-Equation Overlap and Null Control (Paper~048):} Under Paper~048's frozen comparison against July~2026 Version~80 Draft~13, both a regulated constant-coupling CFS continuum regime and a specialized neutral-Dirac constant-background SIT submodel reduce to standard Einstein--Dirac equations, matching a direct Einstein--Dirac null control with \emph{zero discriminatory value}. Extending that constant-background truncation check to the November~2026 multiplicative action \texttt{M\_AUTH\_SIT\_EFT\_v1} remains a separate open calculation.
+\end{itemize}
+
+Table~\ref{tab:sot-cfs-map} summarizes the conceptual chronology, while Appendices~\ref{app:cfs-chronology} and~\ref{app:chronology} preserve the dated historical timeline alongside the explicitly open formalization obligations.
+
+\begin{table}[htbp]
+\centering
+\caption{Conceptual comparison between high-level framing elements of Super Information Theory (SIT) and Causal Fermion Systems (CFS), with first public disclosure dates (bounded narrative level only; not a proof of mathematical equivalence or independent validation, cf.\ Paper~048).}
+\label{tab:sot-cfs-map}
+\vspace{0.4em}
+\begin{tabular}{|p{3.0cm}|p{5.8cm}|p{5.8cm}|}
+\hline
+\textbf{Conceptual Pillar} & \textbf{Super Information Theory (Blumberg)} & \textbf{Causal Fermion Systems (Finster et al.)} \\
+\hline
+\textbf{Relational Substrate} & Reality framed via relational \textbf{``coincidence patterns''} of events (\emph{First Public Appearance: 2017}). & Spacetime reframed as an informational \textbf{``web of correlations''} of a quantum many-body system (\emph{First Public Appearance: 2025}). \\
+\hline
+\textbf{Measurement Framing} & Observation modeled conceptually as \textbf{distributed internal phase alignment} (``inner screens'', \emph{First Public Appearance: 2017}). & Measurement studied via \textbf{``effective dynamical collapse''} from the causal action (\emph{First Public Appearance: 2024}). \\
+\hline
+\end{tabular}
+\end{table}
+
+Where CFS emphasizes abstract operator measures, SIT formulates an explicit sub-Planckian scalar--tensor--gauge EFT (\texttt{M\_AUTH\_SIT\_EFT\_v1}) and 4D lattice gauge models, whose concrete empirical confrontation awaits completion of the action-to-apparatus bridges (\texttt{OPEN-6}).
+
+\subsection{Relation to Prior Work and Technical Comparison with Unification Frameworks}
+\label{sec:relation-prior-work}
+\label{sec:SITTechnicalComparison}
+
+\subsubsection{From Static Bits to Dynamical Coherence}
+
+Information theory entered physics in modern quantitative form through Claude Shannon's 1948 measure of symbolic uncertainty, $H = -\sum_i p_i \log p_i$, defined over discrete probability distributions on a timeless register. While foundational to communication engineering, combinatorial symbol counting says nothing about continuous phase relationships inside physical media. John Wheeler's \emph{``It from Bit''} shifted attention toward binary physical interrogations, and Wojciech Zurek's environment-induced decoherence program demonstrated how open-system coupling selects pointer states by exporting phase correlations into an environment.
+
+Super Information Theory embeds these motivations into a local covariant field theory by introducing two dynamical EFT variables: a complex order parameter $\psi(x)$ with amplitude ratio $\Rcoh(x) = |\psi(x)|/\psi_0$ and a real scalar $\rho_t(x)$ (kept distinct from quantum purity and event-rate proxies via open calibration kernels, Section~\ref{sec:PrimitiveFieldDefinitions}). Closed-system global $U(1)$ invariance yields the conserved Noether current $J^\mu_{\mathrm{coh}}$ (distinct from operational open-system purity, which is non-increasing specifically under unital CPTP maps while general CPTP channels contract quantum relative entropy, Section~\ref{sec:arrow-of-time}), and thermodynamic-gravity analogies are investigated as coarse-grained effective comparisons rather than identities.
+
+\begin{table}[htbp]
+\centering
+\caption{Technical comparison of Super Information Theory (SIT) with established gravitational and quantum-informational paradigms.}
+\label{tab:sit-framework-comparison}
+\vspace{0.4em}
+\small
+\begin{tabular}{|p{3.2cm}|p{4.8cm}|p{6.8cm}|}
+\hline
+\textbf{Framework} & \textbf{Core Mechanism / Field Content} & \textbf{How SIT Differs and Extends} \\
+\hline
+\textbf{Entropic Gravity (Verlinde, Padmanabhan)} & Gravity from entropy gradients across holographic screens; no local bulk action for coherence. & SIT supplies a local covariant bulk action (\texttt{M\_AUTH\_SIT\_EFT\_v1}) for $(\rho_t, \psi)$ with hyperbolic wave equations, exact Bianchi--Noether conservation, and prospective clock/BEC test channels (\texttt{OPEN-6}). \\
+\hline
+\textbf{Holography \& AdS/CFT ('t Hooft, Susskind, Maldacena)} & Bulk AdS gravity dual to boundary CFT operator algebra; relies on asymptotic boundary structure. & SIT operates directly in four-dimensional Lorentzian bulk spacetimes of arbitrary geometry without requiring anti-de Sitter asymptotics. \\
+\hline
+\textbf{Tensor Networks \& QEC (MERA, Almheiri--Harlow)} & Geometry from discrete entanglement graphs and boundary quantum error-correcting codes. & SIT formulates continuous bulk EFT fields below $\Lambda_{\mathrm{UV}}$ paired with a gauge-invariant 4D Euclidean Haar Wilson lattice at the non-perturbative gauge level. \\
+\hline
+\textbf{Loop Quantum Gravity \& Causal Sets} & Quantized $SU(2)$ holonomy spin networks or locally finite partially ordered causal sets. & SIT couples continuum $3+1$D ADM geometry to $(\rho_t, \psi)$ in the infrared and employs compact $U(1)/SU(N)$ bundle holonomy on 4D Wilson lattices for gauge-matter dynamics. \\
+\hline
+\textbf{Brans--Dicke \& Symmetron Scalar--Tensor Gravity} & Real scalar coupled to Ricci curvature or matter trace with density-dependent screening. & SIT pairs a real time-density scalar $\rho_t$ with a $U(1)$-charged complex coherence order parameter $\psi$, with vacuum-positive dressings $f_{\mathrm{EM}} \ge 1$ and $f_{\mathrm{SM}} \ge 1$ (keeping conformal-frame Shapiro relations explicitly conditional on a conformal matter-response derivation, Section~\ref{sec:ppn-shapiro-exact}). \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Providing a Micro-Mechanism for Informational Gravity Frameworks}
+\label{sec:entropic_RTI_SIT}
+
+Two influential conceptual traditions that framed gravitation and quantum measurement in informational terms---Verlinde's entropic gravity and Cramer--Kastner's Relativistic Transactional Interpretation (RTI)---acquire a concrete local field-theoretic realization inside Super Information Theory through the coupled dynamics of $\Rcoh(x)$ and $\rho_t(x)$.
+
+\subsection*{RTI's Handshake as Phase Alignment}
+
+In transactional language, a completed quantum event corresponds to phase matching between offer and confirmation amplitudes. Within SIT, local phase alignment is measured by the vanishing of relative phase mismatch $\Delta\theta(x) = \arg(\psi^{\mathrm{ret}}) - \arg(\psi^{\mathrm{adv}})$, maximizing local interference visibility and rendering the coherence current $J^\mu_{\mathrm{coh}}$ stationary across the interaction region. Rather than invoking retrocausal signaling, SIT tracks how constructive phase alignment elevates $\Rcoh(x)$ and, via the linkage potential $U_{\mathrm{link}}(\rho_t, |\psi|)$, shifts the local time-density scalar $\rho_t(x)$ in strictly causal, hyperbolic fashion.
+
+\subsection*{Entropic Gravity as a Coarse-Grained Limit}
+
+In entropic gravity, displacing a test mass $m$ by $\Delta x$ near a holographic screen of temperature $T$ changes screen entropy by $\Delta S = (2\pi k_{\mathrm{B}}/\hbar) m c \Delta x$, yielding $F\Delta x = T\Delta S$. In SIT, a localized rise in $\Rcoh$ shifts $\rho_t$ through $U_{\mathrm{link}}$ and dresses matter stress--energy via $f_{\mathrm{SM}}(\Rcoh)$, generating a screened Yukawa addition to the Einstein-frame Newtonian potential $\Phi_E(r) = -G f_{\mathrm{SM}0} M / r$. Coarse-graining over microscopic phase modes reproduces thermodynamic force balance without sacrificing local stress--energy conservation $\nabla^\mu T^{\mathrm{tot}}_{\mu\nu} = 0$.
+
+\subsection*{Quantum Coherence as Information Density and Quasicrystal Echoes}
+
+Regions whose constituent modes share a common phase exhibit elevated $\Rcoh$ and lowered linkage potential energy. At fixed mode energy, the inverse amplitude--frequency trade-off implies that phase-locked, high-amplitude configurations oscillate at lower effective coordinate rates, corresponding operationally to gravitational redshift. Across scales, constructive and destructive interference domains in $(\Rcoh, \rho_t)$ play a geometric role analogous to quasiperiodic projections in optical and plasmonic lattices: coherent condensations deepen gravitational wells while decoherent expanses relax toward the vacuum baseline.
+
+\subsection{Operational and Mathematical Definitions of Primitive Fields}
+\label{sec:PrimitiveFieldDefinitions}
+\label{sec:math}
+
+To anchor empirical evaluation, we define SIT's primitive fields hierarchically from their mathematical status in the canonical action to their laboratory measurement proxies.
+
+\paragraph{(1) The Complex Coherence Field $\psi(x)$.}
+The primary complex field $\psi(x) = |\psi(x)| e^{i\theta(x)}$ is a dynamical complex scalar field of mass dimension $[M]^1$ (in natural units $\hbar = c = 1$) on the four-dimensional Lorentzian manifold $(\mathcal{M}^4, g_{\mu\nu})$, transforming in a representation of local $U(1)$ gauge symmetry $\psi(x) \mapsto e^{i\alpha(x)}\psi(x)$ with covariant derivative $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$. We emphasize that $\psi(x)$ is \textbf{not} a single-particle quantum-mechanical Schr\"odinger wavefunction and $|\psi(x)|^2$ is \textbf{not} a Born probability density; rather, $\psi(x)$ is a macroscopic covariant order parameter in the effective-field-theory sense (analogous to the Ginzburg--Landau condensate order parameter in superconductivity or superfluidity), quantifying coherent structural order available to dress matter and gauge couplings.
+
+\paragraph{(2) The Dimensionless Coherence Ratio $\Rcoh(x)$ vs.\ Operational Quantum Statistics.}
+\begin{itemize}
+  \item \textbf{Mathematical Definition:} Relative to the characteristic coherence reference scale $\psi_0 > 0$ ($[\psi_0] = [M]^1$), the dimensionless gauge-invariant coherence ratio is
+  \begin{equation}
+  \Rcoh(x) := \frac{|\psi(x)|}{\psi_0} \ge 0.
+  \label{eq:def_Rcoh_canonical}
+  \end{equation}
+  (In normalized dimensionless units where $\psi_0 = 1$, this coincides with the shorthand $\Rcoh \equiv |\psi|$ used in phenomenological sections.) All gauge-invariant potentials and constitutive dressings depend on $\psi$ exclusively through $\Rcoh^2 = |\psi|^2/\psi_0^2$.
+  \item \textbf{Operational Separation Contract (Imported from Paper~002 \& Paper~003):} Following the July~2026 operational discipline (Paper~002, Section~4.2), the classical field amplitude $\Rcoh(x) = |\psi(x)|/\psi_0$ is \emph{not} identically equal to quantum purity, fringe visibility, mutual information, or Bose--Einstein condensate fraction. Different experimental domains measure distinct declared statistics $C_M(x)$---such as normalized register purity for a finite-dimensional density matrix $\rho(x)$ of dimension $d > 1$,
+  \begin{equation}
+  \Rcoh^{\mathrm{proxy}}(x) = \frac{\mathrm{Tr}[\rho^2(x)] - 1/d}{1 - 1/d},
+  \label{eq:purity_proxy_def}
+  \end{equation}
+  interferometric visibility, ultraviolet-regulated mutual information, or the Penrose--Onsager condensate fraction $f_{\mathrm{BEC}}$ of Paper~003. Any state-to-field link takes the form of an explicit, testable calibration kernel $C_M(x) = K_M[\psi,\rho_t](x) + \eta_M(x)$ (\texttt{OPEN-6C}); until $K_M$ and the corresponding laboratory source $J_{\mathrm{prep}}$ are derived and tested, $\Rcoh(x)$ remains a covariant EFT field amplitude rather than a universal quantum-information resource measure.
+\end{itemize}
+
+\paragraph{(3) The Time-Density Scalar Field $\rho_t(x)$.}
+\begin{itemize}
+  \item \textbf{Mathematical Definition:} $\rho_t(x)$ is a real gauge-singlet Lorentz scalar field of physical dimension $[T^{-1}]$ (mass dimension $[M]^1$ in natural units), possessing its own positive-norm kinetic term $-\frac{\kappa_t}{2}g^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t$ ($\kappa_t > 0$) and coupled to $|\psi|$ via the portal/linkage potential $U_{\mathrm{link}}(\rho_t, |\psi|)$.
+  \item \textbf{Operational Measurement Contract (Paper~002 \& Paper~007):} Conceptually, a \emph{coincidence event} denotes an operational state transition resolved within a spacetime cell---such as photodetector clicks, two-photon Hong--Ou--Mandel coincidences, or atomic-clock transitions---motivating an operational event-rate proxy along a timelike worldline with proper time $\tau$:
+  \begin{equation}
+  \rho_t^{\mathrm{proxy}}(x) := \lim_{\Delta\tau \to 0} \frac{\Delta N_{\mathrm{events}}}{\Delta\tau}.
+  \label{eq:def_rhot_operational}
+  \end{equation}
+  As formalized in Paper~002 (Section~4.1) and Paper~007, an event count per unit proper time and an atomic transition-frequency shift are distinct laboratory observables; linking $\rho_t(x)$ to either requires an explicit calibrated response function $R_{\mathcal{O},\epsilon}$ (accounting for exposure, dead time, and coupling dictionary \texttt{OPEN-6B}) rather than asserting an uncalibrated identity.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{Summary of primitive SIT informational fields, strictly separated operational laboratory proxies (linked only via open calibration kernels under \texttt{OPEN-6}), and canonical dimensions ($\hbar = c = 1$).}
+\label{tab:primitive-fields-summary}
+\vspace{0.4em}
+\footnotesize
+\begin{tabular}{|p{2.9cm}|p{3.9cm}|p{4.3cm}|p{3.3cm}|}
+\hline
+\textbf{Field / Ratio} & \textbf{Canonical EFT Role} & \textbf{Distinct Operational Proxy (Requires \texttt{OPEN-6} Kernel)} & \textbf{Mass Dim.\ / Type} \\
+\hline
+$\psi(x)$ & Macroscopic $U(1)$ order parameter $|\psi|e^{i\theta}$ & Condensate or phase-order statistic (e.g.\ Penrose--Onsager mode, Paper~003) & $[M]^1$, complex $U(1)$ scalar \\
+$\Rcoh(x) = |\psi|/\psi_0$ & Gauge-invariant EFT amplitude ratio & Normalized purity $\frac{\mathrm{Tr}[\rho^2]-1/d}{1-1/d}$, fringe visibility, or $f_{\mathrm{BEC}}$ (not bare identities) & $[M]^0$, real gauge invariant \\
+$\rho_t(x)$ & Dynamical real temporal-density scalar & Atomic clock shift ($\alpha_\rho \delta\rho_t/\rho_0$) or calibrated event rate $\Delta N_{\mathrm{events}}/\Delta\tau$ & $[M]^1$ ($[T^{-1}]$), real scalar \\
+\hline
+\end{tabular}
+\end{table}
+
+For clarity of evaluation, Sections~1--8 establish the canonical physical EFT framework of Super Information Theory (\texttt{M\_AUTH\_SIT\_EFT\_v1}), including its action, covariant field equations, screening consistency, conditional PPN/Shapiro structure, and observational interfaces; Sections~9--25 develop conservation laws, canonical quantization, corrected open-system thermodynamics (unital CPTP vs.\ relative-entropy contraction), stability, and disambiguated optical-clock relations; Part~II (Sections~26--31) specifies experimental channels, identifiability cautions, and missing-derivation checklists; Part~III (Sections~32--50) examines interdisciplinary, neuroscientific, cosmological, and carefully scoped frontier extensions; and Part~IV (Sections~51--55) presents the machine-checked Lean~4.30 formalization across infinite Sobolev towers, curved $3+1$D ADM gravity, 4D non-perturbative Wilson-coherence lattice gauge theory, and bundle holonomy for matter.
+
+\section{Operational Definitions and the Informational Fields}
+\label{sec:operational-definitions}
+
+A central methodological commitment of Super Information Theory is that ``information'' is treated as an operationally instantiated physical structure rather than a disembodied metaphysical substance. Its physical realization is mediated by concrete degrees of freedom whose interactions generate measurable events. Accordingly, $\Rcoh(x)$ and $\rho_t(x)$ do not postulate unobservable Platonic entities acting outside physical law; rather, they furnish covariant field variables in \texttt{M\_AUTH\_SIT\_EFT\_v1} whose connection to concrete laboratory observables (atomic clock frequency shifts, torsion-balance torques, interferometric visibilities, or condensate fractions) is governed explicitly by the open calibration and source-to-apparatus contracts of \texttt{OPEN-6} (Paper~002, Section~4; Section~\ref{sec:experimental-predictions}).
+
+No claim is made that abstract informational notation is ontologically prior to physical degrees of freedom, nor that renaming a laboratory measurement (such as purity or clock rate) by a field symbol establishes a new dynamical field. Instead, following the calibration checklist of Paper~002 (Section~4.4), the field interpretation becomes empirically informative only when an explicit state-to-field map compresses multiple measurements, transfers out of sample across apparatuses or preparations, and predicts a reversible residual beyond established general-relativistic, electromagnetic, thermal, and mechanical systematics.

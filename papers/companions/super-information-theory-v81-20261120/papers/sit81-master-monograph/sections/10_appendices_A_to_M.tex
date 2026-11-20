@@ -1,0 +1,712 @@
+\appendix
+
+\section{Glossary of Key Notation and Symbols}
+\label{sec:notation}
+\label{appendix:A}
+\label{appendix:B}
+
+This appendix summarizes the canonical notation for the primary fields, coupling parameters, cutoff scales, and operational observables used throughout Version~81 (\texttt{M\_AUTH\_SIT\_EFT\_v1}, explicitly separated from the July~2026 Version~80 conformal benchmark of Paper~002 in Table~\ref{tab:july-v80-vs-nov-v81}). Spacetime signature follows the mostly-plus relativistic convention $(-,+,+,+)$ with Minkowski metric $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ and natural units $\hbar = c = 1$ ($[M] = \mathrm{GeV}$) unless SI factors are explicitly restored.
+
+\subsection*{Core SIT Fields, Canonical Couplings, and Cutoff Scales}
+
+\begin{description}[leftmargin=2.4cm, style=nextline]
+  \item[$\psi(x)$] Primitive complex coherence scalar order-parameter field, $\psi(x) = |\psi(x)| e^{i\theta(x)}$ (mass dimension $[M]^1$).
+  \item[$\Rcoh(x)$] Dimensionless gauge-invariant coherence ratio, $\Rcoh(x) := |\psi(x)|/\psi_0 \ge 0$, with vacuum value $R_0 = v_0/\psi_0$.
+  \item[$\rho_t(x)$] Real gauge-singlet temporal-density scalar field governing operational local clock rates (physical dimension $[T^{-1}]$, natural dimension $[M]^1$), with vacuum value $\rho_0 > 0$.
+  \item[$g_{\mu\nu},\,\kappa_G,\,M_{\mathrm{Pl}}$] Lorentzian spacetime metric (dimensionless), gravitational coupling $\kappa_G := 8\pi G = M_{\mathrm{Pl}}^{-2} > 0$, and canonical reduced Planck mass $M_{\mathrm{Pl}} = 2.435323459\times 10^{18}\,\mathrm{GeV}$.
+  \item[$A_\mu,\,F_{\mu\nu},\,\hat{q}$] Abelian $U(1)$ gauge connection, curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$, and coherence $U(1)$ charge coupling $\hat{q} \ge 0$ in $D_\mu\psi = (\nabla_\mu - i\hat{q}A_\mu)\psi$.
+  \item[$f_{\mathrm{EM}}(\Rcoh),\,f_{\mathrm{SM}}(\Rcoh)$] Vacuum-positive constitutive dressings $f_{\mathrm{EM}}(\Rcoh) = 1 + c_{\mathrm{EM}}\Rcoh^2 \ge 1$ and $f_{\mathrm{SM}}(\Rcoh) = 1 + \Rcoh^2/(2 M_{\mathrm{sym}}^2) \ge 1$.
+  \item[$\Lambda_{\mathrm{EM}},\,\Lambda_{\mathrm{sym}},\,\Lambda_{\mathrm{UV}}$] Dimension-6 EFT scales $\Lambda_{\mathrm{EM}} = \psi_0/\sqrt{c_{\mathrm{EM}}}$, $\Lambda_{\mathrm{sym}} = \sqrt{2}\,\psi_0 M_{\mathrm{sym}}$, and unified ultraviolet ceiling $\Lambda_{\mathrm{UV}} = \min(M_{\mathrm{Pl}}, \Lambda_{\mathrm{EM}}, \Lambda_{\mathrm{sym}})$.
+  \item[$\zeta$] Phenomenological scale parameter entering the separately postulated exploratory energy-density ansatz $\varepsilon_{\mathrm{SIT}}^{\mathrm{phen}} = \zeta\,|\psi|\,\rho_t^2$ (not derived from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}, Section~\ref{sec:informational_energy_equivalence}).
+  \item[{$\mathcal{C}_{\mathrm{state}}[\rho]$}] Declared nonlinear quantum state functional (replacing the impossible linear operator $\hat{\mathcal{R}}_{\mathrm{coh}}$ of earlier drafts) in the exploratory SIT~3.0 proper-time hypothesis (Section~\ref{sec:SIT3}).
+\end{description}
+
+\subsection*{Neuroscientific, Lattice, and Experimental Parameters}
+
+\begin{description}[leftmargin=2.4cm, style=nextline]
+  \item[$\phi_{\mathrm{neuron}},\,\phi_{\mathrm{group}},\,\Phi_{\mathrm{token}}$] Instantaneous single-neuron oscillation phase, ensemble mean phase, and local phase-wave differential token $\Phi_{\mathrm{token}} = \Delta(\phi_{\mathrm{neuron}} - \phi_{\mathrm{group}})$ (radians).
+  \item[$U(x,\mu),\,U_\square,\,P(\mathbf{x})$] Compact matrix gauge link variable $U(x,\mu) \in G \subset U(n+1)$ on the 4D hypercubic Euclidean lattice $(\mathbb{Z}/l\mathbb{Z})^4$, elementary plaquette holonomy $U_\square$, and thermal Polyakov loop $P(\mathbf{x})$.
+  \item[$\alpha_\rho,\,\mathcal{T},\,\alpha_\Phi,\,\chi$] Disambiguated optical-clock response symbols (repairing the Version~79/80.2 reuse of $\alpha_{\mathrm{eff}}$): local field-response coefficient $\alpha_\rho$ ($\Delta\nu/\nu = \alpha_\rho\,\delta\rho_t/\rho_0$), potential-to-field transfer factor $\mathcal{T} := (\rho_0^{-1}\partial\rho_t/\partial(\Phi/c^2))_{\mathrm{lab}}$, gravitational-potential redshift slope $\alpha_\Phi := d\ln\nu / d(\Phi/c^2) = \alpha_\rho\mathcal{T}$ (Tokyo Skytree 2020 measured $\alpha_{\mathrm{RS}} = (+1.4\pm 9.1)\times 10^{-5}$; legacy $3\times 10^{-8}$ and $29.4\,\mu\mathrm{Gal}$ BEC targets are quarantined hypothetical sensitivities), and geometry transfer factor $\chi$ ($\alpha_g = \chi\alpha_\Phi$).
+\end{description}
+
+\subsection{Addressing Potential Criticisms and Commitment Levels}
+
+To prevent conflating core laboratory predictions with exploratory extensions, Super Information Theory is organized into distinct levels of empirical and mathematical commitment (refined further into the five-tier formal ledger \texttt{QG49} in Appendix~\ref{app:epistemic-ledger-lean}):
+\begin{itemize}
+  \item \textbf{Level 0 (Core EFT and Non-Perturbative Lattice Dynamics):} The canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1} ($E \ll \Lambda_{\mathrm{UV}}$), its curved $3+1$D ADM constraint closure, its 4D Haar Wilson-coherence lattice realization, and its laboratory falsifiers in $^{87}\mathrm{Rb}$ Bose--Einstein condensates, optical/nuclear clocks, and atom interferometers. Empirical exclusion of all viable screened windows at Level~0 falsifies the core physical theory.
+  \item \textbf{Level 1 (Cosmological and Interdisciplinary Regimes):} Applications of $(\Rcoh, \rho_t)$ gradients to galactic rotation curves, weak-lensing shear residuals, Hubble-tension sampling, and mesoscopic cortical phase-synchronization dynamics. These models are constrained by Level~0 bounds but are modular: revising a cosmological or neural parameter fit does not invalidate Level~0.
+  \item \textbf{Level 2 (Conditionally Isolated Arithmetic Spectral Explorations):} Operator-theoretic comparisons with zeta-function spectra, formally decoupled from the physical SIT core under \texttt{ODQ-7} (\texttt{HELD\_PER\_ODQ7}, \texttt{rh\_solved = false}).
+\end{itemize}
+
+\subsection{Summary}
+
+Variations of $S_{\mathrm{AUTH}}$ in $(-,+,+,+)$ generate ghost-free, positive-energy scalar, gauge, and metric dynamics that reduce smoothly to General Relativity, Maxwell electrodynamics, quantum mechanics, and Boltzmann kinetic theory in tested limits while yielding crisp laboratory falsification targets.
+
+\section{Roadmap to Formal Proofs and Technical Companion Papers}
+\label{app:roadmap}
+
+Alongside this unified Version-80 master monograph, specialized derivations, Monte Carlo codes, and machine-checked Lean~4.30 proof developments are organized across four focused technical companion works:
+
+\subsection{Non-Autonomous Balance Laws, Informational Hysteresis, and Singular Fronts}
+
+Formulates open-system SIT balance laws with time-dependent environmental sources, analyzing path-dependent informational hysteresis ($\Phi_{\mathrm{geom}} \approx \oint C_{\mathrm{rec}}[p]\,dt$) and steep coherence-saturation fronts without violating global conservation of system-plus-bath $J^\mu_{\mathrm{coh}}$.
+
+\subsection{Companion Paper I: Canonical $(-,+,+,+)$ Effective Field Theory, Stage-6 Action-Response Diagnostics, Conditional E\"ot-Wash Non-Exclusion, and Curved $3+1$D ADM Closure}
+
+Presents the complete classical, linearized, and one-loop heat-kernel structure of \texttt{M\_AUTH\_SIT\_EFT\_v1}, Stage-6 multiplicative-vs-conformal and $U(1)$ kinetic-mixing diagnostics (\texttt{ActionIdentityDiagnostics}, $6$ theorems), the exact $(p^2 K + H)^{-1} = V\,\mathrm{diag}(1/(p^2+m_a^2))\,V^\top$ source--detector propagator residue identity, its coordinate-rescaling equivalence $D = \mathrm{diag}(1,\psi_0)$, and its direct canonical instantiation on \texttt{AuthModelParams} proving $0 < m_0^2 \le m_1^2$ and automatic $p^2 + m_a^2 \ne 0$ for $p^2 \ge 0$ (\texttt{Stage6Addendum.\allowbreak{}ActionResponsePropagatorIdentity}, $5$ theorems), the conditional weak-field E\"ot-Wash parallel-slab non-exclusion calculation (\texttt{UnchangedActionWeakFieldObservable}, $5$ theorems) paired with six locked primary experimental provenance records in \texttt{primary\_measurements\_manifest\_v2.json} and quarantine of legacy approximations, infinite-dimensional $\ell^2$ Sobolev Galerkin convergence, and nonlinear curved $3+1$D ADM pointwise formal 3-jet Dirac--Bergmann hypersurface closure modulo explicit spatial divergences $\partial_k B^k$ restricted to the physical Sylvester Riemannian SPD cone \texttt{IsSPD3} ($181$ Stage-3 + $227$ \texttt{Off\allowbreak{}Diagonal\allowbreak{}Curved\allowbreak{}ADMClosure} + \texttt{Matter\allowbreak{}And\allowbreak{}ADMDomain\allowbreak{}Refinements} Lean~4.30 declarations + $74/74$ SymPy checks, demarcating infinite-dimensional Sobolev/Banach phase-space domains with Regge--Teitelboim asymptotic boundary conditions under \texttt{OPEN-2B} and action-to-apparatus gaps under \texttt{OPEN-6}).
+
+\subsection{Companion Paper II \& Standalone Lattice Mathematics Paper: Non-Perturbative 4D Hypercubic Wilson-Coherence Lattice Gauge Theory and Classical $C^4$ Continuum Limit}
+
+Establishes the compact-group 4D Haar Wilson-coherence probability measure $0 < Z \le 1$, exact local non-Abelian gauge invariance, the three-model Osterwalder--Schrader reflection-positivity hierarchy (Models~L1/L2/L3), Stage-6's exact finite-lattice corner Hessian, periodic lattice Fourier-mode eigenvalue equations (\texttt{Stage6Addendum.\allowbreak{}PeriodicLatticeFourierEigenvalue}, $3$ theorems), non-asymptotic 4D Fourier symbol bounds, conventional $C^4$ (\texttt{ContDiff} $\mathbb{R}\;4$) $O(1/l^2)$ convergence to $\frac{3\beta}{8}\int_{[0,1]^4}\frac{|\nabla f|^2}{f}\,du$, exact Stage-5 finite-lattice embedding at $\kappa_t = 0$, and the sharp zero-division nonnegative-field $\frac{3\beta}{4}$ $H^1(\sqrt{F})$ coercivity bound allowing zero corners together with both exact equality witnesses (single-site spike for $l \ge 2$ and strictly positive parity-alternating checkerboard for even $l$) while retaining the valid weaker $\beta/2$ bound and sharp $1/12$ six-pair bound (\texttt{Stage6Addendum.\allowbreak{}NonnegativeFieldCoercivity}, $10$ theorems; $32$ Stage-6/Addendum Lean~4.30 lattice theorems, also presented independently of physical SIT interpretations in the standalone mathematical paper \emph{A Classical Continuum Limit for a Four-Corner Lattice Energy}), alongside heavy-coherence Polyakov coexistence and exploratory finite-volume 4D $SU(2)$ MCMC benchmarks.
+
+\subsection{Companion Paper III: Informational Bundle Holonomy for Matter, Chiral Overlap Fermions, and Pure-Import Lean~4.30 Formalization}
+
+Details noncommutative Clifford/Pauli operator derivation of $g_{\mathrm{tree}} = 2$ with $O(\Lambda_{\mathrm{UV}}^{-2})$ dipole suppression, semiclassical circular Coulomb \texttt{HasDerivAt} plus $2\pi n$ phase-holonomy derivation of the Bohr spectrum $E_n = E_1/n^2$, constructive non-zero finite-matrix Neuberger--Ginsparg--Wilson overlap chirality $D_{\mathrm{ov}} \ne 0$ with $SU(3)_c\times SU(2)_L\times U(1)_Y \hookrightarrow U(6)$ embedding and massive determinant weight $\det(D^\dagger D + m_f^2 I) \ge m_f^{2N}$, and the four-layer verification architecture spanning the $98$-module pure-import closure (\texttt{SITStage5\allowbreak{}Pure\allowbreak{}Import\allowbreak{}Clean\allowbreak{}Audit}), $640$-module unified closure (\texttt{SITStage5MasterAudit}), $6$-module Stage-6 audit (\texttt{SITStage6Audit}, $30/30$ theorems), and $3$-module publication addenda ($18/18$ theorems; $48$ Stage-6/Addendum audited theorems) across $669$ total \texttt{.lean} files.
+
+\section{Chronology of Core Concepts and Bounded Comparison with Causal Fermion Systems}
+\label{app:cfs-chronology}
+
+This appendix records the dated public timeline of high-level conceptual framing elements in the SIT precursor corpus (2017--2022) alongside later expositions in Causal Fermion Systems (CFS, 2024--2025). Consistent with Paper~048 (\emph{Causal Fermion Systems and Super Information Theory}, July~28, 2026) and Appendix~\ref{app:chronology}, this chronological comparison documents \emph{narrative-level conceptual parallels only}; it does \emph{not} claim mathematical equivalence, semantic embedding, or independent empirical validation of SIT.
+
+\subsection{Phase 1: Origination of Conceptual Framing in SIT's Precursors (2017--2022)}
+The precursor work for SIT explored relational descriptions of information, observation, and time density across neuroscience and physics:
+
+\begin{description}
+    \item[2017 (Neural Lace Podcast):] Public expositions introduced two high-level conceptual motifs:
+    \begin{itemize}
+        \item \textbf{Relational Information:} Framing operational bits around relational \textit{``coincidence patterns''} of events rather than isolated static states.
+        \item \textbf{Distributed Internal Observation:} The NAPOT (Neural Array Projection Oscillation Tomography) narrative framing internal observation via distributed internal synchronization without an external observer.
+    \end{itemize}
+    \item[2022 (Quantum Gradient Time Crystal Dilation - QGTCD):] Precursor physical drafts introduced a scalar time-density concept ($\rho_t$) and explored gradient-driven gravitational analogies.
+\end{description}
+
+\subsection{Phase 2: The State of Causal Fermion Systems (Pre-2024)}
+In its earlier technical expositions (e.g.\ 2015 overviews), CFS formulated spacetime primarily as the support of a universal measure $\rho$ on abstract operator spaces, while conjecturing that the causal action principle might account for state reduction.
+
+\subsection{Phase 3: Later CFS Expositions and Bounded Comparison Status (2024--2025)}
+During 2024--2025, CFS publications developed operator-algebraic accounts of ``effective dynamical collapse'' (2024) and expository descriptions of spacetime as a ``web of correlations'' of a quantum many-body system (2025). While these motifs echo the 2017 relational vocabulary at a high-level narrative plane, Paper~048 establishes that the only controlled mathematical overlap verified to date is a shared regulated Einstein--Dirac effective-equation limit against July~2026 Version~80 Draft~13---which matches an ordinary Einstein--Dirac null control with \emph{zero discriminatory value}---and extending that truncation check to November~2026 \texttt{M\_AUTH\_SIT\_EFT\_v1} remains a separate open calculation (Appendix~\ref{app:chronology}).
+
+
+
+\section{Technical Derivations, Proofs, and Mathematical Formalism}
+\label{app:tech-derivations}
+
+This appendix records explicit step-by-step variational and post-Newtonian derivations for \texttt{M\_AUTH\_SIT\_EFT\_v1} in signature $(-,+,+,+)$, supporting Sections~\ref{sec:gravitational-sector}--\ref{sec:action-principle}.
+
+\subsection{Full Covariant Variation of the Canonical \texttt{M\_AUTH\_SIT\_EFT\_v1} Action}
+
+Varying $S_{\mathrm{AUTH}}$ (Eq.~\eqref{eq:canonical_action_sec5}) with respect to $\delta g^{\mu\nu}$, $\delta\rho_t$, $\delta\psi^*$, and $\delta A_\nu$ using $\delta\sqrt{-g} = -\frac{1}{2}\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu}$ and $\delta(F_{\alpha\beta}F^{\alpha\beta}) = 2 F_{\mu\lambda}F_\nu^{\ \lambda}\delta g^{\mu\nu} + 4 F^{\mu\nu}\nabla_\mu\delta A_\nu$:
+\begin{align}
+\delta S_{\mathrm{AUTH}}
+&= \int d^4x\,\sqrt{-g}\Biggl\{
+  \frac{1}{2\kappa_G}\bigl(G_{\mu\nu} - \kappa_G T_{\mu\nu}^{\mathrm{tot}}\bigr)\delta g^{\mu\nu}
+  + \Bigl(\kappa_t\Box_g\rho_t - \frac{\partial V_{\mathrm{tot}}}{\partial\rho_t}\Bigr)\delta\rho_t
+  \nonumber\\
+&\quad + \left[
+    \frac{\kappa_c}{2}D_\mu D^\mu\psi
+    - \frac{\partial V_{\mathrm{tot}}}{\partial\psi^*}
+    - \frac{c_{\mathrm{EM}}}{4\psi_0^2}\psi F_{\alpha\beta}F^{\alpha\beta}
+    + \frac{1}{2\psi_0^2 M_{\mathrm{sym}}^2}\psi\,\mathcal{L}_{\mathrm{matter}}
+  \right]\delta\psi^* + \mathrm{c.c.}
+  \nonumber\\
+&\quad + \Bigl[\nabla_\mu\bigl(f_{\mathrm{EM}}(\Rcoh)F^{\nu\mu}\bigr) - \hat{q}J^\nu_{\mathrm{coh}} - J^\nu_{\mathrm{EM,SM}}\Bigr]\delta A_\nu
+\Biggr\},
+\label{eq:appD_full_variation}
+\end{align}
+reproducing Eqs.~\eqref{eq:covariant_einstein_sec5}--\eqref{eq:maxwell_proca_eom_canonical} identically upon setting $\delta S_{\mathrm{AUTH}} = 0$.
+
+\subsection{Algebraic Metric Reduction vs.\ Full Coupled Solution Conditions at Vacuum Equilibrium}
+
+Substituting constant vacuum fields $\rho_t(x) \equiv \rho_0$ and $|\psi(x)| \equiv v_0 = \psi_0 R_0$ with pure-gauge phase $\nabla_\mu\theta - \hat{q}A_\mu = 0$ gives $\partial_\mu\rho_t = 0$, $D_\mu\psi = 0$, $V(\rho_0) = U(v_0) = U_{\mathrm{link}}(\rho_0, v_0) = 0$, $f_{\mathrm{EM}} \equiv f_{\mathrm{EM}}(R_0) \ge 1$, and $f_{\mathrm{SM}} \equiv f_{\mathrm{SM}}(R_0) \ge 1$. Consequently $T_{\mu\nu}^{(\rho_t)} = T_{\mu\nu}^{(\psi)} = T_{\mu\nu}^{(\mathrm{pot})} = 0$, reducing the \emph{metric} equation~\eqref{eq:covariant_einstein_sec5} \emph{algebraically} to $G_{\mu\nu} = 8\pi G_{\mathrm{eff}} T_{\mu\nu}^{\mathrm{SM}} + 8\pi G f_{\mathrm{EM}}(R_0) T_{\mu\nu}^{\mathrm{EM},0}$ with $G_{\mathrm{eff}} = G f_{\mathrm{SM}}(R_0)$. Crucially, this constant-field configuration is an \emph{exact solution of the full coupled system}~\eqref{eq:appD_full_variation} only when the scalar, gauge, and matter equations are simultaneously satisfied:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Nonzero Dust Scalar Residual at $v_0 > 0$:} In Eq.~\eqref{eq:appD_full_variation} (or doubled radial form~\eqref{eq:Rcoh-eom}), setting $\rho_t \equiv \rho_0$, $|\psi| \equiv v_0 > 0$, $F_{\mu\nu} = 0$, and neutral dust $\mathcal{L}_{\mathrm{matter}} = -\rho_m < 0$ leaves a nonzero scalar-equation residual $\mathcal{E}_{|\psi|} = -\frac{v_0\rho_m}{\psi_0^2 M_{\mathrm{sym}}^2} \ne 0$ (or $-\frac{v_0\rho_m}{2\psi_0^2 M_{\mathrm{sym}}^2}$ in $\delta S/\delta\psi^*$). Thus arbitrary dust-sourced Einstein solutions cannot be embedded as exact coupled solutions merely by freezing $(\rho_t, |\psi|) = (\rho_0, v_0)$ at $v_0 > 0$.
+  \item \textbf{Covariant-Constant Gauge Restriction ($\hat{q}v_0 \ne 0$):} A covariantly constant charged vacuum $D_\mu\psi = 0$ with $|\psi| = v_0 > 0$ obeys $[D_\mu, D_\nu]\psi = -i\hat{q}F_{\mu\nu}\psi = 0$, which forces $F_{\mu\nu} = 0$ whenever $\hat{q}v_0 \ne 0$ (and $F_{\alpha\beta}F^{\alpha\beta} \ne 0$ also sources $|\psi|$ whenever $c_{\mathrm{EM}} v_0 \ne 0$).
+  \item \textbf{Exact Regimes vs.\ Controlled Decoupling:} Source-free vacuum ($\mathcal{L}_{\mathrm{matter}} = 0, F_{\mu\nu} = 0$) is an exact solution at $(\rho_0, v_0)$; broader exact sourced GR-plus-Maxwell reduction ($G_{\mathrm{eff}} = G$, $f_{\mathrm{EM}}(0) = f_{\mathrm{SM}}(0) = 1$, $m_A = 0$, with zero scalar residual for arbitrary $\mathcal{L}_{\mathrm{matter}}$ and $F_{\mu\nu}$) holds in the separate unbroken parameter limit $v_0 = 0$; and heavy-scalar decoupling ($m_1, m_2 \gg E_{\mathrm{obs}}$) provides a controlled asymptotic approximation.
+\end{enumerate}
+
+\subsection{Consistently Normalized Conditional Conformal-Frame Weak-Field Potentials, Shapiro Invariance, and PPN Bound}
+\label{app:ppn-derivation}
+
+Around Minkowski space in the static weak-field regime, Einstein-frame metric perturbations $ds_E^2 = -(1 + 2\Phi_E)dt^2 + (1 - 2\Psi_E)d\mathbf{x}^2$ sourced by static Einstein-frame mass $M_E$ satisfy $\nabla^2\Phi_E = \nabla^2\Psi_E = 4\pi G M_E \delta^{(3)}(\mathbf{r})$, giving $\Phi_E(r) = \Psi_E(r) = -G M_E / r$. Simultaneously, linearizing $(\delta\rho_t, \delta|\psi|)$ in canonically normalized variables $\hat{\Phi} = K^{1/2}\delta\Phi$ diagonalizes the positive-definite physical mass matrix $M_{\mathrm{phys}}^2 = K^{-1/2} H K^{-1/2}$ ($H u_a = m_a^2 K u_a$) into physical eigenmasses $m_1, m_2 > 0$ with mixing angle $\vartheta$. \emph{Stage-6 Action-Equivalence Qualification (\texttt{ActionIdentityDiagnostics}):} Stage~6 proves in Lean~4.30 that the unchanged multiplicative portal $+\sqrt{-g}\,f_{\mathrm{SM}}(\Rcoh)\mathcal{L}_{\mathrm{matter}}$ does \emph{not} algebraically match a conformal Jordan metric $g_{\mu\nu}^{(J)} = A^2(\Rcoh)\,g_{\mu\nu}^{(E)}$ at fixed matter variables unless $f_{\mathrm{SM}} = 1$. Conditional on explicitly adopting a universal conformal worldline coupling $S_{\mathrm{pp}} = -m\int A(\Rcoh)\,d\tau_E$ with smooth $A(\Rcoh) > 0$, consistent derivation of both the scalar source and the linearized metric $g_{\mu\nu}^{(J)}/A_0^2 = [1 + 2(A'(v_0)/A(v_0))\delta|\psi|]g_{\mu\nu}^{(E)}$ yields
+\begin{equation}
+\Phi_J(r) = \Phi_E(r)\bigl[1 + \alpha_{\mathrm{conf}}[A]\,S(r)\bigr],
+\qquad
+\Psi_J(r) = \Phi_E(r)\bigl[1 - \alpha_{\mathrm{conf}}[A]\,S(r)\bigr],
+\label{eq:appD_jordan_potentials}
+\end{equation}
+with $S(r) = \sin^2\vartheta\,e^{-m_1 r} + \cos^2\vartheta\,e^{-m_2 r} \in (0, 1]$ and $\alpha_{\mathrm{conf}}[A] = \frac{2 M_{\mathrm{Pl}}^2}{\kappa_c}[A'(v_0)/A(v_0)]^2 \ge 0$. Explicitly separating the two normalizations conflated in earlier drafts (Section~\ref{sec:ppn-shapiro-exact}): Model~C1 ($g_{\mu\nu}^{(J)} = f_{\mathrm{SM}}^{-1}g_{\mu\nu}^{(E)}$, $A = f_{\mathrm{SM}}^{-1/2}$) yields $\alpha_{\mathrm{conf}}^{(\mathrm{C1})} = \frac{1}{4}\alpha_{\mathrm{sym}}$, whereas Model~C2 ($g_{\mu\nu}^{(J)} = f_{\mathrm{SM}}^{\pm 2}g_{\mu\nu}^{(E)}$, $A = f_{\mathrm{SM}}^{\pm 1}$) yields $\alpha_{\mathrm{conf}}^{(\mathrm{C2})} = \alpha_{\mathrm{sym}} = \frac{2 M_{\mathrm{Pl}}^2}{\kappa_c}[f'_{\mathrm{SM}}(v_0)/f_{\mathrm{SM}}(R_0)]^2$. Adding the two potentials yields $\Phi_J(r) + \Psi_J(r) = 2\Phi_E(r)$ (conformal-frame Shapiro null-cone invariance), while dividing gives
+\begin{equation}
+\gamma_{\mathrm{PPN}}(r) = \frac{\Psi_J(r)}{\Phi_J(r)} = \frac{1 - \alpha_{\mathrm{conf}}S(r)}{1 + \alpha_{\mathrm{conf}}S(r)},
+\qquad
+\bigl|\gamma_{\mathrm{PPN}}(r) - 1\bigr| = \frac{2\alpha_{\mathrm{conf}}S(r)}{1 + \alpha_{\mathrm{conf}}S(r)} < 2.3 \times 10^{-5}
+\end{equation}
+for all $\alpha_{\mathrm{conf}} S(r) < 1.15 \times 10^{-5}$, proved algebraically in Lean~4.30 (\texttt{ppn\allowbreak{}Gamma\allowbreak{}Bound\_\allowbreak{}of\_\allowbreak{}alpha\_\allowbreak{}and\_\allowbreak{}screening}) for the abstract conformal coupling $\alpha_{\mathrm{conf}}$ subject to the Stage-6 non-equivalence caveat above. For the direct unchanged-action weak-field channel without assuming a conformal Jordan frame, see Section~\ref{sec:stage6-action-diagnostics}.
+
+\subsection{Mutual Information Regulators and Operational Normalization}
+
+For continuous field configurations partitioned into local region $X$ and complement $Y$ at UV coarse-graining scale $\ell_{\mathrm{reg}} \ge \Lambda_{\mathrm{UV}}^{-1}$, regulated mutual information
+\[
+\mathcal{I}_{\ell_{\mathrm{reg}}}(X : Y) = \int dX\,dY\,p_{\ell_{\mathrm{reg}}}(X,Y)\ln\frac{p_{\ell_{\mathrm{reg}}}(X,Y)}{p_{\ell_{\mathrm{reg}}}(X)p_{\ell_{\mathrm{reg}}}(Y)} \in [0, \mathcal{I}_{\max}(\ell_{\mathrm{reg}})]
+\]
+remains finite and monotonic under CPTP coarse-graining by the quantum data-processing inequality, ensuring $\Rcoh^{\mathrm{proxy}}(x) = \mathcal{I}_{\ell_{\mathrm{reg}}}/\mathcal{I}_{\max} \in [0,1]$ is ultraviolet-safe across laboratory readouts.
+
+\section{Explicit Recovery of Known Physics in SIT Limits}
+
+\subsection{Gravity Limit: Recovery of General Relativity and Constraints}
+\label{app:GRlimit}
+
+To demonstrate the physical viability of SIT, we derive the reduction to Einstein's General Relativity in the appropriate limit, and compute explicit leading corrections.
+
+\paragraph{SIT Action Recap.}
+Recall the SIT action:
+\begin{align*}
+S_{\mathrm{SIT}} = \int d^4x\,\sqrt{-g}\Bigg[
+    &\frac{R}{16\pi G}
+    - \frac{\kappa_t}{2}\,g^{\mu\nu}\partial_\mu\rho_t\partial_\nu\rho_t - V(\rho_t)
+    - f_1(\rho_t, R_{\mathrm{coh}})\sum_{\psi_f} m_{\psi_f}\,\bar\psi_f\psi_f \\
+    &- \frac{1}{4}\,f_2(\rho_t, R_{\mathrm{coh}})\,F_{\mu\nu}F^{\mu\nu}
+    - \frac{\kappa_c}{2}\,(\partial_\mu |\psi|)(\partial^\mu |\psi|) - U(|\psi|)
+    + \mathcal{L}_{\text{int}}(\rho_t, R_{\mathrm{coh}})
+\Bigg].
+\end{align*}
+
+\paragraph{Assumptions for the Gravity Limit.}
+\noindent\textbullet~Assume $R_{\mathrm{coh}}$ is spatially and temporally constant, or its gradients are negligible (strong decoherence regime).
+\noindent\textbullet~Take $\rho_t(x) = \rho_0 + \delta \rho_t(x)$, with $\delta \rho_t(x)$ small.
+\noindent\textbullet~Potentials $V$ and $U$ have stable minima at $\rho_0$, $R_0$.
+\noindent\textbullet~Coupling functions $f_1$, $f_2$ reduce to constants.
+
+\paragraph{Variation with respect to $g_{\mu\nu}$.}
+The field equations become:
+\[
+G_{\mu\nu} = 8\pi G \left[ T_{\mu\nu}^{\text{matter}} + T_{\mu\nu}^{(\rho_t)} \right]
+\]
+where
+\[
+T_{\mu\nu}^{(\rho_t)} = \kappa_t \partial_\mu \rho_t \partial_\nu \rho_t - g_{\mu\nu} \left( \frac{\kappa_t}{2} g^{\alpha\beta} \partial_\alpha \rho_t \partial_\beta \rho_t + V(\rho_t) \right)
+\]
+
+In vacuum and for constant $\rho_t = \rho_0$, the displayed action term $-\sqrt{-g}\,V(\rho_t)$ gives $T_{\mu\nu}^{(\rho_t)} = -g_{\mu\nu} V(\rho_0)$ (correcting an earlier spurious factor of $1/2$), which vanishes identically at the canonical vacuum $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ of \texttt{M\_AUTH\_SIT\_EFT\_v1} (and otherwise acts as a cosmological-constant shift).
+
+\paragraph{Yukawa Correction in the Weak-Field Limit.}
+Linearize about Minkowski space ($g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$, $|\delta \rho_t| \ll 1$). In the decoupled single-scalar truncation, the equation of motion for $\delta\rho_t$ reads:
+\[
+\kappa_t \square \delta\rho_t - V''(\rho_0)\, \delta\rho_t = 0,
+\]
+whose canonically normalized squared mass is
+\[
+m_t^2 = \frac{V''(\rho_0)}{\kappa_t}
+\]
+(reducing to $V''(\rho_0)$ only when $\kappa_t = 1$ is explicitly chosen; in full \texttt{M\_AUTH\_SIT\_EFT\_v1}, the two-mode spectrum is governed by $(p^2 K + H)^{-1}$ in Subsection~E.5). Under a declared matter coupling, a static point mass $M$ acquires a Yukawa modification $\Phi(r) = -\frac{GM}{r}\bigl[1 + \alpha \exp(-m_t r)\bigr]$.
+
+\paragraph{Experimental Constraints and Retirement of Earlier Parameter Box.}
+Earlier drafts asserted that SIT is viable only if $\alpha \lesssim 10^{-5}$ and $m_t^{-1} \gtrsim 10^4\,\mathrm{m}$, declaring all deviations outside that box empirically excluded. Version~81 explicitly \emph{retires} that parameter box as an invalid empirical requirement: a sufficiently decoupled or heavy scalar produces no detectable fifth force regardless of interaction range, and canonical benchmark \texttt{BM\_PHYS\_EFT\_1} itself is extraordinarily short-ranged ($\lambda_1 \approx 8.056\times 10^{-31}\,\mathrm{m}$, Section~\ref{sec:stage6-action-diagnostics}). Confronting \texttt{M\_AUTH\_SIT\_EFT\_v1} with torsion-balance and Solar System data requires the conditional response and primary-provenance likelihood program of Section~\ref{sec:stage6-action-diagnostics} and \texttt{OPEN-6A}/\texttt{OPEN-6D} rather than a fixed one-parameter box.
+
+\paragraph{Conclusion.}
+Thus, at $(\rho_t, |\psi|) = (\rho_0, v_0)$ where $V_{\mathrm{tot}} = 0$, the metric equation reduces algebraically to General Relativity (forming an exact coupled solution in source-free vacuum, an exact sourced GR+Maxwell reduction in the unbroken limit $v_0 = 0$, and a controlled asymptotic approximation in the heavy-scalar decoupling regime, Appendix~D.2), while any finite-range scalar correction must be tested against primary datasets via the action-to-apparatus likelihood pipeline (\texttt{OPEN-6}).
+
+\subsection{Quantum Field Theory Limit: Flat Spacetime and Decoupled Background}
+\label{app:QFTlimit}
+
+\paragraph{Assumptions.}
+\noindent\textbullet~Flat metric: $g_{\mu\nu} \to \eta_{\mu\nu}$.
+\noindent\textbullet~Unbroken or heavy-scalar decoupled background where $(\rho_t, |\psi|)$ fluctuations decouple and $f_{\mathrm{EM}}, f_{\mathrm{SM}} \to \text{const}$ (rescaled into canonical field normalizations).
+
+\paragraph{Action Simplifies:}
+\[
+S_{\mathrm{QFT\,limit}} = \int d^4x \left[
+    \mathcal{L}_{\text{matter}} + \mathcal{L}_{\text{EM}}
+\right],
+\]
+recovering the standard Minkowski quantum field theory action with canonical equal-time commutation relations $[\hat{\phi}(x), \hat{\pi}(y)] = i \hbar \delta^3(x - y)$ in the decoupled limit. Weak residual $(\rho_t, \psi)$ couplings enter only as cutoff-suppressed perturbative EFT operators below $\Lambda_{\mathrm{UV}}$.
+
+\subsection{Conditional Classical Kinetic and Hydrodynamic Correspondence (Open Microscopic Bridge)}
+\label{app:KineticLimit}
+
+Earlier drafts of this subsection identified the classical EFT modulus $\Rcoh(x) = |\psi(x)|/\psi_0$ with local ensemble purity, equated thermodynamic entropy production to $-d\Rcoh/dt$, and asserted that SIT derives the Boltzmann and Navier--Stokes equations directly from $S_{\mathrm{AUTH}}$. Consistent with the operational separation contract (Section~\ref{sec:PrimitiveFieldDefinitions}) and Section~\ref{sec:arrow-of-time}, Version~81 explicitly \emph{re-scopes} this subsection as an external/conditional kinetic correspondence rather than a derivation from $S_{\mathrm{AUTH}}$:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Standard Kinetic Equations Under Their Actual Assumptions:} In the constant-background decoupled limit where SIT scalar gradients vanish, dilute many-body gases obey the classical Boltzmann equation
+  \[
+  \frac{\partial f}{\partial t} + \vec{v} \cdot \nabla_x f + \vec{F} \cdot \nabla_p f = \left( \frac{\partial f}{\partial t} \right)_{\mathrm{coll}},
+  \]
+  and, under Chapman--Enskog hydrodynamic closure, the compressible/incompressible Navier--Stokes equations
+  \[
+  \rho \left( \frac{\partial \vec{v}}{\partial t} + \vec{v} \cdot \nabla \vec{v} \right)
+  = -\nabla p + \eta \nabla^2 \vec{v} + \cdots,
+  \]
+  strictly by virtue of standard microscopic many-body mechanics (for example, the hard-sphere Boltzmann--Grad propagation-of-chaos theorem of Deng--Hani--Ma~2025).
+  \item \textbf{What $S_{\mathrm{AUTH}}$ Does \emph{Not} Derive:} The canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1} does \emph{not} derive a microscopic collision operator $(\partial_t f)_{\mathrm{coll}}$ from $(\rho_t, \psi)$, does \emph{not} identify the classical scalar amplitude $\Rcoh = |\psi|/\psi_0$ with quantum ensemble purity $\mathrm{Tr}(\rho^2)$, and does \emph{not} equate Boltzmann entropy production $-k_B\int C[f]\ln f\,d^3p \ge 0$ to $-d\Rcoh/dt$. Constructing a rigorous Wigner/BBGKY kinetic transport closure for matter coupled to fluctuating $(\rho_t, \psi)$ fields remains an open research problem (see Section~\ref{sec:navier-stokes-boundary} for the phenomenological hyperviscous regularization boundary).
+\end{enumerate}
+
+\subsection*{Summary of Reductions and Open Microscopic Bridges}
+
+\begin{description}
+    \item[Gravity Reduction] Constant vacuum fields $(\rho_0, v_0)$ reduce the metric equation algebraically to Einstein's equations (exact in source-free vacuum; exact sourced GR+Maxwell in the unbroken limit $v_0 = 0$; controlled asymptotic approximation under heavy-scalar decoupling).
+    \item[Decoupled QFT Limit] In flat spacetime with decoupled scalar fluctuations, matter and gauge sectors retain standard Minkowski QFT dynamics up to $\Lambda_{\mathrm{UV}}$-suppressed EFT operators.
+    \item[Kinetic Correspondence] Standard Boltzmann and Navier--Stokes equations hold in the decoupled background under their established statistical-mechanical hypotheses, while SIT-specific kinetic collision and transport derivations remain open.
+\end{description}
+
+\medskip\hrule\medskip
+\noindent\textbf{Scope Note:} Rather than claiming complete first-principles derivation of kinetic theory or quantum measurement from classical scalar fields, Version~81 establishes exact algebraic/unbroken/decoupled consistency with General Relativity and perturbative QFT while keeping microscopic kinetic and measurement bridges explicitly open.
+
+\subsection{Worked Example: Linearized Field Equations and Coupled Dispersion Relations}
+
+We consider small perturbations of the canonical SIT scalar fields of \texttt{M\_AUTH\_SIT\_EFT\_v1} in mostly-plus signature $(-,+,+,+)$ about the broken-phase equilibrium $(\rho_0, v_0)$ (with $\Rcoh = |\psi|/\psi_0$, $R_0 = v_0/\psi_0$, $\psi_0 \ne 0$, and effective radial kinetic normalization $\kappa_R := \kappa_c\psi_0^2 > 0$):
+\[
+\rho_t(x) = \rho_0 + \delta \rho_t(x), \qquad \Rcoh(x) = R_0 + \delta \Rcoh(x), \qquad h(x) := |\psi(x)| - v_0 = \psi_0\,\delta\Rcoh(x),
+\]
+packaged either into the dimensionless radial perturbation vector $\delta\Phi_R := (\delta\rho_t, \delta\Rcoh)^\top$ used in this worked example or into the canonical Stage-6 modulus perturbation vector $\delta\Phi_h := (\delta\rho_t, h)^\top = D\,\delta\Phi_R$, where $D := \mathrm{diag}(1, \psi_0)$ is invertible.
+
+\paragraph{Step 1: Expand the canonical action to second order in perturbations}
+
+Starting from the canonical $(-,+,+,+)$ action \texttt{M\_AUTH\_SIT\_EFT\_v1} (Eq.~\eqref{eq:abstract_master_action}, with healthy \emph{negative} scalar kinetic terms under $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ so that $+\frac{1}{2}\kappa_t(\partial_t\rho_t)^2 + \frac{1}{2}\kappa_R(\partial_t\Rcoh)^2 \ge 0$):
+\[
+S_{\mathrm{AUTH}} = \int d^4x \sqrt{-g} \left[
+\frac{1}{16\pi G} R
+- \frac{\kappa_t}{2} g^{\mu\nu} \partial_\mu \rho_t \partial_\nu \rho_t
+- \frac{\kappa_R}{2} g^{\mu\nu} \partial_\mu \Rcoh \partial_\nu \Rcoh
+- V_{\mathrm{tot}}(\rho_t, \psi_0 \Rcoh)
++ \cdots \right],
+\]
+expanding $V_{\mathrm{tot}}$ around its minimum $(\rho_0, \psi_0 R_0)$ yields the positive-definite quadratic potential $\frac{1}{2}\,\delta\Phi_R^\top H_R\,\delta\Phi_R$, where $K_R = \mathrm{diag}(\kappa_t, \kappa_R)$ (or $\mathrm{diag}(\kappa_t, \kappa_c(1+\delta K)\psi_0^2)$ when including the Stage-6 lattice AM--GM shift $\delta K \ge 0$) and $H_R = \partial^2 V_{\mathrm{tot}}/\partial(\rho_t, \Rcoh)^2|_{(\rho_0, R_0)}$ are related by the exact diagonal coordinate congruence $D = \mathrm{diag}(1, \psi_0)$ to Stage~6's $(\delta\rho_t, h)$ kinetic matrix $K_h = \mathrm{diag}(\kappa_t, \kappa_c(1+\delta K))$ and portal Hessian $H_h = \partial^2 V_{\mathrm{tot}}/\partial(\rho_t, |\psi|)^2|_{(\rho_0, v_0)}$:
+\[
+K_R = D^\top K_h D, \qquad H_R = D^\top H_h D, \qquad J_R = D^\top J_h, \qquad V_R = D^{-1} V_h.
+\]
+The quadratic scalar Lagrangian is therefore
+\[
+\mathcal{L}^{(2)}_{\mathrm{scal}} = -\frac{1}{2}\,\eta^{\mu\nu}\,(\partial_\mu\delta\Phi_R)^\top K_R (\partial_\nu\delta\Phi_R) - \frac{1}{2}\,\delta\Phi_R^\top H_R\,\delta\Phi_R + \delta\Phi_R^\top J_R.
+\]
+
+\paragraph{Step 2: Derive coupled linearized equations of motion}
+
+Varying $\int d^4x\,\mathcal{L}^{(2)}_{\mathrm{scal}}$ on Minkowski background $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ with d'Alembertian $\square := \eta^{\mu\nu}\partial_\mu\partial_\nu = -\partial_t^2 + \nabla^2$ (note $\delta(-\frac{1}{2}\eta^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi) = +\phi\,\square\phi$ upon integration by parts) yields the exact coupled linearized Klein--Gordon system:
+\[
+(K_R\,\square - H_R)\,\delta\Phi_R = -J_R,
+\qquad\text{i.e.,}\qquad
+\begin{pmatrix} \kappa_t\square - (H_R)_{11} & -(H_R)_{12} \\ -(H_R)_{12} & \kappa_R\square - (H_R)_{22} \end{pmatrix}
+\begin{pmatrix} \delta\rho_t \\ \delta\Rcoh \end{pmatrix}
+= -\begin{pmatrix} J_\rho \\ J_R \end{pmatrix}.
+\]
+In Euclidean momentum space ($-\square \mapsto p^2 \ge 0$), the canonical Stage-6 instantiation theorem \texttt{Stage6Addendum.\allowbreak{}ActionResponsePropagatorIdentity.\allowbreak{}canonical\_\allowbreak{}sit\_\allowbreak{}two\_\allowbreak{}mode\_\allowbreak{}eigenbasis\_\allowbreak{}and\_\allowbreak{}propagator} constructs directly from \texttt{AuthModelParams} ($v_0 > 0$, $\delta K \ge 0$) a $K_h$-orthonormal generalized eigenbasis $V_h$ with strictly positive squared eigenmasses $0 < m_1^2 \le m_2^2$ (automatically discharging $p^2 + m_a^2 \ne 0$ for every $p^2 \ge 0$), and \texttt{canonical\_\allowbreak{}coord\_\allowbreak{}transform\_\allowbreak{}propagator\_\allowbreak{}equiv} proves that $V_R = D^{-1} V_h$ preserves both the eigenmasses and the source--detector propagator inner product identically:
+\begin{gather*}
+(p^2 K_R + H_R)^{-1} = V_R\,\mathrm{diag}\!\left(\frac{1}{p^2 + m_1^2},\; \frac{1}{p^2 + m_2^2}\right) V_R^\top,\\[0.3em]
+J_{\mathrm{det},R}^\top (p^2 K_R + H_R)^{-1} J_{\mathrm{src},R} = J_{\mathrm{det},h}^\top (p^2 K_h + H_h)^{-1} J_{\mathrm{src},h}.
+\end{gather*}
+
+\paragraph{Step 3: Analyze the uncoupled limit ($(H_R)_{12} = 0$, $J_R = 0$)}
+
+When portal mixing vanishes ($(H_R)_{12} = 0$, $J_R = 0$), setting $m_\rho^2 := (H_R)_{11} > 0$ and $m_R^2 := (H_R)_{22} > 0$, the system decouples into two healthy non-tachyonic Klein--Gordon equations under $\square = -\partial_t^2 + \nabla^2$:
+\[
+\kappa_t \square \delta \rho_t - m_{\rho}^2 \delta \rho_t = 0,
+\qquad
+\square \delta \Rcoh - \frac{m_{R}^2}{\kappa_R} \delta \Rcoh = 0.
+\]
+Substituting a plane wave $e^{-i\omega t + i\mathbf{k}\cdot\mathbf{x}}$ ($\square \mapsto +\omega^2 - |\mathbf{k}|^2$) yields the healthy dispersion relations $\omega^2 = |\mathbf{k}|^2 + m_\rho^2/\kappa_t$ and $\omega^2 = |\mathbf{k}|^2 + m_R^2/\kappa_R$, with strictly positive squared masses (invariant under $D = \mathrm{diag}(1, \psi_0)$ since $(H_R)_{22}/\kappa_R = (\psi_0^2 (H_h)_{22})/(\psi_0^2 \kappa_c) = (H_h)_{22}/\kappa_c$).
+
+\paragraph{Step 4: Recover General Relativity limit}
+
+In the decoupled vacuum limit where $\delta\rho_t, \delta\Rcoh \to 0$ (or at energies far below the heavy portal masses $m_1, m_2$), scalar fluctuations freeze at the minimum $V_{\mathrm{tot}}(\rho_0, v_0) = 0$ and the gravitational equations reduce to Einstein's equations $G_{\mu\nu} = 8\pi G_{\mathrm{eff}} T_{\mu\nu}$.
+
+\paragraph{Step 5: Physical interpretation of correlation lengths}
+
+The eigenmasses $m_1, m_2$ set inverse correlation lengths $\lambda_a = \hbar c / m_a$ over which scalar perturbations decay exponentially in static backgrounds (e.g.\ $\lambda_1 \approx 8.056\times 10^{-31}\,\mathrm{m}$ at canonical benchmark \texttt{BM\_PHYS\_EFT\_1}).
+
+\medskip\hrule\medskip
+This rederived worked example aligns Appendix~E exactly with the canonical $(-,+,+,+)$ signature of \texttt{M\_AUTH\_SIT\_EFT\_v1} and maps its dimensionless $(\delta\rho_t, \delta\Rcoh)$ matrices $(K_R, H_R)$ to the Stage-6 $(\delta\rho_t, h)$ normalization $(K_h, H_h)$ via the explicit invertible congruence $D = \mathrm{diag}(1, \psi_0)$.
+
+\subsection{Worked Example: Linearized Metric and Canonical Scalar Stress--Energy Tensor}
+
+Consider perturbations of the metric around Minkowski spacetime:
+\[
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \qquad |h_{\mu\nu}| \ll 1,
+\]
+where $\eta_{\mu\nu} = \mathrm{diag}(-1, +1, +1, +1)$.
+
+\paragraph{Step 1: Expand the canonical action to quadratic order in perturbations}
+
+Expanding $S_{\mathrm{AUTH}}$ to second order in $h_{\mu\nu}$ and $\delta\Phi = (\delta\rho_t, \delta\Rcoh)^\top$ gives:
+\begin{equation}
+\label{eq:expanded_action}
+\begin{split}
+S^{(2)} = \int d^4x \Biggl[ &
+    \frac{1}{64 \pi G} h^{\mu\nu} \mathcal{E}_{\mu\nu}^{\alpha\beta} h_{\alpha\beta}
+    - \frac{\kappa_t}{2} \eta^{\mu\nu} \partial_\mu \delta \rho_t \partial_\nu \delta \rho_t
+    - \frac{\kappa_R}{2} \eta^{\mu\nu} \partial_\mu \delta \Rcoh \partial_\nu \delta \Rcoh \\
+&   - \frac{1}{2}\,\delta\Phi^\top H\,\delta\Phi
+    + \mathcal{L}_{\mathrm{int}} \Biggr],
+\end{split}
+\end{equation}
+where $\mathcal{E}_{\mu\nu}^{\alpha\beta}$ is the Lichnerowicz operator governing linearized gravity and $\frac{1}{2}\delta\Phi^\top H\,\delta\Phi = \frac{1}{2}H_{11}(\delta\rho_t)^2 + H_{12}\,\delta\rho_t\,\delta\Rcoh + \frac{1}{2}H_{22}(\delta\Rcoh)^2$.
+
+\paragraph{Step 2: Derive linearized Einstein equations with canonical scalar stress--energy}
+
+Using $T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\frac{\delta S_{\mathrm{scal}}}{\delta g^{\mu\nu}}$ in $(-,+,+,+)$ signature, varying Eq.~\eqref{eq:expanded_action} with respect to $h_{\mu\nu}$ yields $\mathcal{E}_{\mu\nu}^{\alpha\beta} h_{\alpha\beta} = 16 \pi G \, T_{\mu\nu}^{\mathrm{eff}}$, with $T_{\mu\nu}^{\mathrm{eff}} = T_{\mu\nu}^{\mathrm{matter}} + T_{\mu\nu}^{\mathrm{scal}}$ and exact canonical scalar stress--energy tensor
+\begin{align*}
+T_{\mu\nu}^{\mathrm{scal}}
+&= \kappa_t\,\partial_\mu \delta \rho_t\,\partial_\nu \delta \rho_t
+ + \kappa_R\,\partial_\mu \delta \Rcoh\,\partial_\nu \delta \Rcoh \\
+&\quad - \eta_{\mu\nu}\!\left(
+  \frac{\kappa_t}{2}\eta^{\alpha\beta}\partial_\alpha\delta\rho_t\partial_\beta\delta\rho_t
+  + \frac{\kappa_R}{2}\eta^{\alpha\beta}\partial_\alpha\delta\Rcoh\partial_\beta\delta\Rcoh
+  + \frac{1}{2}\delta\Phi^\top H\,\delta\Phi
+\right).
+\end{align*}
+In the uncoupled limit ($H_{12} = 0$, $H_{11} = m_\rho^2$, $H_{22} = m_R^2$), this splits cleanly into
+\[
+T_{\mu\nu}^{\rho_t} = \kappa_t\,\partial_\mu \delta \rho_t\,\partial_\nu \delta \rho_t - \eta_{\mu\nu}\!\left(\frac{\kappa_t}{2}\partial^\alpha \delta \rho_t \partial_\alpha \delta \rho_t + \frac{1}{2} m_{\rho}^2 (\delta \rho_t)^2\right),
+\]
+\[
+T_{\mu\nu}^{\Rcoh} = \kappa_R\,\partial_\mu \delta \Rcoh\,\partial_\nu \delta \Rcoh - \eta_{\mu\nu}\!\left(\frac{\kappa_R}{2}\partial^\alpha \delta \Rcoh \partial_\alpha \delta \Rcoh + \frac{1}{2} m_{R}^2 (\delta \Rcoh)^2\right),
+\]
+preserving $\kappa_t$ on $\partial_\mu\delta\rho_t\partial_\nu\delta\rho_t$ and keeping the potential density $\frac{1}{2}m_R^2(\delta\Rcoh)^2$ strictly free of any extraneous kinetic factor $\kappa_R$, with positive energy density $T_{00}^{\mathrm{scal}} \ge 0$.
+
+\paragraph{Step 3: Gauge fixing and wave equation}
+
+Choosing harmonic (Lorenz) gauge $\partial^\mu \bar{h}_{\mu\nu} = 0$ for $\bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu} h$ gives $\square \bar{h}_{\mu\nu} = -16\pi G\,T_{\mu\nu}^{\mathrm{eff}}$ (with $\square = -\partial_t^2 + \nabla^2$).
+
+\paragraph{Step 4: Interpretation and recovery of classical GR}
+
+When $\delta\rho_t, \delta\Rcoh \to 0$, $T_{\mu\nu}^{\mathrm{scal}} \to 0$ and linearized General Relativity is recovered identically.
+
+\paragraph{Step 5: Coupled dynamics with scalar fields}
+
+Together with $\square\bar{h}_{\mu\nu} = -16\pi G\,T_{\mu\nu}^{\mathrm{eff}}$, the scalar perturbations satisfy the canonical coupled Klein--Gordon system $(K\square - H)\delta\Phi = -J$ (reducing for $H_{12}=0, J=0$ to $\kappa_t\square\delta\rho_t - m_\rho^2\delta\rho_t = 0$ and $\square\delta\Rcoh - (m_R^2/\kappa_R)\delta\Rcoh = 0$), with $\partial^\mu T_{\mu\nu}^{\mathrm{scal}} = 0$ on shell when $J = 0$.
+
+\medskip\hrule\medskip
+This worked example connects the linearized metric perturbation consistently to the canonical scalar kinetic matrix $K$, potential Hessian $H$, and positive-energy stress--energy tensor of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\subsection{Retirement of Legacy Parameter Boxes and the \texttt{OPEN-6} Likelihood Program}
+
+Earlier drafts of this appendix listed illustrative phenomenological boxes ($10^{-18}\,\mathrm{eV} \lesssim m_\rho, m_R \lesssim 10^{-3}\,\mathrm{eV}$, $10^{-4} \lesssim \lambda \lesssim 10^{-2}$, and $|\delta R_{\mathrm{coh}}| \lesssim 10^{-5}$) and asserted that those ranges ensured consistency with Solar System, laboratory, cosmological, and quantum-coherence tests. Version~81 explicitly \emph{retires} all such ungrounded parameter boxes as empirical conclusions for three reasons:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Missing Action-to-Charge-to-Apparatus Map (\texttt{OPEN-6}):} Converting primary Solar System, torsion-balance, optical-clock, or cold-atom datasets into valid exclusion contours on \texttt{M\_AUTH\_SIT\_EFT\_v1} requires deriving microscopic material scalar charges (\texttt{OPEN-6A}), the visible $U(1)_{\mathrm{EM}}$ photon dictionary (\texttt{OPEN-6B}), laboratory preparation sources $J_{\mathrm{prep}}$ (\texttt{OPEN-6C}), and full apparatus transfer functions (\texttt{OPEN-6D}), subject to the mass-calibration and form-factor identifiability controls of Section~\ref{subsec:identifiability-and-qgtcd-guardrails}.
+  \item \textbf{Field-Normalization Convention Dependence of Kinetic Coefficients:} Bounding a standalone kinetic coefficient (such as $\lambda$ or $\kappa_R$) without fixing the field normalization and the remaining couplings in the action is convention-dependent, because rescaling a scalar field absorbs kinetic normalization into its mass and interaction couplings (as formalized by $D = \mathrm{diag}(1, \psi_0)$ in Subsection~E.5).
+  \item \textbf{Heavy Decoupled Benchmarks Lie Far Outside the Legacy Box:} Canonical benchmark \texttt{BM\_PHYS\_EFT\_1} places the scalar eigenmasses at $m_1 \approx 2.45\times 10^{14}\,\mathrm{GeV}$ and $m_2 \approx 2.83\times 10^{16}\,\mathrm{GeV}$ ($\lambda_1 \approx 8.056\times 10^{-31}\,\mathrm{m}$), demonstrating that heavy, radiatively stable regimes lie over $25$ orders of magnitude above the legacy $10^{-3}\,\mathrm{eV}$ box while remaining strictly non-excluded under the conditional dust closure of Section~\ref{sec:stage6-action-diagnostics}.
+\end{enumerate}
+
+Archival exploratory scales from earlier drafts are therefore retained solely as historical context; quantitative empirical bounds belong exclusively to the conditional response and primary-provenance likelihood program documented in Section~\ref{sec:stage6-action-diagnostics} and \texttt{primary\_measurements\_manifest\_v2.json}.
+
+\subsection{Prospective Experimental Arenas (Contingent on \texttt{OPEN-6})}
+
+Once the open action-to-apparatus derivations (\texttt{OPEN-6A}--\texttt{OPEN-6D}) are completed for a specified parameter branch, four experimental arenas provide scoped sensitivity tests: (i)~optical-clock comparisons (with disambiguated $\alpha_\rho$ and $\alpha_\Phi = \alpha_\rho\mathcal{T}$), (ii)~short-range torsion-balance and atom-interferometer inverse-square-law tests (starting with full patterned rotating-mass likelihood reproduction of Lee~2020), (iii)~matched-preparation BEC vs.\ thermal-cloud differential-acceleration tests obeying Eq.~\eqref{eq:bec_matched_residual}, and (iv)~gravitational-wave propagation and astrophysical lensing surveys. No unconditional deviation amplitude is claimed ahead of those derivations.
+
+\section{Holonomy of the Coherence Field and Electromagnetic Tensor}
+\label{sec:HolonomyEM}
+
+\subsection{1. Historical Flat-Connection Phase-Holonomy Ansatz and Its $F_{\mu\nu}=0$ Limitation}
+
+To preserve historical continuity while aligning with the corrected gauge structure of Part~II and Section~45, we record the earlier flat-connection phase-holonomy ansatz and state its exact mathematical boundary.
+
+\paragraph{Coherence Field and Phase Fiber:}
+In that historical sketch, an auxiliary complex order parameter was written as $\Psi(x) = \sqrt{R_{\mathrm{coh}}(x)}\,e^{i\theta(x)}$ with local phase $\theta(x)$ (distinct from the canonical linear modulus normalization $\Rcoh = |\psi|/\psi_0$ of \texttt{M\_AUTH\_SIT\_EFT\_v1}).
+
+\paragraph{Flat-Connection Ansatz and Holonomy:}
+Earlier drafts considered the pure-gradient expression
+\[
+A_\mu^{\mathrm{flat}}(x) := \frac{\hbar}{e} \partial_\mu \theta(x),
+\]
+for which transport around a closed loop $C$ in a multiply connected domain yields $\exp\bigl(i\frac{e}{\hbar}\oint_C A_\mu^{\mathrm{flat}}\,dx^\mu\bigr) = \exp(i\Delta\theta)$.
+
+\paragraph{Curvature Limitation ($F_{\mu\nu} = 0$):}
+The field strength of any smooth locally defined phase gradient vanishes identically:
+\[
+F_{\mu\nu}^{\mathrm{flat}} := \partial_\mu A_\nu^{\mathrm{flat}} - \partial_\nu A_\mu^{\mathrm{flat}} = \frac{\hbar}{e} (\partial_\mu \partial_\nu - \partial_\nu \partial_\mu)\theta(x) = 0.
+\]
+While nontrivial global holonomy can exist around singular vortex cores or multiply connected flux-tube exteriors, a pure gradient does \emph{not} generate ordinary non-flat magnetic fields ($F_{\mu\nu} \ne 0$).
+
+\paragraph{Canonical Interpretation (\texttt{OPEN-6B}):}
+Accordingly, Version~81 retains the independent principal-bundle connection $A_\mu$ of \texttt{M\_AUTH\_SIT\_EFT\_v1} (with arbitrary curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$), treats $A_\mu^{\mathrm{flat}} = (\hbar/e)\partial_\mu\theta$ solely as a historical pure-gauge ansatz, and keeps the identification of the visible massless photon and visible electromagnetism explicitly open under \texttt{OPEN-6B}.
+
+\subsection{2. Projective Qubit Measurement vs.\ Relative Phase Resetting: Worked Example}
+
+We summarize standard projective measurement for a two-level quantum system while explicitly correcting an error in earlier drafts that equated computational-basis projection with fixing the qubit's relative phase $\theta$ to $0$ or $\pi$.
+
+\paragraph{Qubit Superposition and Basis Coherence:}
+Let the pure qubit state be
+\[
+|\psi_{\mathrm{Q}}\rangle = \alpha |0\rangle + \beta |1\rangle, \qquad |\alpha|^2 + |\beta|^2 = 1,
+\]
+with density matrix $\rho = |\psi_{\mathrm{Q}}\rangle\langle\psi_{\mathrm{Q}}|$ and computational-basis off-diagonal coherence magnitude $2|\rho_{01}| = 2|\alpha^*\beta|$.
+
+\paragraph{Why Fixing Relative Phase $\theta \in \{0, \pi\}$ Does \emph{Not} Project onto $|0\rangle$ or $|1\rangle$:}
+Earlier drafts wrote that measuring in $\{|0\rangle, |1\rangle\}$ ``projects $\theta$ to $0$ or $\pi$'' and thereby yields $|0\rangle$ or $|1\rangle$ with zero superposition. Version~81 explicitly \emph{retracts} that identification: for $|\psi_{\mathrm{Q}}(\theta)\rangle = (|0\rangle + e^{i\theta}|1\rangle)/\sqrt{2}$, setting $\theta = 0$ or $\theta = \pi$ produces the equal-weight superpositions $|+\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ and $|-\rangle = (|0\rangle - |1\rangle)/\sqrt{2}$, \emph{both} of which retain computational-basis probabilities $(1/2, 1/2)$ and full off-diagonal coherence magnitude $|\rho_{01}| = 1/2 \ne 0$ ($2|\rho_{01}| = 1$)! Resetting a relative phase unitary-rotates a superposition on the Bloch equator; it never collapses the diagonal populations to $(1, 0)$ or $(0, 1)$.
+
+\paragraph{Assumed Projective Quantum Instrument (Born/L\"uders Rule):}
+In standard quantum mechanics, selective projective measurement in the $\{|0\rangle, |1\rangle\}$ basis is modeled as an assumed quantum instrument with orthogonal projectors $\Pi_0 = |0\rangle\langle 0|$, $\Pi_1 = |1\rangle\langle 1|$:
+\begin{itemize}[leftmargin=2em]
+  \item Before measurement: $\rho = \begin{pmatrix} |\alpha|^2 & \alpha\beta^* \\ \alpha^*\beta & |\beta|^2 \end{pmatrix}$ (basis coherence $2|\alpha^*\beta|$).
+  \item Outcome $0$ (probability $p_0 = \mathrm{Tr}(\Pi_0\rho) = |\alpha|^2$): $\rho'_0 = \Pi_0\rho\Pi_0 / p_0 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ ($2|\rho'_{01}| = 0$).
+  \item Outcome $1$ (probability $p_1 = \mathrm{Tr}(\Pi_1\rho) = |\beta|^2$): $\rho'_1 = \Pi_1\rho\Pi_1 / p_1 = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ ($2|\rho'_{01}| = 0$).
+\end{itemize}
+
+\paragraph{Operational Scope and Open Status:}
+Consistent with Sections~\ref{sec:PrimitiveFieldDefinitions} and~\ref{sec:coherence-conservation}, this elimination of basis-dependent off-diagonal matrix elements under an assumed projective instrument is an open-system/measurement update distinct from classical on-shell $U(1)$ Noether charge conservation ($\nabla_\mu J^\mu_{\mathrm{coh}} = 0$) of the EFT scalar $\psi$, and deriving quantum measurement collapse or the Born rule from \texttt{M\_AUTH\_SIT\_EFT\_v1} remains an open foundational problem.
+
+\section{Unital Pure-Dephasing Lindblad Example (Operational Purity Proxy)}
+\label{sec:DecoherenceLindblad}
+
+\subsection{Open Quantum Systems and Unital Pure Dephasing}
+
+For a \emph{unital} pure-dephasing Lindblad channel ($L = L^\dagger = \sqrt{\gamma}\,\sigma_z$), off-diagonal coherence and the operational purity proxy $R_{\mathrm{coh}}^{\mathrm{proxy}}$ decay monotonically (consistent with Result~\ref{thm:CoherenceMonotonicity}, which restricts universal purity non-increase to unital CPTP maps and distinguishes $R_{\mathrm{coh}}^{\mathrm{proxy}}$ from the classical EFT amplitude $\Rcoh = |\psi|/\psi_0$).
+
+\paragraph{General Lindblad Equation:}
+For a density matrix $\rho$ evolving under Hamiltonian $H$ and decoherence (environmental coupling) described by Lindblad operators $L_k$:
+\[
+\frac{d\rho}{dt} = -\frac{i}{\hbar}[H, \rho] + \sum_k \left( L_k \rho L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k, \rho\} \right)
+\]
+
+\paragraph{Two-Level System with Pure Dephasing:}
+Consider a qubit ($|0\rangle$, $|1\rangle$) with Hamiltonian $H=0$ and a single Lindblad operator $L = \sqrt{\gamma}\, \sigma_z$, where $\gamma$ is the dephasing rate:
+\[
+\frac{d\rho}{dt} = \gamma \left( \sigma_z \rho \sigma_z - \rho \right)
+\]
+For initial state
+\[
+\rho(0) = \begin{pmatrix} p & c \\ c^* & 1-p \end{pmatrix}
+\]
+the evolution is
+\[
+\rho(t) = \begin{pmatrix} p & c\, e^{-2\gamma t} \\ c^*\, e^{-2\gamma t} & 1-p \end{pmatrix}
+\]
+The off-diagonal terms (coherence) decay exponentially with time constant $1/(2\gamma)$.
+
+\paragraph{Decay of the Operational Purity Proxy $R_{\mathrm{coh}}^{\mathrm{proxy}}(t)$:}
+Recall from Section~\ref{sec:PrimitiveFieldDefinitions} the finite-dimensional ($d=2$) operational purity proxy (strictly distinct from the classical EFT modulus $\Rcoh = |\psi|/\psi_0$):
+\[
+R_{\mathrm{coh}}^{\mathrm{proxy}}(t) = \frac{\operatorname{Tr}[\rho^2(t)] - 1/2}{1 - 1/2}.
+\]
+For the qubit under unital pure dephasing ($L = L^\dagger = \sqrt{\gamma}\,\sigma_z$):
+\[
+\operatorname{Tr}[\rho^2(t)] = p^2 + (1-p)^2 + 2|c|^2 e^{-4\gamma t},
+\qquad
+R_{\mathrm{coh}}^{\mathrm{proxy}}(t) = 2\left[ p^2 + (1-p)^2 + 2|c|^2 e^{-4\gamma t} - \frac{1}{2} \right].
+\]
+As $t\to\infty$, $e^{-4\gamma t}\to 0$ and $R_{\mathrm{coh}}^{\mathrm{proxy}}(t)$ decreases monotonically to $2[p^2 + (1-p)^2 - 1/2]$ (remaining constant if $c = 0$, illustrating that non-unitary dephasing preserves purity on diagonal states).
+
+\paragraph{Mandatory Unitality Scope (Refuting General-Lindblad Purity Monotonicity):}
+Monotonic non-increase of $R_{\mathrm{coh}}^{\mathrm{proxy}}(t)$ holds strictly for \emph{unital} CPTP/Lindblad channels ($\sum_k [L_k, L_k^\dagger] = 0$, Result~\ref{thm:CoherenceMonotonicity}). For \emph{non-unital} Lindblad generators such as amplitude damping ($L = \sqrt{\gamma}\,\sigma_-$, Kraus probability $p \in (0,1]$), acting on the maximally mixed state $\rho = I/2$ raises purity to $\mathrm{Tr}(\Phi(\rho)^2) = (1 + p^2)/2$ (for example, at $p = 1/2$, purity increases from $1/2$ to $5/8$). For general (non-unital) CPTP evolution, universal monotonicity is governed by quantum relative-entropy contraction $D(\Phi(\rho)\|\Phi(\omega)) \le D(\rho\|\omega)$ rather than purity decay, and no equivalence with classical closed-system Noether charge conservation ($\nabla_\mu J^\mu_{\mathrm{coh}} = 0$) is claimed.
+
+\section{Computational Methods, Simulations, and Pseudocode}
+\label{appendix:tools}
+
+This appendix provides exploratory computational methodologies, pseudocode, and simulation sketches intended for prospective numerical modeling and future empirical testing of SIT hypotheses once microphysical source and detector mappings (\texttt{OPEN-6}) are derived.
+
+\subsection*{Computational methodologies}
+
+Predictive modelling uses three complementary numerical strategies:  
+
+\paragraph{Finite-element integration.}
+Equation set \eqref{eq:Einstein-like}--\eqref{eq:Rcoh-eom} is discretised on unstructured tetrahedral meshes with adaptive refinement at steep coherence gradients.  A Crank--Nicolson scheme advances $\rho_{t}$ and $R_{\text{coh}}$ implicitly, conserving the energy to better than $10^{-7}$ per timestep while capturing kilometric oscillations in interferometry test-beds.
+
+\paragraph{Agent-based kinetic Monte Carlo.}
+Microscopic ``agents'' carry local phase $\theta_{i}$ and perform collisional updates
+$\theta_{i}\!\mapsto\!\theta_{i}+(\theta_{j}-\theta_{i})\exp(-\Delta/\tau_{\rm dec})$,
+where $\tau_{\rm dec}$ derives from~\eqref{eq:dissipation}.  Averaging over $10^{9}$ agents reproduces the continuum limit and reveals self-organised synchrony waves analogous to cortical gamma bursts and spiral density waves in protoplanetary disks.
+
+\paragraph{Quantum/classical hybrid circuits.}
+High-coherence patches are evolved on NISQ hardware via Suzuki--Trotter factorisation of the $R_{\text{coh}}$ Hamiltonian, while low-coherence regions follow classical Langevin dynamics.  A reversible SWAP gate bridges the two domains every micro-iteration, ensuring phase continuity across the quantum--classical interface.
+
+\subsection{Finite Element SIT Solver Pseudocode}
+
+Finite element methods (FEM) are employed for solving SIT's coupled PDEs numerically. Pseudocode structure:
+
+\begin{verbatim}
+initialize_grid(domain_size, resolution)
+initialize_fields(rho_t, R_coh, boundary_conditions)
+
+while time < simulation_time:
+    compute_gradients(R_coh, rho_t)
+    update_fields_via_PDEs(R_coh, rho_t, dt)
+    apply_boundary_conditions(fields)
+    save_output(fields)
+\end{verbatim}
+
+\subsection{Monte Carlo Approaches}
+
+Monte Carlo methods capture informational decoherence processes probabilistically:
+
+\begin{verbatim}
+for each simulation_step:
+    sample_initial_conditions(R_coh_distribution)
+    propagate_information_via_MonteCarlo(fields)
+    evaluate_statistics_and_uncertainties(fields)
+    record_results()
+\end{verbatim}
+
+\subsection{Hybrid Quantum-Classical Pathway Simulations}
+
+Hybrid models integrate classical gravitational dynamics with quantum informational coherence:
+
+\begin{verbatim}
+initialize_classical_gravity_fields(g_mu_nu)
+initialize_quantum_coherence_fields(R_coh)
+
+for each timestep:
+    evolve_quantum_coherence(R_coh)
+    feed_coherence_back_to_classical(g_mu_nu, R_coh)
+    update_classical_fields_via_GR(g_mu_nu)
+    iterate_until_convergence()
+\end{verbatim}
+
+These computational approaches facilitate empirical testing and refinement of SIT predictions.
+
+\section{Calibration Pipeline across Metrology and Neuroscience}
+\label{sec:calibration-pipeline}
+Coefficients of $\Phi_{\mathrm{teleo}}$ and small SIT couplings $(\gamma,\chi)$ are first constrained by optical-clock residuals (Appendix~A), then refined using neural coherence datasets that estimate $\langle R_{\mathrm{coh}}\rangle$ dynamics under volitional tasks, and finally propagated into the BEC benchmark (Appendix~\ref{appendix:E-BEC}) and the three-path prediction (Sec.~\ref{sec:three-path-born}) for parameter continuity across domains.
+
+\section{Prospective Experimental Protocols and Schematic Figures}
+\label{appendix:C}
+
+This appendix outlines prospective experimental setups intended to test SIT once the missing action-to-observable derivations (\texttt{OPEN-6}) are completed.
+
+\subsection{Prospective Experimental Protocols}
+
+Candidate experimental venues include:
+
+\begin{itemize}
+    \item \textbf{Clock-Cavity Experiments:} High-precision atomic clocks in varied gravitational potentials to probe prospective coherence-time-density couplings once the visible $U(1)$ dictionary and transfer factor $\mathcal{T}$ are derived (\texttt{OPEN-6B}).
+    \item \textbf{Aharonov--Bohm (AB) Loops:} Quantum interference setups motivated by bundle-holonomy analogies, conditional on resolving \texttt{OPEN-6B}.
+    \item \textbf{SQUID and Cold-Atom Setups:} Ultra-cold atomic ensembles and SQUID magnetometers as prospective venues once $J_{\mathrm{prep}}$ and composite material charges are derived (\texttt{OPEN-6A}, \texttt{OPEN-6C}).
+    \item \textbf{Neuroscience Paradigms:} EEG/MEG phase-synchrony paradigms designed to test proposed phenomenological neural-coherence models separately from spacetime EFT.
+\end{itemize}
+
+\noindent\textit{Cross-reference:} See Appendix~\ref{appendix:E-BEC} for the $^{87}$Rb BEC hypothetical sensitivity benchmark and scoped falsification protocol.
+
+\subsection{Schematic Figures and Future Sensitivity Requirements}
+
+Conceptual figures illustrate candidate diagnostic observables:
+
+\begin{itemize}
+    \item Figure C.1: Schematic phase-holonomy loops illustrating candidate holonomy observables.
+    \item Figure C.2: Conceptual neural coherence gradient maps from EEG/MEG.
+    \item Figure C.3: Schematic fringe patterns for candidate AB-loop setups.
+\end{itemize}
+
+Quantitative sensitivity assessments remain contingent on completing the missing action-to-apparatus derivations (\texttt{OPEN-6}) for each specified parameter state.
+
+\section{Coherence--Gravity Equivalence Prediction for a \texorpdfstring{$^{87}$}{87}Rb BEC}
+\label{appendix:E-BEC}
+\label{app:BEC-benchmark}
+
+\subsection{Objective}
+We provide a numerically specified, falsifiable target for SIT's ``Coherence--Gravity Equivalence Test'' by comparing the free-fall acceleration of a Bose--Einstein condensate (BEC) to that of an otherwise identical thermal cloud.
+
+\subsection{Signal model}
+SIT predicts a coherence-dependent refinement of the Weak Equivalence Principle. Let $\alpha_g$ denote the dimensionless coherence--gravity coupling that modifies the ratio $M_g/M_i$. For two ensembles of identical atoms in the same external field $g_E$ but different coherence,
+\[
+\frac{\delta a}{g_E} \;\equiv\; \frac{a_{\rm BEC}-a_{\rm thermal}}{g_E}
+\;=\; \alpha_g\Big(R_{\rm coh}^{\rm (BEC)} - R_{\rm coh}^{\rm (thermal)}\Big).
+\]
+For a near-pure $^{87}$Rb BEC we set $R_{\rm coh}^{\rm (BEC)}\!\approx\!1$, while the thermal cloud average is $R_{\rm coh}^{\rm (thermal)}\!\approx\!0$, hence
+\[
+\frac{\delta a}{g_E} \;=\; \alpha_g.
+\]
+
+\subsection{Identification with the clock-sector parameter (Hypothetical Sensitivity Benchmark)}
+Appendix~\ref{appendix:ClockConstraints} defines the gravitational-potential clock-redshift slope
+\(\alpha_\Phi \equiv d\ln\nu/d(\Phi/c^{2}) = \alpha_\rho\mathcal{T}\) (disambiguated from the local field response \(\alpha_\rho\)). While the published Tokyo Skytree optical-lattice clock test (Takamoto~\emph{et~al.}, 2020) reported \(\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1)\times 10^{-5}\), earlier drafts (Versions~79--80.2) adopted an illustrative hypothetical target \(|\alpha_\Phi|_{\mathrm{hyp}} \le 3\times 10^{-8}\). Writing
+\[
+\alpha_g \;=\; \chi\,\alpha_\Phi,
+\]
+with a dimensionless transfer factor $\chi$ capturing geometry and sectoral weighting, setting $\chi = 1$ at the hypothetical clock sensitivity $|\alpha_\Phi|_{\mathrm{hyp}} \le 3\times 10^{-8}$ produces strictly a \emph{hypothetical future sensitivity benchmark} (NOT an empirically established ceiling from Tokyo Skytree; deriving $\alpha_g$ from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} requires resolving \texttt{OPEN-6A} and \texttt{OPEN-6C}).
+
+\subsection{Hypothetical sensitivity benchmark (NOT an empirical 95\% CL bound)}
+With $g_E=9.80665~\mathrm{m\,s^{-2}}$ and $\chi=1$ at the quarantined hypothetical target $|\alpha_\Phi|_{\mathrm{hyp}} \le 3\times 10^{-8}$,
+\[
+\boxed{\;
+\left|\frac{\delta a}{g_E}\right|_{\mathrm{hyp}}
+= |\alpha_g|_{\mathrm{hyp}}
+= |\alpha_\Phi|_{\mathrm{hyp}}
+\le 3\times10^{-8}
+\;}
+\]
+and
+\[
+\boxed{\;
+|\delta a|_{\mathrm{hyp}}
+\le 3\times10^{-8}\times 9.80665~\mathrm{m\,s^{-2}}
+\approx 2.94\times10^{-7}~\mathrm{m\,s^{-2}}
+\approx 29.4~\mu\mathrm{Gal}.
+\;}
+\]
+Version~81 quarantines both $3\times 10^{-8}$ and $29.4\,\mu\mathrm{Gal}$ strictly as hypothetical future sensitivity targets rather than empirical constraints anchored to Tokyo Skytree.
+
+\subsection{Computing $\chi$ and $\delta g$ for a concrete $^{87}$Rb geometry}
+To turn this hypothetical sensitivity template into a genuine action-derived prediction (part of \texttt{OPEN-6}), one must compute the microscopic state-preparation source $J_{\mathrm{prep}}$ and composite atomic scalar charges for the specific trap and atom number:
+(i) Model the condensate density $n(\mathbf{r})$ (e.g., Thomas--Fermi) and the thermal cloud $n_{\rm th}(\mathbf{r})$ at the experimental temperature.
+(ii) Solve the linearized SIT field equations for $(R_{\mathrm{coh}},\rho_t)$ sourced by $n(\mathbf{r})$ and $n_{\rm th}(\mathbf{r})$ to obtain the coherence profiles and the induced $\delta\rho_t$.
+(iii) Evaluate the free-fall response functional to extract $\alpha_g$ for each state and set $\chi \equiv \alpha_g/\alpha_\Phi$.
+(iv) Insert the calibrated $\chi$ into
+\[
+\delta a \;=\; \chi\,\alpha_\Phi\,g_E,\qquad
+\delta g \equiv \delta a,
+\]
+using a primary experimental bound on $\alpha_\Phi$ (or a direct action-derived prediction) and report $\delta g$ with geometry, $N$, temperature, and uncertainty.
+
+\paragraph{Falsification protocol.}
+Once $\alpha_g$ is derived from the action (\texttt{OPEN-6A}/\texttt{OPEN-6C}), a confirmed nonzero differential acceleration between a pure $^{87}\mathrm{Rb}$ BEC and an equal-mass thermal cloud would provide direct experimental evidence for coherence-dependent coupling, whereas null measurements exclude parameter regions predicting signals above experimental sensitivity; the legacy $29.4\,\mu\mathrm{Gal}$ ($3\times 10^{-8}$) reference line is retained solely as a labeled hypothetical sensitivity scale.
+
+\section{Appendix: Constraints from Optical Clock Metrology (Disambiguated Notation and Provenance)}
+\label{appendix:ClockConstraints}
+
+\[
+\alpha_\rho \;\text{(local field response)},
+\qquad
+\mathcal{T} \;\equiv\; \left(\frac{\rho_0^{-1}\,\partial\rho_t}{\partial(\Phi/c^2)}\right)_{\mathrm{lab}},
+\qquad
+\alpha_\Phi \;\equiv\; \frac{d\ln\nu}{d(\Phi/c^{2})} = \alpha_\rho\,\mathcal{T}.
+\]
+Version~81 strictly separates $\alpha_\rho$ (response to local field shift $\delta\rho_t/\rho_0$) from $\alpha_\Phi = \alpha_\rho\mathcal{T}$ (response to gravitational-potential shift $\Delta\Phi/c^2$), resolving the Version~79/80.2 notation collision that reused $\alpha_{\mathrm{eff}}$ for both and thereby double-counted $\mathcal{T}$ whenever $\mathcal{T} \ne 1$.
+
+\subsection{Objective}
+We clarify the mapping between local time-density perturbations, gravitational-potential redshift residuals, primary optical-clock experimental measurements, and the quarantined hypothetical sensitivity benchmark used in earlier drafts.
+
+\subsection{Mapping SIT to the clock observable}
+Conditional on specifying the visible electromagnetic $U(1)$ photon dictionary (\texttt{OPEN-6B}), a local time-density modulation produces a fractional frequency response governed strictly by $\alpha_\rho$:
+\[
+\frac{\Delta \nu}{\nu}(x) = \alpha_\rho\,\frac{\delta \rho_t(x)}{\rho_0}.
+\]
+For clocks at locations with differing gravitational potential \(\Phi\), GR gives \((\Delta \nu/\nu)_{\mathrm{GR}} \simeq \Delta \Phi / c^{2}\). Slow spatial variations of \(\rho_t\) induced by \(\Phi\) produce an additional response operationally captured by
+\[
+\frac{d\ln \nu}{d(\Phi / c^{2})} \equiv \alpha_\Phi .
+\]
+We use \(\alpha_\Phi\) strictly as the directly measured slope in differential clock comparisons (same species, different potentials) after subtracting the GR redshift.
+
+\subsection{Linearized relation and identification (No Double Counting of $\mathcal{T}$)}
+To first order about the laboratory background,
+\[
+f_2(\rho_t) = 1 + \alpha_\rho \frac{\delta \rho_t}{\rho_0} + \mathcal{O}(\delta \rho_t^{2}), \qquad
+\frac{\delta \rho_t}{\rho_0} = \mathcal{T}\,\frac{\Delta \Phi}{c^2} + \cdots
+\]
+so substituting $\delta\rho_t/\rho_0$ into the local response $\Delta\nu/\nu = \alpha_\rho\,(\delta\rho_t/\rho_0)$ yields
+\[
+\left(\frac{\Delta\nu}{\nu}\right)_{\mathrm{SIT}}
+= \alpha_\rho\,\frac{\delta\rho_t}{\rho_0}
+= \alpha_\rho\,\mathcal{T}\,\frac{\Delta\Phi}{c^2}
+= \alpha_\Phi\,\frac{\Delta\Phi}{c^2},
+\qquad
+\alpha_\Phi = \alpha_\rho\,\mathcal{T}.
+\]
+Crucially, one must \emph{never} multiply $\delta\rho_t/\rho_0$ by $\alpha_\Phi$ for a potential-driven signal, as doing so would yield $\alpha_\rho\mathcal{T}^2(\Delta\Phi/c^2)$ and double-count $\mathcal{T}$ unless $\mathcal{T} = 1$.
+
+\subsection{Primary experimental measurements vs.\ quarantined hypothetical benchmark}
+The published Tokyo Skytree transportable $^{87}\mathrm{Sr}$ optical-lattice clock test over a $450\,\mathrm{m}$ elevation difference ($\Delta\Phi/c^2 = 4.9101\times 10^{-14}$; Takamoto~\emph{et~al.}, \emph{Nature Photonics} \textbf{14}, 411--415, 2020) reported
+\[
+\alpha_{\mathrm{RS}} = (+1.4 \pm 9.1) \times 10^{-5} \quad (1\sigma\text{ combined}),
+\]
+while NIST/BACON (\emph{Phys.\ Rev.\ Lett.}\ \textbf{137}, 033201, 2026; DOI \texttt{10.1103/g865-9mk1}) achieved optical frequency-ratio uncertainties at or below $3.2\times 10^{-18}$ across $\mathrm{Al}^+/\mathrm{Yb}/\mathrm{Sr}$ clocks linked via phase-stabilized optical fiber networks. By contrast, the legacy value
+\[
+|\alpha_\Phi|_{\mathrm{hyp}} \lesssim 3 \times 10^{-8} \quad \text{(quarantined hypothetical future sensitivity target; NOT a 95\% CL Skytree bound)}
+\]
+would correspond to $1.47\times 10^{-21}$ fractional accuracy on the Skytree baseline and is therefore quarantined strictly as a hypothetical sensitivity target in Version~81.
+
+\subsection{Usage in the main text}
+Throughout Version~81 (Sections~\ref{sec:map-to-observables}, \ref{sec:atomic-clock-prediction}, \ref{sec:empirical-content}, and \ref{sec:stage6-action-diagnostics}), local field-driven shifts are written strictly with $\alpha_\rho$ and gravitational-potential shifts with $\alpha_\Phi = \alpha_\rho\mathcal{T}$. Converting primary optical-clock bounds into unconditional constraints on \texttt{M\_AUTH\_SIT\_EFT\_v1} remains explicitly blocked under \texttt{OPEN-6B} until the visible $U(1)$ photon dictionary and terrestrial profile $\mathcal{T}$ are derived from the action.
+
+\subsection{Forward look: network clocks and gradiometry}
+Clock networks and entangled-state gradiometers can probe spatial derivatives of \(\rho_t\) at improved sensitivity, tightening bounds on \(\alpha_\Phi\) and enabling targeted tests once \texttt{OPEN-6B} is resolved.
+
+\section{Three-Path Interference and Exploratory Sorkin-Term Hypothesis (Open)}
+\label{sec:three-path-born}
+Consistent with Section~\ref{sec:SIT3} (which retracts the impossible linear operator $\hat{\mathcal{R}}_{\mathrm{coh}}$), any exploratory SIT~3.0 proper-time ansatz must be formulated using a declared \emph{nonlinear} state functional $\mathcal{C}_{\mathrm{state}}[\rho]$ (or restricted linear witness), $d\tau/dt = \rho_g(x)\,\exp[\gamma\,\mathcal{C}_{\mathrm{state}}[\rho]]$, together with an explicit composite-system evolution and measurement prescription ensuring no-signaling. Whether a well-posed nonlinear or open-system extension induces a nonzero Sorkin third-order interference term $I_{123}$ remains an open phenomenological question contingent on specifying that dynamical prescription and deriving the coupling (\texttt{OPEN-6C}), rather than a proved formula of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+

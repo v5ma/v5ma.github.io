@@ -1,0 +1,170 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[american,11pt,letterpaper]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  \setmainfont[]{Times New Roman}
+\fi
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{%
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath}
+}{}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+  \usepackage[bidi=basic,shorthands=off]{babel}
+\else
+  \usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX\else
+  \babelfont{rm}[]{Times New Roman}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig}
+\fi
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage[hyphens]{xurl}
+\usepackage{ragged2e}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\hyphenation{im-ple-men-ta-tion op-er-a-tion-al-i-za-tion}
+\renewcommand{\familydefault}{\rmdefault}
+\AtBeginEnvironment{longtable}{\small}
+\urlstyle{same}
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\hypersetup{
+  pdftitle={Super Information Theory: The Coherence Conservation Law Unifying the Wave Function, Gravity, and Time (Version 81)},
+  pdfauthor={Micah Blumberg},
+  pdflang={en-US},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue}
+}
+
+\newtheorem{result}{Result}
+\newtheorem{prediction}{Prediction}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Rcoh}{R_{\mathrm{coh}}}
+\newcommand{\Scoh}{S_{\mathrm{coh}}}
+\newcommand{\Ecoh}{E_{\mathrm{coh}}}
+\newcommand{\Edec}{E_{\mathrm{dec}}}
+\newcommand{\bra}[1]{\langle #1 \rvert}
+\newcommand{\ket}[1]{\lvert #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 \mid #2 \rangle}
+\newcommand{\blockquote}[1]{\begin{quote}#1\end{quote}}
+\newcommand{\SITConditionalFigure}[4]{%
+  \begin{figure}[htbp]
+  \centering
+  \IfFileExists{figures/#1.pdf}{%
+    \includegraphics[width=0.92\textwidth]{figures/#1.pdf}%
+  }{%
+    \IfFileExists{../../simulations/figures/#1.pdf}{%
+      \includegraphics[width=0.92\textwidth]{../../simulations/figures/#1.pdf}%
+    }{%
+      \fbox{\begin{minipage}{0.90\textwidth}
+      \vspace{0.5em}
+      \textbf{Numerical Verification Figure Panel (\texttt{figures/#1.pdf}):}\\[0.35em]
+      #4
+      \vspace{0.5em}
+      \end{minipage}}%
+    }%
+  }%
+  \caption{#2}
+  \label{#3}
+  \end{figure}%
+}
+\pdfstringdefDisableCommands{%
+  \def\mathbb#1{#1}%
+  \def\mathbf#1{#1}%
+  \def\mathcal#1{#1}%
+  \def\mathrm#1{#1}%
+  \def\texttt#1{#1}%
+  \def\emph#1{#1}%
+  \def\Rcoh{R_coh}%
+  \def\Scoh{S_coh}%
+  \def\Ecoh{E_coh}%
+  \def\Edec{E_dec}%
+  \def\bra#1{<#1|}%
+  \def\ket#1{|#1>}%
+  \def\braket#1#2{<#1|#2>}%
+}
+\author{}
+\date{}
+
+\begin{document}
+
+
+\begin{center}
+{\LARGE\bfseries Super Information Theory\par}
+\vspace{0.35em}
+{\large\itshape The Coherence Conservation Law Unifying the Wave Function, Gravity, and Time\\(Version 81)\par}
+\vspace{0.8em}
+{\small\textbf{Author: Micah Blumberg}\par}
+{\small Self Aware Networks Research Institute\par}
+{\small\url{https://selfawarenetworks.com}\par}
+{\small Original Publication Date: February 9, 2025\par}
+{\small Version 81 Updated on November 19, 2026\par}
+\end{center}
+\vspace{0.65em}
+
+\input{sections/00_abstract_and_note}
+\input{sections/01_part1_sec01_to_03}
+\input{sections/02_part1_sec04_to_08}
+\input{sections/03_part1_sec09_to_15}
+\input{sections/04_part1_sec16_to_25}
+\input{sections/05_part2_sec26_to_31}
+\input{sections/06_part3_sec32_to_42}
+\input{sections/07_part3_sec43_to_50}
+\input{sections/08_part4_sec51_to_52}
+\input{sections/09_part4_sec53_to_55}
+\input{sections/10_appendices_A_to_M}
+\input{sections/11_appendices_N_to_AA}
+\input{sections/12_appendix_AB_and_backmatter}
+
+\end{document}

@@ -1,0 +1,35 @@
+{
+  "schema": "sit.v81.monograph_audit_receipt.v1",
+  "mode": "full-host",
+  "generated_utc": "2026-11-20T19:11:24Z",
+  "document": {
+    "tex": "papers/sit81-master-monograph/Super_Information_Theory_81.tex",
+    "pdf": "papers/sit81-master-monograph/Super_Information_Theory_81.pdf",
+    "singlefile": "papers/sit81-master-monograph/Super_Information_Theory_81_singlefile.tex",
+    "pages": 187,
+    "pdf_bytes": 1511428,
+    "pdf_sha256": "9c76d6116003810465887d51ab4ccf55bc505ffd20bc3de634f98adda9786ab0",
+    "tex_sha256": "9434143a15f9394a8b8c853670fa6d194226e0302c9fd1cf72e701ad0cbf317e",
+    "txt_sha256": "24f4ff0993a5a54c0bb1297d034c7ee0bc7c8a37d58cf77608b8591b66d346a6",
+    "singlefile_sha256": "af4d2c7fd0df978c5a16e19918db40fde2a63dfeabf3f536d27d55e2cd88b496",
+    "has_times_new_roman": true,
+    "undef_warnings": 0,
+    "question_marks": 0
+  },
+  "checks": {
+    "singlefile_exact_assembled_parity": true,
+    "tabular_blocks_audited": 10,
+    "forbidden_patterns_count": 112,
+    "live_math_checks_passed": "20/20",
+    "frozen_branches": {
+      "codex/sitproof-stage5-sit80-publications-20261116": "8955eabea1f9876b895fe852431793376149cf6f",
+      "research/sit-stage6-functional-response-20261117": "6d34d84eed075cf06136ecba654b159b6c8a82b9",
+      "codex/sitproof-stage6-sit80v803-and-lattice-paper-20261118": "d5dc6412da440fc27c1d96c593d522692d51ef9e",
+      "codex/sitproof-stage6-sit80v803-hydrogen-style-20261119": "30a71e4ffdda366c8d2489ee553d4a0a8b4c17af",
+      "research/sit-stage7-variational-charges-control-20261119": "ee290278fda2cc43f16d086ed2777f2015e98119"
+    },
+    "failures_count": 0,
+    "failures": []
+  },
+  "status": "PASS"
+}

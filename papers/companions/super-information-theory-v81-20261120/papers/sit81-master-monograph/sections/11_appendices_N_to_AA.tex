@@ -1,0 +1,409 @@
+\section{Exploratory Recursion Weight as a Nonnegative Attenuation Cost}
+\label{sec:recursion-influence}
+\label{app:recursion-influence}
+Let $X$ be a real Banach space (with canonical complexification $X_{\mathbb{C}}$) of coarse-grained reduced states $\Sigma_t$ over a compact time interval $t \in [t_i, t_f]$ along a continuous trajectory $p : [t_i, t_f] \to X$, and let $\mathcal{R} : X \to X$ be a Fr\'echet-$C^1$ discrete return map ($\Sigma_{t+\Delta}=\mathcal{R}(\Sigma_t)$) whose complexified Fr\'echet derivative $D\mathcal{R}|_{\Sigma_t} \in \mathcal{B}(X_{\mathbb{C}})$ is a bounded linear operator with Gelfand spectral radius $\rho\bigl[D\mathcal{R}|_{\Sigma_t}\bigr] = \lim_{n\to\infty}\|(D\mathcal{R}|_{\Sigma_t})^n\|^{1/n} \in [0, \|D\mathcal{R}|_{\Sigma_t}\|] < \infty$. Earlier drafts defined an unclipped recursion cost $C_{\mathrm{rec}}[p] = \sup_t \log(\rho[D\mathcal{R}|_{\Sigma_t}])$ and inserted $\exp(-\lambda C_{\mathrm{rec}}[p])$ ($\lambda > 0$). Version~81 repairs both the contraction sign error and the zero-Jacobian singularity in that definition: for any contractive ``clean recursion'' ($0 \le \rho[D\mathcal{R}] \le k < 1$), an unclipped logarithm is negative (making $\exp(-\lambda\log k) = k^{-\lambda} > 1$ amplify rather than attenuate) and diverges at $\rho[D\mathcal{R}] = 0$ ($\log 0 = -\infty$). Defining the nonnegative clipped cost as
+\begin{equation}
+C_{\mathrm{rec}}^+[p] \;:=\; \sup_{t \in [t_i, t_f]}\,\log\max\!\Bigl(1,\;\rho\bigl[D\mathcal{R}\big|_{\Sigma_t}\bigr]\Bigr) \;\ge\; 0
+\label{eq:nonneg_recursion_cost}
+\end{equation}
+is finite and well-defined for all $\rho\bigl[D\mathcal{R}|_{\Sigma_t}\bigr] \ge 0$ (including $\rho = 0$, where $\log\max(1, 0) = \log 1 = 0$), assigns zero penalty ($C_{\mathrm{rec}}^+ = 0$, weight $1$) to every contractive map ($\rho \le k < 1$), and assigns strictly bounded attenuation $\exp(-\lambda C_{\mathrm{rec}}^+[p]) \in (0, 1]$ to unstable expanding steps ($\rho > 1$):
+\[
+\mathcal{W}[p] \;=\; \exp\!\left\{\frac{i}{\hbar}\!\int_{t_i}^{t_f}\!dt\,[\mathcal{L}_{\mathrm{SIT}}-\Phi_{\mathrm{teleo}}]\right\}\,
+\exp\!\left\{-\lambda\,C_{\mathrm{rec}}^+[p]\right\}.
+\]
+This single-history effective weight is retained strictly as an exploratory phenomenological ansatz (separate from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1}); closed-system evolution remains unitary.
+
+\section{Feynman--Vernon Influence-Functional Analogy (Two-History Normalization and Heuristic Scope)}
+\label{appendix:FV-recursion}
+In open quantum mechanics and Schwinger--Keldysh field theory, integrating out an initially normalized environment state $\rho_{\mathrm{env}}(t_i) \succeq 0$ ($\mathrm{Tr}\,\rho_{\mathrm{env}}(t_i) = 1$) coupled to forward and backward system histories $(p^+, p^-)$ defines the \emph{two-history} Feynman--Vernon influence functional
+\[
+\mathcal{F}[p^+, p^-] \;:=\; \mathrm{Tr}_{\mathrm{env}}\!\Bigl(U_{\mathrm{env}}[p^+]\,\rho_{\mathrm{env}}(t_i)\,U_{\mathrm{env}}^\dagger[p^-]\Bigr)
+\;=\; \exp\!\left\{\frac{i}{\hbar}\Phi_{\mathrm{LS}}[p^+, p^-] \;-\; \Gamma[p^+, p^-]\right\}.
+\]
+By unitary bath evolution and the Cauchy--Schwarz inequality on $\rho_{\mathrm{env}}(t_i)^{1/2}$, this normalized two-history functional rigorously satisfies $|\mathcal{F}[p^+, p^-]| \le 1$ ($\Gamma[p^+, p^-] \ge 0$) and $\mathcal{F}[p, p] = 1$ ($\Gamma[p, p] = 0$ on identical forward/backward histories), whereas an unnormalized single-history path integral $\int\mathcal{D}q\,e^{(i/\hbar)(S_{\mathrm{env}}+S_{\mathrm{int}})}$ does not by itself obey $|\mathcal{F}| \le 1$. Furthermore, for a linearly coupled Gaussian bath ($S_{\mathrm{int}} = \int dt\,\eta(t)\,G[\Sigma_t]$), exact evaluation yields a \emph{quadratic nonnegative off-diagonal double-time integral} $\Gamma[p^+, p^-] = \frac{1}{2}\iint dt\,dt'\,\Delta G(t)\,\nu(t-t')\,\Delta G(t') \ge 0$ ($\Delta G := G[\Sigma_t^+] - G[\Sigma_t^-]$), not a single-history supremum of a logarithmic Jacobian spectral radius. Writing a single-history damping factor $\exp(-\lambda\,C_{\mathrm{rec}}^+[p])$ via Eq.~\eqref{eq:nonneg_recursion_cost} is therefore an abbreviated phenomenological coarse-graining ansatz motivated by $|\mathcal{F}[p^+, p^-]| \le 1$, rather than an exact Feynman--Vernon path-integral identity.
+
+\section{Existence and Uniqueness of Contractive Fixed Points}
+\label{sec:fixed-point}
+\label{app:clean-recursion}
+Let $X$ be a Banach space of reduced states $\Sigma$ and $\mathcal{R}:X\to X$ a Fr\'echet-$C^1$ coarse-grained return map. If there exists $k\in(0,1)$ with
+\[
+\|\mathcal{R}(x) - \mathcal{R}(y)\|_X \;\le\; k\,\|x - y\|_X \quad\forall x,y\in X,
+\]
+then by Banach's fixed-point theorem $\mathcal{R}$ admits a unique fixed point $\Sigma^\star$, with operator norm $\|D\mathcal{R}|_{\Sigma^\star}\| \le k < 1$, spectral radius $\rho[D\mathcal{R}|_{\Sigma^\star}] \le k < 1$, and zero clipped attenuation cost $C_{\mathrm{rec}}^+[\Sigma^\star] = \log\max(1, \rho[D\mathcal{R}|_{\Sigma^\star}]) = 0$ under Eq.~\eqref{eq:nonneg_recursion_cost}.
+
+\section{Driven-Dissipative Topological and Cyclic Attractors (Toy Ring Model)}
+\label{appendix:topological-attractors}
+
+We call an \textbf{informational limit cycle} any periodic trajectory $\mathcal{C}$ in a driven-dissipative toy state space $(R_{\mathrm{coh}}, \rho_t, \theta)$ for which $R_{\mathrm{coh}}(t+T) \approx R_{\mathrm{coh}}(t)$, $\rho_t(t+T) \approx \rho_t(t)$, and $\theta(t+T) = \theta(t) + 2\pi n$. Consistent with Section~\ref{sec:arrow-of-time} and Section~\ref{sec:coherence-conservation}, Version~81 explicitly retracts earlier wording asserting an undefined global coherence functional $\mathcal{G}$ satisfying $d\mathcal{G}/dt \le 0$ for all trajectories: in open driven-dissipative oscillator toys, local periodic cycles are sustained by external driving against local damping, while universal open-system monotonicity in finite-dimensional quantum channels holds strictly for unital-CPTP purity and general-CPTP relative entropy (Result~\ref{thm:CoherenceMonotonicity}), distinct from exact closed-system $U(1)$ Noether charge conservation ($\nabla_\mu J^\mu_{\mathrm{coh}} = 0$). On a ring loop $\Gamma$, a nontrivial phase winding has integer topological index $\nu = (1/2\pi)\oint_\Gamma d\theta \in \mathbb{Z}$, and any circulation-versus-dissipation inequality holds only for an explicitly specified dissipative energy balance rather than as a universal theorem of \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\paragraph{Minimal driven-dissipative toy model.} On a ring geometry parameterized by $x \in [0,L)$, write
+\begin{align*}
+    \partial_t R_{\mathrm{coh}} &= D \partial_x^2 R_{\mathrm{coh}} - \lambda R_{\mathrm{coh}} + \eta \cos(\Omega t) + \chi \sin(\partial_x\theta), \\
+    \partial_t \theta &= \omega_0 + \alpha \rho_t + \beta \partial_x^2 \theta, \\
+    \partial_t \rho_t &= c^2 \partial_x^2 \rho_t - \mu \rho_t + \sigma R_{\mathrm{coh}},
+\end{align*}
+with $D,\lambda,\eta,\Omega,\chi,\omega_0,\alpha,\beta,c,\mu,\sigma > 0$. This driven-dissipative PDE system is a phenomenological oscillator toy model (not derived from the reversible canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1}); for drive $\eta$ above threshold and moderate $\chi$, it illustrates how periodic forcing sustains phase winding $\nu$ with loop integral $H = \oint_0^L \partial_x\theta \, dx = 2\pi\nu$ without invoking retrocausality.
+
+\paragraph{Scope.} This appendix does not modify \texttt{M\_AUTH\_SIT\_EFT\_v1}; it documents an exploratory driven-dissipative toy system separate from the conservative relativistic field equations.
+
+\section{Phase Slips and Topological Limit Cycles}
+
+We model a driven local loop as a complex order parameter
+\[
+\psi(x,t)=A(x,t)\,e^{i\theta(x,t)}
+\]
+on a periodic ring of length \(L\), evolving under a damped, driven, gauge--covariant TDGL equation
+\[
+\partial_t \psi
+= D(\partial_x - iA)^2 \psi + \big(\mu - g|\psi|^2\big)\psi
++ i\omega_0 \psi + \eta e^{i\Omega t} + \xi(x,t),
+\]
+with \(A(t)=\Phi(t)/L\) a uniform gauge potential set by a slowly ramped flux \(\Phi(t)\), and \(\xi\) mean-zero complex noise.
+
+The loop's integer winding is
+\[
+\nu(t)=\frac{1}{2\pi}\oint_0^L \partial_x \theta\,dx,
+\]
+which is topologically conserved unless the amplitude vanishes at a slip site, \(A(x_s,t_s)\to 0\). At such events \(\theta\) can jump by \(\pm 2\pi\), changing \(\nu\) without retrocausality. The gauge--covariant current is
+\[
+j(x,t)=\Im\!\Big(\psi^*(\partial_x - iA)\psi\Big), \qquad
+\mathcal{C}(t)=\oint j\,dx,
+\]
+and exhibits discrete jumps synchronized with \(\nu\) transitions. In this driven, damped TDGL toy model, local limit cycles are sustained by external flux ramping and forcing while dissipation damps autonomous relaxation in the undriven limit (distinct from any universal global monotonicity law for reversible canonical fields, Section~\ref{sec:arrow-of-time}).
+
+Numerics with a linear \(\Phi(t)\) ramp show quantized steps in \(\nu\), dips in \(\min_x|\psi|\) preceding each step, and concurrent jumps in \(\mathcal{C}(t)\) (Figs. U1--U3). Final phase and amplitude profiles illustrate slip locations and total phase \(2\pi\nu\) (Figs. U4--U5).
+
+Minimal pseudocode for reproducibility:
+
+\begin{verbatim}
+Initialize grid x in [0, L), time step dt, total steps.
+Set parameters D, \mu, g, \omega_0, \eta, \Omega, noise_amp.
+Initialize \psi(x,0) = small-amplitude complex noise.
+
+For each step n:
+    t \leftarrow n\cdot dt
+    A \leftarrow \Phi(t)/L   (with \Phi ramped from 0 \to 2\pi)
+    Compute \psi_x via centered difference; \psi_xx likewise.
+    cov_lap \leftarrow \psi_xx - 2iA \psi_x - A^2 \psi
+    nonlin \leftarrow (\mu - g|\psi|^2) \psi + i\omega_0 \psi
+    drive \leftarrow \eta exp(i\Omega t)
+    noise \leftarrow complex Gaussian, var \propto noise_amp/sqrt(dt)
+    \psi \leftarrow \psi + dt*[D*cov_lap + nonlin + drive] + noise*dt
+    \theta_unwrap \leftarrow unwrap(arg \psi along x)
+    \nu(t) \leftarrow round((\theta_unwrap(L) - \theta_unwrap(0))/2\pi)
+    amin(t) \leftarrow min_x |\psi|
+    j \leftarrow Im( \psi^* (\psi_x - iA \psi) )
+    C(t) \leftarrow sum j\cdot dx
+Save \nu(t), amin(t), C(t), and snapshots of \theta_unwrap, |\psi|.
+\end{verbatim}
+
+Here, $C(t) = \sum j\, dx$ is the integrated current, $\nu(t)$ is the winding number, and $amin(t)$ is the minimum amplitude.
+
+The generated figures, labeled U1--U5, are available as follows:
+\begin{itemize}
+    \item \textbf{Fig. U1:} Winding number \(\nu(t)\) from \url{fig1_winding_vs_time.png}.
+    \item \textbf{Fig. U2:} Minimum amplitude \(\min|\psi|(t)\) from \url{fig2_min_amplitude.png}.
+    \item \textbf{Fig. U3:} Circulation vs. flux from \url{fig3_circulation_vs_flux.png}.
+    \item \textbf{Fig. U4:} Final phase from \url{fig4_final_phase.png}.
+    \item \textbf{Fig. U5:} Final amplitude from \url{fig5_final_amplitude.png}.
+\end{itemize}
+The raw simulation data are available in the file \url{phase_slip_winding_sim.npz}.
+
+In plain terms, this toy simulation illustrates how a driven damped 1D ring can execute discrete phase-slip resets when $|\psi|$ dips transiently to zero and the winding number jumps by $\pm 1$. This is a standard driven-TDGL phenomenological model (analogous to superconducting or superfluid rings) rather than a derivation from \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+
+\section{Integration with Prior Work and Conceptual Lineage}
+\label{app:prior_work}
+
+\subsection{Evolution from \emph{Super Dark Time} and Related Work}
+
+SIT draws conceptual lineage from \emph{Super Dark Time}, \emph{SuperTimePosition}, and Micah's New Law of Thermodynamics, while separating their respective mathematical models cleanly (Table~\ref{tab:july-v80-vs-nov-v81}). Whereas earlier drafts tried to derive magnetism directly from a phase gradient, the canonical action \texttt{M\_AUTH\_SIT\_EFT\_v1} carries an independent $U(1)$ gauge connection $A_\mu$ with curvature $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ (keeping the visible electromagnetic dictionary open under \texttt{OPEN-6B}).
+
+
+\subsection*{Teleonomic Hysteresis and a Geometric Phase}
+\label{sec:geom-phase}
+In a separately modeled dissipative control loop, path-dependent recursion costs motivate exploring an effective geometric phase shift $\Phi_{\mathrm{geom}} \approx \kappa_{\mathrm{geo}}\oint C_{\mathrm{rec}}[p]\,dt$; deriving any observable interferometric signature from \texttt{M\_AUTH\_SIT\_EFT\_v1} remains open under \texttt{OPEN-6C}.
+
+\section{Exploratory Cosmological Sketches and Quantum-Gravity Analogies}
+\label{appendix:D}
+
+This appendix preserves exploratory Level-1 cosmological sketches and high-level crosswalk analogies with Loop Quantum Gravity (LQG), causal sets, and string theory. None of the schematic formulas below is derived from unchanged \texttt{M\_AUTH\_SIT\_EFT\_v1} (whose cosmological perturbation theory and UV completion remain strictly open under \texttt{OPEN-6D} and \texttt{OPEN-1}).
+
+\subsection{Exploratory Cosmological Parameterizations}
+
+As phenomenological Level-1 templates (distinct from derived predictions and requiring explicit dimensional transfer functions and mass-calibration checks, Section~\ref{sec:black-holes-voids}), earlier drafts sketched modified lensing ($\Delta\theta_{\mathrm{lens}} \sim \frac{4GM}{c^2 R}[1 + \tilde{\beta}\,\delta\rho_t/\rho_0]$), an effective coherence vacuum-energy term, and an exploratory coupling ansatz $G_{\mathrm{eff}}(\Rcoh) \sim G(1 + \gamma\Rcoh^2)$. Consistent with Section~\ref{sec:darkmatter}, linearizing a flat Friedmann model with an additive coherence density yields $\delta H_0/H_0 \approx \alpha_{\mathrm{cos}}\,\delta\langle\Rcoh\rangle/(2\rho_{\mathrm{tot}})$ (not $6\rho_{\mathrm{tot}}$), and whether any specified SIT cosmological extension is viable against CMB, BAO, and lensing data remains open (\texttt{OPEN-6D}).
+
+\subsection{Connections to LQG, Causal Sets, and String Theory}
+
+We clarify crosswalks to existing quantum gravity theories:
+
+\textbf{Loop Quantum Gravity (LQG):} Spin networks and quantum geometries naturally correspond to quantized informational coherence networks within SIT.
+
+\textbf{Causal Sets:} SIT's time-density fields align directly with causal structure discretization, offering rigorous information-based interpretations of causal set elements.
+
+\textbf{String Theory:} String excitations reflect quantized coherence vibrations, positioning SIT coherence states as possible foundational structures underpinning string dynamics.
+
+\section{Speculative, Outreach, and Metaphorical Extensions}
+\label{app:speculative}
+
+This section preserves conceptual metaphors, analogies, and speculative insights enriching broader communication and outreach.
+
+\subsection{Metaphors and Analogies}
+
+SIT conceptual metaphors:
+
+\begin{itemize}
+    \item \textbf{Cloth-Twist Spiral:} Visualizing informational coherence distortion analogous to fabric torsion.
+    \item \textbf{Electron Pebble:} Quantum state perturbations analogized as ripples from a pebble.
+    \item \textbf{Quasicrystal Brain:} Neural phase states mapped onto quasicrystal patterns as high-dimensional embedding analogs.
+    \item \textbf{Halfway Universe:} Universal informational equilibrium maintaining overall zero-energy balance.
+\end{itemize}
+
+\subsubsection{Visual Outreach Metaphors for Informational Torque}
+To help convey the idea of informational torque (Section~\ref{sec:informational_torque}) to non-specialists, three images are useful:
+
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Twisting Fabric.}  
+      Aligned phase waves ``wring'' spacetime like cloth; the tighter the twist, the deeper the curvature.
+
+\item \textbf{Choreographed Dancers.}  
+      Synchronised rotation pulls the dancers inward; loss of rhythm lets the circle slacken. Coherence does the same for geodesics.
+
+\item \textbf{Water Vortex.}  
+      Co-phased surface ripples amplify into a whirlpool; decoherence breaks the vortex apart.
+\end{enumerate}
+
+\subsection{Speculative Extensions}
+
+Extended speculative ideas preserved for outreach or future theoretical exploration:
+
+\begin{itemize}
+    \item Continuous Cosmic Microwave Background (CMB) coherence interpretations.
+    \item Quantum-biological coherence applications in neuroscience and evolution.
+    \item Informational attractors linking consciousness, quantum coherence, and gravitational effects.
+\end{itemize}
+
+\subsection{Outreach Graphics and Storyboards}
+
+Storyboard and graphics resources developed for broader dissemination:
+
+\begin{itemize}
+    \item Infographics illustrating SIT's coherence-based reality.
+    \item Animations visualizing SIT coherence dynamics from quantum to cosmic scales.
+    \item Public-friendly narratives illustrating SIT philosophical implications (e.g., reality as active information rather than passive substance).
+\end{itemize}
+
+This appendix allows SIT's rich conceptual metaphors and speculative possibilities to engage public imagination and interdisciplinary dialogue without diluting the rigorous empirical core of the theory.
+
+
+
+\section{Super Information Theory (SIT) Is Constructed Atop a Physical Mechanism---SuperTimePosition}
+\label{app:stp-bell-mechanism}
+
+SuperTimePosition (STP) supplies the physical mechanism that renders a local, deterministic, coherence-based field ontology compatible with quantum correlations inside Super Information Theory. Here we state (i) the minimal physical requirements of STP, (ii) the exact manner in which STP interfaces with Bell's theorem, and (iii) its falsifiable experimental signatures.
+
+\subsection{Local Determinism and What Bell Actually Constrains}
+
+Bell's theorem constrains hidden-variable completions under the joint conjunction of two distinct hypotheses:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Local Response (Parameter Locality):} Outcomes at wing $A$ and wing $B$ depend solely on the local analyzer setting and local hidden state, $A = A(a, \lambda_{\mathrm{loc}})$ and $B = B(b, \lambda_{\mathrm{loc}})$, with zero superluminal causal influence.
+  \item \textbf{Measurement Independence (Statistical Setting Independence):} The hidden-state distribution at emission is statistically independent of the analyzer configurations, $\rho(\lambda \mid a, b) = \rho(\lambda)$.
+\end{enumerate}
+
+STP introduces a locally real, ultrafast cycling phase variable $\lambda(t)$ whose coarse-grained residue $\lambda \bmod 2\pi$ is undersampled by slower macroscopic detectors, explaining why individual quantum outcomes appear probabilistic despite deterministic phase-gate dynamics. Crucially, however, \emph{determinism alone does not evade Bell}: retaining both local response and measurement independence cannot reproduce the full $-\cos\theta$ singlet correlation curve.
+
+In the SIT+STP framework, singlet correlations arise by physically relaxing \emph{measurement independence} via causal common-past field consistency: detector analyzer configurations are physical matter/electromagnetic distributions whose world-tubes inhabit a shared backward light cone with the emission source, sourcing retarded perturbations in $(\rho_t, \psi)$ across their common causal past so that
+\begin{equation}
+\rho(\lambda \mid a, b) \ne \rho(\lambda).
+\label{eq:bell_common_past_relaxation}
+\end{equation}
+Strictly retarded hyperbolic propagation ($c_{\mathrm{char}} = 1$) and local outcome response are preserved throughout, with zero superluminal signaling and zero retrocausality.
+
+\subsection{Local Entanglement via Phase-Locking and Operational No-Signaling}
+
+Entangled pairs emerge from common emission events with phase-locked internal cycles, while shared past field history biases $\rho(\lambda \mid a, b)$. Crucially, \emph{operational no-signaling} is enforced by rotational and $\pi$-inversion symmetries of the stationary phase distribution: integrating over the remote outcome leaves single-wing marginals strictly independent of the remote setting, $P(A \mid a, b) = P(A \mid a) = 1/2$ and $P(B \mid a, b) = P(B \mid b) = 1/2$, while joint expectations reproduce $E(a,b) = -\cos(\theta_a - \theta_b)$ in the strong-locking limit.
+
+\subsection{Unified Wave Mechanics from Quantum to Cosmic Scales}
+
+The same dynamical primitives---phase oscillation, synchronization, and relaxation under gradients of $\rho_t$ and $\Rcoh$---operate from microscopic interferometers to collective condensed-matter and astrophysical structures, controlled by coupling scales and environmental decoherence rates.
+
+\subsection{Testable and Falsifiable Predictions of the STP Mechanism}
+
+\begin{itemize}
+  \item \textbf{Attosecond and Zeptosecond Phase Substructure:} Probing state transitions at sampling bandwidths approaching internal phase-cycle timescales predicts structured sub-cycle beat modulations rather than featureless white randomness.
+  \item \textbf{Gravitational / Time-Density Visibility Tuning:} Entanglement visibility across baselines spanning distinct gravitational potentials is predicted to exhibit small, systematic $\rho_t$-dependent phase-steering shifts.
+  \item \textbf{Finite-Locking Visibility Ceiling:} Away from asymptotic strong phase-locking, the steering-to-noise ratio simultaneously fixes both deviations from $-\cos\theta$ and the maximal achievable CHSH parameter $S \le 2\sqrt{2}$.
+\end{itemize}
+
+\subsection{Elegance and Parity with Alternative Quantum Formalisms}
+
+Unlike Bohmian mechanics (requiring nonlocal configuration-space pilot waves) or Everettian many-worlds (requiring unobservable ontological branch proliferation), SIT+STP posits only one four-dimensional Lorentzian spacetime carrying $(\psi, \rho_t, g_{\mu\nu}, A_\mu)$ and treats analyzer hardware states physically rather than exempting them from causal field equations.
+
+\subsection{Determinism (Outcome) vs.\ Bell-Evasion (Common-Past Bias)}
+
+Individual detection clicks are determined locally at synchronization ($A = A(a,\lambda_{\mathrm{loc}})$), whereas violations of CHSH bounds up to the Tsirelson ceiling $2\sqrt{2}$ arise exclusively from retarded common-past field correlation~\eqref{eq:bell_common_past_relaxation}.
+
+\subsection{Fast-Switching Bell Tests and the Physical Meaning of ``Setting''}
+
+In loophole-reduced fast-switching Bell experiments, an analyzer ``setting'' $a$ comprises the physical world-tube of the random-number generator, switching optoelectronics, and analyzer crystal. Because those physical degrees of freedom evolve deterministically from the overlap of the backward light cones of wings $A$, $B$, and the source, strictly retarded field propagation through the shared causal past remains causally sufficient without invoking advanced waves, provided local marginals respect operational no-signaling.
+
+\subsection{Integration into the Unified Variational Framework}
+
+SuperTimePosition motivates the exact field content of SIT: $\Rcoh(x)$ measures local phase alignment, $\rho_t(x)$ measures local cycle density, and $S_{\mathrm{AUTH}}$ is the minimal ghost-free covariant EFT governing their coupled evolution.
+
+\section{From Foundational Principles to a Derivational Framework}
+\label{app:derivational-framework}
+
+Super Information Theory consolidates four precursor conceptual strands into a single variational framework grounded in $S_{\mathrm{AUTH}}$, distinguishing heuristic correspondences from controlled action-level derivations:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Thermodynamic Engine (\emph{Micah's New Law} $\to$ Bounded Open-System Lindblad/Relative-Entropy Flow):} Sequential wave-based difference dissipation is aligned strictly with Result~\ref{thm:CoherenceMonotonicity} (Section~\ref{sec:arrow-of-time}): monotonic subsystem-purity non-increase ($d\mathrm{Tr}(\rho^2)/dt \le 0$) holds strictly under \emph{unital} CPTP/Lindblad dynamics ($\Phi(I) = I$, $\sum_k \gamma_k [L_k, L_k^\dagger] = 0$; refuted for general non-unital CPTP maps by amplitude damping taking $I/2$ to purity $(1+p^2)/2 = 5/8$ at $p = 1/2$), whereas \emph{general} CPTP monotonicity is governed by quantum relative-entropy contraction $D(\Phi(\rho)\|\Phi(\omega)) \le D(\rho\|\omega)$, kept distinct from classical closed-system $U(1)$ Noether charge conservation ($\nabla_\mu J^\mu_{\mathrm{coh}} = 0$).
+  \item \textbf{Quantum--Gravitational Link (\emph{Super Dark Time} $\to$ Dynamical $\rho_t$ and Portal $U_{\mathrm{link}}$):} The ``mass as localized time density'' concept becomes the covariant scalar $\rho_t(x)$ coupled to $|\psi|^2$ via $U_{\mathrm{link}}$ and screened via $f_{\mathrm{SM}}(\Rcoh)$ (Sections~\ref{sec:framework}--\ref{sec:screening-mechanism}).
+  \item \textbf{Deterministic Phase Cycles (\emph{SuperTimePosition} $\to$ Covariant Complex Order Parameter $\psi$):} Rapid phase oscillations and Aharonov--Bohm holonomy motivate the local $U(1)$ bundle geometry of $\psi(x) = |\psi(x)|e^{i\theta(x)}$ coupled to an independent connection $A_\mu$ (Sections~\ref{sec:magnetism-holonomy} and~\ref{sec:stage4-matter-holonomy}).
+  \item \textbf{Open-System Feedback (\emph{Self-Aware Networks} $\to$ Exploratory Nonnegative Recursion Cost):} Coarse-graining cyclic environments motivates the heuristic nonnegative clipped attenuation weight $\exp(-\lambda C_{\mathrm{rec}}^+[p])$ ($C_{\mathrm{rec}}^+ \ge 0$, Appendices~\ref{app:recursion-influence}--\ref{app:clean-recursion}) without altering closed-system unitarity.
+\end{enumerate}
+
+\section{Bounded Comparison with Causal Fermion Systems and Open Formalization Program}
+\label{app:chronology}
+
+Consistent with Paper~048 (\emph{Causal Fermion Systems and Super Information Theory}, July~28, 2026), Version~81 replaces earlier assertions of ``independent validation,'' ``semantic embedding,'' ``formal operational equivalence,'' and ``greater expressive power'' with a strict separation between: (1)~dated narrative-level conceptual parallels, (2)~Paper~048's bounded effective-equation comparison against an ordinary Einstein--Dirac null control, and (3)~an explicitly \emph{unproved} proposed categorical and process-calculus formalization program.
+
+\subsection{Bounded Chronological and Effective-Equation Status (Paper~048)}
+
+Public precursors in the SIT archive (2017 Neural Lace Podcast and NAPOT notes; 2022 QGTCD notes) introduced relational ``coincidence-pattern'' and distributed internal-observation vocabulary prior to 2024--2025 Causal Fermion Systems (CFS) expositions describing ``effective dynamical collapse'' and spacetime as a ``web of correlations.'' However, sharing high-level relational vocabulary is \emph{not} an independent empirical or mathematical validation of SIT.
+
+At the mathematical equation level, Paper~048 establishes a narrow, bounded comparison using frozen sources: under its regulated constant-coupling continuum assumptions, the CFS field equations reduce to Einstein gravity coupled to one on-shell Dirac excitation, matching both a specialized constant-background neutral-Dirac submodel of July~2026 Version~80 Draft~13 and a direct Einstein--Dirac null control. Because all three share the same Einstein--Dirac equation class, that overlap carries \textbf{zero discriminatory value} against the ordinary Einstein--Dirac null and does not map primitive CFS operator measures to SIT fields. Testing whether a consistent constant-background truncation of November~2026 \texttt{M\_AUTH\_SIT\_EFT\_v1} admits the same Einstein--Dirac sector remains a separate open adapter calculation.
+
+\subsection{Proposed Categorical and Process-Calculus Formalization Program (All Constructions Open)}
+
+Earlier drafts sketched a categorical comparison ($\Phi : \mathcal{C}_{\mathrm{CFS}} \to \mathcal{C}_{\mathrm{SIT}}$) and a two-outcome process-calculus comparison over a finite observational fragment $G = (O, \tau, \mathcal{G}, \mathcal{T})$ while prematurely describing the desired conclusions (semantic embedding, weak bisimulation, and non-existence of a reverse functor) as already demonstrated. Version~81 explicitly demotes those statements to \textbf{proposed open mathematical work}:
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Why the Two-Outcome Process Sketch Does Not Establish Operational Equivalence:} Assigning the identical abstract transition expression $P = \tau.(\mathrm{obs}(o_1).0 + \mathrm{obs}(o_2).0)$ to both CFS and SIT proves only equality of those two assigned expressions; it does \emph{not} derive that labeled transition system from either the CFS causal action principle or \texttt{M\_AUTH\_SIT\_EFT\_v1}.
+  \item \textbf{Outstanding Obligations Required for Any Future Categorical Theorem (T1--T5):} Any future categorical embedding or separation claim would require explicitly constructing and proving all five currently unproved obligations: (\textbf{T1}) concrete definitions of the open-system categories $\mathcal{C}_{\mathrm{CFS}}$ and $\mathcal{C}_{\mathrm{SIT}}$ directly from the actual physical equations (not postulated labels); (\textbf{T2}) explicit derivation of the black-box functors to $\mathrm{LinRel}$ and proof of natural isomorphism $\alpha$; (\textbf{T3}) explicit construction of $\Phi$ with proved functoriality, monoidal coherence, and current naturality; (\textbf{T4}) a rigorous, invariant-checked separation proof showing why no reverse functor exists (without merely postulating that $\mathcal{C}_{\mathrm{SIT}}$ is closed while $\mathcal{C}_{\mathrm{CFS}}$ is not); and (\textbf{T5}) derivation of operational LTS semantics directly from both full physical theories before verifying Gorla encoding properties. Until T1--T5 are proved, no categorical embedding, operational equivalence, or expressive-power separation between SIT and CFS is claimed.
+\end{enumerate}
+
+
+
+\section{Historical Development of Super Information Theory (2017--2026)}
+\label{app:historical-development}
+
+Super Information Theory developed bottom-up over a continuous nine-year arc spanning systems neuroscience, oscillatory computation, emergent gravitation, effective field theory, and machine-checked formal verification:
+
+\subsection{Phase I (2017): Information as Coincidence, Not Symbol}
+Beginning in April 2017 (\emph{Neural Lace Podcast} and SVGN essays), an operational redefinition replaced static symbolic bits with physical \emph{coincidence patterns}---registered alignments of independent events within a temporal coincidence window---privileging phase synchrony and distributed internal observation (\emph{NAPOT}).
+
+\subsection{Phase II (Summer 2022): Oscillatory Computation and Network-Level Agency}
+In June 2022, the time-stamped \emph{Self Aware Networks} (SAN) GitHub archive and explainer lectures formalized cognition and control as multi-scale oscillatory phase coordination across distributed networks.
+
+\subsection{Phase III (July 2022): Extending Oscillatory Information into Gravity (QGTCD)}
+On July 26, 2022, \emph{Quantum Gradient Time Crystal Dilation} (QGTCD) extended phase-centric coincidence dynamics into gravitation, proposing time density as a structured physical medium whose spatial gradients steer trajectories.
+
+\subsection{Phase IV (2024): Time as a Physical Medium and Volumetric Neural Synthesis}
+Throughout 2024, public SVGN physics series and the book \emph{Bridging Molecular Mechanisms and Neural Oscillatory Dynamics} refined field-first intuition for time density alongside dendritic vector embeddings and cortical traveling waves.
+
+\subsection{Phase V (January 2025): Wave-Based Dissipation (\emph{Micah's New Law})}
+Early January 2025 formalized equilibration as local iterative dissipation of phase and amplitude differentials across coupled degrees of freedom.
+
+\subsection{Phase VI (January 2025): Operational Time-Density Scalar (\emph{Super Dark Time})}
+Late January 2025 promoted time density to an explicit scalar field $\rho_t(x)$ calibrated by local clock rates.
+
+\subsection{Phase VII (February--December 2025): Unification in Two Primitives (Versions 1--79)}
+Published originally on February~9, 2025 and refined through Version~79 (December~18, 2025) plus December~24, 2025 holonomy companions, SIT unified $\psi(x)$ and $\rho_t(x)$ inside a single covariant action with symmetron screening, $U(1)$ bundle holonomy, optical-clock bounds, and $^{87}\mathrm{Rb}$ BEC falsifiers.
+
+\subsection{Phase VIII (July--October 2026): July Version~80 Compact Corrective Lineage and Specialized Intervening Papers}
+Between Version~79 (December~18, 2025) and the November~2026 formalization series, the public \emph{Version~80} slot was established by the July~2026 compact corrective lineage: Paper~048 (\emph{Causal Fermion Systems and Super Information Theory}, July~28, 2026) cites its frozen comparison baseline as \emph{Version~80 Draft~13} (July~26, 2026), and Paper~002 (\emph{Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity}, 26~pages, published July~29, 2026, Zenodo DOI \texttt{10.5281/zenodo.21693867}) published the correction-integrated Version~80 conformal two-real-scalar benchmark, introducing unital-CPTP vs.\ relative-entropy corrections, operational amplitude-vs-purity separation, and mass-calibration/form-factor identifiability tests alongside Papers~003, 007, 014, 028, 033, 034, 055, 062, 063, and \emph{Learning to Feel} (Paper~114: initial edition October~17, 2026; v1.2 October~20, 2026; technical supplement v1.1).
+
+\subsection{Phase IX (November 2026): Canonical \texttt{M\_AUTH\_SIT\_EFT\_v1}, 4D Haar Wilson Lattice, Stage-6 $C^4$ Continuum Limit, Lean~4.30 Verification, and Bidirectional Integration (Version~81)}
+Advancing internal November working drafts v80.2 (Stages~1--5.2, November~16, 2026, commit \texttt{8955eab}) and v80.3 (Stage~6 plus three Lean~4.30 publication addenda, Hydrogen house-style alignment, and magnetism/Part~III/lattice consistency repairs, November~18--19, 2026, commit \texttt{30a71e4}) into \textbf{Version~81} (so Version~80 remains cleanly assigned to the July~2026 compact corrective lineage), SIT locked the ghost-free $(-,+,+,+)$ effective action \texttt{M\_AUTH\_SIT\_EFT\_v1} (\texttt{v1\_1}), established the explicit July-vs-November model-continuity contract (Table~\ref{tab:july-v80-vs-nov-v81}), proved infinite-dimensional $\ell^2$ Sobolev convergence and pointwise 3-jet nonlinear curved $3+1$D ADM Dirac--Bergmann closure modulo $\partial_k B^k$ on the Sylvester SPD cone \texttt{IsSPD3}, resolved the \texttt{C09} zero-coherence gauge singularity non-perturbatively on a 4D hypercubic Euclidean Haar Wilson lattice via Model~L3 (\texttt{sitAMGMGatedOSLaw}), proved in Stage~6 and its addenda the exact finite-lattice corner Hessian, periodic lattice Fourier eigenvalue equations, conventional $C^4$ $O(1/l^2)$ classical continuum limit to $\frac{3\beta}{8}\int_{[0,1]^4}\frac{|\nabla f|^2}{f}\,du$, sharp $\frac{3\beta}{4}$ zero-division nonnegative-field coercivity allowing zero corners with both exact equality witnesses, exact Stage-5 finite-lattice embedding at $\kappa_t = 0$, and the canonical propagator inverse $(p^2 K + H)^{-1} = V\,\mathrm{diag}(1/(p^2+m_a^2))\,V^\top$ instantiated directly on \texttt{AuthModelParams}, diagnosed multiplicative-vs-conformal matter couplings and $U(1)$ kinetic mixing, executed a conditional weak-field E\"ot-Wash uniform-slab non-exclusion calculation paired with six corrected primary experimental provenance records (\texttt{primary\_measurements\_manifest\_v2.json}), imported the July~2026 unital-CPTP/relative-entropy repair, operational amplitude-vs-purity separation, Penrose--Onsager/matched-preparation BEC controls, and Paper~002/007/055 identifiability and QGTCD counterexample guardrails, and sealed all $669$ Lean~4.30 files ($48/48$ Stage-6/Addendum theorems) under the five-tier epistemic ledger \texttt{QG49} (\texttt{OPEN-1}--\texttt{OPEN-6} strictly \texttt{NOT\_SOLVED}).
+
+\section{Exhaustive Documentary Record and Independent Timestamp Evidence (2017--2025)}
+\label{app:documentary-record}
+
+This appendix preserves the archival record of publicly available artifacts documenting the development of SAN, Neural Lace, NAPOT, QGTCD, Super Dark Time, SuperTimePosition, and Super Information Theory across GitHub, Zenodo, Figshare, Medium/SVGN, Internet Archive Wayback Machine, YouTube, and SoundCloud.
+
+\subsection{Neural Lace Podcast: Complete Episode Record (2017--2019)}
+\begin{itemize}
+  \item \textbf{nlp1} --- Apr 11, 2017 (monologue). YouTube: \url{https://youtu.be/YrX_68oKuVs}
+  \item \textbf{nlp2} --- Apr 13, 2017. YouTube: \url{https://youtu.be/UpOzHjKGa0g}
+  \item \textbf{nlp3} --- Apr 22, 2017. YouTube: \url{https://youtu.be/_yKjtTVoVlU}
+  \item \textbf{nlp4} --- May 5, 2017. YouTube: \url{https://youtu.be/RRN91RwiYiw}
+  \item \textbf{nlp5} --- Recorded May 9, 2017 (Guest: Jules Urbach, OTOY). SoundCloud: \url{https://soundcloud.com/user-899513447/the-neural-lace-podcast-5-jules-urbach-ceo-otoy-inc}
+  \item \textbf{nlp7} --- June 7, 2017 (Guest: Android Jones). SoundCloud: \url{https://soundcloud.com/user-899513447/the-neural-lace-podcast-7-guest-android-jones}
+  \item \textbf{NerveGear Special} --- Nov 2, 2017. YouTube: \url{https://youtu.be/p9yTPBrrES4}
+  \item \textbf{Season 2, Episode 1} --- Aug 2, 2018. YouTube: \url{https://www.youtube.com/watch?v=aexQwTpOwYc}
+  \item \textbf{Season 2, Episode 2} --- Sep 11, 2018. YouTube: \url{https://youtu.be/wgMKMn7srHM}
+  \item \textbf{Season 2, Episode 4} --- May 11, 2019 (fNIRS). YouTube: \url{https://youtu.be/DlfAOM4dx90}
+\end{itemize}
+Complete transcripts are preserved at \url{https://github.com/v5ma/selfawarenetworks/blob/main/guide/NLP}.
+
+\subsection{Medium / SVGN Articles with Wayback Timestamp Proof (2017--2021)}
+\begin{itemize}
+  \item \emph{The Brain as a Special Kind of Hard Drive} (2017): \url{https://web.archive.org/web/20210919212933/https://medium.com/silicon-valley-global-news/the-brain-as-a-special-kind-of-hard-drive-4bd3a99dba4c}
+  \item \emph{Humans Are Metal Robots in a Valid Sense} (2017): \url{https://web.archive.org/web/20201020015247/https://medium.com/silicon-valley-global-news/breaking-news-humans-are-metal-robots-literally-a7bd78bb333d}
+  \item \emph{Addressing Criticism for ``Humans Are Metal Robots''} (2017): \url{https://web.archive.org/web/20210919191705/https://medium.com/silicon-valley-global-news/addressing-criticism-for-my-humans-are-metal-robot-story-86f1c99d72b6}
+  \item \emph{Synaptic Unreliability Undermined by MVP Proof} (2017): \url{https://web.archive.org/web/20210209003006/https://medium.com/silicon-valley-global-news/synaptic-unreliability-a-foundational-concept-found-in-deep-learning-and-in-computational-a97c5dca9e90}
+  \item \emph{Mind Code / Brain Code: Go and AlphaGo} (2017): \url{https://web.archive.org/web/20210919213836/https://medium.com/silicon-valley-global-news/the-game-of-go-speculation-about-the-code-of-our-minds-in-our-brains-5a39d7cb6366}
+  \item \emph{Neural Lace Journal / Talk Show Index} (Oct 2017): \url{https://web.archive.org/web/20190317101602/https://medium.com/silicon-valley-global-news/the-neural-lace-journal-talk-show-a-compilation-of-articles-and-links-ae3fbb0d5d5a}
+  \item \emph{Neural Lace and Deep Learning: Polina Anikeeva} (2018): \url{https://web.archive.org/web/20180530045930/https://medium.com/silicon-valley-global-news/neural-lace-and-deep-learning-6ed70db4e3a7}
+  \item \emph{3D Cross-Hair Convolutional Neural Networks} (2018): \url{https://web.archive.org/web/20210919202220/https://medium.com/silicon-valley-global-news/3d-cross-hair-convolutional-neural-networks-5d39e2b565ca}
+  \item \emph{Interview with Jules Urbach at GTC 2018} (2018): \url{https://web.archive.org/web/20180528155036/https://medium.com/silicon-valley-global-news/my-interview-with-jules-urbach-the-ceo-of-otoy-at-gtc-2018-a7cadbaa6ec3}
+  \item \emph{Question to Jensen Huang on Self-Aware Networks} (2018): \url{https://web.archive.org/web/20251112031520/https://medium.com/silicon-valley-global-news/after-a-mind-exploding-keynote-at-gtc-2018-i-got-the-chance-to-ask-jensen-huang-the-ceo-of-nvidia-a-f1cca7ce04a6}
+\end{itemize}
+
+\subsection{2022 GitHub Repositories: SAN and QGTCD}
+\begin{itemize}
+  \item \textbf{2022-06-17} --- \emph{Self Aware Networks} (SAN) GitHub repository documenting oscillatory computational agency, predictive synchronization, and phase-based network control.
+  \item \textbf{2022-07-26} --- \emph{Quantum Gradient Time Crystal Dilation (QGTCD)} initial public GitHub release extending phase-centric coincidence dynamics into gravitational time-density gradients.
+\end{itemize}
+
+\subsection{Summer 2022 YouTube Explainer Videos and 2024 Book Release}
+\begin{enumerate}[leftmargin=2em]
+  \item \emph{1 hour video that explains NAPOT the central thesis of Self Aware Networks}: \url{https://www.youtube.com/watch?v=fLp-yTQ6pSM} (ID: \texttt{fLp-yTQ6pSM}).
+  \item \emph{Neural Array Projection Oscillation Tomography Theory 5th Revision}: \url{https://www.youtube.com/watch?v=vixhppNAKPs} (ID: \texttt{vixhppNAKPs}).
+  \item \emph{The Self Aware Networks Institute for Neurophysics, Artificial Neurology \& Bio-Synthetic Interfaces} (3 min): \url{https://www.youtube.com/watch?v=VTBNyUM47Zg} (ID: \texttt{VTBNyUM47Zg}).
+  \item \emph{Self Aware Networks: A longer explanation of my research, my past work, and what I have built} (13 min): \url{https://www.youtube.com/watch?v=IKbl0ryKRoY} (ID: \texttt{IKbl0ryKRoY}).
+  \item Blumberg, Micah (2024). \emph{Bridging Molecular Mechanisms and Neural Oscillatory Dynamics: Explore how synaptic modulation and pattern generation create the brain's seamless volumetric three-dimensional conscious experience}. Amazon ASIN: \texttt{B0DL4701875}, \url{https://www.amazon.com/dp/B0DL4701875}.
+\end{enumerate}
+
+\subsection{SVGN / Substack Physics Series (2024--2025) and Zenodo Records}
+\begin{itemize}
+  \item \emph{A New Unified Field Theory Called QGTCD (Part I)} --- Jan 28, 2024: \url{https://web.archive.org/web/20240128135920/https://www.svgn.io/p/a-new-unified-field-theory-called-qgtcd}
+  \item \emph{QGTCD (Part II)} --- Feb 15, 2024: \url{https://web.archive.org/web/20240215141003/https://www.svgn.io/p/qgtcd-part-ii}
+  \item \emph{Explain QGTCD Like I Am Six} --- Mar 28, 2024: \url{https://web.archive.org/web/20240328132046/https://www.svgn.io/p/explain-qgtcd-like-i-am-six}
+  \item \emph{Quantum Gravity's New Frontier: Time as Medium} --- Oct 21, 2024: \url{https://web.archive.org/web/20241021151234/https://www.svgn.io/p/quantum-gravitys-new-frontier-time-as-medium}
+  \item \emph{Dark Time Theory: A Conversation} --- Oct 22, 2024: \url{https://web.archive.org/web/20241022145519/https://www.svgn.io/p/dark-time-theory-a-conversation}
+  \item \emph{Micah's New Law of Thermodynamics} --- Jan 1, 2025: \url{https://web.archive.org/web/20250101084219/https://www.svgn.io/p/micahs-new-law-of-thermodynamics}
+  \item \emph{Introducing Quantum SuperTimePosition} --- Jan 5, 2025: \url{https://web.archive.org/web/20250115135920/https://www.svgn.io/p/introducing-quantum-supertimeposition}
+  \item \emph{SuperTimePosition Measured} --- Jan 17, 2025: \url{https://web.archive.org/web/20250117214702/https://www.svgn.io/p/supertimeposition-measured}
+\end{itemize}
+
+\paragraph{Zenodo DOI Records (Chronological by Original Publication Date):}
+\begin{itemize}
+  \item \emph{Coincidence as a Bit of Information} (2017; consolidated June 21, 2025; Zenodo Aug 21, 2025): \url{https://zenodo.org/records/16922510}
+  \item \emph{Micah's New Law of Thermodynamics} (Jan 23, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}28264340}): \url{https://zenodo.org/records/16922506}
+  \item \emph{Super Dark Time: Gravity Computed from Local Quantum Mechanics} (Jan 27, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}28284545}): \url{https://zenodo.org/records/16922502}
+  \item \emph{Super Information Theory: The Coherence Conservation Law Unifying the Wave Function, Gravity, and Time} (Feb 9, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}28379318}): \url{https://zenodo.org/records/16922512}
+  \item \emph{Self Aware Networks: OCA (First Draft)} (May 16, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}29085134}): \url{https://zenodo.org/records/16922401}
+  \item \emph{Neuroscience in Review: Mapping ``Cortical traveling waves in time and space'' (2025) to Self Aware Networks (2022)} (June 18, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}29817383}): \url{https://zenodo.org/records/16922844}
+  \item \emph{Neuroscience in Review: Brain Rhythms in Cognition (2024--25) vs.\ Blumberg's Self-Aware Networks (2017--25)} (July 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}29650250}): \url{https://zenodo.org/records/16922874}
+  \item \emph{Timeline Review of Kletetschka's 3D Time Theory \& Blumberg's SIT, SDT, QGTCD} (July 25, 2025; Figshare DOI \texttt{10.\allowbreak{}6084/m9.\allowbreak{}figshare.\allowbreak{}29647640}): \url{https://zenodo.org/records/16922866}
+  \item \emph{Informational Holonomy and the Electron g-Factor: A Super Information Theory (SIT) Spinoff} (v4, Oct 4, 2025): \url{https://zenodo.org/records/17307956}
+  \item \emph{Coherence-Gated Yang--Mills Gap: A Self-Contained Derivation in Super Information Theory} (Oct 10, 2025; DOI \texttt{10.\allowbreak{}5281/zenodo.\allowbreak{}17311157}): \url{https://doi.org/10.5281/zenodo.17311157}
+  \item \emph{Neuroscience in Review: Earl K. Miller's MIT Corpus vs.\ Micah Blumberg's SAN and SIT} (Oct 10, 2025): \url{https://zenodo.org/records/17308645}
+  \item \emph{Building Sentient Beings} (Micah Blumberg \& Michael S.\ P.\ Miller, Dec 17, 2025): \url{https://zenodo.org/records/47834429}
+\end{itemize}
+
+\setcounter{subsection}{0}
+\renewcommand{\thesection}{AA}
+\renewcommand{\thesubsection}{AA.\arabic{subsection}}
+\section*{Appendix AA: Timestamp Evidence (Wayback Machine Mirrors and ORCID)}
+\addcontentsline{toc}{section}{Appendix AA: Timestamp Evidence (Wayback Machine Mirrors and ORCID)}
+\label{app:timestamp-aa}
+
+This appendix records independent third-party Internet Archive (Wayback Machine) and ORCID identity anchors corroborating January--July 2025 Figshare and repository availability:
+\begin{itemize}
+  \item \textbf{ORCID Identity Anchor (Micah Blumberg, \texttt{0009-0004-5175-9532}):} \url{https://web.archive.org/web/20250826004755/https://orcid.org/0009-0004-5175-9532}
+  \item \textbf{Super Information Theory (Figshare Wayback Index):} \url{https://web.archive.org/web/*/https://figshare.com/articles/journal_contribution/Super_Information_Theory/*}
+  \item \textbf{Super Dark Time (Figshare Wayback Index):} \url{https://web.archive.org/web/*/https://figshare.com/articles/journal_contribution/Super_Dark_Time_Gravity_Computed_from_Local_Quantum_Mechanics/*}
+  \item \textbf{Micah's New Law of Thermodynamics (Figshare Wayback Index):} \url{https://web.archive.org/web/*/https://figshare.com/articles/journal_contribution/_b_Micah_s_New_Law_of_Thermodynamics_A_Signal-Dissipation_Framework_for_Equilibrium_and_Consciousness_b_/*}
+  \item \textbf{Self Aware Networks: OCA (First Draft, May 16, 2025; S3 PDF Snapshot 2025-07-25):} \url{https://web.archive.org/web/20250725002526/https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/54589349/SelfAwareNetworksOCAFirstDraft.pdf}
+\end{itemize}
+Note that Wayback capture timestamps record archive crawl dates, whereas original publication dates are independently attested by ORCID metadata, Figshare/Zenodo DOIs, and GitHub commit histories.

@@ -1,0 +1,110 @@
+{
+  "schema": "sit.v81.math_verification_receipt.v1",
+  "generated_utc": "2026-11-20T19:10:13Z",
+  "checks_total": 20,
+  "checks_passed": 20,
+  "failures_count": 0,
+  "status": "PASS",
+  "results": [
+    {
+      "check": "01_screening_saddle_counterexample",
+      "status": "PASS",
+      "detail": "grad=0, H=diag(-9/16, 107/512, 107/512)"
+    },
+    {
+      "check": "02_screening_degenerate_quartic_counterexample",
+      "status": "PASS",
+      "detail": "rho_m=121/160, H=diag(3/4, 0), quartic=-197/1920"
+    },
+    {
+      "check": "03_screening_coupled_cubic_benchmark",
+      "status": "PASS",
+      "detail": "dV(1/2)=-3/8, rho_in*=0.5960716380, H_rrho=4.0659041928, rho_m_crit=1.3842865519"
+    },
+    {
+      "check": "04_conformal_normalization_factor_of_four",
+      "status": "PASS",
+      "detail": "ratio=1/4, a_C2=4.74464009e-07, a_C1=1.18616002e-07, |g-1|_C2=9.48927568e-07, |g-1|_C1=2.37231976e-07"
+    },
+    {
+      "check": "05_broken_phase_rho0_0_nonvacuum",
+      "status": "PASS",
+      "detail": "V(rho0,0)=v0**4*(lam_p + 2*lam_port)/4, dV(rho0,0)=sqrt(lam_port)*m_l*v0**2, V(rho0,v0)=0"
+    },
+    {
+      "check": "06_amplitude_damping_purity_counterexample",
+      "status": "PASS",
+      "detail": "purity(I/2)=p**2/2 + 1/2, at p=1/2 -> 5/8"
+    },
+    {
+      "check": "07_qfi_separable_product_state_counterexample",
+      "status": "PASS",
+      "detail": "F_Q(|+>, Z/2)=1 => F_Q(|+>^N, J_z)=N != 0"
+    },
+    {
+      "check": "08_coherence_operator_impossibility",
+      "status": "PASS",
+      "detail": "2|rho_01|(|+>) = 2|rho_01|(|->) = 1 while 2|rho_01|(I/2) = 0"
+    },
+    {
+      "check": "09_network_hermiticity_defect_and_repair",
+      "status": "PASS",
+      "detail": "old_defect_nonzero=True, new_defect_zero=True"
+    },
+    {
+      "check": "10_kuramoto_order_parameter_and_antisymmetric_sum",
+      "status": "PASS",
+      "detail": "sum_sin=0, dV_kur/dPsi=0"
+    },
+    {
+      "check": "11_recursion_attenuation_cost_sign",
+      "status": "PASS",
+      "detail": "log(1/2) < 0 gives e^-log(1/2)=2 > 1; clipped C_rec+(1/2)=0"
+    },
+    {
+      "check": "12_entropy_lyapunov_counterexamples",
+      "status": "PASS",
+      "detail": "reversible dH/dt(R=1, Rdot=-eps)=eps > 0, -h''(R)=1/R > 0"
+    },
+    {
+      "check": "13_flat_berry_vs_torque_counterexample",
+      "status": "PASS",
+      "detail": "curl(grad theta)=[0, 0, 0], torque=[0, 0, x + 2]"
+    },
+    {
+      "check": "14_friedmann_linearization_factor_two",
+      "status": "PASS",
+      "detail": "(dH/drho)/H = 1/(2*rho_tot)"
+    },
+    {
+      "check": "15_wkb_tunneling_and_uncertainty_checks",
+      "status": "PASS",
+      "detail": "dT/drho(V>E)=-0.135335 < 0, lim (1-R)/rho_t=0"
+    },
+    {
+      "check": "16_phase_resetting_vs_projective_measurement",
+      "status": "PASS",
+      "detail": "theta in {0, pi} gives p=(1/2,1/2) and |rho_01|=1/2 != 0"
+    },
+    {
+      "check": "17_sourced_gr_broken_vacuum_scalar_and_gauge_residuals",
+      "status": "PASS",
+      "detail": "broken_dust_residual=-rho_m*v0/(Msym**2*psi0**2) != 0, v0=0_residual=0"
+    },
+    {
+      "check": "18_complex_scalar_euler_lagrange_normalization",
+      "status": "PASS",
+      "detail": "undoubled_kinetic_coeff=kc_pos/2, doubled=kc_pos"
+    },
+    {
+      "check": "19_generalized_two_scalar_mass_eigenproblem",
+      "status": "PASS",
+      "detail": "gen_m2=[0.5, 2.0] != raw_H=[1.171573, 6.828427]"
+    },
+    {
+      "check": "20_accel_dimension_and_zero_jacobian_safety",
+      "status": "PASS",
+      "detail": "dim(Gm0/(a*re))=(1, 0, 0) != dim(rho_t)=(0, 0, -1), log(max(1,0))=0"
+    }
+  ]
+}
