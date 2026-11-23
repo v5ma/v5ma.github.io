@@ -1,0 +1,670 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  american,
+  11pt,
+  letterpaper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Times New Roman}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{ragged2e}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\hyphenation{im-ple-men-ta-tion op-er-a-tion-al-i-za-tion}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={A Constructive Coherence-Tower Theorem for a U(1) Lattice Toy Model of Super Information Theory},
+  pdfauthor={Micah Blumberg},
+  pdflang={en-US},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+
+{\LARGE\bfseries A Constructive Coherence-Tower Theorem for a U(1) Lattice Toy Model of Super Information Theory\par}
+
+\vspace{0.35em}
+
+{\large\itshape Finite Zf Gauge Data Embedded in U(1), Exact Orbit Counting, and Direct Observable Abundance\par}
+
+\vspace{0.8em}
+
+{\small\textbf{Author: Micah Blumberg}\par}
+
+{\small Self Aware Networks Research Institute\par}
+
+{\small\url{https://selfawarenetworks.com}\par}
+
+{\small November 20, 2026 (Version 2 Successor Candidate to DOI 10.5281/zenodo.21693908)\par}
+
+\end{center}
+
+\vspace{0.65em}
+
+\begin{abstract}
+
+Can a large hidden configuration space survive a gauge collapse and still yield more than linearly many distinguishable observable relations? This paper answers that consistency question in one exact finite construction. Edge variables take values in the finite subgroup \texttt{\ensuremath{\mu}\_f\ \ensuremath{\cong}\ Z\_f\ \ensuremath{\subset}\ U(1)} on a two-dimensional box; gauge-equivalent edge assignments collapse to the same plaquette curvatures; excitation-count windows select admissible curvatures; and a restricted plaquette readout supplies observable values. Lemma 1 classifies the gauge orbits exactly. Theorems 2-8 prove the seven interface properties called a coherence tower in the SIT formal program. Theorem 10 then gives an explicit box-and-alphabet schedule and a closed-form threshold after which the number of unordered translated, Hamming-distinguishable observable pairs exceeds \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}} for any prescribed \texttt{\ensuremath{\gamma}\ \textgreater{}\ 0}. Theorem 11 assembles these results into the finite Toy SIT Theorem relative to the BC-004 interface definition. The result is an exact existence and realizability theorem for that finite interface. Extending it to the covariant full-SIT model, a nontrivial decoherence relation, continuous phase resolution, or empirical physics remains separate work.
+
+\end{abstract}
+
+\section{Scope and evidence boundary}\label{scope-and-evidence-boundary}
+
+\textbf{Mathematical development assistance:} Claude (Anthropic), Branch C proof program, 2026-06-12 \textbf{Prior public versions:} Version 1 (June 12, 2026, Zenodo DOI 10.5281/zenodo.21231875) and Version 2 public house-style release (July 29, 2026, Paper 033, Zenodo DOI 10.5281/zenodo.21693908, \url{https://pub.svgn.io/papers/paper-33/}). This November 20, 2026 successor candidate corrects the Theorem 6 schedule-divisibility summary and two fibre-multiplicity wording errors (Remark RD3.1 and Theorem 10 Step 3), proves two bounded new mathematical results (Theorems 12 and 13 on the SU(2) Weyl-conjugation gauge-quotient obstruction and finite measurement-resolution capacity bounds), and adds an explicit interface crosswalk to the November 2026 four-dimensional periodic SU(2) lattice model (Model L3 in the separate SIT Version 81 monograph series). \textbf{Copyright and license:} Copyright © 2011-2026 Micah Blumberg. Licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). \textbf{Claim boundary:} Final-preprint successor with complete proofs for the specified finite toy model, clean computational replay, source-role audit, and release validation. The lift from this model to the covariant field theory of SIT remains an open obligation. The paper makes no claim to prove the Riemann Hypothesis. \textbf{Evidence-class convention.} Every substantive claim in this paper carries one of three labels. \textbf{{[}PROVED{]}}: established by a self-contained proof in this document. \textbf{{[}COMPUTATIONALLY CHECKED{]}}: replayed by the finite checker identified in §9, without replacing the proof. \textbf{{[}OPEN / CONJECTURAL{]}}: stated as an obligation or conjecture, with no proof claimed. No claim in this paper is of empirical (``measured'') class; the model is a mathematical construction and no experiment is reported.
+
+\section{1. Introduction}\label{introduction}
+
+\subsection{1.1 Motivation}\label{motivation}
+
+Super Information Theory (SIT) is a proposed physical theory in which observable structure arises by projection from a larger hidden configuration space carrying coherence relations. Its central mathematical claim - extracted and formalized by the SIT proof program - is a \emph{mechanism} claim: hidden branch abundance survives a gauge-type collapse and projects to an \emph{observable} family of values that is (i) superlinearly abundant relative to the size of the underlying discrete net, (ii) pairwise related by coordinatewise unit-modulus translations, and (iii) operationally distinguishable. Whether this mechanism can operate at all - whether the conjunction of requirements is even consistent - is a mathematical question independent of the physical truth of SIT.
+
+This paper answers that consistency question affirmatively and constructively. Following the standard methodology of mathematical physics, in which lattice and toy models precede continuum results (Wilson 1974; Montvay-Münster 1994; Seiler 1982), we exhibit a fully specified finite model in which every requirement is a theorem with exact constants. The strength of the conclusion is exactly this and no more: the SIT mechanism is \emph{realizable in a specified model}. Realizability in a toy model neither confirms nor disconfirms SIT as physics (§7).
+
+\subsection{1.2 The operation before the name}\label{the-operation-before-the-name}
+
+The unexplained problem can be stated without specialized SIT vocabulary. A lattice can contain many edge assignments, but many of them differ only by local gauge choice. After those redundancies are removed, the remaining states must still be numerous. A smaller readout must then preserve enough of their differences to produce a growing family of distinct outputs. Finally, the construction must survive when both the lattice and its finite phase alphabet are enlarged.
+
+The established mathematical account supplies the raw materials: finite abelian lattice gauge variables, gauge orbits, plaquette holonomy, cycle-space counting, and a Wilson-type action. The proposed operation is then:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  assign a root of unity to every oriented edge;
+\item
+  multiply the edge values around each plaquette to obtain gauge-invariant curvature;
+\item
+  identify edge assignments that differ only by a vertex gauge transformation;
+\item
+  retain curvatures inside explicit excitation-count windows;
+\item
+  read a fixed observed set of plaquettes;
+\item
+  enlarge the alphabet and box through injections that preserve the old curvature data; and
+\item
+  count the distinct observable relations that remain.
+\end{enumerate}
+
+Only after this operation is explicit do we use the program name \textbf{coherence tower} for the family that satisfies the seven interface slots. The discriminating failure conditions are equally concrete: additional decoherence may merge orbits, continuous phase resolution may merge readout values, Bianchi constraints alter higher-dimensional curvature data, or no full-SIT lift may preserve the finite constants.
+
+\subsection{1.3 Main results}\label{main-results}
+
+The program (BC-001, BC-004) reduced the mechanism claim to a conditional \textbf{Projection Theorem} consuming a definition of \emph{admissible coherence data}, plus an open \textbf{Coherence Tower Lemma}: the construction of an infinite admissible family from a specified model. Our results:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Model specification (T0). {[}PROVED{]}} \texttt{M\_toy} is specified exactly in §4: \texttt{\ensuremath{\mu}\_f}-valued lattice gauge configurations on the \texttt{n\ ×\ n} box in \texttt{Z\ensuremath{{}^{2}}}, gauge group acting by coboundary, Wilson plaquette action, excitation-count windows \texttt{(P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})}, and plaquette-holonomy readout. Lemma 1 classifies gauge orbits exactly: orbits are in bijection with curvature values, the orbit space is the full product \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_n\}}, and every orbit has size \texttt{f\^{}\{\textbar{}V\_n\textbar{}-1\}}.
+\item
+  \textbf{Coherence tower (Theorems 2-8, §5). {[}PROVED{]}} All seven sublemmas of the Coherence Tower Lemma hold for \texttt{M\_toy}, each with exact (non-asymptotic) constants: surplus \texttt{f\^{}\{(n-1)\ensuremath{{}^{2}}\}} orbits; a discrete net with uniform separation / covering constants \texttt{(1,\ √2/2)}; unit translations realized by a free transitive group action; an exact window-orbit product formula; refinement maps for growing mode \emph{and} growing box; exactly uniform readout fibres (equal orbit-level fibre cardinality \texttt{\textbar{}T(P\ensuremath{'},\ K\ensuremath{{}_{2}})\textbar{}\ =\ Σ\_\{k=0\}\^{}\{min(K\ensuremath{{}_{2}},\textbar{}P\ensuremath{'}\textbar{})\}\ C(\textbar{}P\ensuremath{'}\textbar{},\ k)(f-1)\^{}k} over every attained observable value, hence multiplicity ratio \texttt{m\ =\ 1}, not fibre cardinality \texttt{1}); and a constants table certifying infinite extension.
+\item
+  \textbf{Direct abundance (Theorem 10, §6). {[}PROVED{]}} For every \texttt{\ensuremath{\gamma}\ \textgreater{}\ 0}, on the explicit schedule \texttt{n\_j\ =\ \ensuremath{\lceil}2\^{}\{j/2\}\ensuremath{\rceil}\ +\ 1}, \texttt{f\_j\ =\ 2\^{}j} with \texttt{K\ensuremath{{}_{1}}\ =\ \ensuremath{\lceil}(1+\ensuremath{\gamma})/2\ensuremath{\rceil}\ +\ 1}, the unit-coherence abundance satisfies \texttt{C\_j\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} for all \texttt{j\ \ensuremath{\geq}\ j\ensuremath{{}_{0}}(\ensuremath{\gamma},\ K\ensuremath{{}_{1}})\ =\ max(2,\ \ensuremath{\lceil}log\ensuremath{{}_{2}}\ K\ensuremath{{}_{1}}\ensuremath{\rceil}\ +\ 1,\ \ensuremath{\lceil}K\ensuremath{{}_{1}}\ +\ 1\ +\ (1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 3\ensuremath{\rceil})}. This proves the abundance conclusion unconditionally, without routing through the conditional Projection Theorem.
+\item
+  \textbf{Toy SIT Theorem (Theorem 11). {[}PROVED, relative to the BC-004 slot definition{]}} The above assemble into the program's constructive-toy milestone (``T3'' in the T0-T4 ladder defined in the SIT Formal Proof Research Program of 2026-05-22 and used across the Branch C packets; the unconditional form is BC-006/C-19, which discharges the conditional BC-004/C-17 as unnecessary), with an interface table mapping each theorem to the admissible-coherence-data slot it discharges. The slot definition itself is external input (BC-004); Theorem 11 is proved relative to it.
+\end{itemize}
+
+What is \textbf{not} proved here - the specification of the covariant model \texttt{M\_SIT} and the lift theorem (T4) - is stated as a set of precisely posed open problems in §8. \textbf{{[}OPEN / CONJECTURAL{]}}
+
+\subsection{1.4 Roadmap}\label{roadmap}
+
+§2 places the paper relative to known results and the program documents. §3 fixes notation. §4 specifies \texttt{M\_toy} and proves the orbit classification (Lemma 1). §5 proves the seven tower sublemmas (Theorems 2-8). §6 defines the abundance functional, assembles the tower (Theorem 9), proves direct abundance (Theorem 10), and states the Toy SIT Theorem (Theorem 11) with its interface table. §7 delimits what is and is not established, including the limitations of the toy model. §8 states the open problems. §9 records reproducibility, provenance, and the deterministic finite replay.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 1. Finite lattice geometry and gauge-invariant readout.}]{assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-001.png}}
+\caption{Figure 1. Finite lattice geometry and gauge-invariant readout.}
+\end{figure}
+
+\emph{Figure 1.} States assign \texttt{\ensuremath{\mu}\_f} values to oriented edges; plaquette curvature reads their signed boundary product. The window separately constrains the observed block \texttt{P\_obs} and the complementary tail \texttt{P\ensuremath{'}}.
+
+\section{2. Related work and program context}\label{related-work-and-program-context}
+
+The orbit structure of finite abelian (\texttt{Z\_f}) lattice gauge theory on planar graphs is classical: the coboundary kernel / image counting underlying Lemma 1 is textbook algebraic graph theory (Biggs 1993), and Wilson's plaquette action and the lattice-before-continuum methodology go back to Wilson (1974); for general lattice gauge background see Montvay-Münster (1994) and Seiler (1982). None of the individual counting facts in §4-§5 is claimed as new.
+
+The contribution of this paper is the \emph{assembly}: the coherence-tower interface (the seven-sublemma statement shape consumed by the SIT Projection Theorem, per the obligation ledger \nolinkurl{sit-projection-kernel-obligations-20260602.csv} and packet BC-004), the exact window combinatorics of Theorem 5(b), the exactly-uniform-fibre readout of Theorem 7, the corrected flat box-extension construction of Theorem 6(b) (which repairs a gap in the naive ``extend by 1'' prescription), and the direct abundance theorem with explicit threshold (Theorem 10, sourced from packet BC-006's Theorem C-18; the unconditional Toy SIT Theorem assembled here is BC-006's C-19, which discharges the earlier conditional BC-004/C-17 - conditional on the Branch A Projection-Theorem statement artifact ``BC-A1'' - as unnecessary).
+
+Program context: the SIT Formal Proof Research Program of 2026-05-22 defines the T0-T4 theorem stack (T0 = model specification, T1 = conditional projection theorem, T2 = Coherence Tower Lemma, T3 = constructive toy theorem, T4 = full-SIT lift). Branch C packets BC-001\ldots BC-010 and BC-014 record the later claim boundaries and gate history. The operator-theoretic HSIT-Riemann results are an independent companion deposit and are not used here.
+
+\subsection{2.1 Theorem-by-theorem citation roles}\label{theorem-by-theorem-citation-roles}
+
+The proofs are self-contained; the literature supplies background, terminology, or program definitions rather than hidden proof steps. This distinction is important because a citation to standard context is not being used as a substitute for a theorem.
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Result or definition
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+External source role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Dependency boundary
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Wilson action in D2.4 & Wilson (1974) supplies the original plaquette-action lineage & Definition-level background only; no theorem in this paper invokes a result from Wilson \\
+Lemma 1 & Biggs (1993) supplies cycle-space, cut-space, and coboundary background & The kernel, image, exactness, and cardinality argument is proved in full here \\
+Theorem 2 & Biggs (1993) supplies the connected-graph cycle-rank identity as standard background & The orbit count follows directly from Lemma 1 and the displayed Euler identity \\
+Theorems 3-8 & No external theorem is imported & Each proof is written in this manuscript; Theorems 5-7 depend only on earlier internal definitions and results \\
+Theorem 9 & BC-004 supplies the names and slots of the admissible-data interface & The finite construction is proved here; the interface definition is the only external input \\
+Theorem 10 & BC-006 records the program provenance of the direct-abundance route & The schedule, lower bound, and threshold are rederived line-by-line here \\
+Theorem 11 & BC-004 defines the interface and BC-006 records C-19 & The theorem is explicitly relative to that interface; it does not import a full-SIT lift \\
+Full-SIT target & SIT v79 identifies the intended physical theory & It is an open comparison target, not evidence for any finite theorem \\
+Lattice and constructive context & Montvay-Münster (1994) and Seiler (1982) provide field-level background & Context only; neither book is used as an unstated premise \\
+HSIT-Riemann companion & Zenodo record 21231873 preserves cross-paper identity & Independent and unused in every proof here \\
+\end{longtable}
+\endgroup
+}
+
+\section{3. Notation}\label{notation}
+
+Throughout: \texttt{n,\ n\ensuremath{'},\ f,\ f\ensuremath{'},\ j} denote positive integers, and the excitation budgets \texttt{K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}} are non-negative integers (\texttt{K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}\ \ensuremath{\in}\ Z\_\{\ensuremath{\geq}0\}}); \texttt{\ensuremath{\mu}\_f\ =\ \{z\ \ensuremath{\in}\ C\ :\ z\^{}f\ =\ 1\}} is the cyclic group of \texttt{f}-th roots of unity (any \texttt{f\ \ensuremath{\geq}\ 2}, prime or composite). Thus \texttt{\ensuremath{\mu}\_f\ \ensuremath{\cong}\ Z\_f} is a finite subgroup of \texttt{U(1)}; it is not the quotient group \texttt{U(1)/Z\_f}. Also, \texttt{C(m,\ k)} is the binomial coefficient; \texttt{d\_H} is the Hamming metric on tuple spaces \texttt{(\ensuremath{\mu}\_f)\^{}S} (number of coordinates in which two tuples differ); \texttt{exc(\ensuremath{\tau})} for a tuple \texttt{\ensuremath{\tau}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}S} is the number of coordinates with \texttt{\ensuremath{\tau}\_s\ \ensuremath{\neq}\ 1}. For a finite set \texttt{S}, \texttt{\textbar{}S\textbar{}} is its cardinality. All groups appearing are finite abelian, written multiplicatively. Labels: Lemma 1, Theorems 2-11, Definitions D1-D3, Remarks numbered by parent item (R1.1 under Lemma 1, R2.1 under Theorem 2, R3.1 under Theorem 3, R7.1 under Theorem 7, RD3.1 under Definition D3, R9.1 under Theorem 9).
+
+\section{\texorpdfstring{4. The model \texttt{M\_toy}}{4. The model M\_toy}}\label{the-model-m_toy}
+
+\textbf{Definition D1 (geometry and conventions).} 1. \textbf{Geometry.} \texttt{Λ\_n} is the \texttt{n\ ×\ n} box graph in \texttt{Z\ensuremath{{}^{2}}} (\texttt{n\ \ensuremath{\geq}\ 2}): vertex set \texttt{V\_n\ =\ \{0,\ …,\ n-1\}\ensuremath{{}^{2}}}, edge set \texttt{E\_n} = nearest-neighbor pairs, plaquette set \texttt{P\_n} = unit square faces. Then \texttt{\textbar{}V\_n\textbar{}\ =\ n\ensuremath{{}^{2}}}, \texttt{\textbar{}E\_n\textbar{}\ =\ 2n(n-1)}, \texttt{\textbar{}P\_n\textbar{}\ =\ (n-1)\ensuremath{{}^{2}}}; \texttt{Λ\_n} is connected, planar, simply connected, and satisfies the Euler relation \texttt{\textbar{}E\_n\textbar{}\ =\ \textbar{}V\_n\textbar{}\ -\ 1\ +\ \textbar{}P\_n\textbar{}} (check: \texttt{2n(n-1)\ =\ n\ensuremath{{}^{2}}\ -\ 1\ +\ (n-1)\ensuremath{{}^{2}}}). 2. \textbf{Orientation conventions.} Each edge is oriented by the fixed lexicographic rule: horizontal edges point in \texttt{+x}, vertical edges in \texttt{+y}; an edge \texttt{e} is the ordered pair \texttt{(u,\ v)} with \texttt{v\ -\ u\ \ensuremath{\in}\ \{(1,0),\ (0,1)\}}. Each plaquette \texttt{p} carries the counterclockwise boundary orientation; for \texttt{\ensuremath{\omega}\ :\ E\_n\ →\ \ensuremath{\mu}\_f},
+
+\texttt{\ensuremath{\omega}(\ensuremath{\partial}p)\ :=\ \ensuremath{\prod}\_\{e\ \ensuremath{\in}\ \ensuremath{\partial}p\}\ \ensuremath{\omega}\_e\^{}\{\ensuremath{\varepsilon}(e,p)\}}, \texttt{\ensuremath{\varepsilon}(e,p)\ =\ +1} if \texttt{\ensuremath{\partial}p} traverses \texttt{e} with its orientation, \texttt{-1} against it. \textbf{{[}1{]}}
+
+All counts and statements below are independent of these convention choices: reversing the orientation of an edge \texttt{e} replaces \texttt{\ensuremath{\omega}\_e} by \texttt{\ensuremath{\omega}\_e\^{}\{-1\}} in every formula simultaneously, an automorphism of all the structures involved.
+
+\textbf{Definition D2 (states, gauge, curvature, window, readout).} 1. \textbf{Mode ladder.} \texttt{f\_j\ =\ 2\^{}j} for \texttt{j\ \ensuremath{\geq}\ 1}; since \texttt{f\_j\ \textbar{}\ f\_\{j+1\}}, the alphabets are nested: \texttt{\ensuremath{\mu}\_\{f\_j\}\ \ensuremath{\subset}\ \ensuremath{\mu}\_\{f\_\{j+1\}\}}. 2. \textbf{Hidden states.} \texttt{Ω\_f(Λ\_n)\ =\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}}; at stage \texttt{j}, \texttt{Ω\_j(Λ\_n)\ :=\ Ω\_\{f\_j\}(Λ\_n)}. 3. \textbf{Gauge group and action.} \texttt{G\_f(Λ\_n)\ =\ (\ensuremath{\mu}\_f)\^{}\{V\_n\}} acts by coboundary: for \texttt{e\ =\ (u,\ v)}, \texttt{(g·\ensuremath{\omega})\_e\ =\ g\_u\ \ensuremath{\omega}\_e\ g\_v\^{}\{-1\}}. \textbf{Decoherence equivalence:} declared trivial for \texttt{M\_toy} - two states are equivalent iff gauge related. This is a conservative modeling choice in the following precise sense: each tower sublemma below asserts the existence or abundance of structure at the orbit level, and passing to a coarser equivalence can only merge orbits and thereby weaken or destroy such structure - it cannot create it. The gauge-only case is therefore the base case for the lift obligation of §8 (the candidate non-trivial decoherence relation for \texttt{M\_SIT} is recorded in BC-014). 4. \textbf{Curvature.} \texttt{\ensuremath{\sigma}\_p(\ensuremath{\omega})\ =\ \ensuremath{\omega}(\ensuremath{\partial}p)}; \texttt{\ensuremath{\sigma}(\ensuremath{\omega})\ =\ (\ensuremath{\sigma}\_p(\ensuremath{\omega}))\_\{p\ \ensuremath{\in}\ P\_n\}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}}. The Wilson-type plaquette action is
+
+\texttt{H(\ensuremath{\omega})\ =\ Σ\_\{p\ \ensuremath{\in}\ P\_n\}\ (1\ -\ Re\ \ensuremath{\sigma}\_p(\ensuremath{\omega}))\ \ensuremath{\geq}\ 0}. \textbf{{[}2{]}}
+
+Wilson (1974) is the historical source for the plaquette-action lineage; no result from that paper is invoked in the proofs below. 5. \textbf{Window.} The triple \texttt{(P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})} - a subset \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_n} of observed plaquettes and excitation budgets \texttt{K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}\ \ensuremath{\in}\ Z\_\{\ensuremath{\geq}0\}} - consists of free finite parameters of the model family, fixed per schedule (Theorem 10 requires \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}}). Writing \texttt{P\ensuremath{'}\ =\ P\_n\ \ensuremath{\setminus}\ P\_obs},
+
+\texttt{W\ =\ W(n,\ f,\ P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})\ =\ \{\ensuremath{\omega}\ \ensuremath{\in}\ Ω\_f(Λ\_n)\ :\ exc(\ensuremath{\sigma}(\ensuremath{\omega})\textbar{}\_\{P\_obs\})\ \ensuremath{\leq}\ K\ensuremath{{}_{1}}\ and\ exc(\ensuremath{\sigma}(\ensuremath{\omega})\textbar{}\_\{P\ensuremath{'}\})\ \ensuremath{\leq}\ K\ensuremath{{}_{2}}\}}. \textbf{{[}3{]}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{Readout.} \texttt{\ensuremath{\pi}\_obs(\ensuremath{\omega})\ =\ \ensuremath{\sigma}(\ensuremath{\omega})\textbar{}\_\{P\_obs\}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_obs\}}; gauge invariant since \texttt{\ensuremath{\sigma}} is (Lemma 1).
+\end{enumerate}
+
+\textbf{Lemma 1 (orbit classification). {[}PROVED{]}} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2} and \texttt{f\ \ensuremath{\geq}\ 2} (prime or composite). On \texttt{Λ\_n} with alphabet \texttt{\ensuremath{\mu}\_f}:} \emph{(i) \texttt{\ensuremath{\sigma}} is gauge invariant;} \emph{(ii) two states are gauge related if and only if they have the same curvature, so \texttt{\ensuremath{\sigma}} classifies gauge orbits exactly;} \emph{(iii) \texttt{\ensuremath{\sigma}\ :\ Ω\_f(Λ\_n)\ →\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}} is surjective, so the orbit space is all of \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_n\}};} \emph{(iv) every gauge orbit has size exactly \texttt{f\^{}\{\textbar{}V\_n\textbar{}-1\}}.}
+
+\emph{Proof.} Let \texttt{\ensuremath{\delta}\ :\ (\ensuremath{\mu}\_f)\^{}\{V\_n\}\ →\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}}, \texttt{(\ensuremath{\delta}g)\_e\ =\ g\_u\ g\_v\^{}\{-1\}} for \texttt{e\ =\ (u,\ v)}, the coboundary homomorphism of finite abelian groups; the gauge action of \texttt{g} on \texttt{\ensuremath{\omega}} is coordinatewise multiplication by \texttt{\ensuremath{\delta}g}, i.e.~the orbits are the cosets of \texttt{im(\ensuremath{\delta})}.
+
+\emph{Kernel of \texttt{\ensuremath{\delta}}.} \texttt{\ensuremath{\delta}g\ =\ 1} iff \texttt{g\_u\ =\ g\_v} for every edge \texttt{(u,\ v)}; since \texttt{Λ\_n} is connected, this forces \texttt{g} constant, so \texttt{ker(\ensuremath{\delta})\ \ensuremath{\cong}\ \ensuremath{\mu}\_f}, of order \texttt{f}. By the first isomorphism theorem, \texttt{\textbar{}im(\ensuremath{\delta})\textbar{}\ =\ f\^{}\{\textbar{}V\_n\textbar{}\}/f\ =\ f\^{}\{\textbar{}V\_n\textbar{}-1\}}. (No vector-space structure is used; the argument is valid verbatim for composite \texttt{f}.) This proves (iv): translation of a group on itself is free, so every coset of \texttt{im(\ensuremath{\delta})} has exactly \texttt{\textbar{}im(\ensuremath{\delta})\textbar{}} elements.
+
+\emph{Gauge invariance (i) and \texttt{im(\ensuremath{\delta})\ \ensuremath{\subseteq}\ ker(\ensuremath{\sigma})}.} For a plaquette \texttt{p}, each vertex on \texttt{\ensuremath{\partial}p} is the head of one traversed edge and the tail of the next; in the product \texttt{(\ensuremath{\delta}g)(\ensuremath{\partial}p)} every \texttt{g\_u} appears once with exponent \texttt{+1} and once with exponent \texttt{-1}, so \texttt{(\ensuremath{\delta}g)(\ensuremath{\partial}p)\ =\ 1}. Hence \texttt{\ensuremath{\sigma}(g·\ensuremath{\omega})\ =\ \ensuremath{\sigma}(\ensuremath{\delta}g\ ·\ \ensuremath{\omega})\ =\ \ensuremath{\sigma}(\ensuremath{\omega})}.
+
+\emph{\texttt{ker(\ensuremath{\sigma})\ \ensuremath{\subseteq}\ im(\ensuremath{\delta})} (simple connectivity).} Suppose \texttt{\ensuremath{\sigma}(\ensuremath{\omega})\ =\ 1}, i.e.~\texttt{\ensuremath{\omega}(\ensuremath{\partial}p)\ =\ 1} for every plaquette. Then \texttt{\ensuremath{\omega}(c)\ =\ 1} for every cycle \texttt{c} of \texttt{Λ\_n}: the cycle space of a planar graph is generated by its bounded face boundaries, and \texttt{Λ\_n} is simply connected (no holes), so every cycle is a product of plaquette boundaries (Biggs 1993, cycle-space background). Fix a spanning tree \texttt{T} of \texttt{Λ\_n} and a root vertex \texttt{r}; for \texttt{v\ \ensuremath{\in}\ V\_n} define \texttt{g\_v\ =\ \ensuremath{\omega}(path\_T(r\ →\ v))}, the ordered product of \texttt{\ensuremath{\omega}\_e\^{}\{\ensuremath{\varepsilon}\}} along the tree path with \texttt{\ensuremath{\varepsilon}\ =\ +1} when the path traverses \texttt{e} with its orientation and \texttt{-1} against it. For any edge \texttt{e\ =\ (u,\ v)} (oriented \texttt{u\ →\ v}), the closed walk \texttt{path\_T(r\ →\ u)}, then \texttt{e}, then \texttt{path\_T(v\ →\ r)} is a cycle of \texttt{Λ\_n}, so its \texttt{\ensuremath{\omega}}-holonomy is \texttt{1}: \texttt{g\_u\ ·\ \ensuremath{\omega}\_e\ ·\ g\_v\^{}\{-1\}\ =\ 1}, i.e.~\texttt{\ensuremath{\omega}\_e\ =\ g\_u\^{}\{-1\}\ g\_v\ =\ (\ensuremath{\delta}(g\^{}\{-1\}))\_e}. Hence \texttt{\ensuremath{\omega}\ =\ \ensuremath{\delta}(g\^{}\{-1\})\ \ensuremath{\in}\ im(\ensuremath{\delta})}. Combining, \texttt{ker(\ensuremath{\sigma})\ =\ im(\ensuremath{\delta})}, which with (i) proves (ii): \texttt{\ensuremath{\sigma}(\ensuremath{\omega})\ =\ \ensuremath{\sigma}(\ensuremath{\omega}\ensuremath{'})} iff \texttt{\ensuremath{\omega}\ensuremath{'}\ensuremath{\omega}\^{}\{-1\}\ \ensuremath{\in}\ ker(\ensuremath{\sigma})\ =\ im(\ensuremath{\delta})} iff \texttt{\ensuremath{\omega},\ \ensuremath{\omega}\ensuremath{'}} are gauge related.
+
+\emph{Surjectivity (iii).} We have the exact sequence of finite abelian groups
+
+\texttt{1\ →\ \ensuremath{\mu}\_f\ →\ (\ensuremath{\mu}\_f)\^{}\{V\_n\}\ →\^{}\ensuremath{\delta}\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}\ →\^{}\ensuremath{\sigma}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}}. \textbf{{[}4{]}}
+
+with \texttt{\textbar{}im(\ensuremath{\sigma})\textbar{}\ =\ f\^{}\{\textbar{}E\_n\textbar{}\}/\textbar{}ker(\ensuremath{\sigma})\textbar{}\ =\ f\^{}\{\textbar{}E\_n\textbar{}\}/f\^{}\{\textbar{}V\_n\textbar{}-1\}\ =\ f\^{}\{\textbar{}E\_n\textbar{}-\textbar{}V\_n\textbar{}+1\}\ =\ f\^{}\{\textbar{}P\_n\textbar{}\}} by the Euler relation. Since \texttt{im(\ensuremath{\sigma})\ \ensuremath{\subseteq}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}} and the two groups have equal order, \texttt{\ensuremath{\sigma}} is surjective, completing the exact sequence
+
+\texttt{1\ →\ \ensuremath{\mu}\_f\ →\ (\ensuremath{\mu}\_f)\^{}\{V\_n\}\ →\^{}\ensuremath{\delta}\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}\ →\^{}\ensuremath{\sigma}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}\ →\ 1}. \textbf{{[}5{]}} \ensuremath{\blacksquare}
+
+\textbf{Remark R1.1 (where simple connectivity is used).} Exactness of the four-term sequence at \texttt{(\ensuremath{\mu}\_f)\^{}\{E\_n\}} and surjectivity of \texttt{\ensuremath{\sigma}} use planarity and simple connectivity of \texttt{Λ\_n} and are special to this \texttt{d\ =\ 2} setting; this is exactly the point at which the \texttt{d\ \ensuremath{\geq}\ 3} situation differs (Remark R2.1). The kernel / image counting for the coboundary on a connected graph is classical algebraic graph theory (Biggs 1993); the proof above is kept self-contained.
+
+\section{5. The seven sublemmas (all proved)}\label{the-seven-sublemmas-all-proved}
+
+All theorems in this section are of evidence class \textbf{{[}PROVED{]}}.
+
+\textbf{Theorem 2 (Surplus).} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2}, \texttt{f\ \ensuremath{\geq}\ 2}. The number of gauge orbits in \texttt{Ω\_f(Λ\_n)} is exactly}
+
+\texttt{\#orbits\ =\ f\^{}\{\textbar{}E\_n\textbar{}-\textbar{}V\_n\textbar{}+1\}\ =\ f\^{}\{cycle\ rank(Λ\_n)\}\ =\ f\^{}\{\textbar{}P\_n\textbar{}\}\ =\ f\^{}\{(n-1)\ensuremath{{}^{2}}\}}. \textbf{{[}6{]}}
+
+\emph{In particular, raw branch abundance (\texttt{f\^{}\{\textbar{}E\_n\textbar{}\}} states) survives gauge collapse (division by \texttt{f\^{}\{\textbar{}V\_n\textbar{}-1\}}) with an orbit count that is itself exponential in the area.}
+
+\emph{Proof.} By Lemma 1(iv) the translation action of \texttt{im(\ensuremath{\delta})} on \texttt{(\ensuremath{\mu}\_f)\^{}\{E\_n\}} is free, so the orbit count is \texttt{f\^{}\{\textbar{}E\_n\textbar{}\}/f\^{}\{\textbar{}V\_n\textbar{}-1\}\ =\ f\^{}\{\textbar{}E\_n\textbar{}-\textbar{}V\_n\textbar{}+1\}}; and \texttt{\textbar{}E\_n\textbar{}\ -\ \textbar{}V\_n\textbar{}\ +\ 1\ =\ \textbar{}P\_n\textbar{}\ =\ (n-1)\ensuremath{{}^{2}}} by the Euler relation. The identification \texttt{\textbar{}E\_n\textbar{}\ -\ \textbar{}V\_n\textbar{}\ +\ 1\ =\ cycle\ rank} is the standard first-Betti-number formula for a connected graph (standard; Biggs 1993). \ensuremath{\blacksquare}
+
+\textbf{Remark R2.1 (higher-dimensional aside, quarantined; the asymptotics here are {[}PROVED{]} for the orbit count only).} In any dimension \texttt{d\ \ensuremath{\geq}\ 2}, the orbit count is \texttt{f\^{}\{cycle\ rank\}} - the free-translation argument of Theorem 2 is dimension-free - giving \texttt{f\^{}\{(d-1)n\^{}d(1+o(1))\}} on the \texttt{d}-dimensional box (cycle rank \texttt{=\ \textbar{}E\textbar{}\ -\ \textbar{}V\textbar{}\ +\ 1}). Relative to the raw edge-state exponent \texttt{\textbar{}E\textbar{}\ \ensuremath{\sim}\ d\ n\^{}d}, the retained exponent ratio tends to \texttt{(d-1)/d\ \textgreater{}\ 0}. However, the identification of the orbit \emph{space} with the full product \texttt{(\ensuremath{\mu}\_f)\^{}\{P\}} (Lemma 1(iii)) is special to the simply connected \texttt{d\ =\ 2} case: for \texttt{d\ \ensuremath{\geq}\ 3}, plaquette holonomies satisfy Bianchi-type constraints around 3-cells, \texttt{\ensuremath{\sigma}} is not surjective onto the product, and the window product formula of Theorem 5 is not available. No statement outside this remark uses \texttt{d\ \ensuremath{\geq}\ 3}; whether the full tower survives the Bianchi constraints is Open Problem OP3 (§8).
+
+\textbf{Theorem 3 (Discrete Net).} \emph{For every \texttt{n\ \ensuremath{\geq}\ 2}, the configuration index set \texttt{Z\ensuremath{{}^{2}}\ \ensuremath{\cap}\ Λ\_n} (the vertex net) is uniformly discrete with separation constant exactly \texttt{1} and relatively dense in the box with covering radius exactly \texttt{√2/2}; both constants are independent of \texttt{n}, \texttt{f}, and the stage \texttt{j}.}
+
+\emph{Proof.} Distinct points of \texttt{Z\ensuremath{{}^{2}}} are at Euclidean distance \texttt{\ensuremath{\geq}\ 1}, attained by nearest neighbors. Every point of the solid box \texttt{{[}0,\ n-1{]}\ensuremath{{}^{2}}} lies within distance \texttt{√2/2} of a lattice point (the worst case is the center of a unit cell), attained at cell centers. \ensuremath{\blacksquare}
+
+\textbf{Remark R3.1 (interface role).} Theorem 3 is elementary; its role is purely interfacial: it discharges the \textbf{discrete-net slot} (stage carrier) of the admissible-coherence-data definition consumed by the Projection Theorem (BC-004 slot families; obligation ledger \nolinkurl{sit-projection-kernel-obligations-20260602.csv}), with the uniform constant pair \texttt{(separation,\ covering\ radius)\ =\ (1,\ √2/2)} recorded for all \texttt{(n,\ f,\ j)}. See the interface table after Theorem 11.
+
+\textbf{Theorem 4 (Unit Translation).} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2}, \texttt{f\ \ensuremath{\geq}\ 2}, and fix a gauge class \texttt{O\ \ensuremath{\subseteq}\ Ω\_f(Λ\_n)}. The set of branch ratios \texttt{\{\ensuremath{\omega}\ensuremath{'}\ensuremath{\omega}\^{}\{-1\}\ :\ \ensuremath{\omega},\ \ensuremath{\omega}\ensuremath{'}\ \ensuremath{\in}\ O\}} (coordinatewise quotient) is precisely the translation group \texttt{im(\ensuremath{\delta})\ \ensuremath{\leq}\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}}, of order \texttt{f\^{}\{\textbar{}V\_n\textbar{}-1\}}, acting freely and transitively on \texttt{O}. In particular every such ratio is a coordinatewise unit-modulus translation (an element of \texttt{(\ensuremath{\mu}\_f)\^{}\{E\_n\}}, all coordinates on the unit circle).}
+
+\emph{Proof.} By Lemma 1(ii), \texttt{\ensuremath{\omega},\ \ensuremath{\omega}\ensuremath{'}} lie in the same class iff \texttt{\ensuremath{\omega}\ensuremath{'}\ensuremath{\omega}\^{}\{-1\}\ \ensuremath{\in}\ im(\ensuremath{\delta})}; conversely each \texttt{t\ \ensuremath{\in}\ im(\ensuremath{\delta})} maps \texttt{O} to itself by translation. Freeness and transitivity are immediate for the translation action of a group on one of its cosets. Unit-modularity is automatic for root-of-unity alphabets - the content of the theorem is the group structure: the unit-translation slot is realized by a transitive structured family, not merely by pointwise unit numbers. \ensuremath{\blacksquare}
+
+\textbf{Theorem 5 (Stable Growth).} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2}, \texttt{f\ \ensuremath{\geq}\ 2}, \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_n}, \texttt{P\ensuremath{'}\ =\ P\_n\ \ensuremath{\setminus}\ P\_obs}, and \texttt{K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}\ \ensuremath{\geq}\ 0}.}
+
+\emph{(a) (Coercivity.) For every \texttt{\ensuremath{\omega}\ \ensuremath{\in}\ Ω\_f(Λ\_n)}: \texttt{H(\ensuremath{\omega})\ \ensuremath{\geq}\ \ensuremath{\kappa}\_f\ ·\ exc(\ensuremath{\sigma}(\ensuremath{\omega}))}, with \texttt{\ensuremath{\kappa}\_f\ =\ 1\ -\ cos(2\ensuremath{\pi}/f)\ \textgreater{}\ 0}.} \textbf{{[}7{]}}
+
+\emph{(b) (Exact window count.) The number of gauge orbits meeting \texttt{W(n,\ f,\ P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})} is exactly}
+
+\texttt{\#orbits(W)\ =\ {[}Σ\_\{k=0\}\^{}\{min(K\ensuremath{{}_{1}},\textbar{}P\_obs\textbar{})\}\ C(\textbar{}P\_obs\textbar{},\ k)(f-1)\^{}k{]}\ ·\ {[}Σ\_\{k=0\}\^{}\{min(K\ensuremath{{}_{2}},\textbar{}P\ensuremath{'}\textbar{})\}\ C(\textbar{}P\ensuremath{'}\textbar{},\ k)(f-1)\^{}k{]}}. \textbf{{[}8{]}}
+
+\emph{(c) (Growth envelope.) Consequently \texttt{\#orbits(W)} is at most \texttt{(1+\textbar{}P\_obs\textbar{})(1+\textbar{}P\ensuremath{'}\textbar{})\ ·\ max\_k\ C(\textbar{}P\_obs\textbar{},k)\ ·\ max\_k\ C(\textbar{}P\ensuremath{'}\textbar{},k)\ ·\ (f-1)\^{}\{K\ensuremath{{}_{1}}+K\ensuremath{{}_{2}}\}}, and, provided \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}} and \texttt{\textbar{}P\ensuremath{'}\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{2}}} (so the top binomial terms are nonvanishing), at least \texttt{(f-1)\^{}\{K\ensuremath{{}_{1}}+K\ensuremath{{}_{2}}\}}.}
+
+\emph{Proof.} (a) Each excited plaquette contributes \texttt{1\ -\ Re\ \ensuremath{\sigma}\_p\ \ensuremath{\geq}\ 1\ -\ cos(2\ensuremath{\pi}/f)}, because the nontrivial elements of \texttt{\ensuremath{\mu}\_f} nearest to \texttt{1} are \texttt{e\^{}\{±2\ensuremath{\pi}i/f\}}; unexcited plaquettes contribute \texttt{0\ \ensuremath{\geq}\ 0}. Summing over plaquettes gives the bound.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  By Lemma 1(ii)-(iii), gauge orbits are in bijection with curvature values \texttt{\ensuremath{\sigma}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}\ =\ (\ensuremath{\mu}\_f)\^{}\{P\_obs\}\ ×\ (\ensuremath{\mu}\_f)\^{}\{P\ensuremath{'}\}}, and window membership is a condition on \texttt{\ensuremath{\sigma}} alone, factoring as (excitation of the \texttt{P\_obs} block \texttt{\ensuremath{\leq}\ K\ensuremath{{}_{1}}}) × (excitation of the \texttt{P\ensuremath{'}} block \texttt{\ensuremath{\leq}\ K\ensuremath{{}_{2}}}). The number of tuples in \texttt{(\ensuremath{\mu}\_f)\^{}m} with at most \texttt{K} nontrivial coordinates is \texttt{Σ\_\{k=0\}\^{}\{min(K,m)\}\ C(m,\ k)(f-1)\^{}k} (choose the excited coordinates, then a nontrivial value for each). Multiplying the two independent factors gives the formula.
+\item
+  Upper bound: bound every term of each sum by its largest factor combination. Lower bound: the single term \texttt{k\ =\ K\ensuremath{{}_{1}}} in the first factor and \texttt{k\ =\ K\ensuremath{{}_{2}}} in the second contribute \texttt{C(\textbar{}P\_obs\textbar{},\ K\ensuremath{{}_{1}})(f-1)\^{}\{K\ensuremath{{}_{1}}\}\ ·\ C(\textbar{}P\ensuremath{'}\textbar{},\ K\ensuremath{{}_{2}})(f-1)\^{}\{K\ensuremath{{}_{2}}\}\ \ensuremath{\geq}\ (f-1)\^{}\{K\ensuremath{{}_{1}}+K\ensuremath{{}_{2}}\}} when both binomials are \texttt{\ensuremath{\geq}\ 1}, i.e.~when \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}} and \texttt{\textbar{}P\ensuremath{'}\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{2}}}. \ensuremath{\blacksquare}
+\end{enumerate}
+
+\textbf{Theorem 6 (Persistent Splitting).} \emph{Along a schedule both the mode and the box may grow; both refinements preserve the tower structure:}
+
+\emph{(a) (Mode refinement, fixed box.) Let \texttt{f\ \textbar{}\ f\ensuremath{'}} (in particular \texttt{f\_j\ \textbar{}\ f\_\{j+1\}}). The coordinatewise inclusion \texttt{Ω\_f(Λ\_n)\ \ensuremath{\hookrightarrow}\ Ω\_\{f\ensuremath{'}\}(Λ\_n)} induced by \texttt{\ensuremath{\mu}\_f\ \ensuremath{\subset}\ \ensuremath{\mu}\_\{f\ensuremath{'}\}} is injective, gauge equivariant (with respect to \texttt{G\_f\ \ensuremath{\subset}\ G\_\{f\ensuremath{'}\}}), commutes with \texttt{\ensuremath{\sigma}}, preserves excitation counts and hence window membership (for the same \texttt{(P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})}), and carries distinct gauge orbits to distinct gauge orbits.}
+
+\emph{(b) (Box extension, fixed mode.) Let \texttt{2\ \ensuremath{\leq}\ n\ \ensuremath{\leq}\ n\ensuremath{'}} and anchor \texttt{Λ\_n} at the lower-left corner of \texttt{Λ\_\{n\ensuremath{'}\}}, so that \texttt{V\_n\ \ensuremath{\subseteq}\ V\_\{n\ensuremath{'}\}}, \texttt{E\_n\ \ensuremath{\subseteq}\ E\_\{n\ensuremath{'}\}}, \texttt{P\_n\ \ensuremath{\subseteq}\ P\_\{n\ensuremath{'}\}}, and every plaquette of \texttt{Λ\_n} has all four edges in \texttt{E\_n}. There exists an injection \texttt{\ensuremath{\iota}\ :\ Ω\_f(Λ\_n)\ \ensuremath{\hookrightarrow}\ Ω\_f(Λ\_\{n\ensuremath{'}\})} such that:} \emph{(b1) \texttt{\ensuremath{\iota}(\ensuremath{\omega})\textbar{}\_\{E\_n\}\ =\ \ensuremath{\omega}};} \emph{(b2) \texttt{\ensuremath{\sigma}\_p(\ensuremath{\iota}(\ensuremath{\omega}))\ =\ \ensuremath{\sigma}\_p(\ensuremath{\omega})} for every \texttt{p\ \ensuremath{\in}\ P\_n}, and \texttt{\ensuremath{\sigma}\_p(\ensuremath{\iota}(\ensuremath{\omega}))\ =\ 1} for every new plaquette \texttt{p\ \ensuremath{\in}\ P\_\{n\ensuremath{'}\}\ \ensuremath{\setminus}\ P\_n} (flat extension at the curvature level);} \emph{(b3) for \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_n} (kept inside the old box), \texttt{\ensuremath{\iota}} preserves window membership for the same budgets \texttt{(K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})} - the extension adds zero excitation;} \emph{(b4) \texttt{\ensuremath{\iota}} carries distinct gauge orbits of \texttt{Ω\_f(Λ\_n)} to distinct gauge orbits of \texttt{Ω\_f(Λ\_\{n\ensuremath{'}\})}.}
+
+\emph{Composites of (a) and (b) give the tower maps for any schedule \((n_j, f_j)\) satisfying \(n_j \le n_{j+1}\) and \(f_j \mid f_{j+1}\) (in particular for the powers-of-two schedule \(f_j = 2^j\) of §6; mere monotonicity \(f_j \le f_{j+1}\) without divisibility is insufficient because \(\mu_2 \not\subset \mu_3\)): holonomy channels survive refinement.}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 2. Gauge-adjusted flat box extension.}]{assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-002.png}}
+\caption{Figure 2. Gauge-adjusted flat box extension.}
+\end{figure}
+
+\emph{Figure 2.} The highlighted boundary plaquette inherits an old edge, so setting all new edges to one need not be flat. Theorem 6(b) instead fixes the target curvature, lifts it to the larger box, and gauge-adjusts the lift so that the old edge data are recovered exactly.
+
+\emph{Proof.} (a) Injectivity, equivariance, and commutation with \texttt{\ensuremath{\sigma}} are immediate from coordinatewise inclusion (the boundary products are computed in the larger group, where they agree). Excitation counts are preserved because \texttt{\ensuremath{\sigma}\_p\ \ensuremath{\neq}\ 1} is unchanged under inclusion. Orbit distinctness: by Lemma 1(ii) on each side, orbits are labeled by curvature, and the inclusion \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_n\}\ \ensuremath{\subset}\ (\ensuremath{\mu}\_\{f\ensuremath{'}\})\^{}\{P\_n\}} is injective on labels.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Define the target curvature \texttt{\ensuremath{\sigma}̃\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_\{n\ensuremath{'}\}\}} by \texttt{\ensuremath{\sigma}̃\_p\ =\ \ensuremath{\sigma}\_p(\ensuremath{\omega})} for \texttt{p\ \ensuremath{\in}\ P\_n} and \texttt{\ensuremath{\sigma}̃\_p\ =\ 1} for new \texttt{p}. By Lemma 1(iii) on \texttt{Λ\_\{n\ensuremath{'}\}} choose \texttt{\ensuremath{\omega}\ensuremath{''}\ \ensuremath{\in}\ Ω\_f(Λ\_\{n\ensuremath{'}\})} with \texttt{\ensuremath{\sigma}(\ensuremath{\omega}\ensuremath{''})\ =\ \ensuremath{\sigma}̃}. The restriction \texttt{\ensuremath{\omega}\ensuremath{''}\textbar{}\_\{E\_n\}} is a configuration on \texttt{Λ\_n} whose curvature equals \texttt{\ensuremath{\sigma}(\ensuremath{\omega})} (every old plaquette has all edges old, so its holonomy is computed within \texttt{E\_n}); by Lemma 1(ii) on \texttt{Λ\_n} there is \texttt{g\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{V\_n\}} with \texttt{g·(\ensuremath{\omega}\ensuremath{''}\textbar{}\_\{E\_n\})\ =\ \ensuremath{\omega}}. Extend \texttt{g} to \texttt{ĝ\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{V\_\{n\ensuremath{'}\}\}} by \texttt{ĝ\_v\ =\ 1} for new vertices \texttt{v}, and set \texttt{\ensuremath{\iota}(\ensuremath{\omega})\ :=\ ĝ·\ensuremath{\omega}\ensuremath{''}}. Then: (b1) holds because on old edges \texttt{ĝ} acts exactly as \texttt{g} (both endpoints of an old edge are old vertices); (b2) holds because gauge action preserves curvature, so \texttt{\ensuremath{\sigma}(\ensuremath{\iota}(\ensuremath{\omega}))\ =\ \ensuremath{\sigma}(\ensuremath{\omega}\ensuremath{''})\ =\ \ensuremath{\sigma}̃}; (b3) holds because the observed-block and tail-block excitations of \texttt{\ensuremath{\sigma}̃} equal those of \texttt{\ensuremath{\sigma}(\ensuremath{\omega})} (new plaquettes contribute zero excitation and \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_n}); (b4) holds because \texttt{\ensuremath{\sigma}̃} determines \texttt{\ensuremath{\sigma}(\ensuremath{\omega})} by restriction to \texttt{P\_n}, and curvature labels orbits on both boxes (Lemma 1(ii)).
+\end{enumerate}
+
+Injectivity of \texttt{\ensuremath{\iota}}: restriction to \texttt{E\_n} is a left inverse by (b1). (Note: \texttt{\ensuremath{\iota}} is a well-defined injection for any fixed choice function in the two choice steps above; distinct choices yield maps differing by a gauge transformation fixing \texttt{E\_n} pointwise, and all conclusions (b1)-(b4) are independent of the choice.)
+
+\emph{Caution (recorded for referees).} The naive prescription ``extend by \texttt{\ensuremath{\omega}\ \ensuremath{\equiv}\ 1} on new edges'' does \textbf{not} in general satisfy (b2): a new boundary-strip plaquette can have one old edge carrying a nontrivial value and three new edges, giving holonomy \texttt{\ensuremath{\neq}\ 1}. The gauge-adjusted construction above is the correct flat extension; alternatively one may solve for new-edge values plaquette-by-plaquette along the added strips (each new plaquette in a sweep order contains a fresh new edge; the count \texttt{\textbar{}E\_\{n\ensuremath{'}\}\textbar{}\ -\ \textbar{}E\_n\textbar{}\ =\ (\textbar{}V\_\{n\ensuremath{'}\}\textbar{}\ -\ \textbar{}V\_n\textbar{})\ +\ (\textbar{}P\_\{n\ensuremath{'}\}\textbar{}\ -\ \textbar{}P\_n\textbar{})}, from the Euler relations of both boxes, shows the system is exactly solvable after fixing a spanning-tree extension). \ensuremath{\blacksquare}
+
+\textbf{Theorem 7 (Projection Complexity).} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2}, \texttt{f\ \ensuremath{\geq}\ 2}, \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_n}, \texttt{P\ensuremath{'}\ =\ P\_n\ \ensuremath{\setminus}\ P\_obs}, \texttt{K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}\ \ensuremath{\geq}\ 0}. Identify gauge orbits with curvature values (Lemma 1). Then:}
+
+\emph{(a) (Exactly uniform fibres.) For every observable value \texttt{y\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_obs\}} with \texttt{exc(y)\ \ensuremath{\leq}\ K\ensuremath{{}_{1}}}, \texttt{y} is attained on the window, and the fibre of the orbit-level readout over \texttt{y} is the \textbf{full} admissible tail set \texttt{\{\ensuremath{\tau}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\ensuremath{'}\}\ :\ exc(\ensuremath{\tau})\ \ensuremath{\leq}\ K\ensuremath{{}_{2}}\}} - the same set for every such \texttt{y}. In particular the multiplicity ratio between any two attained values is exactly \texttt{m\ =\ 1}.}
+
+\emph{(b) (Separation.) Distinct observable values are at Hamming distance \texttt{\ensuremath{\geq}\ 1} in \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_obs\}}, a distinguishability scale independent of \texttt{f,\ n,\ j}.}
+
+\emph{Proof.} (a) By Lemma 1(iii) the orbit space is the full product \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_obs\}\ ×\ (\ensuremath{\mu}\_f)\^{}\{P\ensuremath{'}\}}, and window membership factors as a product condition (Theorem 5(b)); therefore the set of admissible tails over \texttt{y} is \texttt{\{\ensuremath{\tau}\ :\ exc(\ensuremath{\tau})\ \ensuremath{\leq}\ K\ensuremath{{}_{2}}\}} whenever \texttt{exc(y)\ \ensuremath{\leq}\ K\ensuremath{{}_{1}}}, independent of \texttt{y}. Every such \texttt{y} is attained: pair it with the flat tail \texttt{\ensuremath{\tau}\ \ensuremath{\equiv}\ 1} (admissible since \texttt{exc\ \ensuremath{\leq}\ K\ensuremath{{}_{2}}} holds with \texttt{0}). (b) Distinct tuples differ in at least one coordinate. \ensuremath{\blacksquare}
+
+\textbf{Remark R7.1 (why the Hamming metric).} Hamming separation is the exact operational notion of distinguishability for the count-based readout used here: \texttt{\ensuremath{\pi}\_obs} reports the holonomy tuple itself, and the window is defined by excitation \emph{counts}, so two observable values are distinguishable iff they differ in some coordinate - regardless of how metrically close adjacent roots of unity become in \texttt{C} as \texttt{f\ →\ ∞}. Phase-resolution-limited readout, under which adjacent roots of unity at large \texttt{f} would merge, is a property of \texttt{M\_SIT}-type models with continuous observables; it is absent from \texttt{M\_toy} by construction and is Open Problem OP5 (§8).
+
+\textbf{Theorem 8 (Infinite Extension).} \emph{Every quantity appearing in Theorems 2-7 is either stage-independent or given by an explicit closed-form function of \texttt{(f\_j,\ n\_j)} and the fixed window parameters, as tabulated below. The genuinely uniform interface constants are the net separation, covering radius, fibre-multiplicity ratio, and Hamming separation. The family \texttt{\{(Ω\_j(Λ\_\{n\_j\}),\ G\_j,\ \ensuremath{\sigma},\ W,\ \ensuremath{\pi}\_obs)\}\_\{j\ \ensuremath{\geq}\ 1\}} therefore extends to \texttt{j\ →\ ∞} with explicit stage controls. The single degrading quantity, the coercivity constant \texttt{\ensuremath{\kappa}\_\{f\_j\}\ =\ 1\ -\ cos(2\ensuremath{\pi}/f\_j)\ →\ 0}, is quarantined: no statement in §6 uses a lower bound on \texttt{H} - the windows are stated directly in excitation counts, which are \texttt{f}-independent.}
+
+\emph{Proof.} By inspection of the table; each row cites the theorem where the value is computed. The quarantine claim is verified by inspection of §6: Theorems 9-11 invoke only Lemma 1 and Theorems 2, 5(b), 6, 7, none of which uses Theorem 5(a)'s coercivity bound. \ensuremath{\blacksquare}
+
+\emph{Constants table.}
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Dependence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Orbit size & \texttt{f\^{}\{\textbar{}V\_n\textbar{}-1\}\ =\ f\^{}\{n\ensuremath{{}^{2}}-1\}} & Lemma 1(iv) & closed form in \texttt{(n,\ f)} & exact, monotone \\
+Orbit count & \texttt{f\^{}\{(n-1)\ensuremath{{}^{2}}\}} & Thm 2 & closed form in \texttt{(n,\ f)} & exact, monotone \\
+Net separation / covering radius & \texttt{1} / \texttt{√2/2} & Thm 3 & none & uniform \\
+Unit-translation group order & \texttt{f\^{}\{n\ensuremath{{}^{2}}-1\}} & Thm 4 & closed form & exact, monotone \\
+Window orbit count & product formula & Thm 5(b) & closed form in \texttt{(n,\ f,\ \textbar{}P\_obs\textbar{},\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})} & exact \\
+Coercivity \texttt{\ensuremath{\kappa}\_f} & \texttt{1\ -\ cos(2\ensuremath{\pi}/f)} & Thm 5(a) & \texttt{f} only & degrading, quarantined \\
+Fibre multiplicity ratio \texttt{m} & \texttt{1} & Thm 7(a) & none & exact, uniform \\
+Hamming separation & \texttt{1} & Thm 7(b) & none & uniform \\
+\end{longtable}
+\endgroup
+}
+
+\section{6. The tower and the abundance theorem}\label{the-tower-and-the-abundance-theorem}
+
+All theorems in this section are of evidence class \textbf{{[}PROVED{]}} (Theorem 11 relative to the BC-004 slot definition, as noted).
+
+\textbf{Definition D3 (observable value set, abundance functional, net size; definition imported from BC-006, threshold and unordered-pair count made explicit here).} Fix a schedule \texttt{(n\_j,\ f\_j)} and window parameters \texttt{(P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}})} as in D2.5. Let
+
+\texttt{Y\_j\ =\ \ensuremath{\pi}\_obs(W(n\_j,\ f\_j,\ P\_obs,\ K\ensuremath{{}_{1}},\ K\ensuremath{{}_{2}}))\ \ensuremath{\subseteq}\ (\ensuremath{\mu}\_\{f\_j\})\^{}\{P\_obs\}}. \textbf{{[}9{]}}
+
+be the set of attained observable values at stage \texttt{j}. The \textbf{unit-coherence abundance} is
+
+\texttt{C\_j\ =\ \#\{\ \{y,\ y\ensuremath{'}\}\ \ensuremath{\subseteq}\ Y\_j\ :\ y\ \ensuremath{\neq}\ y\ensuremath{'};\ y\ensuremath{'}\ =\ t·y\ coordinatewise\ for\ some\ t\ \ensuremath{\in}\ (\ensuremath{\mu}\_\{f\_j\})\^{}\{P\_obs\};\ d\_H(y,\ y\ensuremath{'})\ \ensuremath{\geq}\ 1\ \}}. \textbf{{[}10{]}}
+
+the number of unordered pairs of distinct attained observable values related by a coordinatewise unit-modulus translation and Hamming-separated. The \textbf{net size} is \texttt{N\_j\ =\ \textbar{}V\_\{n\_j\}\textbar{}\ =\ n\_j\ensuremath{{}^{2}}}. \textbf{{[}11{]}}
+
+\textbf{Remark RD3.1 (scope of the definition, and why pairs).} Two disclosures. \emph{(1) In \texttt{M\_toy} the side conditions are automatic:} for root-of-unity alphabets, any two distinct tuples satisfy both the translation condition (set \texttt{t\ =\ y\ensuremath{'}y\^{}\{-1\}}) and \texttt{d\_H\ \ensuremath{\geq}\ 1}, so here \texttt{C\_j\ =\ C(\textbar{}Y\_j\textbar{},\ 2)} exactly. The conditions are retained in the definition because they are the Projection Theorem's interface conditions (BC-006), and they are \emph{not} automatic in continuous-alphabet models such as the intended \texttt{M\_SIT}, where the same functional will be evaluated; the toy result is that \texttt{Y\_j} is large and every attained value has identical orbit-level fibre cardinality \texttt{\textbar{}T(P\ensuremath{'},\ K\ensuremath{{}_{2}})\textbar{}} so the multiplicity \emph{ratio} between any two fibres is exactly \texttt{m\ =\ 1} (Theorem 7(a)) - not that each fibre is a singleton of size \texttt{1} (nor that the side conditions do work here). \textbf{Correction note (November 2026):} Earlier editions inadvertently wrote ``fibre multiplicity exactly 1'' here and in Theorem 10 Step 3. In fact, on the \texttt{3\ ×\ 3} vertex box \texttt{Λ\ensuremath{{}_{3}}} (\texttt{\textbar{}P\ensuremath{{}_{3}}\textbar{}\ =\ 4} plaquettes) with \texttt{f\ =\ 2}, \texttt{\textbar{}P\_obs\textbar{}\ =\ 1}, \texttt{K\ensuremath{{}_{1}}\ =\ 1}, and \texttt{K\ensuremath{{}_{2}}\ =\ 1}, the three unobserved plaquettes admit four distinct tails (\texttt{(1,1,1),\ (1,1,-1),\ (1,-1,1),\ (-1,1,1)}, or \texttt{000,\ 001,\ 010,\ 100} in additive \texttt{Z\ensuremath{{}_{2}}} notation), so each attained readout has orbit-level fibre cardinality \texttt{4} (and \texttt{4\ ×\ 2\^{}8\ =\ 1,024} edge configurations), while the ratio of fibre sizes is \texttt{4/4\ =\ 1}. Because \texttt{C\_j} counts unordered pairs of distinct attained readouts in \texttt{Y\_j}, this correction does not affect Theorem 10. \emph{(2) Why pairs rather than \texttt{\textbar{}Y\_j\textbar{}}:} the Projection Theorem's conclusion quantifies unit-translated \emph{relations} between observables, so unordered pairs are its natural count (obligation ledger \nolinkurl{sit-projection-kernel-obligations-20260602.csv}). The result is robust to this choice: on the Theorem 10 schedule, \texttt{\textbar{}Y\_j\textbar{}\ \ensuremath{\geq}\ (f\_j-1)\^{}\{K\ensuremath{{}_{1}}\}} already exceeds \texttt{N\_j\^{}\{K\ensuremath{{}_{1}}-\ensuremath{\varepsilon}\}} for every \texttt{\ensuremath{\varepsilon}\ \textgreater{}\ 0} and large \texttt{j}, which is superlinear once \texttt{K\ensuremath{{}_{1}}\ \ensuremath{\geq}\ 2}; pair-counting strengthens, not gerrymanders, the exponent.
+
+\textbf{Theorem 9 (Toy Coherence Tower).} \emph{\texttt{M\_toy} generates an infinite family of admissible coherence data with the properties of Theorems 2-8 - this is the statement shape (the Coherence Tower Lemma instance) consumed by the program's conditional Projection Theorem, with ``admissible'' meaning: each slot of the BC-004 admissible-coherence-data definition is discharged by the theorem listed in the interface table after Theorem 11. Moreover, for every \texttt{\ensuremath{\gamma}\ \textgreater{}\ 0}, on any schedule \texttt{(n\_j,\ f\_j)} with \texttt{n\_j\ →\ ∞} and \texttt{f\_j\ \ensuremath{\geq}\ 2}, the hidden-orbit abundance \texttt{f\_j\^{}\{(n\_j-1)\ensuremath{{}^{2}}\}} exceeds \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}} for every \texttt{j} such that \texttt{2\^{}\{(n\_j-1)\ensuremath{{}^{2}}\}\ \ensuremath{\geq}\ n\_j\^{}\{2(1+\ensuremath{\gamma})\}} - in particular for all \texttt{j} with \texttt{n\_j\ \ensuremath{\geq}\ n*(\ensuremath{\gamma})}, where \texttt{n*(\ensuremath{\gamma})} is the least \texttt{n} with \texttt{(n-1)\ensuremath{{}^{2}}\ \ensuremath{\geq}\ 2(1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ n} (e.g.~\texttt{n*(\ensuremath{\gamma})\ \ensuremath{\leq}\ 5} for all \texttt{\ensuremath{\gamma}\ \ensuremath{\leq}\ 2}).}
+
+\emph{Proof.} The family is assembled from Theorems 2-8: schedule steps that refine the mode use the maps of Theorem 6(a); steps that grow the box use the box-extension maps of Theorem 6(b); composites handle simultaneous growth. For the hidden-side abundance, by Theorem 2 the orbit count at stage \texttt{j} is \texttt{f\_j\^{}\{(n\_j-1)\ensuremath{{}^{2}}\}\ \ensuremath{\geq}\ 2\^{}\{(n\_j-1)\ensuremath{{}^{2}}\}}, while \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}\ =\ n\_j\^{}\{2(1+\ensuremath{\gamma})\}}; the displayed condition is exactly \texttt{2\^{}\{(n\_j-1)\ensuremath{{}^{2}}\}\ \ensuremath{\geq}\ n\_j\^{}\{2(1+\ensuremath{\gamma})\}}, equivalently \texttt{(n\_j-1)\ensuremath{{}^{2}}\ \ensuremath{\geq}\ 2(1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ n\_j}. The ratio \texttt{q(x)\ =\ (x-1)\ensuremath{{}^{2}}/ln\ x} is strictly increasing for \texttt{x\ \ensuremath{\geq}\ 2}: its derivative has the sign of \texttt{2\ ln\ x\ -\ 1\ +\ 1/x}, which is positive at \texttt{x\ =\ 2} and has derivative \texttt{(2x-1)/x\ensuremath{{}^{2}}\ \textgreater{}\ 0}. Hence the inequality holds for every \texttt{n\_j\ \ensuremath{\geq}\ n*(\ensuremath{\gamma})}, with \texttt{n*(\ensuremath{\gamma})} finite. For the parenthetical bound: at \texttt{n\ =\ 5} and \texttt{\ensuremath{\gamma}\ \ensuremath{\leq}\ 2}, \texttt{(n-1)\ensuremath{{}^{2}}\ =\ 16\ \ensuremath{\geq}\ 2(1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 5}, since \texttt{2(1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 5\ \ensuremath{\leq}\ 6·log\ensuremath{{}_{2}}\ 5\ \textless{}\ 6\ ·\ 2.33\ \textless{}\ 14\ \textless{}\ 16}; hence \texttt{n*(\ensuremath{\gamma})\ \ensuremath{\leq}\ 5} for all \texttt{\ensuremath{\gamma}\ \ensuremath{\leq}\ 2}. \ensuremath{\blacksquare}
+
+\textbf{Remark R9.1.} Theorem 9 is the interface-shaped statement; the hidden-side abundance claim is easy by design (it concerns orbit counts, not observables). The substantive quantitative result is Theorem 10, which proves abundance for the \emph{observable} projection directly, bypassing the conditional route entirely.
+
+\textbf{Theorem 10 (Direct projection abundance).} \emph{Fix \texttt{\ensuremath{\gamma}\ \textgreater{}\ 0}. Choose:} - \emph{\texttt{K\ensuremath{{}_{1}}\ =\ \ensuremath{\lceil}(1+\ensuremath{\gamma})/2\ensuremath{\rceil}\ +\ 1} (any larger \texttt{K\ensuremath{{}_{1}}} also works);} - \emph{any \texttt{K\ensuremath{{}_{2}}\ \ensuremath{\geq}\ 0} (the conclusion is uniform in \texttt{K\ensuremath{{}_{2}}});} - \emph{\texttt{P\_obs} with \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}}, fixed inside the box \texttt{Λ\_\{n\_\{j\ensuremath{{}_{1}}\}\}} at the stage \texttt{j\ensuremath{{}_{1}}\ :=\ max(2,\ \ensuremath{\lceil}log\ensuremath{{}_{2}}\ K\ensuremath{{}_{1}}\ensuremath{\rceil}\ +\ 1)} (at which \texttt{\textbar{}P\_\{n\_\{j\ensuremath{{}_{1}}\}\}\textbar{}\ =\ (n\_\{j\ensuremath{{}_{1}}\}-1)\ensuremath{{}^{2}}\ \ensuremath{\geq}\ 2\^{}\{j\ensuremath{{}_{1}}\}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}}, so such a \texttt{P\_obs} exists), and kept inside all later boxes via the corner anchoring of Theorem 6(b);} - \emph{the schedule \texttt{n\_j\ =\ \ensuremath{\lceil}2\^{}\{j/2\}\ensuremath{\rceil}\ +\ 1}, \texttt{f\_j\ =\ 2\^{}j}.}
+
+\emph{Then the unit-coherence abundance of Definition D3 satisfies}
+
+\texttt{C\_j\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} \emph{for all} \texttt{j\ \ensuremath{\geq}\ j\ensuremath{{}_{0}}(\ensuremath{\gamma},\ K\ensuremath{{}_{1}})\ :=\ max(\ j\ensuremath{{}_{1}},\ \ensuremath{\lceil}K\ensuremath{{}_{1}}\ +\ 1\ +\ (1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 3\ensuremath{\rceil}\ )}. \textbf{{[}12{]}}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 3. Direct observable abundance and the sufficient theorem threshold.}]{assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-003.png}}
+\caption{Figure 3. Direct observable abundance and the sufficient theorem threshold.}
+\end{figure}
+
+\emph{Figure 3.} For the representative case \texttt{\ensuremath{\gamma}\ =\ 1}, \texttt{K\ensuremath{{}_{1}}\ =\ 2}, the exact pair-count lower bound already exceeds the target before the conservative closed-form threshold. Theorem 10 guarantees the inequality for every stage at or beyond \texttt{j\ensuremath{{}_{0}}}; it does not claim that \texttt{j\ensuremath{{}_{0}}} is the earliest crossing.
+
+\emph{Proof.} \textbf{Step 0 (window placement).} Since \texttt{(n\_j\ -\ 1)\ensuremath{{}^{2}}\ \ensuremath{\geq}\ 2\^{}j} (Step 1 below) and \texttt{2\^{}\{j\ensuremath{{}_{1}}\}\ \ensuremath{\geq}\ 2\^{}\{\ensuremath{\lceil}log\ensuremath{{}_{2}}\ K\ensuremath{{}_{1}}\ensuremath{\rceil}\}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}}, the box at stage \texttt{j\ensuremath{{}_{1}}} has at least \texttt{K\ensuremath{{}_{1}}} plaquettes, so a \texttt{P\_obs} with \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}} exists inside \texttt{Λ\_\{n\_\{j\ensuremath{{}_{1}}\}\}}; corner anchoring (Theorem 6(b)) keeps \texttt{P\_obs\ \ensuremath{\subseteq}\ P\_\{n\_j\}} for all \texttt{j\ \ensuremath{\geq}\ j\ensuremath{{}_{1}}}. All subsequent steps are for \texttt{j\ \ensuremath{\geq}\ j\ensuremath{{}_{1}}}.
+
+\textbf{Step 1 (schedule constants).} From \texttt{n\_j\ =\ \ensuremath{\lceil}2\^{}\{j/2\}\ensuremath{\rceil}\ +\ 1}: \texttt{2\^{}\{j/2\}\ \ensuremath{\leq}\ n\_j\ -\ 1\ \ensuremath{\leq}\ 2\^{}\{j/2\}\ +\ 1}, so
+
+\texttt{f\_j\ =\ 2\^{}j\ \ensuremath{\leq}\ (n\_j\ -\ 1)\ensuremath{{}^{2}}\ \textless{}\ N\_j\ =\ n\_j\ensuremath{{}^{2}}\ \ensuremath{\leq}\ (2\^{}\{j/2\}\ +\ 2)\ensuremath{{}^{2}}\ =\ 2\^{}j\ +\ 4·2\^{}\{j/2\}\ +\ 4\ \ensuremath{\leq}\ 9·2\^{}j\ =\ 9\ f\_j} for all \texttt{j\ \ensuremath{\geq}\ 1}. \textbf{{[}13{]}}
+
+Thus \texttt{f\_j\ \ensuremath{\leq}\ N\_j\ \ensuremath{\leq}\ 9\ f\_j} (two-sided comparison with explicit constants \texttt{1} and \texttt{9}).
+
+\textbf{Step 2 (attainment: lower bound on \texttt{\textbar{}Y\_j\textbar{}}).} Fix a subset \texttt{S\ \ensuremath{\subseteq}\ P\_obs} with \texttt{\textbar{}S\textbar{}\ =\ K\ensuremath{{}_{1}}} (possible since \texttt{\textbar{}P\_obs\textbar{}\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}}). For every tuple \texttt{y\ \ensuremath{\in}\ (\ensuremath{\mu}\_\{f\_j\})\^{}\{P\_obs\}} supported on \texttt{S} (i.e.~\texttt{y\_p\ =\ 1} off \texttt{S}) with all \texttt{K\ensuremath{{}_{1}}} entries on \texttt{S} nontrivial, we have \texttt{exc(y)\ =\ K\ensuremath{{}_{1}}\ \ensuremath{\leq}\ K\ensuremath{{}_{1}}}, and \texttt{y} is attained: by Lemma 1(iii) and Theorem 5(b)'s product structure, pair \texttt{y} with the flat tail \texttt{\ensuremath{\tau}\ \ensuremath{\equiv}\ 1} on \texttt{P\ensuremath{'}} (admissible since \texttt{exc(\ensuremath{\tau})\ =\ 0\ \ensuremath{\leq}\ K\ensuremath{{}_{2}}}, for any \texttt{K\ensuremath{{}_{2}}\ \ensuremath{\geq}\ 0}). There are \texttt{(f\_j\ -\ 1)\^{}\{K\ensuremath{{}_{1}}\}} such tuples, so
+
+\texttt{\textbar{}Y\_j\textbar{}\ \ensuremath{\geq}\ (f\_j\ -\ 1)\^{}\{K\ensuremath{{}_{1}}\}}. \textbf{{[}14{]}}
+
+\textbf{Step 3 (structure of pairs).} Every unordered pair of distinct values in \texttt{Y\_j} satisfies the conditions of Definition D3: the ratio \texttt{t\ =\ y\ensuremath{'}y\^{}\{-1\}\ \ensuremath{\in}\ (\ensuremath{\mu}\_\{f\_j\})\^{}\{P\_obs\}} is a coordinatewise unit-modulus translation, and \texttt{d\_H(y,\ y\ensuremath{'})\ \ensuremath{\geq}\ 1} (Theorem 7(b)); every attained value in \texttt{Y\_j} is realized with the same orbit-level fibre cardinality \texttt{\textbar{}T(P\ensuremath{'},\ K\ensuremath{{}_{2}})\textbar{}} (multiplicity ratio \texttt{m\ =\ 1}, Theorem 7(a)), and \texttt{C\_j} counts distinct attained readouts in \texttt{Y\_j} directly without conflating fibre ratio with singleton cardinality.
+
+\textbf{Step 4 (counting with explicit constants).} For \texttt{\textbar{}Y\_j\textbar{}\ \ensuremath{\geq}\ 2} (which holds once \texttt{f\_j\ \ensuremath{\geq}\ 3}, i.e.~\texttt{j\ \ensuremath{\geq}\ 2}; and \texttt{j\ensuremath{{}_{1}}\ \ensuremath{\geq}\ 2} by definition):
+
+\texttt{C\_j\ =\ C(\textbar{}Y\_j\textbar{},\ 2)\ =\ \textbar{}Y\_j\textbar{}(\textbar{}Y\_j\textbar{}-1)/2\ \ensuremath{\geq}\ \textbar{}Y\_j\textbar{}\ensuremath{{}^{2}}/4\ \ensuremath{\geq}\ (f\_j\ -\ 1)\^{}\{2K\ensuremath{{}_{1}}\}/4\ \ensuremath{\geq}\ f\_j\^{}\{2K\ensuremath{{}_{1}}\}/(4·2\^{}\{2K\ensuremath{{}_{1}}\})}. \textbf{{[}15{]}}
+
+using \texttt{f\_j\ -\ 1\ \ensuremath{\geq}\ f\_j/2} for \texttt{f\_j\ \ensuremath{\geq}\ 2}. On the other side, by Step 1, \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}\ \ensuremath{\leq}\ (9\ f\_j)\^{}\{1+\ensuremath{\gamma}\}\ =\ 9\^{}\{1+\ensuremath{\gamma}\}\ f\_j\^{}\{1+\ensuremath{\gamma}\}}. Hence \texttt{C\_j\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} holds provided
+
+\texttt{f\_j\^{}\{2K\ensuremath{{}_{1}}\ -\ 1\ -\ \ensuremath{\gamma}\}\ \ensuremath{\geq}\ 2\^{}\{2K\ensuremath{{}_{1}}+2\}\ ·\ 9\^{}\{1+\ensuremath{\gamma}\}}. \textbf{{[}16{]}}
+
+Since \texttt{K\ensuremath{{}_{1}}\ \ensuremath{\geq}\ \ensuremath{\lceil}(1+\ensuremath{\gamma})/2\ensuremath{\rceil}\ +\ 1} gives \texttt{2K\ensuremath{{}_{1}}\ \ensuremath{\geq}\ (1+\ensuremath{\gamma})\ +\ 2}, the exponent satisfies \texttt{2K\ensuremath{{}_{1}}\ -\ 1\ -\ \ensuremath{\gamma}\ \ensuremath{\geq}\ 2}, so it suffices that \texttt{f\_j\ensuremath{{}^{2}}\ \ensuremath{\geq}\ 2\^{}\{2K\ensuremath{{}_{1}}+2\}\ ·\ 9\^{}\{1+\ensuremath{\gamma}\}}, i.e.~\texttt{2j\ \ensuremath{\geq}\ 2K\ensuremath{{}_{1}}\ +\ 2\ +\ (1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 9}, i.e.~\texttt{j\ \ensuremath{\geq}\ K\ensuremath{{}_{1}}\ +\ 1\ +\ (1+\ensuremath{\gamma})·log\ensuremath{{}_{2}}\ 3}. Combining with the \texttt{j\ \ensuremath{\geq}\ j\ensuremath{{}_{1}}} requirement of Step 0 yields the stated \texttt{j\ensuremath{{}_{0}}(\ensuremath{\gamma},\ K\ensuremath{{}_{1}})}. \ensuremath{\blacksquare}
+
+\textbf{Theorem 11 (Toy SIT Theorem).} \emph{The specified model \texttt{M\_toy} (Definitions D1-D2) satisfies both the Coherence Tower (Theorem 9) and the superlinear observable unit-coherence abundance conclusion (Theorem 10), by self-contained proofs using no full-SIT language and no numerical input; the discharge of each slot of the admissible-coherence-data definition (external input: BC-004) is itemized line-by-line in the interface table below, against the obligation ledger \nolinkurl{sit-projection-kernel-obligations-20260602.csv}. This is the unconditional Toy SIT Theorem of packet BC-006 (C-19), which supersedes the conditional BC-004/C-17.} \ensuremath{\blacksquare}
+
+\emph{Interface table (sublemma → admissible-coherence-data slot; BC-004 slot families).}
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Theorem
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Slot discharged
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Constants supplied
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Thm 3 & Discrete net (stage carrier) & separation 1, covering radius \texttt{√2/2}, uniform in \texttt{(n,\ f,\ j)} \\
+Thm 2 & Surplus (retained sector) & orbit count \texttt{f\^{}\{(n-1)\ensuremath{{}^{2}}\}} exact \\
+Thm 4 & Unit translation (unit holonomy) & group \texttt{im(\ensuremath{\delta})}, order \texttt{f\^{}\{n\ensuremath{{}^{2}}-1\}}, free + transitive \\
+Thm 5 & Stable growth (admissibility) & exact product formula; coercivity \texttt{\ensuremath{\kappa}\_f\ =\ 1\ -\ cos(2\ensuremath{\pi}/f)} \\
+Thm 6 & Persistent splitting (cross-scale / refinement) & mode map (a) + box map (b), both injective, curvature- and window-preserving \\
+Thm 7 & Projection complexity (readout) & multiplicity ratio \texttt{m\ =\ 1} exact (uniform fibre cardinality \texttt{\textbar{}T(P\ensuremath{'},\ K\ensuremath{{}_{2}})\textbar{}}); Hamming separation 1 \\
+Thm 8 & Infinite extension & constants table of §5; \texttt{\ensuremath{\kappa}\_f} quarantine verified \\
+\end{longtable}
+\endgroup
+}
+
+\section{6.5 New bounded theorems: SU(2) gauge-quotient obstruction and finite measurement resolution (November 2026)}\label{new-bounded-theorems-su2-gauge-quotient-obstruction-and-finite-measurement-resolution-november-2026}
+
+To connect the finite abelian toy construction cleanly to both non-abelian lattice extensions and operational measurement limits, we prove two new self-contained theorems. Both are verified independently by exact matrix arithmetic, enumeration, and counterexample checks in \nolinkurl{verify_paper033_v2.py} (§9).
+
+\textbf{Theorem 12 (Global SU(2) Weyl-conjugation quotient obstruction). {[}PROVED{]}} \emph{Let \texttt{n\ \ensuremath{\geq}\ 2} and \texttt{f\ \ensuremath{\geq}\ 3}, and define the diagonal group embedding \texttt{\ensuremath{\iota}\_diag\ :\ \ensuremath{\mu}\_f\ \ensuremath{\hookrightarrow}\ SU(2)} by \texttt{\ensuremath{\iota}\_diag(z)\ =\ diag(z,\ z\^{}\{-1\})}, extended edgewise to \texttt{Ω\_f(Λ\_n)\ →\ SU(2)\^{}\{E\_n\}}. Then:}
+
+\emph{(a) (Stage 1: Irreversible global gauge-orbit collapse.) Under the constant \texttt{SU(2)} gauge transformation \texttt{W\ =\ i\ensuremath{\sigma}\ensuremath{{}_{2}}\ =\ {[}{[}0,\ 1{]},\ {[}-1,\ 0{]}{]}\ \ensuremath{\in}\ SU(2)} applied uniformly at every vertex \texttt{v\ \ensuremath{\in}\ V\_n}, every link transforms as \texttt{W\ diag(z,\ z\^{}\{-1\})\ W\^{}\{-1\}\ =\ diag(z\^{}\{-1\},\ z)}, sending the entire plaquette curvature tuple \texttt{\ensuremath{\sigma}\ =\ (\ensuremath{\sigma}\_p)\_\{p\ \ensuremath{\in}\ P\_n\}} to its conjugate inverse \texttt{\ensuremath{\sigma}\^{}\{-1\}\ =\ (\ensuremath{\sigma}\_p\^{}\{-1\})\_\{p\ \ensuremath{\in}\ P\_n\}}. Consequently, every non-self-conjugate abelian curvature tuple (\texttt{\ensuremath{\sigma}\ \ensuremath{\neq}\ \ensuremath{\sigma}\^{}\{-1\}}) represents two distinct \texttt{U(1)} gauge orbits by Lemma 1 that map into the \textbf{same} \texttt{SU(2)} gauge orbit. The number of global Weyl-quotient classes in \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_n\}/Z\ensuremath{{}_{2}}} is strictly smaller than \texttt{f\^{}\{(n-1)\ensuremath{{}^{2}}\}}:}
+
+\texttt{\#orbits\_\{Weyl\}(n,\ f)\ =\ r\ensuremath{{}_{2}}\^{}\{(n-1)\ensuremath{{}^{2}}\}\ +\ (f\^{}\{(n-1)\ensuremath{{}^{2}}\}\ -\ r\ensuremath{{}_{2}}\^{}\{(n-1)\ensuremath{{}^{2}}\})/2}, where \texttt{r\ensuremath{{}_{2}}\ =\ 2} if \texttt{f} is even and \texttt{r\ensuremath{{}_{2}}\ =\ 1} if \texttt{f} is odd. \textbf{{[}17{]}}
+
+\emph{(b) (Stage 2: Local single-plaquette Wilson-trace collapse.) For any single-plaquette \texttt{SU(2)} gauge-invariant trace readout \texttt{p\ \ensuremath{\mapsto}\ (1/2)\ Re\ Tr(U\_p)\ =\ Re(\ensuremath{\sigma}\_p)}, conjugate roots \texttt{z} and \texttt{z\^{}\{-1\}} are indistinguishable on every plaquette independently. Thus each plaquette takes at most \texttt{\ensuremath{\lfloor}f/2\ensuremath{\rfloor}\ +\ 1} distinct trace values instead of \texttt{f}, reducing the distinct single-plaquette trace-readout count on \texttt{P\_obs} from \texttt{f\^{}\{\textbar{}P\_obs\textbar{}\}} to \texttt{(\ensuremath{\lfloor}f/2\ensuremath{\rfloor}\ +\ 1)\^{}\{\textbar{}P\_obs\textbar{}\}}.}
+
+\emph{Proof.} Direct matrix multiplication gives \texttt{W\ diag(z,\ z\^{}\{-1\})\ W\^{}\{-1\}\ =\ {[}{[}0,\ 1{]},\ {[}-1,\ 0{]}{]}\ {[}{[}z,\ 0{]},\ {[}0,\ z\^{}\{-1\}{]}{]}\ {[}{[}0,\ -1{]},\ {[}1,\ 0{]}{]}\ =\ diag(z\^{}\{-1\},\ z)}. Because \texttt{W} is constant across vertices, \texttt{W\ U\_e\ W\^{}\{-1\}} is a valid \texttt{SU(2)} gauge transformation on every oriented edge \texttt{e}, and the counterclockwise boundary product around every plaquette \texttt{p} conjugates to \texttt{W\ diag(\ensuremath{\sigma}\_p,\ \ensuremath{\sigma}\_p\^{}\{-1\})\ W\^{}\{-1\}\ =\ diag(\ensuremath{\sigma}\_p\^{}\{-1\},\ \ensuremath{\sigma}\_p)}. A curvature tuple \texttt{\ensuremath{\sigma}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{P\_n\}} satisfies \texttt{\ensuremath{\sigma}\ =\ \ensuremath{\sigma}\^{}\{-1\}} iff every coordinate satisfies \texttt{\ensuremath{\sigma}\_p\ensuremath{{}^{2}}\ =\ 1}, which has \texttt{r\ensuremath{{}_{2}}\ =\ 2} solutions (\texttt{±1}) when \texttt{f} is even and \texttt{r\ensuremath{{}_{2}}\ =\ 1} solution (\texttt{+1}) when \texttt{f} is odd; hence exactly \texttt{r\ensuremath{{}_{2}}\^{}\{(n-1)\ensuremath{{}^{2}}\}} tuples are fixed and the remaining tuples pair up into 2-element Weyl orbits, proving (17). For \texttt{f\ \ensuremath{\geq}\ 3}, \texttt{r\ensuremath{{}_{2}}\ \textless{}\ f}, so \texttt{\#orbits\_\{Weyl\}\ \textless{}\ f\^{}\{(n-1)\ensuremath{{}^{2}}\}}. Part (b) follows because \texttt{Re(e\^{}\{2\ensuremath{\pi}ik/f\})\ =\ cos(2\ensuremath{\pi}k/f)\ =\ cos(2\ensuremath{\pi}(f-k)/f)} takes exactly \texttt{\ensuremath{\lfloor}f/2\ensuremath{\rfloor}\ +\ 1} distinct values as \texttt{k} ranges over \texttt{\{0,\ …,\ f-1\}}. \ensuremath{\blacksquare}
+
+\textbf{Remark R12.1 (exact verification and the two-stage Wilson-loop recovery boundary).} For \texttt{n\ =\ 3} (\texttt{4} plaquettes), exact enumeration confirms that \texttt{U(1)} vs.~global Weyl-quotient vs.~single-plaquette \texttt{SU(2)} trace-tuple counts drop across two distinct stages: \texttt{(81,\ 41,\ 16)} at \texttt{f\ =\ 3}, \texttt{(256,\ 136,\ 81)} at \texttt{f\ =\ 4}, \texttt{(1296,\ 656,\ 256)} at \texttt{f\ =\ 6}, and \texttt{(4096,\ 2056,\ 625)} at \texttt{f\ =\ 8}, with \texttt{0.0} matrix conjugation error. Crucially, the two stages behave differently under gauge-invariant observables (\nolinkurl{verify_paper033_v2.py} at \texttt{f\ =\ 4}): adding the five larger gauge-invariant multi-plaquette Wilson-loop traces (\texttt{2×1}, \texttt{1×2}, and \texttt{2×2} loops) to the four \texttt{1×1} plaquette traces yields \textbf{exact bijective recovery} of all \texttt{136} global Weyl-conjugation classes on the \texttt{2×2} plaquette grid (\texttt{136} signatures with exactly \texttt{1} Weyl orbit per signature), recovering the information lost in \textbf{Stage 2} (\texttt{136\ →\ 81}). However, \textbf{no gauge-invariant observable whatsoever} (including all \texttt{15} possible multi-plaquette subset loops) can distinguish two configurations already related by a gauge transformation, so \textbf{Stage 1} (\texttt{256\ →\ 136}) cannot be undone by Wilson loops or gauge choice alone. Accordingly, an adapter into \texttt{SU(2)} cannot restore the original \texttt{256} abelian labels inside pure gauge theory: it must either accept the \texttt{136}-class \texttt{Z\ensuremath{{}_{2}}}-quotiented orbit space \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_n\}/Z\ensuremath{{}_{2}}} as its domain (redefining the target accordingly), or introduce explicitly specified matter or reference data and prove that the enlarged gauge-invariant relational observables distinguish the additional labels.
+
+\textbf{Theorem 13 (Finite measurement-resolution ceiling and exact necessary vs.~sufficient footprint scaling). {[}PROVED{]}} \emph{Fix a deterministic binned phase readout \texttt{\ensuremath{\pi}\_\{obs\}\^{}\{(B)\}\ :\ Ω\_f(Λ\_n)\ →\ \{0,\ …,\ B-1\}\^{}\{P\_obs\}} that assigns each plaquette curvature \texttt{\ensuremath{\sigma}\_p\ \ensuremath{\in}\ S\ensuremath{{}^{1}}} to one of \texttt{B\ \ensuremath{\geq}\ 2} disjoint phase bins (angular resolution \texttt{Δ\ensuremath{\theta}\ =\ 2\ensuremath{\pi}/B}) on \texttt{m\ =\ \textbar{}P\_obs\textbar{}} observed plaquettes.}
+
+\emph{(a) (Fixed-detector ceiling.) For every underlying phase alphabet size \texttt{f\ \ensuremath{\geq}\ 2} and every lattice size \texttt{n}, the number of resolved single-shot observable patterns satisfies}
+
+\texttt{\textbar{}Y\_\{res\}(m,\ B,\ f)\textbar{}\ \ensuremath{\leq}\ min(\textbar{}Y\_j\textbar{},\ B\^{}m)\ \ensuremath{\leq}\ B\^{}m}, \textbf{{[}18{]}}
+
+\emph{and the resolved unordered pair count satisfies \texttt{C\_j\^{}\{res\}\ \ensuremath{\leq}\ C(B\^{}m,\ 2)\ =\ B\^{}m(B\^{}m\ -\ 1)/2\ \textless{}\ B\^{}\{2m\}/2}, strictly bounded independently of \texttt{f}. Under a fixed excitation budget \texttt{K\ensuremath{{}_{1}}} (with bin \texttt{0} containing \texttt{1}), the attained binned count is further capped at \texttt{Σ\_\{k=0\}\^{}\{min(K\ensuremath{{}_{1}},m)\}\ C(m,\ k)(B-1)\^{}k}. Consequently, on the Theorem 10 schedule (\texttt{n\_j\ =\ \ensuremath{\lceil}2\^{}\{j/2\}\ensuremath{\rceil}\ +\ 1}, \texttt{f\_j\ =\ 2\^{}j}, \texttt{N\_j\ =\ n\_j\ensuremath{{}^{2}}\ →\ ∞}) with fixed \texttt{(m,\ B)}, superlinear abundance \texttt{C\_j\^{}\{res\}\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} fails for every stage \texttt{j} with \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}\ \textgreater{}\ C(B\^{}m,\ 2)}.}
+
+\emph{(b) (Exact necessary capacity condition vs.~closed-form sufficient condition under explicit full word realizability.) To sustain \texttt{C\_j\^{}\{res\}\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} at fixed phase resolution \texttt{B\ \ensuremath{\geq}\ 2}, the \textbf{exact necessary capacity condition} is \texttt{C(B\^{}\{m\_j\},\ 2)\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}}, equivalently:}
+
+\texttt{B\^{}\{m\_j\}\ \ensuremath{\geq}\ (1\ +\ √(1\ +\ 8\ N\_j\^{}\{1+\ensuremath{\gamma}\}))\ /\ 2}, i.e.~\texttt{m\_j\ \ensuremath{\geq}\ \ensuremath{\lceil}log\_B((1\ +\ √(1\ +\ 8\ N\_j\^{}\{1+\ensuremath{\gamma}\}))\ /\ 2)\ensuremath{\rceil}}. \textbf{{[}19a{]}}
+
+\emph{Conversely, suppose that (i) the excitation allowance grows as \texttt{K\ensuremath{{}_{1}}(j)\ =\ m\_j}, (ii) the alphabet satisfies \texttt{f\_j\ \ensuremath{\geq}\ B}, and (iii) the binning map populates all \texttt{B} phase bins with elements of \texttt{\ensuremath{\mu}\_\{f\_j\}} (with \texttt{1} in bin \texttt{0}) so that \textbf{all \texttt{B\^{}\{m\_j\}} binned words are attained} in the image of the admissible window (note that \texttt{K\ensuremath{{}_{1}}\ =\ m\_j} alone does not guarantee full word realizability for an arbitrary alphabet and binning). Under those full-word-realizability hypotheses, the simpler closed-form inequality}
+
+\texttt{m\_j\ \ensuremath{\geq}\ ((1+\ensuremath{\gamma})\ log\ensuremath{{}_{2}}\ N\_j\ +\ 2)\ /\ (2\ log\ensuremath{{}_{2}}\ B)} \textbf{{[}19b{]}}
+
+\emph{is a \textbf{sufficient} condition guaranteeing \texttt{C\_j\^{}\{res\}\ \ensuremath{\geq}\ B\^{}\{2m\_j\}/4\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}}, but is \textbf{not necessary} in general. Equivalently, holding \texttt{m} fixed requires the deterministic bin count \texttt{B\_j} to grow polynomially in \texttt{N\_j}: \texttt{B\_j\ \ensuremath{\geq}\ ((1\ +\ √(1\ +\ 8\ N\_j\^{}\{1+\ensuremath{\gamma}\}))/2)\^{}\{1/m\}}.}
+
+\emph{Proof.} (a) The codomain \texttt{\{0,\ …,\ B-1\}\^{}\{P\_obs\}} has cardinality \texttt{B\^{}m}, so any map into it has image size at most \texttt{B\^{}m} regardless of \texttt{f}; under budget \texttt{K\ensuremath{{}_{1}}} at most \texttt{K\ensuremath{{}_{1}}} coordinates can exit bin \texttt{0}, leaving at most \texttt{B-1} excited bins per excited coordinate. Since \texttt{N\_j\^{}\{1+\ensuremath{\gamma}\}\ →\ ∞} while \texttt{C(B\^{}m,\ 2)} is constant, superlinear pair abundance fails past a finite stage. (b) Since \texttt{C\_j\^{}\{res\}\ \ensuremath{\leq}\ C(B\^{}\{m\_j\},\ 2)\ =\ B\^{}\{m\_j\}(B\^{}\{m\_j\}-1)/2}, solving \texttt{M(M-1)/2\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}} for \texttt{M\ =\ B\^{}\{m\_j\}\ \textgreater{}\ 0} yields the exact necessary threshold (19a). Under full word realizability (hypotheses (i)--(iii)), \texttt{\textbar{}Y\_j\^{}\{res\}\textbar{}\ =\ B\^{}\{m\_j\}\ \ensuremath{\geq}\ 2}, so \texttt{C\_j\^{}\{res\}\ =\ B\^{}\{m\_j\}(B\^{}\{m\_j\}-1)/2\ \ensuremath{\geq}\ B\^{}\{2m\_j\}/4}, and hence (19b) implies \texttt{C\_j\^{}\{res\}\ \ensuremath{\geq}\ N\_j\^{}\{1+\ensuremath{\gamma}\}}. Non-necessity of (19b) is established by the concrete counterexample in Remark R13.1. \ensuremath{\blacksquare}
+
+\textbf{Remark R13.1 (exact numerical checks, necessity counterexample, and fixed-\(K_1\) polynomial feasibility range).} First, under the fixed-budget, fixed-footprint regime \(\gamma = 1\), \(K_1 = 2\), \(m = 4\), and \(B = 8\), the binned window saturates at \(323\) patterns (\(52{,}003\) pairs) for all \(j \ge 3\); at stage \(j = 8\) (\(N_8 = 289\), target \(N_8^2 = 83{,}521\)), exact Hamming pair count succeeds (\(76{,}507{,}180{,}035 \ge 83{,}521\)) whereas the fixed-\((4, 8)\) binned readout fails (\(52{,}003 < 83{,}521\)). Second, under the \textbf{growing-excitation logarithmic regime \(K_1(j) = m_j\)} (with full bin realizability), stage \(j = 8\) (\(N_8 = 289\), \(B = 2\), \(\gamma = 1\), target \(83{,}521\)) provides an exact counterexample proving (19b) is not necessary: \(m = 8\) fails (\(C(256, 2) = 32{,}640 < 83{,}521\)), while \textbf{\texttt{m\ =\ 9} succeeds} (\(2^9 = 512\) patterns, \(C(512, 2) = 130{,}816 \ge 83{,}521\)), matching exact necessary bound (19a) (\(m_{\mathrm{nec}} = 9\)), whereas sufficient bound (19b) gives \(9.1749\) and demands \(m \ge 10\) (\nolinkurl{verify_paper033_v2.py}). Across stages \(j = 4, 8, 12, 16\) (\(N_j = 25, 289, 4{,}225, 66{,}049\), available plaquettes \(16, 256, 4{,}096, 65{,}536\)) with \(K_1 = m_j\), exact necessary (19a) vs.~simple sufficient (19b) footprints are \((6, 9, 13, 17)\) vs.~\((6, 10, 14, 18)\) at \(B = 2\), and \((2, 3, 5, 6)\) vs.~\((2, 4, 5, 6)\) at \(B = 8\). Third, \textbf{with fixed \(K_1\), polynomial footprint growth recovers \(N_j^{1+\gamma}\) asymptotically whenever \(1 + \gamma < 2 K_1\)} (which holds automatically under Theorem 10's prescribed choice \(K_1 = \lceil(1+\gamma)/2\rceil + 1\), where \(2 K_1 \ge 3 + \gamma > 1 + \gamma\)): keeping \(B = 2\) (bins separating \(+1\) and \(-1\)) and \textbf{\(K_1 = 2\) fixed} at \(\gamma = 1\) (\(1 + \gamma = 2 < 2 K_1 = 4\)), \(M(m) = 1 + m + \binom{m}{2}\) gives \(82{,}621 < 83{,}521\) pairs at \(m = 28\) while \textbf{\(m = 29 \le 256\) succeeds} (\(M = 436\), \(\binom{436}{2} = 94{,}830 \ge 83{,}521\)); asymptotically, \(m = 2n \le (n-1)^2\) for all \(n \ge 4\) yields \(M(2n) = 2n^2 + n + 1\) and \(\binom{M(2n)}{2} > N^2\). Conversely, because the box supplies only \((n_j - 1)^2 < N_j\) plaquettes and fixed-\((B, K_1)\) pair counts scale asymptotically as \(\frac{(B-1)^{2 K_1}}{2(K_1!)^2}\,m_j^{2 K_1}\), fixed-\(K_1\) recovery is \textbf{eventually (asymptotically) impossible whenever \(1 + \gamma > 2 K_1\)} (a large fixed alphabet \(B\) may meet the target at early finite stages before the exponent dominates, and at boundary equality \(1 + \gamma = 2 K_1\) asymptotic feasibility requires \((B-1)^{2 K_1}/(2(K_1!)^2) > 1\); for example, at \(B = 2\), \(K_1 = 2\), and \(\gamma = 3\), even observing all \(P = (n-1)^2 \le N - 1\) plaquettes gives \(M = 1 + P(P+1)/2 < N^2/2\) for \(N \ge 4\) and hence \(\binom{M}{2} < N^4/8 < N^4\), failing for every \(n \ge 2\), verified in \nolinkurl{verify_paper033_v2.py}).
+
+\textbf{Remark R13.2 (conditional operational remark for repeated noisy measurements).} Theorem 13 itself is purely deterministic. Connecting the bin count \(B\) to \(R\) repeated noisy phase measurements via an effective resolution scaling such as \(B_{\mathrm{eff}}(R) = \lfloor 2\pi\sqrt{R}/(c\sigma_\phi)\rfloor\) (which would imply \(R_j \propto B_j^2\) at fixed \(m\)) is an \textbf{additional conditional statistical model}, not an automatic consequence of Gaussian noise. In particular, if every repeated measurement shares a common Gaussian calibration error \(Z\) with variance \(\mathrm{Var}(Z) > 0\), averaging \(R\) shots yields \(\mathrm{Var}(\bar{\theta}_R) = \mathrm{Var}(Z) + \sigma_{\mathrm{indep}}^2/R \ge \mathrm{Var}(Z)\), which never improves as \(1/\sqrt{R}\) (\nolinkurl{verify_paper033_v2.py}). Translating shrinking sample-mean error into a uniform \(m\)-coordinate bin-classification guarantee requires declaring five conditions: (i) independent zero-mean per-shot phase errors, (ii) stable repeated preparation or measurement of the identical curvature phase across all \(R\) shots, (iii) an explicit circular phase-unwrapping convention, (iv) a \textbf{strictly positive phase margin \(\delta_{\mathrm{margin}} > 0\) separating every evaluated true phase from all bin boundaries} (or a discrete phase codebook placing all allowed phases strictly inside bin interiors), and (v) a declared target misclassification probability allocated across all \(m\) observed coordinates (e.g.~union bound \(\delta/m\) per coordinate). For \textbf{continuous symmetric unwrapped errors} (ruling out probability atoms at zero, such as a symmetric discrete error on \(\{-a, 0, +a\}\) with probabilities \((1/4, 1/2, 1/4)\), which gives strict one-sided crossing probability \(1/4\) rather than \(1/2\)), a true phase lying on a decision boundary has probability \(1/2\) of \textbf{crossing that boundary} for every finite \(R \ge 1\) (note that crossing one unwrapped boundary is distinct from landing inside one particular finite-width adjacent bin of width \(w\), whose Gaussian probability is \(\Phi(w/s) - 1/2 < 1/2\) at finite standard deviation \(s\)). In the declared independent Gaussian unwrapped threshold model (\nolinkurl{verify_paper033_v2.py}), the one-boundary crossing probability \(p_R(d) = \Phi(-d\sqrt{R}/\sigma_\phi)\) stays pinned at \(p_R(0) = 1/2\) for all \(R \ge 1\) when \(d = 0\), whereas a strictly positive margin \(d = \delta_{\mathrm{margin}} > 0\) drives \(p_R(d) \to 0\) rapidly as \(R\) grows (e.g.~at \(d = \sigma_\phi = 0.05\): \(p_1 = 0.1587\), \(p_{10} = 7.83 \times 10^{-4}\), \(p_{100} = 7.62 \times 10^{-24}\)); the Gaussian threshold example therefore prevents a uniform small-error classification guarantee without a positive margin.
+
+\section{7. What this does and does not establish}\label{what-this-does-and-does-not-establish}
+
+\textbf{Established {[}PROVED{]}.} The finite interface formalized by the SIT proof program - hidden branch abundance surviving gauge collapse and projecting to superlinearly abundant, mutually unit-translated, distinguishable observables - is consistent and realizable: there is a fully specified model in which every required slot is discharged with exact constants and an explicit abundance threshold. In the methodology of §1.1, this is the constructive-toy milestone - ``T3'' in the T0-T4 ladder defined by the SIT Formal Proof Research Program and used across Branch C packets BC-001/BC-004/BC-006; the unconditional form is BC-006/C-19.
+
+\textbf{Not established {[}OPEN / CONJECTURAL{]}.} 1. The full covariant SIT model \texttt{M\_SIT} of the v79 manuscript has not yet been specified to the definitional standard of §4 in canonical form. A \emph{draft} lattice specification exists (BC-014; Paper 6 of this series), under which \texttt{M\_toy} is literally a sub-model, but as of this version it carries four open source-recovery obligations (on-site potential form, time-density status, Coherence-Time Law constraint form, observable map) awaiting verbatim extraction from SIT v79; until those resolve, ``full SIT'' is not yet a closed mathematical statement. 2. The lift theorem (T4) - that \texttt{M\_SIT} reduces to or extends \texttt{M\_toy} preserving admissibility constants - is open. 3. Physical truth of SIT is an empirical question outside both. The specification and lift program is developed in Paper 6 of this series.
+
+\textbf{Where the theorem is nontrivial.} In the finite product group \texttt{(\ensuremath{\mu}\_f)\^{}\{P\_obs\}}, the ratio of any two output tuples is itself a coordinatewise unit-modulus translation. That side condition is therefore automatic, as RD3.1 states. The mathematical work lies in proving exact gauge-orbit classification, constructing refinement maps that preserve old curvature, establishing exact and uniform readout fibres, and proving that the attained output set grows fast enough to satisfy the abundance exponent on an explicit schedule. A future continuous model must make translation and distinguishability non-automatic under physical resolution.
+
+\textbf{Limitations (scope of the toy model).} \texttt{M\_toy} omits, by construction, structural features of the intended \texttt{M\_SIT} that materially affect every sublemma and that the lift must add back: (i) the connection is restricted to the finite subgroup \texttt{Z\_f\ \ensuremath{\subset}\ U(1)} - not the quotient \texttt{U(1)/Z\_f} - so the abundance counts of Theorems 2, 5, and 10 are finite-alphabet counts with no direct continuum analogue; (ii) there is no dynamical time-density \texttt{\ensuremath{\rho}\_t} - the Wilson action is static and enters only through the quarantined coercivity bound; (iii) the decoherence equivalence is gauge-only - a nontrivial relation can merge orbits and reduce abundance; (iv) the readout is count-based with Hamming distinguishability - phase-resolution-limited readout can merge observable values at large \texttt{f}; and (v) the output-translation side condition is automatic in the finite product group rather than dynamically selective. Items (i)-(v) specify the exact tests a lift must survive.
+
+\subsection{7.1 Explicit interface crosswalk to the November 2026 4D periodic SU(2) lattice model}\label{explicit-interface-crosswalk-to-the-november-2026-4d-periodic-su2-lattice-model}
+
+Paper 033 remains a finite, two-dimensional, abelian toy-model theorem; it must not be conflated with the November 2026 four-dimensional periodic \texttt{SU(2)} lattice gauge-matter model (Model L3 in the separate SIT Version 81 monograph and Companion Paper II series). The table below records exactly which structural differences separate the two models and which interface slots remain open.
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Structural dimension
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Paper 033 (\texttt{M\_toy})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+November 2026 Model L3 (SIT Version 81 series)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Bridge status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Gauge group & Finite cyclic subgroup \texttt{\ensuremath{\mu}\_f\ \ensuremath{\cong}\ Z\_f\ \ensuremath{\subset}\ U(1)} & Compact matrix group \texttt{G\ \ensuremath{\subset}\ U(n+1)} (\texttt{U(1)}, \texttt{SU(2)}, \texttt{SU(N)}) & Open; naive \texttt{z\ \ensuremath{\mapsto}\ diag(z,\ z\^{}\{-1\})} hits irreversible Theorem 12(a) Weyl gauge quotient \\
+Lattice topology & Simply connected 2D open box \texttt{Λ\_n\ \ensuremath{\subset}\ Z\ensuremath{{}^{2}}} & Periodic 4D hypercubic torus \texttt{(Z/lZ)\ensuremath{{}^{4}}} & Open; 4D Bianchi identities and non-trivial torus cycles break Lemma 1(iii) surjectivity \\
+Field content & Pure link variables \texttt{\ensuremath{\omega}\ \ensuremath{\in}\ (\ensuremath{\mu}\_f)\^{}\{E\_n\}} & Coupled links \texttt{U}, complex coherence multiplet \texttt{\ensuremath{\psi}}, real scalar \texttt{\ensuremath{\rho}\_t} & Open; \texttt{M\_toy} lacks dynamical \texttt{\ensuremath{\psi}} and \texttt{\ensuremath{\rho}\_t} \\
+Action & Static abelian Wilson sum \texttt{Σ\ (1\ -\ Re\ \ensuremath{\sigma}\_p)} & Unified 4-corner AM-GM coherence-gated Wilson + hopping + site potential & Separate; Model L3 proves coupled \texttt{2L\_t} OS reflection positivity \& classical \texttt{C\ensuremath{{}^{4}}} continuum limit \\
+Measure & Uniform finite counting measure & Bi-invariant Haar link measure \texttt{d\ensuremath{\mu}\_Haar(U\_e)} + compact or Gaussian site priors & Separate; finite cardinality counts have no direct continuum Haar analogue \\
+Readout & Exact Hamming-separated curvature tuple on \texttt{P\_obs} & Gauge-invariant plaquette traces \texttt{Re\ Tr(U\_p)}, Polyakov loops, time-slice correlators & Open; Theorem 13 shows fixed \texttt{(m,\ B)} caps patterns at \texttt{B\^{}m}. At fixed \texttt{B}, recovery requires a growing detector footprint: logarithmic \texttt{m\_j} under \texttt{K\ensuremath{{}_{1}}(j)\ =\ m\_j} with full word realizability, or polynomial \texttt{m\_j} with fixed \texttt{K\ensuremath{{}_{1}}} when \texttt{1\ +\ \ensuremath{\gamma}\ \textless{}\ 2\ K\ensuremath{{}_{1}}} (automatic under Theorem 10's \texttt{K\ensuremath{{}_{1}}}, eventually impossible when \texttt{1\ +\ \ensuremath{\gamma}\ \textgreater{}\ 2\ K\ensuremath{{}_{1}}}) \\
+\end{longtable}
+\endgroup
+}
+
+\section{8. Open problems}\label{open-problems}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{OP1 (T0 closure).} Specify \texttt{M\_SIT} to the definitional standard of §4: a complete, finitely parsable definition of state space, equivalence, action, window, and readout, with the four source-recovery obligations of BC-014 (on-site potential form, time-density status, Coherence-Time Law constraint form, observable map) resolved by verbatim extraction from SIT v79. \emph{Success criterion:} every symbol in the \texttt{M\_SIT} definition is defined within the document, as in Definitions D1-D2.
+\item
+  \textbf{OP2 (T4 lift).} Prove or refute: there exist maps from \texttt{M\_SIT} configurations to \texttt{M\_toy} configurations (or an extension of the tower interface to \texttt{M\_SIT} directly) under which the seven sublemma slots are discharged with constants bounded in terms of the \texttt{M\_SIT} parameters. A refutation would localize which slot fails - each of the limitations (i)-(iv) of §7 is a candidate failure point.
+\item
+  \textbf{OP3 (dimension \texttt{d\ \ensuremath{\geq}\ 3}).} Determine whether the tower (Theorems 5(b), 7(a) in particular) survives the Bianchi-type constraints on the orbit space for boxes in \texttt{Z\^{}d}, \texttt{d\ \ensuremath{\geq}\ 3}: exactly which sublemmas hold with the orbit space \texttt{im(\ensuremath{\sigma})\ \ensuremath{\subsetneq}\ (\ensuremath{\mu}\_f)\^{}P}, and with what replacement for the product formula?
+\item
+  \textbf{OP4 (non-trivial decoherence).} For the candidate decoherence relation of BC-014: compute or bound the orbit merging it induces on \texttt{M\_toy}, and determine the largest \texttt{\ensuremath{\gamma}} for which Theorem 10 survives. (By D2.3, abundance can only decrease; the question is by how much.)
+\item
+  \textbf{OP5 (phase-resolution readout).} Replace Hamming separation by a fixed phase-resolution threshold \texttt{\ensuremath{\theta}\ \textgreater{}\ 0} (two values indistinguishable if all coordinates are within angle \texttt{\ensuremath{\theta}}): for which schedules \texttt{(n\_j,\ f\_j)} and thresholds does a Theorem 10 analogue hold? Note that at fixed \texttt{K\ensuremath{{}_{1}}} the construction of Step 2 uses \texttt{(f\_j-1)\^{}\{K\ensuremath{{}_{1}}\}} values whose pairwise phase gaps shrink as \texttt{f\_j\ →\ ∞}, so the present proof does not survive this change as stated.
+\end{itemize}
+
+\section{9. Reproducibility and provenance}\label{reproducibility-and-provenance}
+
+All proofs are elementary and self-contained above (finite group theory, lattice combinatorics, counting); no numerics enter any proof. Related-work credits are given in §2.
+
+\textbf{Companion archive.} The exact local dependency manifest for this revision pins the SIT Formal Proof Research Program (2026-05-22) and Branch C packets BC-001, BC-004, BC-006, and BC-014 (2026-06-12). These local program artifacts record the gate history and claim boundaries; they are not represented as public supplementary files in Zenodo record \texttt{21231875}. The separately deposited HSIT-Riemann paper is DOI \nolinkurl{10.5281/zenodo.21231873}. Any future public source bundle requires a separate rights and release review.
+
+\textbf{Finite replay {[}COMPUTATIONALLY CHECKED{]}.} The stdlib-only script \nolinkurl{model/check_toy_tower.py} performs exact dynamic-programming enumeration of every edge-state contribution for \texttt{n\ \ensuremath{\in}\ \{2,\ 3\}} and \texttt{f\ \ensuremath{\in}\ \{2,\ 3,\ 4\}}, including the largest \texttt{4\^{}\{12\}\ =\ 16,777,216}-state case. It checks curvature surjectivity and uniform orbit size (Lemma 1), window counts against the product formula (Theorem 5(b)), orbit-level readout-fibre uniformity (Theorem 7(a)), and the closed-form threshold chain for representative \texttt{\ensuremath{\gamma}\ \ensuremath{\in}\ \{1/2,\ 1,\ 2,\ 5\}} (Theorem 10). The replay is supporting verification only; none of the proofs depends on it. Exact environment, result, and script hashes are recorded in the revision package manifest.
+
+\textbf{November 2026 verification replay {[}COMPUTATIONALLY CHECKED{]}.} The standalone Python verifier \nolinkurl{verify_paper033_v2.py} (results recorded in \nolinkurl{paper033_v2_verification_results.json}, 4/4 checks passing) independently enumerates all \texttt{2\^{}\{12\}\ =\ 4,096} edge states on \texttt{Λ\ensuremath{{}_{3}}} (\texttt{f\ =\ 2}, \texttt{\textbar{}P\_obs\textbar{}\ =\ 1}, \texttt{K\ensuremath{{}_{1}}\ =\ K\ensuremath{{}_{2}}\ =\ 1}), confirming orbit size \texttt{256}, fibre cardinality \texttt{4}, and multiplicity ratio \texttt{1.0}; verifies the Theorem 6 divisibility requirement (\(\mu_2 \not\subset \mu_3\) negative control vs.~\(2^j \mid 2^{j+1}\)); verifies the \texttt{SU(2)} Weyl-conjugation identity and exact \texttt{136}-class rectangular Wilson-loop bijection at \texttt{f\ =\ 4} (\texttt{1} Weyl orbit per signature; \texttt{0} Stage-1 \texttt{256\ →\ 136} separation) (Theorem 12); and verifies Theorem 13 \& Remarks R13.1--R13.2 including \texttt{m\ =\ 9} vs.~\texttt{10} at \texttt{N\ =\ 289,\ B\ =\ 2}, the fixed-\texttt{K\ensuremath{{}_{1}}\ =\ 2} polynomial recovery at \texttt{m\ =\ 29} (\texttt{1\ +\ \ensuremath{\gamma}\ \textless{}\ 2\ K\ensuremath{{}_{1}}}) contrasted with universal failure at \texttt{B\ =\ 2,\ K\ensuremath{{}_{1}}\ =\ 2,\ \ensuremath{\gamma}\ =\ 3} (\texttt{\textless{}\ N\^{}4/8\ \textless{}\ N\^{}4}), and noisy-readout calculations (shared Gaussian calibration error, Gaussian one-boundary crossing probability \(p_R(d) = \Phi(-d\sqrt{R}/\sigma_\phi)\) at \(d = 0\) vs.~\(d > 0\), finite-width adjacent-bin probability \(< 1/2\), and symmetric discrete atom-at-zero counterexample).
+
+\textbf{Version lineage and source-faithful correction.} Public Version 1 is preserved byte-for-byte under Zenodo record 21231875. This successor retains all eleven finite results and every proof architecture from that version. It corrects the inherited phrase \texttt{U(1)/Z\_f} wherever it was used to describe the model: the definitions always construct \texttt{\ensuremath{\mu}\_f\ \ensuremath{\cong}\ Z\_f} as a finite subgroup of \texttt{U(1)}, so the quotient notation was inconsistent with the actual mathematics. No theorem or date is backdated by that correction. The successor also adds the earned-vocabulary explanation, theorem-by-theorem citation roles, numbered equations, a clean replay, and a publication PDF while preserving the original scope boundaries.
+
+\section{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  Wilson, K. G. (1974). ``Confinement of quarks.'' \emph{Physical Review D} 10, 2445-2459. DOI: \href{https://doi.org/10.1103/PhysRevD.10.2445}{doi:\nolinkurl{10.1103/PhysRevD.10.2445}}. {[}plaquette-action lineage; no imported theorem{]}
+\item
+  Biggs, N. (1993). \emph{Algebraic Graph Theory}, 2nd ed.~Cambridge University Press. DOI: \href{https://doi.org/10.1017/CBO9780511608704}{doi:\nolinkurl{10.1017/CBO9780511608704}}. {[}cycle, cut, and coboundary background; Lemma 1 remains self-contained{]}
+\item
+  Montvay, I., \& Münster, G. (1994). \emph{Quantum Fields on a Lattice}. Cambridge University Press. DOI: \href{https://doi.org/10.1017/CBO9780511470783}{doi:\nolinkurl{10.1017/CBO9780511470783}}. {[}lattice gauge context only{]}
+\item
+  Seiler, E. (1982). \emph{Gauge Theories as a Problem of Constructive Quantum Field Theory and Statistical Mechanics}. Lecture Notes in Physics 159, Springer. DOI: \href{https://doi.org/10.1007/3-540-11559-5}{doi:\nolinkurl{10.1007/3-540-11559-5}}. {[}constructive-field-theory context only{]}
+\item
+  Blumberg, M. (2025). \emph{Super Information Theory}, manuscript file \nolinkurl{Super_Information_Theory_79.pdf}. DOI: \href{https://doi.org/10.5281/zenodo.18133332}{doi:\nolinkurl{10.5281/zenodo.18133332}}. {[}full-SIT target record; no finite theorem is inferred{]}
+\item
+  Blumberg, M. (2026). \emph{The Weighted Farey Laplacian and the HSIT-Riemann Program: Existence Theorems, No-Go Theorems, and an Exact Commutator-Pythagoras Identity for the Mertens Function}. DOI: \href{https://doi.org/10.5281/zenodo.21231873}{doi:\nolinkurl{10.5281/zenodo.21231873}}. {[}independent companion deposit; unused in the present proofs{]}
+\item
+  Blumberg, M. (2026). \emph{SIT Formal Proof Research Program}. Agent Wiki theorem-stack document dated 2026-05-22. {[}defines T0-T4; exact file identity pinned in the revision package{]}
+\item
+  Branch C proof packets BC-001, BC-004, BC-006, and BC-014 (2026-06-12). {[}local theorem-source and claim-boundary artifacts; exact file identities pinned in the revision package{]}
+\end{itemize}
+
+\end{document}

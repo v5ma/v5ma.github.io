@@ -1,0 +1,34 @@
+{
+  "schema": "paper048.v2.verification.v3",
+  "checks": [
+    {
+      "check": "november_auth_eft_exact_potential_interacting_dirac_and_current_norm",
+      "V_tot_at_vacuum": "0",
+      "dV_drho_at_vacuum": "0",
+      "dV_dv_at_vacuum": "0",
+      "V_tot_Z2_lift_at_minus_rho0": "2*m_link**2*rho0**2",
+      "canonical_hessian_at_vacuum": {
+        "H11": "2*lam_rho*rho0**2 + m_link**2",
+        "H12": "-2*sqrt(lam_portal)*m_link*v0",
+        "H22": "2*v0**2*(2*lam_portal + lam_psi)",
+        "det_H": "2*v0**2*(-2*lam_portal*m_link**2 + (2*lam_portal + lam_psi)*(2*lam_rho*rho0**2 + m_link**2))"
+      },
+      "negative_control_rejects_old_substitute_potential": true,
+      "rescaled_dirac_kinetic_factor": "1",
+      "rescaled_dirac_mass": "m_D",
+      "interacting_L_dirac_on_shell_general_n": "-B**n_deg*g_cpl*n_deg",
+      "interacting_total_L_m_on_shell_general_n": "B**n_deg*g_cpl*(1 - n_deg)",
+      "n1_bilinear_L_dirac_on_shell": "-B*g_cpl",
+      "n1_bilinear_total_L_m_on_shell": "0",
+      "scalar_EL_v_n1_bilinear_interaction": "0",
+      "scalar_EL_v_n2_four_fermion_exact": "-B**2*g_cpl*v0/(M_sym**2*psi0**2)",
+      "negative_control_rejects_erroneous_plus_fprime_Lint_for_n2": true,
+      "dressed_gauge_source_unrescaled_Psi": "J_F*q_Psi*(1 + v0**2/(2*M_sym**2*psi0**2))",
+      "canonical_gauge_source_rescaled_Psi_tilde": "J_F_tilde*q_Psi",
+      "neutral_fermion_q0_internal_gauge_source": "0",
+      "discriminatory_value_between_CFS_and_SIT": 0,
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "paper055.v2.verification.v2",
+  "checks": [
+    {
+      "check": "constraint_I_nonunique_microscopic_kernel_raw_moments_vs_cumulants",
+      "K1_second_moment_mu2": "h**2",
+      "K2_second_moment_mu2": "h**2",
+      "identical_diffusion_coefficient": true,
+      "K1_fourth_raw_moment_mu4": "h**4",
+      "K2_fourth_raw_moment_mu4": "3*h**4",
+      "fourth_raw_moment_ratio_K2_over_K1": "3",
+      "K1_fourth_cumulant_kappa4": "-2*h**4",
+      "K2_fourth_cumulant_kappa4": "0",
+      "K1_excess_kurtosis": "-2",
+      "K2_excess_kurtosis": "0",
+      "fourth_cumulant_ratio_K2_over_K1": "0",
+      "negative_control_fourth_cumulant_ratio_is_not_3": true,
+      "passed": true
+    },
+    {
+      "check": "constraint_II_overdamped_drift_velocity_contrast_vs_acceleration",
+      "D_ratio": "2",
+      "overdamped_mean_acceleration_A": "0",
+      "overdamped_mean_acceleration_B": "0",
+      "overdamped_drift_velocity_contrast_Delta_v_AB": "2/3",
+      "is_acceleration_eotvos_parameter_without_inertial_map": false,
+      "passed": true
+    },
+    {
+      "check": "constraint_IV_undamped_noise_heating_vs_damped_equilibrium",
+      "T_final": 5.0,
+      "undamped_exact_v2": 5.0,
+      "undamped_mc_v2": 4.9038,
+      "undamped_rel_error": 0.01925,
+      "damped_OU_mc_v2_equilibrium": 1.0045,
+      "passed": true
+    },
+    {
+      "check": "constraint_V_clock_match_underdetermines_spatial_metric",
+      "stationary_clock_rate_diff": "0",
+      "light_deflection_factor_gamma1_vs_gamma0": [
+        "1",
+        "1/2"
+      ],
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

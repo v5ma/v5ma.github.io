@@ -1,0 +1,69 @@
+{
+  "schema": "sit.intervening_papers.portfolio_dictionary.v2",
+  "updated_utc": "2026-11-20T16:45:00Z",
+  "scope": "Coordinated upgrade and scientific correction pass of existing SIT portfolio papers (Papers 002, 003, 007, 014, 028, 033, 034, 048, 055, 062, 063) and version-aware cataloging of Paper 114. Excludes direct edits to the separate SIT 81 monograph lane.",
+  "chronology": {
+    "sit_v79": {
+      "date": "2025-12-18",
+      "description": "Full SIT Version 79 manuscript (Zenodo 10.5281/zenodo.18133332, concept DOI 10.5281/zenodo.16922511)."
+    },
+    "july_2026_v80_compact_lineage": {
+      "draft_13_date": "2026-07-26",
+      "public_release_date": "2026-07-29",
+      "public_record": "Paper 002 (DOI 10.5281/zenodo.21693867, concept DOI 10.5281/zenodo.16922511)",
+      "description": "July 2026 Version 80 Draft 13 (frozen comparison source for Paper 048) and its July 29 compact correction-integrated public edition (Paper 002), explicitly styled as the Version 80 successor to Version 79."
+    },
+    "november_2026_formal_monograph_series": {
+      "stage5_v80_2_date": "2026-11-16",
+      "stage6_v80_3_dates": "2026-11-18 to 2026-11-19",
+      "baseline_commit": "30a71e4ffdda366c8d2489ee553d4a0a8b4c17af",
+      "latest_commit": "d5dc6412da",
+      "monograph_branch": "codex/sitproof-sit81-monograph-20261119",
+      "rename_decision": "Renamed from Version 80.3 to SIT Version 81 on its separate monograph lane so the November full monograph series does not collide with the July 2026 Version 80 compact corrective edition."
+    },
+    "learning_to_feel_paper_114": {
+      "initial_release": { "version": "v1.0", "date": "2026-10-17", "doi": "10.5281/zenodo.23447925" },
+      "current_main_paper": { "version": "v1.2", "date": "2026-10-20", "url": "https://pub.svgn.io/papers/paper-114/" },
+      "technical_supplement": { "version": "v1.1", "note": "Deliberately retains v1.1 label as documented version history; not a naming inconsistency to relabel." },
+      "track_boundary": "Independent neuroscience track; neural synchrony and learned influence are not identified with canonical SIT scalar fields."
+    }
+  },
+  "model_families": {
+    "M_JUL2026_CONFORMAL": {
+      "owner_papers": ["Paper 002 (July 2026 v80)", "Paper 048 (July 2026 baseline)"],
+      "fields": "Two neutral real scalar fields (rho_t, C), metric g_munu, independent Maxwell U(1) connection A_mu",
+      "matter_coupling": "Conformal physical matter metric g_tilde_munu = A^2(rho_t, C) g_munu",
+      "em_sector": "Independent Maxwell connection; electromagnetism is not a bare scalar phase gradient"
+    },
+    "M_NOV2026_AUTH_EFT_V1": {
+      "owner_papers": ["SIT Version 81 (formerly 80.3) monograph & Companions I-III"],
+      "fields": "Metric g_munu (-,+,+,+), real temporal-density scalar rho_t(x), charged complex coherence field psi(x) = psi_0 R_coh(x) exp(i theta(x)), local U(1) bundle connection A_mu",
+      "potential": "V_tot(rho_t, |psi|) = (lambda_rho/4)(rho_t^2 - rho_0^2)^2 + (lambda_psi/4)(|psi|^2 - v_0^2)^2 + (1/2)[m_link(rho_t - rho_0) - sqrt(lambda_portal)(|psi|^2 - v_0^2)]^2",
+      "matter_coupling": "Multiplicative portal +sqrt(-g) f_SM(R_coh) L_matter with f_SM(R_coh) = 1 + R_coh^2/(2 M_sym^2) >= 1",
+      "em_sector": "-1/4 f_EM(R_coh) F_munu F^munu with f_EM(R_coh) = 1 + c_EM R_coh^2 >= 1; any massless visible-photon kinetic-mixing residue 1/z_v belongs to a separately specified visible-gauge extension",
+      "non_equivalence_to_conformal": "For 4D non-Weyl-invariant matter containing terms of distinct conformal weights (e.g. scalar kinetic A^2 and mass/potential A^4) at fixed unrescaled matter variables, multiplicative sqrt(-g) f_SM L_m cannot match 4D conformal metric A^2 g_munu unless A = f_SM = 1."
+    },
+    "M_LEVEL0_CONDENSATE": {
+      "owner_papers": ["Paper 003", "Paper 014"],
+      "fields": "Physical-frame canonically normalized scalar field sigma ([sigma]=1) sourced by Penrose-Onsager condensate density n_0(x) ([n_0]=3) separated from thermal density n_th(x)",
+      "relation_to_auth_eft": "Explicitly classified as an additional phenomenological matter-source model with dimensionless coupling lambda_Q := g_Q m_a / M_Pl and background-subtracted static response (nabla^2 - m_sigma^2) delta_sigma_Q = lambda_Q n_0 (matching Eq. (10) with null-recovery benchmark requiring g_Q = 0 alongside beta_sigma = 0); does NOT follow automatically from unchanged M_NOV2026_AUTH_EFT_V1. Conservative GP yields Gamma_12 = 0; particle exchange requires an explicit dissipative ZNG-type transfer term and paired thermal kinetic equation."
+    },
+    "M_SDT_ONE_SCALAR": {
+      "owner_papers": ["Paper 007"],
+      "fields": "Single real temporal-density scalar rho_t(x) in physical frame plus conditional point-process count estimator",
+      "relation_to_two_scalar": "Strict frozen-coherence consistent truncation (delta R_coh = 0) holds ONLY when the omitted coherence EOM remains satisfied (lambda_mix = 0 and J_R = 0). When lambda_mix != 0, m_eff^2 = m_1^2 - lambda_mix^2 / m_2^2 is an exact static (zero-momentum) Schur elimination, distinct from the exact light dynamical mass-squared eigenvalue and requiring kinetic renormalization Z_eff = 1 + lambda_mix^2/m_2^4 and low-momentum control p^2 << m_2^2. Scalar elimination does not equate conformal and multiplicative matter actions."
+    },
+    "M_LATTICE_U1_2D_TOY": {
+      "owner_papers": ["Paper 033"],
+      "group_and_geometry": "Finite cyclic subgroup mu_f ~= Z_f subset U(1) on simply connected 2D box Lambda_n in Z^2 (tower maps require n_j <= n_{j+1} and f_j | f_{j+1})",
+      "relation_to_nov_su2_4d": "Distinct group (abelian Z_f vs compact SU(2)), topology (open 2D box vs periodic 4D torus (Z/lZ)^4), field content (pure links vs coupled U, psi, rho_t), action, measure, and readout. Diagonal embedding z -> diag(z, z^-1) suffers an irreversible Stage-1 global SU(2) Weyl-conjugation gauge quotient (256 -> 136 at f=4, which no gauge-invariant Wilson loop or gauge choice can undo) followed by Stage-2 single-plaquette trace loss (136 -> 81, bijectively recovered up to all 136 Weyl classes by larger multi-plaquette Wilson loops). At fixed B, recovery requires a growing detector footprint: logarithmic m_j under growing K_1(j) = m_j with full word realizability, or polynomial m_j with fixed K_1 when 1 + gamma < 2 K_1 (automatic under Theorem 10's K_1, eventually impossible when 1 + gamma > 2 K_1)."
+    }
+  },
+  "clock_and_observable_dictionary": {
+    "underlying_field_perturbation": "r = delta_rho_t / rho_0 (dimensionless fractional temporal-density perturbation)",
+    "local_intrinsic_clock_response": "alpha_rho, defined by y_clock_int = alpha_rho * r at fixed local metric",
+    "gravitational_transfer": "T_grav (mathcal{T}), defined by r = T_grav * p where p = Delta_Phi / c^2",
+    "total_vs_anomalous_redshift_slope": "Total observed gravitational redshift slope d ln(nu)/d(Phi/c^2) = 1 + delta_alpha_Phi, where 1 is the standard GR metric redshift and delta_alpha_Phi = alpha_rho * T_grav is the anomalous (non-metric, SIT-additional) fractional redshift slope (T_grav enters strictly once).",
+    "event_count_vs_atomic_clock": "Event rate N(tau)/tau (Paper 007 point-process estimator) and fractional atomic frequency shift Delta_nu/nu are distinct operational observables requiring an explicit calibrated detector/transduction model to relate."
+  }
+}

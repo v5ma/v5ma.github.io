@@ -1,0 +1,26 @@
+{
+  "built_utc": "2026-11-20T16:53:39.985118+00:00",
+  "title": "SuperTimePosition and Gravitational Phase-Lock",
+  "markdown": "paper-034/Paper-034-v2-Candidate.md",
+  "markdown_sha256": "bb98af17b9bcbdabec8f153b5da0e85c972138bf2cef18732d6c3a9bbb4062fb",
+  "tex": "paper-034/Paper-034-SuperTimePosition-Gravitational-Phase-Lock-v2.tex",
+  "tex_sha256": "3370eb1dfa0bdb1dfd93487ab0487fad6882b1834899dc938b3bb73ca37d7568",
+  "pdf": "paper-034/Paper-034-SuperTimePosition-Gravitational-Phase-Lock-v2.pdf",
+  "pdf_bytes": 164786,
+  "pdf_sha256": "a9d5e1fb6821c7759813f21df80db3f09ece5880a4933ac6c16dfef82e7b9bb3",
+  "pages": 11,
+  "page_box_pt": [
+    612.0,
+    792.0
+  ],
+  "is_us_letter": true,
+  "has_times_new_roman": true,
+  "first_page_has_author_label": true,
+  "first_page_has_institute": true,
+  "first_page_has_website": true,
+  "internal_id_hits": [],
+  "private_path_hits": [],
+  "question_mark_placeholder_hits": 0,
+  "undefined_or_multiply_defined_warnings": [],
+  "pass": true
+}

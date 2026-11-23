@@ -1,0 +1,26 @@
+{
+  "built_utc": "2026-11-20T19:01:33.587375+00:00",
+  "title": "Cross-Disciplinary SIT Translation Guide",
+  "markdown": "paper-028/Paper-028-v2-Candidate.md",
+  "markdown_sha256": "19a2aaaa9f605606cb9b5649046924e3209247ed841222fa11e563bbfaa48dca",
+  "tex": "paper-028/Paper-028-Cross-Disciplinary-SIT-Translation-Guide-v2.tex",
+  "tex_sha256": "3f473c7a08487a9f747b7677fc7480a760ab8f8e2101c0f33776b72c4869dced",
+  "pdf": "paper-028/Paper-028-Cross-Disciplinary-SIT-Translation-Guide-v2.pdf",
+  "pdf_bytes": 187982,
+  "pdf_sha256": "3534bb36bb3458e88e6c1a72012d5fb2f4ff93595fa3f53f7f62fb5aa5117744",
+  "pages": 13,
+  "page_box_pt": [
+    612.0,
+    792.0
+  ],
+  "is_us_letter": true,
+  "has_times_new_roman": true,
+  "first_page_has_author_label": true,
+  "first_page_has_institute": true,
+  "first_page_has_website": true,
+  "internal_id_hits": [],
+  "private_path_hits": [],
+  "question_mark_placeholder_hits": 0,
+  "undefined_or_multiply_defined_warnings": [],
+  "pass": true
+}

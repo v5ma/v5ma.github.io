@@ -1,0 +1,1376 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  american,
+  11pt,
+  letterpaper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Times New Roman}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{ragged2e}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\hyphenation{im-ple-men-ta-tion op-er-a-tion-al-i-za-tion}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Super Dark Time: From Local Time-Rate Gradients to a Testable Scalar-Tensor Bridge},
+  pdfauthor={Micah Blumberg},
+  pdflang={en-US},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+
+{\LARGE\bfseries Super Dark Time: From Local Time-Rate Gradients to a Testable Scalar-Tensor Bridge\par}
+
+\vspace{0.35em}
+
+{\large\itshape A Source-Grounded QGTCD / SDT Program with Audited Field Equations and Open Viability Tests\par}
+
+\vspace{0.8em}
+
+{\small\textbf{Author: Micah Blumberg}\par}
+
+{\small Self Aware Networks Research Institute\par}
+
+{\small\url{https://selfawarenetworks.com}\par}
+
+{\small November 20, 2026 (Version 2 Two-Scalar Static-vs-Dynamical Reduction and Detector Calibration Candidate to DOI 10.5281/zenodo.21693874)\par}
+
+\end{center}
+
+\vspace{0.65em}
+
+\begin{abstract}
+
+Gravity changes the rates read by clocks, while quantum theory describes local interactions and alternative microscopic paths. A missing bridge is an operational account of how a local interaction statistic could become a physical time-rate variable, how a spatial difference in that variable could alter motion, and how those local changes could aggregate into gravitational observables. Public Git records from June 2022 preserve the mechanism's ancestors. By July 30, 2022, the record contains the more specific proposal that otherwise random directional alternatives cancel in a uniform setting, whereas mass-associated additional temporal measure changes their relative weighting; the accumulated mean bias points toward mass and appears as gravity-like motion. Later stages used ``time frames,'' ``time density,'' mass-as-time-crystal language, and local wave computation. That dated stochastic operator motivates this paper but does not by itself supply a covariant microscopic law.
+
+This paper turns that motivating architecture into a bounded test program. It defines a canonically normalized scalar extension of assumed Einstein-Maxwell-matter theory, uses one conformally related Jordan metric for ordinary rods, clocks, trajectories, and apparatus geometry, and derives the metric, scalar, Maxwell, current-conservation, and matter-exchange equations under one fixed convention. The derivation corrects an electromagnetic current-sign inconsistency in an earlier working version and closes the stress-energy exchange ledger on shell through the Bianchi identity. A switched-off row embeds ordinary classical Einstein-Maxwell-matter backgrounds by construction and serves only as a nondiscriminating regression.
+
+A frozen nonzero reference row supplies a point-source weak-field chain. The paper then adds a proper-time count-response specification, effective extended- body charges, the exact nonoverlapping uniform-sphere Yukawa response, and paired bare-coefficient versus dynamically calibrated synthetic fits. These calculations recover their declared synthetic generator, expose a geometry-induced coupling bias, and show that the physical SDT-NB1 row is unresolved at the toy design's stated precision. No experimental detection or cosmological fit is inferred.
+
+The result is twofold. First, the paper preserves the distinctive SDT question: can a covariant local statistic of quantum interactions or state changes define a physical time-rate variable whose gradients contribute to gravitational observables? Second, it identifies the exact missing derivation between that question and the classical test bed. The model is therefore a falsifiable bridge and measurement architecture, not yet a microscopic theory of quantum gravity.
+
+\end{abstract}
+
+\section{Scope and evidence boundary}\label{scope-and-evidence-boundary}
+
+\textbf{Version relation:} final-preprint successor to Zenodo record \texttt{16922502}, concept DOI \nolinkurl{10.5281/zenodo.16922501}
+
+\section{1. The Problem, Proposed Operation, and Name}\label{the-problem-proposed-operation-and-name}
+
+\subsection{1.1 The ordinary physical problem}\label{the-ordinary-physical-problem}
+
+Clocks at different gravitational potentials do not accumulate the same proper time. Light paths and massive trajectories respond to the same gravitational environment. At microscopic scales, quantum theory instead describes local states, interactions, phases, amplitudes, and alternative paths. A proposed quantum account of gravity must therefore answer a concrete question:
+
+\begin{quote}
+What local quantity is changed by matter, how is that quantity compared between neighboring regions, and how does the difference become a measured clock, trajectory, light-time, or differential-acceleration response?
+\end{quote}
+
+Without those operations, ``time is denser near mass'' is an interpretation, not a measurement or field equation.
+
+\subsection{1.2 The inherited scientific account}\label{the-inherited-scientific-account}
+
+General relativity already relates matter, geometry, proper time, null propagation, and free-fall trajectories. Scalar-tensor theories already show how an additional scalar can alter a physical matter metric and generate fifth-force, clock, and equivalence-principle effects. Quantum field theory already supplies local fields and interactions. These are inherited foundations, not claims of origin by this paper.
+
+The unresolved SDT problem is more specific. It asks whether a declared local statistic of quantum interactions or state changes can determine a physical time-rate variable, and whether a gradient of that variable can contribute to the path weighting or response that is observed macroscopically as gravity.
+
+\subsection{1.3 The proposed operation in plain language}\label{the-proposed-operation-in-plain-language}
+
+The proposed mechanism has five steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  matter and local interactions alter a measurable temporal statistic;
+\item
+  neighboring regions can carry different values of that statistic;
+\item
+  the spatial difference changes the relative response or available path weighting of a receiving physical system;
+\item
+  repeated local responses aggregate into clock, trajectory, light-time, or differential-acceleration observables; and
+\item
+  measurements return constraints that can support, narrow, or falsify the proposed map.
+\end{enumerate}
+
+Only after this operation is visible do we name the research program. \textbf{Quantum Gradient Time Dilation} was an ancestor name. \textbf{Quantum Gradient Time Crystal Dilation (QGTCD)} was explicitly fixed by November 28, 2022 for the mass, temporal-gradient, and path-bias proposal. \textbf{Dark Time Theory} was publicly named in October 2024, and \textbf{Super Dark Time (SDT)} named the 2025 expanded program connecting that proposal to local wave computation, thermodynamic dissipation, quantum measurement, and cosmology.
+
+The names are not synonyms for gravitational time dilation, scalar-tensor gravity, phase coding, or a generic time crystal. The claimed delta is the joined causal architecture
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{local interaction statistic}
+\NormalTok{    {-}\textgreater{} physical time{-}rate state}
+\NormalTok{    {-}\textgreater{} spatial gradient}
+\NormalTok{    {-}\textgreater{} microscopic response or path bias}
+\NormalTok{    {-}\textgreater{} aggregate gravitational observable.}
+\end{Highlighting}
+\end{Shaded}
+
+This paper does not assume that naming the architecture derives its arrows. It builds a classical test bed and an operational estimator so that the missing arrows become explicit research obligations.
+
+\subsection{1.4 Public development of the mechanism}\label{public-development-of-the-mechanism}
+
+The source history predates the 2025 SDT manuscript:
+
+\begin{itemize}
+\tightlist
+\item
+  On June 16, 2022, immutable Git commit \nolinkurl{3dde844bb0ea6a9ba45a6f4351113903a49096e4} described gravity as ``gradient time dilation at the particle \& atomic scale'' and explained attraction through directionally unequal temporal opportunities {[}21{]}.
+\item
+  On June 28, 2022, commit \nolinkurl{76a5ab76ce79ed797fa5ebb0818e84f76900dd80} added the compact chain from mass-induced quantum-scale time dilation to shifted particle-movement odds toward mass {[}21{]}.
+\item
+  On July 26, 2022, commit \nolinkurl{92dc0fd1aad256664df035711b58e7d8e273f327} joined the gradient account to mass-as-time-crystal and mass-density / frequency language {[}22{]}.
+\item
+  On July 30, 2022, commit \nolinkurl{c4e94e9fcd049c97d47ef6a5f2f8c29485f5a98d} stated the explicit stochastic operator: directional alternatives are random in open space, mass-associated extra time is treated as extra available area, the altered weighting favors motion toward mass, and the aggregate appears as gravity-like drift {[}22{]}. This is a dated conjecture, not a derived probability kernel.
+\item
+  On November 28, 2022, commit \nolinkurl{4e0cf1ee0975c01dc57182368497d3f0cd864030} recorded the transition from Quantum Gradient Time Dilation to Quantum Gradient Time Crystal Dilation and proposed rotation-curve, MOND, Tully-Fisher, and Hubble-tension applications {[}23{]}. Those applications remained hypotheses.
+\item
+  By June 18, 2023, commit \nolinkurl{f86205cedaab8ad9aa352a27730e6e525483112e} preserved a public, explicitly AI-assisted equation-development stage linking local time-scale changes to a statistical landscape for particle direction {[}24{]}.
+\item
+  On December 15, 2023, \texttt{QGTCD.md} consolidated the QGTCD program and proposed exploratory mathematical modifications involving a local time-frame variable {[}25{]}. Those equations document development; this successor does not inherit them as validated mathematics.
+\item
+  Five first-party SVGN articles published from January through October 2024 expanded the time-frame, time-density, path-bias, metric, information, and Dark Time narrative {[}26-30{]}. Their earliest recovered independent Internet Archive captures run from March 2 through November 7, 2024.
+\item
+  Figshare's version ledger fixes \emph{Super Dark Time} v1 at January 27, 2025 22:51 UTC {[}31{]}. The historical manuscript also carries a January 27 print date. Zenodo record \texttt{16922502} is a later mirror created August 21, 2025; its metadata retains January 29, 2025 as the supplied publication date {[}32{]}.
+\end{itemize}
+
+This chronology establishes authorial development and public provenance. It does not, by itself, establish physical correctness.
+
+\subsection{1.5 Version relation and claim status}\label{version-relation-and-claim-status}
+
+The 147-page 2025 manuscript remains the historical artifact. This successor preserves its research architecture while reclassifying unsupported unification, experimental, numerical, simulation, and cosmological statements as historical hypotheses or future tests rather than present results.
+
+Five status words are used:
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Status
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Meaning
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Definition & A convention or model ingredient chosen in this paper. \\
+Derived & A result obtained from the displayed action under stated assumptions. \\
+Computational & A result reproduced by identified code and inputs within its declared scope. \\
+Empirical & A result supported or constrained by identified measurements and analysis. \\
+Open & A missing bridge, unresolved calculation, hypothesis, or untested model choice. \\
+\end{longtable}
+\endgroup
+}
+
+The structural field equations are derived for the frozen minimal classical action. The weak-field chain and finite-source expression are derived only inside their declared approximations. The count-response and paired-fit artifacts have computational status only for their synthetic inputs. None of these results has SDT-microphysical or empirical status.
+
+The present thesis is:
+
+\begin{quote}
+A canonically normalized real scalar can be added to Einstein-Maxwell-matter theory as a minimal classical two-derivative test bed. A viable SDT completion must derive the relation between a specified local interaction statistic and the physical gravitational degree of freedom, freeze its source and observable map, and survive existing measurements.
+\end{quote}
+
+The test bed does not yet derive gravity from local quantum mechanics, replace curvature with time density, or identify the scalar with a microscopic count of temporal frames. Nor does the present evidence establish dark matter, dark energy, Hubble-tension, MOND, galaxy-rotation, structure-formation, clock, interferometric, differential-acceleration, or lensing results. Those sectors remain named, testable parts of the historical program rather than erased ideas.
+
+\subsection{1.6 Neighboring-program boundary}\label{neighboring-program-boundary}
+
+SIT Version 80, Level 0 v2, and Branch C use related vocabulary but different claim contracts. None derives this action, transfers empirical support to it, or closes an SDT constraint. Level 0 v2's two-scalar null benchmark is another switched-off baseline, not evidence for this one-scalar family. Branch C finite formal artifacts do not derive a continuum physical action or observable. Similar notation and common provenance are not cross-model proofs.
+
+\subsection{1.7 The bridge a microscopic completion must supply}\label{the-bridge-a-microscopic-completion-must-supply}
+
+For the motivating operation to become a physical model rather than an interpretation, a future completion must:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  define a covariant local statistic from a specified quantum state, field, interaction process, or open-system dynamics;
+\item
+  establish its units, observer dependence, coarse-graining rule, and domain of validity;
+\item
+  derive, rather than merely posit, its relation to \(\phi\), the physical matter metric, or another gravitational degree of freedom;
+\item
+  show that the resulting dynamics conserve stress-energy and recover the relevant tested gravitational limit;
+\item
+  calculate at least one nonzero observable with identified sources, apparatus, nuisance parameters, and uncertainty; and
+\item
+  identify a prediction that differs from both general relativity and an unconstrained scalar-tensor fit.
+\end{enumerate}
+
+Appendix B specifies one proper-time point-process estimator, its units, calibration slope, Poisson variance, and failure domain. It makes part of steps 1-3 executable for a declared synthetic response. It does not select the event class from a quantum state, derive the response from microscopic dynamics, establish observer-independent scalar behavior, or show that the inferred field obeys the displayed action. Until those bridges exist, ``gravity computed from local quantum mechanics'' is the research target, not a result assumed by the displayed action.
+
+\section{2. Fields, Units, and Physical Frame}\label{fields-units-and-physical-frame}
+
+Use four spacetime dimensions, metric signature \((-,+,+,+)\), and natural units \(c=\hbar=1\). The fields are:
+
+\begin{itemize}
+\tightlist
+\item
+  \(g_{\mu\nu}\), the Einstein-frame action metric;
+\item
+  \(\phi\), a real scalar with mass dimension one;
+\item
+  \(A_\mu\), an electromagnetic connection with \(F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu\); and
+\item
+  \(\Psi\), ordinary matter fields, including charged fields.
+\end{itemize}
+
+The source manuscript used \(\rho_t\) without one stable physical dimension. Define instead
+
+\begin{equation}
+u \equiv \frac{\phi}{M_{\mathrm{Pl}}}.
+\tag{1}
+\end{equation}
+
+where \(M_{\rm Pl}\) is the reduced Planck mass and \(u\) is dimensionless. Appendix B supplies one conditional operational count-response map to \(u\), but no microscopic derivation of that response law. In particular, \(\phi\) is not coordinate time, proper time, a probability, density-matrix purity, condensate fraction, or a literal frame count.
+
+The physical matter metric is defined by
+
+\begin{equation}
+\widetilde g_{\mu\nu}=A(u)^2 g_{\mu\nu}.
+\tag{2}
+\end{equation}
+
+Every claimed field domain must have finite \(A(u)>0\). Matter rods, clocks, trajectories, apparatus dimensions, and stress-energy observables are evaluated with \(\widetilde g_{\mu\nu}\), or transformed to it consistently. Measured proper time obeys
+
+\begin{equation}
+d\widetilde\tau^2=-\widetilde g_{\mu\nu}\,dx^\mu dx^\nu.
+\tag{3}
+\end{equation}
+
+The Einstein / Jordan transformation is a regular field redefinition only where \(A\) is positive, finite, and invertible. A frame change cannot alter a dimensionless observable if fields, units, sources, and detector response are all transformed. It cannot justify changing physical-metric prescriptions between calculations.
+
+The gauge connection \(A_\mu\) and conformal factor \(A(u)\) are distinct objects.
+
+\section{3. Minimal Classical Action and Consistency Domain}\label{minimal-classical-action-and-consistency-domain}
+
+The bulk action is
+
+\[
+\begin{aligned}
+S={}&\int d^4x\,\sqrt{-g}\left[
+\frac{M_{\mathrm{Pl}}^2}{2}R
+-\frac{1}{2}g^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi
+-V(\phi)
+-\frac{1}{4}B_F(u)F_{\mu\nu}F^{\mu\nu}
+\right]\\
+&+S_{\mathrm m}\!\left[A(u)^2g_{\mu\nu},A_\mu,\Psi\right]+S_{\mathrm{GHY}}.
+\end{aligned}
+\tag{4}
+\]
+
+\(S_{\rm GHY}\) is the Gibbons-Hawking-York term for a fixed induced boundary metric. Scalar and gauge variations are taken to have compact support or boundary data that remove their integration-by-parts terms. A different boundary ensemble requires a new boundary contract.
+
+\(S_m\) includes matter kinetic terms and electromagnetic interactions with charged matter, but not a second Maxwell kinetic term. Einstein-Hilbert, Maxwell, and ordinary matter sectors are assumptions. They are not derived from \(\phi\), information theory, phase synchronization, or local computation.
+
+The Maxwell sector is independent only in this non-derivation sense. If \(B_F\) is nonconstant, the scalar and electromagnetic fields interact directly. Every claimed domain must satisfy
+
+\begin{equation}
+B_F(u)>0.
+\tag{5}
+\end{equation}
+
+to preserve the photon kinetic sign. Canonical normalization around a background also changes the map between charge parameters in \(S_m\) and measured dimensionless electromagnetic couplings. That matching must precede any clock or varying-constant prediction.
+
+The committed null benchmark uses the finite functions
+
+\[
+\begin{aligned}
+V(\phi)&=V_0+\frac{m_\phi^2\phi^2}{2}+\frac{\lambda\phi^4}{4},\\
+A(u)&=\exp\!\left(\beta u+\frac{\beta_2u^2}{2}\right),\\
+B_F(u)&=1+\xi u+\frac{\xi_2u^2}{2}.
+\end{aligned}
+\tag{6}
+\]
+
+Every coefficient of an operator omitted from the displayed minimal action is set to zero in this null benchmark. The embedding result is bounded to that exact finite action and does not extend automatically to scalar-curvature, higher-derivative, disformal, derivative-matter, or additional gauge operators. Adding any such term defines a new model contract and requires its variation and null conditions to be checked separately.
+
+\(V_0\) denotes the renormalized constant assigned to this scalar sector under a chosen vacuum-energy convention. Setting the total constant at the origin to zero in the null row is a tuning for that background, not a solution of the cosmological-constant problem.
+
+The minimal contract has no explicit species-dependent scalar vertex outside \(A\) and \(B_F\). That does not prove composition independence after matching or radiative corrections. A varying electromagnetic kinetic function can produce composition-dependent scalar charges through nuclear and atomic binding energies {[}Damour and Donoghue 2010{]}.
+
+In four-dimensional natural units,
+
+\[
+\begin{aligned}
+\left[d^4x\right]&=-4,\qquad [\sqrt{-g}]=0,\\
+[M_{\mathrm{Pl}}]=[m_\phi]=[\phi]&=1,\qquad [R]=[F_{\mu\nu}]=2,\\
+[V]=[\mathcal L_{\mathrm{matter}}]&=4,\\
+[A]=[B_F]=[\lambda]=[\beta]=[\xi]&=0,\\
+\left[\frac{d\ln A}{d\phi}\right]
+=\left[\frac{dB_F}{d\phi}\right]&=-1.
+\end{aligned}
+\tag{7}
+\]
+
+Every displayed bulk term has mass dimension four. This dimensional check does not make the template a controlled EFT. Any future EFT classification requires field content, symmetries, an operator basis through a declared order, redundancy rules, power counting, explicit cutoff factors, matching and renormalization conventions, and a process-energy validity domain. None of that EFT contract is supplied here.
+
+\section{4. Audited Field Equations}\label{audited-field-equations}
+
+The complete derivation is recorded in \nolinkurl{governance/snapshots/FIELD-VARIATION-AUDIT.md}. This section states its convention and result.
+
+Define the Jordan-frame matter stress tensor and current by
+
+\begin{equation}
+\delta S_{\mathrm m}
+=\frac{1}{2}\int d^4x\,\sqrt{-\widetilde g}\,
+\widetilde T^{\mu\nu}\delta\widetilde g_{\mu\nu}
+-\int d^4x\,\sqrt{-\widetilde g}\,
+\widetilde J^\mu\delta A_\mu.
+\tag{8}
+\end{equation}
+
+At fixed \(\phi\), the Einstein-frame functional derivatives obey
+
+\[
+\begin{aligned}
+T_E^{\mu\nu}&=A^6\widetilde T^{\mu\nu}, &
+T^E_{\mu\nu}&=A^2\widetilde T_{\mu\nu},\\
+T_E&=A^4\widetilde T, & J_E^\mu&=A^4\widetilde J^\mu.
+\end{aligned}
+\tag{9}
+\]
+
+Let
+
+\begin{equation}
+\alpha(\phi)\equiv\frac{d\ln A(u)}{d\phi}
+=\frac{1}{M_{\mathrm{Pl}}}\frac{d\ln A(u)}{du}.
+\tag{10}
+\end{equation}
+
+The audited equations are
+
+\begin{equation}
+M_{\mathrm{Pl}}^2G_{\mu\nu}=T^\phi_{\mu\nu}+T^{\mathrm{EM}}_{\mu\nu}+T^E_{\mu\nu}.
+\tag{11}
+\end{equation}
+
+\begin{equation}
+T^\phi_{\mu\nu}=\partial_\mu\phi\,\partial_\nu\phi
+-g_{\mu\nu}\left[\frac{(\partial\phi)^2}{2}+V(\phi)\right].
+\tag{12}
+\end{equation}
+
+\begin{equation}
+T^{\mathrm{EM}}_{\mu\nu}=B_F\left(F_{\mu\rho}F_\nu{}^\rho
+-\frac{1}{4}g_{\mu\nu}F_{\rho\sigma}F^{\rho\sigma}\right).
+\tag{13}
+\end{equation}
+
+\begin{equation}
+\Box\phi-V_{,\phi}-\frac{1}{4}B_{F,\phi}F_{\rho\sigma}F^{\rho\sigma}
++\alpha(\phi)T_E=0.
+\tag{14}
+\end{equation}
+
+\begin{equation}
+\nabla_\mu\!\left(B_FF^{\mu\nu}\right)=J_E^\nu.
+\tag{15}
+\end{equation}
+
+\begin{equation}
+\nabla_\mu J_E^\mu=0.
+\tag{16}
+\end{equation}
+
+The matter Ward identity in this current convention is
+
+\begin{equation}
+\nabla_\mu T_E{}^\mu{}_\nu
+=\alpha(\phi)T_E\,\partial_\nu\phi-F_{\nu\mu}J_E^\mu.
+\tag{17}
+\end{equation}
+
+In the physical Jordan frame,
+
+\begin{equation}
+\widetilde\nabla_\mu\widetilde T{}^\mu{}_\nu
+=-F_{\nu\mu}\widetilde J^\mu.
+\tag{18}
+\end{equation}
+
+The minus electromagnetic signs follow from the explicit definition \(\delta S_m=\cdots-\int J^\mu\delta A_\mu\) together with \(\nabla_\mu(B_FF^{\mu\nu})=J_E^\nu\). An earlier working version displayed plus signs and thereby mixed current conventions. The present equations correct that defect. Reversing the definition of the current would reverse the corresponding Maxwell and force signs together; it would not create different physics.
+
+This functional definition fixes the internal algebra but not which signed charge parameter represents positive laboratory charge. The current orientation therefore remains abstract in this template. A future matter-matching contract must state a charged-field covariant derivative, gauge transformation, and charge convention before quoting any physical charge or force sign.
+
+The on-shell Bianchi cross-check is
+
+\begin{equation}
+\nabla_\mu T_\phi{}^\mu{}_\nu
+=\left(\frac{B_{F,\phi}F^2}{4}-\alpha T_E\right)\partial_\nu\phi.
+\tag{19}
+\end{equation}
+
+\begin{equation}
+\nabla_\mu T_{\mathrm{EM}}{}^\mu{}_\nu
+=F_{\nu\mu}J_E^\mu-\frac{B_{F,\phi}F^2}{4}\partial_\nu\phi.
+\tag{20}
+\end{equation}
+
+Using the scalar and Maxwell equations together with the matter equations of motion and gauge-current conservation, their sum is the negative of the corrected matter divergence, so total stress-energy is covariantly conserved on shell. This is a consistency closure among the equations, not an independent derivation or empirical test. The conformal stress / current factors and the displayed equations pass a manual internal audit for this minimal classical action.
+
+This closes a line-by-line internal variation defect. It does not establish a nonzero background, viable parameter point, radiative completion, or external technical review.
+
+\section{5. Zero-Coupling Background-Sector Embedding}\label{zero-coupling-background-sector-embedding}
+
+The preserved switched-off regression row sets
+
+\begin{equation}
+\beta=\beta_2=\xi=\xi_2=0,\qquad A(u_0)=1,\qquad B_F(u_0)=1.
+\tag{21}
+\end{equation}
+
+\begin{equation}
+\phi_0=0,\qquad V(\phi_0)=0,\qquad V_{,\phi}(\phi_0)=0,\qquad
+V_{,\phi\phi}(\phi_0)=m_\phi^2>0.
+\tag{22}
+\end{equation}
+
+It also sets every coefficient of every operator omitted from the displayed minimal action to zero. The row is not a limit of an unspecified completion.
+
+For \(\phi=0\) with no scalar excitation, the scalar equation is satisfied, scalar background stress vanishes, the two metrics coincide, and Maxwell normalization is canonical. Every ordinary classical Einstein-Maxwell-matter background satisfying the same boundary and vacuum-energy conventions is then a background of the enlarged model.
+
+The result is a consistent zero-field embedding by construction. It is not:
+
+\begin{itemize}
+\tightlist
+\item
+  equality of the scalar-tensor and Einstein-Maxwell-matter solution spaces;
+\item
+  a derivation of Einstein-Hilbert gravity or Maxwell theory;
+\item
+  an allowed nonzero-coupling limit;
+\item
+  a screening result;
+\item
+  removal of scalar excitations; or
+\item
+  evidence for an SDT anomaly.
+\end{itemize}
+
+The scalar remains a degree of freedom. Linear fluctuations at the switched-off origin obey a massive Klein-Gordon equation. Their stress-energy begins at quadratic order about zero, and finite scalar excitations gravitate.
+
+The GR-form PPN value and zero composition-dependent signal are declared consequences of the exact switched-off identity, not executable observables. The checker reports both as \texttt{not\_computed}; it derives neither a PPN metric nor a MICROSCOPE differential acceleration.
+
+\nolinkurl{model/check_sdt_null_limit.py} checks the finite term schema, polynomial stationarity and positive curvature, zero encoded linear and quadratic matter / Maxwell couplings, canonical origin normalizations, required package artifacts, invariant guards, and open gate labels. It does not derive a nonzero observable, test global or radiative stability, or establish a physical parameter point.
+
+\section{6. Observable Contract}\label{observable-contract}
+
+A free-function family is not a prediction. A nonzero calculation requires a record at least as specific as
+
+\begin{equation}
+\Theta=\left\{
+\begin{array}{l}
+V,A,B_F,\text{ retained higher operators and coefficients},\\
+\Lambda,\text{ renormalization scale and scheme},\\
+\text{background, initial data, boundary data},\\
+\text{source composition, body sensitivities, screening solution},\\
+\text{detector geometry, calibration model, nuisance parameters, data covariance}
+\end{array}
+\right\}.
+\tag{23}
+\end{equation}
+
+For clocks, the observable is a ratio of transition frequencies along stated worldlines in the physical frame. It must include scalar dependence of masses, nuclear moments, and electromagnetic couplings under one matching convention. It is not \(\phi\) itself.
+
+For atom or optical interferometers, the observable is a phase difference derived from trajectories, laser phases, pulse timing, internal-state response, ordinary stress-energy, and scalar couplings. A scalar value or potential alone is not an apparatus prediction.
+
+For freely falling bodies, the observable is the differential acceleration of specified materials in a solved source and environmental profile. The body charge is a derivative of total mass-energy with respect to the background scalar, not merely the bare coefficient \(\beta\).
+
+For lensing, the observable maps source and lens parameters to image or timing data in the physical frame. In the minimal two-derivative action, a conformal frame change preserves null cones, but the scalar can alter sourced metric potentials and a nonconstant \(B_F\) changes electromagnetic matching. No lensing percentage follows without a solved background and detector / source model.
+
+The published values \(5\times10^{-15}\), \(10^{-3}\) radians, \(1\text{-}2\%\), and \(4\text{-}5\%\) are not retained. No residual is attributed to SDT. Restoring a number requires a frozen \(\Theta\), executable calculation, uncertainty budget, primary data route, and independent review.
+
+\section{7. Constraint Program for Every Nonzero Benchmark}\label{constraint-program-for-every-nonzero-benchmark}
+
+Appendix A supplies the bounded SDT-NB1 point-source calculation. Appendix B adds the exact response of nonoverlapping homogeneous spheres, effective-charge bookkeeping, and paired inference. The following subsections remain mandatory gates beyond those calculations and are not completed likelihoods.
+
+\subsection{7.1 Weak equivalence principle and MICROSCOPE}\label{weak-equivalence-principle-and-microscope}
+
+The MICROSCOPE final analysis reported no weak-equivalence-principle violation and quoted
+
+\begin{equation}
+\eta(\mathrm{Ti},\mathrm{Pt})=
+\left[-1.5\pm2.3\,(\mathrm{stat})\pm1.5\,(\mathrm{syst})\right]\times10^{-15}.
+\tag{24}
+\end{equation}
+
+at one standard deviation {[}Touboul et al.~2022{]}. This constrains candidate models; it does not support SDT.
+
+Appendix B defines an effective body charge and propagates it through an exact linear uniform-sphere response, but it does not calculate the actual titanium and platinum alloy charges or the mission likelihood. A completed benchmark must derive those charges from matter and electromagnetic matching, including nuclear and electromagnetic binding, source composition, scalar range, environmental screening, layered source geometry, spacecraft response, and the measured differential-acceleration covariance.
+
+A universal metric-only coupling can yield no leading composition-dependent signal for weakly self-gravitating bodies, but the zero must be derived under the frozen model. A nonconstant \(B_F\) or matched species effects can restore composition dependence {[}Damour and Donoghue 2010{]}.
+
+\subsection{7.2 PPN and solar-system gravity}\label{ppn-and-solar-system-gravity}
+
+Cassini radio tracking measured
+
+\begin{equation}
+\gamma_{\mathrm{PPN}}-1=(2.1\pm2.3)\times10^{-5}.
+\tag{25}
+\end{equation}
+
+{[}Bertotti, Iess, and Tortora 2003{]}. Every nonzero benchmark needs a physical- frame weak-field source solution and all applicable PPN parameters. The calculation must state scalar mass and range, asymptotic value, boundary data, source sensitivities, and screening regime. A textbook massless formula cannot be imported without matching normalization and regime {[}Damour and Esposito-Farese 1992{]}.
+
+The null row has GR values by identity. It does not show that a nonzero model passes Cassini, planetary, binary, or strong-field tests.
+
+\subsection{7.3 Fifth-force and inverse-square tests}\label{fifth-force-and-inverse-square-tests}
+
+A finite-range scalar can generate a Yukawa-like force whose strength depends on source and test-body charges. Each benchmark must map its scalar mass, couplings, and any screening profile to the parameterization used by experiments over the applicable range. Kapner et al.~(2007) is one short-range anchor; other ranges require their own primary experimental inputs. Naming a chameleon, symmetron, or another screening mechanism is not a solved field profile or exclusion calculation {[}Khoury and Weltman 2004; Hinterbichler and Khoury 2010{]}.
+
+\subsection{7.4 Electromagnetic and clock constraints}\label{electromagnetic-and-clock-constraints}
+
+If \(B_F\) is nonconstant, the benchmark must define canonical gauge normalization and derive measured dimensionless constants and transition frequencies as functions of \(\phi\). It must confront laboratory clock, equivalence-principle, astrophysical, and other applicable constraints under the same normalization and background convention.
+
+Rosenband et al.~(2008) provide a primary optical-clock constraint relevant to present temporal variation of the fine-structure constant. It is not a direct bound on \(\xi\) until the scalar history, field normalization, and matter matching are supplied. MICROSCOPE and clock data are separate likelihood terms even when one coupling affects both.
+
+\subsection{7.5 Stability, cutoff, and propagation}\label{stability-cutoff-and-propagation}
+
+The canonical scalar kinetic sign and \(V''(0)>0\) establish only local scalar quadratic stability at the null origin. Every claimed laboratory, compact-object, or cosmological background requires its own quadratic action or principal-symbol analysis. A viable benchmark must exclude wrong-sign kinetic terms, gradient instabilities, unintended tachyons, loss of hyperbolicity, unacceptable characteristic speeds, strong coupling below the process energy, radiative destabilization, and relevant nonlinear failure.
+
+For the frozen minimal action, the tensor principal part comes from the Einstein-Hilbert term and a regular conformal transformation preserves null cones. The classical tensor speed is therefore the metric light speed within that exact minimal contract. A nonminimal-curvature, derivative, disformal, or higher-order extension requires a new propagation derivation and comparison with the GW170817/GRB 170817A record {[}Abbott et al.~2017{]}.
+
+\subsection{7.6 Cosmology and likelihoods}\label{cosmology-and-likelihoods}
+
+This package contains no cosmological background solution, perturbation history, dark-sector component, Boltzmann evolution, or likelihood run. The local null embedding is not a cosmological result.
+
+No dark-matter, dark-energy, Hubble-tension, MOND, rotation-curve, large-scale-structure, or cosmological-lensing claim may return without:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  background and perturbation equations from one frozen action;
+\item
+  an identified solver with convergence and regression tests;
+\item
+  named data releases and exact likelihood code or documented reimplementation;
+\item
+  priors, nuisance parameters, calibration choices, covariance matrices, and selection functions;
+\item
+  posterior samples and reproducible summaries; and
+\item
+  comparison with declared GR/Lambda-CDM and astrophysical baselines, including parameter-count penalties or evidence when claimed.
+\end{enumerate}
+
+The Planck 2018 cosmological-parameter analysis {[}Planck Collaboration 2020{]} is an analysis anchor, not a likelihood performed by this package.
+
+\section{8. Quantum and Holographic Boundaries}\label{quantum-and-holographic-boundaries}
+
+The action is a minimal classical scalar-tensor model with quantum-field-theory matter. Quantizing \(\phi\) would introduce scalar quanta; it would not derive the Einstein-Hilbert term, explain Born probabilities, or show that gravity is computed by wave-phase synchronization.
+
+A microscopic SDT completion would need a controlled map
+
+\[
+\begin{aligned}
+\mathcal Q:\{\text{microscopic state, dynamics, coarse graining}\}
+&\longrightarrow\\
+&\{\phi(x),\text{ effective sources,}\\
+&\qquad\text{coefficients, uncertainties}\}.
+\end{aligned}
+\tag{26}
+\]
+
+with units, subsystem and resolution definitions, dynamics, and a limit that yields the displayed classical model and any separately claimed EFT completion. Appendix B supplies only a conditional measurement-and-calibration leg for a declared point process. It does not derive the full map \(\mathcal Q\), its quantum event class, the response slope, or the classical dynamics. Coherence, interference, synchronization, and undersampling remain interpretations or motivations, not results.
+
+Relational quantum mechanics {[}Rovelli 1996{]} is an interpretation, not a derivation or validation of this scalar model.
+
+Quantum extremal surfaces extremize generalized entropy in holographic gravity {[}Engelhardt and Wall 2015{]}. They are not measurements, scalar-tensor constraints, or empirical resonance for SDT. This model has no AdS / CFT dictionary, generalized-entropy functional, black-hole solution, or map from a QES to \(\phi\). QES appears only to correct the historical claim and citation.
+
+\section{9. Limitations, Falsification, and Reproducibility}\label{limitations-falsification-and-reproducibility}
+
+A frozen nonzero benchmark fails if:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  its equations do not follow from the declared action and conventions;
+\item
+  its proposed background fails any sourced field equation;
+\item
+  its observable mixes inconsistent Einstein- and Jordan-frame prescriptions;
+\item
+  \(A\) is singular or \(B_F\) becomes nonpositive in the claimed domain;
+\item
+  it has a ghost, gradient instability, unacceptable tachyon, loss of hyperbolicity, or sub-cutoff strong coupling;
+\item
+  no parameter region survives fifth-force, MICROSCOPE, PPN, electromagnetic, clock, propagation, or other applicable constraints;
+\item
+  a cosmological improvement disappears under a reproducible likelihood and baseline comparison;
+\item
+  an experimental prediction is degenerate with ordinary stress-energy, preparation energy, calibration drift, or an uncontrolled nuisance; or
+\item
+  preregistered data exclude the surviving parameter region.
+\end{enumerate}
+
+A positive anomaly would support only that benchmark relative to specified nulls and alternatives. It would not prove the complete SDT ontology, quantum gravity, a cosmological solution, SIT, QES, or a theory of consciousness.
+
+Every computational result must retain source, environment, inputs, coefficients, units, seeds where relevant, outputs, and hashes. A passing script validates only what it computes. It cannot substitute for external review.
+
+\subsection{9.1 Evidence-decision table}\label{evidence-decision-table}
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Admissible interpretation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Interpretation not warranted
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+The switched-off row reproduces the declared classical background sector & Regression and implementation check & Evidence for SDT, quantum gravity, or a nonzero effect \\
+A nonzero benchmark is mathematically consistent & Candidate viability at that parameter point & Agreement with observation or uniqueness \\
+A nonzero benchmark survives existing constraints & Parameter space remains open & Detection or confirmation \\
+An anomaly is fit only after nuisance choices & Exploratory model comparison & A distinctive SDT prediction \\
+A preregistered, independently reproduced signature discriminates SDT from GR and named alternatives & Evidence for the tested benchmark & Proof of the full SDT ontology or every historical claim \\
+No nonzero benchmark survives the declared constraints & Falsification of that benchmark or bounded model family & Falsification of every possible time-rate hypothesis \\
+\end{longtable}
+\endgroup
+}
+
+This table prevents a successful check at one level from being promoted across the action, observable, empirical, and ontological levels.
+
+\section{10. Result and Contribution}\label{result-and-contribution}
+
+The scientifically supportable result is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The source genealogy fixes mechanism ancestors in public Git history by June 2022, the explicit stochastic path-bias operator by July 30, 2022, the QGTCD name transition by November 28, 2022, its 2023-2024 expansion, and its SDT synthesis in 2025.
+\item
+  The 2025 unification, experimental, simulation, numerical, QES-resonance, and cosmological statements are preserved as historical claims but are not promoted as results of this successor.
+\item
+  The retained mathematical object is a one-scalar extension of assumed Einstein-Maxwell-matter theory with one physical matter metric.
+\item
+  The minimal classical metric, scalar, Maxwell, current, and exchange equations have been rederived under one convention. An earlier matter-force sign inconsistency is corrected, and the Bianchi identity closes the exchange ledger on shell using the scalar, Maxwell, matter, and current equations.
+\item
+  The declared finite action schema has the expected four-dimensional mass dimensions.
+\item
+  In the fully switched-off row, \(\phi=0\) is a stationary local scalar origin with positive curvature, and the ordinary classical Einstein-Maxwell-matter background sector is embedded.
+\item
+  That embedding is a nondiscriminating regression baseline and supplies no nonzero SDT effect.
+\item
+  SDT-NB1 is a frozen nonzero scalar-tensor reference benchmark with a derived point-source weak-field chain and deterministic numerical checks.
+\item
+  A proper-time count-response specification maps declared synthetic expectation counts to \(u\) with an explicit Poisson variance and failure domain, while leaving the microscopic response derivation open.
+\item
+  Exact homogeneous-sphere form factors and effective body charges expose finite-source and leading differential-response structure.
+\item
+  A paired synthetic fit separates the bare null coefficient from dynamic calibration, reveals a fixed-geometry coupling bias, and fails to resolve SDT-NB1 at its declared toy precision.
+\item
+  Real global ephemeris / radio-science, extended-body MICROSCOPE, clock, radiative, cosmological, and microscopic-completion tests remain open.
+\end{enumerate}
+
+The contribution is therefore not a generic relabeling of gravitational time dilation or scalar-tensor gravity. It is the preservation and operational separation of a particular proposed causal architecture from the classical test bed used to interrogate it. This is the minimum surface on which an SDT effect can be calculated, constrained, distinguished from inherited alternatives, and falsified.
+
+\section{11. Conclusion}\label{conclusion}
+
+The SDT program begins with a concrete problem: connect a local interaction statistic to a physical time-rate state, connect its spatial gradient to microscopic response, and connect that response to macroscopic gravitational observables. The public source record shows that this architecture developed from the June 2022 gravity-as-time-gradient ancestors and the explicit July 30, 2022 stochastic path-bias operator, through the QGTCD name transition, AI-assisted 2023 equation-development stage, and 2024 time-density publications, into the 2025 SDT synthesis.
+
+This successor gives that program a more rigorous mathematical floor. It defines one candidate action, one physical matter metric, audited classical field equations, a nondiscriminating zero-coupling regression, a nonzero weak-field row, a proper-time response specification, uniform-sphere finite- source behavior, effective charges, paired synthetic inference, and explicit adverse controls.
+
+The calculation succeeds at what it is designed to test: internal field- equation consistency, estimator implementation, finite-source bookkeeping, parameter identifiability under declared synthetic conditions, and failure to resolve the physical reference row at inadequate precision. It does not yet derive the event-to-time-rate law from quantum dynamics or establish empirical viability. Those are discriminating next tests, not reasons to erase the earlier mechanism.
+
+Super Dark Time is therefore presented as a source-grounded research program with a minimal classical scalar-tensor bridge. Its central quantum-to- gravitational arrow remains an open derivation, while its component claims, calculations, boundaries, and falsifiers are now separated clearly enough to be tested.
+
+\section{Appendix A. Frozen Nonzero Reference Benchmark}\label{appendix-a.-frozen-nonzero-reference-benchmark}
+
+\subsection{A.1 The problem before the parameter name}\label{a.1-the-problem-before-the-parameter-name}
+
+A family of free functions can be adjusted after every comparison and therefore does not yet make a prediction. The switched-off row in Section 5 proves that the larger model contains an ordinary classical background, but it cannot show how a nonzero scalar changes a trajectory, a light signal, or a fitted mass. The next scientific step is therefore not a new label. It is one fixed, nonzero row whose source, physical metric, force, timing coefficient, and failure conditions can all be calculated before any data are interpreted.
+
+Massive scalar-tensor theories already supply the inherited weak-field tools: a sourced massive scalar produces a Yukawa profile, the time and spatial metric potentials need not receive the same scalar sign, and the coefficient in a light-time expression must be related consistently to the mass parameter inferred from massive-body dynamics {[}Hohmann et al.~2016; Dyadina and Labazova 2022{]}. A newer unified post-Newtonian treatment again finds that the observable constraints depend on the scalar mass, coupling, range, and chosen model {[}Karam, Sánchez López, and Terente Díaz 2026{]}. Planetary ephemerides then require the modified massive-body equations, light propagation, coordinates, fitted constants, initial conditions, and nuisance parameters to be solved in one framework {[}Fienga and Minazzoli 2024{]}.
+
+Only after that problem is visible do we name the fixed row \textbf{SDT-NB1}, the first nonzero reference benchmark in this corrective paper.
+
+\subsection{A.2 Benchmark contract}\label{a.2-benchmark-contract}
+
+SDT-NB1 retains the exact minimal action of Equation (4) and fixes
+
+\begin{equation}
+\beta=10^{-7},\quad
+\beta_2=\xi=\xi_2=\lambda=V_0=0,\quad
+A(u)=e^{\beta u},\quad
+B_F(u)=1,\quad
+\ell_\phi=1\,{\rm AU}.
+\tag{27}
+\end{equation}
+
+Here \(\lambda\) is the quartic coefficient in Equation (6), while \(\ell_\phi\) is the scalar Compton range. Using the exact defined astronomical unit, the corresponding scalar mass is
+
+\begin{equation}
+m_\phi c^2=\frac{\hbar c}{\ell_\phi}
+=1.31905\times10^{-18}\ {\rm eV}.
+\tag{28}
+\end{equation}
+
+The choice is deliberately conservative and diagnostic. It is not inferred from the SDT microscopic hypothesis, selected by a likelihood, or claimed to be natural. It makes the scalar response nonzero while keeping the weak-field expansion controlled and placing the nominal Yukawa strength below the preliminary \(10^{-12}\) to \(10^{-13}\) one-AU scale reported from older perihelion-residual analyses {[}Iorio 2007{]}. That comparison is a scale screen, not an allowed-region claim; residuals obtained in a different ephemeris model cannot replace a dedicated global fit {[}Fienga and Minazzoli 2024{]}.
+
+\subsection{A.3 Source, physical metric, and force}\label{a.3-source-physical-metric-and-force}
+
+For a static weakly self-gravitating point source with \(T_E\simeq-\rho\), the linearized scalar equation and its decaying solution are
+
+\begin{equation}
+\begin{aligned}
+& (\nabla^2-m_\phi^2)\phi=\frac{\beta}{M_{\rm Pl}}\rho, \\
+& \phi(r)=-\frac{\beta M}{4\pi M_{\rm Pl}}\frac{e^{-r/\ell_\phi}}{r}, \\
+& u(r)=-2\beta\,\frac{G_*M}{r}e^{-r/\ell_\phi}.
+\end{aligned}
+\tag{29}
+\end{equation}
+
+At first order in \(G_*M/r\) and \(\beta^2\), transforming the Einstein-frame weak-field solution to the physical metric gives
+
+\begin{equation}
+\begin{aligned}
+& \widetilde g_{00}
+=-1+2\frac{G_*M}{r}\!\left[1+2\beta^2e^{-r/\ell_\phi}\right], \\
+& \widetilde g_{ij}
+=\left\{1+2\frac{G_*M}{r}
+\!\left[1-2\beta^2e^{-r/\ell_\phi}\right]\right\}\delta_{ij}.
+\end{aligned}
+\tag{30}
+\end{equation}
+
+Define the positive Yukawa strength and radius-dependent potential response by
+
+\[
+\begin{aligned}
+\alpha_Y&\equiv2\beta^2=2.0\times10^{-14},
+&
+\mathcal A(r)&\equiv\alpha_Y e^{-r/\ell_\phi},\\
+U_t(r)&=\frac{G_*M}{r}[1+\mathcal A(r)],
+&
+U_s(r)&=\frac{G_*M}{r}[1-\mathcal A(r)].
+\end{aligned}
+\tag{31}
+\]
+
+The potential energy of an ideal weakly self-gravitating test mass and the associated radial acceleration are
+
+\begin{equation}
+V_{\rm test}(r)
+=-\frac{G_*Mm}{r}\left[1+\alpha_Ye^{-r/\ell_\phi}\right],
+\tag{32}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+& a_r(r)
+=-\frac{G_*M}{r^2}\,[1+\mathcal K(r)], \\
+& \mathcal K(r)
+=\alpha_Y\left(1+\frac{r}{\ell_\phi}\right)e^{-r/\ell_\phi}.
+\end{aligned}
+\tag{33}
+\end{equation}
+
+Equations (29)-(33) are the first complete action-to-weak-field chain in the corrective SDT sequence. They are inherited scalar-tensor mechanics evaluated for an SDT-labeled benchmark, not a derivation of the SDT time-density ontology.
+
+\subsection{A.4 Light propagation and mass calibration}\label{a.4-light-propagation-and-mass-calibration}
+
+A metric-ratio diagnostic at a declared radius is
+
+\begin{equation}
+\begin{aligned}
+& \gamma_{\rm met}(r)
+=\frac{1-\mathcal A(r)}{1+\mathcal A(r)}, \\
+& \gamma_{\rm met}(r)-1
+=-\frac{2\mathcal A(r)}{1+\mathcal A(r)}.
+\end{aligned}
+\tag{34}
+\end{equation}
+
+This radius-dependent ratio is not automatically the constant PPN parameter fitted by Cassini. At the same perturbative order, the opposite scalar signs cancel from the direct null combination:
+
+\begin{equation}
+U_t(r)+U_s(r)=2\frac{G_*M}{r}.
+\tag{35}
+\end{equation}
+
+The cancellation does not finish the measurement problem because \(G_*M\) is not directly observed independently of massive-body dynamics. In a single-radius, nearly circular explanatory reduction, define
+
+\begin{equation}
+\mu_K(r_K)\equiv r_K^2|a_r(r_K)|
+=G_*M[1+\mathcal K(r_K)].
+\tag{36}
+\end{equation}
+
+Writing the direct null coefficient as \([1+\gamma_{\rm cal}(r_K)]\mu_K(r_K)=2G_*M\) gives the calibration identity
+
+\begin{equation}
+\gamma_{\rm cal}(r_K)-1
+=-\frac{2\mathcal K(r_K)}{1+\mathcal K(r_K)}.
+\tag{37}
+\end{equation}
+
+At the declared calibration radius \(r_K=\ell_\phi=1\,{\rm AU}\),
+
+\[
+\begin{aligned}
+\mathcal A(r_K)&=7.35759\times10^{-15},\\
+\mathcal K(r_K)&=1.47152\times10^{-14},\\
+\gamma_{\rm met}(r_K)-1&=-1.47152\times10^{-14},\\
+\gamma_{\rm cal}(r_K)-1&=-2.94304\times10^{-14}.
+\end{aligned}
+\tag{38}
+\]
+
+These values are many orders below the quoted Cassini uncertainty in Equation (25), but Equation (38) is not a Cassini likelihood or experimental constraint. It is an executable diagnostic showing exactly where the benchmark enters. The published literature contains both a direct null-cancellation analysis and a mass-calibration counteranalysis {[}Huang and Deng 2024; Dyadina and Labazova 2022{]}. The discriminating computation is a paired global fit: one fit using the bare null coefficient and one fitting the Yukawa dynamics, solar mass, trajectories, light time, initial conditions, and nuisance parameters jointly.
+
+The leading nearly Keplerian periastron target is
+
+\begin{equation}
+\begin{aligned}
+& \left.\frac{\dot\varpi}{n}\right|_{\rm Yukawa}
+\simeq\frac{\alpha_Y}{2}
+\left(\frac{p}{\ell_\phi}\right)^2e^{-p/\ell_\phi}, \\
+& p=a(1-e^2).
+\end{aligned}
+\tag{39}
+\end{equation}
+
+For \(p=\ell_\phi\), Equation (39) gives \(\dot\varpi/n=3.67879\times10^{-15}\). This is a perturbative point-source target, not a residual that can be compared directly with a GR-built ephemeris. Current post-Newtonian analyses likewise treat Yukawa-suppressed perihelion effects as complementary, model-dependent observables that must be combined consistently with light-time and other Solar-System constraints {[}Karam, Sánchez López, and Terente Díaz 2026{]}.
+
+\subsection{A.5 Built-in boundaries and discriminating tests}\label{a.5-built-in-boundaries-and-discriminating-tests}
+
+The fixed row has the following exact internal properties:
+
+\begin{equation}
+\begin{aligned}
+& V_{,\phi\phi}(0)=m_\phi^2>0, \\
+& A(u)=e^{\beta u}>0, \\
+& B_F=1, \\
+& \frac{d\ln B_F}{du}=0, \\
+& \eta_{AB}^{\rm ideal\ point}=0.
+\end{aligned}
+\tag{40}
+\end{equation}
+
+The last equality is the leading ideal-test-body result of universal motion in one physical metric. It is not a computed titanium-platinum spacecraft observable. Extended-body sensitivities, gravitational self-energy, source modeling, and the actual MICROSCOPE likelihood remain outside this benchmark calculation. Likewise, \(B_F=1\) removes a leading varying-electromagnetic- coupling signal; it does not create a novel clock prediction.
+
+SDT-NB1 therefore closes four bounded tasks:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  one nonzero parameter row is frozen rather than chosen after inspection;
+\item
+  the sourced scalar, physical metric, force, timing bookkeeping, and periastron target are explicit;
+\item
+  every displayed number is reproduced by the package checker; and
+\item
+  the benchmark can fail under a named global-fit and extended-body program.
+\end{enumerate}
+
+It does not close the core SDT bridge from local quantum interaction statistics to \(\phi\), an experiment-specific extended-body calculation, a global ephemeris or radio-science likelihood, cosmology, radiative completion, independent review, or empirical viability. Appendix B advances the first two gates only through a transparent synthetic response specification and exact uniform-sphere example. Failure of SDT-NB1 would reject this fixed row, not every possible time-rate model; success would show only that this weakly coupled scalar-tensor benchmark remains viable, not that its scalar is derived from quantum computation.
+
+\section{Appendix B. Operational Calibration, Paired Inference, and Finite Sources}\label{appendix-b.-operational-calibration-paired-inference-and-finite-sources}
+
+\subsection{B.1 The unresolved operation before the names}\label{b.1-the-unresolved-operation-before-the-names}
+
+The historical phrase ``local time density'' is not yet a measurement. A usable quantity requires a declared event, detector, threshold, resolution cell, observer, exposure, response law, and uncertainty. Even then, converting a count into the field \(u=\phi/M_{\rm Pl}\) is a calibration hypothesis. It does not show that the event process is fundamental, quantum mechanical, or a source of gravity.
+
+Consider an observer-carried detector and a declared class of accepted events in a proper-time worldtube cell \(C\). Let \(E_C\) be its accepted exposure, with units chosen so \(E_C\rho_0\) is a dimensionless expected count. A bounded linear response specification is
+
+\begin{equation}
+\begin{aligned}
+& N_C\mid u_C\sim{\rm Poisson}\!\left[
+E_C\rho_0(1+\kappa u_C)\right], \\
+& E_C>0,\quad \rho_0>0,\quad 1+\kappa u_C>0.
+\end{aligned}
+\tag{41}
+\end{equation}
+
+Here \(\rho_0\) is a reference rate and \(\kappa\ne0\) is a calibrated dimensionless response slope. Under Equation (41), the direct estimator and its conditional Poisson variance are
+
+\begin{equation}
+\begin{aligned}
+& \widehat u_C=\frac{1}{\kappa}
+\left(\frac{N_C}{E_C\rho_0}-1\right), \\
+& {\rm Var}(\widehat u_C\mid u_C)
+=\frac{1+\kappa u_C}{E_C\rho_0\kappa^2}.
+\end{aligned}
+\tag{42}
+\end{equation}
+
+This specification has a clear ceiling. It maps one declared count statistic to a scalar estimate only after \(\rho_0\) and \(\kappa\) are supplied. It does not derive either parameter from a quantum state or Hamiltonian, prove that \(u\) is observer independent, control detector back-action, or show that the estimated field obeys Equation (14). A real microscopic bridge must add a quantum or open-system event definition, response calibration data, coarse-graining and transformation laws, a back-action model, and a derivation of the classical source term.
+
+The executable row assumes independent Poisson cells, a stable reference rate, a known nonzero linear slope, negligible dead time and event misclassification, one declared observer and resolution, and a response domain that never crosses zero. Correlated events, threshold drift, unknown exposure, saturation, or a nonlinear response invalidate Equation (42) unless the likelihood is replaced.
+
+Only after those limits are explicit do we call Equation (41) the \textbf{SDT count-response specification}. The name labels a falsifiable measurement contract; it does not promote the contract to a microscopic theory.
+
+\subsection{B.2 Extended bodies and the finite-source response}\label{b.2-extended-bodies-and-the-finite-source-response}
+
+A point mass hides two physical questions: how the source distributes scalar charge and how a detector body's total mass responds to the asymptotic field. For an extended body \(A\), define the dimensionless effective charge
+
+\begin{equation}
+\alpha_A(\phi_\infty)
+\equiv M_{\rm Pl}\,
+\frac{\partial\ln m_A(\phi_\infty)}{\partial\phi_\infty},
+\tag{43}
+\end{equation}
+
+with composition, binding energy, self-gravity, and environment held according to a declared matching prescription. Equation (43) is a definition, not a calculation of a titanium, platinum, Earth, or solar charge.
+
+In the linear unscreened weak-field limit, a static density distribution sources
+
+\begin{equation}
+\phi(\mathbf x)
+=-\frac{\beta}{4\pi M_{\rm Pl}}
+\int d^3x'\,\rho(\mathbf x')\,
+\frac{e^{-|\mathbf x-\mathbf x'|/\ell_\phi}}
+{|\mathbf x-\mathbf x'|}.
+\tag{44}
+\end{equation}
+
+For a homogeneous sphere of radius \(R\), its mass-normalized exterior Yukawa response is
+
+\begin{equation}
+\mathcal F(x)
+=\frac{3\,[x\cosh x-\sinh x]}{x^3},
+\qquad x=\frac{R}{\ell_\phi},
+\qquad \mathcal F(0)=1.
+\tag{45}
+\end{equation}
+
+For nonoverlapping homogeneous spherical source and detector bodies, \(r>R_s+R_A\), the leading interaction potential is
+
+\begin{equation}
+\begin{aligned}
+& V_{sA}(r)
+=-\frac{G_*m_sm_A}{r}
+\left[
+1+\alpha_Y^{sA}
+\mathcal F\!\left(\frac{R_s}{\ell_\phi}\right)
+\mathcal F\!\left(\frac{R_A}{\ell_\phi}\right)
+e^{-r/\ell_\phi}
+\right], \\
+& \alpha_Y^{sA}=2\alpha_s\alpha_A.
+\end{aligned}
+\tag{46}
+\end{equation}
+
+The corresponding fractional force response is
+
+\begin{equation}
+\mathcal K_{sA}^{\rm ext}(r)
+=\alpha_Y^{sA}
+\mathcal F\!\left(\frac{R_s}{\ell_\phi}\right)
+\mathcal F\!\left(\frac{R_A}{\ell_\phi}\right)
+\left(1+\frac{r}{\ell_\phi}\right)e^{-r/\ell_\phi}.
+\tag{47}
+\end{equation}
+
+At leading order in small responses, two co-located bodies have
+
+\begin{equation}
+\eta_{AB}^{\rm ext}
+\simeq
+\mathcal K_{sA}^{\rm ext}-\mathcal K_{sB}^{\rm ext}.
+\tag{48}
+\end{equation}
+
+For ideal weak point bodies in SDT-NB1, \(\alpha_s=\alpha_A=\alpha_B=\beta\), so Equation (48) vanishes. That zero is not a MICROSCOPE prediction. Real alloy charges, finite detector geometry, Earth layering, self-energy, environmental fields, spacecraft response, and the mission covariance are absent. The uniform-sphere calculation is exact only inside its linear, homogeneous, spherical, unscreened, nonoverlapping contract {[}Fayet 2026{]}.
+
+\subsection{B.3 Bare coefficient and dynamic calibration}\label{b.3-bare-coefficient-and-dynamic-calibration}
+
+The leading null combination in Equation (35) carries the bare tensor coefficient \(2\mu_*\), where \(\mu_*=G_*M\). Massive bodies also respond to the finite-range force. At fixed \(\ell_\phi\), define \(q=\mu_*\alpha_Y\). A normalized dynamic coefficient at radius \(r_j\) and geometry \(g_j\) has the linear form
+
+\begin{equation}
+y_j^{\rm dyn}
+=\mu_*+q f_j^{(g)}+\epsilon_j,
+\quad
+f_j^{(g)}
+=\mathcal F\!\left(\frac{R_s^{(g)}}{\ell_\phi}\right)
+\mathcal F\!\left(\frac{R_A^{(g)}}{\ell_\phi}\right)
+\left(1+\frac{r_j}{\ell_\phi}\right)e^{-r_j/\ell_\phi}.
+\tag{49}
+\end{equation}
+
+A normalized leading null-sector coefficient has
+
+\begin{equation}
+y_k^{\rm null}=2\mu_*+\nu_k.
+\tag{50}
+\end{equation}
+
+Stacking both classes gives
+
+\begin{equation}
+\begin{aligned}
+& \mathbf y=\mathbf X(\ell_\phi)\boldsymbol\theta+\boldsymbol\varepsilon, \\
+& \boldsymbol\theta=(\mu_*,q)^T.
+\end{aligned}
+\tag{51}
+\end{equation}
+
+For declared covariance \(\mathbf W^{-1}\), the weighted least-squares solution and recovered strength are
+
+\begin{equation}
+\begin{aligned}
+& \widehat{\boldsymbol\theta}
+=\left(\mathbf W^{1/2}\mathbf X\right)^+
+\mathbf W^{1/2}\mathbf y, \\
+& \widehat\alpha_Y=\frac{\widehat q}{\widehat\mu_*}
+\quad(\widehat\mu_*\ne0).
+\end{aligned}
+\tag{52}
+\end{equation}
+
+The \textbf{bare-coefficient fit} estimates \(\mu_*\) from Equation (50), where the null rows have no direct Yukawa column. The \textbf{dynamically calibrated fit} estimates \(\mu_*\) and \(q\) jointly from Equations (49)-(50). These names are earned only after the different observation equations are explicit. The difference between them is an inference architecture, not an assertion that Cassini or an ephemeris has been reanalyzed.
+
+\subsection{B.4 Executable bounded result and adverse controls}\label{b.4-executable-bounded-result-and-adverse-controls}
+
+No identified microscopic, Cassini, planetary-ephemeris, or MICROSCOPE data package is analyzed. The executable artifact therefore uses deterministic synthetic normalized coefficients. For the count-response check, it freezes \(E=100\), \(\rho_0=1000\), \(\kappa=10\), and \(u=(-0.002,0,0.002)\). The exact expectation counts \((98000,100000,102000)\) recover those declared scalar values through Equation (42). This verifies the estimator implementation, not nature's response law.
+
+The inverse-problem check freezes a deliberately visible challenge signal \(\mu_*=1.3\), \(\alpha_Y=0.012\), and \(\ell_\phi=1\) in common arbitrary units. It uses twelve dynamic rows across two spherical geometries, four null rows, declared independent standard deviations, and a fixed small noise vector.
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Fit or control
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Deterministic result
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+bare null coefficient only & \(\widehat\mu_*=1.30000006\); the full two-column null design has rank 1 \\
+dynamically calibrated finite-source fit & \(\widehat\mu_*=1.30000005\), \(\widehat\alpha_Y=0.01200018\); rank 2; \(\chi^2=0.6305\) for 14 residual degrees of freedom \\
+joint point-source misspecification & \(\widehat\alpha_Y=0.01205698\); \(\chi^2=88.52\) for 14 residual degrees of freedom \\
+no-Yukawa fit & \(\chi^2=3.4287\times10^6\) for 15 residual degrees of freedom \\
+one fixed geometry, noiseless & point and finite-source fits both have numerical-zero residuals, but the point fit returns \(\widehat\alpha_Y=0.01212579\) \\
+\end{longtable}
+\endgroup
+}
+
+The deliberately large synthetic strength tests whether the architecture can recover its own generator. It is not SDT-NB1 and supplies no experimental sensitivity. When the physical SDT-NB1 value \(\alpha_Y=2.0\times10^{-14}\) is inserted into the same toy design, its largest dynamic shift is only \(1.28\times10^{-9}\) of the declared per-row standard deviation. The correct bounded result is adverse: this synthetic design does not resolve SDT-NB1.
+
+The controls expose four failure regions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  null rows alone determine only the bare mass coefficient;
+\item
+  a single fixed body geometry can absorb its form factor into a biased coupling while retaining perfect residuals;
+\item
+  point-source misspecification becomes visible only when sufficiently different known geometries share the same coupling; and
+\item
+  the SDT-NB1 effect can be nonzero yet far below a declared design's resolving power.
+\end{enumerate}
+
+This joined calculation is called the \textbf{SDT bounded bridge benchmark} only after its operations and ceiling are stated. Passing it establishes an executable specification, not a microscopic derivation, global fit, extended-body likelihood, detection, or empirical constraint.
+
+\section{Appendix C. Two-Scalar SIT Reduction Boundary, Shared Clock Dictionary, and Detector Count Calibration (November 2026)}\label{appendix-c.-two-scalar-sit-reduction-boundary-shared-clock-dictionary-and-detector-count-calibration-november-2026}
+
+\subsection{C.1 Exact static quadratic elimination versus dynamical low-energy reduction}\label{c.1-exact-static-quadratic-elimination-versus-dynamical-low-energy-reduction}
+
+Super Dark Time (\nolinkurl{M_SDT_ONE_SCALAR}) relates to the two-scalar SIT families (\nolinkurl{M_JUL2026_CONFORMAL} in Paper 002 and \nolinkurl{M_NOV2026_AUTH_EFT_V1} in the separate SIT Version 81 series) through two distinct mathematical operations that must \textbf{not} be conflated:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Exact frozen-field consistent truncation (zero-mixing condition):} Setting \(\delta R = 0\) identically in the coupled equations of motion leaves an uncancelled residual \(-\lambda_{\mathrm{mix}}\delta\rho_t + J_R\) in the omitted coherence equation (\nolinkurl{verify_paper007_v2.py}). Thus freezing \(\delta R = 0\) is an exact consistent truncation \textbf{only} when the omitted equation remains satisfied identically, requiring \(\lambda_{\mathrm{mix}} = 0\) and zero coherence source \(J_R = 0\).
+\item
+  \textbf{Exact static (zero-momentum) Schur elimination versus full dynamical reduction (\(\lambda_{\mathrm{mix}} \neq 0\)):} Writing the static quadratic potential around vacuum \((\rho_0, R_0)\) as \(V(\delta\rho_t, \delta R) = \frac{1}{2} m_1^2 \delta\rho_t^2 + \lambda_{\mathrm{mix}} \delta\rho_t \delta R + \frac{1}{2} m_2^2 \delta R^2 - J \delta\rho_t\) and solving \(\partial V / \partial(\delta R) = 0\) yields the exact \textbf{static Schur complement} \(m_{\mathrm{eff,static}}^2 = m_1^2 - \lambda_{\mathrm{mix}}^2/m_2^2\) (positive iff \(\det M^2 = m_1^2 m_2^2 - \lambda_{\mathrm{mix}}^2 > 0\)). However, this static elimination is \textbf{not} a complete dynamical consistent truncation of the coupled kinetic theory. With canonical kinetic matrix \(K = I_2\), exact Gaussian elimination of \(\delta R\) in Euclidean momentum space gives the momentum-dependent inverse propagator (\nolinkurl{verify_paper007_v2.py}): \begin{equation}
+G_{\mathrm{eff}}^{-1}(p^2) = p^2 + m_1^2 - \frac{\lambda_{\mathrm{mix}}^2}{p^2 + m_2^2}
+  = \left(m_1^2 - \frac{\lambda_{\mathrm{mix}}^2}{m_2^2}\right)
+  + \left(1 + \frac{\lambda_{\mathrm{mix}}^2}{m_2^4}\right) p^2
+  - \frac{\lambda_{\mathrm{mix}}^2}{m_2^6}\,p^4 + O\!\left(\frac{p^6}{m_2^8}\right).
+\end{equation} The static Schur coefficient \(m_1^2 - \lambda_{\mathrm{mix}}^2/m_2^2\) is only the \(p^2 = 0\) value; low-momentum dynamics (\(p^2 \ll m_2^2\)) also renormalizes the kinetic normalization by \(Z_{\mathrm{eff}} = 1 + \lambda_{\mathrm{mix}}^2/m_2^4\) and generates higher-derivative terms \(-\lambda_{\mathrm{mix}}^2 p^4 / m_2^6\). \textbf{Concrete distinction (\nolinkurl{verify_paper007_v2.py}):} for \(M^2 = \begin{pmatrix} 1 & 1 \\ 1 & 4 \end{pmatrix}\), the static Schur coefficient is \(0.75\), whereas the exact light mass-squared eigenvalue is \((5 - \sqrt{13})/2 \approx 0.697224\) (and the kinetic-rescaled low-momentum pole estimate is \(0.75/1.0625 = 0.705882\)). A controlled low-energy one-scalar approximation therefore requires declaring the kinetic matrix, wave-function normalization \(Z_{\mathrm{eff}}\), source/readout maps, and discarded \(O(p^4/m_2^6)\) terms. Moreover, eliminating a scalar does \textbf{not} equate conformal (\nolinkurl{M_JUL2026_CONFORMAL}) and multiplicative (\nolinkurl{M_NOV2026_AUTH_EFT_V1}) matter actions; that non-equivalence survives reduction to one field.
+\end{enumerate}
+
+\subsection{C.2 Unified portfolio clock and observable dictionary (explicit GR baseline separation)}\label{c.2-unified-portfolio-clock-and-observable-dictionary-explicit-gr-baseline-separation}
+
+To eliminate double-counting and clarify the General Relativity baseline across the SIT portfolio, Paper 007 adopts the shared four-quantity dictionary: (1) dimensionless field perturbation \(r := \delta\rho_t / \rho_0\); (2) local intrinsic clock-response coefficient \(\alpha_\rho\), defined by the fixed-local-metric fractional frequency shift \(y_{\mathrm{clock,int}} = \alpha_\rho r\); (3) gravitational transfer coefficient \(\mathcal{T}\), defined by \(r = \mathcal{T}\,p\) where \(p = \Delta\Phi/c^2\); and (4) the \textbf{anomalous (non-metric, SIT-additional) gravitational redshift slope} \(\delta\alpha_\Phi := \alpha_\rho \mathcal{T}\), entering the total observed weak-field redshift slope as
+
+\begin{equation}
+\frac{d\ln\nu}{d(\Phi/c^2)} = 1 + \delta\alpha_\Phi = 1 + \alpha_\rho \mathcal{T},
+\end{equation}
+
+where \(1\) is the standard General Relativity metric redshift and \(\mathcal{T}\) enters \(\delta\alpha_\Phi\) \textbf{strictly once} (\nolinkurl{verify_paper007_v2.py}). Crucially, an event-count rate per unit proper time \(N(\tau)/\tau\) and a fractional atomic transition-frequency shift \(\Delta\nu/\nu\) are distinct operational observables until connected by an explicit calibrated transduction model.
+
+\subsection{C.3 Calibrated count-to-field detector model (dead time, exact renewal Fano factor, and noise scenarios)}\label{c.3-calibrated-count-to-field-detector-model-dead-time-exact-renewal-fano-factor-and-noise-scenarios}
+
+For a point-process detector operating at true rate \(\lambda_{\mathrm{true}}\) with fixed non-paralyzable dead time \(\tau_{\mathrm{dead}}\) and exposure \(\tau_{\mathrm{exp}}\), the observed mean count rate is \(\lambda_{\mathrm{obs}} = \lambda_{\mathrm{true}}/(1 + \lambda_{\mathrm{true}}\tau_{\mathrm{dead}})\), giving an exact \textbf{fractional-slope} compression factor \(S_{\mathrm{dead}} := d\ln\lambda_{\mathrm{obs}} / d\ln\lambda_{\mathrm{true}} = 1/(1 + \lambda_{\mathrm{true}}\tau_{\mathrm{dead}})\) (\nolinkurl{verify_paper007_v2.py}). When the incoming arrivals form a stationary Poisson process passing through fixed non-paralyzable dead time, the post-detection count stream is a \textbf{renewal process} whose long-exposure Fano factor is sub-Poissonian:
+
+\begin{equation}
+\begin{aligned}
+& F_{\mathrm{renewal}} = \frac{1}{(1 + \lambda_{\mathrm{true}}\tau_{\mathrm{dead}})^2}, \\
+& \frac{\sigma(\hat{\lambda}_{\mathrm{true}})}{\lambda_{\mathrm{true}}} = \frac{1}{S_{\mathrm{dead}}}\sqrt{\frac{F}{\lambda_{\mathrm{obs}}\tau_{\mathrm{exp}}}}.
+\end{aligned}
+\end{equation}
+
+At unit occupancy (\(\lambda_{\mathrm{true}}\tau_{\mathrm{dead}} = 1\)), \(S_{\mathrm{dead}} = 0.50\) (a \(50\%\) fractional-slope compression) and the exact Poisson non-paralyzable renewal Fano factor is \(F_{\mathrm{renewal}} = 0.25\). By contrast, the \(F = 1\) and \(F = 2.5\) columns below represent \textbf{separately assumed or empirically calibrated post-detection noise scenarios} (naive Poisson variance without dead-time variance suppression, and externally assumed overdispersed/correlated arrivals, neither derived from the stationary Poisson dead-time mechanism alone):
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\tiny\setlength{\tabcolsep}{2pt}
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+Occupancy \(\eta_{\mathrm{occ}} = \lambda\tau_{\mathrm{dead}}\) (\(\lambda = 10^4\,\mathrm{s}^{-1}\), \(\tau_{\mathrm{exp}} = 100\,\mathrm{s}\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(\tau_{\mathrm{dead}}\) (\(\mu\mathrm{s}\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\(S_{\mathrm{dead}}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Exact renewal \(F_{\mathrm{ren}}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Rel. error (exact \(F_{\mathrm{ren}}\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Rel. error (assumed \(F=1\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Rel. error (assumed \(F=2.5\))
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(0.001\) & \(0.1\) & \(0.9990\) & \(0.9980\) & \(1.00 \times 10^{-3}\) & \(1.00 \times 10^{-3}\) & \(1.58 \times 10^{-3}\) \\
+\(0.050\) & \(5.0\) & \(0.9524\) & \(0.9070\) & \(1.02 \times 10^{-3}\) & \(1.08 \times 10^{-3}\) & \(1.70 \times 10^{-3}\) \\
+\(0.250\) & \(25.0\) & \(0.8000\) & \(0.6400\) & \(1.12 \times 10^{-3}\) & \(1.40 \times 10^{-3}\) & \(2.21 \times 10^{-3}\) \\
+\(1.000\) & \(100.0\) & \(0.5000\) & \(0.2500\) & \(1.41 \times 10^{-3}\) & \(2.83 \times 10^{-3}\) & \(4.47 \times 10^{-3}\) \\
+\end{longtable}
+\endgroup
+}
+
+Any correlated-arrival experiment requires a specified arrival-correlation model or empirically measured post-detection variance rather than reusing the Poisson dead-time formula. The mass-calibration examples of Appendix B remain retained as permanent portfolio safeguards against comparing single-channel scalar formulas directly with orbit-calibrated gravitational bounds.
+
+\section{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Brans, C., and Dicke, R. H. ``Mach's Principle and a Relativistic Theory of Gravitation.'' \emph{Physical Review} 124, 925-935 (1961). DOI \nolinkurl{10.1103/PhysRev.124.925}.
+\item
+  Damour, T., and Esposito-Farese, G. ``Tensor-multi-scalar theories of gravitation.'' \emph{Classical and Quantum Gravity} 9, 2093-2176 (1992). DOI \nolinkurl{10.1088/0264-9381/9/9/015}.
+\item
+  Damour, T., and Donoghue, J. F. ``Equivalence Principle Violations and Couplings of a Light Dilaton.'' \emph{Physical Review D} 82, 084033 (2010). DOI \nolinkurl{10.1103/PhysRevD.82.084033}.
+\item
+  Khoury, J., and Weltman, A. ``Chameleon Fields: Awaiting Surprises for Tests of Gravity in Space.'' \emph{Physical Review Letters} 93, 171104 (2004). DOI \nolinkurl{10.1103/PhysRevLett.93.171104}.
+\item
+  Hinterbichler, K., and Khoury, J. ``Screening Long-Range Forces Through Local Symmetry Restoration.'' \emph{Physical Review Letters} 104, 231301 (2010). DOI \nolinkurl{10.1103/PhysRevLett.104.231301}.
+\item
+  Touboul, P., et al.~``MICROSCOPE Mission: Final Results of the Test of the Equivalence Principle.'' \emph{Physical Review Letters} 129, 121102 (2022). DOI \nolinkurl{10.1103/PhysRevLett.129.121102}.
+\item
+  Bertotti, B., Iess, L., and Tortora, P. ``A test of general relativity using radio links with the Cassini spacecraft.'' \emph{Nature} 425, 374-376 (2003). DOI \nolinkurl{10.1038/nature01997}.
+\item
+  Kapner, D. J., et al.~``Tests of the Gravitational Inverse-Square Law below the Dark-Energy Length Scale.'' \emph{Physical Review Letters} 98, 021101 (2007). DOI \nolinkurl{10.1103/PhysRevLett.98.021101}.
+\item
+  Rosenband, T., et al.~``Frequency Ratio of Al+ and Hg+ Single-Ion Optical Clocks; Metrology at the 17th Decimal Place.'' \emph{Science} 319, 1808-1812 (2008). DOI \nolinkurl{10.1126/science.1154622}.
+\item
+  Abbott, B. P., et al.~``Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A.'' \emph{The Astrophysical Journal Letters} 848, L13 (2017). DOI \nolinkurl{10.3847/2041-8213/aa920c}.
+\item
+  Planck Collaboration. ``Planck 2018 results. VI. Cosmological parameters.'' \emph{Astronomy \& Astrophysics} 641, A6 (2020). DOI \nolinkurl{10.1051/0004-6361/201833910}.
+\item
+  Engelhardt, N., and Wall, A. C. ``Quantum extremal surfaces: holographic entanglement entropy beyond the classical regime.'' \emph{Journal of High Energy Physics} 2015, 73 (2015). DOI \nolinkurl{10.1007/JHEP01(2015)073}.
+\item
+  Rovelli, C. ``Relational quantum mechanics.'' \emph{International Journal of Theoretical Physics} 35, 1637-1678 (1996). DOI \nolinkurl{10.1007/BF02302261}.
+\item
+  Hohmann, M., Järv, L., Kuusk, P., Randla, E., and Vilson, O. ``Post-Newtonian parameter gamma for multiscalar-tensor gravity with a general potential.'' \emph{Physical Review D} 94, 124015 (2016). DOI \nolinkurl{10.1103/PhysRevD.94.124015}.
+\item
+  Dyadina, P. I., and Labazova, S. P. ``On Shapiro time delay in massive scalar-tensor theories.'' \emph{Journal of Cosmology and Astroparticle Physics} 2022, 029 (2022). DOI \nolinkurl{10.1088/1475-7516/2022/01/029}.
+\item
+  Fienga, A., and Minazzoli, O. ``Testing theories of gravity with planetary ephemerides.'' \emph{Living Reviews in Relativity} 27, 1 (2024). DOI \nolinkurl{10.1007/s41114-023-00047-0}.
+\item
+  Iorio, L. ``First preliminary tests of the general relativistic gravitomagnetic field of the Sun and new constraints on a Yukawa-like fifth force from planetary data.'' \emph{Planetary and Space Science} 55, 1290-1298 (2007). DOI \nolinkurl{10.1016/j.pss.2007.04.001}.
+\item
+  Huang, L., and Deng, X.-M. ``On the (un)testability of the general free scalar-tensor gravity for the Solar System tests.'' \emph{European Physical Journal C} 84, 615 (2024). DOI \nolinkurl{10.1140/epjc/s10052-024-12969-2}.
+\item
+  Karam, A., Sánchez López, S., and Terente Díaz, J. J. ``Post-Newtonian Constraints on Scalar-Tensor Gravity.'' \emph{Physical Review D} 114, 023528 (2026). DOI \texttt{10.1103/j4w3-581d}.
+\item
+  Fayet, P. ``Hyperbolic form factors for Yukawa interactions, and applications to the Earth.'' arXiv:2603.21275 (2026). URL \url{https://arxiv.org/abs/2603.21275}.
+\item
+  Blumberg, M. ``The Quantum Physics of the Brain \& Space.'' \texttt{a0033z.md}, Git commits \nolinkurl{3dde844bb0ea6a9ba45a6f4351113903a49096e4} (2022-06-16) and \nolinkurl{76a5ab76ce79ed797fa5ebb0818e84f76900dd80} (2022-06-28). URL \url{https://github.com/v5ma/selfawarenetworks/blob/76a5ab76ce79ed797fa5ebb0818e84f76900dd80/a0033z.md}.
+\item
+  Blumberg, M. ``Time Crystals, Time Dilation, Quantum Gradient Time Dilation.'' \texttt{a0253z.md}, Git commits \nolinkurl{92dc0fd1aad256664df035711b58e7d8e273f327} (2022-07-26) and \nolinkurl{c4e94e9fcd049c97d47ef6a5f2f8c29485f5a98d} (2022-07-30). URL \url{https://github.com/v5ma/selfawarenetworks/blob/c4e94e9fcd049c97d47ef6a5f2f8c29485f5a98d/a0253z.md}.
+\item
+  Blumberg, M. ``Quantum Gradient Time Crystal Dilation.'' \texttt{a0322z.md} and \texttt{00changelog.md}, Git commit \nolinkurl{4e0cf1ee0975c01dc57182368497d3f0cd864030} (2022-11-28). URL \url{https://github.com/v5ma/selfawarenetworks/blob/4e0cf1ee0975c01dc57182368497d3f0cd864030/a0322z.md}.
+\item
+  Blumberg, M. ``QGTCD public equation-development record.'' \texttt{00changelog.md}, Git commit \nolinkurl{f86205cedaab8ad9aa352a27730e6e525483112e} (2023-06-18). URL \url{https://github.com/v5ma/selfawarenetworks/blob/f86205cedaab8ad9aa352a27730e6e525483112e/00changelog.md}.
+\item
+  Blumberg, M. ``QGTCD.'' \texttt{QGTCD.md}, Git commit \nolinkurl{e94d1673237faf492540184dc667510d725172ca} (2023-12-15). URL \url{https://github.com/v5ma/selfawarenetworks/blob/e94d1673237faf492540184dc667510d725172ca/QGTCD.md}.
+\item
+  Blumberg, M. ``New Unified Field Theory: Quantum Gradient Time Crystal Dilation.'' \emph{SVGN.io} (2024-01-29). URL \url{https://www.svgn.io/p/a-new-unified-field-theory-called}; Internet Archive capture \texttt{20240302110649}.
+\item
+  Blumberg, M. ``Quantum Gradient Time Crystal Dilation breaks the assumption that gravity equals metric curvature alone.'' \emph{SVGN.io} (2024-02-15). URL \url{https://www.svgn.io/p/quantum-gradient-time-crystal-dilation}; Internet Archive capture \texttt{20240421105331}.
+\item
+  Blumberg, M. ``Explain it to me like I am six: Quantum Gradient Time Crystal Dilation Theory (Part 3).'' \emph{SVGN.io} (2024-03-28). URL \url{https://www.svgn.io/p/explain-it-to-me-like-i-am-six-quantum}; Internet Archive capture \texttt{20240421111934}.
+\item
+  Blumberg, M. ``Quantum Gravity's New Frontier: Time, Density, and Information.'' \emph{SVGN.io} (2024-10-21). URL \url{https://www.svgn.io/p/quantum-gravitys-new-frontier-time}; Internet Archive capture \texttt{20241102214706}.
+\item
+  Blumberg, M. ``Dark Time Theory: A conversation about the core ideas forming a new frontier in physics.'' \emph{SVGN.io} (2024-10-22). URL \url{https://www.svgn.io/p/dark-time-theory-a-conversation-about}; Internet Archive capture \texttt{20241107022842}.
+\item
+  Blumberg, M. \emph{Super Dark Time: Gravity Computed from Local Quantum Mechanics}. Figshare record 28284545, version 1 (2025-01-27). DOI \nolinkurl{10.6084/m9.figshare.28284545.v1}; Internet Archive capture \texttt{20250202080744}.
+\item
+  Blumberg, M. \emph{Super Dark Time: Gravity Computed from Local Quantum Mechanics}. Zenodo record 16922502, mirror created 2025-08-21. DOI \nolinkurl{10.5281/zenodo.16922502}.
+\end{enumerate}
+
+\section{Data, Code, and Version Availability}\label{data-code-and-version-availability}
+
+The historical manuscript is preserved at Zenodo record 16922502 under concept DOI 10.5281/zenodo.16922501, and the July 29, 2026 corrected house-style edition was published as Paper 007 (Zenodo DOI 10.5281/zenodo.21693874, \url{https://pub.svgn.io/papers/paper-7/}). This November 20, 2026 Version 2 candidate adds Appendix C distinguishing static Schur elimination from full dynamical reduction and zero-mixing consistent freezing, adopting the GR-baseline-separated unified clock dictionary, and verifying the non-paralyzable dead-time fractional slope and exact renewal Fano factor (\nolinkurl{verify_paper007_v2.py} / \nolinkurl{paper007_v2_verification_results.json}, 2/2 checks passing). All numerical examples remain synthetic; no experimental dataset is claimed to confirm SDT.
+
+\end{document}

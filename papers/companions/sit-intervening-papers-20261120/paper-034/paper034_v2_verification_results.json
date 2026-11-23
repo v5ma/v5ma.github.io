@@ -1,0 +1,28 @@
+{
+  "schema": "paper034.v2.verification.v1",
+  "checks": [
+    {
+      "check": "u1_gauge_invariance_dressed_vs_bare_phase",
+      "bare_phase_gauge_shift": "chi_x",
+      "dressed_wilson_line_phase_gauge_shift": "0",
+      "passed": true
+    },
+    {
+      "check": "transient_fokker_planck_pi_symmetry_theorem",
+      "pi_symmetric_initial_case": {
+        "max_pi_symmetry_defect": 7.771561172376096e-16,
+        "max_abs_binary_marginal": 2.992277808106038e-16,
+        "final_probability_integral": 1.0,
+        "final_min_density": 0.009302
+      },
+      "negative_control_asymmetric_initial_case": {
+        "max_pi_symmetry_defect": 0.26753790235987446,
+        "max_abs_binary_marginal": 0.2398585418223361,
+        "final_probability_integral": 1.0,
+        "final_min_density": 0.008071
+      },
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

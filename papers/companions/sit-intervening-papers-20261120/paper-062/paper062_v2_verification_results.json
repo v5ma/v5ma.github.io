@@ -1,0 +1,70 @@
+{
+  "schema": "paper062.v2.verification.v2",
+  "checks": [
+    {
+      "check": "conditional_thermal_calibration_corrected_decoherence_and_regime_audit",
+      "exact_calibration_c_A": "2*T*beta*k_B",
+      "amplitude_decoherence_formula": "T*dx**2*k_B/(hbar**2*mu)",
+      "amplitude_decoherence_at_fixed_b0": "2*T**2*beta*dx**2*grad_u*k_B**2/(b0*hbar**2)",
+      "held_fixed_parameters": {
+        "b0_m_s": 1e-06,
+        "grad_u_inv_m": 1.0,
+        "beta": 1.0,
+        "m_kg": 1e-15,
+        "dx_m": 1e-08
+      },
+      "varied_parameters_across_rows": "T varied across {0.01, 1.0, 300.0} K with mu adjusted inversely (mu = b0 / (2 beta k_B T |grad u|)) so D_x = 5e-7 m^2/s stays constant",
+      "thermal_regimes_at_identical_mean_drift": [
+        {
+          "T_K": 0.01,
+          "c_A_N_m": 2.7613e-25,
+          "mu_m_per_Ns": 3.6215e+18,
+          "friction_zeta_Ns_per_m": 2.7613e-19,
+          "D_x_m2_per_s": 5e-07,
+          "P_diss_terminal_drift_W": 2.7613e-31,
+          "Gamma_dec_amplitude_per_s": 342800000.0,
+          "Gamma_squared_coherence_per_s": 685610000.0,
+          "thermal_rate_kBT_over_hbar_per_s": 1309200000.0,
+          "ratio_Gamma_dec_over_thermal_rate": 0.2618,
+          "markov_initial_decay_valid_without_cutoff": false,
+          "momentum_relaxation_time_tau_p_s": 3621.5
+        },
+        {
+          "T_K": 1.0,
+          "c_A_N_m": 2.7613e-23,
+          "mu_m_per_Ns": 3.6215e+16,
+          "friction_zeta_Ns_per_m": 2.7613e-17,
+          "D_x_m2_per_s": 5e-07,
+          "P_diss_terminal_drift_W": 2.7613e-29,
+          "Gamma_dec_amplitude_per_s": 3428000000000.0,
+          "Gamma_squared_coherence_per_s": 6856100000000.0,
+          "thermal_rate_kBT_over_hbar_per_s": 130920000000.0,
+          "ratio_Gamma_dec_over_thermal_rate": 26.1841,
+          "markov_initial_decay_valid_without_cutoff": false,
+          "momentum_relaxation_time_tau_p_s": 36.215
+        },
+        {
+          "T_K": 300.0,
+          "c_A_N_m": 8.2839e-21,
+          "mu_m_per_Ns": 120720000000000.0,
+          "friction_zeta_Ns_per_m": 8.2839e-15,
+          "D_x_m2_per_s": 5e-07,
+          "P_diss_terminal_drift_W": 8.2839e-27,
+          "Gamma_dec_amplitude_per_s": 3.0852e+17,
+          "Gamma_squared_coherence_per_s": 6.1704e+17,
+          "thermal_rate_kBT_over_hbar_per_s": 39276000000000.0,
+          "ratio_Gamma_dec_over_thermal_rate": 7855.2204,
+          "markov_initial_decay_valid_without_cutoff": false,
+          "momentum_relaxation_time_tau_p_s": 0.12072
+        }
+      ],
+      "heating_ratio_300K_over_10mK": 30000.0,
+      "decoherence_ratio_300K_over_10mK": 900000000.0,
+      "absolute_rate_normalization_verified": true,
+      "negative_control_rejects_factor_of_2_too_large_rate": true,
+      "markov_validity_violation_at_300K_flagged": true,
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

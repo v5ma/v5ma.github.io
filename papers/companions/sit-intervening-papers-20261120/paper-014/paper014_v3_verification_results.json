@@ -1,0 +1,123 @@
+{
+  "schema": "paper014.v3.verification.v3",
+  "checks": [
+    {
+      "check": "config_a_synthetic_raman_interferometer_identifiability_and_multivariable_eiv",
+      "model_status": "synthetic conditional design calculation with assigned noise and nuisance assumptions",
+      "k_eff_inv_m": 16105755.29,
+      "T_interrogation_s": 0.25,
+      "scale_factor_S_eta_rad": 9871469.07,
+      "single_shot_phase_noise_rad": 0.003,
+      "total_shots": 2000,
+      "typical_200nK_wavefront_phase_rad_at_500m": 0.03852,
+      "design_i_binary": {
+        "matrix_rank": 2,
+        "parameters": 3,
+        "identifiable": false
+      },
+      "design_ii_5level_ramp_only": {
+        "vif_eta0": 63.838,
+        "r2_collinearity_with_T": 0.98433,
+        "sigma_eta0_1sigma": 1.7766e-10,
+        "multivariable_eiv_arm_level_sigma_0_03": {
+          "var_fc": 0.0934,
+          "var_fc_residual": 0.001463082,
+          "r2_collinearity": 0.984335,
+          "vif": 63.8378,
+          "attenuation_residual_formula": 0.619141,
+          "attenuation_normal_equations": 0.619141,
+          "method_discrepancy": 1.887e-15,
+          "downward_bias_percent": 38.0859
+        },
+        "multivariable_eiv_per_shot_averaged_400shots": {
+          "var_fc": 0.0934,
+          "var_fc_residual": 0.001463082,
+          "r2_collinearity": 0.984335,
+          "vif": 63.8378,
+          "attenuation_residual_formula": 0.998465,
+          "attenuation_normal_equations": 0.998465,
+          "method_discrepancy": 1.976e-14,
+          "downward_bias_percent": 0.1535
+        }
+      },
+      "design_iii_10arm_orthogonalized": {
+        "vif_eta0": 1.251,
+        "r2_collinearity_with_nuisances": 0.20052,
+        "sigma_eta0_1sigma": 2.4868e-11,
+        "sensitivity_gain_over_ramp_only": 7.144,
+        "sqrt_vif_ratio_check": 7.1441,
+        "multivariable_eiv_arm_level_sigma_0_03": {
+          "var_fc": 0.0934,
+          "var_fc_residual": 0.074671019,
+          "r2_collinearity": 0.200524,
+          "vif": 1.2508,
+          "attenuation_residual_formula": 0.988091,
+          "attenuation_normal_equations": 0.988091,
+          "method_discrepancy": 3.331e-16,
+          "downward_bias_percent": 1.1909
+        },
+        "multivariable_eiv_per_shot_averaged_200shots": {
+          "var_fc": 0.0934,
+          "var_fc_residual": 0.074671019,
+          "r2_collinearity": 0.200524,
+          "vif": 1.2508,
+          "attenuation_residual_formula": 0.99994,
+          "attenuation_normal_equations": 0.99994,
+          "method_discrepancy": 4.441e-16,
+          "downward_bias_percent": 0.006
+        }
+      },
+      "single_predictor_only_illustration_DO_NOT_USE_UNDER_COLLINEARITY": {
+        "var_fc": 0.0934,
+        "naive_attenuation": 0.990456,
+        "naive_bias_percent": 0.9544,
+        "understatement_factor_vs_collinear_design_ii": 39.91
+      },
+      "classical_within_observation_correlated_fc_T_error_example": {
+        "scope": "Classical within-observation error covariance Sigma_EE only (distinct from common additive offsets or between-observation correlation)",
+        "sigma_fc": 0.03,
+        "sigma_T_nK": 5.0,
+        "R_wf_m": 500.0,
+        "error_correlation_rho": -0.7,
+        "attenuation_matrix_00_on_eta0": 0.884423,
+        "cross_contamination_01_from_wf_into_eta0_per_S_eta": -5.365e-16
+      },
+      "common_session_additive_offset_negative_control": {
+        "true_coeffs_beta_f_beta_z_b": [
+          2.0,
+          3.0,
+          5.0
+        ],
+        "common_offsets_c_d": [
+          0.03,
+          0.01
+        ],
+        "fitted_coeffs_after_common_offset": [
+          2.0,
+          3.0,
+          4.91
+        ],
+        "expected_shifted_intercept": 4.91,
+        "slopes_strictly_invariant_under_common_additive_offset": true
+      },
+      "negative_control_naive_1d_eiv_rejected_under_collinearity": true,
+      "passed": true
+    },
+    {
+      "check": "config_b_declared_bec_source_configuration_sensitivity",
+      "N_source_atoms": 10000000,
+      "source_mass_kg": 1.4432e-18,
+      "separation_m": 0.002,
+      "newtonian_acceleration_m_s2": 2.408e-23,
+      "gravitational_strength_raman_phase_rad": 2.4239e-17,
+      "mean_phase_uncertainty_2000shots_rad": 6.7082e-05,
+      "required_alpha_1sigma_declared_raman": 2767500000000.0,
+      "reference_acceleration_floor_m_s2": 1e-12,
+      "required_alpha_at_reference_floor": 41528000000.0,
+      "declared_configuration_detects_gravitational_strength": false,
+      "torsion_balance_comparison_scope": "Applies ONLY under a separately assumed universal mass-coupled Yukawa model; does NOT automatically exclude a condensate-selective coupling without Section 6 material-charge, screening, geometry, and likelihood translation, nor all alternative BEC source configurations.",
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

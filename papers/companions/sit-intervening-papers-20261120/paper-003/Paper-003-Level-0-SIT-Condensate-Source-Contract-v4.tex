@@ -1,0 +1,673 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  american,
+  11pt,
+  letterpaper,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Times New Roman}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage{ragged2e}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{3em}
+\sloppy
+\hyphenation{im-ple-men-ta-tion op-er-a-tion-al-i-za-tion}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Level 0 SIT: A Physical-Frame Model and Condensate-Source Falsification Contract},
+  pdfauthor={Micah Blumberg},
+  pdflang={en-US},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+
+{\LARGE\bfseries Level 0 SIT: A Physical-Frame Model and Condensate-Source Falsification Contract\par}
+
+\vspace{0.8em}
+
+{\small\textbf{Author: Micah Blumberg}\par}
+
+{\small Self Aware Networks Research Institute\par}
+
+{\small\url{https://selfawarenetworks.com}\par}
+
+{\small November 20, 2026 (Version 4 Successor Candidate to DOI 10.5281/zenodo.21693868)\par}
+
+\end{center}
+
+\vspace{0.65em}
+
+\begin{abstract}
+
+This is a model and methods note; it reports no measured anomaly, constraint-cleared parameter region, or validated physical SIT effect. It narrows the Level 0 surface of Super Information Theory to a specified scalar-tensor effective-model contract. The Einstein-frame fields are a metric and two neutral real scalar amplitudes, while ordinary matter follows the single physical metric \texttt{gtilde\_mn=Omega(tau,sigma)\^{}2\ g\_mn} and electromagnetism remains an independent Maxwell sector. The baseline action by itself does not distinguish a Bose-Einstein condensate from a matched thermal cloud. We therefore add one explicit new hypothesis: the Penrose-Onsager condensate density sources \texttt{sigma} through a dimension-four matter operator. In the weak-field point-source regime this gives the signed differential acceleration \texttt{eta\_Q=2\ beta\_S\ g\_Q\ (f\_BEC-f\_thermal)(1+x)exp(-x)}, with \texttt{x=m\_sigma\ r}, and the idealized interferometer phase \texttt{Delta\ phi\_Q=k\_eff\ g\ eta\_Q\ T\^{}2}. For a linear, unscreened, uniform spherical source, the point response is replaced by an exact finite-source form factor. The committed regression fixture also propagates first-order parameter uncertainty and five explicitly placeholder apparatus-systematic terms. These calculations test the formula, geometry, and null limits; they are not measured performance, a sensitivity forecast, a constraint-cleared parameter region, or a prediction derived from SIT79. A full source stress tensor, microscopic operator derivation, nonlinear screening calculation, experimental covariance model, and direct likelihood translation remain open. The contribution is a source-explicit linear-response benchmark and falsification contract, not evidence for full SIT or an observed gravity anomaly.
+
+\end{abstract}
+
+\section{Scope and evidence boundary}\label{scope-and-evidence-boundary}
+
+\subsection{Version 3 Final Preprint}\label{version-3-final-preprint}
+
+selfawarenetworks.com\\
+\textbf{Continues:} \href{https://doi.org/10.5281/zenodo.21330764}{doi:\nolinkurl{10.5281/zenodo.21330764}}\\
+\textbf{Concept DOI:} \href{https://doi.org/10.5281/zenodo.21231154}{doi:\nolinkurl{10.5281/zenodo.21231154}}
+
+\section{Reader Orientation: The Problem Before the Terminology}\label{reader-orientation-the-problem-before-the-terminology}
+
+Imagine preparing two clouds of the same atomic species in the same apparatus. They have matched atom number, position, launch, geometry, and ordinary composition, but one contains a large Bose-Einstein-condensed component and the other is predominantly thermal. A differential-gravity proposal must say exactly what physical variable distinguishes those preparations, how that variable enters a field equation, and what measurement would change. The word \emph{coherence} cannot do that work by itself.
+
+Established physics supplies several pieces without supplying the proposed effect. Scalar-tensor models specify which metric matter follows and how an extra scalar couples to matter. Screening models show why a light scalar may need nonlinear environmental analysis. Penrose and Onsager define condensation through the largest eigenvalue and mode of the one-body density matrix. Atom interferometers translate acceleration differences into phase differences. None of those inherited pieces says that condensate density carries a new gravitational charge.
+
+The operation proposed here can therefore be stated in plain language before it is named:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  reconstruct or measure the condensate mode and condensate fraction;
+\item
+  convert that mode into a spatial condensate-density field;
+\item
+  declare, as a new hypothesis, that this density sources a neutral scalar;
+\item
+  solve the bounded linear field problem for a specified source geometry;
+\item
+  compare the accelerations or interferometer phases of matched condensed and thermal preparations; and
+\item
+  require the effect to vanish when the new coupling, source charge, or condensate-fraction difference vanishes.
+\end{enumerate}
+
+This sequence is the \textbf{condensate-source falsification contract}. The broader historical phrase \emph{coherence-source} is retained as lineage, but the measurable input in this paper is the Penrose-Onsager condensate density, not an undefined amount of coherence. If the source operator cannot be completed consistently, if screening removes every accessible effect, if direct constraints eliminate the parameter space, or if calibrated measurements agree with the null, the corresponding model is narrowed or excluded. The contract remains useful because it makes those failure conditions executable.
+
+\section{1. Scope}\label{scope}
+
+The v1 paper correctly excluded full SIT, the Coherence Tower, HSIT, RH, neuroscience, holography, Yang-Mills, and particle-physics derivations. This v2 retains those exclusions and closes three ambiguities that prevented a physical calculation: it chooses one matter frame, separates physical electromagnetism from the coherence order parameter, and states the additional matter operator required for a BEC / thermal distinction.
+
+The only accepted thesis is:
+
+\begin{quote}
+A two-scalar extension of Einstein-Maxwell-matter theory plus a declared condensate-density source operator yields a bounded weak-field differential-acceleration formula. Whether the operator has a microscopic origin or any nonzero viable parameter region exists remains open.
+\end{quote}
+
+\section{2. Fields and Physical Metric}\label{fields-and-physical-metric}
+
+Use four-dimensional natural units. The model contains:
+
+\begin{itemize}
+\tightlist
+\item
+  an Einstein-frame metric \texttt{g\_mn};
+\item
+  a real scalar \texttt{tau};
+\item
+  a real macroscopic amplitude \texttt{sigma};
+\item
+  an independent electromagnetic connection \texttt{A\_m} with curvature \texttt{F\_mn}; and
+\item
+  ordinary matter fields \texttt{chi}.
+\end{itemize}
+
+Matter rods and clocks couple to
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gtilde\_mn = Omega(tau,sigma)\^{}2 g\_mn.                            (1)}
+\end{Highlighting}
+\end{Shaded}
+
+This Jordan metric is the physical metric by definition. Observable time, length, acceleration, stress-energy, and apparatus geometry must be evaluated in this frame or translated to it consistently.
+
+The wider SIT program may retain a complex order parameter and phase language. The Level 0 benchmark does not identify that phase connection with physical electromagnetism. If the coherence condensate were minimally charged under the electromagnetic U(1), a nonzero vacuum amplitude would generically raise a photon-mass question. This letter avoids that unexamined claim by setting the physical electric charge of \texttt{sigma} to zero. A future hidden U(1) would be a separate model with separate constraints.
+
+\section{3. Benchmark Action}\label{benchmark-action}
+
+The action is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S = integral d\^{}4x sqrt({-}g) [}
+\NormalTok{      M\_Pl\^{}2 R/2}
+\NormalTok{    {-} (partial tau)\^{}2/2}
+\NormalTok{    {-} (partial sigma)\^{}2/2}
+\NormalTok{    {-} V(tau,sigma)}
+\NormalTok{    {-} f\_EM(tau,sigma) F\_mn F\^{}mn/4}
+\NormalTok{    ]}
+\NormalTok{    + S\_m[Omega(tau,sigma)\^{}2 g, A, chi].                        (2)}
+\end{Highlighting}
+\end{Shaded}
+
+Einstein-Hilbert gravity and Maxwell theory are assumed sectors. Their recovery in a limit is not a derivation of their origin.
+
+This baseline action has no coherence-specific matter source. The Draft 5 laboratory extension therefore adds
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{L\_Q = {-}(g\_Q m\_a/M\_Pl) sigma n\_0.                                (3)}
+\end{Highlighting}
+\end{Shaded}
+
+where \texttt{m\_a} is the atomic mass and \texttt{n\_0} is the condensate number density in the physical apparatus frame. This is a new modeling hypothesis, not a consequence of SIT79. Since \texttt{{[}sigma{]}=1} and \texttt{{[}n\_0{]}=3}, the interaction has mass dimension four. A covariant completion must represent \texttt{n\_0=-u\_m\ j\_0\^{}m} with the apparatus four-velocity, conserve the condensate current during the modeled interval, and include its stress tensor and exchange terms.
+
+A first stable polynomial specification is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{V = m\_tau\^{}2 tau\^{}2/2}
+\NormalTok{  + m\_sigma\^{}2 sigma\^{}2/2}
+\NormalTok{  + m\_link\^{}2 (tau{-}alpha sigma)\^{}2/2}
+\NormalTok{  + lambda\_tau tau\^{}4/4}
+\NormalTok{  + lambda\_sigma sigma\^{}4/4,}
+
+\NormalTok{Omega = exp(beta\_tau tau/M\_Pl + beta\_sigma sigma/M\_Pl),}
+
+\NormalTok{f\_EM = 1 + xi\_tau tau/M\_Pl + xi\_sigma sigma/M\_Pl + higher terms. (4)}
+\end{Highlighting}
+\end{Shaded}
+
+Every mass, coupling, cutoff, higher operator, and boundary condition is model data. Positive quadratic masses and quartics supply a stable local origin for the committed recovery benchmark; they do not establish radiative stability or global UV consistency.
+
+\section{4. Variation Convention}\label{variation-convention}
+
+Define the physical-frame matter tensor by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{delta S\_m = (1/2) integral sqrt({-}gtilde)}
+\NormalTok{            Ttilde\^{}mn delta gtilde\_mn d\^{}4x.                     (5)}
+\end{Highlighting}
+\end{Shaded}
+
+Since \texttt{delta\ gtilde\_mn\ =\ 2\ gtilde\_mn\ delta\ ln\ Omega}, the matter variation with respect to either scalar is proportional to the physical trace \texttt{Ttilde} and the corresponding derivative of \texttt{ln\ Omega}. With the displayed action, the scalar equations have the structural form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Box tau {-} V\_,tau {-} f\_EM,tau F\^{}2/4}
+\NormalTok{  + Omega\^{}4 Ttilde (ln Omega)\_,tau = 0,}
+
+\NormalTok{Box sigma {-} V\_,sigma {-} f\_EM,sigma F\^{}2/4}
+\NormalTok{  + Omega\^{}4 Ttilde (ln Omega)\_,sigma = 0.                       (6)}
+\end{Highlighting}
+\end{Shaded}
+
+under the stated stress-tensor convention. The internal full-variation audit gives
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Box sigma {-} V\_,sigma {-} f\_EM,sigma F\^{}2/4}
+\NormalTok{  + Omega\^{}4 Ttilde (ln Omega)\_,sigma + J\_Q = 0,                 (7)}
+
+\NormalTok{J\_Q = (1/sqrt({-}g)) delta S\_Q/delta sigma.}
+\end{Highlighting}
+\end{Shaded}
+
+For the shorthand source action
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S\_Q = {-} integral sqrt({-}g) (g\_Q m\_a/M\_Pl) sigma n\_0 d\^{}4x.        (8)}
+\end{Highlighting}
+\end{Shaded}
+
+holding \texttt{n\_0} fixed during scalar variation gives \texttt{J\_Q=-(g\_Q\ m\_a/M\_Pl)n\_0}. The corresponding Maxwell and structural metric equations are
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nabla\_mu(f\_EM F\^{}mu\_nu)=J\_matter\^{}nu,}
+
+\NormalTok{M\_Pl\^{}2 G\_mn = T\_tau\_mn + T\_sigma\_mn + f\_EM T\_EM\_mn}
+\NormalTok{              + T\_matter\_mn + T\_Q\_mn.                           (9)}
+\end{Highlighting}
+\end{Shaded}
+
+Here \texttt{T\_Q\_mn=-2\ delta\ S\_Q/(sqrt(-g)\ delta\ g\^{}mn)} is not yet determined. Specifying it requires the independent condensate variables, current and four-velocity normalization, pressure and gradient energy, trapping terms, and exchange with the noncondensed fraction. The Bianchi identity applies to the combined stress tensor, so the shorthand source cannot simultaneously be treated as fixed and promoted to a complete covariant matter theory. Draft 5 therefore uses it only as an external fixed-source approximation with omitted backreaction. The scalar signs, Maxwell equation, and structural metric equation have been derived internally under the declared convention; complete source stress / current conservation and independent review remain open.
+
+For the bounded source benchmark, decouple \texttt{tau}, set \texttt{f\_EM=1}, use \texttt{Omega=exp(beta\_sigma\ sigma/M\_Pl)}, and linearize around \texttt{sigma=0}. With nonrelativistic density \texttt{rho} and the new source term, the static equation is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(nabla\^{}2{-}m\_sigma\^{}2) sigma}
+\NormalTok{  = beta\_sigma rho/M\_Pl + g\_Q m\_a n\_0/M\_Pl.                    (10)}
+\end{Highlighting}
+\end{Shaded}
+
+This linear equation fixes the sign convention used below. It does not replace a covariant source action, nonlinear screening solution, or source-sector conservation review.
+
+\newpage
+
+\section{5. Null Recovery Benchmark}\label{null-recovery-benchmark}
+
+The machine-readable null benchmark sets
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta\_tau = beta\_sigma = xi\_tau = xi\_sigma = 0,}
+\NormalTok{g\_Q = 0   (or L\_Q omitted / n\_0 = 0),}
+\NormalTok{Omega = 1,}
+\NormalTok{f\_EM = 1.                                                       (11)}
+\end{Highlighting}
+\end{Shaded}
+
+(Setting \texttt{g\_Q\ =\ 0}, or equivalently omitting the laboratory extension (3) or evaluating on \texttt{n\_0\ =\ 0}, is required alongside \texttt{beta\_tau\ =\ beta\_sigma\ =\ xi\_tau\ =\ xi\_sigma\ =\ 0} so that the condensate-density portal in (10) vanishes together with the ordinary matter and Maxwell couplings; the historical baseline script \nolinkurl{model/validate_benchmark.py} evaluated the pure scalar potential prior to adding \texttt{L\_Q}.)
+
+Its quadratic scalar mass matrix is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[[m\_tau\^{}2 + m\_link\^{}2,        {-}alpha m\_link\^{}2],}
+\NormalTok{ [{-}alpha m\_link\^{}2, m\_sigma\^{}2 + alpha\^{}2 m\_link\^{}2]].              (12)}
+\end{Highlighting}
+\end{Shaded}
+
+The committed parameters give two positive eigenvalues, as checked by \nolinkurl{model/validate_benchmark.py}. The benchmark therefore supplies a stable local scalar vacuum and decoupled Einstein-Maxwell-matter recovery at the classical quadratic level. It makes no prediction for \texttt{Delta\ g/g} and is not evidence of a coherence-gravity interaction.
+
+\section{6. A Declared Condensate-to-Source Map}\label{a-declared-condensate-to-source-map}
+
+The symbol \texttt{sigma} remains a classical model amplitude. It is not condensate fraction, interference visibility, off-diagonal long-range order, density-matrix purity, or phase-correlation length. Draft 5 instead defines a separate condensate observable from the one-body reduced density matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{integral rho\_1(x,x\textquotesingle{}) phi\_0(x\textquotesingle{}) d\^{}3x\textquotesingle{} = N\_0 phi\_0(x),}
+\NormalTok{integral |phi\_0(x)|\^{}2 d\^{}3x = 1,}
+\NormalTok{n\_0(x)=N\_0 |phi\_0(x)|\^{}2,}
+\NormalTok{f\_0=N\_0/N.                                                       (13)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{N\_0} is the largest Penrose-Onsager eigenvalue and \texttt{phi\_0} its normalized mode. The map uses the measured or reconstructed condensate fraction; it does not force the thermal preparation to have exactly zero \texttt{f\_0}.
+
+The resulting operational chain is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q: \{rho\_1, apparatus resolution\}}
+\NormalTok{   {-}\textgreater{} \{N\_0, phi\_0, n\_0, f\_0\}}
+\NormalTok{   {-}\textgreater{} \{source term (g\_Q m\_a/M\_Pl) n\_0\}.                          (14)}
+\end{Highlighting}
+\end{Shaded}
+
+This closes the benchmark definition, not its microscopic justification. The new coupling must still account for preparation energy, ordinary stress-energy, finite-temperature fluctuations, source backreaction, and the experimental method used to estimate \texttt{rho\_1} and \texttt{f\_0}.
+
+\section{7. Nonzero Linear-Response Result and Constraint Program}\label{nonzero-linear-response-result-and-constraint-program}
+
+Use the reduced Planck convention \texttt{M\_Pl\^{}-2=8\ pi\ G}. For a point source with effective scalar coupling \texttt{beta\_S}, define
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y(x)=(1+x)exp({-}x),  x=m\_sigma r.                                (15)}
+\end{Highlighting}
+\end{Shaded}
+
+A cloud with condensate fraction \texttt{f\_0} has effective scalar coupling
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta\_cloud=beta\_sigma+g\_Q f\_0.                                  (16)}
+\end{Highlighting}
+\end{Shaded}
+
+The scalar acceleration relative to Newtonian gravity is therefore
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a\_sigma/a\_N=2 beta\_S (beta\_sigma+g\_Q f\_0) Y(x).                 (17)}
+\end{Highlighting}
+\end{Shaded}
+
+For matched preparations, the universal term cancels and the declared coherence-source operator gives
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eta\_Q=(a\_BEC{-}a\_thermal)/a\_N}
+\NormalTok{     =2 beta\_S g\_Q (f\_BEC{-}f\_thermal) Y(x).                      (18)}
+\end{Highlighting}
+\end{Shaded}
+
+This is a derived result of the stated linear-response benchmark. It is not a derivation of \texttt{g\_Q}, and it is not constraint-cleared. Its sign follows \texttt{beta\_S\ g\_Q}; it vanishes for \texttt{g\_Q=0}, \texttt{beta\_S=0}, equal condensate fractions, or short scalar range.
+
+Existing MICROSCOPE, dual-isotope, and coherent-internal-state tests are neighboring constraints, not direct BEC-versus-thermal bounds on this operator. A constraint fit must derive the translation before using their reported sensitivities. It must also include finite Earth / source form factors, screening, inverse-square-law and PPN limits, electromagnetic effects if \texttt{xi} is nonzero, and the source-sector stress-energy.
+
+If no allowed region remains, the source-coupled benchmark is excluded. If no direct translation can be justified, the paper remains a model and methods note rather than a prediction letter.
+
+\subsection{7.1 Exact Linear Uniform-Sphere Benchmark}\label{exact-linear-uniform-sphere-benchmark}
+
+For a uniform spherical source of radius \texttt{R}, total mass \texttt{M}, inverse scalar range \texttt{mu}, and exterior detector radius \texttt{r=R+h}, define \texttt{z=mu\ R} and \texttt{y=mu\ h}. The exact linear unscreened source-amplitude factor is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A(z)=3[z cosh(z){-}sinh(z)]/z\^{}3,}
+
+\NormalTok{Y\_sphere(z,y)=A(z)[1+z+y]exp({-}z{-}y).                             (19)}
+\end{Highlighting}
+\end{Shaded}
+
+The implementation evaluates the algebraically equivalent stable form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y\_sphere(z,y)=3(1+z+y)/(2z\^{}3)}
+\NormalTok{               [(z{-}1)exp({-}y)+(z+1)exp({-}2z{-}y)].                 (20)}
+\end{Highlighting}
+\end{Shaded}
+
+and uses the small-\texttt{z} series \texttt{A(z)=1+z\^{}2/10+z\^{}4/280+...}. For the declared fixture \texttt{R=6,371,000\ m}, \texttt{h=100\ m}, and \texttt{mu(R+h)=0.1}, the point response is \nolinkurl{0.9953211598395556}, the uniform-sphere response is \nolinkurl{0.9963168052700276}, and their ratio is \texttt{1.001000325794975}. With the illustrative coupling fixture this gives \nolinkurl{eta_Q=1.5542542162212432e-12} and \texttt{Delta\ phi\_Q=2.456440917215015e-4\ rad}.
+
+This is exact only for a linear, unscreened, uniform sphere. It is not a layered Earth model, laboratory source geometry, thin-shell solution, or nonlinear screening calculation. The numbers are deterministic software regressions, not measurements, forecasts, sensitivities, allowed regions, or physical validation.
+
+\section{8. BEC Versus Thermal Protocol}\label{bec-versus-thermal-protocol}
+
+The experiment remains a falsifier architecture, not a constraint-cleared prediction. It compares the same atomic species under matched atom number, launch, trap, geometry, external fields, and readout, with deliberately different measured condensate fractions.
+
+For an idealized light-pulse interferometer,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Delta phi\_Q = k\_eff g eta\_Q T\^{}2.                                (21)}
+\end{Highlighting}
+\end{Shaded}
+
+The committed regression point uses explicit \texttt{beta\_S}, \texttt{g\_Q}, condensate fractions, source geometry and range, laser wavelength, and interrogation time. Centered numerical differentiation propagates declared standard uncertainties in wavelength, interrogation time, local gravity, both condensate fractions, source radius, and detector altitude. It gives a parameter-only standard uncertainty of \texttt{7.042182760266661e-6\ rad}.
+
+Five separately declared phase-systematic placeholders cover wavefront aberration, Coriolis / rotation, gravity-gradient / launch mismatch, AC-Stark and Zeeman effects, and detection / fit bias. Their quadrature is \texttt{2.2360679774997898e-4\ rad}; combining it with the parameter term gives \texttt{2.2371766210567507e-4\ rad}. The resulting illustrative signal-to-placeholder ratio is \texttt{1.098009381152344}. Because these systematic values are placeholders rather than calibrated distributions, none of these numbers is an experimental forecast, sensitivity, significance, exclusion, or allowed parameter claim.
+
+Required ordinary controls include density profile, interaction energy, temperature, condensate fraction, release dynamics, magnetic and electric fields, gravity gradients, vibrations, imaging bias, and decoherence. A blinded analysis must evaluate a preregistered differential acceleration or phase statistic.
+
+The complete forward model must replace the uniform source by the real Earth or laboratory density profile, establish or solve the screening regime, propagate both clouds through the pulse sequence, and fit measured controls and covariances jointly. A null result excludes only parameter points whose validated signal exceeds demonstrated sensitivity under a justified likelihood. A positive residual supports only the specified source-coupled model relative to the nulls and alternatives; it does not prove full SIT.
+
+\section{9. Corrected External Anchors}\label{corrected-external-anchors}
+
+The external literature supplies constraints and experimental capability, not validation of this model.
+
+\begin{itemize}
+\tightlist
+\item
+  Khoury and Weltman and Hinterbichler and Khoury provide examples of screened scalar mechanisms whose assumptions must be derived for a benchmark.
+\item
+  MICROSCOPE reports a stringent null test of the weak equivalence principle.
+\item
+  Penrose and Onsager define condensation through an extensive largest eigenvalue of the one-body reduced density matrix; Draft 5 uses that definition for \texttt{N\_0} and \texttt{f\_0}.
+\item
+  Asenbaum et al.~constrain dual-isotope free fall, and Rosi et al.~test atoms in internal-state superpositions. Neither paper directly constrains the new condensate-fraction operator without a translation calculation.
+\item
+  Cold-atom and BEC interferometry demonstrates relevant preparation and metrology capabilities.
+\item
+  The space-interferometry citation is correctly identified as Maike D. Lachmann, Holger Ahlers, Dennis Becker, et al., \emph{Nature Communications} 12, article 1317 (2021), DOI \nolinkurl{10.1038/s41467-021-21628-z}; v1's author / article metadata was incorrect.
+\end{itemize}
+
+\section{10. Dependency and Claim Boundary}\label{dependency-and-claim-boundary}
+
+Paper 13 may use the declared map, source operator, sign convention, linear-response formula, and exact uniform-sphere fixture as private theory inputs. It must remain a feasibility and protocol paper until Level 0 supplies a realistic source profile, screening calculation, constraint-cleared parameter region, and calibrated apparatus / covariance model. Paper 16 may record source and hash provenance but cannot validate the physics. Branch C finite formal artifacts do not derive this action or its observables.
+
+The Level 0 paper makes no claim about physical SIT, full SIT, HSIT, the Coherence Tower, SIT / Riemann, RH, Yang-Mills, P versus NP, SAN, or consciousness.
+
+\section{11. Release and Promotion Gates}\label{release-and-promotion-gates}
+
+Version 3 fixes the endpoint as a model-and-methods note. The exact linear uniform-sphere solution, first-order uncertainty propagation, and placeholder systematics are retained as reproducible software and bookkeeping tests. They are not promoted to a sensitivity forecast, viable parameter point, or experimental prediction.
+
+For this bounded release, the citation, equation, cross-reference, source-to-PDF, rendering, privacy, package, metadata, and version-lineage checks are local acceptance gates. Independent scalar-tensor, many-body, cold-atom, apparatus, and statistical review remains recommended and may motivate a later version; it is not classified as unfinished local drafting work for this exact model-and-methods preprint.
+
+Any later prediction or experimental-outreach version additionally requires a covariant source completion or justified fixed-source domain, realistic source profile, nonlinear screening analysis, direct constraint likelihood, calibrated apparatus transfer functions and covariances, and a blinded analysis plan. Those are promotion gates, not results of this note.
+
+\section{11.5 Microscopic Two-Fluid Matter Model, Canonical Source Normalization, and Conservation Equations (November 2026)}\label{microscopic-two-fluid-matter-model-canonical-source-normalization-and-conservation-equations-november-2026}
+
+\subsection{Architectural decision relative to the November 2026 authoritative SIT action}\label{architectural-decision-relative-to-the-november-2026-authoritative-sit-action}
+
+An explicit model-continuity decision is required so that a phenomenological condensate-source proposal is never mistaken for an automatic consequence of the November 2026 authoritative SIT continuum action (\nolinkurl{M_NOV2026_AUTH_EFT_V1}, canon \texttt{v1\_1}, in the separate SIT Version 81 monograph lane). In \nolinkurl{M_NOV2026_AUTH_EFT_V1}, the constitutive factor \(f_{\mathrm{SM}}(R_{\mathrm{coh}}) = 1 + R_{\mathrm{coh}}^2/(2 M_{\mathrm{sym}}^2)\) multiplies the entire local Standard Model matter Lagrangian \(\mathcal{L}_{\mathrm{matter}}\) uniformly. In the nonrelativistic reduction of a weakly interacting Bose gas of \(N\) atoms of mass \(m_a\) and \(s\)-wave scattering length \(a_s\) (\(g_{\mathrm{int}} = 4\pi\hbar^2 a_s / m_a\)), the leading rest-mass contribution \(-m_a c^2 (n_0 + n_{\mathrm{th}}) = -m_a c^2 n\) depends solely on the total atom number density \(n = n_0 + n_{\mathrm{th}}\) and is completely blind to the Penrose--Onsager condensate fraction \(f_c = N_0/N\) at fixed \(N\).
+
+Consequently, \textbf{unchanged \nolinkurl{M_NOV2026_AUTH_EFT_V1} does not produce an \(O(1)\) rest-mass condensate-fraction contrast}. The only ordinary difference entering \(\mathcal{L}_{\mathrm{matter}}\) between a condensed and thermal cloud at fixed \(N\) comes from thermal kinetic, trap, and Hartree--Fock exchange-interaction energies (factor-of-2 direct-plus-exchange vs.~pure-direct interaction energy). \textbf{Explicit declaration:} the condensate-selective source \(J_Q(\mathbf{x}) = -(g_Q m_a / M_{\mathrm{Pl}})\,n_0(\mathbf{x})\) of Level 0 SIT is classified strictly as an \textbf{additional phenomenological matter-source model (\nolinkurl{M_LEVEL0_CONDENSATE})} carrying its own independent coupling and apparatus-frame closure, rather than a proved theorem of \nolinkurl{M_NOV2026_AUTH_EFT_V1}.
+
+\subsection{Canonical scalar normalization, conservative GP limit, and open ZNG-type particle exchange}\label{canonical-scalar-normalization-conservative-gp-limit-and-open-zng-type-particle-exchange}
+
+To match Section 3 Equations (2)--(3) and Section 4 Equation (10) with exact dimensional and variational consistency (in four-dimensional natural units \(\hbar = c = 1\) where \([\sigma] = 1\), \([n_0] = 3\), \([\rho] = 4\), and \([m_a] = [M_{\mathrm{Pl}}] = 1\), keeping \(\hbar\) explicit in the nonrelativistic matter derivative conventions when convenient), define the \textbf{dimensionless} condensate portal coupling
+
+\begin{equation}
+\lambda_Q := \frac{g_Q m_a}{M_{\mathrm{Pl}}}, \qquad [\lambda_Q] = 0,
+\end{equation}
+
+so the interaction Lagrangian (3) is \(\mathcal{L}_Q = -\lambda_Q \sigma(\mathbf{x}, t) |\Phi_0(\mathbf{x}, t)|^2\) (\([\mathcal{L}_Q] = 4\)). Combining \(\mathcal{L}_Q\) with the canonical static scalar Lagrangian \(-\frac{1}{2}|\nabla\sigma|^2 - \frac{1}{2}m_\sigma^2\sigma^2 - (\beta_\sigma / M_{\mathrm{Pl}})\rho\,\sigma\) of Section 4 gives by Euler--Lagrange variation with respect to \(\sigma\) the exact static field equation matching Equation (10) (\nolinkurl{verify_paper003_v4.py}):
+
+\begin{equation}
+\begin{aligned}
+& (\nabla^2 - m_\sigma^2)\sigma(\mathbf{x}) = \frac{\beta_\sigma}{M_{\mathrm{Pl}}}\,\rho(\mathbf{x}) + \lambda_Q\,n_0(\mathbf{x}), \\
+& (\nabla^2 - m_\sigma^2)\delta\sigma_Q(\mathbf{x}) = \lambda_Q\,n_0(\mathbf{x}),
+\end{aligned}
+\end{equation}
+
+where \(\delta\sigma_Q := \sigma - \sigma_{\mathrm{ord}}\) denotes the \textbf{background-subtracted condensate-induced scalar response} above the ordinary-matter background \((\nabla^2 - m_\sigma^2)\sigma_{\mathrm{ord}} = (\beta_\sigma / M_{\mathrm{Pl}})\rho\) (equivalently satisfied by the full field \(\sigma\) on the isolated condensate-source slice \(\beta_\sigma = 0\)). Both sides carry exact mass dimension \(3\); no extra mass-squared denominator divides \(\lambda_Q n_0\) for canonically normalized \(\sigma\).
+
+Under the Hartree--Fock--Bogoliubov (Popov) decomposition \(\hat{\Psi}(\mathbf{x}, t) = \Phi_0(\mathbf{x}, t) + \hat{\delta}(\mathbf{x}, t)\), the one-body density matrix \(\rho_1(\mathbf{x}, \mathbf{x}') = \langle \hat{\Psi}^\dagger(\mathbf{x}')\hat{\Psi}(\mathbf{x})\rangle = \Phi_0^*(\mathbf{x}')\Phi_0(\mathbf{x}) + \rho_1^{\mathrm{th}}(\mathbf{x}, \mathbf{x}')\) isolates \(n_0(\mathbf{x}, t) = |\Phi_0(\mathbf{x}, t)|^2\) and \(n_{\mathrm{th}}(\mathbf{x}, t) = \langle \hat{\delta}^\dagger \hat{\delta} \rangle\). Varying the same interaction \(-\lambda_Q\sigma|\Phi_0|^2\) with respect to \(\Phi_0^*\), we explicitly separate two dynamical regimes:
+
+\textbf{1. Conservative, separately number-conserving collisionless limit (\(\Gamma_{12} = 0\)).} In the apparatus rest frame (four-velocity \(u^\mu\)), the Hermitian Gross--Pitaevskii (GP) equation is:
+
+\begin{equation}
+\begin{aligned}
+& i\hbar \partial_t \Phi_0
+= \left[ -\frac{\hbar^2}{2 m_a}\nabla^2 + V_{\mathrm{eff}}(\mathbf{x}, t) \right]\Phi_0, \\
+& V_{\mathrm{eff}} := V_{\mathrm{trap}}(\mathbf{x}, t) + m_a \Phi_N(\mathbf{x}) + g_{\mathrm{int}}\bigl(n_0 + 2 n_{\mathrm{th}}\bigr) + \lambda_Q \sigma(\mathbf{x}, t).
+\end{aligned}
+\end{equation}
+
+Because \(V_{\mathrm{eff}}\) is real and the kinetic operator is Hermitian, substituting the Madelung representation \(\Phi_0 = \sqrt{n_0}\,\exp(i S / \hbar)\) with \(\mathbf{v}_0 = \nabla S / m_a\) and quantum pressure \(Q_{\mathrm{Bohm}} = -(\hbar^2/2m_a)\nabla^2\sqrt{n_0}/\sqrt{n_0}\) yields \textbf{strictly zero condensate particle source} together with the exact Hamilton--Jacobi / Euler equation (verified symbolically with zero residual, and with a negative-control test confirming that nonzero \(\Gamma_{12}\) cannot follow from the conservative GP equation, in \nolinkurl{verify_paper003_v4.py}):
+
+\begin{equation}
+\begin{aligned}
+& \partial_t n_0 + \nabla\cdot(n_0 \mathbf{v}_0) = 0, \\
+& \partial_t S + \frac{|\nabla S|^2}{2 m_a} + V_{\mathrm{eff}} + Q_{\mathrm{Bohm}} = 0.
+\end{aligned}
+\end{equation}
+
+Taking the gradient of the phase equation yields the condensate force-balance equation derived from the same interaction \(-\lambda_Q\sigma|\Phi_0|^2\):
+
+\begin{equation}
+m_a n_0 \bigl(\partial_t \mathbf{v}_0 + (\mathbf{v}_0\cdot\nabla)\mathbf{v}_0\bigr)
+= -n_0 \nabla\bigl(V_{\mathrm{trap}} + m_a\Phi_N + g_{\mathrm{int}}(n_0 + 2 n_{\mathrm{th}}) + Q_{\mathrm{Bohm}}\bigr) - \lambda_Q n_0 \nabla\sigma.
+\end{equation}
+
+\textbf{2. Open finite-temperature particle-exchange regime (\(\Gamma_{12} \neq 0\), Zaremba--Nikuni--Griffin structure).} Particle exchange between condensate and thermal cloud is \textbf{additional collisional kinetic structure} beyond the conservative GP equation (as in finite-temperature ZNG two-fluid theory, Zaremba, Nikuni, and Griffin 1999). On any open domain where \(n_0(\mathbf{x}, t) > 0\), introducing the explicit non-Hermitian collisional transfer term \(-i\hbar\,\Gamma_{12}(\mathbf{x}, t)\,\Phi_0 / (2 n_0)\) into the GP right-hand side,
+
+\begin{equation}
+i\hbar \partial_t \Phi_0
+= \left[ -\frac{\hbar^2}{2 m_a}\nabla^2 + V_{\mathrm{eff}}(\mathbf{x}, t) - i\frac{\hbar\,\Gamma_{12}(\mathbf{x}, t)}{2 n_0(\mathbf{x}, t)} \right]\Phi_0,
+\end{equation}
+
+yields by exact Madelung substitution (\nolinkurl{verify_paper003_v4.py}) the condensate number balance \(\partial_t n_0 + \nabla\cdot(n_0 \mathbf{v}_0) = -\Gamma_{12}\) while leaving the real Hamilton--Jacobi phase equation unmodified. Total atom-number conservation does \textbf{not} follow from the condensate GP equation alone; it holds only when paired with a separately specified thermal kinetic continuity equation \(\partial_t n_{\mathrm{th}} + \nabla\cdot\mathbf{j}_{\mathrm{th}} = +\Gamma_{12}\) obtained by integrating the Boltzmann--ZNG collision integral \(C_{12}[f_{\mathrm{th}}, \Phi_0]\) over thermal momenta, yielding \(\partial_t(n_0 + n_{\mathrm{th}}) + \nabla\cdot(n_0\mathbf{v}_0 + \mathbf{j}_{\mathrm{th}}) = 0\).
+
+\textbf{Energy-balance and external-potential work qualification.} Write \(U(\mathbf{x}, t) := m_a\Phi_N(\mathbf{x}) + \lambda_Q\sigma(\mathbf{x}, t)\) for the gravitational and scalar potentials appearing in \(V_{\mathrm{eff}}\) above, and define the energy flux \(\mathbf{J}_E = -(\hbar^2/2m_a)(\partial_t\Phi_0^*\nabla\Phi_0 + \partial_t\Phi_0\nabla\Phi_0^*)\). Even in the collisionless limit (\(\Gamma_{12} = 0\), \(n_{\mathrm{th}} = 0\)), setting \(\Gamma_{12} = n_{\mathrm{th}} = 0\) does not eliminate \(U\): if one evaluates only the trap-only density \(e_0 := (\hbar^2/2m_a)|\nabla\Phi_0|^2 + V_{\mathrm{trap}}|\Phi_0|^2 + (g_{\mathrm{int}}/2)|\Phi_0|^4\) under the full equation with \(U \neq 0\), direct substitution gives \(\partial_t e_0 + \nabla\cdot\mathbf{J}_E = n_0\,\partial_t V_{\mathrm{trap}} - U\,\partial_t n_0\), leaving a generally nonzero omitted term \(-U\,\partial_t n_0\) (\nolinkurl{verify_paper003_v4.py}). Including \(U n_0\) consistently in the total condensate energy density \(e := e_0 + U n_0\) for a prescribed external potential \(V_{\mathrm{trap}}(\mathbf{x}, t) + U(\mathbf{x}, t)\) gives the exact local balance (\nolinkurl{verify_paper003_v4.py}):
+
+\begin{equation}
+\partial_t e + \nabla\cdot\mathbf{J}_E = n_0\,\partial_t\bigl(V_{\mathrm{trap}}(\mathbf{x}, t) + U(\mathbf{x}, t)\bigr),
+\end{equation}
+
+which reduces to the trap-only work identity \(n_0\,\partial_t V_{\mathrm{trap}}\) when \(U = 0\) (or when \(U\) is static, \(\partial_t U = 0\), with \(U n_0\) retained inside \(e\)). Thus whenever external trap or potential fields are time-dependent, apparatus work \(\int n_0\,\partial_t(V_{\mathrm{trap}} + U)\,d^3x\) enters the condensate energy budget; if \(\sigma(\mathbf{x}, t)\) is promoted to a dynamical self-consistent scalar field rather than a prescribed external potential, a complete closed-system energy conservation law must additionally include the scalar field's energy density, flux, and condensate--scalar energy exchange, and in the open \(\Gamma_{12} \neq 0\) regime full two-fluid momentum and energy exchange requires the coupled ZNG kinetic equations.
+
+\textbf{Locality and covariance boundary:} Because the Penrose--Onsager condensate number \(N_0\) is the largest eigenvalue of the nonlocal operator \(\rho_1(\mathbf{x}, \mathbf{x}')\), identifying \(n_0(\mathbf{x}) = |\Phi_0(\mathbf{x})|^2\) as a local source in a field equation is valid strictly in the coarse-grained hydrodynamic / broken-symmetry limit (\(\ell_{\mathrm{coarse}} \gg \xi_{\mathrm{heal}}\), single macroscopic mode in the apparatus rest frame \(u^\mu\)). A relativistic covariant completion would require promoting \(\Phi_0\) to a local covariant scalar order parameter coupled consistently to the full energy-momentum tensor.
+
+\subsection{\texorpdfstring{Quantitative separation of ordinary \(^{87}\mathrm{Rb}\) energy and spatial confounders}{Quantitative separation of ordinary \^{}\{87\}\textbackslash mathrm\{Rb\} energy and spatial confounders}}\label{quantitative-separation-of-ordinary-87mathrmrb-energy-and-spatial-confounders}
+
+Evaluating a concrete \(^{87}\mathrm{Rb}\) harmonic-trap benchmark (\(N = 10^6\) atoms, \(a_s = 5.29\,\mathrm{nm}\), isotropic trap \(\bar{\omega} = 2\pi \times 50\,\mathrm{Hz}\), verified in \nolinkurl{verify_paper003_v4.py} / \nolinkurl{paper003_v4_verification_results.json}) separates condensate fraction from ordinary thermodynamic and spatial changes:
+
+{\def\LTcaptype{none} % do not increment counter
+\begingroup\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}[]{@{}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\RaggedRight\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\RaggedRight
+Quantity (for \(N = 10^6\) \(^{87}\mathrm{Rb}\) atoms, \(\bar{\omega}/2\pi = 50\,\mathrm{Hz}\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\RaggedRight
+Physical implication
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Ideal critical temperature \(T_c\) / thermal reference \(1.2 T_c\) & \(225.68\,\mathrm{nK}\) / \(270.82\,\mathrm{nK}\) & Sets evaporative transition window \\
+Thomas--Fermi chemical potential \(\mu_{\mathrm{TF}}/k_B\) and radius \(R_{\mathrm{TF}}\) & \(92.39\,\mathrm{nK}\) and \(13.38\,\mu\mathrm{m}\) & Compact condensed core (\(R_{\mathrm{rms,BEC}} = 8.76\,\mu\mathrm{m}\)) \\
+Thermal cloud width \(\sigma_{\mathrm{th}}\) and RMS radius \(R_{\mathrm{rms,th}}\) & \(16.20\,\mu\mathrm{m}\) and \(28.06\,\mu\mathrm{m}\) & Thermal cloud is \(3.20\times\) larger in RMS radius \\
+Ordinary total energy shift \(\Delta E_{\mathrm{tot}} / (N m_a c^2)\) & \(7.97 \times 10^{-22}\) & Negligible relativistic mass-energy difference \\
+Ordinary interaction energy shift \(\Delta E_{\mathrm{int}} / (N m_a c^2)\) & \(2.60 \times 10^{-23}\) & Hartree--Fock exchange shift is 23 orders below rest mass \\
+Earth gravity-gradient shift per \(1\,\mu\mathrm{m}\) centroid offset (\(\Gamma_{zz}\delta z / g\)) & \(3.15 \times 10^{-13}\) & \textbf{\(3.95 \times 10^8\times\) larger} than ordinary energy shift \\
+\end{longtable}
+\endgroup
+}
+
+Any realistic experimental test (developed in Paper 014 v3) must therefore control spatial redistribution, gravity gradients, and temperature-dependent wavefront curvature explicitly rather than treating condensate-vs-thermal energy matching as sufficient.
+
+\section{12. Conclusion}\label{conclusion}
+
+The Level 0 model-and-methods note contains a precise declared reason why a BEC and thermal cloud could differ: a new condensate-density source operator defined through the Penrose-Onsager condensate mode. The null benchmark verifies the recovery path; the nonzero linear response verifies the signed Yukawa and interferometer formulas; and the exact linear uniform-sphere and first-order uncertainty fixtures test source geometry and apparatus bookkeeping without manufacturing a constraint-cleared anomaly. The internal variation audit also exposes the remaining covariant source stress / current problem instead of hiding it. The decisive question is whether the operator has a defensible microscopic origin and survives realistic source, screening, fifth-force, cold-atom, and calibrated apparatus constraints. Until those gates and independent reviews close, the paper is a model and falsification contract rather than a validated prediction letter. Its publication-level result is the explicit source hypothesis, linear-response derivation, exact bounded fixture, reproducibility surface, and failure criteria - not evidence that the proposed interaction exists.
+
+\section{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Khoury, J., and Weltman, A. Chameleon Fields: Awaiting Surprises for Tests of Gravity in Space. \emph{Physical Review Letters} 93, 171104 (2004). \href{https://doi.org/10.1103/PhysRevLett.93.171104}{doi:\nolinkurl{10.1103/PhysRevLett.93.171104}}
+\item
+  Hinterbichler, K., and Khoury, J. Screening Long-Range Forces Through Local Symmetry Restoration. \emph{Physical Review Letters} 104, 231301 (2010). \href{https://doi.org/10.1103/PhysRevLett.104.231301}{doi:\nolinkurl{10.1103/PhysRevLett.104.231301}}
+\item
+  Touboul, P., et al.~MICROSCOPE Mission: Final Results of the Test of the Equivalence Principle. \emph{Physical Review Letters} 129, 121102 (2022). \href{https://doi.org/10.1103/PhysRevLett.129.121102}{doi:\nolinkurl{10.1103/PhysRevLett.129.121102}}
+\item
+  Lachmann, M. D., Ahlers, H., Becker, D., et al.~Ultracold atom interferometry in space. \emph{Nature Communications} 12, 1317 (2021). \href{https://doi.org/10.1038/s41467-021-21628-z}{doi:\nolinkurl{10.1038/s41467-021-21628-z}}
+\item
+  Penrose, O., and Onsager, L. Bose-Einstein Condensation and Liquid Helium. \emph{Physical Review} 104, 576-584 (1956). \href{https://doi.org/10.1103/PhysRev.104.576}{doi:\nolinkurl{10.1103/PhysRev.104.576}}
+\item
+  Asenbaum, P., Overstreet, C., Kim, M., Curti, J., and Kasevich, M. A. Atom-Interferometric Test of the Equivalence Principle at the 10\^{}-12 Level. \emph{Physical Review Letters} 125, 191101 (2020). \href{https://doi.org/10.1103/PhysRevLett.125.191101}{doi:\nolinkurl{10.1103/PhysRevLett.125.191101}}
+\item
+  Rosi, G., D'Amico, G., Cacciapuoti, L., et al.~Quantum test of the equivalence principle for atoms in coherent superposition of internal energy states. \emph{Nature Communications} 8, 15529 (2017). \href{https://doi.org/10.1038/ncomms15529}{doi:\nolinkurl{10.1038/ncomms15529}}
+\end{enumerate}
+
+\section{Version Lineage and Release Status}\label{version-lineage-and-release-status}
+
+Version 3 was publicly deposited on July 29, 2026 as Paper 003 (Zenodo DOI 10.5281/zenodo.21693868, \url{https://pub.svgn.io/papers/paper-3/}). This November 20, 2026 Version 4 candidate adds the explicit architectural separation from the November 2026 authoritative SIT action, reconciles the canonical scalar source normalization (\(\lambda_Q := g_Q m_a / M_{\mathrm{Pl}}\)) and null-recovery condition (\(g_Q = 0\)), separates conservative GP (\(\Gamma_{12}=0\)) from open ZNG-type particle exchange (\(-i\hbar\Gamma_{12}\Phi_0/(2n_0)\) paired with thermal kinetic continuity) and full external-potential energy balance (all verified symbolically in \nolinkurl{verify_paper003_v4.py}), and reports the quantitative \(^{87}\mathrm{Rb}\) energy and spatial-confounder budget. It remains a private review candidate awaiting explicit author release authorization.
+
+\end{document}

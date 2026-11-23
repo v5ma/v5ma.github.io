@@ -1,0 +1,26 @@
+{
+  "built_utc": "2026-11-20T17:50:35.779266+00:00",
+  "title": "Super Information Theory: Coherence, Time Density, Informational Dissipation, and Gravity",
+  "markdown": "paper-002/Paper-002-v2-Candidate.md",
+  "markdown_sha256": "5a909377ab035217f817e6b1ccb65e465c6d2bfab962703300b7af52b23e2721",
+  "tex": "paper-002/Paper-002-Super-Information-Theory-Overview-v2.tex",
+  "tex_sha256": "913731016654de0ecd5ce671ab34ef2b8d0268dfd48fcae9e92d5edca0bfcfff",
+  "pdf": "paper-002/Paper-002-Super-Information-Theory-Overview-v2.pdf",
+  "pdf_bytes": 280531,
+  "pdf_sha256": "42e5cee0f1d022ef6833f0ecfdbd711c1aaf6522f71f42f679df799adef56357",
+  "pages": 29,
+  "page_box_pt": [
+    612.0,
+    792.0
+  ],
+  "is_us_letter": true,
+  "has_times_new_roman": true,
+  "first_page_has_author_label": true,
+  "first_page_has_institute": true,
+  "first_page_has_website": true,
+  "internal_id_hits": [],
+  "private_path_hits": [],
+  "question_mark_placeholder_hits": 0,
+  "undefined_or_multiply_defined_warnings": [],
+  "pass": true
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "paper007.v2.verification.v2",
+  "checks": [
+    {
+      "check": "static_schur_elimination_vs_dynamical_momentum_reduction",
+      "dR_static_elimination": "-drho*lmix/m2**2",
+      "static_schur_m_eff_squared": "-lmix**2/m2**2 + m1**2",
+      "euclidean_inverse_propagator": "-lmix**2/(m2**2 + p2) + m1**2 + p2",
+      "low_momentum_kinetic_renormalization_Z_eff": "lmix**2/m2**4 + 1",
+      "low_momentum_quartic_derivative_coeff": "-lmix**2/m2**6",
+      "omitted_dR_eom_residual_when_frozen": "J_R - drho*lmix",
+      "freezing_consistent_iff_lmix_and_JR_vanish": true,
+      "diagnostic_example_M2_1_1_1_4": {
+        "schur_zero_momentum_coeff": 0.75,
+        "exact_light_eigenvalue": 0.697224362,
+        "kinetic_Z_eff": 1.0625,
+        "rescaled_low_momentum_pole_approx": 0.705882353,
+        "negative_control_schur_strictly_distinct_from_eigenvalue": true
+      },
+      "passed": true
+    },
+    {
+      "check": "clock_dictionary_and_dead_time_renewal_calibration",
+      "total_observed_redshift_slope": "T_grav*alpha_rho + 1",
+      "anomalous_SIT_redshift_slope_delta_alpha_Phi": "T_grav*alpha_rho",
+      "dead_time_sensitivity_formula": "1/(lam*tau_d + 1)",
+      "exact_nonparalyzable_renewal_Fano_formula": "1 / (1 + lam * tau_d)**2",
+      "detector_operating_points": [
+        {
+          "dead_time_occupancy_lam_tau": 0.001,
+          "tau_dead_us": 0.1,
+          "compression_factor_S_dead": 0.999001,
+          "naive_fractional_slope_underestimate_percent": 0.1,
+          "exact_poisson_nonparalyzable_renewal_Fano": 0.998003,
+          "rel_field_err_exact_renewal_F": 0.0010005,
+          "rel_field_err_separately_assumed_F1": 0.0010015,
+          "rel_field_err_separately_assumed_F2p5": 0.0015835
+        },
+        {
+          "dead_time_occupancy_lam_tau": 0.05,
+          "tau_dead_us": 5.0,
+          "compression_factor_S_dead": 0.952381,
+          "naive_fractional_slope_underestimate_percent": 4.762,
+          "exact_poisson_nonparalyzable_renewal_Fano": 0.907029,
+          "rel_field_err_exact_renewal_F": 0.0010247,
+          "rel_field_err_separately_assumed_F1": 0.0010759,
+          "rel_field_err_separately_assumed_F2p5": 0.0017012
+        },
+        {
+          "dead_time_occupancy_lam_tau": 0.25,
+          "tau_dead_us": 25.0,
+          "compression_factor_S_dead": 0.8,
+          "naive_fractional_slope_underestimate_percent": 20.0,
+          "exact_poisson_nonparalyzable_renewal_Fano": 0.64,
+          "rel_field_err_exact_renewal_F": 0.001118,
+          "rel_field_err_separately_assumed_F1": 0.0013975,
+          "rel_field_err_separately_assumed_F2p5": 0.0022097
+        },
+        {
+          "dead_time_occupancy_lam_tau": 1.0,
+          "tau_dead_us": 100.0,
+          "compression_factor_S_dead": 0.5,
+          "naive_fractional_slope_underestimate_percent": 50.0,
+          "exact_poisson_nonparalyzable_renewal_Fano": 0.25,
+          "rel_field_err_exact_renewal_F": 0.0014142,
+          "rel_field_err_separately_assumed_F1": 0.0028284,
+          "rel_field_err_separately_assumed_F2p5": 0.0044721
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

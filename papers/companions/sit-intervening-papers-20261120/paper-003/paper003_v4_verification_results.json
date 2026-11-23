@@ -1,0 +1,56 @@
+{
+  "schema": "paper003.v4.verification.v4",
+  "checks": [
+    {
+      "check": "two_fluid_gp_madelung_conservation_and_full_potential_energy_balance_sympy",
+      "conservative_gp_continuity_residual": "0",
+      "conservative_gp_hamilton_jacobi_residual": "0",
+      "negative_control_conservative_gp_rejects_nonzero_Gamma12": true,
+      "open_zng_gp_continuity_residual_with_minus_Gamma12": "0",
+      "open_zng_gp_hamilton_jacobi_residual": "0",
+      "paired_thermal_total_number_conservation_residual": "0",
+      "negative_control_trap_only_e0_missing_U_dt_n0_verified": true,
+      "full_prescribed_potential_e_plus_Un0_balance_residual": "0",
+      "full_prescribed_potential_work_source": "(u(x, t)**2 + w(x, t)**2)*(Derivative(U_ext(x, t), t) + Derivative(V_tr(x, t), t))",
+      "trap_only_U0_balance_residual": "0",
+      "passed": true
+    },
+    {
+      "check": "canonical_scalar_source_normalization_null_condition_and_manuscript_binding",
+      "lambda_Q_definition": "g_Q*m_a/M_Pl",
+      "eq10_variational_match_residual": "0",
+      "background_subtracted_delta_sigma_Q_residual": "0",
+      "condensate_force_density_residual": "0",
+      "mass_dimensions_4D": {
+        "LHS_nabla2_sigma": 3,
+        "RHS_lambda_Q_n0": 3,
+        "erroneous_lambda_Q_n0_over_Meff2": 1,
+        "negative_control_rejects_Meff2_denominator": true
+      },
+      "null_recovery_requires_gQ_eq_0_verified": true,
+      "manuscript_file": "Paper-003-v4-Candidate.md",
+      "manuscript_sha256_verified": "3ba906c9c0ab7f7d8e8bef75602fae1c502ba37ffed9e36fabf605ddcea91139",
+      "manuscript_equation_and_sign_binding_passed": true,
+      "passed": true
+    },
+    {
+      "check": "rb87_microscopic_energy_and_spatial_confounder_budget",
+      "N_atoms": 1000000,
+      "omega_bar_Hz": 50.0,
+      "T_c_nK": 225.684,
+      "T_thermal_nK": 270.821,
+      "mu_TF_over_kB_nK": 92.387,
+      "R_TF_um": 13.383,
+      "R_rms_bec_um": 8.761,
+      "sigma_th_um": 16.202,
+      "R_rms_thermal_um": 28.063,
+      "fractional_total_energy_shift_deltaE_over_mc2": 7.966706e-22,
+      "fractional_interaction_energy_shift_deltaEint_over_mc2": 2.601302e-23,
+      "earth_gravity_gradient_eta_per_1um_offset": 3.146844e-13,
+      "spatial_confounder_over_ordinary_energy_ratio": 395000000.0,
+      "unchanged_M_NOV2026_produces_O1_condensate_contrast": false,
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

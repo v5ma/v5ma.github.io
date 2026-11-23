@@ -1,0 +1,107 @@
+{
+  "schema": "paper002.v2.verification.v2",
+  "checks": [
+    {
+      "check": "conformal_vs_multiplicative_non_interchangeability",
+      "matter_assumptions": "4D non-Weyl-invariant matter with distinct conformal weights (kinetic A^2 and mass/potential A^4) at fixed unrescaled matter fields",
+      "conformal_weights_4D": {
+        "scalar_kinetic": "A**2",
+        "scalar_mass_or_potential": "A**4",
+        "pure_maxwell_weyl_invariant": "1"
+      },
+      "exact_solutions_for_positive_A_and_fSM": [
+        {
+          "A": "1",
+          "f_sm": "1"
+        }
+      ],
+      "canonical_rescaling_at_constant_f0": {
+        "kinetic_factor": "1",
+        "mass_sq_factor": "m**2",
+        "quartic_coupling": "lam/f0"
+      },
+      "passed": true
+    },
+    {
+      "check": "unital_vs_nonunital_purity_monotonicity",
+      "unital_dephasing_p03": {
+        "before": 1.0,
+        "after": 0.58
+      },
+      "nonunital_amplitude_damping_g05_on_mixed": {
+        "before": 0.5,
+        "after": 0.625,
+        "purity_increased": true
+      },
+      "passed": true
+    },
+    {
+      "check": "observational_reference_cases_A_B_C",
+      "cases_A_B_finite_range_and_mass_calibration": [
+        {
+          "lambda_AU": 0.1,
+          "gamma_loc_at_limb_minus_1": -0.001808039,
+          "gamma_cassini_orbit_calibrated_minus_1": -9.99e-07,
+          "ratio_cassini_to_local_deviation": 0.000552
+        },
+        {
+          "lambda_AU": 0.5,
+          "gamma_loc_at_limb_minus_1": -0.001958478,
+          "gamma_cassini_orbit_calibrated_minus_1": -0.000811682,
+          "ratio_cassini_to_local_deviation": 0.414445
+        },
+        {
+          "lambda_AU": 1.0,
+          "gamma_loc_at_limb_minus_1": -0.001978141,
+          "gamma_cassini_orbit_calibrated_minus_1": -0.001470436,
+          "ratio_cassini_to_local_deviation": 0.743342
+        },
+        {
+          "lambda_AU": 10.0,
+          "gamma_loc_at_limb_minus_1": -0.001996007,
+          "gamma_cassini_orbit_calibrated_minus_1": -0.001988663,
+          "ratio_cassini_to_local_deviation": 0.996321
+        }
+      ],
+      "case_C_fayet_form_factor_absorption": [
+        {
+          "R_over_lambda": 0.1,
+          "fayet_form_factor": 1.001,
+          "alpha_true": 1e-05,
+          "alpha_inferred_by_point_source_fit": 1.001e-05,
+          "bias_multiplier": 1.001
+        },
+        {
+          "R_over_lambda": 1.0,
+          "fayet_form_factor": 1.103638,
+          "alpha_true": 1e-05,
+          "alpha_inferred_by_point_source_fit": 1.10364e-05,
+          "bias_multiplier": 1.103638
+        },
+        {
+          "R_over_lambda": 3.0,
+          "fayet_form_factor": 2.24279,
+          "alpha_true": 1e-05,
+          "alpha_inferred_by_point_source_fit": 2.24279e-05,
+          "bias_multiplier": 2.24279
+        },
+        {
+          "R_over_lambda": 5.0,
+          "fayet_form_factor": 7.124317,
+          "alpha_true": 1e-05,
+          "alpha_inferred_by_point_source_fit": 7.12432e-05,
+          "bias_multiplier": 7.124317
+        }
+      ],
+      "passed": true
+    },
+    {
+      "check": "unified_anomalous_clock_redshift_dictionary",
+      "total_observed_redshift_slope": "T_grav*alpha_rho + 1",
+      "gr_metric_baseline": 1,
+      "anomalous_SIT_redshift_slope_delta_alpha_Phi": "T_grav*alpha_rho",
+      "passed": true
+    }
+  ],
+  "overall_passed": true
+}

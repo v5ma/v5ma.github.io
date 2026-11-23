@@ -1,0 +1,424 @@
+{
+  "release_date": "2026-11-22",
+  "reviewed_commit": "2a9743a6256219aabc412d3c9edabccfac62f912",
+  "papers_count": 11,
+  "total_pdf_pages": 182,
+  "tracked_files_from_reviewed_commit": 82,
+  "files": [
+    {
+      "path": "PORTFOLIO-PASS2-AUDIT-RECEIPT.json",
+      "bytes": 17335,
+      "sha256": "4bfaa5a0b5cf3409d910588ff7561d216699ed39ce4a9bc8d0d930cd4f80af62"
+    },
+    {
+      "path": "PORTFOLIO-UPGRADE-MANIFEST.json",
+      "bytes": 12047,
+      "sha256": "baa7a97121435384c09926bdc0c00991ee8969b6741d91e8de8563acc47d733a"
+    },
+    {
+      "path": "PUBLIC-RELEASE-PROVENANCE.md",
+      "bytes": 4672,
+      "sha256": "16082c57fd7c16e2155d1fe7ec6990db49d96a3aae84accf99ce9278b47f5266"
+    },
+    {
+      "path": "README.md",
+      "bytes": 15237,
+      "sha256": "729aca74bcf7663e49f2de46d9bc8730da2242decfc3765b510d26b7198e6283"
+    },
+    {
+      "path": "paper-002/PAPER-002-BUILD-RECEIPT.json",
+      "bytes": 1017,
+      "sha256": "0d74d75f20789fe70bab7fa0b6fcfefd53b09c00b3f0254c934e1355a5fc1523"
+    },
+    {
+      "path": "paper-002/Paper-002-Super-Information-Theory-Overview-v2.pdf",
+      "bytes": 280531,
+      "sha256": "42e5cee0f1d022ef6833f0ecfdbd711c1aaf6522f71f42f679df799adef56357"
+    },
+    {
+      "path": "paper-002/Paper-002-Super-Information-Theory-Overview-v2.tex",
+      "bytes": 107110,
+      "sha256": "913731016654de0ecd5ce671ab34ef2b8d0268dfd48fcae9e92d5edca0bfcfff"
+    },
+    {
+      "path": "paper-002/Paper-002-v2-Candidate.md",
+      "bytes": 92265,
+      "sha256": "5a909377ab035217f817e6b1ccb65e465c6d2bfab962703300b7af52b23e2721"
+    },
+    {
+      "path": "paper-002/build_paper002_v2.py",
+      "bytes": 14234,
+      "sha256": "944a48d1d5ac3f5dfee524b42fd6bd032d2f1815624ad08b19c6116ec191d81c"
+    },
+    {
+      "path": "paper-002/paper002_v2_verification_results.json",
+      "bytes": 3361,
+      "sha256": "91bf53917e33b56bef09bc705cbbff4b0ccb62f735ef993de6dfef36912774a1"
+    },
+    {
+      "path": "paper-002/verify_paper002_v2.py",
+      "bytes": 8092,
+      "sha256": "39b7e2c9bceb95f7d7c70cea6e90e4cd801a7965e5823df4b81c4a6cde9cbb9a"
+    },
+    {
+      "path": "paper-003/PAPER-003-BUILD-RECEIPT.json",
+      "bytes": 1054,
+      "sha256": "57672c9c96d9e15e4373bf87131ca2d841b3188ed259c48c4bc425ddf6cc4dfb"
+    },
+    {
+      "path": "paper-003/Paper-003-Level-0-SIT-Condensate-Source-Contract-v4.pdf",
+      "bytes": 177473,
+      "sha256": "fb6489d914dbda024cb2437d19ed51aca2945c649d59fdbd9d2fc213ea0d584b"
+    },
+    {
+      "path": "paper-003/Paper-003-Level-0-SIT-Condensate-Source-Contract-v4.tex",
+      "bytes": 48742,
+      "sha256": "7f7d849a223a04e07f0b6cd8c31046d412623cf1370f8a7fe21a42f8a7129f59"
+    },
+    {
+      "path": "paper-003/Paper-003-v4-Candidate.md",
+      "bytes": 36810,
+      "sha256": "3ba906c9c0ab7f7d8e8bef75602fae1c502ba37ffed9e36fabf605ddcea91139"
+    },
+    {
+      "path": "paper-003/build_paper003_v4.py",
+      "bytes": 16031,
+      "sha256": "1150f575b43b9d40280476791d96a95f54172526572ab6c0b15505a1b5e801be"
+    },
+    {
+      "path": "paper-003/paper003_v4_verification_results.json",
+      "bytes": 2408,
+      "sha256": "d62dec164c0f0d6c30a83e8c2c2b7f186eea3a6ee043ad3ef9e1ed4f356715fe"
+    },
+    {
+      "path": "paper-003/verify_paper003_v4.py",
+      "bytes": 16034,
+      "sha256": "58b9f3b82d4d675e35ba2ff9a06464c6eaf54d4b6e0c093c37fc32ccb0a017b5"
+    },
+    {
+      "path": "paper-007/PAPER-007-BUILD-RECEIPT.json",
+      "bytes": 974,
+      "sha256": "2e47dbd99cac76f5f2ca704f95b0c25300c7c0c3af1075c4ca407cc0ea7ab40b"
+    },
+    {
+      "path": "paper-007/Paper-007-Super-Dark-Time-v2.pdf",
+      "bytes": 250471,
+      "sha256": "a975dc0cf2a2a24571001f63b46c4f04d3608b6f7af76358f5691f6c91364deb"
+    },
+    {
+      "path": "paper-007/Paper-007-Super-Dark-Time-v2.tex",
+      "bytes": 87523,
+      "sha256": "a72a8af099d02877f85421ed9a3f170d452e6445e15827e073740499c333e5da"
+    },
+    {
+      "path": "paper-007/Paper-007-v2-Candidate.md",
+      "bytes": 72893,
+      "sha256": "0131855662585ac3f367256dd226ea448b0d54ebc834e3dc5eb6550ce9994e4f"
+    },
+    {
+      "path": "paper-007/paper007_v2_verification_results.json",
+      "bytes": 3164,
+      "sha256": "ae0a227eca660fde5f22a3d3768955aae6ec2196514d87ae196323f8aa15b3c0"
+    },
+    {
+      "path": "paper-007/verify_paper007_v2.py",
+      "bytes": 8401,
+      "sha256": "6a3f9a7a705287eed3b2fc2c518298ff87d12df4b30eb9fa1aaf7e4386ce6ae4"
+    },
+    {
+      "path": "paper-014/PAPER-014-BUILD-RECEIPT.json",
+      "bytes": 993,
+      "sha256": "0d0d14b406dcedc2fa7d18874812bbc1a1eaf5252aaebd2010359546f83659b3"
+    },
+    {
+      "path": "paper-014/Paper-014-BEC-Coherence-Gravity-Test-Design-v3.pdf",
+      "bytes": 188749,
+      "sha256": "1b2be34117b2e020018cc43eff3184c09faa09fd4505cbd5d6c5092a58f423ff"
+    },
+    {
+      "path": "paper-014/Paper-014-BEC-Coherence-Gravity-Test-Design-v3.tex",
+      "bytes": 50036,
+      "sha256": "7cd0e166a4760dae2f27ff74e161285bc8da383d999c4f300820307b0aab71e8"
+    },
+    {
+      "path": "paper-014/Paper-014-v3-Candidate.md",
+      "bytes": 39204,
+      "sha256": "f9dc2c9ff1391e27535ca7a07ac5e667b855730e5f57f29930a7ade7e8d76f59"
+    },
+    {
+      "path": "paper-014/build_paper014_v3.py",
+      "bytes": 13831,
+      "sha256": "2093de423b7fd8afe5b4332d4ec489ae269c8f96dafa02b521b6722ce53e326a"
+    },
+    {
+      "path": "paper-014/paper014_v3_verification_results.json",
+      "bytes": 4847,
+      "sha256": "788783a7c63c616b6218b9373d1026cfbeed690652fe542f1fd03c7bab2dc6ba"
+    },
+    {
+      "path": "paper-014/verify_paper014_v3.py",
+      "bytes": 13390,
+      "sha256": "6a4f84a459bbcfef7c9544217885320dc0dc43f679b074d4b38e51f013cadd18"
+    },
+    {
+      "path": "paper-028/PAPER-028-BUILD-RECEIPT.json",
+      "bytes": 982,
+      "sha256": "8100094151b68f81d0c23ca4ff19579bf58c11322691ad6a4468279589efb72d"
+    },
+    {
+      "path": "paper-028/Paper-028-Cross-Disciplinary-SIT-Translation-Guide-v2.pdf",
+      "bytes": 187982,
+      "sha256": "3534bb36bb3458e88e6c1a72012d5fb2f4ff93595fa3f53f7f62fb5aa5117744"
+    },
+    {
+      "path": "paper-028/Paper-028-Cross-Disciplinary-SIT-Translation-Guide-v2.tex",
+      "bytes": 45758,
+      "sha256": "3f473c7a08487a9f747b7677fc7480a760ab8f8e2101c0f33776b72c4869dced"
+    },
+    {
+      "path": "paper-028/Paper-028-v2-Candidate.md",
+      "bytes": 35594,
+      "sha256": "19a2aaaa9f605606cb9b5649046924e3209247ed841222fa11e563bbfaa48dca"
+    },
+    {
+      "path": "paper-033/PAPER-033-BUILD-RECEIPT.json",
+      "bytes": 1065,
+      "sha256": "06173dd032ae0208dd43ec6cf53a0377fe93b717ce118b3dbb417dd88fd3564e"
+    },
+    {
+      "path": "paper-033/Paper-033-Coherence-Tower-U1-Lattice-Toy-Model-v2.pdf",
+      "bytes": 558776,
+      "sha256": "64819db0c3bead5c5aa1a9fbfdf3684acddeb94942fc79f92a42b10c94fb7f76"
+    },
+    {
+      "path": "paper-033/Paper-033-Coherence-Tower-U1-Lattice-Toy-Model-v2.tex",
+      "bytes": 107143,
+      "sha256": "faffaa60020915ae4f85da46801f4b324010da8b607bfaa91968c746bf95b0f8"
+    },
+    {
+      "path": "paper-033/Paper-033-v2-Candidate.md",
+      "bytes": 71614,
+      "sha256": "f6081eda3969e187fcb9678e8c0f9cf8a439808686314cbd037fff3d54e0fb3e"
+    },
+    {
+      "path": "paper-033/assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-001.png",
+      "bytes": 85875,
+      "sha256": "0984df7fc5d7c61e9aa24d16eeef00c4e790cc8ddb08ebca74c21ca04b3dbb82"
+    },
+    {
+      "path": "paper-033/assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-002.png",
+      "bytes": 85891,
+      "sha256": "8c740c54ac67dd1916f799e3cfcd826143d9436522f35004c6c91fdb808e27ca"
+    },
+    {
+      "path": "paper-033/assets/A-Constructive-Coherence-Tower-Theorem-for-a-U-1-Lattice-Toy-Model-of-Super-Information-Theory/figure-003.png",
+      "bytes": 123190,
+      "sha256": "1470e3981204d3c34df4d6958803d06c00f49d556c480a15938fe9b75bfbf6d5"
+    },
+    {
+      "path": "paper-033/build_paper033_v2.py",
+      "bytes": 23286,
+      "sha256": "d1804252a6d637b3982f9110465f6bc59955c142cde22bd1f2cbcc5f5b345dac"
+    },
+    {
+      "path": "paper-033/paper033_v2_verification_results.json",
+      "bytes": 16743,
+      "sha256": "e6ff2aff8c6ea0510aafe412962b43910ffcc45be2f566d2d91209e883c1e1a0"
+    },
+    {
+      "path": "paper-033/verify_paper033_v2.py",
+      "bytes": 23684,
+      "sha256": "6b86630a9d09e25fbed2cade49dddbeacaf912bb2eefc7982fd402beb52f227f"
+    },
+    {
+      "path": "paper-034/PAPER-034-BUILD-RECEIPT.json",
+      "bytes": 992,
+      "sha256": "838822fbcb6205f533a2f20cd651c5a8961f8fbf5bac540b15f3ccc09eb0bc37"
+    },
+    {
+      "path": "paper-034/Paper-034-SuperTimePosition-Gravitational-Phase-Lock-v2.pdf",
+      "bytes": 164786,
+      "sha256": "a9d5e1fb6821c7759813f21df80db3f09ece5880a4933ac6c16dfef82e7b9bb3"
+    },
+    {
+      "path": "paper-034/Paper-034-SuperTimePosition-Gravitational-Phase-Lock-v2.tex",
+      "bytes": 41908,
+      "sha256": "3370eb1dfa0bdb1dfd93487ab0487fad6882b1834899dc938b3bb73ca37d7568"
+    },
+    {
+      "path": "paper-034/Paper-034-v2-Candidate.md",
+      "bytes": 31885,
+      "sha256": "bb98af17b9bcbdabec8f153b5da0e85c972138bf2cef18732d6c3a9bbb4062fb"
+    },
+    {
+      "path": "paper-034/paper034_v2_verification_results.json",
+      "bytes": 867,
+      "sha256": "fb89e57b5af8ec537dbb0a184e1a7459802b56271b6be35f2ce1c27567ba0474"
+    },
+    {
+      "path": "paper-034/verify_paper034_v2.py",
+      "bytes": 5806,
+      "sha256": "a4609c8c2f7f60c0a93406257d8bbfb7dfeb2496157146ee8ab8367582c18c1e"
+    },
+    {
+      "path": "paper-048/PAPER-048-BUILD-RECEIPT.json",
+      "bytes": 973,
+      "sha256": "d13a7726366acd858118a98697bcf02c15ecc01fca6792cb3c08ca32b419894d"
+    },
+    {
+      "path": "paper-048/Paper-048-Causal-Fermion-Systems-and-SIT-v2.pdf",
+      "bytes": 193847,
+      "sha256": "6622c8fb16c3aa687ea5962e401b7c23ab8694fb42262a93c964b32100250424"
+    },
+    {
+      "path": "paper-048/Paper-048-Causal-Fermion-Systems-and-SIT-v2.tex",
+      "bytes": 66308,
+      "sha256": "7d75184b8adebcde80f1ebe18a843ce33dbabe0fca6a01ab81092bc26a5590fd"
+    },
+    {
+      "path": "paper-048/Paper-048-v2-Candidate.md",
+      "bytes": 51721,
+      "sha256": "ce0770db8762a2030e23b5ad8163e847ae0b506c782c3dfe58a9602bad31f73c"
+    },
+    {
+      "path": "paper-048/paper048_v2_verification_results.json",
+      "bytes": 1536,
+      "sha256": "32171467180f9d65b83b4694be6f53457ac696c19c90216efa9456a9032e88e6"
+    },
+    {
+      "path": "paper-048/verify_paper048_v2.py",
+      "bytes": 8059,
+      "sha256": "302dec55ee156130fc7a640e2a46506584e6edc1a9df79d2952feea0688b4129"
+    },
+    {
+      "path": "paper-055/PAPER-055-BUILD-RECEIPT.json",
+      "bytes": 928,
+      "sha256": "0974f1c4e33befcbf217618f4096d4eda9ba033addc584dfcd57ffe2df064ca0"
+    },
+    {
+      "path": "paper-055/Paper-055-QGTCD-Constraints-Note-v2.pdf",
+      "bytes": 203474,
+      "sha256": "f8a8282eb2b17fb2ad3950e42e46887be26cbc3a3d5bb25ecd7c9941b559319d"
+    },
+    {
+      "path": "paper-055/Paper-055-QGTCD-Constraints-Note-v2.tex",
+      "bytes": 61532,
+      "sha256": "d0c49cedabf0ef5099d7c832ef808ac6f89f9e1c8f8f9b0fc588b199b96316d8"
+    },
+    {
+      "path": "paper-055/Paper-055-v2-Candidate.md",
+      "bytes": 50703,
+      "sha256": "d29d2037e703116e5daca82d14a3e13cd4a945f9a40209f9aa5c3e26437a0c5c"
+    },
+    {
+      "path": "paper-055/paper055_v2_verification_results.json",
+      "bytes": 1607,
+      "sha256": "43786a962ccc6d303f1c79b65b817ad848cd959c033a8888ffa7b916086bf75a"
+    },
+    {
+      "path": "paper-055/verify_paper055_v2.py",
+      "bytes": 7336,
+      "sha256": "0374b3cdfa22c52a6a2858bf46cab717a3ce838e3b7896c8d1e46243ab1ceea9"
+    },
+    {
+      "path": "paper-062/PAPER-062-BUILD-RECEIPT.json",
+      "bytes": 1011,
+      "sha256": "b6d5e22e2658663f457e303f1a7bef624c8dd89429b7370b018eb3dbcb4e68ae"
+    },
+    {
+      "path": "paper-062/Paper-062-Quantum-Entropic-Force-QGTCD-SIT-v2.pdf",
+      "bytes": 199752,
+      "sha256": "de904d939fb01a4397cd130970e31395a35304617b668e946d9d78a19a602c0b"
+    },
+    {
+      "path": "paper-062/Paper-062-Quantum-Entropic-Force-QGTCD-SIT-v2.tex",
+      "bytes": 60518,
+      "sha256": "0e75f48fcd7337ab763452f8d787ddc58160a2be0f1b304bf0792fa56278f783"
+    },
+    {
+      "path": "paper-062/Paper-062-v2-Candidate.md",
+      "bytes": 49095,
+      "sha256": "dd88933f6df9eea9a3465e4ef42c4c94235189d893dbaae21bbd8b5e791c0f67"
+    },
+    {
+      "path": "paper-062/paper062_v2_verification_results.json",
+      "bytes": 2864,
+      "sha256": "21ba63bcd3315347107470d5ffa1dad24e7a629cd800dcf4c4631f3a1bbc671f"
+    },
+    {
+      "path": "paper-062/verify_paper062_v2.py",
+      "bytes": 7210,
+      "sha256": "5840ec694864cda63c9be48db4b03f0ff93293b014a75acccc381502d89c357f"
+    },
+    {
+      "path": "paper-063/PAPER-063-BUILD-RECEIPT.json",
+      "bytes": 1038,
+      "sha256": "4ebe6948d8a835b5f5b8c4a985999b6d85578be4a8642cc4e4b22167dce946a6"
+    },
+    {
+      "path": "paper-063/Paper-063-Harpers-Beyond-Square-Root-Conjecture-and-SIT-v2.pdf",
+      "bytes": 169075,
+      "sha256": "5ebb186957de36dba9ebf177486df63326a4c66c009db1dc34f0bb742d529b8f"
+    },
+    {
+      "path": "paper-063/Paper-063-Harpers-Beyond-Square-Root-Conjecture-and-SIT-v2.tex",
+      "bytes": 40987,
+      "sha256": "5e8d9af94ac5e700081343032e332a003b18e98ea46a86fb03294485d3246d6b"
+    },
+    {
+      "path": "paper-063/Paper-063-v2-Candidate.md",
+      "bytes": 29237,
+      "sha256": "611d5bfaacaf6d940040fe71d20c1a14fff45ade437f44f6cabc1b7e892f8309"
+    },
+    {
+      "path": "paper-063/build_paper063_v2.py",
+      "bytes": 10953,
+      "sha256": "1bb6831f27bd85923bb90821428a5a77ca677a98002212e530f5b546d6e0ed1f"
+    },
+    {
+      "path": "paper-063/paper063_v2_verification_results.json",
+      "bytes": 2287,
+      "sha256": "0812fb090a66a5bee35d5360badb7f82fcc02abd97b553fede4f6c6831f37c0f"
+    },
+    {
+      "path": "paper-063/verify_paper063_v2.py",
+      "bytes": 7471,
+      "sha256": "e2e94539eeed25d70a1f87cac2da125a496bad7023cd23b10805537466c0a8b6"
+    },
+    {
+      "path": "shared/PORTFOLIO-CHRONOLOGY-AND-MODEL-DICTIONARY.json",
+      "bytes": 7406,
+      "sha256": "d24758acc0afce2f4d5e26e03eac93c30a7b77c8033973a0527afabefdc33d55"
+    },
+    {
+      "path": "shared/PORTFOLIO-CHRONOLOGY-AND-MODEL-DICTIONARY.md",
+      "bytes": 8128,
+      "sha256": "5bae1b836d14c1e2d96e120dd586b380bb5b30222f0a0d815b521b57b7fd1cbe"
+    },
+    {
+      "path": "shared/build_paper.py",
+      "bytes": 11132,
+      "sha256": "30eece8ad5a4d54fe7279d82085b8ed4df1d314e0193075cfb6842a77a9a4fbf"
+    },
+    {
+      "path": "shared/build_wave4_all.py",
+      "bytes": 52342,
+      "sha256": "c9e545df9e673c86f87f9f2922bfacc1cd3368234304efdc6203365e38f52e50"
+    },
+    {
+      "path": "shared/house_style_header.tex",
+      "bytes": 496,
+      "sha256": "c5994c4fbb040447fcf63b18718ed15f42252f35683b0f97b1f65691975cca2b"
+    },
+    {
+      "path": "shared/house_style_tex_helpers.py",
+      "bytes": 10052,
+      "sha256": "cf631c16004149d5142532866136a3ac7886af9757f37d09fe21729eb3285eea"
+    },
+    {
+      "path": "shared/verify_portfolio_pass2.py",
+      "bytes": 30769,
+      "sha256": "f5a20b32c22d0afc148170c10e7dbf0e72aa572056228c2f4d8b7af0e8f3ce90"
+    }
+  ]
+}

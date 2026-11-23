@@ -1,0 +1,26 @@
+{
+  "built_utc": "2026-11-20T16:53:28.032621+00:00",
+  "title": "Super Dark Time: From Local Time-Rate Gradients to a Testable Scalar-Tensor Bridge",
+  "markdown": "paper-007/Paper-007-v2-Candidate.md",
+  "markdown_sha256": "0131855662585ac3f367256dd226ea448b0d54ebc834e3dc5eb6550ce9994e4f",
+  "tex": "paper-007/Paper-007-Super-Dark-Time-v2.tex",
+  "tex_sha256": "a72a8af099d02877f85421ed9a3f170d452e6445e15827e073740499c333e5da",
+  "pdf": "paper-007/Paper-007-Super-Dark-Time-v2.pdf",
+  "pdf_bytes": 250471,
+  "pdf_sha256": "a975dc0cf2a2a24571001f63b46c4f04d3608b6f7af76358f5691f6c91364deb",
+  "pages": 24,
+  "page_box_pt": [
+    612.0,
+    792.0
+  ],
+  "is_us_letter": true,
+  "has_times_new_roman": true,
+  "first_page_has_author_label": true,
+  "first_page_has_institute": true,
+  "first_page_has_website": true,
+  "internal_id_hits": [],
+  "private_path_hits": [],
+  "question_mark_placeholder_hits": 0,
+  "undefined_or_multiply_defined_warnings": [],
+  "pass": true
+}
