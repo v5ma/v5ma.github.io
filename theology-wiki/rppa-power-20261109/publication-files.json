@@ -21,11 +21,11 @@
   },
   {
     "path": "theology-wiki/latest/index.html",
-    "sha256": "b27460cc52750478f03ea533deb965f23b749bb2772cdcbad96e68329336294a"
+    "sha256": "d4e8ad4f1d49f1eb07aab19dfadadc27b6f6714d231f45ce4b74b47483b9bacd"
   },
   {
     "path": "theology-wiki/latest/manifest.json",
-    "sha256": "1f9a6ab05161866a1d0034ea5c031b94a8272e937beb276e94ab1fd2471c9dbf"
+    "sha256": "60b1459f3d44ac061d504c1d8f9a4ee9a03221f7fe2b9d2b9b4b9b16132ac174"
   },
   {
     "path": "theology-wiki/latest/test.cjs",

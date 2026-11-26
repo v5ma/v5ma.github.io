@@ -1,28 +1,28 @@
 {
-  "pages": 619,
-  "servedPageAddresses": 622,
+  "pages": 625,
+  "servedPageAddresses": 628,
   "aliases": {
     "static:alternative-inheritances-20261109/index.html": "static:alternative-inheritances-20261109/alternative-inheritances.html",
     "static:clouds-and-millennium-20261109/index.html": "static:clouds-and-millennium-20261109/clouds-and-millennium.html",
     "static:rppa-power-20261109/index.html": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html"
   },
   "readerPages": 443,
-  "standalonePages": 179,
-  "directedConnections": 8526,
-  "reciprocalPairs": 4263,
+  "standalonePages": 185,
+  "directedConnections": 8750,
+  "reciprocalPairs": 4375,
   "minimum": 0,
   "median": 8,
   "maximum": 86,
   "at100": 0,
-  "under12": 364,
-  "zero": 118,
+  "under12": 363,
+  "zero": 117,
   "linkTypes": {
-    "Existing reading link": 702,
-    "Shared subject": 6370,
+    "Existing reading link": 723,
+    "Shared subject": 6498,
     "conceptual connection": 10,
-    "related comparison": 232,
-    "Linked from": 604,
-    "introduces": 2,
+    "related comparison": 260,
+    "Linked from": 623,
+    "introduces": 7,
     "evidence review": 4,
     "authored link": 169,
     "compare the question": 49,
@@ -36,7 +36,7 @@
     "cited-by": 169,
     "related study": 6,
     "connects": 36,
-    "extends": 7,
+    "extends": 11,
     "distinguishes": 7,
     "clarifies": 5,
     "responds": 1,
@@ -46,16 +46,19 @@
     "Recurring symbols and historical applications": 1,
     "Interpretation and practical repair": 1,
     "Competing prophetic readings": 1,
-    "develops": 8,
-    "compares": 16,
+    "develops": 9,
+    "compares": 28,
+    "applies": 7,
+    "updates": 1,
     "tests": 3,
-    "applies": 5,
     "grounds": 2,
     "reading route": 4,
     "organizes": 4,
     "Historical mechanism": 1,
+    "complements": 1,
     "uses": 1,
     "Institutional bridge": 1,
+    "supplements": 1,
     "contrasts": 2,
     "Ethical education and its coercive inversion": 1,
     "The source of the controlled-payment scenario": 1,
@@ -68,6 +71,7 @@
     "Moral learning and automated gatekeeping": 1,
     "Interpretive authority and the root-access analogy": 1,
     "A specific identification and its institutional evidence": 1,
+    "contextualizes": 1,
     "Passage-level development": 1,
     "tracks": 1,
     "public preservation": 1,
@@ -295,7 +299,7 @@
     {
       "id": "reader:chatgpt-beasts-revelation-theory",
       "title": "ChatGPT Beasts Revelation Theory",
-      "connections": 1,
+      "connections": 2,
       "reason": "Only these supported connections were found; no quota padding"
     },
     {
@@ -425,12 +429,6 @@
       "reason": "No qualifying narrow-topic or authored relationship in available text"
     },
     {
-      "id": "static:comparative-religion/sovereignty-and-adversaries.html",
-      "title": "Divine sovereignty and adversarial powers before Christianity",
-      "connections": 4,
-      "reason": "Only these supported connections were found; no quota padding"
-    },
-    {
       "id": "static:comparative-religion/egypt-emanation/moral-horizons-beyond-life.html",
       "title": "Do afterlife beliefs extend the moral time horizon?",
       "connections": 3,
@@ -458,12 +456,6 @@
       "id": "static:comparative-religion/abrahamic-inheritance/groups/eastern-orthodox.html",
       "title": "Eastern Orthodox Christianity",
       "connections": 2,
-      "reason": "Only these supported connections were found; no quota padding"
-    },
-    {
-      "id": "static:comparative-religion/egypt-emanation/moses-jesus-mammon/wealth-mortality-and-responsibility.html",
-      "title": "Egypt, Mammon and the difference between protection and exemption",
-      "connections": 3,
       "reason": "Only these supported connections were found; no quota padding"
     },
     {
@@ -679,7 +671,7 @@
     {
       "id": "static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html",
       "title": "Images, allegiance and economic participation",
-      "connections": 1,
+      "connections": 2,
       "reason": "Only these supported connections were found; no quota padding"
     },
     {
@@ -899,12 +891,6 @@
       "reason": "No qualifying narrow-topic or authored relationship in available text"
     },
     {
-      "id": "reader:messiah-role-in-qumran",
-      "title": "Messiah role in Qumran",
-      "connections": 4,
-      "reason": "Only these supported connections were found; no quota padding"
-    },
-    {
       "id": "static:religious-development/minority-witnesses-and-living-traditions.html",
       "title": "Minority Witnesses and Living Traditions",
       "connections": 3,
@@ -1079,12 +1065,6 @@
       "reason": "No qualifying narrow-topic or authored relationship in available text"
     },
     {
-      "id": "static:authority/qumran-jesus-and-ways-of-life.html",
-      "title": "Qumran, Jesus and the ways of life and death",
-      "connections": 4,
-      "reason": "Only these supported connections were found; no quota padding"
-    },
-    {
       "id": "reader:qumran-survival-theory",
       "title": "Qumran Survival Theory",
       "connections": 0,
@@ -1124,12 +1104,6 @@
       "id": "reader:revelation-throne-inquiry",
       "title": "Revelation Throne Inquiry",
       "connections": 3,
-      "reason": "Only these supported connections were found; no quota padding"
-    },
-    {
-      "id": "reader:russian-aliyah-impact",
-      "title": "Russian aliyah impact",
-      "connections": 4,
       "reason": "Only these supported connections were found; no quota padding"
     },
     {
@@ -1267,8 +1241,8 @@
     {
       "id": "reader:glossary",
       "title": "Terms used in this inquiry",
-      "connections": 0,
-      "reason": "No qualifying narrow-topic or authored relationship in available text"
+      "connections": 2,
+      "reason": "Only these supported connections were found; no quota padding"
     },
     {
       "id": "reader:text-transcription-request",

@@ -1,0 +1,49 @@
+{
+  "schema": "theology-beast-mammon-jubilee/v1",
+  "publicationDate": "2026-11-25",
+  "status": "Published working edition (source-audited constructive and comparative studies)",
+  "title": "The 666 / Mammon Beast Pattern, Jubilee Counter-Economy, and Second Temple Witnesses",
+  "summary": "A source-verified Theology Wiki cluster connecting Solomon's 666 talents of gold, Papyrus 115 (616), Mosaic lawlessness, the Jubilee release counter-economy, Qumran and Nag Hammadi apocalyptic witnesses, and contemporary deterrence reciprocity.",
+  "pages": [
+    {
+      "slug": "solomon-666-and-the-mammon-beast-pattern",
+      "navLabel": "Solomon & 666",
+      "cardLabel": "TEXTUAL & DIAGNOSTIC CORE",
+      "title": "Solomon's 666 talents and the Mammon Beast pattern",
+      "summary": "Why 666 and 616 (therion / theriou) diagnose a recurring Mammon politik anchored in 1 Kings 10 and Deuteronomy 17—with rabbinic witnesses, the 5-marker rubric, multi-era case studies, and preterist/futurist FAQ.",
+      "source": "sources/solomon-666-and-the-mammon-beast-pattern.md"
+    },
+    {
+      "slug": "jubilee-release-and-the-counter-economy-of-revelation-14",
+      "navLabel": "Jubilee counter-economy",
+      "cardLabel": "CONSTRUCTIVE COUNTER-PATTERN",
+      "title": "Jubilee release and the counter-economy of Revelation 14",
+      "summary": "From Hebrew deror and Septuagint aphesis (Leviticus 25; Luke 4) and Jerusalem mutual aid (Acts 2 and 4) to the verbatim Greek agorazo reversal across Revelation 13, 14, and 18.",
+      "source": "sources/jubilee-release-and-the-counter-economy-of-revelation-14.md"
+    },
+    {
+      "slug": "king-of-the-kittim-qumran-and-anti-mammon-apocalypses",
+      "navLabel": "Qumran & Nag Hammadi",
+      "cardLabel": "SECOND TEMPLE & APOCALYPTIC AUDIT",
+      "title": "King of the Kittim, Qumran, and anti-Mammon apocalypses",
+      "summary": "Comparing Qumran's King of the Kittim, Law of the King, and wealth of wickedness with the Ethiopic Apocalypse of Peter, Gospel of Thomas, Apocryphon of John, and Teachings of Silvanus—correcting common textual conflations.",
+      "source": "sources/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.md"
+    },
+    {
+      "slug": "deterrence-reciprocity-and-alliance-trust",
+      "navLabel": "Deterrence & reciprocity",
+      "cardLabel": "PROSPECTIVE OBSERVATION & AUTHORITY",
+      "title": "Deterrence, reciprocity and the crisis of alliance trust",
+      "summary": "Prospective November 2026 observation log on Russia–Estonia tensions, NATO Article 5 reciprocity limits, and separating geopolitical contingency analysis from apocalyptic text conflations.",
+      "source": "sources/deterrence-reciprocity-and-alliance-trust.md"
+    },
+    {
+      "slug": "primary-language-glossary",
+      "navLabel": "Primary glossary",
+      "cardLabel": "VERIFIED LEXICAL REFERENCE",
+      "title": "Primary-language glossary: Mammon, Beast, Jubilee, and Qumran terms",
+      "summary": "Eleven verified Greek and Hebrew terms—charagma, mamonas, arithmos anthropou, therion/theriou, agorazo, deror/aphesis, kikar zahav, lo yarbeh, hon ha-risha, melek ha-kittim, and ha-kohen ha-rasha.",
+      "source": "sources/primary-language-glossary.md"
+    }
+  ]
+}

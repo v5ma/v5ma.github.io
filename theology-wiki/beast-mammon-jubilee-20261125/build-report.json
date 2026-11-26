@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "date": "2026-11-25",
+  "pages": 5,
+  "searchSections": 37,
+  "wikilinks": [
+    "antichrist-and-gold-obsession",
+    "antichrist-as-a-pattern-of-conduct",
+    "apocalyptic-repair-theology",
+    "daniel-jubilee-and-the-teachers-time",
+    "divine-will-and-self-authorizing-power",
+    "forecast-ledger",
+    "glossary",
+    "gnosticism-and-temple-trauma",
+    "jubilee-release-and-the-counter-economy-of-revelation-14",
+    "king-of-the-kittim-qumran-and-anti-mammon-apocalypses",
+    "onias-egypt-and-priestly-continuity",
+    "primary-language-glossary",
+    "scripture-power-and-repair",
+    "solomon-666-and-the-mammon-beast-pattern",
+    "thomas-sayings-and-transmission",
+    "tor-thomas-and-gnostic-transmission",
+    "trump-first-beast-of-revelation",
+    "ukraine-russia-forecast-record"
+  ],
+  "docs": [
+    {
+      "slug": "solomon-666-and-the-mammon-beast-pattern",
+      "title": "Solomon's 666 talents and the Mammon Beast pattern",
+      "source": "sources/solomon-666-and-the-mammon-beast-pattern.md",
+      "sourceSha256": "37bc01b017e3e2689227cbe483cb181a3c234a96bcb93f6c8cee17d3bd31e134",
+      "words": 3230,
+      "readMinutes": 15,
+      "sections": 11
+    },
+    {
+      "slug": "jubilee-release-and-the-counter-economy-of-revelation-14",
+      "title": "Jubilee release and the counter-economy of Revelation 14",
+      "source": "sources/jubilee-release-and-the-counter-economy-of-revelation-14.md",
+      "sourceSha256": "2de1075c567339083a25058dd91055b8666aa37ba30684f94ea96b14f6366cc0",
+      "words": 1182,
+      "readMinutes": 6,
+      "sections": 8
+    },
+    {
+      "slug": "king-of-the-kittim-qumran-and-anti-mammon-apocalypses",
+      "title": "King of the Kittim, Qumran, and anti-Mammon apocalypses",
+      "source": "sources/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.md",
+      "sourceSha256": "b84b228a53af047271471f5f8beecb34a4bb9ced1baf90bb24bede86f1ba67d2",
+      "words": 2144,
+      "readMinutes": 10,
+      "sections": 7
+    },
+    {
+      "slug": "deterrence-reciprocity-and-alliance-trust",
+      "title": "Deterrence, reciprocity and the crisis of alliance trust",
+      "source": "sources/deterrence-reciprocity-and-alliance-trust.md",
+      "sourceSha256": "aff05fdc994878120a61e7c69497f1979642f59f81919cc5d1b025e98a42c283",
+      "words": 914,
+      "readMinutes": 5,
+      "sections": 7
+    },
+    {
+      "slug": "primary-language-glossary",
+      "title": "Primary-language glossary: Mammon, Beast, Jubilee, and Qumran terms",
+      "source": "sources/primary-language-glossary.md",
+      "sourceSha256": "ffa6fed8f8a1a430627051da8b37f42435a8335528effd8762564d3e803ddeb2",
+      "words": 708,
+      "readMinutes": 4,
+      "sections": 4
+    }
+  ],
+  "outputs": [
+    {
+      "path": "solomon-666-and-the-mammon-beast-pattern.html",
+      "bytes": 34304,
+      "sha256": "4301870c891f37682f1ccc04acd37ce91a326d0902bb997e673a2322b8b978e2"
+    },
+    {
+      "path": "jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "bytes": 15009,
+      "sha256": "3ace928c32cf84839cdb55bfcb4b15219543b8bfed1bbf11b4bca2bc2bd0e8b4"
+    },
+    {
+      "path": "king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "bytes": 23587,
+      "sha256": "db48bcf47265b529abc4a5ee4fc23cdaccda8a12b22e1d9195a095eaec6b6c09"
+    },
+    {
+      "path": "deterrence-reciprocity-and-alliance-trust.html",
+      "bytes": 13298,
+      "sha256": "63f48d03a63210591450a8a00afc42f4e803b36b25fec4aaf8cb5666acfdbe05"
+    },
+    {
+      "path": "primary-language-glossary.html",
+      "bytes": 10765,
+      "sha256": "1681fe5c6193dc696770d0a8cdd124a4e152bcea8a04fe2f0db1162cafcd3b36"
+    },
+    {
+      "path": "index.html",
+      "bytes": 8722,
+      "sha256": "7ae8baccaa91f88f35989a11513c4f07bc9c6d1fbfcd5cea8343ee24e0c97612"
+    },
+    {
+      "path": "search-index.json",
+      "bytes": 66440,
+      "sha256": "fcb56d93e4079414b23bf2e51cc23ce483140b3991d7cad6d1b21a9033e9757e"
+    },
+    {
+      "path": "search-data.js",
+      "bytes": 65126,
+      "sha256": "e832b029f6ab9c0ecbdad8bfb1de6a52179bcf31b1572993a59531307c927e79"
+    }
+  ]
+}

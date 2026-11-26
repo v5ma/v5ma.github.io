@@ -13085,6 +13085,762 @@
         }
       ],
       "origin": "Reviewed cross-series reading connection"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "reader:antichrist-as-a-pattern-of-conduct",
+      "type": "extends",
+      "why": "Develops the recurring conduct-pattern framework through Solomon's 666 talents, Papyrus 115 (616), and a five-marker Mammon rubric.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:antichrist-as-a-pattern-of-conduct",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:antichrist-as-a-pattern-of-conduct",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> reader:antichrist-as-a-pattern-of-conduct"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "reader:trump-first-beast-of-revelation",
+      "type": "contextualizes",
+      "why": "Situates contemporary First Beast analysis inside a broader recurring Solomonic and Babylonian economic pattern rather than single-name gematria.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:trump-first-beast-of-revelation",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:trump-first-beast-of-revelation",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> reader:trump-first-beast-of-revelation"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "reader:antichrist-and-gold-obsession",
+      "type": "develops",
+      "why": "Expands the archived gold-obsession discussion into a primary-text study of 1 Kings 10, Deuteronomy 17, Matthew 6, and Revelation 13 and 18.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:antichrist-and-gold-obsession",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:antichrist-and-gold-obsession",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> reader:antichrist-and-gold-obsession"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "static:evidence-review-20261109/revelation-and-symbolic-language.html",
+      "type": "compares",
+      "why": "Pairs Pattern Theology readings of 666 and 616 with the evidence-led review of Revelation's Domitianic dating, authorship debates, and symbolic resistance.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:evidence-review-20261109/revelation-and-symbolic-language.html",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:evidence-review-20261109/revelation-and-symbolic-language.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> static:evidence-review-20261109/revelation-and-symbolic-language.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "static:prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html",
+      "type": "applies",
+      "why": "Applies the recurring-patterns and corrective-word framework to economic idolatry and multi-era political-economic diagnostics.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> static:prophecy-patterns-20261105/prophecy-recurring-patterns-and-corrective-word.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
+      "type": "compares",
+      "why": "Connects the Solomonic Mammon Beast diagnostic rubric with contemporary analyses of economic exclusion and coercive payment systems.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> static:rppa-power-20261109/rppa-battles-economic-power-and-gaza.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "static:event-forecast-register/authority-imagery/gold-apollo-and-fortresses.html",
+      "type": "compares",
+      "why": "Links ancient biblical and rabbinic gold-monarchy critiques with modern documented imagery of royal gold and sovereign display.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:event-forecast-register/authority-imagery/gold-apollo-and-fortresses.html",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:event-forecast-register/authority-imagery/gold-apollo-and-fortresses.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html -> static:event-forecast-register/authority-imagery/gold-apollo-and-fortresses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "reader:apocalyptic-repair-theology",
+      "type": "complements",
+      "why": "Connects Apocalyptic Repair Theology with the constructive canonical synthesis of Leviticus 25 Jubilee release, Luke 4, Acts 2 and 4, and Revelation 14.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:apocalyptic-repair-theology",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:apocalyptic-repair-theology",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html -> reader:apocalyptic-repair-theology"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "reader:daniel-jubilee-and-the-teachers-time",
+      "type": "compares",
+      "why": "Bridges Danielic and Qumran jubilee time-reckoning with the Hebrew deror to Greek aphesis vocabulary in Leviticus 25 and Luke 4.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:daniel-jubilee-and-the-teachers-time",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:daniel-jubilee-and-the-teachers-time",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html -> reader:daniel-jubilee-and-the-teachers-time"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "reader:scripture-power-and-repair",
+      "type": "extends",
+      "why": "Traces how scripture's counter-economy of mutual aid and release answers commercial coercion across Revelation 13, 14, and 18.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:scripture-power-and-repair",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:scripture-power-and-repair",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html -> reader:scripture-power-and-repair"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "static:authority/gaza-hunger-and-prophetic-accountability.html",
+      "type": "compares",
+      "why": "Connects prophetic accountability over subsistence and hunger with the Jubilee and Revelation 14 counter-economy of covenant solidarity.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:authority/gaza-hunger-and-prophetic-accountability.html",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:authority/gaza-hunger-and-prophetic-accountability.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html -> static:authority/gaza-hunger-and-prophetic-accountability.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html",
+      "type": "compares",
+      "why": "Pairs contemporary questions about allegiance and commerce with Revelation's verbatim agorazo reversal between the Beast and the Lamb.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html -> static:event-forecast-register/authority-imagery/images-allegiance-and-commerce.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "reader:thomas-sayings-and-transmission",
+      "type": "compares",
+      "why": "Places Gospel of Thomas Sayings 64 and 110 on merchants and wealth alongside Qumran and early apocalyptic anti-Mammon witnesses.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:thomas-sayings-and-transmission",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:thomas-sayings-and-transmission",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> reader:thomas-sayings-and-transmission"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "reader:tor-thomas-and-gnostic-transmission",
+      "type": "compares",
+      "why": "Examines Qumran institutional titles and Nag Hammadi anti-gold passages while keeping Sethian anti-creator polemic distinct from prophetic economics.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:tor-thomas-and-gnostic-transmission",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:tor-thomas-and-gnostic-transmission",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> reader:tor-thomas-and-gnostic-transmission"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "reader:gnosticism-and-temple-trauma",
+      "type": "compares",
+      "why": "Contrasts Qumran Temple-economy dissent with later Gnostic anti-archon depictions of Solomon, gold, and earthly rulers.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:gnosticism-and-temple-trauma",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:gnosticism-and-temple-trauma",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> reader:gnosticism-and-temple-trauma"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "reader:onias-egypt-and-priestly-continuity",
+      "type": "compares",
+      "why": "Connects Second Temple priestly disputes and Seleucid high-priesthood auctions with Qumran critiques of the Wicked Priest and corrupt wealth.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:onias-egypt-and-priestly-continuity",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:onias-egypt-and-priestly-continuity",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> reader:onias-egypt-and-priestly-continuity"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "static:authority/qumran-jesus-and-ways-of-life.html",
+      "type": "extends",
+      "why": "Builds on the Qumran comparison by auditing 11Q19, CD 6:15, 1QS 6, and War Scroll 1QM while preserving cautions against sectarian exclusion.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:authority/qumran-jesus-and-ways-of-life.html",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:authority/qumran-jesus-and-ways-of-life.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> static:authority/qumran-jesus-and-ways-of-life.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "static:authority/two-failures-of-sacred-authority.html",
+      "type": "compares",
+      "why": "Reinforces the distinction between prophetic covenant critique and later Sethian anti-creator polemic such as the Second Treatise of the Great Seth.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:authority/two-failures-of-sacred-authority.html",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:authority/two-failures-of-sacred-authority.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> static:authority/two-failures-of-sacred-authority.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "static:evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "type": "compares",
+      "why": "Pairs Dead Sea Scrolls manuscript dating with primary-source audits of 1QM, 11Q19, CD, 1QS, and 1QpHab.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:evidence-review-20261109/dead-sea-scrolls-dating.html",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:evidence-review-20261109/dead-sea-scrolls-dating.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html -> static:evidence-review-20261109/dead-sea-scrolls-dating.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "to": "reader:ukraine-russia-forecast-record",
+      "type": "updates",
+      "why": "Adds a strictly prospective November 2026 observation log on Russia-Estonia escalation warnings and structural economic strain without hindsight scoring.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:ukraine-russia-forecast-record",
+      "to": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:ukraine-russia-forecast-record",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html -> reader:ukraine-russia-forecast-record"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "to": "reader:forecast-ledger",
+      "type": "extends",
+      "why": "Applies the dated prospective-logging standard to November 2026 alliance deterrence contingencies while preventing retrospective hit claims.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:forecast-ledger",
+      "to": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:forecast-ledger",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html -> reader:forecast-ledger"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "to": "reader:divine-will-and-self-authorizing-power",
+      "type": "applies",
+      "why": "Tests how unilateral refusal of collective-defense commitments illustrates self-authorizing power detached from reciprocal accountability.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:divine-will-and-self-authorizing-power",
+      "to": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:divine-will-and-self-authorizing-power",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html -> reader:divine-will-and-self-authorizing-power"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html",
+      "to": "reader:glossary",
+      "type": "supplements",
+      "why": "Supplements the collection glossary with eleven source-verified Greek and Hebrew entries including charagma, mamonas, agorazo, aphesis, and melek ha-kittim.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "reader:glossary",
+      "to": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "reader:glossary",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html -> reader:glossary"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/index.html",
+      "to": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "type": "introduces",
+      "why": "Introduces the textual core on Solomon's 666 talents, Papyrus 115 (616), therion/theriou, rabbinic reception, five-marker rubric, and FAQ.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/index.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+      "to": "static:beast-mammon-jubilee-20261125/index.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/index.html -> static:beast-mammon-jubilee-20261125/solomon-666-and-the-mammon-beast-pattern.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/index.html",
+      "to": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "type": "introduces",
+      "why": "Introduces the constructive counter-economy study bridging Leviticus 25, Luke 4, Acts 2 and 4, and Revelation 14.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/index.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+      "to": "static:beast-mammon-jubilee-20261125/index.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/index.html -> static:beast-mammon-jubilee-20261125/jubilee-release-and-the-counter-economy-of-revelation-14.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/index.html",
+      "to": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "type": "introduces",
+      "why": "Introduces the source-audited comparative study of Qumran, the War Scroll, the Ethiopic Apocalypse of Peter, and Nag Hammadi.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/index.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+      "to": "static:beast-mammon-jubilee-20261125/index.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/index.html -> static:beast-mammon-jubilee-20261125/king-of-the-kittim-qumran-and-anti-mammon-apocalypses.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/index.html",
+      "to": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "type": "introduces",
+      "why": "Introduces the prospective November 2026 observation log on Russia-Estonia warnings, NATO Article 5 reciprocity, and Daniel 7 vs. Revelation 16.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/index.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+      "to": "static:beast-mammon-jubilee-20261125/index.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/index.html -> static:beast-mammon-jubilee-20261125/deterrence-reciprocity-and-alliance-trust.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/index.html",
+      "to": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html",
+      "type": "introduces",
+      "why": "Introduces the eleven-term primary-language Greek and Hebrew lexical reference for the cluster.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/index.html"
+        }
+      ],
+      "origin": "Editorial relationship"
+    },
+    {
+      "from": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html",
+      "to": "static:beast-mammon-jubilee-20261125/index.html",
+      "type": "related comparison",
+      "why": "Reciprocal editorial route connecting related inquiries across the Theology Wiki; compare the primary evidence and scope of each study separately.",
+      "evidence": [
+        {
+          "path": "beast-mammon-jubilee-20261125/manifest.json",
+          "endpoint": "static:beast-mammon-jubilee-20261125/primary-language-glossary.html",
+          "reverseOf": "static:beast-mammon-jubilee-20261125/index.html -> static:beast-mammon-jubilee-20261125/primary-language-glossary.html"
+        }
+      ],
+      "origin": "Editorial relationship"
     }
   ]
 }
